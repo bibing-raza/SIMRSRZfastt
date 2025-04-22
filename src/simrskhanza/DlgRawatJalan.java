@@ -13950,6 +13950,92 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                     }
                                 }
                             }
+                            
+                            //menampilkan konsul internal poliklinik
+                            try {
+                                StringBuilder sb11 = new StringBuilder();
+                                sb11.append("select sk.*, p.no_rkm_medis, p.nm_pasien, pl1.nm_poli poliAwal, d.nm_dokter, date_format(sk.tgl_permintaan_konsul,'%d/%m/%Y') tglKonsul,");
+                                sb11.append("pl2.nm_poli poliTujuan, DATE_FORMAT(sk.tgl_permintaan_konsul,'%d-%m-%Y') tglKonsul, if(sk.tgl_menjawab='0000-00-00','-',sk.tgl_menjawab) tgljawab, ");
+                                sb11.append("date_format(sk.tgl_menjawab,'%d/%m/%Y') tglmenjawab, date_format(sk.tgl_konsul_ulang,'%d/%m/%Y') tglkonsululang from surat_konsul_unit_ralan sk ");
+                                sb11.append("inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+                                sb11.append("inner join poliklinik pl1 on pl1.kd_poli=sk.kd_poli inner join poliklinik pl2 on pl2.kd_poli=sk.kd_poli_pembalas ");
+                                sb11.append("inner join dokter d on d.kd_dokter=sk.kd_dokter_pembalas WHERE sk.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb11.toString()).executeQuery();
+                                if (rs3.next()) {
+                                    htmlContent.append(
+                                            "<tr class='isi'>"
+                                            + "<td valign='top' width='20%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Konsultasi Internal Poliklinik</td>"
+                                            + "<td valign='top' width='1%' align='center'>:</td>"
+                                            + "<td valign='top' width='79%'>"
+                                            + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                                            + "<tr align='center'>"
+                                            + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Poliklinik Tujuan</td>"
+                                            + "<td valign='top' width='13%' bgcolor='#f8fdf3'>Jns. Konsul</td>"
+                                            + "<td valign='top' width='13%' bgcolor='#f8fdf3'>Tgl. Konsul</td>"
+                                            + "<td valign='top' width='50%' bgcolor='#f8fdf3'>Tujuan Konsul</td>"
+                                            + "<td valign='top' width='150%' bgcolor='#f8fdf3'>Permintaan/Ket. Konsul</td>"
+                                            + "<td valign='top' width='150%' bgcolor='#f8fdf3'>Uraian Jawaban Konsul</td>"
+                                            + "<td valign='top' width='24%' bgcolor='#f8fdf3'>Dijawab Tgl.</td>"
+                                            + "<td valign='top' width='24%' bgcolor='#f8fdf3'>Tgl. Konsul Ulang</td>"
+                                            + "<td valign='top' width='80%' bgcolor='#f8fdf3'>Dijawab Oleh Dokter</td>"
+                                            + "</tr>"
+                                    );
+                                    rs3.beforeFirst();
+                                    while (rs3.next()) {
+                                        String tujuan = "", tgljwb = "", tglkonsulUlang = "", cekJawaban = "";
+                                        if (rs3.getString("tujuan").equals("Lainnya")) {
+                                            tujuan = "<td valign='top'>" + rs3.getString("tujuan") + " (" + rs3.getString("ket_tujuan_lain") + ")</td>";
+                                        } else {
+                                            tujuan = "<td valign='top'>" + rs3.getString("tujuan") + "</td>";
+                                        }
+
+                                        if (rs3.getString("tgljawab").equals("-")) {
+                                            tgljwb = "<td valign='top' align='center'>-</td>";
+                                        } else {
+                                            tgljwb = "<td valign='top' align='center'>" + rs3.getString("tglmenjawab") + "</td>";
+                                        }
+
+                                        if (rs3.getString("konsul_ulang").equals("tidak")) {
+                                            tglkonsulUlang = "<td valign='top' align='center'>-</td>";
+                                        } else {
+                                            tglkonsulUlang = "<td valign='top' align='center'>" + rs3.getString("tglkonsululang") + "</td>";
+                                        }
+
+                                        if (rs3.getString("no_rawat_pembalas").equals("-")) {
+                                            cekJawaban = "<td valign='top'>-</td>";
+                                        } else {
+                                            if (rs3.getString("kasus_ditemukan").equals("")) {
+                                                cekJawaban = "<td valign='top'>" + rs3.getString("ket_klinis_jawaban").replaceAll("(\r\n|\r|\n|\n\r)", "<br>") + "<br><br></td>";
+                                            } else {
+                                                cekJawaban = "<td valign='top'>Ditemukan kasus : " + rs3.getString("kasus_ditemukan") + "<br><br>" + rs3.getString("ket_klinis_jawaban").replaceAll("(\r\n|\r|\n|\n\r)", "<br>") + "<br><br></td>";
+                                            }
+                                        }
+
+                                        htmlContent.append(
+                                                "<tr>"
+                                                + "<td valign='top'>" + rs3.getString("poliTujuan") + "</td>"
+                                                + "<td valign='top' align='center'>" + rs3.getString("jenis_konsul") + "</td>"
+                                                + "<td valign='top' align='center'>" + rs3.getString("tglKonsul") + "</td>"
+                                                + tujuan
+                                                + "<td valign='top'>" + rs3.getString("keterangan_klinis").replaceAll("(\r\n|\r|\n|\n\r)", "<br>") + "<br><br></td>"
+                                                + cekJawaban
+                                                + tgljwb
+                                                + tglkonsulUlang
+                                                + "<td valign='top'>" + rs3.getString("nm_dokter") + "</td>"
+                                                + "</tr>");
+                                    }
+                                    htmlContent.append(
+                                            "</table>"
+                                            + "</td>"
+                                            + "</tr>");
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Notifikasi : " + e);
+                            } finally {
+                                if (rs3 != null) {
+                                    rs3.close();
+                                }
+                            }
 
                             //menampilkan rujukan internal poliklinik
                             try {

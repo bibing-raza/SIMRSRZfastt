@@ -1127,6 +1127,9 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnDataTriasePediatrik = new javax.swing.JMenu();
         MnInputDataTriasePedia = new javax.swing.JMenuItem();
         MnLihatDataTriasePedia = new javax.swing.JMenuItem();
+        MnDataTriasePonek = new javax.swing.JMenu();
+        MnInputDataTriasePonek = new javax.swing.JMenuItem();
+        MnLihatDataTriasePonek = new javax.swing.JMenuItem();
         MnAssesmenMedikIGD = new javax.swing.JMenu();
         MnInputDataAssesmenMedikIGD = new javax.swing.JMenuItem();
         MnLihatDataAssesmenMedikIGD = new javax.swing.JMenuItem();
@@ -1778,6 +1781,53 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnDataTriasePediatrik.add(MnLihatDataTriasePedia);
 
         MnRMGawatDarurat.add(MnDataTriasePediatrik);
+
+        MnDataTriasePonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnDataTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDataTriasePonek.setText("Triase Ponek IGD");
+        MnDataTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDataTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDataTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDataTriasePonek.setIconTextGap(5);
+        MnDataTriasePonek.setName("MnDataTriasePonek"); // NOI18N
+        MnDataTriasePonek.setOpaque(true);
+        MnDataTriasePonek.setPreferredSize(new java.awt.Dimension(230, 26));
+
+        MnInputDataTriasePonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnInputDataTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnInputDataTriasePonek.setForeground(new java.awt.Color(50, 50, 50));
+        MnInputDataTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnInputDataTriasePonek.setText("Input Data");
+        MnInputDataTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnInputDataTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnInputDataTriasePonek.setIconTextGap(5);
+        MnInputDataTriasePonek.setName("MnInputDataTriasePonek"); // NOI18N
+        MnInputDataTriasePonek.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnInputDataTriasePonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnInputDataTriasePonekActionPerformed(evt);
+            }
+        });
+        MnDataTriasePonek.add(MnInputDataTriasePonek);
+
+        MnLihatDataTriasePonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnLihatDataTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLihatDataTriasePonek.setForeground(new java.awt.Color(50, 50, 50));
+        MnLihatDataTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLihatDataTriasePonek.setText("Lihat Data");
+        MnLihatDataTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLihatDataTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLihatDataTriasePonek.setIconTextGap(5);
+        MnLihatDataTriasePonek.setName("MnLihatDataTriasePonek"); // NOI18N
+        MnLihatDataTriasePonek.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnLihatDataTriasePonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLihatDataTriasePonekActionPerformed(evt);
+            }
+        });
+        MnDataTriasePonek.add(MnLihatDataTriasePonek);
+
+        MnRMGawatDarurat.add(MnDataTriasePonek);
 
         MnAssesmenMedikIGD.setBackground(new java.awt.Color(255, 255, 254));
         MnAssesmenMedikIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -2564,7 +2614,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbSiftPetugas.setBounds(287, 10, 65, 23);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -2580,7 +2630,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 38, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -3016,7 +3066,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel29.setBounds(0, 40, 80, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -3214,7 +3264,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3228,7 +3278,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3419,7 +3469,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel43.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass12.add(jLabel43);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -3433,7 +3483,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel44.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass12.add(jLabel44);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -3863,7 +3913,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame7.add(jLabel8);
         jLabel8.setBounds(0, 38, 180, 23);
 
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -4627,7 +4677,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel35.setBounds(0, 8, 120, 23);
 
         tglLapor.setEditable(false);
-        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         tglLapor.setDisplayFormat("dd-MM-yyyy");
         tglLapor.setName("tglLapor"); // NOI18N
         tglLapor.setOpaque(false);
@@ -4681,7 +4731,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel38.setBounds(0, 36, 120, 23);
 
         tglVerifikasi.setEditable(false);
-        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         tglVerifikasi.setDisplayFormat("dd-MM-yyyy");
         tglVerifikasi.setName("tglVerifikasi"); // NOI18N
         tglVerifikasi.setOpaque(false);
@@ -5126,7 +5176,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5140,7 +5190,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6221,7 +6271,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass26.add(ChkTanggal);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -6235,7 +6285,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel59.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass26.add(jLabel59);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-04-2025" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -9552,6 +9602,68 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnHapusActionPerformed(null);
     }//GEN-LAST:event_BtnHapus4ActionPerformed
 
+    private void MnInputDataTriasePonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnInputDataTriasePonekActionPerformed
+        if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+        } else {
+            if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
+                    + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgCPPT");
+                RMTriasePonek form = new RMTriasePonek(null, false);
+                form.isCek();
+                form.emptTeks();
+                form.setNoRm(TNoRw.getText());
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+                    if ((Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat = '" + TNoRw.getText() + "'") == 0)
+                            || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)
+                            || (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1)) {
+                        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                        akses.setform("DlgCPPT");
+                        RMTriasePonek form = new RMTriasePonek(null, false);
+                        form.isCek();
+                        form.emptTeks();
+                        form.setNoRm(TNoRw.getText());
+                        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                        form.setLocationRelativeTo(internalFrame1);
+                        form.setVisible(true);
+                        this.setCursor(Cursor.getDefaultCursor());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
+                    }
+                } else if (status.equals("ranap")) {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    akses.setform("DlgCPPT");
+                    RMTriasePonek form = new RMTriasePonek(null, false);
+                    form.isCek();
+                    form.emptTeks();
+                    form.setNoRm(TNoRw.getText());
+                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    form.setLocationRelativeTo(internalFrame1);
+                    form.setVisible(true);
+                    this.setCursor(Cursor.getDefaultCursor());
+                }
+            }
+        }
+    }//GEN-LAST:event_MnInputDataTriasePonekActionPerformed
+
+    private void MnLihatDataTriasePonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataTriasePonekActionPerformed
+        if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+        } else {
+            if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                cetakDataTriasePonek();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data triase ponek tidak ditemukan...!!!");
+            }
+        }
+    }//GEN-LAST:event_MnLihatDataTriasePonekActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -9719,6 +9831,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnDataSampah;
     private javax.swing.JMenu MnDataTriaseIGD;
     private javax.swing.JMenu MnDataTriasePediatrik;
+    private javax.swing.JMenu MnDataTriasePonek;
     private javax.swing.JMenuItem MnGrafikPemantauanDewasa;
     private javax.swing.JMenuItem MnHapusDipilih;
     private javax.swing.JMenuItem MnHapusSemua;
@@ -9729,6 +9842,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnInputDataTransferSerahTerimaIGD;
     private javax.swing.JMenuItem MnInputDataTriaseIGD;
     private javax.swing.JMenuItem MnInputDataTriasePedia;
+    private javax.swing.JMenuItem MnInputDataTriasePonek;
     private javax.swing.JMenuItem MnJenisDokumen;
     private javax.swing.JMenuItem MnLihatDataAsesmenMedikObstetri;
     private javax.swing.JMenuItem MnLihatDataAssesmenKeperawatanIGD;
@@ -9736,6 +9850,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnLihatDataKebidanan;
     private javax.swing.JMenuItem MnLihatDataTriaseIGD;
     private javax.swing.JMenuItem MnLihatDataTriasePedia;
+    private javax.swing.JMenuItem MnLihatDataTriasePonek;
     private javax.swing.JMenuItem MnMonevGizi;
     private javax.swing.JMenuItem MnPasteLabA;
     private javax.swing.JMenuItem MnPasteLabO;
@@ -10504,6 +10619,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnMonevGizi.setEnabled(akses.getmonev_asuhan_gizi());
         MnInputDataTriaseIGD.setEnabled(akses.getdata_triase_igd());
         MnInputDataTriasePedia.setEnabled(akses.getdata_triase_igd());
+        MnInputDataTriasePonek.setEnabled(akses.getcppt());
         MnInputDataAssesmenMedikIGD.setEnabled(akses.getresep_dokter());
         MnInputDataAssesmenKeperawatanIGD.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
     }
@@ -14202,22 +14318,27 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
             StringBuilder htmlContent = new StringBuilder();
             try {
-                rs = koneksi.prepareStatement("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.jk, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.umur, "
-                        + "tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar from pasien inner join kelurahan inner join kecamatan inner join kabupaten "
-                        + "on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and "
-                        + "pasien.kd_kab=kabupaten.kd_kab where pasien.no_rkm_medis='" + TNoRm.getText() + "' order by pasien.no_rkm_medis desc ").executeQuery();
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.jk, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.umur, ");
+                sb1.append("tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar from pasien inner join kelurahan inner join kecamatan inner join kabupaten ");
+                sb1.append("on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and ");
+                sb1.append("pasien.kd_kab=kabupaten.kd_kab where pasien.no_rkm_medis='" + TNoRm.getText() + "' order by pasien.no_rkm_medis desc");
+                rs = koneksi.prepareStatement(sb1.toString()).executeQuery();
+                
                 y = 1;
                 while (rs.next()) {
                     try {
-                        rs2 = koneksi.prepareStatement(
-                                "select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,"
-                                + "reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,"
-                                + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,"
-                                + "penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab "
-                                + "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj "
-                                + "and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where "
-                                + "stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and reg_periksa.status_lanjut='Ralan' and "
-                                + "reg_periksa.tgl_registrasi between DATE_SUB(date(now()), INTERVAL " + cmbBulan.getSelectedItem().toString() + " MONTH) and NOW()" + a).executeQuery();
+                        StringBuilder sb2 = new StringBuilder();
+                        sb2.append("select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,");
+                        sb2.append("reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,");
+                        sb2.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,");
+                        sb2.append("penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab ");
+                        sb2.append("on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj ");
+                        sb2.append("and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where ");
+                        sb2.append("stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and reg_periksa.status_lanjut='Ralan' and ");
+                        sb2.append("reg_periksa.tgl_registrasi between DATE_SUB(date(now()), INTERVAL " + cmbBulan.getSelectedItem().toString() + " MONTH) and NOW()" + a);
+                        rs2 = koneksi.prepareStatement(sb2.toString()).executeQuery();
+                        
                         urut = 1;
                         while (rs2.next()) {
                             htmlContent.append(
@@ -14266,9 +14387,11 @@ public class DlgCPPT extends javax.swing.JDialog {
 //                            }
                             //menampilkan rencana follow up dokter
                             try {
-                                rsDiag = koneksi.prepareStatement(
-                                        "Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan "
-                                        + "where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb3 = new StringBuilder();
+                                sb3.append("Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan ");
+                                sb3.append("where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rsDiag = koneksi.prepareStatement(sb3.toString()).executeQuery();
+                                
                                 if (rsDiag.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -14287,9 +14410,11 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan rencana follow up perawat/bidan
                             try {
-                                rsDiag1 = koneksi.prepareStatement(
-                                        "Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan_petugas "
-                                        + "where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb4 = new StringBuilder();
+                                sb4.append("Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan_petugas ");
+                                sb4.append("where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rsDiag1 = koneksi.prepareStatement(sb4.toString()).executeQuery();
+                                
                                 if (rsDiag1.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -14308,9 +14433,10 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan catatan Resep Obat
                             try {
-                                rsObat = koneksi.prepareStatement(
-                                        "Select nama_obat,status from catatan_resep "
-                                        + "where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb5 = new StringBuilder();
+                                sb5.append("Select nama_obat,status from catatan_resep where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rsObat = koneksi.prepareStatement(sb5.toString()).executeQuery();
+
                                 if (rsObat.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -14349,10 +14475,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan diagnosa penyakit                            
                             try {
-                                rs3 = koneksi.prepareStatement("select diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit, diagnosa_pasien.status "
-                                        + "from diagnosa_pasien inner join penyakit "
-                                        + "on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit "
-                                        + "where diagnosa_pasien.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb6 = new StringBuilder();
+                                sb6.append("select diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit, diagnosa_pasien.status ");
+                                sb6.append("from diagnosa_pasien inner join penyakit ");
+                                sb6.append("on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit ");
+                                sb6.append("where diagnosa_pasien.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb6.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -14393,9 +14522,11 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan prosedur tindakan
                             try {
-                                rs3 = koneksi.prepareStatement("select prosedur_pasien.kode,icd9.deskripsi_panjang, prosedur_pasien.status "
-                                        + "from prosedur_pasien inner join icd9 on prosedur_pasien.kode=icd9.kode "
-                                        + "where prosedur_pasien.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb7 = new StringBuilder();
+                                sb7.append("select prosedur_pasien.kode,icd9.deskripsi_panjang, prosedur_pasien.status ");
+                                sb7.append("from prosedur_pasien inner join icd9 on prosedur_pasien.kode=icd9.kode ");
+                                sb7.append("where prosedur_pasien.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb7.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -14437,13 +14568,15 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan riwayat pemeriksaan ralan dokter
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi,pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,"
-                                        + "pemeriksaan_ralan.tinggi,pemeriksaan_ralan.berat,pemeriksaan_ralan.gcs,pemeriksaan_ralan.keluhan, "
-                                        + "pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,ifnull(pemeriksaan_ralan.diagnosa,'-') diagnosa, "
-                                        + "ifnull(pemeriksaan_ralan.rincian_tindakan,'-') rincian_tindakan, ifnull(pemeriksaan_ralan.terapi,'-') terapi, "
-                                        + "ifnull(pemeriksaan_ralan.spo2,'-') spo2 from pemeriksaan_ralan where "
-                                        + "pemeriksaan_ralan.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb8 = new StringBuilder();
+                                sb8.append("select pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi,pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,");
+                                sb8.append("pemeriksaan_ralan.tinggi,pemeriksaan_ralan.berat,pemeriksaan_ralan.gcs,pemeriksaan_ralan.keluhan, ");
+                                sb8.append("pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,ifnull(pemeriksaan_ralan.diagnosa,'-') diagnosa, ");
+                                sb8.append("ifnull(pemeriksaan_ralan.rincian_tindakan,'-') rincian_tindakan, ifnull(pemeriksaan_ralan.terapi,'-') terapi, ");
+                                sb8.append("ifnull(pemeriksaan_ralan.spo2,'-') spo2 from pemeriksaan_ralan where ");
+                                sb8.append("pemeriksaan_ralan.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb8.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -14510,9 +14643,11 @@ public class DlgCPPT extends javax.swing.JDialog {
                             //menampilkan pemeriksaan THT
                             if (rs2.getString("kd_poli").equals("THT")) {
                                 try {
-                                    rsTHT = koneksi.prepareStatement(
-                                            "Select ifnull(nama_pemeriksaan,'-') namanya, ifnull(hasil_pemeriksaan,'-') hasilnya "
-                                            + "from pemeriksaan_tht where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                    StringBuilder sb9 = new StringBuilder();
+                                    sb9.append("Select ifnull(nama_pemeriksaan,'-') namanya, ifnull(hasil_pemeriksaan,'-') hasilnya ");
+                                    sb9.append("from pemeriksaan_tht where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    rsTHT = koneksi.prepareStatement(sb9.toString()).executeQuery();
+                                    
                                     if (rsTHT.next()) {
                                         htmlContent.append(
                                                 "<tr class='isi'>"
@@ -14534,8 +14669,10 @@ public class DlgCPPT extends javax.swing.JDialog {
                             //menampilkan reasesmen pemeriksaan
                             if (Sequel.cariIsi("select reasesmen from pemeriksaan_ralan WHERE no_rawat='" + rs2.getString("no_rawat") + "'").equals("1")) {
                                 try {
-                                    rs3 = koneksi.prepareStatement(
-                                            "SELECT kesimpulan, rekomendasi FROM pemeriksaan_ralan WHERE no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                    StringBuilder sb10 = new StringBuilder();
+                                    sb10.append("SELECT kesimpulan, rekomendasi FROM pemeriksaan_ralan WHERE no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    rs3 = koneksi.prepareStatement(sb10.toString()).executeQuery();
+
                                     if (rs3.next()) {
                                         htmlContent.append(
                                                 "<tr class='isi'>"
@@ -14572,13 +14709,15 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan konsul internal poliklinik
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select sk.*, p.no_rkm_medis, p.nm_pasien, pl1.nm_poli poliAwal, d.nm_dokter, date_format(sk.tgl_permintaan_konsul,'%d/%m/%Y') tglKonsul,"
-                                        + "pl2.nm_poli poliTujuan, DATE_FORMAT(sk.tgl_permintaan_konsul,'%d-%m-%Y') tglKonsul, if(sk.tgl_menjawab='0000-00-00','-',sk.tgl_menjawab) tgljawab, "
-                                        + "date_format(sk.tgl_menjawab,'%d/%m/%Y') tglmenjawab, date_format(sk.tgl_konsul_ulang,'%d/%m/%Y') tglkonsululang from surat_konsul_unit_ralan sk "
-                                        + "inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                                        + "inner join poliklinik pl1 on pl1.kd_poli=sk.kd_poli inner join poliklinik pl2 on pl2.kd_poli=sk.kd_poli_pembalas "
-                                        + "inner join dokter d on d.kd_dokter=sk.kd_dokter_pembalas WHERE sk.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb11 = new StringBuilder();
+                                sb11.append("select sk.*, p.no_rkm_medis, p.nm_pasien, pl1.nm_poli poliAwal, d.nm_dokter, date_format(sk.tgl_permintaan_konsul,'%d/%m/%Y') tglKonsul,");
+                                sb11.append("pl2.nm_poli poliTujuan, DATE_FORMAT(sk.tgl_permintaan_konsul,'%d-%m-%Y') tglKonsul, if(sk.tgl_menjawab='0000-00-00','-',sk.tgl_menjawab) tgljawab, ");
+                                sb11.append("date_format(sk.tgl_menjawab,'%d/%m/%Y') tglmenjawab, date_format(sk.tgl_konsul_ulang,'%d/%m/%Y') tglkonsululang from surat_konsul_unit_ralan sk ");
+                                sb11.append("inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+                                sb11.append("inner join poliklinik pl1 on pl1.kd_poli=sk.kd_poli inner join poliklinik pl2 on pl2.kd_poli=sk.kd_poli_pembalas ");
+                                sb11.append("inner join dokter d on d.kd_dokter=sk.kd_dokter_pembalas WHERE sk.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb11.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -14657,11 +14796,12 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan rujukan internal poliklinik
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "SELECT ifnull(pl.nm_poli,'-') ke_poli, ifnull(DATE_FORMAT(ri.tgl_rencana_dirujuk,'%d-%m-%Y'),'-') tgl_dirujuk, "
-                                        + "ifnull(ri.keterangan,'-') keterangan, ifnull(ri.keterangan_balasan,'-') jwbn, ifnull(d.nm_dokter,'') drMenjawab FROM rujukan_internal_poli ri "
-                                        + "INNER JOIN poliklinik pl on pl.kd_poli=ri.kd_poli_pembalas left join dokter d on d.kd_dokter=ri.kd_dokter_pembalas "
-                                        + "WHERE ri.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb12 = new StringBuilder();
+                                sb12.append("SELECT ifnull(pl.nm_poli,'-') ke_poli, ifnull(DATE_FORMAT(ri.tgl_rencana_dirujuk,'%d-%m-%Y'),'-') tgl_dirujuk, ");
+                                sb12.append("ifnull(ri.keterangan,'-') keterangan, ifnull(ri.keterangan_balasan,'-') jwbn, ifnull(d.nm_dokter,'') drMenjawab FROM rujukan_internal_poli ri ");
+                                sb12.append("INNER JOIN poliklinik pl on pl.kd_poli=ri.kd_poli_pembalas left join dokter d on d.kd_dokter=ri.kd_dokter_pembalas ");
+                                sb12.append("WHERE ri.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb12.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -14702,13 +14842,15 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan riwayat pemeriksaan ralan petugas
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select pemeriksaan_ralan_petugas.suhu_tubuh,pemeriksaan_ralan_petugas.tensi,pemeriksaan_ralan_petugas.nadi,pemeriksaan_ralan_petugas.respirasi,"
-                                        + "pemeriksaan_ralan_petugas.tinggi,pemeriksaan_ralan_petugas.berat,pemeriksaan_ralan_petugas.gcs,pemeriksaan_ralan_petugas.keluhan, "
-                                        + "pemeriksaan_ralan_petugas.pemeriksaan,pemeriksaan_ralan_petugas.alergi,ifnull(pemeriksaan_ralan_petugas.diagnosa,'-') diagnosa, "
-                                        + "ifnull(pemeriksaan_ralan_petugas.rincian_tindakan,'-') rincian_tindakan, "
-                                        + "ifnull(pemeriksaan_ralan_petugas.terapi,'-') terapi, ifnull(pemeriksaan_ralan_petugas.spo2,'-') spo2 from pemeriksaan_ralan_petugas where "
-                                        + "pemeriksaan_ralan_petugas.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb13 = new StringBuilder();
+                                sb13.append("select pemeriksaan_ralan_petugas.suhu_tubuh,pemeriksaan_ralan_petugas.tensi,pemeriksaan_ralan_petugas.nadi,pemeriksaan_ralan_petugas.respirasi,");
+                                sb13.append("pemeriksaan_ralan_petugas.tinggi,pemeriksaan_ralan_petugas.berat,pemeriksaan_ralan_petugas.gcs,pemeriksaan_ralan_petugas.keluhan, ");
+                                sb13.append("pemeriksaan_ralan_petugas.pemeriksaan,pemeriksaan_ralan_petugas.alergi,ifnull(pemeriksaan_ralan_petugas.diagnosa,'-') diagnosa, ");
+                                sb13.append("ifnull(pemeriksaan_ralan_petugas.rincian_tindakan,'-') rincian_tindakan, ");
+                                sb13.append("ifnull(pemeriksaan_ralan_petugas.terapi,'-') terapi, ifnull(pemeriksaan_ralan_petugas.spo2,'-') spo2 from pemeriksaan_ralan_petugas where ");
+                                sb13.append("pemeriksaan_ralan_petugas.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb13.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -14774,7 +14916,10 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //hasil pemeriksaan laboratorium LIS
                             try {
-                                rsLISMaster = koneksi.prepareStatement("SELECT no_lab FROM lis_reg WHERE no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY no_lab").executeQuery();
+                                StringBuilder sb14 = new StringBuilder();
+                                sb14.append("SELECT no_lab FROM lis_reg WHERE no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY no_lab");
+                                rsLISMaster = koneksi.prepareStatement(sb14.toString()).executeQuery();
+
                                 if (rsLISMaster.next()) {
                                     rsLISMaster.beforeFirst();
                                     lisM = 1;
@@ -14796,10 +14941,11 @@ public class DlgCPPT extends javax.swing.JDialog {
                                                 + "</tr>"
                                         );
 
-                                        rsLIS1 = koneksi.prepareStatement(
-                                                "SELECT ifnull(kategori_pemeriksaan_nama,'') kategori_pemeriksaan_nama FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab "
-                                                + "WHERE lr.no_rawat='" + rs2.getString("no_rawat") + "' and lr.no_lab ='" + rsLISMaster.getString("no_lab") + "' GROUP BY lhp.kategori_pemeriksaan_nama "
-                                                + "ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut").executeQuery();
+                                        StringBuilder sb15 = new StringBuilder();
+                                        sb15.append("SELECT ifnull(kategori_pemeriksaan_nama,'') kategori_pemeriksaan_nama FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab ");
+                                        sb15.append("WHERE lr.no_rawat='" + rs2.getString("no_rawat") + "' and lr.no_lab ='" + rsLISMaster.getString("no_lab") + "' GROUP BY lhp.kategori_pemeriksaan_nama ");
+                                        sb15.append("ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut");
+                                        rsLIS1 = koneksi.prepareStatement(sb15.toString()).executeQuery();
 
                                         if (rsLIS1.next()) {
                                             rsLIS1.beforeFirst();
@@ -14810,11 +14956,14 @@ public class DlgCPPT extends javax.swing.JDialog {
                                                         + "<td valign='top'>" + rsLIS1.getString("kategori_pemeriksaan_nama") + "</td>"
                                                         + "</tr>");
 
-                                                rsLIS2 = koneksi.prepareStatement("SELECT ifnull(lhp.sub_kategori_pemeriksaan_nama,'') sub_kategori_pemeriksaan_nama FROM lis_reg lr "
-                                                        + "LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab LEFT JOIN lis_hasil_data_pasien lhdp on lhdp.no_lab=lr.no_lab "
-                                                        + "WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' "
-                                                        + "GROUP BY lhp.sub_kategori_pemeriksaan_nama ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, "
-                                                        + "lhp.sub_kategori_pemeriksaan_nama desc, lhp.pemeriksaan_no_urut").executeQuery();
+                                                StringBuilder sb16 = new StringBuilder();
+                                                sb16.append("SELECT ifnull(lhp.sub_kategori_pemeriksaan_nama,'') sub_kategori_pemeriksaan_nama FROM lis_reg lr ");
+                                                sb16.append("LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab LEFT JOIN lis_hasil_data_pasien lhdp on lhdp.no_lab=lr.no_lab ");
+                                                sb16.append("WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' ");
+                                                sb16.append("GROUP BY lhp.sub_kategori_pemeriksaan_nama ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, ");
+                                                sb16.append("lhp.sub_kategori_pemeriksaan_nama desc, lhp.pemeriksaan_no_urut");
+                                                rsLIS2 = koneksi.prepareStatement(sb16.toString()).executeQuery();
+                                                
                                                 if (rsLIS2.next()) {
                                                     rsLIS2.beforeFirst();
                                                     lis1 = 1;
@@ -14824,12 +14973,15 @@ public class DlgCPPT extends javax.swing.JDialog {
                                                                 + "<td valign='top'>&emsp;" + rsLIS2.getString("sub_kategori_pemeriksaan_nama") + "</td>"
                                                                 + "</tr>");
 
-                                                        rsLIS3 = koneksi.prepareStatement("SELECT ifnull(lhp.pemeriksaan_nama,'') pemeriksaan_nama, lhp.metode, lhp.nilai_hasil, lhp.nilai_rujukan, "
-                                                                + "lhp.satuan, lhp.flag_kode FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab "
-                                                                + "LEFT JOIN lis_hasil_data_pasien lhdp ON lhdp.no_lab=lr.no_lab WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and "
-                                                                + "lhp.sub_kategori_pemeriksaan_nama='" + rsLIS2.getString("sub_kategori_pemeriksaan_nama") + "' and "
-                                                                + "lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' GROUP BY lhp.pemeriksaan_nama "
-                                                                + "ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut").executeQuery();
+                                                        StringBuilder sb17 = new StringBuilder();
+                                                        sb17.append("SELECT ifnull(lhp.pemeriksaan_nama,'') pemeriksaan_nama, lhp.metode, lhp.nilai_hasil, lhp.nilai_rujukan, ");
+                                                        sb17.append("lhp.satuan, lhp.flag_kode FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab ");
+                                                        sb17.append("LEFT JOIN lis_hasil_data_pasien lhdp ON lhdp.no_lab=lr.no_lab WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and ");
+                                                        sb17.append("lhp.sub_kategori_pemeriksaan_nama='" + rsLIS2.getString("sub_kategori_pemeriksaan_nama") + "' and ");
+                                                        sb17.append("lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' GROUP BY lhp.pemeriksaan_nama ");
+                                                        sb17.append("ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut");
+                                                        rsLIS3 = koneksi.prepareStatement(sb17.toString()).executeQuery();
+                                                        
                                                         if (rsLIS3.next()) {
                                                             rsLIS3.beforeFirst();
                                                             lis2 = 1;
@@ -14867,12 +15019,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //hasil pemeriksaan radiologi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "SELECT date_format(pr.tgl_periksa, '%d-%m-%Y') tgl_periksa, date_format(pr.jam, '%h:%i %p') jam, "
-                                        + "ifnull(jpr.nm_perawatan,'-') nm_pemeriksaan, ifnull(hr.diag_klinis_radiologi, '-') diag_klinis_radiologi, "
-                                        + "ifnull(hr.hasil, '-') hasil FROM periksa_radiologi pr INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw "
-                                        + "LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.kd_jenis_prw=pr.kd_jenis_prw AND hr.tgl_periksa=pr.tgl_periksa AND hr.jam=pr.jam "
-                                        + "WHERE pr.no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY pr.tgl_periksa, pr.jam").executeQuery();
+                                StringBuilder sb18 = new StringBuilder();
+                                sb18.append("SELECT date_format(pr.tgl_periksa, '%d-%m-%Y') tgl_periksa, date_format(pr.jam, '%h:%i %p') jam, ");
+                                sb18.append("ifnull(jpr.nm_perawatan,'-') nm_pemeriksaan, ifnull(hr.diag_klinis_radiologi, '-') diag_klinis_radiologi, ");
+                                sb18.append("ifnull(hr.hasil, '-') hasil FROM periksa_radiologi pr INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw ");
+                                sb18.append("LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.kd_jenis_prw=pr.kd_jenis_prw AND hr.tgl_periksa=pr.tgl_periksa AND hr.jam=pr.jam ");
+                                sb18.append("WHERE pr.no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY pr.tgl_periksa, pr.jam");
+                                rs3 = koneksi.prepareStatement(sb18.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -14916,15 +15069,18 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan tarif klaim inacbg ralan
                             try {
-                                rs3 = koneksi.prepareStatement("SELECT ifnull(enc.no_rawat,'') no_rawat, ifnull(enc.klaim_final,'') klaim_final, ifnull(eg.cbg_desc,'') cbg_desc, "
-                                        + "IFNULL(egsc.desc,'-') topup_desc, concat('Rp. ',format(ifnull(eg.cbg_tarif,''),0)) cbg_tarif, "
-                                        + "concat('Rp. ',IFNULL(format(egsc.tarif,0),0)) topup_tarif, concat('Rp. ',IFNULL(format(eg.cbg_tarif+egsc.tarif,0),format(eg.cbg_tarif,0))) total_trf_grp, "
-                                        + "concat('Rp. ',format(ifnull(esc.tarif_obat,''),0)) by_obat_real, CONCAT(FORMAT((esc.tarif_obat/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, "
-                                        + "IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=40,'#00ff00', "
-                                        + "IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100>40 AND (esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=80,'#ff8040','#ff3333')) warna_sel "
-                                        + "FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep INNER JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep "
-                                        + "INNER JOIN reg_periksa rp ON rp.no_rawat=enc.no_rawat INNER JOIN poliklinik p ON p.kd_poli=rp.kd_poli INNER JOIN dokter d ON d.kd_dokter=rp.kd_dokter "
-                                        + "LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep=enc.no_sep WHERE rp.status_lanjut='Ralan' and enc.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb19 = new StringBuilder();
+                                sb19.append("SELECT ifnull(enc.no_rawat,'') no_rawat, ifnull(enc.klaim_final,'') klaim_final, ifnull(eg.cbg_desc,'') cbg_desc, ");
+                                sb19.append("IFNULL(egsc.desc,'-') topup_desc, concat('Rp. ',format(ifnull(eg.cbg_tarif,''),0)) cbg_tarif, ");
+                                sb19.append("concat('Rp. ',IFNULL(format(egsc.tarif,0),0)) topup_tarif, concat('Rp. ',IFNULL(format(eg.cbg_tarif+egsc.tarif,0),format(eg.cbg_tarif,0))) total_trf_grp, ");
+                                sb19.append("concat('Rp. ',format(ifnull(esc.tarif_obat,''),0)) by_obat_real, CONCAT(FORMAT((esc.tarif_obat/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, ");
+                                sb19.append("IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=40,'#00ff00', ");
+                                sb19.append("IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100>40 AND (esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=80,'#ff8040','#ff3333')) warna_sel ");
+                                sb19.append("FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep INNER JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep ");
+                                sb19.append("INNER JOIN reg_periksa rp ON rp.no_rawat=enc.no_rawat INNER JOIN poliklinik p ON p.kd_poli=rp.kd_poli INNER JOIN dokter d ON d.kd_dokter=rp.kd_dokter ");
+                                sb19.append("LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep=enc.no_sep WHERE rp.status_lanjut='Ralan' and enc.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb19.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -14988,11 +15144,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //tindakan dokter ralan
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select rawat_jl_dr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,rawat_jl_dr.biaya_rawat "
-                                        + "from rawat_jl_dr inner join jns_perawatan inner join dokter "
-                                        + "on rawat_jl_dr.kd_jenis_prw=jns_perawatan.kd_jenis_prw "
-                                        + "and rawat_jl_dr.kd_dokter=dokter.kd_dokter where rawat_jl_dr.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb20 = new StringBuilder();
+                                sb20.append("select rawat_jl_dr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,rawat_jl_dr.biaya_rawat ");
+                                sb20.append("from rawat_jl_dr inner join jns_perawatan inner join dokter ");
+                                sb20.append("on rawat_jl_dr.kd_jenis_prw=jns_perawatan.kd_jenis_prw ");
+                                sb20.append("and rawat_jl_dr.kd_dokter=dokter.kd_dokter where rawat_jl_dr.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb20.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -15030,11 +15188,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //tindakan paramedis ralan
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select rawat_jl_pr.kd_jenis_prw,jns_perawatan.nm_perawatan,petugas.nama,rawat_jl_pr.biaya_rawat "
-                                        + "from rawat_jl_pr inner join jns_perawatan inner join petugas "
-                                        + "on rawat_jl_pr.kd_jenis_prw=jns_perawatan.kd_jenis_prw "
-                                        + "and rawat_jl_pr.nip=petugas.nip where rawat_jl_pr.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb21 = new StringBuilder();
+                                sb21.append("select rawat_jl_pr.kd_jenis_prw,jns_perawatan.nm_perawatan,petugas.nama,rawat_jl_pr.biaya_rawat ");
+                                sb21.append("from rawat_jl_pr inner join jns_perawatan inner join petugas ");
+                                sb21.append("on rawat_jl_pr.kd_jenis_prw=jns_perawatan.kd_jenis_prw ");
+                                sb21.append("and rawat_jl_pr.nip=petugas.nip where rawat_jl_pr.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb21.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -15072,11 +15232,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //tindakan ralan dokter dan paramedis
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select rawat_jl_drpr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,petugas.nama,rawat_jl_drpr.biaya_rawat "
-                                        + "from rawat_jl_drpr inner join jns_perawatan inner join dokter inner join petugas "
-                                        + "on rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and rawat_jl_drpr.nip=petugas.nip "
-                                        + "and rawat_jl_drpr.kd_dokter=dokter.kd_dokter where rawat_jl_drpr.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb22 = new StringBuilder();
+                                sb22.append("select rawat_jl_drpr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,petugas.nama,rawat_jl_drpr.biaya_rawat ");
+                                sb22.append("from rawat_jl_drpr inner join jns_perawatan inner join dokter inner join petugas ");
+                                sb22.append("on rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and rawat_jl_drpr.nip=petugas.nip ");
+                                sb22.append("and rawat_jl_drpr.kd_dokter=dokter.kd_dokter where rawat_jl_drpr.no_rawat='" + rs2.getString("no_rawat") + "'");                                
+                                rs3 = koneksi.prepareStatement(sb22.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -15116,24 +15278,26 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //operasi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select DATE_FORMAT(operasi.tgl_operasi,'%d-%m-%Y %h:%i %p') tgl_operasi,operasi.jenis_anasthesi,operasi.operator1, operasi.operator2, operasi.operator3, operasi.asisten_operator1,"
-                                        + "operasi.asisten_operator2, operasi.instrumen, operasi.dokter_anak, operasi.perawaat_resusitas, "
-                                        + "operasi.dokter_anestesi, operasi.asisten_anestesi, operasi.bidan, operasi.bidan2, operasi.bidan3, operasi.perawat_luar, operasi.omloop,"
-                                        + "operasi.omloop2,operasi.omloop3,operasi.dokter_pjanak,operasi.dokter_umum, "
-                                        + "operasi.kode_paket,paket_operasi.nm_perawatan, operasi.biayaoperator1, operasi.biayaoperator2, operasi.biayaoperator3, "
-                                        + "operasi.biayaasisten_operator1, operasi.biayaasisten_operator2, operasi.biayainstrumen, "
-                                        + "operasi.biayadokter_anak, operasi.biayaperawaat_resusitas, operasi.biayadokter_anestesi, "
-                                        + "operasi.biayaasisten_anestesi, operasi.biayabidan,operasi.biayabidan2,operasi.biayabidan3, operasi.biayaperawat_luar, operasi.biayaalat,"
-                                        + "operasi.biayasewaok,operasi.akomodasi,operasi.bagian_rs,operasi.biaya_omloop,operasi.biaya_omloop2,operasi.biaya_omloop3,"
-                                        + "operasi.biayasarpras,operasi.biaya_dokter_pjanak,operasi.biaya_dokter_umum,"
-                                        + "(operasi.biayaoperator1+operasi.biayaoperator2+operasi.biayaoperator3+"
-                                        + "operasi.biayaasisten_operator1+operasi.biayaasisten_operator2+operasi.biayainstrumen+"
-                                        + "operasi.biayadokter_anak+operasi.biayaperawaat_resusitas+operasi.biayadokter_anestesi+"
-                                        + "operasi.biayaasisten_anestesi+operasi.biayabidan+operasi.biayabidan2+operasi.biayabidan3+operasi.biayaperawat_luar+operasi.biayaalat+"
-                                        + "operasi.biayasewaok+operasi.akomodasi+operasi.bagian_rs+operasi.biaya_omloop+operasi.biaya_omloop2+operasi.biaya_omloop3+"
-                                        + "operasi.biayasarpras+operasi.biaya_dokter_pjanak+operasi.biaya_dokter_umum) as total from operasi inner join paket_operasi "
-                                        + "on operasi.kode_paket=paket_operasi.kode_paket where operasi.no_rawat='" + rs2.getString("no_rawat") + "' order by operasi.tgl_operasi").executeQuery();
+                                StringBuilder sb23 = new StringBuilder();
+                                sb23.append("select DATE_FORMAT(operasi.tgl_operasi,'%d-%m-%Y %h:%i %p') tgl_operasi,operasi.jenis_anasthesi,operasi.operator1, operasi.operator2, operasi.operator3, operasi.asisten_operator1,");
+                                sb23.append("operasi.asisten_operator2, operasi.instrumen, operasi.dokter_anak, operasi.perawaat_resusitas, ");
+                                sb23.append("operasi.dokter_anestesi, operasi.asisten_anestesi, operasi.bidan, operasi.bidan2, operasi.bidan3, operasi.perawat_luar, operasi.omloop,");
+                                sb23.append("operasi.omloop2,operasi.omloop3,operasi.dokter_pjanak,operasi.dokter_umum, ");
+                                sb23.append("operasi.kode_paket,paket_operasi.nm_perawatan, operasi.biayaoperator1, operasi.biayaoperator2, operasi.biayaoperator3, ");
+                                sb23.append("operasi.biayaasisten_operator1, operasi.biayaasisten_operator2, operasi.biayainstrumen, ");
+                                sb23.append("operasi.biayadokter_anak, operasi.biayaperawaat_resusitas, operasi.biayadokter_anestesi, ");
+                                sb23.append("operasi.biayaasisten_anestesi, operasi.biayabidan,operasi.biayabidan2,operasi.biayabidan3, operasi.biayaperawat_luar, operasi.biayaalat,");
+                                sb23.append("operasi.biayasewaok,operasi.akomodasi,operasi.bagian_rs,operasi.biaya_omloop,operasi.biaya_omloop2,operasi.biaya_omloop3,");
+                                sb23.append("operasi.biayasarpras,operasi.biaya_dokter_pjanak,operasi.biaya_dokter_umum,");
+                                sb23.append("(operasi.biayaoperator1+operasi.biayaoperator2+operasi.biayaoperator3+");
+                                sb23.append("operasi.biayaasisten_operator1+operasi.biayaasisten_operator2+operasi.biayainstrumen+");
+                                sb23.append("operasi.biayadokter_anak+operasi.biayaperawaat_resusitas+operasi.biayadokter_anestesi+");
+                                sb23.append("operasi.biayaasisten_anestesi+operasi.biayabidan+operasi.biayabidan2+operasi.biayabidan3+operasi.biayaperawat_luar+operasi.biayaalat+");
+                                sb23.append("operasi.biayasewaok+operasi.akomodasi+operasi.bagian_rs+operasi.biaya_omloop+operasi.biaya_omloop2+operasi.biaya_omloop3+");
+                                sb23.append("operasi.biayasarpras+operasi.biaya_dokter_pjanak+operasi.biaya_dokter_umum) as total from operasi inner join paket_operasi ");
+                                sb23.append("on operasi.kode_paket=paket_operasi.kode_paket where operasi.no_rawat='" + rs2.getString("no_rawat") + "' order by operasi.tgl_operasi");
+                                rs3 = koneksi.prepareStatement(sb23.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -15230,13 +15394,15 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //tindakan pemeriksaan radiologi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select date_format(periksa_radiologi.tgl_periksa,'%d-%m-%Y') tgl_periksa,date_format(periksa_radiologi.jam,'%h:%i %p') jam,periksa_radiologi.kd_jenis_prw, "
-                                        + "jns_perawatan_radiologi.nm_perawatan,petugas.nama,periksa_radiologi.biaya,periksa_radiologi.dokter_perujuk,dokter.nm_dokter "
-                                        + "from periksa_radiologi inner join jns_perawatan_radiologi inner join petugas inner join dokter "
-                                        + "on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw and periksa_radiologi.kd_dokter=dokter.kd_dokter "
-                                        + "and periksa_radiologi.nip=petugas.nip  where periksa_radiologi.no_rawat='" + rs2.getString("no_rawat") + "' "
-                                        + "order by periksa_radiologi.tgl_periksa,periksa_radiologi.jam").executeQuery();
+                                StringBuilder sb24 = new StringBuilder();
+                                sb24.append("select date_format(periksa_radiologi.tgl_periksa,'%d-%m-%Y') tgl_periksa,date_format(periksa_radiologi.jam,'%h:%i %p') jam,periksa_radiologi.kd_jenis_prw, ");
+                                sb24.append("jns_perawatan_radiologi.nm_perawatan,petugas.nama,periksa_radiologi.biaya,periksa_radiologi.dokter_perujuk,dokter.nm_dokter ");
+                                sb24.append("from periksa_radiologi inner join jns_perawatan_radiologi inner join petugas inner join dokter ");
+                                sb24.append("on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw and periksa_radiologi.kd_dokter=dokter.kd_dokter ");
+                                sb24.append("and periksa_radiologi.nip=petugas.nip  where periksa_radiologi.no_rawat='" + rs2.getString("no_rawat") + "' ");
+                                sb24.append("order by periksa_radiologi.tgl_periksa,periksa_radiologi.jam");
+                                rs3 = koneksi.prepareStatement(sb24.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -15313,15 +15479,16 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //tindakan pemeriksaan laborat
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "SELECT DISTINCT dp.no_rawat, d.nm_dokter, pt.nama, '' nm_perawatan, '' Pemeriksaan, '' qty, '' total "
-                                        + "FROM detail_periksa_lab dp INNER JOIN periksa_lab pl ON pl.no_rawat = dp.no_rawat "
-                                        + "INNER JOIN dokter d ON d.kd_dokter = pl.kd_dokter INNER JOIN petugas pt ON pt.nip = pl.nip "
-                                        + "WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' UNION ALL "
-                                        + "SELECT dp.no_rawat, '', '',j.nm_perawatan, tl.Pemeriksaan, count(dp.kd_jenis_prw) qty, sum(tl.biaya_item) total "
-                                        + "FROM detail_periksa_lab dp LEFT JOIN jns_perawatan_lab j ON dp.kd_jenis_prw = j.kd_jenis_prw "
-                                        + "LEFT JOIN template_laboratorium tl ON dp.id_template = tl.id_template "
-                                        + "WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' GROUP BY dp.no_rawat, j.nm_perawatan, tl.Pemeriksaan").executeQuery();
+                                StringBuilder sb25 = new StringBuilder();
+                                sb25.append("SELECT DISTINCT dp.no_rawat, d.nm_dokter, pt.nama, '' nm_perawatan, '' Pemeriksaan, '' qty, '' total ");
+                                sb25.append("FROM detail_periksa_lab dp INNER JOIN periksa_lab pl ON pl.no_rawat = dp.no_rawat ");
+                                sb25.append("INNER JOIN dokter d ON d.kd_dokter = pl.kd_dokter INNER JOIN petugas pt ON pt.nip = pl.nip ");
+                                sb25.append("WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' UNION ALL ");
+                                sb25.append("SELECT dp.no_rawat, '', '',j.nm_perawatan, tl.Pemeriksaan, count(dp.kd_jenis_prw) qty, sum(tl.biaya_item) total ");
+                                sb25.append("FROM detail_periksa_lab dp LEFT JOIN jns_perawatan_lab j ON dp.kd_jenis_prw = j.kd_jenis_prw ");
+                                sb25.append("LEFT JOIN template_laboratorium tl ON dp.id_template = tl.id_template ");
+                                sb25.append("WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' GROUP BY dp.no_rawat, j.nm_perawatan, tl.Pemeriksaan");
+                                rs3 = koneksi.prepareStatement(sb25.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -15361,12 +15528,14 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //pemberian obat
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select date_format(detail_pemberian_obat.tgl_perawatan,'%d-%m-%Y') tgl_perawatan,date_format(detail_pemberian_obat.jam,'%h:%i %p') jam,databarang.kode_sat, "
-                                        + "detail_pemberian_obat.kode_brng,detail_pemberian_obat.jml,detail_pemberian_obat.total,"
-                                        + "databarang.nama_brng from detail_pemberian_obat inner join databarang "
-                                        + "on detail_pemberian_obat.kode_brng=databarang.kode_brng  "
-                                        + "where detail_pemberian_obat.no_rawat='" + rs2.getString("no_rawat") + "' order by detail_pemberian_obat.tgl_perawatan,detail_pemberian_obat.jam").executeQuery();
+                                StringBuilder sb26 = new StringBuilder();
+                                sb26.append("select date_format(detail_pemberian_obat.tgl_perawatan,'%d-%m-%Y') tgl_perawatan,date_format(detail_pemberian_obat.jam,'%h:%i %p') jam,databarang.kode_sat, ");
+                                sb26.append("detail_pemberian_obat.kode_brng,detail_pemberian_obat.jml,detail_pemberian_obat.total,");
+                                sb26.append("databarang.nama_brng from detail_pemberian_obat inner join databarang ");
+                                sb26.append("on detail_pemberian_obat.kode_brng=databarang.kode_brng ");
+                                sb26.append("where detail_pemberian_obat.no_rawat='" + rs2.getString("no_rawat") + "' order by detail_pemberian_obat.tgl_perawatan,detail_pemberian_obat.jam");
+                                rs3 = koneksi.prepareStatement(sb26.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -15409,11 +15578,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //pemberian obat Operasi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select date_format(beri_obat_operasi.tanggal,'%d-%m-%Y') tanggal,beri_obat_operasi.kd_obat,beri_obat_operasi.hargasatuan,obatbhp_ok.kode_sat, "
-                                        + "beri_obat_operasi.jumlah, obatbhp_ok.nm_obat,(beri_obat_operasi.hargasatuan*beri_obat_operasi.jumlah) as total "
-                                        + "from beri_obat_operasi inner join obatbhp_ok  on  beri_obat_operasi.kd_obat=obatbhp_ok.kd_obat  "
-                                        + "where beri_obat_operasi.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb27 = new StringBuilder();
+                                sb27.append("select date_format(beri_obat_operasi.tanggal,'%d-%m-%Y') tanggal,beri_obat_operasi.kd_obat,beri_obat_operasi.hargasatuan,obatbhp_ok.kode_sat, ");
+                                sb27.append("beri_obat_operasi.jumlah, obatbhp_ok.nm_obat,(beri_obat_operasi.hargasatuan*beri_obat_operasi.jumlah) as total ");
+                                sb27.append("from beri_obat_operasi inner join obatbhp_ok  on  beri_obat_operasi.kd_obat=obatbhp_ok.kd_obat ");
+                                sb27.append("where beri_obat_operasi.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb27.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -15493,11 +15664,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //Retur Obat
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select databarang.kode_brng,databarang.nama_brng,detreturjual.kode_sat,detreturjual.h_retur, "
-                                        + "(detreturjual.jml_retur * -1) as jumlah,(detreturjual.subtotal * -1) as total from detreturjual "
-                                        + "inner join databarang inner join returjual on detreturjual.kode_brng=databarang.kode_brng "
-                                        + "and returjual.no_retur_jual=detreturjual.no_retur_jual where returjual.no_retur_jual='" + rs2.getString("no_rawat") + "' order by databarang.nama_brng").executeQuery();
+                                StringBuilder sb28 = new StringBuilder();
+                                sb28.append("select databarang.kode_brng,databarang.nama_brng,detreturjual.kode_sat,detreturjual.h_retur, ");
+                                sb28.append("(detreturjual.jml_retur * -1) as jumlah,(detreturjual.subtotal * -1) as total from detreturjual ");
+                                sb28.append("inner join databarang inner join returjual on detreturjual.kode_brng=databarang.kode_brng ");
+                                sb28.append("and returjual.no_retur_jual=detreturjual.no_retur_jual where returjual.no_retur_jual='" + rs2.getString("no_rawat") + "' order by databarang.nama_brng");
+                                rs3 = koneksi.prepareStatement(sb28.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -15533,8 +15706,10 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //Tambahan Biaya
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select nama_biaya, besar_biaya from tambahan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_biaya").executeQuery();
+                                StringBuilder sb29 = new StringBuilder();
+                                sb29.append("select nama_biaya, besar_biaya from tambahan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_biaya");
+                                rs3 = koneksi.prepareStatement(sb29.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -15570,8 +15745,10 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //Pengurangan Biaya
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select nama_pengurangan, (-1*besar_pengurangan) as besar_pengurangan from pengurangan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_pengurangan").executeQuery();
+                                StringBuilder sb30 = new StringBuilder();
+                                sb30.append("select nama_pengurangan, (-1*besar_pengurangan) as besar_pengurangan from pengurangan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_pengurangan");
+                                rs3 = koneksi.prepareStatement(sb30.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -15620,6 +15797,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     }
                     y++;
                 }
+                
                 LoadHTML5.setText(
                         "<html>"
                         + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -15650,35 +15828,40 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
             StringBuilder htmlContent = new StringBuilder();
             try {
-                rs = koneksi.prepareStatement("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.jk, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.umur, "
-                        + "tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar from pasien inner join kelurahan inner join kecamatan inner join kabupaten "
-                        + "on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and "
-                        + "pasien.kd_kab=kabupaten.kd_kab where pasien.no_rkm_medis='" + TNoRm.getText() + "' order by pasien.no_rkm_medis desc ").executeQuery();
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.jk, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.umur, ");
+                sb1.append("tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar from pasien inner join kelurahan inner join kecamatan inner join kabupaten ");
+                sb1.append("on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and ");
+                sb1.append("pasien.kd_kab=kabupaten.kd_kab where pasien.no_rkm_medis='" + TNoRm.getText() + "' order by pasien.no_rkm_medis desc");
+                rs = koneksi.prepareStatement(sb1.toString()).executeQuery();
+
                 y = 1;
                 while (rs.next()) {
                     try {
+                        StringBuilder sb2 = new StringBuilder();
                         if (ChkTanggal.isSelected() == true) {
-                            rs2 = koneksi.prepareStatement(
-                                    "select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,"
-                                    + "reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,"
-                                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,"
-                                    + "penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab "
-                                    + "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj "
-                                    + "and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where "
-                                    + "stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and reg_periksa.status_lanjut='Ralan' and "
-                                    + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "'" + a).executeQuery();
+                            sb2.append("select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,");
+                            sb2.append("reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,");
+                            sb2.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,");
+                            sb2.append("penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab ");
+                            sb2.append("on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj ");
+                            sb2.append("and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where ");
+                            sb2.append("stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and reg_periksa.status_lanjut='Ralan' and ");
+                            sb2.append("reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "'" + a);
+                            rs2 = koneksi.prepareStatement(sb2.toString()).executeQuery();
+                            
                         } else {
-                            rs2 = koneksi.prepareStatement(
-                                    "select * from (select a.no_reg, a.no_rawat,date_format(a.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(a.jam_reg,'%h:%i %p') jam_reg,a.kd_dokter,a.nm_dokter,"
-                                    + "a.nm_poli,a.p_jawab,a.almt_pj,a.hubunganpj,a.biaya_reg,if(a.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,a.png_jawab, "
-                                    + "a.tgl_registrasi tglReg, a.jam_reg jamReg, a.kd_poli from (select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,"
-                                    + "reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,"
-                                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab, reg_periksa.kd_poli "
-                                    + "from reg_periksa inner join dokter inner join poliklinik inner join penjab "
-                                    + "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj "
-                                    + "and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where "
-                                    + "stts<>'Batal' and reg_periksa.status_lanjut='Ralan' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "'" + a + ") as a "
-                                    + "ORDER BY a.tgl_registrasi desc, a.jam_reg desc limit 3) as a order by a.tglReg, a.jamReg").executeQuery();
+                            sb2.append("select * from (select a.no_reg, a.no_rawat,date_format(a.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(a.jam_reg,'%h:%i %p') jam_reg,a.kd_dokter,a.nm_dokter,");
+                            sb2.append("a.nm_poli,a.p_jawab,a.almt_pj,a.hubunganpj,a.biaya_reg,if(a.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,a.png_jawab, ");
+                            sb2.append("a.tgl_registrasi tglReg, a.jam_reg jamReg, a.kd_poli from (select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,");
+                            sb2.append("reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,");
+                            sb2.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab, reg_periksa.kd_poli ");
+                            sb2.append("from reg_periksa inner join dokter inner join poliklinik inner join penjab ");
+                            sb2.append("on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj ");
+                            sb2.append("and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where ");
+                            sb2.append("stts<>'Batal' and reg_periksa.status_lanjut='Ralan' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "'" + a + ") as a ");
+                            sb2.append("ORDER BY a.tgl_registrasi desc, a.jam_reg desc limit 3) as a order by a.tglReg, a.jamReg");
+                            rs2 = koneksi.prepareStatement(sb2.toString()).executeQuery();
                         }
 
                         urut = 1;
@@ -15729,9 +15912,11 @@ public class DlgCPPT extends javax.swing.JDialog {
 //                            }
                             //menampilkan rencana follow up dokter
                             try {
-                                rsDiag = koneksi.prepareStatement(
-                                        "Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan "
-                                        + "where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb3 = new StringBuilder();
+                                sb3.append("Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan ");
+                                sb3.append("where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rsDiag = koneksi.prepareStatement(sb3.toString()).executeQuery();
+                                
                                 if (rsDiag.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -15750,9 +15935,11 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan rencana follow up perawat/bidan
                             try {
-                                rsDiag1 = koneksi.prepareStatement(
-                                        "Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan_petugas "
-                                        + "where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb4 = new StringBuilder();
+                                sb4.append("Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan_petugas ");
+                                sb4.append("where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rsDiag1 = koneksi.prepareStatement(sb4.toString()).executeQuery();
+                                
                                 if (rsDiag1.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -15771,9 +15958,10 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan catatan Resep Obat
                             try {
-                                rsObat = koneksi.prepareStatement(
-                                        "Select nama_obat,status from catatan_resep "
-                                        + "where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb5 = new StringBuilder();
+                                sb5.append("Select nama_obat,status from catatan_resep where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rsObat = koneksi.prepareStatement(sb5.toString()).executeQuery();
+
                                 if (rsObat.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -15812,10 +16000,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan diagnosa penyakit                            
                             try {
-                                rs3 = koneksi.prepareStatement("select diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit, diagnosa_pasien.status "
-                                        + "from diagnosa_pasien inner join penyakit "
-                                        + "on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit "
-                                        + "where diagnosa_pasien.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb6 = new StringBuilder();
+                                sb6.append("select diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit, diagnosa_pasien.status ");
+                                sb6.append("from diagnosa_pasien inner join penyakit ");
+                                sb6.append("on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit ");
+                                sb6.append("where diagnosa_pasien.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb6.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -15856,9 +16047,11 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan prosedur tindakan
                             try {
-                                rs3 = koneksi.prepareStatement("select prosedur_pasien.kode,icd9.deskripsi_panjang, prosedur_pasien.status "
-                                        + "from prosedur_pasien inner join icd9 on prosedur_pasien.kode=icd9.kode "
-                                        + "where prosedur_pasien.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb7 = new StringBuilder();
+                                sb7.append("select prosedur_pasien.kode,icd9.deskripsi_panjang, prosedur_pasien.status ");
+                                sb7.append("from prosedur_pasien inner join icd9 on prosedur_pasien.kode=icd9.kode ");
+                                sb7.append("where prosedur_pasien.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb7.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -15900,13 +16093,15 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan riwayat pemeriksaan ralan dokter
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi,pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,"
-                                        + "pemeriksaan_ralan.tinggi,pemeriksaan_ralan.berat,pemeriksaan_ralan.gcs,pemeriksaan_ralan.keluhan, "
-                                        + "pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,ifnull(pemeriksaan_ralan.diagnosa,'-') diagnosa, "
-                                        + "ifnull(pemeriksaan_ralan.rincian_tindakan,'-') rincian_tindakan, ifnull(pemeriksaan_ralan.terapi,'-') terapi, "
-                                        + "ifnull(pemeriksaan_ralan.spo2,'-') spo2 from pemeriksaan_ralan where "
-                                        + "pemeriksaan_ralan.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb8 = new StringBuilder();
+                                sb8.append("select pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi,pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,");
+                                sb8.append("pemeriksaan_ralan.tinggi,pemeriksaan_ralan.berat,pemeriksaan_ralan.gcs,pemeriksaan_ralan.keluhan, ");
+                                sb8.append("pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,ifnull(pemeriksaan_ralan.diagnosa,'-') diagnosa, ");
+                                sb8.append("ifnull(pemeriksaan_ralan.rincian_tindakan,'-') rincian_tindakan, ifnull(pemeriksaan_ralan.terapi,'-') terapi, ");
+                                sb8.append("ifnull(pemeriksaan_ralan.spo2,'-') spo2 from pemeriksaan_ralan where ");
+                                sb8.append("pemeriksaan_ralan.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb8.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -15973,9 +16168,11 @@ public class DlgCPPT extends javax.swing.JDialog {
                             //menampilkan pemeriksaan THT
                             if (rs2.getString("kd_poli").equals("THT")) {
                                 try {
-                                    rsTHT = koneksi.prepareStatement(
-                                            "Select ifnull(nama_pemeriksaan,'-') namanya, ifnull(hasil_pemeriksaan,'-') hasilnya "
-                                            + "from pemeriksaan_tht where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                    StringBuilder sb9 = new StringBuilder();
+                                    sb9.append("Select ifnull(nama_pemeriksaan,'-') namanya, ifnull(hasil_pemeriksaan,'-') hasilnya ");
+                                    sb9.append("from pemeriksaan_tht where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    rsTHT = koneksi.prepareStatement(sb9.toString()).executeQuery();
+                                    
                                     if (rsTHT.next()) {
                                         htmlContent.append(
                                                 "<tr class='isi'>"
@@ -15993,14 +16190,143 @@ public class DlgCPPT extends javax.swing.JDialog {
                                     }
                                 }
                             }
+                            
+                            //menampilkan reasesmen pemeriksaan
+                            if (Sequel.cariIsi("select reasesmen from pemeriksaan_ralan WHERE no_rawat='" + rs2.getString("no_rawat") + "'").equals("1")) {
+                                try {
+                                    StringBuilder sb10 = new StringBuilder();
+                                    sb10.append("SELECT kesimpulan, rekomendasi FROM pemeriksaan_ralan WHERE no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    rs3 = koneksi.prepareStatement(sb10.toString()).executeQuery();
+
+                                    if (rs3.next()) {
+                                        htmlContent.append(
+                                                "<tr class='isi'>"
+                                                + "<td valign='top' width='20%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reasesmen Pemeriksaan Dokter</td>"
+                                                + "<td valign='top' width='1%' align='center'>:</td>"
+                                                + "<td valign='top' width='79%'>"
+                                                + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                                                + "<tr align='center'>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Kesimpulan</td>"
+                                                + "<td valign='top' width='13%' bgcolor='#f8fdf3'>Rekomendasi</td>"
+                                                + "</tr>"
+                                        );
+                                        rs3.beforeFirst();
+                                        while (rs3.next()) {
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top'>" + rs3.getString("kesimpulan").replaceAll("(\r\n|\r|\n|\n\r)", "<br>") + "<br><br></td>"
+                                                    + "<td valign='top'>" + rs3.getString("rekomendasi").replaceAll("(\r\n|\r|\n|\n\r)", "<br>") + "<br><br></td>"
+                                                    + "</tr>");
+                                        }
+                                        htmlContent.append(
+                                                "</table>"
+                                                + "</td>"
+                                                + "</tr>");
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Notifikasi : " + e);
+                                } finally {
+                                    if (rs3 != null) {
+                                        rs3.close();
+                                    }
+                                }
+                            }
+                            
+                            //menampilkan konsul internal poliklinik
+                            try {
+                                StringBuilder sb11 = new StringBuilder();
+                                sb11.append("select sk.*, p.no_rkm_medis, p.nm_pasien, pl1.nm_poli poliAwal, d.nm_dokter, date_format(sk.tgl_permintaan_konsul,'%d/%m/%Y') tglKonsul,");
+                                sb11.append("pl2.nm_poli poliTujuan, DATE_FORMAT(sk.tgl_permintaan_konsul,'%d-%m-%Y') tglKonsul, if(sk.tgl_menjawab='0000-00-00','-',sk.tgl_menjawab) tgljawab, ");
+                                sb11.append("date_format(sk.tgl_menjawab,'%d/%m/%Y') tglmenjawab, date_format(sk.tgl_konsul_ulang,'%d/%m/%Y') tglkonsululang from surat_konsul_unit_ralan sk ");
+                                sb11.append("inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+                                sb11.append("inner join poliklinik pl1 on pl1.kd_poli=sk.kd_poli inner join poliklinik pl2 on pl2.kd_poli=sk.kd_poli_pembalas ");
+                                sb11.append("inner join dokter d on d.kd_dokter=sk.kd_dokter_pembalas WHERE sk.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb11.toString()).executeQuery();
+                                
+                                if (rs3.next()) {
+                                    htmlContent.append(
+                                            "<tr class='isi'>"
+                                            + "<td valign='top' width='20%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Konsultasi Internal Poliklinik</td>"
+                                            + "<td valign='top' width='1%' align='center'>:</td>"
+                                            + "<td valign='top' width='79%'>"
+                                            + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                                            + "<tr align='center'>"
+                                            + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Poliklinik Tujuan</td>"
+                                            + "<td valign='top' width='13%' bgcolor='#f8fdf3'>Jns. Konsul</td>"
+                                            + "<td valign='top' width='13%' bgcolor='#f8fdf3'>Tgl. Konsul</td>"
+                                            + "<td valign='top' width='50%' bgcolor='#f8fdf3'>Tujuan Konsul</td>"
+                                            + "<td valign='top' width='150%' bgcolor='#f8fdf3'>Permintaan/Ket. Konsul</td>"
+                                            + "<td valign='top' width='150%' bgcolor='#f8fdf3'>Uraian Jawaban Konsul</td>"
+                                            + "<td valign='top' width='24%' bgcolor='#f8fdf3'>Dijawab Tgl.</td>"
+                                            + "<td valign='top' width='24%' bgcolor='#f8fdf3'>Tgl. Konsul Ulang</td>"
+                                            + "<td valign='top' width='80%' bgcolor='#f8fdf3'>Dijawab Oleh Dokter</td>"
+                                            + "</tr>"
+                                    );
+                                    rs3.beforeFirst();
+                                    while (rs3.next()) {
+                                        String tujuan = "", tgljwb = "", tglkonsulUlang = "", cekJawaban = "";
+                                        if (rs3.getString("tujuan").equals("Lainnya")) {
+                                            tujuan = "<td valign='top'>" + rs3.getString("tujuan") + " (" + rs3.getString("ket_tujuan_lain") + ")</td>";
+                                        } else {
+                                            tujuan = "<td valign='top'>" + rs3.getString("tujuan") + "</td>";
+                                        }
+
+                                        if (rs3.getString("tgljawab").equals("-")) {
+                                            tgljwb = "<td valign='top' align='center'>-</td>";
+                                        } else {
+                                            tgljwb = "<td valign='top' align='center'>" + rs3.getString("tglmenjawab") + "</td>";
+                                        }
+
+                                        if (rs3.getString("konsul_ulang").equals("tidak")) {
+                                            tglkonsulUlang = "<td valign='top' align='center'>-</td>";
+                                        } else {
+                                            tglkonsulUlang = "<td valign='top' align='center'>" + rs3.getString("tglkonsululang") + "</td>";
+                                        }
+
+                                        if (rs3.getString("no_rawat_pembalas").equals("-")) {
+                                            cekJawaban = "<td valign='top'>-</td>";
+                                        } else {
+                                            if (rs3.getString("kasus_ditemukan").equals("")) {
+                                                cekJawaban = "<td valign='top'>" + rs3.getString("ket_klinis_jawaban").replaceAll("(\r\n|\r|\n|\n\r)", "<br>") + "<br><br></td>";
+                                            } else {
+                                                cekJawaban = "<td valign='top'>Ditemukan kasus : " + rs3.getString("kasus_ditemukan") + "<br><br>" + rs3.getString("ket_klinis_jawaban").replaceAll("(\r\n|\r|\n|\n\r)", "<br>") + "<br><br></td>";
+                                            }
+                                        }
+
+                                        htmlContent.append(
+                                                "<tr>"
+                                                + "<td valign='top'>" + rs3.getString("poliTujuan") + "</td>"
+                                                + "<td valign='top' align='center'>" + rs3.getString("jenis_konsul") + "</td>"
+                                                + "<td valign='top' align='center'>" + rs3.getString("tglKonsul") + "</td>"
+                                                + tujuan
+                                                + "<td valign='top'>" + rs3.getString("keterangan_klinis").replaceAll("(\r\n|\r|\n|\n\r)", "<br>") + "<br><br></td>"
+                                                + cekJawaban
+                                                + tgljwb
+                                                + tglkonsulUlang
+                                                + "<td valign='top'>" + rs3.getString("nm_dokter") + "</td>"
+                                                + "</tr>");
+                                    }
+                                    htmlContent.append(
+                                            "</table>"
+                                            + "</td>"
+                                            + "</tr>");
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Notifikasi : " + e);
+                            } finally {
+                                if (rs3 != null) {
+                                    rs3.close();
+                                }
+                            }
 
                             //menampilkan rujukan internal poliklinik
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "SELECT ifnull(pl.nm_poli,'-') ke_poli, ifnull(DATE_FORMAT(ri.tgl_rencana_dirujuk,'%d-%m-%Y'),'-') tgl_dirujuk, "
-                                        + "ifnull(ri.keterangan,'-') keterangan, ifnull(ri.keterangan_balasan,'-') jwbn, ifnull(d.nm_dokter,'') drMenjawab FROM rujukan_internal_poli ri "
-                                        + "INNER JOIN poliklinik pl on pl.kd_poli=ri.kd_poli_pembalas left join dokter d on d.kd_dokter=ri.kd_dokter_pembalas "
-                                        + "WHERE ri.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb12 = new StringBuilder();
+                                sb12.append("SELECT ifnull(pl.nm_poli,'-') ke_poli, ifnull(DATE_FORMAT(ri.tgl_rencana_dirujuk,'%d-%m-%Y'),'-') tgl_dirujuk, ");
+                                sb12.append("ifnull(ri.keterangan,'-') keterangan, ifnull(ri.keterangan_balasan,'-') jwbn, ifnull(d.nm_dokter,'') drMenjawab FROM rujukan_internal_poli ri ");
+                                sb12.append("INNER JOIN poliklinik pl on pl.kd_poli=ri.kd_poli_pembalas left join dokter d on d.kd_dokter=ri.kd_dokter_pembalas ");
+                                sb12.append("WHERE ri.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb12.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -16041,13 +16367,15 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan riwayat pemeriksaan ralan petugas
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select pemeriksaan_ralan_petugas.suhu_tubuh,pemeriksaan_ralan_petugas.tensi,pemeriksaan_ralan_petugas.nadi,pemeriksaan_ralan_petugas.respirasi,"
-                                        + "pemeriksaan_ralan_petugas.tinggi,pemeriksaan_ralan_petugas.berat,pemeriksaan_ralan_petugas.gcs,pemeriksaan_ralan_petugas.keluhan, "
-                                        + "pemeriksaan_ralan_petugas.pemeriksaan,pemeriksaan_ralan_petugas.alergi,ifnull(pemeriksaan_ralan_petugas.diagnosa,'-') diagnosa, "
-                                        + "ifnull(pemeriksaan_ralan_petugas.rincian_tindakan,'-') rincian_tindakan, "
-                                        + "ifnull(pemeriksaan_ralan_petugas.terapi,'-') terapi, ifnull(pemeriksaan_ralan_petugas.spo2,'-') spo2 from pemeriksaan_ralan_petugas where "
-                                        + "pemeriksaan_ralan_petugas.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb13 = new StringBuilder();
+                                sb13.append("select pemeriksaan_ralan_petugas.suhu_tubuh,pemeriksaan_ralan_petugas.tensi,pemeriksaan_ralan_petugas.nadi,pemeriksaan_ralan_petugas.respirasi,");
+                                sb13.append("pemeriksaan_ralan_petugas.tinggi,pemeriksaan_ralan_petugas.berat,pemeriksaan_ralan_petugas.gcs,pemeriksaan_ralan_petugas.keluhan, ");
+                                sb13.append("pemeriksaan_ralan_petugas.pemeriksaan,pemeriksaan_ralan_petugas.alergi,ifnull(pemeriksaan_ralan_petugas.diagnosa,'-') diagnosa, ");
+                                sb13.append("ifnull(pemeriksaan_ralan_petugas.rincian_tindakan,'-') rincian_tindakan, ");
+                                sb13.append("ifnull(pemeriksaan_ralan_petugas.terapi,'-') terapi, ifnull(pemeriksaan_ralan_petugas.spo2,'-') spo2 from pemeriksaan_ralan_petugas where ");
+                                sb13.append("pemeriksaan_ralan_petugas.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb13.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -16173,7 +16501,10 @@ public class DlgCPPT extends javax.swing.JDialog {
 //                            }
                             //hasil pemeriksaan laboratorium LIS
                             try {
-                                rsLISMaster = koneksi.prepareStatement("SELECT no_lab FROM lis_reg WHERE no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY no_lab").executeQuery();
+                                StringBuilder sb14 = new StringBuilder();
+                                sb14.append("SELECT no_lab FROM lis_reg WHERE no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY no_lab");
+                                rsLISMaster = koneksi.prepareStatement(sb14.toString()).executeQuery();
+
                                 if (rsLISMaster.next()) {
                                     rsLISMaster.beforeFirst();
                                     lisM = 1;
@@ -16195,10 +16526,11 @@ public class DlgCPPT extends javax.swing.JDialog {
                                                 + "</tr>"
                                         );
 
-                                        rsLIS1 = koneksi.prepareStatement(
-                                                "SELECT ifnull(kategori_pemeriksaan_nama,'') kategori_pemeriksaan_nama FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab "
-                                                + "WHERE lr.no_rawat='" + rs2.getString("no_rawat") + "' and lr.no_lab ='" + rsLISMaster.getString("no_lab") + "' GROUP BY lhp.kategori_pemeriksaan_nama "
-                                                + "ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut").executeQuery();
+                                        StringBuilder sb15 = new StringBuilder();
+                                        sb15.append("SELECT ifnull(kategori_pemeriksaan_nama,'') kategori_pemeriksaan_nama FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab ");
+                                        sb15.append("WHERE lr.no_rawat='" + rs2.getString("no_rawat") + "' and lr.no_lab ='" + rsLISMaster.getString("no_lab") + "' GROUP BY lhp.kategori_pemeriksaan_nama ");
+                                        sb15.append("ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut");
+                                        rsLIS1 = koneksi.prepareStatement(sb15.toString()).executeQuery();
 
                                         if (rsLIS1.next()) {
                                             rsLIS1.beforeFirst();
@@ -16209,11 +16541,14 @@ public class DlgCPPT extends javax.swing.JDialog {
                                                         + "<td valign='top'>" + rsLIS1.getString("kategori_pemeriksaan_nama") + "</td>"
                                                         + "</tr>");
 
-                                                rsLIS2 = koneksi.prepareStatement("SELECT ifnull(lhp.sub_kategori_pemeriksaan_nama,'') sub_kategori_pemeriksaan_nama FROM lis_reg lr "
-                                                        + "LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab LEFT JOIN lis_hasil_data_pasien lhdp on lhdp.no_lab=lr.no_lab "
-                                                        + "WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' "
-                                                        + "GROUP BY lhp.sub_kategori_pemeriksaan_nama ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, "
-                                                        + "lhp.sub_kategori_pemeriksaan_nama desc, lhp.pemeriksaan_no_urut").executeQuery();
+                                                StringBuilder sb16 = new StringBuilder();
+                                                sb16.append("SELECT ifnull(lhp.sub_kategori_pemeriksaan_nama,'') sub_kategori_pemeriksaan_nama FROM lis_reg lr ");
+                                                sb16.append("LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab LEFT JOIN lis_hasil_data_pasien lhdp on lhdp.no_lab=lr.no_lab ");
+                                                sb16.append("WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' ");
+                                                sb16.append("GROUP BY lhp.sub_kategori_pemeriksaan_nama ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, ");
+                                                sb16.append("lhp.sub_kategori_pemeriksaan_nama desc, lhp.pemeriksaan_no_urut");
+                                                rsLIS2 = koneksi.prepareStatement(sb16.toString()).executeQuery();
+                                                
                                                 if (rsLIS2.next()) {
                                                     rsLIS2.beforeFirst();
                                                     lis1 = 1;
@@ -16223,12 +16558,15 @@ public class DlgCPPT extends javax.swing.JDialog {
                                                                 + "<td valign='top'>&emsp;" + rsLIS2.getString("sub_kategori_pemeriksaan_nama") + "</td>"
                                                                 + "</tr>");
 
-                                                        rsLIS3 = koneksi.prepareStatement("SELECT ifnull(lhp.pemeriksaan_nama,'') pemeriksaan_nama, lhp.metode, lhp.nilai_hasil, lhp.nilai_rujukan, "
-                                                                + "lhp.satuan, lhp.flag_kode FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab "
-                                                                + "LEFT JOIN lis_hasil_data_pasien lhdp ON lhdp.no_lab=lr.no_lab WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and "
-                                                                + "lhp.sub_kategori_pemeriksaan_nama='" + rsLIS2.getString("sub_kategori_pemeriksaan_nama") + "' and "
-                                                                + "lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' GROUP BY lhp.pemeriksaan_nama "
-                                                                + "ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut").executeQuery();
+                                                        StringBuilder sb17 = new StringBuilder();
+                                                        sb17.append("SELECT ifnull(lhp.pemeriksaan_nama,'') pemeriksaan_nama, lhp.metode, lhp.nilai_hasil, lhp.nilai_rujukan, ");
+                                                        sb17.append("lhp.satuan, lhp.flag_kode FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab ");
+                                                        sb17.append("LEFT JOIN lis_hasil_data_pasien lhdp ON lhdp.no_lab=lr.no_lab WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and ");
+                                                        sb17.append("lhp.sub_kategori_pemeriksaan_nama='" + rsLIS2.getString("sub_kategori_pemeriksaan_nama") + "' and ");
+                                                        sb17.append("lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' GROUP BY lhp.pemeriksaan_nama ");
+                                                        sb17.append("ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut");
+                                                        rsLIS3 = koneksi.prepareStatement(sb17.toString()).executeQuery();
+                                                        
                                                         if (rsLIS3.next()) {
                                                             rsLIS3.beforeFirst();
                                                             lis2 = 1;
@@ -16266,12 +16604,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //hasil pemeriksaan radiologi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "SELECT date_format(pr.tgl_periksa, '%d-%m-%Y') tgl_periksa, date_format(pr.jam, '%h:%i %p') jam, "
-                                        + "ifnull(jpr.nm_perawatan,'-') nm_pemeriksaan, ifnull(hr.diag_klinis_radiologi, '-') diag_klinis_radiologi, "
-                                        + "ifnull(hr.hasil, '-') hasil FROM periksa_radiologi pr INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw "
-                                        + "LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.kd_jenis_prw=pr.kd_jenis_prw AND hr.tgl_periksa=pr.tgl_periksa AND hr.jam=pr.jam "
-                                        + "WHERE pr.no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY pr.tgl_periksa, pr.jam").executeQuery();
+                                StringBuilder sb18 = new StringBuilder();
+                                sb18.append("SELECT date_format(pr.tgl_periksa, '%d-%m-%Y') tgl_periksa, date_format(pr.jam, '%h:%i %p') jam, ");
+                                sb18.append("ifnull(jpr.nm_perawatan,'-') nm_pemeriksaan, ifnull(hr.diag_klinis_radiologi, '-') diag_klinis_radiologi, ");
+                                sb18.append("ifnull(hr.hasil, '-') hasil FROM periksa_radiologi pr INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw ");
+                                sb18.append("LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.kd_jenis_prw=pr.kd_jenis_prw AND hr.tgl_periksa=pr.tgl_periksa AND hr.jam=pr.jam ");
+                                sb18.append("WHERE pr.no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY pr.tgl_periksa, pr.jam");
+                                rs3 = koneksi.prepareStatement(sb18.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -16315,15 +16654,18 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //menampilkan tarif klaim inacbg ralan
                             try {
-                                rs3 = koneksi.prepareStatement("SELECT ifnull(enc.no_rawat,'') no_rawat, ifnull(enc.klaim_final,'') klaim_final, ifnull(eg.cbg_desc,'') cbg_desc, "
-                                        + "IFNULL(egsc.desc,'-') topup_desc, concat('Rp. ',format(ifnull(eg.cbg_tarif,''),0)) cbg_tarif, "
-                                        + "concat('Rp. ',IFNULL(format(egsc.tarif,0),0)) topup_tarif, concat('Rp. ',IFNULL(format(eg.cbg_tarif+egsc.tarif,0),format(eg.cbg_tarif,0))) total_trf_grp, "
-                                        + "concat('Rp. ',format(ifnull(esc.tarif_obat,''),0)) by_obat_real, CONCAT(FORMAT((esc.tarif_obat/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, "
-                                        + "IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=40,'#00ff00', "
-                                        + "IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100>40 AND (esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=80,'#ff8040','#ff3333')) warna_sel "
-                                        + "FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep INNER JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep "
-                                        + "INNER JOIN reg_periksa rp ON rp.no_rawat=enc.no_rawat INNER JOIN poliklinik p ON p.kd_poli=rp.kd_poli INNER JOIN dokter d ON d.kd_dokter=rp.kd_dokter "
-                                        + "LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep=enc.no_sep WHERE rp.status_lanjut='Ralan' and enc.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb19 = new StringBuilder();
+                                sb19.append("SELECT ifnull(enc.no_rawat,'') no_rawat, ifnull(enc.klaim_final,'') klaim_final, ifnull(eg.cbg_desc,'') cbg_desc, ");
+                                sb19.append("IFNULL(egsc.desc,'-') topup_desc, concat('Rp. ',format(ifnull(eg.cbg_tarif,''),0)) cbg_tarif, ");
+                                sb19.append("concat('Rp. ',IFNULL(format(egsc.tarif,0),0)) topup_tarif, concat('Rp. ',IFNULL(format(eg.cbg_tarif+egsc.tarif,0),format(eg.cbg_tarif,0))) total_trf_grp, ");
+                                sb19.append("concat('Rp. ',format(ifnull(esc.tarif_obat,''),0)) by_obat_real, CONCAT(FORMAT((esc.tarif_obat/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, ");
+                                sb19.append("IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=40,'#00ff00', ");
+                                sb19.append("IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100>40 AND (esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=80,'#ff8040','#ff3333')) warna_sel ");
+                                sb19.append("FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep INNER JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep ");
+                                sb19.append("INNER JOIN reg_periksa rp ON rp.no_rawat=enc.no_rawat INNER JOIN poliklinik p ON p.kd_poli=rp.kd_poli INNER JOIN dokter d ON d.kd_dokter=rp.kd_dokter ");
+                                sb19.append("LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep=enc.no_sep WHERE rp.status_lanjut='Ralan' and enc.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb19.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -16387,11 +16729,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //tindakan dokter ralan
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select rawat_jl_dr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,rawat_jl_dr.biaya_rawat "
-                                        + "from rawat_jl_dr inner join jns_perawatan inner join dokter "
-                                        + "on rawat_jl_dr.kd_jenis_prw=jns_perawatan.kd_jenis_prw "
-                                        + "and rawat_jl_dr.kd_dokter=dokter.kd_dokter where rawat_jl_dr.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb20 = new StringBuilder();
+                                sb20.append("select rawat_jl_dr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,rawat_jl_dr.biaya_rawat ");
+                                sb20.append("from rawat_jl_dr inner join jns_perawatan inner join dokter ");
+                                sb20.append("on rawat_jl_dr.kd_jenis_prw=jns_perawatan.kd_jenis_prw ");
+                                sb20.append("and rawat_jl_dr.kd_dokter=dokter.kd_dokter where rawat_jl_dr.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb20.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -16429,11 +16773,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //tindakan paramedis ralan
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select rawat_jl_pr.kd_jenis_prw,jns_perawatan.nm_perawatan,petugas.nama,rawat_jl_pr.biaya_rawat "
-                                        + "from rawat_jl_pr inner join jns_perawatan inner join petugas "
-                                        + "on rawat_jl_pr.kd_jenis_prw=jns_perawatan.kd_jenis_prw "
-                                        + "and rawat_jl_pr.nip=petugas.nip where rawat_jl_pr.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb21 = new StringBuilder();
+                                sb21.append("select rawat_jl_pr.kd_jenis_prw,jns_perawatan.nm_perawatan,petugas.nama,rawat_jl_pr.biaya_rawat ");
+                                sb21.append("from rawat_jl_pr inner join jns_perawatan inner join petugas ");
+                                sb21.append("on rawat_jl_pr.kd_jenis_prw=jns_perawatan.kd_jenis_prw ");
+                                sb21.append("and rawat_jl_pr.nip=petugas.nip where rawat_jl_pr.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb21.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -16471,11 +16817,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //tindakan ralan dokter dan paramedis
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select rawat_jl_drpr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,petugas.nama,rawat_jl_drpr.biaya_rawat "
-                                        + "from rawat_jl_drpr inner join jns_perawatan inner join dokter inner join petugas "
-                                        + "on rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and rawat_jl_drpr.nip=petugas.nip "
-                                        + "and rawat_jl_drpr.kd_dokter=dokter.kd_dokter where rawat_jl_drpr.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb22 = new StringBuilder();
+                                sb22.append("select rawat_jl_drpr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,petugas.nama,rawat_jl_drpr.biaya_rawat ");
+                                sb22.append("from rawat_jl_drpr inner join jns_perawatan inner join dokter inner join petugas ");
+                                sb22.append("on rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and rawat_jl_drpr.nip=petugas.nip ");
+                                sb22.append("and rawat_jl_drpr.kd_dokter=dokter.kd_dokter where rawat_jl_drpr.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb22.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -16699,24 +17047,26 @@ public class DlgCPPT extends javax.swing.JDialog {
 //                            }
                             //operasi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select DATE_FORMAT(operasi.tgl_operasi,'%d-%m-%Y %h:%i %p') tgl_operasi,operasi.jenis_anasthesi,operasi.operator1, operasi.operator2, operasi.operator3, operasi.asisten_operator1,"
-                                        + "operasi.asisten_operator2, operasi.instrumen, operasi.dokter_anak, operasi.perawaat_resusitas, "
-                                        + "operasi.dokter_anestesi, operasi.asisten_anestesi, operasi.bidan, operasi.bidan2, operasi.bidan3, operasi.perawat_luar, operasi.omloop,"
-                                        + "operasi.omloop2,operasi.omloop3,operasi.dokter_pjanak,operasi.dokter_umum, "
-                                        + "operasi.kode_paket,paket_operasi.nm_perawatan, operasi.biayaoperator1, operasi.biayaoperator2, operasi.biayaoperator3, "
-                                        + "operasi.biayaasisten_operator1, operasi.biayaasisten_operator2, operasi.biayainstrumen, "
-                                        + "operasi.biayadokter_anak, operasi.biayaperawaat_resusitas, operasi.biayadokter_anestesi, "
-                                        + "operasi.biayaasisten_anestesi, operasi.biayabidan,operasi.biayabidan2,operasi.biayabidan3, operasi.biayaperawat_luar, operasi.biayaalat,"
-                                        + "operasi.biayasewaok,operasi.akomodasi,operasi.bagian_rs,operasi.biaya_omloop,operasi.biaya_omloop2,operasi.biaya_omloop3,"
-                                        + "operasi.biayasarpras,operasi.biaya_dokter_pjanak,operasi.biaya_dokter_umum,"
-                                        + "(operasi.biayaoperator1+operasi.biayaoperator2+operasi.biayaoperator3+"
-                                        + "operasi.biayaasisten_operator1+operasi.biayaasisten_operator2+operasi.biayainstrumen+"
-                                        + "operasi.biayadokter_anak+operasi.biayaperawaat_resusitas+operasi.biayadokter_anestesi+"
-                                        + "operasi.biayaasisten_anestesi+operasi.biayabidan+operasi.biayabidan2+operasi.biayabidan3+operasi.biayaperawat_luar+operasi.biayaalat+"
-                                        + "operasi.biayasewaok+operasi.akomodasi+operasi.bagian_rs+operasi.biaya_omloop+operasi.biaya_omloop2+operasi.biaya_omloop3+"
-                                        + "operasi.biayasarpras+operasi.biaya_dokter_pjanak+operasi.biaya_dokter_umum) as total from operasi inner join paket_operasi "
-                                        + "on operasi.kode_paket=paket_operasi.kode_paket where operasi.no_rawat='" + rs2.getString("no_rawat") + "' order by operasi.tgl_operasi").executeQuery();
+                                StringBuilder sb23 = new StringBuilder();
+                                sb23.append("select DATE_FORMAT(operasi.tgl_operasi,'%d-%m-%Y %h:%i %p') tgl_operasi,operasi.jenis_anasthesi,operasi.operator1, operasi.operator2, operasi.operator3, operasi.asisten_operator1,");
+                                sb23.append("operasi.asisten_operator2, operasi.instrumen, operasi.dokter_anak, operasi.perawaat_resusitas, ");
+                                sb23.append("operasi.dokter_anestesi, operasi.asisten_anestesi, operasi.bidan, operasi.bidan2, operasi.bidan3, operasi.perawat_luar, operasi.omloop,");
+                                sb23.append("operasi.omloop2,operasi.omloop3,operasi.dokter_pjanak,operasi.dokter_umum, ");
+                                sb23.append("operasi.kode_paket,paket_operasi.nm_perawatan, operasi.biayaoperator1, operasi.biayaoperator2, operasi.biayaoperator3, ");
+                                sb23.append("operasi.biayaasisten_operator1, operasi.biayaasisten_operator2, operasi.biayainstrumen, ");
+                                sb23.append("operasi.biayadokter_anak, operasi.biayaperawaat_resusitas, operasi.biayadokter_anestesi, ");
+                                sb23.append("operasi.biayaasisten_anestesi, operasi.biayabidan,operasi.biayabidan2,operasi.biayabidan3, operasi.biayaperawat_luar, operasi.biayaalat,");
+                                sb23.append("operasi.biayasewaok,operasi.akomodasi,operasi.bagian_rs,operasi.biaya_omloop,operasi.biaya_omloop2,operasi.biaya_omloop3,");
+                                sb23.append("operasi.biayasarpras,operasi.biaya_dokter_pjanak,operasi.biaya_dokter_umum,");
+                                sb23.append("(operasi.biayaoperator1+operasi.biayaoperator2+operasi.biayaoperator3+");
+                                sb23.append("operasi.biayaasisten_operator1+operasi.biayaasisten_operator2+operasi.biayainstrumen+");
+                                sb23.append("operasi.biayadokter_anak+operasi.biayaperawaat_resusitas+operasi.biayadokter_anestesi+");
+                                sb23.append("operasi.biayaasisten_anestesi+operasi.biayabidan+operasi.biayabidan2+operasi.biayabidan3+operasi.biayaperawat_luar+operasi.biayaalat+");
+                                sb23.append("operasi.biayasewaok+operasi.akomodasi+operasi.bagian_rs+operasi.biaya_omloop+operasi.biaya_omloop2+operasi.biaya_omloop3+");
+                                sb23.append("operasi.biayasarpras+operasi.biaya_dokter_pjanak+operasi.biaya_dokter_umum) as total from operasi inner join paket_operasi ");
+                                sb23.append("on operasi.kode_paket=paket_operasi.kode_paket where operasi.no_rawat='" + rs2.getString("no_rawat") + "' order by operasi.tgl_operasi");
+                                rs3 = koneksi.prepareStatement(sb23.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -16813,13 +17163,15 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //tindakan pemeriksaan radiologi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select date_format(periksa_radiologi.tgl_periksa,'%d-%m-%Y') tgl_periksa,date_format(periksa_radiologi.jam,'%h:%i %p') jam,periksa_radiologi.kd_jenis_prw, "
-                                        + "jns_perawatan_radiologi.nm_perawatan,petugas.nama,periksa_radiologi.biaya,periksa_radiologi.dokter_perujuk,dokter.nm_dokter "
-                                        + "from periksa_radiologi inner join jns_perawatan_radiologi inner join petugas inner join dokter "
-                                        + "on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw and periksa_radiologi.kd_dokter=dokter.kd_dokter "
-                                        + "and periksa_radiologi.nip=petugas.nip  where periksa_radiologi.no_rawat='" + rs2.getString("no_rawat") + "' "
-                                        + "order by periksa_radiologi.tgl_periksa,periksa_radiologi.jam").executeQuery();
+                                StringBuilder sb24 = new StringBuilder();
+                                sb24.append("select date_format(periksa_radiologi.tgl_periksa,'%d-%m-%Y') tgl_periksa,date_format(periksa_radiologi.jam,'%h:%i %p') jam,periksa_radiologi.kd_jenis_prw, ");
+                                sb24.append("jns_perawatan_radiologi.nm_perawatan,petugas.nama,periksa_radiologi.biaya,periksa_radiologi.dokter_perujuk,dokter.nm_dokter ");
+                                sb24.append("from periksa_radiologi inner join jns_perawatan_radiologi inner join petugas inner join dokter ");
+                                sb24.append("on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw and periksa_radiologi.kd_dokter=dokter.kd_dokter ");
+                                sb24.append("and periksa_radiologi.nip=petugas.nip  where periksa_radiologi.no_rawat='" + rs2.getString("no_rawat") + "' ");
+                                sb24.append("order by periksa_radiologi.tgl_periksa,periksa_radiologi.jam");
+                                rs3 = koneksi.prepareStatement(sb24.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -16896,15 +17248,16 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //tindakan pemeriksaan laborat
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "SELECT DISTINCT dp.no_rawat, d.nm_dokter, pt.nama, '' nm_perawatan, '' Pemeriksaan, '' qty, '' total "
-                                        + "FROM detail_periksa_lab dp INNER JOIN periksa_lab pl ON pl.no_rawat = dp.no_rawat "
-                                        + "INNER JOIN dokter d ON d.kd_dokter = pl.kd_dokter INNER JOIN petugas pt ON pt.nip = pl.nip "
-                                        + "WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' UNION ALL "
-                                        + "SELECT dp.no_rawat, '', '',j.nm_perawatan, tl.Pemeriksaan, count(dp.kd_jenis_prw) qty, sum(tl.biaya_item) total "
-                                        + "FROM detail_periksa_lab dp LEFT JOIN jns_perawatan_lab j ON dp.kd_jenis_prw = j.kd_jenis_prw "
-                                        + "LEFT JOIN template_laboratorium tl ON dp.id_template = tl.id_template "
-                                        + "WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' GROUP BY dp.no_rawat, j.nm_perawatan, tl.Pemeriksaan").executeQuery();
+                                StringBuilder sb25 = new StringBuilder();
+                                sb25.append("SELECT DISTINCT dp.no_rawat, d.nm_dokter, pt.nama, '' nm_perawatan, '' Pemeriksaan, '' qty, '' total ");
+                                sb25.append("FROM detail_periksa_lab dp INNER JOIN periksa_lab pl ON pl.no_rawat = dp.no_rawat ");
+                                sb25.append("INNER JOIN dokter d ON d.kd_dokter = pl.kd_dokter INNER JOIN petugas pt ON pt.nip = pl.nip ");
+                                sb25.append("WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' UNION ALL ");
+                                sb25.append("SELECT dp.no_rawat, '', '',j.nm_perawatan, tl.Pemeriksaan, count(dp.kd_jenis_prw) qty, sum(tl.biaya_item) total ");
+                                sb25.append("FROM detail_periksa_lab dp LEFT JOIN jns_perawatan_lab j ON dp.kd_jenis_prw = j.kd_jenis_prw ");
+                                sb25.append("LEFT JOIN template_laboratorium tl ON dp.id_template = tl.id_template ");
+                                sb25.append("WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' GROUP BY dp.no_rawat, j.nm_perawatan, tl.Pemeriksaan");
+                                rs3 = koneksi.prepareStatement(sb25.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -16944,12 +17297,14 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //pemberian obat
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select date_format(detail_pemberian_obat.tgl_perawatan,'%d-%m-%Y') tgl_perawatan,date_format(detail_pemberian_obat.jam,'%h:%i %p') jam,databarang.kode_sat, "
-                                        + "detail_pemberian_obat.kode_brng,detail_pemberian_obat.jml,detail_pemberian_obat.total,"
-                                        + "databarang.nama_brng from detail_pemberian_obat inner join databarang "
-                                        + "on detail_pemberian_obat.kode_brng=databarang.kode_brng  "
-                                        + "where detail_pemberian_obat.no_rawat='" + rs2.getString("no_rawat") + "' order by detail_pemberian_obat.tgl_perawatan,detail_pemberian_obat.jam").executeQuery();
+                                StringBuilder sb26 = new StringBuilder();
+                                sb26.append("select date_format(detail_pemberian_obat.tgl_perawatan,'%d-%m-%Y') tgl_perawatan,date_format(detail_pemberian_obat.jam,'%h:%i %p') jam,databarang.kode_sat, ");
+                                sb26.append("detail_pemberian_obat.kode_brng,detail_pemberian_obat.jml,detail_pemberian_obat.total,");
+                                sb26.append("databarang.nama_brng from detail_pemberian_obat inner join databarang ");
+                                sb26.append("on detail_pemberian_obat.kode_brng=databarang.kode_brng  ");
+                                sb26.append("where detail_pemberian_obat.no_rawat='" + rs2.getString("no_rawat") + "' order by detail_pemberian_obat.tgl_perawatan,detail_pemberian_obat.jam");
+                                rs3 = koneksi.prepareStatement(sb26.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -17034,11 +17389,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //Resep Pulang
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select resep_pulang.kode_brng,databarang.nama_brng,resep_pulang.dosis,resep_pulang.jml_barang, "
-                                        + "databarang.kode_sat,resep_pulang.dosis,resep_pulang.total from resep_pulang inner join databarang "
-                                        + "on resep_pulang.kode_brng=databarang.kode_brng where "
-                                        + "resep_pulang.no_rawat='" + rs2.getString("no_rawat") + "' order by databarang.nama_brng").executeQuery();
+                                StringBuilder sb27 = new StringBuilder();
+                                sb27.append("select resep_pulang.kode_brng,databarang.nama_brng,resep_pulang.dosis,resep_pulang.jml_barang, ");
+                                sb27.append("databarang.kode_sat,resep_pulang.dosis,resep_pulang.total from resep_pulang inner join databarang ");
+                                sb27.append("on resep_pulang.kode_brng=databarang.kode_brng where ");
+                                sb27.append("resep_pulang.no_rawat='" + rs2.getString("no_rawat") + "' order by databarang.nama_brng");
+                                rs3 = koneksi.prepareStatement(sb27.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -17076,11 +17433,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //Retur Obat
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select databarang.kode_brng,databarang.nama_brng,detreturjual.kode_sat,detreturjual.h_retur, "
-                                        + "(detreturjual.jml_retur * -1) as jumlah,(detreturjual.subtotal * -1) as total from detreturjual "
-                                        + "inner join databarang inner join returjual on detreturjual.kode_brng=databarang.kode_brng "
-                                        + "and returjual.no_retur_jual=detreturjual.no_retur_jual where returjual.no_retur_jual='" + rs2.getString("no_rawat") + "' order by databarang.nama_brng").executeQuery();
+                                StringBuilder sb28 = new StringBuilder();
+                                sb28.append("select databarang.kode_brng,databarang.nama_brng,detreturjual.kode_sat,detreturjual.h_retur, ");
+                                sb28.append("(detreturjual.jml_retur * -1) as jumlah,(detreturjual.subtotal * -1) as total from detreturjual ");
+                                sb28.append("inner join databarang inner join returjual on detreturjual.kode_brng=databarang.kode_brng ");
+                                sb28.append("and returjual.no_retur_jual=detreturjual.no_retur_jual where returjual.no_retur_jual='" + rs2.getString("no_rawat") + "' order by databarang.nama_brng");
+                                rs3 = koneksi.prepareStatement(sb28.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -17116,8 +17475,10 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //Tambahan Biaya
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select nama_biaya, besar_biaya from tambahan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_biaya").executeQuery();
+                                StringBuilder sb29 = new StringBuilder();
+                                sb29.append("select nama_biaya, besar_biaya from tambahan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_biaya");
+                                rs3 = koneksi.prepareStatement(sb29.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -17153,8 +17514,10 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //Pengurangan Biaya
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select nama_pengurangan, (-1*besar_pengurangan) as besar_pengurangan from pengurangan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_pengurangan").executeQuery();
+                                StringBuilder sb30 = new StringBuilder();
+                                sb30.append("select nama_pengurangan, (-1*besar_pengurangan) as besar_pengurangan from pengurangan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_pengurangan");
+                                rs3 = koneksi.prepareStatement(sb30.toString()).executeQuery();
+                                
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -17203,6 +17566,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     }
                     y++;
                 }
+                
                 LoadHTML5.setText(
                         "<html>"
                         + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -17265,6 +17629,191 @@ public class DlgCPPT extends javax.swing.JDialog {
         } else if (cekPilihanRehab > 0) {
             label_rehab.setVisible(true);
             label_rehab.setText("Jenis Rehabilitasi Medik : " + Sequel.cariIsi("select jns_rehabmedik from data_rehab_medik where no_rawat='" + TNoRw.getText() + "'"));
+        }
+    }
+    
+    private void cetakDataTriasePonek() {
+        totskorTriase = 0;
+        try {
+            psLaprm = koneksi.prepareStatement("select *, date_format(kll_tunggal_tanggal,'%d-%m-%Y') tglKllTunggal, time_format(kll_tunggal_pukul,'%H:%i') jamKllTunggal, "
+                    + "date_format(kll_tanggal,'%d-%m-%Y') tglKll, time_format(kll_pukul,'%H:%i') jamKll from triase_ponek where no_rawat='" + TNoRw.getText() + "'");
+            try {
+                rsLaprm = psLaprm.executeQuery();
+                while (rsLaprm.next()) {
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
+
+                    if (rsLaprm.getString("alasan_kedatangan").equals("-") || rsLaprm.getString("alasan_kedatangan").equals("Datang Sendiri") || rsLaprm.getString("alasan_kedatangan").equals("Polisi")) {
+                        param.put("alasan_kedatangan", rsLaprm.getString("alasan_kedatangan"));
+                    } else if (rsLaprm.getString("alasan_kedatangan").equals("Rujukan, dari")) {
+                        if (rsLaprm.getString("rujukan_dari").equals("")) {
+                            param.put("alasan_kedatangan", rsLaprm.getString("alasan_kedatangan") + " : -");
+                        } else {
+                            param.put("alasan_kedatangan", rsLaprm.getString("alasan_kedatangan") + " : " + rsLaprm.getString("rujukan_dari"));
+                        }
+                    } else if (rsLaprm.getString("alasan_kedatangan").equals("Dijemput oleh")) {
+                        if (rsLaprm.getString("dijemput_oleh").equals("")) {
+                            param.put("alasan_kedatangan", rsLaprm.getString("alasan_kedatangan") + " : -");
+                        } else {
+                            param.put("alasan_kedatangan", rsLaprm.getString("alasan_kedatangan") + " : " + rsLaprm.getString("dijemput_oleh"));
+                        }
+                    }
+
+                    if (rsLaprm.getString("kendaraan").equals("-") || rsLaprm.getString("kendaraan").equals("Ambulance")) {
+                        param.put("kendaraan", rsLaprm.getString("kendaraan"));
+                    } else if (rsLaprm.getString("kendaraan").equals("Kendaraan bukan ambulance")) {
+                        if (rsLaprm.getString("bukan_ambulan").equals("")) {
+                            param.put("kendaraan", rsLaprm.getString("kendaraan") + ", jelaskan : -");
+                        } else {
+                            param.put("kendaraan", rsLaprm.getString("kendaraan") + ", jelaskan : " + rsLaprm.getString("bukan_ambulan"));
+                        }
+                    }
+
+                    if (rsLaprm.getString("kll_tunggal").equals("ya")) {
+                        param.put("kll_tunggal", "KLL Tunggal, Tempat Kejadian " + rsLaprm.getString("kll_tunggal_tmpt_kejadian") + ", Tanggal Kejadian " + rsLaprm.getString("tglKllTunggal")
+                                + ", Pukul " + rsLaprm.getString("jamKllTunggal") + " Wita");
+                    } else {
+                        param.put("kll_tunggal", "KLL Tunggal");
+                    }
+
+                    if (rsLaprm.getString("kll_versus").equals("ya")) {
+                        param.put("kll", "KLL " + rsLaprm.getString("versus1") + " Vs. " + rsLaprm.getString("versus2") + ", Tempat Kejadian "
+                                + rsLaprm.getString("kll_tmpt_kejadian") + ", Tanggal Kejadian " + rsLaprm.getString("tglKll")
+                                + ", Pukul " + rsLaprm.getString("jamKll") + " Wita");
+                    } else {
+                        param.put("kll", "KLL");
+                    }
+
+                    if (rsLaprm.getString("jatuh").equals("ya")) {
+                        if (rsLaprm.getString("ket_jatuh").equals("")) {
+                            param.put("jatuh", "Jatuh dari ketinggian, Jelaskan : -");
+                        } else {
+                            param.put("jatuh", "Jatuh dari ketinggian, Jelaskan : " + rsLaprm.getString("ket_jatuh"));
+                        }
+                    } else {
+                        param.put("jatuh", "Jatuh dari ketinggian,");
+                    }
+
+                    if (rsLaprm.getString("luka_bakar").equals("ya")) {
+                        if (rsLaprm.getString("ket_luka_bakar").equals("")) {
+                            param.put("luka", "Luka bakar, Jelaskan : -");
+                        } else {
+                            param.put("luka", "Luka bakar, Jelaskan : " + rsLaprm.getString("ket_luka_bakar"));
+                        }
+                    } else {
+                        param.put("luka", "Luka bakar,");
+                    }
+
+                    if (rsLaprm.getString("trauma_listrik").equals("ya")) {
+                        if (rsLaprm.getString("ket_trauma_listrik").equals("")) {
+                            param.put("trauma_listrik", "Trauma listrik, Jelaskan : -");
+                        } else {
+                            param.put("trauma_listrik", "Trauma listrik, Jelaskan : " + rsLaprm.getString("ket_trauma_listrik"));
+                        }
+                    } else {
+                        param.put("trauma_listrik", "Trauma listrik,");
+                    }
+
+                    if (rsLaprm.getString("trauma_zat_kimia").equals("ya")) {
+                        if (rsLaprm.getString("ket_trauma_zat_kimia").equals("")) {
+                            param.put("trauma_zat", "Trauma zat kimia, Jelaskan : -");
+                        } else {
+                            param.put("trauma_zat", "Trauma zat kimia, Jelaskan : " + rsLaprm.getString("ket_trauma_zat_kimia"));
+                        }
+                    } else {
+                        param.put("trauma_zat", "Trauma zat kimia,");
+                    }
+
+                    if (rsLaprm.getString("trauma_lain").equals("ya")) {
+                        if (rsLaprm.getString("ket_trauma_lain").equals("")) {
+                            param.put("trauma_lain", "Trauma lainnya : -");
+                        } else {
+                            param.put("trauma_lain", "Trauma lainnya (" + rsLaprm.getString("ket_trauma_lain") + ")");
+                        }
+                    } else {
+                        param.put("trauma_lain", "Trauma lainnya");
+                    }
+
+                    if (rsLaprm.getString("pacs1").equals("ya")) {
+                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : PACS 1");
+                    } else if (rsLaprm.getString("pacs2").equals("ya")) {
+                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : PACS 2");
+                    } else if (rsLaprm.getString("pacs3").equals("ya")) {
+                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : PACS 3");
+                    } else if (rsLaprm.getString("pacs4").equals("ya")) {
+                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : PACS 4");
+                    } else {
+                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : -");
+                    }
+
+                    totskorTriase = Integer.parseInt(rsLaprm.getString("total_skor"));
+                    if (totskorTriase >= 5) {
+                        param.put("total5", "V");
+                        param.put("total24", "");
+                        param.put("total01", "");
+                    } else if (totskorTriase >= 2 && totskorTriase <= 4) {
+                        param.put("total5", "");
+                        param.put("total24", "V");
+                        param.put("total01", "");
+                    } else if (totskorTriase >= 0 && totskorTriase <= 1) {
+                        param.put("total5", "");
+                        param.put("total24", "");
+                        param.put("total01", "V");
+                    } else {
+                        param.put("total5", "");
+                        param.put("total24", "");
+                        param.put("total01", "");
+                    }
+
+                    Valid.MyReport("rptTriasePonek.jasper", "report", "::[ Laporan Data Triase Ponek ]::",
+                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllahir, concat('Tanggal : ',date_format(tp.tanggal,'%d-%m-%Y'),'        Pukul : ',time_format(tp.pukul,'%H:%i'),' Wita') kontak_awal, "
+                            + "tp.cara_masuk, if(tp.sudah_terpasang='','-',tp.sudah_terpasang) sudah_terpasang, concat('Nama : ', tp.nm_pengantar, '    No. Telp : ', tp.telp_pengantar) iden_pengntar, "
+                            + "tp.kasus, if(tp.icd_10='','-',tp.icd_10) icd_10, if(tp.keluhan_utama='','-',tp.keluhan_utama) keluhan_utama, pg.nama petgas, concat('KESADARAN : ', tp.kesadaran) kesadaran, "
+                            + "if(tp.td='','-',tp.td) td, if(tp.nadi='','-',tp.nadi) nadi, if(tp.napas='','-',tp.napas) napas, if(tp.temperatur='','-',tp.temperatur) temperatur, if(tp.saturasi='','-',tp.saturasi) saturasi, "
+                            + "if(tp.nyeri='','-',tp.nyeri) nyeri, if(tp.bb='','-',tp.bb) bb, if(tp.tb='','-',tp.tb) tb, if(tp.catatan='','-',tp.catatan) catatan, if(tp.keputusan='','-',tp.keputusan) keputusan, "
+                            + "time_format(tp.pukul_keputusan,'%H:%i Wita') pukul_keputusan, "
+                            + "IF(tp.skor0_sadar_penuh = 'ya', 'V', '') skor0_sadar, "
+                            + "IF(tp.skor0_100 = 'ya', 'V', '') skor0_100, "
+                            + "IF(tp.skor0_101 = 'ya', 'V', '') skor0_101, "
+                            + "IF(tp.skor0_19 = 'ya', 'V', '') skor0_19, "
+                            + "IF(tp.skor0_35_3 = 'ya', 'V', '') skor0_35, "
+                            + "IF(tp.skor0_96_100 = 'ya', 'V', '') skor0_96, "
+                            + "IF(tp.skor1_102 = 'ya', 'V', '') skor1_102, "
+                            + "IF(tp.skor1_20_21 = 'ya', 'V', '') skor1_20, "
+                            + "IF(tp.skor1_94_95 = 'ya', 'V', '') skor1_94, "
+                            + "IF(tp.skor2_99 = 'ya', 'V', '') skor2_99, "
+                            + "IF(tp.skor2_22 = 'ya', 'V', '') skor2_22, "
+                            + "IF(tp.skor2_92_93 = 'ya', 'V', '') skor2_92, "
+                            + "IF(tp.skor3_selain = 'ya', 'V', '') skor3_selain, "
+                            + "IF(tp.skor3_35_3 = 'ya', 'V', '') skor3_35, "
+                            + "IF(tp.skor3_92 = 'ya', 'V', '') skor3_92, "
+                            + "IF(tp.triase_resusitasi = 'ya', 'V', '') resus, "
+                            + "IF(tp.triase_non_resusitasi = 'ya', 'V', '') nonresus, "
+                            + "IF(tp.triase_klinik = 'ya', 'V', '') klinik, "
+                            + "IF(tp.triase_doa = 'ya', 'V', '') doa, "
+                            + "IF(tp.kll_tunggal = 'ya', 'V', '') kll_tunggal, "
+                            + "IF(tp.kll_versus = 'ya', 'V', '') kll_versus, "
+                            + "IF(tp.jatuh = 'ya', 'V', '') jatuh, "
+                            + "IF(tp.luka_bakar = 'ya', 'V', '') luka, "
+                            + "IF(tp.trauma_listrik = 'ya', 'V', '') trauma_listrik, "
+                            + "IF(tp.trauma_zat_kimia = 'ya', 'V', '') trauma_zat, "
+                            + "IF(tp.trauma_lain = 'ya', 'V', '') trauma_lain "
+                            + "FROM triase_ponek tp INNER JOIN reg_periksa rp ON rp.no_rawat = tp.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN pegawai pg ON nik = tp.nip_petugas where tp.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsLaprm != null) {
+                    rsLaprm.close();
+                }
+                if (psLaprm != null) {
+                    psLaprm.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }

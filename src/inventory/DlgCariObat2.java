@@ -254,24 +254,25 @@ public final class DlgCariObat2 extends javax.swing.JDialog {
         tbResepRalan.setDefaultRenderer(Object.class, new WarnaTable());
         
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
-        if (koneksiDB.cariCepat().equals("aktif")) {
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    tampil();
-                }
-            });
-        }
+        
+//        if (koneksiDB.cariCepat().equals("aktif")) {
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//            });
+//        }
         jam();
 
         aturanpakai.addWindowListener(new WindowListener() {
@@ -2025,57 +2026,26 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 
         try {
             if (kenaikan > 0) {
-//                if (var.getkdbangsal().equals("APT01") || var.getkdbangsal().equals("APT02")) {
-//                    psobatasuransi = koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"
-//                            + " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi on databarang.kdjns=jenis.kdjns "
-//                            + " and industrifarmasi.kode_industri=databarang.kode_industri inner join golongan_barang inner join kategori_barang on databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode where databarang.nama_brng not like '(FR)%' and (databarang.status='1' and databarang.kode_brng like ? or "
-//                            + " databarang.status='1' and databarang.nama_brng not like '%(FR)%' and databarang.nama_brng like ? or "
-//                            + " databarang.status='1' and databarang.nama_brng not like '%(FR)%' and kategori_barang.nama like ? or "
-//                            + " databarang.status='1' and databarang.nama_brng not like '%(FR)%' and golongan_barang.nama like ? or "
-//                            + " databarang.status='1' and databarang.nama_brng not like '%(FR)%' and jenis.nama like ?) order by databarang.nama_brng");
-//                } else {
-//                    psobatasuransi = koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"
-//                            + " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi on databarang.kdjns=jenis.kdjns "
-//                            + " and industrifarmasi.kode_industri=databarang.kode_industri inner join golongan_barang inner join kategori_barang on databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode where databarang.status='1' and databarang.nama_brng not like '(FR)%' and databarang.kode_brng like ? or "
-//                            + " databarang.status='1' and databarang.nama_brng not like '%(FR)%' and databarang.nama_brng like ? or "
-//                            + " databarang.status='1' and databarang.nama_brng not like '%(FR)%' and kategori_barang.nama like ? or "
-//                            + " databarang.status='1' and databarang.nama_brng not like '%(FR)%' and golongan_barang.nama like ? or "
-//                            + " databarang.status='1' and databarang.nama_brng not like '%(FR)%' and jenis.nama like ? order by databarang.nama_brng");
-//                }
-                
-//                if (var.getkdbangsal().equals("APT01") || var.getkdbangsal().equals("APT02")) {
-//                    psobatasuransi = koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"
-//                            + " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi on databarang.kdjns=jenis.kdjns "
-//                            + " and industrifarmasi.kode_industri=databarang.kode_industri inner join golongan_barang inner join kategori_barang on databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode where (databarang.status='1' and databarang.kode_brng like ? or "
-//                            + " databarang.status='1' and databarang.nama_brng like ? or "
-//                            + " databarang.status='1' and kategori_barang.nama like ? or "
-//                            + " databarang.status='1' and golongan_barang.nama like ? or "
-//                            + " databarang.status='1' and jenis.nama like ?) order by databarang.nama_brng");
-//                } else {
-//                    psobatasuransi = koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"
-//                            + " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi on databarang.kdjns=jenis.kdjns "
-//                            + " and industrifarmasi.kode_industri=databarang.kode_industri inner join golongan_barang inner join kategori_barang on databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode where databarang.status='1' and databarang.kode_brng like ? or "
-//                            + " databarang.status='1' and databarang.nama_brng like ? or "
-//                            + " databarang.status='1' and kategori_barang.nama like ? or "
-//                            + " databarang.status='1' and golongan_barang.nama like ? or "
-//                            + " databarang.status='1' and jenis.nama like ? order by databarang.nama_brng");
-//                }
+                StringBuilder sb1 = new StringBuilder();
                 if (akses.getkdbangsal().equals("APT07")) {
-                    psobatasuransi = koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"
-                            + " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi on databarang.kdjns=jenis.kdjns "
-                            + " and industrifarmasi.kode_industri=databarang.kode_industri inner join golongan_barang inner join kategori_barang on databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode where databarang.status='1' and databarang.nama_brng not like '(FR)%' and databarang.kode_brng like ? or "
-                            + " databarang.status='1' and databarang.nama_brng not like '%(FR)%' and databarang.nama_brng like ? or "
-                            + " databarang.status='1' and databarang.nama_brng not like '%(FR)%' and kategori_barang.nama like ? or "
-                            + " databarang.status='1' and databarang.nama_brng not like '%(FR)%' and golongan_barang.nama like ? or "
-                            + " databarang.status='1' and databarang.nama_brng not like '%(FR)%' and jenis.nama like ? order by databarang.nama_brng");
+                    sb1.append("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,");
+                    sb1.append(" databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi on databarang.kdjns=jenis.kdjns ");
+                    sb1.append(" and industrifarmasi.kode_industri=databarang.kode_industri inner join golongan_barang inner join kategori_barang on databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode where databarang.status='1' and databarang.nama_brng not like '(FR)%' and databarang.kode_brng like ? or ");
+                    sb1.append(" databarang.status='1' and databarang.nama_brng not like '%(FR)%' and databarang.nama_brng like ? or ");
+                    sb1.append(" databarang.status='1' and databarang.nama_brng not like '%(FR)%' and kategori_barang.nama like ? or ");
+                    sb1.append(" databarang.status='1' and databarang.nama_brng not like '%(FR)%' and golongan_barang.nama like ? or ");
+                    sb1.append(" databarang.status='1' and databarang.nama_brng not like '%(FR)%' and jenis.nama like ? order by databarang.nama_brng");
+                    psobatasuransi = koneksi.prepareStatement(sb1.toString());
+
                 } else {
-                    psobatasuransi = koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,"
-                            + " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi on databarang.kdjns=jenis.kdjns "
-                            + " and industrifarmasi.kode_industri=databarang.kode_industri inner join golongan_barang inner join kategori_barang on databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode where databarang.status='1' and databarang.kode_brng like ? or "
-                            + " databarang.status='1' and databarang.nama_brng like ? or "
-                            + " databarang.status='1' and kategori_barang.nama like ? or "
-                            + " databarang.status='1' and golongan_barang.nama like ? or "
-                            + " databarang.status='1' and jenis.nama like ? order by databarang.nama_brng");
+                    sb1.append("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,(databarang.h_beli+(databarang.h_beli*?)) as harga,");
+                    sb1.append(" databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi on databarang.kdjns=jenis.kdjns ");
+                    sb1.append(" and industrifarmasi.kode_industri=databarang.kode_industri inner join golongan_barang inner join kategori_barang on databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode where databarang.status='1' and databarang.kode_brng like ? or ");
+                    sb1.append(" databarang.status='1' and databarang.nama_brng like ? or ");
+                    sb1.append(" databarang.status='1' and kategori_barang.nama like ? or ");
+                    sb1.append(" databarang.status='1' and golongan_barang.nama like ? or ");
+                    sb1.append(" databarang.status='1' and jenis.nama like ? order by databarang.nama_brng");
+                    psobatasuransi = koneksi.prepareStatement(sb1.toString());
                 }
 
                 try {
@@ -2104,69 +2074,30 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                     }
                 }
             } else {
-//                if (var.getkdbangsal().equals("APT01") || var.getkdbangsal().equals("APT02")) {
-//                    psobat = koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,databarang.kelas1,"
-//                            + " databarang.kelas2,databarang.kelas3,databarang.utama,databarang.vip,databarang.vvip,databarang.beliluar,databarang.karyawan,"
-//                            + " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi inner join golongan_barang inner join kategori_barang "
-//                            + " on databarang.kdjns=jenis.kdjns and industrifarmasi.kode_industri=databarang.kode_industri and databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode "
-//                            + " where MID(databarang.nama_brng,1,4) <> '(FR)' and (databarang.status='1' and databarang.kode_brng like ? or "
-//                            + " databarang.status='1' and databarang.nama_brng like ? or "
-//                            + " databarang.status='1' and kategori_barang.nama like ? or "
-//                            + " databarang.status='1' and golongan_barang.nama like ? or "
-//                            + " databarang.status='1' and jenis.nama like ?) order by databarang.nama_brng");
-//                } else {
-//                    psobat = koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,databarang.kelas1,"
-//                            + " databarang.kelas2,databarang.kelas3,databarang.utama,databarang.vip,databarang.vvip,databarang.beliluar,databarang.karyawan,"
-//                            + " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi inner join golongan_barang inner join kategori_barang"
-//                            + " on databarang.kdjns=jenis.kdjns and industrifarmasi.kode_industri=databarang.kode_industri and databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode "
-//                            + " where databarang.status='1' and databarang.kode_brng like ? or"
-//                            + " databarang.status='1' and databarang.nama_brng like ? or"
-//                            + " databarang.status='1' and kategori_barang.nama like ? or"
-//                            + " databarang.status='1' and golongan_barang.nama like ? or"
-//                            + " databarang.status='1' and jenis.nama like ? order by databarang.nama_brng");
-//                }
-
-//                if (var.getkdbangsal().equals("APT01") || var.getkdbangsal().equals("APT02")) {
-//                    psobat = koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,databarang.kelas1,"
-//                            + " databarang.kelas2,databarang.kelas3,databarang.utama,databarang.vip,databarang.vvip,databarang.beliluar,databarang.karyawan,"
-//                            + " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi inner join golongan_barang inner join kategori_barang "
-//                            + " on databarang.kdjns=jenis.kdjns and industrifarmasi.kode_industri=databarang.kode_industri and databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode "
-//                            + " where (databarang.status='1' and databarang.kode_brng like ? or "
-//                            + " databarang.status='1' and databarang.nama_brng like ? or "
-//                            + " databarang.status='1' and kategori_barang.nama like ? or "
-//                            + " databarang.status='1' and golongan_barang.nama like ? or "
-//                            + " databarang.status='1' and jenis.nama like ?) order by databarang.nama_brng");
-//                } else {
-//                    psobat = koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,databarang.kelas1,"
-//                            + " databarang.kelas2,databarang.kelas3,databarang.utama,databarang.vip,databarang.vvip,databarang.beliluar,databarang.karyawan,"
-//                            + " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi inner join golongan_barang inner join kategori_barang"
-//                            + " on databarang.kdjns=jenis.kdjns and industrifarmasi.kode_industri=databarang.kode_industri and databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode "
-//                            + " where databarang.status='1' and databarang.kode_brng like ? or"
-//                            + " databarang.status='1' and databarang.nama_brng like ? or"
-//                            + " databarang.status='1' and kategori_barang.nama like ? or"
-//                            + " databarang.status='1' and golongan_barang.nama like ? or"
-//                            + " databarang.status='1' and jenis.nama like ? order by databarang.nama_brng");
-//                }
+                StringBuilder sb2 = new StringBuilder();
                 if (akses.getkdbangsal().equals("APT07")) {
-                    psobat = koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,databarang.kelas1,"
-                            + " databarang.kelas2,databarang.kelas3,databarang.utama,databarang.vip,databarang.vvip,databarang.beliluar,databarang.karyawan,"
-                            + " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi inner join golongan_barang inner join kategori_barang "
-                            + " on databarang.kdjns=jenis.kdjns and industrifarmasi.kode_industri=databarang.kode_industri and databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode "
-                            + " where (databarang.status='1' and databarang.kode_brng like ? or "
-                            + " databarang.status='1' and databarang.nama_brng like ? or "
-                            + " databarang.status='1' and kategori_barang.nama like ? or "
-                            + " databarang.status='1' and golongan_barang.nama like ? or "
-                            + " databarang.status='1' and jenis.nama like ?) order by databarang.nama_brng");
+                    sb2.append("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,databarang.kelas1,");
+                    sb2.append(" databarang.kelas2,databarang.kelas3,databarang.utama,databarang.vip,databarang.vvip,databarang.beliluar,databarang.karyawan,");
+                    sb2.append(" databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi inner join golongan_barang inner join kategori_barang ");
+                    sb2.append(" on databarang.kdjns=jenis.kdjns and industrifarmasi.kode_industri=databarang.kode_industri and databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode ");
+                    sb2.append(" where (databarang.status='1' and databarang.kode_brng like ? or ");
+                    sb2.append(" databarang.status='1' and databarang.nama_brng like ? or ");
+                    sb2.append(" databarang.status='1' and kategori_barang.nama like ? or ");
+                    sb2.append(" databarang.status='1' and golongan_barang.nama like ? or ");
+                    sb2.append(" databarang.status='1' and jenis.nama like ?) order by databarang.nama_brng");
+                    psobat = koneksi.prepareStatement(sb2.toString());
+                    
                 } else {
-                    psobat = koneksi.prepareStatement("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,databarang.kelas1,"
-                            + " databarang.kelas2,databarang.kelas3,databarang.utama,databarang.vip,databarang.vvip,databarang.beliluar,databarang.karyawan,"
-                            + " databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi inner join golongan_barang inner join kategori_barang "
-                            + " on databarang.kdjns=jenis.kdjns and industrifarmasi.kode_industri=databarang.kode_industri and databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode "
-                            + " where MID(databarang.nama_brng,1,4) <> '(FR)' and (databarang.status='1' and databarang.kode_brng like ? or "
-                            + " databarang.status='1' and databarang.nama_brng like ? or "
-                            + " databarang.status='1' and kategori_barang.nama like ? or "
-                            + " databarang.status='1' and golongan_barang.nama like ? or "
-                            + " databarang.status='1' and jenis.nama like ?) order by databarang.nama_brng");
+                    sb2.append("select databarang.kode_brng, databarang.nama_brng,jenis.nama, databarang.kode_sat,databarang.kelas1,");
+                    sb2.append(" databarang.kelas2,databarang.kelas3,databarang.utama,databarang.vip,databarang.vvip,databarang.beliluar,databarang.karyawan,");
+                    sb2.append(" databarang.letak_barang,industrifarmasi.nama_industri,databarang.h_beli,kategori_barang.nama as kategori,golongan_barang.nama as golongan from databarang inner join jenis inner join industrifarmasi inner join golongan_barang inner join kategori_barang ");
+                    sb2.append(" on databarang.kdjns=jenis.kdjns and industrifarmasi.kode_industri=databarang.kode_industri and databarang.kode_golongan=golongan_barang.kode and databarang.kode_kategori=kategori_barang.kode ");
+                    sb2.append(" where MID(databarang.nama_brng,1,4) <> '(FR)' and (databarang.status='1' and databarang.kode_brng like ? or ");
+                    sb2.append(" databarang.status='1' and databarang.nama_brng like ? or ");
+                    sb2.append(" databarang.status='1' and kategori_barang.nama like ? or ");
+                    sb2.append(" databarang.status='1' and golongan_barang.nama like ? or ");
+                    sb2.append(" databarang.status='1' and jenis.nama like ?) order by databarang.nama_brng");
+                    psobat = koneksi.prepareStatement(sb2.toString());
                 }
 
                 try {
@@ -2408,36 +2339,43 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     
     public void tampil_resepRanap() {
         Valid.tabelKosong(tabModeResepObat);
+        StringBuilder sb3 = new StringBuilder();
         try {
             if (ChkTgl.isSelected() == true) {
                 if (cmbStatus.getSelectedIndex() == 3) {
-                    ps = koneksi.prepareStatement("SELECT c.no_rawat, c.nama_obat, c.status, c.noId, "
-                            + "date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter, c.jenis_resep, c.resep_untuk "
-                            + "FROM catatan_resep_ranap c inner join dokter d on d.kd_dokter=c.kd_dokter "
-                            + "WHERE c.tgl_perawatan between '" + Valid.SetTgl(DTPTgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPTgl2.getSelectedItem() + "") + "' "
-                            + "and c.no_rawat LIKE '%" + TNoRw.getText().trim() + "%' ORDER BY c.status, c.noId");
+                    sb3.append("SELECT c.no_rawat, c.nama_obat, c.status, c.noId, ");
+                    sb3.append("date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter, c.jenis_resep, c.resep_untuk ");
+                    sb3.append("FROM catatan_resep_ranap c inner join dokter d on d.kd_dokter=c.kd_dokter ");
+                    sb3.append("WHERE c.tgl_perawatan between '" + Valid.SetTgl(DTPTgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPTgl2.getSelectedItem() + "") + "' ");
+                    sb3.append("and c.no_rawat LIKE '%" + TNoRw.getText().trim() + "%' ORDER BY c.status, c.noId");
+                    ps = koneksi.prepareStatement(sb3.toString());
+                    
                 } else {
-                    ps = koneksi.prepareStatement("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, "
-                            + "date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter, c.jenis_resep, c.resep_untuk "
-                            + "FROM catatan_resep_ranap c inner join dokter d on d.kd_dokter=c.kd_dokter "
-                            + "where c.tgl_perawatan between '" + Valid.SetTgl(DTPTgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPTgl2.getSelectedItem() + "") + "' "
-                            + "and c.no_rawat like '%" + TNoRw.getText().trim() + "%' and c.status like '%" + cmbStatus.getSelectedItem().toString() + "%' "
-                            + "order by c.status, c.noId");
+                    sb3.append("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, ");
+                    sb3.append("date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter, c.jenis_resep, c.resep_untuk ");
+                    sb3.append("FROM catatan_resep_ranap c inner join dokter d on d.kd_dokter=c.kd_dokter ");
+                    sb3.append("where c.tgl_perawatan between '" + Valid.SetTgl(DTPTgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPTgl2.getSelectedItem() + "") + "' ");
+                    sb3.append("and c.no_rawat like '%" + TNoRw.getText().trim() + "%' and c.status like '%" + cmbStatus.getSelectedItem().toString() + "%' ");
+                    sb3.append("order by c.status, c.noId");
+                    ps = koneksi.prepareStatement(sb3.toString());
                 }
             } else {
                 if (cmbStatus.getSelectedIndex() == 3) {
-                    ps = koneksi.prepareStatement("SELECT c.no_rawat, c.nama_obat, c.status, c.noId, "
-                            + "date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter, c.jenis_resep, c.resep_untuk "
-                            + "FROM catatan_resep_ranap c inner join dokter d on d.kd_dokter=c.kd_dokter "
-                            + "WHERE c.no_rawat LIKE '%" + TNoRw.getText().trim() + "%' "
-                            + "ORDER BY c.status, c.noId");
+                    sb3.append("SELECT c.no_rawat, c.nama_obat, c.status, c.noId, ");
+                    sb3.append("date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter, c.jenis_resep, c.resep_untuk ");
+                    sb3.append("FROM catatan_resep_ranap c inner join dokter d on d.kd_dokter=c.kd_dokter ");
+                    sb3.append("WHERE c.no_rawat LIKE '%" + TNoRw.getText().trim() + "%' ");
+                    sb3.append("ORDER BY c.status, c.noId");
+                    ps = koneksi.prepareStatement(sb3.toString());
+                    
                 } else {
-                    ps = koneksi.prepareStatement("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, "
-                            + "date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter, c.jenis_resep, c.resep_untuk "
-                            + "FROM catatan_resep_ranap c inner join dokter d on d.kd_dokter=c.kd_dokter "
-                            + "where c.no_rawat like '%" + TNoRw.getText().trim() + "%' "
-                            + "and c.status like '%" + cmbStatus.getSelectedItem().toString() + "%' "
-                            + "order by c.status, c.noId");
+                    sb3.append("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, ");
+                    sb3.append("date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter, c.jenis_resep, c.resep_untuk ");
+                    sb3.append("FROM catatan_resep_ranap c inner join dokter d on d.kd_dokter=c.kd_dokter ");
+                    sb3.append("where c.no_rawat like '%" + TNoRw.getText().trim() + "%' ");
+                    sb3.append("and c.status like '%" + cmbStatus.getSelectedItem().toString() + "%' ");
+                    sb3.append("order by c.status, c.noId");
+                    ps = koneksi.prepareStatement(sb3.toString());
                 }
             }
             chkResepObat.setSelected(false);
@@ -2476,20 +2414,24 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     
     public void tampil_resepRalan() {
         Valid.tabelKosong(tabModeResepObat1);
+        StringBuilder sb4 = new StringBuilder();
         try {
             if (cmbStatus1.getSelectedIndex() == 3) {
-                ps1 = koneksi.prepareStatement("SELECT c.no_rawat, c.nama_obat, c.status, c.noId, "
-                        + "date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter "
-                        + "FROM catatan_resep c inner join dokter d on d.kd_dokter=c.kd_dokter "
-                        + "WHERE c.no_rawat LIKE '%" + TNoRw.getText().trim() + "%' "
-                        + "ORDER BY c.status, c.noId");
+                sb4.append("SELECT c.no_rawat, c.nama_obat, c.status, c.noId, ");
+                sb4.append("date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter ");
+                sb4.append("FROM catatan_resep c inner join dokter d on d.kd_dokter=c.kd_dokter ");
+                sb4.append("WHERE c.no_rawat LIKE '%" + TNoRw.getText().trim() + "%' ");
+                sb4.append("ORDER BY c.status, c.noId");
+                ps1 = koneksi.prepareStatement(sb4.toString());
+                
             } else {
-                ps1 = koneksi.prepareStatement("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, "
-                        + "date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter "
-                        + "FROM catatan_resep c inner join dokter d on d.kd_dokter=c.kd_dokter "
-                        + "where c.no_rawat like '%" + TNoRw.getText().trim() + "%' "
-                        + "and c.status like '%" + cmbStatus1.getSelectedItem().toString() + "%' "
-                        + "order by c.status, c.noId");
+                sb4.append("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, ");
+                sb4.append("date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter ");
+                sb4.append("FROM catatan_resep c inner join dokter d on d.kd_dokter=c.kd_dokter ");
+                sb4.append("where c.no_rawat like '%" + TNoRw.getText().trim() + "%' ");
+                sb4.append("and c.status like '%" + cmbStatus1.getSelectedItem().toString() + "%' ");
+                sb4.append("order by c.status, c.noId");
+                ps1 = koneksi.prepareStatement(sb4.toString());
             }            
             chkResepObat1.setSelected(false);
             try {

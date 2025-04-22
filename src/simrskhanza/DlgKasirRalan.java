@@ -10479,6 +10479,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnStatusPasienAllKunjungan.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         MnInputDataTriaseIGD.setEnabled(akses.getdata_triase_igd());
         MnInputDataTriasePedia.setEnabled(akses.getdata_triase_igd());
+        MnInputDataTriasePonek.setEnabled(akses.getcppt());
         MnPermintaanLab.setEnabled(akses.getpermintaan_lab());
         MnCariPermintaanLab.setEnabled(akses.getpermintaan_lab());
         MnPermintaanRadiologi.setEnabled(akses.getpermintaan_radiologi());
