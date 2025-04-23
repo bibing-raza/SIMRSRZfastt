@@ -1475,7 +1475,7 @@ public final class validasi {
 
                 JasperPrint jasperPrint = JasperFillManager.fillReport(namafile, parameters, rsdt);
                 
-                final String extension = "bmp";
+                final String extension = "jpg";
                     final float zoom = 5f;
                     String fileName = nmFile;
 
