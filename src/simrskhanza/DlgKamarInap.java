@@ -122,7 +122,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
     private int i, x, sudah = 0, cekAda = 0, row = 0, cekDb = 0, cekKamar = 0, cekOperasi = 0, cekUsia = 0, cekRuang = 0, cekSEP = 0,
             cekPr = 0, cekDr = 0, cekDrPr = 0, cekTinPers = 0, cekKamar2 = 0, cekOperasi2 = 0, diagnosa_cek = 0, cekInapDR = 0, cekInapPR = 0,
             g = 0, cekBonGZ = 0, cekjampersal = 0, cekjamkesda = 0, cekPXbpjs = 0, cekInapDRPR = 0, totskorTriase = 0, skorGZ1 = 0,
-            skorYaGZ1 = 0, skorGZ2 = 0, skor = 0, cekResepAda = 0, skorDecu = 0, cekRMbayi = 0;
+            skorYaGZ1 = 0, skorGZ2 = 0, skor = 0, cekResepAda = 0, skorDecu = 0, cekRMbayi = 0, cekdpjp = 0;
     private double lama = Sequel.cariIsiAngka("select lamajam from set_jam_minimal"), persenbayi = Sequel.cariInteger("select bayi from set_jam_minimal");
     private String dokterranap = "", bangsal = "", diagnosa_akhir = Sequel.cariIsi("select diagnosaakhir from set_jam_minimal"), cekKelamin = "",
             namakamar = "", umur = "0", sttsumur = "Th", cekAPS = "", norawatAPS = "", cekdokter = "", dpjpObgyn = "", noSrtMati = "", usernya = "",
@@ -391,7 +391,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 //                @Override
 //                public void insertUpdate(DocumentEvent e) {
 //                    if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-//                        tampil();
 //                        tampilDPJP();
 //                    } else {
 //                        tampil();
@@ -401,7 +400,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 //                @Override
 //                public void removeUpdate(DocumentEvent e) {
 //                    if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-//                        tampil();
 //                        tampilDPJP();
 //                    } else {
 //                        tampil();
@@ -411,7 +409,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 //                @Override
 //                public void changedUpdate(DocumentEvent e) {
 //                    if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-//                        tampil();
 //                        tampilDPJP();
 //                    } else {
 //                        tampil();
@@ -675,8 +672,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                         diagnosaakhir.requestFocus();
                     } else if (WindowInputKamar.isVisible() == false) {
                         Sequel.mengedit("kamar_inap", "no_rawat='" + norawat.getText() + "' and kd_kamar='" + kdkamar.getText() + "' and tgl_masuk='" + TIn.getText() + "' and jam_masuk='" + JamMasuk.getText() + "'", "diagnosa_akhir='" + key + "'");
-                        if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                            tampil();
+                        if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {                            
                             tampilDPJP();
                         } else {
                             tampil();
@@ -6518,7 +6514,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
                         emptTeks();
                         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                            tampil();
                             tampilDPJP();
                         } else {
                             tampil();
@@ -6526,7 +6521,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
                     } else {
                         emptTeks();
                         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                            tampil();
                             tampilDPJP();
                         } else {
                             tampil();
@@ -6591,7 +6585,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-            tampil();
             tampilDPJP();
         } else {
             tampil();
@@ -6611,7 +6604,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
         TCari.setText("");
         BangsalCari.setText("");
         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-            tampil();
             tampilDPJP();
         } else {
             tampil();
@@ -6931,7 +6923,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
                 }
             }
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -7171,7 +7162,6 @@ private void btnBangsalCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:
 private void BangsalCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BangsalCariKeyPressed
     if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-            tampil();
             tampilDPJP();
         } else {
             tampil();
@@ -7210,7 +7200,6 @@ private void MnRawatInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
                 emptTeks();
                 if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                    tampil();
                     tampilDPJP();
                 } else {
                     tampil();
@@ -7218,7 +7207,6 @@ private void MnRawatInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             } else {
                 emptTeks();
                 if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                    tampil();
                     tampilDPJP();
                 } else {
                     tampil();
@@ -7565,7 +7553,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
                         emptTeks();
                         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                            tampil();
                             tampilDPJP();
                         } else {
                             tampil();
@@ -7573,7 +7560,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     } else {
                         emptTeks();
                         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                            tampil();
                             tampilDPJP();
                         } else {
                             tampil();
@@ -7768,7 +7754,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                                 Sequel.mengedit("kamar", "kd_kamar='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 8).toString() + "'", "status='KOSONG'");
                                 WindowPindahKamar.dispose();
                                 if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                                    tampil();
                                     tampilDPJP();
                                 } else {
                                     tampil();
@@ -7859,7 +7844,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             Sequel.mengedit("kamar", "kd_kamar='" + kdkamarpindah.getText() + "'", "status='ISI'");
                             WindowPindahKamar.dispose();
                             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                                tampil();
                                 tampilDPJP();
                             } else {
                                 tampil();
@@ -7943,7 +7927,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
                     }
                     if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                        tampil();
                         tampilDPJP();
                     } else {
                         tampil();
@@ -8023,7 +8006,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             Sequel.mengedit("reg_periksa", "no_rawat=?", " kd_pj=?", 2, new String[]{kdpenjab.getText(), norawat.getText()});
             Sequel.AutoComitTrue();
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -8137,12 +8119,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'igd' and nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuangan);
         stts_bridging.setText(Sequel.cariIsi("select if(status_aktif='Ya','AKTIF','NON AKTIF') from setting_bridging where kd_bridging='2'"));
-        if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-            tampil();
-            tampilDPJP();
-        } else {
-            tampil();
-        }
     }//GEN-LAST:event_formWindowOpened
 
     private void MnInputResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnInputResepActionPerformed
@@ -8225,7 +8201,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         } else {
             updateHari();
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -8549,7 +8524,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         DlgJamkesda.dispose();
         emptTeks();
         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-            tampil();
             tampilDPJP();
         } else {
             tampil();
@@ -8644,7 +8618,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             DlgJamkesda.dispose();
             emptTeks();
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -8730,7 +8703,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 WindowInputKamar.dispose();
                 emptTeks();
                 if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                    tampil();
                     tampilDPJP();
                 } else {
                     tampil();
@@ -8828,7 +8800,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 JOptionPane.showMessageDialog(null, "Tracer rawat inap tidak bisa dicetak, pasien tersebut merupakan kunjungan BARU...!!!");
                 emptTeks();
                 if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                    tampil();
                     tampilDPJP();
                 } else {
                     tampil();
@@ -8875,7 +8846,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         DlgMati.dispose();
         emptTeks();
         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-            tampil();
             tampilDPJP();
         } else {
             tampil();
@@ -9026,7 +8996,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         DlgNoSEP.dispose();
         emptTeks();
         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-            tampil();
             tampilDPJP();
         } else {
             tampil();
@@ -9104,7 +9073,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             } else {
                 emptTeks();
                 if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                    tampil();
                     tampilDPJP();
                 } else {
                     tampil();
@@ -9209,7 +9177,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             this.setCursor(Cursor.getDefaultCursor());
 
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -9249,7 +9216,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     + "where gb.tgl_input BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' ", param);
             this.setCursor(Cursor.getDefaultCursor());
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -9365,7 +9331,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             this.setCursor(Cursor.getDefaultCursor());
 
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -9412,7 +9377,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             }
                             JOptionPane.showMessageDialog(rootPane, "Proses pembatalan pulang telah berhasil dilakukan...!!");
                             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                                tampil();
                                 tampilDPJP();
                             } else {
                                 tampil();
@@ -9449,7 +9413,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             }
                             JOptionPane.showMessageDialog(rootPane, "Proses pembatalan pulang telah berhasil dilakukan...!!");
                             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                                tampil();
                                 tampilDPJP();
                             } else {
                                 tampil();
@@ -9488,7 +9451,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private void BtnCloseIn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn9ActionPerformed
         WindowStatusPulang.dispose();
         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-            tampil();
             tampilDPJP();
         } else {
             tampil();
@@ -9517,7 +9479,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
             Sequel.mengedit("kamar_inap", "no_rawat='" + norawat.getText() + "' and stts_pulang='" + status_pulang.getText() + "'", "stts_pulang='Dirujuk' ");
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -9561,7 +9522,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
             Sequel.mengedit("kamar_inap", "no_rawat='" + norawat.getText() + "' and stts_pulang='" + status_pulang.getText() + "'", "stts_pulang='Meninggal >= 48 Jam' ");
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -9588,7 +9548,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
             Sequel.mengedit("kamar_inap", "no_rawat='" + norawat.getText() + "' and stts_pulang='" + status_pulang.getText() + "'", "stts_pulang='Meninggal < 48 Jam' ");
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -9610,7 +9569,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             Sequel.meghapus("ranap_aps", "no_rawat", norawat.getText());
             Sequel.mengedit("kamar_inap", "no_rawat='" + norawat.getText() + "' and stts_pulang='" + status_pulang.getText() + "'", "stts_pulang='Sembuh/BLPL' ");
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -9624,7 +9582,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             Sequel.meghapus("ranap_aps", "no_rawat", norawat.getText());
             Sequel.mengedit("kamar_inap", "no_rawat='" + norawat.getText() + "' and stts_pulang='" + status_pulang.getText() + "'", "stts_pulang='Kabur' ");
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -9646,7 +9603,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         if (status_pulang.getText().equals("-") || (status_pulang.getText().equals("Pindah Kamar"))) {
             JOptionPane.showMessageDialog(null, "Hanya status pulang pasien [SELAIN] - atau Pindah Kamar yang bisa diganti dari fitur ini....");
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -9910,7 +9866,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
 
         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-            tampil();
             tampilDPJP();
         } else {
             tampil();
@@ -10070,7 +10025,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             Sequel.mengedit("kamar_inap", "no_rawat='" + norawat.getText() + "'", "diagnosa_awal='" + TDiagnosaAwal.getText() + "'");
             Sequel.AutoComitTrue();
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -10108,7 +10062,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         DlgJampersal.dispose();
         emptTeks();
         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-            tampil();
             tampilDPJP();
         } else {
             tampil();
@@ -10200,7 +10153,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             DlgJampersal.dispose();
             emptTeks();
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -10345,7 +10297,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private void BtnCloseIn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn5ActionPerformed
         WindowWaktuRegRalan.dispose();
         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-            tampil();
             tampilDPJP();
         } else {
             tampil();
@@ -10382,7 +10333,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
         WindowWaktuRegRalan.dispose();
         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-            tampil();
             tampilDPJP();
         } else {
             tampil();
@@ -10620,7 +10570,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             DlgNoSEP.dispose();
             emptTeks();
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -11013,7 +10962,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             Sequel.meghapus("bridging_sep", "no_rawat", norawat.getText());
             JOptionPane.showMessageDialog(null, "SEP sebelumnya dg. No. Rawat " + norawat.getText() + " berhasil dihapus...!!!");
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
@@ -11278,7 +11226,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                                 + "where no_rawat='" + norawat.getText() + "' and kd_kamar='" + kdkamar.getText() + "' and tgl_masuk='" + TIn.getText() + "' "
                                 + "and jam_masuk='" + JamMasuk.getText() + "'");
                         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                            tampil();
                             tampilDPJP();
                         } else {
                             tampil();
@@ -13005,7 +12952,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             } else if (!NoRMmati.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Data pasien tersebut sudah tersimpan dilaporan rekap pasien meninggal...!!!");
                 if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                    tampil();
                     tampilDPJP();
                 } else {
                     tampil();
@@ -13364,6 +13310,11 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
     public void setCariKosong() {
         TCari.setText("");
+        if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
+            tampilDPJP();
+        } else {
+            tampil();
+        }
     }
 
     public void ctkSuratMati() {
@@ -13517,7 +13468,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     public void UserValid() {
         userBerizin.setText(Sequel.cariIsi("SELECT nip FROM hak_akses_unit WHERE nip='" + akses.getkode() + "' "));
 
-        if (akses.getkode().equals("Admin Utama") || akses.getpenyakit() == true) {
+        if (akses.getadmin() == true || akses.getpenyakit() == true) {
             cmbRuangan.setSelectedIndex(0);
             cmbRuangan.setEnabled(true);
             cmbRuangan.setVisible(true);
@@ -13646,35 +13597,156 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         this.setCursor(Cursor.getDefaultCursor());
     }
 
-    private void tampilDPJP() {        
-        row = tbKamIn.getRowCount();
-        for (i = 0; i < row; i++) {
-            try {
-                StringBuilder sb = new StringBuilder();
-                sb.append("select d.nm_dokter from dpjp_ranap dr inner join dokter d on dr.kd_dokter=d.kd_dokter where ");
-                sb.append("dr.no_rawat='" + tbKamIn.getValueAt(i, 0).toString() + "'");
-                psdpjp = koneksi.prepareStatement(sb.toString());
-                try {
-                    rs = psdpjp.executeQuery();
-                    while (rs.next()) {
-                        dokterranap = "";
-                        dokterranap = rs.getString("nm_dokter") + ", " + dokterranap;
-                    }
-                } catch (Exception e) {
-                    System.out.println("Notifikasi : " + e);
-                } finally {
-                    if (rs != null) {
-                        rs.close();
-                    }
-                    if (psdpjp != null) {
-                        psdpjp.close();
-                    }
-                }
-                tbKamIn.setValueAt(dokterranap, i, 20);
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
+    private void tampilDPJP() {
+        StringBuilder sb = new StringBuilder();        
+        //update status pulang ringkasan/resume pulang pasien
+        Sequel.queryu("update ringkasan_pulang_ranap r, kamar_inap k set r.stts_pulang=k.stts_pulang WHERE "
+                + "r.no_rawat=k.no_rawat and k.stts_pulang<>'Pindah Kamar'");
+        //----------------------------------------------------------------------
+        
+        if (R1.isSelected() == true) {
+            kmr = " a.stts_pulang='-' ";
+            if (!BangsalCari.getText().equals("")) {
+                kmr = " a.stts_pulang='-' and a.nm_bangsal='" + BangsalCari.getText() + "' ";
+            }
+        } else if (R2.isSelected() == true) {
+            kmr = " a.tgl_masuk between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' ";
+            if (!BangsalCari.getText().equals("")) {
+                kmr = " a.tgl_masuk between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and a.nm_bangsal='" + BangsalCari.getText() + "' ";
+            }
+        } else if (R3.isSelected() == true) {
+            kmr = " a.tgl_keluar between '" + Valid.SetTgl(DTPCari3.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari4.getSelectedItem() + "") + "' ";
+            if (!BangsalCari.getText().equals("")) {
+                kmr = " a.tgl_keluar between '" + Valid.SetTgl(DTPCari3.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari4.getSelectedItem() + "") + "' and a.nm_bangsal='" + BangsalCari.getText() + "' ";
             }
         }
+
+        key = kmr + " ";
+        if (!TCari.getText().equals("")) {
+            key = kmr + "and a.no_rawat like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.no_rkm_medis like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.nm_pasien like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and concat(a.alamat,', ',a.nm_kel,', ',a.nm_kec,', ',a.nm_kab) like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.kd_kamar like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.nm_bangsal like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.diagnosa_awal like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.diagnosa_akhir like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.trf_kamar like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.tgl_masuk like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.nm_dokter like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.stts_pulang like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.tgl_keluar like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.png_jawab like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and IF (b.no_rawat = a.no_rawat OR c.no_rawat = a.no_rawat or d.no_rawat = a.no_rawat, 'SUDAH', IF (a.kd_pj <> 'b01' AND a.kd_pj not in ('d01','d04'),'NON SEP','BELUM')) like '%" + TCari.getText().trim() + "%' or "
+                    + kmr + "and a.ttl_biaya like '%" + TCari.getText().trim() + "%' ";
+        }
+
+        cekResepAda = 0;
+        cekdpjp = 0;
+        sttsResep = "";
+        e_resep = "";
+        dokterranap = "";
+        Valid.tabelKosong(tabMode);
+        try {
+            try {
+                sb.append("SELECT a.no_rawat, a.no_rkm_medis, a.nm_pasien, a.tgl_lahir, a.alamat, a.png_jawab, ");
+                sb.append("IF (b.no_rawat = a.no_rawat OR c.no_rawat = a.no_rawat or d.no_rawat = a.no_rawat, 'SUDAH', IF (a.kd_pj <> 'b01' AND a.kd_pj not in ('d01','d04'),'NON SEP','BELUM')) sep, ");
+                sb.append("a.kd_kamar, a.nm_bangsal, a.trf_kamar, a.diagnosa_awal, a.diagnosa_akhir, a.tgl_masuk, a.jam_masuk, a.tgl_keluar, a.jam_keluar, ");
+                sb.append("a.ttl_biaya, a.stts_pulang, a.lama, a.nm_dokter, a.no_tlp, a.kd_pj, a.nm_kel,a.nm_kec,a.nm_kab, a.dokter2, ");
+                sb.append("date_format(a.tgl_masuk,'%d-%m-%Y') tglmsk_format, date_format(a.tgl_keluar,'%d-%m-%Y') tglklr_format FROM ");
+                sb.append("((SELECT ki.no_rawat, r.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgl_lahir, ");
+                sb.append("concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,',',kb.nm_kab) alamat, pj.png_jawab, ki.kd_kamar, ");
+                sb.append("b.nm_bangsal, ki.trf_kamar, ki.diagnosa_awal, ki.diagnosa_akhir, ki.tgl_masuk, ki.jam_masuk, IF (ki.tgl_keluar ='0000-00-00','',ki.tgl_keluar) tgl_keluar, ");
+                sb.append("IF (ki.jam_keluar = '00:00:00','',ki.jam_keluar) jam_keluar, ki.ttl_biaya, ki.stts_pulang, ki.lama, ");
+                sb.append("d.nm_dokter, r.kd_pj,kl.nm_kel,kc.nm_kec,kb.nm_kab,k.kelas,p.no_tlp, d1.nm_dokter dokter2 ");
+                sb.append("FROM kamar_inap ki INNER JOIN reg_periksa r ON ki.no_rawat = r.no_rawat ");
+                sb.append("INNER JOIN pasien p ON p.no_rkm_medis = r.no_rkm_medis ");
+                sb.append("INNER JOIN dokter d ON d.kd_dokter = r.kd_dokter ");
+                sb.append("INNER JOIN penjab pj ON pj.kd_pj = r.kd_pj ");
+                sb.append("INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar ");
+                sb.append("INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal ");
+                sb.append("INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel ");
+                sb.append("INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec ");
+                sb.append("INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab ");
+                sb.append("LEFT JOIN dpjp_ranap dr ON dr.no_rawat = ki.no_rawat ");
+                sb.append("LEFT JOIN dokter d1 ON d1.kd_dokter = dr.kd_dokter) AS a ");
+                sb.append("LEFT JOIN (SELECT DISTINCT bs.no_rawat FROM bridging_sep bs WHERE bs.jnspelayanan = '1') AS b ");
+                sb.append("ON a.no_rawat = b.no_rawat ");
+                sb.append("LEFT JOIN (SELECT DISTINCT no_rawat FROM bridging_jamkesda where jns_rawat = 'inap') AS c ");
+                sb.append("ON c.no_rawat = a.no_rawat ");
+                sb.append("LEFT JOIN (SELECT DISTINCT no_rawat FROM bridging_jampersal WHERE jns_rawat = 'inap') AS d ");
+                sb.append("ON d.no_rawat = a.no_rawat) where " + key + " order by a.nm_bangsal, a.tgl_masuk, a.jam_masuk");
+                rs = koneksi.prepareStatement(sb.toString()).executeQuery();
+
+                while (rs.next()) {
+                    e_resep = Sequel.cariIsi("select if(ifnull(no_rawat,'')<>'','ada','') from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "'");
+                    if (e_resep.equals("ada")) {
+                        cekResepAda = Sequel.cariInteger("SELECT count(-1) from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status='belum'");
+                        if (cekResepAda > 0) {
+                            sttsResep = "Belum Dilayani";
+                        } else {
+                            sttsResep = "Diterima & Sudah Dilayani";
+                        }
+                    } else if (e_resep.equals("")) {
+                        sttsResep = "Tidak Ada e-Resep";
+                    }
+                    
+                    cekdpjp = Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + rs.getString("no_rawat") + "'");
+                    if (cekdpjp == 0) {
+                        dokterranap = "";
+                    } else if (cekdpjp == 1) {
+                        dokterranap = Sequel.cariIsi("select d.nm_dokter from dpjp_ranap dr inner join dokter d on dr.kd_dokter=d.kd_dokter "
+                                + "where dr.no_rawat='" + rs.getString("no_rawat") + "'");
+                    } else if (cekdpjp > 1) {
+                        dokterranap = Sequel.cariIsi("select d.nm_dokter from dpjp_ranap dr inner join dokter d on dr.kd_dokter=d.kd_dokter "
+                                + "where dr.no_rawat='" + rs.getString("no_rawat") + "'") + ", " + dokterranap;
+                    }
+                    
+                    tabMode.addRow(new String[]{
+                        rs.getString("no_rawat"),
+                        rs.getString("no_rkm_medis"),
+                        rs.getString("nm_pasien"),
+                        rs.getString("tgl_lahir"),
+                        rs.getString("alamat"),
+                        rs.getString("png_jawab"),
+                        rs.getString("sep"),
+                        sttsResep,
+                        rs.getString("kd_kamar"),
+                        rs.getString("nm_bangsal"),
+                        Valid.SetAngka(rs.getDouble("trf_kamar")),
+                        rs.getString("diagnosa_awal"),
+                        rs.getString("diagnosa_akhir"),
+                        rs.getString("tglmsk_format"),
+                        rs.getString("jam_masuk"),
+                        rs.getString("tglklr_format"),
+                        rs.getString("jam_keluar"),
+                        Valid.SetAngka(rs.getDouble("ttl_biaya")),
+                        rs.getString("stts_pulang"),
+                        rs.getString("lama"),
+                        dokterranap,
+                        rs.getString("no_tlp"),
+                        rs.getString("dokter2"),
+                        Sequel.cariIsi("select ifnull(no_rawat,'') from surat_konsul_unit_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status_dijawab='Belum'"),
+                        Sequel.cariIsi("select ifnull(p.no_rkm_medis,'') from  piutang_pasien p inner join reg_periksa r on p.no_rkm_medis = r.no_rkm_medis and p.no_rawat = r.no_rawat and r.kd_pj = 'U01' "
+                        + "where p.status = 'Belum Lunas' and p.no_rkm_medis = '" + rs.getString("no_rkm_medis") + "'"),
+                        Sequel.cariIsi("SELECT count(-1) from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status='belum' and jenis_resep='cito'"),
+                        Sequel.cariIsi("SELECT COUNT(-1) cek FROM cppt WHERE jenis_bagian='DPJP' and jenis_ppa='DPJP' and tgl_cppt=date(now()) and "
+                        + "no_rawat='" + rs.getString("no_rawat") + "' and nip_dpjp='" + akses.getkode() + "'"),
+                        rs.getString("tgl_masuk"),
+                        rs.getString("tgl_keluar")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        LCount.setText("" + tabMode.getRowCount());
     }
 
     private void tampilAPS() {
@@ -13770,7 +13842,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             dinkes.setVisible(true);
                         } else {
                             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                                tampil();
                                 tampilDPJP();
                             } else {
                                 tampil();
@@ -13851,7 +13922,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         dinkes.setVisible(true);
                     } else {
                         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                            tampil();
                             tampilDPJP();
                         } else {
                             tampil();
@@ -13937,7 +14007,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             dinkes.setVisible(true);
                         } else {
                             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                                tampil();
                                 tampilDPJP();
                             } else {
                                 tampil();
@@ -14018,7 +14087,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         dinkes.setVisible(true);
                     } else {
                         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                            tampil();
                             tampilDPJP();
                         } else {
                             tampil();
@@ -14100,7 +14168,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     dinkes.setVisible(true);
                 } else {
                     if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                        tampil();
                         tampilDPJP();
                     } else {
                         tampil();
@@ -14191,7 +14258,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 Sequel.mengedit("reg_periksa", "no_rawat='" + norawat.getText() + "'", "status_lanjut='Ralan'");
             }
             if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                tampil();
                 tampilDPJP();
             } else {
                 tampil();
