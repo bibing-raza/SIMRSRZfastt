@@ -75,7 +75,7 @@ public class DlgDpjp extends javax.swing.JDialog {
             } else if (i == 3) {
                 column.setPreferredWidth(200);
             } else if (i == 4) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(130);
             } else if (i == 5) {
                 column.setPreferredWidth(200);
             } else if (i == 6) {

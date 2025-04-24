@@ -1450,14 +1450,16 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnHapus1 = new widget.Button();
         BtnEdit1 = new widget.Button();
         WindowRiwayatKunjungan = new javax.swing.JDialog();
+        internalFrame27 = new widget.InternalFrame();
         internalFrame13 = new widget.InternalFrame();
-        BtnCloseIn7 = new widget.Button();
+        jLabel65 = new widget.Label();
         Scroll32 = new widget.ScrollPane();
         tbRiwayatKunj = new widget.Table();
-        jLabel65 = new widget.Label();
+        internalFrame28 = new widget.InternalFrame();
         jLabel66 = new widget.Label();
         pasiendipilih = new widget.TextBox();
         BtnRM = new widget.Button();
+        BtnCloseIn7 = new widget.Button();
         WindowRiwayatResep = new javax.swing.JDialog();
         internalFrame15 = new widget.InternalFrame();
         panelGlass6 = new widget.panelisi();
@@ -2826,24 +2828,24 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         WindowRiwayatKunjungan.setUndecorated(true);
         WindowRiwayatKunjungan.setResizable(false);
 
-        internalFrame13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Riwayat Kunjungan 7 Hari Yang Lalu ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame27.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Riwayat Kunjungan 7 Hari Yang Lalu ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame27.setName("internalFrame27"); // NOI18N
+        internalFrame27.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame27.setLayout(new java.awt.BorderLayout());
+
         internalFrame13.setName("internalFrame13"); // NOI18N
         internalFrame13.setWarnaBawah(new java.awt.Color(245, 250, 240));
-        internalFrame13.setLayout(null);
+        internalFrame13.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 8));
 
-        BtnCloseIn7.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCloseIn7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn7.setMnemonic('U');
-        BtnCloseIn7.setText("Tutup");
-        BtnCloseIn7.setToolTipText("Alt+U");
-        BtnCloseIn7.setName("BtnCloseIn7"); // NOI18N
-        BtnCloseIn7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCloseIn7ActionPerformed(evt);
-            }
-        });
-        internalFrame13.add(BtnCloseIn7);
-        BtnCloseIn7.setBounds(780, 315, 80, 30);
+        jLabel65.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel65.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel65.setText("Mohon dilengkapi kekurangan data rekam medis rawat jalan pasien yang terdaftar pada tabel dibawah ini..!!");
+        jLabel65.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel65.setName("jLabel65"); // NOI18N
+        jLabel65.setPreferredSize(new java.awt.Dimension(750, 26));
+        internalFrame13.add(jLabel65);
+
+        internalFrame27.add(internalFrame13, java.awt.BorderLayout.PAGE_START);
 
         Scroll32.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Data Kunjungan Yang Tercatat ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         Scroll32.setName("Scroll32"); // NOI18N
@@ -2863,34 +2865,30 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         Scroll32.setViewportView(tbRiwayatKunj);
 
-        internalFrame13.add(Scroll32);
-        Scroll32.setBounds(15, 45, 850, 260);
+        internalFrame27.add(Scroll32, java.awt.BorderLayout.CENTER);
 
-        jLabel65.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel65.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel65.setText("Mohon dilengkapi kekurangan data rekam medis rawat jalan pasien yang terdaftar pada tabel dibawah ini..!!");
-        jLabel65.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel65.setName("jLabel65"); // NOI18N
-        internalFrame13.add(jLabel65);
-        jLabel65.setBounds(15, 20, 790, 23);
+        internalFrame28.setName("internalFrame28"); // NOI18N
+        internalFrame28.setPreferredSize(new java.awt.Dimension(12, 44));
+        internalFrame28.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame28.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 8));
 
         jLabel66.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel66.setText("Pasien Dipilih : ");
+        jLabel66.setText("Pasien Dipilih :");
         jLabel66.setName("jLabel66"); // NOI18N
-        internalFrame13.add(jLabel66);
-        jLabel66.setBounds(20, 315, 80, 23);
+        jLabel66.setPreferredSize(new java.awt.Dimension(95, 23));
+        internalFrame28.add(jLabel66);
 
         pasiendipilih.setEditable(false);
         pasiendipilih.setForeground(new java.awt.Color(0, 0, 0));
         pasiendipilih.setHighlighter(null);
         pasiendipilih.setName("pasiendipilih"); // NOI18N
+        pasiendipilih.setPreferredSize(new java.awt.Dimension(450, 23));
         pasiendipilih.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 pasiendipilihKeyPressed(evt);
             }
         });
-        internalFrame13.add(pasiendipilih);
-        pasiendipilih.setBounds(100, 315, 520, 23);
+        internalFrame28.add(pasiendipilih);
 
         BtnRM.setForeground(new java.awt.Color(0, 0, 0));
         BtnRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-edit24.png"))); // NOI18N
@@ -2898,15 +2896,31 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnRM.setText("Isi Rekam Medis");
         BtnRM.setToolTipText("Alt+R");
         BtnRM.setName("BtnRM"); // NOI18N
+        BtnRM.setPreferredSize(new java.awt.Dimension(155, 26));
         BtnRM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnRMActionPerformed(evt);
             }
         });
-        internalFrame13.add(BtnRM);
-        BtnRM.setBounds(630, 315, 142, 30);
+        internalFrame28.add(BtnRM);
 
-        WindowRiwayatKunjungan.getContentPane().add(internalFrame13, java.awt.BorderLayout.CENTER);
+        BtnCloseIn7.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn7.setMnemonic('U');
+        BtnCloseIn7.setText("Tutup");
+        BtnCloseIn7.setToolTipText("Alt+U");
+        BtnCloseIn7.setName("BtnCloseIn7"); // NOI18N
+        BtnCloseIn7.setPreferredSize(new java.awt.Dimension(80, 26));
+        BtnCloseIn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn7ActionPerformed(evt);
+            }
+        });
+        internalFrame28.add(BtnCloseIn7);
+
+        internalFrame27.add(internalFrame28, java.awt.BorderLayout.PAGE_END);
+
+        WindowRiwayatKunjungan.getContentPane().add(internalFrame27, java.awt.BorderLayout.CENTER);
 
         WindowRiwayatResep.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowRiwayatResep.setName("WindowRiwayatResep"); // NOI18N
@@ -3136,7 +3150,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-04-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3150,7 +3164,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-04-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3343,7 +3357,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-04-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -3572,7 +3586,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-04-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3586,7 +3600,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-04-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5956,7 +5970,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         ChkKonsul.setBounds(113, 115, 102, 23);
 
         TtglKonsulUlang.setEditable(false);
-        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
+        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-04-2025" }));
         TtglKonsulUlang.setDisplayFormat("dd-MM-yyyy");
         TtglKonsulUlang.setName("TtglKonsulUlang"); // NOI18N
         TtglKonsulUlang.setOpaque(false);
@@ -6121,7 +6135,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-04-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -7082,6 +7096,9 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
         WindowDataParu.dispose();
+        WindowRiwayatKunjungan.dispose();        
+        WindowRiwayatResep.dispose();
+        WindowRehabMedik.dispose();
         WindowRiwayat.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
@@ -11256,6 +11273,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.InternalFrame internalFrame24;
     private widget.InternalFrame internalFrame25;
     private widget.InternalFrame internalFrame26;
+    private widget.InternalFrame internalFrame27;
+    private widget.InternalFrame internalFrame28;
     private widget.InternalFrame internalFrame4;
     private widget.InternalFrame internalFrame5;
     private widget.InternalFrame internalFrame6;

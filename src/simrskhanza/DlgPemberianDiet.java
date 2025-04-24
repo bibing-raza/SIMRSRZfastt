@@ -188,24 +188,25 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         TCariPoli.setDocument(new batasInput((byte) 100).getKata(TCariPoli));
-        if (koneksiDB.cariCepat().equals("aktif")) {
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    tampil();
-                }
-            });
-        }
+        
+//        if (koneksiDB.cariCepat().equals("aktif")) {
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//            });
+//        }
         
         diet.addWindowListener(new WindowListener() {
             @Override
@@ -402,82 +403,94 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         });
 
         try {
-            ps = koneksi.prepareStatement("select detail_beri_diet.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien, "
-                    + "concat(detail_beri_diet.kd_kamar,', ',bangsal.nm_bangsal),detail_beri_diet.tanggal,detail_beri_diet.waktu,diet.nama_diet, "
-                    + "detail_beri_diet.waktu_simpan, UPPER(detail_beri_diet.disajikan) disajikan "
-                    + "from detail_beri_diet inner join reg_periksa inner join pasien inner join diet inner join kamar inner join bangsal "
-                    + "on detail_beri_diet.no_rawat=reg_periksa.no_rawat "
-                    + "and detail_beri_diet.kd_kamar=kamar.kd_kamar "
-                    + "and kamar.kd_bangsal=bangsal.kd_bangsal "
-                    + "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
-                    + "and detail_beri_diet.kd_diet=diet.kd_diet where "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and detail_beri_diet.no_rawat like ? or "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and reg_periksa.no_rkm_medis like ? or "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and concat(detail_beri_diet.kd_kamar,', ',bangsal.nm_bangsal) like ? or "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and pasien.nm_pasien like ? or "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and detail_beri_diet.disajikan like ? "
-                    + "order by detail_beri_diet.tanggal, bangsal.nm_bangsal,diet.nama_diet");
+            StringBuilder sb1 = new StringBuilder();
+            sb1.append("select detail_beri_diet.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien, ");
+            sb1.append("concat(detail_beri_diet.kd_kamar,', ',bangsal.nm_bangsal),detail_beri_diet.tanggal,detail_beri_diet.waktu,diet.nama_diet, ");
+            sb1.append("detail_beri_diet.waktu_simpan, UPPER(detail_beri_diet.disajikan) disajikan ");
+            sb1.append("from detail_beri_diet inner join reg_periksa inner join pasien inner join diet inner join kamar inner join bangsal ");
+            sb1.append("on detail_beri_diet.no_rawat=reg_periksa.no_rawat ");
+            sb1.append("and detail_beri_diet.kd_kamar=kamar.kd_kamar ");
+            sb1.append("and kamar.kd_bangsal=bangsal.kd_bangsal ");
+            sb1.append("and reg_periksa.no_rkm_medis=pasien.no_rkm_medis ");
+            sb1.append("and detail_beri_diet.kd_diet=diet.kd_diet where ");
+            sb1.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and detail_beri_diet.no_rawat like ? or ");
+            sb1.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and reg_periksa.no_rkm_medis like ? or ");
+            sb1.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and concat(detail_beri_diet.kd_kamar,', ',bangsal.nm_bangsal) like ? or ");
+            sb1.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and pasien.nm_pasien like ? or ");
+            sb1.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and detail_beri_diet.disajikan like ? ");
+            sb1.append("order by detail_beri_diet.tanggal, bangsal.nm_bangsal,diet.nama_diet");
+            ps = koneksi.prepareStatement(sb1.toString());
 
             //menghitung diet ranap
-            ps2 = koneksi.prepareStatement("select diet.nama_diet, count(diet.nama_diet) as jumlah, UPPER(detail_beri_diet.disajikan) disajikan, "
-                    + "count(detail_beri_diet.disajikan) jlh_dikemas from detail_beri_diet inner join reg_periksa inner join pasien "
-                    + "inner join diet inner join kamar inner join bangsal "
-                    + "on detail_beri_diet.no_rawat=reg_periksa.no_rawat "
-                    + "and detail_beri_diet.kd_kamar=kamar.kd_kamar "
-                    + "and kamar.kd_bangsal=bangsal.kd_bangsal "
-                    + "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
-                    + "and detail_beri_diet.kd_diet=diet.kd_diet where "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and detail_beri_diet.no_rawat like ? or "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and reg_periksa.no_rkm_medis like ? or "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and concat(detail_beri_diet.kd_kamar,', ',bangsal.nm_bangsal) like ? or "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and pasien.nm_pasien like ? or "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and detail_beri_diet.disajikan like ? "
-                    + "group by diet.nama_diet order by bangsal.nm_bangsal,diet.nama_diet");
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append("select diet.nama_diet, count(diet.nama_diet) as jumlah, UPPER(detail_beri_diet.disajikan) disajikan, ");
+            sb2.append("count(detail_beri_diet.disajikan) jlh_dikemas from detail_beri_diet inner join reg_periksa inner join pasien ");
+            sb2.append("inner join diet inner join kamar inner join bangsal ");
+            sb2.append("on detail_beri_diet.no_rawat=reg_periksa.no_rawat ");
+            sb2.append("and detail_beri_diet.kd_kamar=kamar.kd_kamar ");
+            sb2.append("and kamar.kd_bangsal=bangsal.kd_bangsal ");
+            sb2.append("and reg_periksa.no_rkm_medis=pasien.no_rkm_medis ");
+            sb2.append("and detail_beri_diet.kd_diet=diet.kd_diet where ");
+            sb2.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and detail_beri_diet.no_rawat like ? or ");
+            sb2.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and reg_periksa.no_rkm_medis like ? or ");
+            sb2.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and concat(detail_beri_diet.kd_kamar,', ',bangsal.nm_bangsal) like ? or ");
+            sb2.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and pasien.nm_pasien like ? or ");
+            sb2.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and detail_beri_diet.disajikan like ? ");
+            sb2.append("group by diet.nama_diet order by bangsal.nm_bangsal,diet.nama_diet");
+            ps2 = koneksi.prepareStatement(sb2.toString());
             
             //menghitung jenis kemasan disajikan RANAP
-            ps5 = koneksi.prepareStatement("select UPPER(detail_beri_diet.disajikan) disajikan, count(detail_beri_diet.disajikan) jlh_dikemas from detail_beri_diet "
-                    + "inner join reg_periksa inner join pasien inner join diet inner join kamar inner join bangsal "
-                    + "on detail_beri_diet.no_rawat=reg_periksa.no_rawat and detail_beri_diet.kd_kamar=kamar.kd_kamar "
-                    + "and kamar.kd_bangsal=bangsal.kd_bangsal and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
-                    + "and detail_beri_diet.kd_diet=diet.kd_diet where "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and detail_beri_diet.no_rawat like ? or "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and reg_periksa.no_rkm_medis like ? or "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and concat(detail_beri_diet.kd_kamar,', ',bangsal.nm_bangsal) like ? or "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and pasien.nm_pasien like ? or "
-                    + "detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and detail_beri_diet.disajikan like ? "
-                    + "group by detail_beri_diet.disajikan order by bangsal.nm_bangsal,detail_beri_diet.disajikan");
+            StringBuilder sb3 = new StringBuilder();
+            sb3.append("select UPPER(detail_beri_diet.disajikan) disajikan, count(detail_beri_diet.disajikan) jlh_dikemas from detail_beri_diet ");
+            sb3.append("inner join reg_periksa inner join pasien inner join diet inner join kamar inner join bangsal ");
+            sb3.append("on detail_beri_diet.no_rawat=reg_periksa.no_rawat and detail_beri_diet.kd_kamar=kamar.kd_kamar ");
+            sb3.append("and kamar.kd_bangsal=bangsal.kd_bangsal and reg_periksa.no_rkm_medis=pasien.no_rkm_medis ");
+            sb3.append("and detail_beri_diet.kd_diet=diet.kd_diet where ");
+            sb3.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and detail_beri_diet.no_rawat like ? or ");
+            sb3.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and reg_periksa.no_rkm_medis like ? or ");
+            sb3.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and concat(detail_beri_diet.kd_kamar,', ',bangsal.nm_bangsal) like ? or ");
+            sb3.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and pasien.nm_pasien like ? or ");
+            sb3.append("detail_beri_diet.tanggal between ? and ? and detail_beri_diet.waktu like ? and bangsal.nm_bangsal like ? and detail_beri_diet.disajikan like ? ");
+            sb3.append("group by detail_beri_diet.disajikan order by bangsal.nm_bangsal,detail_beri_diet.disajikan");
+            ps5 = koneksi.prepareStatement(sb3.toString());
 
-            ps3 = koneksi.prepareStatement("SELECT dd.no_rawat, rp.no_rkm_medis, p.nm_pasien, pl.nm_poli, "
-                    + "dd.tanggal, dd.waktu, d.nama_diet, lower(IFNULL(pr.diagnosa, '-')) diagnosa, dd.waktu_simpan, UPPER(dd.disajikan) disajikan FROM detail_beri_diet_ralan dd "
-                    + "INNER JOIN reg_periksa rp on rp.no_rawat=dd.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "INNER JOIN diet d on d.kd_diet=dd.kd_diet INNER JOIN poliklinik pl on pl.kd_poli=dd.kd_poli "
-                    + "LEFT JOIN pemeriksaan_ralan pr ON pr.no_rawat = rp.no_rawat where "
-                    + "rp.status_lanjut = 'ralan' and dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND dd.no_rawat LIKE ? or "
-                    + "rp.status_lanjut = 'ralan' and dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND rp.no_rkm_medis LIKE ? or "
-                    + "rp.status_lanjut = 'ralan' and dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND p.nm_pasien LIKE ? or "
-                    + "rp.status_lanjut = 'ralan' and dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND dd.disajikan LIKE ? "
-                    + "ORDER BY dd.tanggal, pl.nm_poli, d.nama_diet");
+            StringBuilder sb4 = new StringBuilder();
+            sb4.append("SELECT dd.no_rawat, rp.no_rkm_medis, p.nm_pasien, pl.nm_poli, ");
+            sb4.append("dd.tanggal, dd.waktu, d.nama_diet, lower(IFNULL(pr.diagnosa, '-')) diagnosa, dd.waktu_simpan, UPPER(dd.disajikan) disajikan FROM detail_beri_diet_ralan dd ");
+            sb4.append("INNER JOIN reg_periksa rp on rp.no_rawat=dd.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+            sb4.append("INNER JOIN diet d on d.kd_diet=dd.kd_diet INNER JOIN poliklinik pl on pl.kd_poli=dd.kd_poli ");
+            sb4.append("LEFT JOIN pemeriksaan_ralan pr ON pr.no_rawat = rp.no_rawat where ");
+            sb4.append("rp.status_lanjut = 'ralan' and dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND dd.no_rawat LIKE ? or ");
+            sb4.append("rp.status_lanjut = 'ralan' and dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND rp.no_rkm_medis LIKE ? or ");
+            sb4.append("rp.status_lanjut = 'ralan' and dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND p.nm_pasien LIKE ? or ");
+            sb4.append("rp.status_lanjut = 'ralan' and dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND dd.disajikan LIKE ? ");
+            sb4.append("ORDER BY dd.tanggal, pl.nm_poli, d.nama_diet");
+            ps3 = koneksi.prepareStatement(sb4.toString());
 
             //menghitung diet ralan
-            ps4 = koneksi.prepareStatement("SELECT d.nama_diet, count(d.nama_diet) AS jumlah, UPPER(dd.disajikan) disajikan, "
-                    + "count(dd.disajikan) jlh_dikemas FROM detail_beri_diet_ralan dd "
-                    + "INNER JOIN reg_periksa rp on rp.no_rawat=dd.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "INNER JOIN diet d on d.kd_diet=dd.kd_diet INNER JOIN poliklinik pl on pl.kd_poli=dd.kd_poli "
-                    + "WHERE dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND dd.no_rawat LIKE ? OR "
-                    + "dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND rp.no_rkm_medis LIKE ? OR "
-                    + "dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND p.nm_pasien LIKE ? or "
-                    + "dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND dd.disajikan LIKE ? "
-                    + "GROUP BY d.nama_diet ORDER BY pl.nm_poli, d.nama_diet");
+            StringBuilder sb5 = new StringBuilder();
+            sb5.append("SELECT d.nama_diet, count(d.nama_diet) AS jumlah, UPPER(dd.disajikan) disajikan, ");
+            sb5.append("count(dd.disajikan) jlh_dikemas FROM detail_beri_diet_ralan dd ");
+            sb5.append("INNER JOIN reg_periksa rp on rp.no_rawat=dd.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+            sb5.append("INNER JOIN diet d on d.kd_diet=dd.kd_diet INNER JOIN poliklinik pl on pl.kd_poli=dd.kd_poli ");
+            sb5.append("WHERE dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND dd.no_rawat LIKE ? OR ");
+            sb5.append("dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND rp.no_rkm_medis LIKE ? OR ");
+            sb5.append("dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND p.nm_pasien LIKE ? or ");
+            sb5.append("dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND dd.disajikan LIKE ? ");
+            sb5.append("GROUP BY d.nama_diet ORDER BY pl.nm_poli, d.nama_diet");
+            ps4 = koneksi.prepareStatement(sb5.toString());
             
             //menghitung jenis kemasan disajikan RALAN
-            ps6 = koneksi.prepareStatement("SELECT UPPER(dd.disajikan) disajikan, count(dd.disajikan) jlh_dikemas FROM detail_beri_diet_ralan dd "
-                    + "INNER JOIN reg_periksa rp on rp.no_rawat=dd.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "INNER JOIN diet d on d.kd_diet=dd.kd_diet INNER JOIN poliklinik pl on pl.kd_poli=dd.kd_poli "
-                    + "WHERE dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND dd.no_rawat LIKE ? OR "
-                    + "dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND rp.no_rkm_medis LIKE ? OR "
-                    + "dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND p.nm_pasien LIKE ? or "
-                    + "dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND dd.disajikan LIKE ? "
-                    + "GROUP BY dd.disajikan ORDER BY pl.nm_poli, dd.disajikan");
+            StringBuilder sb6 = new StringBuilder();
+            sb6.append("SELECT UPPER(dd.disajikan) disajikan, count(dd.disajikan) jlh_dikemas FROM detail_beri_diet_ralan dd ");
+            sb6.append("INNER JOIN reg_periksa rp on rp.no_rawat=dd.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+            sb6.append("INNER JOIN diet d on d.kd_diet=dd.kd_diet INNER JOIN poliklinik pl on pl.kd_poli=dd.kd_poli ");
+            sb6.append("WHERE dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND dd.no_rawat LIKE ? OR ");
+            sb6.append("dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND rp.no_rkm_medis LIKE ? OR ");
+            sb6.append("dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND p.nm_pasien LIKE ? or ");
+            sb6.append("dd.tanggal BETWEEN ? AND ? AND dd.waktu LIKE ? AND pl.nm_poli LIKE ? AND dd.disajikan LIKE ? ");
+            sb6.append("GROUP BY dd.disajikan ORDER BY pl.nm_poli, dd.disajikan");
+            ps6 = koneksi.prepareStatement(sb6.toString());
 
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
@@ -504,7 +517,15 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         MnHapusSemuaWaktu = new javax.swing.JMenuItem();
         MnHapusSemuaWaktuNamaDiet = new javax.swing.JMenuItem();
         WindowLabelGiziRALAN = new javax.swing.JDialog();
+        internalFrame16 = new widget.InternalFrame();
+        Scroll4 = new widget.ScrollPane();
+        tbPoli = new widget.Table();
         internalFrame15 = new widget.InternalFrame();
+        panelGlass14 = new widget.panelisi();
+        jLabel102 = new widget.Label();
+        TCariPoli = new widget.TextBox();
+        BtnCari4 = new widget.Button();
+        BtnAll4 = new widget.Button();
         panelGlass13 = new widget.panelisi();
         jLabel97 = new widget.Label();
         inisial = new widget.TextBox();
@@ -512,14 +533,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         tglKun = new widget.Tanggal();
         jLabel99 = new widget.Label();
         tglDiet = new widget.Tanggal();
-        internalFrame4 = new widget.InternalFrame();
-        Scroll4 = new widget.ScrollPane();
-        tbPoli = new widget.Table();
-        panelGlass14 = new widget.panelisi();
-        jLabel102 = new widget.Label();
-        TCariPoli = new widget.TextBox();
-        BtnCari4 = new widget.Button();
-        BtnAll4 = new widget.Button();
         panelGlass15 = new widget.panelisi();
         jLabel103 = new widget.Label();
         cmbPrin = new widget.ComboBox();
@@ -688,64 +701,13 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         WindowLabelGiziRALAN.setUndecorated(true);
         WindowLabelGiziRALAN.setResizable(false);
 
-        internalFrame15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Cetak Data Diet Makanan Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        internalFrame15.setName("internalFrame15"); // NOI18N
-        internalFrame15.setWarnaBawah(new java.awt.Color(245, 250, 240));
-        internalFrame15.setLayout(null);
+        internalFrame16.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Cetak Data Diet Makanan Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame16.setName("internalFrame16"); // NOI18N
+        internalFrame16.setPreferredSize(new java.awt.Dimension(0, 135));
+        internalFrame16.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame16.setLayout(new java.awt.BorderLayout());
 
-        panelGlass13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        panelGlass13.setName("panelGlass13"); // NOI18N
-        panelGlass13.setPreferredSize(new java.awt.Dimension(44, 44));
-        panelGlass13.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-
-        jLabel97.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel97.setText("Inisial Poli/Inst. :");
-        jLabel97.setName("jLabel97"); // NOI18N
-        jLabel97.setPreferredSize(new java.awt.Dimension(83, 20));
-        panelGlass13.add(jLabel97);
-
-        inisial.setEditable(false);
-        inisial.setForeground(new java.awt.Color(0, 0, 0));
-        inisial.setHighlighter(null);
-        inisial.setName("inisial"); // NOI18N
-        inisial.setPreferredSize(new java.awt.Dimension(50, 24));
-        panelGlass13.add(inisial);
-
-        jLabel100.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel100.setText("Tgl. Kunjungan : ");
-        jLabel100.setName("jLabel100"); // NOI18N
-        jLabel100.setPreferredSize(new java.awt.Dimension(95, 20));
-        panelGlass13.add(jLabel100);
-
-        tglKun.setEditable(false);
-        tglKun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
-        tglKun.setDisplayFormat("dd-MM-yyyy");
-        tglKun.setName("tglKun"); // NOI18N
-        tglKun.setOpaque(false);
-        tglKun.setPreferredSize(new java.awt.Dimension(95, 23));
-        panelGlass13.add(tglKun);
-
-        jLabel99.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel99.setText("Tgl. Beri Diet :");
-        jLabel99.setName("jLabel99"); // NOI18N
-        jLabel99.setPreferredSize(new java.awt.Dimension(80, 20));
-        panelGlass13.add(jLabel99);
-
-        tglDiet.setEditable(false);
-        tglDiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
-        tglDiet.setDisplayFormat("dd-MM-yyyy");
-        tglDiet.setName("tglDiet"); // NOI18N
-        tglDiet.setOpaque(false);
-        tglDiet.setPreferredSize(new java.awt.Dimension(95, 23));
-        panelGlass13.add(tglDiet);
-
-        internalFrame15.add(panelGlass13);
-        panelGlass13.setBounds(7, 250, 580, 36);
-
-        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Poliklinik / Instalasi :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        internalFrame4.setName("internalFrame4"); // NOI18N
-        internalFrame4.setLayout(new java.awt.BorderLayout());
-
+        Scroll4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Poliklinik / Instalasi :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll4.setName("Scroll4"); // NOI18N
         Scroll4.setOpaque(true);
         Scroll4.setPreferredSize(new java.awt.Dimension(462, 210));
@@ -765,27 +727,27 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         });
         Scroll4.setViewportView(tbPoli);
 
-        internalFrame4.add(Scroll4, java.awt.BorderLayout.CENTER);
+        internalFrame16.add(Scroll4, java.awt.BorderLayout.CENTER);
 
-        internalFrame15.add(internalFrame4);
-        internalFrame4.setBounds(5, 20, 584, 232);
-        internalFrame4.getAccessibleContext().setAccessibleName(".: Poliklinik/Instalasi :.");
+        internalFrame15.setName("internalFrame15"); // NOI18N
+        internalFrame15.setPreferredSize(new java.awt.Dimension(0, 135));
+        internalFrame15.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame15.setLayout(new java.awt.BorderLayout());
 
-        panelGlass14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         panelGlass14.setName("panelGlass14"); // NOI18N
         panelGlass14.setPreferredSize(new java.awt.Dimension(44, 44));
-        panelGlass14.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        panelGlass14.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         jLabel102.setForeground(new java.awt.Color(0, 0, 0));
         jLabel102.setText("Key Word :");
         jLabel102.setName("jLabel102"); // NOI18N
-        jLabel102.setPreferredSize(new java.awt.Dimension(60, 20));
+        jLabel102.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass14.add(jLabel102);
 
         TCariPoli.setForeground(new java.awt.Color(0, 0, 0));
         TCariPoli.setHighlighter(null);
         TCariPoli.setName("TCariPoli"); // NOI18N
-        TCariPoli.setPreferredSize(new java.awt.Dimension(250, 24));
+        TCariPoli.setPreferredSize(new java.awt.Dimension(250, 23));
         TCariPoli.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCariPoliKeyPressed(evt);
@@ -818,6 +780,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         BtnAll4.setText("Semua Data");
         BtnAll4.setToolTipText("Alt+M");
         BtnAll4.setName("BtnAll4"); // NOI18N
+        BtnAll4.setPreferredSize(new java.awt.Dimension(105, 23));
         BtnAll4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAll4ActionPerformed(evt);
@@ -825,18 +788,63 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         });
         panelGlass14.add(BtnAll4);
 
-        internalFrame15.add(panelGlass14);
-        panelGlass14.setBounds(7, 286, 580, 36);
+        internalFrame15.add(panelGlass14, java.awt.BorderLayout.CENTER);
 
-        panelGlass15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        panelGlass13.setName("panelGlass13"); // NOI18N
+        panelGlass13.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass13.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        jLabel97.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel97.setText("Inisial Poli/Inst. :");
+        jLabel97.setName("jLabel97"); // NOI18N
+        jLabel97.setPreferredSize(new java.awt.Dimension(100, 23));
+        panelGlass13.add(jLabel97);
+
+        inisial.setEditable(false);
+        inisial.setForeground(new java.awt.Color(0, 0, 0));
+        inisial.setHighlighter(null);
+        inisial.setName("inisial"); // NOI18N
+        inisial.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelGlass13.add(inisial);
+
+        jLabel100.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel100.setText("Tgl. Kunjungan : ");
+        jLabel100.setName("jLabel100"); // NOI18N
+        jLabel100.setPreferredSize(new java.awt.Dimension(100, 23));
+        panelGlass13.add(jLabel100);
+
+        tglKun.setEditable(false);
+        tglKun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
+        tglKun.setDisplayFormat("dd-MM-yyyy");
+        tglKun.setName("tglKun"); // NOI18N
+        tglKun.setOpaque(false);
+        tglKun.setPreferredSize(new java.awt.Dimension(95, 23));
+        panelGlass13.add(tglKun);
+
+        jLabel99.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel99.setText("Tgl. Beri Diet :");
+        jLabel99.setName("jLabel99"); // NOI18N
+        jLabel99.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelGlass13.add(jLabel99);
+
+        tglDiet.setEditable(false);
+        tglDiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
+        tglDiet.setDisplayFormat("dd-MM-yyyy");
+        tglDiet.setName("tglDiet"); // NOI18N
+        tglDiet.setOpaque(false);
+        tglDiet.setPreferredSize(new java.awt.Dimension(95, 23));
+        panelGlass13.add(tglDiet);
+
+        internalFrame15.add(panelGlass13, java.awt.BorderLayout.PAGE_START);
+
         panelGlass15.setName("panelGlass15"); // NOI18N
         panelGlass15.setPreferredSize(new java.awt.Dimension(44, 44));
-        panelGlass15.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        panelGlass15.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         jLabel103.setForeground(new java.awt.Color(0, 0, 0));
         jLabel103.setText("Yang Akan Diprint :");
         jLabel103.setName("jLabel103"); // NOI18N
-        jLabel103.setPreferredSize(new java.awt.Dimension(105, 20));
+        jLabel103.setPreferredSize(new java.awt.Dimension(115, 23));
         panelGlass15.add(jLabel103);
 
         cmbPrin.setForeground(new java.awt.Color(0, 0, 0));
@@ -851,6 +859,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         BtnLabelGZ.setText("Cetak");
         BtnLabelGZ.setToolTipText("Alt+C");
         BtnLabelGZ.setName("BtnLabelGZ"); // NOI18N
+        BtnLabelGZ.setPreferredSize(new java.awt.Dimension(75, 23));
         BtnLabelGZ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnLabelGZActionPerformed(evt);
@@ -865,7 +874,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         BtnBatal1.setText("Baru");
         BtnBatal1.setToolTipText("Alt+B");
         BtnBatal1.setName("BtnBatal1"); // NOI18N
-        BtnBatal1.setPreferredSize(new java.awt.Dimension(65, 26));
+        BtnBatal1.setPreferredSize(new java.awt.Dimension(75, 23));
         BtnBatal1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBatal1ActionPerformed(evt);
@@ -879,6 +888,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         BtnCloseIn10.setText("Keluar");
         BtnCloseIn10.setToolTipText("Alt+U");
         BtnCloseIn10.setName("BtnCloseIn10"); // NOI18N
+        BtnCloseIn10.setPreferredSize(new java.awt.Dimension(80, 23));
         BtnCloseIn10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCloseIn10ActionPerformed(evt);
@@ -886,10 +896,11 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         });
         panelGlass15.add(BtnCloseIn10);
 
-        internalFrame15.add(panelGlass15);
-        panelGlass15.setBounds(7, 322, 580, 40);
+        internalFrame15.add(panelGlass15, java.awt.BorderLayout.PAGE_END);
 
-        WindowLabelGiziRALAN.getContentPane().add(internalFrame15, java.awt.BorderLayout.CENTER);
+        internalFrame16.add(internalFrame15, java.awt.BorderLayout.PAGE_END);
+
+        WindowLabelGiziRALAN.getContentPane().add(internalFrame16, java.awt.BorderLayout.CENTER);
 
         WindowDataDiet.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowDataDiet.setName("WindowDataDiet"); // NOI18N
@@ -986,11 +997,11 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass7.add(jLabel48);
         jLabel48.setBounds(0, 10, 110, 23);
 
-        internalFrame9.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
+        internalFrame9.add(panelGlass7, java.awt.BorderLayout.CENTER);
 
         panelGlass11.setName("panelGlass11"); // NOI18N
-        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 150));
-        panelGlass11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 9, 5));
+        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 46));
+        panelGlass11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 9, 7));
 
         BtnSimpan2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
@@ -1039,7 +1050,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         });
         panelGlass11.add(BtnCloseIn3);
 
-        internalFrame9.add(panelGlass11, java.awt.BorderLayout.CENTER);
+        internalFrame9.add(panelGlass11, java.awt.BorderLayout.PAGE_END);
 
         WindowDataDiet.getContentPane().add(internalFrame9, java.awt.BorderLayout.CENTER);
 
@@ -2433,9 +2444,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox inisial;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame15;
+    private widget.InternalFrame internalFrame16;
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
-    private widget.InternalFrame internalFrame4;
     private widget.InternalFrame internalFrame9;
     private widget.Label jLabel10;
     private widget.Label jLabel100;
