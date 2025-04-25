@@ -392,7 +392,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         cmbIndikator.setName("cmbIndikator"); // NOI18N
         cmbIndikator.setPreferredSize(new java.awt.Dimension(55, 28));
         PanelInput.add(cmbIndikator);
-        cmbIndikator.setBounds(118, 66, 490, 23);
+        cmbIndikator.setBounds(118, 66, 590, 23);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Status Data :");

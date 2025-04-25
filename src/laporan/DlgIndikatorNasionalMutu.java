@@ -244,7 +244,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(100);
             } else if (i == 2) {
-                column.setPreferredWidth(600);
+                column.setPreferredWidth(635);
             } 
         }
         tbNumdenom.setDefaultRenderer(Object.class, new WarnaTable());
@@ -561,7 +561,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         internalFrame9.add(jLabel36);
         jLabel36.setBounds(0, 94, 150, 23);
 
-        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2025" }));
+        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
         TtglCatat1.setDisplayFormat("dd-MM-yyyy");
         TtglCatat1.setName("TtglCatat1"); // NOI18N
         TtglCatat1.setOpaque(false);
@@ -931,7 +931,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             }
         });
         PanelInput.add(cmbIndikator);
-        cmbIndikator.setBounds(125, 38, 490, 23);
+        cmbIndikator.setBounds(125, 38, 590, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Tgl. Dilaporkan :");
@@ -939,7 +939,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         PanelInput.add(jLabel8);
         jLabel8.setBounds(0, 154, 120, 23);
 
-        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2025" }));
+        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
         TtglCatat.setDisplayFormat("dd-MM-yyyy");
         TtglCatat.setName("TtglCatat"); // NOI18N
         TtglCatat.setOpaque(false);

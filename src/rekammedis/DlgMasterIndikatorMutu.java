@@ -365,7 +365,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TnmIndikator);
-        TnmIndikator.setBounds(103, 38, 530, 23);
+        TnmIndikator.setBounds(103, 38, 590, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("No. Urut :");

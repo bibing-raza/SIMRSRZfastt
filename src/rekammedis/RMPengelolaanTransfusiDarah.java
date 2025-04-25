@@ -64,7 +64,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
             "TD (15 Mnt. Masuk)", "N (15 Mnt. Masuk)", "RR (15 Mnt. Masuk)", "S (15 Mnt. Masuk)", "Petugas (15 Mnt. Masuk)",
             "Reaksi Transfusi (15 Mnt. Masuk)", "TD (1 Jam)", "N (1 Jam)", "RR (1 Jam)", "S (1 Jam)", "Petugas (1 Jam)", 
             "tanggal", "jam", "15_sebelum_nip_petugas", "15_masuk_nip_petugas", "1_masuk_nip_petugas", "waktu_simpan", 
-            "Reaksi Transfusi (1 Jam)"
+            "Reaksi Transfusi (1 Jam)", "No. Kantong"
         };
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -74,7 +74,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         tbTransfusi.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbTransfusi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 31; i++) {
             TableColumn column = tbTransfusi.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -142,6 +142,8 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             } else if (i == 29) {
                 column.setPreferredWidth(140);
+            } else if (i == 30) {
+                column.setPreferredWidth(140);
             } 
         }
         tbTransfusi.setDefaultRenderer(Object.class, new WarnaTable());
@@ -197,6 +199,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         T1JamNadi.setDocument(new batasInput((int) 7).getKata(T1JamNadi));
         T1JamRR.setDocument(new batasInput((int) 7).getKata(T1JamRR));
         T1JamSuhu.setDocument(new batasInput((int) 7).getKata(T1JamSuhu));
+        TnoKantong.setDocument(new batasInput((int) 100).getKata(TnoKantong));
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
         
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -380,6 +383,8 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         Treaksi1JamTD = new widget.TextBox();
         jLabel24 = new widget.Label();
         Treaksi15TDmasuk = new widget.TextBox();
+        jLabel25 = new widget.Label();
+        TnoKantong = new widget.TextBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -443,7 +448,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel37.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel37);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -457,7 +462,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel38.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel38);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -621,7 +626,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         internalFrame10.add(BtnCetak);
         BtnCetak.setBounds(320, 23, 90, 26);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -636,7 +641,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         internalFrame10.add(jLabel49);
         jLabel49.setBounds(185, 25, 30, 23);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -832,7 +837,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -846,7 +851,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -913,7 +918,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         panelGlass7.setComponentPopupMenu(jPopupMenu1);
         panelGlass7.setName("panelGlass7"); // NOI18N
-        panelGlass7.setPreferredSize(new java.awt.Dimension(44, 356));
+        panelGlass7.setPreferredSize(new java.awt.Dimension(44, 384));
         panelGlass7.setLayout(null);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -958,7 +963,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(0, 66, 140, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1398,6 +1403,22 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         panelGlass7.add(Treaksi15TDmasuk);
         Treaksi15TDmasuk.setBounds(285, 206, 430, 23);
 
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setText("No. Kantong Darah :");
+        jLabel25.setName("jLabel25"); // NOI18N
+        panelGlass7.add(jLabel25);
+        jLabel25.setBounds(0, 346, 140, 23);
+
+        TnoKantong.setForeground(new java.awt.Color(0, 0, 0));
+        TnoKantong.setName("TnoKantong"); // NOI18N
+        TnoKantong.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TnoKantongKeyPressed(evt);
+            }
+        });
+        panelGlass7.add(TnoKantong);
+        TnoKantong.setBounds(145, 346, 570, 23);
+
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
@@ -1409,12 +1430,12 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         if (TNoRw.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
-            if (Sequel.menyimpantf("pengelolaan_transfusi_darah", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 23, new String[]{
+            if (Sequel.menyimpantf("pengelolaan_transfusi_darah", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 24, new String[]{
                 TNoRw.getText(), TruangRwt.getText(), Valid.SetTgl(Ttgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                 Tjenis.getText(), T15TDbelum.getText(), T15Nadibelum.getText(), T15RRbelum.getText(), T15Suhubelum.getText(), nip1,
                 T15TDmasuk.getText(), T15Nadimasuk.getText(), T15RRmasuk.getText(), T15Suhumasuk.getText(), nip2,
                 T1JamTD.getText(), T1JamNadi.getText(), T1JamRR.getText(), T1JamSuhu.getText(), nip3, Sequel.cariIsi("select now()"),
-                Treaksi15TDmasuk.getText(), Treaksi1JamTD.getText()
+                Treaksi15TDmasuk.getText(), Treaksi1JamTD.getText(), TnoKantong.getText()
             }) == true) {
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Pengelolaan Pasien Transfusi Darah", "Simpan");
                 TCari.setText(TNoRw.getText());
@@ -1451,11 +1472,12 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                 simpanHistori();
                 if (Sequel.mengedittf("pengelolaan_transfusi_darah", "waktu_simpan=?", "tanggal=?, jam=?, jenis_darah_transfusi=?, 15_sebelum_td=?, 15_sebelum_nadi=?, "
                         + "15_sebelum_rr=?, 15_sebelum_suhu=?, 15_sebelum_nip_petugas=?, 15_masuk_td=?, 15_masuk_nadi=?, 15_masuk_rr=?, 15_masuk_suhu=?, 15_masuk_nip_petugas=?, "
-                        + "1_masuk_td=?, 1_masuk_nadi=?, 1_masuk_rr=?, 1_masuk_suhu=?, 1_masuk_nip_petugas=?, reaksi_transfusi_masuk=?, reaksi_transfusi_1jam=?", 21, new String[]{
+                        + "1_masuk_td=?, 1_masuk_nadi=?, 1_masuk_rr=?, 1_masuk_suhu=?, 1_masuk_nip_petugas=?, reaksi_transfusi_masuk=?, reaksi_transfusi_1jam=?, no_kantong=?", 22, new String[]{
                             Valid.SetTgl(Ttgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                             Tjenis.getText(), T15TDbelum.getText(), T15Nadibelum.getText(), T15RRbelum.getText(), T15Suhubelum.getText(), nip1,
                             T15TDmasuk.getText(), T15Nadimasuk.getText(), T15RRmasuk.getText(), T15Suhumasuk.getText(), nip2,
-                            T1JamTD.getText(), T1JamNadi.getText(), T1JamRR.getText(), T1JamSuhu.getText(), nip3, Treaksi15TDmasuk.getText(), Treaksi1JamTD.getText(),
+                            T1JamTD.getText(), T1JamNadi.getText(), T1JamRR.getText(), T1JamSuhu.getText(), nip3, Treaksi15TDmasuk.getText(), 
+                            Treaksi1JamTD.getText(), TnoKantong.getText(),
                             tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(), 28).toString()
                         }) == true) {
 
@@ -1790,29 +1812,29 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     private void BtnRestorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRestorActionPerformed
         if (tbRiwayat.getSelectedRow() > -1) {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data yang dipilih & telah " + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 7).toString()
-                + " akan dikembalikan/restore..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    + " akan dikembalikan/restore..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 if (tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 7).toString().equals("DIHAPUS")) {
                     if (Sequel.cariInteger("select count(-1) from pengelolaan_transfusi_darah where "
-                        + "no_rawat='" + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString() + "'") > 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Proses kembalikan/restore data gagal, krn. sudah ada data yg. sama..!!");
+                            + "no_rawat='" + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString() + "'") > 0) {
+                        JOptionPane.showMessageDialog(rootPane, "Proses kembalikan/restore data gagal, krn. sudah ada data yg. sama..!!");
+                    } else {
+                        kembalikanData();
+                        TCari.setText(tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString());
+                        Valid.SetTgl(DTPCari1, tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 4).toString());
+                        BtnCloseIn10ActionPerformed(null);
+                        tampil();
+                        emptTeks();
+                    }
                 } else {
-                    kembalikanData();
+                    kembalikanDataDiganti();
                     TCari.setText(tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString());
                     Valid.SetTgl(DTPCari1, tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 4).toString());
                     BtnCloseIn10ActionPerformed(null);
                     tampil();
                     emptTeks();
                 }
-            } else {
-                kembalikanDataDiganti();
-                TCari.setText(tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString());
-                Valid.SetTgl(DTPCari1, tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 4).toString());
-                BtnCloseIn10ActionPerformed(null);
-                tampil();
-                emptTeks();
             }
-        }
         } else {
             WindowRiwayat.setSize(1043, internalFrame1.getHeight() - 40);
             WindowRiwayat.setLocationRelativeTo(internalFrame1);
@@ -1841,7 +1863,8 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         Valid.MyReport("rptPengelolaanTransfusiDarah.jasper", "report", "::[ Cetak Laporan Pengelolaan Pasien Transfusi Darah ]::",
                 "SELECT pt.*, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, date_format(pt.tanggal,'%d/%m/%Y') tgl, "
-                + "time_format(pt.jam,'%H:%i Wita') jamTransfusi, pg1.nama ptgs1, pg2.nama ptgs2, pg3.nama ptgs3 from pengelolaan_transfusi_darah pt "
+                + "time_format(pt.jam,'%H:%i Wita') jamTransfusi, pg1.nama ptgs1, pg2.nama ptgs2, pg3.nama ptgs3, "
+                + "if(pt.no_kantong='','',concat('(',pt.no_kantong,')')) noKantong from pengelolaan_transfusi_darah pt "
                 + "inner join reg_periksa rp on rp.no_rawat=pt.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                 + "inner join pegawai pg1 on pg1.nik=pt.15_sebelum_nip_petugas inner join pegawai pg2 on pg2.nik=pt.15_masuk_nip_petugas "
                 + "inner join pegawai pg3 on pg3.nik=pt.1_masuk_nip_petugas WHERE "
@@ -1882,6 +1905,10 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
             MnRiwayatDataActionPerformed(null);
         }
     }//GEN-LAST:event_MnHapusRiwayatActionPerformed
+
+    private void TnoKantongKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnoKantongKeyPressed
+        Valid.pindah(evt, BtnPetugas3, BtnSimpan);
+    }//GEN-LAST:event_TnoKantongKeyPressed
 
     /**
     * @param args the command line arguments
@@ -1948,6 +1975,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     private widget.TextBox TnmPetugas1;
     private widget.TextBox TnmPetugas2;
     private widget.TextBox TnmPetugas3;
+    private widget.TextBox TnoKantong;
     private widget.TextBox Treaksi15TDmasuk;
     private widget.TextBox Treaksi1JamTD;
     private widget.TextBox TruangRwt;
@@ -1981,6 +2009,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     private widget.Label jLabel22;
     private widget.Label jLabel23;
     private widget.Label jLabel24;
+    private widget.Label jLabel25;
     private widget.Label jLabel28;
     private widget.Label jLabel29;
     private widget.Label jLabel30;
@@ -2025,6 +2054,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                     + "pt.tanggal between ? and ? and p.nm_pasien like ? or "
                     + "pt.tanggal between ? and ? and pg1.nama like ? or "
                     + "pt.tanggal between ? and ? and pg2.nama like ? or "
+                    + "pt.tanggal between ? and ? and pt.no_kantong like ? or "
                     + "pt.tanggal between ? and ? and pg3.nama like ? order by pt.tanggal desc, pt.jam desc");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -2044,7 +2074,10 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                 ps.setString(15, "%" + TCari.getText().trim() + "%");
                 ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(18, "%" + TCari.getText().trim() + "%");
+                ps.setString(18, "%" + TCari.getText().trim() + "%");                
+                ps.setString(19, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(20, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(21, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
@@ -2077,7 +2110,8 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                         rs.getString("15_masuk_nip_petugas"),
                         rs.getString("1_masuk_nip_petugas"),
                         rs.getString("waktu_simpan"),                        
-                        rs.getString("reaksi_transfusi_1jam")
+                        rs.getString("reaksi_transfusi_1jam"),
+                        rs.getString("no_kantong")
                     });
                 }
             } catch (Exception e) {
@@ -2125,6 +2159,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         nip3 = "-";
         TnmPetugas3.setText("-");
         Treaksi1JamTD.setText("");
+        TnoKantong.setText("");
         
         chkSaya1.setSelected(false);
         chkSaya2.setSelected(false);
@@ -2169,6 +2204,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
             nip3 = tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),27).toString();
             TnmPetugas3.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),22).toString());            
             Treaksi1JamTD.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),29).toString());
+            TnoKantong.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),30).toString());
         }
     }
     
@@ -2202,12 +2238,12 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
             user = akses.getkode();
         }
 
-        Sequel.menyimpanPesanGagalnyaDiTerminal("pengelolaan_transfusi_darah_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pengelolaan Transfusi Darah Histori", 26, new String[]{
+        Sequel.menyimpanPesanGagalnyaDiTerminal("pengelolaan_transfusi_darah_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pengelolaan Transfusi Darah Histori", 27, new String[]{
             TNoRw.getText(), TruangRwt.getText(), Valid.SetTgl(Ttgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                 Tjenis.getText(), T15TDbelum.getText(), T15Nadibelum.getText(), T15RRbelum.getText(), T15Suhubelum.getText(), nip1,
                 T15TDmasuk.getText(), T15Nadimasuk.getText(), T15RRmasuk.getText(), T15Suhumasuk.getText(), nip2,
                 T1JamTD.getText(), T1JamNadi.getText(), T1JamRR.getText(), T1JamSuhu.getText(), nip3, tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),28).toString(), 
-                riwayatData, user, Sequel.cariIsi("select now()"), Treaksi15TDmasuk.getText(), Treaksi1JamTD.getText()
+                riwayatData, user, Sequel.cariIsi("select now()"), Treaksi15TDmasuk.getText(), Treaksi1JamTD.getText(), TnoKantong.getText()
         });
     }
     
@@ -2300,7 +2336,8 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                                 + "'" + rs1.getString("1_masuk_nip_petugas") + "',"
                                 + "'" + rs1.getString("waktu_simpan") + "',"
                                 + "'" + rs1.getString("reaksi_transfusi_masuk") + "',"
-                                + "'" + rs1.getString("reaksi_transfusi_1jam") + "'", "Pengelolaan Transfusi Darah");
+                                + "'" + rs1.getString("reaksi_transfusi_1jam") + "',"
+                                + "'" + rs1.getString("no_kantong") + "'", "Pengelolaan Transfusi Darah");
                     } catch (Exception e) {
                         System.out.println("Simpan : " + e);
                     }
