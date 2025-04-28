@@ -54,6 +54,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rscppt;
     private int x = 0, i = 0, pilihan = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private Date date = new Date(), jamSekarang, jamSift1, jamSift2, jamSift3;
     private String kdobat = "", status = "", statusOK = "", dataDipilih = "", kdobatFix = "", waktuSimpan = "",
             cekjam1 = "", cekjam2 = "", cekjam3 = "", cekjam4 = "", cekjam5 = "", cekjam6 = "", cekjam7 = "", cekjam8 = "",
             dataKonfirmasi = "", nip1 = "", nip2 = "", cekDobel = "", dataDobelCek = "", unitAsalnya = "";
@@ -1422,7 +1423,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         });
         panelisi14.add(ChkTglBeri);
 
-        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         TtglBeri.setDisplayFormat("dd-MM-yyyy");
         TtglBeri.setName("TtglBeri"); // NOI18N
         TtglBeri.setOpaque(false);
@@ -2562,7 +2563,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2576,7 +2577,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4895,8 +4896,36 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             DTPCari1.setDate(new Date());
         }
         
+        KetentuanSift();
         TCari.setText(norw);
         tampilResep();
+    }
+    
+    private void KetentuanSift() {
+        try {
+            jamSekarang = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H:%i')"));
+            jamSift1 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift1_mulai,'%H:%i') from sift_jam_kerja"));
+            jamSift2 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift2_mulai,'%H:%i') from sift_jam_kerja"));
+            jamSift3 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift3_mulai,'%H:%i') from sift_jam_kerja"));
+            
+//            jamSift1 = new SimpleDateFormat("HH:mm").parse("08:00");
+//            jamSift2 = new SimpleDateFormat("HH:mm").parse("14:00");
+//            jamSift3 = new SimpleDateFormat("HH:mm").parse("20:00");
+        } catch (Exception e) {
+            System.out.println("Tanggal error, cek lagi..!!");
+        }
+
+        if (jamSift1.before(jamSekarang)) {
+            cmbSift.setSelectedIndex(1);
+        }
+
+        if (jamSift2.before(jamSekarang)) {
+            cmbSift.setSelectedIndex(2);
+        }
+
+        if (jamSift3.before(jamSekarang)) {
+            cmbSift.setSelectedIndex(3);
+        }
     }
     
     private void tampilData() {

@@ -1407,7 +1407,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel25.setText("No. Kantong Darah :");
         jLabel25.setName("jLabel25"); // NOI18N
         panelGlass7.add(jLabel25);
-        jLabel25.setBounds(0, 346, 140, 23);
+        jLabel25.setBounds(0, 346, 280, 23);
 
         TnoKantong.setForeground(new java.awt.Color(0, 0, 0));
         TnoKantong.setName("TnoKantong"); // NOI18N
@@ -1417,7 +1417,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(TnoKantong);
-        TnoKantong.setBounds(145, 346, 570, 23);
+        TnoKantong.setBounds(285, 346, 280, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 

@@ -1517,7 +1517,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelisi10.setLayout(null);
 
         TtglCetak1.setEditable(false);
-        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         TtglCetak1.setDisplayFormat("dd-MM-yyyy");
         TtglCetak1.setName("TtglCetak1"); // NOI18N
         TtglCetak1.setOpaque(false);
@@ -1579,7 +1579,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel58.setBounds(211, 8, 25, 23);
 
         TtglCetak2.setEditable(false);
-        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         TtglCetak2.setDisplayFormat("dd-MM-yyyy");
         TtglCetak2.setName("TtglCetak2"); // NOI18N
         TtglCetak2.setOpaque(false);
@@ -1633,7 +1633,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel53.setBounds(0, 8, 100, 23);
 
         TtglCopy.setEditable(false);
-        TtglCopy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        TtglCopy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         TtglCopy.setDisplayFormat("dd-MM-yyyy");
         TtglCopy.setName("TtglCopy"); // NOI18N
         TtglCopy.setOpaque(false);
@@ -1827,7 +1827,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         });
         panelisi14.add(ChkTglCTK);
 
-        TtglCTK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        TtglCTK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         TtglCTK.setDisplayFormat("dd-MM-yyyy");
         TtglCTK.setName("TtglCTK"); // NOI18N
         TtglCTK.setOpaque(false);
@@ -1899,7 +1899,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelisi16.add(jLabel57);
         jLabel57.setBounds(0, 10, 100, 23);
 
-        TtglCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        TtglCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         TtglCopy1.setDisplayFormat("dd-MM-yyyy");
         TtglCopy1.setName("TtglCopy1"); // NOI18N
         TtglCopy1.setOpaque(false);
@@ -2087,7 +2087,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelGlass10.add(jLabel4);
         jLabel4.setBounds(2, 38, 100, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -2519,7 +2519,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2533,7 +2533,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3651,9 +3651,13 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
                 try {
                     jamSekarangCopy = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H:%i')"));
-                    jamSift1Copy = new SimpleDateFormat("HH:mm").parse("08:00");
-                    jamSift2Copy = new SimpleDateFormat("HH:mm").parse("14:00");
-                    jamSift3Copy = new SimpleDateFormat("HH:mm").parse("20:00");
+                    jamSift1Copy = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift1_mulai,'%H:%i') from sift_jam_kerja"));
+                    jamSift2Copy = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift2_mulai,'%H:%i') from sift_jam_kerja"));
+                    jamSift3Copy = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift3_mulai,'%H:%i') from sift_jam_kerja"));
+            
+//                    jamSift1Copy = new SimpleDateFormat("HH:mm").parse("08:00");
+//                    jamSift2Copy = new SimpleDateFormat("HH:mm").parse("14:00");
+//                    jamSift3Copy = new SimpleDateFormat("HH:mm").parse("20:00");
                 } catch (Exception e) {
                     System.out.println("Tanggal error, cek lagi..!!");
                 }
@@ -4228,9 +4232,13 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
             try {
                 jamSekarangCopy1 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H:%i')"));
-                jamSift1Copy1 = new SimpleDateFormat("HH:mm").parse("08:00");
-                jamSift2Copy1 = new SimpleDateFormat("HH:mm").parse("14:00");
-                jamSift3Copy1 = new SimpleDateFormat("HH:mm").parse("20:00");
+                jamSift1Copy1 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift1_mulai,'%H:%i') from sift_jam_kerja"));
+                jamSift2Copy1 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift2_mulai,'%H:%i') from sift_jam_kerja"));
+                jamSift3Copy1 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift3_mulai,'%H:%i') from sift_jam_kerja"));
+                
+//                jamSift1Copy1 = new SimpleDateFormat("HH:mm").parse("08:00");
+//                jamSift2Copy1 = new SimpleDateFormat("HH:mm").parse("14:00");
+//                jamSift3Copy1 = new SimpleDateFormat("HH:mm").parse("20:00");
             } catch (Exception e) {
                 System.out.println("Tanggal error, cek lagi..!!");
             }
@@ -5493,9 +5501,13 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
         try {
             jamSekarang = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H:%i')"));
-            jamSift1 = new SimpleDateFormat("HH:mm").parse("08:00");
-            jamSift2 = new SimpleDateFormat("HH:mm").parse("14:00");
-            jamSift3 = new SimpleDateFormat("HH:mm").parse("20:00");
+            jamSift1 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift1_mulai,'%H:%i') from sift_jam_kerja"));
+            jamSift2 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift2_mulai,'%H:%i') from sift_jam_kerja"));
+            jamSift3 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift3_mulai,'%H:%i') from sift_jam_kerja"));
+            
+//            jamSift1 = new SimpleDateFormat("HH:mm").parse("08:00");
+//            jamSift2 = new SimpleDateFormat("HH:mm").parse("14:00");
+//            jamSift3 = new SimpleDateFormat("HH:mm").parse("20:00");
         } catch (Exception e) {
             System.out.println("Tanggal error, cek lagi..!!");
         }

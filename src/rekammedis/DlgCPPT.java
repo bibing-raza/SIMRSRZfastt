@@ -47,6 +47,7 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPetugas;
+import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDiet;
 import simrskhanza.DlgCariDokter;
@@ -1116,6 +1117,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnUrutkanData = new javax.swing.JMenuItem();
+        MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
         MnDataPemberianDiet = new javax.swing.JMenuItem();
         MnPemantauanDewasa = new javax.swing.JMenuItem();
         MnGrafikPemantauanDewasa = new javax.swing.JMenuItem();
@@ -1616,6 +1618,21 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnUrutkanData);
+
+        MnHasilPemeriksaanPenunjang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHasilPemeriksaanPenunjang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHasilPemeriksaanPenunjang.setText("Hasil Pemeriksaan Penunjang");
+        MnHasilPemeriksaanPenunjang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHasilPemeriksaanPenunjang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHasilPemeriksaanPenunjang.setIconTextGap(5);
+        MnHasilPemeriksaanPenunjang.setName("MnHasilPemeriksaanPenunjang"); // NOI18N
+        MnHasilPemeriksaanPenunjang.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnHasilPemeriksaanPenunjang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHasilPemeriksaanPenunjangActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHasilPemeriksaanPenunjang);
 
         MnDataPemberianDiet.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDataPemberianDiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -9664,6 +9681,19 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnLihatDataTriasePonekActionPerformed
 
+    private void MnHasilPemeriksaanPenunjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanPenunjangActionPerformed
+        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else {
+            akses.setform("DlgCPPT");
+            DlgHasilPenunjangMedis form = new DlgHasilPenunjangMedis(null, false);
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setData(TNoRw.getText(), TPasien.getText(), TNoRm.getText());
+            form.setVisible(true);
+        }
+    }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -9835,6 +9865,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnGrafikPemantauanDewasa;
     private javax.swing.JMenuItem MnHapusDipilih;
     private javax.swing.JMenuItem MnHapusSemua;
+    private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
     private javax.swing.JMenuItem MnInputDataAsesmenMedikObstetri;
     private javax.swing.JMenuItem MnInputDataAssesmenKeperawatanIGD;
     private javax.swing.JMenuItem MnInputDataAssesmenMedikIGD;
@@ -12725,9 +12756,13 @@ public class DlgCPPT extends javax.swing.JDialog {
 
         try {
             jamSekarang = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H:%i')"));
-            jamCPPT1 = new SimpleDateFormat("HH:mm").parse("08:00");
-            jamCPPT2 = new SimpleDateFormat("HH:mm").parse("14:00");
-            jamCPPT3 = new SimpleDateFormat("HH:mm").parse("20:00");
+            jamCPPT1 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift1_mulai,'%H:%i') from sift_jam_kerja"));
+            jamCPPT2 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift2_mulai,'%H:%i') from sift_jam_kerja"));
+            jamCPPT3 = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("select time_format(sift3_mulai,'%H:%i') from sift_jam_kerja"));
+            
+//            jamCPPT1 = new SimpleDateFormat("HH:mm").parse("08:00");
+//            jamCPPT2 = new SimpleDateFormat("HH:mm").parse("14:00");
+//            jamCPPT3 = new SimpleDateFormat("HH:mm").parse("20:00");
         } catch (Exception e) {
             System.out.println("Tanggal error, cek lagi..!!");
         }
