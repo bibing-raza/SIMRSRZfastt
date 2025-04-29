@@ -1892,9 +1892,9 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                     for (i = 0; i < tbResepObat.getRowCount(); i++) {
                         if (tbResepObat.getValueAt(i, 0).toString().equals("true")
                                 && (tbResepObat.getValueAt(i, 5).toString().equals("SUDAH") || tbResepObat.getValueAt(i, 5).toString().equals("DILUAR"))) {
-                            JOptionPane.showMessageDialog(null, "Mohon maaf, untuk resep yang sudah diverifikasi apotek tdk. bisa dihapus,     \n"
-                                    + "Silakan input lagi sbg. resep baru/lanjutan...!!!!");
-                        } else {
+                            JOptionPane.showMessageDialog(null, "Mohon maaf, untuk resep " + tbResepObat.getValueAt(i, 4).toString() + " sudah diverifikasi apotek,     \n"
+                                    + "data tdk. bisa dihapus, Silakan input lagi sbg. resep baru/lanjutan...!!!!");
+                        } else if (tbResepObat.getValueAt(i, 0).toString().equals("true") && tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
                             simpanHistoriResepRalan();
                         }
                     }
@@ -1922,9 +1922,9 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                     for (i = 0; i < tbResepObat.getRowCount(); i++) {
                         if (tbResepObat.getValueAt(i, 0).toString().equals("true")
                                 && (tbResepObat.getValueAt(i, 5).toString().equals("SUDAH") || tbResepObat.getValueAt(i, 5).toString().equals("DILUAR"))) {
-                            JOptionPane.showMessageDialog(null, "Mohon maaf, untuk resep yang sudah diverifikasi apotek tdk. bisa dihapus,     \n"
-                                    + "Silakan input lagi sbg. resep baru/lanjutan...!!!!");
-                        } else {
+                            JOptionPane.showMessageDialog(null, "Mohon maaf, untuk resep " + tbResepObat.getValueAt(i, 4).toString() + " sudah diverifikasi apotek,     \n"
+                                    + "data tdk. bisa dihapus, Silakan input lagi sbg. resep baru/lanjutan...!!!!");
+                        } else if (tbResepObat.getValueAt(i, 0).toString().equals("true") && tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
                             simpanHistoriResepRanap();
                         }
                     }
@@ -1946,7 +1946,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Silakan pilih dulu salah satu datanya pada tabel..!!");
         } else if (akses.getadmin() == true) {
             JOptionPane.showMessageDialog(null, "Meskipun anda admin utama, tetaplah seorang dokter yang boleh merubah resepnya...!!!!");
-        } else {            
+        } else {
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")
                     || jnsKunjungan.equals("Ralan") || status.equals("ralan")) {
                 if (tbResepObat.getSelectedRow() > -1) {
@@ -3281,7 +3281,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         try {
             for (i = 0; i < tbResepObat.getRowCount(); i++) {
-                if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                if (tbResepObat.getValueAt(i, 0).toString().equals("true") && tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
                     Sequel.menyimpanPesanGagalnyaDiTerminal("catatan_resep_histori", "?,?,?,?,?,?,?,?,?,?", "Data", 10, new String[]{
                         tbResepObat.getValueAt(i, 7).toString(),
                         tbResepObat.getValueAt(i, 1).toString(),
@@ -3319,7 +3319,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         try {
             for (i = 0; i < tbResepObat.getRowCount(); i++) {
-                if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                if (tbResepObat.getValueAt(i, 0).toString().equals("true") && tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
                     Sequel.menyimpanPesanGagalnyaDiTerminal("catatan_resep_ranap_histori", "?,?,?,?,?,?,?,?,?,?,?", "Data", 11, new String[]{
                         tbResepObat.getValueAt(i, 7).toString(),
                         tbResepObat.getValueAt(i, 1).toString(),

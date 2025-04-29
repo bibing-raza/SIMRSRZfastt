@@ -6927,9 +6927,9 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                         for (i = 0; i < tbResepObat.getRowCount(); i++) {
                             if (tbResepObat.getValueAt(i, 0).toString().equals("true")
                                     && (tbResepObat.getValueAt(i, 5).toString().equals("SUDAH") || tbResepObat.getValueAt(i, 5).toString().equals("DILUAR"))) {
-                                JOptionPane.showMessageDialog(null, "Mohon maaf, untuk resep yang sudah diverifikasi apotek tdk. bisa dihapus,     \n"
-                                        + "Silakan input lagi sbg. resep baru/lanjutan...!!!!");
-                            } else {
+                                JOptionPane.showMessageDialog(null, "Mohon maaf, untuk resep " + tbResepObat.getValueAt(i, 4).toString() + " sudah diverifikasi apotek,     \n"
+                                        + "data tdk. bisa dihapus, Silakan input lagi sbg. resep baru/lanjutan...!!!!");
+                            } else if (tbResepObat.getValueAt(i, 0).toString().equals("true") && tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
                                 simpanHistoriResepRalan();
                             }
                         }
@@ -8491,9 +8491,15 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 JOptionPane.showMessageDialog(null, "Maaf, dokter yang login tidak sama dg. dokter terjadwal dipoliklinik...!!");
             } else {
                 if (tbResepObat.getSelectedRow() > -1) {
-                    Sequel.mengedit("catatan_resep", "noId='" + TIdObat.getText() + "'",
-                            "no_rawat='" + TNoRw2.getText() + "',tgl_perawatan='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "',"
-                            + "jam_perawatan='" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',nama_obat = '" + TResepObat.getText() + "'");
+                    if (tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 5).toString().equals("SUDAH")
+                            || tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 5).toString().equals("DILUAR")) {
+                        JOptionPane.showMessageDialog(null, "Untuk resep yang sudah diverifikasi apotek tdk. bisa diperbaiki,     \n"
+                                + "Silakan klik tombol simpan sbg. resep baru/lanjutan...!!!!");
+                    } else {
+                        Sequel.mengedit("catatan_resep", "noId='" + TIdObat.getText() + "'",
+                                "no_rawat='" + TNoRw2.getText() + "',tgl_perawatan='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "',"
+                                + "jam_perawatan='" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',nama_obat = '" + TResepObat.getText() + "'");
+                    }
                     tampilResepObat();
                     BtnBatalActionPerformed(evt);
                 } else {
@@ -19415,7 +19421,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
         try {
             for (i = 0; i < tbResepObat.getRowCount(); i++) {
-                if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                if (tbResepObat.getValueAt(i, 0).toString().equals("true") && tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
                     Sequel.menyimpanPesanGagalnyaDiTerminal("catatan_resep_histori", "?,?,?,?,?,?,?,?,?,?", "Data", 10, new String[]{
                         tbResepObat.getValueAt(i, 7).toString(),
                         tbResepObat.getValueAt(i, 1).toString(),
