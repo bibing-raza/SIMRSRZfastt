@@ -1806,6 +1806,20 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                     Valid.MyReport("rptSuratDokterKulitManual.jasper", "report",
                             "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
                             "SELECT date(now())", param);
+                    
+                } else if (kodepoli.equals("PAR")) {
+                    param.put("tensi", Ttensi.getText());
+                    param.put("nadi", Tnadi.getText());
+                    param.put("ras", Sequel.cariIsi("SELECT sb.nama_suku_bangsa FROM pasien p inner join suku_bangsa sb on sb.id=p.suku_bangsa "
+                            + "where p.no_rkm_medis='" + TNoRM.getText() + "'"));
+                    param.put("keperluan", Tkeperluan.getText() + "\n");                    
+                    
+                    Valid.MyReport("rptSuratDokterSpirometriManual2.jasper", "report",
+                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " hal. 2]::",
+                            "SELECT date(now())", param);
+                    Valid.MyReport("rptSuratDokterSpirometriManual1.jasper", "report",
+                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " hal. 1]::",
+                            "SELECT date(now())", param);
                 } else {                    
                     param.put("keperluan", Tkeperluan.getText() + "\n");
                     Valid.MyReport("rptSuratDokterSemuaPoliManual.jasper", "report",
