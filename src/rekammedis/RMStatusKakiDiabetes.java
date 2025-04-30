@@ -67,8 +67,13 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private int i = 0, x = 0;
-    private String nip = "", nipDokter = "";
-    
+    private String nip = "", nipDokter = "", traumaMekanik = "", traumaKimia = "", traumaTermis = "", spontan = "", penyebabLain = "",
+            tersandung = "", memakaiSepatu = "", tertusuk = "", dllSebutkanMekanik = "", terkenaZat = "", terkenaAirPanas = "", terkenaPemanas = "",
+            dllSebutkanTermis = "", riwAmputasiKiri = "", riwAmputasiKanan = "", mata = "", ginjal = "", penyakitJantung = "", hipertensi = "", strok = "",
+            pad = "", nonUlkus = "", ulkus = "", ulkusGangen = "", selulitis = "", dorsalKanan = "", plantarKanan = "", plantarKiri = "", dorsalKiri = "",
+            derajat0 = "", derajat1 = "", derajat2 = "", derajat3 = "", derajat4 = "", derajat5 = "", ronsenKaki = "", surgical = "", chemical = "",
+            biology = "", hidrocol = "", foam = "", allginate = "", silver = "", cadexomer = "", madu = "", modernDresingLain = "";
+
     /** Creates new form DlgRujuk
      * @param parent
      * @param modal */
@@ -822,7 +827,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         Tlama.setDocument(new batasInput((int) 30).getKata(Tlama));        
         TmerokokYa.setDocument(new batasInput((int) 7).getKata(TmerokokYa));
         TmerokokMantan.setDocument(new batasInput((int) 7).getKata(TmerokokMantan));
-        TlukaLama.setDocument(new batasInput((int) 7).getKata(TlukaLama));        
+        TlamaLuka.setDocument(new batasInput((int) 7).getKata(TlamaLuka));        
         Tsepatu.setDocument(new batasInput((int) 50).getKata(Tsepatu));        
         TdllSebutkanMekanik.setDocument(new batasInput((int) 50).getKata(TdllSebutkanMekanik));
         TterkenaZat.setDocument(new batasInput((int) 200).getKata(TterkenaZat));        
@@ -1016,7 +1021,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         TmerokokMantan = new widget.TextBox();
         jLabel36 = new widget.Label();
         jLabel37 = new widget.Label();
-        TlukaLama = new widget.TextBox();
+        TlamaLuka = new widget.TextBox();
         cmbSatuan = new widget.ComboBox();
         jLabel38 = new widget.Label();
         cmbRiwEdukasi = new widget.ComboBox();
@@ -1300,6 +1305,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         TlainModern = new widget.TextBox();
         jLabel141 = new widget.Label();
         TtglSimpan = new widget.Tanggal();
+        chkSaya = new widget.CekBox();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbAsesmen = new widget.Table();
@@ -1957,16 +1963,16 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         FormInput.add(jLabel37);
         jLabel37.setBounds(0, 568, 200, 23);
 
-        TlukaLama.setBackground(new java.awt.Color(245, 250, 240));
-        TlukaLama.setForeground(new java.awt.Color(0, 0, 0));
-        TlukaLama.setName("TlukaLama"); // NOI18N
-        TlukaLama.addKeyListener(new java.awt.event.KeyAdapter() {
+        TlamaLuka.setBackground(new java.awt.Color(245, 250, 240));
+        TlamaLuka.setForeground(new java.awt.Color(0, 0, 0));
+        TlamaLuka.setName("TlamaLuka"); // NOI18N
+        TlamaLuka.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                TlukaLamaKeyPressed(evt);
+                TlamaLukaKeyPressed(evt);
             }
         });
-        FormInput.add(TlukaLama);
-        TlukaLama.setBounds(205, 568, 50, 23);
+        FormInput.add(TlamaLuka);
+        TlamaLuka.setBounds(205, 568, 50, 23);
 
         cmbSatuan.setForeground(new java.awt.Color(0, 0, 0));
         cmbSatuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "hari", "bulan", "tahun" }));
@@ -4601,6 +4607,22 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         FormInput.add(TtglSimpan);
         TtglSimpan.setBounds(152, 3730, 90, 23);
 
+        chkSaya.setBackground(new java.awt.Color(242, 242, 242));
+        chkSaya.setForeground(new java.awt.Color(0, 0, 0));
+        chkSaya.setText("Saya Sendiri");
+        chkSaya.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkSaya.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkSaya.setName("chkSaya"); // NOI18N
+        chkSaya.setOpaque(false);
+        chkSaya.setPreferredSize(new java.awt.Dimension(220, 23));
+        chkSaya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkSayaActionPerformed(evt);
+            }
+        });
+        FormInput.add(chkSaya);
+        chkSaya.setBounds(620, 3758, 90, 23);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormData.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -5145,7 +5167,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 
     private void BtnTambahObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahObatActionPerformed
         cmbObat.setSelectedIndex(0);
-        cmbObat.requestFocus();
         Tjenis.setText("");
         Tdosis.setText("");
         Tlama.setText("");
@@ -5306,21 +5327,21 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 
     private void TmerokokYaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TmerokokYaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            TlukaLama.requestFocus();
+            TlamaLuka.requestFocus();
         }
     }//GEN-LAST:event_TmerokokYaKeyPressed
 
     private void TmerokokMantanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TmerokokMantanKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            TlukaLama.requestFocus();
+            TlamaLuka.requestFocus();
         }
     }//GEN-LAST:event_TmerokokMantanKeyPressed
 
-    private void TlukaLamaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlukaLamaKeyPressed
+    private void TlamaLukaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlamaLukaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             cmbSatuan.requestFocus();
         }
-    }//GEN-LAST:event_TlukaLamaKeyPressed
+    }//GEN-LAST:event_TlamaLukaKeyPressed
 
     private void cmbJnsAlasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbJnsAlasActionPerformed
         Tsepatu.setText("");
@@ -5496,7 +5517,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 
     private void BtnTambahLukaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahLukaActionPerformed
         Ttahun.setText("");
-        Ttahun.requestFocus();
         Tlokasi.setText("");
         Tpenyebab.setText("");
     }//GEN-LAST:event_BtnTambahLukaActionPerformed
@@ -5992,7 +6012,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 
     private void BtnTambahMikroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahMikroActionPerformed
         Tbakteri.setText("");
-        Tbakteri.requestFocus();
         Tsensitif.setText("");
         Tresisten.setText("");
     }//GEN-LAST:event_BtnTambahMikroActionPerformed
@@ -6065,6 +6084,21 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             TlainModern.setEnabled(false);
         }
     }//GEN-LAST:event_chkLainModernActionPerformed
+
+    private void chkSayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSayaActionPerformed
+        if (chkSaya.isSelected() == true) {
+            if (akses.getadmin() == true) {
+                nip = "-";
+                TnmPerawat.setText("-");
+            } else {
+                nip = akses.getkode();
+                TnmPerawat.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nip + "'"));
+            }
+        } else {
+            nip = "-";
+            TnmPerawat.setText("-");
+        }
+    }//GEN-LAST:event_chkSayaActionPerformed
 
     /**
     * @param args the command line arguments
@@ -6158,11 +6192,11 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private widget.TextBox TlainSebutkan;
     private widget.TextBox Tlama;
     private widget.TextBox TlamaDiketahui;
+    private widget.TextBox TlamaLuka;
     private widget.TextBox TlamaRawat;
     private widget.TextBox TlaserTahun;
     private widget.TextBox TlokRonsen;
     private widget.TextBox Tlokasi;
-    private widget.TextBox TlukaLama;
     private widget.TextBox TmerokokMantan;
     private widget.TextBox TmerokokYa;
     private widget.TextBox TnmDokter;
@@ -6222,6 +6256,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     public widget.CekBox chkPenyJantung;
     public widget.CekBox chkPlantarKanan;
     public widget.CekBox chkPlantarKiri;
+    private widget.CekBox chkSaya;
     public widget.CekBox chkSelulitis;
     public widget.CekBox chkSilver;
     public widget.CekBox chkSpontan;
@@ -6716,7 +6751,223 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     }
     
     public void emptTeks(){
+        Tbb.setText("");
+        Ttb.setText("");
+        hitungBMI();
+        Ttensi.setText("");
+        TtglMasuk.setDate(new Date());
+        cmbJnsRawat.setSelectedIndex(0);
+        TlamaRawat.setText("");
+        cmbTipeDiabet.setSelectedIndex(0);
+        TtipeDiabetLain.setText("");
+        TtipeDiabetLain.setEnabled(false);
+        TlamaDiketahui.setText("");
+        BtnTambahObatActionPerformed(null);
+        cmbMerokok.setSelectedIndex(0);
+        TmerokokYa.setText("");
+        TmerokokMantan.setText("");
+        TmerokokYa.setEnabled(false);
+        TmerokokMantan.setEnabled(false);
+        TlamaLuka.setText("");
+        cmbSatuan.setSelectedIndex(0);
+        cmbRiwEdukasi.setSelectedIndex(0);
+        cmbJnsAlas.setSelectedIndex(0);
+        Tsepatu.setText("");
+        Tsepatu.setEnabled(false);
         
+        chkTraumaMekanik.setSelected(false);
+        chkTersandung.setSelected(false);
+        chkMemakaiSepatu.setSelected(false);
+        chkTertusuk.setSelected(false);
+        chkDllsebutkanMekanik.setSelected(false);
+        TdllSebutkanMekanik.setText("");
+        chkTersandung.setEnabled(false);
+        chkMemakaiSepatu.setEnabled(false);
+        chkTertusuk.setEnabled(false);
+        chkDllsebutkanMekanik.setEnabled(false);
+        TdllSebutkanMekanik.setEnabled(false);
+        
+        chkTraumaKimia.setSelected(false);
+        chkTerkenaZat.setSelected(false);
+        TterkenaZat.setText("");
+        chkTerkenaZat.setEnabled(false);
+        TterkenaZat.setEnabled(false);
+        
+        chkTraumaTermis.setSelected(false);
+        chkTerkenaAir.setSelected(false);
+        chkTerkenaPemanas.setSelected(false);
+        chkDllsebutkanTermis.setSelected(false);
+        TdllSebutkanTermis.setText("");
+        chkTerkenaAir.setEnabled(false);
+        chkTerkenaPemanas.setEnabled(false);
+        chkDllsebutkanTermis.setEnabled(false);
+        TdllSebutkanTermis.setEnabled(false);
+        
+        chkSpontan.setSelected(false);
+        chkLainLain.setSelected(false);
+        TlainSebutkan.setText("");
+        TlainSebutkan.setEnabled(false);
+        
+        cmbRiwUlkus.setSelectedIndex(0);
+        BtnTambahLukaActionPerformed(null);
+        chkAmputasiKiri.setSelected(false);
+        cmbRiwAmputasiKiri.setSelectedIndex(0);
+        TjariKiri.setText("");
+        TtransKiri.setText("");
+        cmbRiwAmputasiKiri.setEnabled(false);
+        TjariKiri.setEnabled(false);
+        TtransKiri.setEnabled(false);
+        
+        chkAmputasiKanan.setSelected(false);
+        cmbRiwAmputasiKanan.setSelectedIndex(0);
+        TjariKanan.setText("");
+        TtransKanan.setText("");
+        cmbRiwAmputasiKanan.setEnabled(false);
+        TjariKanan.setEnabled(false);
+        TtransKanan.setEnabled(false);
+        
+        chkMata.setSelected(false);
+        cmbMata.setSelectedIndex(0);
+        TlaserTahun.setText("");
+        cmbMata.setEnabled(false);
+        TlaserTahun.setEnabled(false);
+        
+        chkGinjal.setSelected(false);
+        cmbGinjal.setSelectedIndex(0);
+        cmbGinjal.setEnabled(false);
+        chkPenyJantung.setSelected(false);
+        chkHipertensi.setSelected(false);
+        chkStrok.setSelected(false);
+        chkPad.setSelected(false);
+        chkNonUlkus.setSelected(false);
+        chkUlkus.setSelected(false);
+        chkUlkusGangen.setSelected(false);
+        chkSelulitis.setSelected(false);
+        
+        chkDorsalKanan.setSelected(false);
+        TdorsalKanan.setText("");
+        TdorsalKanan.setEnabled(false);
+        
+        chkPlantarKanan.setSelected(false);
+        TplantarKanan.setText("");
+        TplantarKanan.setEnabled(false);
+        
+        chkDorsalKiri.setSelected(false);
+        TdorsalKiri.setText("");
+        TdorsalKiri.setEnabled(false);
+        
+        chkPlantarKiri.setSelected(false);
+        TplantarKiri.setText("");
+        TplantarKiri.setEnabled(false);
+        BtnTambahDeforActionPerformed(null);
+        
+        cmbKulKananKering.setSelectedIndex(0);
+        cmbKulKananTumit.setSelectedIndex(0);
+        cmbKulKananBulu.setSelectedIndex(0);
+        cmbKulKananTinea.setSelectedIndex(0);
+        cmbKulKananKalus.setSelectedIndex(0);
+        cmbKulKananKorn.setSelectedIndex(0);
+        cmbKulKananHiper.setSelectedIndex(0);
+        cmbKulKananEdema.setSelectedIndex(0);
+        cmbKulKananHealed.setSelectedIndex(0);
+        cmbKulKiriKering.setSelectedIndex(0);
+        cmbKulKiriTumit.setSelectedIndex(0);
+        cmbKulKiriBulu.setSelectedIndex(0);
+        cmbKulKiriTinea.setSelectedIndex(0);
+        cmbKulKiriKalus.setSelectedIndex(0);
+        cmbKulKiriKorn.setSelectedIndex(0);
+        cmbKulKiriHiper.setSelectedIndex(0);
+        cmbKulKiriEdema.setSelectedIndex(0);
+        cmbKulKiriHealed.setSelectedIndex(0);
+        
+        cmbKukKananMenebal.setSelectedIndex(0);
+        cmbKukKananInfeksi.setSelectedIndex(0);
+        cmbKukKananPerubahan.setSelectedIndex(0);
+        cmbKukKananRapuh.setSelectedIndex(0);
+        cmbKukKananIngro.setSelectedIndex(0);
+        cmbKukKananAtrofi.setSelectedIndex(0);
+        cmbKukKananLain.setSelectedIndex(0);
+        cmbKukKiriMenebal.setSelectedIndex(0);
+        cmbKukKiriInfeksi.setSelectedIndex(0);
+        cmbKukKiriPerubahan.setSelectedIndex(0);
+        cmbKukKiriRapuh.setSelectedIndex(0);
+        cmbKukKiriIngro.setSelectedIndex(0);
+        cmbKukKiriAtrofi.setSelectedIndex(0);
+        cmbKukKiriLain.setSelectedIndex(0);
+        
+        cmbTelKananHallu.setSelectedIndex(0);
+        cmbTelKananPel.setSelectedIndex(0);
+        cmbTelKananChar.setSelectedIndex(0);
+        cmbTelKiriHallu.setSelectedIndex(0);
+        cmbTelKiriPel.setSelectedIndex(0);
+        cmbTelKiriChar.setSelectedIndex(0);
+        
+        cmbJarKananHamer.setSelectedIndex(0);
+        cmbJarKananClaw.setSelectedIndex(0);
+        cmbJarKananHiper.setSelectedIndex(0);
+        cmbJarKananMas.setSelectedIndex(0);
+        cmbJarKananLain.setSelectedIndex(0);
+        cmbJarKiriHamer.setSelectedIndex(0);
+        cmbJarKiriClaw.setSelectedIndex(0);
+        cmbJarKiriHiper.setSelectedIndex(0);
+        cmbJarKiriMas.setSelectedIndex(0);
+        cmbJarKiriLain.setSelectedIndex(0);
+        TketLainKanan.setText("");
+        TketLainKanan.setEnabled(false);
+        TketLainKiri.setText("");
+        TketLainKiri.setEnabled(false);
+        
+        cmbDorsalisPedKanan.setSelectedIndex(0);
+        cmbDorsalisPedKiri.setSelectedIndex(0);
+        cmbTibialisKanan.setSelectedIndex(0);
+        cmbTibialisKiri.setSelectedIndex(0);
+        TtdsBra.setText("");
+        TtdsDor.setText("");
+        TskorAbi.setText("");
+        
+        cmbMonoKanan.setSelectedIndex(0);
+        cmbMonoKiri.setSelectedIndex(0);
+        cmbGarKanan.setSelectedIndex(0);
+        cmbGarKiri.setSelectedIndex(0);
+        cmbRefKanan.setSelectedIndex(0);
+        cmbRefKiri.setSelectedIndex(0);
+        
+        chkDerajat0.setSelected(false);
+        chkDerajat1.setSelected(false);
+        chkDerajat2.setSelected(false);
+        chkDerajat3.setSelected(false);
+        chkDerajat4.setSelected(false);
+        chkDerajat5.setSelected(false);
+        
+        TpemeriksaanLab.setText("");
+        chkTglRonsen.setSelected(false);
+        TtglRonsen.setDate(new Date());
+        TkesRonsen.setText("");
+        cmbOsteo.setSelectedIndex(0);
+        TlokRonsen.setText("");
+        TtglRonsen.setEnabled(false);
+        TkesRonsen.setEnabled(false);
+        cmbOsteo.setEnabled(false);
+        TlokRonsen.setEnabled(false);
+        BtnTambahMikroActionPerformed(null);
+        
+        TkesRonsenTorax.setText("");
+        TkesEkg.setText("");
+        TusgDopler.setText("");        
+        chkSurgical.setSelected(false);
+        chkChemical.setSelected(false);
+        chkBiology.setSelected(false);
+        chkHydro.setSelected(false);
+        chkFoam.setSelected(false);
+        chkAlgin.setSelected(false);
+        chkSilver.setSelected(false);
+        chkCadex.setSelected(false);
+        chkMadu.setSelected(false);
+        chkLainModern.setSelected(false);
+        TlainModern.setText("");
+        TlainModern.setEnabled(false);
+        TtglSimpan.setDate(new Date());
+        chkSaya.setSelected(false);
     }
     
     public void setData(String norwt, String rgrawat) {
@@ -6838,11 +7089,281 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     }
     
     private void cekData() {
-//        if (chkJernih.isSelected() == true) {
-//            jernih = "ya";
-//        } else {
-//            jernih = "tidak";
-//        }
+        if (chkTraumaMekanik.isSelected() == true) {
+            traumaMekanik = "ya";
+        } else {
+            traumaMekanik = "tidak";
+        }
+        
+        if (chkTraumaKimia.isSelected() == true) {
+            traumaKimia = "ya";
+        } else {
+            traumaKimia = "tidak";
+        }
+        
+        if (chkTraumaTermis.isSelected() == true) {
+            traumaTermis = "ya";
+        } else {
+            traumaTermis = "tidak";
+        }
+        
+        if (chkSpontan.isSelected() == true) {
+            spontan = "ya";
+        } else {
+            spontan = "tidak";
+        }
+        
+        if (chkLainLain.isSelected() == true) {
+            penyebabLain = "ya";
+        } else {
+            penyebabLain = "tidak";
+        }
+        
+        if (chkTersandung.isSelected() == true) {
+            tersandung = "ya";
+        } else {
+            tersandung = "tidak";
+        }
+        
+        if (chkMemakaiSepatu.isSelected() == true) {
+            memakaiSepatu = "ya";
+        } else {
+            memakaiSepatu = "tidak";
+        }
+        
+        if (chkTertusuk.isSelected() == true) {
+            tertusuk = "ya";
+        } else {
+            tertusuk = "tidak";
+        }
+        
+        if (chkDllsebutkanMekanik.isSelected() == true) {
+            dllSebutkanMekanik = "ya";
+        } else {
+            dllSebutkanMekanik = "tidak";
+        }
+        
+        if (chkTerkenaZat.isSelected() == true) {
+            terkenaZat = "ya";
+        } else {
+            terkenaZat = "tidak";
+        }
+        
+        if (chkTerkenaAir.isSelected() == true) {
+            terkenaAirPanas = "ya";
+        } else {
+            terkenaAirPanas = "tidak";
+        }
+        
+        if (chkTerkenaPemanas.isSelected() == true) {
+            terkenaPemanas = "ya";
+        } else {
+            terkenaPemanas = "tidak";
+        }
+        
+        if (chkDllsebutkanTermis.isSelected() == true) {
+            dllSebutkanTermis = "ya";
+        } else {
+            dllSebutkanTermis = "tidak";
+        }
+        
+        if (chkAmputasiKiri.isSelected() == true) {
+            riwAmputasiKiri = "ya";
+        } else {
+            riwAmputasiKiri = "tidak";
+        }
+        
+        if (chkAmputasiKanan.isSelected() == true) {
+            riwAmputasiKanan = "ya";
+        } else {
+            riwAmputasiKanan = "tidak";
+        }
+        
+        if (chkMata.isSelected() == true) {
+            mata = "ya";
+        } else {
+            mata = "tidak";
+        }
+        
+        if (chkGinjal.isSelected() == true) {
+            ginjal = "ya";
+        } else {
+            ginjal = "tidak";
+        }
+        
+        if (chkPenyJantung.isSelected() == true) {
+            penyakitJantung = "ya";
+        } else {
+            penyakitJantung = "tidak";
+        }
+        
+        if (chkHipertensi.isSelected() == true) {
+            hipertensi = "ya";
+        } else {
+            hipertensi = "tidak";
+        }
+        
+        if (chkStrok.isSelected() == true) {
+            strok = "ya";
+        } else {
+            strok = "tidak";
+        }
+        
+        if (chkPad.isSelected() == true) {
+            pad = "ya";
+        } else {
+            pad = "tidak";
+        }
+        
+        if (chkNonUlkus.isSelected() == true) {
+            nonUlkus = "ya";
+        } else {
+            nonUlkus = "tidak";
+        }
+        
+        if (chkUlkus.isSelected() == true) {
+            ulkus = "ya";
+        } else {
+            ulkus = "tidak";
+        }
+        
+        if (chkUlkusGangen.isSelected() == true) {
+            ulkusGangen = "ya";
+        } else {
+            ulkusGangen = "tidak";
+        }
+        
+        if (chkSelulitis.isSelected() == true) {
+            selulitis = "ya";
+        } else {
+            selulitis = "tidak";
+        }
+        
+        if (chkDorsalKanan.isSelected() == true) {
+            dorsalKanan = "ya";
+        } else {
+            dorsalKanan = "tidak";
+        }
+        
+        if (chkPlantarKanan.isSelected() == true) {
+            plantarKanan = "ya";
+        } else {
+            plantarKanan = "tidak";
+        }
+        
+        if (chkPlantarKiri.isSelected() == true) {
+            plantarKiri = "ya";
+        } else {
+            plantarKiri = "tidak";
+        }
+        
+        if (chkDorsalKiri.isSelected() == true) {
+            dorsalKiri = "ya";
+        } else {
+            dorsalKiri = "tidak";
+        }
+        
+        if (chkDerajat0.isSelected() == true) {
+            derajat0 = "ya";
+        } else {
+            derajat0 = "tidak";
+        }
+        
+        if (chkDerajat1.isSelected() == true) {
+            derajat1 = "ya";
+        } else {
+            derajat1 = "tidak";
+        }
+        
+        if (chkDerajat2.isSelected() == true) {
+            derajat2 = "ya";
+        } else {
+            derajat2 = "tidak";
+        }
+        
+        if (chkDerajat3.isSelected() == true) {
+            derajat3 = "ya";
+        } else {
+            derajat3 = "tidak";
+        }
+        
+        if (chkDerajat4.isSelected() == true) {
+            derajat4 = "ya";
+        } else {
+            derajat4 = "tidak";
+        }
+        
+        if (chkDerajat5.isSelected() == true) {
+            derajat5 = "ya";
+        } else {
+            derajat5 = "tidak";
+        }
+        
+        if (chkTglRonsen.isSelected() == true) {
+            ronsenKaki = "ya";
+        } else {
+            ronsenKaki = "tidak";
+        }
+        
+        if (chkSurgical.isSelected() == true) {
+            surgical = "ya";
+        } else {
+            surgical = "tidak";
+        }
+        
+        if (chkChemical.isSelected() == true) {
+            chemical = "ya";
+        } else {
+            chemical = "tidak";
+        }
+        
+        if (chkBiology.isSelected() == true) {
+            biology = "ya";
+        } else {
+            biology = "tidak";
+        }
+        
+        if (chkHydro.isSelected() == true) {
+            hidrocol = "ya";
+        } else {
+            hidrocol = "tidak";
+        }
+        
+        if (chkFoam.isSelected() == true) {
+            foam = "ya";
+        } else {
+            foam = "tidak";
+        }
+        
+        if (chkAlgin.isSelected() == true) {
+            allginate = "ya";
+        } else {
+            allginate = "tidak";
+        }
+        
+        if (chkSilver.isSelected() == true) {
+            silver = "ya";
+        } else {
+            silver = "tidak";
+        }
+        
+        if (chkCadex.isSelected() == true) {
+            cadexomer = "ya";
+        } else {
+            cadexomer = "tidak";
+        }
+        
+        if (chkMadu.isSelected() == true) {
+            madu = "ya";
+        } else {
+            madu = "tidak";
+        }
+        
+        if (chkLainModern.isSelected() == true) {
+            modernDresingLain = "ya";
+        } else {
+            modernDresingLain = "tidak";
+        }
     }
     
     private void dataCek() {
@@ -6855,7 +7376,54 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     }
     
     private void variabelBersih() {
-        nip = "";        
+        nip = "";
+        nipDokter = "";
+        traumaMekanik = "";
+        traumaKimia = "";
+        traumaTermis = "";
+        spontan = "";
+        penyebabLain = "";
+        tersandung = "";
+        memakaiSepatu = "";
+        tertusuk = "";
+        dllSebutkanMekanik = "";
+        terkenaZat = "";
+        terkenaAirPanas = "";
+        terkenaPemanas = "";
+        dllSebutkanTermis = "";
+        riwAmputasiKiri = "";
+        riwAmputasiKanan = "";
+        mata = "";
+        ginjal = "";
+        penyakitJantung = "";
+        hipertensi = "";
+        strok = "";
+        pad = "";
+        nonUlkus = "";
+        ulkus = "";
+        ulkusGangen = "";
+        selulitis = "";
+        dorsalKanan = "";
+        plantarKanan = "";
+        plantarKiri = "";
+        dorsalKiri = "";
+        derajat0 = "";
+        derajat1 = "";
+        derajat2 = "";
+        derajat3 = "";
+        derajat4 = "";
+        derajat5 = "";
+        ronsenKaki = "";
+        surgical = "";
+        chemical = "";
+        biology = "";
+        hidrocol = "";
+        foam = "";
+        allginate = "";
+        silver = "";
+        cadexomer = "";
+        madu = "";
+        modernDresingLain = "";
     }
     
     public void setTampil(){
