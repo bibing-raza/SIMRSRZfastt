@@ -49,7 +49,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private PreparedStatement ps1, ps2, ps3, psFar, psTglBO, psRiwIO, psR2, psrestor, psR11, psR22;
     private ResultSet rs1, rs2, rs3, rsFar, rsTglBO, rsRiwIO, rsR2, rsrestor, rsR11, rsR22;
     private int i = 0, x = 0, j = 0, cekResep = 0, cito = 0, iniResep = 0;
-    private String tglPemberianObat = "", resepDipilih = "", tglResep = "", kodepoli = "", status = "",
+    private String tglPemberianObat = "", resepDipilih = "", tglResep = "", kodepoli = "", status = "", 
             jnsKunjungan = "", jamberiobat = "", user = "", riwayatData = "", jenisResep = "", tglResepRiwayat = "", resepPulang = "";
 
     /**
@@ -637,7 +637,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-05-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -651,7 +651,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-05-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1007,7 +1007,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelGlass13.add(jLabel54);
         jLabel54.setBounds(0, 66, 105, 23);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-05-2025" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -1023,7 +1023,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelGlass13.add(jLabel55);
         jLabel55.setBounds(200, 66, 23, 23);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-05-2025" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -1748,7 +1748,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
     private void ChkPoli1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkPoli1ActionPerformed
         Valid.tabelKosong(tabModeRiwItemObat);
-        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan") || status.equals("vk bersalin")) {
+        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan") || status.equals("vk bersalin")) {
             if (ChkPoli1.isSelected() == true) {
                 ChkPoli1.setText("Hanya dipoli/inst. ini untuk 5 kunjungan terakhir");
                 tampilTglBeriObat();
@@ -1861,7 +1861,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         } else if (!TPasien.getText().trim().equals("")) {
             riwayatData = "";
             riwayatData = "hapus";
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
                 //cek conteng
                 x = 0;
                 for (i = 0; i < tbResepObat.getRowCount(); i++) {
@@ -2046,7 +2046,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                     resepPulang = "Pulang";
                 }
 
-                if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan")) {
+                if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
                     if (Sequel.cariInteger("SELECT COUNT(-1) FROM catatan_resep WHERE no_rawat ='" + TNoRw.getText() + "' AND noId IN (" + resepDipilih + ")") == 0) {
                         JOptionPane.showMessageDialog(null, "Maaf, hanya resep utk. hari ini yg. bisa dicetak, krn. pasien sdh. dilayani/diresepkan obatnya...!!!");
                         tbResepObat.requestFocus();
@@ -2142,7 +2142,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         cekResep = 0 ;
         tglResep = "";
 
-        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan")) {
+        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
             cekResep = Sequel.cariInteger("SELECT count(-1) FROM catatan_resep cr INNER JOIN reg_periksa rp ON rp.no_rawat=cr.no_rawat "
                     + "WHERE rp.kd_poli='" + kodepoli + "' and rp.no_rkm_medis='" + TNoRM.getText() + "'");
 
@@ -2699,11 +2699,22 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void setData(String norw, String sttsrwt) {
-        TNoRw.setText(norw);
-        status = sttsrwt;
+        TNoRw.setText(norw);        
         ChkCito.setSelected(false);
         cmbJnsResep.setSelectedIndex(0);
         cmbIniResep.setSelectedIndex(0);
+        
+        if (sttsrwt.equals("IGD (Ralan)")) {
+            status = "IGD (Ralan)";
+        } else if (sttsrwt.equals("IGD (Ranap)")) {
+            status = "IGD (Ranap)";
+        } else if (sttsrwt.equals("ranap")) {
+            status = "ranap";
+        } else if (sttsrwt.equals("vk bersalin")) {
+            status = "vk bersalin";
+        } else {
+            status = "ralan";
+        }
         
         try {
             ps2 = koneksi.prepareStatement("select rp.no_rawat, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, "
@@ -2719,13 +2730,23 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                     Tjk.setText(rs2.getString("jk"));
                     Tcara_byr.setText(rs2.getString("png_jawab"));
                     jnsKunjungan = rs2.getString("status_lanjut");
-                    kodepoli = rs2.getString("kd_poli");                    
-                    
+                    kodepoli = rs2.getString("kd_poli");
+
                     if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
+                        ChkCito.setEnabled(false);
+                        cmbIniResep.setEnabled(false);
+                        cmbJnsResep.setEnabled(false);
+                        BtnSetuju.setEnabled(false);
+                        
                         DTPCariA.setDate(rs2.getDate("tgl_registrasi"));
                         chkRanap.setSelected(false);
                         chkRalan.setSelected(true);
                     } else if (status.equals("ranap") || status.equals("vk bersalin")) {
+                        ChkCito.setEnabled(true);
+                        cmbIniResep.setEnabled(true);
+                        cmbJnsResep.setEnabled(true);
+                        BtnSetuju.setEnabled(true);
+                        
                         DTPCariA.setDate(new Date());
                         chkRanap.setSelected(true);
                         chkRalan.setSelected(false);
@@ -2757,12 +2778,13 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private void tampilResepObat() {
         Valid.tabelKosong(tabModeResepObat);
         try {
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
                 ps1 = koneksi.prepareStatement("select c.no_rawat, c.tgl_perawatan, c.jam_perawatan, c.nama_obat, "
                         + "c.status, d.nm_dokter, c.noID, c.kd_dokter, '-' jenis_resep, '-' resep_untuk from catatan_resep c "
                         + "inner join reg_periksa r on r.no_rawat = c.no_rawat "
                         + "inner join dokter d on d.kd_dokter = c.kd_dokter where "
                         + "c.tgl_perawatan between ? and ? and c.no_rawat = ? and c.nama_obat like ? order by c.noId");
+                
             } else if (status.equals("ranap") || status.equals("vk bersalin")) {
                 ps1 = koneksi.prepareStatement("select c.no_rawat, c.tgl_perawatan, c.jam_perawatan, c.nama_obat, "
                         + "c.status, d.nm_dokter, c.noID, c.kd_dokter, c.jenis_resep, c.resep_untuk from catatan_resep_ranap c "
@@ -2816,7 +2838,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             ChkInput1.setVisible(true);
             ChkPoli1.setSelected(true);
             
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
                 if (ChkPoli1.isSelected() == true) {
                     ChkPoli1.setText("Hanya dipoli/inst. ini untuk 5 kunjungan terakhir");
                 } else if (ChkPoli1.isSelected() == false) {
@@ -2906,7 +2928,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private void tampilTglBeriObat() {
         Valid.tabelKosong(tabModeTglBeriObat);
         try {
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan") || status.equals("vk bersalin")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan") || status.equals("vk bersalin")) {
                 if (ChkPoli1.isSelected() == true) {
                     psTglBO = koneksi.prepareStatement("select dpo.tgl_perawatan tglAsli, date_format(dpo.tgl_perawatan,'%d-%m-%Y') tanggal, "
                             + "count(dpo.kode_brng) jlhItem, pl.nm_poli, d.nm_dokter, dpo.jam from detail_pemberian_obat dpo "
@@ -2938,7 +2960,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             try {
                 rsTglBO = psTglBO.executeQuery();
                 while (rsTglBO.next()) {
-                    if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan") || status.equals("vk bersalin")) {
+                    if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan") || status.equals("vk bersalin")) {
                         tabModeTglBeriObat.addRow(new Object[]{
                             rsTglBO.getString("tglAsli"),
                             rsTglBO.getString("tanggal"),
@@ -2976,7 +2998,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private void tampilRiwItemObat() {
         Valid.tabelKosong(tabModeRiwItemObat);
         try {
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan") || status.equals("vk bersalin")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan") || status.equals("vk bersalin")) {
                 if (ChkPoli1.isSelected() == true) {
                     psRiwIO = koneksi.prepareStatement("SELECT DATE_FORMAT(dpo.tgl_perawatan,'%d-%m-%Y') tanggal, db.nama_brng,"
                             + "CONCAT(dpo.jml ,' ',LOWER(db.kode_sat)) jlh FROM detail_pemberian_obat dpo "
@@ -3136,7 +3158,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     }
     
     private void copyResepnya() {
-        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan")) {
+        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
             try {
                 j = 0;
                 for (i = 0; i < tbItemResep.getRowCount(); i++) {
@@ -3287,7 +3309,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private void tampilRiwayat() {
         Valid.tabelKosong(tabMode2);
         try {
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
                 psrestor = koneksi.prepareStatement("SELECT IF(pg.nama = '-', 'Admin Utama', pg.nama ) pelaku, a.no_rawat, p.no_rkm_medis, p.nm_pasien, "
                         + "a.tgl_perawatan, a.jam_perawatan, a.waktu_eksekusi, upper(concat( 'DI', a.status_data )) sttsdata, a.noId, a.nama_obat "
                         + "FROM catatan_resep_histori a INNER JOIN reg_periksa rp ON rp.no_rawat = a.no_rawat "
@@ -3359,7 +3381,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     
     private void kembalikanData() {
         try {
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
                 ps3 = koneksi.prepareStatement("select * from catatan_resep_histori where "
                         + "no_rawat='" + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString() + "'");
             } else if (status.equals("ranap") || status.equals("vk bersalin")) {
@@ -3369,7 +3391,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             try {
                 rs3 = ps3.executeQuery();
                 while (rs3.next()) {
-                    if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("Ralan")) {
+                    if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
                         try {
                             Sequel.menyimpanIgnore("catatan_resep",
                                     "'" + rs3.getString("noId") + "',"

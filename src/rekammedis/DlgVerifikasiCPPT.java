@@ -761,7 +761,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         
         if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
             form.setData(TNoRw.getText(), status);
-        } else if (status.equals("ranap")) {
+        } else if (status.equals("ranap") || status.equals("vk bersalin")) {
             kodekamar = "";
             kodekamar = Sequel.cariIsi("select ki.kd_kamar from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' "
@@ -893,7 +893,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         dataKonfirmasi = "";
         Valid.tabelKosong(tabMode);
         try {
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("vk bersalin")) {
                 ps = koneksi.prepareStatement("SELECT c.verifikasi, DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tgl, if(c.cek_jam='ya',TIME_FORMAT(c.jam_cppt,'%H:%i'),'-') jam, "
                         + "c.jenis_bagian, pg1.nama nmdpjp, c.jenis_ppa, pg2.nama nmppa, c.cppt_shift, c.hasil_pemeriksaan, "
                         + "c.instruksi_nakes, c.waktu_simpan, c.no_rawat, c.tgl_cppt, c.jam_cppt from cppt c "
@@ -1012,7 +1012,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                     tglCppt1.setDate(rs1.getDate("tgl_registrasi"));
                     tglCppt2.setDate(new Date());
                     
-                    if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+                    if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("vk bersalin")) {
                         TnmUnit.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + rs1.getString("kd_poli") + "'"));
                         TnmDPJP.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + rs1.getString("kd_dokter") + "'"));
                     } else if (status.equals("ranap")) {

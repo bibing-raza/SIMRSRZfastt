@@ -9791,11 +9791,55 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     }//GEN-LAST:event_MnInputDataCPPTvkActionPerformed
 
     private void MnLihatDataCPPTvkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataCPPTvkActionPerformed
-        // TODO add your handling code here:
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and STATUS='Ralan'") > 0) {
+                cetakCPPTvkBersalin();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data CPPT VK Bersalin tidak ditemukan...!!!");
+                tbKasirRalan.requestFocus();
+            }
+        }
     }//GEN-LAST:event_MnLihatDataCPPTvkActionPerformed
 
     private void MnVerifCPPTvkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnVerifCPPTvkActionPerformed
-        // TODO add your handling code here:
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (akses.getadmin() == true) {
+                if (TNoRw.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
+                } else {
+                    DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+                    verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    verif.setLocationRelativeTo(internalFrame1);
+                    verif.setData(TNoRw.getText(), "vk bersalin");
+                    verif.setVisible(true);
+                }
+            } else {
+                if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'"))
+                        || akses.getkode().equals(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"))) {
+                    if (TNoRw.getText().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
+                    } else {
+                        DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+                        verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                        verif.setLocationRelativeTo(internalFrame1);
+                        verif.setData(TNoRw.getText(), "vk bersalin");
+                        verif.setVisible(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
+                }
+            }
+        }
     }//GEN-LAST:event_MnVerifCPPTvkActionPerformed
 
     /**
@@ -10618,7 +10662,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnPemberianObat.setEnabled(akses.getpemberian_obat());
         MnPetugasPemberianObat.setEnabled(akses.getpemberian_obat());
         MnCPPTIGD.setEnabled(akses.getcppt());
-        MnVerifCPPT.setEnabled(akses.getcppt());
         MnCPPTvkBersalin.setEnabled(akses.getcppt());
         MnInputDataAssesmenMedikIGD.setEnabled(akses.getresep_dokter());
         MnInputDataAssesmenKeperawatanIGD.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
@@ -13299,6 +13342,20 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         simpanTemporaryCppt();
         if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
             Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Jalan/IGD ]::",
+                    "SELECT * from temporary_cppt", param);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+        }
+    }
+    
+    private void cetakCPPTvkBersalin() {
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (VK Bersalin)");
+        simpanTemporaryCppt();
+        if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+            Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Jalan/VK Bersalin ]::",
                     "SELECT * from temporary_cppt", param);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
