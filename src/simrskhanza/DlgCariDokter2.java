@@ -69,7 +69,7 @@ public final class DlgCariDokter2 extends javax.swing.JDialog {
         for (int i = 0; i < 13; i++) {
             TableColumn column = tbKamar.getColumnModel().getColumn(i);
             if(i==0){
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(130);
             }else if(i==1){
                 column.setPreferredWidth(200);
             }else if(i==2){

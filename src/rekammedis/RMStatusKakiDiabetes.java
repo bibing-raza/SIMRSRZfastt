@@ -64,8 +64,8 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private PreparedStatement ps, ps1;
-    private ResultSet rs, rs1;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4;
+    private ResultSet rs, rs1, rs2, rs3, rs4;
     private int i = 0, x = 0;
     private String nip = "", nipDokter = "", traumaMekanik = "", traumaKimia = "", traumaTermis = "", spontan = "", penyebabLain = "",
             tersandung = "", memakaiSepatu = "", tertusuk = "", dllSebutkanMekanik = "", terkenaZat = "", terkenaAirPanas = "", terkenaPemanas = "",
@@ -1472,7 +1472,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 122, 110, 23);
 
-        TnoTelp.setEditable(false);
         TnoTelp.setBackground(new java.awt.Color(245, 250, 240));
         TnoTelp.setForeground(new java.awt.Color(0, 0, 0));
         TnoTelp.setName("TnoTelp"); // NOI18N
@@ -1554,7 +1553,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         FormInput.add(jLabel17);
         jLabel17.setBounds(193, 150, 100, 23);
 
-        Tsuku.setEditable(false);
         Tsuku.setForeground(new java.awt.Color(0, 0, 0));
         Tsuku.setName("Tsuku"); // NOI18N
         FormInput.add(Tsuku);
@@ -6967,7 +6965,84 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             TNoRw.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 0).toString());
             TNoRM.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 1).toString());
             TPasien.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 2).toString());
-//            Valid.SetTgl(TtglRencana1, tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 184).toString());            
+            Tjenkel.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 3).toString());
+            Tusia.setText(Sequel.cariIsi("select concat(umurdaftar,' ',sttsumur,'.') from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
+            Tpnd.setText(Sequel.cariIsi("select pnd from pasien pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            Talamat.setText(Sequel.cariIsi("SELECT concat(p.alamat,', Kel. ',kl.nm_kel,', Kec.',kc.nm_kec,', Kab. ',kb.nm_kab) FROM pasien p "
+                    + "inner join kelurahan kl on kl.kd_kel=p.kd_kel inner join kecamatan kc on kc.kd_kec=p.kd_kec "
+                    + "inner join kabupaten kb on kb.kd_kab=p.kd_kab where p.no_rkm_medis='" + TNoRM.getText() + "'"));
+            TnoTelp.setText(Sequel.cariIsi("select no_tlp from pasien pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            Ttb.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 12).toString());
+            Tbb.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 13).toString());
+            Tbmi.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 14).toString());
+            Ttensi.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 15).toString());
+            Tsuku.setText(Sequel.cariIsi("select sb.nama_suku_bangsa from pasien p inner join suku_bangsa sb on sb.id=p.suku_bangsa "
+                    + "where p.no_rkm_medis='" + TNoRM.getText() + "'"));            
+            Valid.SetTgl(TtglMasuk, tbPasien.getValueAt(tbPasien.getSelectedRow(), 16).toString());
+            cmbJnsRawat.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 11).toString());
+            TlamaRawat.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 17).toString());
+            cmbTipeDiabet.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 18).toString());
+            TtipeDiabetLain.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 19).toString());
+            TlamaDiketahui.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 20).toString());
+            tampilRiwPengobatan();            
+            cmbMerokok.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 21).toString());
+            TmerokokYa.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 22).toString());
+            TmerokokMantan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 23).toString());
+            TlamaLuka.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 24).toString());
+            cmbSatuan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 25).toString());
+            cmbRiwEdukasi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 26).toString());
+            cmbJnsAlas.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 27).toString());
+            Tsepatu.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 28).toString());
+            traumaMekanik = tbPasien.getValueAt(tbPasien.getSelectedRow(), 29).toString();
+            traumaKimia = tbPasien.getValueAt(tbPasien.getSelectedRow(), 30).toString();
+            traumaTermis = tbPasien.getValueAt(tbPasien.getSelectedRow(), 31).toString();
+            spontan = tbPasien.getValueAt(tbPasien.getSelectedRow(), 32).toString();
+            penyebabLain = tbPasien.getValueAt(tbPasien.getSelectedRow(), 33).toString();
+            TlainSebutkan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 34).toString());
+            tersandung = tbPasien.getValueAt(tbPasien.getSelectedRow(), 35).toString();
+            memakaiSepatu = tbPasien.getValueAt(tbPasien.getSelectedRow(), 36).toString();
+            tertusuk = tbPasien.getValueAt(tbPasien.getSelectedRow(), 37).toString();
+            dllSebutkanMekanik = tbPasien.getValueAt(tbPasien.getSelectedRow(), 38).toString();
+            TdllSebutkanMekanik.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 39).toString());
+            terkenaZat = tbPasien.getValueAt(tbPasien.getSelectedRow(), 40).toString();
+            TterkenaZat.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 41).toString());
+            terkenaAirPanas = tbPasien.getValueAt(tbPasien.getSelectedRow(), 42).toString();
+            terkenaPemanas = tbPasien.getValueAt(tbPasien.getSelectedRow(), 43).toString();
+            dllSebutkanTermis = tbPasien.getValueAt(tbPasien.getSelectedRow(), 44).toString();
+            TdllSebutkanTermis.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 45).toString());
+            cmbRiwUlkus.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 46).toString());
+            tampilRiwLuka();            
+            riwAmputasiKiri = tbPasien.getValueAt(tbPasien.getSelectedRow(), 47).toString();
+            cmbRiwAmputasiKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 48).toString());
+            TjariKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 49).toString());
+            TtransKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 50).toString());
+            riwAmputasiKanan = tbPasien.getValueAt(tbPasien.getSelectedRow(), 51).toString();
+            cmbRiwAmputasiKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 52).toString());
+            TjariKanan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 53).toString());
+            TtransKanan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 54).toString());
+            mata = tbPasien.getValueAt(tbPasien.getSelectedRow(), 55).toString();
+            ginjal = tbPasien.getValueAt(tbPasien.getSelectedRow(), 56).toString();
+            penyakitJantung = tbPasien.getValueAt(tbPasien.getSelectedRow(), 57).toString();
+            hipertensi = tbPasien.getValueAt(tbPasien.getSelectedRow(), 58).toString();
+            strok = tbPasien.getValueAt(tbPasien.getSelectedRow(), 59).toString();
+            pad = tbPasien.getValueAt(tbPasien.getSelectedRow(), 60).toString();
+            cmbMata.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 61).toString());
+            TlaserTahun.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 62).toString());
+            cmbGinjal.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 63).toString());
+            nonUlkus = tbPasien.getValueAt(tbPasien.getSelectedRow(), 64).toString();
+            ulkus = tbPasien.getValueAt(tbPasien.getSelectedRow(), 65).toString();
+            ulkusGangen = tbPasien.getValueAt(tbPasien.getSelectedRow(), 66).toString();
+            selulitis = tbPasien.getValueAt(tbPasien.getSelectedRow(), 67).toString();
+            dorsalKanan = tbPasien.getValueAt(tbPasien.getSelectedRow(), 68).toString();
+            TdorsalKanan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 69).toString());
+            plantarKanan = tbPasien.getValueAt(tbPasien.getSelectedRow(), 70).toString();
+            TplantarKanan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 71).toString());
+            plantarKiri = tbPasien.getValueAt(tbPasien.getSelectedRow(), 72).toString();
+            TplantarKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 73).toString());
+            dorsalKiri = tbPasien.getValueAt(tbPasien.getSelectedRow(), 74).toString();
+            TdorsalKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 75).toString());
+            tampilDeformitas();
+            
 //            Valid.SetTgl(TtglRencana2, tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 186).toString());
 //            
             dataCek();
@@ -7528,9 +7603,10 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private void isPasien() {
         try {
             ps1 = koneksi.prepareStatement("SELECT p.*, if(p.jk='L','Laki-laki','Perempuan') jenkel, "
-                    + "concat(p.alamat,', Kel. ',kl.nm_kel,', Kec.',kc.nm_kec,', Kab. ',kb.nm_kab) alamatPx FROM pasien p "
+                    + "concat(p.alamat,', Kel. ',kl.nm_kel,', Kec.',kc.nm_kec,', Kab. ',kb.nm_kab) alamatPx, sb.nama_suku_bangsa FROM pasien p "
                     + "inner join kelurahan kl on kl.kd_kel=p.kd_kel inner join kecamatan kc on kc.kd_kec=p.kd_kec "
-                    + "inner join kabupaten kb on kb.kd_kab=p.kd_kab where p.no_rkm_medis='" + TNoRM.getText() + "'");
+                    + "inner join kabupaten kb on kb.kd_kab=p.kd_kab inner join suku_bangsa sb on sb.id=p.suku_bangsa "
+                    + "where p.no_rkm_medis='" + TNoRM.getText() + "'");
             try {
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
@@ -7539,6 +7615,8 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                     Tjenkel.setText(rs1.getString("jenkel"));                    
                     Tpnd.setText(rs1.getString("pnd"));
                     Talamat.setText(rs1.getString("alamatPx"));
+                    TnoTelp.setText(rs1.getString("no_tlp"));
+                    Tsuku.setText(rs1.getString("nama_suku_bangsa"));
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -7548,6 +7626,97 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                 }
                 if (ps1 != null) {
                     ps1.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilRiwPengobatan() {
+        Valid.tabelKosong(tabMode1);
+        try {
+            ps2 = koneksi.prepareStatement("SELECT * FROM riwayat_pengobatan_kaki_diabetes where no_rawat='" + TNoRw.getText() + "'");
+            try {
+                rs2 = ps2.executeQuery();
+                while (rs2.next()) {
+                    tabMode1.addRow(new String[]{
+                        rs2.getString("no_rawat"),
+                        rs2.getString("obat"),
+                        rs2.getString("jenis"),
+                        rs2.getString("dosis"),
+                        rs2.getString("lama"),
+                        rs2.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs2 != null) {
+                    rs2.close();
+                }
+                if (ps2 != null) {
+                    ps2.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilRiwLuka() {
+        Valid.tabelKosong(tabMode2);
+        try {
+            ps3 = koneksi.prepareStatement("SELECT * FROM riwayat_ulkus_kaki_diabetes where no_rawat='" + TNoRw.getText() + "'");
+            try {
+                rs3 = ps3.executeQuery();
+                while (rs3.next()) {
+                    tabMode2.addRow(new String[]{
+                        rs3.getString("no_rawat"),
+                        rs3.getString("tahun"),
+                        rs3.getString("lokasi"),
+                        rs3.getString("penyebab"),
+                        rs3.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs3 != null) {
+                    rs3.close();
+                }
+                if (ps3 != null) {
+                    ps3.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilDeformitas() {
+        Valid.tabelKosong(tabMode3);
+        try {
+            ps4 = koneksi.prepareStatement("SELECT * FROM deformitas_kaki_diabetes where no_rawat='" + TNoRw.getText() + "'");
+            try {
+                rs4 = ps4.executeQuery();
+                while (rs4.next()) {
+                    tabMode3.addRow(new String[]{
+                        rs4.getString("no_rawat"),
+                        rs4.getString("lokasi"),
+                        rs4.getString("kanan"),
+                        rs4.getString("kiri"),
+                        rs4.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs4 != null) {
+                    rs4.close();
+                }
+                if (ps4 != null) {
+                    ps4.close();
                 }
             }
         } catch (Exception e) {
