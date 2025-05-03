@@ -105,6 +105,7 @@ import rekammedis.RMPenilaianAwalMedisRalanMata;
 import rekammedis.RMPenilaianAwalMedisRalanTHT;
 import rekammedis.RMPenilaianTambahanGeriatri;
 import rekammedis.RMProtokolKemoterapi;
+import rekammedis.RMStatusKakiDiabetes;
 import rekammedis.RMTindakanKedokteran;
 import rekammedis.RMTransferSerahTerimaIGD;
 import rekammedis.RMTriasePediatrik;
@@ -131,7 +132,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             namapoli = "", norw_dipilih = "", kddokter_dipilih = "", TPngJwb = "", TAlmt = "", THbngn = "", TBiaya = "", TStatus = "", sttsumur1 = "",
             kdsuku = "", kdbahasa = "", skorAsesIGD = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", TotSkorGZD = "", TotSkorGZA = "",
             faktorresikoigd = "", TotSkorRJ = "", kesimpulanResikoJatuh = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "", pilihMenu = "",
-            konfirmasi_terapi = "", aksesRM = "", dataKonfir = "";
+            konfirmasi_terapi = "", aksesRM = "", dataKonfir = "", triaseIGD = "", triasePediatrik = "", triasePonek = "";
     private String bangsal = Sequel.cariIsi("select kd_bangsal from set_lokasi limit 1"), nonota = "", URUTNOREG = "",
             sqlpsotomatis2 = "insert into rawat_jl_dr values (?,?,?,?,?,?,?,?,?,?,?)",
             sqlpsotomatis2petugas = "insert into rawat_jl_pr values (?,?,?,?,?,?,?,?,?,?,?)",
@@ -182,7 +183,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         tabModekasir = new DefaultTableModel(null, new String[]{
             "No.Rawat", "Kd.Dokter", "Dokter Dituju", "Nomer RM", "Nama Pasien", "Status", "Poliklinik/Inst.", "Jenis Bayar", "Jns. Kunjungan",
             "Reg. Online", "Tanggal", "Jam", "No. Reg.", "Status Klaim (RM IGD)", "No. Telpon/HP", "Alamat Pasien", "cek_asesmen_medik_igd", 
-            "cek_penanganan_dokter_poli", "cekantrian", "tglreg", "kdpoli"
+            "cek_penanganan_dokter_poli", "cekantrian", "tglreg", "kdpoli", "Triase IGD", "Triase Pediatrik", "Triase Ponek"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -194,7 +195,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         tbKasirRalan.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbKasirRalan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 21; i++) {
+        for (i = 0; i < 24; i++) {
             TableColumn column = tbKasirRalan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
@@ -245,6 +246,12 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             } else if (i == 20) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 21) {
+                column.setPreferredWidth(80);
+            } else if (i == 22) {
+                column.setPreferredWidth(95);
+            } else if (i == 23) {
+                column.setPreferredWidth(80);
             }
         }
 //        tbKasirRalan.setDefaultRenderer(Object.class, new WarnaTable());
@@ -831,6 +838,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnLihatDataCPPTvk = new javax.swing.JMenuItem();
         MnVerifCPPTvk = new javax.swing.JMenuItem();
         ppDokumenJangMed = new javax.swing.JMenuItem();
+        MnStatusKakiDiabetes = new javax.swing.JMenuItem();
         ppPersetujuanTindakan = new javax.swing.JMenuItem();
         ppRekamPsikologis = new javax.swing.JMenuItem();
         ppRekamPsikologiPerkawinan = new javax.swing.JMenuItem();
@@ -2886,6 +2894,22 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
         MnRekamMedis.add(ppDokumenJangMed);
 
+        MnStatusKakiDiabetes.setBackground(new java.awt.Color(255, 255, 254));
+        MnStatusKakiDiabetes.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnStatusKakiDiabetes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnStatusKakiDiabetes.setText("Status Kaki Diabetes");
+        MnStatusKakiDiabetes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnStatusKakiDiabetes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnStatusKakiDiabetes.setIconTextGap(5);
+        MnStatusKakiDiabetes.setName("MnStatusKakiDiabetes"); // NOI18N
+        MnStatusKakiDiabetes.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnStatusKakiDiabetes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnStatusKakiDiabetesBtnPrintActionPerformed(evt);
+            }
+        });
+        MnRekamMedis.add(MnStatusKakiDiabetes);
+
         ppPersetujuanTindakan.setBackground(new java.awt.Color(255, 255, 254));
         ppPersetujuanTindakan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppPersetujuanTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -3911,7 +3935,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-05-2025" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4777,7 +4801,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-05-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4801,7 +4825,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-05-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -5021,7 +5045,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-05-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5040,7 +5064,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-05-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5132,7 +5156,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         Scroll1.setOpaque(true);
 
         tbKasirRalan.setAutoCreateRowSorter(true);
-        tbKasirRalan.setToolTipText("");
         tbKasirRalan.setComponentPopupMenu(jPopupMenu1);
         tbKasirRalan.setName("tbKasirRalan"); // NOI18N
         tbKasirRalan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -9826,6 +9849,33 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnVerifCPPTvkActionPerformed
 
+    private void MnStatusKakiDiabetesBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnStatusKakiDiabetesBtnPrintActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (tbKasirRalan.getSelectedRow() != -1) {
+                if (akses.getadmin() == true) {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    akses.setform("DlgKasirRalan");
+                    RMStatusKakiDiabetes form = new RMStatusKakiDiabetes(null, false);
+                    form.emptTeks();
+                    form.isCek();
+                    form.setData(TNoRw.getText(), NoRM.getText());
+                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    form.setLocationRelativeTo(internalFrame1);
+                    form.setVisible(true);
+                    this.setCursor(Cursor.getDefaultCursor());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+                }
+            }
+        }
+    }//GEN-LAST:event_MnStatusKakiDiabetesBtnPrintActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -10008,6 +10058,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnSensusParu;
     private javax.swing.JMenuItem MnSpirometri;
     private javax.swing.JMenu MnStatus;
+    private javax.swing.JMenuItem MnStatusKakiDiabetes;
     private javax.swing.JMenuItem MnStatusPasienAllKunjungan;
     private javax.swing.JMenuItem MnSudahDiperiksaPetugas;
     private javax.swing.JMenuItem MnSuratIstirahatSakit;
@@ -10204,6 +10255,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     public void tampilkasir() {
         StringBuilder sb = new StringBuilder();
         aksesRM = "";
+        triaseIGD = "";
+        triasePediatrik = "";
+        triasePonek = "";
         Valid.tabelKosong(tabModekasir);
         try {
             sb.append("SELECT rp.no_rawat, rp.kd_dokter, d.nm_dokter, rp.no_rkm_medis, concat(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),', ',if(p.jk='L','Laki-laki','Perempuan'),')') nm_pasien, ");
@@ -10324,9 +10378,60 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                                     Sequel.menyimpanIgnore("antrian_prioritas", "'" + rskasir.getString("no_rawat") + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
                                 }
                             }
-//                            Sequel.meghapus("antrian_prioritas", "no_rawat", rskasir.getString("no_rawat"));
-//                            Sequel.menyimpanIgnore("antrian_prioritas", "'" + rskasir.getString("no_rawat") + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
                         }
+                    }
+                    
+                    //cek triase IGD
+                    if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "'") > 0) {
+                        if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_resusitasi='ya'") > 0) {
+                            triaseIGD = "Merah";
+                        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_non_resusitasi='ya'") > 0) {
+                            triaseIGD = "Kuning";
+                        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_klinik='ya'") > 0) {
+                            triaseIGD = "Hijau";
+                        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_doa='ya'") > 0) {
+                            triaseIGD = "Hitam";
+                        } else {
+                            triaseIGD = "-";
+                        }
+                    } else {
+                        triaseIGD = "-";
+                    }
+                    
+                    //cek triase pediatrik
+                    if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "'") > 0) {
+                        if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level1='ya'") > 0) {
+                            triasePediatrik = "Merah (Level 1)";
+                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level2='ya'") > 0) {
+                            triasePediatrik = "Merah (Level 2)";
+                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level3='ya'") > 0) {
+                            triasePediatrik = "Kuning (Level 3)";
+                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level4='ya'") > 0) {
+                            triasePediatrik = "Kuning (Level 4)";
+                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level5='ya'") > 0) {
+                            triasePediatrik = "Hijau";
+                        } else {
+                            triasePediatrik = "-";
+                        }
+                    } else {
+                        triasePediatrik = "-";
+                    }
+                    
+                    //cek triase ponek
+                    if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "'") > 0) {
+                        if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_resusitasi='ya'") > 0) {
+                            triasePonek = "Merah";
+                        } else if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_non_resusitasi='ya'") > 0) {
+                            triasePonek = "Kuning";
+                        } else if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_klinik='ya'") > 0) {
+                            triasePonek = "Hijau";
+                        } else if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_doa='ya'") > 0) {
+                            triasePonek = "Hitam";
+                        } else {
+                            triasePonek = "-";
+                        }
+                    } else {
+                        triasePonek = "-";
                     }
                     
                     tabModekasir.addRow(new String[]{
@@ -10350,7 +10455,10 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         Sequel.cariIsi("select ifnull(no_rawat,'') from pemeriksaan_ralan where no_rawat='" + rskasir.getString("no_rawat") + "'"),
                         Sequel.cariIsi("select count(-1) from antrian_prioritas where no_rawat='" + rskasir.getString("no_rawat") + "'"),
                         rskasir.getString("tgl_registrasi"),
-                        rskasir.getString("kd_poli")
+                        rskasir.getString("kd_poli"),
+                        triaseIGD,
+                        triasePediatrik,
+                        triasePonek
                     });
                 }
             } catch (Exception e) {
@@ -10604,6 +10712,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnKonsulInternal.setEnabled(akses.gettindakan_ralan());
         MnDiet.setEnabled(akses.getdiet_pasien());
         MnDataHAIs.setEnabled(akses.getdata_HAIs());
+        MnStatusKakiDiabetes.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         MnPenilaianAwalKeperawatanRalan.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         MnPenilaianAwalKeperawatanRalanKemo.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         MnPenilaianAwalKeperawatanKebidanan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());

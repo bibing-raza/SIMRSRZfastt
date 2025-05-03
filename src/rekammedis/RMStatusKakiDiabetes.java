@@ -64,8 +64,8 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private PreparedStatement ps, ps1, ps2, ps3, ps4;
-    private ResultSet rs, rs1, rs2, rs3, rs4;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5;
     private int i = 0, x = 0;
     private String nip = "", nipDokter = "", traumaMekanik = "", traumaKimia = "", traumaTermis = "", spontan = "", penyebabLain = "",
             tersandung = "", memakaiSepatu = "", tertusuk = "", dllSebutkanMekanik = "", terkenaZat = "", terkenaAirPanas = "", terkenaPemanas = "",
@@ -1472,6 +1472,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 122, 110, 23);
 
+        TnoTelp.setEditable(false);
         TnoTelp.setBackground(new java.awt.Color(245, 250, 240));
         TnoTelp.setForeground(new java.awt.Color(0, 0, 0));
         TnoTelp.setName("TnoTelp"); // NOI18N
@@ -1553,6 +1554,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         FormInput.add(jLabel17);
         jLabel17.setBounds(193, 150, 100, 23);
 
+        Tsuku.setEditable(false);
         Tsuku.setForeground(new java.awt.Color(0, 0, 0));
         Tsuku.setName("Tsuku"); // NOI18N
         FormInput.add(Tsuku);
@@ -1565,7 +1567,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel18.setBounds(495, 150, 70, 23);
 
         TtglMasuk.setEditable(false);
-        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-04-2025" }));
+        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
         TtglMasuk.setDisplayFormat("dd-MM-yyyy");
         TtglMasuk.setName("TtglMasuk"); // NOI18N
         TtglMasuk.setOpaque(false);
@@ -2519,7 +2521,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnBMI);
-        BtnBMI.setBounds(725, 122, 100, 30);
+        BtnBMI.setBounds(725, 122, 110, 30);
 
         jLabel51.setForeground(new java.awt.Color(0, 0, 0));
         jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -4101,7 +4103,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         chkTglRonsen.setBounds(152, 3210, 80, 23);
 
         TtglRonsen.setEditable(false);
-        TtglRonsen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-04-2025" }));
+        TtglRonsen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
         TtglRonsen.setDisplayFormat("dd-MM-yyyy");
         TtglRonsen.setName("TtglRonsen"); // NOI18N
         TtglRonsen.setOpaque(false);
@@ -4524,7 +4526,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel141.setBounds(0, 3730, 150, 23);
 
         TtglSimpan.setEditable(false);
-        TtglSimpan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-04-2025" }));
+        TtglSimpan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
         TtglSimpan.setDisplayFormat("dd-MM-yyyy");
         TtglSimpan.setName("TtglSimpan"); // NOI18N
         TtglSimpan.setOpaque(false);
@@ -4590,7 +4592,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-04-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4604,7 +4606,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-04-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6933,8 +6935,9 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode4);
     }
     
-    public void setData(String norwt) {
+    public void setData(String norwt, String norm) {
         TNoRw.setText(norwt);
+        TNoRM.setText(norm);
         isPasien();
         Tusia.setText(Sequel.cariIsi("select concat(umurdaftar,' ',sttsumur,'.') from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
         Valid.SetTgl(TtglMasuk, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
@@ -6944,10 +6947,10 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getcppt());
-        BtnHapus.setEnabled(akses.getcppt());
-        BtnPrint.setEnabled(akses.getcppt());
-        BtnEdit.setEnabled(akses.getcppt());
+        BtnSimpan.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
+        BtnHapus.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
+        BtnPrint.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
+        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         
         if (akses.getjml2() >= 1) {
             nip = akses.getkode();            
@@ -6961,6 +6964,10 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     
     private void getData() {
         variabelBersih();
+        BtnTambahObatActionPerformed(null);
+        BtnTambahLukaActionPerformed(null);
+        BtnTambahDeforActionPerformed(null);
+        BtnTambahMikroActionPerformed(null);
         if (tbPasien.getSelectedRow() != -1) {
             TNoRw.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 0).toString());
             TNoRM.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 1).toString());
@@ -6984,7 +6991,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             cmbTipeDiabet.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 18).toString());
             TtipeDiabetLain.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 19).toString());
             TlamaDiketahui.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 20).toString());
-            tampilRiwPengobatan();            
+            tampilRiwPengobatan();
             cmbMerokok.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 21).toString());
             TmerokokYa.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 22).toString());
             TmerokokMantan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 23).toString());
@@ -7011,7 +7018,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             dllSebutkanTermis = tbPasien.getValueAt(tbPasien.getSelectedRow(), 44).toString();
             TdllSebutkanTermis.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 45).toString());
             cmbRiwUlkus.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 46).toString());
-            tampilRiwLuka();            
+            tampilRiwLuka();
             riwAmputasiKiri = tbPasien.getValueAt(tbPasien.getSelectedRow(), 47).toString();
             cmbRiwAmputasiKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 48).toString());
             TjariKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 49).toString());
@@ -7041,7 +7048,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             TplantarKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 73).toString());
             dorsalKiri = tbPasien.getValueAt(tbPasien.getSelectedRow(), 74).toString();
             TdorsalKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 75).toString());
-            tampilDeformitas();            
+            tampilDeformitas();
             cmbKulKananKering.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 76).toString());
             cmbKulKiriKering.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 77).toString());
             cmbKulKananTumit.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 78).toString());
@@ -7059,9 +7066,84 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             cmbKulKananEdema.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 90).toString());
             cmbKulKiriEdema.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 91).toString());
             cmbKulKananHealed.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 92).toString());
-            cmbKulKiriHealed.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 93).toString());
-            
-//            Valid.SetTgl(TtglRencana2, tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 186).toString());            
+            cmbKulKiriHealed.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 93).toString());            
+            cmbKukKananMenebal.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 94).toString());
+            cmbKukKiriMenebal.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 95).toString());
+            cmbKukKananInfeksi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 96).toString());
+            cmbKukKiriInfeksi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 97).toString());
+            cmbKukKananPerubahan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 98).toString());
+            cmbKukKiriPerubahan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 99).toString());
+            cmbKukKananRapuh.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 100).toString());
+            cmbKukKiriRapuh.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 101).toString());
+            cmbKukKananIngro.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 102).toString());
+            cmbKukKiriIngro.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 103).toString());
+            cmbKukKananAtrofi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 104).toString());
+            cmbKukKiriAtrofi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 105).toString());
+            cmbKukKananLain.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 106).toString());
+            cmbKukKiriLain.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(),107).toString());
+            cmbTelKananHallu.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 108).toString());
+            cmbTelKiriHallu.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 109).toString());
+            cmbTelKananPel.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 110).toString());
+            cmbTelKiriPel.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 111).toString());
+            cmbTelKananChar.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 112).toString());
+            cmbTelKiriChar.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 113).toString());
+            cmbJarKananHamer.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 114).toString());
+            cmbJarKiriHamer.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 115).toString());
+            cmbJarKananClaw.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 116).toString());
+            cmbJarKiriClaw.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 117).toString());
+            cmbJarKananHiper.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 118).toString());
+            cmbJarKiriHiper.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 119).toString());
+            cmbJarKananMas.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 120).toString());
+            cmbJarKiriMas.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 121).toString());
+            cmbJarKananLain.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 122).toString());
+            cmbJarKiriLain.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 123).toString());
+            TketLainKanan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 124).toString());
+            TketLainKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 125).toString());            
+            cmbDorsalisPedKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 126).toString());
+            cmbDorsalisPedKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 127).toString());
+            cmbTibialisKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 128).toString());
+            cmbTibialisKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 129).toString());
+            TtdsBra.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 130).toString());
+            TtdsDor.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 131).toString());
+            TskorAbi.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 132).toString());
+            cmbMonoKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 133).toString());
+            cmbMonoKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 134).toString());
+            cmbGarKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 135).toString());
+            cmbGarKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 136).toString());
+            cmbRefKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 137).toString());
+            cmbRefKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 138).toString());
+            derajat0 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 139).toString();            
+            derajat1 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 140).toString();
+            derajat2 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 141).toString();
+            derajat3 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 142).toString();
+            derajat4 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 143).toString();
+            derajat5 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 144).toString();
+            TpemeriksaanLab.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 145).toString());
+            ronsenKaki = tbPasien.getValueAt(tbPasien.getSelectedRow(), 146).toString();
+            Valid.SetTgl(TtglRonsen, tbPasien.getValueAt(tbPasien.getSelectedRow(), 147).toString());
+            TkesRonsen.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 148).toString());
+            cmbOsteo.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 149).toString());
+            TlokRonsen.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 150).toString());
+            tampilMikrobiologi();            
+            TkesRonsenTorax.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 151).toString());
+            TkesEkg.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 152).toString());
+            TusgDopler.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 153).toString());
+            surgical = tbPasien.getValueAt(tbPasien.getSelectedRow(), 154).toString();
+            chemical = tbPasien.getValueAt(tbPasien.getSelectedRow(), 155).toString();
+            biology = tbPasien.getValueAt(tbPasien.getSelectedRow(), 156).toString();
+            hidrocol = tbPasien.getValueAt(tbPasien.getSelectedRow(), 157).toString();
+            foam = tbPasien.getValueAt(tbPasien.getSelectedRow(), 158).toString();
+            allginate = tbPasien.getValueAt(tbPasien.getSelectedRow(), 159).toString();
+            silver = tbPasien.getValueAt(tbPasien.getSelectedRow(), 160).toString();
+            cadexomer = tbPasien.getValueAt(tbPasien.getSelectedRow(), 161).toString();
+            madu = tbPasien.getValueAt(tbPasien.getSelectedRow(), 162).toString();
+            modernDresingLain = tbPasien.getValueAt(tbPasien.getSelectedRow(), 163).toString();
+            TlainModern.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 164).toString());
+            Valid.SetTgl(TtglSimpan, tbPasien.getValueAt(tbPasien.getSelectedRow(), 165).toString());
+            nip = tbPasien.getValueAt(tbPasien.getSelectedRow(), 166).toString();
+            nipDokter = tbPasien.getValueAt(tbPasien.getSelectedRow(), 167).toString();
+            TnmPerawat.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 9).toString());
+            TnmDokter.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 10).toString());            
             dataCek();
         }
     }
@@ -7483,14 +7565,373 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     }
     
     private void dataCek() {
-        //amnion
-//        if (jernih.equals("ya")) {
-//            chkJernih.setSelected(true);
-//        } else {
-//            chkJernih.setSelected(false);
-//        }
+        if (cmbTipeDiabet.getSelectedIndex() == 3) {
+            TtipeDiabetLain.setEnabled(true);
+        } else {
+            TtipeDiabetLain.setEnabled(false);
+        }
+        
+        if (cmbJnsAlas.getSelectedIndex() == 3) {
+            Tsepatu.setEnabled(true);
+        } else {
+            Tsepatu.setEnabled(false);
+        }
+        
+        if (traumaMekanik.equals("ya")) {
+            chkTraumaMekanik.setSelected(true);
+            chkTersandung.setEnabled(true);
+            chkMemakaiSepatu.setEnabled(true);
+            chkTertusuk.setEnabled(true);
+            chkDllsebutkanMekanik.setEnabled(true);
+        } else {
+            chkTraumaMekanik.setSelected(false);
+            chkTersandung.setEnabled(false);
+            chkMemakaiSepatu.setEnabled(false);
+            chkTertusuk.setEnabled(false);
+            chkDllsebutkanMekanik.setEnabled(false);
+        }
+        
+        if (tersandung.equals("ya")) {
+            chkTersandung.setSelected(true);
+        } else {
+            chkTersandung.setSelected(false);
+        }
+        
+        if (memakaiSepatu.equals("ya")) {
+            chkMemakaiSepatu.setSelected(true);
+        } else {
+            chkMemakaiSepatu.setSelected(false);
+        }
+        
+        if (tertusuk.equals("ya")) {
+            chkTertusuk.setSelected(true);
+        } else {
+            chkTertusuk.setSelected(false);
+        }
+        
+        if (dllSebutkanMekanik.equals("ya")) {
+            chkDllsebutkanMekanik.setSelected(true);
+            TdllSebutkanMekanik.setEnabled(true);
+        } else {
+            chkDllsebutkanMekanik.setSelected(false);
+            TdllSebutkanMekanik.setEnabled(false);
+        }
+        
+        if (traumaKimia.equals("ya")) {
+            chkTraumaKimia.setSelected(true);
+            chkTerkenaZat.setEnabled(true);
+        } else {
+            chkTraumaKimia.setSelected(false);
+            chkTerkenaZat.setEnabled(false);
+        }
+        
+        if (terkenaZat.equals("ya")) {
+            chkTerkenaZat.setSelected(true);
+            TterkenaZat.setEnabled(true);
+        } else {
+            chkTerkenaZat.setSelected(false);
+            TterkenaZat.setEnabled(false);
+        }
+        
+        if (traumaTermis.equals("ya")) {
+            chkTraumaTermis.setSelected(true);
+            chkTerkenaAir.setEnabled(true);
+            chkTerkenaPemanas.setEnabled(true);
+            chkDllsebutkanTermis.setEnabled(true);
+        } else {
+            chkTraumaTermis.setSelected(false);
+            chkTerkenaAir.setEnabled(false);
+            chkTerkenaPemanas.setEnabled(false);
+            chkDllsebutkanTermis.setEnabled(false);
+        }
+        
+        if (terkenaAirPanas.equals("ya")) {
+            chkTerkenaAir.setSelected(true);
+        } else {
+            chkTerkenaAir.setSelected(false);
+        }
+        
+        if (terkenaPemanas.equals("ya")) {
+            chkTerkenaPemanas.setSelected(true);
+        } else {
+            chkTerkenaPemanas.setSelected(false);
+        }
+        
+        if (dllSebutkanTermis.equals("ya")) {
+            chkDllsebutkanTermis.setSelected(true);
+            TdllSebutkanTermis.setEnabled(true);
+        } else {
+            chkDllsebutkanTermis.setSelected(false);
+            TdllSebutkanTermis.setEnabled(false);
+        }
+        
+        if (spontan.equals("ya")) {
+            chkSpontan.setSelected(true);
+        } else {
+            chkSpontan.setSelected(false);
+        }
+        
+        if (penyebabLain.equals("ya")) {
+            chkLainLain.setSelected(true);
+            TlainSebutkan.setEnabled(true);
+        } else {
+            chkLainLain.setSelected(false);
+            TlainSebutkan.setEnabled(false);
+        }
+        
+        if (riwAmputasiKiri.equals("ya")) {
+            chkAmputasiKiri.setSelected(true);
+            cmbRiwAmputasiKiri.setEnabled(true);            
+        } else {
+            chkAmputasiKiri.setSelected(false);
+            cmbRiwAmputasiKiri.setEnabled(false);
+        }
+        
+        if (cmbRiwAmputasiKiri.getSelectedIndex() == 3) {
+            TjariKiri.setEnabled(true);
+            TtransKiri.setEnabled(false);
+        } else if (cmbRiwAmputasiKiri.getSelectedIndex() == 4) {
+            TjariKiri.setEnabled(false);
+            TtransKiri.setEnabled(true);
+        } else {
+            TjariKiri.setEnabled(false);
+            TtransKiri.setEnabled(false);
+        }
+        
+        if (riwAmputasiKanan.equals("ya")) {
+            chkAmputasiKanan.setSelected(true);
+            cmbRiwAmputasiKanan.setEnabled(true);            
+        } else {
+            chkAmputasiKanan.setSelected(false);
+            cmbRiwAmputasiKanan.setEnabled(false);
+        }
+        
+        if (cmbRiwAmputasiKanan.getSelectedIndex() == 3) {
+            TjariKanan.setEnabled(true);
+            TtransKanan.setEnabled(false);
+        } else if (cmbRiwAmputasiKanan.getSelectedIndex() == 4) {
+            TjariKanan.setEnabled(false);
+            TtransKanan.setEnabled(true);
+        } else {
+            TjariKanan.setEnabled(false);
+            TtransKanan.setEnabled(false);
+        }
+        
+        if (mata.equals("ya")) {
+            chkMata.setSelected(true);
+            cmbMata.setEnabled(true);            
+        } else {
+            chkMata.setSelected(false);
+            cmbMata.setEnabled(false);
+        }
+
+        if (cmbMata.getSelectedIndex() == 4) {
+            TlaserTahun.setEnabled(true);
+        } else {
+            TlaserTahun.setEnabled(false);
+        }
+        
+        if (ginjal.equals("ya")) {
+            chkGinjal.setSelected(true);
+            cmbGinjal.setEnabled(true);
+        } else {
+            chkGinjal.setSelected(false);
+            cmbGinjal.setEnabled(false);
+        }
+        
+        if (penyakitJantung.equals("ya")) {
+            chkPenyJantung.setSelected(true);
+        } else {
+            chkPenyJantung.setSelected(false);
+        }
+        
+        if (hipertensi.equals("ya")) {
+            chkHipertensi.setSelected(true);
+        } else {
+            chkHipertensi.setSelected(false);
+        }
+        
+        if (strok.equals("ya")) {
+            chkStrok.setSelected(true);
+        } else {
+            chkStrok.setSelected(false);
+        }
+        
+        if (pad.equals("ya")) {
+            chkPad.setSelected(true);
+        } else {
+            chkPad.setSelected(false);
+        }
+        
+        if (nonUlkus.equals("ya")) {
+            chkNonUlkus.setSelected(true);
+        } else {
+            chkNonUlkus.setSelected(false);
+        }
+        
+        if (ulkus.equals("ya")) {
+            chkUlkus.setSelected(true);
+        } else {
+            chkUlkus.setSelected(false);
+        }
+        
+        if (ulkusGangen.equals("ya")) {
+            chkUlkusGangen.setSelected(true);
+        } else {
+            chkUlkusGangen.setSelected(false);
+        }
+        
+        if (selulitis.equals("ya")) {
+            chkSelulitis.setSelected(true);
+        } else {
+            chkSelulitis.setSelected(false);
+        }
+        
+        if (dorsalKanan.equals("ya")) {
+            chkDorsalKanan.setSelected(true);
+            TdorsalKanan.setEnabled(true);
+        } else {
+            chkDorsalKanan.setSelected(false);
+            TdorsalKanan.setEnabled(false);
+        }
+        
+        if (plantarKanan.equals("ya")) {
+            chkPlantarKanan.setSelected(true);
+            TplantarKanan.setEnabled(true);
+        } else {
+            chkPlantarKanan.setSelected(false);
+            TplantarKanan.setEnabled(false);
+        }
+        
+        if (dorsalKiri.equals("ya")) {
+            chkDorsalKiri.setSelected(true);
+            TdorsalKiri.setEnabled(true);
+        } else {
+            chkDorsalKiri.setSelected(false);
+            TdorsalKiri.setEnabled(false);
+        }
+        
+        if (plantarKiri.equals("ya")) {
+            chkPlantarKiri.setSelected(true);
+            TplantarKiri.setEnabled(true);
+        } else {
+            chkPlantarKiri.setSelected(false);
+            TplantarKiri.setEnabled(false);
+        }
+        
+        if (derajat0.equals("ya")) {
+            chkDerajat0.setSelected(true);
+        } else {
+            chkDerajat0.setSelected(false);
+        }
+        
+        if (derajat1.equals("ya")) {
+            chkDerajat1.setSelected(true);
+        } else {
+            chkDerajat1.setSelected(false);
+        }
+        
+        if (derajat2.equals("ya")) {
+            chkDerajat2.setSelected(true);
+        } else {
+            chkDerajat2.setSelected(false);
+        }
+        
+        if (derajat3.equals("ya")) {
+            chkDerajat3.setSelected(true);
+        } else {
+            chkDerajat3.setSelected(false);
+        }
+        
+        if (derajat4.equals("ya")) {
+            chkDerajat4.setSelected(true);
+        } else {
+            chkDerajat4.setSelected(false);
+        }
+        
+        if (derajat5.equals("ya")) {
+            chkDerajat5.setSelected(true);
+        } else {
+            chkDerajat5.setSelected(false);
+        }
+
+        if (ronsenKaki.equals("ya")) {
+            chkTglRonsen.setSelected(true);
+            TtglRonsen.setEnabled(true);
+            TkesRonsen.setEnabled(true);
+            cmbOsteo.setEnabled(true);
+            TlokRonsen.setEnabled(true);
+        } else {
+            chkTglRonsen.setSelected(false);
+            TtglRonsen.setEnabled(false);
+            TkesRonsen.setEnabled(false);
+            cmbOsteo.setEnabled(false);
+            TlokRonsen.setEnabled(false);
+        }
+        
+        if (surgical.equals("ya")) {
+            chkSurgical.setSelected(true);
+        } else {
+            chkSurgical.setSelected(false);
+        }
+        
+        if (chemical.equals("ya")) {
+            chkChemical.setSelected(true);
+        } else {
+            chkChemical.setSelected(false);
+        }
+        
+        if (biology.equals("ya")) {
+            chkBiology.setSelected(true);
+        } else {
+            chkBiology.setSelected(false);
+        }
+        
+        if (hidrocol.equals("ya")) {
+            chkHydro.setSelected(true);
+        } else {
+            chkHydro.setSelected(false);
+        }
+        
+        if (foam.equals("ya")) {
+            chkFoam.setSelected(true);
+        } else {
+            chkFoam.setSelected(false);
+        }
+        
+        if (allginate.equals("ya")) {
+            chkAlgin.setSelected(true);
+        } else {
+            chkAlgin.setSelected(false);
+        }
+        
+        if (silver.equals("ya")) {
+            chkSilver.setSelected(true);
+        } else {
+            chkSilver.setSelected(false);
+        }
+        
+        if (cadexomer.equals("ya")) {
+            chkCadex.setSelected(true);
+        } else {
+            chkCadex.setSelected(false);
+        }
+        
+        if (madu.equals("ya")) {
+            chkMadu.setSelected(true);
+        } else {
+            chkMadu.setSelected(false);
+        }
+        
+        if (modernDresingLain.equals("ya")) {
+            chkLainModern.setSelected(true);
+            TlainModern.setEnabled(true);
+        } else {
+            chkLainModern.setSelected(false);
+            TlainModern.setEnabled(false);
+        }
     }
-    
+        
     private void variabelBersih() {
         nip = "";
         nipDokter = "";
@@ -7582,7 +8023,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 
     private void hitungBMI() {
         try {
-            double A = 0, B = 0, C = 0, D = 0, Total = 0;
+            double A = 0, B = 0, C = 0, D = 0, hasil = 0;
             if (Tbb.getText().equals("")) {
                 Tbb.setText("0");
             }
@@ -7601,13 +8042,16 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             
             A = Double.parseDouble(Tbb.getText());
             B = Double.parseDouble(Ttb.getText());
-            C = B * B;
-            D = A / C;
+            //tinggi badan diubah ke meter (cm ke m = cm dibagi 100)
+            C = B / 100;
+            D = C * C;            
+            hasil = A / D;
             
-            if (Valid.SetAngka4(Total).equals("NaN") || Tbb.getText().equals("") || Ttb.getText().equals("")) {
+            if (Valid.SetAngka4(hasil).equals("NaN") || Valid.SetAngka4(hasil).equals("∞")
+                    || Tbb.getText().equals("") || Ttb.getText().equals("")) {
                 Tbmi.setText("0");
             } else {
-                Tbmi.setText(Valid.SetAngka4(Total));
+                Tbmi.setText(Valid.SetAngka4(hasil));
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
@@ -7627,7 +8071,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             try {
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
-                    TNoRM.setText(rs1.getString("no_rkm_medis"));
                     TPasien.setText(rs1.getString("nm_pasien"));
                     Tjenkel.setText(rs1.getString("jenkel"));                    
                     Tpnd.setText(rs1.getString("pnd"));
@@ -7653,7 +8096,8 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private void tampilRiwPengobatan() {
         Valid.tabelKosong(tabMode1);
         try {
-            ps2 = koneksi.prepareStatement("SELECT * FROM riwayat_pengobatan_kaki_diabetes where no_rawat='" + TNoRw.getText() + "'");
+            ps2 = koneksi.prepareStatement("SELECT * FROM riwayat_pengobatan_kaki_diabetes where "
+                    + "no_rawat='" + TNoRw.getText() + "' order by waktu_simpan");
             try {
                 rs2 = ps2.executeQuery();
                 while (rs2.next()) {
@@ -7684,7 +8128,8 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private void tampilRiwLuka() {
         Valid.tabelKosong(tabMode2);
         try {
-            ps3 = koneksi.prepareStatement("SELECT * FROM riwayat_ulkus_kaki_diabetes where no_rawat='" + TNoRw.getText() + "'");
+            ps3 = koneksi.prepareStatement("SELECT * FROM riwayat_ulkus_kaki_diabetes where "
+                    + "no_rawat='" + TNoRw.getText() + "' order by waktu_simpan");
             try {
                 rs3 = ps3.executeQuery();
                 while (rs3.next()) {
@@ -7714,7 +8159,8 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private void tampilDeformitas() {
         Valid.tabelKosong(tabMode3);
         try {
-            ps4 = koneksi.prepareStatement("SELECT * FROM deformitas_kaki_diabetes where no_rawat='" + TNoRw.getText() + "'");
+            ps4 = koneksi.prepareStatement("SELECT * FROM deformitas_kaki_diabetes where "
+                    + "no_rawat='" + TNoRw.getText() + "' order by waktu_simpan");
             try {
                 rs4 = ps4.executeQuery();
                 while (rs4.next()) {
@@ -7734,6 +8180,37 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                 }
                 if (ps4 != null) {
                     ps4.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilMikrobiologi() {
+        Valid.tabelKosong(tabMode4);
+        try {
+            ps5 = koneksi.prepareStatement("SELECT * FROM mikrobiologi_kaki_diabetes where "
+                    + "no_rawat='" + TNoRw.getText() + "' order by waktu_simpan");
+            try {
+                rs5 = ps5.executeQuery();
+                while (rs5.next()) {
+                    tabMode4.addRow(new String[]{
+                        rs5.getString("no_rawat"),
+                        rs5.getString("bakteri"),
+                        rs5.getString("sensitif"),
+                        rs5.getString("resisten"),
+                        rs5.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs5 != null) {
+                    rs5.close();
+                }
+                if (ps5 != null) {
+                    ps5.close();
                 }
             }
         } catch (Exception e) {

@@ -633,7 +633,7 @@ public final class DlgSensusHarianPoli extends javax.swing.JDialog {
                 tampilHD();
             } else if (kdpoli.getText().equals("PAR")) {
                 tampilPARU();
-            } else if (kdpoli.getText().equals("IRM")) {
+            } else if (kdpoli.getText().equals("IRM") || kdpoli.getText().equals("IRS")) {
                 tampilRehabMedik();
             } else {
                 tampil();
