@@ -4629,6 +4629,7 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         if (Sequel.cariRegistrasi(TNoRw.getText()) > 0) {
             JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi..!!");
         } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setstatus(true);
             DlgKamarInap dlgki = new DlgKamarInap(null, false);
             dlgki.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
@@ -4636,10 +4637,11 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             dlgki.emptTeks();
             dlgki.isCek();
             dlgki.setNoRm(TNoRw.getText());
-            //dlgki.tampil();
+            dlgki.tampil();
             dlgki.setVisible(true);
             dlgki.cekKetMati();
             dlgki.UserValid();
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }
 }//GEN-LAST:event_MnKamarInapActionPerformed

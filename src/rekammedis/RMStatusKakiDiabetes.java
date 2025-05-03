@@ -7041,10 +7041,27 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             TplantarKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 73).toString());
             dorsalKiri = tbPasien.getValueAt(tbPasien.getSelectedRow(), 74).toString();
             TdorsalKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 75).toString());
-            tampilDeformitas();
+            tampilDeformitas();            
+            cmbKulKananKering.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 76).toString());
+            cmbKulKiriKering.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 77).toString());
+            cmbKulKananTumit.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 78).toString());
+            cmbKulKiriTumit.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 79).toString());
+            cmbKulKananBulu.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 80).toString());
+            cmbKulKiriBulu.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 81).toString());
+            cmbKulKananTinea.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 82).toString());
+            cmbKulKiriTinea.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 83).toString());
+            cmbKulKananKalus.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 84).toString());
+            cmbKulKiriKalus.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 85).toString());
+            cmbKulKananKorn.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 86).toString());
+            cmbKulKiriKorn.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 87).toString());
+            cmbKulKananHiper.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 88).toString());
+            cmbKulKiriHiper.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 89).toString());
+            cmbKulKananEdema.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 90).toString());
+            cmbKulKiriEdema.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 91).toString());
+            cmbKulKananHealed.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 92).toString());
+            cmbKulKiriHealed.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 93).toString());
             
-//            Valid.SetTgl(TtglRencana2, tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 186).toString());
-//            
+//            Valid.SetTgl(TtglRencana2, tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 186).toString());            
             dataCek();
         }
     }

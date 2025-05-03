@@ -5627,9 +5627,12 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
         tbKasirRalan.requestFocus();
     } else {
-        DlgKamarInap kamarinap = new DlgKamarInap(null, false);
-        if (akses.getadmin() == true) {
+        if (Sequel.cariRegistrasi(TNoRw.getText()) > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi..!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setstatus(true);
+            DlgKamarInap kamarinap = new DlgKamarInap(null, false);
             kamarinap.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             kamarinap.setLocationRelativeTo(internalFrame1);
             kamarinap.emptTeks();
@@ -5639,26 +5642,7 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             kamarinap.setVisible(true);
             kamarinap.cekKetMati();
             kamarinap.UserValid();
-        } else {
-            if (kdpoli.getText().equals("-") || kdpoli.getText().equals("IGDK")) {
-                if (Sequel.cariRegistrasi(TNoRw.getText()) > 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi..!!");
-                } else {
-                    akses.setstatus(true);
-                    kamarinap.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                    kamarinap.setLocationRelativeTo(internalFrame1);
-                    kamarinap.emptTeks();
-                    kamarinap.isCek();
-                    kamarinap.setNoRm(TNoRw.getText());
-                    kamarinap.tampil();
-                    kamarinap.setVisible(true);
-                    kamarinap.cekKetMati();
-                    kamarinap.UserValid();
-                }
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Kunjungan rawat jalan poliklinik, tdk. bisa langsung rawat inap. Sepakati dulu alurnya..!!");
-                tbKasirRalan.requestFocus();
-            }
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }
 }//GEN-LAST:event_MnKamarInapActionPerformed
