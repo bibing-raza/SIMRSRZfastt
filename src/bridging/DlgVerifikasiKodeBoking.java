@@ -718,17 +718,17 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
 
         Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rawat,6),signed)),0) from reg_periksa where tgl_registrasi='" + Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + "") + "' ", dateformat.format(tglPeriksaBPJS.getDate()) + "/", 6, norwBokingBPJS);
     }
-    
+
     private void cekFingerPrin() {
-        PengajuanFinger();
-        AprovalFinger();
-        if (kdPengajuan.equals("200") && kdAproval.equals("200")) {
-            simpanSEP();
-            BtnKeluarActionPerformed(null);
-        } else {
-            Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + kdbokingbpjs.getText() + "'", "status_cetak_sep='GAGAL',no_rawat='" + norwBokingBPJS.getText() + "'");
-            JOptionPane.showMessageDialog(null, "Proses Pengajuan & Aproval Finger Print ke BPJS gagal..!!!");
-        }
+//        PengajuanFinger();
+//        AprovalFinger();
+//        if (kdPengajuan.equals("200") && kdAproval.equals("200")) {
+        simpanSEP();
+        BtnKeluarActionPerformed(null);
+//        } else {
+//            Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + kdbokingbpjs.getText() + "'", "status_cetak_sep='GAGAL',no_rawat='" + norwBokingBPJS.getText() + "'");
+//            JOptionPane.showMessageDialog(null, "Proses Pengajuan & Aproval Finger Print ke BPJS gagal..!!!");
+//        }
     }
     
     private void PengajuanFinger() {
@@ -1069,6 +1069,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                 }
 
                 Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + kdbokingbpjs.getText() + "'", "status_cetak_sep='GAGAL',no_rawat='" + norwBokingBPJS.getText() + "'");
+                JOptionPane.showMessageDialog(null, "Pesan : " + nameNode.path("message").asText());
                 System.out.println("Pesan : " + nameNode.path("message").asText());
             }
         } catch (Exception ex) {
