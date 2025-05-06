@@ -1157,7 +1157,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel58.setBounds(0, 328, 130, 23);
 
         TglBeriTindakan.setEditable(false);
-        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
+        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         TglBeriTindakan.setDisplayFormat("dd-MM-yyyy");
         TglBeriTindakan.setName("TglBeriTindakan"); // NOI18N
         TglBeriTindakan.setOpaque(false);
@@ -1541,7 +1541,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel73.setBounds(0, 216, 130, 23);
 
         TglSetuju.setEditable(false);
-        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
+        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         TglSetuju.setDisplayFormat("dd-MM-yyyy");
         TglSetuju.setName("TglSetuju"); // NOI18N
         TglSetuju.setOpaque(false);
@@ -1609,7 +1609,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel75.setBounds(0, 244, 130, 23);
 
         TglTolak.setEditable(false);
-        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
+        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         TglTolak.setDisplayFormat("dd-MM-yyyy");
         TglTolak.setName("TglTolak"); // NOI18N
         TglTolak.setOpaque(false);
@@ -1875,7 +1875,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel78.setBounds(455, 188, 70, 23);
 
         cmbKategori.setForeground(new java.awt.Color(0, 0, 0));
-        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Transfusi Darah", "Trombopharesis", "Restrain", "Leukopharesis", "BMP", "NGT", "DC", "Transfusi Zat Besi", "Biopsi", "Pengobatan Kemoterapi", "Punksi Cairan Pleura", "Punksi Ascites" }));
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Transfusi Darah", "Trombopharesis", "Restrain", "Leukopharesis", "BMP", "NGT", "DC", "Transfusi Zat Besi", "Biopsi", "Pengobatan Kemoterapi", "Punksi Cairan Pleura", "Punksi Ascites", "Pemasangan WSD" }));
         cmbKategori.setName("cmbKategori"); // NOI18N
         cmbKategori.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbKategori.addActionListener(new java.awt.event.ActionListener() {
@@ -1943,7 +1943,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1958,7 +1958,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2990,6 +2990,20 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             Tprognosis.setText("");
             Talternatif.setText("");
             Tlain.setText("");
+            
+            //pemasangan WSD
+        } else if (cmbKategori.getSelectedIndex() == 13) {
+            TDiagKerja.setText("PNEUMOTHORAX");            
+            TDasarDiag.setText("Pemeriksaan Fisik dan Penunjang");
+            Ttindakan.setText("Pemasangan WSD");
+            Tindikasi.setText("Diagnosis dan Terapi");
+            Ttatacara.setText("Sesuai SPO");
+            Ttujuan.setText("MENGELUARKAN CAIRAN ATAU UDARA YANG TERKUMPUL DI RONGGA DADA");
+            Tresiko.setText("Trauma, Perdarahan");
+            Tkomplikasi.setText("NYERI, PERDARAHAN, INFEKSI, EMFISEMA SUBKUTIS, MALPOSISI SELANG, CEDERA ORGAN ATAU SARAF, EDEMA PARU");
+            Tprognosis.setText("DUBIA");
+            Talternatif.setText("PEMASANGAN KATETER INTERKOSTAL (CHEST TUBE) ATAU TORAKOSTOMI, PEMBEDAHAN TERBUKA");
+            Tlain.setText("-");
         }
     }//GEN-LAST:event_cmbKategoriActionPerformed
 
