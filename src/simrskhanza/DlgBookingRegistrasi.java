@@ -1441,7 +1441,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         MnSEP = new javax.swing.JMenuItem();
         MnVerifikasi = new javax.swing.JMenuItem();
         MnSttsCetakSEP = new javax.swing.JMenu();
-        Mnsudah = new javax.swing.JMenuItem();
+        MnCekStatus = new javax.swing.JMenuItem();
         Mnbelum = new javax.swing.JMenuItem();
         Mngagal = new javax.swing.JMenuItem();
         Popup1 = new javax.swing.JPopupMenu();
@@ -1746,20 +1746,20 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         MnSttsCetakSEP.setOpaque(true);
         MnSttsCetakSEP.setPreferredSize(new java.awt.Dimension(200, 28));
 
-        Mnsudah.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        Mnsudah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        Mnsudah.setText("SUDAH");
-        Mnsudah.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        Mnsudah.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        Mnsudah.setIconTextGap(5);
-        Mnsudah.setName("Mnsudah"); // NOI18N
-        Mnsudah.setPreferredSize(new java.awt.Dimension(80, 28));
-        Mnsudah.addActionListener(new java.awt.event.ActionListener() {
+        MnCekStatus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCekStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCekStatus.setText("CEK STATUS");
+        MnCekStatus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCekStatus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCekStatus.setIconTextGap(5);
+        MnCekStatus.setName("MnCekStatus"); // NOI18N
+        MnCekStatus.setPreferredSize(new java.awt.Dimension(110, 28));
+        MnCekStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnsudahActionPerformed(evt);
+                MnCekStatusActionPerformed(evt);
             }
         });
-        MnSttsCetakSEP.add(Mnsudah);
+        MnSttsCetakSEP.add(MnCekStatus);
 
         Mnbelum.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Mnbelum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -1768,7 +1768,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         Mnbelum.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         Mnbelum.setIconTextGap(5);
         Mnbelum.setName("Mnbelum"); // NOI18N
-        Mnbelum.setPreferredSize(new java.awt.Dimension(80, 28));
+        Mnbelum.setPreferredSize(new java.awt.Dimension(110, 28));
         Mnbelum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnbelumActionPerformed(evt);
@@ -1783,7 +1783,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         Mngagal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         Mngagal.setIconTextGap(5);
         Mngagal.setName("Mngagal"); // NOI18N
-        Mngagal.setPreferredSize(new java.awt.Dimension(80, 28));
+        Mngagal.setPreferredSize(new java.awt.Dimension(110, 28));
         Mngagal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MngagalActionPerformed(evt);
@@ -1812,7 +1812,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         Popup1.add(ppRencanaKontrollagi1);
 
         TanggalBooking.setEditable(false);
-        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
+        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
         TanggalBooking.setDisplayFormat("dd-MM-yyyy");
         TanggalBooking.setName("TanggalBooking"); // NOI18N
         TanggalBooking.setOpaque(false);
@@ -2354,7 +2354,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(125, 23));
         panelCari.add(R2);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2378,7 +2378,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2399,7 +2399,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R3.setPreferredSize(new java.awt.Dimension(135, 23));
         panelCari.add(R3);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2423,7 +2423,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel25);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2593,7 +2593,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel14.setBounds(0, 66, 115, 23);
 
         TanggalPeriksa.setEditable(false);
-        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
+        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
         TanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         TanggalPeriksa.setName("TanggalPeriksa"); // NOI18N
         TanggalPeriksa.setOpaque(false);
@@ -2984,7 +2984,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel28.setBounds(0, 67, 95, 23);
 
         TanggalRujuk.setEditable(false);
-        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
+        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
         TanggalRujuk.setDisplayFormat("dd-MM-yyyy");
         TanggalRujuk.setName("TanggalRujuk"); // NOI18N
         TanggalRujuk.setOpaque(false);
@@ -3595,7 +3595,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         LabTglkll.setBounds(0, 38, 90, 23);
 
         TanggalKejadian.setEditable(false);
-        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
+        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
         TanggalKejadian.setDisplayFormat("dd-MM-yyyy");
         TanggalKejadian.setName("TanggalKejadian"); // NOI18N
         TanggalKejadian.setOpaque(false);
@@ -5006,24 +5006,23 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         Valid.pindah(evt, btnPenjab, no_telp);
     }//GEN-LAST:event_verif_dataKeyPressed
 
-    private void MnsudahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnsudahActionPerformed
+    private void MnCekStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCekStatusActionPerformed
         Sequel.cariIsi("select kd_booking from kelengkapan_booking_sep_bpjs where nomr=?", cekKDboking, TNoRM.getText());
 
-        if (akses.getkode().equals("Admin Utama")) {
-            if (cekKDboking.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Pilih dulu salah satu nama pasiennya dg. mengklik data pada tabel & hanya utk. pasien BPJS saja...!!!");
-                tbBoking.requestFocus();
-            } else if (kdpnj.getText().equals("B01") || (kdpnj.getText().equals("A03"))) {
+        if (cekKDboking.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Pilih dulu salah satu nama pasiennya dg. mengklik data pada tabel & hanya utk. pasien BPJS saja...!!!");
+            tbBoking.requestFocus();
+        } else if (kdpnj.getText().equals("B01") || (kdpnj.getText().equals("A03"))) {
+            if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + norawat.getText() + "' and nomr='" + TNoRM.getText() + "'") > 0) {
                 Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + kdboking.getText() + "'", "status_cetak_sep='SUDAH' ");
                 emptTeks();
                 tampil();
+            } else {
+                emptTeks();
+                tampil();
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Silahkan koordinasi dulu dg. UNIT SIMRS utk. memastikan datanya...!!!");
-            emptTeks();
-            tampil();
         }
-    }//GEN-LAST:event_MnsudahActionPerformed
+    }//GEN-LAST:event_MnCekStatusActionPerformed
 
     private void MnbelumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnbelumActionPerformed
         Sequel.cariIsi("select kd_booking from kelengkapan_booking_sep_bpjs where nomr=?", cekKDboking, TNoRM.getText());
@@ -5299,6 +5298,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label LabelPoli;
     private widget.ComboBox LakaLantas;
     private widget.TextBox LokasiLaka;
+    private javax.swing.JMenuItem MnCekStatus;
     private javax.swing.JMenuItem MnCetakKodeBarkode;
     private javax.swing.JMenuItem MnCetakKodeQR;
     private javax.swing.JMenuItem MnSEP;
@@ -5307,7 +5307,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem MnVerifikasi;
     private javax.swing.JMenuItem Mnbelum;
     private javax.swing.JMenuItem Mngagal;
-    private javax.swing.JMenuItem Mnsudah;
     private widget.TextBox NmDPJP;
     private widget.TextBox NmDokter;
     private widget.TextBox NmKab;

@@ -1405,6 +1405,10 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                 + "tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") == 0) {
             HasilPeriksa.setText("Hasil expertise radiologi belum dikirim ke SIMRS..!!");
         } else {
+            Scroll2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Hasil Expertise Radiologi [ " + nmpemeriksaan + " ] :.",
+                    javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                    javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12)));
+            
             HasilPeriksa.setText(Sequel.cariIsi("select hasil from hasil_radiologi where "
                     + "no_rawat like '%" + norawat + "%' and "
                     + "tgl_periksa like '%" + tglhasil + "%' and "

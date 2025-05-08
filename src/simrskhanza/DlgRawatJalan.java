@@ -11552,7 +11552,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             cmbMnt.setSelectedItem(tbRawatDrPr.getValueAt(tbRawatDrPr.getSelectedRow(), 11).toString().substring(3, 5));
             cmbDtk.setSelectedItem(tbRawatDrPr.getValueAt(tbRawatDrPr.getSelectedRow(), 11).toString().substring(6, 8));
             Valid.SetTgl(DTPTgl, tbRawatDrPr.getValueAt(tbRawatDrPr.getSelectedRow(), 10).toString());
-            Sequel.cariIsi("select kd_jenis_prw from jns_perawatan where nm_perawatan=? ", TKdPrw, tbRawatDrPr.getValueAt(tbRawatDrPr.getSelectedRow(), 4).toString());
+            TKdPrw.setText(tbRawatDrPr.getValueAt(tbRawatDrPr.getSelectedRow(), 12).toString());
+//            Sequel.cariIsi("select kd_jenis_prw from jns_perawatan where nm_perawatan=? ", TKdPrw, tbRawatDrPr.getValueAt(tbRawatDrPr.getSelectedRow(), 4).toString());
             isJns();
         }
     }
