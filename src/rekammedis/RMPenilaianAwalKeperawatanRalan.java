@@ -3385,13 +3385,12 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnTambahMasalahActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        tampilMasalah();
-        tampil();
-        
         if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_ralan where no_rawat='" + TNoRw.getText() + "'") == 0) {
-            TabRawat.setSelectedIndex(0);            
+            TabRawat.setSelectedIndex(0);
+            tampilMasalah();
         } else if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_ralan where no_rawat='" + TNoRw.getText() + "'") > 0) {
-            TabRawat.setSelectedIndex(1);            
+            TabRawat.setSelectedIndex(1);
+            tampil();
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -3778,7 +3777,6 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
-        System.out.println("Notip ");
         Valid.tabelKosong(tabMode);
         try {
             if (TCari.getText().equals("")) {
