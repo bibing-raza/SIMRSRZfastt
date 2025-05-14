@@ -6288,7 +6288,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17/04/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14/05/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6678,7 +6678,7 @@ public class frmUtama extends javax.swing.JFrame {
         kdUser.setText("Kode Admin :");
         kdUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         kdUser.setName("kdUser"); // NOI18N
-        kdUser.setPreferredSize(new java.awt.Dimension(90, 23));
+        kdUser.setPreferredSize(new java.awt.Dimension(120, 23));
         internalFrame4.add(kdUser);
 
         lblUser.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N

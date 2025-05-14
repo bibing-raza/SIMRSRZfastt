@@ -5284,7 +5284,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 
     private void TlamaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlamaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnSimpanObat.requestFocus();
+            BtnSimpanObatActionPerformed(null);
         }
     }//GEN-LAST:event_TlamaKeyPressed
 
@@ -5471,7 +5471,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 
     private void TpenyebabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TpenyebabKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnSimpanLuka.requestFocus();
+            BtnSimpanLukaActionPerformed(null);
         }
     }//GEN-LAST:event_TpenyebabKeyPressed
 
@@ -5765,7 +5765,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 
     private void TdeforKiriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TdeforKiriKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnSimpanDefor.requestFocus();
+            BtnSimpanDeforActionPerformed(null);
         }
     }//GEN-LAST:event_TdeforKiriKeyPressed
 
@@ -5966,7 +5966,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 
     private void TresistenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TresistenKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnSimpanMikro.requestFocus();
+            BtnSimpanMikroActionPerformed(null);
         }
     }//GEN-LAST:event_TresistenKeyPressed
 
@@ -6935,7 +6935,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode4);
     }
     
-    public void setData(String norwt, String norm) {
+    public void setData(String norwt, String norm, String stts) {
         TNoRw.setText(norwt);
         TNoRM.setText(norm);
         isPasien();
@@ -6944,6 +6944,14 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
         DTPCari2.setDate(new Date());
         TCari.setText(norwt);
+
+        if (stts.equals("ralan")) {
+            cmbJnsRawat.setSelectedIndex(2);
+        } else if (stts.equals("ranap")) {
+            cmbJnsRawat.setSelectedIndex(1);
+        } else {
+            cmbJnsRawat.setSelectedIndex(0);
+        }
     }
     
     public void isCek(){
