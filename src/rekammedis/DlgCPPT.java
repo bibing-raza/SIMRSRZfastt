@@ -7088,14 +7088,14 @@ public class DlgCPPT extends javax.swing.JDialog {
             ChkSamaPPA.setEnabled(true);
             
             if (cmbSift.getSelectedIndex() == 1) {
-                cmbJam1.setSelectedItem("14");
-                cmbMnt1.setSelectedItem("15");
+                cmbJam1.setSelectedItem(Sequel.cariIsi("select time_format(sift1_mulai,'%H') from sift_jam_kerja"));
+                cmbMnt1.setSelectedItem(Sequel.cariIsi("select time_format(sift1_mulai,'%i') from sift_jam_kerja"));
             } else if (cmbSift.getSelectedIndex() == 2) {
-                cmbJam1.setSelectedItem("20");
-                cmbMnt1.setSelectedItem("15");
+                cmbJam1.setSelectedItem(Sequel.cariIsi("select time_format(sift2_mulai,'%H') from sift_jam_kerja"));
+                cmbMnt1.setSelectedItem(Sequel.cariIsi("select time_format(sift2_mulai,'%i') from sift_jam_kerja"));
             } else if (cmbSift.getSelectedIndex() == 3) {
-                cmbJam1.setSelectedItem("08");
-                cmbMnt1.setSelectedItem("15");
+                cmbJam1.setSelectedItem(Sequel.cariIsi("select time_format(sift3_mulai,'%H') from sift_jam_kerja"));
+                cmbMnt1.setSelectedItem(Sequel.cariIsi("select time_format(sift3_mulai,'%i') from sift_jam_kerja"));
             } else {
                 cmbJam1.setSelectedIndex(0);
                 cmbMnt1.setSelectedIndex(0);
@@ -8631,8 +8631,8 @@ public class DlgCPPT extends javax.swing.JDialog {
     private void cmbSiftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSiftActionPerformed
         if (cmbSift.getSelectedIndex() == 1) {
             if (cmbSertim.getSelectedIndex() == 1) {
-                cmbJam1.setSelectedItem("14");
-                cmbMnt1.setSelectedItem("15");
+                cmbJam1.setSelectedItem(Sequel.cariIsi("select time_format(sift1_mulai,'%H') from sift_jam_kerja"));
+                cmbMnt1.setSelectedItem(Sequel.cariIsi("select time_format(sift1_mulai,'%i') from sift_jam_kerja"));
             } else {
                 cmbJam1.setSelectedIndex(0);
                 cmbMnt1.setSelectedIndex(0);
@@ -8640,8 +8640,8 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         } else if (cmbSift.getSelectedIndex() == 2) {
             if (cmbSertim.getSelectedIndex() == 1) {
-                cmbJam1.setSelectedItem("20");
-                cmbMnt1.setSelectedItem("15");
+                cmbJam1.setSelectedItem(Sequel.cariIsi("select time_format(sift2_mulai,'%H') from sift_jam_kerja"));
+                cmbMnt1.setSelectedItem(Sequel.cariIsi("select time_format(sift2_mulai,'%i') from sift_jam_kerja"));
             } else {
                 cmbJam1.setSelectedIndex(0);
                 cmbMnt1.setSelectedIndex(0);
@@ -8649,8 +8649,8 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         } else if (cmbSift.getSelectedIndex() == 3) {
             if (cmbSertim.getSelectedIndex() == 1) {
-                cmbJam1.setSelectedItem("08");
-                cmbMnt1.setSelectedItem("15");
+                cmbJam1.setSelectedItem(Sequel.cariIsi("select time_format(sift3_mulai,'%H') from sift_jam_kerja"));
+                cmbMnt1.setSelectedItem(Sequel.cariIsi("select time_format(sift3_mulai,'%i') from sift_jam_kerja"));
             } else {
                 cmbJam1.setSelectedIndex(0);
                 cmbMnt1.setSelectedIndex(0);
