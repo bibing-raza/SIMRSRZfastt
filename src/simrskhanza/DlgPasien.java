@@ -3675,6 +3675,8 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                         Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText()),
                         Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText()), 
                         umurPjawab.getText(), notlpPJ.getText(), Kd2.getText()});
+            
+            Sequel.mengedit("bridging_sep", "nomr='" + TNo.getText() + "'", "tanggal_lahir='" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "'");
             Sequel.AutoComitTrue();
             if (tabMode.getRowCount() != 0) {
                 tampil();

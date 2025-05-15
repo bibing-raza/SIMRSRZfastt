@@ -409,7 +409,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -423,7 +423,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -570,7 +570,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         BtnDokter.setBounds(670, 260, 28, 23);
 
         TtglJawab.setEditable(false);
-        TtglJawab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-12-2023" }));
+        TtglJawab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         TtglJawab.setDisplayFormat("dd-MM-yyyy");
         TtglJawab.setName("TtglJawab"); // NOI18N
         TtglJawab.setOpaque(false);
@@ -714,7 +714,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel16.setBounds(340, 38, 50, 23);
 
         cmbUnitKe.setForeground(new java.awt.Color(0, 0, 0));
-        cmbUnitKe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
+        cmbUnitKe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Anestesi", "VCT", "NICU", "Bayi Ruang Nifas" }));
         cmbUnitKe.setName("cmbUnitKe"); // NOI18N
         panelGlass7.add(cmbUnitKe);
         cmbUnitKe.setBounds(390, 38, 200, 23);
