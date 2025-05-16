@@ -79,8 +79,8 @@ public final class DlgIGD extends javax.swing.JDialog {
     public DlgRujukMasuk rujukmasuk = new DlgRujukMasuk(null, false);
     public DlgBahasa bahasa = new DlgBahasa(null, false);
     public DlgSuku suku = new DlgSuku(null, false);
-    private PreparedStatement ps, ps2, ps3, pscaripiutang, psAPS;
-    private ResultSet rs, rsAPS;
+    private PreparedStatement ps, ps1, ps2, ps3, pscaripiutang, psAPS;
+    private ResultSet rs, rs1, rsAPS;
     private int pilihan = 0, i = 0, cekRujuk = 0, x, cekjampersal = 0, cekjamkesda = 0, cekinap = 0, 
             diagnosa_cek = 0, cekUmur = 0;
     private Date cal = new Date();
@@ -88,7 +88,7 @@ public final class DlgIGD extends javax.swing.JDialog {
     private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
     private double biaya = 0, cek = 0;
     private String nosisrute = "", URUTNOREG = "", alamatperujuk = "-", umur = "0", sttsumur = "Th", kdkamar = "",
-            kelaminPJ = "", IPPRINTERTRACER = "", norawatAPS = "", kdAPS = "", cekSurat = "", sttsumur1 = "",
+            kelaminPJ = "", IPPRINTERTRACER = "", norawatAPS = "", kdAPS = "", cekSurat = "", sttsumur1 = "", noSEP = "",
             cekAPS = "", kdKel = "", kdKec = "", kdKab = "", diagnosa_ok = "", tglDaftar = "", tglnoRW = "", KataDatang = "",
             validasiregistrasi = Sequel.cariIsi("select wajib_closing_kasir from set_validasi_registrasi");
     private char ESC = 27;
@@ -214,9 +214,9 @@ public final class DlgIGD extends javax.swing.JDialog {
             } else if (i == 11) {
                 column.setPreferredWidth(105);
             } else if (i == 12) {
-                column.setPreferredWidth(130);
+                column.setPreferredWidth(250);
             } else if (i == 13) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(125);
             } else if (i == 14) {
                 column.setPreferredWidth(60);
             } else if (i == 15) {
@@ -7218,12 +7218,10 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             sb.append("IFNULL(di.datang_sendiri,'-') AS datang_sendiri, ");
             sb.append("IFNULL(di.trauma, '-') AS trauma, IFNULL(di.non_trauma, '-') AS non_trauma, ");
             sb.append("IFNULL(di.tindakan_lanjut,'-') AS tindakan_lanjut, IFNULL(di.ket_igd, '-') AS ket_igd, r.umurdaftar, ");
-            sb.append("IFNULL(bs.no_sep,'-') nosep, ifnull(di.kd_dokter_ranap,'-') kddokterinap, ");
-            sb.append("if(r.nip_petugas='Admin Utama','Admin Utama',ifnull(r.nip_petugas,'-')) nm_petugas ");
+            sb.append("ifnull(di.kd_dokter_ranap,'-') kddokterinap, if(r.nip_petugas='Admin Utama','Admin Utama',ifnull(r.nip_petugas,'-')) nm_petugas ");
             sb.append("FROM reg_periksa r INNER JOIN pasien p ON r.no_rkm_medis = p.no_rkm_medis ");
             sb.append("INNER JOIN poliklinik pl ON pl.kd_poli = r.kd_poli INNER JOIN penjab pj ON r.kd_pj = pj.kd_pj ");
-            sb.append("INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter LEFT JOIN data_igd di ON r.no_rawat = di.no_rawat ");
-            sb.append("LEFT JOIN bridging_sep bs ON bs.no_rawat = r.no_rawat WHERE ");
+            sb.append("INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter LEFT JOIN data_igd di ON r.no_rawat = di.no_rawat WHERE ");
             sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_reg like ? or ");
             sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_rawat like ? or ");
             sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.tgl_registrasi like ? or ");
@@ -7300,6 +7298,13 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                     kdkamar = Sequel.cariIsi("select if(kd_kamar_pindah='','-',kd_kamar_pindah) from transfer_serah_terima_pasien_igd where "
                             + "no_rawat='" + rs.getString("no_rawat") + "' and kd_kamar_msk='IGDK'");
                     
+                    //cek sep bpjs
+                    if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + rs.getString("no_rawat") + "'") == 0) {
+                        noSEP = "-";
+                    } else {
+                        cekSEPpasien(rs.getString("no_rawat"));
+                    }
+                    
                     tabMode.addRow(new Object[]{
                         false,
                         rs.getString("no_reg"),
@@ -7313,7 +7318,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                         rs.getString("jk"),
                         rs.getString("umur"),
                         rs.getString("png_jawab"),
-                        rs.getString("nosep"),
+                        noSEP,
                         rs.getString("stts"),
                         rs.getString("stts_daftar"),
                         rs.getString("nm_poli"),
@@ -7946,12 +7951,11 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             sb.append("IFNULL(di.datang_sendiri,'-') AS datang_sendiri, ");
             sb.append("IFNULL(di.trauma, '-') AS trauma, IFNULL(di.non_trauma, '-') AS non_trauma, ");
             sb.append("IFNULL(di.tindakan_lanjut,'-') AS tindakan_lanjut, IFNULL(di.ket_igd, '-') AS ket_igd, r.umurdaftar, ");
-            sb.append("IFNULL(bs.no_sep,'-') nosep, ifnull(di.kd_dokter_ranap,'-') kddokterinap, ");
-            sb.append("if(r.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) nm_petugas ");
+            sb.append("ifnull(di.kd_dokter_ranap,'-') kddokterinap, if(r.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) nm_petugas ");
             sb.append("FROM reg_periksa r INNER JOIN pasien p ON r.no_rkm_medis = p.no_rkm_medis ");
             sb.append("INNER JOIN poliklinik pl ON pl.kd_poli = r.kd_poli INNER JOIN penjab pj ON r.kd_pj = pj.kd_pj ");
             sb.append("INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter LEFT JOIN data_igd di ON r.no_rawat = di.no_rawat ");
-            sb.append("LEFT JOIN bridging_sep bs ON bs.no_rawat = r.no_rawat left join pegawai pg on pg.nik=r.nip_petugas WHERE ");
+            sb.append("left join pegawai pg on pg.nik=r.nip_petugas WHERE ");
             sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_reg like ? or ");
             sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_rawat like ? or ");
             sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.tgl_registrasi like ? or ");
@@ -8025,6 +8029,13 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 ps.setString(51, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
+                    //cek sep bpjs
+                    if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + rs.getString("no_rawat") + "'") == 0) {
+                        noSEP = "-";
+                    } else {
+                        cekSEPpasien(rs.getString("no_rawat"));
+                    }
+                    
                     tabMode.addRow(new Object[]{
                         false,
                         rs.getString("no_reg"),
@@ -8038,7 +8049,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                         rs.getString("jk"),
                         rs.getString("umur"),
                         rs.getString("png_jawab"),
-                        rs.getString("nosep"),
+                        noSEP,
                         rs.getString("stts"),
                         rs.getString("stts_daftar"),
                         rs.getString("nm_poli"),
@@ -8073,5 +8084,33 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             System.out.println("Notifikasi : " + e);
         }
         LCount.setText("" + tabMode.getRowCount());
+    }
+    
+    private void cekSEPpasien(String norwt) {
+        noSEP = "";
+        try {
+            ps1 = koneksi.prepareStatement("select no_sep from bridging_sep where no_rawat='" + norwt + "'");
+            try {
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    if (noSEP.equals("")) {
+                        noSEP = rs1.getString("no_sep");
+                    } else {
+                        noSEP = noSEP + ", " + rs1.getString("no_sep");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 }

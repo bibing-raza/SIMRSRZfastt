@@ -212,7 +212,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             } else if (i == 5) {
                 column.setPreferredWidth(130);
             } else if (i == 6) {
-                column.setPreferredWidth(130);
+                column.setPreferredWidth(240);
             } else if (i == 7) {
                 column.setPreferredWidth(130);
             } else if (i == 8) {
@@ -288,7 +288,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             } else if (i == 5) {
                 column.setPreferredWidth(55);
             } else if (i == 6) {
-                column.setPreferredWidth(210);
+                column.setPreferredWidth(240);
             } else if (i == 7) {
                 column.setPreferredWidth(130);
             } else if (i == 8) {
@@ -3935,7 +3935,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-05-2025" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4801,7 +4801,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-05-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4825,7 +4825,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-05-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -5045,7 +5045,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-05-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5064,7 +5064,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-05-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -10263,23 +10263,26 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         Valid.tabelKosong(tabModekasir);
         try {
             sb.append("SELECT rp.no_rawat, rp.kd_dokter, d.nm_dokter, rp.no_rkm_medis, concat(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),', ',if(p.jk='L','Laki-laki','Perempuan'),')') nm_pasien, ");
-            sb.append("rp.stts, if(pl.kd_poli='IGDK',CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),pl.nm_poli) nm_poli, pj.png_jawab, rp.stts_daftar, IF(br.no_rawat = rp.no_rawat,'Online','-') reg_onlen, ");
-            sb.append("rp.tgl_registrasi, rp.jam_reg, rp.no_reg, IFNULL(enc.klaim_final, '-') stts_klaim, p.no_tlp, CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, ");
-            sb.append("date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format, rp.kd_poli FROM reg_periksa rp INNER JOIN dokter d ON rp.kd_dokter = d.kd_dokter INNER JOIN pasien p ON rp.no_rkm_medis =p.no_rkm_medis ");
+            sb.append("rp.stts, if(pl.kd_poli='IGDK',CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),if(rp.status_lanjut='Ralan',pl.nm_poli,CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) nm_poli, ");
+            sb.append("pj.png_jawab, rp.stts_daftar, IF(br.no_rawat = rp.no_rawat,'Online','-') reg_onlen, rp.tgl_registrasi, rp.jam_reg, rp.no_reg, IFNULL(enc.klaim_final, '-') stts_klaim, p.no_tlp, ");
+            sb.append("CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format, rp.kd_poli ");
+            sb.append("FROM reg_periksa rp INNER JOIN dokter d ON rp.kd_dokter = d.kd_dokter INNER JOIN pasien p ON rp.no_rkm_medis =p.no_rkm_medis ");
             sb.append("INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj INNER JOIN kelurahan kl ON kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec=p.kd_kec ");
             sb.append("INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab LEFT JOIN booking_registrasi br ON br.no_rawat = rp.no_rawat LEFT JOIN eklaim_new_claim enc ON enc.no_rawat = rp.no_rawat WHERE ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.tgl_registrasi like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.kd_dokter like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and d.nm_dokter like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rkm_medis like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and pl.nm_poli like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and pj.png_jawab like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and IF(br.no_rawat=rp.no_rawat,'Online','-') like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and IFNULL(enc.klaim_final,'-') like ? ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.tgl_registrasi like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.kd_dokter like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and d.nm_dokter like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rkm_medis like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and pl.nm_poli like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and pj.png_jawab like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and IF(br.no_rawat=rp.no_rawat,'Online','-') like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and IFNULL(enc.klaim_final,'-') like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and if(pl.kd_poli='IGDK',");
+            sb.append("CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),if(rp.status_lanjut='Ralan',pl.nm_poli,CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) like ? ");
             sb.append("order by rp.tgl_registrasi desc, rp.jam_reg desc");
             pskasir = koneksi.prepareStatement(sb.toString());
             
@@ -10355,7 +10358,13 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 pskasir.setString(69, "%" + cmbStatus.getSelectedItem().toString().replaceAll("Semua", "") + "%");
                 pskasir.setString(70, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 pskasir.setString(71, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                pskasir.setString(72, "%" + TCari.getText().trim() + "%");
+                pskasir.setString(72, "%" + TCari.getText().trim() + "%");                
+                pskasir.setString(73, "%" + CrPoli.getText() + "%");
+                pskasir.setString(74, "%" + CrPtg.getText() + "%");
+                pskasir.setString(75, "%" + cmbStatus.getSelectedItem().toString().replaceAll("Semua", "") + "%");
+                pskasir.setString(76, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                pskasir.setString(77, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                pskasir.setString(78, "%" + TCari.getText().trim() + "%");
                 rskasir = pskasir.executeQuery();
                 while (rskasir.next()) {
                     //cek e-RM pasien igd
@@ -10484,23 +10493,26 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         StringBuilder sb = new StringBuilder();
         try {
             sb.append("SELECT rp.no_rawat, rp.kd_dokter, d.nm_dokter, rp.no_rkm_medis, concat(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),', ',if(p.jk='L','Laki-laki','Perempuan'),')') nm_pasien, ");
-            sb.append("rp.stts, if(pl.kd_poli='IGDK',CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),pl.nm_poli) nm_poli, pj.png_jawab, rp.stts_daftar, IF(br.no_rawat = rp.no_rawat,'Online','-') reg_onlen, ");
-            sb.append("rp.tgl_registrasi, rp.jam_reg, rp.no_reg, IFNULL(enc.klaim_final, '-') stts_klaim, p.no_tlp, CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, ");
-            sb.append("date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format, rp.kd_poli FROM reg_periksa rp INNER JOIN dokter d ON rp.kd_dokter = d.kd_dokter INNER JOIN pasien p ON rp.no_rkm_medis =p.no_rkm_medis ");
+            sb.append("rp.stts, if(pl.kd_poli='IGDK',CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),if(rp.status_lanjut='Ralan',pl.nm_poli,CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) nm_poli, pj.png_jawab, ");
+            sb.append("rp.stts_daftar, IF(br.no_rawat = rp.no_rawat,'Online','-') reg_onlen, rp.tgl_registrasi, rp.jam_reg, rp.no_reg, IFNULL(enc.klaim_final, '-') stts_klaim, p.no_tlp, ");
+            sb.append("CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format, rp.kd_poli ");
+            sb.append("FROM reg_periksa rp INNER JOIN dokter d ON rp.kd_dokter = d.kd_dokter INNER JOIN pasien p ON rp.no_rkm_medis =p.no_rkm_medis ");
             sb.append("INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj INNER JOIN kelurahan kl ON kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec=p.kd_kec ");
             sb.append("INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab LEFT JOIN booking_registrasi br ON br.no_rawat = rp.no_rawat LEFT JOIN eklaim_new_claim enc ON enc.no_rawat = rp.no_rawat WHERE ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.tgl_registrasi like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.kd_dokter like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and d.nm_dokter like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rkm_medis like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and pl.nm_poli like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and pj.png_jawab like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and IF(br.no_rawat=rp.no_rawat,'Online','-') like ? or ");
-            sb.append("(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and IFNULL(enc.klaim_final,'-') like ? ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.tgl_registrasi like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.kd_dokter like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and d.nm_dokter like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rkm_medis like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and pl.nm_poli like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and pj.png_jawab like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and IF(br.no_rawat=rp.no_rawat,'Online','-') like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and IFNULL(enc.klaim_final,'-') like ? or ");
+            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and if(pl.kd_poli='IGDK',");
+            sb.append("CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),if(rp.status_lanjut='Ralan',pl.nm_poli,CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) like ? ");
             sb.append("order by rp.tgl_registrasi desc, rp.jam_reg desc");
             psTransaksi = koneksi.prepareStatement(sb.toString());
             
@@ -10576,7 +10588,13 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 psTransaksi.setString(69, "%" + cmbStatusTransaksi.getSelectedItem().toString().replaceAll("Semua", "") + "%");
                 psTransaksi.setString(70, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 psTransaksi.setString(71, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                psTransaksi.setString(72, "%" + TCari.getText().trim() + "%");
+                psTransaksi.setString(72, "%" + TCari.getText().trim() + "%");                
+                psTransaksi.setString(73, "%" + CrPoli.getText() + "%");
+                psTransaksi.setString(74, "%" + CrPtg.getText() + "%");
+                psTransaksi.setString(75, "%" + cmbStatusTransaksi.getSelectedItem().toString().replaceAll("Semua", "") + "%");
+                psTransaksi.setString(76, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                psTransaksi.setString(77, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                psTransaksi.setString(78, "%" + TCari.getText().trim() + "%");
                 rsTransaksi = psTransaksi.executeQuery();
                 while (rsTransaksi.next()) {                    
                     tabModekasir1.addRow(new String[]{
@@ -11476,24 +11494,17 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
     public void tampilRiwayatKun(String code) {
         Valid.tabelKosong(tabModeKunjungan);
+        StringBuilder sb = new StringBuilder();
         try {
-            psRiwKunj = koneksi.prepareStatement("SELECT rp.no_rawat, "
-                    + "	p.no_rkm_medis, "
-                    + "	date_format( rp.tgl_registrasi, '%d-%m-%Y' ) tgl_kunj, "
-                    + "	p.nm_pasien, "
-                    + "	d.nm_dokter, "
-                    + "	pj.png_jawab, "
-                    + "	rp.kd_dokter "
-                    + "FROM reg_periksa rp "
-                    + "	INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter "
-                    + "	INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                    + "	INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
-                    + "	INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj "
-                    + "left join pemeriksaan_ralan_petugas s on s.no_rawat = rp.no_rawat "
-                    + "left join pemeriksaan_ralan n on n.no_rawat = rp.no_rawat "
-                    + "left join diagnosa_pasien dp on dp.no_rawat = rp.no_rawat "
-                    + "where (rp.tgl_registrasi BETWEEN (select DATE_sub(DATE_FORMAT(now(),'%Y-%m-%d'),INTERVAL 7 DAY)) and (select DATE_sub(DATE_FORMAT(now(),'%Y-%m-%d'),INTERVAL 1 DAY))) and rp.kd_poli ='" + code + "' "
-                    + "and (IFNULL(s.no_rawat,'-') = '-' and IFNULL(n.no_rawat,'-') = '-' and IFNULL(dp.no_rawat,'-') = '-')");
+            sb.append("SELECT rp.no_rawat, p.no_rkm_medis, date_format( rp.tgl_registrasi, '%d-%m-%Y' ) tgl_kunj, ");
+            sb.append("p.nm_pasien, d.nm_dokter, pj.png_jawab, rp.kd_dokter FROM reg_periksa rp ");
+            sb.append("INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis ");
+            sb.append("INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj ");
+            sb.append("left join pemeriksaan_ralan_petugas s on s.no_rawat = rp.no_rawat left join pemeriksaan_ralan n on n.no_rawat = rp.no_rawat ");
+            sb.append("left join diagnosa_pasien dp on dp.no_rawat = rp.no_rawat where ");
+            sb.append("(rp.tgl_registrasi BETWEEN (select DATE_sub(DATE_FORMAT(now(),'%Y-%m-%d'),INTERVAL 7 DAY)) and (select DATE_sub(DATE_FORMAT(now(),'%Y-%m-%d'),INTERVAL 1 DAY))) and rp.kd_poli ='" + code + "' ");
+            sb.append("and (IFNULL(s.no_rawat,'-') = '-' and IFNULL(n.no_rawat,'-') = '-' and IFNULL(dp.no_rawat,'-') = '-')");
+            psRiwKunj = koneksi.prepareStatement(sb.toString());
 
             try {
                 rsRiwKunj = psRiwKunj.executeQuery();
@@ -11511,7 +11522,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     });
                     z++;
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("simrskhanza.DlgKasirRalan.tampilRiwayatKun() : " + e);
             } finally {

@@ -9,7 +9,6 @@
     <entry key="PAS">password database dienkrip dulu</entry>
     <entry key="CARICEPAT">nonaktif</entry>
     <entry key="HYBRIDWEB">webapps</entry>
-    <entry key="MENUTRANSPARAN">no</entry>
     <entry key="URLAPIBPJS">https://apijkn-dev.bpjs-kesehatan.go.id/vclaim-rest-dev</entry>
     <entry key="SECRETKEYAPIBPJS">kode secret key dari bpjs dienkrip dulu</entry>
     <entry key="CONSIDAPIBPJS">kode cons id dari bpjs dienkrip dulu</entry>	

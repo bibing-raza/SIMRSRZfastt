@@ -531,11 +531,12 @@ public class frmUtama extends javax.swing.JFrame {
         panelMenu = new widget.InternalFrame();
         panelisi2 = new widget.panelisi();
         label36 = new widget.Label();
-        button1 = new widget.Button();
         label35 = new widget.Label();
         cmbMenu = new widget.ComboBox();
         TCari = new widget.TextBox();
+        button2 = new widget.Button();
         ChkInput = new widget.CekBox();
+        button1 = new widget.Button();
         scrollPane2 = new widget.ScrollPane();
         Panelmenu = new widget.panelGlass();
         btnICD = new widget.ButtonBig();
@@ -1198,19 +1199,6 @@ public class frmUtama extends javax.swing.JFrame {
         label36.setPreferredSize(new java.awt.Dimension(1, 23));
         panelisi2.add(label36);
 
-        button1.setForeground(new java.awt.Color(0, 0, 0));
-        button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        button1.setGlassColor(new java.awt.Color(255, 255, 255));
-        button1.setMinimumSize(new java.awt.Dimension(28, 23));
-        button1.setName("button1"); // NOI18N
-        button1.setPreferredSize(new java.awt.Dimension(25, 23));
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
-            }
-        });
-        panelisi2.add(button1);
-
         label35.setForeground(new java.awt.Color(0, 0, 0));
         label35.setText("Tampilkan Menu :");
         label35.setName("label35"); // NOI18N
@@ -1238,6 +1226,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         panelisi2.add(TCari);
 
+        button2.setForeground(new java.awt.Color(0, 0, 0));
+        button2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        button2.setGlassColor(new java.awt.Color(255, 255, 255));
+        button2.setMinimumSize(new java.awt.Dimension(28, 23));
+        button2.setName("button2"); // NOI18N
+        button2.setPreferredSize(new java.awt.Dimension(30, 23));
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
+            }
+        });
+        panelisi2.add(button2);
+
         ChkInput.setBorder(null);
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
@@ -1263,6 +1264,22 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         panelisi2.add(ChkInput);
+
+        button1.setForeground(new java.awt.Color(0, 0, 0));
+        button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        button1.setMnemonic('K');
+        button1.setText("Keluar");
+        button1.setToolTipText("Alt+K");
+        button1.setGlassColor(new java.awt.Color(255, 255, 255));
+        button1.setMinimumSize(new java.awt.Dimension(28, 23));
+        button1.setName("button1"); // NOI18N
+        button1.setPreferredSize(new java.awt.Dimension(85, 23));
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+        panelisi2.add(button1);
 
         panelMenu.add(panelisi2, java.awt.BorderLayout.PAGE_START);
 
@@ -6288,7 +6305,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14/05/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16/05/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6749,7 +6766,7 @@ public class frmUtama extends javax.swing.JFrame {
         scrollPane1.setName("scrollPane1"); // NOI18N
 
         PanelWall.setBackground(new java.awt.Color(29, 29, 29));
-        PanelWall.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/wallpaper.jpg"))); // NOI18N
+        PanelWall.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/underconstruction.jpg"))); // NOI18N
         PanelWall.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
         PanelWall.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 0, 0, 0));
         PanelWall.setPreferredSize(new java.awt.Dimension(200, 200));
@@ -7208,28 +7225,19 @@ private void edPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edP
 private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuActionPerformed
     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     isTutup();
-    try {
-        if (prop.getProperty("MENUTRANSPARAN").equals("yes")) {
-            //com.sun.awt.AWTUtilities.setWindowOpacity(DlgHome,0.6f);
-        } else {
-            //com.sun.awt.AWTUtilities.setWindowOpacity(DlgHome,0.93f);
-        }
-    } catch (Exception e) {
-
-    }
-
-    DlgHome.setSize(PanelUtama.getWidth() - 45, PanelUtama.getHeight() - 45);
+//    DlgHome.setSize(PanelUtama.getWidth() - 45, PanelUtama.getHeight() - 45);
+    DlgHome.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
     isTampil();
     DlgHome.setLocationRelativeTo(PanelUtama);
     DlgHome.setVisible(true);
 
     if (TCari.isVisible() == true) {
-        TCari.setText("");
+        button2.setVisible(true);
         TCari.requestFocus();
     } else {
+        button2.setVisible(false);
         cmbMenu.requestFocus();
     }
-
     this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_BtnMenuActionPerformed
 
@@ -9601,10 +9609,12 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             cmbMenu.setVisible(true);
             cmbMenu.requestFocus();
             TCari.setVisible(false);
+            button2.setVisible(false);
         } else {
             cmbMenu.setVisible(false);
             TCari.setVisible(true);
-            TCari.requestFocus();
+            button2.setVisible(true);
+            TCari.requestFocus();            
         }
         isTampil();
     }//GEN-LAST:event_ChkInputActionPerformed
@@ -12399,6 +12409,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnTriasePonekActionPerformed
 
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+        TCari.setText("");
+        TCari.requestFocus();
+    }//GEN-LAST:event_button2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12840,6 +12855,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnbayar_pemesanan;
     private widget.ButtonBig btnfee_visit_dokter;
     private widget.Button button1;
+    private widget.Button button2;
     private widget.ComboBox cmbMenu;
     private widget.TextBox edAdmin;
     private widget.PasswordBox edPwd;
