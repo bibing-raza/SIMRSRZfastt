@@ -677,9 +677,9 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
     private boolean simpanRegistrasiBPJS() {
         bool = true;
         nomorAutoBPJS();
-        if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
+        if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19,
                 new String[]{TNoRegBPJS.getText(), norwBokingBPJS.getText(), Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + ""), Sequel.cariIsi("select time(now())"),
-                    kddokterbpjs, normbpjs, kdpolibpjs, "-", "-", "-", 0 + "", "Belum", "Lama", "Ralan", kdpenjabbpjs, umur, sttsumur, usernya}) == true) {
+                    kddokterbpjs, normbpjs, kdpolibpjs, "-", "-", "-", 0 + "", "Belum", "Lama", "Ralan", kdpenjabbpjs, umur, sttsumur, usernya, "Tidak"}) == true) {
 
             if (Tantrian.getText().equals("YA")) {
                 Sequel.menyimpanIgnore("antrian_prioritas", "'" + norwBokingBPJS.getText() + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
@@ -690,10 +690,10 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         } else {
             bool = false;
         }
-//        Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
+//        Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19,
 //                new String[]{TNoReg.getText(), norwBoking.getText(), Valid.SetTgl(tglPeriksa.getSelectedItem() + ""), CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem(),
 //                    kddokter.getText(), norm.getText(), kdpoli.getText(), "-", "-", "-", 0 + "", "Belum",
-//                    "Lama", "Ralan", kdpenjab.getText(), umur, sttsumur, usernya});
+//                    "Lama", "Ralan", kdpenjab.getText(), umur, sttsumur, usernya, "Tidak"}) == true) {
 //
 //        Sequel.mengedit("booking_registrasi", "kd_booking='" + kodeboking.getText() + "'", "status_booking='Terdaftar',no_rawat='" + norwBoking.getText() + "'");
 //        Sequel.menyimpan("history_user", "Now(),'" + norwBoking.getText() + "','" + usernya + "','Registrasi Pasien','Simpan'");

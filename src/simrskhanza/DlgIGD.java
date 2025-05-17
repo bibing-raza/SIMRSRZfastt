@@ -4094,10 +4094,10 @@ public final class DlgIGD extends javax.swing.JDialog {
                     KataDatang = "Tidak";
                 }
                 
-                if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
+                if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19,
                         new String[]{TNoReg.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"), Sequel.cariIsi("SELECT TIME(NOW())"),
                             kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), TAlmt.getText(), THbngn.getText(), biaya + "", "Belum",
-                            TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
+                            TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode(), "Tidak"}) == true) {
                     UpdateUmur();
                     Sequel.menyimpan("data_igd", "'" + TNoRw.getText() + "','" + cmbTindakan.getSelectedItem().toString() + "',"
                             + "'" + cmbTrauma.getSelectedItem().toString() + "','" + KataDatang + "',"
@@ -4124,10 +4124,10 @@ public final class DlgIGD extends javax.swing.JDialog {
                 } else {
                     Kd2.setText("");
                     isNumber();
-                    if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
+                    if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19,
                             new String[]{TNoReg.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"), Sequel.cariIsi("SELECT TIME(NOW())"),
                                 kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), TAlmt.getText(), THbngn.getText(), biaya + "", "Belum",
-                                TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
+                                TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode(), "Tidak"}) == true) {
                         UpdateUmur();
                         Sequel.menyimpan("data_igd", "'" + TNoRw.getText() + "','" + cmbTindakan.getSelectedItem().toString() + "',"
                                 + "'" + cmbTrauma.getSelectedItem().toString() + "','" + KataDatang + "',"
@@ -4154,10 +4154,10 @@ public final class DlgIGD extends javax.swing.JDialog {
                     } else {
                         Kd2.setText("");
                         isNumber();
-                        if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
+                        if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19,
                                 new String[]{TNoReg.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"), Sequel.cariIsi("SELECT TIME(NOW())"),
                                     kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), TAlmt.getText(), THbngn.getText(), biaya + "", "Belum",
-                                    TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
+                                    TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode(), "Tidak"}) == true) {
                             UpdateUmur();
                             Sequel.menyimpan("data_igd", "'" + TNoRw.getText() + "','" + cmbTindakan.getSelectedItem().toString() + "',"
                                     + "'" + cmbTrauma.getSelectedItem().toString() + "','" + KataDatang + "',"
@@ -4184,10 +4184,10 @@ public final class DlgIGD extends javax.swing.JDialog {
                         } else {
                             Kd2.setText("");
                             isNumber();
-                            if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
+                            if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19,
                                     new String[]{TNoReg.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"), Sequel.cariIsi("SELECT TIME(NOW())"),
                                         kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), TAlmt.getText(), THbngn.getText(), biaya + "", "Belum",
-                                        TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
+                                        TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode(), "Tidak"}) == true) {
                                 UpdateUmur();
                                 Sequel.menyimpan("data_igd", "'" + TNoRw.getText() + "','" + cmbTindakan.getSelectedItem().toString() + "',"
                                         + "'" + cmbTrauma.getSelectedItem().toString() + "','" + KataDatang + "',"
@@ -4214,10 +4214,10 @@ public final class DlgIGD extends javax.swing.JDialog {
                             } else {
                                 Kd2.setText("");
                                 isNumber();
-                                if (Sequel.menyimpantf("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
+                                if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19,
                                         new String[]{TNoReg.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"), Sequel.cariIsi("SELECT TIME(NOW())"),
                                             kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), TAlmt.getText(), THbngn.getText(), biaya + "", "Belum",
-                                            TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
+                                            TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode(), "Tidak"}) == true) {
                                     UpdateUmur();
                                     Sequel.menyimpan("data_igd", "'" + TNoRw.getText() + "','" + cmbTindakan.getSelectedItem().toString() + "',"
                                             + "'" + cmbTrauma.getSelectedItem().toString() + "','" + KataDatang + "',"

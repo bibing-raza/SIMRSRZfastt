@@ -1300,10 +1300,10 @@ public class DlgPasienMati extends javax.swing.JDialog {
                     Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='KJH' and tgl_registrasi='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "'", "", 3, TNoReg);
                     Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rawat,6),signed)),0) from reg_periksa where tgl_registrasi='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "' ", dateformatNORW.format(DTPTgl.getDate()) + "/", 6, TNoRw);
 
-                    Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
+                    Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19,
                             new String[]{TNoReg.getText(), TNoRw.getText(), Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                                 "-", TNoRM.getText(), "KJH", "-", "-", "-", 0 + "", "Belum",
-                                "Baru", "Ralan", "U01", umur, sttsumur, akses.getkode()});
+                                "Baru", "Ralan", "U01", umur, sttsumur, akses.getkode(), "Tidak"});
 
                     Sequel.menyimpan("pasien_mati", "'" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','"
                             + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "','"
