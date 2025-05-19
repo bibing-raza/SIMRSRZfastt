@@ -399,7 +399,10 @@ public final class DlgReg extends javax.swing.JDialog {
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         CrPoli.setDocument(new batasInput((byte) 100).getKata(CrPoli));
         CrDokter.setDocument(new batasInput((byte) 100).getKata(CrDokter));
-        Tumur.setDocument(new batasInput((byte) 3).getOnlyAngka(Tumur));
+        Tumur.setDocument(new batasInput((byte) 3).getOnlyAngka(Tumur));        
+        TnoLompatBPJS.setDocument(new batasInput((byte) 2).getOnlyAngka(TnoLompatBPJS));
+        TnoLompatUMUM.setDocument(new batasInput((byte) 2).getOnlyAngka(TnoLompatUMUM));
+        TnoLompatKHUSUS.setDocument(new batasInput((byte) 2).getOnlyAngka(TnoLompatKHUSUS));
         
 //        if (koneksiDB.cariCepat().equals("aktif")) {
 //            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
@@ -1811,12 +1814,18 @@ public final class DlgReg extends javax.swing.JDialog {
         BtnPangBPJS = new widget.Button();
         BtnUlangPangBPJS = new widget.Button();
         jLabel52 = new widget.Label();
+        jLabel62 = new widget.Label();
+        TnoLompatBPJS = new widget.TextBox();
+        jLabel65 = new widget.Label();
         internalFrame26 = new widget.InternalFrame();
         noumum = new widget.Label();
         BtnPangUmum = new widget.Button();
         BtnUlangPangUmum = new widget.Button();
         jLabel53 = new widget.Label();
         jLabel54 = new widget.Label();
+        jLabel66 = new widget.Label();
+        TnoLompatUMUM = new widget.TextBox();
+        jLabel67 = new widget.Label();
         jPanel2 = new javax.swing.JPanel();
         internalFrame27 = new widget.InternalFrame();
         nokhusus = new widget.Label();
@@ -1824,6 +1833,10 @@ public final class DlgReg extends javax.swing.JDialog {
         BtnUlangPangKhusus = new widget.Button();
         jLabel55 = new widget.Label();
         jLabel56 = new widget.Label();
+        jLabel68 = new widget.Label();
+        TnoLompatKHUSUS = new widget.TextBox();
+        jLabel69 = new widget.Label();
+        jLabel70 = new widget.Label();
         internalFrame28 = new widget.InternalFrame();
         noinap = new widget.Label();
         BtnPangInap = new widget.Button();
@@ -3663,7 +3676,7 @@ public final class DlgReg extends javax.swing.JDialog {
         panelBiasa2.setLayout(null);
 
         TglSakit1.setEditable(false);
-        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2025" }));
+        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
         TglSakit1.setDisplayFormat("dd-MM-yyyy");
         TglSakit1.setName("TglSakit1"); // NOI18N
         TglSakit1.setOpaque(false);
@@ -3714,7 +3727,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel32.setBounds(176, 10, 20, 23);
 
         TglSakit2.setEditable(false);
-        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2025" }));
+        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
         TglSakit2.setDisplayFormat("dd-MM-yyyy");
         TglSakit2.setName("TglSakit2"); // NOI18N
         TglSakit2.setOpaque(false);
@@ -3975,7 +3988,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel26.setBounds(0, 20, 110, 23);
 
         TglSurat.setEditable(false);
-        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2025" }));
+        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
         TglSurat.setDisplayFormat("dd-MM-yyyy");
         TglSurat.setName("TglSurat"); // NOI18N
         TglSurat.setOpaque(false);
@@ -4104,7 +4117,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel28.setBounds(0, 20, 110, 23);
 
         TglSurat1.setEditable(false);
-        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2025" }));
+        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
         TglSurat1.setDisplayFormat("dd-MM-yyyy");
         TglSurat1.setName("TglSurat1"); // NOI18N
         TglSurat1.setOpaque(false);
@@ -4197,7 +4210,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel29.setBounds(0, 25, 130, 23);
 
         TglReg.setEditable(false);
-        TglReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2025" }));
+        TglReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
         TglReg.setDisplayFormat("dd-MM-yyyy");
         TglReg.setName("TglReg"); // NOI18N
         TglReg.setOpaque(false);
@@ -4436,7 +4449,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel39.setBounds(0, 20, 70, 23);
 
         Ttgl_lahir.setEditable(false);
-        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2025" }));
+        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
         Ttgl_lahir.setDisplayFormat("dd-MM-yyyy");
         Ttgl_lahir.setName("Ttgl_lahir"); // NOI18N
         Ttgl_lahir.setOpaque(false);
@@ -5141,7 +5154,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass7.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5155,7 +5168,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass7.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5559,7 +5572,6 @@ public final class DlgReg extends javax.swing.JDialog {
 
         BtnPangBPJS.setForeground(new java.awt.Color(0, 0, 0));
         BtnPangBPJS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/icons8-megaphone-64.png"))); // NOI18N
-        BtnPangBPJS.setToolTipText("");
         BtnPangBPJS.setGlassColor(new java.awt.Color(0, 102, 0));
         BtnPangBPJS.setName("BtnPangBPJS"); // NOI18N
         BtnPangBPJS.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -5573,7 +5585,6 @@ public final class DlgReg extends javax.swing.JDialog {
 
         BtnUlangPangBPJS.setForeground(new java.awt.Color(0, 0, 0));
         BtnUlangPangBPJS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/system-software-update.png"))); // NOI18N
-        BtnUlangPangBPJS.setToolTipText("");
         BtnUlangPangBPJS.setGlassColor(new java.awt.Color(0, 102, 0));
         BtnUlangPangBPJS.setName("BtnUlangPangBPJS"); // NOI18N
         BtnUlangPangBPJS.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -5591,6 +5602,26 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel52.setName("jLabel52"); // NOI18N
         internalFrame25.add(jLabel52);
         jLabel52.setBounds(375, 100, 120, 23);
+
+        jLabel62.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel62.setText("Lompati Antrian BPJS s.d :");
+        jLabel62.setName("jLabel62"); // NOI18N
+        internalFrame25.add(jLabel62);
+        jLabel62.setBounds(500, 20, 140, 23);
+
+        TnoLompatBPJS.setForeground(new java.awt.Color(0, 0, 0));
+        TnoLompatBPJS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnoLompatBPJS.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnoLompatBPJS.setName("TnoLompatBPJS"); // NOI18N
+        internalFrame25.add(TnoLompatBPJS);
+        TnoLompatBPJS.setBounds(645, 20, 50, 23);
+
+        jLabel65.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel65.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel65.setText("nomor.");
+        jLabel65.setName("jLabel65"); // NOI18N
+        internalFrame25.add(jLabel65);
+        jLabel65.setBounds(700, 20, 50, 23);
 
         jPanel4.add(internalFrame25, java.awt.BorderLayout.PAGE_START);
 
@@ -5611,7 +5642,6 @@ public final class DlgReg extends javax.swing.JDialog {
 
         BtnPangUmum.setForeground(new java.awt.Color(0, 0, 0));
         BtnPangUmum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/icons8-megaphone-64.png"))); // NOI18N
-        BtnPangUmum.setToolTipText("");
         BtnPangUmum.setGlassColor(new java.awt.Color(0, 0, 0));
         BtnPangUmum.setName("BtnPangUmum"); // NOI18N
         BtnPangUmum.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -5625,7 +5655,6 @@ public final class DlgReg extends javax.swing.JDialog {
 
         BtnUlangPangUmum.setForeground(new java.awt.Color(0, 0, 0));
         BtnUlangPangUmum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/system-software-update.png"))); // NOI18N
-        BtnUlangPangUmum.setToolTipText("");
         BtnUlangPangUmum.setGlassColor(new java.awt.Color(0, 0, 0));
         BtnUlangPangUmum.setName("BtnUlangPangUmum"); // NOI18N
         BtnUlangPangUmum.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -5650,6 +5679,26 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel54.setName("jLabel54"); // NOI18N
         internalFrame26.add(jLabel54);
         jLabel54.setBounds(226, 100, 120, 23);
+
+        jLabel66.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel66.setText("Lompati Antrian UMUM s.d :");
+        jLabel66.setName("jLabel66"); // NOI18N
+        internalFrame26.add(jLabel66);
+        jLabel66.setBounds(500, 20, 140, 23);
+
+        TnoLompatUMUM.setForeground(new java.awt.Color(0, 0, 0));
+        TnoLompatUMUM.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnoLompatUMUM.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnoLompatUMUM.setName("TnoLompatUMUM"); // NOI18N
+        internalFrame26.add(TnoLompatUMUM);
+        TnoLompatUMUM.setBounds(645, 20, 50, 23);
+
+        jLabel67.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel67.setText("nomor.");
+        jLabel67.setName("jLabel67"); // NOI18N
+        internalFrame26.add(jLabel67);
+        jLabel67.setBounds(700, 20, 50, 23);
 
         jPanel4.add(internalFrame26, java.awt.BorderLayout.CENTER);
 
@@ -5677,7 +5726,6 @@ public final class DlgReg extends javax.swing.JDialog {
 
         BtnPangKhusus.setForeground(new java.awt.Color(0, 0, 0));
         BtnPangKhusus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/icons8-megaphone-64.png"))); // NOI18N
-        BtnPangKhusus.setToolTipText("");
         BtnPangKhusus.setGlassColor(new java.awt.Color(102, 0, 102));
         BtnPangKhusus.setName("BtnPangKhusus"); // NOI18N
         BtnPangKhusus.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -5691,7 +5739,6 @@ public final class DlgReg extends javax.swing.JDialog {
 
         BtnUlangPangKhusus.setForeground(new java.awt.Color(0, 0, 0));
         BtnUlangPangKhusus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/system-software-update.png"))); // NOI18N
-        BtnUlangPangKhusus.setToolTipText("");
         BtnUlangPangKhusus.setGlassColor(new java.awt.Color(102, 0, 102));
         BtnUlangPangKhusus.setName("BtnUlangPangKhusus"); // NOI18N
         BtnUlangPangKhusus.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -5717,6 +5764,32 @@ public final class DlgReg extends javax.swing.JDialog {
         internalFrame27.add(jLabel56);
         jLabel56.setBounds(226, 100, 120, 23);
 
+        jLabel68.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel68.setText("Lompati Antrian :");
+        jLabel68.setName("jLabel68"); // NOI18N
+        internalFrame27.add(jLabel68);
+        jLabel68.setBounds(500, 20, 140, 23);
+
+        TnoLompatKHUSUS.setForeground(new java.awt.Color(0, 0, 0));
+        TnoLompatKHUSUS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnoLompatKHUSUS.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnoLompatKHUSUS.setName("TnoLompatKHUSUS"); // NOI18N
+        internalFrame27.add(TnoLompatKHUSUS);
+        TnoLompatKHUSUS.setBounds(645, 20, 50, 23);
+
+        jLabel69.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel69.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel69.setText("nomor.");
+        jLabel69.setName("jLabel69"); // NOI18N
+        internalFrame27.add(jLabel69);
+        jLabel69.setBounds(700, 20, 50, 23);
+
+        jLabel70.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel70.setText("KHUSUS/PRIORITAS s.d  ");
+        jLabel70.setName("jLabel70"); // NOI18N
+        internalFrame27.add(jLabel70);
+        jLabel70.setBounds(500, 35, 140, 23);
+
         jPanel2.add(internalFrame27, java.awt.BorderLayout.PAGE_START);
 
         internalFrame28.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Nomor Pasien Rawat Inap ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
@@ -5736,7 +5809,6 @@ public final class DlgReg extends javax.swing.JDialog {
 
         BtnPangInap.setForeground(new java.awt.Color(0, 0, 0));
         BtnPangInap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/icons8-megaphone-64.png"))); // NOI18N
-        BtnPangInap.setToolTipText("");
         BtnPangInap.setGlassColor(new java.awt.Color(255, 204, 0));
         BtnPangInap.setName("BtnPangInap"); // NOI18N
         BtnPangInap.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -5750,7 +5822,6 @@ public final class DlgReg extends javax.swing.JDialog {
 
         BtnUlangPangInap.setForeground(new java.awt.Color(0, 0, 0));
         BtnUlangPangInap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/system-software-update.png"))); // NOI18N
-        BtnUlangPangInap.setToolTipText("");
         BtnUlangPangInap.setGlassColor(new java.awt.Color(255, 204, 0));
         BtnUlangPangInap.setName("BtnUlangPangInap"); // NOI18N
         BtnUlangPangInap.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -6038,7 +6109,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel59.setPreferredSize(new java.awt.Dimension(75, 23));
         panelGlass11.add(jLabel59);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -6052,7 +6123,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel60.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass11.add(jLabel60);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -8450,6 +8521,10 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             tampilAwal();
             tampilCekFinger();
         } else if (TabRawat.getSelectedIndex() == 1) {
+            TnoLompatBPJS.setText("");
+            TnoLompatUMUM.setText("");
+            TnoLompatKHUSUS.setText("");
+            
             if (akses.getJenisLoket().equals("") && akses.getNomorLoket().equals("")) {
                 statusOperator.setText("Anda belum menentukan jenis & no. loketnya.");
             } else if (!akses.getJenisLoket().equals("") && akses.getNomorLoket().equals("")) {
@@ -9286,17 +9361,24 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
 
             if (infobpjs2.getText().equals("Hari ini masih belum ada pasien.")) {
                 JOptionPane.showMessageDialog(null, "Belum ada pasien yang mengambil nomor antrian BPJS,...!!");
+                TnoLompatBPJS.setText("");
+                TnoLompatUMUM.setText("");
+                TnoLompatKHUSUS.setText("");
             } else if (cekPangBPJS > 0 || cekPangUmum > 0 || cekPangKhusus > 0 || cekPangInap > 0) {
                 JOptionPane.showMessageDialog(null, "Loket lain masih memanggil antrian, tunggu sebentar,...!!");
             } else if (infobpjs2.getText().equals("Antrian pasien rawat jalan BPJS sudah habis.")) {
                 JOptionPane.showMessageDialog(null, "Hentikan panggilan untuk pasien BPJS karena sudah habis dilayani, terima kasih...!!");
+                TnoLompatBPJS.setText("");
+                TnoLompatUMUM.setText("");
+                TnoLompatKHUSUS.setText("");
             } else {
                 tambahPangBPJS();
-                suaraPanggilanBPJS();
-                Sequel.mengedit("antrian_pemanggil_bpjs", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan tentukan dulu jenis & nomor loketnya utk. melakukan panggilan antrian & simpan sbg. operator..!!");
+            TnoLompatBPJS.setText("");
+            TnoLompatUMUM.setText("");
+            TnoLompatKHUSUS.setText("");
         }
     }//GEN-LAST:event_BtnPangBPJSActionPerformed
 
@@ -9360,17 +9442,24 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
 
             if (infoumum2.getText().equals("Hari ini masih belum ada pasien.")) {
                 JOptionPane.showMessageDialog(null, "Belum ada pasien yang mengambil nomor antrian Umum (Non BPJS),...!!");
+                TnoLompatBPJS.setText("");
+                TnoLompatUMUM.setText("");
+                TnoLompatKHUSUS.setText("");
             } else if (cekPangBPJS > 0 || cekPangUmum > 0 || cekPangKhusus > 0 || cekPangInap > 0) {
                 JOptionPane.showMessageDialog(null, "Loket lain masih memanggil antrian, tunggu sebentar,...!!");
             } else if (infoumum2.getText().equals("Antrian pasien rawat jalan Umum (NON BPJS) sudah habis.")) {
                 JOptionPane.showMessageDialog(null, "Hentikan panggilan untuk pasien Umum (Non BPJS) karena sudah habis dilayani, terima kasih...!!");
+                TnoLompatBPJS.setText("");
+                TnoLompatUMUM.setText("");
+                TnoLompatKHUSUS.setText("");
             } else {
-                tambahPangUmum();
-                suaraPanggilanUMUM();
-                Sequel.mengedit("antrian_pemanggil_umum", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
+                tambahPangUmum();                
             }
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan tentukan dulu jenis & nomor loketnya utk. melakukan panggilan antrian & simpan sbg. operator..!!");
+            TnoLompatBPJS.setText("");
+            TnoLompatUMUM.setText("");
+            TnoLompatKHUSUS.setText("");
         }
     }//GEN-LAST:event_BtnPangUmumActionPerformed
 
@@ -9434,17 +9523,24 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
 
             if (infokhusus2.getText().equals("Hari ini masih belum ada pasien.")) {
                 JOptionPane.showMessageDialog(null, "Belum ada pasien yang mengambil nomor antrian Khusus/Prioritas,...!!");
+                TnoLompatBPJS.setText("");
+                TnoLompatUMUM.setText("");
+                TnoLompatKHUSUS.setText("");
             } else if (cekPangBPJS > 0 || cekPangUmum > 0 || cekPangKhusus > 0 || cekPangInap > 0) {
                 JOptionPane.showMessageDialog(null, "Loket lain masih memanggil antrian, tunggu sebentar,...!!");
             } else if (infokhusus2.getText().equals("Antrian pasien rawat jalan KHUSUS / PRIORITAS sudah habis.")) {
                 JOptionPane.showMessageDialog(null, "Hentikan panggilan untuk pasien Khusus/Prioritas karena sudah habis dilayani, terima kasih...!!");
+                TnoLompatBPJS.setText("");
+                TnoLompatUMUM.setText("");
+                TnoLompatKHUSUS.setText("");
             } else {
                 tambahPangKhusus();
-                suaraPanggilanKhusus();
-                Sequel.mengedit("antrian_pemanggil_lansia", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan tentukan dulu jenis & nomor loketnya utk. melakukan panggilan antrian & simpan sbg. operator..!!");
+            TnoLompatBPJS.setText("");
+            TnoLompatUMUM.setText("");
+            TnoLompatKHUSUS.setText("");
         }
     }//GEN-LAST:event_BtnPangKhususActionPerformed
 
@@ -10413,6 +10509,9 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Tanggal TglSakit2;
     private widget.Tanggal TglSurat;
     private widget.Tanggal TglSurat1;
+    private widget.TextBox TnoLompatBPJS;
+    private widget.TextBox TnoLompatKHUSUS;
+    private widget.TextBox TnoLompatUMUM;
     private widget.Tanggal Ttgl_lahir;
     private widget.TextBox Tumur;
     private widget.Button btnKab;
@@ -10514,9 +10613,16 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Label jLabel6;
     private widget.Label jLabel60;
     private widget.Label jLabel61;
+    private widget.Label jLabel62;
     private widget.Label jLabel63;
     private widget.Label jLabel64;
+    private widget.Label jLabel65;
+    private widget.Label jLabel66;
+    private widget.Label jLabel67;
+    private widget.Label jLabel68;
+    private widget.Label jLabel69;
     private widget.Label jLabel7;
+    private widget.Label jLabel70;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JMenu jMenu1;
@@ -11572,12 +11678,52 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }
 
     private void tambahPangBPJS() {
+        if (TnoLompatBPJS.getText().equals("") || TnoLompatBPJS.getText().equals("0") || TnoLompatBPJS.getText().equals("00")) {
+            tambahPangBPJSfix();
+            suaraPanggilanBPJS();
+            Sequel.mengedit("antrian_pemanggil_bpjs", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
+            TnoLompatBPJS.setText("");
+            TnoLompatUMUM.setText("");
+            TnoLompatKHUSUS.setText("");
+        } else if (TnoLompatBPJS.getText().length() >= 1) {
+            if (Integer.parseInt(TnoLompatBPJS.getText()) >= Sequel.cariInteger("select no_antrian from antrian_nomor_bpjs where date(waktu_cetak)=date(now()) order by no_antrian desc limit 1")) {
+                JOptionPane.showMessageDialog(null, "Nomor antrian lompatan BPJS kebanyakan, melebihi antrian yang ada pada hari ini...!!");
+                TnoLompatBPJS.setText("");
+                TnoLompatUMUM.setText("");
+                TnoLompatKHUSUS.setText("");
+            } else {
+                x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin antrian pasien BPJS akan dilompati s.d " + TnoLompatBPJS.getText() + " nomor antrian..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    if (Sequel.cariInteger("select count(-1) from antrian_nomor_bpjs where date(waktu_cetak)=date(now())") > 0) {
+                        Sequel.menyimpan("antrian_pemanggil_bpjs", "'" + TnoLompatBPJS.getText() + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Lompatan BPJS");
+                        tambahPangBPJSfix();
+                        suaraPanggilanBPJS();
+                        Sequel.mengedit("antrian_pemanggil_bpjs", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
+                        TnoLompatBPJS.setText("");
+                        TnoLompatUMUM.setText("");
+                        TnoLompatKHUSUS.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Maaf, belum ada pasien BPJS yang mengambil no. antrian pada hari ini.. !!");
+                        TnoLompatBPJS.setText("");
+                        TnoLompatUMUM.setText("");
+                        TnoLompatKHUSUS.setText("");
+                    }
+                } else {
+                    TnoLompatBPJS.setText("");
+                    TnoLompatUMUM.setText("");
+                    TnoLompatKHUSUS.setText("");
+                }
+            }
+        }
+    }
+
+    private void tambahPangBPJSfix() {
         wktPanggil = "";
         wktAmbilNomor = "";
         panggilanFix = "";
         noPangAkhir = "";
         wktPanggil = Sequel.cariIsi("select now()");
-
+        
         if (akses.getNomorLoket().equals("1")) {
             Sequel.menyimpan("antrian_pemanggil_bpjs", "'" + Sequel.cariIsi("select ifnull(MAX(no_antrian)+1,1) from antrian_pemanggil_bpjs where date(waktu_panggil)=date(now())") + "',"
                     + "'proses','1','" + Sequel.cariIsi("select now()") + "'", "Nomor Panggilan BPJS");
@@ -11624,6 +11770,46 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }
 
     private void tambahPangUmum() {
+        if (TnoLompatUMUM.getText().equals("") || TnoLompatUMUM.getText().equals("0") || TnoLompatUMUM.getText().equals("00")) {
+            tambahPangUmumfix();
+            suaraPanggilanUMUM();
+            Sequel.mengedit("antrian_pemanggil_umum", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
+            TnoLompatBPJS.setText("");
+            TnoLompatUMUM.setText("");
+            TnoLompatKHUSUS.setText("");
+        } else if (TnoLompatUMUM.getText().length() >= 1) {
+            if (Integer.parseInt(TnoLompatUMUM.getText()) >= Sequel.cariInteger("select no_antrian from antrian_nomor_umum where date(waktu_cetak)=date(now()) order by no_antrian desc limit 1")) {
+                JOptionPane.showMessageDialog(null, "Nomor antrian lompatan UMUM/Non BPJS kebanyakan, melebihi antrian yang ada pada hari ini...!!");
+                TnoLompatBPJS.setText("");
+                TnoLompatUMUM.setText("");
+                TnoLompatKHUSUS.setText("");
+            } else {
+                x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin antrian pasien UMUM/Non BPJS akan dilompati s.d " + TnoLompatUMUM.getText() + " nomor antrian..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    if (Sequel.cariInteger("select count(-1) from antrian_nomor_umum where date(waktu_cetak)=date(now())") > 0) {
+                        Sequel.menyimpan("antrian_pemanggil_umum", "'" + TnoLompatUMUM.getText() + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Lompatan UMUM/Non BPJS");
+                        tambahPangUmumfix();
+                        suaraPanggilanUMUM();
+                        Sequel.mengedit("antrian_pemanggil_umum", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
+                        TnoLompatBPJS.setText("");
+                        TnoLompatUMUM.setText("");
+                        TnoLompatKHUSUS.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Maaf, belum ada pasien UMUM/Non BPJS yang mengambil no. antrian pada hari ini.. !!");
+                        TnoLompatBPJS.setText("");
+                        TnoLompatUMUM.setText("");
+                        TnoLompatKHUSUS.setText("");
+                    }
+                } else {
+                    TnoLompatBPJS.setText("");
+                    TnoLompatUMUM.setText("");
+                    TnoLompatKHUSUS.setText("");
+                }
+            }
+        }
+    }
+
+    private void tambahPangUmumfix() {
         wktPanggil = "";
         wktAmbilNomor = "";
         panggilanFix = "";
@@ -11676,6 +11862,46 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }
 
     private void tambahPangKhusus() {
+        if (TnoLompatKHUSUS.getText().equals("") || TnoLompatKHUSUS.getText().equals("0") || TnoLompatKHUSUS.getText().equals("00")) {
+            tambahPangKhususfix();
+            suaraPanggilanKhusus();
+            Sequel.mengedit("antrian_pemanggil_lansia", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
+            TnoLompatBPJS.setText("");
+            TnoLompatUMUM.setText("");
+            TnoLompatKHUSUS.setText("");
+        } else if (TnoLompatKHUSUS.getText().length() >= 1) {
+            if (Integer.parseInt(TnoLompatKHUSUS.getText()) >= Sequel.cariInteger("select no_antrian from antrian_nomor_lansia where date(waktu_cetak)=date(now()) order by no_antrian desc limit 1")) {
+                JOptionPane.showMessageDialog(null, "Nomor antrian lompatan KHUSUS/PRIORITAS kebanyakan, melebihi antrian yang ada pada hari ini...!!");
+                TnoLompatBPJS.setText("");
+                TnoLompatUMUM.setText("");
+                TnoLompatKHUSUS.setText("");
+            } else {
+                x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin antrian pasien KHUSUS/PRIORITAS akan dilompati s.d " + TnoLompatKHUSUS.getText() + " nomor antrian..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    if (Sequel.cariInteger("select count(-1) from antrian_nomor_lansia where date(waktu_cetak)=date(now())") > 0) {
+                        Sequel.menyimpan("antrian_pemanggil_lansia", "'" + TnoLompatKHUSUS.getText() + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Lompatan KHUSUS/PRIORITAS");
+                        tambahPangKhususfix();
+                        suaraPanggilanKhusus();
+                        Sequel.mengedit("antrian_pemanggil_lansia", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
+                        TnoLompatBPJS.setText("");
+                        TnoLompatUMUM.setText("");
+                        TnoLompatKHUSUS.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Maaf, belum ada pasien KHUSUS/PRIORITAS yang mengambil no. antrian pada hari ini.. !!");
+                        TnoLompatBPJS.setText("");
+                        TnoLompatUMUM.setText("");
+                        TnoLompatKHUSUS.setText("");
+                    }
+                } else {
+                    TnoLompatBPJS.setText("");
+                    TnoLompatUMUM.setText("");
+                    TnoLompatKHUSUS.setText("");
+                }
+            }
+        }
+    }
+
+    private void tambahPangKhususfix() {
         wktPanggil = "";
         wktAmbilNomor = "";
         panggilanFix = "";
