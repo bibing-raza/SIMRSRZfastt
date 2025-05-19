@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
-	<property name="ireport.zoom" value="1.6528925619834751"/>
+	<property name="ireport.zoom" value="1.818181818181823"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="195"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -17,7 +17,7 @@
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="namars" class="java.lang.String"/>
-	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="logo1" class="java.io.InputStream"/>
 	<parameter name="norm" class="java.lang.String"/>
 	<parameter name="nmpasien" class="java.lang.String"/>
 	<parameter name="tgllahir" class="java.lang.String"/>
@@ -83,7 +83,6 @@
 	<parameter name="nmalatlain" class="java.lang.String"/>
 	<parameter name="tgllainalat" class="java.lang.String"/>
 	<parameter name="tgltransferserah" class="java.lang.String"/>
-	<parameter name="obatDiberikan" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select date(now()) tanggal]]>
 	</queryString>
@@ -146,10 +145,6 @@
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
-			<image scaleImage="FillFrame" isUsingCache="true" onErrorType="Blank">
-				<reportElement x="10" y="14" width="35" height="40"/>
-				<imageExpression class="java.lang.String"><![CDATA[$P{logo}]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="55" width="520" height="17" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -1031,6 +1026,10 @@
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
+			<image scaleImage="FillFrame" isUsingCache="true" onErrorType="Blank">
+				<reportElement x="10" y="14" width="35" height="40"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{logo1}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<detail>
@@ -1126,33 +1125,6 @@
 		</band>
 		<band height="13">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="3" y="0" width="518" height="12"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{obatDiberikan}]]></textFieldExpression>
-			</textField>
-			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="520" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="12" width="520" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-		</band>
-		<band height="13">
-			<textField isStretchWithOverflow="true">
 				<reportElement x="103" y="0" width="415" height="12"/>
 				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
@@ -1189,7 +1161,7 @@
 		</band>
 	</detail>
 	<summary>
-		<band height="116">
+		<band height="131">
 			<line>
 				<reportElement x="0" y="15" width="520" height="1"/>
 				<graphicElement>
@@ -1294,6 +1266,15 @@
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<text><![CDATA[Pasien/Keluarga,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="117" width="255" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Catatan : Obat-obatan yang diberikan terlampir.]]></text>
 			</staticText>
 		</band>
 	</summary>

@@ -67,9 +67,9 @@ public class DlgCPPT extends javax.swing.JDialog {
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     private final Properties prop = new Properties();
-    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9, pps1, pps2, pps3, pps4, pps5, pps6, psFile,
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, pps1, pps2, pps3, pps4, pps5, pps6, psFile,
             pspasien, psdiet, psrestor, psLaprm, psFakIGD, psRes, psCetak, psLab1, psLab2, psLabA, psLabB, psLabC, psRad;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rsRad, rsDok, rsFile,
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rsRad, rsDok, rsFile,
             rspasien, rsdiet, rsrestor, rsLaprm, rsFakIGD, rsRes, rsPrev, rsCetak, rsLab1, rsLab2, rsLabA, rsLabB, rsLabC, rsDiag, 
             rsDiag1, rsObat, rsTHT, rsLISMaster, rsLIS1, rsLIS2, rsLIS3;
     private int i = 0, x = 0, pilihan = 0, totskorTriase = 0, skorGZ1 = 0, skorYaGZ1 = 0, skorGZ2 = 0, skor = 0, paste = 0,
@@ -89,7 +89,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             klinis1 = "", klinis2 = "", klinis3 = "", klinis4 = "", klinis5 = "", klinis6 = "", klinis7 = "", klinis8 = "", 
             klinislain = "", cekKlinisGizi = "", riw1 = "", riw2 = "", riw3 = "", riw4 = "", riw5 = "", riw6 = "", riw7 = "", 
             riw8 = "", cekRiwGizi = "", riwGiziLain = "", diagnosaGizi = "", proteinGizi = "", lemakGizi = "", karboGizi = "",
-            ren1 = "", ren2 = "", ren3 = "", ren4 = "", ren5 = "", cekRenMonevGizi = "", monevGizi = "", dataKonfir = "", obatnya = "";
+            ren1 = "", ren2 = "", ren3 = "", ren4 = "", ren5 = "", cekRenMonevGizi = "", monevGizi = "", dataKonfir = "";
     private String noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "",
             hasilDipilih = "", kdItem = "", norawat = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", link = "";
 
@@ -12025,6 +12025,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                     Map<String, Object> param = new HashMap<>();
                     param.put("namars", akses.getnamars());
                     param.put("logo", Sequel.cariGambar("select logo from setting"));
+                    param.put("logo1", Sequel.cariGambar("select logo from setting"));
+                    param.put("logo2", Sequel.cariGambar("select logo from setting"));
                     param.put("norm", TNoRm.getText());
                     param.put("nmpasien", Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRm.getText() + "'"));
                     param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRm.getText() + "'"));                    
@@ -12222,14 +12224,20 @@ public class DlgCPPT extends javax.swing.JDialog {
                         Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
                                 "SELECT date(now())", param);
                     } else {
-                        obatDiberikan(rsLaprm.getString("no_rawat"), Sequel.cariIsi("SELECT p.nm_poli FROM reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli "
-                                + "WHERE r.no_rawat='" + rsLaprm.getString("no_rawat") + "'"), "Ralan", Sequel.cariIsi("select date(now())"));
-                        if (obatnya.equals("")) {
-                            param.put("obatDiberikan", "Obat-obatan yang diberikan : -");
-                        } else {
-                            param.put("obatDiberikan", "Obat-obatan yang diberikan :\n" + obatnya + "\n");
-                        }
-                        Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien ]::",
+                        Valid.MyReport("rptTransferPasienIGDobat.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD (Lampiran Obat) ]::",
+                                "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
+                                + "no_rawat ='" + rsLaprm.getString("no_rawat") + "' and nm_unit='" + Sequel.cariIsi("SELECT p.nm_poli FROM reg_periksa r "
+                                + "inner join poliklinik p on p.kd_poli=r.kd_poli WHERE r.no_rawat='" + rsLaprm.getString("no_rawat") + "'") + "' and status='Ralan' "
+                                + "ORDER BY waktu_simpan desc", param);
+
+                        Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien (IGD) ]::",
                                 "select date(now()) tanggal", param);
                     }
                 }
@@ -17937,79 +17945,6 @@ public class DlgCPPT extends javax.swing.JDialog {
                 if (psLaprm != null) {
                     psLaprm.close();
                 }
-            }
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        }
-    }
-    
-    private void obatDiberikan(String norwt, String nmKam, String stts, String tglBeri) {
-        obatnya = "";
-        String dosis = "", cara = "", jadwal = "", jumlah = "";
-        try {
-            if (stts.equals("Ralan")) {
-                ps9 = koneksi.prepareStatement("SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
-                        + "no_rawat ='" + norwt + "' and nm_unit='" + nmKam + "' and status='" + stts + "' ORDER BY waktu_simpan desc");
-            } else {
-                ps9 = koneksi.prepareStatement("SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
-                        + "no_rawat ='" + norwt + "' and nm_unit='" + nmKam + "' and status='" + stts + "' and "
-                        + "tgl_pemberian='" + tglBeri + "' ORDER BY waktu_simpan desc");
-            }
-            try {
-                rs9 = ps9.executeQuery();
-                i = 1;
-                while (rs9.next()) {
-                    if (rs9.getString("dosis").equals("")) {
-                        dosis = "-";
-                    } else {
-                        dosis = rs9.getString("dosis");
-                    }
-                    
-                    if (rs9.getString("cara_pemberian").equals("")) {
-                        cara = "-";
-                    } else {
-                        cara = rs9.getString("cara_pemberian");
-                    }
-                    
-                    if (rs9.getString("jamBeri").equals("")) {
-                        jadwal = "-";
-                    } else {
-                        jadwal = rs9.getString("jamBeri");
-                    }
-                    
-                    if (rs9.getString("jlh_sisa_obat").equals("")) {
-                        jumlah = "-";
-                    } else {
-                        jumlah = rs9.getString("jlh_sisa_obat");
-                    }
-                    
-                    if (obatnya.equals("")) {
-                        obatnya = i + ". " + rs9.getString("nama_obat") + ", Dosis : " + dosis + ", Cara Pemberian : " + cara + ", Jdwal. Pemberian : " + jadwal;
-//                        obatnya = i + ". " + rs9.getString("nama_obat") + ", Dosis : " + dosis + ", Cara Pemberian : " + cara
-//                                + ", Jdwal. Pemberian : " + jadwal + ", Jlh. (Sisa Obat) : " + jumlah;
-                    } else {
-                        obatnya = obatnya + "\n" + i + ". " + rs9.getString("nama_obat") + ", Dosis : " + dosis + ", Cara Pemberian : " + cara + ", Jdwal. Pemberian : " + jadwal;
-//                        obatnya = obatnya + "\n" + i + ". " + rs9.getString("nama_obat") + ", Dosis : " + dosis + ", Cara Pemberian : " + cara
-//                                + ", Jdwal. Pemberian : " + jadwal + ", Jlh. (Sisa Obat) : " + jumlah;
-                    }
-                    i++;
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);

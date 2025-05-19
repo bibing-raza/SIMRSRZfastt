@@ -67,15 +67,15 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);    
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     public DlgKamar kamar = new DlgKamar(null, false);
-    private PreparedStatement ps, ps1, ps2, ps3, pps1, pps2, pps3, pps4, pps5, pps6, pps7, psTri;
-    private ResultSet rs, rs1, rs2, rs3, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7, rsTri;
+    private PreparedStatement ps, ps1, ps2, pps1, pps2, pps3, pps4, pps5, pps6, pps7, psTri;
+    private ResultSet rs, rs1, rs2, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7, rsTri;
     private int i = 0, x = 0, pilihan = 0;
     private String nip_dpjp = "", nip_konsulen1 = "", nip_konsulen2 = "", kd_kamar = "", kd_kamar_pindah = "", resepDipilih = "", 
             cekResep = "", tglResep = "", status_kmr = "", nip_dokter = "", nip_serah = "", nip_terima = "", ekg = "", torak_foto = "", 
             fotoC = "", fotoG = "", fotoA = "", spiri = "", echo = "", usg = "", ct_scan = "", endos = "", wktSimpan = "",
             ctg = "", penunjang_lain = "", alat_lain = "", infus = "", kateter = "", ngt = "", oksigen = "", statusOK = "",
             drain = "", itemDipilih = "", lab = "", posisi = "", nmKamar = "", penyakitDulu1 = "", penyakitDulu2 = "",
-            penyakitDulu3 = "", penyakitDulu4 = "", obatnya = "";
+            penyakitDulu3 = "", penyakitDulu4 = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -4135,6 +4135,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("logo1", Sequel.cariGambar("select logo from setting"));
+            param.put("logo2", Sequel.cariGambar("select logo from setting"));
             param.put("norm", TNoRM.getText());
             param.put("nmpasien", TPasien.getText());
             param.put("tgllahir", tgllahir.getText());
@@ -4335,24 +4337,35 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                         "SELECT date(now())", param);
             } else {
                 if (statusOK.equals("Ralan")) {
-                    obatDiberikan(TNoRw.getText(), Tnm_kamar.getText(), statusOK, Sequel.cariIsi("select date(now())"));
-                    if (obatnya.equals("")) {
-                        param.put("obatDiberikan", "Obat-obatan yang diberikan : -");
-                    } else {
-                        param.put("obatDiberikan", "Obat-obatan yang diberikan :\n" + obatnya + "\n");
-                    }
-                    Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien ]::",
+                    Valid.MyReport("rptTransferPasienIGDobat.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD (Lampiran Obat) ]::",
+                            "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
+                            + "no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' and status='" + statusOK + "' "
+                            + "ORDER BY waktu_simpan desc", param);
+                    
+                    Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien (IGD) ]::",
                             "select date(now()) tanggal", param);
                 } else {
-                    obatDiberikan(TNoRw.getText(), Tnm_kamar.getText(), statusOK,
-                            Sequel.cariIsi("SELECT MAX(tgl_pemberian) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and "
-                                    + "status='" + statusOK + "' and nm_unit='" + Tnm_kamar.getText() + "'"));
-                    if (obatnya.equals("")) {
-                        param.put("obatDiberikan", "Obat-obatan yang diberikan : -");
-                    } else {
-                        param.put("obatDiberikan", "Obat-obatan yang diberikan :\n" + obatnya + "\n");
-                    }
-                    Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien ]::",
+                    Valid.MyReport("rptTransferPasienIGDobat.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap (Lampiran Obat) ]::",
+                            "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
+                            + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
+                            + "no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' and status='" + statusOK + "' and "
+                            + "tgl_pemberian='" + Sequel.cariIsi("SELECT MAX(tgl_pemberian) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and "
+                                    + "status='" + statusOK + "' and nm_unit='" + Tnm_kamar.getText() + "'") + "' ORDER BY waktu_simpan desc", param);
+                    
+                    Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap ]::",
                             "select date(now()) tanggal", param);
                 }
             }
@@ -4888,79 +4901,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 if (psTri != null) {
                     psTri.close();
                 }
-            }
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        }
-    }
-
-    private void obatDiberikan(String norwt, String nmKam, String stts, String tglBeri) {
-        obatnya = "";
-        String dosis = "", cara = "", jadwal = "", jumlah = "";
-        try {
-            if (stts.equals("Ralan")) {
-                ps3 = koneksi.prepareStatement("SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
-                        + "no_rawat ='" + norwt + "' and nm_unit='" + nmKam + "' and status='" + stts + "' ORDER BY waktu_simpan desc");
-            } else {
-                ps3 = koneksi.prepareStatement("SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
-                        + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
-                        + "no_rawat ='" + norwt + "' and nm_unit='" + nmKam + "' and status='" + stts + "' and "
-                        + "tgl_pemberian='" + tglBeri + "' ORDER BY waktu_simpan desc");
-            }
-            try {
-                rs3 = ps3.executeQuery();
-                i = 1;
-                while (rs3.next()) {
-                    if (rs3.getString("dosis").equals("")) {
-                        dosis = "-";
-                    } else {
-                        dosis = rs3.getString("dosis");
-                    }
-                    
-                    if (rs3.getString("cara_pemberian").equals("")) {
-                        cara = "-";
-                    } else {
-                        cara = rs3.getString("cara_pemberian");
-                    }
-                    
-                    if (rs3.getString("jamBeri").equals("")) {
-                        jadwal = "-";
-                    } else {
-                        jadwal = rs3.getString("jamBeri");
-                    }
-                    
-                    if (rs3.getString("jlh_sisa_obat").equals("")) {
-                        jumlah = "-";
-                    } else {
-                        jumlah = rs3.getString("jlh_sisa_obat");
-                    }
-                    
-                    if (obatnya.equals("")) {
-                        obatnya = i + ". " + rs3.getString("nama_obat") + ", Dosis : " + dosis + ", Cara Pemberian : " + cara + ", Jdwal. Pemberian : " + jadwal;
-//                        obatnya = i + ". " + rs3.getString("nama_obat") + ", Dosis : " + dosis + ", Cara Pemberian : " + cara
-//                                + ", Jdwal. Pemberian : " + jadwal + ", Jlh. (Sisa Obat) : " + jumlah;
-                    } else {
-                        obatnya = obatnya + "\n" + i + ". " + rs3.getString("nama_obat") + ", Dosis : " + dosis + ", Cara Pemberian : " + cara + ", Jdwal. Pemberian : " + jadwal;
-//                        obatnya = obatnya + "\n" + i + ". " + rs3.getString("nama_obat") + ", Dosis : " + dosis + ", Cara Pemberian : " + cara
-//                                + ", Jdwal. Pemberian : " + jadwal + ", Jlh. (Sisa Obat) : " + jumlah;
-                    }
-                    i++;
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
