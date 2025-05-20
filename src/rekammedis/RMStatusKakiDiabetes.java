@@ -635,13 +635,13 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 1) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(77);
             } else if (i == 2) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(250);
             } else if (i == 3) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(220);
             } else if (i == 4) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(85);
             } else if (i == 5) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -1233,6 +1233,9 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel141 = new widget.Label();
         TtglSimpan = new widget.Tanggal();
         chkSaya = new widget.CekBox();
+        jSeparator17 = new javax.swing.JSeparator();
+        jLabel142 = new widget.Label();
+        jLabel143 = new widget.Label();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbPasien = new widget.Table();
@@ -1567,7 +1570,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel18.setBounds(495, 150, 70, 23);
 
         TtglMasuk.setEditable(false);
-        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
+        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         TtglMasuk.setDisplayFormat("dd-MM-yyyy");
         TtglMasuk.setName("TtglMasuk"); // NOI18N
         TtglMasuk.setOpaque(false);
@@ -1602,6 +1605,11 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         cmbJnsRawat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Rawat Inap", "Rawat Jalan" }));
         cmbJnsRawat.setName("cmbJnsRawat"); // NOI18N
         cmbJnsRawat.setPreferredSize(new java.awt.Dimension(55, 23));
+        cmbJnsRawat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbJnsRawatActionPerformed(evt);
+            }
+        });
         FormInput.add(cmbJnsRawat);
         cmbJnsRawat.setBounds(112, 178, 100, 23);
 
@@ -1749,7 +1757,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
 
-        tbRiwPengobatan.setAutoCreateRowSorter(true);
         tbRiwPengobatan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRiwPengobatan.setComponentPopupMenu(jPopupMenu1);
         tbRiwPengobatan.setName("tbRiwPengobatan"); // NOI18N
@@ -1766,7 +1773,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         Scroll1.setViewportView(tbRiwPengobatan);
 
         FormInput.add(Scroll1);
-        Scroll1.setBounds(40, 346, 680, 190);
+        Scroll1.setBounds(40, 346, 680, 180);
 
         BtnTambahObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambahObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
@@ -2227,6 +2234,11 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         cmbRiwUlkus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ya", "Tidak" }));
         cmbRiwUlkus.setName("cmbRiwUlkus"); // NOI18N
         cmbRiwUlkus.setPreferredSize(new java.awt.Dimension(55, 23));
+        cmbRiwUlkus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRiwUlkusActionPerformed(evt);
+            }
+        });
         FormInput.add(cmbRiwUlkus);
         cmbRiwUlkus.setBounds(205, 820, 60, 23);
 
@@ -2286,7 +2298,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         Scroll2.setName("Scroll2"); // NOI18N
         Scroll2.setOpaque(true);
 
-        tbRiwLuka.setAutoCreateRowSorter(true);
         tbRiwLuka.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRiwLuka.setComponentPopupMenu(jPopupMenu1);
         tbRiwLuka.setName("tbRiwLuka"); // NOI18N
@@ -3008,7 +3019,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
 
-        tbDeformitas.setAutoCreateRowSorter(true);
         tbDeformitas.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDeformitas.setComponentPopupMenu(jPopupMenu1);
         tbDeformitas.setName("tbDeformitas"); // NOI18N
@@ -3783,13 +3793,13 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel111.setText("TDS A. Brachialis : ");
         jLabel111.setName("jLabel111"); // NOI18N
         FormInput.add(jLabel111);
-        jLabel111.setBounds(235, 2755, 130, 23);
+        jLabel111.setBounds(235, 2755, 120, 23);
 
         jLabel112.setForeground(new java.awt.Color(0, 0, 0));
         jLabel112.setText("TDS A. Dorsalis Pedis : ");
         jLabel112.setName("jLabel112"); // NOI18N
         FormInput.add(jLabel112);
-        jLabel112.setBounds(235, 2783, 130, 23);
+        jLabel112.setBounds(235, 2783, 120, 23);
 
         TtdsBra.setBackground(new java.awt.Color(245, 250, 240));
         TtdsBra.setForeground(new java.awt.Color(0, 0, 0));
@@ -3800,14 +3810,14 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             }
         });
         FormInput.add(TtdsBra);
-        TtdsBra.setBounds(367, 2755, 75, 23);
+        TtdsBra.setBounds(357, 2755, 75, 23);
 
         jLabel113.setForeground(new java.awt.Color(0, 0, 0));
         jLabel113.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel113.setText("mmHg      Skor ABI = TDS A. Dorsalis Pedis / TDS A. Brachialis");
+        jLabel113.setText("mmHg      Skor ABI = TDS A. Dorsalis Pedis");
         jLabel113.setName("jLabel113"); // NOI18N
         FormInput.add(jLabel113);
-        jLabel113.setBounds(447, 2755, 300, 23);
+        jLabel113.setBounds(437, 2755, 220, 23);
 
         TtdsDor.setBackground(new java.awt.Color(245, 250, 240));
         TtdsDor.setForeground(new java.awt.Color(0, 0, 0));
@@ -3818,14 +3828,14 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             }
         });
         FormInput.add(TtdsDor);
-        TtdsDor.setBounds(367, 2783, 75, 23);
+        TtdsDor.setBounds(357, 2783, 75, 23);
 
         jLabel114.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel114.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel114.setText("mmHg      Skor ABI : ");
+        jLabel114.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel114.setText("=");
         jLabel114.setName("jLabel114"); // NOI18N
         FormInput.add(jLabel114);
-        jLabel114.setBounds(447, 2783, 100, 23);
+        jLabel114.setBounds(650, 2763, 20, 23);
 
         TskorAbi.setBackground(new java.awt.Color(245, 250, 240));
         TskorAbi.setForeground(new java.awt.Color(0, 0, 0));
@@ -3836,14 +3846,14 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             }
         });
         FormInput.add(TskorAbi);
-        TskorAbi.setBounds(548, 2783, 75, 23);
+        TskorAbi.setBounds(670, 2763, 75, 23);
 
         jLabel115.setForeground(new java.awt.Color(0, 0, 0));
         jLabel115.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel115.setText("mmHg");
         jLabel115.setName("jLabel115"); // NOI18N
         FormInput.add(jLabel115);
-        jLabel115.setBounds(630, 2783, 40, 23);
+        jLabel115.setBounds(750, 2763, 40, 23);
 
         jLabel116.setForeground(new java.awt.Color(0, 0, 0));
         jLabel116.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -4103,7 +4113,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         chkTglRonsen.setBounds(152, 3210, 80, 23);
 
         TtglRonsen.setEditable(false);
-        TtglRonsen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
+        TtglRonsen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         TtglRonsen.setDisplayFormat("dd-MM-yyyy");
         TtglRonsen.setName("TtglRonsen"); // NOI18N
         TtglRonsen.setOpaque(false);
@@ -4220,7 +4230,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         Scroll4.setName("Scroll4"); // NOI18N
         Scroll4.setOpaque(true);
 
-        tbMikro.setAutoCreateRowSorter(true);
         tbMikro.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbMikro.setComponentPopupMenu(jPopupMenu1);
         tbMikro.setName("tbMikro"); // NOI18N
@@ -4526,7 +4535,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel141.setBounds(0, 3730, 150, 23);
 
         TtglSimpan.setEditable(false);
-        TtglSimpan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
+        TtglSimpan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         TtglSimpan.setDisplayFormat("dd-MM-yyyy");
         TtglSimpan.setName("TtglSimpan"); // NOI18N
         TtglSimpan.setOpaque(false);
@@ -4549,6 +4558,28 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         });
         FormInput.add(chkSaya);
         chkSaya.setBounds(620, 3758, 90, 23);
+
+        jSeparator17.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator17.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator17.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator17.setName("jSeparator17"); // NOI18N
+        FormInput.add(jSeparator17);
+        jSeparator17.setBounds(537, 2775, 110, 1);
+
+        jLabel142.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel142.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel142.setText("TDS A. Brachialis");
+        jLabel142.setName("jLabel142"); // NOI18N
+        FormInput.add(jLabel142);
+        jLabel142.setBounds(540, 2774, 100, 23);
+
+        jLabel143.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel143.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel143.setText("mmHg");
+        jLabel143.setName("jLabel143"); // NOI18N
+        FormInput.add(jLabel143);
+        jLabel143.setBounds(437, 2783, 40, 23);
 
         ScrollTriase1.setViewportView(FormInput);
 
@@ -4592,7 +4623,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4606,7 +4637,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-05-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5112,6 +5143,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
+            form.setAlwaysOnTop(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnDokumenJangMedActionPerformed
@@ -5918,6 +5950,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             form.setLocationRelativeTo(internalFrame1);
             form.setData(TNoRw.getText(), TPasien.getText(), TNoRM.getText());
             form.setVisible(true);
+            form.setAlwaysOnTop(true);
         }
     }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
 
@@ -6079,6 +6112,44 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             TnmPerawat.setText("-");
         }
     }//GEN-LAST:event_chkSayaActionPerformed
+
+    private void cmbJnsRawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbJnsRawatActionPerformed
+        TlamaRawat.setText("");
+        if (cmbJnsRawat.getSelectedIndex() == 1) {
+            TlamaRawat.setEnabled(true);
+            TlamaRawat.requestFocus();
+        } else {
+            TlamaRawat.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbJnsRawatActionPerformed
+
+    private void cmbRiwUlkusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRiwUlkusActionPerformed
+        Ttahun.setText("");
+        Tlokasi.setText("");
+        Tpenyebab.setText("");
+        Valid.tabelKosong(tabMode2);
+        
+        if (cmbRiwUlkus.getSelectedIndex() == 1) {
+            Ttahun.setEnabled(true);
+            Tlokasi.setEnabled(true);
+            Tpenyebab.setEnabled(true);
+            
+            BtnTambahLuka.setEnabled(true);
+            BtnSimpanLuka.setEnabled(true);
+            BtnHapusLuka.setEnabled(true);
+            BtnGantiLuka.setEnabled(true);
+            Ttahun.requestFocus();
+        } else {
+            Ttahun.setEnabled(false);
+            Tlokasi.setEnabled(false);
+            Tpenyebab.setEnabled(false);
+            
+            BtnTambahLuka.setEnabled(false);
+            BtnSimpanLuka.setEnabled(false);
+            BtnHapusLuka.setEnabled(false);
+            BtnGantiLuka.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbRiwUlkusActionPerformed
 
     /**
     * @param args the command line arguments
@@ -6374,6 +6445,8 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private widget.Label jLabel14;
     private widget.Label jLabel140;
     private widget.Label jLabel141;
+    private widget.Label jLabel142;
+    private widget.Label jLabel143;
     private widget.Label jLabel146;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
@@ -6468,6 +6541,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private widget.Label jLabel99;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JSeparator jSeparator16;
+    private javax.swing.JSeparator jSeparator17;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.ScrollPane scrollPane14;
@@ -6716,6 +6790,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         TtglMasuk.setDate(new Date());
         cmbJnsRawat.setSelectedIndex(0);
         TlamaRawat.setText("");
+        TlamaRawat.setEnabled(false);
         cmbTipeDiabet.setSelectedIndex(0);
         TtipeDiabetLain.setText("");
         TtipeDiabetLain.setEnabled(false);
@@ -6767,7 +6842,17 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         TlainSebutkan.setEnabled(false);
         
         cmbRiwUlkus.setSelectedIndex(0);
-        BtnTambahLukaActionPerformed(null);
+        Ttahun.setText("");
+        Tlokasi.setText("");
+        Tpenyebab.setText("");
+        Ttahun.setEnabled(false);
+        Tlokasi.setEnabled(false);
+        Tpenyebab.setEnabled(false);
+        BtnTambahLuka.setEnabled(false);
+        BtnSimpanLuka.setEnabled(false);
+        BtnHapusLuka.setEnabled(false);
+        BtnGantiLuka.setEnabled(false);
+
         chkAmputasiKiri.setSelected(false);
         cmbRiwAmputasiKiri.setSelectedIndex(0);
         TjariKiri.setText("");
@@ -6947,10 +7032,13 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 
         if (stts.equals("ralan")) {
             cmbJnsRawat.setSelectedIndex(2);
+            TlamaRawat.setEnabled(false);
         } else if (stts.equals("ranap")) {
             cmbJnsRawat.setSelectedIndex(1);
+            TlamaRawat.setEnabled(true);
         } else {
             cmbJnsRawat.setSelectedIndex(0);
+            TlamaRawat.setEnabled(false);
         }
     }
     
@@ -7573,6 +7661,12 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     }
     
     private void dataCek() {
+        if (cmbJnsRawat.getSelectedIndex() == 1) {
+            TlamaRawat.setEnabled(true);
+        } else {
+            TlamaRawat.setEnabled(false);
+        }
+        
         if (cmbTipeDiabet.getSelectedIndex() == 3) {
             TtipeDiabetLain.setEnabled(true);
         } else {
@@ -7685,6 +7779,26 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         } else {
             chkLainLain.setSelected(false);
             TlainSebutkan.setEnabled(false);
+        }
+        
+        if (cmbRiwUlkus.getSelectedIndex() == 1) {
+            Ttahun.setEnabled(true);
+            Tlokasi.setEnabled(true);
+            Tpenyebab.setEnabled(true);
+            
+            BtnTambahLuka.setEnabled(true);
+            BtnSimpanLuka.setEnabled(true);
+            BtnHapusLuka.setEnabled(true);
+            BtnGantiLuka.setEnabled(true);
+        } else {
+            Ttahun.setEnabled(false);
+            Tlokasi.setEnabled(false);
+            Tpenyebab.setEnabled(false);
+            
+            BtnTambahLuka.setEnabled(false);
+            BtnSimpanLuka.setEnabled(false);
+            BtnHapusLuka.setEnabled(false);
+            BtnGantiLuka.setEnabled(false);
         }
         
         if (riwAmputasiKiri.equals("ya")) {
