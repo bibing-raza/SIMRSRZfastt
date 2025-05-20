@@ -347,7 +347,7 @@ public final class DlgReg extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(30);
             } else if (i == 1) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(260);
             } else if (i == 2) {
                 column.setPreferredWidth(100);
             } 
@@ -372,7 +372,7 @@ public final class DlgReg extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(30);
             } else if (i == 1) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(260);
             } else if (i == 2) {
                 column.setPreferredWidth(100);
             } else if (i == 3) {
@@ -6471,6 +6471,10 @@ public final class DlgReg extends javax.swing.JDialog {
                     if (akses.getadmin() == true) {
                         Sequel.meghapus("nota_inap", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
                         Sequel.meghapus("nota_jalan", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
+                    }
+                    
+                    if (Sequel.cariInteger("select count(-1) from resep_obat where no_rawat='" + tbregistrasiRalan.getValueAt(i, 2).toString() + "'") == 0) {
+                        Sequel.meghapus("riwayat_obat_pasien", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
                     }
                 }
             }

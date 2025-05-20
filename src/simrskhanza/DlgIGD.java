@@ -4295,6 +4295,10 @@ public final class DlgIGD extends javax.swing.JDialog {
                     Sequel.meghapus("bridging_jamkesda", "no_sep", sepJkd.getText());
                     Sequel.meghapus("ralan_aps", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
                     Sequel.meghapus("reg_periksa", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
+                    
+                    if (Sequel.cariInteger("select count(-1) from resep_obat where no_rawat='" + tbregistrasiIGD.getValueAt(i, 2).toString() + "'") == 0) {
+                        Sequel.meghapus("riwayat_obat_pasien", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
+                    }
                 }
             }
             Sequel.menyimpan("history_user", "Now(),'" + TNoRw.getText() + "','" + akses.getkode() + "','Registrasi IGD','Hapus'");

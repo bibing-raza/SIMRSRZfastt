@@ -2616,27 +2616,28 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 if (Sequel.menyimpantf("transfer_serah_terima_pasien_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
                         + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 65, new String[]{
                             TNoRw.getText(), nip_dpjp, nip_konsulen1, nip_konsulen2, Tdiagnosis.getText(), Valid.SetTgl(tgl_masuk.getSelectedItem() + ""), kd_kamar,
-                            Valid.SetTgl(tgl_pindah.getSelectedItem() + "") + " " + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), 
-                            kd_kamar_pindah, Talasan_ranap.getText(), Triw_penyakit_skg.getText(), Triw_penyakit_dulu.getText(), Triw_alergi.getText(), gcse.getText(), 
-                            gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(), Ttd.getText(), Tnadi.getText(), Tsuhu.getText(), Trr.getText(), 
-                            Tspo2.getText(), TskalaNyeri.getText(), cmbResiko.getSelectedItem().toString(), cmbKriteria.getSelectedItem().toString(), ekg, torak_foto, fotoC, 
-                            fotoG, fotoA, spiri, echo, usg, ct_scan, Tket_ctscan.getText(), endos, Tket_endos.getText(), ctg, Tket_ctg.getText(), penunjang_lain, 
-                            Tket_lain.getText(), TDiagnosa.getText(), Valid.SetTgl(tgl_infus.getSelectedItem() + ""), Valid.SetTgl(tgl_kateter.getSelectedItem() + ""), 
-                            Valid.SetTgl(tgl_ngt.getSelectedItem() + ""), Valid.SetTgl(tgl_oksigen.getSelectedItem() + ""), Valid.SetTgl(tgl_drain.getSelectedItem() + ""), 
-                            alat_lain, Valid.SetTgl(tgl_alat_lain.getSelectedItem() + ""), Talat_lain.getText(), Trekomendasi.getText(), Talasan_pindah.getText(), 
+                            Valid.SetTgl(tgl_pindah.getSelectedItem() + "") + " " + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                            kd_kamar_pindah, Talasan_ranap.getText(), Triw_penyakit_skg.getText(), Triw_penyakit_dulu.getText(), Triw_alergi.getText(), gcse.getText(),
+                            gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(), Ttd.getText(), Tnadi.getText(), Tsuhu.getText(), Trr.getText(),
+                            Tspo2.getText(), TskalaNyeri.getText(), cmbResiko.getSelectedItem().toString(), cmbKriteria.getSelectedItem().toString(), ekg, torak_foto, fotoC,
+                            fotoG, fotoA, spiri, echo, usg, ct_scan, Tket_ctscan.getText(), endos, Tket_endos.getText(), ctg, Tket_ctg.getText(), penunjang_lain,
+                            Tket_lain.getText(), TDiagnosa.getText(), Valid.SetTgl(tgl_infus.getSelectedItem() + ""), Valid.SetTgl(tgl_kateter.getSelectedItem() + ""),
+                            Valid.SetTgl(tgl_ngt.getSelectedItem() + ""), Valid.SetTgl(tgl_oksigen.getSelectedItem() + ""), Valid.SetTgl(tgl_drain.getSelectedItem() + ""),
+                            alat_lain, Valid.SetTgl(tgl_alat_lain.getSelectedItem() + ""), Talat_lain.getText(), Trekomendasi.getText(), Talasan_pindah.getText(),
                             Tnm_pasienKlg.getText(), nip_dokter, nip_serah, nip_terima, Valid.SetTgl(tgl_transfer.getSelectedItem() + ""), infus, kateter, ngt,
                             oksigen, drain, lab, Sequel.cariIsi("select now()"), statusOK
                         }) == true) {
-                    
-                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Transfer & Serah Terima Pasien", "Simpan");
-                    
-                    if (statusOK.equals("Ralan")) {
+
+                    if (kd_kamar.equals("IGDK")) {
                         if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
                             Sequel.mengedit("penilaian_awal_medis_igd", "no_rawat='" + TNoRw.getText() + "'",
                                     "td='" + Ttd.getText() + "', hr='" + Tnadi.getText() + "', rr='" + Trr.getText() + "', temp='" + Tsuhu.getText() + "', "
-                                    + "spo2='" + Tspo2.getText() + "', gcs_pulang='" + gcse.getText() + ", " + gcsm.getText() + ", " + gcsv.getText() + "'");
+                                    + "spo2='" + Tspo2.getText() + "', gcs_pulang='" + gcse.getText() + ", " + gcsm.getText() + ", " + gcsv.getText() + "', "
+                                    + "penerima_edukasi='" + Tnm_pasienKlg.getText() + "', nip_perawat='" + nip_serah + "'");
                         }
                     }
+
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Transfer & Serah Terima Pasien", "Simpan");
                     TCari.setText(TNoRw.getText());
                     emptTeks();
                     tampil();
@@ -3969,6 +3970,15 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                     Tnm_pasienKlg.getText(), nip_dokter, nip_serah, nip_terima, Valid.SetTgl(tgl_transfer.getSelectedItem() + ""), infus, kateter, ngt, oksigen, drain,
                     lab, wktSimpan
                 }) == true) {
+
+            if (kd_kamar.equals("IGDK")) {
+                if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                    Sequel.mengedit("penilaian_awal_medis_igd", "no_rawat='" + TNoRw.getText() + "'",
+                            "td='" + Ttd.getText() + "', hr='" + Tnadi.getText() + "', rr='" + Trr.getText() + "', temp='" + Tsuhu.getText() + "', "
+                            + "spo2='" + Tspo2.getText() + "', gcs_pulang='" + gcse.getText() + ", " + gcsm.getText() + ", " + gcsv.getText() + "', "
+                            + "penerima_edukasi='" + Tnm_pasienKlg.getText() + "', nip_perawat='" + nip_serah + "'");
+                }
+            }
 
             Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Transfer & Serah Terima Pasien", "Ganti");
             TCari.setText(TNoRw.getText());
