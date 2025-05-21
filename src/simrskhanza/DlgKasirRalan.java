@@ -9856,7 +9856,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     form.setLocationRelativeTo(internalFrame1);
                     form.setVisible(true);
-                    form.setAlwaysOnTop(true);
                     this.setCursor(Cursor.getDefaultCursor());
                 } else {
                     JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");

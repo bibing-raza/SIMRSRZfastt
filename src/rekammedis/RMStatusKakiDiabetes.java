@@ -637,7 +637,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(77);
             } else if (i == 2) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(265);
             } else if (i == 3) {
                 column.setPreferredWidth(220);
             } else if (i == 4) {
@@ -670,9 +670,9 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(60);
             } else if (i == 2) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(280);
             } else if (i == 3) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(300);
             } else if (i == 4) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -699,7 +699,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 1) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(140);
             } else if (i == 2) {
                 column.setPreferredWidth(250);
             } else if (i == 3) {
@@ -732,9 +732,9 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(200);
             } else if (i == 2) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(220);
             } else if (i == 3) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(220);
             } else if (i == 4) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -1698,6 +1698,11 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         cmbObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "OHO", "Insulin", "GLP-1 R.A", "Lain-Lain" }));
         cmbObat.setName("cmbObat"); // NOI18N
         cmbObat.setPreferredSize(new java.awt.Dimension(55, 23));
+        cmbObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbObatActionPerformed(evt);
+            }
+        });
         FormInput.add(cmbObat);
         cmbObat.setBounds(244, 290, 86, 23);
 
@@ -2977,6 +2982,11 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         cmbLokasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Plantar Jari Kaki", "Plantar MTP", "Plantar midfoot", "Sheel", "Maleolus Lateralis", "Dorsum Pedis", "Kuku" }));
         cmbLokasi.setName("cmbLokasi"); // NOI18N
         cmbLokasi.setPreferredSize(new java.awt.Dimension(55, 23));
+        cmbLokasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbLokasiActionPerformed(evt);
+            }
+        });
         FormInput.add(cmbLokasi);
         cmbLokasi.setBounds(215, 1947, 120, 23);
 
@@ -4885,7 +4895,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                         TtdsBra.getText(), TtdsDor.getText(), TskorAbi.getText(), cmbMonoKanan.getSelectedItem().toString(), cmbMonoKiri.getSelectedItem().toString(),
                         cmbGarKanan.getSelectedItem().toString(), cmbGarKiri.getSelectedItem().toString(), cmbRefKanan.getSelectedItem().toString(),
                         cmbRefKiri.getSelectedItem().toString(), derajat0, derajat1, derajat2, derajat3, derajat4, derajat5, TpemeriksaanLab.getText(), ronsenKaki,
-                        Valid.SetTgl(TtglRonsen.getSelectedItem() + ""), TkesRonsen.getText(), cmbOsteo.getSelectedItem().toString(), Tlokasi.getText(), TkesRonsenTorax.getText(),
+                        Valid.SetTgl(TtglRonsen.getSelectedItem() + ""), TkesRonsen.getText(), cmbOsteo.getSelectedItem().toString(), TlokRonsen.getText(), TkesRonsenTorax.getText(),
                         TkesEkg.getText(), TusgDopler.getText(), surgical, chemical, biology, hidrocol, foam, allginate, silver, cadexomer, madu, modernDresingLain,
                         TlainModern.getText(), Valid.SetTgl(TtglSimpan.getSelectedItem() + ""), nip, nipDokter, Sequel.cariIsi("select now()")
                     }) == true) {
@@ -5117,7 +5127,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         petugas.isCek();
         petugas.setSize(983, internalFrame1.getHeight() - 40);
         petugas.setLocationRelativeTo(internalFrame1);
-        petugas.setAlwaysOnTop(false);
         petugas.setVisible(true);
     }//GEN-LAST:event_BtnPerawatActionPerformed
 
@@ -5143,7 +5152,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
-            form.setAlwaysOnTop(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnDokumenJangMedActionPerformed
@@ -5153,7 +5161,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         dokter.isCek();
         dokter.setSize(1041, internalFrame1.getHeight() - 40);
         dokter.setLocationRelativeTo(internalFrame1);
-        dokter.setAlwaysOnTop(false);
         dokter.setVisible(true);
     }//GEN-LAST:event_BtnDokterActionPerformed
 
@@ -5317,6 +5324,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private void TlamaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlamaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnSimpanObatActionPerformed(null);
+            cmbObat.requestFocus();
         }
     }//GEN-LAST:event_TlamaKeyPressed
 
@@ -5504,6 +5512,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private void TpenyebabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TpenyebabKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnSimpanLukaActionPerformed(null);
+            Ttahun.requestFocus();
         }
     }//GEN-LAST:event_TpenyebabKeyPressed
 
@@ -5798,6 +5807,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private void TdeforKiriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TdeforKiriKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnSimpanDeforActionPerformed(null);
+            cmbLokasi.requestFocus();
         }
     }//GEN-LAST:event_TdeforKiriKeyPressed
 
@@ -5881,11 +5891,15 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnGantiDeforActionPerformed
 
     private void TketLainKananKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TketLainKananKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            cmbDorsalisPedKanan.requestFocus();
+        }
     }//GEN-LAST:event_TketLainKananKeyPressed
 
     private void TketLainKiriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TketLainKiriKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            cmbDorsalisPedKanan.requestFocus();
+        }
     }//GEN-LAST:event_TketLainKiriKeyPressed
 
     private void cmbJarKananLainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbJarKananLainActionPerformed
@@ -5909,15 +5923,21 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbJarKiriLainActionPerformed
 
     private void TtdsBraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtdsBraKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            TtdsDor.requestFocus();
+        }
     }//GEN-LAST:event_TtdsBraKeyPressed
 
     private void TtdsDorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtdsDorKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            TskorAbi.requestFocus();
+        }
     }//GEN-LAST:event_TtdsDorKeyPressed
 
     private void TskorAbiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TskorAbiKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            cmbMonoKanan.requestFocus();
+        }
     }//GEN-LAST:event_TskorAbiKeyPressed
 
     private void TpemeriksaanLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TpemeriksaanLabKeyPressed
@@ -5950,7 +5970,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             form.setLocationRelativeTo(internalFrame1);
             form.setData(TNoRw.getText(), TPasien.getText(), TNoRM.getText());
             form.setVisible(true);
-            form.setAlwaysOnTop(true);
         }
     }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
 
@@ -6000,6 +6019,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private void TresistenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TresistenKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnSimpanMikroActionPerformed(null);
+            Tbakteri.requestFocus();
         }
     }//GEN-LAST:event_TresistenKeyPressed
 
@@ -6150,6 +6170,14 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             BtnGantiLuka.setEnabled(false);
         }
     }//GEN-LAST:event_cmbRiwUlkusActionPerformed
+
+    private void cmbObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbObatActionPerformed
+        Tjenis.requestFocus();
+    }//GEN-LAST:event_cmbObatActionPerformed
+
+    private void cmbLokasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLokasiActionPerformed
+        TdeforKanan.requestFocus();
+    }//GEN-LAST:event_cmbLokasiActionPerformed
 
     /**
     * @param args the command line arguments
@@ -6562,7 +6590,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             ps = koneksi.prepareStatement("SELECT dd.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
                     + "date_format(dd.tgl_masuk,'%d-%m-%Y') tglMsk, pg1.nama nmPerawat, pg2.nama nmDokter FROM data_dasar_kaki_diabetes dd "
                     + "inner join reg_periksa rp on rp.no_rawat=dd.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "inner join pegawai pg1 on pg1.nik=dd.nip_perawat inner join pegawai pg2 on pg1.nik=dd.nip_dokter where "
+                    + "inner join pegawai pg1 on pg1.nik=dd.nip_perawat inner join pegawai pg2 on pg2.nik=dd.nip_dokter where "
                     + "dd.tgl_data between ? and ? and dd.no_rawat like ? or "
                     + "dd.tgl_data between ? and ? and p.no_rkm_medis like ? or "
                     + "dd.tgl_data between ? and ? and p.nm_pasien like ? or "
@@ -7318,7 +7346,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                     TtdsBra.getText(), TtdsDor.getText(), TskorAbi.getText(), cmbMonoKanan.getSelectedItem().toString(), cmbMonoKiri.getSelectedItem().toString(),
                     cmbGarKanan.getSelectedItem().toString(), cmbGarKiri.getSelectedItem().toString(), cmbRefKanan.getSelectedItem().toString(),
                     cmbRefKiri.getSelectedItem().toString(), derajat0, derajat1, derajat2, derajat3, derajat4, derajat5, TpemeriksaanLab.getText(), ronsenKaki,
-                    Valid.SetTgl(TtglRonsen.getSelectedItem() + ""), TkesRonsen.getText(), cmbOsteo.getSelectedItem().toString(), Tlokasi.getText(), TkesRonsenTorax.getText(),
+                    Valid.SetTgl(TtglRonsen.getSelectedItem() + ""), TkesRonsen.getText(), cmbOsteo.getSelectedItem().toString(), TlokRonsen.getText(), TkesRonsenTorax.getText(),
                     TkesEkg.getText(), TusgDopler.getText(), surgical, chemical, biology, hidrocol, foam, allginate, silver, cadexomer, madu, modernDresingLain,
                     TlainModern.getText(), Valid.SetTgl(TtglSimpan.getSelectedItem() + ""), nip, nipDokter,
                     tbPasien.getValueAt(tbPasien.getSelectedRow(), 0).toString()
