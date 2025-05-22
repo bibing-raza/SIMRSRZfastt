@@ -710,7 +710,7 @@
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="21-05-2025"/>
+                                <StringItem index="0" value="22-05-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2239,7 +2239,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="40" y="876" width="680" height="150"/>
+                              <AbsoluteConstraints x="40" y="876" width="680" height="170"/>
                             </Constraint>
                           </Constraints>
 
@@ -2372,45 +2372,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="0" y="1030" width="200" height="23"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="widget.CekBox" name="chkAmputasiKiri">
-                          <Properties>
-                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="fa" green="ff" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                                <LineBorder>
-                                  <Color PropertyName="color" blue="fa" green="ff" red="ff" type="rgb"/>
-                                </LineBorder>
-                              </Border>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Kiri : "/>
-                            <Property name="borderPainted" type="boolean" value="true"/>
-                            <Property name="borderPaintedFlat" type="boolean" value="true"/>
-                            <Property name="horizontalAlignment" type="int" value="4"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
-                            <Property name="name" type="java.lang.String" value="chkAmputasiKiri" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[175, 23]"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkAmputasiKiriActionPerformed"/>
-                          </Events>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                          </AuxValues>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="0" y="1058" width="200" height="-1"/>
+                              <AbsoluteConstraints x="0" y="1058" width="150" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -2505,44 +2467,6 @@
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                               <AbsoluteConstraints x="623" y="1058" width="50" height="23"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="widget.CekBox" name="chkAmputasiKanan">
-                          <Properties>
-                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="fa" green="ff" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                                <LineBorder>
-                                  <Color PropertyName="color" blue="fa" green="ff" red="ff" type="rgb"/>
-                                </LineBorder>
-                              </Border>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Kanan : "/>
-                            <Property name="borderPainted" type="boolean" value="true"/>
-                            <Property name="borderPaintedFlat" type="boolean" value="true"/>
-                            <Property name="horizontalAlignment" type="int" value="4"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
-                            <Property name="name" type="java.lang.String" value="chkAmputasiKanan" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[175, 23]"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkAmputasiKananActionPerformed"/>
-                          </Events>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                          </AuxValues>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="0" y="1086" width="200" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -6615,7 +6539,7 @@
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="21-05-2025"/>
+                                <StringItem index="0" value="22-05-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7534,7 +7458,7 @@
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="21-05-2025"/>
+                                <StringItem index="0" value="22-05-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7625,6 +7549,34 @@
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                               <AbsoluteConstraints x="437" y="2783" width="40" height="23"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="widget.Label" name="jLabel144">
+                          <Properties>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Kiri : "/>
+                            <Property name="name" type="java.lang.String" value="jLabel144" noResource="true"/>
+                          </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="150" y="1058" width="50" height="23"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="widget.Label" name="jLabel145">
+                          <Properties>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Kanan : "/>
+                            <Property name="name" type="java.lang.String" value="jLabel145" noResource="true"/>
+                          </Properties>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="150" y="1086" width="50" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -7728,7 +7680,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="21-05-2025"/>
+                            <StringItem index="0" value="22-05-2025"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7756,7 +7708,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="21-05-2025"/>
+                            <StringItem index="0" value="22-05-2025"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
