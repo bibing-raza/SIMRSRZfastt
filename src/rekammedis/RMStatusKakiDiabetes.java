@@ -70,9 +70,9 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private String nip = "", nipDokter = "", traumaMekanik = "", traumaKimia = "", traumaTermis = "", spontan = "", penyebabLain = "",
             tersandung = "", memakaiSepatu = "", tertusuk = "", dllSebutkanMekanik = "", terkenaZat = "", terkenaAirPanas = "", terkenaPemanas = "",
             dllSebutkanTermis = "", mata = "", ginjal = "", penyakitJantung = "", hipertensi = "", strok = "", pad = "", nonUlkus = "", ulkus = "",
-            ulkusGangen = "", selulitis = "", dorsalKanan = "", plantarKanan = "", plantarKiri = "", dorsalKiri = "", derajat0 = "", derajat1 = "",
-            derajat2 = "", derajat3 = "", derajat4 = "", derajat5 = "", ronsenKaki = "", surgical = "", chemical = "", biology = "", hidrocol = "",
-            foam = "", allginate = "", silver = "", cadexomer = "", madu = "", modernDresingLain = "";
+            ulkusGangen = "", selulitis = "", derajat0 = "", derajat1 = "", derajat2 = "", derajat3 = "", derajat4 = "", derajat5 = "", ronsenKaki = "",
+            surgical = "", chemical = "", biology = "", hidrocol = "", foam = "", allginate = "", silver = "", cadexomer = "", madu = "",
+            modernDresingLain = "";
     private String riwObat = "", nmObat = "", riwUlkus = "";
 
     /** Creates new form DlgRujuk
@@ -85,24 +85,23 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         
         tabMode = new DefaultTableModel(null, new String[]{
             "No. Rawat", "No. RM", "Nama Pasien", "Jns. Kelamin", "Tgl. Lahir", "Jenis Rawat", "Tgl. Masuk", "Lama Rawat", "Tipe Diabetes", "Nama Perawat", "Nama Dokter",
-            "jns_rawat", "tb", "bb", "bmi", "tensi", "tgl_masuk", "lama_rawat", "tipe_diabetes", "tipe_diabet_lain", "lama_diketahui", "merokok", "merokok_ya", 
-            "merokok_mantan", "lama_luka", "satuan_lama_luka", "riwayat_edukasi", "jns_alas_kaki", "jns_alas_kaki_sepatu", "trauma_mekanik", "trauma_kimia", "trauma_termis", 
-            "spontan", "penyebab_lain", "ket_penyebab_lain", "tersandung", "memakai_sepatu", "tertusuk", "dll_sebutkan_mekanik", "ket_dll_sebutkan_mekanik", "terkena_zat", 
-            "ket_terkena_zat", "terkena_air_panas", "terkena_pemanas", "dll_sebutkan_termis", "ket_dll_sebutkan_termis", "riwayat_ulkus", "kiri", 
-            "jari_kaki_kiri_ke", "trans_kiri_tahun", "kanan", "jari_kaki_kanan_ke", "trans_kanan_tahun", "mata", "ginjal", "penyakit_jantung", 
-            "hipertensi", "strok", "pad", "riwayat_mata", "terapi_mata_tahun", "riwayat_ginjal", "non_ulkus", "ulkus", "ulkus_gangen", "selulitis", "dorsal_kanan", 
-            "deskripsi_dorsal_kanan", "plantar_kanan", "deskripsi_plantar_kanan", "plantar_kiri", "deskripsi_plantar_kiri", "dorsal_kiri", "deskripsi_dorsal_kiri", 
-            "kulit_kanan_kering", "kulit_kiri_kering", "kulit_kanan_tumit", "kulit_kiri_tumit", "kulit_kanan_bulu", "kulit_kiri_bulu", "kulit_kanan_tinea", 
-            "kulit_kiri_tinea", "kulit_kanan_kalus", "kulit_kiri_kalus", "kulit_kanan_korn", "kulit_kiri_korn", "kulit_kanan_hiperpig", "kulit_kiri_hiperpig", 
-            "kulit_kanan_edema", "kulit_kiri_edema", "kulit_kanan_healed", "kulit_kiri_healed", "kuku_kanan_menebal", "kuku_kiri_menebal", "kuku_kanan_infeksi", 
-            "kuku_kiri_infeksi", "kuku_kanan_perubahan", "kuku_kiri_perubahan", "kuku_kanan_rapuh", "kuku_kiri_rapuh", "kuku_kanan_ingro", "kuku_kiri_ingro", 
-            "kuku_kanan_atrofi", "kuku_kiri_atrofi", "kuku_kanan_lain", "kuku_kiri_lain", "telapak_kanan_hallux", "telapak_kiri_hallux", "telapak_kanan_pel", 
-            "telapak_kiri_pel", "telapak_kanan_char", "telapak_kiri_char", "jari_kanan_hammer", "jari_kiri_hammer", "jari_kanan_claw", "jari_kiri_claw", 
-            "jari_kanan_hiper", "jari_kiri_hiper", "jari_kanan_maser", "jari_kiri_maser", "jari_kanan_lain", "jari_kiri_lain", "ket_jari_kanan_lain", "ket_jari_kiri_lain", 
-            "dorsalis_kaki_kanan", "dorsalis_kaki_kiri", "tibialis_kaki_kanan", "tibialis_kaki_kiri", "brachialis", "dorsalis_pedis", "skor_abi", "monofilamen_kanan", 
-            "monofilamen_kiri", "garputala_kanan", "garputala_kiri", "reflex_kanan", "reflex_kiri", "derajat0", "derajat1", "derajat2", "derajat3", "derajat4", "derajat5", 
-            "pemeriksaan_lab", "ronsen_kaki", "ronsen_kaki_tgl", "kesimpulan_ronsen", "osteomielitis", "lokasi", "kes_ronsen_thorax", "kes_ekg", "usg_dopler", "surgical", 
-            "chemical", "biology", "hidrocol", "foam", "allginate", "silver", "cadexomer", "madu", "modern_dresing_lain", "ket_modern_dresing_lain", "tgl_data", 
+            "jns_rawat", "tb", "bb", "bmi", "tensi", "tgl_masuk", "lama_rawat", "tipe_diabetes", "tipe_diabet_lain", "lama_diketahui", "merokok", "merokok_ya",
+            "merokok_mantan", "lama_luka", "satuan_lama_luka", "riwayat_edukasi", "jns_alas_kaki", "jns_alas_kaki_sepatu", "trauma_mekanik", "trauma_kimia", "trauma_termis",
+            "spontan", "penyebab_lain", "ket_penyebab_lain", "tersandung", "memakai_sepatu", "tertusuk", "dll_sebutkan_mekanik", "ket_dll_sebutkan_mekanik", "terkena_zat",
+            "ket_terkena_zat", "terkena_air_panas", "terkena_pemanas", "dll_sebutkan_termis", "ket_dll_sebutkan_termis", "riwayat_ulkus", "kiri", "jari_kaki_kiri_ke",
+            "trans_kiri_tahun", "kanan", "jari_kaki_kanan_ke", "trans_kanan_tahun", "mata", "ginjal", "penyakit_jantung", "hipertensi", "strok", "pad", "riwayat_mata",
+            "terapi_mata_tahun", "riwayat_ginjal", "non_ulkus", "ulkus", "ulkus_gangen", "selulitis", "deskripsi_dorsal_kanan", "deskripsi_plantar_kanan", "deskripsi_plantar_kiri",
+            "deskripsi_dorsal_kiri", "kulit_kanan_kering", "kulit_kiri_kering", "kulit_kanan_tumit", "kulit_kiri_tumit", "kulit_kanan_bulu", "kulit_kiri_bulu", "kulit_kanan_tinea",
+            "kulit_kiri_tinea", "kulit_kanan_kalus", "kulit_kiri_kalus", "kulit_kanan_korn", "kulit_kiri_korn", "kulit_kanan_hiperpig", "kulit_kiri_hiperpig",
+            "kulit_kanan_edema", "kulit_kiri_edema", "kulit_kanan_healed", "kulit_kiri_healed", "kuku_kanan_menebal", "kuku_kiri_menebal", "kuku_kanan_infeksi",
+            "kuku_kiri_infeksi", "kuku_kanan_perubahan", "kuku_kiri_perubahan", "kuku_kanan_rapuh", "kuku_kiri_rapuh", "kuku_kanan_ingro", "kuku_kiri_ingro",
+            "kuku_kanan_atrofi", "kuku_kiri_atrofi", "kuku_kanan_lain", "kuku_kiri_lain", "telapak_kanan_hallux", "telapak_kiri_hallux", "telapak_kanan_pel",
+            "telapak_kiri_pel", "telapak_kanan_char", "telapak_kiri_char", "jari_kanan_hammer", "jari_kiri_hammer", "jari_kanan_claw", "jari_kiri_claw",
+            "jari_kanan_hiper", "jari_kiri_hiper", "jari_kanan_maser", "jari_kiri_maser", "jari_kanan_lain", "jari_kiri_lain", "ket_jari_kanan_lain", "ket_jari_kiri_lain",
+            "dorsalis_kaki_kanan", "dorsalis_kaki_kiri", "tibialis_kaki_kanan", "tibialis_kaki_kiri", "brachialis", "dorsalis_pedis", "skor_abi", "monofilamen_kanan",
+            "monofilamen_kiri", "garputala_kanan", "garputala_kiri", "reflex_kanan", "reflex_kiri", "derajat0", "derajat1", "derajat2", "derajat3", "derajat4", "derajat5",
+            "pemeriksaan_lab", "ronsen_kaki", "ronsen_kaki_tgl", "kesimpulan_ronsen", "osteomielitis", "lokasi", "kes_ronsen_thorax", "kes_ekg", "usg_dopler", "surgical",
+            "chemical", "biology", "hidrocol", "foam", "allginate", "silver", "cadexomer", "madu", "modern_dresing_lain", "ket_modern_dresing_lain", "tgl_data",
             "nip_perawat", "nip_dokter", "waktu_simpan"
         }) {
             @Override
@@ -115,7 +114,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         tbPasien.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPasien.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 167; i++) {
+        for (i = 0; i < 163; i++) {
             TableColumn column = tbPasien.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -595,18 +594,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             } else if (i == 162) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 163) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 164) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 165) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 166) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
             } 
         }
         tbPasien.setDefaultRenderer(Object.class, new WarnaTable());
@@ -1013,23 +1000,19 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         chkUlkusGangen = new widget.CekBox();
         chkSelulitis = new widget.CekBox();
         jLabel55 = new widget.Label();
-        chkDorsalKanan = new widget.CekBox();
         PanelWall = new usu.widget.glass.PanelGlass();
         jLabel56 = new widget.Label();
         scrollPane14 = new widget.ScrollPane();
         TdorsalKanan = new widget.TextArea();
-        chkPlantarKanan = new widget.CekBox();
         jLabel57 = new widget.Label();
         scrollPane15 = new widget.ScrollPane();
         TplantarKanan = new widget.TextArea();
         PanelWall1 = new usu.widget.glass.PanelGlass();
         jLabel58 = new widget.Label();
-        chkDorsalKiri = new widget.CekBox();
         jLabel59 = new widget.Label();
         scrollPane16 = new widget.ScrollPane();
         TdorsalKiri = new widget.TextArea();
         PanelWall2 = new usu.widget.glass.PanelGlass();
-        chkPlantarKiri = new widget.CekBox();
         jLabel60 = new widget.Label();
         scrollPane17 = new widget.ScrollPane();
         TplantarKiri = new widget.TextArea();
@@ -2709,25 +2692,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         FormInput.add(jLabel55);
         jLabel55.setBounds(0, 1254, 110, 23);
 
-        chkDorsalKanan.setBackground(new java.awt.Color(255, 255, 250));
-        chkDorsalKanan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkDorsalKanan.setForeground(new java.awt.Color(0, 0, 0));
-        chkDorsalKanan.setText("Dorsal Kanan");
-        chkDorsalKanan.setBorderPainted(true);
-        chkDorsalKanan.setBorderPaintedFlat(true);
-        chkDorsalKanan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkDorsalKanan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkDorsalKanan.setName("chkDorsalKanan"); // NOI18N
-        chkDorsalKanan.setOpaque(false);
-        chkDorsalKanan.setPreferredSize(new java.awt.Dimension(175, 23));
-        chkDorsalKanan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkDorsalKananActionPerformed(evt);
-            }
-        });
-        FormInput.add(chkDorsalKanan);
-        chkDorsalKanan.setBounds(112, 1254, 93, 23);
-
         PanelWall.setBackground(new java.awt.Color(29, 29, 29));
         PanelWall.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/dorsal_kanan.png"))); // NOI18N
         PanelWall.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
@@ -2760,25 +2724,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 
         FormInput.add(scrollPane14);
         scrollPane14.setBounds(230, 1282, 490, 140);
-
-        chkPlantarKanan.setBackground(new java.awt.Color(255, 255, 250));
-        chkPlantarKanan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkPlantarKanan.setForeground(new java.awt.Color(0, 0, 0));
-        chkPlantarKanan.setText("Plantar Kanan");
-        chkPlantarKanan.setBorderPainted(true);
-        chkPlantarKanan.setBorderPaintedFlat(true);
-        chkPlantarKanan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkPlantarKanan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkPlantarKanan.setName("chkPlantarKanan"); // NOI18N
-        chkPlantarKanan.setOpaque(false);
-        chkPlantarKanan.setPreferredSize(new java.awt.Dimension(175, 23));
-        chkPlantarKanan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkPlantarKananActionPerformed(evt);
-            }
-        });
-        FormInput.add(chkPlantarKanan);
-        chkPlantarKanan.setBounds(112, 1427, 93, 23);
 
         jLabel57.setForeground(new java.awt.Color(0, 0, 0));
         jLabel57.setText("Deskripsi / Penjelasan Plantar Kanan : ");
@@ -2819,25 +2764,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         FormInput.add(jLabel58);
         jLabel58.setBounds(0, 1600, 110, 23);
 
-        chkDorsalKiri.setBackground(new java.awt.Color(255, 255, 250));
-        chkDorsalKiri.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkDorsalKiri.setForeground(new java.awt.Color(0, 0, 0));
-        chkDorsalKiri.setText("Dorsal Kiri");
-        chkDorsalKiri.setBorderPainted(true);
-        chkDorsalKiri.setBorderPaintedFlat(true);
-        chkDorsalKiri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkDorsalKiri.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkDorsalKiri.setName("chkDorsalKiri"); // NOI18N
-        chkDorsalKiri.setOpaque(false);
-        chkDorsalKiri.setPreferredSize(new java.awt.Dimension(175, 23));
-        chkDorsalKiri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkDorsalKiriActionPerformed(evt);
-            }
-        });
-        FormInput.add(chkDorsalKiri);
-        chkDorsalKiri.setBounds(112, 1600, 93, 23);
-
         jLabel59.setForeground(new java.awt.Color(0, 0, 0));
         jLabel59.setText("Deskripsi / Penjelasan Dorsal Kiri : ");
         jLabel59.setName("jLabel59"); // NOI18N
@@ -2870,25 +2796,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         PanelWall2.setLayout(null);
         FormInput.add(PanelWall2);
         PanelWall2.setBounds(112, 1628, 110, 140);
-
-        chkPlantarKiri.setBackground(new java.awt.Color(255, 255, 250));
-        chkPlantarKiri.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkPlantarKiri.setForeground(new java.awt.Color(0, 0, 0));
-        chkPlantarKiri.setText("Plantar Kiri");
-        chkPlantarKiri.setBorderPainted(true);
-        chkPlantarKiri.setBorderPaintedFlat(true);
-        chkPlantarKiri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkPlantarKiri.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkPlantarKiri.setName("chkPlantarKiri"); // NOI18N
-        chkPlantarKiri.setOpaque(false);
-        chkPlantarKiri.setPreferredSize(new java.awt.Dimension(175, 23));
-        chkPlantarKiri.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkPlantarKiriActionPerformed(evt);
-            }
-        });
-        FormInput.add(chkPlantarKiri);
-        chkPlantarKiri.setBounds(112, 1773, 93, 23);
 
         jLabel60.setForeground(new java.awt.Color(0, 0, 0));
         jLabel60.setText("Deskripsi / Penjelasan Plantar Kiri : ");
@@ -4832,7 +4739,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             cekData();
             if (Sequel.menyimpantf("data_dasar_kaki_diabetes", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
                     + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 157, new String[]{
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 153, new String[]{
                         TNoRw.getText(), cmbJnsRawat.getSelectedItem().toString(), Ttb.getText(), Tbb.getText(), Tbmi.getText(), Ttensi.getText(),
                         Valid.SetTgl(TtglMasuk.getSelectedItem() + ""), TlamaRawat.getText(), cmbTipeDiabet.getSelectedItem().toString(), TtipeDiabetLain.getText(),
                         TlamaDiketahui.getText(), cmbMerokok.getSelectedItem().toString(), TmerokokYa.getText(), TmerokokMantan.getText(), TlamaLuka.getText(),
@@ -4842,31 +4749,31 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                         cmbRiwUlkus.getSelectedItem().toString(), cmbRiwAmputasiKiri.getSelectedItem().toString(), TjariKiri.getText(), TtransKiri.getText(),
                         cmbRiwAmputasiKanan.getSelectedItem().toString(), TjariKanan.getText(), TtransKanan.getText(), mata, ginjal, penyakitJantung,
                         hipertensi, strok, pad, cmbMata.getSelectedItem().toString(), TlaserTahun.getText(), cmbGinjal.getSelectedItem().toString(), nonUlkus, ulkus,
-                        ulkusGangen, selulitis, dorsalKanan, TdorsalKanan.getText(), plantarKanan, TplantarKanan.getText(), plantarKiri, TplantarKiri.getText(),
-                        dorsalKiri, TdorsalKiri.getText(), cmbKulKananKering.getSelectedItem().toString(), cmbKulKiriKering.getSelectedItem().toString(),
-                        cmbKulKananTumit.getSelectedItem().toString(), cmbKulKiriTumit.getSelectedItem().toString(), cmbKulKananBulu.getSelectedItem().toString(),
-                        cmbKulKiriBulu.getSelectedItem().toString(), cmbKulKananTinea.getSelectedItem().toString(), cmbKulKiriTinea.getSelectedItem().toString(),
-                        cmbKulKananKalus.getSelectedItem().toString(), cmbKulKiriKalus.getSelectedItem().toString(), cmbKulKananKorn.getSelectedItem().toString(),
-                        cmbKulKiriKorn.getSelectedItem().toString(), cmbKulKananHiper.getSelectedItem().toString(), cmbKulKiriHiper.getSelectedItem().toString(),
-                        cmbKulKananEdema.getSelectedItem().toString(), cmbKulKiriEdema.getSelectedItem().toString(), cmbKulKananHealed.getSelectedItem().toString(),
-                        cmbKulKiriHealed.getSelectedItem().toString(), cmbKukKananMenebal.getSelectedItem().toString(), cmbKukKiriMenebal.getSelectedItem().toString(),
-                        cmbKukKananInfeksi.getSelectedItem().toString(), cmbKukKiriInfeksi.getSelectedItem().toString(), cmbKukKananPerubahan.getSelectedItem().toString(),
-                        cmbKukKiriPerubahan.getSelectedItem().toString(), cmbKukKananRapuh.getSelectedItem().toString(), cmbKukKiriRapuh.getSelectedItem().toString(),
-                        cmbKukKananIngro.getSelectedItem().toString(), cmbKukKiriIngro.getSelectedItem().toString(), cmbKukKananAtrofi.getSelectedItem().toString(),
-                        cmbKukKiriAtrofi.getSelectedItem().toString(), cmbKukKananLain.getSelectedItem().toString(), cmbKukKiriLain.getSelectedItem().toString(),
-                        cmbTelKananHallu.getSelectedItem().toString(), cmbTelKiriHallu.getSelectedItem().toString(), cmbTelKananPel.getSelectedItem().toString(),
-                        cmbTelKiriPel.getSelectedItem().toString(), cmbTelKananChar.getSelectedItem().toString(), cmbTelKiriChar.getSelectedItem().toString(),
-                        cmbJarKananHamer.getSelectedItem().toString(), cmbJarKiriHamer.getSelectedItem().toString(), cmbJarKananClaw.getSelectedItem().toString(),
-                        cmbJarKiriClaw.getSelectedItem().toString(), cmbJarKananHiper.getSelectedItem().toString(), cmbJarKiriHiper.getSelectedItem().toString(),
-                        cmbJarKananMas.getSelectedItem().toString(), cmbJarKiriMas.getSelectedItem().toString(), cmbJarKananLain.getSelectedItem().toString(),
-                        cmbJarKiriLain.getSelectedItem().toString(), TketLainKanan.getText(), TketLainKiri.getText(), cmbDorsalisPedKanan.getSelectedItem().toString(),
-                        cmbDorsalisPedKiri.getSelectedItem().toString(), cmbTibialisKanan.getSelectedItem().toString(), cmbTibialisKiri.getSelectedItem().toString(),
-                        TtdsBra.getText(), TtdsDor.getText(), TskorAbi.getText(), cmbMonoKanan.getSelectedItem().toString(), cmbMonoKiri.getSelectedItem().toString(),
-                        cmbGarKanan.getSelectedItem().toString(), cmbGarKiri.getSelectedItem().toString(), cmbRefKanan.getSelectedItem().toString(),
-                        cmbRefKiri.getSelectedItem().toString(), derajat0, derajat1, derajat2, derajat3, derajat4, derajat5, TpemeriksaanLab.getText(), ronsenKaki,
-                        Valid.SetTgl(TtglRonsen.getSelectedItem() + ""), TkesRonsen.getText(), cmbOsteo.getSelectedItem().toString(), TlokRonsen.getText(), TkesRonsenTorax.getText(),
-                        TkesEkg.getText(), TusgDopler.getText(), surgical, chemical, biology, hidrocol, foam, allginate, silver, cadexomer, madu, modernDresingLain,
-                        TlainModern.getText(), Valid.SetTgl(TtglSimpan.getSelectedItem() + ""), nip, nipDokter, Sequel.cariIsi("select now()")
+                        ulkusGangen, selulitis, TdorsalKanan.getText(), TplantarKanan.getText(), TplantarKiri.getText(), TdorsalKiri.getText(),
+                        cmbKulKananKering.getSelectedItem().toString(), cmbKulKiriKering.getSelectedItem().toString(), cmbKulKananTumit.getSelectedItem().toString(),
+                        cmbKulKiriTumit.getSelectedItem().toString(), cmbKulKananBulu.getSelectedItem().toString(), cmbKulKiriBulu.getSelectedItem().toString(),
+                        cmbKulKananTinea.getSelectedItem().toString(), cmbKulKiriTinea.getSelectedItem().toString(), cmbKulKananKalus.getSelectedItem().toString(),
+                        cmbKulKiriKalus.getSelectedItem().toString(), cmbKulKananKorn.getSelectedItem().toString(), cmbKulKiriKorn.getSelectedItem().toString(),
+                        cmbKulKananHiper.getSelectedItem().toString(), cmbKulKiriHiper.getSelectedItem().toString(), cmbKulKananEdema.getSelectedItem().toString(),
+                        cmbKulKiriEdema.getSelectedItem().toString(), cmbKulKananHealed.getSelectedItem().toString(), cmbKulKiriHealed.getSelectedItem().toString(),
+                        cmbKukKananMenebal.getSelectedItem().toString(), cmbKukKiriMenebal.getSelectedItem().toString(), cmbKukKananInfeksi.getSelectedItem().toString(),
+                        cmbKukKiriInfeksi.getSelectedItem().toString(), cmbKukKananPerubahan.getSelectedItem().toString(), cmbKukKiriPerubahan.getSelectedItem().toString(),
+                        cmbKukKananRapuh.getSelectedItem().toString(), cmbKukKiriRapuh.getSelectedItem().toString(), cmbKukKananIngro.getSelectedItem().toString(),
+                        cmbKukKiriIngro.getSelectedItem().toString(), cmbKukKananAtrofi.getSelectedItem().toString(), cmbKukKiriAtrofi.getSelectedItem().toString(),
+                        cmbKukKananLain.getSelectedItem().toString(), cmbKukKiriLain.getSelectedItem().toString(), cmbTelKananHallu.getSelectedItem().toString(),
+                        cmbTelKiriHallu.getSelectedItem().toString(), cmbTelKananPel.getSelectedItem().toString(), cmbTelKiriPel.getSelectedItem().toString(),
+                        cmbTelKananChar.getSelectedItem().toString(), cmbTelKiriChar.getSelectedItem().toString(), cmbJarKananHamer.getSelectedItem().toString(),
+                        cmbJarKiriHamer.getSelectedItem().toString(), cmbJarKananClaw.getSelectedItem().toString(), cmbJarKiriClaw.getSelectedItem().toString(),
+                        cmbJarKananHiper.getSelectedItem().toString(), cmbJarKiriHiper.getSelectedItem().toString(), cmbJarKananMas.getSelectedItem().toString(),
+                        cmbJarKiriMas.getSelectedItem().toString(), cmbJarKananLain.getSelectedItem().toString(), cmbJarKiriLain.getSelectedItem().toString(),
+                        TketLainKanan.getText(), TketLainKiri.getText(), cmbDorsalisPedKanan.getSelectedItem().toString(), cmbDorsalisPedKiri.getSelectedItem().toString(),
+                        cmbTibialisKanan.getSelectedItem().toString(), cmbTibialisKiri.getSelectedItem().toString(), TtdsBra.getText(), TtdsDor.getText(), TskorAbi.getText(),
+                        cmbMonoKanan.getSelectedItem().toString(), cmbMonoKiri.getSelectedItem().toString(), cmbGarKanan.getSelectedItem().toString(),
+                        cmbGarKiri.getSelectedItem().toString(), cmbRefKanan.getSelectedItem().toString(), cmbRefKiri.getSelectedItem().toString(), derajat0, derajat1,
+                        derajat2, derajat3, derajat4, derajat5, TpemeriksaanLab.getText(), ronsenKaki, Valid.SetTgl(TtglRonsen.getSelectedItem() + ""), TkesRonsen.getText(),
+                        cmbOsteo.getSelectedItem().toString(), TlokRonsen.getText(), TkesRonsenTorax.getText(), TkesEkg.getText(), TusgDopler.getText(), surgical, chemical,
+                        biology, hidrocol, foam, allginate, silver, cadexomer, madu, modernDresingLain, TlainModern.getText(), Valid.SetTgl(TtglSimpan.getSelectedItem() + ""),
+                        nip, nipDokter, Sequel.cariIsi("select now()")
                     }) == true) {
 
                 if (tbRiwPengobatan.getRowCount() != 0) {
@@ -5955,61 +5862,21 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 
     private void TdorsalKananKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TdorsalKananKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-            chkPlantarKanan.requestFocus();
+            TplantarKanan.requestFocus();
         }
     }//GEN-LAST:event_TdorsalKananKeyPressed
 
-    private void chkDorsalKananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDorsalKananActionPerformed
-        TdorsalKanan.setText("");
-        if (chkDorsalKanan.isSelected() == true) {
-            TdorsalKanan.setEnabled(true);
-            TdorsalKanan.requestFocus();
-        } else {
-            TdorsalKanan.setEnabled(false);
-        }
-    }//GEN-LAST:event_chkDorsalKananActionPerformed
-
-    private void chkPlantarKananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPlantarKananActionPerformed
-        TplantarKanan.setText("");
-        if (chkPlantarKanan.isSelected() == true) {
-            TplantarKanan.setEnabled(true);
-            TplantarKanan.requestFocus();
-        } else {
-            TplantarKanan.setEnabled(false);
-        }
-    }//GEN-LAST:event_chkPlantarKananActionPerformed
-
     private void TplantarKananKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TplantarKananKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-            chkDorsalKiri.requestFocus();
+            TdorsalKiri.requestFocus();
         }
     }//GEN-LAST:event_TplantarKananKeyPressed
 
-    private void chkDorsalKiriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDorsalKiriActionPerformed
-        TdorsalKiri.setText("");
-        if (chkDorsalKiri.isSelected() == true) {
-            TdorsalKiri.setEnabled(true);
-            TdorsalKiri.requestFocus();
-        } else {
-            TdorsalKiri.setEnabled(false);
-        }
-    }//GEN-LAST:event_chkDorsalKiriActionPerformed
-
     private void TdorsalKiriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TdorsalKiriKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-            chkPlantarKiri.requestFocus();
+            TplantarKiri.requestFocus();
         }
     }//GEN-LAST:event_TdorsalKiriKeyPressed
-
-    private void chkPlantarKiriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPlantarKiriActionPerformed
-        TplantarKiri.setText("");
-        if (chkPlantarKiri.isSelected() == true) {
-            TplantarKiri.setEnabled(true);
-            TplantarKiri.requestFocus();
-        } else {
-            TplantarKiri.setEnabled(false);
-        }
-    }//GEN-LAST:event_chkPlantarKiriActionPerformed
 
     private void TplantarKiriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TplantarKiriKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
@@ -6536,8 +6403,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     public widget.CekBox chkDerajat5;
     public widget.CekBox chkDllsebutkanMekanik;
     public widget.CekBox chkDllsebutkanTermis;
-    public widget.CekBox chkDorsalKanan;
-    public widget.CekBox chkDorsalKiri;
     public widget.CekBox chkFoam;
     public widget.CekBox chkGinjal;
     public widget.CekBox chkHipertensi;
@@ -6550,8 +6415,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     public widget.CekBox chkNonUlkus;
     public widget.CekBox chkPad;
     public widget.CekBox chkPenyJantung;
-    public widget.CekBox chkPlantarKanan;
-    public widget.CekBox chkPlantarKiri;
     private widget.CekBox chkSaya;
     public widget.CekBox chkSelulitis;
     public widget.CekBox chkSilver;
@@ -6907,14 +6770,10 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                         rs.getString("non_ulkus"),
                         rs.getString("ulkus"),
                         rs.getString("ulkus_gangen"),
-                        rs.getString("selulitis"),
-                        rs.getString("dorsal_kanan"),
-                        rs.getString("deskripsi_dorsal_kanan"),
-                        rs.getString("plantar_kanan"),
-                        rs.getString("deskripsi_plantar_kanan"),
-                        rs.getString("plantar_kiri"),
-                        rs.getString("deskripsi_plantar_kiri"),
-                        rs.getString("dorsal_kiri"),
+                        rs.getString("selulitis"),                        
+                        rs.getString("deskripsi_dorsal_kanan"),                        
+                        rs.getString("deskripsi_plantar_kanan"),                        
+                        rs.getString("deskripsi_plantar_kiri"),                        
                         rs.getString("deskripsi_dorsal_kiri"),
                         rs.getString("kulit_kanan_kering"),
                         rs.getString("kulit_kiri_kering"),
@@ -7130,21 +6989,17 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         chkUlkusGangen.setSelected(false);
         chkSelulitis.setSelected(false);
         
-        chkDorsalKanan.setSelected(false);
         TdorsalKanan.setText("");
-        TdorsalKanan.setEnabled(false);
+        TdorsalKanan.setEnabled(true);
         
-        chkPlantarKanan.setSelected(false);
         TplantarKanan.setText("");
-        TplantarKanan.setEnabled(false);
+        TplantarKanan.setEnabled(true);
         
-        chkDorsalKiri.setSelected(false);
         TdorsalKiri.setText("");
-        TdorsalKiri.setEnabled(false);
+        TdorsalKiri.setEnabled(true);
         
-        chkPlantarKiri.setSelected(false);
         TplantarKiri.setText("");
-        TplantarKiri.setEnabled(false);
+        TplantarKiri.setEnabled(true);
         BtnTambahDeforActionPerformed(null);
         
         cmbKulKananKering.setSelectedIndex(0);
@@ -7377,108 +7232,104 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             ulkus = tbPasien.getValueAt(tbPasien.getSelectedRow(), 63).toString();
             ulkusGangen = tbPasien.getValueAt(tbPasien.getSelectedRow(), 64).toString();
             selulitis = tbPasien.getValueAt(tbPasien.getSelectedRow(), 65).toString();
-            dorsalKanan = tbPasien.getValueAt(tbPasien.getSelectedRow(), 66).toString();
-            TdorsalKanan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 67).toString());
-            plantarKanan = tbPasien.getValueAt(tbPasien.getSelectedRow(), 68).toString();
-            TplantarKanan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 69).toString());
-            plantarKiri = tbPasien.getValueAt(tbPasien.getSelectedRow(), 70).toString();
-            TplantarKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 71).toString());
-            dorsalKiri = tbPasien.getValueAt(tbPasien.getSelectedRow(), 72).toString();
-            TdorsalKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 73).toString());
+            TdorsalKanan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 66).toString());
+            TplantarKanan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 67).toString());
+            TplantarKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 68).toString());
+            TdorsalKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 69).toString());            
             tampilDeformitas();
-            cmbKulKananKering.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 74).toString());
-            cmbKulKiriKering.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 75).toString());
-            cmbKulKananTumit.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 76).toString());
-            cmbKulKiriTumit.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 77).toString());
-            cmbKulKananBulu.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 78).toString());
-            cmbKulKiriBulu.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 79).toString());
-            cmbKulKananTinea.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 80).toString());
-            cmbKulKiriTinea.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 81).toString());
-            cmbKulKananKalus.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 82).toString());
-            cmbKulKiriKalus.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 83).toString());
-            cmbKulKananKorn.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 84).toString());
-            cmbKulKiriKorn.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 85).toString());
-            cmbKulKananHiper.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 86).toString());
-            cmbKulKiriHiper.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 87).toString());
-            cmbKulKananEdema.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 88).toString());
-            cmbKulKiriEdema.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 89).toString());
-            cmbKulKananHealed.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 90).toString());
-            cmbKulKiriHealed.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 91).toString());            
-            cmbKukKananMenebal.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 92).toString());
-            cmbKukKiriMenebal.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 93).toString());
-            cmbKukKananInfeksi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 94).toString());
-            cmbKukKiriInfeksi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 95).toString());
-            cmbKukKananPerubahan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 96).toString());
-            cmbKukKiriPerubahan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 97).toString());
-            cmbKukKananRapuh.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 98).toString());
-            cmbKukKiriRapuh.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 99).toString());
-            cmbKukKananIngro.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 100).toString());
-            cmbKukKiriIngro.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 101).toString());
-            cmbKukKananAtrofi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 102).toString());
-            cmbKukKiriAtrofi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 103).toString());
-            cmbKukKananLain.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 104).toString());
-            cmbKukKiriLain.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(),105).toString());
-            cmbTelKananHallu.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 106).toString());
-            cmbTelKiriHallu.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 107).toString());
-            cmbTelKananPel.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 108).toString());
-            cmbTelKiriPel.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 109).toString());
-            cmbTelKananChar.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 110).toString());
-            cmbTelKiriChar.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 111).toString());
-            cmbJarKananHamer.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 112).toString());
-            cmbJarKiriHamer.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 113).toString());
-            cmbJarKananClaw.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 114).toString());
-            cmbJarKiriClaw.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 115).toString());
-            cmbJarKananHiper.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 116).toString());
-            cmbJarKiriHiper.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 117).toString());
-            cmbJarKananMas.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 118).toString());
-            cmbJarKiriMas.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 119).toString());
-            cmbJarKananLain.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 120).toString());
-            cmbJarKiriLain.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 121).toString());
-            TketLainKanan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 122).toString());
-            TketLainKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 123).toString());            
-            cmbDorsalisPedKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 124).toString());
-            cmbDorsalisPedKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 125).toString());
-            cmbTibialisKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 126).toString());
-            cmbTibialisKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 127).toString());
-            TtdsBra.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 128).toString());
-            TtdsDor.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 129).toString());
-            TskorAbi.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 130).toString());
-            cmbMonoKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 131).toString());
-            cmbMonoKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 132).toString());
-            cmbGarKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 133).toString());
-            cmbGarKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 134).toString());
-            cmbRefKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 135).toString());
-            cmbRefKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 136).toString());
-            derajat0 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 137).toString();            
-            derajat1 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 138).toString();
-            derajat2 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 139).toString();
-            derajat3 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 140).toString();
-            derajat4 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 141).toString();
-            derajat5 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 142).toString();
-            TpemeriksaanLab.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 143).toString());
-            ronsenKaki = tbPasien.getValueAt(tbPasien.getSelectedRow(), 144).toString();
-            Valid.SetTgl(TtglRonsen, tbPasien.getValueAt(tbPasien.getSelectedRow(), 145).toString());
-            TkesRonsen.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 146).toString());
-            cmbOsteo.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 147).toString());
-            TlokRonsen.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 148).toString());
+            cmbKulKananKering.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 70).toString());
+            cmbKulKiriKering.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 71).toString());
+            cmbKulKananTumit.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 72).toString());
+            cmbKulKiriTumit.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 73).toString());
+            cmbKulKananBulu.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 74).toString());
+            cmbKulKiriBulu.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 75).toString());
+            cmbKulKananTinea.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 76).toString());
+            cmbKulKiriTinea.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 77).toString());
+            cmbKulKananKalus.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 78).toString());
+            cmbKulKiriKalus.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 79).toString());
+            cmbKulKananKorn.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 80).toString());
+            cmbKulKiriKorn.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 81).toString());
+            cmbKulKananHiper.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 82).toString());
+            cmbKulKiriHiper.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 83).toString());
+            cmbKulKananEdema.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 84).toString());
+            cmbKulKiriEdema.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 85).toString());
+            cmbKulKananHealed.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 86).toString());
+            cmbKulKiriHealed.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 87).toString());            
+            cmbKukKananMenebal.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 88).toString());
+            cmbKukKiriMenebal.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 89).toString());
+            cmbKukKananInfeksi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 90).toString());
+            cmbKukKiriInfeksi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 91).toString());
+            cmbKukKananPerubahan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 92).toString());
+            cmbKukKiriPerubahan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 93).toString());
+            cmbKukKananRapuh.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 94).toString());
+            cmbKukKiriRapuh.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 95).toString());
+            cmbKukKananIngro.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 96).toString());
+            cmbKukKiriIngro.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 97).toString());
+            cmbKukKananAtrofi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 98).toString());
+            cmbKukKiriAtrofi.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 99).toString());
+            cmbKukKananLain.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 100).toString());
+            cmbKukKiriLain.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(),101).toString());
+            cmbTelKananHallu.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 102).toString());
+            cmbTelKiriHallu.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 103).toString());
+            cmbTelKananPel.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 104).toString());
+            cmbTelKiriPel.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 105).toString());
+            cmbTelKananChar.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 106).toString());
+            cmbTelKiriChar.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 107).toString());
+            cmbJarKananHamer.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 108).toString());
+            cmbJarKiriHamer.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 109).toString());
+            cmbJarKananClaw.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 110).toString());
+            cmbJarKiriClaw.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 111).toString());
+            cmbJarKananHiper.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 112).toString());
+            cmbJarKiriHiper.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 113).toString());
+            cmbJarKananMas.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 114).toString());
+            cmbJarKiriMas.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 115).toString());
+            cmbJarKananLain.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 116).toString());
+            cmbJarKiriLain.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 117).toString());
+            TketLainKanan.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 118).toString());
+            TketLainKiri.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 119).toString());            
+            cmbDorsalisPedKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 120).toString());
+            cmbDorsalisPedKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 121).toString());
+            cmbTibialisKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 122).toString());
+            cmbTibialisKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 123).toString());
+            TtdsBra.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 124).toString());
+            TtdsDor.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 125).toString());
+            TskorAbi.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 126).toString());
+            cmbMonoKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 127).toString());
+            cmbMonoKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 128).toString());
+            cmbGarKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 129).toString());
+            cmbGarKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 130).toString());
+            cmbRefKanan.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 131).toString());
+            cmbRefKiri.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 132).toString());
+            derajat0 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 133).toString();            
+            derajat1 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 134).toString();
+            derajat2 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 135).toString();
+            derajat3 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 136).toString();
+            derajat4 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 137).toString();
+            derajat5 = tbPasien.getValueAt(tbPasien.getSelectedRow(), 138).toString();
+            TpemeriksaanLab.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 139).toString());
+            ronsenKaki = tbPasien.getValueAt(tbPasien.getSelectedRow(), 140).toString();
+            Valid.SetTgl(TtglRonsen, tbPasien.getValueAt(tbPasien.getSelectedRow(), 141).toString());
+            TkesRonsen.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 142).toString());
+            cmbOsteo.setSelectedItem(tbPasien.getValueAt(tbPasien.getSelectedRow(), 143).toString());
+            TlokRonsen.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 144).toString());
             tampilMikrobiologi();            
-            TkesRonsenTorax.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 149).toString());
-            TkesEkg.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 150).toString());
-            TusgDopler.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 151).toString());
-            surgical = tbPasien.getValueAt(tbPasien.getSelectedRow(), 152).toString();
-            chemical = tbPasien.getValueAt(tbPasien.getSelectedRow(), 153).toString();
-            biology = tbPasien.getValueAt(tbPasien.getSelectedRow(), 154).toString();
-            hidrocol = tbPasien.getValueAt(tbPasien.getSelectedRow(), 155).toString();
-            foam = tbPasien.getValueAt(tbPasien.getSelectedRow(), 156).toString();
-            allginate = tbPasien.getValueAt(tbPasien.getSelectedRow(), 157).toString();
-            silver = tbPasien.getValueAt(tbPasien.getSelectedRow(), 158).toString();
-            cadexomer = tbPasien.getValueAt(tbPasien.getSelectedRow(), 159).toString();
-            madu = tbPasien.getValueAt(tbPasien.getSelectedRow(), 160).toString();
-            modernDresingLain = tbPasien.getValueAt(tbPasien.getSelectedRow(), 161).toString();
-            TlainModern.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 162).toString());
-            Valid.SetTgl(TtglSimpan, tbPasien.getValueAt(tbPasien.getSelectedRow(), 163).toString());
-            nip = tbPasien.getValueAt(tbPasien.getSelectedRow(), 164).toString();
-            nipDokter = tbPasien.getValueAt(tbPasien.getSelectedRow(), 165).toString();
+            TkesRonsenTorax.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 145).toString());
+            TkesEkg.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 146).toString());
+            TusgDopler.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 147).toString());
+            surgical = tbPasien.getValueAt(tbPasien.getSelectedRow(), 148).toString();
+            chemical = tbPasien.getValueAt(tbPasien.getSelectedRow(), 149).toString();
+            biology = tbPasien.getValueAt(tbPasien.getSelectedRow(), 150).toString();
+            hidrocol = tbPasien.getValueAt(tbPasien.getSelectedRow(), 151).toString();
+            foam = tbPasien.getValueAt(tbPasien.getSelectedRow(), 152).toString();
+            allginate = tbPasien.getValueAt(tbPasien.getSelectedRow(), 153).toString();
+            silver = tbPasien.getValueAt(tbPasien.getSelectedRow(), 154).toString();
+            cadexomer = tbPasien.getValueAt(tbPasien.getSelectedRow(), 155).toString();
+            madu = tbPasien.getValueAt(tbPasien.getSelectedRow(), 156).toString();
+            modernDresingLain = tbPasien.getValueAt(tbPasien.getSelectedRow(), 157).toString();
+            TlainModern.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 158).toString());
+            Valid.SetTgl(TtglSimpan, tbPasien.getValueAt(tbPasien.getSelectedRow(), 159).toString());
+            nip = tbPasien.getValueAt(tbPasien.getSelectedRow(), 160).toString();
+            nipDokter = tbPasien.getValueAt(tbPasien.getSelectedRow(), 161).toString();
             TnmPerawat.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 9).toString());
             TnmDokter.setText(tbPasien.getValueAt(tbPasien.getSelectedRow(), 10).toString());            
             dataCek();
@@ -7514,20 +7365,19 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                 + "tipe_diabet_lain=?, lama_diketahui=?, merokok=?, merokok_ya=?, merokok_mantan=?, lama_luka=?, satuan_lama_luka=?, riwayat_edukasi=?, jns_alas_kaki=?, "
                 + "jns_alas_kaki_sepatu=?, trauma_mekanik=?, trauma_kimia=?, trauma_termis=?, spontan=?, penyebab_lain=?, ket_penyebab_lain=?, tersandung=?, memakai_sepatu=?, "
                 + "tertusuk=?, dll_sebutkan_mekanik=?, ket_dll_sebutkan_mekanik=?, terkena_zat=?, ket_terkena_zat=?, terkena_air_panas=?, terkena_pemanas=?, dll_sebutkan_termis=?, "
-                + "ket_dll_sebutkan_termis=?, riwayat_ulkus=?, kiri=?, jari_kaki_kiri_ke=?, trans_kiri_tahun=?, kanan=?, jari_kaki_kanan_ke=?, "
-                + "trans_kanan_tahun=?, mata=?, ginjal=?, penyakit_jantung=?, hipertensi=?, strok=?, pad=?, riwayat_mata=?, terapi_mata_tahun=?, riwayat_ginjal=?, non_ulkus=?, ulkus=?, "
-                + "ulkus_gangen=?, selulitis=?, dorsal_kanan=?, deskripsi_dorsal_kanan=?, plantar_kanan=?, deskripsi_plantar_kanan=?, plantar_kiri=?, deskripsi_plantar_kiri=?, "
-                + "dorsal_kiri=?, deskripsi_dorsal_kiri=?, kulit_kanan_kering=?, kulit_kiri_kering=?, kulit_kanan_tumit=?, kulit_kiri_tumit=?, kulit_kanan_bulu=?, kulit_kiri_bulu=?, "
-                + "kulit_kanan_tinea=?, kulit_kiri_tinea=?, kulit_kanan_kalus=?, kulit_kiri_kalus=?, kulit_kanan_korn=?, kulit_kiri_korn=?, kulit_kanan_hiperpig=?, kulit_kiri_hiperpig=?, "
-                + "kulit_kanan_edema=?, kulit_kiri_edema=?, kulit_kanan_healed=?, kulit_kiri_healed=?, kuku_kanan_menebal=?, kuku_kiri_menebal=?, kuku_kanan_infeksi=?, kuku_kiri_infeksi=?, "
-                + "kuku_kanan_perubahan=?, kuku_kiri_perubahan=?, kuku_kanan_rapuh=?, kuku_kiri_rapuh=?, kuku_kanan_ingro=?, kuku_kiri_ingro=?, kuku_kanan_atrofi=?, kuku_kiri_atrofi=?, "
-                + "kuku_kanan_lain=?, kuku_kiri_lain=?, telapak_kanan_hallux=?, telapak_kiri_hallux=?, telapak_kanan_pel=?, telapak_kiri_pel=?, telapak_kanan_char=?, telapak_kiri_char=?, "
-                + "jari_kanan_hammer=?, jari_kiri_hammer=?, jari_kanan_claw=?, jari_kiri_claw=?, jari_kanan_hiper=?, jari_kiri_hiper=?, jari_kanan_maser=?, jari_kiri_maser=?, "
-                + "jari_kanan_lain=?, jari_kiri_lain=?, ket_jari_kanan_lain=?, ket_jari_kiri_lain=?, dorsalis_kaki_kanan=?, dorsalis_kaki_kiri=?, tibialis_kaki_kanan=?, tibialis_kaki_kiri=?, "
-                + "brachialis=?, dorsalis_pedis=?, skor_abi=?, monofilamen_kanan=?, monofilamen_kiri=?, garputala_kanan=?, garputala_kiri=?, reflex_kanan=?, reflex_kiri=?, derajat0=?, "
-                + "derajat1=?, derajat2=?, derajat3=?, derajat4=?, derajat5=?, pemeriksaan_lab=?, ronsen_kaki=?, ronsen_kaki_tgl=?, kesimpulan_ronsen=?, osteomielitis=?, lokasi=?, "
-                + "kes_ronsen_thorax=?, kes_ekg=?, usg_dopler=?, surgical=?, chemical=?, biology=?, hidrocol=?, foam=?, allginate=?, silver=?, cadexomer=?, madu=?, modern_dresing_lain=?, "
-                + "ket_modern_dresing_lain=?, tgl_data=?, nip_perawat=?, nip_dokter=?", 156, new String[]{
+                + "ket_dll_sebutkan_termis=?, riwayat_ulkus=?, kiri=?, jari_kaki_kiri_ke=?, trans_kiri_tahun=?, kanan=?, jari_kaki_kanan_ke=?, trans_kanan_tahun=?, mata=?, ginjal=?, "
+                + "penyakit_jantung=?, hipertensi=?, strok=?, pad=?, riwayat_mata=?, terapi_mata_tahun=?, riwayat_ginjal=?, non_ulkus=?, ulkus=?, ulkus_gangen=?, selulitis=?, "
+                + "deskripsi_dorsal_kanan=?, deskripsi_plantar_kanan=?, deskripsi_plantar_kiri=?, deskripsi_dorsal_kiri=?, kulit_kanan_kering=?, kulit_kiri_kering=?, kulit_kanan_tumit=?, "
+                + "kulit_kiri_tumit=?, kulit_kanan_bulu=?, kulit_kiri_bulu=?, kulit_kanan_tinea=?, kulit_kiri_tinea=?, kulit_kanan_kalus=?, kulit_kiri_kalus=?, kulit_kanan_korn=?, "
+                + "kulit_kiri_korn=?, kulit_kanan_hiperpig=?, kulit_kiri_hiperpig=?, kulit_kanan_edema=?, kulit_kiri_edema=?, kulit_kanan_healed=?, kulit_kiri_healed=?, kuku_kanan_menebal=?, "
+                + "kuku_kiri_menebal=?, kuku_kanan_infeksi=?, kuku_kiri_infeksi=?, kuku_kanan_perubahan=?, kuku_kiri_perubahan=?, kuku_kanan_rapuh=?, kuku_kiri_rapuh=?, kuku_kanan_ingro=?, "
+                + "kuku_kiri_ingro=?, kuku_kanan_atrofi=?, kuku_kiri_atrofi=?, kuku_kanan_lain=?, kuku_kiri_lain=?, telapak_kanan_hallux=?, telapak_kiri_hallux=?, telapak_kanan_pel=?, "
+                + "telapak_kiri_pel=?, telapak_kanan_char=?, telapak_kiri_char=?, jari_kanan_hammer=?, jari_kiri_hammer=?, jari_kanan_claw=?, jari_kiri_claw=?, jari_kanan_hiper=?, "
+                + "jari_kiri_hiper=?, jari_kanan_maser=?, jari_kiri_maser=?, jari_kanan_lain=?, jari_kiri_lain=?, ket_jari_kanan_lain=?, ket_jari_kiri_lain=?, dorsalis_kaki_kanan=?, "
+                + "dorsalis_kaki_kiri=?, tibialis_kaki_kanan=?, tibialis_kaki_kiri=?, brachialis=?, dorsalis_pedis=?, skor_abi=?, monofilamen_kanan=?, monofilamen_kiri=?, garputala_kanan=?, "
+                + "garputala_kiri=?, reflex_kanan=?, reflex_kiri=?, derajat0=?, derajat1=?, derajat2=?, derajat3=?, derajat4=?, derajat5=?, pemeriksaan_lab=?, ronsen_kaki=?, "
+                + "ronsen_kaki_tgl=?, kesimpulan_ronsen=?, osteomielitis=?, lokasi=?, kes_ronsen_thorax=?, kes_ekg=?, usg_dopler=?, surgical=?, chemical=?, biology=?, hidrocol=?, foam=?, "
+                + "allginate=?, silver=?, cadexomer=?, madu=?, modern_dresing_lain=?, ket_modern_dresing_lain=?, tgl_data=?, nip_perawat=?, nip_dokter=?", 152, new String[]{
                     cmbJnsRawat.getSelectedItem().toString(), Ttb.getText(), Tbb.getText(), Tbmi.getText(), Ttensi.getText(),
                     Valid.SetTgl(TtglMasuk.getSelectedItem() + ""), TlamaRawat.getText(), cmbTipeDiabet.getSelectedItem().toString(), TtipeDiabetLain.getText(),
                     TlamaDiketahui.getText(), cmbMerokok.getSelectedItem().toString(), TmerokokYa.getText(), TmerokokMantan.getText(), TlamaLuka.getText(),
@@ -7537,31 +7387,31 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                     cmbRiwUlkus.getSelectedItem().toString(), cmbRiwAmputasiKiri.getSelectedItem().toString(), TjariKiri.getText(), TtransKiri.getText(),
                     cmbRiwAmputasiKanan.getSelectedItem().toString(), TjariKanan.getText(), TtransKanan.getText(), mata, ginjal, penyakitJantung,
                     hipertensi, strok, pad, cmbMata.getSelectedItem().toString(), TlaserTahun.getText(), cmbGinjal.getSelectedItem().toString(), nonUlkus, ulkus,
-                    ulkusGangen, selulitis, dorsalKanan, TdorsalKanan.getText(), plantarKanan, TplantarKanan.getText(), plantarKiri, TplantarKiri.getText(),
-                    dorsalKiri, TdorsalKiri.getText(), cmbKulKananKering.getSelectedItem().toString(), cmbKulKiriKering.getSelectedItem().toString(),
-                    cmbKulKananTumit.getSelectedItem().toString(), cmbKulKiriTumit.getSelectedItem().toString(), cmbKulKananBulu.getSelectedItem().toString(),
-                    cmbKulKiriBulu.getSelectedItem().toString(), cmbKulKananTinea.getSelectedItem().toString(), cmbKulKiriTinea.getSelectedItem().toString(),
-                    cmbKulKananKalus.getSelectedItem().toString(), cmbKulKiriKalus.getSelectedItem().toString(), cmbKulKananKorn.getSelectedItem().toString(),
-                    cmbKulKiriKorn.getSelectedItem().toString(), cmbKulKananHiper.getSelectedItem().toString(), cmbKulKiriHiper.getSelectedItem().toString(),
-                    cmbKulKananEdema.getSelectedItem().toString(), cmbKulKiriEdema.getSelectedItem().toString(), cmbKulKananHealed.getSelectedItem().toString(),
-                    cmbKulKiriHealed.getSelectedItem().toString(), cmbKukKananMenebal.getSelectedItem().toString(), cmbKukKiriMenebal.getSelectedItem().toString(),
-                    cmbKukKananInfeksi.getSelectedItem().toString(), cmbKukKiriInfeksi.getSelectedItem().toString(), cmbKukKananPerubahan.getSelectedItem().toString(),
-                    cmbKukKiriPerubahan.getSelectedItem().toString(), cmbKukKananRapuh.getSelectedItem().toString(), cmbKukKiriRapuh.getSelectedItem().toString(),
-                    cmbKukKananIngro.getSelectedItem().toString(), cmbKukKiriIngro.getSelectedItem().toString(), cmbKukKananAtrofi.getSelectedItem().toString(),
-                    cmbKukKiriAtrofi.getSelectedItem().toString(), cmbKukKananLain.getSelectedItem().toString(), cmbKukKiriLain.getSelectedItem().toString(),
-                    cmbTelKananHallu.getSelectedItem().toString(), cmbTelKiriHallu.getSelectedItem().toString(), cmbTelKananPel.getSelectedItem().toString(),
-                    cmbTelKiriPel.getSelectedItem().toString(), cmbTelKananChar.getSelectedItem().toString(), cmbTelKiriChar.getSelectedItem().toString(),
-                    cmbJarKananHamer.getSelectedItem().toString(), cmbJarKiriHamer.getSelectedItem().toString(), cmbJarKananClaw.getSelectedItem().toString(),
-                    cmbJarKiriClaw.getSelectedItem().toString(), cmbJarKananHiper.getSelectedItem().toString(), cmbJarKiriHiper.getSelectedItem().toString(),
-                    cmbJarKananMas.getSelectedItem().toString(), cmbJarKiriMas.getSelectedItem().toString(), cmbJarKananLain.getSelectedItem().toString(),
-                    cmbJarKiriLain.getSelectedItem().toString(), TketLainKanan.getText(), TketLainKiri.getText(), cmbDorsalisPedKanan.getSelectedItem().toString(),
-                    cmbDorsalisPedKiri.getSelectedItem().toString(), cmbTibialisKanan.getSelectedItem().toString(), cmbTibialisKiri.getSelectedItem().toString(),
-                    TtdsBra.getText(), TtdsDor.getText(), TskorAbi.getText(), cmbMonoKanan.getSelectedItem().toString(), cmbMonoKiri.getSelectedItem().toString(),
-                    cmbGarKanan.getSelectedItem().toString(), cmbGarKiri.getSelectedItem().toString(), cmbRefKanan.getSelectedItem().toString(),
-                    cmbRefKiri.getSelectedItem().toString(), derajat0, derajat1, derajat2, derajat3, derajat4, derajat5, TpemeriksaanLab.getText(), ronsenKaki,
-                    Valid.SetTgl(TtglRonsen.getSelectedItem() + ""), TkesRonsen.getText(), cmbOsteo.getSelectedItem().toString(), TlokRonsen.getText(), TkesRonsenTorax.getText(),
-                    TkesEkg.getText(), TusgDopler.getText(), surgical, chemical, biology, hidrocol, foam, allginate, silver, cadexomer, madu, modernDresingLain,
-                    TlainModern.getText(), Valid.SetTgl(TtglSimpan.getSelectedItem() + ""), nip, nipDokter,
+                    ulkusGangen, selulitis, TdorsalKanan.getText(), TplantarKanan.getText(), TplantarKiri.getText(), TdorsalKiri.getText(),
+                    cmbKulKananKering.getSelectedItem().toString(), cmbKulKiriKering.getSelectedItem().toString(), cmbKulKananTumit.getSelectedItem().toString(),
+                    cmbKulKiriTumit.getSelectedItem().toString(), cmbKulKananBulu.getSelectedItem().toString(), cmbKulKiriBulu.getSelectedItem().toString(),
+                    cmbKulKananTinea.getSelectedItem().toString(), cmbKulKiriTinea.getSelectedItem().toString(), cmbKulKananKalus.getSelectedItem().toString(),
+                    cmbKulKiriKalus.getSelectedItem().toString(), cmbKulKananKorn.getSelectedItem().toString(), cmbKulKiriKorn.getSelectedItem().toString(),
+                    cmbKulKananHiper.getSelectedItem().toString(), cmbKulKiriHiper.getSelectedItem().toString(), cmbKulKananEdema.getSelectedItem().toString(),
+                    cmbKulKiriEdema.getSelectedItem().toString(), cmbKulKananHealed.getSelectedItem().toString(), cmbKulKiriHealed.getSelectedItem().toString(),
+                    cmbKukKananMenebal.getSelectedItem().toString(), cmbKukKiriMenebal.getSelectedItem().toString(), cmbKukKananInfeksi.getSelectedItem().toString(),
+                    cmbKukKiriInfeksi.getSelectedItem().toString(), cmbKukKananPerubahan.getSelectedItem().toString(), cmbKukKiriPerubahan.getSelectedItem().toString(),
+                    cmbKukKananRapuh.getSelectedItem().toString(), cmbKukKiriRapuh.getSelectedItem().toString(), cmbKukKananIngro.getSelectedItem().toString(),
+                    cmbKukKiriIngro.getSelectedItem().toString(), cmbKukKananAtrofi.getSelectedItem().toString(), cmbKukKiriAtrofi.getSelectedItem().toString(),
+                    cmbKukKananLain.getSelectedItem().toString(), cmbKukKiriLain.getSelectedItem().toString(), cmbTelKananHallu.getSelectedItem().toString(),
+                    cmbTelKiriHallu.getSelectedItem().toString(), cmbTelKananPel.getSelectedItem().toString(), cmbTelKiriPel.getSelectedItem().toString(),
+                    cmbTelKananChar.getSelectedItem().toString(), cmbTelKiriChar.getSelectedItem().toString(), cmbJarKananHamer.getSelectedItem().toString(),
+                    cmbJarKiriHamer.getSelectedItem().toString(), cmbJarKananClaw.getSelectedItem().toString(), cmbJarKiriClaw.getSelectedItem().toString(),
+                    cmbJarKananHiper.getSelectedItem().toString(), cmbJarKiriHiper.getSelectedItem().toString(), cmbJarKananMas.getSelectedItem().toString(),
+                    cmbJarKiriMas.getSelectedItem().toString(), cmbJarKananLain.getSelectedItem().toString(), cmbJarKiriLain.getSelectedItem().toString(),
+                    TketLainKanan.getText(), TketLainKiri.getText(), cmbDorsalisPedKanan.getSelectedItem().toString(), cmbDorsalisPedKiri.getSelectedItem().toString(),
+                    cmbTibialisKanan.getSelectedItem().toString(), cmbTibialisKiri.getSelectedItem().toString(), TtdsBra.getText(), TtdsDor.getText(), TskorAbi.getText(),
+                    cmbMonoKanan.getSelectedItem().toString(), cmbMonoKiri.getSelectedItem().toString(), cmbGarKanan.getSelectedItem().toString(),
+                    cmbGarKiri.getSelectedItem().toString(), cmbRefKanan.getSelectedItem().toString(), cmbRefKiri.getSelectedItem().toString(), derajat0, derajat1,
+                    derajat2, derajat3, derajat4, derajat5, TpemeriksaanLab.getText(), ronsenKaki, Valid.SetTgl(TtglRonsen.getSelectedItem() + ""), TkesRonsen.getText(),
+                    cmbOsteo.getSelectedItem().toString(), TlokRonsen.getText(), TkesRonsenTorax.getText(), TkesEkg.getText(), TusgDopler.getText(), surgical, chemical,
+                    biology, hidrocol, foam, allginate, silver, cadexomer, madu, modernDresingLain, TlainModern.getText(), Valid.SetTgl(TtglSimpan.getSelectedItem() + ""),
+                    nip, nipDokter,
                     tbPasien.getValueAt(tbPasien.getSelectedRow(), 0).toString()
                 }) == true) {
 
@@ -7760,30 +7610,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             selulitis = "ya";
         } else {
             selulitis = "tidak";
-        }
-        
-        if (chkDorsalKanan.isSelected() == true) {
-            dorsalKanan = "ya";
-        } else {
-            dorsalKanan = "tidak";
-        }
-        
-        if (chkPlantarKanan.isSelected() == true) {
-            plantarKanan = "ya";
-        } else {
-            plantarKanan = "tidak";
-        }
-        
-        if (chkPlantarKiri.isSelected() == true) {
-            plantarKiri = "ya";
-        } else {
-            plantarKiri = "tidak";
-        }
-        
-        if (chkDorsalKiri.isSelected() == true) {
-            dorsalKiri = "ya";
-        } else {
-            dorsalKiri = "tidak";
         }
         
         if (chkDerajat0.isSelected() == true) {
@@ -8122,38 +7948,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             chkSelulitis.setSelected(false);
         }
         
-        if (dorsalKanan.equals("ya")) {
-            chkDorsalKanan.setSelected(true);
-            TdorsalKanan.setEnabled(true);
-        } else {
-            chkDorsalKanan.setSelected(false);
-            TdorsalKanan.setEnabled(false);
-        }
-        
-        if (plantarKanan.equals("ya")) {
-            chkPlantarKanan.setSelected(true);
-            TplantarKanan.setEnabled(true);
-        } else {
-            chkPlantarKanan.setSelected(false);
-            TplantarKanan.setEnabled(false);
-        }
-        
-        if (dorsalKiri.equals("ya")) {
-            chkDorsalKiri.setSelected(true);
-            TdorsalKiri.setEnabled(true);
-        } else {
-            chkDorsalKiri.setSelected(false);
-            TdorsalKiri.setEnabled(false);
-        }
-        
-        if (plantarKiri.equals("ya")) {
-            chkPlantarKiri.setSelected(true);
-            TplantarKiri.setEnabled(true);
-        } else {
-            chkPlantarKiri.setSelected(false);
-            TplantarKiri.setEnabled(false);
-        }
-        
         if (derajat0.equals("ya")) {
             chkDerajat0.setSelected(true);
         } else {
@@ -8293,10 +8087,6 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         ulkus = "";
         ulkusGangen = "";
         selulitis = "";
-        dorsalKanan = "";
-        plantarKanan = "";
-        plantarKiri = "";
-        dorsalKiri = "";
         derajat0 = "";
         derajat1 = "";
         derajat2 = "";
