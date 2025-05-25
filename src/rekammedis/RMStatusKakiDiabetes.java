@@ -64,8 +64,8 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8;
     private int i = 0, x = 0;
     private String nip = "", nipDokter = "", traumaMekanik = "", traumaKimia = "", traumaTermis = "", spontan = "", penyebabLain = "",
             tersandung = "", memakaiSepatu = "", tertusuk = "", dllSebutkanMekanik = "", terkenaZat = "", terkenaAirPanas = "", terkenaPemanas = "",
@@ -73,7 +73,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             ulkusGangen = "", selulitis = "", derajat0 = "", derajat1 = "", derajat2 = "", derajat3 = "", derajat4 = "", derajat5 = "", ronsenKaki = "",
             surgical = "", chemical = "", biology = "", hidrocol = "", foam = "", allginate = "", silver = "", cadexomer = "", madu = "",
             modernDresingLain = "";
-    private String riwObat = "", nmObat = "", riwUlkus = "";
+    private String riwObat = "", nmObat = "", riwUlkus = "", defor = "";
 
     /** Creates new form DlgRujuk
      * @param parent
@@ -5180,8 +5180,135 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                 param.put("pad", "");
             }
             
+            //pemriksaan fisik
+            if (chkNonUlkus.isSelected() == true) {
+                param.put("nonUlkus", "V");
+            } else {
+                param.put("nonUlkus", "");
+            }
             
-                     
+            if (chkUlkus.isSelected() == true) {
+                param.put("ulkus", "V");
+            } else {
+                param.put("ulkus", "");
+            }
+            
+            if (chkUlkusGangen.isSelected() == true) {
+                param.put("ulkusGangen", "V");
+            } else {
+                param.put("ulkusGangen", "");
+            }
+            
+            if (chkSelulitis.isSelected() == true) {
+                param.put("selulitis", "V");
+            } else {
+                param.put("selulitis", "");
+            }
+            
+            if (TdorsalKanan.getText().equals("")) {
+                param.put("dorsalKanan", "-");
+            } else {
+                param.put("dorsalKanan", TdorsalKanan.getText() + "\n");
+            }
+            
+            if (TplantarKanan.getText().equals("")) {
+                param.put("plantarKanan", "-");
+            } else {
+                param.put("plantarKanan", TplantarKanan.getText() + "\n");
+            }
+            
+            if (TdorsalKiri.getText().equals("")) {
+                param.put("dorsalKiri", "-");
+            } else {
+                param.put("dorsalKiri", TdorsalKiri.getText() + "\n");
+            }
+            
+            if (TplantarKiri.getText().equals("")) {
+                param.put("plantarKiri", "-");
+            } else {
+                param.put("plantarKiri", TplantarKiri.getText() + "\n");
+            }
+            
+            if (Sequel.cariInteger("select count(-1) from deformitas_kaki_diabetes where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                dataDeformitas();
+                param.put("deformit", defor + "\n");
+            } else {
+                param.put("deformit", "");
+            }
+            
+            param.put("kulKeringKanan",cmbKulKananKering.getSelectedItem().toString());
+            param.put("kulKeringKiri",cmbKulKiriKering.getSelectedItem().toString());
+            param.put("kulTumitKanan",cmbKulKananTumit.getSelectedItem().toString());
+            param.put("kulTumitKiri",cmbKulKiriTumit.getSelectedItem().toString());
+            param.put("kulBuluKanan",cmbKulKananBulu.getSelectedItem().toString());
+            param.put("kulBuluKiri",cmbKulKiriBulu.getSelectedItem().toString());
+            param.put("kulTineaKanan",cmbKulKananTinea.getSelectedItem().toString());
+            param.put("kulTineaKiri",cmbKulKiriTinea.getSelectedItem().toString());
+            param.put("kulKalusKanan",cmbKulKananKalus.getSelectedItem().toString());
+            param.put("kulKalusKiri",cmbKulKiriKalus.getSelectedItem().toString());
+            param.put("kulKornKanan",cmbKulKananKorn.getSelectedItem().toString());
+            param.put("kulKornKiri",cmbKulKiriKorn.getSelectedItem().toString());
+            param.put("kulHiperKanan",cmbKulKananHiper.getSelectedItem().toString());
+            param.put("kulHiperKiri",cmbKulKiriHiper.getSelectedItem().toString());
+            param.put("kulEdemaKanan",cmbKulKananEdema.getSelectedItem().toString());
+            param.put("kulEdemaKiri",cmbKulKiriEdema.getSelectedItem().toString());
+            param.put("kulHealedKanan",cmbKulKananHealed.getSelectedItem().toString());
+            param.put("kulHealedKiri",cmbKulKiriHealed.getSelectedItem().toString());
+
+            param.put("kukMenebalKanan",cmbKukKananMenebal.getSelectedItem().toString());
+            param.put("kukMenebalKiri",cmbKukKiriMenebal.getSelectedItem().toString());
+            param.put("kukInfekKanan",cmbKukKananInfeksi.getSelectedItem().toString());
+            param.put("kukInfekKiri",cmbKukKiriInfeksi.getSelectedItem().toString());
+            param.put("kukPerubKanan",cmbKukKananPerubahan.getSelectedItem().toString());
+            param.put("kukPerubKiri",cmbKukKiriPerubahan.getSelectedItem().toString());
+            param.put("kukRapuhKanan",cmbKukKananRapuh.getSelectedItem().toString());
+            param.put("kukRapuhKiri",cmbKukKiriRapuh.getSelectedItem().toString());
+            param.put("kukIngroKanan",cmbKukKananIngro.getSelectedItem().toString());
+            param.put("kukIngroKiri",cmbKukKiriIngro.getSelectedItem().toString());
+            param.put("kukAtroKanan",cmbKukKananAtrofi.getSelectedItem().toString());
+            param.put("kukAtroKiri",cmbKukKiriAtrofi.getSelectedItem().toString());
+            param.put("kukLainKanan",cmbKukKananLain.getSelectedItem().toString());
+            param.put("kukLainKiri",cmbKukKiriLain.getSelectedItem().toString());
+            
+            param.put("telHaluxKanan",cmbTelKananHallu.getSelectedItem().toString());
+            param.put("telHaluxKiri",cmbTelKiriHallu.getSelectedItem().toString());
+            param.put("telPelKanan",cmbTelKananPel.getSelectedItem().toString());
+            param.put("telPelKiri",cmbTelKiriPel.getSelectedItem().toString());
+            param.put("telCharKanan",cmbTelKananChar.getSelectedItem().toString());
+            param.put("telCharKiri",cmbTelKiriChar.getSelectedItem().toString());
+            
+            param.put("jarHammKanan",cmbJarKananHamer.getSelectedItem().toString());
+            param.put("jarHammKiri",cmbJarKiriHamer.getSelectedItem().toString());
+            param.put("jarClawKanan",cmbJarKananClaw.getSelectedItem().toString());
+            param.put("jarClawKiri",cmbJarKiriClaw.getSelectedItem().toString());
+            param.put("jarHiperKanan",cmbJarKananHiper.getSelectedItem().toString());
+            param.put("jarHiperKiri",cmbJarKiriHiper.getSelectedItem().toString());
+            param.put("jarMaseKanan",cmbJarKananMas.getSelectedItem().toString());
+            param.put("jarMaseKiri",cmbJarKiriMas.getSelectedItem().toString());
+            
+            if (cmbJarKananLain.getSelectedIndex() == 1) {
+                if (TketLainKanan.getText().equals("")) {
+                    param.put("jarLainKanan", cmbJarKananLain.getSelectedItem().toString() + ", Sebutkan : .......");
+                } else {
+                    param.put("jarLainKanan", cmbJarKananLain.getSelectedItem().toString() + ", Sebutkan : " + TketLainKanan.getText());
+                }
+            } else {
+                param.put("jarLainKanan", cmbJarKananLain.getSelectedItem().toString());
+            }
+            
+            if (cmbJarKiriLain.getSelectedIndex() == 1) {
+                if (TketLainKiri.getText().equals("")) {
+                    param.put("jarLainKiri", cmbJarKiriLain.getSelectedItem().toString() + ", Sebutkan : .......");
+                } else {
+                    param.put("jarLainKiri", cmbJarKiriLain.getSelectedItem().toString() + ", Sebutkan : " + TketLainKiri.getText());
+                }
+            } else {
+                param.put("jarLainKiri", cmbJarKiriLain.getSelectedItem().toString());
+            }
+            
+            //pemeriksaan vaskular
+            
+            
             param.put("petugas", TnmPerawat.getText());
             param.put("verifikator", TnmDokter.getText());
             
@@ -8398,6 +8525,36 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                 }
                 if (ps7 != null) {
                     ps7.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void dataDeformitas() {
+        defor = "";
+        try {
+            ps8 = koneksi.prepareStatement("SELECT * FROM deformitas_kaki_diabetes where "
+                    + "no_rawat='" + TNoRw.getText() + "' order by waktu_simpan");
+            try {
+                rs8 = ps8.executeQuery();
+                i = 1;
+                while (rs8.next()) {
+                    if (defor.equals("")) {
+                        defor = i + ". Lokasi Kelainan : " + rs8.getString("lokasi") + ", Kanan : " + rs8.getString("kanan") + ", Kiri : " + rs8.getString("kiri");
+                    } else {
+                        defor = defor + "\n" + i + ". Lokasi Kelainan : " + rs8.getString("lokasi") + ", Kanan : " + rs8.getString("kanan") + ", Kiri : " + rs8.getString("kiri");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs8 != null) {
+                    rs8.close();
+                }
+                if (ps8 != null) {
+                    ps8.close();
                 }
             }
         } catch (Exception e) {
