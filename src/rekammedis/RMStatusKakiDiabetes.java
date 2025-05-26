@@ -64,8 +64,8 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9;
     private int i = 0, x = 0;
     private String nip = "", nipDokter = "", traumaMekanik = "", traumaKimia = "", traumaTermis = "", spontan = "", penyebabLain = "",
             tersandung = "", memakaiSepatu = "", tertusuk = "", dllSebutkanMekanik = "", terkenaZat = "", terkenaAirPanas = "", terkenaPemanas = "",
@@ -73,7 +73,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             ulkusGangen = "", selulitis = "", derajat0 = "", derajat1 = "", derajat2 = "", derajat3 = "", derajat4 = "", derajat5 = "", ronsenKaki = "",
             surgical = "", chemical = "", biology = "", hidrocol = "", foam = "", allginate = "", silver = "", cadexomer = "", madu = "",
             modernDresingLain = "";
-    private String riwObat = "", nmObat = "", riwUlkus = "", defor = "";
+    private String riwObat = "", nmObat = "", riwUlkus = "", defor = "", mikro = "";
 
     /** Creates new form DlgRujuk
      * @param parent
@@ -5307,15 +5307,198 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             }
             
             //pemeriksaan vaskular
+            param.put("dorsalPedisKanan", cmbDorsalisPedKanan.getSelectedItem().toString());
+            param.put("dorsalPedisKiri", cmbDorsalisPedKiri.getSelectedItem().toString());
+            param.put("tibiaPosterKanan", cmbTibialisKanan.getSelectedItem().toString());
+            param.put("tibiaPosterKiri", cmbTibialisKiri.getSelectedItem().toString());
             
+            if (TtdsBra.getText().equals("")) {
+                param.put("tdsBracialis", "....... mmHg");
+            } else {
+                param.put("tdsBracialis", TtdsBra.getText() + " mmHg");
+            }
             
-            param.put("petugas", TnmPerawat.getText());
-            param.put("verifikator", TnmDokter.getText());
+            if (TtdsDor.getText().equals("")) {
+                param.put("tdsDorsalis", "....... mmHg");
+            } else {
+                param.put("tdsDorsalis", TtdsDor.getText() + " mmHg");
+            }
             
-            Valid.MyReport("rptAsesmenKeperawatanPerinatologi2.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 2 ]::",
+            if (TskorAbi.getText().equals("")) {
+                param.put("skorAbi", "....... mmHg");
+            } else {
+                param.put("skorAbi", TskorAbi.getText() + " mmHg");
+            }
+            
+            param.put("monofilKanan", cmbMonoKanan.getSelectedItem().toString());
+            param.put("monofilKiri", cmbMonoKiri.getSelectedItem().toString());
+            param.put("garpuKanan", cmbGarKanan.getSelectedItem().toString());
+            param.put("garpuKiri", cmbGarKiri.getSelectedItem().toString());
+            param.put("reflekKanan", cmbRefKanan.getSelectedItem().toString());
+            param.put("reflekKiri", cmbRefKiri.getSelectedItem().toString());
+            
+            if (chkDerajat0.isSelected() == true) {
+                param.put("derajat0", "V");
+            } else {
+                param.put("derajat0", "");
+            }
+            
+            if (chkDerajat1.isSelected() == true) {
+                param.put("derajat1", "V");
+            } else {
+                param.put("derajat1", "");
+            }
+            
+            if (chkDerajat2.isSelected() == true) {
+                param.put("derajat2", "V");
+            } else {
+                param.put("derajat2", "");
+            }
+            
+            if (chkDerajat3.isSelected() == true) {
+                param.put("derajat3", "V");
+            } else {
+                param.put("derajat3", "");
+            }
+            
+            if (chkDerajat4.isSelected() == true) {
+                param.put("derajat4", "V");
+            } else {
+                param.put("derajat4", "");
+            }
+            
+            if (chkDerajat5.isSelected() == true) {
+                param.put("derajat5", "V");
+            } else {
+                param.put("derajat5", "");
+            }
+            
+            if (TpemeriksaanLab.getText().equals("")) {
+                param.put("pemeriksaanLab", "-");
+            } else {
+                param.put("pemeriksaanLab", TpemeriksaanLab.getText() + "\n");
+            }
+            
+            if (chkTglRonsen.isSelected() == true) {
+                param.put("tglRonsen", TtglRonsen.getSelectedItem().toString());
+                if (TkesRonsen.getText().equals("")) {
+                    param.put("kesRonsen", "-");
+                } else {
+                    param.put("kesRonsen", TkesRonsen.getText());
+                }
+                param.put("osteoRonsen", cmbOsteo.getSelectedItem().toString());
+                if (TlokRonsen.getText().equals("")) {
+                    param.put("lokasiRonsen", "-");
+                } else {
+                    param.put("lokasiRonsen", TlokRonsen.getText());
+                }                
+            } else {
+                param.put("tglRonsen", "-");
+                param.put("kesRonsen", "-");
+                param.put("osteoRonsen", "-");
+                param.put("lokasiRonsen", "-");
+            }
+            
+            if (Sequel.cariInteger("select count(-1) from mikrobiologi_kaki_diabetes where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                dataMikrobiologi();
+                param.put("mikrobio", mikro + "\n");
+            } else {
+                param.put("mikrobio", "");
+            }
+            
+            if (TkesRonsenTorax.getText().equals("")) {
+                param.put("kesRonsenTotax", "-");
+            } else {
+                param.put("kesRonsenTotax", TkesRonsenTorax.getText());
+            }
+            
+            if (TkesEkg.getText().equals("")) {
+                param.put("kesEkg", "-");
+            } else {
+                param.put("kesEkg", TkesEkg.getText());
+            }
+            
+            if (TusgDopler.getText().equals("")) {
+                param.put("usgDopler", "-");
+            } else {
+                param.put("usgDopler", TusgDopler.getText());
+            }
+            
+            //tata laksana
+            if (chkSurgical.isSelected() == true) {
+                param.put("surgical", "V");
+            } else {
+                param.put("surgical", "");
+            }
+            
+            if (chkChemical.isSelected() == true) {
+                param.put("chemical", "V");
+            } else {
+                param.put("chemical", "");
+            }
+            
+            if (chkBiology.isSelected() == true) {
+                param.put("biologi", "V");
+            } else {
+                param.put("biologi", "");
+            }
+            
+            if (chkHydro.isSelected() == true) {
+                param.put("hidro", "V");
+            } else {
+                param.put("hidro", "");
+            }
+            
+            if (chkFoam.isSelected() == true) {
+                param.put("foam", "V");
+            } else {
+                param.put("foam", "");
+            }
+            
+            if (chkAlgin.isSelected() == true) {
+                param.put("alginet", "V");
+            } else {
+                param.put("alginet", "");
+            }
+            
+            if (chkSilver.isSelected() == true) {
+                param.put("silver", "V");
+            } else {
+                param.put("silver", "");
+            }
+            
+            if (chkCadex.isSelected() == true) {
+                param.put("cadex", "V");
+            } else {
+                param.put("cadex", "");
+            }
+            
+            if (chkMadu.isSelected() == true) {
+                param.put("madu", "V");
+            } else {
+                param.put("madu", "");
+            }
+            
+            if (chkLainModern.isSelected() == true) {
+                param.put("lainModern", "V");
+                if (TlainModern.getText().equals("")) {
+                    param.put("kalimatLainModern", "Lain-Lain, Sebutkan : ...........");
+                } else {
+                    param.put("kalimatLainModern", "Lain-Lain, Sebutkan : " + TlainModern.getText());
+                }
+            } else {
+                param.put("lainModern", "");
+                param.put("kalimatLainModern", "Lain-Lain, Sebutkan : ...........");
+            }
+            
+            param.put("tanggal", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(TtglSimpan.getSelectedItem() + "")));
+            param.put("perawat", TnmPerawat.getText());
+            param.put("dokter", TnmDokter.getText());
+            
+            Valid.MyReport("rptAsesmenKeperawatanPerinatologi2.jasper", "report", "::[ Status Kaki Diabetes Hal. 2 ]::",
                     "SELECT now() tanggal", param);
-            Valid.MyReport("rptAsesmenKeperawatanPerinatologi1.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 1 ]::",
-                    "SELECT now() tanggal", param);            
+            Valid.MyReport("rptAsesmenKeperawatanPerinatologi1.jasper", "report", "::[ Status Kaki Diabetes Hal. 1 ]::",
+                    "SELECT now() tanggal", param);
             
             TabRawat.setSelectedIndex(1);
             tampil();
@@ -8534,6 +8717,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     
     private void dataDeformitas() {
         defor = "";
+        i = 0;
         try {
             ps8 = koneksi.prepareStatement("SELECT * FROM deformitas_kaki_diabetes where "
                     + "no_rawat='" + TNoRw.getText() + "' order by waktu_simpan");
@@ -8555,6 +8739,37 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                 }
                 if (ps8 != null) {
                     ps8.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void dataMikrobiologi() {
+        mikro = "";
+        i = 0;
+        try {
+            ps9 = koneksi.prepareStatement("SELECT * FROM mikrobiologi_kaki_diabetes where "
+                    + "no_rawat='" + TNoRw.getText() + "' order by waktu_simpan");
+            try {
+                rs9 = ps9.executeQuery();
+                i = 1;
+                while (rs9.next()) {
+                    if (mikro.equals("")) {
+                        mikro = i + ". Bakteri : " + rs9.getString("bakteri") + ", Sensitif : " + rs9.getString("sensitif") + ", Resisten : " + rs9.getString("resisten");
+                    } else {
+                        mikro = mikro + "\n" + i + ". Bakteri : " + rs9.getString("bakteri") + ", Sensitif : " + rs9.getString("sensitif") + ", Resisten : " + rs9.getString("resisten");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs9 != null) {
+                    rs9.close();
+                }
+                if (ps9 != null) {
+                    ps9.close();
                 }
             }
         } catch (Exception e) {

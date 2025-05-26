@@ -3352,7 +3352,8 @@ private void MnRawatJalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         dlgrwjl.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
         dlgrwjl.setLocationRelativeTo(internalFrame1);
 
-        dlgrwjl.setNoRm(TNoRw.getText(), DTPTgl.getDate(), new Date());
+        dlgrwjl.setNoRm(TNoRw.getText(), DTPTgl.getDate(), new Date(),
+                Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
         dlgrwjl.tampilDrPr();
         dlgrwjl.TotalNominal();
         dlgrwjl.setVisible(true);

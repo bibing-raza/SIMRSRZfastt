@@ -10172,7 +10172,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             DlgRawatJalan dlgrwjl = new DlgRawatJalan(null, false);
             dlgrwjl.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             dlgrwjl.setLocationRelativeTo(internalFrame1);
-            dlgrwjl.setNoRm(norawat.getText(), tglMasukInap.getDate(), new Date());
+            dlgrwjl.setNoRm(norawat.getText(), tglMasukInap.getDate(), new Date(), kdpenjab.getText());
             dlgrwjl.tampilDrPr();
             dlgrwjl.TotalNominal();
             dlgrwjl.setVisible(true);

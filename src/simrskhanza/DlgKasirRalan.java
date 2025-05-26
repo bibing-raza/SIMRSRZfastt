@@ -6864,7 +6864,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         DlgRawatJalan dlgrwjl2 = new DlgRawatJalan(null, false);
         dlgrwjl2.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         dlgrwjl2.setLocationRelativeTo(internalFrame1);
-        dlgrwjl2.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate());
+        dlgrwjl2.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), kdpenjab.getText());
         dlgrwjl2.tampilDrPr();
         dlgrwjl2.TotalNominal();
         dlgrwjl2.setVisible(true);
@@ -6919,7 +6919,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             DlgRawatJalan dlgrwjl2 = new DlgRawatJalan(null, false);
             dlgrwjl2.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             dlgrwjl2.setLocationRelativeTo(internalFrame1);
-            dlgrwjl2.setNoRm(norw_dipilih, TglKunRwt.getDate(), TglKunRwt.getDate());
+            dlgrwjl2.setNoRm(norw_dipilih, TglKunRwt.getDate(), TglKunRwt.getDate(), kdpenjab.getText());
             dlgrwjl2.tampilDrPr();
             dlgrwjl2.TotalNominal();
             dlgrwjl2.setVisible(true);
@@ -11544,7 +11544,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     akses.setform("DlgKasirRalan");
                     dlgrwjl2.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     dlgrwjl2.setLocationRelativeTo(internalFrame1);
-                    dlgrwjl2.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate());
+                    dlgrwjl2.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), kdpenjab.getText());
                     dlgrwjl2.TotalNominal();
                     dlgrwjl2.setVisible(true);
                     dlgrwjl2.fokus();
@@ -11564,7 +11564,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 akses.setform("DlgKasirRalan");
                 dlgrwjl2.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 dlgrwjl2.setLocationRelativeTo(internalFrame1);
-                dlgrwjl2.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate());
+                dlgrwjl2.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), kdpenjab.getText());
                 dlgrwjl2.TotalNominal();
                 dlgrwjl2.setVisible(true);
                 dlgrwjl2.fokus();
@@ -11575,7 +11575,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             akses.setform("DlgKasirRalan");
             dlgrwjl2.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             dlgrwjl2.setLocationRelativeTo(internalFrame1);
-            dlgrwjl2.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate());
+            dlgrwjl2.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), kdpenjab.getText());
             dlgrwjl2.TotalNominal();
             dlgrwjl2.setVisible(true);
             dlgrwjl2.fokus();

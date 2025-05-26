@@ -4668,7 +4668,7 @@ private void MnTindakanRawatJalanActionPerformed(java.awt.event.ActionEvent evt)
                 dlgrwjl.cekInapIGD("inap");                
                 dlgrwjl.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 dlgrwjl.setLocationRelativeTo(internalFrame1);
-                dlgrwjl.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate());
+                dlgrwjl.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), kdpnj.getText());
                 dlgrwjl.tampilDrPr();
                 dlgrwjl.TotalNominal();
                 dlgrwjl.setVisible(true);
@@ -4679,7 +4679,7 @@ private void MnTindakanRawatJalanActionPerformed(java.awt.event.ActionEvent evt)
                 DlgRawatJalan dlgrwjl = new DlgRawatJalan(null, false);                
                 dlgrwjl.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 dlgrwjl.setLocationRelativeTo(internalFrame1);
-                dlgrwjl.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate());
+                dlgrwjl.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), kdpnj.getText());
                 dlgrwjl.tampilDrPr();
                 dlgrwjl.TotalNominal();
                 dlgrwjl.setVisible(true);

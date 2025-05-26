@@ -1752,7 +1752,8 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
                 dlgrwjl2.isCek();
                 dlgrwjl2.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 dlgrwjl2.setLocationRelativeTo(internalFrame1);
-                dlgrwjl2.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate());
+                dlgrwjl2.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate(),
+                        Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
                 dlgrwjl2.tampilDrPr();
                 dlgrwjl2.TotalNominal();
                 dlgrwjl2.setVisible(true);
