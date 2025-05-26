@@ -4909,7 +4909,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             param.put("bmi", Tbmi.getText() + " kg/m²");
             param.put("teknnDarah", Ttensi.getText() + " mmHg");
             param.put("ras", Tsuku.getText());
-            param.put("tglMasuk", TtglMasuk.getSelectedItem().toString());
+            param.put("tglMasuk", Valid.SetTglINDONESIA(Valid.SetTgl(TtglMasuk.getSelectedItem() + "")));
             param.put("jnsRawat", cmbJnsRawat.getSelectedItem().toString());
             
             if (cmbJnsRawat.getSelectedIndex() == 1) {
@@ -5495,9 +5495,9 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             param.put("perawat", TnmPerawat.getText());
             param.put("dokter", TnmDokter.getText());
             
-            Valid.MyReport("rptAsesmenKeperawatanPerinatologi2.jasper", "report", "::[ Status Kaki Diabetes Hal. 2 ]::",
+            Valid.MyReport("rptStatusKakiDiabetes2.jasper", "report", "::[ Status Kaki Diabetes Hal. 2 ]::",
                     "SELECT now() tanggal", param);
-            Valid.MyReport("rptAsesmenKeperawatanPerinatologi1.jasper", "report", "::[ Status Kaki Diabetes Hal. 1 ]::",
+            Valid.MyReport("rptStatusKakiDiabetes1.jasper", "report", "::[ Status Kaki Diabetes Hal. 1 ]::",
                     "SELECT now() tanggal", param);
             
             TabRawat.setSelectedIndex(1);
@@ -8661,13 +8661,13 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                 rs6 = ps6.executeQuery();
                 while (rs6.next()) {
                     nmObat = Sequel.cariIsi("select obat from riwayat_pengobatan_kaki_diabetes where "
-                            + "no_rawat='" + rs6.getString("no_rawat") + "' group by obat order by waktu_simpan limit 1");
+                            + "no_rawat='" + rs6.getString("no_rawat") + "' and waktu_simpan='" + rs6.getString("waktu_simpan") + "' group by obat order by waktu_simpan limit 1");
 
                     if (riwObat.equals("")) {
                         riwObat = "Obat (" + nmObat + ") :\n"
                                 + "Jenis : " + rs6.getString("jenis") + ", Dosis : " + rs6.getString("dosis") + ", Lama : " + rs6.getString("lama");
                     } else {
-                        riwObat = riwObat + "\n\nObat (" + nmObat + ") :\n"
+                        riwObat = riwObat + "\nObat (" + nmObat + ") :\n"
                                 + "Jenis : " + rs6.getString("jenis") + ", Dosis : " + rs6.getString("dosis") + ", Lama : " + rs6.getString("lama");
                     }
                 }
