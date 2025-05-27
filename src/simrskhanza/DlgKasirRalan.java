@@ -9846,20 +9846,16 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
-                if (akses.getadmin() == true) {
-                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    akses.setform("DlgKasirRalan");
-                    RMStatusKakiDiabetes form = new RMStatusKakiDiabetes(null, false);
-                    form.emptTeks();
-                    form.isCek();
-                    form.setData(TNoRw.getText(), NoRM.getText(), "ralan");
-                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                    form.setLocationRelativeTo(internalFrame1);
-                    form.setVisible(true);
-                    this.setCursor(Cursor.getDefaultCursor());
-                } else {
-                    JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
-                }
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgKasirRalan");
+                RMStatusKakiDiabetes form = new RMStatusKakiDiabetes(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRw.getText(), NoRM.getText(), "ralan");
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
             }
         }
     }//GEN-LAST:event_MnStatusKakiDiabetesBtnPrintActionPerformed

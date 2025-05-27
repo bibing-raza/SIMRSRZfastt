@@ -5288,22 +5288,22 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             
             if (cmbJarKananLain.getSelectedIndex() == 1) {
                 if (TketLainKanan.getText().equals("")) {
-                    param.put("jarLainKanan", cmbJarKananLain.getSelectedItem().toString() + ", Sebutkan : .......");
+                    param.put("jarLainKanan", "Kanan : " + cmbJarKananLain.getSelectedItem().toString() + ", Sebutkan : .......");
                 } else {
-                    param.put("jarLainKanan", cmbJarKananLain.getSelectedItem().toString() + ", Sebutkan : " + TketLainKanan.getText());
+                    param.put("jarLainKanan", "Kanan : " + cmbJarKananLain.getSelectedItem().toString() + ", Sebutkan : " + TketLainKanan.getText());
                 }
             } else {
-                param.put("jarLainKanan", cmbJarKananLain.getSelectedItem().toString());
+                param.put("jarLainKanan", "Kanan : " + cmbJarKananLain.getSelectedItem().toString());
             }
             
             if (cmbJarKiriLain.getSelectedIndex() == 1) {
                 if (TketLainKiri.getText().equals("")) {
-                    param.put("jarLainKiri", cmbJarKiriLain.getSelectedItem().toString() + ", Sebutkan : .......");
+                    param.put("jarLainKiri", "Kiri : " + cmbJarKiriLain.getSelectedItem().toString() + ", Sebutkan : .......");
                 } else {
-                    param.put("jarLainKiri", cmbJarKiriLain.getSelectedItem().toString() + ", Sebutkan : " + TketLainKiri.getText());
+                    param.put("jarLainKiri", "Kiri : " + cmbJarKiriLain.getSelectedItem().toString() + ", Sebutkan : " + TketLainKiri.getText());
                 }
             } else {
-                param.put("jarLainKiri", cmbJarKiriLain.getSelectedItem().toString());
+                param.put("jarLainKiri", "Kiri : " + cmbJarKiriLain.getSelectedItem().toString());
             }
             
             //pemeriksaan vaskular
@@ -5380,7 +5380,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             }
             
             if (chkTglRonsen.isSelected() == true) {
-                param.put("tglRonsen", TtglRonsen.getSelectedItem().toString());
+                param.put("tglRonsen", Valid.SetTglINDONESIA(Valid.SetTgl(TtglRonsen.getSelectedItem() + "")));
                 if (TkesRonsen.getText().equals("")) {
                     param.put("kesRonsen", "-");
                 } else {
@@ -5407,9 +5407,9 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             }
             
             if (TkesRonsenTorax.getText().equals("")) {
-                param.put("kesRonsenTotax", "-");
+                param.put("kesRonsenTorax", "-");
             } else {
-                param.put("kesRonsenTotax", TkesRonsenTorax.getText());
+                param.put("kesRonsenTorax", TkesRonsenTorax.getText());
             }
             
             if (TkesEkg.getText().equals("")) {
@@ -5495,6 +5495,8 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             param.put("perawat", TnmPerawat.getText());
             param.put("dokter", TnmDokter.getText());
             
+            Valid.MyReport("rptStatusKakiDiabetes3.jasper", "report", "::[ Status Kaki Diabetes Hal. 3 ]::",
+                    "SELECT now() tanggal", param);
             Valid.MyReport("rptStatusKakiDiabetes2.jasper", "report", "::[ Status Kaki Diabetes Hal. 2 ]::",
                     "SELECT now() tanggal", param);
             Valid.MyReport("rptStatusKakiDiabetes1.jasper", "report", "::[ Status Kaki Diabetes Hal. 1 ]::",
@@ -8730,6 +8732,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                     } else {
                         defor = defor + "\n" + i + ". Lokasi Kelainan : " + rs8.getString("lokasi") + ", Kanan : " + rs8.getString("kanan") + ", Kiri : " + rs8.getString("kiri");
                     }
+                    i++;
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -8761,6 +8764,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
                     } else {
                         mikro = mikro + "\n" + i + ". Bakteri : " + rs9.getString("bakteri") + ", Sensitif : " + rs9.getString("sensitif") + ", Resisten : " + rs9.getString("resisten");
                     }
+                    i++;
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
