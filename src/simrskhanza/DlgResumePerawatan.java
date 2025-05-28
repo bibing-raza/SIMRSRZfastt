@@ -48,7 +48,7 @@ public final class DlgResumePerawatan extends javax.swing.JDialog {
     private final Properties prop = new Properties();
     private validasi Valid = new validasi();
     private ResultSet rs, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rshal, rsObat, rsDiag, rsDiag1, rsasesmenRJ,
-            rsLIS1, rsLIS2, rsLIS3, rsLISMaster, rsTHT;
+            rsLIS1, rsLIS2, rsLIS3, rsLISMaster, rsTHT, rsDiabet;
     private String sql, host = "";
     private int x = 0,lis1 = 0, lis2 = 0, lisM = 0;
 
@@ -6408,9 +6408,10 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             StringBuilder htmlContent = new StringBuilder();
             try {
                 rs = koneksi.prepareStatement("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.jk, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.umur, "
-                        + "tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar from pasien inner join kelurahan inner join kecamatan inner join kabupaten "
-                        + "on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and "
-                        + "pasien.kd_kab=kabupaten.kd_kab where pasien.no_rkm_medis='" + NoRM.getText() + "' order by pasien.no_rkm_medis desc ").executeQuery();
+                        + "tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar, sb.nama_suku_bangsa from pasien "
+                        + "inner join kelurahan inner join kecamatan inner join kabupaten on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and "
+                        + "pasien.kd_kab=kabupaten.kd_kab inner join suku_bangsa sb on sb.id=pasien.suku_bangsa where "
+                        + "pasien.no_rkm_medis='" + NoRM.getText() + "' order by pasien.no_rkm_medis desc ").executeQuery();
                 y = 1;
                 while (rs.next()) {
                     htmlContent.append(
@@ -6476,22 +6477,22 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                     "select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,"
                                     + "reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,"
                                     + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='ranap','Rawat Inap','Rawat Jalan') status_lanjut,"
-                                    + "penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab "
+                                    + "penjab.png_jawab, reg_periksa.kd_poli, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur,'.') usia from reg_periksa inner join dokter inner join poliklinik inner join penjab "
                                     + "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj "
                                     + "and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where stts<>'Batal' and "
                                     + "reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and "
-                                    + "reg_periksa.status_lanjut = 'ralan' and reg_periksa.tgl_registrasi between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "'").executeQuery();
+                                    + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "'").executeQuery();
                         } else {
                             rs2 = koneksi.prepareStatement(
                                     "select a.no_reg, a.no_rawat,a.tgl_registrasi,a.jam_reg,a.kd_dokter,a.nm_dokter,"
-                                    + "a.nm_poli,a.p_jawab,a.almt_pj,a.hubunganpj,a.biaya_reg,if(a.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,a.png_jawab, a.kd_poli from "
+                                    + "a.nm_poli,a.p_jawab,a.almt_pj,a.hubunganpj,a.biaya_reg,if(a.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,a.png_jawab, a.kd_poli, a.usia from "
                                     + "(select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,"
                                     + "reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,"
                                     + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,"
-                                    + "penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab "
+                                    + "penjab.png_jawab, reg_periksa.kd_poli, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur,'.') usia from reg_periksa inner join dokter inner join poliklinik inner join penjab "
                                     + "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj "
                                     + "and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where stts<>'Batal' and "
-                                    + "reg_periksa.status_lanjut = 'ralan' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' ORDER BY reg_periksa.tgl_registrasi DESC LIMIT 3)"
+                                    + "reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' ORDER BY reg_periksa.tgl_registrasi DESC LIMIT 3)"
                                     + "as a ORDER BY a.tgl_registrasi").executeQuery();
                         }
 
@@ -6795,6 +6796,63 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                 } finally {
                                     if (rsTHT != null) {
                                         rsTHT.close();
+                                    }
+                                }
+                            }
+                            
+                            //menampilkan status kaki diabetes
+                            if (Sequel.cariInteger("select count(-1) from data_dasar_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
+                                try {
+                                    StringBuilder sbk = new StringBuilder();
+                                    sbk.append("Select *, date_format(tgl_masuk,'%d/%m/%Y') tglmsk, if(lama_rawat='','-',concat(lama_rawat,' hari')) lmrwt ");
+                                    sbk.append("from data_dasar_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    rsDiabet = koneksi.prepareStatement(sbk.toString()).executeQuery();
+                                    if (rsDiabet.next()) {
+                                        htmlContent.append(
+                                                "<tr class='isi'>"                                                
+                                                + "<td valign='top' width='20%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status Kaki Diabetes</td>"
+                                                + "<td valign='top' width='1%' align='center'>:</td>"
+                                                + "<td valign='top' width='79%'>"                                                
+                                                + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                                                + "<td valign='top' width='20%' align='left'><span style='font-weight:bold'>I. Data Dasar</span></td>"
+                                                + "<tr align='center'>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Usia</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>TB/BB</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>BMI</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Tensi</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Ras/Suku</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Tgl. Masuk</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Pemeriksaan</td>"                                                        
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Lama Rawat</td>"
+                                                + "</tr>");
+                                        rsDiabet.beforeFirst();
+                                        while (rsDiabet.next()) {
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top'>" + rs2.getString("usia") + "</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("tb") + " Cm/" + rsDiabet.getString("bb") + " Kg</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("bmi") + " kg/m²</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("tensi") + " mmHg</td>"
+                                                    + "<td valign='top'>" + rs.getString("nama_suku_bangsa") + "</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("tglmsk") + "</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("jns_rawat") + "</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("lmrwt") + "</td>"
+                                                    + "</tr>");
+
+                                            htmlContent.append("<tr>"
+                                                    + "<td valign='top' width='20%' align='left'><span style='font-weight:bold'>II. Anamnesis</span></td>"
+                                                    + "</tr>");
+                                        }
+                                        htmlContent.append(
+                                            "</table>"
+                                            + "</td>"
+                                            + "</tr>");
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Notifikasi : " + e);
+                                } finally {
+                                    if (rsDiabet != null) {
+                                        rsDiabet.close();
                                     }
                                 }
                             }

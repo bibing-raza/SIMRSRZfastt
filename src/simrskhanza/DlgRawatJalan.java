@@ -38,7 +38,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -56,6 +58,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPetugas;
 import laporan.DlgDiagnosaPenyakit;
+import static mondrian.olap.fun.vba.Vba.date;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -91,14 +94,14 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             psPet, psR1, psR2, psru1, psTglBO, psRiwIO, psrestor, pskonsul, psCtkKonsul;
     private ResultSet rs, rs2, rs3, rs4, rsDiag, rsDiag1, rsObat, rs6, rs7, rs8, rs9, rs10, rs11, rs12, rsLab1, rskonsul, rsCtkKonsul,
             rsLab2, rsRad1, rsRad2, rsLIS1, rsLIS2, rsLIS3, rsLISMaster, rsparu, rsFar, rsRiwKunj, rsPet, rsR1, rsR2, rsru1, rsIter,
-            rs13, rs14, rs15, rs16, rsTglBO, rsRiwIO, rsrad, rshslRad, rsprmrj, rsrestor, rsRiwRujukan, rsTHT;
+            rs13, rs14, rs15, rs16, rsTglBO, rsRiwIO, rsrad, rshslRad, rsprmrj, rsrestor, rsRiwRujukan, rsTHT, rsDiabet;
     private int i = 0, n = 0, pilih_prmrj = 0, x = 0, k = 0, cekSuratTindakan = 0, lis1 = 0, lis2 = 0, lisM = 0, cekPilihanRehab = 0,
-            ceksensusparu = 0, z = 0, cekRujukInternal = 0, x1 = 0, cekDataPetugas = 0, j = 0, cekPemeriksaan = 0, cekRujukan = 0;
+            ceksensusparu = 0, z = 0, cekRujukInternal = 0, x1 = 0, cekDataPetugas = 0, j = 0, cekPemeriksaan = 0;    
     private String kode_poli = "", cekIGD = "", a = "", orang1 = "", orang2 = "", nmOrang1 = "", nmOrang2 = "", mencari = "",
             noiD = "", tglPeriksaLAB = "", jamPeriksaLAB = "", cekppok = "", cekobattb = "", PoliKhusus = "", polinya = "",
             gudang = "", norw_dipilih = "", kddokter_dipilih = "", nokirim = "", diperiksa = "", cekDiagnosa = "", cekResep = "",
             tglResep = "", cekTotPemeriksaan = "", tglMinta = "", jamMinta = "", cekNOMINTA = "", user = "", riwayatData = "",
-            tindakanPemeriksaan = "", reasesmen = "", kdpj = "", utc = "", URL = "";
+            tindakanPemeriksaan = "", reasesmen = "", kdpj = "", tglHabisRujukan = "";
     private final Properties prop = new Properties();
     private String sql, host = "", jawaban = "", tglSimpanRujukan = "", tglPemberianObat = "", resepDipilih = "", prmrj = "", sttsJawabKonsul = "";
     private Date dateReg, timeReg, dateSimpan, timeSimpan;
@@ -108,7 +111,11 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     private DlgCariPerawatanRalan perawatan = new DlgCariPerawatanRalan(null, false);
     private DlgRujukanPoliInternal dlgrjk = new DlgRujukanPoliInternal(null, false);
     private BPJSCekNoKartu cekViaBPJSKartu = new BPJSCekNoKartu();
-    private BPJSApi api = new BPJSApi();
+    private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private Date tglSekarang = new Date();
+    private Date tglExpRujukan = new Date();
+    private String now = dateFormat.format(tglSekarang);
 
     /* Creates new form DlgPerawatan
      *
@@ -3162,7 +3169,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3176,7 +3183,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3369,7 +3376,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -3598,7 +3605,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3612,7 +3619,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6008,7 +6015,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         ChkKonsul.setBounds(113, 115, 102, 23);
 
         TtglKonsulUlang.setEditable(false);
-        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
+        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
         TtglKonsulUlang.setDisplayFormat("dd-MM-yyyy");
         TtglKonsulUlang.setName("TtglKonsulUlang"); // NOI18N
         TtglKonsulUlang.setOpaque(false);
@@ -6173,7 +6180,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -12149,9 +12156,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             try {
                 StringBuilder sb1 = new StringBuilder();
                 sb1.append("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.jk, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.umur, ");
-                sb1.append("tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar from pasien inner join kelurahan inner join kecamatan inner join kabupaten ");
-                sb1.append("on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and ");
-                sb1.append("pasien.kd_kab=kabupaten.kd_kab where pasien.no_rkm_medis='" + TNoRM.getText() + "' order by pasien.no_rkm_medis desc");                        
+                sb1.append("tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar, sb.nama_suku_bangsa from pasien ");
+                sb1.append("inner join kelurahan inner join kecamatan inner join kabupaten on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and ");
+                sb1.append("pasien.kd_kab=kabupaten.kd_kab inner join suku_bangsa sb on sb.id=pasien.suku_bangsa where pasien.no_rkm_medis='" + TNoRM.getText() + "' order by pasien.no_rkm_medis desc");
                 rs = koneksi.prepareStatement(sb1.toString()).executeQuery();
                 y = 1;
                 while (rs.next()) {
@@ -12160,10 +12167,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         sb2.append("select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,");
                         sb2.append("reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,");
                         sb2.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,");
-                        sb2.append("penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab ");
-                        sb2.append("on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj ");
+                        sb2.append("penjab.png_jawab, reg_periksa.kd_poli, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur,'.') usia from reg_periksa ");
+                        sb2.append("inner join dokter inner join poliklinik inner join penjab on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj ");
                         sb2.append("and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where ");
-                        sb2.append("stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and reg_periksa.status_lanjut='Ralan' and ");
+                        sb2.append("stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and ");
                         sb2.append("reg_periksa.tgl_registrasi between DATE_SUB(date(now()), INTERVAL " + cmbBulan.getSelectedItem().toString() + " MONTH) and NOW()" + a);
                         rs2 = koneksi.prepareStatement(sb2.toString()).executeQuery();
                         urut = 1;
@@ -12483,6 +12490,63 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 } finally {
                                     if (rsTHT != null) {
                                         rsTHT.close();
+                                    }
+                                }
+                            }
+                            
+                            //menampilkan status kaki diabetes
+                            if (Sequel.cariInteger("select count(-1) from data_dasar_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
+                                try {
+                                    StringBuilder sbk = new StringBuilder();
+                                    sbk.append("Select *, date_format(tgl_masuk,'%d/%m/%Y') tglmsk, if(lama_rawat='','-',concat(lama_rawat,' hari')) lmrwt ");
+                                    sbk.append("from data_dasar_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    rsDiabet = koneksi.prepareStatement(sbk.toString()).executeQuery();
+                                    if (rsDiabet.next()) {
+                                        htmlContent.append(
+                                                "<tr class='isi'>"                                                
+                                                + "<td valign='top' width='20%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status Kaki Diabetes</td>"
+                                                + "<td valign='top' width='1%' align='center'>:</td>"
+                                                + "<td valign='top' width='79%'>"                                                
+                                                + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                                                + "<td valign='top' width='20%' align='left'><span style='font-weight:bold'>I. Data Dasar</span></td>"
+                                                + "<tr align='center'>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Usia</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>TB/BB</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>BMI</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Tensi</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Ras/Suku</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Tgl. Masuk</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Pemeriksaan</td>"                                                        
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Lama Rawat</td>"
+                                                + "</tr>");
+                                        rsDiabet.beforeFirst();
+                                        while (rsDiabet.next()) {
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top'>" + rs2.getString("usia") + "</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("tb") + " Cm/" + rsDiabet.getString("bb") + " Kg</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("bmi") + " kg/m²</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("tensi") + " mmHg</td>"
+                                                    + "<td valign='top'>" + rs.getString("nama_suku_bangsa") + "</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("tglmsk") + "</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("jns_rawat") + "</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("lmrwt") + "</td>"
+                                                    + "</tr>");
+
+                                            htmlContent.append("<tr>"
+                                                    + "<td valign='top' width='20%' align='left'><span style='font-weight:bold'>II. Anamnesis</span></td>"
+                                                    + "</tr>");
+                                        }
+                                        htmlContent.append(
+                                            "</table>"
+                                            + "</td>"
+                                            + "</tr>");
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Notifikasi : " + e);
+                                } finally {
+                                    if (rsDiabet != null) {
+                                        rsDiabet.close();
                                     }
                                 }
                             }
@@ -13647,9 +13711,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             try {
                 StringBuilder sb1 = new StringBuilder();
                 sb1.append("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.jk, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.umur, ");
-                sb1.append("tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar from pasien inner join kelurahan inner join kecamatan inner join kabupaten ");
-                sb1.append("on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and ");
-                sb1.append("pasien.kd_kab=kabupaten.kd_kab where pasien.no_rkm_medis='" + TNoRM.getText() + "' order by pasien.no_rkm_medis desc");                
+                sb1.append("tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar, sb.nama_suku_bangsa from pasien ");
+                sb1.append("inner join kelurahan inner join kecamatan inner join kabupaten on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and ");
+                sb1.append("pasien.kd_kab=kabupaten.kd_kab inner join suku_bangsa sb on sb.id=pasien.suku_bangsa where pasien.no_rkm_medis='" + TNoRM.getText() + "' order by pasien.no_rkm_medis desc");
                 rs = koneksi.prepareStatement(sb1.toString()).executeQuery();
                 y = 1;
                 while (rs.next()) {
@@ -13659,22 +13723,23 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             sb2.append("select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,");
                             sb2.append("reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,");
                             sb2.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,");
-                            sb2.append("penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab ");
+                            sb2.append("penjab.png_jawab, reg_periksa.kd_poli, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur,'.') usia from reg_periksa ");
+                            sb2.append("inner join dokter inner join poliklinik inner join penjab ");
                             sb2.append("on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj ");
                             sb2.append("and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where ");
-                            sb2.append("stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and reg_periksa.status_lanjut='Ralan' and ");
+                            sb2.append("stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and ");
                             sb2.append("reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "'" + a);
                             rs2 = koneksi.prepareStatement(sb2.toString()).executeQuery();
                         } else {
                             sb2.append("select * from (select a.no_reg, a.no_rawat,date_format(a.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(a.jam_reg,'%h:%i %p') jam_reg,a.kd_dokter,a.nm_dokter,");
                             sb2.append("a.nm_poli,a.p_jawab,a.almt_pj,a.hubunganpj,a.biaya_reg,if(a.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,a.png_jawab, ");
-                            sb2.append("a.tgl_registrasi tglReg, a.jam_reg jamReg, a.kd_poli from (select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,");
+                            sb2.append("a.tgl_registrasi tglReg, a.jam_reg jamReg, a.kd_poli, a.usia from (select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,");
                             sb2.append("reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,");
-                            sb2.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab, reg_periksa.kd_poli ");
-                            sb2.append("from reg_periksa inner join dokter inner join poliklinik inner join penjab ");
+                            sb2.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab, reg_periksa.kd_poli, ");
+                            sb2.append("concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur,'.') usia from reg_periksa inner join dokter inner join poliklinik inner join penjab ");
                             sb2.append("on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj ");
                             sb2.append("and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where ");
-                            sb2.append("stts<>'Batal' and reg_periksa.status_lanjut='Ralan' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "'" + a + ") as a ");
+                            sb2.append("stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "'" + a + ") as a ");
                             sb2.append("ORDER BY a.tgl_registrasi desc, a.jam_reg desc limit 3) as a order by a.tglReg, a.jamReg");
                             rs2 = koneksi.prepareStatement(sb2.toString()).executeQuery();
                         }
@@ -13995,6 +14060,63 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 } finally {
                                     if (rsTHT != null) {
                                         rsTHT.close();
+                                    }
+                                }
+                            }
+                            
+                            //menampilkan status kaki diabetes
+                            if (Sequel.cariInteger("select count(-1) from data_dasar_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
+                                try {
+                                    StringBuilder sbk = new StringBuilder();
+                                    sbk.append("Select *, date_format(tgl_masuk,'%d/%m/%Y') tglmsk, if(lama_rawat='','-',concat(lama_rawat,' hari')) lmrwt ");
+                                    sbk.append("from data_dasar_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    rsDiabet = koneksi.prepareStatement(sbk.toString()).executeQuery();
+                                    if (rsDiabet.next()) {
+                                        htmlContent.append(
+                                                "<tr class='isi'>"                                                
+                                                + "<td valign='top' width='20%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status Kaki Diabetes</td>"
+                                                + "<td valign='top' width='1%' align='center'>:</td>"
+                                                + "<td valign='top' width='79%'>"                                                
+                                                + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                                                + "<td valign='top' width='20%' align='left'><span style='font-weight:bold'>I. Data Dasar</span></td>"
+                                                + "<tr align='center'>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Usia</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>TB/BB</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>BMI</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Tensi</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Ras/Suku</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Tgl. Masuk</td>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Pemeriksaan</td>"                                                        
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Lama Rawat</td>"
+                                                + "</tr>");
+                                        rsDiabet.beforeFirst();
+                                        while (rsDiabet.next()) {
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top'>" + rs2.getString("usia") + "</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("tb") + " Cm/" + rsDiabet.getString("bb") + " Kg</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("bmi") + " kg/m²</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("tensi") + " mmHg</td>"
+                                                    + "<td valign='top'>" + rs.getString("nama_suku_bangsa") + "</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("tglmsk") + "</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("jns_rawat") + "</td>"
+                                                    + "<td valign='top'>" + rsDiabet.getString("lmrwt") + "</td>"
+                                                    + "</tr>");
+
+                                            htmlContent.append("<tr>"
+                                                    + "<td valign='top' width='20%' align='left'><span style='font-weight:bold'>II. Anamnesis</span></td>"
+                                                    + "</tr>");
+                                        }
+                                        htmlContent.append(
+                                            "</table>"
+                                            + "</td>"
+                                            + "</tr>");
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Notifikasi : " + e);
+                                } finally {
+                                    if (rsDiabet != null) {
+                                        rsDiabet.close();
                                     }
                                 }
                             }
@@ -19668,7 +19790,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }
     
     private void dataIterObatBPJS(String nomorrawat) {
-        String noSep="", noKartu="";
+        String noSep = "", noKartu = "";
+        tglHabisRujukan = "";
+        tglSekarang = new Date();
+        tglExpRujukan = new Date();
+        now = dateFormat.format(tglSekarang);
+        
         try {
             psIter = koneksi.prepareStatement("select * from bridging_sep where no_rawat='" + nomorrawat + "' and jnspelayanan='2' limit 1");
             try {
@@ -19676,13 +19803,22 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 while (rsIter.next()) {
                     noSep = rsIter.getString("no_sep");
                     noKartu = rsIter.getString("no_kartu");
-                    
+                    tglHabisRujukan = Sequel.cariIsi("SELECT DATE_ADD('" + rsIter.getString("tglrujukan") + "', INTERVAL 89 DAY)");
+
                     cekViaBPJSKartu.tampil(noKartu, Sequel.cariIsi("SELECT DATE(NOW())"));
                     if (cekViaBPJSKartu.informasi.equals("OK")) {
                         if (cekViaBPJSKartu.statusPesertaketerangan.equals("AKTIF")) {
-                            cekRujukanFaskes1BPJS(noKartu);
-                            if (cekRujukan >= 1) {
+                            try {
+                                tglSekarang = new SimpleDateFormat("yyyy-MM-dd").parse(now);
+                                tglExpRujukan = new SimpleDateFormat("yyyy-MM-dd").parse(tglHabisRujukan);
+                            } catch (Exception e) {
+                                System.out.println("Notifikasi : " + e);
+                            }
+
+                            if (tglSekarang.before(tglExpRujukan)) {
                                 //disini proses simpan data iter
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Maaf, surat rujukan pasien telah berakhir pada tgl. " + Valid.SetTglINDONESIA(tglHabisRujukan) + " ...!!");
                             }
                         } else {
                             JOptionPane.showMessageDialog(null, "Status kepesertaan pasien ini tidak aktif..!!");
@@ -19701,41 +19837,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
-        }
-    }
-
-    private void cekRujukanFaskes1BPJS(String nomorkartu) {
-        cekRujukan = 0;
-        try {
-            prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.add("X-Cons-ID", Sequel.decXML2(prop.getProperty("CONSIDAPIBPJS"), prop.getProperty("KEY")));
-            utc = String.valueOf(api.GetUTCdatetimeAsString());
-            headers.add("X-Timestamp", utc);
-            headers.add("X-Signature", api.getHmac(utc));
-            headers.add("user_key", koneksiDB.USERKEYAPIBPJS());
-            URL = prop.getProperty("URLAPIBPJS") + "/Rujukan/Peserta/" + nomorkartu;
-
-            HttpEntity requestEntity = new HttpEntity(headers);
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.GET, requestEntity, String.class).getBody());
-            JsonNode nameNode = root.path("metaData");
-
-            if (nameNode.path("code").asText().equals("200")) {
-//ini yang baru -----------            
-                JsonNode response = mapper.readTree(api.Decrypt(root.path("response").asText(), utc)).path("rujukan");
-//sampai sini -------------                                 
-                response.path("tglKunjungan").asText();
-                cekRujukan = Sequel.cariInteger("SELECT '" + response.path("tglKunjungan").asText() + "' > DATE_FORMAT(date_sub(now(), interval 90 day),'%Y-%m-%d')");                
-            } else {
-                JOptionPane.showMessageDialog(null, nameNode.path("message").asText() + " di Faskes 1.");
-            }
-        } catch (Exception ex) {
-            System.out.println("Notifikasi : " + ex);
-            if (ex.toString().contains("UnknownHostException")) {
-                JOptionPane.showMessageDialog(rootPane, "Koneksi ke server BPJS terputus...!");
-            }
         }
     }
 }
