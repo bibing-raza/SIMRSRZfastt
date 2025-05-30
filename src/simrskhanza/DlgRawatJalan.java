@@ -91,10 +91,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private PreparedStatement ps3, ps4, ps5, ps6, ps7, ps15, ps16, psFar, psLab1, psLab2, psRad1, psRad2, psparu, psRiwKunj, psIter,
-            psPet, psR1, psR2, psru1, psTglBO, psRiwIO, psrestor, pskonsul, psCtkKonsul;
+            psPet, psR1, psR2, psru1, psTglBO, psRiwIO, psrestor, pskonsul, psCtkKonsul, psRDO;
     private ResultSet rs, rs2, rs3, rs4, rsDiag, rsDiag1, rsObat, rs6, rs7, rs8, rs9, rs10, rs11, rs12, rsLab1, rskonsul, rsCtkKonsul,
             rsLab2, rsRad1, rsRad2, rsLIS1, rsLIS2, rsLIS3, rsLISMaster, rsparu, rsFar, rsRiwKunj, rsPet, rsR1, rsR2, rsru1, rsIter,
-            rs13, rs14, rs15, rs16, rsTglBO, rsRiwIO, rsrad, rshslRad, rsprmrj, rsrestor, rsRiwRujukan, rsTHT, rsDiabet;
+            rs13, rs14, rs15, rs16, rsTglBO, rsRiwIO, rsrad, rshslRad, rsprmrj, rsrestor, rsRiwRujukan, rsTHT, rsDiabet, rsRDO;
     private int i = 0, n = 0, pilih_prmrj = 0, x = 0, k = 0, cekSuratTindakan = 0, lis1 = 0, lis2 = 0, lisM = 0, cekPilihanRehab = 0,
             ceksensusparu = 0, z = 0, cekRujukInternal = 0, x1 = 0, cekDataPetugas = 0, j = 0, cekPemeriksaan = 0;    
     private String kode_poli = "", cekIGD = "", a = "", orang1 = "", orang2 = "", nmOrang1 = "", nmOrang2 = "", mencari = "",
@@ -12557,6 +12557,57 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                     + "<td valign='top' colspan='3'>" + tipeDiabet + "</td>"
                                                     + "<td valign='top' colspan='2'>" + rsDiabet.getString("lmDiketahui") + "</td>"
                                                     + "</tr>");
+                                            
+                                            if (Sequel.cariInteger("select count(-1) from riwayat_pengobatan_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
+                                                htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='8'>Riwayat Pengobatan Diabetes :</td>"
+                                                        + "<tr align='center'>"
+                                                        + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Obat</td>"
+                                                        + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Jenis</td>"
+                                                        + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Dosis</td>"
+                                                        + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Lama</td>"
+                                                        + "</tr>");
+
+                                                //riwayat penggunaan obat
+                                                try {
+                                                    psRDO = koneksi.prepareStatement("SELECT * FROM riwayat_pengobatan_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "' order by waktu_simpan");
+                                                    try {
+                                                        rsRDO = psRDO.executeQuery();
+                                                        while (rsRDO.next()) {
+                                                            htmlContent.append(
+                                                                    "<tr>"
+                                                                    + "<td valign='top' colspan='2'>" + rsRDO.getString("obat") + "</td>"
+                                                                    + "<td valign='top' colspan='2'>" + rsRDO.getString("jenis") + "</td>"
+                                                                    + "<td valign='top' colspan='2'>" + rsRDO.getString("dosis") + "</td>"
+                                                                    + "<td valign='top' colspan='2'>" + rsRDO.getString("lama") + "</td>"
+                                                                    + "</tr>");
+                                                        }
+                                                    } catch (Exception e) {
+                                                        System.out.println("Notifikasi : " + e);
+                                                    } finally {
+                                                        if (rsRDO != null) {
+                                                            rsRDO.close();
+                                                        }
+                                                        if (psRDO != null) {
+                                                            psRDO.close();
+                                                        }
+                                                    }
+                                                } catch (Exception e) {
+                                                    System.out.println("Notifikasi : " + e);
+                                                }
+                                                //---------------------------------
+                                            }
+                                          
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Merokok</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Lama Luka</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Riwayat Edukasi Kaki DM</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Jenis Alas Kaki</td>"
+                                                    + "</tr>");
+                                            
                                         }
                                         htmlContent.append(
                                             "</table>"
@@ -14147,6 +14198,56 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                     "<tr>"                                                    
                                                     + "<td valign='top' colspan='3'>" + tipeDiabet + "</td>"
                                                     + "<td valign='top' colspan='2'>" + rsDiabet.getString("lmDiketahui") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            if (Sequel.cariInteger("select count(-1) from riwayat_pengobatan_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
+                                                htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='8'>Riwayat Pengobatan Diabetes :</td>"
+                                                        + "<tr align='center'>"
+                                                        + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Obat</td>"
+                                                        + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Jenis</td>"
+                                                        + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Dosis</td>"
+                                                        + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Lama</td>"
+                                                        + "</tr>");
+                                                
+                                                //riwayat penggunaan obat
+                                                try {
+                                                    psRDO = koneksi.prepareStatement("SELECT * FROM riwayat_pengobatan_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "' order by waktu_simpan");
+                                                    try {
+                                                        rsRDO = psRDO.executeQuery();
+                                                        while (rsRDO.next()) {
+                                                            htmlContent.append(
+                                                                    "<tr>"
+                                                                    + "<td valign='top' colspan='2'>" + rsRDO.getString("obat") + "</td>"
+                                                                    + "<td valign='top' colspan='2'>" + rsRDO.getString("jenis") + "</td>"
+                                                                    + "<td valign='top' colspan='2'>" + rsRDO.getString("dosis") + "</td>"
+                                                                    + "<td valign='top' colspan='2'>" + rsRDO.getString("lama") + "</td>"
+                                                                    + "</tr>");
+                                                        }
+                                                    } catch (Exception e) {
+                                                        System.out.println("Notifikasi : " + e);
+                                                    } finally {
+                                                        if (rsRDO != null) {
+                                                            rsRDO.close();
+                                                        }
+                                                        if (psRDO != null) {
+                                                            psRDO.close();
+                                                        }
+                                                    }
+                                                } catch (Exception e) {
+                                                    System.out.println("Notifikasi : " + e);
+                                                }
+                                                //---------------------------------
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Merokok</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Lama Luka</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Riwayat Edukasi Kaki DM</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Jenis Alas Kaki</td>"
                                                     + "</tr>");
                                         }
                                         htmlContent.append(
