@@ -951,7 +951,7 @@ public final class DlgReg extends javax.swing.JDialog {
                     }
                     
                     if (kdpoli.getText().equals("-") || kdpoli.getText().equals("HDL") || kdpoli.getText().equals("RAD")
-                            || kdpoli.getText().equals("LAA") || kdpoli.getText().equals("LAB")) {
+                            || kdpoli.getText().equals("LAA") || kdpoli.getText().equals("LAB") || kdpoli.getText().equals("PON") || kdpoli.getText().equals("IOB")) {
                         cmbAntrianKhusus.setSelectedIndex(2);
                         cmbAntrianKhusus.setEnabled(false);
                     } else {
@@ -1104,7 +1104,7 @@ public final class DlgReg extends javax.swing.JDialog {
                     }
 
                     if (kdpoli.getText().equals("-") || kdpoli.getText().equals("HDL") || kdpoli.getText().equals("RAD")
-                            || kdpoli.getText().equals("LAA") || kdpoli.getText().equals("LAB")) {
+                            || kdpoli.getText().equals("LAA") || kdpoli.getText().equals("LAB") || kdpoli.getText().equals("PON") || kdpoli.getText().equals("IOB")) {
                         cmbAntrianKhusus.setSelectedIndex(2);
                         cmbAntrianKhusus.setEnabled(false);
                     } else {
@@ -1194,7 +1194,8 @@ public final class DlgReg extends javax.swing.JDialog {
                     }
 
                     if (kdpoliRujuk.getText().equals("-") || kdpoliRujuk.getText().equals("HDL") || kdpoliRujuk.getText().equals("RAD")
-                            || kdpoliRujuk.getText().equals("LAA") || kdpoliRujuk.getText().equals("LAB")) {
+                            || kdpoliRujuk.getText().equals("LAA") || kdpoliRujuk.getText().equals("LAB") || kdpoliRujuk.getText().equals("PON")
+                            || kdpoliRujuk.getText().equals("IOB")) {
                         cmbAntrianKhususRujuk.setSelectedIndex(2);
                         cmbAntrianKhususRujuk.setEnabled(false);
                     } else {
@@ -1285,7 +1286,8 @@ public final class DlgReg extends javax.swing.JDialog {
                     }
 
                     if (kdpoliRujuk.getText().equals("-") || kdpoliRujuk.getText().equals("HDL") || kdpoliRujuk.getText().equals("RAD")
-                            || kdpoliRujuk.getText().equals("LAA") || kdpoliRujuk.getText().equals("LAB")) {
+                            || kdpoliRujuk.getText().equals("LAA") || kdpoliRujuk.getText().equals("LAB") || kdpoliRujuk.getText().equals("PON") 
+                            || kdpoliRujuk.getText().equals("IOB")) {
                         cmbAntrianKhususRujuk.setSelectedIndex(2);
                         cmbAntrianKhususRujuk.setEnabled(false);
                     } else {
@@ -3676,7 +3678,7 @@ public final class DlgReg extends javax.swing.JDialog {
         panelBiasa2.setLayout(null);
 
         TglSakit1.setEditable(false);
-        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
+        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         TglSakit1.setDisplayFormat("dd-MM-yyyy");
         TglSakit1.setName("TglSakit1"); // NOI18N
         TglSakit1.setOpaque(false);
@@ -3727,7 +3729,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel32.setBounds(176, 10, 20, 23);
 
         TglSakit2.setEditable(false);
-        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
+        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         TglSakit2.setDisplayFormat("dd-MM-yyyy");
         TglSakit2.setName("TglSakit2"); // NOI18N
         TglSakit2.setOpaque(false);
@@ -3988,7 +3990,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel26.setBounds(0, 20, 110, 23);
 
         TglSurat.setEditable(false);
-        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
+        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         TglSurat.setDisplayFormat("dd-MM-yyyy");
         TglSurat.setName("TglSurat"); // NOI18N
         TglSurat.setOpaque(false);
@@ -4117,7 +4119,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel28.setBounds(0, 20, 110, 23);
 
         TglSurat1.setEditable(false);
-        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
+        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         TglSurat1.setDisplayFormat("dd-MM-yyyy");
         TglSurat1.setName("TglSurat1"); // NOI18N
         TglSurat1.setOpaque(false);
@@ -4210,7 +4212,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel29.setBounds(0, 25, 130, 23);
 
         TglReg.setEditable(false);
-        TglReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
+        TglReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         TglReg.setDisplayFormat("dd-MM-yyyy");
         TglReg.setName("TglReg"); // NOI18N
         TglReg.setOpaque(false);
@@ -4449,7 +4451,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel39.setBounds(0, 20, 70, 23);
 
         Ttgl_lahir.setEditable(false);
-        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
+        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         Ttgl_lahir.setDisplayFormat("dd-MM-yyyy");
         Ttgl_lahir.setName("Ttgl_lahir"); // NOI18N
         Ttgl_lahir.setOpaque(false);
@@ -4872,14 +4874,9 @@ public final class DlgReg extends javax.swing.JDialog {
                 JnsnoIDItemStateChanged(evt);
             }
         });
-        JnsnoID.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JnsnoIDMouseClicked(evt);
-            }
-        });
-        JnsnoID.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                JnsnoIDKeyPressed(evt);
+        JnsnoID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JnsnoIDActionPerformed(evt);
             }
         });
         FormInput.add(JnsnoID);
@@ -5154,7 +5151,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass7.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5168,7 +5165,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass7.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6109,7 +6106,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel59.setPreferredSize(new java.awt.Dimension(75, 23));
         panelGlass11.add(jLabel59);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -6123,7 +6120,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel60.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass11.add(jLabel60);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-05-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-05-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -6387,7 +6384,7 @@ public final class DlgReg extends javax.swing.JDialog {
             //jika sep booking berhasil tersimpan
             if (cekSEP == 0) {
                 if (kdpoli.getText().equals("-") || kdpoli.getText().equals("HDL") || kdpoli.getText().equals("RAD")
-                        || kdpoli.getText().equals("LAA") || kdpoli.getText().equals("LAB")) {
+                        || kdpoli.getText().equals("LAA") || kdpoli.getText().equals("LAB") || kdpoli.getText().equals("PON") || kdpoli.getText().equals("IOB")) {
                     cmbAntrianKhusus.setEnabled(false);
                     simpanRegistrasi();
                 } else {
@@ -6407,7 +6404,7 @@ public final class DlgReg extends javax.swing.JDialog {
             //jika sep booking gagal simpan
             } else if (cekSEP >= 1) {
                 if (kdpoli.getText().equals("-") || kdpoli.getText().equals("HDL") || kdpoli.getText().equals("RAD")
-                        || kdpoli.getText().equals("LAB") || kdpoli.getText().equals("LAA")) {
+                        || kdpoli.getText().equals("LAB") || kdpoli.getText().equals("LAA") || kdpoli.getText().equals("PON") || kdpoli.getText().equals("IOB")) {
                     cmbAntrianKhusus.setEnabled(false);
                     simpanRegistrasi();
                 } else {
@@ -6591,7 +6588,7 @@ public final class DlgReg extends javax.swing.JDialog {
         } else {
             cekRujuk = Sequel.cariInteger("select count(-1) from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'");
             if (kdpoli.getText().equals("-") || kdpoli.getText().equals("HDL") || kdpoli.getText().equals("RAD")
-                    || kdpoli.getText().equals("LAA") || kdpoli.getText().equals("LAB")) {
+                    || kdpoli.getText().equals("LAA") || kdpoli.getText().equals("LAB") || kdpoli.getText().equals("PON") || kdpoli.getText().equals("IOB")) {
                 Sequel.meghapus("antrian_prioritas", "no_rawat", tbregistrasiRalan.getValueAt(tbregistrasiRalan.getSelectedRow(), 2).toString());
             } else {
                 if (cmbAntrianKhusus.getSelectedIndex() == 0) {
@@ -8723,14 +8720,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnCtkJkdKeyPressed
 
-    private void JnsnoIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JnsnoIDMouseClicked
-        JnsnoID.setEditable(false);
-    }//GEN-LAST:event_JnsnoIDMouseClicked
-
-    private void JnsnoIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JnsnoIDKeyPressed
-
-    }//GEN-LAST:event_JnsnoIDKeyPressed
-
     private void JnsnoIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JnsnoIDItemStateChanged
         isPas();
         JnsnoID.requestFocus();
@@ -9083,7 +9072,8 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             TNoID.setText(TNoRM.getText());
             isCekPasien();
             if (kdpoliRujuk.getText().equals("-") || kdpoliRujuk.getText().equals("HDL") || kdpoliRujuk.getText().equals("RAD")
-                    || kdpoliRujuk.getText().equals("LAA") || kdpoliRujuk.getText().equals("LAB")) {
+                    || kdpoliRujuk.getText().equals("LAA") || kdpoliRujuk.getText().equals("LAB") || kdpoliRujuk.getText().equals("PON") 
+                    || kdpoliRujuk.getText().equals("IOB")) {
                 cmbAntrianKhususRujuk.setEnabled(false);
                 simpanRegistrasiRujuk();
             } else {
@@ -10303,6 +10293,10 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         tampilRegSipo();
     }//GEN-LAST:event_BtnCari2ActionPerformed
 
+    private void JnsnoIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JnsnoIDActionPerformed
+        JnsnoIDItemStateChanged(null);
+    }//GEN-LAST:event_JnsnoIDActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -11014,7 +11008,8 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             Valid.SetTgl(Ttgl_lahir, Sequel.cariIsi("select tgl_lahir from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
             
             if (kdpoli.getText().equals("-") || kdpoli.getText().equals("HDL") || kdpoli.getText().equals("RAD")
-                        || kdpoli.getText().equals("LAA") || kdpoli.getText().equals("LAB")) {
+                    || kdpoli.getText().equals("LAA") || kdpoli.getText().equals("LAB") || kdpoli.getText().equals("PON")
+                    || kdpoli.getText().equals("IOB")) {
                 cmbAntrianKhusus.setSelectedIndex(0);
                 cmbAntrianKhusus.setEnabled(false);
             } else {

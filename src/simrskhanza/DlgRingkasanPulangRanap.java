@@ -80,7 +80,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private DlgCariPoli poli = new DlgCariPoli(null, false);
     private String kontrolPoli = "", cekTgl = "", diagnosa = "", tindakan = "", kodekamar = "", skorAsesIGD = "", kesimpulanGZanak = "",
             kesimpulanGZDewasa = "", faktorresikoigd = "", TotSkorGZD = "", TotSkorGZA = "", TotSkorRJ = "", kesimpulanResikoJatuh = "", 
-            nmgedung = "", a = "", host = "";
+            nmgedung = "", a = "", host = "", tipeDiabet = "";
     private String anemis = "", ikterik = "", pupil = "", dia_kanan = "", dia_kiri = "", udem_palpe = "", tonsil = "", faring = "", satur = "",
             lidah = "", bibir = "", jvp = "", limfe = "", kuduk = "", thorak = "", cor = "", reguler = "", ireguler = "", lain1 = "", nafas = "",
             ronci = "", whezing = "", disten = "", meteo = "", peris = "", asites = "", nyeri = "", hepar = "", lien = "", extrem = "", udem = "",
@@ -10169,8 +10169,9 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                             if (Sequel.cariInteger("select count(-1) from data_dasar_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
                                 try {
                                     StringBuilder sbk = new StringBuilder();
-                                    sbk.append("Select *, date_format(tgl_masuk,'%d/%m/%Y') tglmsk, if(lama_rawat='','-',concat(lama_rawat,' hari')) lmrwt ");
-                                    sbk.append("from data_dasar_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    sbk.append("Select *, date_format(tgl_masuk,'%d/%m/%Y') tglmsk, if(lama_rawat='','-',concat(lama_rawat,' hari')) lmrwt, ");
+                                    sbk.append("if(lama_diketahui='','-',concat(lama_diketahui,' tahun (pembulatan ke bawah)')) lmDiketahui from data_dasar_kaki_diabetes ");
+                                    sbk.append("where no_rawat='" + rs2.getString("no_rawat") + "'");
                                     rsDiabet = koneksi.prepareStatement(sbk.toString()).executeQuery();
                                     if (rsDiabet.next()) {
                                         htmlContent.append(
@@ -10179,7 +10180,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                                                 + "<td valign='top' width='1%' align='center'>:</td>"
                                                 + "<td valign='top' width='79%'>"                                                
                                                 + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
-                                                + "<td valign='top' width='20%' align='left'><span style='font-weight:bold'>I. Data Dasar</span></td>"
+                                                + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>I. Data Dasar</span></td>"
                                                 + "<tr align='center'>"
                                                 + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Usia</td>"
                                                 + "<td valign='top' width='15%' bgcolor='#f8fdf3'>TB/BB</td>"
@@ -10203,9 +10204,29 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                                                     + "<td valign='top'>" + rsDiabet.getString("jns_rawat") + "</td>"
                                                     + "<td valign='top'>" + rsDiabet.getString("lmrwt") + "</td>"
                                                     + "</tr>");
-
-                                            htmlContent.append("<tr>"
-                                                    + "<td valign='top' width='20%' align='left'><span style='font-weight:bold'>II. Anamnesis</span></td>"
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>II. Anamnesis</span></td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Tipe Diabetes</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Lama Diketahui Diabetes</td>"                                                    
+                                                    + "</tr>");
+                                            
+                                            if (rsDiabet.getString("tipe_diabetes").equals("Lainnya")) {
+                                                if (rsDiabet.getString("tipe_diabet_lain").equals("")) {
+                                                    tipeDiabet = rsDiabet.getString("tipe_diabetes") + " : -";
+                                                } else {
+                                                    tipeDiabet = rsDiabet.getString("tipe_diabetes") + " : " + rsDiabet.getString("tipe_diabet_lain");
+                                                }
+                                            } else {
+                                                tipeDiabet = rsDiabet.getString("tipe_diabetes");
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"                                                    
+                                                    + "<td valign='top' colspan='3'>" + tipeDiabet + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("lmDiketahui") + "</td>"
                                                     + "</tr>");
                                         }
                                         htmlContent.append(
@@ -11751,8 +11772,9 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                             if (Sequel.cariInteger("select count(-1) from data_dasar_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
                                 try {
                                     StringBuilder sbk = new StringBuilder();
-                                    sbk.append("Select *, date_format(tgl_masuk,'%d/%m/%Y') tglmsk, if(lama_rawat='','-',concat(lama_rawat,' hari')) lmrwt ");
-                                    sbk.append("from data_dasar_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    sbk.append("Select *, date_format(tgl_masuk,'%d/%m/%Y') tglmsk, if(lama_rawat='','-',concat(lama_rawat,' hari')) lmrwt, ");
+                                    sbk.append("if(lama_diketahui='','-',concat(lama_diketahui,' tahun (pembulatan ke bawah)')) lmDiketahui from data_dasar_kaki_diabetes ");
+                                    sbk.append("where no_rawat='" + rs2.getString("no_rawat") + "'");
                                     rsDiabet = koneksi.prepareStatement(sbk.toString()).executeQuery();
                                     if (rsDiabet.next()) {
                                         htmlContent.append(
@@ -11761,7 +11783,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                                                 + "<td valign='top' width='1%' align='center'>:</td>"
                                                 + "<td valign='top' width='79%'>"                                                
                                                 + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
-                                                + "<td valign='top' width='20%' align='left'><span style='font-weight:bold'>I. Data Dasar</span></td>"
+                                                + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>I. Data Dasar</span></td>"
                                                 + "<tr align='center'>"
                                                 + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Usia</td>"
                                                 + "<td valign='top' width='15%' bgcolor='#f8fdf3'>TB/BB</td>"
@@ -11785,9 +11807,29 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                                                     + "<td valign='top'>" + rsDiabet.getString("jns_rawat") + "</td>"
                                                     + "<td valign='top'>" + rsDiabet.getString("lmrwt") + "</td>"
                                                     + "</tr>");
-
-                                            htmlContent.append("<tr>"
-                                                    + "<td valign='top' width='20%' align='left'><span style='font-weight:bold'>II. Anamnesis</span></td>"
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>II. Anamnesis</span></td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Tipe Diabetes</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Lama Diketahui Diabetes</td>"                                                    
+                                                    + "</tr>");
+                                            
+                                            if (rsDiabet.getString("tipe_diabetes").equals("Lainnya")) {
+                                                if (rsDiabet.getString("tipe_diabet_lain").equals("")) {
+                                                    tipeDiabet = rsDiabet.getString("tipe_diabetes") + " : -";
+                                                } else {
+                                                    tipeDiabet = rsDiabet.getString("tipe_diabetes") + " : " + rsDiabet.getString("tipe_diabet_lain");
+                                                }
+                                            } else {
+                                                tipeDiabet = rsDiabet.getString("tipe_diabetes");
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"                                                    
+                                                    + "<td valign='top' colspan='3'>" + tipeDiabet + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("lmDiketahui") + "</td>"
                                                     + "</tr>");
                                         }
                                         htmlContent.append(
