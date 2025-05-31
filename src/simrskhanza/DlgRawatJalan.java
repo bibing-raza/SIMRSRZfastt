@@ -103,7 +103,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             tglResep = "", cekTotPemeriksaan = "", tglMinta = "", jamMinta = "", cekNOMINTA = "", user = "", riwayatData = "",
             tindakanPemeriksaan = "", reasesmen = "", kdpj = "", tglHabisRujukan = "", tipeDiabet = "", merokok = "", lmLuka = "", jnsAlas = "",
             traMekanik = "", traKimia = "", traTermis = "", spontan = "", lainPenyebab = "", tersandung = "", memakai = "", tertusuk = "", dllTraMeka = "",
-            terkenaAir = "", terkenaPemanas = "", dllTraTermis = "", amputasiKiri = "", amputasiKanan = "";
+            terkenaAir = "", terkenaPemanas = "", dllTraTermis = "", amputasiKiri = "", amputasiKanan = "", mataDiabet = "", ginjal = "", pnyJantung = "",
+            hipertensi = "", strok = "", pad = "", nonUlkus = "", ulkus = "", ulkusGang = "", sellu = "";
     private final Properties prop = new Properties();
     private String sql, host = "", jawaban = "", tglSimpanRujukan = "", tglPemberianObat = "", resepDipilih = "", prmrj = "", sttsJawabKonsul = "";
     private Date dateReg, timeReg, dateSimpan, timeSimpan;
@@ -12602,8 +12603,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                             }
                                           
                                             htmlContent.append(
-                                                    "<tr>"
-                                                    + "<tr align='center'>"
+                                                    "<tr align='center'>"
                                                     + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Merokok</td>"
                                                     + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Lama Luka</td>"
                                                     + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Riwayat Edukasi Kaki DM</td>"
@@ -12771,8 +12771,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                                             if (Sequel.cariInteger("select count(-1) from riwayat_ulkus_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
                                                 htmlContent.append(
-                                                        "<tr>"
-                                                        + "<tr align='center'>"
+                                                        "<tr align='center'>"
                                                         + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Tahun</td>"
                                                         + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Lokasi</td>"
                                                         + "<td valign='top' colspan='4' bgcolor='#f8fdf3'>Penyebab</td>"
@@ -12852,8 +12851,130 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                     + "<td valign='top' colspan='2'>" + amputasiKanan + "</td>"
                                                     + "</tr>");
                                             
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>III. Riwayat Komplikasi/Penyakit Penyerta</span></td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Mata</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Ginjal</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Penyakit Jantung Koroner</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Hipertensi</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Stroke</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>PAD</td>"
+                                                    + "</tr>");
                                             
-
+                                            if (rsDiabet.getString("mata").equals("ya")) {
+                                                if (rsDiabet.getString("riwayat_mata").equals("Terapi laser tahun")) {
+                                                    if (rsDiabet.getString("terapi_mata_tahun").equals("")) {
+                                                        mataDiabet = rsDiabet.getString("riwayat_mata") + "(-)";
+                                                    } else {
+                                                        mataDiabet = rsDiabet.getString("riwayat_mata") + " " + rsDiabet.getString("terapi_mata_tahun");
+                                                    }
+                                                } else {
+                                                    mataDiabet = rsDiabet.getString("riwayat_mata");
+                                                }
+                                            } else {
+                                                mataDiabet = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("ginjal").equals("ya")) {
+                                                ginjal = rsDiabet.getString("riwayat_ginjal");
+                                            } else {
+                                                ginjal = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("penyakit_jantung").equals("ya")) {
+                                                pnyJantung = "Ya";
+                                            } else {
+                                                pnyJantung = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("hipertensi").equals("ya")) {
+                                                hipertensi = "Ya";
+                                            } else {
+                                                hipertensi = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("strok").equals("ya")) {
+                                                strok = "Ya";
+                                            } else {
+                                                strok = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("pad").equals("ya")) {
+                                                pad = "Ya";
+                                            } else {
+                                                pad = "-";
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='2'>" + mataDiabet + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + ginjal + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + pnyJantung + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + hipertensi + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + strok + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + pad + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>IV. Pemeriksaan Fisik</span><br>a. Jenis Luka :</br></td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Non Ulkus</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Ulkus</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Ulkus & Gangen</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Selulitis</td>"
+                                                    + "</tr>");
+                                            
+                                            if (rsDiabet.getString("non_ulkus").equals("ya")) {
+                                                nonUlkus = "Ya";
+                                            } else {
+                                                nonUlkus = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("ulkus").equals("ya")) {
+                                                ulkus = "Ya";
+                                            } else {
+                                                ulkus = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("ulkus_gangen").equals("ya")) {
+                                                ulkusGang = "Ya";
+                                            } else {
+                                                ulkusGang = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("selulitis").equals("ya")) {
+                                                sellu = "Ya";
+                                            } else {
+                                                sellu = "-";
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + nonUlkus + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + ulkus + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + ulkusGang + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + sellu + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Penjelasan Dorsal Kanan</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Penjelasan Plantar Kanan</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Penjelasan Dorsal Kiri</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Penjelasan Plantar Kiri</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_dorsal_kanan") + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_plantar_kanan") + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_dorsal_kiri") + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_plantar_kiri") + "</td>"
+                                                    + "</tr>");
+                                            
                                         }
                                         htmlContent.append(
                                             "</table>"
@@ -14488,8 +14609,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                             }
                                             
                                             htmlContent.append(
-                                                    "<tr>"
-                                                    + "<tr align='center'>"
+                                                    "<tr align='center'>"
                                                     + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Merokok</td>"
                                                     + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Lama Luka</td>"
                                                     + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Riwayat Edukasi Kaki DM</td>"
@@ -14657,8 +14777,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                                             if (Sequel.cariInteger("select count(-1) from riwayat_ulkus_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
                                                 htmlContent.append(
-                                                        "<tr>"
-                                                        + "<tr align='center'>"
+                                                        "<tr align='center'>"
                                                         + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Tahun</td>"
                                                         + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Lokasi</td>"
                                                         + "<td valign='top' colspan='4' bgcolor='#f8fdf3'>Penyebab</td>"
@@ -14736,6 +14855,130 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                     "<tr>"
                                                     + "<td valign='top' colspan='2'>" + amputasiKiri + "</td>"
                                                     + "<td valign='top' colspan='2'>" + amputasiKanan + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>III. Riwayat Komplikasi/Penyakit Penyerta</span></td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Mata</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Ginjal</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Penyakit Jantung Koroner</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Hipertensi</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Stroke</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>PAD</td>"
+                                                    + "</tr>");
+                                            
+                                            if (rsDiabet.getString("mata").equals("ya")) {
+                                                if (rsDiabet.getString("riwayat_mata").equals("Terapi laser tahun")) {
+                                                    if (rsDiabet.getString("terapi_mata_tahun").equals("")) {
+                                                        mataDiabet = rsDiabet.getString("riwayat_mata") + "(-)";
+                                                    } else {
+                                                        mataDiabet = rsDiabet.getString("riwayat_mata") + " " + rsDiabet.getString("terapi_mata_tahun");
+                                                    }
+                                                } else {
+                                                    mataDiabet = rsDiabet.getString("riwayat_mata");
+                                                }
+                                            } else {
+                                                mataDiabet = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("ginjal").equals("ya")) {
+                                                ginjal = rsDiabet.getString("riwayat_ginjal");
+                                            } else {
+                                                ginjal = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("penyakit_jantung").equals("ya")) {
+                                                pnyJantung = "Ya";
+                                            } else {
+                                                pnyJantung = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("hipertensi").equals("ya")) {
+                                                hipertensi = "Ya";
+                                            } else {
+                                                hipertensi = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("strok").equals("ya")) {
+                                                strok = "Ya";
+                                            } else {
+                                                strok = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("pad").equals("ya")) {
+                                                pad = "Ya";
+                                            } else {
+                                                pad = "-";
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='2'>" + mataDiabet + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + ginjal + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + pnyJantung + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + hipertensi + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + strok + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + pad + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>IV. Pemeriksaan Fisik</span><br>a. Jenis Luka :</br></td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Non Ulkus</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Ulkus</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Ulkus & Gangen</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Selulitis</td>"
+                                                    + "</tr>");
+                                            
+                                            if (rsDiabet.getString("non_ulkus").equals("ya")) {
+                                                nonUlkus = "Ya";
+                                            } else {
+                                                nonUlkus = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("ulkus").equals("ya")) {
+                                                ulkus = "Ya";
+                                            } else {
+                                                ulkus = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("ulkus_gangen").equals("ya")) {
+                                                ulkusGang = "Ya";
+                                            } else {
+                                                ulkusGang = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("selulitis").equals("ya")) {
+                                                sellu = "Ya";
+                                            } else {
+                                                sellu = "-";
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + nonUlkus + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + ulkus + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + ulkusGang + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + sellu + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Penjelasan Dorsal Kanan</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Penjelasan Plantar Kanan</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Penjelasan Dorsal Kiri</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Penjelasan Plantar Kiri</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_dorsal_kanan") + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_plantar_kanan") + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_dorsal_kiri") + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_plantar_kiri") + "</td>"
                                                     + "</tr>");
                                             
                                             
