@@ -68,10 +68,10 @@ public class DlgCPPT extends javax.swing.JDialog {
     private validasi Valid=new validasi();
     private final Properties prop = new Properties();
     private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, pps1, pps2, pps3, pps4, pps5, pps6, psFile, psRDO,
-            pspasien, psdiet, psrestor, psLaprm, psFakIGD, psRes, psCetak, psLab1, psLab2, psLabA, psLabB, psLabC, psRad;
+            pspasien, psdiet, psrestor, psLaprm, psFakIGD, psRes, psCetak, psLab1, psLab2, psLabA, psLabB, psLabC, psRad, psRDU;
     private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rsRad, rsDok, rsFile,
             rspasien, rsdiet, rsrestor, rsLaprm, rsFakIGD, rsRes, rsPrev, rsCetak, rsLab1, rsLab2, rsLabA, rsLabB, rsLabC, rsDiag, 
-            rsDiag1, rsObat, rsTHT, rsLISMaster, rsLIS1, rsLIS2, rsLIS3, rsDiabet, rsRDO;;
+            rsDiag1, rsObat, rsTHT, rsLISMaster, rsLIS1, rsLIS2, rsLIS3, rsDiabet, rsRDO, rsRDU;
     private int i = 0, x = 0, pilihan = 0, totskorTriase = 0, skorGZ1 = 0, skorYaGZ1 = 0, skorGZ2 = 0, skor = 0, paste = 0,
             cekKonfirmasi = 0, urut = 0, y = 0, w = 0, lisM = 0, lis1 = 0, lis2 = 0, cekPilihanRehab = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
@@ -89,7 +89,10 @@ public class DlgCPPT extends javax.swing.JDialog {
             klinis1 = "", klinis2 = "", klinis3 = "", klinis4 = "", klinis5 = "", klinis6 = "", klinis7 = "", klinis8 = "", 
             klinislain = "", cekKlinisGizi = "", riw1 = "", riw2 = "", riw3 = "", riw4 = "", riw5 = "", riw6 = "", riw7 = "", 
             riw8 = "", cekRiwGizi = "", riwGiziLain = "", diagnosaGizi = "", proteinGizi = "", lemakGizi = "", karboGizi = "",
-            ren1 = "", ren2 = "", ren3 = "", ren4 = "", ren5 = "", cekRenMonevGizi = "", monevGizi = "", dataKonfir = "", tipeDiabet = "";
+            ren1 = "", ren2 = "", ren3 = "", ren4 = "", ren5 = "", cekRenMonevGizi = "", monevGizi = "", dataKonfir = "", tipeDiabet = "", 
+            merokok = "", lmLuka = "", jnsAlas = "", traMekanik = "", traKimia = "", traTermis = "", spontan = "", lainPenyebab = "",
+            tersandung = "", memakai = "", tertusuk = "", dllTraMeka = "", terkenaAir = "", terkenaPemanas = "", dllTraTermis = "", 
+            amputasiKiri = "", amputasiKanan = "";
     private String noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "",
             hasilDipilih = "", kdItem = "", norawat = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", link = "";
 
@@ -14913,6 +14916,250 @@ public class DlgCPPT extends javax.swing.JDialog {
                                                     + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Riwayat Edukasi Kaki DM</td>"
                                                     + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Jenis Alas Kaki</td>"
                                                     + "</tr>");
+                                            
+                                            if (rsDiabet.getString("merokok").equals("Ya")) {
+                                                if (rsDiabet.getString("merokok_ya").equals("")) {
+                                                    merokok = rsDiabet.getString("merokok");
+                                                } else {
+                                                    merokok = rsDiabet.getString("merokok") + " (" + rsDiabet.getString("merokok_ya") + " batang/hari)";
+                                                }
+                                            } else if (rsDiabet.getString("merokok").equals("Mantan")) {
+                                                if (rsDiabet.getString("merokok_mantan").equals("")) {
+                                                    merokok = rsDiabet.getString("merokok");
+                                                } else {
+                                                    merokok = rsDiabet.getString("merokok") + " (" + rsDiabet.getString("merokok_mantan") + " tahun lalu)";
+                                                }
+                                            } else {
+                                                merokok = rsDiabet.getString("merokok");
+                                            }
+                                            
+                                            if (rsDiabet.getString("lama_luka").equals("")) {
+                                                lmLuka = "-";
+                                            } else {
+                                                if (rsDiabet.getString("satuan_lama_luka").equals("-")) {
+                                                    lmLuka = rsDiabet.getString("lama_luka");
+                                                } else {
+                                                    lmLuka = rsDiabet.getString("lama_luka") + " " + rsDiabet.getString("satuan_lama_luka");
+                                                }
+                                            }
+                                            
+                                            if (rsDiabet.getString("jns_alas_kaki").equals("Sepatu")) {
+                                                if (rsDiabet.getString("jns_alas_kaki_sepatu").equals("")) {
+                                                    jnsAlas = rsDiabet.getString("jns_alas_kaki");
+                                                } else {
+                                                    jnsAlas = rsDiabet.getString("jns_alas_kaki") + " (" + rsDiabet.getString("jns_alas_kaki_sepatu") + " )";
+                                                }
+                                            } else {
+                                                jnsAlas = rsDiabet.getString("jns_alas_kaki");
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"                                                    
+                                                    + "<td valign='top' colspan='2'>" + merokok + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + lmLuka + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("riwayat_edukasi") + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + jnsAlas + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'>Penyebab :</td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Trauma Mekanik</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Trauma Kimia</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Trauma Termis</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Spontan</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Lain-Lain</td>"
+                                                    + "</tr>");
+                                            
+                                            if (rsDiabet.getString("trauma_mekanik").equals("ya")) {
+                                                if (rsDiabet.getString("tersandung").equals("ya")) {
+                                                    tersandung = "Tersandung, ";
+                                                } else {
+                                                    tersandung = "";
+                                                }
+                                                
+                                                if (rsDiabet.getString("memakai_sepatu").equals("ya")) {
+                                                    memakai = "Memakai sepatu sempit, ";
+                                                } else {
+                                                    memakai = "";
+                                                }
+                                                
+                                                if (rsDiabet.getString("tertusuk").equals("ya")) {
+                                                    tertusuk = "Tertusuk paku/duri, ";
+                                                } else {
+                                                    tertusuk = "";
+                                                }
+                                                
+                                                if (rsDiabet.getString("dll_sebutkan_mekanik").equals("ya")) {
+                                                    if (rsDiabet.getString("ket_dll_sebutkan_mekanik").equals("")) {
+                                                        dllTraMeka = "-";
+                                                    } else {
+                                                        dllTraMeka = rsDiabet.getString("ket_dll_sebutkan_mekanik");
+                                                    }                                                    
+                                                } else {
+                                                    dllTraMeka = "";
+                                                }
+                                                traMekanik = tersandung + memakai + tertusuk + dllTraMeka;
+                                            } else {
+                                                traMekanik = "-";
+                                            }
+
+                                            if (rsDiabet.getString("trauma_kimia").equals("ya")) {
+                                                if (rsDiabet.getString("terkena_zat").equals("ya")) {
+                                                    if (rsDiabet.getString("ket_terkena_zat").equals("")) {
+                                                        traKimia = "Terkena zat kimia";
+                                                    } else {
+                                                        traKimia = "Terkena zat kimia (" + rsDiabet.getString("ket_terkena_zat") + ")";
+                                                    }
+                                                } else {
+                                                    traKimia = "-";
+                                                }
+                                            } else {
+                                                traKimia = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("trauma_termis").equals("ya")) {
+                                                if (rsDiabet.getString("terkena_air_panas").equals("ya")) {
+                                                    terkenaAir = "Terkena air panas, ";
+                                                } else {
+                                                    terkenaAir = "";
+                                                }
+                                                
+                                                if (rsDiabet.getString("terkena_pemanas").equals("ya")) {
+                                                    terkenaPemanas = "Terkena pemanas listrik, ";
+                                                } else {
+                                                    terkenaPemanas = "";
+                                                }
+
+                                                if (rsDiabet.getString("dll_sebutkan_termis").equals("ya")) {
+                                                    if (rsDiabet.getString("ket_dll_sebutkan_termis").equals("")) {
+                                                        dllTraTermis = "-";
+                                                    } else {
+                                                        dllTraTermis = rsDiabet.getString("ket_dll_sebutkan_termis");
+                                                    }                    
+                                                } else {
+                                                    dllTraTermis = "";
+                                                }
+                                                traTermis = terkenaAir + terkenaPemanas + dllTraTermis;
+                                            } else {
+                                                traTermis = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("spontan").equals("ya")) {
+                                                spontan = "Ya";
+                                            } else {
+                                                spontan = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("penyebab_lain").equals("ya")) {
+                                                if (rsDiabet.getString("ket_penyebab_lain").equals("")) {
+                                                    lainPenyebab = "-";
+                                                } else {
+                                                    lainPenyebab = rsDiabet.getString("ket_penyebab_lain");
+                                                }
+                                            } else {
+                                                lainPenyebab = "-";
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"                                                    
+                                                    + "<td valign='top' colspan='2'>" + traMekanik + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + traKimia + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + traTermis + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + spontan + "</td>"
+                                                    + "<td valign='top' colspan='1'>" + lainPenyebab + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'>Riwayat Luka/Ulkus : " + rsDiabet.getString("riwayat_ulkus") + "</td>"
+                                                    + "</tr>");
+
+                                            if (Sequel.cariInteger("select count(-1) from riwayat_ulkus_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
+                                                htmlContent.append(
+                                                        "<tr>"
+                                                        + "<tr align='center'>"
+                                                        + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Tahun</td>"
+                                                        + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Lokasi</td>"
+                                                        + "<td valign='top' colspan='4' bgcolor='#f8fdf3'>Penyebab</td>"
+                                                        + "</tr>");
+
+                                                //riwayat luka/ulkus
+                                                try {
+                                                    psRDU = koneksi.prepareStatement("SELECT * FROM riwayat_ulkus_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "' order by waktu_simpan");
+                                                    try {
+                                                        rsRDU = psRDU.executeQuery();
+                                                        while (rsRDU.next()) {
+                                                            htmlContent.append(
+                                                                    "<tr>"
+                                                                    + "<td valign='top' align='center' colspan='1'>" + rsRDU.getString("tahun") + "</td>"
+                                                                    + "<td valign='top' colspan='3'>" + rsRDU.getString("lokasi") + "</td>"
+                                                                    + "<td valign='top' colspan='4'>" + rsRDU.getString("penyebab") + "</td>"
+                                                                    + "</tr>");
+                                                        }
+                                                    } catch (Exception e) {
+                                                        System.out.println("Notifikasi : " + e);
+                                                    } finally {
+                                                        if (rsRDU != null) {
+                                                            rsRDU.close();
+                                                        }
+                                                        if (psRDU != null) {
+                                                            psRDU.close();
+                                                        }
+                                                    }
+                                                } catch (Exception e) {
+                                                    System.out.println("Notifikasi : " + e);
+                                                }
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'>Riwayat Amputasi :</td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Kiri</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Kanan</td>"
+                                                    + "</tr>");
+
+                                            if (rsDiabet.getString("kiri").equals("jari kaki ke")) {
+                                                if (rsDiabet.getString("jari_kaki_kiri_ke").equals("")) {
+                                                    amputasiKiri = rsDiabet.getString("kiri");
+                                                } else {
+                                                    amputasiKiri = rsDiabet.getString("kiri") + " " + rsDiabet.getString("jari_kaki_kiri_ke");
+                                                }
+                                            } else if (rsDiabet.getString("kiri").equals("Transmetatarsal, tahun")) {
+                                                if (rsDiabet.getString("trans_kiri_tahun").equals("")) {
+                                                    amputasiKiri = rsDiabet.getString("kiri");
+                                                } else {
+                                                    amputasiKiri = rsDiabet.getString("kiri") + " " + rsDiabet.getString("trans_kiri_tahun");
+                                                }
+                                            } else {
+                                                amputasiKiri = rsDiabet.getString("kiri");
+                                            }
+                                            
+                                            if (rsDiabet.getString("kanan").equals("jari kaki ke")) {
+                                                if (rsDiabet.getString("jari_kaki_kanan_ke").equals("")) {
+                                                    amputasiKanan = rsDiabet.getString("kanan");
+                                                } else {
+                                                    amputasiKanan = rsDiabet.getString("kanan") + " " + rsDiabet.getString("jari_kaki_kanan_ke");
+                                                }
+                                            } else if (rsDiabet.getString("kanan").equals("Transmetatarsal, tahun")) {
+                                                if (rsDiabet.getString("trans_kanan_tahun").equals("")) {
+                                                    amputasiKanan = rsDiabet.getString("kanan");
+                                                } else {
+                                                    amputasiKanan = rsDiabet.getString("kanan") + " " + rsDiabet.getString("trans_kanan_tahun");
+                                                }
+                                            } else {
+                                                amputasiKanan = rsDiabet.getString("kanan");
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='2'>" + amputasiKiri + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + amputasiKanan + "</td>"
+                                                    + "</tr>");
+                                            
+                                            
                                         }
                                         htmlContent.append(
                                             "</table>"
@@ -16566,6 +16813,250 @@ public class DlgCPPT extends javax.swing.JDialog {
                                                     + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Riwayat Edukasi Kaki DM</td>"
                                                     + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Jenis Alas Kaki</td>"
                                                     + "</tr>");
+                                            
+                                            if (rsDiabet.getString("merokok").equals("Ya")) {
+                                                if (rsDiabet.getString("merokok_ya").equals("")) {
+                                                    merokok = rsDiabet.getString("merokok");
+                                                } else {
+                                                    merokok = rsDiabet.getString("merokok") + " (" + rsDiabet.getString("merokok_ya") + " batang/hari)";
+                                                }
+                                            } else if (rsDiabet.getString("merokok").equals("Mantan")) {
+                                                if (rsDiabet.getString("merokok_mantan").equals("")) {
+                                                    merokok = rsDiabet.getString("merokok");
+                                                } else {
+                                                    merokok = rsDiabet.getString("merokok") + " (" + rsDiabet.getString("merokok_mantan") + " tahun lalu)";
+                                                }
+                                            } else {
+                                                merokok = rsDiabet.getString("merokok");
+                                            }
+                                            
+                                            if (rsDiabet.getString("lama_luka").equals("")) {
+                                                lmLuka = "-";
+                                            } else {
+                                                if (rsDiabet.getString("satuan_lama_luka").equals("-")) {
+                                                    lmLuka = rsDiabet.getString("lama_luka");
+                                                } else {
+                                                    lmLuka = rsDiabet.getString("lama_luka") + " " + rsDiabet.getString("satuan_lama_luka");
+                                                }
+                                            }
+                                            
+                                            if (rsDiabet.getString("jns_alas_kaki").equals("Sepatu")) {
+                                                if (rsDiabet.getString("jns_alas_kaki_sepatu").equals("")) {
+                                                    jnsAlas = rsDiabet.getString("jns_alas_kaki");
+                                                } else {
+                                                    jnsAlas = rsDiabet.getString("jns_alas_kaki") + " (" + rsDiabet.getString("jns_alas_kaki_sepatu") + " )";
+                                                }
+                                            } else {
+                                                jnsAlas = rsDiabet.getString("jns_alas_kaki");
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"                                                    
+                                                    + "<td valign='top' colspan='2'>" + merokok + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + lmLuka + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("riwayat_edukasi") + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + jnsAlas + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'>Penyebab :</td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Trauma Mekanik</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Trauma Kimia</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Trauma Termis</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Spontan</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Lain-Lain</td>"
+                                                    + "</tr>");
+                                            
+                                            if (rsDiabet.getString("trauma_mekanik").equals("ya")) {
+                                                if (rsDiabet.getString("tersandung").equals("ya")) {
+                                                    tersandung = "Tersandung, ";
+                                                } else {
+                                                    tersandung = "";
+                                                }
+                                                
+                                                if (rsDiabet.getString("memakai_sepatu").equals("ya")) {
+                                                    memakai = "Memakai sepatu sempit, ";
+                                                } else {
+                                                    memakai = "";
+                                                }
+                                                
+                                                if (rsDiabet.getString("tertusuk").equals("ya")) {
+                                                    tertusuk = "Tertusuk paku/duri, ";
+                                                } else {
+                                                    tertusuk = "";
+                                                }
+                                                
+                                                if (rsDiabet.getString("dll_sebutkan_mekanik").equals("ya")) {
+                                                    if (rsDiabet.getString("ket_dll_sebutkan_mekanik").equals("")) {
+                                                        dllTraMeka = "-";
+                                                    } else {
+                                                        dllTraMeka = rsDiabet.getString("ket_dll_sebutkan_mekanik");
+                                                    }                                                    
+                                                } else {
+                                                    dllTraMeka = "";
+                                                }
+                                                traMekanik = tersandung + memakai + tertusuk + dllTraMeka;
+                                            } else {
+                                                traMekanik = "-";
+                                            }
+
+                                            if (rsDiabet.getString("trauma_kimia").equals("ya")) {
+                                                if (rsDiabet.getString("terkena_zat").equals("ya")) {
+                                                    if (rsDiabet.getString("ket_terkena_zat").equals("")) {
+                                                        traKimia = "Terkena zat kimia";
+                                                    } else {
+                                                        traKimia = "Terkena zat kimia (" + rsDiabet.getString("ket_terkena_zat") + ")";
+                                                    }
+                                                } else {
+                                                    traKimia = "-";
+                                                }
+                                            } else {
+                                                traKimia = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("trauma_termis").equals("ya")) {
+                                                if (rsDiabet.getString("terkena_air_panas").equals("ya")) {
+                                                    terkenaAir = "Terkena air panas, ";
+                                                } else {
+                                                    terkenaAir = "";
+                                                }
+                                                
+                                                if (rsDiabet.getString("terkena_pemanas").equals("ya")) {
+                                                    terkenaPemanas = "Terkena pemanas listrik, ";
+                                                } else {
+                                                    terkenaPemanas = "";
+                                                }
+
+                                                if (rsDiabet.getString("dll_sebutkan_termis").equals("ya")) {
+                                                    if (rsDiabet.getString("ket_dll_sebutkan_termis").equals("")) {
+                                                        dllTraTermis = "-";
+                                                    } else {
+                                                        dllTraTermis = rsDiabet.getString("ket_dll_sebutkan_termis");
+                                                    }                    
+                                                } else {
+                                                    dllTraTermis = "";
+                                                }
+                                                traTermis = terkenaAir + terkenaPemanas + dllTraTermis;
+                                            } else {
+                                                traTermis = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("spontan").equals("ya")) {
+                                                spontan = "Ya";
+                                            } else {
+                                                spontan = "-";
+                                            }
+                                            
+                                            if (rsDiabet.getString("penyebab_lain").equals("ya")) {
+                                                if (rsDiabet.getString("ket_penyebab_lain").equals("")) {
+                                                    lainPenyebab = "-";
+                                                } else {
+                                                    lainPenyebab = rsDiabet.getString("ket_penyebab_lain");
+                                                }
+                                            } else {
+                                                lainPenyebab = "-";
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"                                                    
+                                                    + "<td valign='top' colspan='2'>" + traMekanik + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + traKimia + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + traTermis + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + spontan + "</td>"
+                                                    + "<td valign='top' colspan='1'>" + lainPenyebab + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'>Riwayat Luka/Ulkus : " + rsDiabet.getString("riwayat_ulkus") + "</td>"
+                                                    + "</tr>");
+
+                                            if (Sequel.cariInteger("select count(-1) from riwayat_ulkus_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
+                                                htmlContent.append(
+                                                        "<tr>"
+                                                        + "<tr align='center'>"
+                                                        + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Tahun</td>"
+                                                        + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Lokasi</td>"
+                                                        + "<td valign='top' colspan='4' bgcolor='#f8fdf3'>Penyebab</td>"
+                                                        + "</tr>");
+
+                                                //riwayat luka/ulkus
+                                                try {
+                                                    psRDU = koneksi.prepareStatement("SELECT * FROM riwayat_ulkus_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "' order by waktu_simpan");
+                                                    try {
+                                                        rsRDU = psRDU.executeQuery();
+                                                        while (rsRDU.next()) {
+                                                            htmlContent.append(
+                                                                    "<tr>"
+                                                                    + "<td valign='top' align='center' colspan='1'>" + rsRDU.getString("tahun") + "</td>"
+                                                                    + "<td valign='top' colspan='3'>" + rsRDU.getString("lokasi") + "</td>"
+                                                                    + "<td valign='top' colspan='4'>" + rsRDU.getString("penyebab") + "</td>"
+                                                                    + "</tr>");
+                                                        }
+                                                    } catch (Exception e) {
+                                                        System.out.println("Notifikasi : " + e);
+                                                    } finally {
+                                                        if (rsRDU != null) {
+                                                            rsRDU.close();
+                                                        }
+                                                        if (psRDU != null) {
+                                                            psRDU.close();
+                                                        }
+                                                    }
+                                                } catch (Exception e) {
+                                                    System.out.println("Notifikasi : " + e);
+                                                }
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'>Riwayat Amputasi :</td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Kiri</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Kanan</td>"
+                                                    + "</tr>");
+
+                                            if (rsDiabet.getString("kiri").equals("jari kaki ke")) {
+                                                if (rsDiabet.getString("jari_kaki_kiri_ke").equals("")) {
+                                                    amputasiKiri = rsDiabet.getString("kiri");
+                                                } else {
+                                                    amputasiKiri = rsDiabet.getString("kiri") + " " + rsDiabet.getString("jari_kaki_kiri_ke");
+                                                }
+                                            } else if (rsDiabet.getString("kiri").equals("Transmetatarsal, tahun")) {
+                                                if (rsDiabet.getString("trans_kiri_tahun").equals("")) {
+                                                    amputasiKiri = rsDiabet.getString("kiri");
+                                                } else {
+                                                    amputasiKiri = rsDiabet.getString("kiri") + " " + rsDiabet.getString("trans_kiri_tahun");
+                                                }
+                                            } else {
+                                                amputasiKiri = rsDiabet.getString("kiri");
+                                            }
+                                            
+                                            if (rsDiabet.getString("kanan").equals("jari kaki ke")) {
+                                                if (rsDiabet.getString("jari_kaki_kanan_ke").equals("")) {
+                                                    amputasiKanan = rsDiabet.getString("kanan");
+                                                } else {
+                                                    amputasiKanan = rsDiabet.getString("kanan") + " " + rsDiabet.getString("jari_kaki_kanan_ke");
+                                                }
+                                            } else if (rsDiabet.getString("kanan").equals("Transmetatarsal, tahun")) {
+                                                if (rsDiabet.getString("trans_kanan_tahun").equals("")) {
+                                                    amputasiKanan = rsDiabet.getString("kanan");
+                                                } else {
+                                                    amputasiKanan = rsDiabet.getString("kanan") + " " + rsDiabet.getString("trans_kanan_tahun");
+                                                }
+                                            } else {
+                                                amputasiKanan = rsDiabet.getString("kanan");
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='2'>" + amputasiKiri + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + amputasiKanan + "</td>"
+                                                    + "</tr>");
+                                            
+                                            
                                         }
                                         htmlContent.append(
                                             "</table>"
