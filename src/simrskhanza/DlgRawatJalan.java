@@ -91,10 +91,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private PreparedStatement ps3, ps4, ps5, ps6, ps7, ps15, ps16, psFar, psLab1, psLab2, psRad1, psRad2, psparu, psRiwKunj, psIter,
-            psPet, psR1, psR2, psru1, psTglBO, psRiwIO, psrestor, pskonsul, psCtkKonsul, psRDO, psRDU;
+            psPet, psR1, psR2, psru1, psTglBO, psRiwIO, psrestor, pskonsul, psCtkKonsul, psRDO, psRDU, psRDD;
     private ResultSet rs, rs2, rs3, rs4, rsDiag, rsDiag1, rsObat, rs6, rs7, rs8, rs9, rs10, rs11, rs12, rsLab1, rskonsul, rsCtkKonsul,
             rsLab2, rsRad1, rsRad2, rsLIS1, rsLIS2, rsLIS3, rsLISMaster, rsparu, rsFar, rsRiwKunj, rsPet, rsR1, rsR2, rsru1, rsIter,
-            rs13, rs14, rs15, rs16, rsTglBO, rsRiwIO, rsrad, rshslRad, rsprmrj, rsrestor, rsRiwRujukan, rsTHT, rsDiabet, rsRDO, rsRDU;
+            rs13, rs14, rs15, rs16, rsTglBO, rsRiwIO, rsrad, rshslRad, rsprmrj, rsrestor, rsRiwRujukan, rsTHT, rsDiabet, rsRDO, rsRDU, rsRDD;
     private int i = 0, n = 0, pilih_prmrj = 0, x = 0, k = 0, cekSuratTindakan = 0, lis1 = 0, lis2 = 0, lisM = 0, cekPilihanRehab = 0,
             ceksensusparu = 0, z = 0, cekRujukInternal = 0, x1 = 0, cekDataPetugas = 0, j = 0, cekPemeriksaan = 0;    
     private String kode_poli = "", cekIGD = "", a = "", orang1 = "", orang2 = "", nmOrang1 = "", nmOrang2 = "", mencari = "",
@@ -104,7 +104,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             tindakanPemeriksaan = "", reasesmen = "", kdpj = "", tglHabisRujukan = "", tipeDiabet = "", merokok = "", lmLuka = "", jnsAlas = "",
             traMekanik = "", traKimia = "", traTermis = "", spontan = "", lainPenyebab = "", tersandung = "", memakai = "", tertusuk = "", dllTraMeka = "",
             terkenaAir = "", terkenaPemanas = "", dllTraTermis = "", amputasiKiri = "", amputasiKanan = "", mataDiabet = "", ginjal = "", pnyJantung = "",
-            hipertensi = "", strok = "", pad = "", nonUlkus = "", ulkus = "", ulkusGang = "", sellu = "";
+            hipertensi = "", strok = "", pad = "", nonUlkus = "", ulkus = "", ulkusGang = "", sellu = "", jarKakiKanan = "", jarKakiKiri = "";
     private final Properties prop = new Properties();
     private String sql, host = "", jawaban = "", tglSimpanRujukan = "", tglPemberianObat = "", resepDipilih = "", prmrj = "", sttsJawabKonsul = "";
     private Date dateReg, timeReg, dateSimpan, timeSimpan;
@@ -12974,6 +12974,298 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                     + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_dorsal_kiri") + "</td>"
                                                     + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_plantar_kiri") + "</td>"
                                                     + "</tr>");
+
+                                            if (Sequel.cariInteger("select count(-1) from deformitas_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
+                                                htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='8'>b. Deformitas :</td>"
+                                                        + "<tr align='center'>"
+                                                        + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Lokasi Kelainan</td>"
+                                                        + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Kanan</td>"
+                                                        + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Kiri</td>"
+                                                        + "</tr>");
+
+                                                //deformitas
+                                                try {
+                                                    psRDD = koneksi.prepareStatement("SELECT * FROM deformitas_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "' order by waktu_simpan");
+                                                    try {
+                                                        rsRDD = psRDD.executeQuery();
+                                                        i = 1;
+                                                        while (rsRDD.next()) {
+                                                            htmlContent.append(
+                                                                    "<tr>"
+                                                                    + "<td valign='top' colspan='2'>" + i + ". " + rsRDD.getString("lokasi") + "</td>"
+                                                                    + "<td valign='top' colspan='3'>" + rsRDD.getString("kanan") + "</td>"
+                                                                    + "<td valign='top' colspan='3'>" + rsRDD.getString("kiri") + "</td>"
+                                                                    + "</tr>");
+                                                            i++;
+                                                        }
+                                                    } catch (Exception e) {
+                                                        System.out.println("Notifikasi : " + e);
+                                                    } finally {
+                                                        if (rsRDD != null) {
+                                                            rsRDD.close();
+                                                        }
+                                                        if (psRDD != null) {
+                                                            psRDD.close();
+                                                        }
+                                                    }
+                                                } catch (Exception e) {
+                                                    System.out.println("Notifikasi : " + e);
+                                                }
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr align='center'>"
+                                                    + "<td valign='top' colspan='3' align='left' bgcolor='#f8fdf3'>c. Inspeksi Kaki</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Kaki Kanan</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Kaki Kiri</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='5'><span style='font-weight:bold'>Kulit Kaki</span></td>"
+                                                        + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Kering/bersisik</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_kering") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_kering") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Tumit pecah-pecah</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_tumit") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_tumit") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Bulu rambut menipis</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_bulu") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_bulu") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Tinea pedis</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_tinea") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_tinea") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Kalus</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_kalus") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_kalus") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Korn</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_korn") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_korn") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Hiperpigmentasi</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_hiperpig") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_hiperpig") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Edema</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_edema") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_edema") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Healed Ulcer</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_healed") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_healed") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='5'><span style='font-weight:bold'>Kuku Kaki</span></td>"
+                                                        + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Menebal</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_menebal") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_menebal") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Infeksi</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_infeksi") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_infeksi") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Perubahan Warna</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_perubahan") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_perubahan") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Rapuh</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_rapuh") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_rapuh") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Ingrowing nail</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_ingro") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_ingro") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Atrofi</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_atrofi") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_atrofi") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Lain-lain</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_lain") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_lain") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='5'><span style='font-weight:bold'>Telapak Kaki</span></td>"
+                                                        + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Hallux toe</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("telapak_kanan_hallux") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("telapak_kiri_hallux") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Pel Planus</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("telapak_kanan_pel") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("telapak_kiri_pel") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Charcot foot</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("telapak_kanan_char") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("telapak_kiri_char") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='5'><span style='font-weight:bold'>Jari Kaki</span></td>"
+                                                        + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Hammer toe</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kanan_hammer") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kiri_hammer") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Claw toe</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kanan_claw") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kiri_claw") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Hiperekstensi</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kanan_hiper") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kiri_hiper") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Maserasi interdigital</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kanan_maser") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kiri_maser") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            if (rsDiabet.getString("ket_jari_kanan_lain").equals("")) {
+                                                jarKakiKanan = rsDiabet.getString("jari_kanan_lain");
+                                            } else {
+                                                jarKakiKanan = rsDiabet.getString("jari_kanan_lain") + " (" + rsDiabet.getString("ket_jari_kanan_lain") + ")";
+                                            }
+                                            
+                                            if (rsDiabet.getString("ket_jari_kiri_lain").equals("")) {
+                                                jarKakiKiri = rsDiabet.getString("jari_kiri_lain");
+                                            } else {
+                                                jarKakiKiri = rsDiabet.getString("jari_kiri_lain") + " (" + rsDiabet.getString("ket_jari_kiri_lain") + ")";
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Lain-lain (sebutkan)</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + jarKakiKanan + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + jarKakiKiri + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>V. Pemeriksaan Vaskular</span></td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2'></td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Kaki Kanan</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Kaki Kiri</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='2'>A. Dorsalis Pedis</td>"
+                                                    + "<td valign='top' colspan='1'>" + rsDiabet.getString("dorsalis_kaki_kanan") + "</td>"
+                                                    + "<td valign='top' colspan='1'>" + rsDiabet.getString("dorsalis_kaki_kiri") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='2'>A. Tibialis Posterior</td>"
+                                                    + "<td valign='top' colspan='1'>" + rsDiabet.getString("tibialis_kaki_kanan") + "</td>"
+                                                    + "<td valign='top' colspan='1'>" + rsDiabet.getString("tibialis_kaki_kiri") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'>Pemeriksaan ABI :</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='1'>TDS A. Brachialis</td>"
+                                                    + "<td valign='top' colspan='1'>: " + rsDiabet.getString("brachialis") + " mmHg</td>"
+                                                    + "<td valign='top' colspan='1'></td>"
+                                                    + "<td valign='top' colspan='1'>TDS A. Dorsalis pedis</td>"
+                                                    + "<td valign='top' colspan='1'>: " + rsDiabet.getString("dorsalis_pedis") + " mmHg</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='1'>Score ABI :</td>"
+                                                    + "<td valign='top' colspan='1'><span style='text-decoration:underline'>TDS A. Dorsalis pedis</span><br>TDS A. Brachialis</br></td>"
+                                                    + "<td valign='top' colspan='1'><span style='text-decoration:underline'>" + rsDiabet.getString("dorsalis_pedis") + " mmHg</span><br>" + rsDiabet.getString("brachialis") + " mmHg</br></td>"
+                                                    + "<td valign='top' colspan='1'>= " + rsDiabet.getString("skor_abi") + " mmHg</td>"
+                                                    + "</tr>");
                                             
                                         }
                                         htmlContent.append(
@@ -14979,6 +15271,298 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                     + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_plantar_kanan") + "</td>"
                                                     + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_dorsal_kiri") + "</td>"
                                                     + "<td valign='top' colspan='2'>" + rsDiabet.getString("deskripsi_plantar_kiri") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            if (Sequel.cariInteger("select count(-1) from deformitas_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
+                                                htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='8'>b. Deformitas :</td>"
+                                                        + "<tr align='center'>"
+                                                        + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Lokasi Kelainan</td>"
+                                                        + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Kanan</td>"
+                                                        + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Kiri</td>"
+                                                        + "</tr>");
+
+                                                //deformitas
+                                                try {
+                                                    psRDD = koneksi.prepareStatement("SELECT * FROM deformitas_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "' order by waktu_simpan");
+                                                    try {
+                                                        rsRDD = psRDD.executeQuery();
+                                                        i = 1;
+                                                        while (rsRDD.next()) {
+                                                            htmlContent.append(
+                                                                    "<tr>"
+                                                                    + "<td valign='top' colspan='2'>" + i + ". " + rsRDD.getString("lokasi") + "</td>"
+                                                                    + "<td valign='top' colspan='3'>" + rsRDD.getString("kanan") + "</td>"
+                                                                    + "<td valign='top' colspan='3'>" + rsRDD.getString("kiri") + "</td>"
+                                                                    + "</tr>");
+                                                            i++;
+                                                        }
+                                                    } catch (Exception e) {
+                                                        System.out.println("Notifikasi : " + e);
+                                                    } finally {
+                                                        if (rsRDD != null) {
+                                                            rsRDD.close();
+                                                        }
+                                                        if (psRDD != null) {
+                                                            psRDD.close();
+                                                        }
+                                                    }
+                                                } catch (Exception e) {
+                                                    System.out.println("Notifikasi : " + e);
+                                                }
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr align='center'>"
+                                                    + "<td valign='top' colspan='3' align='left' bgcolor='#f8fdf3'>c. Inspeksi Kaki</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Kaki Kanan</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Kaki Kiri</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='5'><span style='font-weight:bold'>Kulit Kaki</span></td>"
+                                                        + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Kering/bersisik</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_kering") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_kering") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Tumit pecah-pecah</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_tumit") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_tumit") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Bulu rambut menipis</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_bulu") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_bulu") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Tinea pedis</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_tinea") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_tinea") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Kalus</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_kalus") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_kalus") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Korn</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_korn") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_korn") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Hiperpigmentasi</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_hiperpig") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_hiperpig") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Edema</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_edema") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_edema") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Healed Ulcer</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kanan_healed") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kulit_kiri_healed") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='5'><span style='font-weight:bold'>Kuku Kaki</span></td>"
+                                                        + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Menebal</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_menebal") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_menebal") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Infeksi</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_infeksi") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_infeksi") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Perubahan Warna</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_perubahan") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_perubahan") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Rapuh</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_rapuh") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_rapuh") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Ingrowing nail</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_ingro") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_ingro") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Atrofi</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_atrofi") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_atrofi") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Lain-lain</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kanan_lain") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("kuku_kiri_lain") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='5'><span style='font-weight:bold'>Telapak Kaki</span></td>"
+                                                        + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Hallux toe</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("telapak_kanan_hallux") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("telapak_kiri_hallux") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Pel Planus</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("telapak_kanan_pel") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("telapak_kiri_pel") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Charcot foot</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("telapak_kanan_char") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("telapak_kiri_char") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='5'><span style='font-weight:bold'>Jari Kaki</span></td>"
+                                                        + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Hammer toe</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kanan_hammer") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kiri_hammer") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Claw toe</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kanan_claw") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kiri_claw") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Hiperekstensi</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kanan_hiper") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kiri_hiper") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Maserasi interdigital</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kanan_maser") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("jari_kiri_maser") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            if (rsDiabet.getString("ket_jari_kanan_lain").equals("")) {
+                                                jarKakiKanan = rsDiabet.getString("jari_kanan_lain");
+                                            } else {
+                                                jarKakiKanan = rsDiabet.getString("jari_kanan_lain") + " (" + rsDiabet.getString("ket_jari_kanan_lain") + ")";
+                                            }
+                                            
+                                            if (rsDiabet.getString("ket_jari_kiri_lain").equals("")) {
+                                                jarKakiKiri = rsDiabet.getString("jari_kiri_lain");
+                                            } else {
+                                                jarKakiKiri = rsDiabet.getString("jari_kiri_lain") + " (" + rsDiabet.getString("ket_jari_kiri_lain") + ")";
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>Lain-lain (sebutkan)</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + jarKakiKanan + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + jarKakiKiri + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>V. Pemeriksaan Vaskular</span></td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2'></td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Kaki Kanan</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Kaki Kiri</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='2'>A. Dorsalis Pedis</td>"
+                                                    + "<td valign='top' colspan='1'>" + rsDiabet.getString("dorsalis_kaki_kanan") + "</td>"
+                                                    + "<td valign='top' colspan='1'>" + rsDiabet.getString("dorsalis_kaki_kiri") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='2'>A. Tibialis Posterior</td>"
+                                                    + "<td valign='top' colspan='1'>" + rsDiabet.getString("tibialis_kaki_kanan") + "</td>"
+                                                    + "<td valign='top' colspan='1'>" + rsDiabet.getString("tibialis_kaki_kiri") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'>Pemeriksaan ABI :</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='1'>TDS A. Brachialis</td>"
+                                                    + "<td valign='top' colspan='1'>: " + rsDiabet.getString("brachialis") + " mmHg</td>"
+                                                    + "<td valign='top' colspan='1'></td>"
+                                                    + "<td valign='top' colspan='1'>TDS A. Dorsalis pedis</td>"
+                                                    + "<td valign='top' colspan='1'>: " + rsDiabet.getString("dorsalis_pedis") + " mmHg</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='1'>Score ABI :</td>"
+                                                    + "<td valign='top' colspan='1'><span style='text-decoration:underline'>TDS A. Dorsalis pedis</span><br>TDS A. Brachialis</br></td>"
+                                                    + "<td valign='top' colspan='1'><span style='text-decoration:underline'>" + rsDiabet.getString("dorsalis_pedis") + " mmHg</span><br>" + rsDiabet.getString("brachialis") + " mmHg</br></td>"
+                                                    + "<td valign='top' colspan='1'>= " + rsDiabet.getString("skor_abi") + " mmHg</td>"
                                                     + "</tr>");
                                             
                                             
