@@ -48,14 +48,16 @@ public final class DlgResumePerawatan extends javax.swing.JDialog {
     private final sekuel Sequel = new sekuel();
     private final Properties prop = new Properties();
     private validasi Valid = new validasi();
-    private PreparedStatement psRDO, psRDU, psRDD;
+    private PreparedStatement psRDO, psRDU, psRDD, psRDM;
     private ResultSet rs, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rshal, rsObat, rsDiag, rsDiag1, rsasesmenRJ,
-            rsLIS1, rsLIS2, rsLIS3, rsLISMaster, rsTHT, rsDiabet, rsRDO, rsRDU, rsRDD;
+            rsLIS1, rsLIS2, rsLIS3, rsLISMaster, rsTHT, rsDiabet, rsRDO, rsRDU, rsRDD, rsRDM;
     private String sql, host = "", tipeDiabet = "", merokok = "", lmLuka = "", jnsAlas = "", traMekanik = "", traKimia = "",
             traTermis = "", spontan = "", lainPenyebab = "", tersandung = "", memakai = "", tertusuk = "", dllTraMeka = "",
             terkenaAir = "", terkenaPemanas = "", dllTraTermis = "", amputasiKiri = "", amputasiKanan = "", mataDiabet = "", 
             ginjal = "", pnyJantung = "", hipertensi = "", strok = "", pad = "", nonUlkus = "", ulkus = "", ulkusGang = "", 
-            sellu = "", jarKakiKanan = "", jarKakiKiri = "";
+            sellu = "", jarKakiKanan = "", jarKakiKiri = "", der0 = "", der1 = "", der2 = "", der3 = "", der4 = "", der5 = "",
+            surgi = "", chemi = "", bio = "", hydro = "", foam = "", algi = "", silver = "", cadex = "", madu = "", lainModern = "",
+            debri = "", modernDres = "";
     private int x = 0, lis1 = 0, lis2 = 0, lisM = 0, i = 0;
 
     /**
@@ -7325,8 +7327,9 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                             }
                                             
                                             htmlContent.append(
-                                                    "<tr align='center'>"
-                                                    + "<td valign='top' colspan='3' align='left' bgcolor='#f8fdf3'>c. Inspeksi Kaki</td>"
+                                                    "<tr>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='3' align='left'>c. Inspeksi Kaki</td>"
                                                     + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Kaki Kanan</td>"
                                                     + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Kaki Kiri</td>"
                                                     + "</tr>");
@@ -7576,7 +7579,294 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                                     + "<td valign='top' colspan='1'>= " + rsDiabet.getString("skor_abi") + " mmHg</td>"
                                                     + "</tr>");
                                             
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>VI. Pemeriksaan Neuropati</span></td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='1'></td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Kaki Kanan</td>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Kaki Kiri</td>"
+                                                    + "</tr>");
                                             
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='1'>Monofilamen 10 g</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("monofilamen_kanan") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("monofilamen_kiri") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='1'>Garputala 128 Hz</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("garputala_kanan") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("garputala_kiri") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='1'>Reflex tendo Achilles</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("reflex_kanan") + "</td>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("reflex_kiri") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>VII. Deraja Luka</span><br>Klasifikasi Ulkus Wagner</br></td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Checklist</td>"
+                                                    + "<td valign='top' colspan='7' bgcolor='#f8fdf3'>Deskripsi</td>"
+                                                    + "</tr>");
+                                            
+                                            if (rsDiabet.getString("derajat0").equals("ya")) {
+                                                der0 = "<input type='checkbox' checked>";
+                                            } else {
+                                                der0 = "<input type='checkbox' disabled>";
+                                            }
+                                            
+                                            if (rsDiabet.getString("derajat1").equals("ya")) {
+                                                der1 = "<input type='checkbox' checked>";
+                                            } else {
+                                                der1 = "<input type='checkbox' disabled>";
+                                            }
+                                            
+                                            if (rsDiabet.getString("derajat2").equals("ya")) {
+                                                der2 = "<input type='checkbox' checked>";
+                                            } else {
+                                                der2 = "<input type='checkbox' disabled>";
+                                            }
+                                            
+                                            if (rsDiabet.getString("derajat3").equals("ya")) {
+                                                der3 = "<input type='checkbox' checked>";
+                                            } else {
+                                                der3 = "<input type='checkbox' disabled>";
+                                            }
+                                            
+                                            if (rsDiabet.getString("derajat4").equals("ya")) {
+                                                der4 = "<input type='checkbox' checked>";
+                                            } else {
+                                                der4 = "<input type='checkbox' disabled>";
+                                            }
+                                            
+                                            if (rsDiabet.getString("derajat5").equals("ya")) {
+                                                der5 = "<input type='checkbox' checked>";
+                                            } else {
+                                                der5 = "<input type='checkbox' disabled>";
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + der0 + "</td>"
+                                                    + "<td valign='top' colspan='7'>0 : Tidak ada luka terbuka, mungkin terdapat deformitas atau selulitis</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + der1 + "</td>"
+                                                    + "<td valign='top' colspan='7'>1 : Ulkus diabetes superfisial (partial and full thickness)</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + der2 + "</td>"
+                                                    + "<td valign='top' colspan='7'>2 : Ulkus meluas sampai ligament, tendon, kapsula sendi atau fasia dalam tanpa abses atau osteomielitis</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + der3 + "</td>"
+                                                    + "<td valign='top' colspan='7'>3 : Ulkus dalam dengan abses, osteomielitis, atau sepsis sendi</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + der4 + "</td>"
+                                                    + "<td valign='top' colspan='7'>4 : Gangren yang terbatas pada kaki bagian depan atau tumit</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' align='center' colspan='1'>" + der5 + "</td>"
+                                                    + "<td valign='top' colspan='7'>5 : Gangren yang meluas meliputi seluruh kaki</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>VIII. Pemeriksaan Penunjang</span></td>"
+                                                    + "<tr align='left'>"
+                                                    + "<td valign='top' colspan='8' bgcolor='#f8fdf3'>Laboratorium rutin (dalam 3 bulan terakhir)</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='8'>" + rsDiabet.getString("pemeriksaan_lab").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                                    + "</tr>");
+                                            
+                                            if (rsDiabet.getString("ronsen_kaki").equals("ya")) {
+                                                htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='8'>Rontgen Kaki : </td>"
+                                                        + "<tr align='center'>"
+                                                        + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Tanggal</td>"
+                                                        + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Kesimpulan</td>"
+                                                        + "<td valign='top' colspan='1' bgcolor='#f8fdf3'>Osteomielitis</td>"
+                                                        + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Lokasi</td>"
+                                                        + "</tr>");
+
+                                                htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' colspan='1'>" + Valid.SetTglINDONESIA(rsDiabet.getString("ronsen_kaki_tgl")) + "</td>"
+                                                        + "<td valign='top' colspan='3'>" + rsDiabet.getString("kesimpulan_ronsen") + "</td>"
+                                                        + "<td valign='top' align='center' colspan='1'>" + rsDiabet.getString("osteomielitis") + "</td>"
+                                                        + "<td valign='top' colspan='3'>" + rsDiabet.getString("lokasi") + "</td>"
+                                                        + "</tr>");
+                                            }
+                                            
+                                            if (Sequel.cariInteger("select count(-1) from mikrobiologi_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "'") > 0) {
+                                                htmlContent.append(
+                                                        "<tr>"
+                                                        + "<td valign='top' width='20%' align='left' colspan='8'>Mikrobiologi :</td>"
+                                                        + "<tr align='center'>"
+                                                        + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Bakteri</td>"
+                                                        + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Sensitif</td>"
+                                                        + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Resisten</td>"
+                                                        + "</tr>");
+                                                
+                                                //mikrobiologi
+                                                try {
+                                                    psRDM = koneksi.prepareStatement("SELECT * FROM mikrobiologi_kaki_diabetes where no_rawat='" + rs2.getString("no_rawat") + "' order by waktu_simpan");
+                                                    try {
+                                                        rsRDM = psRDM.executeQuery();
+                                                        i = 1;
+                                                        while (rsRDM.next()) {
+                                                            htmlContent.append(
+                                                                    "<tr>"
+                                                                    + "<td valign='top' colspan='2'>" + i + ". " + rsRDM.getString("bakteri") + "</td>"
+                                                                    + "<td valign='top' colspan='3'>" + rsRDM.getString("sensitif") + "</td>"
+                                                                    + "<td valign='top' colspan='3'>" + rsRDM.getString("resisten") + "</td>"
+                                                                    + "</tr>");
+                                                            i++;
+                                                        }
+                                                    } catch (Exception e) {
+                                                        System.out.println("Notifikasi : " + e);
+                                                    } finally {
+                                                        if (rsRDM != null) {
+                                                            rsRDM.close();
+                                                        }
+                                                        if (psRDM != null) {
+                                                            psRDM.close();
+                                                        }
+                                                    }
+                                                } catch (Exception e) {
+                                                    System.out.println("Notifikasi : " + e);
+                                                }
+                                            }
+                                            
+                                            htmlContent.append(
+                                                    "<tr align='center'>"
+                                                    + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>Rontgen Thorax (Kesimpulan)</td>"
+                                                    + "<td valign='top' colspan='3' bgcolor='#f8fdf3'>EKG (Kesimpulan)</td>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>USG Dopler</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='3'>" + rsDiabet.getString("kes_ronsen_thorax") + "</td>"
+                                                    + "<td valign='top' colspan='3'>" + rsDiabet.getString("kes_ekg") + "</td>"
+                                                    + "<td valign='top' colspan='2'>" + rsDiabet.getString("usg_dopler") + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' width='20%' align='left' colspan='8'><span style='font-weight:bold'>IX. Tata Laksana Rawat Luka</span></td>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='2' bgcolor='#f8fdf3'>Debridement</td>"
+                                                    + "<td valign='top' colspan='6' bgcolor='#f8fdf3'>Modern Dressing</td>"
+                                                    + "</tr>");
+                                            
+                                            if (rsDiabet.getString("surgical").equals("ya")) {
+                                                surgi = "Surgical, ";
+                                            } else {
+                                                surgi = "";
+                                            }
+
+                                            if (rsDiabet.getString("chemical").equals("ya")) {
+                                                chemi = "Chemical, ";
+                                            } else {
+                                                chemi = "";
+                                            }
+
+                                            if (rsDiabet.getString("biology").equals("ya")) {
+                                                bio = "Biology";
+                                            } else {
+                                                bio = "";
+                                            }
+                                            debri = surgi + chemi + bio;
+                                            
+                                            if (rsDiabet.getString("hidrocol").equals("ya")) {
+                                                hydro = "Hydrocolloid, ";
+                                            } else {
+                                                hydro = "";
+                                            }
+                                            
+                                            if (rsDiabet.getString("foam").equals("ya")) {
+                                                foam = "Foam, ";
+                                            } else {
+                                                foam = "";
+                                            }
+                                            
+                                            if (rsDiabet.getString("allginate").equals("ya")) {
+                                                algi = "Allginate, ";
+                                            } else {
+                                                algi = "";
+                                            }
+                                            
+                                            if (rsDiabet.getString("silver").equals("ya")) {
+                                                silver = "Silver Sulfadiazine, ";
+                                            } else {
+                                                silver = "";
+                                            }
+                                            
+                                            if (rsDiabet.getString("cadexomer").equals("ya")) {
+                                                cadex = "Cadexomer, ";
+                                            } else {
+                                                cadex = "";
+                                            }
+
+                                            if (rsDiabet.getString("madu").equals("ya")) {
+                                                madu = "Madu, ";
+                                            } else {
+                                                madu = "";
+                                            }
+
+                                            if (rsDiabet.getString("modern_dresing_lain").equals("ya")) {
+                                                if (rsDiabet.getString("ket_modern_dresing_lain").equals("")) {
+                                                    lainModern = "Lain-lain (-)";
+                                                } else {
+                                                    lainModern = "Lain-lain (" + rsDiabet.getString("ket_modern_dresing_lain") + ")";
+                                                }
+                                            } else {
+                                                lainModern = "";
+                                            }
+                                            modernDres = hydro + foam + algi + silver + cadex + madu + lainModern;
+
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='2'>" + debri + "</td>"
+                                                    + "<td valign='top' colspan='6'>" + modernDres + "</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<tr align='center'>"
+                                                    + "<td valign='top' colspan='4' bgcolor='#f8fdf3'>Perawat</td>"
+                                                    + "<td valign='top' colspan='4' bgcolor='#f8fdf3'>Dokter Pemeriksa</td>"
+                                                    + "</tr>");
+                                            
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top' colspan='4'>" + Sequel.cariIsi("select ifnull(nama,'-') from pegawai where nik='" + rsDiabet.getString("nip_perawat") + "'") + "</td>"
+                                                    + "<td valign='top' colspan='4'>" + Sequel.cariIsi("select ifnull(nama,'-') from pegawai where nik='" + rsDiabet.getString("nip_dokter") + "'") + "</td>"
+                                                    + "</tr>");
                                         }
                                         htmlContent.append(
                                             "</table>"
