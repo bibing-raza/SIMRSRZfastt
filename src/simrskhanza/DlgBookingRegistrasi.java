@@ -5644,16 +5644,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             } else {
                 label_pesan.setText("");
                 n = Sequel.cariInteger("select count(-1) from bridging_sep_backup where "
-                        + "tglsep='" + tbBoking.getValueAt(tbBoking.getSelectedRow(), 4).toString() + "' and "
+                        + "date(tglsep)='" + tbBoking.getValueAt(tbBoking.getSelectedRow(), 4).toString() + "' and "
                         + "nomr='" + TNoRM.getText() + "' and code<>'XXX'");
 
                 for (i = 0; i < n; i++) {
                     if (Sequel.cariInteger("select count(-1) from bridging_sep_backup where "
-                            + "tglsep='" + tbBoking.getValueAt(tbBoking.getSelectedRow(), 4).toString() + "' and "
+                            + "date(tglsep)='" + tbBoking.getValueAt(tbBoking.getSelectedRow(), 4).toString() + "' and "
                             + "nomr='" + TNoRM.getText() + "' and code<>'XXX'") > 0) {
 
                         label_pesan.setText(label_pesan.getText() + Sequel.cariIsi("select concat(code,' : ',message) from bridging_sep_backup where "
-                                + "tglsep='" + tbBoking.getValueAt(tbBoking.getSelectedRow(), 4).toString() + "' and "
+                                + "date(tglsep)='" + tbBoking.getValueAt(tbBoking.getSelectedRow(), 4).toString() + "' and "
                                 + "nomr='" + TNoRM.getText() + "' and code<>'XXX'") + "\n\n");
                     }
                 }

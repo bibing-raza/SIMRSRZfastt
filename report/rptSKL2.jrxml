@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="443" leftMargin="76" rightMargin="76" topMargin="76" bottomMargin="56">
 	<property name="ireport.zoom" value="1.3660269107301424"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="292"/>
+	<property name="ireport.y" value="334"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -145,6 +145,10 @@ INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec INNER JOIN kabupaten kb on kb.kd_k
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{umuribu}]]></textFieldExpression>
 			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="198" y="600" width="110" height="110"/>
+				<imageExpression class="java.lang.String"><![CDATA["setting/stempelRS.jpg"]]></imageExpression>
+			</image>
 			<textField>
 				<reportElement x="409" y="440" width="22" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
