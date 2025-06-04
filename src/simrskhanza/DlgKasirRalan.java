@@ -10251,7 +10251,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             sb.append("CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format, rp.kd_poli ");
             sb.append("FROM reg_periksa rp INNER JOIN dokter d ON rp.kd_dokter = d.kd_dokter INNER JOIN pasien p ON rp.no_rkm_medis =p.no_rkm_medis ");
             sb.append("INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj INNER JOIN kelurahan kl ON kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec=p.kd_kec ");
-            sb.append("INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab LEFT JOIN booking_registrasi br ON br.no_rawat = rp.no_rawat LEFT JOIN eklaim_new_claim enc ON enc.no_rawat = rp.no_rawat WHERE ");
+            sb.append("INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab LEFT JOIN booking_registrasi br ON br.no_rawat = rp.no_rawat LEFT JOIN eklaim_new_claim enc ON enc.no_rawat = rp.no_rawat and enc.jnspelayanan='2' WHERE ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.tgl_registrasi like ? or ");
@@ -10481,7 +10481,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             sb.append("CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format, rp.kd_poli ");
             sb.append("FROM reg_periksa rp INNER JOIN dokter d ON rp.kd_dokter = d.kd_dokter INNER JOIN pasien p ON rp.no_rkm_medis =p.no_rkm_medis ");
             sb.append("INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj INNER JOIN kelurahan kl ON kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec=p.kd_kec ");
-            sb.append("INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab LEFT JOIN booking_registrasi br ON br.no_rawat = rp.no_rawat LEFT JOIN eklaim_new_claim enc ON enc.no_rawat = rp.no_rawat WHERE ");
+            sb.append("INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab LEFT JOIN booking_registrasi br ON br.no_rawat = rp.no_rawat LEFT JOIN eklaim_new_claim enc ON enc.no_rawat = rp.no_rawat and enc.jnspelayanan='2' WHERE ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts in ('Belum','Bayar','Batal') and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.tgl_registrasi like ? or ");

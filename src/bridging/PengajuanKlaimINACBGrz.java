@@ -8411,17 +8411,16 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 ChkRawatIntensif.setEnabled(true);
                 losIntensif.setEnabled(false);
                 ventilator.setEnabled(false);
-                wktMasuk.setText(Sequel.cariIsi("select ifnull(concat(date_format(tgl_registrasi,'%d %b %Y'),' ',jam_reg),'') from reg_periksa where no_rawat='" + norawat + "'"));
+                wktMasuk.setText(Sequel.cariIsi("select ifnull(concat(date_format(tgl_masuk,'%d %b %Y'),' ',jam_masuk),'') from kamar_inap where no_rawat='" + norawat + "' ORDER BY tgl_masuk limit 1"));
                 wktPulang.setText(Sequel.cariIsi("select concat(date_format(ki.tgl_keluar,'%d %b %Y'),' ',ki.jam_keluar) from kamar_inap ki "
                         + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat where ki.no_rawat='" + norawat + "' and ki.stts_pulang not in ('-','pindah kamar')"));
                 tglmsk = Sequel.cariIsi("SELECT CONCAT(bs.tglsep,' ',rp.jam_reg) FROM reg_periksa rp "
-                        + "INNER JOIN bridging_sep bs ON bs.no_rawat=rp.no_rawat WHERE bs.no_rawat='" + norawat + "'");
+                        + "INNER JOIN bridging_sep bs ON bs.no_rawat=rp.no_rawat WHERE bs.no_rawat='" + norawat + "' and bs.jnspelayanan='1'");
                 tglplg = Sequel.cariIsi("SELECT if(bs.tglsep=ki.tgl_keluar,CONCAT(ki.tgl_keluar,' ',rp.jam_reg),CONCAT(ki.tgl_keluar,' ',ki.jam_keluar)) tgl_pulang "
                         + "from kamar_inap ki inner join reg_periksa rp on rp.no_rawat=ki.no_rawat LEFT JOIN bridging_sep bs ON bs.no_rawat=rp.no_rawat WHERE "
                         + "ki.no_rawat='" + norawat + "' and ki.stts_pulang not in ('-','pindah kamar')");
-                dpjp.setText(Sequel.cariIsi("select d.nm_dokter from dpjp_ranap dr inner join dokter d on d.kd_dokter=dr.kd_dokter where dr.no_rawat='" + norawat + "'"));                
-                labelLOS.setText(Sequel.cariIsi("select DATEDIFF(k.tgl_keluar,r.tgl_registrasi)+1 from kamar_inap k "
-                        + "inner join reg_periksa r on r.no_rawat = k.no_rawat where k.stts_pulang not in ('-','Pindah Kamar') and k.no_rawat = '" + norawat + "'"));
+                dpjp.setText(Sequel.cariIsi("select d.nm_dokter from dpjp_ranap dr inner join dokter d on d.kd_dokter=dr.kd_dokter where dr.no_rawat='" + norawat + "'"));
+                labelLOS.setText(Sequel.cariIsi("select DATEDIFF(tgl_keluar,tgl_masuk)+1 from kamar_inap where no_rawat = '" + norawat + "' order by tgl_masuk limit 1"));
 
                 cekstsPulang = Sequel.cariIsi("select stts_pulang from kamar_inap where no_rawat='" + norawat + "' and stts_pulang not in ('-','pindah kamar')");
                 if (cekstsPulang.equals("Dirujuk")) {
@@ -8482,7 +8481,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 wktMasuk.setText(Sequel.cariIsi("select ifnull(concat(date_format(tgl_registrasi,'%d %b %Y'),' ',jam_reg),'') from reg_periksa where no_rawat='" + norawat + "'"));
                 wktPulang.setText(wktMasuk.getText());
                 tglmsk = Sequel.cariIsi("SELECT CONCAT(bs.tglsep,' ',rp.jam_reg) FROM reg_periksa rp "
-                        + "INNER JOIN bridging_sep bs ON bs.no_rawat=rp.no_rawat WHERE bs.no_rawat='" + norawat + "'");
+                        + "INNER JOIN bridging_sep bs ON bs.no_rawat=rp.no_rawat WHERE bs.no_rawat='" + norawat + "' and and bs.jnspelayanan='2'");
                 tglplg = tglmsk;
                 kdPulang = "1";
                 cmbcrPulang.setSelectedIndex(4);

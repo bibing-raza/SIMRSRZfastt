@@ -13309,7 +13309,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }
 
     public void setCariKosong() {
-        TCari.setText("");
         if (Sequel.cariInteger("select count(-1) from dokter d inner join spesialis s on s.kd_sps=d.kd_sps where d.kd_dokter='" + akses.getkode() + "' and s.kd_sps not in ('-','S0021')") > 0) {
             tampilDPJP();
         } else {

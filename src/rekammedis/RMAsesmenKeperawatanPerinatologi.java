@@ -101,7 +101,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             "fisik_genital_pria", "fisik_genital_wanita", "fisik_lanugo", "fisik_plantar", "hipotermi", "resiko_hipotermi", "hipertermi", "pola_nafas", "nyeri_masalah_keperawatan",
             "kerusakan", "resiko_kerusakan", "kebutuhan", "ikterik", "gangguan_motilitas", "bersihan", "resiko_bersihan", "perubahan_perfusi", "kelebihan", "resiko_kelebihan",
             "resiko_kebutuhan", "masalah_keperawatan_lain", "tgl_rencana1", "jam_rencana1", "tgl_rencana2", "jam_rencana2", "nip_perawat", "waktu_simpan", "cek_tgllahir_ibu", "spo2",
-            "nip_verifikator", "nmVerifikator"
+            "nip_verifikator", "nmVerifikator", "minggu_ke"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -113,7 +113,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         tbAsesmen.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbAsesmen.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 194; i++) {
+        for (i = 0; i < 195; i++) {
             TableColumn column = tbAsesmen.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -686,6 +686,9 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             } else if (i == 193) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 194) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbAsesmen.setDefaultRenderer(Object.class, new WarnaTable());
@@ -724,6 +727,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         TnmKerabat.setDocument(new batasInput((int) 40).getKata(TnmKerabat));
         ThubKerabat.setDocument(new batasInput((int) 40).getKata(ThubKerabat));
         TtelpKerabat.setDocument(new batasInput((byte) 16).getOnlyAngka(TtelpKerabat));
+        Tminggu.setDocument(new batasInput((byte) 2).getOnlyAngka(Tminggu));
         TCari.setDocument(new batasInput((int) 100).getKata(TCari));
         
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -1204,6 +1208,50 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel146 = new widget.Label();
         TnmVerifikator = new widget.TextBox();
         BtnVerifikator = new widget.Button();
+        jLabel147 = new widget.Label();
+        jLabel148 = new widget.Label();
+        jLabel149 = new widget.Label();
+        jLabel150 = new widget.Label();
+        jLabel151 = new widget.Label();
+        jLabel152 = new widget.Label();
+        jLabel153 = new widget.Label();
+        jLabel154 = new widget.Label();
+        jLabel155 = new widget.Label();
+        jLabel156 = new widget.Label();
+        jLabel157 = new widget.Label();
+        jLabel158 = new widget.Label();
+        jLabel159 = new widget.Label();
+        jLabel160 = new widget.Label();
+        jLabel161 = new widget.Label();
+        jLabel162 = new widget.Label();
+        jLabel163 = new widget.Label();
+        jLabel164 = new widget.Label();
+        jLabel165 = new widget.Label();
+        jLabel166 = new widget.Label();
+        jLabel167 = new widget.Label();
+        jLabel168 = new widget.Label();
+        jLabel169 = new widget.Label();
+        jLabel170 = new widget.Label();
+        jLabel171 = new widget.Label();
+        jLabel172 = new widget.Label();
+        jLabel173 = new widget.Label();
+        jLabel174 = new widget.Label();
+        jSeparator14 = new javax.swing.JSeparator();
+        jSeparator15 = new javax.swing.JSeparator();
+        jSeparator16 = new javax.swing.JSeparator();
+        jSeparator17 = new javax.swing.JSeparator();
+        jSeparator18 = new javax.swing.JSeparator();
+        jSeparator19 = new javax.swing.JSeparator();
+        jSeparator20 = new javax.swing.JSeparator();
+        jSeparator21 = new javax.swing.JSeparator();
+        jSeparator22 = new javax.swing.JSeparator();
+        jSeparator23 = new javax.swing.JSeparator();
+        jSeparator24 = new javax.swing.JSeparator();
+        jSeparator25 = new javax.swing.JSeparator();
+        jSeparator26 = new javax.swing.JSeparator();
+        jSeparator27 = new javax.swing.JSeparator();
+        jLabel175 = new widget.Label();
+        Tminggu = new widget.TextBox();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbAsesmen = new widget.Table();
@@ -1329,7 +1377,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         TrgRawat.setBounds(114, 38, 608, 23);
 
         TtglRencana2.setEditable(false);
-        TtglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-03-2025" }));
+        TtglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
         TtglRencana2.setDisplayFormat("dd-MM-yyyy");
         TtglRencana2.setName("TtglRencana2"); // NOI18N
         TtglRencana2.setOpaque(false);
@@ -1383,7 +1431,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel95.setBounds(0, 2727, 125, 23);
 
         TtglRencana1.setEditable(false);
-        TtglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-03-2025" }));
+        TtglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
         TtglRencana1.setDisplayFormat("dd-MM-yyyy");
         TtglRencana1.setName("TtglRencana1"); // NOI18N
         TtglRencana1.setOpaque(false);
@@ -2233,7 +2281,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(TdiagnosaIbu);
         TdiagnosaIbu.setBounds(114, 654, 610, 23);
 
-        TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-03-2025" }));
+        TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
         TtglLahir.setDisplayFormat("dd-MM-yyyy");
         TtglLahir.setName("TtglLahir"); // NOI18N
         TtglLahir.setOpaque(false);
@@ -5024,7 +5072,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         TkesimpulanSkor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TkesimpulanSkor.setName("TkesimpulanSkor"); // NOI18N
         FormInput.add(TkesimpulanSkor);
-        TkesimpulanSkor.setBounds(597, 2307, 200, 23);
+        TkesimpulanSkor.setBounds(597, 2307, 80, 23);
 
         jLabel143.setForeground(new java.awt.Color(0, 0, 0));
         jLabel143.setText("10. DAFTAR MASALAH KEPERAWATAN");
@@ -5262,7 +5310,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel144.setText("Masalah Keperawatan Lainnya :");
         jLabel144.setName("jLabel144"); // NOI18N
         FormInput.add(jLabel144);
-        jLabel144.setBounds(545, 2475, 170, 23);
+        jLabel144.setBounds(545, 2505, 170, 23);
 
         scrollPane14.setName("scrollPane14"); // NOI18N
 
@@ -5279,7 +5327,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         scrollPane14.setViewportView(TmasalahLain);
 
         FormInput.add(scrollPane14);
-        scrollPane14.setBounds(545, 2503, 370, 190);
+        scrollPane14.setBounds(545, 2533, 370, 160);
 
         jLabel145.setForeground(new java.awt.Color(0, 0, 0));
         jLabel145.setText("Disusun Rencana Keperawatan :");
@@ -5357,6 +5405,313 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(BtnVerifikator);
         BtnVerifikator.setBounds(560, 2811, 28, 23);
 
+        jLabel147.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel147.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel147.setText("Skor");
+        jLabel147.setName("jLabel147"); // NOI18N
+        FormInput.add(jLabel147);
+        jLabel147.setBounds(740, 2251, 30, 23);
+
+        jLabel148.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel148.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel148.setText("Minggu");
+        jLabel148.setName("jLabel148"); // NOI18N
+        FormInput.add(jLabel148);
+        jLabel148.setBounds(780, 2251, 50, 23);
+
+        jLabel149.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel149.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel149.setText("-10");
+        jLabel149.setName("jLabel149"); // NOI18N
+        FormInput.add(jLabel149);
+        jLabel149.setBounds(740, 2268, 30, 23);
+
+        jLabel150.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel150.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel150.setText("20");
+        jLabel150.setName("jLabel150"); // NOI18N
+        FormInput.add(jLabel150);
+        jLabel150.setBounds(780, 2268, 50, 23);
+
+        jLabel151.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel151.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel151.setText("-5");
+        jLabel151.setName("jLabel151"); // NOI18N
+        FormInput.add(jLabel151);
+        jLabel151.setBounds(740, 2285, 30, 23);
+
+        jLabel152.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel152.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel152.setText("22");
+        jLabel152.setName("jLabel152"); // NOI18N
+        FormInput.add(jLabel152);
+        jLabel152.setBounds(780, 2285, 50, 23);
+
+        jLabel153.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel153.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel153.setText("0");
+        jLabel153.setName("jLabel153"); // NOI18N
+        FormInput.add(jLabel153);
+        jLabel153.setBounds(740, 2302, 30, 23);
+
+        jLabel154.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel154.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel154.setText("24");
+        jLabel154.setName("jLabel154"); // NOI18N
+        FormInput.add(jLabel154);
+        jLabel154.setBounds(780, 2302, 50, 23);
+
+        jLabel155.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel155.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel155.setText("5");
+        jLabel155.setName("jLabel155"); // NOI18N
+        FormInput.add(jLabel155);
+        jLabel155.setBounds(740, 2319, 30, 23);
+
+        jLabel156.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel156.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel156.setText("26");
+        jLabel156.setName("jLabel156"); // NOI18N
+        FormInput.add(jLabel156);
+        jLabel156.setBounds(780, 2319, 50, 23);
+
+        jLabel157.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel157.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel157.setText("10");
+        jLabel157.setName("jLabel157"); // NOI18N
+        FormInput.add(jLabel157);
+        jLabel157.setBounds(740, 2336, 30, 23);
+
+        jLabel158.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel158.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel158.setText("28");
+        jLabel158.setName("jLabel158"); // NOI18N
+        FormInput.add(jLabel158);
+        jLabel158.setBounds(780, 2336, 50, 23);
+
+        jLabel159.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel159.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel159.setText("15");
+        jLabel159.setName("jLabel159"); // NOI18N
+        FormInput.add(jLabel159);
+        jLabel159.setBounds(740, 2353, 30, 23);
+
+        jLabel160.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel160.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel160.setText("30");
+        jLabel160.setName("jLabel160"); // NOI18N
+        FormInput.add(jLabel160);
+        jLabel160.setBounds(780, 2353, 50, 23);
+
+        jLabel161.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel161.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel161.setText("20");
+        jLabel161.setName("jLabel161"); // NOI18N
+        FormInput.add(jLabel161);
+        jLabel161.setBounds(740, 2370, 30, 23);
+
+        jLabel162.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel162.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel162.setText("32");
+        jLabel162.setName("jLabel162"); // NOI18N
+        FormInput.add(jLabel162);
+        jLabel162.setBounds(780, 2370, 50, 23);
+
+        jLabel163.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel163.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel163.setText("25");
+        jLabel163.setName("jLabel163"); // NOI18N
+        FormInput.add(jLabel163);
+        jLabel163.setBounds(740, 2387, 30, 23);
+
+        jLabel164.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel164.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel164.setText("34");
+        jLabel164.setName("jLabel164"); // NOI18N
+        FormInput.add(jLabel164);
+        jLabel164.setBounds(780, 2387, 50, 23);
+
+        jLabel165.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel165.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel165.setText("30");
+        jLabel165.setName("jLabel165"); // NOI18N
+        FormInput.add(jLabel165);
+        jLabel165.setBounds(740, 2404, 30, 23);
+
+        jLabel166.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel166.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel166.setText("36");
+        jLabel166.setName("jLabel166"); // NOI18N
+        FormInput.add(jLabel166);
+        jLabel166.setBounds(780, 2404, 50, 23);
+
+        jLabel167.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel167.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel167.setText("35");
+        jLabel167.setName("jLabel167"); // NOI18N
+        FormInput.add(jLabel167);
+        jLabel167.setBounds(740, 2421, 30, 23);
+
+        jLabel168.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel168.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel168.setText("38");
+        jLabel168.setName("jLabel168"); // NOI18N
+        FormInput.add(jLabel168);
+        jLabel168.setBounds(780, 2421, 50, 23);
+
+        jLabel169.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel169.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel169.setText("40");
+        jLabel169.setName("jLabel169"); // NOI18N
+        FormInput.add(jLabel169);
+        jLabel169.setBounds(740, 2438, 30, 23);
+
+        jLabel170.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel170.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel170.setText("40");
+        jLabel170.setName("jLabel170"); // NOI18N
+        FormInput.add(jLabel170);
+        jLabel170.setBounds(780, 2438, 50, 23);
+
+        jLabel171.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel171.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel171.setText("45");
+        jLabel171.setName("jLabel171"); // NOI18N
+        FormInput.add(jLabel171);
+        jLabel171.setBounds(740, 2455, 30, 23);
+
+        jLabel172.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel172.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel172.setText("42");
+        jLabel172.setName("jLabel172"); // NOI18N
+        FormInput.add(jLabel172);
+        jLabel172.setBounds(780, 2455, 50, 23);
+
+        jLabel173.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel173.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel173.setText("50");
+        jLabel173.setName("jLabel173"); // NOI18N
+        FormInput.add(jLabel173);
+        jLabel173.setBounds(740, 2472, 30, 23);
+
+        jLabel174.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel174.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel174.setText("44");
+        jLabel174.setName("jLabel174"); // NOI18N
+        FormInput.add(jLabel174);
+        jLabel174.setBounds(780, 2472, 50, 23);
+
+        jSeparator14.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator14.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator14.setName("jSeparator14"); // NOI18N
+        FormInput.add(jSeparator14);
+        jSeparator14.setBounds(777, 2251, 1, 240);
+
+        jSeparator15.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator15.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator15.setName("jSeparator15"); // NOI18N
+        FormInput.add(jSeparator15);
+        jSeparator15.setBounds(740, 2270, 90, 1);
+
+        jSeparator16.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator16.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator16.setName("jSeparator16"); // NOI18N
+        FormInput.add(jSeparator16);
+        jSeparator16.setBounds(740, 2287, 90, 1);
+
+        jSeparator17.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator17.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator17.setName("jSeparator17"); // NOI18N
+        FormInput.add(jSeparator17);
+        jSeparator17.setBounds(740, 2304, 90, 1);
+
+        jSeparator18.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator18.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator18.setName("jSeparator18"); // NOI18N
+        FormInput.add(jSeparator18);
+        jSeparator18.setBounds(740, 2321, 90, 1);
+
+        jSeparator19.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator19.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator19.setName("jSeparator19"); // NOI18N
+        FormInput.add(jSeparator19);
+        jSeparator19.setBounds(740, 2338, 90, 1);
+
+        jSeparator20.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator20.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator20.setName("jSeparator20"); // NOI18N
+        FormInput.add(jSeparator20);
+        jSeparator20.setBounds(740, 2355, 90, 1);
+
+        jSeparator21.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator21.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator21.setName("jSeparator21"); // NOI18N
+        FormInput.add(jSeparator21);
+        jSeparator21.setBounds(740, 2372, 90, 1);
+
+        jSeparator22.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator22.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator22.setName("jSeparator22"); // NOI18N
+        FormInput.add(jSeparator22);
+        jSeparator22.setBounds(740, 2389, 90, 1);
+
+        jSeparator23.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator23.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator23.setName("jSeparator23"); // NOI18N
+        FormInput.add(jSeparator23);
+        jSeparator23.setBounds(740, 2406, 90, 1);
+
+        jSeparator24.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator24.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator24.setName("jSeparator24"); // NOI18N
+        FormInput.add(jSeparator24);
+        jSeparator24.setBounds(740, 2423, 90, 1);
+
+        jSeparator25.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator25.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator25.setName("jSeparator25"); // NOI18N
+        FormInput.add(jSeparator25);
+        jSeparator25.setBounds(740, 2440, 90, 1);
+
+        jSeparator26.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator26.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator26.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator26.setName("jSeparator26"); // NOI18N
+        FormInput.add(jSeparator26);
+        jSeparator26.setBounds(740, 2457, 90, 1);
+
+        jSeparator27.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator27.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator27.setName("jSeparator27"); // NOI18N
+        FormInput.add(jSeparator27);
+        jSeparator27.setBounds(740, 2474, 90, 1);
+
+        jLabel175.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel175.setText("Minggu Ke :");
+        jLabel175.setName("jLabel175"); // NOI18N
+        FormInput.add(jLabel175);
+        jLabel175.setBounds(520, 2335, 73, 23);
+
+        Tminggu.setForeground(new java.awt.Color(0, 0, 0));
+        Tminggu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Tminggu.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Tminggu.setName("Tminggu"); // NOI18N
+        FormInput.add(Tminggu);
+        Tminggu.setBounds(597, 2335, 50, 23);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormAsesmen.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -5399,7 +5754,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-03-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5413,7 +5768,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-03-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5629,7 +5984,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             cekData();
             if (Sequel.menyimpantf("asesmen_keperawatan_perinatologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
                     + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 184, new String[]{
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 185, new String[]{
                         TNoRw.getText(), TrgRawat.getText(), cmbSumber.getSelectedItem().toString(), TlainSumber.getText(), cmbRujukan.getSelectedItem().toString(),
                         cmbJnsRujukan.getSelectedItem().toString(), TdiagnosaRujukan.getText(), Tkeluhan.getText(), TnmIdentitas.getText(), cmbPendidikan.getSelectedItem().toString(),
                         Tpekerjaan.getText(), cmbAgama.getSelectedItem().toString(), Talamat.getText(), Tbbl.getText(), Tpb.getText(), Tlk.getText(), Tld.getText(),
@@ -5655,7 +6010,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                         resikoKerusakan, kebutuhan, ikterik, gangguan, bersihan, resikoBersihan, perubahan, kelebihan, resikoKelebihan, resikoKebutuhan, TmasalahLain.getText(), 
                         Valid.SetTgl(TtglRencana1.getSelectedItem() + ""), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), 
                         Valid.SetTgl(TtglRencana2.getSelectedItem() + ""), cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nip, 
-                        Sequel.cariIsi("select now()"), cekTglLahir, Tspo.getText(), nipVerifikator
+                        Sequel.cariIsi("select now()"), cekTglLahir, Tspo.getText(), nipVerifikator, Tminggu.getText()
                     }) == true) {
 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Perinatologi", "Simpan");
@@ -6256,7 +6611,12 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             param.put("nilaiNeo", TnilaiNeo.getText());
             param.put("nilaiFisik", TnilaiFisik.getText());
             param.put("nilaiSkor", TnilaiSkor.getText());
-            param.put("kesimpulanSkor", TkesimpulanSkor.getText());
+            
+            if (Tminggu.getText().equals("")) {
+                param.put("kesimpulanSkor", TkesimpulanSkor.getText());
+            } else {
+                param.put("kesimpulanSkor", TkesimpulanSkor.getText() + ", Minggu " + Tminggu.getText());
+            }
             
             if (chkHipotermi.isSelected() == true) {
                 param.put("hipotermi", "V");
@@ -7367,6 +7727,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.TextBox Tlp;
     private widget.TextBox TmakananAlergi;
     private widget.TextArea TmasalahLain;
+    private widget.TextBox Tminggu;
     private widget.TextBox Tnadi;
     private widget.TextBox TnilaiCrying;
     private widget.TextBox TnilaiExpresion;
@@ -7610,9 +7971,38 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.Label jLabel144;
     private widget.Label jLabel145;
     private widget.Label jLabel146;
+    private widget.Label jLabel147;
+    private widget.Label jLabel148;
+    private widget.Label jLabel149;
     private widget.Label jLabel15;
+    private widget.Label jLabel150;
+    private widget.Label jLabel151;
+    private widget.Label jLabel152;
+    private widget.Label jLabel153;
+    private widget.Label jLabel154;
+    private widget.Label jLabel155;
+    private widget.Label jLabel156;
+    private widget.Label jLabel157;
+    private widget.Label jLabel158;
+    private widget.Label jLabel159;
     private widget.Label jLabel16;
+    private widget.Label jLabel160;
+    private widget.Label jLabel161;
+    private widget.Label jLabel162;
+    private widget.Label jLabel163;
+    private widget.Label jLabel164;
+    private widget.Label jLabel165;
+    private widget.Label jLabel166;
+    private widget.Label jLabel167;
+    private widget.Label jLabel168;
+    private widget.Label jLabel169;
     private widget.Label jLabel17;
+    private widget.Label jLabel170;
+    private widget.Label jLabel171;
+    private widget.Label jLabel172;
+    private widget.Label jLabel173;
+    private widget.Label jLabel174;
+    private widget.Label jLabel175;
     private widget.Label jLabel18;
     private widget.Label jLabel19;
     private widget.Label jLabel20;
@@ -7706,6 +8096,20 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;
+    private javax.swing.JSeparator jSeparator14;
+    private javax.swing.JSeparator jSeparator15;
+    private javax.swing.JSeparator jSeparator16;
+    private javax.swing.JSeparator jSeparator17;
+    private javax.swing.JSeparator jSeparator18;
+    private javax.swing.JSeparator jSeparator19;
+    private javax.swing.JSeparator jSeparator20;
+    private javax.swing.JSeparator jSeparator21;
+    private javax.swing.JSeparator jSeparator22;
+    private javax.swing.JSeparator jSeparator23;
+    private javax.swing.JSeparator jSeparator24;
+    private javax.swing.JSeparator jSeparator25;
+    private javax.swing.JSeparator jSeparator26;
+    private javax.swing.JSeparator jSeparator27;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
@@ -7944,7 +8348,8 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                         rs.getString("cek_tgllahir_ibu"),
                         rs.getString("spo2"),                        
                         rs.getString("nip_verifikator"),
-                        rs.getString("nmVerifikator")
+                        rs.getString("nmVerifikator"),
+                        rs.getString("minggu_ke")
                     });
                 }
             } catch (Exception e) {
@@ -8178,6 +8583,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         TtotNilaiNeomuskular.setText("0");
         TnilaiNeo.setText("0");
         hitungNilaiFisik();
+        Tminggu.setText("");
         chkHipotermi.setSelected(false);
         chkResikoHipotermi.setSelected(false);
         chkHipertermi.setSelected(false);
@@ -8442,6 +8848,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             Tspo.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 191).toString());
             nipVerifikator = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 192).toString();
             TnmVerifikator.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 193).toString());
+            Tminggu.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 194).toString());
             dataCek();
             hitungNilaiNeomuskular();
             hitungNilaiFisik();
@@ -8484,7 +8891,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                 + "tumit1=?, tumit2=?, tumit3=?, tumit4=?, tumit5=?, tumit6=?, fisik_kulit=?, fisik_payudara=?, fisik_mata=?, fisik_genital_pria=?, fisik_genital_wanita=?, fisik_lanugo=?, "
                 + "fisik_plantar=?, hipotermi=?, resiko_hipotermi=?, hipertermi=?, pola_nafas=?, nyeri_masalah_keperawatan=?, kerusakan=?, resiko_kerusakan=?, kebutuhan=?, ikterik=?, "
                 + "gangguan_motilitas=?, bersihan=?, resiko_bersihan=?, perubahan_perfusi=?, kelebihan=?, resiko_kelebihan=?, resiko_kebutuhan=?, masalah_keperawatan_lain=?, tgl_rencana1=?, "
-                + "jam_rencana1=?, tgl_rencana2=?, jam_rencana2=?, nip_perawat=?, cek_tgllahir_ibu=?, spo2=?, nip_verifikator=?", 182, new String[]{
+                + "jam_rencana1=?, tgl_rencana2=?, jam_rencana2=?, nip_perawat=?, cek_tgllahir_ibu=?, spo2=?, nip_verifikator=?, minggu_ke=?", 183, new String[]{
                     cmbSumber.getSelectedItem().toString(), TlainSumber.getText(), cmbRujukan.getSelectedItem().toString(),
                     cmbJnsRujukan.getSelectedItem().toString(), TdiagnosaRujukan.getText(), Tkeluhan.getText(), TnmIdentitas.getText(), cmbPendidikan.getSelectedItem().toString(),
                     Tpekerjaan.getText(), cmbAgama.getSelectedItem().toString(), Talamat.getText(), Tbbl.getText(), Tpb.getText(), Tlk.getText(), Tld.getText(),
@@ -8509,7 +8916,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                     hipotermi, resikoHipotermi, hipertermi, pola, nyeri, kerusakan, resikoKerusakan, kebutuhan, ikterik, gangguan, bersihan, resikoBersihan, perubahan,
                     kelebihan, resikoKelebihan, resikoKebutuhan, TmasalahLain.getText(), Valid.SetTgl(TtglRencana1.getSelectedItem() + ""),
                     cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), Valid.SetTgl(TtglRencana2.getSelectedItem() + ""),
-                    cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nip, cekTglLahir, Tspo.getText(), nipVerifikator,
+                    cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nip, cekTglLahir, Tspo.getText(), nipVerifikator, Tminggu.getText(),
                     tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                 }) == true) {
 
@@ -10231,45 +10638,45 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         
             //skor -10
         if (hasilNilai >= -10 && hasilNilai <= -4) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 20");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
             //skor -5
         } else if (hasilNilai >= -5 && hasilNilai <= -1) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 22");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
             //skor 0
         } else if (hasilNilai >= 0 && hasilNilai <= 4) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 24");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
             //skor 5
         } else if (hasilNilai >= 5 && hasilNilai <= 9) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 26");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
             //skor 10
         } else if (hasilNilai >= 10 && hasilNilai <= 14) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 28");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
             //skor 15
         } else if (hasilNilai >= 15 && hasilNilai <= 19) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 30");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
             //skor 20
         } else if (hasilNilai >= 20 && hasilNilai <= 24) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 32");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
             //skor 25
         } else if (hasilNilai >= 25 && hasilNilai <= 29) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 34");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
             //skor 30
         } else if (hasilNilai >= 30 && hasilNilai <= 34) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 36");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
             //skor 35
         } else if (hasilNilai >= 35 && hasilNilai <= 39) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 38");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
             //skor 40
         } else if (hasilNilai >= 40 && hasilNilai <= 44) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 40");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
             //skor 45
         } else if (hasilNilai >= 45 && hasilNilai <= 49) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 42");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
             //skor 50
         } else if (hasilNilai >= 50) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 44");
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
         } else {
-            TkesimpulanSkor.setText("Skor -, Minggu -");
+            TkesimpulanSkor.setText("Skor -");
         }
     }
     
