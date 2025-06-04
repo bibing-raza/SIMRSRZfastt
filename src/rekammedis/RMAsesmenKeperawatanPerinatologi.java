@@ -5700,7 +5700,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jSeparator27.setBounds(740, 2474, 90, 1);
 
         jLabel175.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel175.setText("Minggu Ke :");
+        jLabel175.setText("Minggu :");
         jLabel175.setName("jLabel175"); // NOI18N
         FormInput.add(jLabel175);
         jLabel175.setBounds(520, 2335, 73, 23);
