@@ -4868,20 +4868,22 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
     private void tampilPersalinan() {
         Valid.tabelKosong(tabMode1);
+        StringBuilder sb1 = new StringBuilder();
         try {
-            ps = koneksi.prepareStatement("SELECT DISTINCT rp.no_rawat, p.no_rkm_medis, p.nm_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_msk, "
-                    + "if(p.keluarga='SUAMI',p.namakeluarga,'') nmsuami, concat(ifnull(p.umur_pj,''),' ','thn.') umursuami, ifnull(p.umur_pj,'') umurangka FROM kamar_inap ki "
-                    + "INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal "
-                    + "INNER JOIN reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                    + "rp.tgl_registrasi BETWEEN ? and ? and (b.nm_bangsal LIKE '%obg%' or b.nm_bangsal LIKE '%intan%' or "
-                    + "b.nm_bangsal LIKE '%iccu%' or b.nm_bangsal LIKE '%covid%' or b.nm_bangsal LIKE '%isolasi%') and p.jk='P' and rp.sttsumur='Th' and rp.no_rawat like ? or "
-                    + "rp.tgl_registrasi BETWEEN ? and ? and (b.nm_bangsal LIKE '%obg%' or b.nm_bangsal LIKE '%intan%' or "
-                    + "b.nm_bangsal LIKE '%iccu%' or b.nm_bangsal LIKE '%covid%' or b.nm_bangsal LIKE '%isolasi%') and p.jk='P' and rp.sttsumur='Th' and p.no_rkm_medis like ? or "
-                    + "rp.tgl_registrasi BETWEEN ? and ? and (b.nm_bangsal LIKE '%obg%' or b.nm_bangsal LIKE '%intan%' or "
-                    + "b.nm_bangsal LIKE '%iccu%' or b.nm_bangsal LIKE '%covid%' or b.nm_bangsal LIKE '%isolasi%') and p.jk='P' and rp.sttsumur='Th' and p.nm_pasien like ? or "
-                    + "rp.tgl_registrasi BETWEEN ? and ? and (b.nm_bangsal LIKE '%obg%' or b.nm_bangsal LIKE '%intan%' or "
-                    + "b.nm_bangsal LIKE '%iccu%' or b.nm_bangsal LIKE '%covid%' or b.nm_bangsal LIKE '%isolasi%') and p.jk='P' and rp.sttsumur='Th' and if(p.keluarga='SUAMI',p.namakeluarga,'') like ? "
-                    + "order by p.nm_pasien");
+            sb1.append("SELECT DISTINCT rp.no_rawat, p.no_rkm_medis, p.nm_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_msk, ");
+            sb1.append("if(p.keluarga='SUAMI',p.namakeluarga,'') nmsuami, concat(ifnull(p.umur_pj,''),' ','thn.') umursuami, ifnull(p.umur_pj,'') umurangka FROM kamar_inap ki ");
+            sb1.append("INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal ");
+            sb1.append("INNER JOIN reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis where ");
+            sb1.append("rp.tgl_registrasi BETWEEN ? and ? and (b.nm_bangsal LIKE '%obg%' or b.nm_bangsal LIKE '%intan%' or ");
+            sb1.append("b.nm_bangsal LIKE '%iccu%' or b.nm_bangsal LIKE '%covid%' or b.nm_bangsal LIKE '%isolasi%' or b.nm_bangsal LIKE '%safir%') and p.jk='P' and rp.sttsumur='Th' and rp.no_rawat like ? or ");
+            sb1.append("rp.tgl_registrasi BETWEEN ? and ? and (b.nm_bangsal LIKE '%obg%' or b.nm_bangsal LIKE '%intan%' or ");
+            sb1.append("b.nm_bangsal LIKE '%iccu%' or b.nm_bangsal LIKE '%covid%' or b.nm_bangsal LIKE '%isolasi%' or b.nm_bangsal LIKE '%safir%') and p.jk='P' and rp.sttsumur='Th' and p.no_rkm_medis like ? or ");
+            sb1.append("rp.tgl_registrasi BETWEEN ? and ? and (b.nm_bangsal LIKE '%obg%' or b.nm_bangsal LIKE '%intan%' or ");
+            sb1.append("b.nm_bangsal LIKE '%iccu%' or b.nm_bangsal LIKE '%covid%' or b.nm_bangsal LIKE '%isolasi%' or b.nm_bangsal LIKE '%safir%') and p.jk='P' and rp.sttsumur='Th' and p.nm_pasien like ? or ");
+            sb1.append("rp.tgl_registrasi BETWEEN ? and ? and (b.nm_bangsal LIKE '%obg%' or b.nm_bangsal LIKE '%intan%' or ");
+            sb1.append("b.nm_bangsal LIKE '%iccu%' or b.nm_bangsal LIKE '%covid%' or b.nm_bangsal LIKE '%isolasi%' or b.nm_bangsal LIKE '%safir%') and p.jk='P' and rp.sttsumur='Th' and if(p.keluarga='SUAMI',p.namakeluarga,'') like ? ");
+            sb1.append("order by p.nm_pasien");
+            ps = koneksi.prepareStatement(sb1.toString());
             try {
                 ps.setString(1, Valid.SetTgl(tgl1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(tgl2.getSelectedItem() + ""));
@@ -4935,12 +4937,14 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
     private void tampilPonek() {
         Valid.tabelKosong(tabMode2);
+        StringBuilder sb2 = new StringBuilder();
         try {
-            ps1 = koneksi.prepareStatement("select rp.no_rawat, p.no_rkm_medis, p.nm_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tglreg, "
-                    + "rp.jam_reg from reg_periksa rp inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                    + "rp.tgl_registrasi BETWEEN ? and ? and p.jk='P' and rp.status_lanjut='ralan' and rp.kd_poli in ('igdk','-','obg') and p.no_rkm_medis like ? or "
-                    + "rp.tgl_registrasi BETWEEN ? and ? and p.jk='P' and rp.status_lanjut='ralan' and rp.kd_poli in ('igdk','-','obg') and p.nm_pasien like ? "
-                    + "order by rp.tgl_registrasi desc, rp.jam_reg DESC");
+            sb2.append("select rp.no_rawat, p.no_rkm_medis, p.nm_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tglreg, ");
+            sb2.append("rp.jam_reg from reg_periksa rp inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where ");
+            sb2.append("rp.tgl_registrasi BETWEEN ? and ? and p.jk='P' and rp.status_lanjut='ralan' and rp.kd_poli in ('igdk','-','obg','pon') and p.no_rkm_medis like ? or ");
+            sb2.append("rp.tgl_registrasi BETWEEN ? and ? and p.jk='P' and rp.status_lanjut='ralan' and rp.kd_poli in ('igdk','-','obg','pon') and p.nm_pasien like ? ");
+            sb2.append("order by rp.tgl_registrasi desc, rp.jam_reg DESC");
+            ps1 = koneksi.prepareStatement(sb2.toString());
             try {
                 ps1.setString(1, Valid.SetTgl(tgl1.getSelectedItem() + ""));
                 ps1.setString(2, Valid.SetTgl(tgl2.getSelectedItem() + ""));

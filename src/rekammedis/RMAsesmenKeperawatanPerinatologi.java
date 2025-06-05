@@ -10635,7 +10635,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         b = Integer.parseInt(TnilaiFisik.getText());
         hasilNilai = a + b;
         TnilaiSkor.setText(Valid.SetAngka2(hasilNilai));
-        
+
         if (hasilNilai > -11) {
             TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
         } else {
