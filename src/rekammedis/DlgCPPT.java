@@ -12043,7 +12043,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     param.put("diagnosis", rsLaprm.getString("diagnosis"));
                     param.put("tglmasuk", rsLaprm.getString("tglmsk"));
                     param.put("ruangkamar", Sequel.cariIsi("SELECT p.nm_poli FROM reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli WHERE r.no_rawat='" + rsLaprm.getString("no_rawat") + "'"));                   
-                    param.put("tgljampindah", rsLaprm.getString("jampindah"));
+                    param.put("tgljampindah", rsLaprm.getString("jampindah") + " Wita");
                     param.put("ruangkamarpindah", Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + rsLaprm.getString("kd_kamar_pindah") + "'"));
                     param.put("alasanranap", rsLaprm.getString("alasan_ranap"));                    
                     param.put("gcse", rsLaprm.getString("gcs_e"));

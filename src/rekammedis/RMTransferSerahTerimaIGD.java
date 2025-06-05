@@ -3859,7 +3859,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             Tdiagnosis.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 7).toString());
             Valid.SetTgl(tgl_masuk, tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 18).toString());
             Tnm_kamar.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 9).toString());
-            Valid.SetTgl2(tgl_pindah, tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 78).toString());
+            Valid.SetTgl(tgl_pindah, tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 78).toString());
             cmbJam.setSelectedItem(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 79).toString().substring(0, 2));
             cmbMnt.setSelectedItem(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 79).toString().substring(3, 5));
             cmbDtk.setSelectedItem(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 79).toString().substring(6, 8)); 
@@ -4156,7 +4156,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             param.put("diagnosis", Tdiagnosis.getText());
             param.put("tglmasuk", tgl_masuk.getSelectedItem().toString());
             param.put("ruangkamar", Tnm_kamar.getText());
-            param.put("tgljampindah", tgl_pindah.getSelectedItem().toString());
+            param.put("tgljampindah", tgl_pindah.getSelectedItem().toString() + " / " + cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + " Wita");
             param.put("ruangkamarpindah", Tnm_kamar_pindah.getText());
             param.put("alasanranap", Talasan_ranap.getText());            
             param.put("gcse", gcse.getText());
