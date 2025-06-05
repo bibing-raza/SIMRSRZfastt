@@ -10636,47 +10636,53 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         hasilNilai = a + b;
         TnilaiSkor.setText(Valid.SetAngka2(hasilNilai));
         
-            //skor -10
-        if (hasilNilai >= -10 && hasilNilai <= -4) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
-            //skor -5
-        } else if (hasilNilai >= -5 && hasilNilai <= -1) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
-            //skor 0
-        } else if (hasilNilai >= 0 && hasilNilai <= 4) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
-            //skor 5
-        } else if (hasilNilai >= 5 && hasilNilai <= 9) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
-            //skor 10
-        } else if (hasilNilai >= 10 && hasilNilai <= 14) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
-            //skor 15
-        } else if (hasilNilai >= 15 && hasilNilai <= 19) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
-            //skor 20
-        } else if (hasilNilai >= 20 && hasilNilai <= 24) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
-            //skor 25
-        } else if (hasilNilai >= 25 && hasilNilai <= 29) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
-            //skor 30
-        } else if (hasilNilai >= 30 && hasilNilai <= 34) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
-            //skor 35
-        } else if (hasilNilai >= 35 && hasilNilai <= 39) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
-            //skor 40
-        } else if (hasilNilai >= 40 && hasilNilai <= 44) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
-            //skor 45
-        } else if (hasilNilai >= 45 && hasilNilai <= 49) {
-            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
-            //skor 50
-        } else if (hasilNilai >= 50) {
+        if (hasilNilai > -11) {
             TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText());
         } else {
             TkesimpulanSkor.setText("Skor -");
+        }
+        
+           //skor -10
+        if (hasilNilai >= -10 && hasilNilai <= -4) {
+            Tminggu.setText("20");
+            //skor -5
+        } else if (hasilNilai >= -5 && hasilNilai <= -1) {
+            Tminggu.setText("22");
+            //skor 0
+        } else if (hasilNilai >= 0 && hasilNilai <= 4) {
+            Tminggu.setText("24");            
+            //skor 5
+        } else if (hasilNilai >= 5 && hasilNilai <= 9) {
+            Tminggu.setText("26");
+            //skor 10
+        } else if (hasilNilai >= 10 && hasilNilai <= 14) {
+            Tminggu.setText("28");
+            //skor 15
+        } else if (hasilNilai >= 15 && hasilNilai <= 19) {
+            Tminggu.setText("30");
+            //skor 20
+        } else if (hasilNilai >= 20 && hasilNilai <= 24) {
+            Tminggu.setText("32");
+            //skor 25
+        } else if (hasilNilai >= 25 && hasilNilai <= 29) {
+            Tminggu.setText("34");
+            //skor 30
+        } else if (hasilNilai >= 30 && hasilNilai <= 34) {
+            Tminggu.setText("36");
+            //skor 35
+        } else if (hasilNilai >= 35 && hasilNilai <= 39) {
+            Tminggu.setText("38");
+            //skor 40
+        } else if (hasilNilai >= 40 && hasilNilai <= 44) {
+            Tminggu.setText("40");
+            //skor 45
+        } else if (hasilNilai >= 45 && hasilNilai <= 49) {
+            Tminggu.setText("42");
+            //skor 50
+        } else if (hasilNilai >= 50) {
+            Tminggu.setText("44");
+        } else {
+            Tminggu.setText("");
         }
     }
     
