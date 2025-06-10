@@ -11694,7 +11694,12 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin antrian pasien BPJS akan dilompati s.d " + TnoLompatBPJS.getText() + " nomor antrian..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
                     if (Sequel.cariInteger("select count(-1) from antrian_nomor_bpjs where date(waktu_cetak)=date(now())") > 0) {
-                        Sequel.menyimpan("antrian_pemanggil_bpjs", "'" + TnoLompatBPJS.getText() + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Lompatan BPJS");
+                        int a = 0, b = 0, noHasil = 0;
+                        a = Integer.parseInt(nobpjs.getText());
+                        b = Integer.parseInt(TnoLompatBPJS.getText());
+                        noHasil = a + b;
+                        
+                        Sequel.menyimpan("antrian_pemanggil_bpjs", "'" + noHasil + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Lompatan BPJS");
                         tambahPangBPJSfix();
                         suaraPanggilanBPJS();
                         Sequel.mengedit("antrian_pemanggil_bpjs", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
@@ -11786,7 +11791,12 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin antrian pasien UMUM/Non BPJS akan dilompati s.d " + TnoLompatUMUM.getText() + " nomor antrian..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
                     if (Sequel.cariInteger("select count(-1) from antrian_nomor_umum where date(waktu_cetak)=date(now())") > 0) {
-                        Sequel.menyimpan("antrian_pemanggil_umum", "'" + TnoLompatUMUM.getText() + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Lompatan UMUM/Non BPJS");
+                        int a = 0, b = 0, noHasil = 0;
+                        a = Integer.parseInt(noumum.getText());
+                        b = Integer.parseInt(TnoLompatUMUM.getText());
+                        noHasil = a + b;
+                        
+                        Sequel.menyimpan("antrian_pemanggil_umum", "'" + noHasil + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Lompatan UMUM/Non BPJS");
                         tambahPangUmumfix();
                         suaraPanggilanUMUM();
                         Sequel.mengedit("antrian_pemanggil_umum", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
@@ -11878,7 +11888,12 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin antrian pasien KHUSUS/PRIORITAS akan dilompati s.d " + TnoLompatKHUSUS.getText() + " nomor antrian..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
                     if (Sequel.cariInteger("select count(-1) from antrian_nomor_lansia where date(waktu_cetak)=date(now())") > 0) {
-                        Sequel.menyimpan("antrian_pemanggil_lansia", "'" + TnoLompatKHUSUS.getText() + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Lompatan KHUSUS/PRIORITAS");
+                        int a = 0, b = 0, noHasil = 0;
+                        a = Integer.parseInt(nokhusus.getText());
+                        b = Integer.parseInt(TnoLompatKHUSUS.getText());
+                        noHasil = a + b;
+                        
+                        Sequel.menyimpan("antrian_pemanggil_lansia", "'" + noHasil + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Lompatan KHUSUS/PRIORITAS");
                         tambahPangKhususfix();
                         suaraPanggilanKhusus();
                         Sequel.mengedit("antrian_pemanggil_lansia", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
