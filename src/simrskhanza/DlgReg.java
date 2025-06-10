@@ -11792,7 +11792,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 if (x == JOptionPane.YES_OPTION) {
                     if (Sequel.cariInteger("select count(-1) from antrian_nomor_umum where date(waktu_cetak)=date(now())") > 0) {
                         int a = 0, b = 0, noHasil = 0;
-                        a = Integer.parseInt(noumum.getText());
+                        a = Integer.parseInt(noumum.getText().replaceAll("PU-", ""));
                         b = Integer.parseInt(TnoLompatUMUM.getText());
                         noHasil = a + b;
                         
