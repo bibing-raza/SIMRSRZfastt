@@ -8552,7 +8552,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             if (akses.getadmin() == true) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgCPPT");
-                RMAsesmenKebidananRalan form = new RMAsesmenKebidananRalan(null, false);
+                RMAsesmenAwalKebidanan form = new RMAsesmenAwalKebidanan(null, false);
                 form.emptTeks();
                 form.isCek();
                 form.setData(TNoRw.getText());
@@ -8566,7 +8566,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         || (Sequel.cariInteger("select count(-1) from asesmen_kebidanan_ralan where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1)) {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     akses.setform("DlgCPPT");
-                    RMAsesmenKebidananRalan form = new RMAsesmenKebidananRalan(null, false);
+                    RMAsesmenAwalKebidanan form = new RMAsesmenAwalKebidanan(null, false);
                     form.emptTeks();
                     form.isCek();
                     form.setData(TNoRw.getText());

@@ -17,6 +17,7 @@ import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.WarnaTable;
 import fungsi.*;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -157,6 +158,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
         cmbJam = new widget.ComboBox();
         cmbMnt = new widget.ComboBox();
         cmbDtk = new widget.ComboBox();
+        ChkKalimat = new widget.CekBox();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbDisplay = new widget.Table();
@@ -178,6 +180,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
         BtnEdit = new widget.Button();
+        BtnNotepad = new widget.Button();
         BtnKeluar = new widget.Button();
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
@@ -327,7 +330,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
         panelGlass1.add(ChkHariLibur);
         ChkHariLibur.setBounds(0, 220, 128, 23);
 
-        tglLibur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-01-2025" }));
+        tglLibur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-01-2025" }));
         tglLibur.setDisplayFormat("dd-MM-yyyy");
         tglLibur.setName("tglLibur"); // NOI18N
         tglLibur.setOpaque(false);
@@ -412,6 +415,23 @@ public class DlgRunTeks extends javax.swing.JDialog {
         });
         panelGlass1.add(cmbDtk);
         cmbDtk.setBounds(970, 10, 45, 23);
+
+        ChkKalimat.setBackground(new java.awt.Color(255, 255, 250));
+        ChkKalimat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkKalimat.setForeground(new java.awt.Color(0, 0, 0));
+        ChkKalimat.setText("Kalimat Default Run Teks");
+        ChkKalimat.setBorderPainted(true);
+        ChkKalimat.setBorderPaintedFlat(true);
+        ChkKalimat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ChkKalimat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkKalimat.setName("ChkKalimat"); // NOI18N
+        ChkKalimat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkKalimatActionPerformed(evt);
+            }
+        });
+        panelGlass1.add(ChkKalimat);
+        ChkKalimat.setBounds(720, 38, 160, 23);
 
         internalFrame1.add(panelGlass1, java.awt.BorderLayout.PAGE_START);
 
@@ -640,6 +660,20 @@ public class DlgRunTeks extends javax.swing.JDialog {
             }
         });
         panelisi1.add(BtnEdit);
+
+        BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
+        BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnNotepad.setMnemonic('N');
+        BtnNotepad.setText("Notepad");
+        BtnNotepad.setToolTipText("Alt+N");
+        BtnNotepad.setName("BtnNotepad"); // NOI18N
+        BtnNotepad.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnNotepad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNotepadActionPerformed(evt);
+            }
+        });
+        panelisi1.add(BtnNotepad);
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -1000,6 +1034,35 @@ public class DlgRunTeks extends javax.swing.JDialog {
         Valid.pindah(evt, cmbMnt, urlVideoPlayer);
     }//GEN-LAST:event_cmbDtkKeyPressed
 
+    private void ChkKalimatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkKalimatActionPerformed
+        if (ChkKalimat.isSelected() == true) {
+            if (TTeks.getText().equals("")) {
+                TTeks.setText(" Semoga lekas sembuh dan diberi kekuatan dalam proses pemulihan. Kami siap merawat Anda dengan sepenuh hati. "
+                        + "Kesembuhan Anda adalah prioritas kami. Tetap semangat dan percayakan perawatan pada tenaga medis kami. "
+                        + "Terima kasih sudah memilih RSUD Ratu Zalecha sebagai mitra sehat Anda. Ingin mengetahui info terkini Ikuti IG @rsudratuzalecha. "
+                        + "Jadwal poliklinik selengkapnya bisa kunjungi website : rsraza.banjarkab.go.id");
+            } else {
+                TTeks.setText(TTeks.getText() + ". Semoga lekas sembuh dan diberi kekuatan dalam proses pemulihan. Kami siap merawat Anda dengan sepenuh hati. "
+                        + "Kesembuhan Anda adalah prioritas kami. Tetap semangat dan percayakan perawatan pada tenaga medis kami. "
+                        + "Terima kasih sudah memilih RSUD Ratu Zalecha sebagai mitra sehat Anda. Ingin mengetahui info terkini Ikuti IG @rsudratuzalecha. "
+                        + "Jadwal poliklinik selengkapnya bisa kunjungi website : rsraza.banjarkab.go.id");
+            }
+        } else {
+            TTeks.setText("");
+        }
+    }//GEN-LAST:event_ChkKalimatActionPerformed
+
+    private void BtnNotepadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepadActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        akses.setform("DlgRunTeks");
+        DlgNotepad form = new DlgNotepad(null, false);
+        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setData(akses.getkode());
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnNotepadActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1023,8 +1086,10 @@ public class DlgRunTeks extends javax.swing.JDialog {
     private widget.Button BtnCari;
     private widget.Button BtnEdit;
     private widget.Button BtnKeluar;
+    private widget.Button BtnNotepad;
     private widget.Button BtnSimpan;
     private widget.CekBox ChkHariLibur;
+    private widget.CekBox ChkKalimat;
     private widget.CekBox ChkPetugas;
     private widget.CekBox ChkTeks;
     private widget.Label LCount;
@@ -1216,6 +1281,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
         TTeks.requestFocus();
         taun.setText(Sequel.cariIsi("SELECT YEAR(NOW())"));
         cmbBulan.setSelectedItem(Sequel.cariIsi("SELECT MONTH(now())"));
+        ChkKalimat.setSelected(false);
         tampil();
         tampilNomor();
         tampilLibur();

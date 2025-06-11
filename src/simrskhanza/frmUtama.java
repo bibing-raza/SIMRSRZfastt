@@ -326,7 +326,7 @@ import rekammedis.MasterDataDinkes;
 import rekammedis.MasterMasalahKeperawatan;
 import rekammedis.MasterFaktorResikoIGD;
 import rekammedis.MasterResikoDecubitus;
-import rekammedis.RMAsesmenKebidananRalan;
+import rekammedis.RMAsesmenAwalKebidanan;
 import rekammedis.RMAsesmenKeperawatanAnakRanap;
 import rekammedis.RMAsesmenKeperawatanDewasaRanap;
 import rekammedis.RMAsesmenKeperawatanPerioperatif;
@@ -11481,7 +11481,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         isTutup();
         DlgHome.dispose();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        RMAsesmenKebidananRalan aplikasi = new RMAsesmenKebidananRalan(this, false);
+        RMAsesmenAwalKebidanan aplikasi = new RMAsesmenAwalKebidanan(this, false);
         aplikasi.isCek();
         aplikasi.emptTeks();
         aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
