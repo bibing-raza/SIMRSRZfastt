@@ -2884,34 +2884,38 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     }
                 }
 
-                //jika tidak diconteng
-                if (x == 0) {
-                    if (tbObat.getSelectedRow() > -1) {
-                        if (Sequel.queryu2tf("delete from pemberian_obat where waktu_simpan=?", 1, new String[]{
-                            tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString()
-                        }) == true) {
+                if (tbObat.getValueAt(tbObat.getSelectedRow(), 5).toString().equals("IGD") && status.equals("ranap")) {
+                    JOptionPane.showMessageDialog(null, "Pemberian obat dari IGD hanya bisa dihapus oleh petugas IGD..!!");
+                } else {
+                    //jika tidak diconteng
+                    if (x == 0) {
+                        if (tbObat.getSelectedRow() > -1) {
+                            if (Sequel.queryu2tf("delete from pemberian_obat where waktu_simpan=?", 1, new String[]{
+                                tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString()
+                            }) == true) {
+                                tampil();
+                                tampilDoubelCek();
+                                emptTeks();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu atau conteng dulu utk. menghapus data..!!");
+                        }
+                        //jika diconteng
+                    } else {
+                        try {
+                            for (i = 0; i < tbObat.getRowCount(); i++) {
+                                if (tbObat.getValueAt(i, 0).toString().equals("true")) {
+                                    Sequel.meghapus("pemberian_obat", "waktu_simpan", tbObat.getValueAt(i, 47).toString());
+                                }
+                            }
                             tampil();
                             tampilDoubelCek();
                             emptTeks();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                        } catch (Exception e) {
+                            System.out.println("Notifikasi : " + e);
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu atau conteng dulu utk. menghapus data..!!");
-                    }
-                //jika diconteng
-                } else {
-                    try {
-                        for (i = 0; i < tbObat.getRowCount(); i++) {
-                            if (tbObat.getValueAt(i, 0).toString().equals("true")) {
-                                Sequel.meghapus("pemberian_obat", "waktu_simpan", tbObat.getValueAt(i, 47).toString());
-                            }
-                        }
-                        tampil();
-                        tampilDoubelCek();
-                        emptTeks();
-                    } catch (Exception e) {
-                        System.out.println("Notifikasi : " + e);
                     }
                 }
             }
@@ -2935,42 +2939,46 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             Valid.textKosong(nmObat, "Nama Obat");
         } else {
             if (tbObat.getSelectedRow() > -1) {
-                cekData();
-                if (Sequel.cariInteger("select count(-1) from databarang where nama_brng like '%" + nmObat.getText() + "%'") == 0) {
-                    kdobatFix = "-";
+                if (tbObat.getValueAt(tbObat.getSelectedRow(), 5).toString().equals("IGD") && status.equals("ranap")) {
+                    JOptionPane.showMessageDialog(null, "Pemberian obat dari IGD hanya bisa diganti oleh petugas IGD..!!");
                 } else {
-                    kdobatFix = kdobat;
-                }
+                    cekData();
+                    if (Sequel.cariInteger("select count(-1) from databarang where nama_brng like '%" + nmObat.getText() + "%'") == 0) {
+                        kdobatFix = "-";
+                    } else {
+                        kdobatFix = kdobat;
+                    }
 
-                try {
-                    Sequel.mengedit("pemberian_obat", "waktu_simpan=?", "nama_obat=?, dosis=?, cara_pemberian=?, "
-                            + "jadwal_pemberian=?, jlh_sisa_obat=?, kode_brng=?, tgl_pemberian=?, nm_unit=?, jlh_obat=?, jenis_obat=?, "
-                            + "cek_jam1=?, cek_jam2=?, cek_jam3=?, cek_jam4=?, cek_jam5=?, cek_jam6=?, cek_jam7=?, cek_jam8=?, "
-                            + "jadwal_pemberian2=?, jadwal_pemberian3=?, jadwal_pemberian4=?, jadwal_pemberian5=?, jadwal_pemberian6=?, "
-                            + "jadwal_pemberian7=?, jadwal_pemberian8=?, ket1=?, ket2=?, ket3=?, ket4=?, ket5=?, ket6=?, ket7=?, ket8=?, "
-                            + "cek_dobel=?, nip_petugas1=?, nip_petugas2=?, sift=?", 38, new String[]{
-                                nmObat.getText(), dosis.getText(), caraPemberian.getText(),
-                                cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
-                                jlhSisaObat.getText(), kdobatFix, Valid.SetTgl(tgl_beri.getSelectedItem() + ""), nmUnit.getText(), Tjlh.getText(),
-                                cmbObat.getSelectedItem().toString(), cekjam1, cekjam2, cekjam3, cekjam4, cekjam5, cekjam6, cekjam7, cekjam8,
-                                cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(),
-                                cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem(),
-                                cmbJam4.getSelectedItem() + ":" + cmbMnt4.getSelectedItem() + ":" + cmbDtk4.getSelectedItem(),
-                                cmbJam5.getSelectedItem() + ":" + cmbMnt5.getSelectedItem() + ":" + cmbDtk5.getSelectedItem(),
-                                cmbJam6.getSelectedItem() + ":" + cmbMnt6.getSelectedItem() + ":" + cmbDtk6.getSelectedItem(),
-                                cmbJam7.getSelectedItem() + ":" + cmbMnt7.getSelectedItem() + ":" + cmbDtk7.getSelectedItem(),
-                                cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem(),
-                                Tket1.getText(), Tket2.getText(), Tket3.getText(), Tket4.getText(),
-                                Tket5.getText(), Tket6.getText(), Tket7.getText(), Tket8.getText(), cekDobel, nip1, nip2, cmbSift.getSelectedItem().toString(),
-                                tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString()
-                            });
+                    try {
+                        Sequel.mengedit("pemberian_obat", "waktu_simpan=?", "nama_obat=?, dosis=?, cara_pemberian=?, "
+                                + "jadwal_pemberian=?, jlh_sisa_obat=?, kode_brng=?, tgl_pemberian=?, nm_unit=?, jlh_obat=?, jenis_obat=?, "
+                                + "cek_jam1=?, cek_jam2=?, cek_jam3=?, cek_jam4=?, cek_jam5=?, cek_jam6=?, cek_jam7=?, cek_jam8=?, "
+                                + "jadwal_pemberian2=?, jadwal_pemberian3=?, jadwal_pemberian4=?, jadwal_pemberian5=?, jadwal_pemberian6=?, "
+                                + "jadwal_pemberian7=?, jadwal_pemberian8=?, ket1=?, ket2=?, ket3=?, ket4=?, ket5=?, ket6=?, ket7=?, ket8=?, "
+                                + "cek_dobel=?, nip_petugas1=?, nip_petugas2=?, sift=?", 38, new String[]{
+                                    nmObat.getText(), dosis.getText(), caraPemberian.getText(),
+                                    cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
+                                    jlhSisaObat.getText(), kdobatFix, Valid.SetTgl(tgl_beri.getSelectedItem() + ""), nmUnit.getText(), Tjlh.getText(),
+                                    cmbObat.getSelectedItem().toString(), cekjam1, cekjam2, cekjam3, cekjam4, cekjam5, cekjam6, cekjam7, cekjam8,
+                                    cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(),
+                                    cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem(),
+                                    cmbJam4.getSelectedItem() + ":" + cmbMnt4.getSelectedItem() + ":" + cmbDtk4.getSelectedItem(),
+                                    cmbJam5.getSelectedItem() + ":" + cmbMnt5.getSelectedItem() + ":" + cmbDtk5.getSelectedItem(),
+                                    cmbJam6.getSelectedItem() + ":" + cmbMnt6.getSelectedItem() + ":" + cmbDtk6.getSelectedItem(),
+                                    cmbJam7.getSelectedItem() + ":" + cmbMnt7.getSelectedItem() + ":" + cmbDtk7.getSelectedItem(),
+                                    cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem(),
+                                    Tket1.getText(), Tket2.getText(), Tket3.getText(), Tket4.getText(),
+                                    Tket5.getText(), Tket6.getText(), Tket7.getText(), Tket8.getText(), cekDobel, nip1, nip2, cmbSift.getSelectedItem().toString(),
+                                    tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString()
+                                });
 
-                    Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Pemberian Obat Pasien", "Ganti");
-                    tampil();
-                    tampilDoubelCek();
-                    emptTeks();
-                } catch (Exception e) {
-                    System.out.println("Simpan Pemberian Obat Pasien : " + e);
+                        Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Pemberian Obat Pasien", "Ganti");
+                        tampil();
+                        tampilDoubelCek();
+                        emptTeks();
+                    } catch (Exception e) {
+                        System.out.println("Simpan Pemberian Obat Pasien : " + e);
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih salah satu datanya terlebih dulu..!!");
@@ -4565,7 +4573,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                                 + "if(cek_jam8='ya',time_format(jadwal_pemberian8,'%H:%i'),'') jam8, jlh_sisa_obat, kode_brng, tgl_pemberian, "
                                 + "cek_jam1, cek_jam2, cek_jam3, cek_jam4, cek_jam5, cek_jam6, cek_jam7, cek_jam8, "
                                 + "jadwal_pemberian, jadwal_pemberian2, jadwal_pemberian3, jadwal_pemberian4, jadwal_pemberian5, jadwal_pemberian6, "
-                                + "jadwal_pemberian7, jadwal_pemberian8, waktu_simpan FROM pemberian_obat where "
+                                + "jadwal_pemberian7, jadwal_pemberian8, date_format(waktu_simpan,'%Y-%m-%d %H:%i:%s') wktsimpan FROM pemberian_obat where "
                                 + "tgl_pemberian between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
                                 + "and no_rawat='" + rs.getString("no_rawat") + "' "
                                 + "order by status, tgl_pemberian, waktu_simpan");
@@ -4581,7 +4589,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                                 + "if(cek_jam8='ya',time_format(jadwal_pemberian8,'%H:%i'),'') jam8, jlh_sisa_obat, kode_brng, tgl_pemberian, "
                                 + "cek_jam1, cek_jam2, cek_jam3, cek_jam4, cek_jam5, cek_jam6, cek_jam7, cek_jam8, "
                                 + "jadwal_pemberian, jadwal_pemberian2, jadwal_pemberian3, jadwal_pemberian4, jadwal_pemberian5, jadwal_pemberian6, "
-                                + "jadwal_pemberian7, jadwal_pemberian8, waktu_simpan FROM pemberian_obat where "
+                                + "jadwal_pemberian7, jadwal_pemberian8, date_format(waktu_simpan,'%Y-%m-%d %H:%i:%s') wktsimpan FROM pemberian_obat where "
                                 + "tgl_pemberian between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
                                 + "and jenis_obat='" + cmbJnsObat.getSelectedItem().toString() + "' and no_rawat='" + rs.getString("no_rawat") + "' "
                                 + "order by status, tgl_pemberian, waktu_simpan");
@@ -4633,7 +4641,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                                 rs2.getString("jadwal_pemberian6"), 
                                 rs2.getString("jadwal_pemberian7"), 
                                 rs2.getString("jadwal_pemberian8"),
-                                rs2.getString("waktu_simpan"),
+                                rs2.getString("wktsimpan"),
                                 //data untuk dicopy
                                 rs2.getString("no_rawat"),
                                 rs2.getString("nama_obat"),
@@ -4926,7 +4934,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         if (jamSift3.before(jamSekarang)) {
             cmbSift.setSelectedIndex(3);
         }
-    }
+    }    
     
     private void tampilData() {
         try {
@@ -4935,7 +4943,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "inner join pegawai pg1 on pg1.nik=po.nip_petugas1 "
                     + "inner join pegawai pg2 on pg2.nik=po.nip_petugas2 "
-                    + "where po.waktu_simpan='" + waktuSimpan + "'");
+                    + "where po.waktu_simpan = '" + waktuSimpan + "'");
             try {
                 rs3 = ps3.executeQuery();
                 while (rs3.next()) {

@@ -41,7 +41,7 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private PreparedStatement ps, ps2, ps3, ps4, ps5, ps6;
     private ResultSet rs, rs2, rs3, rs4, rs5, rs6;
-    private String diagnosa = "";
+    private String diagnosa = "", dialog_simpan = "";
     private DlgPasien pasien = new DlgPasien(null, false);
     
     /** Creates new form DlgProgramStudi
@@ -313,6 +313,7 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         ppDaftarTerbanyakPerRuanganMati = new javax.swing.JMenuItem();
         ppDaftarTerbanyakSemuaRuanganMati = new javax.swing.JMenuItem();
         ppRincianPerDiagnosaTglKlr = new javax.swing.JMenuItem();
+        MnExportSurveilen = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         panelisi4 = new widget.panelisi();
         label11 = new widget.Label();
@@ -370,7 +371,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
 
         kdpnj.setEditable(false);
         kdpnj.setForeground(new java.awt.Color(0, 0, 0));
-        kdpnj.setCaretColor(new java.awt.Color(0, 0, 0));
         kdpnj.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         kdpnj.setEnabled(false);
         kdpnj.setHighlighter(null);
@@ -385,7 +385,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
 
         ppGrafikTerbanyakBatang.setBackground(new java.awt.Color(242, 242, 242));
         ppGrafikTerbanyakBatang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppGrafikTerbanyakBatang.setForeground(new java.awt.Color(0, 0, 0));
         ppGrafikTerbanyakBatang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
         ppGrafikTerbanyakBatang.setText("Grafik Batang 10 Penyakit Terbanyak");
         ppGrafikTerbanyakBatang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -401,7 +400,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
 
         ppGrafikTerbanyakPie.setBackground(new java.awt.Color(242, 242, 242));
         ppGrafikTerbanyakPie.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppGrafikTerbanyakPie.setForeground(new java.awt.Color(0, 0, 0));
         ppGrafikTerbanyakPie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
         ppGrafikTerbanyakPie.setText("Grafik Pie 10 Penyakit Terbanyak");
         ppGrafikTerbanyakPie.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -417,7 +415,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
 
         ppGrafikTerkecilBatang.setBackground(new java.awt.Color(242, 242, 242));
         ppGrafikTerkecilBatang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppGrafikTerkecilBatang.setForeground(new java.awt.Color(0, 0, 0));
         ppGrafikTerkecilBatang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
         ppGrafikTerkecilBatang.setText("Grafik Batang 10 Penyakit Tersedikit");
         ppGrafikTerkecilBatang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -433,7 +430,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
 
         ppGrafikTerkecilPie.setBackground(new java.awt.Color(242, 242, 242));
         ppGrafikTerkecilPie.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppGrafikTerkecilPie.setForeground(new java.awt.Color(0, 0, 0));
         ppGrafikTerkecilPie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Create-Ticket24.png"))); // NOI18N
         ppGrafikTerkecilPie.setText("Grafik Pie 10 Penyakit Tersedikit");
         ppGrafikTerkecilPie.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -447,7 +443,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppGrafikTerkecilPie);
 
-        MnBerdasarTglMsk.setForeground(new java.awt.Color(0, 0, 0));
         MnBerdasarTglMsk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnBerdasarTglMsk.setText("10 Besar Penyakit Berdasarkan Tgl. Masuk");
         MnBerdasarTglMsk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -457,7 +452,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         MnBerdasarTglMsk.setPreferredSize(new java.awt.Dimension(270, 25));
 
         ppDaftarTerbanyakPerRuangan1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppDaftarTerbanyakPerRuangan1.setForeground(new java.awt.Color(0, 0, 0));
         ppDaftarTerbanyakPerRuangan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppDaftarTerbanyakPerRuangan1.setText("Daftar Penyakit Terbanyak Per Ruangan");
         ppDaftarTerbanyakPerRuangan1.setName("ppDaftarTerbanyakPerRuangan1"); // NOI18N
@@ -470,7 +464,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         MnBerdasarTglMsk.add(ppDaftarTerbanyakPerRuangan1);
 
         ppDaftarTerbanyakSemuaRuangan1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppDaftarTerbanyakSemuaRuangan1.setForeground(new java.awt.Color(0, 0, 0));
         ppDaftarTerbanyakSemuaRuangan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppDaftarTerbanyakSemuaRuangan1.setText("Daftar Penyakit Terbanyak Semua Ruangan");
         ppDaftarTerbanyakSemuaRuangan1.setName("ppDaftarTerbanyakSemuaRuangan1"); // NOI18N
@@ -483,7 +476,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         MnBerdasarTglMsk.add(ppDaftarTerbanyakSemuaRuangan1);
 
         ppLapRL53RawatInap1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppLapRL53RawatInap1.setForeground(new java.awt.Color(0, 0, 0));
         ppLapRL53RawatInap1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppLapRL53RawatInap1.setText("RL 5.3 Daftar 10 Besar Penyakit Rawat Inap");
         ppLapRL53RawatInap1.setName("ppLapRL53RawatInap1"); // NOI18N
@@ -496,7 +488,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         MnBerdasarTglMsk.add(ppLapRL53RawatInap1);
 
         ppDaftarTerbanyakPerRuanganMati1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppDaftarTerbanyakPerRuanganMati1.setForeground(new java.awt.Color(0, 0, 0));
         ppDaftarTerbanyakPerRuanganMati1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppDaftarTerbanyakPerRuanganMati1.setText("Daftar Penyakit Terbanyak Kematian Per Ruangan");
         ppDaftarTerbanyakPerRuanganMati1.setName("ppDaftarTerbanyakPerRuanganMati1"); // NOI18N
@@ -509,7 +500,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         MnBerdasarTglMsk.add(ppDaftarTerbanyakPerRuanganMati1);
 
         ppDaftarTerbanyakSemuaRuanganMati1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppDaftarTerbanyakSemuaRuanganMati1.setForeground(new java.awt.Color(0, 0, 0));
         ppDaftarTerbanyakSemuaRuanganMati1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppDaftarTerbanyakSemuaRuanganMati1.setText("Daftar Penyakit Terbanyak Kematian Semua Ruangan");
         ppDaftarTerbanyakSemuaRuanganMati1.setName("ppDaftarTerbanyakSemuaRuanganMati1"); // NOI18N
@@ -522,7 +512,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         MnBerdasarTglMsk.add(ppDaftarTerbanyakSemuaRuanganMati1);
 
         ppRincianPerDiagnosaTglMsk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppRincianPerDiagnosaTglMsk.setForeground(new java.awt.Color(0, 0, 0));
         ppRincianPerDiagnosaTglMsk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppRincianPerDiagnosaTglMsk.setText("Rincian PerDiagnosa Pasien Rawat Inap");
         ppRincianPerDiagnosaTglMsk.setName("ppRincianPerDiagnosaTglMsk"); // NOI18N
@@ -536,7 +525,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
 
         jPopupMenu1.add(MnBerdasarTglMsk);
 
-        MnBerdasarTglKlr.setForeground(new java.awt.Color(0, 0, 0));
         MnBerdasarTglKlr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnBerdasarTglKlr.setText("10 Besar Penyakit Berdasarkan Tgl. Keluar");
         MnBerdasarTglKlr.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -546,7 +534,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         MnBerdasarTglKlr.setPreferredSize(new java.awt.Dimension(270, 25));
 
         ppDaftarTerbanyakPerRuangan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppDaftarTerbanyakPerRuangan.setForeground(new java.awt.Color(0, 0, 0));
         ppDaftarTerbanyakPerRuangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppDaftarTerbanyakPerRuangan.setText("Daftar Penyakit Terbanyak Per Ruangan");
         ppDaftarTerbanyakPerRuangan.setName("ppDaftarTerbanyakPerRuangan"); // NOI18N
@@ -559,7 +546,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         MnBerdasarTglKlr.add(ppDaftarTerbanyakPerRuangan);
 
         ppDaftarTerbanyakSemuaRuangan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppDaftarTerbanyakSemuaRuangan.setForeground(new java.awt.Color(0, 0, 0));
         ppDaftarTerbanyakSemuaRuangan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppDaftarTerbanyakSemuaRuangan.setText("Daftar Penyakit Terbanyak Semua Ruangan");
         ppDaftarTerbanyakSemuaRuangan.setName("ppDaftarTerbanyakSemuaRuangan"); // NOI18N
@@ -572,7 +558,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         MnBerdasarTglKlr.add(ppDaftarTerbanyakSemuaRuangan);
 
         ppLapRL53RawatInap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppLapRL53RawatInap.setForeground(new java.awt.Color(0, 0, 0));
         ppLapRL53RawatInap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppLapRL53RawatInap.setText("RL 5.3 Daftar 10 Besar Penyakit Rawat Inap");
         ppLapRL53RawatInap.setName("ppLapRL53RawatInap"); // NOI18N
@@ -585,7 +570,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         MnBerdasarTglKlr.add(ppLapRL53RawatInap);
 
         ppDaftarTerbanyakPerRuanganMati.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppDaftarTerbanyakPerRuanganMati.setForeground(new java.awt.Color(0, 0, 0));
         ppDaftarTerbanyakPerRuanganMati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppDaftarTerbanyakPerRuanganMati.setText("Daftar Penyakit Terbanyak Kematian Per Ruangan");
         ppDaftarTerbanyakPerRuanganMati.setName("ppDaftarTerbanyakPerRuanganMati"); // NOI18N
@@ -598,7 +582,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         MnBerdasarTglKlr.add(ppDaftarTerbanyakPerRuanganMati);
 
         ppDaftarTerbanyakSemuaRuanganMati.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppDaftarTerbanyakSemuaRuanganMati.setForeground(new java.awt.Color(0, 0, 0));
         ppDaftarTerbanyakSemuaRuanganMati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppDaftarTerbanyakSemuaRuanganMati.setText("Daftar Penyakit Terbanyak Kematian Semua Ruangan");
         ppDaftarTerbanyakSemuaRuanganMati.setName("ppDaftarTerbanyakSemuaRuanganMati"); // NOI18N
@@ -611,7 +594,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
         MnBerdasarTglKlr.add(ppDaftarTerbanyakSemuaRuanganMati);
 
         ppRincianPerDiagnosaTglKlr.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppRincianPerDiagnosaTglKlr.setForeground(new java.awt.Color(0, 0, 0));
         ppRincianPerDiagnosaTglKlr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppRincianPerDiagnosaTglKlr.setText("Rincian PerDiagnosa Pasien Rawat Inap");
         ppRincianPerDiagnosaTglKlr.setName("ppRincianPerDiagnosaTglKlr"); // NOI18N
@@ -625,6 +607,21 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
 
         jPopupMenu1.add(MnBerdasarTglKlr);
 
+        MnExportSurveilen.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnExportSurveilen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnExportSurveilen.setText("Export Excel Surveilans Sentinel PIE");
+        MnExportSurveilen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnExportSurveilen.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnExportSurveilen.setIconTextGap(5);
+        MnExportSurveilen.setName("MnExportSurveilen"); // NOI18N
+        MnExportSurveilen.setPreferredSize(new java.awt.Dimension(270, 25));
+        MnExportSurveilen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnExportSurveilenActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnExportSurveilen);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -634,7 +631,7 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Frekuensi Penyakit Di Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Frekuensi Penyakit Di Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -727,7 +724,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
 
         nmpnj.setEditable(false);
         nmpnj.setForeground(new java.awt.Color(0, 0, 0));
-        nmpnj.setCaretColor(new java.awt.Color(0, 0, 0));
         nmpnj.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         nmpnj.setEnabled(false);
         nmpnj.setName("nmpnj"); // NOI18N
@@ -965,7 +961,6 @@ public class DlgFrekuensiPenyakitRanap extends javax.swing.JDialog {
 
         TabRawat.setBackground(new java.awt.Color(250, 255, 245));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)));
-        TabRawat.setForeground(new java.awt.Color(0, 0, 0));
         TabRawat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -3387,6 +3382,68 @@ private void ppGrafikTerkecilPieActionPerformed(java.awt.event.ActionEvent evt) 
         pasien.penjab.onCari();
     }//GEN-LAST:event_btnPenjabActionPerformed
 
+    private void MnExportSurveilenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnExportSurveilenActionPerformed
+        if (TabRawat.getSelectedIndex() == 2) {
+            if (Sequel.cariInteger("SELECT count(-1) FROM diagnosa_pasien dp INNER JOIN reg_periksa rp on rp.no_rawat=dp.no_rawat INNER JOIN penyakit py on py.kd_penyakit=dp.kd_penyakit "
+                    + "INNER JOIN kamar_inap ki on ki.no_rawat=dp.no_rawat WHERE rp.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + "and ki.stts_pulang not in ('-','pindah kamar') and py.kd_ktg='KP000002'") > 0) {
+            
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                dialog_simpan = Valid.openDialog();
+                Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', if(p.jk='L','Laki-laki','Perempuan') 'Jns. Kelamin', date_format(p.tgl_lahir,'%d/%m/%Y') 'Tgl. Lahir', "
+                        + "concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', Kab. ',kb.nm_kab) 'Alamat Pasien', DATE_FORMAT(rp.tgl_registrasi,'%d/%m/%Y') 'Tgl. Masuk RS', "
+                        + "DATE_FORMAT(ki.tgl_keluar,'%d/%m/%Y') 'Tgl. Keluar RS', py.kd_penyakit 'Kode ICD-10', concat(py.ciri_ciri,' (',if(dp.prioritas='1','Primer','Sekunder'),')') 'Remark ICD-10', "
+                        + "ki.stts_pulang 'Keadaan Keluar', b.nm_bangsal 'Ruang Perawatan/Unit', b.nm_gedung 'Gedung' FROM diagnosa_pasien dp "
+                        + "INNER JOIN penyakit py on py.kd_penyakit=dp.kd_penyakit "
+                        + "INNER JOIN reg_periksa rp on rp.no_rawat=dp.no_rawat "
+                        + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=dp.no_rawat "
+                        + "INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
+                        + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal "
+                        + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel "
+                        + "INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab "
+                        + "WHERE rp.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                        + "and ki.stts_pulang not in ('-','pindah kamar') and py.kd_ktg='KP000002' ORDER BY p.no_rkm_medis, rp.tgl_registrasi, dp.prioritas", dialog_simpan);
+                
+                JOptionPane.showMessageDialog(null, "Rekap data Surveilans Sentinel PIE berdasarkan tgl. masuk pasien berhasil diexport menjadi file excel,..!!!");
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Berdasarkan tanggal masuk data tidak ditemukan, silahkan ulangi lagi periode tanggalnya...");
+            }
+        } else if (TabRawat.getSelectedIndex() == 3) {
+            if (Sequel.cariInteger("SELECT count(-1) FROM diagnosa_pasien dp INNER JOIN penyakit py on py.kd_penyakit=dp.kd_penyakit "
+                    + "INNER JOIN kamar_inap ki on ki.no_rawat=dp.no_rawat WHERE ki.tgl_keluar BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + "and ki.stts_pulang not in ('-','pindah kamar') and py.kd_ktg='KP000002'") > 0) {
+                
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                dialog_simpan = Valid.openDialog();
+                Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', if(p.jk='L','Laki-laki','Perempuan') 'Jns. Kelamin', date_format(p.tgl_lahir,'%d/%m/%Y') 'Tgl. Lahir', "
+                        + "concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', Kab. ',kb.nm_kab) 'Alamat Pasien', DATE_FORMAT(rp.tgl_registrasi,'%d/%m/%Y') 'Tgl. Masuk RS', "
+                        + "DATE_FORMAT(ki.tgl_keluar,'%d/%m/%Y') 'Tgl. Keluar RS', py.kd_penyakit 'Kode ICD-10', concat(py.ciri_ciri,' (',if(dp.prioritas='1','Primer','Sekunder'),')') 'Remark ICD-10', "
+                        + "ki.stts_pulang 'Keadaan Keluar', b.nm_bangsal 'Ruang Perawatan/Unit', b.nm_gedung 'Gedung' FROM diagnosa_pasien dp "
+                        + "INNER JOIN penyakit py on py.kd_penyakit=dp.kd_penyakit "
+                        + "INNER JOIN reg_periksa rp on rp.no_rawat=dp.no_rawat "
+                        + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=dp.no_rawat "
+                        + "INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
+                        + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal "
+                        + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel "
+                        + "INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab "
+                        + "WHERE ki.tgl_keluar BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                        + "and ki.stts_pulang not in ('-','pindah kamar') and py.kd_ktg='KP000002' ORDER BY p.no_rkm_medis, rp.tgl_registrasi, dp.prioritas", dialog_simpan);
+                
+                JOptionPane.showMessageDialog(null, "Rekap data Surveilans Sentinel PIE berdasarkan tgl. pulang pasien berhasil diexport menjadi file excel,..!!!");
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Berdasarkan tanggal pulang data tidak ditemukan, silahkan ulangi lagi periode tanggalnya...");
+            }
+        }
+    }//GEN-LAST:event_MnExportSurveilenActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3410,6 +3467,7 @@ private void ppGrafikTerkecilPieActionPerformed(java.awt.event.ActionEvent evt) 
     private widget.TextBox Kd2;
     private javax.swing.JMenu MnBerdasarTglKlr;
     private javax.swing.JMenu MnBerdasarTglMsk;
+    private javax.swing.JMenuItem MnExportSurveilen;
     private widget.ComboBox NmRuangan;
     private widget.TextBox TCari;
     private javax.swing.JTabbedPane TabRawat;

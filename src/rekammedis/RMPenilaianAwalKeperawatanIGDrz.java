@@ -57,15 +57,15 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps1, ps2, ps3, ps4, pps1, pps2, pps3, pps4, pps5, pps6, pps7, pps8, psTri;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7, rrs8, rsTri;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, pps1, pps2, pps3, pps4, pps5, pps6, pps7, pps8, psTri;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7, rrs8, rsTri;
     private int i = 0, x = 0, skor = 0, pilihan = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);        
     private String nip = "", skrining_gz = "", gz_anak1 = "", gz_anak2 = "", gz_anak3 = "", gz_anak4 = "",
             aler_obat = "", aler_mak = "", aler_lain = "", pin = "", iden1 = "", iden2 = "", iden3 = "", iden4 = "",
             iden5 = "", iden6 = "", iden7 = "", iden8 = "", iden9 = "", iden10 = "", mpp = "", dp = "",
-            faktorresikoigd = "", itemDipilih = "";
+            faktorresikoigd = "", itemDipilih = "", alerObat = "", alerMak = "", alerLain = "", alerDiberi = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -723,6 +723,8 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         BtnTindakan = new widget.Button();
         BtnEvaluasi = new widget.Button();
         Tradiation = new widget.TextBox();
+        scrollPane11 = new widget.ScrollPane();
+        TindikasiAlergi = new widget.TextArea();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbAsesmen = new widget.Table();
@@ -966,7 +968,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-05-2024 14:58:11" }));
+        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025 23:01:37" }));
         tgl_asesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_asesmen.setName("tgl_asesmen"); // NOI18N
         tgl_asesmen.setOpaque(false);
@@ -2557,7 +2559,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel98);
         jLabel98.setBounds(408, 2354, 80, 20);
 
-        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-05-2024 14:58:13" }));
+        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025 23:01:38" }));
         TglVerif.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglVerif.setName("TglVerif"); // NOI18N
         TglVerif.setOpaque(false);
@@ -2823,6 +2825,21 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(Tradiation);
         Tradiation.setBounds(347, 1550, 510, 23);
 
+        scrollPane11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " TERINDIKASI ALERGI ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        scrollPane11.setName("scrollPane11"); // NOI18N
+
+        TindikasiAlergi.setEditable(false);
+        TindikasiAlergi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TindikasiAlergi.setColumns(20);
+        TindikasiAlergi.setForeground(new java.awt.Color(204, 0, 51));
+        TindikasiAlergi.setRows(5);
+        TindikasiAlergi.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        TindikasiAlergi.setName("TindikasiAlergi"); // NOI18N
+        scrollPane11.setViewportView(TindikasiAlergi);
+
+        FormInput.add(scrollPane11);
+        scrollPane11.setBounds(970, 10, 547, 170);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormTriase.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -2865,7 +2882,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-05-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2880,7 +2897,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-05-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4297,6 +4314,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     private widget.TextArea Tdiagnosis;
     private widget.TextArea Tevaluasi;
     private widget.Tanggal TglVerif;
+    private widget.TextArea TindikasiAlergi;
     private widget.TextArea Tkeluhan;
     private widget.TextBox Tnyeri;
     private widget.TextBox TotSkorGZA;
@@ -4479,6 +4497,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     private widget.TextBox reaksiAlergiLain;
     private widget.TextBox reaksiAlergiMakanan;
     private widget.TextBox reaksiAlergiObat;
+    private widget.ScrollPane scrollPane11;
     private widget.ScrollPane scrollPane2;
     private widget.ScrollPane scrollPane3;
     private widget.ScrollPane scrollPane4;
@@ -4750,6 +4769,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         TCari.setText(norwt);
         DTPCari2.setDate(tgl2);
         isRawat();
+        cekAlergi();
         
         if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + norwt + "'") > 0) {
             triaseDewasa(norwt);
@@ -4878,6 +4898,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             cmbSkala.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 75).toString());
             Tradiation.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 76).toString());
             dataCek();
+            cekAlergi();
         }
     }
     
@@ -5785,6 +5806,60 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void cekAlergi() {
+        StringBuilder sb = new StringBuilder();
+        try {
+            sb.append("SELECT if(pa.alergi_obat='ya',concat('Alergi Obat (Reaksi : ',pa.reaksi_alergi_obat,')'),'') alergiObat, ");
+            sb.append("if(pa.alergi_makanan='ya',concat('Alergi Makanan (Reaksi : ',pa.reaksi_alergi_makanan,')'),'') alergiMakan, ");
+            sb.append("if(pa.alergi_lainnya='ya',concat('Alergi Lainnya (Reaksi : ',pa.reaksi_alergi_lainnya,')'),'') alergiLain, ");
+            sb.append("if(pa.alergi_diberitahukan<>'',concat('Alergi diberitahukan kepada : ',pa.alergi_diberitahukan),'') alergiDiberitau FROM penilaian_awal_keperawatan_igdrz pa ");
+            sb.append("INNER JOIN reg_periksa rp ON rp.no_rawat = pa.no_rawat WHERE rp.no_rkm_medis= ? order by pa.waktu_simpan desc limit 1");
+            ps5 = koneksi.prepareStatement(sb.toString());
+            try {
+                ps5.setString(1, TNoRM.getText());
+                rs5 = ps5.executeQuery();
+                if (rs5.next()) {
+                    if (!rs5.getString("alergiObat").equals("")) {
+                        alerObat = rs5.getString("alergiObat") + "\n";
+                    } else {
+                        alerObat = "";
+                    }
+
+                    if (!rs5.getString("alergiMakan").equals("")) {
+                        alerMak = rs5.getString("alergiMakan") + "\n";
+                    } else {
+                        alerMak = "";
+                    }
+
+                    if (!rs5.getString("alergiLain").equals("")) {
+                        alerLain = rs5.getString("alergiLain") + "\n";
+                    } else {
+                        alerLain = "";
+                    }
+
+                    if (!rs5.getString("alergiDiberitau").equals("")) {
+                        alerDiberi = rs5.getString("alergiDiberitau");
+                    } else {
+                        alerDiberi = "";
+                    }
+
+                    TindikasiAlergi.setText(alerObat + alerMak + alerLain + alerDiberi);
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rs5 != null) {
+                    rs5.close();
+                }
+                if (ps5 != null) {
+                    ps5.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : " + e);
         }
     }
 }
