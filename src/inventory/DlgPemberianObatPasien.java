@@ -2884,12 +2884,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     }
                 }
 
-                if (tbObat.getValueAt(tbObat.getSelectedRow(), 5).toString().equals("IGD") && akses.getdata_triase_igd() == false) {
-                    JOptionPane.showMessageDialog(null, "Pemberian obat dari IGD hanya bisa dihapus oleh petugas IGD..!!");
-                } else {
-                    //jika tidak diconteng
-                    if (x == 0) {
-                        if (tbObat.getSelectedRow() > -1) {
+                //jika tidak diconteng
+                if (x == 0) {
+                    if (tbObat.getSelectedRow() > -1) {
+                        if (tbObat.getValueAt(tbObat.getSelectedRow(), 5).toString().equals("IGD") && akses.getdata_triase_igd() == false) {
+                            JOptionPane.showMessageDialog(null, "Pemberian obat dari IGD hanya bisa dihapus oleh petugas IGD..!!");
+                            MnHapusContengActionPerformed(null);
+                        } else {
                             if (Sequel.queryu2tf("delete from pemberian_obat where waktu_simpan=?", 1, new String[]{
                                 tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString()
                             }) == true) {
@@ -2899,23 +2900,27 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                             } else {
                                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                             }
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu atau conteng dulu utk. menghapus data..!!");
                         }
-                        //jika diconteng
                     } else {
-                        try {
-                            for (i = 0; i < tbObat.getRowCount(); i++) {
-                                if (tbObat.getValueAt(i, 0).toString().equals("true")) {
-                                    Sequel.meghapus("pemberian_obat", "waktu_simpan", tbObat.getValueAt(i, 47).toString());
-                                }
+                        JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu atau conteng dulu utk. menghapus data..!!");
+                    }
+
+                //jika diconteng
+                } else {
+                    try {
+                        for (i = 0; i < tbObat.getRowCount(); i++) {
+                            if (tbObat.getValueAt(i, 0).toString().equals("true")
+                                    && tbObat.getValueAt(i, 5).toString().equals("IGD") && akses.getdata_triase_igd() == false) {
+                                System.out.println("Pemberian obat dari IGD hanya bisa dihapus oleh petugas IGD, Percobaan menghapus ke " + i);
+                            } else if (tbObat.getValueAt(i, 0).toString().equals("true")) {
+                                Sequel.meghapus("pemberian_obat", "waktu_simpan", tbObat.getValueAt(i, 47).toString());
                             }
-                            tampil();
-                            tampilDoubelCek();
-                            emptTeks();
-                        } catch (Exception e) {
-                            System.out.println("Notifikasi : " + e);
                         }
+                        tampil();
+                        tampilDoubelCek();
+                        emptTeks();
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
                     }
                 }
             }
@@ -2941,6 +2946,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             if (tbObat.getSelectedRow() > -1) {
                 if (tbObat.getValueAt(tbObat.getSelectedRow(), 5).toString().equals("IGD") && akses.getdata_triase_igd() == false) {
                     JOptionPane.showMessageDialog(null, "Pemberian obat dari IGD hanya bisa diganti oleh petugas IGD..!!");
+                    tampil();
+                    tampilDoubelCek();
+                    emptTeks();
                 } else {
                     cekData();
                     if (Sequel.cariInteger("select count(-1) from databarang where nama_brng like '%" + nmObat.getText() + "%'") == 0) {
