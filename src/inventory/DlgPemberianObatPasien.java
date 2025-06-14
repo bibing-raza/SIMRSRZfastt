@@ -2884,7 +2884,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     }
                 }
 
-                if (tbObat.getValueAt(tbObat.getSelectedRow(), 5).toString().equals("IGD") && status.equals("ranap")) {
+                if (tbObat.getValueAt(tbObat.getSelectedRow(), 5).toString().equals("IGD") && akses.getdata_triase_igd() == false) {
                     JOptionPane.showMessageDialog(null, "Pemberian obat dari IGD hanya bisa dihapus oleh petugas IGD..!!");
                 } else {
                     //jika tidak diconteng
@@ -2939,7 +2939,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             Valid.textKosong(nmObat, "Nama Obat");
         } else {
             if (tbObat.getSelectedRow() > -1) {
-                if (tbObat.getValueAt(tbObat.getSelectedRow(), 5).toString().equals("IGD") && status.equals("ranap")) {
+                if (tbObat.getValueAt(tbObat.getSelectedRow(), 5).toString().equals("IGD") && akses.getdata_triase_igd() == false) {
                     JOptionPane.showMessageDialog(null, "Pemberian obat dari IGD hanya bisa diganti oleh petugas IGD..!!");
                 } else {
                     cekData();
@@ -2977,7 +2977,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                         tampilDoubelCek();
                         emptTeks();
                     } catch (Exception e) {
-                        System.out.println("Simpan Pemberian Obat Pasien : " + e);
+                        System.out.println("Ganti Pemberian Obat Pasien : " + e);
                     }
                 }
             } else {
