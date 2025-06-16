@@ -93,6 +93,7 @@ import rekammedis.DlgVerifikasiCPPT;
 import rekammedis.RMAsesmenAwalKebidanan;
 import rekammedis.RMDokumenPenunjangMedis;
 import rekammedis.RMLembarObservasi;
+import rekammedis.RMPengelolaanTransfusiDarah;
 import rekammedis.RMPenilaianAwalKeperawatanIGDrz;
 import rekammedis.RMPenilaianAwalKeperawatanKebidanan;
 import rekammedis.RMPenilaianAwalKeperawatanRalan;
@@ -840,6 +841,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         ppDokumenJangMed = new javax.swing.JMenuItem();
         MnStatusKakiDiabetes = new javax.swing.JMenuItem();
         ppPersetujuanTindakan = new javax.swing.JMenuItem();
+        ppPengelolaanTransfusiDarah = new javax.swing.JMenuItem();
         ppRekamPsikologis = new javax.swing.JMenuItem();
         ppRekamPsikologiPerkawinan = new javax.swing.JMenuItem();
         MnIkhtisarPerawatanHIV = new javax.swing.JMenuItem();
@@ -2926,6 +2928,22 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
         MnRekamMedis.add(ppPersetujuanTindakan);
 
+        ppPengelolaanTransfusiDarah.setBackground(new java.awt.Color(255, 255, 254));
+        ppPengelolaanTransfusiDarah.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppPengelolaanTransfusiDarah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppPengelolaanTransfusiDarah.setText("Pengelolaan Transfusi Darah");
+        ppPengelolaanTransfusiDarah.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppPengelolaanTransfusiDarah.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppPengelolaanTransfusiDarah.setIconTextGap(5);
+        ppPengelolaanTransfusiDarah.setName("ppPengelolaanTransfusiDarah"); // NOI18N
+        ppPengelolaanTransfusiDarah.setPreferredSize(new java.awt.Dimension(230, 26));
+        ppPengelolaanTransfusiDarah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppPengelolaanTransfusiDarahBtnPrintActionPerformed(evt);
+            }
+        });
+        MnRekamMedis.add(ppPengelolaanTransfusiDarah);
+
         ppRekamPsikologis.setBackground(new java.awt.Color(255, 255, 254));
         ppRekamPsikologis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppRekamPsikologis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -3930,7 +3948,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-05-2025" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-06-2025" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4796,7 +4814,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-05-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-06-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4820,7 +4838,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-05-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-06-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -5040,7 +5058,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-05-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-06-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5059,7 +5077,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-05-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-06-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -9861,6 +9879,32 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnStatusKakiDiabetesBtnPrintActionPerformed
 
+    private void ppPengelolaanTransfusiDarahBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPengelolaanTransfusiDarahBtnPrintActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (tbKasirRalan.getSelectedRow() != -1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgKasirRalan");
+                RMPengelolaanTransfusiDarah form = new RMPengelolaanTransfusiDarah(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRw.getText(), NoRM.getText(), 
+                        Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + NoRM.getText() + "'"), 
+                        tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                form.setAlwaysOnTop(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_ppPengelolaanTransfusiDarahBtnPrintActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -10213,6 +10257,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem ppCekPaseinMati;
     private javax.swing.JMenuItem ppDokumenJangMed;
     private javax.swing.JMenuItem ppPasienCorona;
+    private javax.swing.JMenuItem ppPengelolaanTransfusiDarah;
     private javax.swing.JMenuItem ppPerawatanCorona;
     private javax.swing.JMenuItem ppPersetujuanTindakan;
     private javax.swing.JMenuItem ppProgramPRB;
@@ -10770,6 +10815,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnProtokolKemoterapi.setEnabled(akses.getkemoterapi());
         MnAksesRM.setEnabled(akses.getadmin());
         MnLembarObservasi.setEnabled(akses.getcppt());
+        ppPengelolaanTransfusiDarah.setEnabled(akses.getcppt());
         MnPiutangPasien.setEnabled(akses.getbilling_ralan());
 
         if (akses.getbpjs_sep() == true || akses.getberi_obat() == true || akses.getadmin() == true) {

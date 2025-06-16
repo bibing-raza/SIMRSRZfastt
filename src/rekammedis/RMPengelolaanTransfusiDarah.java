@@ -448,7 +448,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel37.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel37);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -462,7 +462,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel38.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel38);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -626,7 +626,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         internalFrame10.add(BtnCetak);
         BtnCetak.setBounds(320, 23, 90, 26);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -641,7 +641,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         internalFrame10.add(jLabel49);
         jLabel49.setBounds(185, 25, 30, 23);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -837,7 +837,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -851,7 +851,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -928,7 +928,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel5.setBounds(0, 10, 140, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Ruang Rawat :");
+        jLabel15.setText("Rg. Rawat/Poli/Inst. :");
         jLabel15.setName("jLabel15"); // NOI18N
         panelGlass7.add(jLabel15);
         jLabel15.setBounds(0, 38, 140, 23);
@@ -963,7 +963,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(0, 66, 140, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-04-2025" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1502,6 +1502,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
         WindowCetak.dispose();
+        WindowRiwayat.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -1700,7 +1701,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         if (tbTransfusi.getSelectedRow() > -1) {            
             WindowCetak.setSize(533, 70);
             WindowCetak.setLocationRelativeTo(internalFrame1);
-            WindowCetak.setAlwaysOnTop(false);
+            WindowCetak.setAlwaysOnTop(true);
             WindowCetak.setVisible(true);
             Valid.SetTgl(tglA, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
             tglB.setDate(new Date());
@@ -1770,7 +1771,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         BtnCari2ActionPerformed(null);
         WindowRiwayat.setSize(985, internalFrame1.getHeight() - 40);
         WindowRiwayat.setLocationRelativeTo(internalFrame1);
-        WindowRiwayat.setAlwaysOnTop(false);
+        WindowRiwayat.setAlwaysOnTop(true);
         WindowRiwayat.setVisible(true);
     }//GEN-LAST:event_MnRiwayatDataActionPerformed
 
