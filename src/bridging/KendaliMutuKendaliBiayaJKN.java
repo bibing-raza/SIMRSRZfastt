@@ -41,10 +41,10 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private final Properties prop = new Properties();
     private int i = 0, a = 0, b = 0, selisih = 0;
-    private double nilaiA = 0, nilaiB = 0, nilaiC = 0, nilaiD = 0, nilaiE = 0, nilaiF = 0, nilaiJLH = 0, nilaiBAGI = 0, hasil = 0,
-            operasional60 = 0, jaspel40 = 0, selisih1 = 0, selisih2 = 0;
+    private double nilaiA = 0, nilaiB = 0, nilaiC = 0, nilaiD = 0, nilaiE = 0, nilaiF = 0, nilaiG = 0, nilaiJLH = 0,
+            nilaiBAGI = 0, hasil = 0, operasional60 = 0, jaspel40 = 0, selisih1 = 0, selisih2 = 0, transfusiDrh = 0;
     private Date tgl = new Date();
-    private String unitnya = "", dialog_simpan = "", cekRugi = "", obat = "";
+    private String unitnya = "", dialog_simpan = "", cekRugi = "", obat = "", kdPerbupDietGizi = "";
     
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -113,9 +113,9 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         
         tabMode1 = new DefaultTableModel(null, new String[]{
             "No. SEP", "No. RM", "Nama Pasien", "Rg. Perawatan Inap", "Nama DPJP", "Biaya Real Obat", "Tot. Biaya Radiologi", "Tot. Biaya Lab.",
-            "Tot. Biaya Oksigen", "Status Klaim", "Deskripsi CBG", "Tarif CBG", "Deskripsi TopUp", "TopUp Tarif", "Biaya RealCost",
-            "Tot. Trf. Grouping", "Pemakaian Obat (%)", "By. Cost Pokok (%)", "stts_lanjut", "Status Biaya", "Selisih Rugi/Untung",
-            "BY.Tot. Cost Internal", "Operasional 60 %", "Jasa Pelynn. 40 %", "Selisih 1 (Ops. 60% - Tot. RealCost)", "Selisih 2 (Ops. 60% - By.Tot.Cost Internal)"
+            "Tot. Biaya Oksigen", "Tot. Biaya Trans. Darah", "Tot. Biaya Diet/Gizi", "Status Klaim", "Deskripsi CBG", "Tarif CBG", "Deskripsi TopUp", 
+            "TopUp Tarif", "Biaya RealCost", "Tot. Trf. Grouping", "Pemakaian Obat (%)", "By. Cost Pokok (%)", "stts_lanjut", "Status Biaya", "Selisih Rugi/Untung",
+            "By.Tot. Cost Internal", "Operasional 60 %", "Jasa Pelynn. 40 %", "Selisih 1 (Ops. 60% - Tot. RealCost)", "Selisih (Ops. 60% - By.Tot.Cost Internal)"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -127,7 +127,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         tbKendaliKlaimRanap.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKendaliKlaimRanap.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 26; i++) {
+        for (i = 0; i < 28; i++) {
             TableColumn column = tbKendaliKlaimRanap.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
@@ -148,39 +148,44 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
             } else if (i == 8) {
                 column.setPreferredWidth(100);
             } else if (i == 9) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(130);
             } else if (i == 10) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(110);
             } else if (i == 11) {
                 column.setPreferredWidth(75);
             } else if (i == 12) {
-                column.setPreferredWidth(115);
+                column.setPreferredWidth(300);
             } else if (i == 13) {
                 column.setPreferredWidth(75);
             } else if (i == 14) {
-                column.setPreferredWidth(88);
+                column.setPreferredWidth(115);
             } else if (i == 15) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(75);
             } else if (i == 16) {
-                column.setPreferredWidth(115);
+                column.setPreferredWidth(88);
             } else if (i == 17) {
-                column.setPreferredWidth(115);
+                column.setPreferredWidth(100);
             } else if (i == 18) {
+                column.setPreferredWidth(115);
+            } else if (i == 19) {
+                column.setPreferredWidth(115);
+            } else if (i == 20) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 19) {
-                column.setPreferredWidth(95);
-            } else if (i == 20) {
-                column.setPreferredWidth(110);
             } else if (i == 21) {
-                column.setPreferredWidth(115);
+                column.setPreferredWidth(95);
             } else if (i == 22) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(110);
             } else if (i == 23) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(115);
             } else if (i == 24) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(100);
             } else if (i == 25) {
+                column.setPreferredWidth(100);
+            } else if (i == 26) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 27) {
                 column.setPreferredWidth(230);
             }
         }
@@ -961,6 +966,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             unitnya = "";
+            kdPerbupDietGizi = "";
+            kdPerbupDietGizi = "2024RI330005";
             StringBuilder sb = new StringBuilder();
 
             if (jnsRawat.getSelectedIndex() == 1) {
@@ -978,6 +985,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             sb.append("ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', (select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Radiologi') 'Tot. Biaya Radiologi', ");
             sb.append("(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Laborat') 'Tot. Biaya Lab.', ");
             sb.append("(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and (nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%')) 'Tot. Biaya Oksigen', ");
+            sb.append("if((select convert(ifnull(sum(besar_biaya),'0'),int) from tambahan_biaya where nama_biaya like '%darah%' and no_rawat=enc.no_rawat GROUP BY no_rawat) is null,0,(select convert(ifnull(sum(besar_biaya),'0'),int) from tambahan_biaya where nama_biaya like '%darah%' and no_rawat=enc.no_rawat GROUP BY no_rawat)) 'Tot. Biaya Trans. Darah', ");
+            sb.append("if((select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_pr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat) is null,0,(select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_pr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat))+if((select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_drpr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat) is null,0,(select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_drpr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat))+if((select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_dr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat) is null,0,(select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_dr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat)) 'Tot. Biaya Diet/Gizi',");            
             sb.append("concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', ");
             sb.append("IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', convert(ifnull(ts.jumlah_tagihan,'0'),int) 'Biaya RealCost', IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', ");
             sb.append("CONCAT(FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') 'Pemakaian Obat (%)', ");
@@ -990,10 +999,10 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             sb.append("if(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif)>convert(ifnull(ts.jumlah_tagihan,'0'),int),'Untung','Berpotensi Rugi') 'Status Biaya', ");
             sb.append("IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif)-convert(ifnull(ts.jumlah_tagihan,'0'),int) 'Selisih Rugi & Untung', ");
             //ini ditambahankan tgl. 16 juni 2025
-            sb.append("ROUND(esc.tarif_obat * 0.8)+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Radiologi')+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Laborat')+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and (nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%')) 'By.Tot.Cost Internal (Real Obat,Rad,Lab,Oks)', ");
+            sb.append("ROUND(esc.tarif_obat * 0.8)+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Radiologi')+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Laborat')+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and (nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%'))+if((select convert(ifnull(sum(besar_biaya),'0'),int) from tambahan_biaya where nama_biaya like '%darah%' and no_rawat=enc.no_rawat GROUP BY no_rawat) is null,0,(select convert(ifnull(sum(besar_biaya),'0'),int) from tambahan_biaya where nama_biaya like '%darah%' and no_rawat=enc.no_rawat GROUP BY no_rawat))+if((select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_pr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat) is null,0,(select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_pr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat))+if((select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_drpr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat) is null,0,(select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_drpr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat))+if((select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_dr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat) is null,0,(select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_dr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat)) 'By.Tot.Cost Internal (Real Obat,Rad,Lab,Oks,Trans.Darah,Diet/Gizi)', ");
             sb.append("(eg.cbg_tarif*60)/100 'Operasional 60%', (eg.cbg_tarif*40)/100 'Jasa Pelayanan 40%', ");
-            sb.append("((eg.cbg_tarif*60)/100)-convert(ifnull(ts.jumlah_tagihan,'0'),int) 'Selisih 1 (Ops. 60% - By. RealCost)', ");
-            sb.append("((eg.cbg_tarif*60)/100)-(ROUND(esc.tarif_obat * 0.8)+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Radiologi')+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Laborat')+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and (nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%'))) 'Selisih 2 (Ops. 60% - By.Tot.Cost Internal)' ");
+//            sb.append("((eg.cbg_tarif*60)/100)-convert(ifnull(ts.jumlah_tagihan,'0'),int) 'Selisih 1 (Ops. 60% - By. RealCost)', ");
+            sb.append("((eg.cbg_tarif*60)/100)-(ROUND(esc.tarif_obat * 0.8)+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Radiologi')+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Laborat')+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and (nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%'))+if((select convert(ifnull(sum(besar_biaya),'0'),int) from tambahan_biaya where nama_biaya like '%darah%' and no_rawat=enc.no_rawat GROUP BY no_rawat) is null,0,(select convert(ifnull(sum(besar_biaya),'0'),int) from tambahan_biaya where nama_biaya like '%darah%' and no_rawat=enc.no_rawat GROUP BY no_rawat))+if((select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_pr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat) is null,0,(select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_pr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat))+if((select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_drpr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat) is null,0,(select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_drpr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat))+if((select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_dr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat) is null,0,(select convert(ifnull(sum(biaya_rawat),'0'),int) FROM rawat_inap_dr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat=enc.no_rawat GROUP BY no_rawat))) 'Selisih 2 (Ops. 60% - By.Tot.Cost Internal)' ");
             sb.append("FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep ");
             sb.append("INNER JOIN eklaim_grouping eg ON eg.no_sep = enc.no_sep ");
             sb.append("INNER JOIN reg_periksa rp ON rp.no_rawat = enc.no_rawat ");
@@ -1115,7 +1124,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private void tampilRanap() {
         StringBuilder sb = new StringBuilder();
         unitnya = "";
-        cekRugi = "";
+        cekRugi = "";        
         selisih = 0;
         a = 0;
         b = 0;        
@@ -1198,12 +1207,13 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     }
                     
                     selisih = a - b;
-                    hitungPersenCost(rs1.getString("byRealObat"),
+                    hitungCost(rs1.getString("byRealObat"),
                             Sequel.cariIsi("select ifnull(sum(totalbiaya),0) from billing where no_rawat='" + rs1.getString("no_rawat") + "' and status='Radiologi'"),
                             Sequel.cariIsi("select ifnull(sum(totalbiaya),0) from billing where no_rawat='" + rs1.getString("no_rawat") + "' and status='Laborat'"),
                             Sequel.cariIsi("select ifnull(sum(totalbiaya),0) from billing where no_rawat='" + rs1.getString("no_rawat") + "' and "
                                     + "(nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%')"),
-                            rs1.getString("totTrfGrouping"), rs1.getString("tot_biayaRC"));
+                            rs1.getString("totTrfGrouping"), rs1.getString("tot_biayaRC"), rs1.getString("no_rawat"),
+                            Sequel.cariIsi("select ifnull(sum(totalbiaya),0) from billing where no_rawat='" + rs1.getString("no_rawat") + "' and nm_perawatan like '%Penyelenggaraan Diet%'"));
 
                     tabMode1.addRow(new String[]{
                         rs1.getString("no_sep"),
@@ -1212,10 +1222,11 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                         rs1.getString("unit"),
                         rs1.getString("dpjp"),
                         "   " + rs1.getString("by_obat_real"),
-                        "   " + Sequel.cariIsi("select ifnull(format(sum(totalbiaya),0),'') from billing where no_rawat='" + rs1.getString("no_rawat") + "' and status='Radiologi'"),
-                        "   " + Sequel.cariIsi("select ifnull(format(sum(totalbiaya),0),'') from billing where no_rawat='" + rs1.getString("no_rawat") + "' and status='Laborat'"),
-                        "   " + Sequel.cariIsi("select ifnull(format(sum(totalbiaya),0),'') from billing where no_rawat='" + rs1.getString("no_rawat") + "' and "
-                        + "(nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%')"),
+                        "   " + Valid.SetAngka(nilaiB),
+                        "   " + Valid.SetAngka(nilaiC),
+                        "   " + Valid.SetAngka(nilaiD),
+                        "   " + Valid.SetAngka(transfusiDrh),
+                        "   " + Valid.SetAngka(nilaiG),                        
                         rs1.getString("klaim_final"),
                         rs1.getString("cbg_desc"),
                         "   " + rs1.getString("cbg_tarif"),
@@ -1313,12 +1324,12 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                         obat = rs.getString("by_obat_real");
                     }
                     
-                    hitungPersenCost(rs.getString("byRealObat"),
+                    hitungCost(rs.getString("byRealObat"),
                             Sequel.cariIsi("SELECT ifnull(SUM(biaya),0) FROM periksa_radiologi WHERE no_rawat='" + rs.getString("no_rawat") + "'"),
                             Sequel.cariIsi("SELECT ifnull(SUM(biaya_item),0) FROM detail_periksa_lab WHERE no_rawat='" + rs.getString("no_rawat") + "'"),
                             Sequel.cariIsi("SELECT ifnull(sum(r.biaya_rawat),0) FROM rawat_jl_drpr r inner join jns_perawatan j on j.kd_jenis_prw=r.kd_jenis_prw "
                                     + "WHERE r.no_rawat='" + rs.getString("no_rawat") + "' and (j.nm_perawatan like '%liter%' or j.nm_perawatan like '%Pemasangan Oksigenasi%')"),
-                            rs.getString("totTrfGrouping"), "0");
+                            rs.getString("totTrfGrouping"), "0", rs.getString("no_rawat"), "0");
 
                     tabMode.addRow(new String[]{
                         rs.getString("no_sep"),
@@ -1327,10 +1338,9 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                         rs.getString("nm_poli"),
                         rs.getString("nm_dokter"),
                         "   " + obat,
-                        "   " + Sequel.cariIsi("SELECT ifnull(format(SUM(biaya),0),'') FROM periksa_radiologi WHERE no_rawat='" + rs.getString("no_rawat") + "'"),
-                        "   " + Sequel.cariIsi("SELECT ifnull(format(SUM(biaya_item),0),'') FROM detail_periksa_lab WHERE no_rawat='" + rs.getString("no_rawat") + "'"),
-                        "   " + Sequel.cariIsi("SELECT ifnull(format(sum(r.biaya_rawat),0),'') FROM rawat_jl_drpr r inner join jns_perawatan j on j.kd_jenis_prw=r.kd_jenis_prw "
-                        + "WHERE r.no_rawat='" + rs.getString("no_rawat") + "' and (j.nm_perawatan like '%liter%' or j.nm_perawatan like '%Pemasangan Oksigenasi%')"),
+                        "   " + Valid.SetAngka(nilaiB),                        
+                        "   " + Valid.SetAngka(nilaiC),
+                        "   " + Valid.SetAngka(nilaiD),
                         rs.getString("klaim_final"),
                         rs.getString("cbg_desc"),
                         "   " + rs.getString("cbg_tarif"),
@@ -1374,13 +1384,15 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         unitnya = "";
     }
 
-    private void hitungPersenCost(String realObat, String realRad, String realLab, String realOks, String realGroping, String realCost) {
+    private void hitungCost(String realObat, String realRad, String realLab, String realOks,
+            String realGroping, String realCost, String nomorRawat, String realDietGizi) {
         nilaiA = 0;
         nilaiB = 0;
         nilaiC = 0;
         nilaiD = 0;
         nilaiE = 0;
         nilaiF = 0;
+        nilaiG = 0;
         nilaiJLH = 0;
         nilaiBAGI = 0;
         hasil = 0;
@@ -1389,19 +1401,59 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         selisih1 = 0;
         selisih2 = 0;
         
+        hitungCekTransfusiDarahRanap(nomorRawat);
         nilaiA = Double.parseDouble(realObat);
         nilaiB = Double.parseDouble(realRad);
         nilaiC = Double.parseDouble(realLab);
         nilaiD = Double.parseDouble(realOks);
         nilaiE = Double.parseDouble(realGroping);
         nilaiF = Double.parseDouble(realCost);
+        nilaiG = Double.parseDouble(realDietGizi);
 
-        nilaiJLH = nilaiA + nilaiB + nilaiC + nilaiD;
+        nilaiJLH = nilaiA + nilaiB + nilaiC + nilaiD + transfusiDrh + nilaiG;
         nilaiBAGI = nilaiJLH / nilaiE;
         hasil = nilaiBAGI * 100;
         operasional60 = nilaiE * 0.6;
         jaspel40 = nilaiE * 0.4;
         selisih1 = operasional60 - nilaiF;
         selisih2 = operasional60 - nilaiJLH;
+    }
+    
+    private void hitungCekTransfusiDarahRanap(String norwt) {
+        transfusiDrh = 0;
+        kdPerbupDietGizi = "";
+        String angkaTransfusi = "", angka1 = "", angka2 = "", angka3 = "";
+        double nilaiA = 0, nilaiB = 0, nilaiC = 0, nilaiD = 0;
+
+        kdPerbupDietGizi = "2024RI330005";
+        if (Sequel.cariIsi("select ifnull(sum(besar_biaya),'0') from tambahan_biaya where nama_biaya like '%darah%' and no_rawat='" + norwt + "' GROUP BY no_rawat").equals("")) {
+            angkaTransfusi = "0";
+        } else {
+            angkaTransfusi = Sequel.cariIsi("select ifnull(sum(besar_biaya),'0') from tambahan_biaya where nama_biaya like '%darah%' and no_rawat='" + norwt + "' GROUP BY no_rawat");
+        }
+        
+        if (Sequel.cariIsi("select ifnull(sum(biaya_rawat),'0') FROM rawat_inap_pr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat='" + norwt + "' GROUP BY no_rawat").equals("")) {
+            angka1 = "0";
+        } else {
+            angka1 = Sequel.cariIsi("select ifnull(sum(biaya_rawat),'0') FROM rawat_inap_pr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat='" + norwt + "' GROUP BY no_rawat");
+        }
+        
+        if (Sequel.cariIsi("select ifnull(sum(biaya_rawat),'0') FROM rawat_inap_drpr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat='" + norwt + "' GROUP BY no_rawat").equals("")) {
+            angka2 = "0";
+        } else {
+            angka2 = Sequel.cariIsi("select ifnull(sum(biaya_rawat),'0') FROM rawat_inap_drpr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat='" + norwt + "' GROUP BY no_rawat");
+        }
+        
+        if (Sequel.cariIsi("select ifnull(sum(biaya_rawat),'0') FROM rawat_inap_dr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat='" + norwt + "' GROUP BY no_rawat").equals("")) {
+            angka3 = "0";
+        } else {
+            angka3 = Sequel.cariIsi("select ifnull(sum(biaya_rawat),'0') FROM rawat_inap_dr WHERE kd_jenis_prw='" + kdPerbupDietGizi + "' and no_rawat='" + norwt + "' GROUP BY no_rawat");
+        }
+        
+        nilaiA = Double.parseDouble(angkaTransfusi);
+        nilaiB = Double.parseDouble(angka1);
+        nilaiC = Double.parseDouble(angka2);
+        nilaiD = Double.parseDouble(angka3);
+        transfusiDrh = nilaiA + nilaiB + nilaiC + nilaiD;
     }
 }
