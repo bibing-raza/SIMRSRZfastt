@@ -833,7 +833,7 @@ public final class validasi {
                 jasperViewer.setModalExclusionType(ModalExclusionType.TOOLKIT_EXCLUDE);
                 jasperViewer.setLocationRelativeTo(null);
                 jasperViewer.setVisible(true);
-                jasperViewer.setAlwaysOnTop(true);
+//                jasperViewer.setAlwaysOnTop(true);
             } catch (Exception rptexcpt) {
                 System.out.println("Report Can't view because : " + rptexcpt);
                 JOptionPane.showMessageDialog(null, "Report Can't view because : " + rptexcpt);
