@@ -399,7 +399,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         tbPemeriksaanPr.setDefaultRenderer(Object.class, new WarnaTable());
 
         tabModeResepObat = new DefaultTableModel(null, new Object[]{
-            "P", "No.Rawat", "Tgl.Input", "Jam Input", "Nama Obat", "Status", "Nama Dokter", "Id", "kddokter"}) {
+            "P", "No.Rawat", "Tgl.Input", "Jam Input", "Nama Obat", "Status", "Nama Dokter", "Id", "kddokter", "Program PRB"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 boolean a = false;
@@ -411,7 +411,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             Class[] types = new Class[]{
                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -423,7 +423,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         tbResepObat.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbResepObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 9; i++) {
+        for (i = 0; i < 10; i++) {
             TableColumn column = tbResepObat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(20);
@@ -445,6 +445,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             } else if (i == 8) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 9) {
+                column.setPreferredWidth(80);
             }
         }
         tbResepObat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -1718,6 +1720,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         TResepObat = new widget.TextBox();
         BtnSimpanObat = new widget.Button();
         BtnEditObat = new widget.Button();
+        ChkProgramPrb = new widget.CekBox();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         panelGlass16 = new widget.panelisi();
@@ -3175,7 +3178,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3189,7 +3192,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3382,7 +3385,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -3611,7 +3614,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3625,7 +3628,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5082,6 +5085,23 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass13.add(BtnEditObat);
 
+        ChkProgramPrb.setBorder(null);
+        ChkProgramPrb.setForeground(new java.awt.Color(0, 0, 0));
+        ChkProgramPrb.setText("Program PRB BPJS");
+        ChkProgramPrb.setBorderPainted(true);
+        ChkProgramPrb.setBorderPaintedFlat(true);
+        ChkProgramPrb.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ChkProgramPrb.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChkProgramPrb.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkProgramPrb.setName("ChkProgramPrb"); // NOI18N
+        ChkProgramPrb.setPreferredSize(new java.awt.Dimension(145, 23));
+        ChkProgramPrb.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ChkProgramPrbItemStateChanged(evt);
+            }
+        });
+        panelGlass13.add(ChkProgramPrb);
+
         internalFrame6.add(panelGlass13, java.awt.BorderLayout.PAGE_START);
 
         jPanel1.setName("jPanel1"); // NOI18N
@@ -6021,7 +6041,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         ChkKonsul.setBounds(113, 115, 102, 23);
 
         TtglKonsulUlang.setEditable(false);
-        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
+        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2025" }));
         TtglKonsulUlang.setDisplayFormat("dd-MM-yyyy");
         TtglKonsulUlang.setName("TtglKonsulUlang"); // NOI18N
         TtglKonsulUlang.setOpaque(false);
@@ -6186,7 +6206,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -8265,7 +8285,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }//GEN-LAST:event_cmbImunKeyPressed
 
     private void TResepObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TResepObatKeyPressed
-        // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnSimpanObatActionPerformed(null);
         }
@@ -8310,6 +8329,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         noIdObat.getText(), TNoRw.getText(), Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                         TResepObat.getText(), "BELUM", akses.getkode()
                     });
+                    
+                    if (ChkProgramPrb.isSelected() == true) {
+                        Sequel.menyimpanIgnore("bridging_srb_bpjs", "'" + Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' limit 1") + "',"
+                                + "'" + TNoRw.getText() + "','" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','-','-','-','-','" + akses.getkode() + "',"
+                                + "'" + akses.getnamauser() + "','" + akses.getkode() + "','" + noIdObat.getText() + "','hanya sebagai penanda resep program prb',"
+                                + "'" + Sequel.cariIsi("select now()") + "'", "Resep Program PRB BPJS");
+                    }
+                    
                     Sequel.mengedit("reg_periksa", "no_rawat='" + TNoRw.getText() + "'", "stts='Sudah Diperiksa Dokter'");
                     TResepObat.setText("");
                     tampilResepObat();
@@ -8550,9 +8577,26 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         Sequel.mengedit("catatan_resep", "noId='" + TIdObat.getText() + "'",
                                 "no_rawat='" + TNoRw2.getText() + "',tgl_perawatan='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "',"
                                 + "jam_perawatan='" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',nama_obat = '" + TResepObat.getText() + "'");
+
+                        if (ChkProgramPrb.isSelected() == true) {
+                            if (Sequel.cariInteger("select count(-1) from bridging_srb_bpjs where keterangan='" + TIdObat.getText() + "'") > 0) {
+                                Sequel.queryu("delete from bridging_srb_bpjs where keterangan='" + TIdObat.getText() + "'");
+                                Sequel.menyimpanIgnore("bridging_srb_bpjs", "'" + Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw2.getText() + "' and jnspelayanan='2' limit 1") + "',"
+                                        + "'" + TNoRw2.getText() + "','" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','-','-','-','-','" + akses.getkode() + "',"
+                                        + "'" + akses.getnamauser() + "','" + akses.getkode() + "','" + TIdObat.getText() + "','hanya sebagai penanda resep program prb',"
+                                        + "'" + Sequel.cariIsi("select now()") + "'", "Resep Program PRB BPJS");
+                            } else {
+                                Sequel.menyimpanIgnore("bridging_srb_bpjs", "'" + Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw2.getText() + "' and jnspelayanan='2' limit 1") + "',"
+                                        + "'" + TNoRw2.getText() + "','" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','-','-','-','-','" + akses.getkode() + "',"
+                                        + "'" + akses.getnamauser() + "','" + akses.getkode() + "','" + TIdObat.getText() + "','hanya sebagai penanda resep program prb',"
+                                        + "'" + Sequel.cariIsi("select now()") + "'", "Resep Program PRB BPJS");
+                            }
+                        } else {
+                            Sequel.queryu("delete from bridging_srb_bpjs where keterangan='" + TIdObat.getText() + "'");
+                        }
                     }
+                    TResepObat.setText("");
                     tampilResepObat();
-                    BtnBatalActionPerformed(evt);
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Silahkan pilih data yang mau diganti..!!");
                     TCari.requestFocus();
@@ -9424,7 +9468,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") == 0) {
                         param.put("nosep", "-");
                     } else {
-                        param.put("nosep", Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' order by tglsep desc limit 1"));
+                        param.put("nosep", Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' order by tglsep desc limit 1") + " ("
+                                + Sequel.cariIsi("select if(count(-1)>0,'Program PRB BPJS','') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'") + ")");
                     }
 
                     Valid.MyReport("rptResepRalan.jasper", "report", "::[ Resep Dokter Poliklinik/Unit Rawat Jalan ]::",
@@ -11029,6 +11074,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private void BtnResepIterBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResepIterBatalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnResepIterBatalActionPerformed
+
+    private void ChkProgramPrbItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ChkProgramPrbItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChkProgramPrbItemStateChanged
     /**
      * @param args the command line arguments
      */
@@ -11112,6 +11161,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.CekBox ChkPoli;
     private widget.CekBox ChkPoli1;
     private widget.CekBox ChkPrmrj;
+    private widget.CekBox ChkProgramPrb;
     private widget.CekBox ChkReasesmen;
     private widget.CekBox ChkTanggal;
     private widget.Tanggal DTPCari1;
@@ -11666,6 +11716,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         cekPilihanRehab = Sequel.cariInteger("select count(-1) from data_rehab_medik where no_rawat='" + norwt + "'");
         PoliKhusus = Sequel.cariIsi("SELECT ifnull(kode_unit,'-') kode_unit FROM hak_akses_unit WHERE nip='" + akses.getkode() + "'");
         kdpj = kodePJ;
+        
+        if (kodePJ.equals("B01") || kodePJ.equals("A03")) {            
+            ChkProgramPrb.setEnabled(true);
+        } else {
+            ChkProgramPrb.setEnabled(false);
+        }
 
         TNoRw.setText(norwt);
         TCari.setText(norwt);
@@ -12105,8 +12161,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         Valid.tabelKosong(tabModeResepObat);
         try {
             ps5 = koneksi.prepareStatement("select c.no_rawat, c.tgl_perawatan, c.jam_perawatan, c.nama_obat, "
-                    + "c.status, d.nm_dokter, c.noID, c.kd_dokter from catatan_resep c "
-                    + "inner join reg_periksa r on r.no_rawat = c.no_rawat inner join dokter d on d.kd_dokter = c.kd_dokter where "
+                    + "c.status, d.nm_dokter, c.noID, c.kd_dokter, if(prb.saran is null,'TIDAK','YA') programPrb from catatan_resep c "
+                    + "inner join reg_periksa r on r.no_rawat = c.no_rawat inner join dokter d on d.kd_dokter = c.kd_dokter "
+                    + "left join bridging_srb_bpjs prb on prb.no_srb=c.no_rawat and prb.keterangan=c.noID where "
                     + "c.tgl_perawatan between ? and ? and c.no_rawat like ? or "
                     + "c.tgl_perawatan between ? and ? and c.nama_obat like ? or "
                     + "c.tgl_perawatan between ? and ? and r.no_rkm_medis like ? order by c.noId");
@@ -12131,7 +12188,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getString(8)
+                        rs.getString(8),
+                        rs.getString(9)
                     });
                 }
             } catch (Exception e) {
@@ -17912,6 +17970,18 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             cmbMnt.setSelectedItem(tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 3).toString().substring(3, 5));
             cmbDtk.setSelectedItem(tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 3).toString().substring(6, 8));
             TIdObat.setText(tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 7).toString());
+            
+            if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRw2.getText() + "' and kd_pj in ('B01','A03')") > 0) {
+                ChkProgramPrb.setEnabled(true);
+            } else {
+                ChkProgramPrb.setEnabled(false);
+            }
+
+            if (tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 9).toString().equals("YA")) {
+                ChkProgramPrb.setSelected(true);
+            } else {
+                ChkProgramPrb.setSelected(false);
+            }
         }
     }
 
@@ -19712,6 +19782,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         ChkReasesmen.setSelected(false);
         Tkesimpulan.setText("");
         Trekomendasi.setText("");
+        ChkProgramPrb.setSelected(false);
     }
 
     private void cekPemeriksaanPetugas() {
@@ -21674,6 +21745,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             + "' and tgl_perawatan='" + tbResepObat.getValueAt(i, 2).toString()
                             + "' and jam_perawatan='" + tbResepObat.getValueAt(i, 3).toString()
                             + "' and noId='" + tbResepObat.getValueAt(i, 7).toString() + "'");
+                    
+                    Sequel.queryu("delete from bridging_srb_bpjs where no_srb='" + tbResepObat.getValueAt(i, 1).toString() + "' "
+                            + "and keterangan='" + tbResepObat.getValueAt(i, 7).toString() + "'");
                 }
             }
         } catch (Exception e) {

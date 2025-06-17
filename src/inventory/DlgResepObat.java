@@ -57,7 +57,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private Date date = new Date();
     private String now = dateFormat.format(date), status = "", penjab = "", nmPrinter1 = "", nmPrinter2 = "",
-            kodeobat = "", tglrsp = "", jamrsp = "", kdUnit = "";
+            kodeobat = "", tglrsp = "", jamrsp = "", kdUnit = "", programPRB = "";
     private double total = 0, jumlahtotal = 0;
     private int i = 0, conteng = 0;
 
@@ -1210,6 +1210,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             TCari.requestFocus();
         } else if (tabMode1.getRowCount() != 0) {
+            programPRB = "";
             Sequel.queryu("delete from temporary");
             Sequel.AutoComitFalse();
             for (int i = 0; i < tabMode1.getRowCount(); i++) {
@@ -1219,6 +1220,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 });
             }
             Sequel.AutoComitTrue();
+            
+            if (Sequel.cariInteger("select count(-1) from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'") > 0) {
+                programPRB = " (" + Sequel.cariIsi("select if(count(-1)>0,'Program PRB','-') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'") + ")";
+            } else {
+                programPRB = "";
+            }
+
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("alamatrs", akses.getalamatrs());
@@ -1231,7 +1239,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     + "from reg_periksa rp inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + TNoRw.getText() + "'"));
 
             if (Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + TNoRw.getText() + "'").equals("Ralan")) {
-                param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'"));
+                param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") + "" + programPRB);
             } else {
                 param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='1'"));
             }
