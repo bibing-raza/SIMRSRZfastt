@@ -566,7 +566,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         
         tabMode6 = new DefaultTableModel(null, new String[]{
             "No.", "Ruang Rawat/Gedung", "Jlh. Pasien Dirawat", "Jlh. Mendapat Asuhan", "Jlh. Belum Dapat Asuhan", 
-            "Persentase Asuhan Gizi", "Persentase Belum Dapat Asuhan"}) {
+            "Persentase Asuhan Gizi", "Persentase Belum Dapat Asuhan", "Asuhan Gizi"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -577,7 +577,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         tbPersentase.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPersentase.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             TableColumn column = tbPersentase.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(30);
@@ -593,6 +593,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 column.setPreferredWidth(150);
             } else if (i == 6) {
                 column.setPreferredWidth(200);
+            } else if (i == 7) {
+                column.setPreferredWidth(80);
             } 
         }
         tbPersentase.setDefaultRenderer(Object.class, new WarnaTable());
@@ -5981,7 +5983,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     "select * from (select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, "
                     + "(a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
                     + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_tersasuhan, "
-                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan from "
+                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan, b.jenis_asuhan from "
                     + "( "
                     + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
                     + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
@@ -5990,7 +5992,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     + "WHERE MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_keluar)=" + Ttahun.getText().trim() + " and ki.stts_pulang not in ('-','Pindah Kamar') "
                     + "GROUP BY MONTH(ki.tgl_keluar), b.nm_gedung) as a "
                     + "inner join "
-                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan from asuhan_gizi_ranap ag "
+                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
                     + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
                     + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
                     + "WHERE MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and ki.stts_pulang not in ('-','Pindah Kamar') "
@@ -5999,7 +6001,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     + "union ALL "
                     + "select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, (a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
                     + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_tersasuhan, "
-                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan from "
+                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan, b.jenis_asuhan from "
                     + "( "
                     + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
                     + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
@@ -6008,7 +6010,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     + "WHERE MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_keluar)=" + Ttahun.getText().trim() + " and ki.stts_pulang not in ('-','Pindah Kamar') "
                     + "GROUP BY MONTH(ki.tgl_keluar), b.nm_gedung) as a "
                     + "inner join "
-                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan from asuhan_gizi_ranap ag "
+                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
                     + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
                     + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
                     + "WHERE MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and ki.stts_pulang not in ('-','Pindah Kamar') "
@@ -8760,7 +8762,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             ps14 = koneksi.prepareStatement("select * from (select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, "
                     + "(a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
                     + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_tersasuhan, "
-                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan from "
+                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan, b.jenis_asuhan from "
                     + "( "
                     + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
                     + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
@@ -8768,7 +8770,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                     + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)=" + Ttahun.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
                     + "inner join "
-                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan from asuhan_gizi_ranap ag "
+                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
                     + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
                     + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
                     + "WHERE MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and "
@@ -8777,7 +8779,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     + "union ALL "
                     + "select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, (a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
                     + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_tersasuhan, "
-                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan from "
+                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan, b.jenis_asuhan from "
                     + "( "
                     + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
                     + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
@@ -8785,7 +8787,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                     + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)=" + Ttahun.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
                     + "inner join "
-                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan from asuhan_gizi_ranap ag "
+                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
                     + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
                     + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
                     + "WHERE MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and "
@@ -8802,7 +8804,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                         rs14.getString(3),
                         rs14.getString(4),
                         rs14.getString(5),
-                        rs14.getString(6)
+                        rs14.getString(6),
+                        rs14.getString(7)
                     });
                     x++;
                 }
