@@ -90,7 +90,7 @@ import rekammedis.DlgRekamPsikologisDewasa;
 import rekammedis.DlgRekamPsikologisPerkawinan;
 import rekammedis.DlgTerapiAntiretroviralHIV;
 import rekammedis.DlgVerifikasiCPPT;
-import rekammedis.RMAsesmenAwalKebidanan;
+import rekammedis.RMAsesmenAwalKebidanan1;
 import rekammedis.RMDokumenPenunjangMedis;
 import rekammedis.RMLembarObservasi;
 import rekammedis.RMPengelolaanTransfusiDarah;
@@ -8596,7 +8596,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     akses.setform("DlgKasirRalan");
-                    RMAsesmenAwalKebidanan form = new RMAsesmenAwalKebidanan(null, false);
+                    RMAsesmenAwalKebidanan1 form = new RMAsesmenAwalKebidanan1(null, false);
                     form.emptTeks();
                     form.isCek();
                     form.setData(TNoRw.getText());
@@ -8610,7 +8610,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                             || (Sequel.cariInteger("select count(-1) from asesmen_kebidanan_ralan where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1)) {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         akses.setform("DlgKasirRalan");
-                        RMAsesmenAwalKebidanan form = new RMAsesmenAwalKebidanan(null, false);
+                        RMAsesmenAwalKebidanan1 form = new RMAsesmenAwalKebidanan1(null, false);
                         form.emptTeks();
                         form.isCek();
                         form.setData(TNoRw.getText());
