@@ -1072,7 +1072,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
             DlgCPPT form = new DlgCPPT(null, false);
             form.emptTeks();
             form.isCek();
-            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), stts, gedung);
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), stts, gedung, nmUnit.getText());
             form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
