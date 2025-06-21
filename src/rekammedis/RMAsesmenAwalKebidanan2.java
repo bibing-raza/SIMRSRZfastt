@@ -2684,7 +2684,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                     Valid.SetTgl(TtglEdukasi, rs1.getString("tgl_edukasi"));
                     cmbJam.setSelectedItem(rs1.getString("jam_edukasi").toString().substring(0, 2));
                     cmbMnt.setSelectedItem(rs1.getString("jam_edukasi").toString().substring(3, 5));
-                    cmbDtk.setSelectedItem(rs1.getString("jam_edukasi").toString().substring(6, 8));                    
+                    cmbDtk.setSelectedItem(rs1.getString("jam_edukasi").toString().substring(6, 8));
                     nipDokter = rs1.getString("nip_dokter");
                     identifikasi1 = rs1.getString("cek_identifikasi1");
                     identifikasi2 = rs1.getString("cek_identifikasi2");
@@ -2831,7 +2831,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         }
     }
     
-    public void cekData() {
+    private void cekData() {
         if (chkRiwTidakAda.isSelected() == true) {
             tidakAda = "ya";
         } else {
@@ -3072,7 +3072,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         }
     }
     
-    public void dataCek() {
+    private void dataCek() {
         if (cmbNyeri.getSelectedIndex() == 1) {
             Tlokasi.setEnabled(true);
         } else {
