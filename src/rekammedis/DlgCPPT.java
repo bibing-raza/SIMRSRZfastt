@@ -8555,7 +8555,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                 RMAsesmenAwalKebidanan1 form = new RMAsesmenAwalKebidanan1(null, false);
                 form.emptTeks();
                 form.isCek();
-                form.setData(TNoRw.getText(), ruangRawat);
+                form.setData(TNoRw.getText(), ruangRawat, "ralan");
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
@@ -8569,7 +8569,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     RMAsesmenAwalKebidanan1 form = new RMAsesmenAwalKebidanan1(null, false);
                     form.emptTeks();
                     form.isCek();
-                    form.setData(TNoRw.getText(), ruangRawat);
+                    form.setData(TNoRw.getText(), ruangRawat, "ralan");
                     form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     form.setLocationRelativeTo(internalFrame1);
                     form.setVisible(true);

@@ -1472,7 +1472,8 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         PanelInput.add(label19);
         label19.setBounds(0, 1169, 120, 23);
 
-        TtglEdukasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        TtglEdukasi.setEditable(false);
+        TtglEdukasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2025" }));
         TtglEdukasi.setDisplayFormat("dd-MM-yyyy");
         TtglEdukasi.setName("TtglEdukasi"); // NOI18N
         TtglEdukasi.setOpaque(false);
@@ -1825,7 +1826,8 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         PanelInput.add(label27);
         label27.setBounds(480, 1393, 60, 23);
 
-        TtglDp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        TtglDp.setEditable(false);
+        TtglDp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2025" }));
         TtglDp.setDisplayFormat("dd-MM-yyyy");
         TtglDp.setName("TtglDp"); // NOI18N
         TtglDp.setOpaque(false);
@@ -2701,7 +2703,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                     cmbDP.setSelectedItem(rs1.getString("dp"));
                     Valid.SetTgl(TtglDp, rs1.getString("tgl_dp"));
                     TnmKeluargaPasien.setText(rs1.getString("nm_keluarga_pasien"));
-                    nipBidan2 = rs1.getString("nip_bidan_dp");             
+                    nipBidan2 = rs1.getString("nip_bidan_dp");
                     dataCek();
                 }
             } catch (Exception e) {
@@ -2813,7 +2815,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                     TnmKeluargaPasien.setText(rs.getString("nm_keluarga_pasien"));
                     nipBidan2 = rs.getString("nip_bidan_dp");
                     TnmBidan2.setText(rs.getString("nm_bidan_dp"));
-                    saya2 = rs.getString("cek_saya2");                    
+                    saya2 = rs.getString("cek_saya2");
                     dataCek();
                 }
             } catch (Exception e) {
@@ -3403,7 +3405,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         dispose();
     }
     
-    public void variabelBersihHal2() {
+    private void variabelBersihHal2() {
         nipBidan1 = "";
         nipBidan2 = "";
         nipDokter = "";

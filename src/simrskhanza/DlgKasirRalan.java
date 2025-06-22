@@ -8599,7 +8599,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     RMAsesmenAwalKebidanan1 form = new RMAsesmenAwalKebidanan1(null, false);
                     form.emptTeks();
                     form.isCek();
-                    form.setData(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
+                    form.setData(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString(), "ralan");
                     form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     form.setLocationRelativeTo(internalFrame1);
                     form.setVisible(true);
@@ -8613,7 +8613,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         RMAsesmenAwalKebidanan1 form = new RMAsesmenAwalKebidanan1(null, false);
                         form.emptTeks();
                         form.isCek();
-                        form.setData(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
+                        form.setData(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString(), "ralan");
                         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                         form.setLocationRelativeTo(internalFrame1);
                         form.setVisible(true);
