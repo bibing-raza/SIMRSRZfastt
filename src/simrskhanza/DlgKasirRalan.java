@@ -10398,7 +10398,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     //cek e-RM pasien igd
                     if (rskasir.getString("nm_poli").contains("IGD") == true) {
                         if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + rskasir.getString("no_rawat") + "'") == 0
-                                || Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + rskasir.getString("no_rawat") + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1
+                                || Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + rskasir.getString("no_rawat") + "' and kd_kamar_msk='igdk' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1
                                 || Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + rskasir.getString("no_rawat") + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1 
                                 || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where no_rawat='" + rskasir.getString("no_rawat") + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
                             aksesRM = "(Open)";
