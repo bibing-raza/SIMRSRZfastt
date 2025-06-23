@@ -2064,6 +2064,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkPendengaran.setSelected(false);
         chkPenglihatan.setSelected(false);
         chkKognitif.setSelected(false);
+        chkFisik.setSelected(false);
         chkBudaya.setSelected(false);
         chkEmosi.setSelected(false);
         chkBahasa.setSelected(false);
@@ -2073,6 +2074,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             chkPendengaran.setEnabled(true);
             chkPenglihatan.setEnabled(true);
             chkKognitif.setEnabled(true);
+            chkFisik.setEnabled(true);
             chkBudaya.setEnabled(true);
             chkEmosi.setEnabled(true);
             chkBahasa.setEnabled(true);
@@ -2083,6 +2085,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             chkPendengaran.setEnabled(false);
             chkPenglihatan.setEnabled(false);
             chkKognitif.setEnabled(false);
+            chkFisik.setEnabled(false);
             chkBudaya.setEnabled(false);
             chkEmosi.setEnabled(false);
             chkBahasa.setEnabled(false);
@@ -2483,6 +2486,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkPendengaran.setSelected(false);
         chkPenglihatan.setSelected(false);
         chkKognitif.setSelected(false);
+        chkFisik.setSelected(false);
         chkBudaya.setSelected(false);
         chkEmosi.setSelected(false);
         chkBahasa.setSelected(false);
@@ -2569,21 +2573,27 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             kesimpulanGizi.setText("Skor >= 2, pasien beresiko malnutrisi, konsul ke Ahli Gizi");
         }
     }
-    
-    public void isCek() {
-        if (akses.getjml2() >= 1) {
-            BtnBidan1.setEnabled(false);
-            BtnBidan2.setEnabled(false);
-            nipBidan1 = akses.getkode();
-            nipBidan2 = akses.getkode();
-            Sequel.cariIsi("select nama from pegawai where nik=?", TnmBidan1, nipBidan1);
-            Sequel.cariIsi("select nama from pegawai where nik=?", TnmBidan2, nipBidan2);
-            if (TnmBidan1.getText().equals("")) {
-                nipBidan1 = "";
-            }
 
-            if (TnmBidan2.getText().equals("")) {
-                nipBidan2 = "";
+    public void isCek() {
+        if (nipBidan1.equals("") && nipBidan2.equals("") && nipDokter.equals("")) {
+            nipBidan1 = "-";
+            nipBidan2 = "-";
+            nipDokter = "-";
+        } else {
+            if (akses.getjml2() >= 1) {
+                BtnBidan1.setEnabled(false);
+                BtnBidan2.setEnabled(false);
+                nipBidan1 = akses.getkode();
+                nipBidan2 = akses.getkode();
+                Sequel.cariIsi("select nama from pegawai where nik=?", TnmBidan1, nipBidan1);
+                Sequel.cariIsi("select nama from pegawai where nik=?", TnmBidan2, nipBidan2);
+                if (TnmBidan1.getText().equals("")) {
+                    nipBidan1 = "";
+                }
+
+                if (TnmBidan2.getText().equals("")) {
+                    nipBidan2 = "";
+                }
             }
         }
     }
@@ -3200,8 +3210,26 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         
         if (ya.equals("ya")) {
             chkYaTerdapat.setSelected(true);
+            chkPendengaran.setEnabled(true);
+            chkPenglihatan.setEnabled(true);
+            chkKognitif.setEnabled(true);
+            chkFisik.setEnabled(true);
+            chkBudaya.setEnabled(true);
+            chkEmosi.setEnabled(true);
+            chkBahasa.setEnabled(true);
+            chkLainHambatan.setEnabled(true);
+            TketLainHambatan.setEnabled(false);
         } else {
             chkYaTerdapat.setSelected(false);
+            chkPendengaran.setEnabled(false);
+            chkPenglihatan.setEnabled(false);
+            chkKognitif.setEnabled(false);
+            chkFisik.setEnabled(false);
+            chkBudaya.setEnabled(false);
+            chkEmosi.setEnabled(false);
+            chkBahasa.setEnabled(false);
+            chkLainHambatan.setEnabled(false);
+            TketLainHambatan.setEnabled(false);
         }
         
         if (pendengaran.equals("ya")) {
