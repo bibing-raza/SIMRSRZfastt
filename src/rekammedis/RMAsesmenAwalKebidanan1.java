@@ -45,6 +45,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     private int i = 0, x = 0, skor = 0, pilihan = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
+    private RMAsesmenAwalKebidanan2 halaman2 = new RMAsesmenAwalKebidanan2(null, false);
     private String wktSimpan = "", sendiri = "", rujukan = "", pkm = "", spog = "", rsLain = "", dismen = "", spoting = "", menor = "", metro = "",
             lainKeluhanHaid = "", hipertensiDahulu = "", dmDahulu = "", jantungDahulu = "", asmaDahulu = "", lainyaDahulu = "", hipertensiKeluarga = "",
             dmKeluarga = "", jantungKeluarga = "", asmaKeluarga = "", lainyaKeluarga = "", pil = "", suntik1 = "", suntik3 = "", implan = "", iud = "",
@@ -1334,7 +1335,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         BtnEdit = new widget.Button();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
-        BtnHalaman2 = new widget.Button();
+        BtnHalaman = new widget.Button();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbAsesmen = new widget.Table();
@@ -1351,6 +1352,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         LCount = new widget.Label();
         BtnHapus1 = new widget.Button();
         BtnPrint1 = new widget.Button();
+        BtnHalaman1 = new widget.Button();
         BtnKeluar1 = new widget.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -1432,7 +1434,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel206.setBounds(465, 66, 60, 23);
 
         TtglAsesmen.setEditable(false);
-        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglAsesmen.setDisplayFormat("dd-MM-yyyy");
         TtglAsesmen.setName("TtglAsesmen"); // NOI18N
         TtglAsesmen.setOpaque(false);
@@ -2043,7 +2045,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel236.setBounds(260, 458, 65, 23);
 
         TtglPerut.setEditable(false);
-        TtglPerut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglPerut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglPerut.setDisplayFormat("dd-MM-yyyy");
         TtglPerut.setName("TtglPerut"); // NOI18N
         TtglPerut.setOpaque(false);
@@ -2131,7 +2133,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel240.setBounds(295, 486, 65, 23);
 
         TtglKeluar.setEditable(false);
-        TtglKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglKeluar.setDisplayFormat("dd-MM-yyyy");
         TtglKeluar.setName("TtglKeluar"); // NOI18N
         TtglKeluar.setOpaque(false);
@@ -2227,7 +2229,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel244.setBounds(405, 514, 65, 23);
 
         TtglDarah.setEditable(false);
-        TtglDarah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglDarah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglDarah.setDisplayFormat("dd-MM-yyyy");
         TtglDarah.setName("TtglDarah"); // NOI18N
         TtglDarah.setOpaque(false);
@@ -2315,7 +2317,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel248.setBounds(390, 542, 65, 23);
 
         TtglKeluarAir.setEditable(false);
-        TtglKeluarAir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglKeluarAir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglKeluarAir.setDisplayFormat("dd-MM-yyyy");
         TtglKeluarAir.setName("TtglKeluarAir"); // NOI18N
         TtglKeluarAir.setOpaque(false);
@@ -2440,7 +2442,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel254.setBounds(192, 598, 65, 23);
 
         TtglPusing.setEditable(false);
-        TtglPusing.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglPusing.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglPusing.setDisplayFormat("dd-MM-yyyy");
         TtglPusing.setName("TtglPusing"); // NOI18N
         TtglPusing.setOpaque(false);
@@ -2520,7 +2522,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel258.setBounds(192, 626, 65, 23);
 
         TtglNyeriUlu.setEditable(false);
-        TtglNyeriUlu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglNyeriUlu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglNyeriUlu.setDisplayFormat("dd-MM-yyyy");
         TtglNyeriUlu.setName("TtglNyeriUlu"); // NOI18N
         TtglNyeriUlu.setOpaque(false);
@@ -2600,7 +2602,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel262.setBounds(192, 654, 65, 23);
 
         TtglPandangan.setEditable(false);
-        TtglPandangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglPandangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglPandangan.setDisplayFormat("dd-MM-yyyy");
         TtglPandangan.setName("TtglPandangan"); // NOI18N
         TtglPandangan.setOpaque(false);
@@ -2680,7 +2682,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel266.setBounds(192, 682, 65, 23);
 
         TtglOdema.setEditable(false);
-        TtglOdema.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglOdema.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglOdema.setDisplayFormat("dd-MM-yyyy");
         TtglOdema.setName("TtglOdema"); // NOI18N
         TtglOdema.setOpaque(false);
@@ -2728,7 +2730,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel269.setBounds(192, 710, 65, 23);
 
         TtglMual.setEditable(false);
-        TtglMual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglMual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglMual.setDisplayFormat("dd-MM-yyyy");
         TtglMual.setName("TtglMual"); // NOI18N
         TtglMual.setOpaque(false);
@@ -2808,7 +2810,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel273.setBounds(192, 738, 65, 23);
 
         TtglMuntah.setEditable(false);
-        TtglMuntah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglMuntah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglMuntah.setDisplayFormat("dd-MM-yyyy");
         TtglMuntah.setName("TtglMuntah"); // NOI18N
         TtglMuntah.setOpaque(false);
@@ -2888,7 +2890,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel277.setBounds(192, 766, 65, 23);
 
         TtglBatuk.setEditable(false);
-        TtglBatuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglBatuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglBatuk.setDisplayFormat("dd-MM-yyyy");
         TtglBatuk.setName("TtglBatuk"); // NOI18N
         TtglBatuk.setOpaque(false);
@@ -2968,7 +2970,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel281.setBounds(192, 794, 65, 23);
 
         TtglPilek.setEditable(false);
-        TtglPilek.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglPilek.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglPilek.setDisplayFormat("dd-MM-yyyy");
         TtglPilek.setName("TtglPilek"); // NOI18N
         TtglPilek.setOpaque(false);
@@ -3048,7 +3050,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel285.setBounds(192, 822, 65, 23);
 
         TtglDemam.setEditable(false);
-        TtglDemam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        TtglDemam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         TtglDemam.setDisplayFormat("dd-MM-yyyy");
         TtglDemam.setName("TtglDemam"); // NOI18N
         TtglDemam.setOpaque(false);
@@ -5352,19 +5354,19 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         });
         panelTombol.add(BtnKeluar);
 
-        BtnHalaman2.setForeground(new java.awt.Color(0, 0, 0));
-        BtnHalaman2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
-        BtnHalaman2.setMnemonic('H');
-        BtnHalaman2.setText("Halaman 2");
-        BtnHalaman2.setToolTipText("Alt+H");
-        BtnHalaman2.setName("BtnHalaman2"); // NOI18N
-        BtnHalaman2.setPreferredSize(new java.awt.Dimension(120, 30));
-        BtnHalaman2.addActionListener(new java.awt.event.ActionListener() {
+        BtnHalaman.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHalaman.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        BtnHalaman.setMnemonic('H');
+        BtnHalaman.setText("Halaman 2");
+        BtnHalaman.setToolTipText("Alt+H");
+        BtnHalaman.setName("BtnHalaman"); // NOI18N
+        BtnHalaman.setPreferredSize(new java.awt.Dimension(120, 30));
+        BtnHalaman.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnHalaman2ActionPerformed(evt);
+                BtnHalamanActionPerformed(evt);
             }
         });
-        panelTombol.add(BtnHalaman2);
+        panelTombol.add(BtnHalaman);
 
         internalFrame2.add(panelTombol, java.awt.BorderLayout.PAGE_END);
 
@@ -5406,7 +5408,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5421,7 +5423,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5522,6 +5524,20 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             }
         });
         panelGlass9.add(BtnPrint1);
+
+        BtnHalaman1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHalaman1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        BtnHalaman1.setMnemonic('H');
+        BtnHalaman1.setText("Halaman 2");
+        BtnHalaman1.setToolTipText("Alt+H");
+        BtnHalaman1.setName("BtnHalaman1"); // NOI18N
+        BtnHalaman1.setPreferredSize(new java.awt.Dimension(100, 23));
+        BtnHalaman1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHalaman1ActionPerformed(evt);
+            }
+        });
+        panelGlass9.add(BtnHalaman1);
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -5701,12 +5717,15 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
+        halaman2.Tutup();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnKeluarActionPerformed(null);
-        }else{Valid.pindah(evt,BtnEdit,TCari);}
+        } else {
+            Valid.pindah(evt, BtnEdit, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
@@ -5721,19 +5740,19 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintActionPerformed
 
     private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnPrintActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, BtnEdit, BtnKeluar);
         }
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             BtnCari.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
             BtnKeluar.requestFocus();
         }
 }//GEN-LAST:event_TCariKeyPressed
@@ -5743,9 +5762,9 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnCariActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, TCari, BtnAll);
         }
 }//GEN-LAST:event_BtnCariKeyPressed
@@ -5756,10 +5775,10 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             TCari.setText("");
             tampil();
-        }else{
+        } else {
             Valid.pindah(evt, BtnCari, TPasien);
         }
 }//GEN-LAST:event_BtnAllKeyPressed
@@ -7186,24 +7205,27 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         BtnHapusActionPerformed(null);
     }//GEN-LAST:event_BtnHapus1ActionPerformed
 
-    private void BtnHalaman2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHalaman2ActionPerformed
+    private void BtnHalamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHalamanActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else {
             if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan1 where no_rawat='" + TNoRw.getText() + "'") == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan isi dan simpan dulu datanya utk. asesmen halaman 1 ....!!");
             } else {
-                akses.setform("RMAsesmenAwalKebidanan1");
-                RMAsesmenAwalKebidanan2 form = new RMAsesmenAwalKebidanan2(null, false);
-                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                form.setLocationRelativeTo(internalFrame1);
-                form.emptTeks();
-                form.isCek();
-                form.setData(TNoRw.getText(), stsrwt);
-                form.setVisible(true);
+                akses.setform("RMAsesmenAwalKebidanan1");                
+                halaman2.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                halaman2.setLocationRelativeTo(internalFrame1);
+                halaman2.emptTeks();
+                halaman2.isCek();
+                halaman2.setData(TNoRw.getText(), stsrwt);
+                halaman2.setVisible(true);
             }
         }
-    }//GEN-LAST:event_BtnHalaman2ActionPerformed
+    }//GEN-LAST:event_BtnHalamanActionPerformed
+
+    private void BtnHalaman1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHalaman1ActionPerformed
+        BtnHalamanActionPerformed(null);
+    }//GEN-LAST:event_BtnHalaman1ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -7230,7 +7252,8 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     private widget.Button BtnDokter3;
     private widget.Button BtnEdit;
     private widget.Button BtnGantiRiwayat;
-    private widget.Button BtnHalaman2;
+    private widget.Button BtnHalaman;
+    private widget.Button BtnHalaman1;
     private widget.Button BtnHapus;
     private widget.Button BtnHapus1;
     private widget.Button BtnHapusRiwayat;
@@ -7675,13 +7698,13 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 
     private void tampil() {
         Valid.tabelKosong(tabMode);
-        try{
+        try {
             ps = koneksi.prepareStatement("SELECT ak1.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tglLahir, DATE_FORMAT(ak1.tgl_asesmen,'%d-%m-%Y') tglAses, "
                     + "concat(rp.umurdaftar,' ',rp.sttsumur) umurPas, p.pekerjaan, p.agama, concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamatPas, "
-                    + "p.stts_nikah, pg1.nama nmBidan, pg2.nama nmDokter, ak2.status_rawat FROM asesmen_awal_kebidanan1 ak1 inner join reg_periksa rp on rp.no_rawat=ak1.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "
+                    + "p.stts_nikah, ifnull(pg1.nama,'-') nmBidan, ifnull(pg2.nama,'-') nmDokter, ifnull(ak2.status_rawat,'-') status_rawat FROM asesmen_awal_kebidanan1 ak1 "
+                    + "inner join reg_periksa rp on rp.no_rawat=ak1.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "
                     + "inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
-                    + "inner join asesmen_awal_kebidanan2 ak2 on ak2.no_rawat=ak1.no_rawat inner join pegawai pg1 on pg1.nik=ak2.nip_bidan_dp inner join pegawai pg2 on pg2.nik=ak2.nip_dokter where "
+                    + "left join asesmen_awal_kebidanan2 ak2 on ak2.no_rawat=ak1.no_rawat left join pegawai pg1 on pg1.nik=ak2.nip_bidan_dp left join pegawai pg2 on pg2.nik=ak2.nip_dokter where "
                     + "ak1.tgl_asesmen between ? and ? and ak1.no_rawat like ? or "
                     + "ak1.tgl_asesmen between ? and ? and p.no_rkm_medis like ? or "
                     + "ak1.tgl_asesmen between ? and ? and p.nm_pasien like ? or "
@@ -8741,7 +8764,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         }
     }
     
-    public void cekData() {
+    private void cekData() {
         if (chkSendiri.isSelected() == true) {
             sendiri = "ya";
         } else {
@@ -8995,7 +9018,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         }
     }
     
-    public void dataCek() {
+    private void dataCek() {
         if (sendiri.equals("ya")) {
             chkSendiri.setSelected(true);
         } else {
