@@ -62,7 +62,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2;
     private ResultSet rs, rs1, rs2;
     private int i = 0, x = 0;
-    private String norawat = "", norm = "", idObat = "", kdUnit = "";
+    private String norawat = "", norm = "", idObat = "", kdUnit = "", resepObatKronis = "";
     public Timer tEresep;
     private BackgroundMusic music;
 
@@ -902,6 +902,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 tbdaftarResep.requestFocus();
             } else if (x > 1) {
                 idObat = "";
+                resepObatKronis = "";
                 for (i = 0; i < tbdaftarResep.getRowCount(); i++) {
                     if (tbdaftarResep.getValueAt(i, 0).toString().equals("true")) {
                         if (idObat.equals("")) {
@@ -911,11 +912,19 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                         }
                     }
                 }
+                
+                //cek resep obat kronis
+                if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + norawat + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
+                    resepObatKronis = "Resep dalam kategori obat kronis";
+                } else {
+                    resepObatKronis = "-";
+                }
 
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 Map<String, Object> param = new HashMap<>();
                 param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + norawat + "' and jnspelayanan='2'"));
                 param.put("tglcetak", Sequel.cariIsi("select concat(date_format(date(now()),'%d/%m/%Y'),', Jam : ',time(now()),' Wita')"));
+                param.put("ketResep", resepObatKronis);
                 
                 Valid.MyReport("rptStrukResepRalan.jasper", "report", "::[ Struk Resep Dokter Poliklinik/Unit Rawat Jalan Kertas Thermal ]::",
                         " SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
@@ -1171,6 +1180,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 tbdaftarResep.requestFocus();
             } else if (x > 1) {
                 idObat = "";
+                resepObatKronis = "";
                 for (i = 0; i < tbdaftarResep.getRowCount(); i++) {
                     if (tbdaftarResep.getValueAt(i, 0).toString().equals("true")) {
                         if (idObat.equals("")) {
@@ -1179,6 +1189,13 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                             idObat = idObat + ",'" + tbdaftarResep.getValueAt(i, 1).toString() + "'";
                         }
                     }
+                }
+                
+                //cek resep obat kronis
+                if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + norawat + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
+                    resepObatKronis = "Resep dalam kategori obat kronis";
+                } else {
+                    resepObatKronis = "-";
                 }
 
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -1193,6 +1210,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 param.put("carabyr", Sequel.cariIsi("select pj.png_jawab from reg_periksa rp inner join penjab pj on pj.kd_pj=rp.kd_pj where "
                         +"rp.no_rawat='" + norawat + "'"));
                 param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + norawat + "' and jnspelayanan='2'"));
+                param.put("ketResep", resepObatKronis);
                 
                 Valid.MyReport("rptCatatanResepRalan.jasper", "report", "::[ Cetak e-Resep ]::",
                         "SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "

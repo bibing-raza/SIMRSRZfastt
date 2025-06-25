@@ -78,7 +78,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
     private double stokbarang2, cekDataObat;
     private String statusberi = "", Suspen_Piutang_Obat_Ranap = "", Obat_Ranap = "", HPP_Obat_Rawat_Inap = "", Persediaan_Obat_Rawat_Inap = "";
     private Jurnal jur = new Jurnal();
-    private int i;
+    private int i, x = 0;
 
     /**
      * Creates new form DlgPemberianObat
@@ -454,6 +454,8 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         ppNoRawat = new javax.swing.JMenuItem();
         ppHapusSemua = new javax.swing.JMenuItem();
         ppLaporanFarmasi = new javax.swing.JMenuItem();
+        ppSimpanResepObatKronis = new javax.swing.JMenuItem();
+        ppBatalResepObatKronis = new javax.swing.JMenuItem();
         THBeli = new widget.TextBox();
         TStok = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
@@ -517,7 +519,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         Popup2.setName("Popup2"); // NOI18N
 
-        ppResepObat.setBackground(new java.awt.Color(255, 255, 255));
         ppResepObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppResepObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppResepObat.setText("Buat Nomor Resep Obat");
@@ -525,7 +526,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         ppResepObat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppResepObat.setIconTextGap(8);
         ppResepObat.setName("ppResepObat"); // NOI18N
-        ppResepObat.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppResepObat.setPreferredSize(new java.awt.Dimension(230, 25));
         ppResepObat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppResepObatActionPerformed(evt);
@@ -533,7 +534,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         });
         Popup2.add(ppResepObat);
 
-        ppNoRawat.setBackground(new java.awt.Color(255, 255, 255));
         ppNoRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppNoRawat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppNoRawat.setText("Rekap Per No.Rawat");
@@ -541,7 +541,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         ppNoRawat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppNoRawat.setIconTextGap(8);
         ppNoRawat.setName("ppNoRawat"); // NOI18N
-        ppNoRawat.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppNoRawat.setPreferredSize(new java.awt.Dimension(230, 25));
         ppNoRawat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppNoRawatActionPerformed(evt);
@@ -549,7 +549,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         });
         Popup2.add(ppNoRawat);
 
-        ppHapusSemua.setBackground(new java.awt.Color(255, 255, 255));
         ppHapusSemua.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppHapusSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppHapusSemua.setText("Hapus Semua");
@@ -557,7 +556,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         ppHapusSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppHapusSemua.setIconTextGap(8);
         ppHapusSemua.setName("ppHapusSemua"); // NOI18N
-        ppHapusSemua.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppHapusSemua.setPreferredSize(new java.awt.Dimension(230, 25));
         ppHapusSemua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppHapusSemuaActionPerformed(evt);
@@ -565,7 +564,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         });
         Popup2.add(ppHapusSemua);
 
-        ppLaporanFarmasi.setBackground(new java.awt.Color(255, 255, 255));
         ppLaporanFarmasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppLaporanFarmasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppLaporanFarmasi.setText("Laporan Farmasi");
@@ -573,13 +571,43 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         ppLaporanFarmasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppLaporanFarmasi.setIconTextGap(8);
         ppLaporanFarmasi.setName("ppLaporanFarmasi"); // NOI18N
-        ppLaporanFarmasi.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppLaporanFarmasi.setPreferredSize(new java.awt.Dimension(230, 25));
         ppLaporanFarmasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppLaporanFarmasiActionPerformed(evt);
             }
         });
         Popup2.add(ppLaporanFarmasi);
+
+        ppSimpanResepObatKronis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppSimpanResepObatKronis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        ppSimpanResepObatKronis.setText("Simpan Sebagai Resep Obat Kronis");
+        ppSimpanResepObatKronis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppSimpanResepObatKronis.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppSimpanResepObatKronis.setIconTextGap(8);
+        ppSimpanResepObatKronis.setName("ppSimpanResepObatKronis"); // NOI18N
+        ppSimpanResepObatKronis.setPreferredSize(new java.awt.Dimension(230, 25));
+        ppSimpanResepObatKronis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppSimpanResepObatKronisActionPerformed(evt);
+            }
+        });
+        Popup2.add(ppSimpanResepObatKronis);
+
+        ppBatalResepObatKronis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppBatalResepObatKronis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        ppBatalResepObatKronis.setText("Batalkan Resep Obat Kronis");
+        ppBatalResepObatKronis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppBatalResepObatKronis.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppBatalResepObatKronis.setIconTextGap(8);
+        ppBatalResepObatKronis.setName("ppBatalResepObatKronis"); // NOI18N
+        ppBatalResepObatKronis.setPreferredSize(new java.awt.Dimension(230, 25));
+        ppBatalResepObatKronis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppBatalResepObatKronisActionPerformed(evt);
+            }
+        });
+        Popup2.add(ppBatalResepObatKronis);
 
         THBeli.setText("0");
         THBeli.setHighlighter(null);
@@ -788,7 +816,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-11-2022" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         DTPCari1.setToolTipText("");
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
@@ -804,7 +832,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-11-2022" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         DTPCari2.setToolTipText("");
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
@@ -988,7 +1016,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         jLabel9.setBounds(-2, 102, 80, 23);
 
         DTPBeri.setEditable(false);
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-11-2022" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);
@@ -1064,7 +1092,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         cmbJam.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJam.setName("cmbJam"); // NOI18N
-        cmbJam.setOpaque(false);
         cmbJam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cmbJamMouseClicked(evt);
@@ -1081,7 +1108,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         cmbMnt.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMnt.setName("cmbMnt"); // NOI18N
-        cmbMnt.setOpaque(false);
         cmbMnt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cmbMntMouseClicked(evt);
@@ -1098,7 +1124,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         cmbDtk.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtk.setName("cmbDtk"); // NOI18N
-        cmbDtk.setOpaque(false);
         cmbDtk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cmbDtkMouseClicked(evt);
@@ -2304,6 +2329,32 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         laporan.isForm();
     }//GEN-LAST:event_ppLaporanFarmasiActionPerformed
 
+    private void ppBatalResepObatKronisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppBatalResepObatKronisActionPerformed
+        x = JOptionPane.showConfirmDialog(rootPane, "Apakah kategori resep obat kronis akan dibatalkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            Sequel.mengedit("bridging_sep", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
+            Sequel.mengedit("bridging_sep_backup", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
+            Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
+            JOptionPane.showMessageDialog(null, "Kategori resep obat kronis telah dibatalkan utk. pasien ini...!!!");
+            tampilPO();
+        } else {
+            tampilPO();
+        }
+    }//GEN-LAST:event_ppBatalResepObatKronisActionPerformed
+
+    private void ppSimpanResepObatKronisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppSimpanResepObatKronisActionPerformed
+        x = JOptionPane.showConfirmDialog(rootPane, "Apakah akan dijadikan sebagai resep obat kronis..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            Sequel.mengedit("bridging_sep", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
+            Sequel.mengedit("bridging_sep_backup", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
+            Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
+            JOptionPane.showMessageDialog(null, "Resep sudah diupdate menjadi kategori resep obat kronis...!!!");
+            tampilPO();
+        } else {
+            tampilPO();
+        }
+    }//GEN-LAST:event_ppSimpanResepObatKronisActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2381,10 +2432,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JSeparator jSeparator5;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
+    private javax.swing.JMenuItem ppBatalResepObatKronis;
     private javax.swing.JMenuItem ppHapusSemua;
     private javax.swing.JMenuItem ppLaporanFarmasi;
     private javax.swing.JMenuItem ppNoRawat;
     private javax.swing.JMenuItem ppResepObat;
+    private javax.swing.JMenuItem ppSimpanResepObatKronis;
     private widget.Table tbPemberianObat;
     // End of variables declaration//GEN-END:variables
 

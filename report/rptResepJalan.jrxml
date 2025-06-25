@@ -13,6 +13,7 @@
 	<parameter name="petugas" class="java.lang.String"/>
 	<parameter name="nosep" class="java.lang.String"/>
 	<parameter name="tgllahir" class="java.lang.String"/>
+	<parameter name="ketResep" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT a.tgl_perawatan, a.jam, a.no_rawat, a.no_resep, a.no_rkm_medis, a.nm_pasien, a.png_jawab, a.nm_dokter, a.nama_brng,
 a.jml, a.hrg_jual, a.embalase, a.tuslah, a.total, b.total Total_Semua, c.nm_bangsal Asal_apotek, a.status_lanjut, a.Ruangan 
@@ -58,7 +59,7 @@ and c.jam = a.jam2 and a.tgl_perawatan = c.tanggal)]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="147" splitType="Stretch">
+		<band height="159" splitType="Stretch">
 			<textField>
 				<reportElement x="33" y="0" width="227" height="17" uuid="20b18f79-301f-4551-b342-be77fa4c64ed"/>
 				<textElement textAlignment="Left">
@@ -172,6 +173,14 @@ and c.jam = a.jam2 and a.tgl_perawatan = c.tanggal)]]>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Tgl. Lahir : "+$P{tgllahir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="146" width="266" height="12" uuid="79f89968-6dda-4e1b-8ad1-3e508b84aed2"/>
+				<textElement>
+					<font fontName="Arial"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Catatan : "+$P{ketResep}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

@@ -6,6 +6,7 @@
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<parameter name="nosep" class="java.lang.String"/>
 	<parameter name="tglcetak" class="java.lang.String"/>
+	<parameter name="ketResep" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, 
 p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, cr.nama_obat, concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir FROM catatan_resep cr 
@@ -42,9 +43,9 @@ WHERE cr.no_rawat='2020/01/06/000182' ORDER BY cr.tgl_perawatan DESC, cr.jam_per
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="133">
+		<band height="143">
 			<line>
-				<reportElement x="0" y="131" width="206" height="1"/>
+				<reportElement x="0" y="141" width="206" height="1"/>
 				<graphicElement>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 				</graphicElement>
@@ -188,6 +189,20 @@ RSUD Ratu Zalecha]]></text>
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[" : "+$F{tgllahir}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="129" width="50" height="12"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Catatan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="49" y="129" width="157" height="12"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" : "+$P{ketResep}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
