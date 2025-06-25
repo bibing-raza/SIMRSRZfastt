@@ -7618,9 +7618,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 JOptionPane.showMessageDialog(null, "Maaf, Pasien sudah masuk Kamar Inap..!!!");
             } else {
                 DlgPengantarRanap surat = new DlgPengantarRanap(null, false);
-                surat.setSize(685, 217);
+                surat.setSize(1093, 627);
                 surat.setLocationRelativeTo(internalFrame1);
-                surat.setData(TNoRw.getText(), NoRM.getText(), Tanggal.getText(), Jam.getText(), kddokter.getText());
+                surat.setData(TNoRw.getText(), NoRM.getText(), kddokter.getText());
                 surat.setVisible(true);
             }
         }

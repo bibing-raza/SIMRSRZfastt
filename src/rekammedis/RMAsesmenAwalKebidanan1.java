@@ -1434,7 +1434,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel206.setBounds(465, 66, 60, 23);
 
         TtglAsesmen.setEditable(false);
-        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglAsesmen.setDisplayFormat("dd-MM-yyyy");
         TtglAsesmen.setName("TtglAsesmen"); // NOI18N
         TtglAsesmen.setOpaque(false);
@@ -2045,7 +2045,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel236.setBounds(260, 458, 65, 23);
 
         TtglPerut.setEditable(false);
-        TtglPerut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglPerut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglPerut.setDisplayFormat("dd-MM-yyyy");
         TtglPerut.setName("TtglPerut"); // NOI18N
         TtglPerut.setOpaque(false);
@@ -2133,7 +2133,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel240.setBounds(295, 486, 65, 23);
 
         TtglKeluar.setEditable(false);
-        TtglKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglKeluar.setDisplayFormat("dd-MM-yyyy");
         TtglKeluar.setName("TtglKeluar"); // NOI18N
         TtglKeluar.setOpaque(false);
@@ -2229,7 +2229,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel244.setBounds(405, 514, 65, 23);
 
         TtglDarah.setEditable(false);
-        TtglDarah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglDarah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglDarah.setDisplayFormat("dd-MM-yyyy");
         TtglDarah.setName("TtglDarah"); // NOI18N
         TtglDarah.setOpaque(false);
@@ -2317,7 +2317,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel248.setBounds(390, 542, 65, 23);
 
         TtglKeluarAir.setEditable(false);
-        TtglKeluarAir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglKeluarAir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglKeluarAir.setDisplayFormat("dd-MM-yyyy");
         TtglKeluarAir.setName("TtglKeluarAir"); // NOI18N
         TtglKeluarAir.setOpaque(false);
@@ -2442,7 +2442,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel254.setBounds(192, 598, 65, 23);
 
         TtglPusing.setEditable(false);
-        TtglPusing.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglPusing.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglPusing.setDisplayFormat("dd-MM-yyyy");
         TtglPusing.setName("TtglPusing"); // NOI18N
         TtglPusing.setOpaque(false);
@@ -2522,7 +2522,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel258.setBounds(192, 626, 65, 23);
 
         TtglNyeriUlu.setEditable(false);
-        TtglNyeriUlu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglNyeriUlu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglNyeriUlu.setDisplayFormat("dd-MM-yyyy");
         TtglNyeriUlu.setName("TtglNyeriUlu"); // NOI18N
         TtglNyeriUlu.setOpaque(false);
@@ -2602,7 +2602,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel262.setBounds(192, 654, 65, 23);
 
         TtglPandangan.setEditable(false);
-        TtglPandangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglPandangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglPandangan.setDisplayFormat("dd-MM-yyyy");
         TtglPandangan.setName("TtglPandangan"); // NOI18N
         TtglPandangan.setOpaque(false);
@@ -2682,7 +2682,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel266.setBounds(192, 682, 65, 23);
 
         TtglOdema.setEditable(false);
-        TtglOdema.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglOdema.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglOdema.setDisplayFormat("dd-MM-yyyy");
         TtglOdema.setName("TtglOdema"); // NOI18N
         TtglOdema.setOpaque(false);
@@ -2730,7 +2730,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel269.setBounds(192, 710, 65, 23);
 
         TtglMual.setEditable(false);
-        TtglMual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglMual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglMual.setDisplayFormat("dd-MM-yyyy");
         TtglMual.setName("TtglMual"); // NOI18N
         TtglMual.setOpaque(false);
@@ -2810,7 +2810,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel273.setBounds(192, 738, 65, 23);
 
         TtglMuntah.setEditable(false);
-        TtglMuntah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglMuntah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglMuntah.setDisplayFormat("dd-MM-yyyy");
         TtglMuntah.setName("TtglMuntah"); // NOI18N
         TtglMuntah.setOpaque(false);
@@ -2890,7 +2890,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel277.setBounds(192, 766, 65, 23);
 
         TtglBatuk.setEditable(false);
-        TtglBatuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglBatuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglBatuk.setDisplayFormat("dd-MM-yyyy");
         TtglBatuk.setName("TtglBatuk"); // NOI18N
         TtglBatuk.setOpaque(false);
@@ -2970,7 +2970,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel281.setBounds(192, 794, 65, 23);
 
         TtglPilek.setEditable(false);
-        TtglPilek.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglPilek.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglPilek.setDisplayFormat("dd-MM-yyyy");
         TtglPilek.setName("TtglPilek"); // NOI18N
         TtglPilek.setOpaque(false);
@@ -3050,7 +3050,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         jLabel285.setBounds(192, 822, 65, 23);
 
         TtglDemam.setEditable(false);
-        TtglDemam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        TtglDemam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         TtglDemam.setDisplayFormat("dd-MM-yyyy");
         TtglDemam.setName("TtglDemam"); // NOI18N
         TtglDemam.setOpaque(false);
@@ -4245,6 +4245,11 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         cmbSttsPerkawinan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Kawin", "Belum Kawin", "Janda" }));
         cmbSttsPerkawinan.setLightWeightPopupEnabled(false);
         cmbSttsPerkawinan.setName("cmbSttsPerkawinan"); // NOI18N
+        cmbSttsPerkawinan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSttsPerkawinanActionPerformed(evt);
+            }
+        });
         FormInput.add(cmbSttsPerkawinan);
         cmbSttsPerkawinan.setBounds(125, 1718, 95, 23);
 
@@ -5408,7 +5413,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5423,7 +5428,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5784,7 +5789,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllKeyPressed
 
     private void tbAsesmenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAsesmenMouseClicked
-        if(tabMode.getRowCount()!=0){
+        if (tabMode.getRowCount() != 0) {
             try {
                 getData();
             } catch (java.lang.NullPointerException e) {
@@ -5793,13 +5798,13 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 }//GEN-LAST:event_tbAsesmenMouseClicked
 
     private void tbAsesmenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbAsesmenKeyPressed
-        if(tabMode.getRowCount()!=0){
-            if((evt.getKeyCode()==KeyEvent.VK_ENTER)||(evt.getKeyCode()==KeyEvent.VK_UP)||(evt.getKeyCode()==KeyEvent.VK_DOWN)){
+        if (tabMode.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
                 try {
-                    
+                    getData();
                 } catch (java.lang.NullPointerException e) {
                 }
-            }else if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+            } else if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
                 try {
                     getData();
                     TabRawat.setSelectedIndex(0);
@@ -5943,6 +5948,11 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             cmbJnsRujukan.setEnabled(true);
             TketRujukan.setEnabled(true);
             cmbJnsRujukan.requestFocus();
+            
+            TketPkm.setEnabled(false);
+            TketPkm.setText("");
+            TketRsLain.setEnabled(false);
+            TketRsLain.setText("");
         } else {
             cmbJnsRujukan.setEnabled(false);
             TketRujukan.setEnabled(false);
@@ -5954,6 +5964,13 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         if (chkPkm.isSelected() == true) {
             TketPkm.setEnabled(true);
             TketPkm.requestFocus();
+            
+            cmbJnsRujukan.setEnabled(false);
+            TketRujukan.setEnabled(false);
+            cmbJnsRujukan.setSelectedIndex(0);
+            TketRujukan.setText("");
+            TketRsLain.setEnabled(false);
+            TketRsLain.setText("");
         } else {
             TketPkm.setEnabled(false);
         }
@@ -5964,6 +5981,13 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         if (chkRsLain.isSelected() == true) {
             TketRsLain.setEnabled(true);
             TketRsLain.requestFocus();
+            
+            cmbJnsRujukan.setEnabled(false);
+            TketRujukan.setEnabled(false);
+            cmbJnsRujukan.setSelectedIndex(0);
+            TketRujukan.setText("");
+            TketPkm.setEnabled(false);
+            TketPkm.setText("");
         } else {
             TketRsLain.setEnabled(false);
         }
@@ -7227,6 +7251,25 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         BtnHalamanActionPerformed(null);
     }//GEN-LAST:event_BtnHalaman1ActionPerformed
 
+    private void cmbSttsPerkawinanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSttsPerkawinanActionPerformed
+        chkIstri.setSelected(false);
+        chkSuami.setSelected(false);
+        cmbJlhIstri.setSelectedIndex(0);
+        cmbJlhSuami.setSelectedIndex(0);
+        if (cmbSttsPerkawinan.getSelectedIndex() == 0 || cmbSttsPerkawinan.getSelectedIndex() == 2) {
+            chkIstri.setEnabled(false);
+            chkSuami.setEnabled(false);
+            cmbJlhIstri.setEnabled(false);
+            cmbJlhSuami.setEnabled(false);
+        } else {
+            chkIstri.setEnabled(true);
+            chkSuami.setEnabled(true);
+            cmbJlhIstri.setEnabled(true);
+            cmbJlhSuami.setEnabled(true);
+            chkIstri.requestFocus();
+        }
+    }//GEN-LAST:event_cmbSttsPerkawinanActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -8283,10 +8326,12 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         
         cmbSttsPerkawinan.setSelectedIndex(0);
         chkIstri.setSelected(false);
+        chkIstri.setEnabled(false);
         cmbJlhIstri.setSelectedIndex(0);
         cmbJlhIstri.setEnabled(false);
         
         chkSuami.setSelected(false);
+        chkSuami.setEnabled(false);
         cmbJlhSuami.setSelectedIndex(0);
         cmbJlhSuami.setEnabled(false);
         
@@ -9483,20 +9528,28 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             chkTidakPernah.setSelected(false);
         }
         
+        if (cmbSttsPerkawinan.getSelectedIndex() == 0 || cmbSttsPerkawinan.getSelectedIndex() == 2) {
+            chkIstri.setEnabled(false);
+            chkSuami.setEnabled(false);
+            cmbJlhIstri.setEnabled(false);
+            cmbJlhSuami.setEnabled(false);
+        } else {
+            chkIstri.setEnabled(true);
+            chkSuami.setEnabled(true);
+            cmbJlhIstri.setEnabled(true);
+            cmbJlhSuami.setEnabled(true);
+        }
+        
         if (istriKawin.equals("ya")) {
             chkIstri.setSelected(true);
-            cmbJlhIstri.setEnabled(true);
         } else {
             chkIstri.setSelected(false);
-            cmbJlhIstri.setEnabled(false);
         }
         
         if (suamiKawin.equals("ya")) {
             chkSuami.setSelected(true);
-            cmbJlhSuami.setEnabled(true);
         } else {
             chkSuami.setSelected(false);
-            cmbJlhSuami.setEnabled(false);
         }
         
         if (orangTua.equals("ya")) {

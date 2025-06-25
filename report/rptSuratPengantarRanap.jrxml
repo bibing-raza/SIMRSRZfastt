@@ -12,23 +12,55 @@
 	<parameter name="emailrs" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="tglsurat" class="java.lang.String"/>
-	<parameter name="ruangan" class="java.lang.String"/>
-	<parameter name="telahdiberi" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT CONCAT('(',p.no_rkm_medis,') ',p.nm_pasien,', Umur ',rp.umurdaftar,' ',IF(rp.sttsumur='Th','Tahun',IF(rp.sttsumur='Bl','Bulan','Hari'))) nama,
-IF(p.jk='L','Laki-laki','Perempuan') jk, CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt,
-IFNULL(pr.keluhan,'-') keluhan, IFNULL(pr.diagnosa,'-') diagnosa, d.nm_dokter FROM reg_periksa rp
-INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis INNER JOIN kelurahan kl ON kl.kd_kel=p.kd_kel
-INNER JOIN kecamatan kc ON kc.kd_kec=p.kd_kec INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab
-INNER JOIN dokter d ON d.kd_dokter=rp.kd_dokter LEFT JOIN pemeriksaan_ralan pr ON pr.no_rawat=rp.no_rawat 
-WHERE rp.no_rawat='2022/08/08/000122']]>
+		<![CDATA[SELECT sp.*, p.no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-laki','Perempuan') jenkel, 
+CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt, IFNULL(pr.keluhan,'-') keluhan, IFNULL(pr.diagnosa,'-') diagnosa,
+pg.nama nmDokter, CONCAT(DAY(sp.tgl_rencana), ' ', CASE MONTH(sp.tgl_rencana) 
+WHEN 1 THEN 'Januari' 
+WHEN 2 THEN 'Februari' 
+WHEN 3 THEN 'Maret' 
+WHEN 4 THEN 'April' 
+WHEN 5 THEN 'Mei' 
+WHEN 6 THEN 'Juni' 
+WHEN 7 THEN 'Juli' 
+WHEN 8 THEN 'Agustus' 
+WHEN 9 THEN 'September' 
+WHEN 10 THEN 'Oktober' 
+WHEN 11 THEN 'November' 
+WHEN 12 THEN 'Desember' END,' ',YEAR(sp.tgl_rencana)) tglRencana FROM surat_pengantar_ranap sp inner join reg_periksa rp on rp.no_rawat=sp.no_rawat
+inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel
+inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab
+inner join pegawai pg on pg.nik=sp.nip_dokter left join pemeriksaan_ralan pr on pr.no_rawat=sp.no_rawat
+where sp.no_rawat='2025/06/25/000319']]>
 	</queryString>
-	<field name="nama" class="java.lang.String">
+	<field name="no_rawat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="jk" class="java.lang.String">
+	<field name="no_surat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="ruang_rawat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_rencana" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sudah_diberikan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nip_dokter" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="waktu_simpan" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_rkm_medis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nm_pasien" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jenkel" class="java.lang.String"/>
 	<field name="almt" class="java.lang.String"/>
 	<field name="keluhan" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -36,9 +68,8 @@ WHERE rp.no_rawat='2022/08/08/000122']]>
 	<field name="diagnosa" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="nm_dokter" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="nmDokter" class="java.lang.String"/>
+	<field name="tglRencana" class="java.lang.String"/>
 	<title>
 		<band height="161">
 			<textField>
@@ -80,21 +111,21 @@ WHERE rp.no_rawat='2022/08/08/000122']]>
 				<text><![CDATA[INSTALASI RAWAT JALAN (POLIKLINIK)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="366" y="69" width="149" height="13"/>
+				<reportElement x="305" y="69" width="210" height="13"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Kepada Yth.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="57" width="226" height="13"/>
+				<reportElement x="0" y="57" width="48" height="13"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="9" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Hal : Rujukan Penderita]]></text>
+				<text><![CDATA[No. Surat]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="366" y="93" width="149" height="13"/>
+				<reportElement x="305" y="93" width="210" height="13"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
@@ -128,13 +159,6 @@ WHERE rp.no_rawat='2022/08/08/000122']]>
 				</textElement>
 				<text><![CDATA[Jenis Kelamin]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="366" y="81" width="149" height="13"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Kepala Ruangan "+$P{ruangan}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="93" y="136" width="5" height="13"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
@@ -154,14 +178,42 @@ WHERE rp.no_rawat='2022/08/08/000122']]>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["("+$F{no_rkm_medis}+") "+$F{nm_pasien}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="99" y="148" width="416" height="13"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{jk}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{jenkel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="48" y="70" width="178" height="13"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[: Rujukan Penderita]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="70" width="48" height="13"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Hal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="48" y="57" width="178" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{no_surat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="305" y="81" width="210" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Kepala Ruangan "+$F{ruang_rawat}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -255,32 +307,53 @@ WHERE rp.no_rawat='2022/08/08/000122']]>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{telahdiberi}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sudah_diberikan}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<summary>
-		<band height="92">
+		<band height="121">
 			<textField>
-				<reportElement x="350" y="78" width="166" height="13"/>
+				<reportElement x="305" y="101" width="211" height="13"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["( "+$F{nm_dokter}+" )"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["( "+$F{nmDokter}+" )"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="27" y="6" width="489" height="13"/>
+				<reportElement x="27" y="18" width="489" height="13"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Mohon pengobatan dan perawatan selanjutnya.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="350" y="27" width="166" height="13"/>
+				<reportElement x="305" y="39" width="211" height="13"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{tglsurat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="94" height="13"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tgl. Renc. Rawat Inap]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="93" y="0" width="5" height="13"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="99" y="0" width="416" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tglRencana}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

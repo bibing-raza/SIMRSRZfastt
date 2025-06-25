@@ -9776,10 +9776,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 JOptionPane.showMessageDialog(null, "Maaf, Pasien sudah masuk Kamar Inap..!!!");
             } else {
                 DlgPengantarRanap surat = new DlgPengantarRanap(null, false);
-                surat.setSize(685, 217);
+                surat.setSize(1093, 627);
                 surat.setLocationRelativeTo(internalFrame1);
-                surat.setData(TNoRw.getText(), TNoRM.getText(), Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
-                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRw.getText() + "'"), KdDok.getText());
+                surat.setData(TNoRw.getText(), TNoRM.getText(), KdDok.getText());
                 surat.setVisible(true);
             }
         }
