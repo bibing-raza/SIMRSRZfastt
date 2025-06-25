@@ -1615,7 +1615,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         if (tbResep.getSelectedRow() != -1) {
             NoResep.setText(tbResep.getValueAt(tbResep.getSelectedRow(), 0).toString());
             Sequel.cariIsi("select no_rawat from resep_obat where no_resep=?", TNoRw, NoResep.getText());
-            TPasien.setText(tbResep.getValueAt(tbResep.getSelectedRow(), 2).toString().replaceAll(TNoRw.getText() + " ", ""));            
+            TPasien.setText(tbResep.getValueAt(tbResep.getSelectedRow(), 2).toString().replaceAll(TNoRw.getText() + " ", ""));
+            cekResepKronis();
         }
     }
     
