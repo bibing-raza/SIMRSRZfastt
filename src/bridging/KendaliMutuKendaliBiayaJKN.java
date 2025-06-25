@@ -54,7 +54,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         initComponents();
 
         tabMode = new DefaultTableModel(null, new String[]{
-            "No. SEP", "No. RM", "Nama Pasien", "Poliklinik/Inst.", "Nama Dokter", "Biaya Real Obat", "Tot. Biaya Radiologi", "Tot. Biaya Lab.",
+            "No. SEP", "Tgl. SEP", "No. RM", "Nama Pasien", "Poliklinik/Inst.", "Nama Dokter", "Biaya Real Obat", "Tot. Biaya Radiologi", "Tot. Biaya Lab.",
             "Tot. Biaya Oksigen", "Status Klaim", "Deskripsi CBG", "Tarif CBG", "Deskripsi TopUp", "TopUp Tarif", "Tot. Trf. Grouping",
             "Pemakaian Obat (%)", "By. Cost Pokok (%)", "stts_lanjut"
         }) {
@@ -68,43 +68,45 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         tbKendaliKlaimRalan.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKendaliKlaimRalan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 18; i++) {
+        for (i = 0; i < 19; i++) {
             TableColumn column = tbKendaliKlaimRalan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
             } else if (i == 1) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(75);
             } else if (i == 2) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(65);
             } else if (i == 3) {
-                column.setPreferredWidth(160);
-            } else if (i == 4) {
                 column.setPreferredWidth(250);
+            } else if (i == 4) {
+                column.setPreferredWidth(160);
             } else if (i == 5) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(250);
             } else if (i == 6) {
-                column.setPreferredWidth(110);
-            } else if (i == 7) {
                 column.setPreferredWidth(90);
+            } else if (i == 7) {
+                column.setPreferredWidth(110);
             } else if (i == 8) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(90);
             } else if (i == 9) {
-                column.setPreferredWidth(75);
-            } else if (i == 10) {
-                column.setPreferredWidth(300);
-            } else if (i == 11) {
-                column.setPreferredWidth(75);
-            } else if (i == 12) {
-                column.setPreferredWidth(115);
-            } else if (i == 13) {
-                column.setPreferredWidth(75);
-            } else if (i == 14) {
                 column.setPreferredWidth(100);
-            } else if (i == 15) {
+            } else if (i == 10) {
+                column.setPreferredWidth(75);
+            } else if (i == 11) {
+                column.setPreferredWidth(300);
+            } else if (i == 12) {
+                column.setPreferredWidth(75);
+            } else if (i == 13) {
                 column.setPreferredWidth(115);
+            } else if (i == 14) {
+                column.setPreferredWidth(75);
+            } else if (i == 15) {
+                column.setPreferredWidth(100);
             } else if (i == 16) {
                 column.setPreferredWidth(115);
             } else if (i == 17) {
+                column.setPreferredWidth(115);
+            } else if (i == 18) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -112,7 +114,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         tbKendaliKlaimRalan.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode1 = new DefaultTableModel(null, new String[]{
-            "No. SEP", "No. RM", "Nama Pasien", "Rg. Perawatan Inap", "Nama DPJP", "Biaya Real Obat", "Tot. Biaya Radiologi", "Tot. Biaya Lab.",
+            "No. SEP", "Tgl. SEP", "No. RM", "Nama Pasien", "Rg. Perawatan Inap", "Nama DPJP", "Biaya Real Obat", "Tot. Biaya Radiologi", "Tot. Biaya Lab.",
             "Tot. Biaya Oksigen", "Tot. Biaya Trans. Darah", "Tot. Biaya Diet/Gizi", "Status Klaim", "Deskripsi CBG", "Tarif CBG", "Deskripsi TopUp", 
             "TopUp Tarif", "Biaya RealCost", "Tot. Trf. Grouping", "Pemakaian Obat (%)", "By. Cost Pokok (%)", "stts_lanjut", "Status Biaya", "Selisih Rugi/Untung",
             "By.Tot. Cost Internal", "Operasional 60 %", "Jasa Pelynn. 40 %", "Selisih 1 (Ops. 60% - Tot. RealCost)", "Selisih (Ops. 60% - By.Tot.Cost Internal)"
@@ -127,65 +129,67 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         tbKendaliKlaimRanap.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKendaliKlaimRanap.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 28; i++) {
+        for (i = 0; i < 29; i++) {
             TableColumn column = tbKendaliKlaimRanap.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
             } else if (i == 1) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(75);
             } else if (i == 2) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(65);
             } else if (i == 3) {
-                column.setPreferredWidth(160);
-            } else if (i == 4) {
                 column.setPreferredWidth(250);
+            } else if (i == 4) {
+                column.setPreferredWidth(160);
             } else if (i == 5) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(250);
             } else if (i == 6) {
-                column.setPreferredWidth(110);
-            } else if (i == 7) {
                 column.setPreferredWidth(90);
-            } else if (i == 8) {
-                column.setPreferredWidth(100);
-            } else if (i == 9) {
-                column.setPreferredWidth(130);
-            } else if (i == 10) {
+            } else if (i == 7) {
                 column.setPreferredWidth(110);
-            } else if (i == 11) {
-                column.setPreferredWidth(75);
-            } else if (i == 12) {
-                column.setPreferredWidth(300);
-            } else if (i == 13) {
-                column.setPreferredWidth(75);
-            } else if (i == 14) {
-                column.setPreferredWidth(115);
-            } else if (i == 15) {
-                column.setPreferredWidth(75);
-            } else if (i == 16) {
-                column.setPreferredWidth(88);
-            } else if (i == 17) {
+            } else if (i == 8) {
+                column.setPreferredWidth(90);
+            } else if (i == 9) {
                 column.setPreferredWidth(100);
-            } else if (i == 18) {
+            } else if (i == 10) {
+                column.setPreferredWidth(130);
+            } else if (i == 11) {
+                column.setPreferredWidth(110);
+            } else if (i == 12) {
+                column.setPreferredWidth(75);
+            } else if (i == 13) {
+                column.setPreferredWidth(300);
+            } else if (i == 14) {
+                column.setPreferredWidth(75);
+            } else if (i == 15) {
                 column.setPreferredWidth(115);
+            } else if (i == 16) {
+                column.setPreferredWidth(75);
+            } else if (i == 17) {
+                column.setPreferredWidth(88);
+            } else if (i == 18) {
+                column.setPreferredWidth(100);
             } else if (i == 19) {
                 column.setPreferredWidth(115);
             } else if (i == 20) {
+                column.setPreferredWidth(115);
+            } else if (i == 21) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 21) {
-                column.setPreferredWidth(95);
             } else if (i == 22) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(95);
             } else if (i == 23) {
-                column.setPreferredWidth(115);
+                column.setPreferredWidth(110);
             } else if (i == 24) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(115);
             } else if (i == 25) {
                 column.setPreferredWidth(100);
             } else if (i == 26) {
+                column.setPreferredWidth(100);
+            } else if (i == 27) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 27) {
+            } else if (i == 28) {
                 column.setPreferredWidth(230);
             }
         }
@@ -869,7 +873,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             }
 
             dialog_simpan = Valid.openDialog();
-            sb.append("SELECT enc.no_sep 'No. SEP', enc.no_rm 'No. RM',enc.nm_pasien 'Nama Pasien', p.nm_poli 'Poliklinik/Inst.', ");
+            sb.append("SELECT enc.no_sep 'No. SEP', date_format(enc.tglsep,'%d-%m-%Y') 'Tgl. SEP', enc.no_rm 'No. RM',enc.nm_pasien 'Nama Pasien', p.nm_poli 'Poliklinik/Inst.', ");
             sb.append("d.nm_dokter 'Nama Dokter',s.nm_sps 'Spesialis', ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', ");
             sb.append("(SELECT convert(ifnull(SUM(biaya),'0'),int) FROM periksa_radiologi WHERE no_rawat=enc.no_rawat) 'Tot. Biaya Radiologi', ");
             sb.append("(SELECT convert(ifnull(SUM(biaya_item),'0'),int) FROM detail_periksa_lab WHERE no_rawat=enc.no_rawat) 'Tot. Biaya Lab.', ");
@@ -981,7 +985,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             }
 
             dialog_simpan = Valid.openDialog();
-            sb.append("SELECT enc.no_sep 'No. SEP',enc.no_rm 'No. RM', enc.nm_pasien 'Nama Pasien', b.nm_gedung 'Rg. Perawatan Inap', d.nm_dokter 'Nama DPJP',s.nm_sps 'Spesialis', ");
+            sb.append("SELECT enc.no_sep 'No. SEP', date_format(enc.tglsep,'%d-%m-%Y') 'Tgl. SEP', enc.no_rm 'No. RM', enc.nm_pasien 'Nama Pasien', b.nm_gedung 'Rg. Perawatan Inap', d.nm_dokter 'Nama DPJP',s.nm_sps 'Spesialis', ");
             sb.append("ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', (select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Radiologi') 'Tot. Biaya Radiologi', ");
             sb.append("(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Laborat') 'Tot. Biaya Lab.', ");
             sb.append("(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and (nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%')) 'Tot. Biaya Oksigen', ");
@@ -1143,7 +1147,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         try {
             //tarif obat yg dari tabel eklaim_set_claim dikali 0.8 atau 80%
             //0.8 adalah 80% sudah dipotong 20% dari harga tarif obat
-            sb.append("SELECT enc.no_sep,enc.no_rm,enc.nm_pasien, b.nm_gedung unit, d.nm_dokter dpjp, ");
+            sb.append("SELECT enc.no_sep, date_format(enc.tglsep,'%d-%m-%Y') tglsep, enc.no_rm,enc.nm_pasien, b.nm_gedung unit, d.nm_dokter dpjp, ");
             sb.append("format(ROUND(esc.tarif_obat * 0.8),0) by_obat_real, concat('   ',enc.klaim_final) klaim_final,eg.cbg_desc, format(eg.cbg_tarif,0) cbg_tarif, ");
             sb.append("IFNULL(egsc.desc,'-') topup_desc, format(IFNULL(egsc.tarif,0),0) topup_tarif, format(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif),0) total_trf_grp, ");
             sb.append("CONCAT('   ',FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') perc_pakai_obat, rp.status_lanjut, enc.no_rawat, ");
@@ -1217,6 +1221,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
 
                     tabMode1.addRow(new String[]{
                         rs1.getString("no_sep"),
+                        rs1.getString("tglsep"),
                         rs1.getString("no_rm"),
                         rs1.getString("nm_pasien"),
                         rs1.getString("unit"),
@@ -1277,7 +1282,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         try {
             //tarif obat yg dari tabel eklaim_set_claim dikali 0.8 atau 80%
             //0.8 adalah 80% sudah dipotong 20% dari harga tarif obat
-            sb.append("SELECT enc.no_sep,enc.no_rm,enc.nm_pasien, p.nm_poli, d.nm_dokter, format(ROUND(esc.tarif_obat * 0.8),0) by_obat_real, enc.no_rawat, ");
+            sb.append("SELECT enc.no_sep, date_format(enc.tglsep,'%d-%m-%Y') tglsep, enc.no_rm,enc.nm_pasien, p.nm_poli, d.nm_dokter, format(ROUND(esc.tarif_obat * 0.8),0) by_obat_real, enc.no_rawat, ");
             sb.append("concat('   ',enc.klaim_final) klaim_final,eg.cbg_desc, format(eg.cbg_tarif,0) cbg_tarif, format(IFNULL(egsc.desc,'-'),0) topup_desc, ");
             sb.append("format(IFNULL(egsc.tarif,0),0) topup_tarif, format(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif),0) total_trf_grp, ");
             sb.append("CONCAT('   ',FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') perc_pakai_obat, ");
@@ -1333,6 +1338,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
 
                     tabMode.addRow(new String[]{
                         rs.getString("no_sep"),
+                        rs.getString("tglsep"),
                         rs.getString("no_rm"),
                         rs.getString("nm_pasien"),
                         rs.getString("nm_poli"),

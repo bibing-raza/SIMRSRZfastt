@@ -412,6 +412,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         TNoRw = new widget.TextBox();
         TPasien = new widget.TextBox();
         jLabel4 = new widget.Label();
+        ChkResepKronis = new widget.CekBox();
         Scroll3 = new widget.ScrollPane();
         tbResepObat = new widget.Table();
         panelisi4 = new widget.panelisi();
@@ -761,7 +762,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         jLabel8.setBounds(4, 10, 55, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-10-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -848,6 +849,19 @@ public final class DlgCariObat extends javax.swing.JDialog {
         jLabel4.setName("jLabel4"); // NOI18N
         FormInput1.add(jLabel4);
         jLabel4.setBounds(10, 57, 65, 23);
+
+        ChkResepKronis.setBorder(null);
+        ChkResepKronis.setForeground(new java.awt.Color(0, 0, 0));
+        ChkResepKronis.setText("Diantara Item Resep Terdapat Jenis Obat Kronis");
+        ChkResepKronis.setBorderPainted(true);
+        ChkResepKronis.setBorderPaintedFlat(true);
+        ChkResepKronis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChkResepKronis.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkResepKronis.setName("ChkResepKronis"); // NOI18N
+        ChkResepKronis.setOpaque(false);
+        ChkResepKronis.setPreferredSize(new java.awt.Dimension(85, 23));
+        FormInput1.add(ChkResepKronis);
+        ChkResepKronis.setBounds(635, 57, 270, 23);
 
         FormInput.add(FormInput1, java.awt.BorderLayout.PAGE_START);
 
@@ -1451,7 +1465,8 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                             tbObat.getValueAt(i, 8).toString(), tbObat.getValueAt(i, 9).toString(), "" + (Double.parseDouble(tbObat.getValueAt(i, 8).toString())
                                             + Double.parseDouble(tbObat.getValueAt(i, 9).toString()) + (Double.parseDouble(tbObat.getValueAt(i, 6).toString())
                                             * (Double.parseDouble(tbObat.getValueAt(i, 1).toString()) / carikapasitas.getDouble(1)))), "Ralan", bangsal, "Belum", "-", String.valueOf(urut)
-                                        }) == true) {
+                                        }) == true) {     
+                                            cekResepObatKronis();
                                             isRawat();
                                             Sequel.menyimpan("88", "?,?,?,?,?", 5, new String[]{
                                                 Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TNoRw.getText(), tbObat.getValueAt(i, 2).toString(), tbObat.getValueAt(i, 11).toString()
@@ -1471,6 +1486,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                             + Double.parseDouble(tbObat.getValueAt(i, 7).toString()) + (Double.parseDouble(tbObat.getValueAt(i, 5).toString())
                                             * Double.parseDouble(tbObat.getValueAt(i, 1).toString()))), "Ralan", bangsal, "Belum", "-", String.valueOf(urut)
                                         }) == true) {
+                                            cekResepObatKronis();
                                             isRawat();
                                             Sequel.menyimpan("aturan_pakai", "?,?,?,?,?,?,?,?,?,?,?,?", 12, new String[]{
                                                 Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
@@ -1501,6 +1517,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                     + Double.parseDouble(tbObat.getValueAt(i, 7).toString()) + (Double.parseDouble(tbObat.getValueAt(i, 5).toString())
                                     * Double.parseDouble(tbObat.getValueAt(i, 1).toString()))), "Ralan", bangsal, "Belum", "-", String.valueOf(urut)
                                 }) == true) {
+                                    cekResepObatKronis();
                                     isRawat();
                                     Sequel.menyimpan("aturan_pakai", "?,?,?,?,?,?,?,?,?,?,?,?", 12, new String[]{
                                         Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
@@ -1850,6 +1867,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     private widget.Button BtnVerif;
     private widget.CekBox ChkJln;
     private widget.CekBox ChkNoResep;
+    private widget.CekBox ChkResepKronis;
     private widget.Tanggal DTPTgl;
     private widget.PanelBiasa FormInput;
     private widget.PanelBiasa FormInput1;
@@ -2217,6 +2235,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     public void emptTeksobat() {
         Kd2.setText("");
         TCari.setText("");
+        ChkResepKronis.setSelected(false);
         TCari.requestFocus();
     }
 
@@ -2416,5 +2435,17 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             chkResepObat.setSelected(false);
         }
         LCountRalan.setText("" + tabModeResepObat.getRowCount());        
+    }
+    
+    private void cekResepObatKronis() {
+        if (ChkResepKronis.isSelected() == true) {
+            Sequel.mengedit("bridging_sep", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
+            Sequel.mengedit("bridging_sep_backup", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
+            Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
+        } else {
+            Sequel.mengedit("bridging_sep", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
+            Sequel.mengedit("bridging_sep_backup", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
+            Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
+        }
     }
 }

@@ -948,7 +948,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                 cekSEP = Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + response.asText() + "' and urutan_sep='1'");
 
                 if (cekSEP > 0) {
-                    if (Sequel.menyimpantf("bridging_sep", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
+                    if (Sequel.menyimpantf("bridging_sep", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 60, new String[]{
                         response.asText(), norwBokingBPJS.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(tglrujukanbpjs.getSelectedItem() + ""),
                         NoRujukan, kdppkrujuk, nmppkrujukan, kdppk, nmppk, jenpel, Catatan, KdPenyakit,
                         nmdiagnosa, kdpoliSEP, nmpoliSEP, Kelas.getSelectedItem().toString().substring(0, 1),
@@ -958,7 +958,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                         COB.getSelectedItem().toString(), "", NoTelp, KasusKatarak.getSelectedItem().toString(), tglkll, Ket, 
                         suplesi.getSelectedItem().toString(), NoSEPSuplesi, KdProv, NmProv, KdKab, NmKab, KdKec, NmKec, noSurat, 
                         Kddpjp, NmDPJP, "", klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan,
-                        Sequel.cariIsi("select ifnull(MAX(urutan_sep)+1,1) from bridging_sep where no_sep='" + response.asText() + "'"), "", "AKTIF"
+                        Sequel.cariIsi("select ifnull(MAX(urutan_sep)+1,1) from bridging_sep where no_sep='" + response.asText() + "'"), "", "AKTIF", "tidak"
                     }) == true) {
                         Sequel.menyimpan("rujuk_masuk", "?,?,?,?,?,?,?,?,?,?,?", 11, new String[]{
                             norwBokingBPJS.getText(), nmrujukan, "-", NoRujukan, "0", nmrujukan, KdPenyakit, "-", "-", "-", kode_rujukanya
@@ -966,7 +966,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                     }
 
                     //Simpan Ke tabel bridging_sep_backup
-                    if (Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
+                    if (Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 60, new String[]{
                         "-", norwBokingBPJS.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(tglrujukanbpjs.getSelectedItem() + ""),
                         NoRujukan, kdppkrujuk, nmppkrujukan, kdppk, nmppk, jenpel, Catatan, KdPenyakit,
                         nmdiagnosa, kdpoliSEP, nmpoliSEP, Kelas.getSelectedItem().toString().substring(0, 1),
@@ -976,9 +976,10 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                         COB.getSelectedItem().toString(), "", NoTelp, nameNode.path("code").asText(), nameNode.path("message").asText(),
                         KasusKatarak.getSelectedItem().toString().substring(0, 1), tglkll, Ket, suplesi.getSelectedItem().toString(),
                         NoSEPSuplesi, KdProv, NmProv, KdKab, NmKab, KdKec, NmKec, noSurat, Kddpjp, NmDPJP, "",
-                        klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, api.Decrypt(root.path("response").asText(), utc)
+                        klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, 
+                        api.Decrypt(root.path("response").asText(), utc), "tidak"
                     }) == false) {
-                        Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
+                        Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 60, new String[]{
                             "-", norwBokingBPJS.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(tglrujukanbpjs.getSelectedItem() + ""),
                             NoRujukan, kdppkrujuk, nmppkrujukan, kdppk, nmppk, jenpel, Catatan, KdPenyakit,
                             nmdiagnosa, kdpoliSEP, nmpoliSEP, Kelas.getSelectedItem().toString().substring(0, 1),
@@ -988,14 +989,15 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                             COB.getSelectedItem().toString(), "", NoTelp, nameNode.path("code").asText(), nameNode.path("message").asText(),
                             KasusKatarak.getSelectedItem().toString().substring(0, 1), tglkll, Ket, suplesi.getSelectedItem().toString(),
                             NoSEPSuplesi, KdProv, NmProv, KdKab, NmKab, KdKec, NmKec, noSurat, Kddpjp, NmDPJP, "",
-                            klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, api.Decrypt(root.path("response").asText(), utc)
+                            klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, 
+                            api.Decrypt(root.path("response").asText(), utc), "tidak"
                         });
                     }
 
                     Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + kdbokingbpjs.getText() + "'", "status_cetak_sep='SUDAH',no_rawat='" + norwBokingBPJS.getText() + "'");
 
                 } else {
-                    if (Sequel.menyimpantf("bridging_sep", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
+                    if (Sequel.menyimpantf("bridging_sep", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 60, new String[]{
                         response.asText(), norwBokingBPJS.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(tglrujukanbpjs.getSelectedItem() + ""),
                         NoRujukan, kdppkrujuk, nmppkrujukan, kdppk, nmppk, jenpel, Catatan, KdPenyakit,
                         nmdiagnosa, kdpoliSEP, nmpoliSEP, Kelas.getSelectedItem().toString().substring(0, 1),
@@ -1004,7 +1006,8 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                         "0000-00-00 00:00:00", AsalRujukan.getSelectedItem().toString(), Eksekutif.getSelectedItem().toString(),
                         COB.getSelectedItem().toString(), "", NoTelp, KasusKatarak.getSelectedItem().toString(),
                         tglkll, Ket, suplesi.getSelectedItem().toString(), NoSEPSuplesi, KdProv, NmProv, KdKab, NmKab,
-                        KdKec, NmKec, noSurat, Kddpjp, NmDPJP, "", klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, "1", "", "AKTIF"
+                        KdKec, NmKec, noSurat, Kddpjp, NmDPJP, "", klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, 
+                        asses, kddpjpLayan, nmdpjpLayan, "1", "", "AKTIF", "tidak"
                     }) == true) {
                         Sequel.menyimpan("rujuk_masuk", "?,?,?,?,?,?,?,?,?,?,?", 11, new String[]{
                             norwBokingBPJS.getText(), nmrujukan, "-", NoRujukan, "0", nmrujukan, KdPenyakit, "-", "-", "-", kode_rujukanya
@@ -1012,7 +1015,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                     }
 
                     //Simpan Ke tabel bridging_sep_backup
-                    if (Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
+                    if (Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 60, new String[]{
                         "-", norwBokingBPJS.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(tglrujukanbpjs.getSelectedItem() + ""),
                         NoRujukan, kdppkrujuk, nmppkrujukan, kdppk, nmppk, jenpel, Catatan, KdPenyakit,
                         nmdiagnosa, kdpoliSEP, nmpoliSEP, Kelas.getSelectedItem().toString().substring(0, 1),
@@ -1022,9 +1025,10 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                         COB.getSelectedItem().toString(), "", NoTelp, nameNode.path("code").asText(), nameNode.path("message").asText(),
                         KasusKatarak.getSelectedItem().toString().substring(0, 1), tglkll, Ket, suplesi.getSelectedItem().toString(),
                         NoSEPSuplesi, KdProv, NmProv, KdKab, NmKab, KdKec, NmKec, noSurat, Kddpjp, NmDPJP, "",
-                        klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, api.Decrypt(root.path("response").asText(), utc)
+                        klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, 
+                        api.Decrypt(root.path("response").asText(), utc), "tidak"
                     }) == false) {
-                        Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
+                        Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 60, new String[]{
                             "-", norwBokingBPJS.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(tglrujukanbpjs.getSelectedItem() + ""),
                             NoRujukan, kdppkrujuk, nmppkrujukan, kdppk, nmppk, jenpel, Catatan, KdPenyakit,
                             nmdiagnosa, kdpoliSEP, nmpoliSEP, Kelas.getSelectedItem().toString().substring(0, 1),
@@ -1034,7 +1038,8 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                             COB.getSelectedItem().toString(), "", NoTelp, nameNode.path("code").asText(), nameNode.path("message").asText(),
                             KasusKatarak.getSelectedItem().toString().substring(0, 1), tglkll, Ket, suplesi.getSelectedItem().toString(),
                             NoSEPSuplesi, KdProv, NmProv, KdKab, NmKab, KdKec, NmKec, noSurat, Kddpjp, NmDPJP, "",
-                            klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, api.Decrypt(root.path("response").asText(), utc)
+                            klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, 
+                            api.Decrypt(root.path("response").asText(), utc), "tidak"
                         });
                     }
 
@@ -1042,7 +1047,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                 }
             } else {
                 //Simpan Ke tabel bridging_sep_backup
-                if (Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
+                if (Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 60, new String[]{
                     "-", norwBokingBPJS.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(tglrujukanbpjs.getSelectedItem() + ""),
                     NoRujukan, kdppkrujuk, nmppkrujukan, kdppk, nmppk, jenpel, Catatan, KdPenyakit,
                     nmdiagnosa, kdpoliSEP, nmpoliSEP, Kelas.getSelectedItem().toString().substring(0, 1),
@@ -1052,9 +1057,9 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                     COB.getSelectedItem().toString(), "", NoTelp, nameNode.path("code").asText(), nameNode.path("message").asText(),
                     KasusKatarak.getSelectedItem().toString().substring(0, 1), tglkll, Ket, suplesi.getSelectedItem().toString(),
                     NoSEPSuplesi, KdProv, NmProv, KdKab, NmKab, KdKec, NmKec, noSurat, Kddpjp, NmDPJP, "",
-                    klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, respons
+                    klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, respons, "tidak"
                 }) == false) {
-                    Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
+                    Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 60, new String[]{
                         "-", norwBokingBPJS.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(tglrujukanbpjs.getSelectedItem() + ""),
                         NoRujukan, kdppkrujuk, nmppkrujukan, kdppk, nmppk, jenpel, Catatan, KdPenyakit,
                         nmdiagnosa, kdpoliSEP, nmpoliSEP, Kelas.getSelectedItem().toString().substring(0, 1),
@@ -1064,7 +1069,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                         COB.getSelectedItem().toString(), "", NoTelp, nameNode.path("code").asText(), nameNode.path("message").asText(),
                         KasusKatarak.getSelectedItem().toString().substring(0, 1), tglkll, Ket, suplesi.getSelectedItem().toString(),
                         NoSEPSuplesi, KdProv, NmProv, KdKab, NmKab, KdKec, NmKec, noSurat, Kddpjp, NmDPJP, "",
-                        klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, respons
+                        klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, respons, "tidak"
                     });
                 }
 
@@ -1083,7 +1088,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
     private void simpanBackupSEPAwal() {
         //Simpan Ke tabel bridging_sep_backup
         System.out.println("Pesan SEP Backup : Menyiapkan data ketabel bridging_sep_backup utk. disimpan (Waktu : " + Sequel.cariIsi("select date_format(now(),'%d-%m-%Y %H:%i:%s')") + ") ...!!!");
-        if (Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
+        if (Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 60, new String[]{
             "-", norwBokingBPJS.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(tglrujukanbpjs.getSelectedItem() + ""),
             NoRujukan, kdppkrujuk, nmppkrujukan, kdppk, nmppk, jenpel, Catatan, KdPenyakit,
             nmdiagnosa, kdpoliSEP, nmpoliSEP, Kelas.getSelectedItem().toString().substring(0, 1),
@@ -1093,9 +1098,9 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
             COB.getSelectedItem().toString(), "", NoTelp, "XXX", "Anjungan Pasien Elektronik Mengirim",
             KasusKatarak.getSelectedItem().toString().substring(0, 1), tglkll, Ket, suplesi.getSelectedItem().toString(),
             NoSEPSuplesi, KdProv, NmProv, KdKab, NmKab, KdKec, NmKec, noSurat, Kddpjp, NmDPJP, "",
-            klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, requestJson
+            klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, requestJson, "tidak"
         }) == false) {
-            Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
+            Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 60, new String[]{
                 "-", norwBokingBPJS.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(tglrujukanbpjs.getSelectedItem() + ""),
                 NoRujukan, kdppkrujuk, nmppkrujukan, kdppk, nmppk, jenpel, Catatan, KdPenyakit,
                 nmdiagnosa, kdpoliSEP, nmpoliSEP, Kelas.getSelectedItem().toString().substring(0, 1),
@@ -1105,7 +1110,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                 COB.getSelectedItem().toString(), "", NoTelp, "XXX", "Anjungan Pasien Elektronik Mengirim",
                 KasusKatarak.getSelectedItem().toString().substring(0, 1), tglkll, Ket, suplesi.getSelectedItem().toString(),
                 NoSEPSuplesi, KdProv, NmProv, KdKab, NmKab, KdKec, NmKec, noSurat, Kddpjp, NmDPJP, "",
-                klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, requestJson
+                klsHAK, "", pembi, pJawab, tujuanKun, flagPro, kdpenunjang, asses, kddpjpLayan, nmdpjpLayan, requestJson, "tidak"
             });
         }
     }

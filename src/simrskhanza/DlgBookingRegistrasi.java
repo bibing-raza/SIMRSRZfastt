@@ -6312,7 +6312,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 + "'" + kdpnjg + "',"
                 + "'" + asesmen + "',"
                 + "'" + KddpjpLayan.getText() + "',"
-                + "'" + nmdpjpLayan.getText() + "'");
+                + "'" + nmdpjpLayan.getText() + "',"
+                + "'tidak'");
 
         Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "no_tlp='" + no_telp.getText() + "' ");
     }
