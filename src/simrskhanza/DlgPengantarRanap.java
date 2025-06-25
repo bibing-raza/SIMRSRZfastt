@@ -512,7 +512,7 @@ public class DlgPengantarRanap extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else {
             if (Sequel.menyimpantf("surat_pengantar_ranap", "?,?,?,?,?,?,?", "No.Rawat", 7, new String[]{
-                TNoRw.getText(), TNoSurat.getText().replaceAll("/", ""), cmbRuangan.getSelectedItem().toString(),
+                TNoRw.getText(), TNoRw.getText().replaceAll("/", ""), cmbRuangan.getSelectedItem().toString(),
                 Valid.SetTgl(TtglRencana.getSelectedItem() + ""), TsdhDiberikan.getText(), kddokter, Sequel.cariIsi("select now()")
             }) == true) {
                 emptTeks();
