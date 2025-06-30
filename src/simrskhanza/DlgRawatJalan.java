@@ -399,7 +399,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         tbPemeriksaanPr.setDefaultRenderer(Object.class, new WarnaTable());
 
         tabModeResepObat = new DefaultTableModel(null, new Object[]{
-            "P", "No.Rawat", "Tgl.Input", "Jam Input", "Nama Obat", "Status", "Nama Dokter", "Id", "kddokter", "Program PRB"}) {
+            "P", "No.Rawat", "Tgl.Input", "Jam Input", "Nama Obat", "Status", "Nama Dokter", "Id", "kddokter",
+            "Program PRB", "Kode Resep Iter"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 boolean a = false;
@@ -411,7 +412,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             Class[] types = new Class[]{
                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -423,7 +424,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         tbResepObat.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbResepObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 11; i++) {
             TableColumn column = tbResepObat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(20);
@@ -447,6 +448,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             } else if (i == 9) {
                 column.setPreferredWidth(80);
+            } else if (i == 10) {
+                column.setPreferredWidth(110);
             }
         }
         tbResepObat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -11094,9 +11097,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     if (Sequel.queryu2tf("delete from iter_obat_bpjs where no_rawat=?", 1, new String[]{TNoRw.getText()}) == true) {
                         BtnResepIterBatal.setVisible(false);
                         BtnResepIter.setVisible(true);
+                        tampilResepObat();
                     } else {
                         JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                     }
+                } else {
+                    tampilResepObat();
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Belum ada resep iter yang tersimpan dari poli " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'") + " ...!!");
@@ -12193,9 +12199,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         Valid.tabelKosong(tabModeResepObat);
         try {
             ps5 = koneksi.prepareStatement("select c.no_rawat, c.tgl_perawatan, c.jam_perawatan, c.nama_obat, "
-                    + "c.status, d.nm_dokter, c.noID, c.kd_dokter, if(prb.saran is null,'TIDAK','YA') programPrb from catatan_resep c "
+                    + "c.status, d.nm_dokter, c.noID, c.kd_dokter, if(prb.saran is null,'TIDAK','YA') programPrb, ifnull(i.kode_iter,'-') kodeIter from catatan_resep c "
                     + "inner join reg_periksa r on r.no_rawat = c.no_rawat inner join dokter d on d.kd_dokter = c.kd_dokter "
-                    + "left join bridging_srb_bpjs prb on prb.no_srb=c.no_rawat and prb.keterangan=c.noID where "
+                    + "left join bridging_srb_bpjs prb on prb.no_srb=c.no_rawat and prb.keterangan=c.noID "
+                    + "left join iter_obat_bpjs i on i.no_rawat=c.no_rawat where "
                     + "c.tgl_perawatan between ? and ? and c.no_rawat like ? or "
                     + "c.tgl_perawatan between ? and ? and c.nama_obat like ? or "
                     + "c.tgl_perawatan between ? and ? and r.no_rkm_medis like ? order by c.noId");
@@ -12221,7 +12228,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getString(9)
+                        rs.getString(9),
+                        rs.getString(10)
                     });
                 }
             } catch (Exception e) {
@@ -21990,11 +21998,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             if (tglSekarang.before(tglExpRujukan)) {
                                 Sequel.menyimpanIgnore("iter_obat_bpjs", "'" + kode_iter.getText() + "','" + noSep + "','" + noKartu + "',"
-                                        + "'" + TNoRM.getText() + "','" + nomorrawat + "','1','" + tglHabisRujukan + "','dalam proses','" + iterKe + "',"
+                                        + "'" + TNoRM.getText() + "','" + nomorrawat + "','1','" + tglHabisRujukan + "','dalam proses','" + iterKe + "','0000-00-00',"
                                         + "'" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
                                 
                                 BtnResepIterBatal.setVisible(true);
                                 BtnResepIter.setVisible(false);
+                                tampilResepObat();
                             } else {
                                 JOptionPane.showMessageDialog(null, "Maaf, surat rujukan pasien telah berakhir pada tgl. " + Valid.SetTglINDONESIA(tglHabisRujukan) + " ...!!");
                             }
