@@ -11913,8 +11913,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         MnHapusPermintaanLab.setEnabled(akses.getpermintaan_lab());
         MnHapusPeriksaRadiologi.setEnabled(akses.getpermintaan_radiologi());
         MnRiwayatData.setEnabled(akses.getadmin());
-        BtnResepIter.setVisible(akses.getrujukan_poli_internal());
-        BtnResepIterBatal.setVisible(akses.getrujukan_poli_internal());
+        
+        if (akses.getadmin() == true) {
+            BtnResepIter.setVisible(akses.getrujukan_poli_internal());
+            BtnResepIterBatal.setVisible(akses.getrujukan_poli_internal());
+        } else {
+            BtnResepIter.setVisible(false);
+            BtnResepIterBatal.setVisible(false);
+        }
 
         kdptg.setText(validasi.getKdPtgs());
         TPerawat.setText(validasi.getNmPtgs());

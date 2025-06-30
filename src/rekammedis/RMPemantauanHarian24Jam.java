@@ -3385,6 +3385,8 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             
             if (Tiwl.getText().equals("")) {
                 Tiwl.setText("0");
+            } else {
+                Tiwl.setText(Tiwl.getText().replaceAll(",", "."));
             }
             
             if (Tlain.getText().equals("")) {
