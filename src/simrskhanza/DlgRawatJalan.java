@@ -11076,7 +11076,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     } else if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' limit 1") == 0) {
                         JOptionPane.showMessageDialog(null, "Maaf, pasien belum dibuatkan SEP rawat jalan utk. kunjungan dipoli ini...!!!!");
                     } else {
-                        dataIterObatBPJS(TNoRw.getText());
+                        dataIterObatBPJS(TNoRw.getText(), TNoRM.getText(),
+                                Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
                     }
                 }
             } else {
@@ -21934,8 +21935,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
     
-    private void dataIterObatBPJS(String nomorrawat) {
-        String noSep = "", noKartu = "";
+    private void dataIterObatBPJS(String nomorrawat, String norekmed, String tglReg) {
+        String noSep = "", noKartu = "", iterKe = "", sepSama = "";
         tglHabisRujukan = "";
         kode_iter.setText("");
         tglSekarang = new Date();
@@ -21943,17 +21944,38 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         now = dateFormat.format(tglSekarang);
         
         try {
-            psIter = koneksi.prepareStatement("select * from bridging_sep where no_rawat='" + nomorrawat + "' and jnspelayanan='2' limit 1");
+            if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + nomorrawat + "' and jnspelayanan='2' limit 1") == 0) {
+                psIter = koneksi.prepareStatement("select * from bridging_sep where nomr='" + norekmed + "' and tglsep='" + tglReg + "' and jnspelayanan='2' no_limit 1");
+                sepSama = "ya";
+            } else {
+                psIter = koneksi.prepareStatement("select * from bridging_sep where no_rawat='" + nomorrawat + "' and jnspelayanan='2' limit 1");
+                sepSama = "tidak";
+            }
+            
             try {
                 rsIter = psIter.executeQuery();
                 while (rsIter.next()) {
                     noSep = rsIter.getString("no_sep");
                     noKartu = rsIter.getString("no_kartu");
                     tglHabisRujukan = Sequel.cariIsi("SELECT DATE_ADD('" + rsIter.getString("tglrujukan") + "', INTERVAL 89 DAY)");
-                    
-                    Valid.autoNomer7("select ifnull(MAX(CONVERT(LEFT(kode_iter,4),signed)),0) from iter_obat_bpjs where "
-                            + "date(waktu_simpan) like '%" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 7) + "%' ", "/ITER/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(5, 7)
-                            + "" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4), 4, kode_iter);
+                    iterKe = Sequel.cariIsi("select ifnull(MAX(convert(poli_ke,int))+1,1) from iter_obat_bpjs where no_sep='" + noSep + "'");
+
+                    if (sepSama.equals("tidak")) {
+                        Valid.autoNomer7("select ifnull(MAX(CONVERT(LEFT(kode_iter,4),signed)),0) from iter_obat_bpjs where "
+                                + "date(waktu_simpan) like '%" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 7) + "%' and poli_ke='" + iterKe + "' ",
+                                "/ITER-" + iterKe + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(5, 7)
+                                + "" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4), 4, kode_iter);
+                    } else {
+                        if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_sep='" + noSep + "'") > 0) {
+                            kode_iter.setText(Sequel.cariIsi("select replace(kode_iter,SUBSTRING_INDEX(SUBSTRING_INDEX(kode_iter, '/', 2), '/', -1),'ITER-" + iterKe + "') from iter_obat_bpjs "
+                                    + "where no_sep='" + noSep + "' order by waktu_simpan desc limit 1"));
+                        } else {
+                            Valid.autoNomer7("select ifnull(MAX(CONVERT(LEFT(kode_iter,4),signed)),0) from iter_obat_bpjs where "
+                                    + "date(waktu_simpan) like '%" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 7) + "%' and poli_ke='" + iterKe + "' ",
+                                    "/ITER-" + iterKe + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(5, 7)
+                                    + "" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4), 4, kode_iter);
+                        }
+                    }
 
                     cekViaBPJSKartu.tampil(noKartu, Sequel.cariIsi("SELECT DATE(NOW())"));
                     if (cekViaBPJSKartu.informasi.equals("OK")) {
@@ -21968,7 +21990,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             if (tglSekarang.before(tglExpRujukan)) {
                                 Sequel.menyimpanIgnore("iter_obat_bpjs", "'" + kode_iter.getText() + "','" + noSep + "','" + noKartu + "',"
-                                        + "'" + TNoRM.getText() + "','" + nomorrawat + "','1','" + tglHabisRujukan + "','dalam proses',"
+                                        + "'" + TNoRM.getText() + "','" + nomorrawat + "','1','" + tglHabisRujukan + "','dalam proses','" + iterKe + "',"
                                         + "'" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
                                 
                                 BtnResepIterBatal.setVisible(true);

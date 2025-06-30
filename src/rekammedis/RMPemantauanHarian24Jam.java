@@ -3382,7 +3382,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             if (Tbab.getText().equals("")) {
                 Tbab.setText("0");
             }
-            
+           
             if (Tiwl.getText().equals("")) {
                 Tiwl.setText("0");
             } else {
