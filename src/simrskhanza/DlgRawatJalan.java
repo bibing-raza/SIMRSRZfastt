@@ -11066,8 +11066,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             JOptionPane.showMessageDialog(null, "Resep obat untuk pasien tersebut belum ada ditabel...!!!!");
         } else {
             if (kdpj.equals("B01") || kdpj.equals("A03")) {
-                if (Sequel.cariInteger("SELECT count(-1) FROM iter_obat_bpjs i inner join reg_periksa rp on rp.no_rawat=i.no_rawat WHERE i.no_rawat='" + TNoRw.getText() + "' "
-                        + "and rp.kd_poli='" + polinya + "' and i.stts_pengambilan='dalam proses'") > 0) {
+                if (Sequel.cariInteger("SELECT count(-1) FROM iter_obat_bpjs i inner join reg_periksa rp on rp.no_rawat=i.no_rawat WHERE "
+                        + "i.no_rawat='" + TNoRw.getText() + "' and rp.kd_poli='" + polinya + "'") > 0) {
                     JOptionPane.showMessageDialog(null, "Resep obat iter sdh. dibuatkan utk. kunjungan dari poli " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'") + ",    \n"
                             + "cek kembali apakah sudah diselesaikan pengambilannya diapotik...!!!!");
                 } else if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs i inner join reg_periksa rp on rp.no_rkm_medis=i.no_rkm_medis where i.no_rkm_medis='" + TNoRM.getText() + "' and "
@@ -21998,7 +21998,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             if (tglSekarang.before(tglExpRujukan)) {
                                 Sequel.menyimpanIgnore("iter_obat_bpjs", "'" + kode_iter.getText() + "','" + noSep + "','" + noKartu + "',"
-                                        + "'" + TNoRM.getText() + "','" + nomorrawat + "','1','" + tglHabisRujukan + "','dalam proses','" + iterKe + "','0000-00-00',"
+                                        + "'" + TNoRM.getText() + "','" + nomorrawat + "','1','" + tglHabisRujukan + "','selesai','" + iterKe + "','"+tglReg+"',"
                                         + "'" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
                                 
                                 BtnResepIterBatal.setVisible(true);

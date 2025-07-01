@@ -3367,12 +3367,25 @@ public final class sekuel {
         }
         return bool;
     }
-	
-	public String cariFolderRad() {
+
+    public String cariFolderRad() {
         dicari = "";
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
             dicari = prop.getProperty("FOLDERQRRAD").toString();
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+
+        return dicari;
+    }
+    
+    public String cariFolderKodeResepIter() {
+        dicari = "";
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            dicari = prop.getProperty("FOLDERQRITER").toString();
 
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
@@ -3386,6 +3399,19 @@ public final class sekuel {
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
             dicari = prop.getProperty("FOLDERPRINTQRRAD").toString();
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+
+        return dicari;
+    }
+    
+    public String cariFolderPrintKodeIter() {
+        dicari = "";
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            dicari = prop.getProperty("FOLDERPRINTQRITER").toString();
 
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
