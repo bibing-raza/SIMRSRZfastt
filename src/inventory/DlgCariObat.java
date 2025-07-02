@@ -2004,8 +2004,6 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     private void BtnResepIterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResepIterActionPerformed
         if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
-        } else if (tbResepObat.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Resep obat untuk pasien tersebut belum ada ditabel...!!!!");
         } else {
             if (KdPj.getText().equals("B01") || KdPj.getText().equals("A03")) {
                 if (Sequel.cariInteger("select count(-1) from catatan_resep where no_rawat='" + TNoRw.getText() + "'") == 0) {
@@ -2020,7 +2018,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                         tampilResepIter();
                     } else {
                         JOptionPane.showMessageDialog(null, "Kode resep iter pertama dari poli " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdUnit + "'") + " "
-                                + "& utk. pengambilan hny. bisa dibuatkan oleh dokter dari poliklinik...!!!!");
+                                + "hanya bisa dibuatkan oleh dokter dari poliklinik...!!!!");
                         tampilResepIter();
                         //menunggu arahan berikutnya jika diaktifkan
 //                        dataIterObatBPJSbaru(TNoRw.getText(), noRM, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
@@ -2148,9 +2146,12 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                 tampilResepIter();
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel kode resep obat iter..!!");
-            tampilResepIter();
-            tbResepIter.requestFocus();
+            if (tbResepIter.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, belum ada kode resep obat iter dari poliklinik..!!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel kode resep obat iter..!!");                
+            }
+            tampilResepIter();            
         }
     }//GEN-LAST:event_BtnCetak1ActionPerformed
 

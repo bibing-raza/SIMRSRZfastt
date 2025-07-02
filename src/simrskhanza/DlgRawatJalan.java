@@ -8321,31 +8321,30 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             } else if (!Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'").equals(akses.getkode())) {
                 JOptionPane.showMessageDialog(null, "Maaf, dokter yang login tidak sama dg. dokter terjadwal dipoliklinik...!!");
             } else {
-                Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(noId,6),signed)),0) from catatan_resep where tgl_perawatan like '%" + DTPTgl.getSelectedItem().toString().substring(6, 10) + "%' ", DTPTgl.getSelectedItem().toString().substring(6, 10), 6, noIdObat);
-                try {
+                Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(noId,6),signed)),0) from catatan_resep where "
+                        + "tgl_perawatan like '%" + DTPTgl.getSelectedItem().toString().substring(6, 10) + "%' ",
+                        DTPTgl.getSelectedItem().toString().substring(6, 10), 6, noIdObat);
+
 //                    Sequel.menyimpan("catatan_resep", "?,?,?,?,?,?,?", "Data", 7, new String[]{
 //                        noIdObat.getText(), TNoRw.getText(), Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
 //                        TResepObat.getText(), "BELUM", akses.getkode()
 //                    });
 
-                    if (Sequel.menyimpantf("catatan_resep", "?,?,?,?,?,?,?", "No.Rawat", 7, new String[]{
-                        noIdObat.getText(), TNoRw.getText(), Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-                        TResepObat.getText(), "BELUM", akses.getkode()
-                    }) == true) {
-                        if (ChkProgramPrb.isSelected() == true) {
-                            Sequel.menyimpanIgnore("bridging_srb_bpjs",
-                                    "'" + Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' limit 1").replaceAll("", "-") + "',"
-                                    + "'" + TNoRw.getText() + "','" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','-','-','-','-','" + akses.getkode() + "',"
-                                    + "'" + akses.getnamauser() + "','" + akses.getkode() + "','" + noIdObat.getText() + "','hanya sebagai penanda resep program prb',"
-                                    + "'" + Sequel.cariIsi("select now()") + "'", "Resep Program PRB BPJS");
-                        }
-
-                        Sequel.mengedit("reg_periksa", "no_rawat='" + TNoRw.getText() + "'", "stts='Sudah Diperiksa Dokter'");
-                        TResepObat.setText("");
-                        tampilResepObat();
+                if (Sequel.menyimpantf("catatan_resep", "?,?,?,?,?,?,?", "No.Rawat", 7, new String[]{
+                    noIdObat.getText(), TNoRw.getText(), Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                    TResepObat.getText(), "BELUM", akses.getkode()
+                }) == true) {
+                    if (ChkProgramPrb.isSelected() == true) {
+                        Sequel.menyimpanIgnore("bridging_srb_bpjs",
+                                "'" + Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' limit 1").replaceAll("", "-") + "',"
+                                + "'" + TNoRw.getText() + "','" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','-','-','-','-','" + akses.getkode() + "',"
+                                + "'" + akses.getnamauser() + "','" + akses.getkode() + "','" + noIdObat.getText() + "','hanya sebagai penanda resep program prb',"
+                                + "'" + Sequel.cariIsi("select now()") + "'", "Resep Program PRB BPJS");
                     }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Maaf, data gagal tersimpan (ket. " + e + ")");
+
+                    Sequel.mengedit("reg_periksa", "no_rawat='" + TNoRw.getText() + "'", "stts='Sudah Diperiksa Dokter'");
+                    TResepObat.setText("");
+                    tampilResepObat();
                 }
             }
         }
