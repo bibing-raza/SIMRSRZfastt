@@ -49,12 +49,9 @@ public class DlgAturanPakai extends javax.swing.JDialog {
     public DlgAturanPakai(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
-        this.setLocation(10,10);
-        setSize(459,539);
-
-        Object[] row = {"Jenis", "Nama Aturan Pakai"};
-        tabMode = new DefaultTableModel(null, row) {
+        
+        tabMode = new DefaultTableModel(null, new String[]{
+            "Jenis", "Nama Aturan Pakai", "Status"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -65,30 +62,39 @@ public class DlgAturanPakai extends javax.swing.JDialog {
         tbaturan.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbaturan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             TableColumn column = tbaturan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(100);
             } else if (i == 1) {
-                column.setPreferredWidth(350);
+                column.setPreferredWidth(500);
+            } else if (i == 2) {
+                column.setPreferredWidth(75);
             }
         }
 
         tbaturan.setDefaultRenderer(Object.class, new WarnaTable());
         nmaturan.setDocument(new batasInput((int)255).getKata(nmaturan));
         
-        TCari.setDocument(new batasInput((byte)100).getKata(TCari));
-        if(koneksiDB.cariCepat().equals("aktif")){
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+        TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
+        if (koneksiDB.cariCepat().equals("aktif")) {
+            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
                 @Override
-                public void insertUpdate(DocumentEvent e) {tampil();}
+                public void insertUpdate(DocumentEvent e) {
+                    tampil();
+                }
+
                 @Override
-                public void removeUpdate(DocumentEvent e) {tampil();}
+                public void removeUpdate(DocumentEvent e) {
+                    tampil();
+                }
+
                 @Override
-                public void changedUpdate(DocumentEvent e) {tampil();}
+                public void changedUpdate(DocumentEvent e) {
+                    tampil();
+                }
             });
-        } 
-        
+        }        
     }
 
     /** This method is called from within the constructor to
@@ -106,6 +112,8 @@ public class DlgAturanPakai extends javax.swing.JDialog {
         cmbjenis = new widget.ComboBox();
         jLabel4 = new widget.Label();
         nmaturan = new widget.TextBox();
+        jLabel8 = new widget.Label();
+        cmbStatus = new widget.ComboBox();
         Scroll = new widget.ScrollPane();
         tbaturan = new widget.Table();
         panelGlass10 = new widget.panelisi();
@@ -131,7 +139,7 @@ public class DlgAturanPakai extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Master Aturan Pakai ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Master Aturan Pakai ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -167,6 +175,19 @@ public class DlgAturanPakai extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(nmaturan);
+
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Status : ");
+        jLabel8.setName("jLabel8"); // NOI18N
+        jLabel8.setPreferredSize(new java.awt.Dimension(60, 23));
+        panelGlass7.add(jLabel8);
+
+        cmbStatus.setBackground(new java.awt.Color(248, 253, 243));
+        cmbStatus.setForeground(new java.awt.Color(0, 0, 0));
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aktif", "Non Aktif" }));
+        cmbStatus.setName("cmbStatus"); // NOI18N
+        cmbStatus.setPreferredSize(new java.awt.Dimension(80, 23));
+        panelGlass7.add(cmbStatus);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -357,7 +378,8 @@ public class DlgAturanPakai extends javax.swing.JDialog {
             Valid.textKosong(nmaturan, "Nama Aturan Pakai");
             nmaturan.requestFocus();
         } else {
-            Sequel.menyimpan("master_aturan_pakai", "'" + nmaturan.getText() + "','" + cmbjenis.getSelectedItem().toString() + "'", "Aturan Pakai");
+            Sequel.menyimpan("master_aturan_pakai", "'" + nmaturan.getText() + "','" + cmbjenis.getSelectedItem().toString() + "',"
+                    + "'" + cmbStatus.getSelectedItem().toString() + "'", "Aturan Pakai");
             tampil();
             emptTeks();
         }
@@ -373,6 +395,7 @@ public class DlgAturanPakai extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -464,10 +487,10 @@ public class DlgAturanPakai extends javax.swing.JDialog {
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Sequel.mengedit("master_aturan_pakai", "nama='" + aturan + "' and opsi='" + jns + "'",
-                    "nama='" + nmaturan.getText() + "', opsi='" + cmbjenis.getSelectedItem().toString() + "'");
+                    "nama='" + nmaturan.getText() + "', opsi='" + cmbjenis.getSelectedItem().toString() + "', "
+                    + "status='" + cmbStatus.getSelectedItem().toString() + "'");
             tampil();
-            cmbjenis.setSelectedIndex(0);
-            nmaturan.setText("");
+            emptTeks();
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnGantiActionPerformed
@@ -498,12 +521,14 @@ public class DlgAturanPakai extends javax.swing.JDialog {
     private widget.Label LCount;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
+    private widget.ComboBox cmbStatus;
     private widget.ComboBox cmbjenis;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
+    private widget.Label jLabel8;
     private widget.TextBox nmaturan;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass11;
@@ -515,17 +540,20 @@ public class DlgAturanPakai extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("select opsi, nama from master_aturan_pakai where "
+            ps = koneksi.prepareStatement("select * from master_aturan_pakai where "
                     + "nama like ? or "
-                    + "opsi like ? order by opsi, nama");
+                    + "opsi like ? or "
+                    + "status like ? order by opsi, nama");
             try {                
                 ps.setString(1, "%" + TCari.getText().trim() + "%");
                 ps.setString(2, "%" + TCari.getText().trim() + "%");
+                ps.setString(3, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new Object[]{
+                    tabMode.addRow(new String[]{
                         rs.getString("opsi"),
-                        rs.getString("nama")
+                        rs.getString("nama"),
+                        rs.getString("status")
                     });
                 }
             } catch (Exception e) {
@@ -549,16 +577,18 @@ public class DlgAturanPakai extends javax.swing.JDialog {
         cmbjenis.requestFocus();
         nmaturan.setText("");
         TCari.setText("");
+        cmbStatus.setSelectedIndex(0);
     }
 
     private void getData() {
         aturan = "";
         jns = "";
-        if(tbaturan.getSelectedRow()!= -1){
-            jns = tbaturan.getValueAt(tbaturan.getSelectedRow(),0).toString();
-            aturan = tbaturan.getValueAt(tbaturan.getSelectedRow(),1).toString();
-            cmbjenis.setSelectedItem(tbaturan.getValueAt(tbaturan.getSelectedRow(),0).toString());            
-            nmaturan.setText(tbaturan.getValueAt(tbaturan.getSelectedRow(),1).toString());
+        if (tbaturan.getSelectedRow() != -1) {
+            jns = tbaturan.getValueAt(tbaturan.getSelectedRow(), 0).toString();
+            aturan = tbaturan.getValueAt(tbaturan.getSelectedRow(), 1).toString();
+            cmbjenis.setSelectedItem(tbaturan.getValueAt(tbaturan.getSelectedRow(), 0).toString());
+            nmaturan.setText(tbaturan.getValueAt(tbaturan.getSelectedRow(), 1).toString());
+            cmbStatus.setSelectedItem(tbaturan.getValueAt(tbaturan.getSelectedRow(), 2).toString());
         }
     }
     

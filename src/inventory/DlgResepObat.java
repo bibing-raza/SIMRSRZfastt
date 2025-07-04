@@ -458,7 +458,6 @@ public final class DlgResepObat extends javax.swing.JDialog {
         FormInput.setLayout(null);
 
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRw.setHighlighter(null);
         TNoRw.setName("TNoRw"); // NOI18N
         TNoRw.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -475,23 +474,17 @@ public final class DlgResepObat extends javax.swing.JDialog {
         FormInput.add(TPasien);
         TPasien.setBounds(220, 12, 503, 23);
 
+        KdDokter.setEditable(false);
         KdDokter.setForeground(new java.awt.Color(0, 0, 0));
-        KdDokter.setHighlighter(null);
         KdDokter.setName("KdDokter"); // NOI18N
-        KdDokter.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                KdDokterKeyPressed(evt);
-            }
-        });
         FormInput.add(KdDokter);
-        KdDokter.setBounds(98, 72, 120, 23);
+        KdDokter.setBounds(98, 72, 200, 23);
 
         NmDokter.setEditable(false);
         NmDokter.setForeground(new java.awt.Color(0, 0, 0));
-        NmDokter.setHighlighter(null);
         NmDokter.setName("NmDokter"); // NOI18N
         FormInput.add(NmDokter);
-        NmDokter.setBounds(220, 72, 471, 23);
+        NmDokter.setBounds(301, 72, 390, 23);
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("No.Rawat :");
@@ -529,14 +522,9 @@ public final class DlgResepObat extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(457, 42, 100, 23);
 
+        NoResep.setEditable(false);
         NoResep.setForeground(new java.awt.Color(0, 0, 0));
-        NoResep.setHighlighter(null);
         NoResep.setName("NoResep"); // NOI18N
-        NoResep.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                NoResepKeyPressed(evt);
-            }
-        });
         FormInput.add(NoResep);
         NoResep.setBounds(560, 42, 138, 23);
 
@@ -547,7 +535,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         jLabel8.setBounds(0, 42, 95, 23);
 
         DTPBeri.setEditable(false);
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-07-2025" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);
@@ -842,7 +830,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -857,7 +845,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1074,10 +1062,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         Valid.pindah(evt, TNoRw, cmbJam);
     }//GEN-LAST:event_DTPBeriKeyPressed
 
-    private void NoResepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoResepKeyPressed
-        Valid.pindah(evt, cmbDtk, KdDokter);
-    }//GEN-LAST:event_NoResepKeyPressed
-
     private void btnDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDokterKeyPressed
         Valid.pindah(evt, KdDokter, BtnSimpan);
     }//GEN-LAST:event_btnDokterKeyPressed
@@ -1089,16 +1073,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         dokter.setVisible(true);
         dokter.setAlwaysOnTop(true);
     }//GEN-LAST:event_btnDokterActionPerformed
-
-    private void KdDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KdDokterKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
-            Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?", NmDokter, KdDokter.getText());
-        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            btnDokterActionPerformed(null);
-        } else {
-            Valid.pindah(evt, NoResep, BtnSimpan);
-        }
-    }//GEN-LAST:event_KdDokterKeyPressed
 
     private void TNoRwKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoRwKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
@@ -1345,7 +1319,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 tampilObat();
             } else if (conteng == 1) {
                 DlgGantiAturanPakai ganti = new DlgGantiAturanPakai(null, false);
-                ganti.setSize(644, 316);
+                ganti.setSize(743, 316);
                 ganti.setLocationRelativeTo(internalFrame1);
                 ganti.setData(TNoRw.getText(), kodeobat, tglrsp, jamrsp, "transaksi_rs");
                 ganti.setVisible(true);

@@ -102,7 +102,7 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Labeling Aturan Pakai Obat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Labeling Aturan Pakai Obat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -234,7 +234,7 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
         cmbaturan1.setName("cmbaturan1"); // NOI18N
         cmbaturan1.setPreferredSize(new java.awt.Dimension(100, 23));
         FormInput.add(cmbaturan1);
-        cmbaturan1.setBounds(103, 96, 130, 23);
+        cmbaturan1.setBounds(103, 96, 180, 23);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Aturan 2 : ");
@@ -248,7 +248,7 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
         cmbaturan2.setName("cmbaturan2"); // NOI18N
         cmbaturan2.setPreferredSize(new java.awt.Dimension(100, 23));
         FormInput.add(cmbaturan2);
-        cmbaturan2.setBounds(103, 124, 130, 23);
+        cmbaturan2.setBounds(103, 124, 180, 23);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Aturan 3 : ");
@@ -262,13 +262,13 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
         cmbaturan3.setName("cmbaturan3"); // NOI18N
         cmbaturan3.setPreferredSize(new java.awt.Dimension(100, 23));
         FormInput.add(cmbaturan3);
-        cmbaturan3.setBounds(103, 152, 200, 23);
+        cmbaturan3.setBounds(103, 152, 250, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Waktu 1 : ");
         jLabel12.setName("jLabel12"); // NOI18N
         FormInput.add(jLabel12);
-        jLabel12.setBounds(240, 96, 60, 23);
+        jLabel12.setBounds(290, 96, 60, 23);
 
         cmbwaktu1.setBackground(new java.awt.Color(248, 253, 243));
         cmbwaktu1.setForeground(new java.awt.Color(0, 0, 0));
@@ -276,13 +276,13 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
         cmbwaktu1.setName("cmbwaktu1"); // NOI18N
         cmbwaktu1.setPreferredSize(new java.awt.Dimension(100, 23));
         FormInput.add(cmbwaktu1);
-        cmbwaktu1.setBounds(303, 96, 295, 23);
+        cmbwaktu1.setBounds(353, 96, 345, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Waktu 2 : ");
         jLabel13.setName("jLabel13"); // NOI18N
         FormInput.add(jLabel13);
-        jLabel13.setBounds(240, 124, 60, 23);
+        jLabel13.setBounds(290, 124, 60, 23);
 
         cmbwaktu2.setBackground(new java.awt.Color(248, 253, 243));
         cmbwaktu2.setForeground(new java.awt.Color(0, 0, 0));
@@ -290,7 +290,7 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
         cmbwaktu2.setName("cmbwaktu2"); // NOI18N
         cmbwaktu2.setPreferredSize(new java.awt.Dimension(100, 23));
         FormInput.add(cmbwaktu2);
-        cmbwaktu2.setBounds(303, 124, 260, 23);
+        cmbwaktu2.setBounds(353, 124, 310, 23);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Keterangan : ");
@@ -315,7 +315,7 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbket);
-        cmbket.setBounds(103, 180, 495, 23);
+        cmbket.setBounds(103, 180, 545, 23);
 
         cmbmasasimpan.setBackground(new java.awt.Color(248, 253, 243));
         cmbmasasimpan.setForeground(new java.awt.Color(0, 0, 0));
@@ -323,7 +323,7 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
         cmbmasasimpan.setName("cmbmasasimpan"); // NOI18N
         cmbmasasimpan.setPreferredSize(new java.awt.Dimension(100, 23));
         FormInput.add(cmbmasasimpan);
-        cmbmasasimpan.setBounds(103, 208, 495, 23);
+        cmbmasasimpan.setBounds(103, 208, 545, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -476,14 +476,14 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
     }
     
     private void isAturanPakai() {
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 1'", cmbaturan1);
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 2'", cmbaturan2);
-//        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 2' order by CONVERT(nama,int)", cmbaturan2);
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 3'", cmbaturan3);
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'waktu 1' order by nama", cmbwaktu1);
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'waktu 2' order by nama", cmbwaktu2);
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'keterangan' order by nama", cmbket);
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'masa simpan'", cmbmasasimpan);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 1' and status='Aktif'", cmbaturan1);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 2' and status='Aktif'", cmbaturan2);
+//        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 2' and status='Aktif' order by CONVERT(nama,int)", cmbaturan2);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 3' and status='Aktif'", cmbaturan3);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'waktu 1' and status='Aktif' order by nama", cmbwaktu1);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'waktu 2' and status='Aktif' order by nama", cmbwaktu2);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'keterangan' and status='Aktif' order by nama", cmbket);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'masa simpan' and status='Aktif'", cmbmasasimpan);
         
         try {
             if (transaksi.equals("transaksi_rs")) {

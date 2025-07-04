@@ -106,25 +106,25 @@ public final class DlgCariObat extends javax.swing.JDialog {
         JComboBox comboKet = new JComboBox();
         JComboBox comboMs = new JComboBox();
 
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 1'", comboAt1);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 1' and status='Aktif'", comboAt1);
         AutoCompleteDecorator.decorate(comboAt1);
 
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 2'", comboAt2);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 2' and status='Aktif'", comboAt2);
         AutoCompleteDecorator.decorate(comboAt2);
 
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 3'", comboAt3);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'aturan pakai 3' and status='Aktif'", comboAt3);
         AutoCompleteDecorator.decorate(comboAt3);
 
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'waktu 1'", comboWk1);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'waktu 1' and status='Aktif'", comboWk1);
         AutoCompleteDecorator.decorate(comboWk1);
 
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'waktu 2'", comboWk2);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'waktu 2' and status='Aktif'", comboWk2);
         AutoCompleteDecorator.decorate(comboWk2);
 
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'keterangan'", comboKet);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'keterangan' and status='Aktif'", comboKet);
         AutoCompleteDecorator.decorate(comboKet);
 
-        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'masa simpan'", comboMs);
+        Sequel.cariIsiComboDB("select nama from master_aturan_pakai where opsi = 'masa simpan' and status='Aktif'", comboMs);
         AutoCompleteDecorator.decorate(comboMs);
 
         Object[] row = {"K", "Jumlah", "Kode Barang", "Nama Barang", "Satuan",
