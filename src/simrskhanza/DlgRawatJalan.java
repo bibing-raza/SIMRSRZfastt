@@ -21949,10 +21949,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         
         try {
             if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + nomorrawat + "' and jnspelayanan='2' limit 1") == 0) {
-                psIter = koneksi.prepareStatement("select * from bridging_sep where nomr='" + norekmed + "' and tglsep='" + tglReg + "' and jnspelayanan='2' no_limit 1");
+                psIter = koneksi.prepareStatement("select * from bridging_sep where nomr='" + norekmed + "' and tglsep='" + tglReg + "' and jnspelayanan='2' order by tglrujukan desc limit 1");
                 sepSama = "ya";
             } else {
-                psIter = koneksi.prepareStatement("select * from bridging_sep where no_rawat='" + nomorrawat + "' and jnspelayanan='2' limit 1");
+                psIter = koneksi.prepareStatement("select * from bridging_sep where no_rawat='" + nomorrawat + "' and jnspelayanan='2' order by tglrujukan desc limit 1");
                 sepSama = "tidak";
             }
             
