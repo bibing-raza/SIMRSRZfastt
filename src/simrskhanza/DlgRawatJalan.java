@@ -21994,8 +21994,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             if (tglSekarang.before(tglExpRujukan)) {
                                 Sequel.menyimpanIgnore("iter_obat_bpjs", "'" + kode_iter.getText() + "','" + noSep + "','" + noKartu + "',"
-                                        + "'" + TNoRM.getText() + "','" + nomorrawat + "','1','" + tglHabisRujukan + "','Proses pelayanan','" + iterKe + "','"+tglReg+"',"
-                                        + "'" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
+                                        + "'" + TNoRM.getText() + "','" + nomorrawat + "','1','" + tglHabisRujukan + "','Proses pelayanan',"
+                                        + "'" + iterKe + "','" + tglReg + "','belum','-','" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
                                 
                                 BtnResepIterBatal.setVisible(true);
                                 BtnResepIter.setVisible(false);

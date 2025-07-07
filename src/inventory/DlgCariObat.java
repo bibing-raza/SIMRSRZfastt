@@ -369,7 +369,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
         Popup1 = new javax.swing.JPopupMenu();
         ppResepIterSelesai = new javax.swing.JMenuItem();
         ppResepIterProses = new javax.swing.JMenuItem();
-        ppResepIterMenunggu = new javax.swing.JMenuItem();
         Kd2 = new widget.TextBox();
         Tanggal = new widget.TextBox();
         Jam = new widget.TextBox();
@@ -510,21 +509,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
             }
         });
         Popup1.add(ppResepIterProses);
-
-        ppResepIterMenunggu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppResepIterMenunggu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        ppResepIterMenunggu.setText("Kode Resep Iter Menunggu");
-        ppResepIterMenunggu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ppResepIterMenunggu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ppResepIterMenunggu.setIconTextGap(8);
-        ppResepIterMenunggu.setName("ppResepIterMenunggu"); // NOI18N
-        ppResepIterMenunggu.setPreferredSize(new java.awt.Dimension(220, 25));
-        ppResepIterMenunggu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ppResepIterMenungguActionPerformed(evt);
-            }
-        });
-        Popup1.add(ppResepIterMenunggu);
 
         Kd2.setHighlighter(null);
         Kd2.setName("Kd2"); // NOI18N
@@ -817,7 +801,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         jLabel8.setBounds(4, 10, 55, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-07-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2010,7 +1994,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                     JOptionPane.showMessageDialog(null, "Maaf, belum ada resep yang disimpan utk. kunjungan dipoli " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdUnit + "'") + " ...!!!!");
                 } else if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs i inner join reg_periksa rp on rp.no_rawat=i.no_rawat where "
                         + "i.no_rkm_medis='" + noRM + "' and rp.kd_poli='" + kdUnit + "' and convert(i.kunjungan,int)<=3") == 0) {
-                    if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "' and (stts_pengambilan='Proses pelayanan' or stts_pengambilan='Menunggu')") > 0) {
+                    if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "' and (stts_pengambilan='Proses pelayanan' or stts_pengambilan='Proses pelayanan')") > 0) {
                         JOptionPane.showMessageDialog(null, "Kode resep obat iter yang masih dalam proses pelayanan, harus diselesaikan dulu...!!!!");
                         tampilResepIter();
                     } else if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' limit 1") == 0) {
@@ -2035,9 +2019,9 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                                     + "dengan kode resep obat iter " + kode_iter.getText() + " sudah tersimpan 3 kali...!!!!");
                             tampilResepIter();
                         } else if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where "
-                                + "waktu_simpan='" + tbResepIter.getValueAt(tbResepIter.getSelectedRow(), 14).toString() + "' and stts_pengambilan='Menunggu'") > 0) {
+                                + "waktu_simpan='" + tbResepIter.getValueAt(tbResepIter.getSelectedRow(), 14).toString() + "' and stts_pengambilan='Proses pelayanan'") > 0) {
                             JOptionPane.showMessageDialog(null, "Pengambilan obat yg. ke " + pengambilan + ", utk. kunjungan dipoli " + tbResepIter.getValueAt(tbResepIter.getSelectedRow(), 6).toString() + ",     \n"
-                                    + "dg. kode resep obat iter " + kode_iter.getText() + " dalam status menunggu pengambilan berikutnya...!!!!");
+                                    + "dg. kode resep obat iter " + kode_iter.getText() + " dalam status proses pelayanan farmasi...!!!!");
                             tampilResepIter();
                         } else {
                             dataIterObatBPJSlanjut();
@@ -2103,55 +2087,48 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 
     private void BtnCetak1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCetak1ActionPerformed
         if (tbResepIter.getSelectedRow() > -1) {
-            if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where waktu_simpan='" + tbResepIter.getValueAt(tbResepIter.getSelectedRow(), 14).toString() + "' "
-                    + "and (stts_pengambilan='Selesai' or stts_pengambilan='Proses pelayanan')") > 0) {
-                JOptionPane.showMessageDialog(null, "Silahkan pilih/klik salah satu yg. status pengambilanya MENUNGGU utk. mencetak bukti pengambilan     \n"
-                        + "obat berikutnya, jika belum ada datanya lakukan simpan resep iter dulu...!!!!");
-                tampilResepIter();
-            } else {
-                Map<String, Object> param = new HashMap<>();
-                param.put("namars", akses.getnamars());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("logo", Sequel.cariGambar("select logo from setting"));
-                param.put("poliAwal", Sequel.cariIsi("select concat(pl.nm_poli,' (',date_format(rp.tgl_registrasi,'%d/%m/%Y'),')') from iter_obat_bpjs i "
-                        + "inner join reg_periksa rp on rp.no_rawat=i.no_rawat inner join poliklinik pl on pl.kd_poli=rp.kd_poli where "
-                        + "i.kode_iter='" + kode_iter.getText() + "' and i.kunjungan='1'"));
-                param.put("dokterAwal", Sequel.cariIsi("select pg.nama from iter_obat_bpjs i inner join reg_periksa rp on rp.no_rawat=i.no_rawat "
-                        + "inner join pegawai pg on pg.nik=rp.kd_dokter where i.kode_iter='" + kode_iter.getText() + "' and i.kunjungan='1'"));
-                Valid.cetakQr(kode_iter.getText(), Sequel.cariFolderKodeResepIter(), "QRkodeIter.jpg");
-                Sequel.queryu("delete from setting_qr where judul = 'QRkodeIter'");
-                Sequel.menyimpanQr("setting_qr", "'QRkodeIter'", "file QRCode Kode Resep Iter", Sequel.cariFolderPrintKodeIter());
-                param.put("lokasi", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRkodeIter'"));
-                param.put("wktuCetak", Sequel.cariIsi("select date_format(now(),'%d/%m/%Y %H:%i Wita')"));
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("poliAwal", Sequel.cariIsi("select concat(pl.nm_poli,' (',date_format(rp.tgl_registrasi,'%d/%m/%Y'),')') from iter_obat_bpjs i "
+                    + "inner join reg_periksa rp on rp.no_rawat=i.no_rawat inner join poliklinik pl on pl.kd_poli=rp.kd_poli where "
+                    + "i.kode_iter='" + kode_iter.getText() + "' and i.kunjungan='1'"));
+            param.put("dokterAwal", Sequel.cariIsi("select pg.nama from iter_obat_bpjs i inner join reg_periksa rp on rp.no_rawat=i.no_rawat "
+                    + "inner join pegawai pg on pg.nik=rp.kd_dokter where i.kode_iter='" + kode_iter.getText() + "' and i.kunjungan='1'"));
+            Valid.cetakQr(kode_iter.getText(), Sequel.cariFolderKodeResepIter(), "QRkodeIter.jpg");
+            Sequel.queryu("delete from setting_qr where judul = 'QRkodeIter'");
+            Sequel.menyimpanQr("setting_qr", "'QRkodeIter'", "file QRCode Kode Resep Iter", Sequel.cariFolderPrintKodeIter());
+            param.put("lokasi", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRkodeIter'"));
+            param.put("wktuCetak", Sequel.cariIsi("select date_format(now(),'%d/%m/%Y %H:%i Wita')"));
 
-                Valid.MyReport("rptKodeIterThermal.jasper", "report", "::[ Cetak Bukti Pengambilan Resep Iter Yang Ke-" + pengambilan + " ]::",
-                        "SELECT i.*, p.nm_pasien, pl.nm_poli, CONCAT(DAY(i.tgl_exp_rujukan), ' ', CASE MONTH(i.tgl_exp_rujukan) "
-                        + "WHEN 1 THEN 'Januari' "
-                        + "WHEN 2 THEN 'Februari' "
-                        + "WHEN 3 THEN 'Maret' "
-                        + "WHEN 4 THEN 'April' "
-                        + "WHEN 5 THEN 'Mei' "
-                        + "WHEN 6 THEN 'Juni' "
-                        + "WHEN 7 THEN 'Juli' "
-                        + "WHEN 8 THEN 'Agustus' "
-                        + "WHEN 9 THEN 'September' "
-                        + "WHEN 10 THEN 'Oktober' "
-                        + "WHEN 11 THEN 'November' "
-                        + "WHEN 12 THEN 'Desember' END,' ',YEAR(i.tgl_exp_rujukan)) tglExpRujukan, "
-                        + "if(i.kunjungan='1','Pertama (1)',if(i.kunjungan='2','Kedua (2)','Ketiga (3)')) pengambilan FROM iter_obat_bpjs i "
-                        + "inner join reg_periksa rp on rp.no_rawat=i.no_rawat "
-                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli where i.waktu_simpan='" + tbResepIter.getValueAt(tbResepIter.getSelectedRow(), 14).toString() + "'", param);
+            Valid.MyReport("rptKodeIterThermal.jasper", "report", "::[ Cetak Bukti Pengambilan Resep Iter Yang Ke-" + pengambilan + " ]::",
+                    "SELECT i.*, p.nm_pasien, pl.nm_poli, CONCAT(DAY(i.tgl_exp_rujukan), ' ', CASE MONTH(i.tgl_exp_rujukan) "
+                    + "WHEN 1 THEN 'Januari' "
+                    + "WHEN 2 THEN 'Februari' "
+                    + "WHEN 3 THEN 'Maret' "
+                    + "WHEN 4 THEN 'April' "
+                    + "WHEN 5 THEN 'Mei' "
+                    + "WHEN 6 THEN 'Juni' "
+                    + "WHEN 7 THEN 'Juli' "
+                    + "WHEN 8 THEN 'Agustus' "
+                    + "WHEN 9 THEN 'September' "
+                    + "WHEN 10 THEN 'Oktober' "
+                    + "WHEN 11 THEN 'November' "
+                    + "WHEN 12 THEN 'Desember' END,' ',YEAR(i.tgl_exp_rujukan)) tglExpRujukan, "
+                    + "if(i.kunjungan='1','Kedua (2)',if(i.kunjungan='2','Terakhir/Ketiga (3)','Terakhir/Sudah Selesai')) pengambilan FROM iter_obat_bpjs i "
+                    + "inner join reg_periksa rp on rp.no_rawat=i.no_rawat "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli where i.waktu_simpan='" + tbResepIter.getValueAt(tbResepIter.getSelectedRow(), 14).toString() + "'", param);
 
-                tampilResepIter();
-            }
+            tampilResepIter();
         } else {
             if (tbResepIter.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Maaf, belum ada kode resep obat iter dari poliklinik..!!");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel kode resep obat iter..!!");                
+                JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel kode resep obat iter..!!");
             }
-            tampilResepIter();            
+            tampilResepIter();
         }
     }//GEN-LAST:event_BtnCetak1ActionPerformed
 
@@ -2195,24 +2172,6 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             tbResepIter.requestFocus();
         }
     }//GEN-LAST:event_ppResepIterProsesActionPerformed
-
-    private void ppResepIterMenungguActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppResepIterMenungguActionPerformed
-        if (tbResepIter.getSelectedRow() > -1) {
-            if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where waktu_simpan='" + tbResepIter.getValueAt(tbResepIter.getSelectedRow(), 14).toString() + "' "
-                    + "and stts_pengambilan='Menunggu'") > 0) {
-                JOptionPane.showMessageDialog(null, "Kode resep obat iter yang dipilih sudah dalam status menunggu...!!!!");
-                tampilResepIter();
-            } else {
-                Sequel.mengedit("iter_obat_bpjs", "waktu_simpan='" + tbResepIter.getValueAt(tbResepIter.getSelectedRow(), 14).toString() + "'",
-                        "tgl_ambil_obat='0000-00-00', stts_pengambilan='Menunggu'");
-                tampilResepIter();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Silahkan klik/pilih dulu salah satu kode resep obat iter pada tabel...!!!!");
-            tampilResepIter();
-            tbResepIter.requestFocus();
-        }
-    }//GEN-LAST:event_ppResepIterMenungguActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2292,7 +2251,6 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     private widget.panelisi panelisi3;
     private widget.panelisi panelisi4;
     private javax.swing.JMenuItem ppBersihkan;
-    private javax.swing.JMenuItem ppResepIterMenunggu;
     private javax.swing.JMenuItem ppResepIterProses;
     private javax.swing.JMenuItem ppResepIterSelesai;
     private javax.swing.JMenuItem ppStok;
@@ -2662,24 +2620,12 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 //        BtnTambah.setEnabled(var.getobat());
 //        TCari.requestFocus();
 
+        ppResepIterSelesai.setEnabled(akses.getadmin());
         ppResepIterProses.setEnabled(akses.getadmin());
-        ppResepIterMenunggu.setEnabled(akses.getadmin());
+        BtnResepIter.setVisible(akses.getadmin());
+        BtnResepIterBatal.setVisible(akses.getadmin());
         BtnTambah.setEnabled(akses.getobat());
         TCari.requestFocus();
-        
-        if (akses.getadmin() == true) {
-            BtnResepIter.setVisible(true);
-            BtnResepIterBatal.setVisible(true);
-            BtnCetak1.setVisible(true);
-            BtnCekIter.setVisible(true);
-            Scroll4.setVisible(true);
-        } else {
-            BtnResepIter.setVisible(false);
-            BtnResepIterBatal.setVisible(false);
-            BtnCetak1.setVisible(false);
-            BtnCekIter.setVisible(false);
-            Scroll4.setVisible(false);
-        }
     }
 
     public void setNoRm(String norwt, String norm, String nama, String tanggal, String jam, String kodeUnit) {
@@ -2853,9 +2799,14 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         }
         
         //resep iter
-        if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "' and stts_pengambilan='Proses pelayanan'") > 0) {
+        if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "' and "
+                + "stts_pengambilan='Proses pelayanan' and (kunjungan='1' or kunjungan='2')") > 0) {
             Sequel.mengedit("iter_obat_bpjs", "no_rawat='" + TNoRw.getText() + "'",
-                    "tgl_ambil_obat='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "', stts_pengambilan='Selesai'");
+                    "tgl_ambil_obat='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "', stts_pengambilan='Selesai', selesai='belum'");
+        } else if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "' and "
+                + "stts_pengambilan='Proses pelayanan' and kunjungan='3'") > 0) {
+            Sequel.mengedit("iter_obat_bpjs", "no_rawat='" + TNoRw.getText() + "'",
+                    "tgl_ambil_obat='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "', stts_pengambilan='Selesai', selesai='sudah'");
         }
     }
     
@@ -2888,8 +2839,8 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                                 "tgl_ambil_obat='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "', stts_pengambilan='Selesai'");
 
                         Sequel.menyimpanIgnore("iter_obat_bpjs", "'" + kode_iter.getText() + "','" + noSEP + "','" + noKARTU + "',"
-                                + "'" + noRM + "','" + noRAWATiter + "','" + angkaKun + "','" + tglHabisRujukan + "','Menunggu','" + poliKe + "','0000-00-00',"
-                                + "'" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
+                                + "'" + noRM + "','" + noRAWATiter + "','" + angkaKun + "','" + tglHabisRujukan + "','Proses pelayanan',"
+                                + "'" + poliKe + "','0000-00-00','belum','-','" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
 
                         tampilResepIter();
                     } else {
@@ -2959,8 +2910,8 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 
                             if (tglSekarang.before(tglExpRujukan)) {
                                 Sequel.menyimpanIgnore("iter_obat_bpjs", "'" + kode_iter.getText() + "','" + noSep + "','" + noKartu + "',"
-                                        + "'" + noRM + "','" + nomorrawat + "','1','" + tglHabisRujukan + "','Proses pelayanan','" + iterKe + "','0000-00-00',"
-                                        + "'" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
+                                        + "'" + noRM + "','" + nomorrawat + "','1','" + tglHabisRujukan + "','Proses pelayanan',"
+                                        + "'" + iterKe + "','" + tglReg + "','belum','-','" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
 
                                 tampilResepIter();
                             } else {
