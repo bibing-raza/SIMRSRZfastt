@@ -5677,7 +5677,7 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             kamarinap.setLocationRelativeTo(internalFrame1);
             kamarinap.emptTeks();
             kamarinap.isCek();
-            kamarinap.setNoRm(TNoRw.getText());
+            kamarinap.setNoRm(TNoRw.getText(), Sequel.cariIsi("select ifnull(no_sep,'-') from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "'"));
             kamarinap.tampil();
             kamarinap.setVisible(true);
             kamarinap.cekKetMati();

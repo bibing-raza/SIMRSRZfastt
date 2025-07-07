@@ -949,6 +949,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
         ChkInput.setSelected(true);
         isForm();
 }//GEN-LAST:event_BtnBatalActionPerformed
@@ -967,11 +968,21 @@ public final class DlgResepObat extends javax.swing.JDialog {
             TNoRw.requestFocus();
         } else if (TPasien.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus. Klik data pada table untuk memilih...!!!!");
-        } else if (!(TPasien.getText().trim().equals(""))) {
-            Sequel.meghapus("resep_obat", "no_resep", NoResep.getText());
-            tampil();
+        } else if (!TPasien.getText().trim().equals("")) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah resep ini yakin akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.queryu2tf("delete from resep_obat where no_resep=?", 1, new String[]{NoResep.getText()}) == true) {
+                    Sequel.meghapus("riwayat_obat_pasien", "no_rawat", TNoRw.getText());
+                    tampil();
+                    emptTeks();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
         }
-        emptTeks();
 }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed

@@ -6885,7 +6885,7 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             dlgki.setLocationRelativeTo(internalFrame1);
             dlgki.emptTeks();
             dlgki.isCek();
-            dlgki.setNoRm(TNoRw.getText());
+            dlgki.setNoRm(TNoRw.getText(), Sequel.cariIsi("select ifnull(no_sep,'-') from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "'"));
             dlgki.tampil();
             dlgki.setVisible(true);
             dlgki.cekKetMati();

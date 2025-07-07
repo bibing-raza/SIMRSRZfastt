@@ -130,7 +130,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
             kdAPS = "", diagnosa_ok = "", cekDataPersalinan = "", kamarCovid = "", nmgedung = "", sepJKD = "", noLPJiun = "",
             pilihMenu = "", noRwNew = "", kdSttsPlg = "", desSttsPlg = "", tglJiun = "", utc = "", URL = "", requestJson, tglplgbpjs = "", tindakan = "",
             diagsekunder = "", skorAsesIGD = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", TotSkorGZD = "", TotSkorGZA = "", faktorresikoigd = "",
-            TotSkorRJ = "", kesimpulanResikoJatuh = "", konfirmasi_terapi = "", e_resep = "", sttsResep = "", 
+            TotSkorRJ = "", kesimpulanResikoJatuh = "", konfirmasi_terapi = "", e_resep = "", sttsResep = "", nomorSepIter = "",
             evaluasiPG = "", evaluasiSR = "", evaluasiML = "", evaluasi = "", skorFix = "", skorGizi1 = "", skorYaGizi1 = "", skorGizi2 = "",
             kesimpulanGizi = "", resikojatuh = "", resikodecubitus = "", ket_nilai = "", TotSkorDecu = "", kesimpulanResikoDecu = "", manajemenNyeri = "",
             skorGZanak1 = "", skorGZanak2 = "", skorGZanak3 = "", skorGZanak4 = "", kodeAsesmen = "", nipDokter = "", whereNya = "", dataKonfir = "";
@@ -12904,6 +12904,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         norawatAPS = "";
         nmgedung = "";
         sepJKD = "";
+        nomorSepIter = "";
 
         if (tbKamIn.getSelectedRow() != -1) {
             norawat.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 0).toString());
@@ -12933,6 +12934,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             ttlbiaya.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 17).toString());
             status_pulang.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 18).toString());
             statusSEP.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 6).toString());
+            nomorSepIter = Sequel.cariIsi("select ifnull(no_sep,'-') from iter_obat_bpjs where no_rawat='" + norawat.getText() + "' limit 1");
             
             NoRMmati.setText(Sequel.cariIsi("SELECT no_rkm_medis FROM pasien_mati WHERE no_rkm_medis='" + TNoRM.getText() + "' "));
             Valid.SetTgl(Tglsurat, Sequel.cariIsi("SELECT tgl_surat FROM bridging_jamkesda WHERE no_rawat='" + norawat.getText() + "' AND jns_rawat='Inap' "));
@@ -13075,8 +13077,9 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }
 
-    public void setNoRm(String norwt) {
+    public void setNoRm(String norwt, String nosepIter) {
         norawat.setText(norwt);
+        nomorSepIter = nosepIter;
         Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat=? ", TNoRM, norawat.getText());
         Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis=? ", TPasien, TNoRM.getText());
         R1.setSelected(true);
@@ -14254,6 +14257,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             Sequel.meghapus("detail_persalinan_dinkes", "no_rawat", norawat.getText());
             Sequel.mengedit("kamar", "kd_kamar='" + kdkamar.getText() + "'", "status='KOSONG'");
             Sequel.mengedit("data_igd", "no_rawat='" + norawat.getText() + "'", "tindakan_lanjut='RAWAT JALAN', ket_igd='PULANG'");
+            Sequel.queryu("delete from iter_obat_bpjs where no_sep='" + nomorSepIter + "' and kunjungan='3' and stts_pengambilan='Selesai' and "
+                    + "tgl_ambil_obat='0000-00-00' and selesai='sudah' and keterangan='terputus karena ranap'");
 
             if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", norawat.getText()) == 0) {
                 Sequel.mengedit("reg_periksa", "no_rawat='" + norawat.getText() + "'", "status_lanjut='Ralan'");
@@ -18315,11 +18320,10 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }
     
     private void cekResepIter() {
-        if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rkm_medis='" + TNoRM.getText() + "' and kunjungan='3' "
-                + "and stts_pengambilan='Selesai' and selesai='belum'") == 0) {
+        if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_sep='" + nomorSepIter + "' and kunjungan='3' "
+                + "and stts_pengambilan='Selesai' and selesai='sudah'") == 0) {
             try {
-                psIter = koneksi.prepareStatement("select * from iter_obat_bpjs where no_rkm_medis='" + TNoRM.getText() + "' "
-                        + "and selesai='belum' order by waktu_simpan desc limit 1");
+                psIter = koneksi.prepareStatement("select * from iter_obat_bpjs where no_sep='" + nomorSepIter + "' order by waktu_simpan desc limit 1");
                 try {
                     rsIter = psIter.executeQuery();
                     while (rsIter.next()) {
@@ -18327,8 +18331,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                                 "'" + rsIter.getString("kode_iter") + "','" + rsIter.getString("no_sep") + "',"
                                 + "'" + rsIter.getString("no_kartu") + "','" + rsIter.getString("no_rkm_medis") + "',"
                                 + "'" + rsIter.getString("no_rawat") + "','3','" + rsIter.getString("tgl_exp_rujukan") + "',"
-                                + "'Selesai','" + rsIter.getString("poli_ke") + "','" + Sequel.cariIsi("select date(now())") + "',"
-                                + "'sudah','ranap','" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
+                                + "'Selesai','" + rsIter.getString("poli_ke") + "','0000-00-00',"
+                                + "'sudah','terputus karena ranap','" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
                     }
                 } catch (Exception e) {
                     System.out.println("Notif : " + e);
@@ -18340,16 +18344,9 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         psIter.close();
                     }
                 }
-
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }
         }
     }
-    
-//    private void cekResepIterBatalRanap() {
-//        if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rkm_medis='" + TNoRM.getText() + "' and kunjungan='3' and stts_pengambilan='Selesai'") == 0) {
-//
-//        }
-//    }
 }
