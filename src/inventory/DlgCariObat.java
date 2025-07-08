@@ -2043,7 +2043,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             x = JOptionPane.showConfirmDialog(rootPane, "Apakah kode resep iter " + kode_iter.getText() + " utk. pengambilan yg. ke " + pengambilan + " akan dibatalkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where waktu_simpan='" + tbResepIter.getValueAt(tbResepIter.getSelectedRow(), 14).toString() + "' "
-                        + "and (stts_pengambilan='Selesai' or stts_pengambilan='Proses pelayanan')") > 0) {
+                        + "and stts_pengambilan='Selesai'") > 0) {
                     JOptionPane.showMessageDialog(null, "Untuk pengambilan obat ke " + pengambilan + " dengan kode resep obat iter " + kode_iter.getText() + " status pengambilanya adalah " + sttsAmbil + "..!!");
                     tampilResepIter();
                 } else {

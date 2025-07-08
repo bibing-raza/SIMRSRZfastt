@@ -127,13 +127,14 @@ public class DlgKamarInap extends javax.swing.JDialog {
     private double lama = Sequel.cariIsiAngka("select lamajam from set_jam_minimal"), persenbayi = Sequel.cariInteger("select bayi from set_jam_minimal");
     private String dokterranap = "", bangsal = "", diagnosa_akhir = Sequel.cariIsi("select diagnosaakhir from set_jam_minimal"), cekKelamin = "",
             namakamar = "", umur = "0", sttsumur = "Th", cekAPS = "", norawatAPS = "", cekdokter = "", dpjpObgyn = "", noSrtMati = "", usernya = "",
-            kdAPS = "", diagnosa_ok = "", cekDataPersalinan = "", kamarCovid = "", nmgedung = "", sepJKD = "", noLPJiun = "",
+            kdAPS = "", diagnosa_ok = "", cekDataPersalinan = "", kamarCovid = "", nmgedung = "", sepJKD = "", noLPJiun = "", 
             pilihMenu = "", noRwNew = "", kdSttsPlg = "", desSttsPlg = "", tglJiun = "", utc = "", URL = "", requestJson, tglplgbpjs = "", tindakan = "",
             diagsekunder = "", skorAsesIGD = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", TotSkorGZD = "", TotSkorGZA = "", faktorresikoigd = "",
             TotSkorRJ = "", kesimpulanResikoJatuh = "", konfirmasi_terapi = "", e_resep = "", sttsResep = "", nomorSepIter = "",
             evaluasiPG = "", evaluasiSR = "", evaluasiML = "", evaluasi = "", skorFix = "", skorGizi1 = "", skorYaGizi1 = "", skorGizi2 = "",
             kesimpulanGizi = "", resikojatuh = "", resikodecubitus = "", ket_nilai = "", TotSkorDecu = "", kesimpulanResikoDecu = "", manajemenNyeri = "",
-            skorGZanak1 = "", skorGZanak2 = "", skorGZanak3 = "", skorGZanak4 = "", kodeAsesmen = "", nipDokter = "", whereNya = "", dataKonfir = "";
+            skorGZanak1 = "", skorGZanak2 = "", skorGZanak3 = "", skorGZanak4 = "", kodeAsesmen = "", nipDokter = "", whereNya = "", dataKonfir = "",
+            kodeITER = "", noSEPITER = "", noKARTUITER = "", noRMITER = "", noRAWATITER = "", tglEXPRUJUKANITER = "", poliKEITER = "";
     private DlgIKBBayi lahir = new DlgIKBBayi(null, false);
     private DlgPemberianObat beriobat = new DlgPemberianObat(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
@@ -1609,7 +1610,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         TglMati.setEditable(false);
         TglMati.setForeground(new java.awt.Color(0, 0, 153));
-        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         TglMati.setDisplayFormat("dd-MM-yyyy");
         TglMati.setName("TglMati"); // NOI18N
         TglMati.setOpaque(false);
@@ -4385,7 +4386,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame7.add(jLabel37);
         jLabel37.setBounds(0, 20, 110, 23);
 
-        Tglsurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        Tglsurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         Tglsurat.setDisplayFormat("dd-MM-yyyy");
         Tglsurat.setName("Tglsurat"); // NOI18N
         Tglsurat.setOpaque(false);
@@ -4513,7 +4514,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame18.add(jLabel105);
         jLabel105.setBounds(0, 20, 110, 23);
 
-        Tglsurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        Tglsurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         Tglsurat1.setDisplayFormat("dd-MM-yyyy");
         Tglsurat1.setName("Tglsurat1"); // NOI18N
         Tglsurat1.setOpaque(false);
@@ -4616,7 +4617,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame8.add(jLabel43);
         jLabel43.setBounds(10, 20, 120, 23);
 
-        TglMati1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        TglMati1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         TglMati1.setDisplayFormat("dd-MM-yyyy");
         TglMati1.setName("TglMati1"); // NOI18N
         TglMati1.setOpaque(false);
@@ -5182,7 +5183,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame11.add(jLabel51);
         jLabel51.setBounds(0, 25, 130, 23);
 
-        TglRegRalan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        TglRegRalan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         TglRegRalan.setDisplayFormat("dd-MM-yyyy");
         TglRegRalan.setName("TglRegRalan"); // NOI18N
         TglRegRalan.setOpaque(false);
@@ -5417,7 +5418,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         cmbSift.setBounds(287, 10, 65, 23);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -5433,7 +5434,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel49.setBounds(288, 38, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -5512,7 +5513,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         panelisi10.setLayout(null);
 
         TtglCetak1.setEditable(false);
-        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         TtglCetak1.setDisplayFormat("dd-MM-yyyy");
         TtglCetak1.setName("TtglCetak1"); // NOI18N
         TtglCetak1.setOpaque(false);
@@ -5598,7 +5599,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel58.setBounds(211, 8, 25, 23);
 
         TtglCetak2.setEditable(false);
-        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         TtglCetak2.setDisplayFormat("dd-MM-yyyy");
         TtglCetak2.setName("TtglCetak2"); // NOI18N
         TtglCetak2.setOpaque(false);
@@ -5859,7 +5860,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         statusSEP.setPreferredSize(new java.awt.Dimension(207, 23));
 
         tglMasukInap.setEditable(false);
-        tglMasukInap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        tglMasukInap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         tglMasukInap.setDisplayFormat("dd-MM-yyyy");
         tglMasukInap.setName("tglMasukInap"); // NOI18N
         tglMasukInap.setOpaque(false);
@@ -5888,7 +5889,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         Scroll9.setViewportView(tbFaktorDecu);
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -6180,7 +6181,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass11.add(R2);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -6204,7 +6205,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass11.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6231,7 +6232,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         R3.setPreferredSize(new java.awt.Dimension(75, 23));
         panelGlass11.add(R3);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -6255,7 +6256,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass11.add(jLabel25);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-07-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -12934,7 +12935,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             ttlbiaya.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 17).toString());
             status_pulang.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 18).toString());
             statusSEP.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 6).toString());
-            nomorSepIter = Sequel.cariIsi("select ifnull(no_sep,'-') from iter_obat_bpjs where no_rawat='" + norawat.getText() + "' limit 1");
+            nomorSepIter = Sequel.cariIsi("select ifnull(no_sep,'-') from iter_obat_bpjs where no_rkm_medis='" + TNoRM.getText() + "' "
+                    + "and convert(kunjungan,int)<3 and selesai='belum' ORDER BY waktu_simpan desc limit 1");
             
             NoRMmati.setText(Sequel.cariIsi("SELECT no_rkm_medis FROM pasien_mati WHERE no_rkm_medis='" + TNoRM.getText() + "' "));
             Valid.SetTgl(Tglsurat, Sequel.cariIsi("SELECT tgl_surat FROM bridging_jamkesda WHERE no_rawat='" + norawat.getText() + "' AND jns_rawat='Inap' "));
@@ -14257,8 +14259,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             Sequel.meghapus("detail_persalinan_dinkes", "no_rawat", norawat.getText());
             Sequel.mengedit("kamar", "kd_kamar='" + kdkamar.getText() + "'", "status='KOSONG'");
             Sequel.mengedit("data_igd", "no_rawat='" + norawat.getText() + "'", "tindakan_lanjut='RAWAT JALAN', ket_igd='PULANG'");
-            Sequel.queryu("delete from iter_obat_bpjs where no_sep='" + nomorSepIter + "' and kunjungan='3' and stts_pengambilan='Selesai' and "
-                    + "tgl_ambil_obat='0000-00-00' and selesai='sudah' and keterangan='terputus karena ranap'");
+            hapusResepIter();
 
             if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", norawat.getText()) == 0) {
                 Sequel.mengedit("reg_periksa", "no_rawat='" + norawat.getText() + "'", "status_lanjut='Ralan'");
@@ -18320,19 +18321,25 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }
     
     private void cekResepIter() {
-        if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_sep='" + nomorSepIter + "' and kunjungan='3' "
-                + "and stts_pengambilan='Selesai' and selesai='sudah'") == 0) {
+        if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_sep='" + nomorSepIter + "' and kunjungan='3' and "
+                + "stts_pengambilan='Selesai' and selesai='sudah' and keterangan='-'") == 0) {
             try {
-                psIter = koneksi.prepareStatement("select * from iter_obat_bpjs where no_sep='" + nomorSepIter + "' order by waktu_simpan desc limit 1");
+                psIter = koneksi.prepareStatement("SELECT * FROM iter_obat_bpjs WHERE no_sep = ? GROUP BY kode_iter");
+                psIter.setString(1, nomorSepIter);
                 try {
                     rsIter = psIter.executeQuery();
                     while (rsIter.next()) {
-                        Sequel.menyimpanIgnore("iter_obat_bpjs",
-                                "'" + rsIter.getString("kode_iter") + "','" + rsIter.getString("no_sep") + "',"
-                                + "'" + rsIter.getString("no_kartu") + "','" + rsIter.getString("no_rkm_medis") + "',"
-                                + "'" + rsIter.getString("no_rawat") + "','3','" + rsIter.getString("tgl_exp_rujukan") + "',"
-                                + "'Selesai','" + rsIter.getString("poli_ke") + "','0000-00-00',"
-                                + "'sudah','terputus karena ranap','" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
+                        kodeITER = rsIter.getString("kode_iter");
+                        noSEPITER = rsIter.getString("no_sep");
+                        noKARTUITER = rsIter.getString("no_kartu");
+                        noRMITER = rsIter.getString("no_rkm_medis");
+                        noRAWATITER = rsIter.getString("no_rawat");
+                        tglEXPRUJUKANITER = rsIter.getString("tgl_exp_rujukan");
+                        poliKEITER = rsIter.getString("poli_ke");
+                        
+                        Sequel.menyimpanIgnore("iter_obat_bpjs", "'" + kodeITER + "','" + noSEPITER + "','" + noKARTUITER + "','" + noRMITER + "',"
+                                + "'" + noRAWATITER + "','3','" + tglEXPRUJUKANITER + "','Selesai','" + poliKEITER + "','0000-00-00','sudah',"
+                                + "'terputus karena ranap','" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
                     }
                 } catch (Exception e) {
                     System.out.println("Notif : " + e);
@@ -18347,6 +18354,32 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }
+        }
+    }
+    
+    private void hapusResepIter() {
+        try {
+            psIter = koneksi.prepareStatement("SELECT * FROM iter_obat_bpjs WHERE no_sep = ? and keterangan='terputus karena ranap' GROUP BY kode_iter");
+            psIter.setString(1, nomorSepIter);
+            try {
+                rsIter = psIter.executeQuery();
+                while (rsIter.next()) {
+                    Sequel.queryu("delete from iter_obat_bpjs where kode_iter='" + rsIter.getString("kode_iter") + "' "
+                            + "and kunjungan='3' and stts_pengambilan='Selesai' and tgl_ambil_obat='0000-00-00' and selesai='sudah' "
+                            + "and keterangan='terputus karena ranap'");
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rsIter != null) {
+                    rsIter.close();
+                }
+                if (psIter != null) {
+                    psIter.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }

@@ -7496,7 +7496,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             TPoli.setText("");
             if (polinya.equals("IRM") && polinya.equals("IRS")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {
-                    TCari.setText(TNoRM.getText());
+                    TCari.setText(TNoRw.getText());
                     TResepObat.setText("");
                     TCariObat.setText("");
                     tampilResepObat();
@@ -7507,7 +7507,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                         TabRawat.setSelectedIndex(0);
                         JOptionPane.showMessageDialog(rootPane, "Silahkan tentukan pilihan jenis rehabilitasi mediknya dulu...!!!!");
                     } else if (cekPilihanRehab > 0) {
-                        TCari.setText(TNoRM.getText());
+                        TCari.setText(TNoRw.getText());
                         TResepObat.setText("");
                         TCariObat.setText("");
                         tampilResepObat();
@@ -7516,7 +7516,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                     }
                 }
             } else {
-                TCari.setText(TNoRM.getText());
+                TCari.setText(TNoRw.getText());
                 TResepObat.setText("");
                 TCariObat.setText("");
                 tampilResepObat();
@@ -10093,7 +10093,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             TPoli.setText("");
             if (polinya.equals("IRM") && polinya.equals("IRS")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {
-                    TCari.setText(TNoRM.getText());
+                    TCari.setText(TNoRw.getText());
                     TResepObat.setText("");
                     TCariObat.setText("");
                     tampilResepObat();
@@ -10104,7 +10104,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         TabRawat.setSelectedIndex(0);
                         JOptionPane.showMessageDialog(rootPane, "Silahkan tentukan pilihan jenis rehabilitasi mediknya dulu...!!!!");
                     } else if (cekPilihanRehab > 0) {
-                        TCari.setText(TNoRM.getText());
+                        TCari.setText(TNoRw.getText());
                         TResepObat.setText("");
                         TCariObat.setText("");
                         tampilResepObat();
@@ -10113,7 +10113,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     }
                 }
             } else {
-                TCari.setText(TNoRM.getText());
+                TCari.setText(TNoRw.getText());
                 TResepObat.setText("");
                 TCariObat.setText("");
                 tampilResepObat();
@@ -11087,7 +11087,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     private void BtnResepIterBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResepIterBatalActionPerformed
         if (!TNoRw.getText().equals("")) {
-            if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                JOptionPane.showMessageDialog(null, "Belum ada resep iter yang tersimpan dari poli " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'") + " ...!!");
+            } else if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "' and kunjungan='1' and stts_pengambilan='Selesai'") > 0) {
+                JOptionPane.showMessageDialog(null, "Resep iter ini sudah selesai dilayani oleh farmasi..!!");
+            } else {
                 x = JOptionPane.showConfirmDialog(rootPane, "Apakah resep iter yang sudah tersimpan akan dibatalkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
                     if (Sequel.queryu2tf("delete from iter_obat_bpjs where no_rawat=?", 1, new String[]{TNoRw.getText()}) == true) {
@@ -11100,8 +11104,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 } else {
                     tampilResepObat();
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Belum ada resep iter yang tersimpan dari poli " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'") + " ...!!");
             }
         }
     }//GEN-LAST:event_BtnResepIterBatalActionPerformed
@@ -12191,8 +12193,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             ps5 = koneksi.prepareStatement("select c.no_rawat, c.tgl_perawatan, c.jam_perawatan, c.nama_obat, "
                     + "c.status, d.nm_dokter, c.noID, c.kd_dokter, if(prb.saran is null,'TIDAK','YA') programPrb, ifnull(i.kode_iter,'-') kodeIter from catatan_resep c "
                     + "inner join reg_periksa r on r.no_rawat = c.no_rawat inner join dokter d on d.kd_dokter = c.kd_dokter "
-                    + "left join bridging_srb_bpjs prb on prb.no_srb=c.no_rawat and prb.keterangan=c.noID "
-                    + "left join iter_obat_bpjs i on i.no_rawat=c.no_rawat where "
+                    + "left join iter_obat_bpjs i on i.no_rawat=c.no_rawat left join bridging_srb_bpjs prb on prb.no_srb=c.no_rawat and prb.keterangan=c.noID where "
                     + "c.tgl_perawatan between ? and ? and c.no_rawat like ? or "
                     + "c.tgl_perawatan between ? and ? and c.nama_obat like ? or "
                     + "c.tgl_perawatan between ? and ? and r.no_rkm_medis like ? order by c.noId");
