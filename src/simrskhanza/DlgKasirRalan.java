@@ -5677,8 +5677,7 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             kamarinap.setLocationRelativeTo(internalFrame1);
             kamarinap.emptTeks();
             kamarinap.isCek();
-            kamarinap.setNoRm(TNoRw.getText(), Sequel.cariIsi("select ifnull(no_sep,'-') from iter_obat_bpjs where no_rkm_medis='" + NoRM.getText() + "' "
-                    + "and convert(kunjungan,int)<3 and selesai='belum' ORDER BY waktu_simpan desc limit 1"));
+            kamarinap.setNoRm(TNoRw.getText());
             kamarinap.tampil();
             kamarinap.setVisible(true);
             kamarinap.cekKetMati();

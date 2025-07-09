@@ -13079,9 +13079,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }
 
-    public void setNoRm(String norwt, String nosepIter) {
+    public void setNoRm(String norwt) {
         norawat.setText(norwt);
-        nomorSepIter = nosepIter;
         Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat=? ", TNoRM, norawat.getText());
         Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis=? ", TPasien, TNoRM.getText());
         R1.setSelected(true);
@@ -18319,41 +18318,38 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             System.out.println("Notifikasi : " + e);
         }
     }
-    
+
     private void cekResepIter() {
-        if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_sep='" + nomorSepIter + "' and kunjungan='3' and "
-                + "stts_pengambilan='Selesai' and selesai='sudah' and keterangan='-'") == 0) {
+        try {
+            psIter = koneksi.prepareStatement("SELECT * FROM iter_obat_bpjs WHERE no_rkm_medis = ? GROUP BY kode_iter having count(kode_iter)<3 ORDER BY waktu_simpan desc");
+            psIter.setString(1, TNoRM.getText());
             try {
-                psIter = koneksi.prepareStatement("SELECT * FROM iter_obat_bpjs WHERE no_sep = ? GROUP BY kode_iter");
-                psIter.setString(1, nomorSepIter);
-                try {
-                    rsIter = psIter.executeQuery();
-                    while (rsIter.next()) {
-                        kodeITER = rsIter.getString("kode_iter");
-                        noSEPITER = rsIter.getString("no_sep");
-                        noKARTUITER = rsIter.getString("no_kartu");
-                        noRMITER = rsIter.getString("no_rkm_medis");
-                        noRAWATITER = rsIter.getString("no_rawat");
-                        tglEXPRUJUKANITER = rsIter.getString("tgl_exp_rujukan");
-                        poliKEITER = rsIter.getString("poli_ke");
-                        
-                        Sequel.menyimpanIgnore("iter_obat_bpjs", "'" + kodeITER + "','" + noSEPITER + "','" + noKARTUITER + "','" + noRMITER + "',"
-                                + "'" + noRAWATITER + "','3','" + tglEXPRUJUKANITER + "','Selesai','" + poliKEITER + "','0000-00-00','sudah',"
-                                + "'terputus karena ranap','" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Notif : " + e);
-                } finally {
-                    if (rsIter != null) {
-                        rsIter.close();
-                    }
-                    if (psIter != null) {
-                        psIter.close();
-                    }
+                rsIter = psIter.executeQuery();
+                while (rsIter.next()) {
+                    kodeITER = rsIter.getString("kode_iter");
+                    noSEPITER = rsIter.getString("no_sep");
+                    noKARTUITER = rsIter.getString("no_kartu");
+                    noRMITER = rsIter.getString("no_rkm_medis");
+                    noRAWATITER = rsIter.getString("no_rawat");
+                    tglEXPRUJUKANITER = rsIter.getString("tgl_exp_rujukan");
+                    poliKEITER = rsIter.getString("poli_ke");
+
+                    Sequel.menyimpanIgnore("iter_obat_bpjs", "'" + kodeITER + "','" + noSEPITER + "','" + noKARTUITER + "','" + noRMITER + "',"
+                            + "'" + noRAWATITER + "','3','" + tglEXPRUJUKANITER + "','Selesai','" + poliKEITER + "','0000-00-00','sudah',"
+                            + "'terputus karena ranap','" + Sequel.cariIsi("select now()") + "'", "Iter Obat BPJS");
                 }
             } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rsIter != null) {
+                    rsIter.close();
+                }
+                if (psIter != null) {
+                    psIter.close();
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
     
