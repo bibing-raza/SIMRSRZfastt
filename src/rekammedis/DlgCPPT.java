@@ -74,7 +74,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             rspasien, rsdiet, rsrestor, rsLaprm, rsFakIGD, rsRes, rsPrev, rsCetak, rsLab1, rsLab2, rsLabA, rsLabB, rsLabC, rsDiag, 
             rsDiag1, rsObat, rsTHT, rsLISMaster, rsLIS1, rsLIS2, rsLIS3, rsDiabet, rsRDO, rsRDU, rsRDD, rsRDM;
     private int i = 0, x = 0, pilihan = 0, totskorTriase = 0, skorGZ1 = 0, skorYaGZ1 = 0, skorGZ2 = 0, skor = 0, paste = 0,
-            cekKonfirmasi = 0, urut = 0, y = 0, w = 0, lisM = 0, lis1 = 0, lis2 = 0, cekPilihanRehab = 0;
+            cekKonfirmasi = 0, urut = 0, y = 0, w = 0, lisM = 0, lis1 = 0, lis2 = 0, cekPilihanRehab = 0, detik = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDiet diet = new DlgCariDiet(null, false);
@@ -282,10 +282,25 @@ public class DlgCPPT extends javax.swing.JDialog {
         tabMode3 = new DefaultTableModel(null, new Object[]{
             "Dihapus Oleh", "No. Rawat", "No. RM", "Nama Pasien", "Tgl. CPPT", "Jam CPPT", "Nama DPJP",
             "Status", "Jenis PPA", "Nama PPA", "Jenis Bagian", "DPJP Konsulen", "Shift",
-            "flag_hapus", "waktu_simpan"}) {
+            "flag_hapus", "waktu_simpan", "Cek"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
-                return false;
+                boolean a = false;
+                if (colIndex == 15) {
+                    a = true;
+                }
+                return a;
+            }
+            Class[] types = new Class[]{
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Boolean.class
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
             }
         };
 
@@ -293,7 +308,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbSampah.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbSampah.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 16; i++) {
             TableColumn column = tbSampah.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(250);
@@ -327,6 +342,8 @@ public class DlgCPPT extends javax.swing.JDialog {
             } else if (i == 14) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 15) {
+                column.setPreferredWidth(40);
             }
         }
         tbSampah.setDefaultRenderer(Object.class, new WarnaTable());
@@ -403,10 +420,25 @@ public class DlgCPPT extends javax.swing.JDialog {
         tabMode5 = new DefaultTableModel(null, new Object[]{
             "Diganti/Diedit Oleh", "No. Rawat", "No. RM", "Nama Pasien", "Tgl. CPPT", "Jam CPPT", "Nama DPJP",
             "Status", "Jenis PPA", "Nama PPA", "Jenis Bagian", "DPJP Konsulen", "Shift",
-            "Tgl. Diedit", "waktu_ganti"}) {
+            "Tgl. Diedit", "waktu_ganti", "Cek"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
-                return false;
+                boolean a = false;
+                if (colIndex == 15) {
+                    a = true;
+                }
+                return a;
+            }
+            Class[] types = new Class[]{
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Boolean.class
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
             }
         };
 
@@ -414,7 +446,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbRiwayat.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbRiwayat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 16; i++) {
             TableColumn column = tbRiwayat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(250);
@@ -443,10 +475,12 @@ public class DlgCPPT extends javax.swing.JDialog {
             } else if (i == 12) {
                 column.setPreferredWidth(40);
             } else if (i == 13) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             } else if (i == 14) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 15) {
+                column.setPreferredWidth(40);
             }
         }
         tbRiwayat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -1188,6 +1222,16 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnJenisDokumen = new javax.swing.JMenuItem();
         jPopupMenu9 = new javax.swing.JPopupMenu();
         MnRehabMedik = new javax.swing.JMenuItem();
+        jPopupMenu10 = new javax.swing.JPopupMenu();
+        MnContengSift1 = new javax.swing.JMenuItem();
+        MnContengSift2 = new javax.swing.JMenuItem();
+        MnContengSift3 = new javax.swing.JMenuItem();
+        MnHapusContengSift = new javax.swing.JMenuItem();
+        jPopupMenu11 = new javax.swing.JPopupMenu();
+        MnContengSift1RiwHapus = new javax.swing.JMenuItem();
+        MnContengSift2RiwHapus = new javax.swing.JMenuItem();
+        MnContengSift3RiwHapus = new javax.swing.JMenuItem();
+        MnHapusContengSiftRiwHapus = new javax.swing.JMenuItem();
         WindowTemplate = new javax.swing.JDialog();
         internalFrame5 = new widget.InternalFrame();
         jPanel1 = new javax.swing.JPanel();
@@ -2493,6 +2537,130 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         jPopupMenu9.add(MnRehabMedik);
 
+        jPopupMenu10.setName("jPopupMenu10"); // NOI18N
+
+        MnContengSift1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnContengSift1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnContengSift1.setText("Conteng Sift 1");
+        MnContengSift1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnContengSift1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnContengSift1.setIconTextGap(5);
+        MnContengSift1.setName("MnContengSift1"); // NOI18N
+        MnContengSift1.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnContengSift1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnContengSift1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu10.add(MnContengSift1);
+
+        MnContengSift2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnContengSift2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnContengSift2.setText("Conteng Sift 2");
+        MnContengSift2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnContengSift2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnContengSift2.setIconTextGap(5);
+        MnContengSift2.setName("MnContengSift2"); // NOI18N
+        MnContengSift2.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnContengSift2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnContengSift2ActionPerformed(evt);
+            }
+        });
+        jPopupMenu10.add(MnContengSift2);
+
+        MnContengSift3.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnContengSift3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnContengSift3.setText("Conteng Sift 3");
+        MnContengSift3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnContengSift3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnContengSift3.setIconTextGap(5);
+        MnContengSift3.setName("MnContengSift3"); // NOI18N
+        MnContengSift3.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnContengSift3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnContengSift3ActionPerformed(evt);
+            }
+        });
+        jPopupMenu10.add(MnContengSift3);
+
+        MnHapusContengSift.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusContengSift.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHapusContengSift.setText("Hapus Semua Conteng");
+        MnHapusContengSift.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusContengSift.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusContengSift.setIconTextGap(5);
+        MnHapusContengSift.setName("MnHapusContengSift"); // NOI18N
+        MnHapusContengSift.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnHapusContengSift.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusContengSiftActionPerformed(evt);
+            }
+        });
+        jPopupMenu10.add(MnHapusContengSift);
+
+        jPopupMenu11.setName("jPopupMenu11"); // NOI18N
+
+        MnContengSift1RiwHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnContengSift1RiwHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnContengSift1RiwHapus.setText("Conteng Sift 1");
+        MnContengSift1RiwHapus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnContengSift1RiwHapus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnContengSift1RiwHapus.setIconTextGap(5);
+        MnContengSift1RiwHapus.setName("MnContengSift1RiwHapus"); // NOI18N
+        MnContengSift1RiwHapus.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnContengSift1RiwHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnContengSift1RiwHapusActionPerformed(evt);
+            }
+        });
+        jPopupMenu11.add(MnContengSift1RiwHapus);
+
+        MnContengSift2RiwHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnContengSift2RiwHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnContengSift2RiwHapus.setText("Conteng Sift 2");
+        MnContengSift2RiwHapus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnContengSift2RiwHapus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnContengSift2RiwHapus.setIconTextGap(5);
+        MnContengSift2RiwHapus.setName("MnContengSift2RiwHapus"); // NOI18N
+        MnContengSift2RiwHapus.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnContengSift2RiwHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnContengSift2RiwHapusActionPerformed(evt);
+            }
+        });
+        jPopupMenu11.add(MnContengSift2RiwHapus);
+
+        MnContengSift3RiwHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnContengSift3RiwHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnContengSift3RiwHapus.setText("Conteng Sift 3");
+        MnContengSift3RiwHapus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnContengSift3RiwHapus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnContengSift3RiwHapus.setIconTextGap(5);
+        MnContengSift3RiwHapus.setName("MnContengSift3RiwHapus"); // NOI18N
+        MnContengSift3RiwHapus.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnContengSift3RiwHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnContengSift3RiwHapusActionPerformed(evt);
+            }
+        });
+        jPopupMenu11.add(MnContengSift3RiwHapus);
+
+        MnHapusContengSiftRiwHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusContengSiftRiwHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHapusContengSiftRiwHapus.setText("Hapus Semua Conteng");
+        MnHapusContengSiftRiwHapus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusContengSiftRiwHapus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusContengSiftRiwHapus.setIconTextGap(5);
+        MnHapusContengSiftRiwHapus.setName("MnHapusContengSiftRiwHapus"); // NOI18N
+        MnHapusContengSiftRiwHapus.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnHapusContengSiftRiwHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusContengSiftRiwHapusActionPerformed(evt);
+            }
+        });
+        jPopupMenu11.add(MnHapusContengSiftRiwHapus);
+
         WindowTemplate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowTemplate.setName("WindowTemplate"); // NOI18N
         WindowTemplate.setUndecorated(true);
@@ -2656,7 +2824,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbSiftPetugas.setBounds(287, 10, 65, 23);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -2672,7 +2840,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 38, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -3108,7 +3276,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel29.setBounds(0, 40, 80, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -3306,7 +3474,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3320,7 +3488,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3400,7 +3568,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame19.setName("internalFrame19"); // NOI18N
         internalFrame19.setPreferredSize(new java.awt.Dimension(400, 44));
         internalFrame19.setWarnaBawah(new java.awt.Color(245, 250, 240));
-        internalFrame19.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 7, 9));
+        internalFrame19.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 7, 9));
 
         BtnHapusSampah.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusSampah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
@@ -3463,6 +3631,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 
         tbSampah.setAutoCreateRowSorter(true);
         tbSampah.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/direstore");
+        tbSampah.setComponentPopupMenu(jPopupMenu11);
         tbSampah.setName("tbSampah"); // NOI18N
         Scroll6.setViewportView(tbSampah);
 
@@ -3473,6 +3642,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 
         tbRiwayat.setAutoCreateRowSorter(true);
         tbRiwayat.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/direstore");
+        tbRiwayat.setComponentPopupMenu(jPopupMenu10);
         tbRiwayat.setName("tbRiwayat"); // NOI18N
         Scroll7.setViewportView(tbRiwayat);
 
@@ -3511,7 +3681,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel43.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass12.add(jLabel43);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -3525,7 +3695,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel44.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass12.add(jLabel44);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -3955,7 +4125,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame7.add(jLabel8);
         jLabel8.setBounds(0, 38, 180, 23);
 
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -4719,7 +4889,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel35.setBounds(0, 8, 120, 23);
 
         tglLapor.setEditable(false);
-        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         tglLapor.setDisplayFormat("dd-MM-yyyy");
         tglLapor.setName("tglLapor"); // NOI18N
         tglLapor.setOpaque(false);
@@ -4773,7 +4943,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel38.setBounds(0, 36, 120, 23);
 
         tglVerifikasi.setEditable(false);
-        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         tglVerifikasi.setDisplayFormat("dd-MM-yyyy");
         tglVerifikasi.setName("tglVerifikasi"); // NOI18N
         tglVerifikasi.setOpaque(false);
@@ -5218,7 +5388,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5232,7 +5402,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6313,7 +6483,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass26.add(ChkTanggal);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -6327,7 +6497,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel59.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass26.add(jLabel59);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2025" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -7722,46 +7892,86 @@ public class DlgCPPT extends javax.swing.JDialog {
 
     private void BtnRestorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRestorActionPerformed
         if (TabHistory.getSelectedIndex() == 0) {
-            if (tbSampah.getSelectedRow() > -1) {
-                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data yang dipilih akan dikembalikan/restore..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
-                    Sequel.mengedit("cppt", "waktu_simpan=?", "flag_hapus=?, nip_penghapus=?", 3, new String[]{
-                        "tidak", "-", tbSampah.getValueAt(tbSampah.getSelectedRow(), 14).toString()
-                    });
-
-                    JOptionPane.showMessageDialog(rootPane, "Data yang dipilih berhasil direstore/kembalikan..!!");
-                    cmbSiftCppt.setSelectedItem(tbSampah.getValueAt(tbSampah.getSelectedRow(), 12).toString());
-                    TCari.setText(tbSampah.getValueAt(tbSampah.getSelectedRow(), 1).toString());
-                    tampil();
-                    emptTeks();
-                    TabCPPT.setSelectedIndex(1);
+            x = 0;
+            detik = 0;
+            for (i = 0; i < tbSampah.getRowCount(); i++) {
+                if (tbSampah.getValueAt(i, 15).toString().equals("true")) {
+                    x++;
                 }
-            } else {
-                WindowDataSampah.setSize(1043, internalFrame1.getHeight() - 40);
-                WindowDataSampah.setLocationRelativeTo(internalFrame1);
-                WindowDataSampah.setAlwaysOnTop(false);
-                WindowDataSampah.setVisible(true);
-                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
             }
-        } else {
-            if (tbRiwayat.getSelectedRow() > -1) {
-                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data yang dipilih akan dikembalikan/restore..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
-                    kembalikanHistory(tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 14).toString());
-
-                    JOptionPane.showMessageDialog(rootPane, "Data yang dipilih berhasil direstore/kembalikan..!!");
-                    cmbSiftCppt.setSelectedItem(tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 12).toString());
-                    TCari.setText(tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString());
-                    tampil();
-                    emptTeks();
-                    TabCPPT.setSelectedIndex(1);
-                }
+            detik = x;
+            
+            if (x == 0) {
+                JOptionPane.showMessageDialog(null, "Silahkan conteng dulu data yang dipilih untuk direstore..!!!!");
+                tampilSampah();
+                tbSampah.requestFocus();
             } else {
-                WindowDataSampah.setSize(1043, internalFrame1.getHeight() - 40);
-                WindowDataSampah.setLocationRelativeTo(internalFrame1);
-                WindowDataSampah.setAlwaysOnTop(false);
-                WindowDataSampah.setVisible(true);
-                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
+                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data yang dipilih & diconteng akan dikembalikan/restore ?...    \n"
+                        + "(Jika setuju maka tunggu prosesnya selama " + detik + " detik)", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    try {
+                        for (i = 0; i < tbSampah.getRowCount(); i++) {
+                            if (tbSampah.getValueAt(i, 15).toString().equals("true")) {
+                                Sequel.mengedit("cppt", "waktu_simpan=?", "flag_hapus=?, nip_penghapus=?", 3, new String[]{
+                                    "tidak", "-", tbSampah.getValueAt(i, 14).toString()
+                                });
+
+                                cmbSiftCppt.setSelectedItem(tbSampah.getValueAt(i, 12).toString());
+                                TCari.setText(tbSampah.getValueAt(i, 1).toString());
+                            }
+                        }                        
+                        
+                        tampil();
+                        emptTeks();
+                        TabCPPT.setSelectedIndex(1);
+                        tampilSampah();
+                        JOptionPane.showMessageDialog(rootPane, "Data yang dipilih & diconteng berhasil direstore/kembalikan..!!");
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
+                } else {
+                    tampilSampah();
+                }
+            }
+            
+        } else if (TabHistory.getSelectedIndex() == 1) {
+            x = 0;
+            detik = 0;
+            for (i = 0; i < tbRiwayat.getRowCount(); i++) {
+                if (tbRiwayat.getValueAt(i, 15).toString().equals("true")) {
+                    x++;
+                }
+            }
+            detik = x;
+
+            if (x == 0) {
+                JOptionPane.showMessageDialog(null, "Silahkan conteng dulu data yang dipilih untuk direstore..!!!!");
+                tampilRiwayat();
+                tbRiwayat.requestFocus();
+            } else {
+                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data yang dipilih & diconteng akan dikembalikan/restore ?...    \n"
+                        + "(Jika setuju maka tunggu prosesnya selama " + detik + " detik)", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    try {
+                        for (i = 0; i < tbRiwayat.getRowCount(); i++) {
+                            if (tbRiwayat.getValueAt(i, 15).toString().equals("true")) {
+                                kembalikanHistory(tbRiwayat.getValueAt(i, 14).toString());
+                                cmbSiftCppt.setSelectedItem(tbRiwayat.getValueAt(i, 12).toString());
+                                TCari.setText(tbRiwayat.getValueAt(i, 1).toString());                                
+                            }
+                        }
+                        
+                        tampil();
+                        emptTeks();
+                        TabCPPT.setSelectedIndex(1);
+                        tampilRiwayat();
+                        JOptionPane.showMessageDialog(rootPane, "Data yang dipilih & diconteng berhasil direstore/kembalikan..!!");
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
+                } else {
+                    tampilRiwayat();
+                }
             }
         }
     }//GEN-LAST:event_BtnRestorActionPerformed
@@ -7831,30 +8041,45 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnHapusSampahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusSampahActionPerformed
-        if (tbSampah.getSelectedRow() > -1) {
+        x = 0;
+        for (i = 0; i < tbSampah.getRowCount(); i++) {
+            if (tbSampah.getValueAt(i, 15).toString().equals("true")) {
+                x++;
+            }
+        }
+
+        if (x == 0) {
+            JOptionPane.showMessageDialog(null, "Silahkan conteng dulu data yang dipilih untuk dihapus dari riwayat..!!!!");
+            tampilSampah();
+            tbSampah.requestFocus();
+        } else {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data yang dipilih akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
-                cmbSiftCppt.setSelectedItem(tbSampah.getValueAt(tbSampah.getSelectedRow(), 12).toString());
-                TCari.setText(tbSampah.getValueAt(tbSampah.getSelectedRow(), 1).toString());
-
-                if (Sequel.queryu2tf("delete from cppt where waktu_simpan=?", 1, new String[]{
-                    tbSampah.getValueAt(tbSampah.getSelectedRow(), 14).toString()
-                }) == true) {
-                    JOptionPane.showMessageDialog(rootPane, "Data yang dipilih berhasil terhapus..!!");
-                    BtnCloseIn10ActionPerformed(null);
+                try {
+                    for (i = 0; i < tbSampah.getRowCount(); i++) {
+                        if (tbSampah.getValueAt(i, 15).toString().equals("true")) {
+                            if (Sequel.queryu2tf("delete from cppt where waktu_simpan=?", 1, new String[]{
+                                tbSampah.getValueAt(i, 14).toString()
+                            }) == true) {
+                                cmbSiftCppt.setSelectedItem(tbSampah.getValueAt(i, 12).toString());
+                                TCari.setText(tbSampah.getValueAt(i, 1).toString());
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                            }
+                        }
+                    }                    
+                    
                     tampil();
                     emptTeks();
                     TabCPPT.setSelectedIndex(1);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                    tampilSampah();
+                    JOptionPane.showMessageDialog(rootPane, "Data yang dipilih & diconteng berhasil terhapus..!!");
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
                 }
+            } else {
+                tampilSampah();
             }
-        } else {
-            WindowDataSampah.setSize(1043, internalFrame1.getHeight() - 40);
-            WindowDataSampah.setLocationRelativeTo(internalFrame1);
-            WindowDataSampah.setAlwaysOnTop(false);
-            WindowDataSampah.setVisible(true);
-            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
         }
     }//GEN-LAST:event_BtnHapusSampahActionPerformed
 
@@ -9738,6 +9963,114 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnLihatDataTransferSerahTerimaIGDActionPerformed
 
+    private void MnContengSift1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengSift1ActionPerformed
+        if (tbRiwayat.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data riwayat CPPT diganti masih kosong...!!!!");
+            tbRiwayat.requestFocus();
+            tampilRiwayat();
+        } else {            
+            for (i = 0; i < tbRiwayat.getRowCount(); i++) {
+                if (tbRiwayat.getValueAt(i, 12).equals("1")) {
+                    tbRiwayat.setValueAt(Boolean.TRUE, i, 15);
+                }
+            }
+        }
+    }//GEN-LAST:event_MnContengSift1ActionPerformed
+
+    private void MnContengSift2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengSift2ActionPerformed
+        if (tbRiwayat.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data riwayat CPPT diganti masih kosong...!!!!");
+            tbRiwayat.requestFocus();
+            tampilRiwayat();
+        } else {
+            for (i = 0; i < tbRiwayat.getRowCount(); i++) {
+                if (tbRiwayat.getValueAt(i, 12).equals("2")) {
+                    tbRiwayat.setValueAt(Boolean.TRUE, i, 15);
+                }
+            }
+        }
+    }//GEN-LAST:event_MnContengSift2ActionPerformed
+
+    private void MnContengSift3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengSift3ActionPerformed
+        if (tbRiwayat.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data riwayat CPPT diganti masih kosong...!!!!");
+            tbRiwayat.requestFocus();
+            tampilRiwayat();
+        } else {
+            for (i = 0; i < tbRiwayat.getRowCount(); i++) {
+                if (tbRiwayat.getValueAt(i, 12).equals("3")) {
+                    tbRiwayat.setValueAt(Boolean.TRUE, i, 15);
+                }
+            }
+        }
+    }//GEN-LAST:event_MnContengSift3ActionPerformed
+
+    private void MnHapusContengSiftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusContengSiftActionPerformed
+        if (tbRiwayat.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data riwayat CPPT diganti masih kosong...!!!!");
+            tbRiwayat.requestFocus();
+            tampilRiwayat();
+        } else {            
+            for (i = 0; i < tbRiwayat.getRowCount(); i++) {
+                tbRiwayat.setValueAt(Boolean.FALSE, i, 15);
+            }
+        }
+    }//GEN-LAST:event_MnHapusContengSiftActionPerformed
+
+    private void MnContengSift1RiwHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengSift1RiwHapusActionPerformed
+        if (tbSampah.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data riwayat CPPT dihapus masih kosong...!!!!");
+            tbSampah.requestFocus();
+            tampilSampah();
+        } else {            
+            for (i = 0; i < tbSampah.getRowCount(); i++) {
+                if (tbSampah.getValueAt(i, 12).equals("1")) {
+                    tbSampah.setValueAt(Boolean.TRUE, i, 15);
+                }
+            }
+        }
+    }//GEN-LAST:event_MnContengSift1RiwHapusActionPerformed
+
+    private void MnContengSift2RiwHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengSift2RiwHapusActionPerformed
+        if (tbSampah.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data riwayat CPPT dihapus masih kosong...!!!!");
+            tbSampah.requestFocus();
+            tampilSampah();
+        } else {            
+            for (i = 0; i < tbSampah.getRowCount(); i++) {
+                if (tbSampah.getValueAt(i, 12).equals("2")) {
+                    tbSampah.setValueAt(Boolean.TRUE, i, 15);
+                }
+            }
+        }
+    }//GEN-LAST:event_MnContengSift2RiwHapusActionPerformed
+
+    private void MnContengSift3RiwHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengSift3RiwHapusActionPerformed
+        if (tbSampah.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data riwayat CPPT dihapus masih kosong...!!!!");
+            tbSampah.requestFocus();
+            tampilSampah();
+        } else {            
+            for (i = 0; i < tbSampah.getRowCount(); i++) {
+                if (tbSampah.getValueAt(i, 12).equals("3")) {
+                    tbSampah.setValueAt(Boolean.TRUE, i, 15);
+                }
+            }
+        }
+    }//GEN-LAST:event_MnContengSift3RiwHapusActionPerformed
+
+    private void MnHapusContengSiftRiwHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusContengSiftRiwHapusActionPerformed
+        if (tbSampah.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data riwayat CPPT dihapus masih kosong...!!!!");
+            tbSampah.requestFocus();
+            tampilSampah();
+        } else {            
+            for (i = 0; i < tbSampah.getRowCount(); i++) {
+                tbSampah.setValueAt(Boolean.FALSE, i, 15);
+            }
+        }
+    }//GEN-LAST:event_MnHapusContengSiftRiwHapusActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -9901,12 +10234,20 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnCeklisFarmasiO;
     private javax.swing.JMenuItem MnCeklisFarmasiP;
     private javax.swing.JMenuItem MnCeklisFarmasiS;
+    private javax.swing.JMenuItem MnContengSift1;
+    private javax.swing.JMenuItem MnContengSift1RiwHapus;
+    private javax.swing.JMenuItem MnContengSift2;
+    private javax.swing.JMenuItem MnContengSift2RiwHapus;
+    private javax.swing.JMenuItem MnContengSift3;
+    private javax.swing.JMenuItem MnContengSift3RiwHapus;
     private javax.swing.JMenuItem MnDataPemberianDiet;
     private javax.swing.JMenuItem MnDataSampah;
     private javax.swing.JMenu MnDataTriaseIGD;
     private javax.swing.JMenu MnDataTriasePediatrik;
     private javax.swing.JMenu MnDataTriasePonek;
     private javax.swing.JMenuItem MnGrafikPemantauanDewasa;
+    private javax.swing.JMenuItem MnHapusContengSift;
+    private javax.swing.JMenuItem MnHapusContengSiftRiwHapus;
     private javax.swing.JMenuItem MnHapusDipilih;
     private javax.swing.JMenuItem MnHapusSemua;
     private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
@@ -10155,6 +10496,8 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu10;
+    private javax.swing.JPopupMenu jPopupMenu11;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JPopupMenu jPopupMenu4;
@@ -11423,7 +11766,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 		psrestor.setString(33, "%" + TCari2.getText().trim() + "%");
                 rsrestor = psrestor.executeQuery();
                 while (rsrestor.next()) {
-                    tabMode3.addRow(new String[]{
+                    tabMode3.addRow(new Object[]{
                         rsrestor.getString("dihapus"),
                         rsrestor.getString("no_rawat"),
                         rsrestor.getString("no_rkm_medis"),
@@ -11438,7 +11781,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                         rsrestor.getString("nmkonsulen"),
                         rsrestor.getString("cppt_shift"),
                         rsrestor.getString("flag_hapus"),
-                        rsrestor.getString("waktu_simpan")
+                        rsrestor.getString("waktu_simpan"),
+                        false
                     });
                 }
             } catch (Exception e) {
@@ -12712,6 +13056,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                             + "'" + Valid.mysql_real_escape_stringERM(rs5.getString("objektif")) + "',"
                             + "'" + Valid.mysql_real_escape_stringERM(rs5.getString("asesmen")) + "',"
                             + "'" + Valid.mysql_real_escape_stringERM(rs5.getString("planing")) + "'", "CPPT Pasien");
+                    
+                    //jeda 1 detik
+                    Thread.sleep(1000);
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -12786,7 +13133,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                 ps4.setString(33, "%" + TCari2.getText().trim() + "%");
                 rs4 = ps4.executeQuery();
                 while (rs4.next()) {
-                    tabMode5.addRow(new String[]{
+                    tabMode5.addRow(new Object[]{
                         rs4.getString("diganti"),
                         rs4.getString("no_rawat"),
                         rs4.getString("no_rkm_medis"),
@@ -12801,7 +13148,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                         rs4.getString("nmkonsulen"),
                         rs4.getString("cppt_shift"),
                         rs4.getString("wktganti"),
-                        rs4.getString("waktu_ganti")
+                        rs4.getString("waktu_ganti"),
+                        false
                     });
                 }
             } catch (Exception e) {

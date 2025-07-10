@@ -1492,8 +1492,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         internalFrame15 = new widget.InternalFrame();
         panelGlass6 = new widget.panelisi();
         ChkPoli = new widget.CekBox();
-        jLabel68 = new widget.Label();
-        cmbConteng = new widget.ComboBox();
+        ChkContengSemua = new widget.CekBox();
+        ChkHapusContengSemua = new widget.CekBox();
         BtnCopyResep = new widget.Button();
         BtnCloseIn8 = new widget.Button();
         jPanel5 = new javax.swing.JPanel();
@@ -1543,6 +1543,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         noIdObatCopy = new widget.TextBox();
         TNoKirim = new javax.swing.JTextField();
         kode_iter = new widget.TextBox();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -2985,22 +2986,41 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass6.add(ChkPoli);
 
-        jLabel68.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel68.setText("Conteng Item Resep : ");
-        jLabel68.setName("jLabel68"); // NOI18N
-        jLabel68.setPreferredSize(new java.awt.Dimension(120, 23));
-        panelGlass6.add(jLabel68);
-
-        cmbConteng.setForeground(new java.awt.Color(0, 0, 0));
-        cmbConteng.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Semuanya", "Dibatalkan" }));
-        cmbConteng.setName("cmbConteng"); // NOI18N
-        cmbConteng.setPreferredSize(new java.awt.Dimension(96, 23));
-        cmbConteng.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbContengItemStateChanged(evt);
+        ChkContengSemua.setBackground(new java.awt.Color(255, 255, 250));
+        ChkContengSemua.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup1.add(ChkContengSemua);
+        ChkContengSemua.setForeground(new java.awt.Color(0, 0, 0));
+        ChkContengSemua.setText("Conteng Semua Item Resep");
+        ChkContengSemua.setBorderPainted(true);
+        ChkContengSemua.setBorderPaintedFlat(true);
+        ChkContengSemua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ChkContengSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkContengSemua.setName("ChkContengSemua"); // NOI18N
+        ChkContengSemua.setPreferredSize(new java.awt.Dimension(170, 23));
+        ChkContengSemua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkContengSemuaActionPerformed(evt);
             }
         });
-        panelGlass6.add(cmbConteng);
+        panelGlass6.add(ChkContengSemua);
+
+        ChkHapusContengSemua.setBackground(new java.awt.Color(255, 255, 250));
+        ChkHapusContengSemua.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup1.add(ChkHapusContengSemua);
+        ChkHapusContengSemua.setForeground(new java.awt.Color(0, 0, 0));
+        ChkHapusContengSemua.setText("Hapus Semua Conteng Item Resep");
+        ChkHapusContengSemua.setBorderPainted(true);
+        ChkHapusContengSemua.setBorderPaintedFlat(true);
+        ChkHapusContengSemua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ChkHapusContengSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkHapusContengSemua.setName("ChkHapusContengSemua"); // NOI18N
+        ChkHapusContengSemua.setPreferredSize(new java.awt.Dimension(200, 23));
+        ChkHapusContengSemua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkHapusContengSemuaActionPerformed(evt);
+            }
+        });
+        panelGlass6.add(ChkHapusContengSemua);
 
         BtnCopyResep.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopyResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -3182,7 +3202,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3196,7 +3216,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3389,7 +3409,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -3622,7 +3642,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3636,7 +3656,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6039,7 +6059,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         ChkKonsul.setBounds(113, 115, 102, 23);
 
         TtglKonsulUlang.setEditable(false);
-        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2025" }));
+        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         TtglKonsulUlang.setDisplayFormat("dd-MM-yyyy");
         TtglKonsulUlang.setName("TtglKonsulUlang"); // NOI18N
         TtglKonsulUlang.setOpaque(false);
@@ -6204,7 +6224,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -9353,7 +9373,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 tampilItemResep(tbPemberianResep.getValueAt(tbPemberianResep.getSelectedRow(), 3).toString(), TNoRM.getText(),
                         tbPemberianResep.getValueAt(tbPemberianResep.getSelectedRow(), 4).toString());
                 tglResep = tbPemberianResep.getValueAt(tbPemberianResep.getSelectedRow(), 3).toString();
-                cmbConteng.setSelectedIndex(0);
+                buttonGroup1.clearSelection();
             } catch (java.lang.NullPointerException e) {
             }
         }
@@ -9365,7 +9385,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 try {
                     tampilItemResep(tbPemberianResep.getValueAt(tbPemberianResep.getSelectedRow(), 3).toString(), TNoRM.getText(),
                             tbPemberianResep.getValueAt(tbPemberianResep.getSelectedRow(), 4).toString());
-                    cmbConteng.setSelectedIndex(0);
+                    buttonGroup1.clearSelection();
                 } catch (java.lang.NullPointerException e) {
                 }
             }
@@ -9380,32 +9400,15 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         // TODO add your handling code here:
     }//GEN-LAST:event_tbItemResepKeyPressed
 
-    private void cmbContengItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbContengItemStateChanged
-        if (tabModeResep2.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, Item resep obat masih kosong...!!!!");
-            tbPemberianResep.requestFocus();
-        } else if (cmbConteng.getSelectedItem().equals("Semuanya")) {
-            for (i = 0; i < tbItemResep.getRowCount(); i++) {
-                tbItemResep.setValueAt(Boolean.TRUE, i, 0);
-            }
-        } else if (cmbConteng.getSelectedItem().equals(" ") || cmbConteng.getSelectedItem().equals("Dibatalkan")) {
-            for (i = 0; i < tbItemResep.getRowCount(); i++) {
-                tbItemResep.setValueAt(Boolean.FALSE, i, 0);
-            }
-        }
-    }//GEN-LAST:event_cmbContengItemStateChanged
-
     private void ChkPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkPoliActionPerformed
+        buttonGroup1.clearSelection();
+        tampilTglResep();
+        tampilItemResep("tglnya kosong", "normnya kosong", "poli zonk");
+        
         if (ChkPoli.isSelected() == true) {
             ChkPoli.setText("SEMUA Poliklinik");
-            cmbConteng.setSelectedIndex(0);
-            tampilTglResep();
-            tampilItemResep("tglnya kosong", "normnya kosong", "poli zonk");
         } else if (ChkPoli.isSelected() == false) {
             ChkPoli.setText("HANYA Poliklinik Ini");
-            cmbConteng.setSelectedIndex(0);
-            tampilTglResep();
-            tampilItemResep("tglnya kosong", "normnya kosong", "poli zonk");
         }
     }//GEN-LAST:event_ChkPoliActionPerformed
 
@@ -9518,7 +9521,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         WindowRiwayatResep.setLocationRelativeTo(internalFrame1);
         WindowRiwayatResep.setVisible(true);
         ChkPoli.setSelected(false);
-        cmbConteng.setSelectedIndex(0);
+        ChkPoli.setText("HANYA Poliklinik Ini");
+        buttonGroup1.clearSelection();
         tampilTglResep();
         Valid.tabelKosong(tabModeResep2);
     }//GEN-LAST:event_BtnResepActionPerformed
@@ -11107,6 +11111,34 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             }
         }
     }//GEN-LAST:event_BtnResepIterBatalActionPerformed
+
+    private void ChkContengSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkContengSemuaActionPerformed
+        if (ChkContengSemua.isSelected() == true) {
+            if (tabModeResep2.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Maaf, Item resep obat masih kosong...!!!!");
+                buttonGroup1.clearSelection();
+                tbPemberianResep.requestFocus();
+            } else {
+                for (i = 0; i < tbItemResep.getRowCount(); i++) {
+                    tbItemResep.setValueAt(Boolean.TRUE, i, 0);
+                }
+            }
+        }
+    }//GEN-LAST:event_ChkContengSemuaActionPerformed
+
+    private void ChkHapusContengSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkHapusContengSemuaActionPerformed
+        if (ChkHapusContengSemua.isSelected() == true) {
+            if (tabModeResep2.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Maaf, Item resep obat masih kosong...!!!!");
+                buttonGroup1.clearSelection();
+                tbPemberianResep.requestFocus();
+            } else {
+                for (i = 0; i < tbItemResep.getRowCount(); i++) {
+                    tbItemResep.setValueAt(Boolean.FALSE, i, 0);
+                }
+            }
+        }
+    }//GEN-LAST:event_ChkHapusContengSemuaActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -11179,8 +11211,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnTarifTindakan;
     private widget.Button BtnUnit;
     public widget.CekBox ChkAccor;
+    private widget.CekBox ChkContengSemua;
     private widget.CekBox ChkCopyPemeriksaanDR;
     private widget.CekBox ChkCopyTerapi;
+    private widget.CekBox ChkHapusContengSemua;
     private widget.CekBox ChkInput;
     private widget.CekBox ChkInput1;
     private widget.CekBox ChkJln;
@@ -11398,8 +11432,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JDialog WindowRiwayatResep;
     private widget.RadioButton bpjs;
     private widget.Button btnTindakan;
+    private javax.swing.ButtonGroup buttonGroup1;
     private widget.ComboBox cmbBulan;
-    private widget.ComboBox cmbConteng;
     private widget.ComboBox cmbDtk;
     private widget.ComboBox cmbImun;
     private widget.ComboBox cmbImun1;
@@ -11500,7 +11534,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Label jLabel64;
     private widget.Label jLabel65;
     private widget.Label jLabel66;
-    private widget.Label jLabel68;
     private widget.Label jLabel69;
     private widget.Label jLabel7;
     private widget.Label jLabel70;
@@ -19858,12 +19891,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 psR1 = koneksi.prepareStatement("select date_format(c.tgl_perawatan,'%d-%m-%Y') tglnya, d.nm_dokter, pl.nm_poli, c.tgl_perawatan, r.kd_poli from catatan_resep c "
                         + "inner join reg_periksa r on r.no_rawat = c.no_rawat inner join dokter d on d.kd_dokter = c.kd_dokter "
                         + "inner join poliklinik pl on pl.kd_poli=r.kd_poli where r.no_rkm_medis='" + TNoRM.getText() + "' GROUP BY c.no_rawat "
-                        + "order by c.tgl_perawatan DESC LIMIT 5");
+                        + "order by c.tgl_perawatan DESC LIMIT 50");
             } else {
                 psR1 = koneksi.prepareStatement("select date_format(c.tgl_perawatan,'%d-%m-%Y') tglnya, d.nm_dokter, pl.nm_poli, c.tgl_perawatan, r.kd_poli from catatan_resep c "
                         + "inner join reg_periksa r on r.no_rawat = c.no_rawat inner join dokter d on d.kd_dokter = c.kd_dokter "
                         + "inner join poliklinik pl on pl.kd_poli=r.kd_poli where r.kd_poli='" + polinya + "' and r.no_rkm_medis='" + TNoRM.getText() + "' GROUP BY c.no_rawat "
-                        + "order by c.tgl_perawatan DESC LIMIT 5");
+                        + "order by c.tgl_perawatan DESC LIMIT 50");
             }
             try {
                 rsR1 = psR1.executeQuery();
@@ -21940,6 +21973,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         kode_iter.setText("");
         tglSekarang = new Date();
         tglExpRujukan = new Date();
+        DTPTgl.setDate(new Date());
         now = dateFormat.format(tglSekarang);
         
         try {

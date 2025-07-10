@@ -11825,7 +11825,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 form.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(),
                         "ranap", kdkamar.getText(), ruangrawat.getText(), nmgedung,
                         Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat.getText() + "'")));
-                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
                 BtnCariActionPerformed(null);

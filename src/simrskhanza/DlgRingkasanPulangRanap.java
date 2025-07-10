@@ -4447,11 +4447,14 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
-        WindowTTE.dispose();
-        WindowPasien.dispose();
-        WindowDokterPenyimpan.dispose();
-        WindowRehabMedik.dispose();
+        x = JOptionPane.showConfirmDialog(rootPane, "Apakah Ringkasan Pulang/Resume Medis sudah tersimpan, selesai diisi/diperbaiki..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            dispose();
+            WindowTTE.dispose();
+            WindowPasien.dispose();
+            WindowDokterPenyimpan.dispose();
+            WindowRehabMedik.dispose();
+        }
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed

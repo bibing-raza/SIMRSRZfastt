@@ -2087,6 +2087,14 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 
     private void BtnCetak1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCetak1ActionPerformed
         if (tbResepIter.getSelectedRow() > -1) {
+            if (Sequel.cariInteger("select count(-1) from catatan_resep where no_rawat='" + TNoRw.getText() + "' and (status='SUDAH' or status='DILUAR')") > 0) {
+                if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where waktu_simpan='" + tbResepIter.getValueAt(tbResepIter.getSelectedRow(), 14).toString() + "' "
+                        + "and kunjungan='1' and stts_pengambilan='Selesai' and selesai='belum'") == 0) {
+                    Sequel.mengedit("iter_obat_bpjs", "waktu_simpan='" + tbResepIter.getValueAt(tbResepIter.getSelectedRow(), 14).toString() + "' and kunjungan='1'",
+                            "tgl_ambil_obat='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "', stts_pengambilan='Selesai', selesai='belum'");
+                }
+            }
+
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("kotars", akses.getkabupatenrs());
@@ -2861,6 +2869,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         kode_iter.setText("");
         tglSekarang = new Date();
         tglExpRujukan = new Date();
+        DTPTgl.setDate(new Date());
         now = dateFormat.format(tglSekarang);
 
         try {
