@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -41,7 +42,7 @@ public final class DlgRl37 extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private PreparedStatement pstindakan;
     private ResultSet rstindakan;
-    private int i = 0, ttl = 0;
+    private int i = 0, ttl = 0, jlhUmum = 0, jlhBpjs = 0, jlhLain = 0;
     private String dialog_simpan = "";
 
     /**
@@ -53,39 +54,56 @@ public final class DlgRl37 extends javax.swing.JDialog {
     public DlgRl37(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         this.setLocation(8, 1);
         setSize(885, 674);
 
-        Object[] rowRwJlDr = {"No.", "Jenis Kegiatan", "Jumlah"};
+        Object[] rowRwJlDr = {"No.", "Jenis Pemeriksaan", "Jlh. Umum", "Jlh. BPJS", "Jlh. Lainnya", "Total Semua"};
         tabMode = new DefaultTableModel(null, rowRwJlDr) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
             }
         };
-        tbBangsal.setModel(tabMode);
-        //tbBangsal.setDefaultRenderer(Object.class, new WarnaTable(jPanel2.getBackground(),tbBangsal.getBackground()));
-        tbBangsal.setPreferredScrollableViewportSize(new Dimension(500, 500));
-        tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        tbRadiologi.setModel(tabMode);
+        tbRadiologi.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbRadiologi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 3; i++) {
-            TableColumn column = tbBangsal.getColumnModel().getColumn(i);
+        for (i = 0; i < 6; i++) {
+            TableColumn column = tbRadiologi.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(25);
             } else if (i == 1) {
                 column.setPreferredWidth(400);
-            } else {
-                column.setPreferredWidth(60);
+            } else if (i == 2) {
+                column.setPreferredWidth(80);
+            } else if (i == 3) {
+                column.setPreferredWidth(80);
+            } else if (i == 4) {
+                column.setPreferredWidth(80);
+            } else if (i == 5) {
+                column.setPreferredWidth(95);
             }
         }
-        tbBangsal.setDefaultRenderer(Object.class, new WarnaTable());
+        tbRadiologi.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbRadiologi.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbRadiologi.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbRadiologi.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbRadiologi.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbRadiologi.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
 
         try {
-            pstindakan = koneksi.prepareStatement("select jns_perawatan_radiologi.nm_perawatan,count(jns_perawatan_radiologi.nm_perawatan) from periksa_radiologi "
-                    + "inner join jns_perawatan_radiologi on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw "
-                    + "where periksa_radiologi.tgl_periksa between ? and ? and jns_perawatan_radiologi.nm_perawatan like ? group by jns_perawatan_radiologi.nm_perawatan ");
+            pstindakan = koneksi.prepareStatement("SELECT jpr.nm_perawatan, SUM(CASE WHEN rp.kd_pj = 'U01' THEN 1 ELSE 0 END) jlh_umum, "
+                    + "SUM(CASE WHEN rp.kd_pj = 'B01' THEN 1 ELSE 0 END) jlh_bpjs, SUM(CASE WHEN rp.kd_pj NOT IN ('U01', 'B01') THEN 1 ELSE 0 END) jlh_lainnya, "
+                    + "count(jpr.nm_perawatan) total FROM periksa_radiologi pr INNER JOIN jns_perawatan_radiologi jpr ON pr.kd_jenis_prw = jpr.kd_jenis_prw "
+                    + "INNER JOIN reg_periksa rp on rp.no_rawat=pr.no_rawat INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj "
+                    + "where pr.tgl_periksa between ? and ? and jpr.nm_perawatan like ? GROUP BY jpr.nm_perawatan, rp.kd_pj ORDER BY jpr.nm_perawatan");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -102,7 +120,7 @@ public final class DlgRl37 extends javax.swing.JDialog {
 
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
-        tbBangsal = new widget.Table();
+        tbRadiologi = new widget.Table();
         panelGlass5 = new widget.panelisi();
         label11 = new widget.Label();
         Tgl1 = new widget.Tanggal();
@@ -136,8 +154,8 @@ public final class DlgRl37 extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbBangsal.setName("tbBangsal"); // NOI18N
-        Scroll.setViewportView(tbBangsal);
+        tbRadiologi.setName("tbRadiologi"); // NOI18N
+        Scroll.setViewportView(tbRadiologi);
 
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
 
@@ -191,9 +209,10 @@ public final class DlgRl37 extends javax.swing.JDialog {
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('2');
+        BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+2");
         BtnCari.setName("BtnCari"); // NOI18N
-        BtnCari.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnCari.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCariActionPerformed(evt);
@@ -209,9 +228,10 @@ public final class DlgRl37 extends javax.swing.JDialog {
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('M');
+        BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
-        BtnAll.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnAll.setPreferredSize(new java.awt.Dimension(120, 30));
         BtnAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAllActionPerformed(evt);
@@ -249,20 +269,15 @@ public final class DlgRl37 extends javax.swing.JDialog {
         panelGlass5.add(BtnPrint);
 
         BtnPrintExcel.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPrintExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrintExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
         BtnPrintExcel.setMnemonic('T');
-        BtnPrintExcel.setText("Cetak Excel");
+        BtnPrintExcel.setText("Export Data Ke Ms. Excel");
         BtnPrintExcel.setToolTipText("Alt+T");
         BtnPrintExcel.setName("BtnPrintExcel"); // NOI18N
-        BtnPrintExcel.setPreferredSize(new java.awt.Dimension(120, 30));
+        BtnPrintExcel.setPreferredSize(new java.awt.Dimension(180, 30));
         BtnPrintExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnPrintExcelActionPerformed(evt);
-            }
-        });
-        BtnPrintExcel.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnPrintExcelKeyPressed(evt);
             }
         });
         panelGlass5.add(BtnPrintExcel);
@@ -297,7 +312,6 @@ public final class DlgRl37 extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         if (tabMode.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-            //TCari.requestFocus();
         } else if (tabMode.getRowCount() != 0) {
             Sequel.AutoComitFalse();
             Map<String, Object> param = new HashMap<>();
@@ -308,15 +322,19 @@ public final class DlgRl37 extends javax.swing.JDialog {
             param.put("kontakrs", akses.getkontakrs());
             param.put("emailrs", akses.getemailrs());
             param.put("periode", Tgl1.getSelectedItem() + " s.d. " + Tgl2.getSelectedItem());
-            param.put("tanggal", Tgl2.getDate());
+            param.put("tanggal", akses.getkabupatenrs() + ", " + Valid.SetTglINDONESIA(Valid.SetTgl(Tgl2.getSelectedItem() + "")));
             param.put("logo", Sequel.cariGambar("select logo from setting"));
+            
             Sequel.queryu("delete from temporary");
             for (int r = 0; r < tabMode.getRowCount(); r++) {
-                if (!tbBangsal.getValueAt(r, 0).toString().contains(">>")) {
+                if (!tbRadiologi.getValueAt(r, 0).toString().contains(">>")) {
                     Sequel.menyimpan("temporary", "'0','"
                             + tabMode.getValueAt(r, 0).toString() + "','"
                             + tabMode.getValueAt(r, 1).toString() + "','"
-                            + tabMode.getValueAt(r, 2).toString() + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Rekap Nota Pembayaran");
+                            + tabMode.getValueAt(r, 2).toString() + "','"
+                            + tabMode.getValueAt(r, 3).toString() + "','"
+                            + tabMode.getValueAt(r, 4).toString() + "','"
+                            + tabMode.getValueAt(r, 5).toString() + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Rekap Nota Pembayaran");
                 }
             }
             Sequel.AutoComitTrue();
@@ -329,8 +347,6 @@ public final class DlgRl37 extends javax.swing.JDialog {
     private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnPrintActionPerformed(null);
-        } else {
-            //Valid.pindah(evt, BtnHapus, BtnAll);
         }
 }//GEN-LAST:event_BtnPrintKeyPressed
 
@@ -389,33 +405,31 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         tampil();
-
     }//GEN-LAST:event_formWindowActivated
 
     private void BtnPrintExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintExcelActionPerformed
-        // TODO add your handling code here:
-        dialog_simpan = "";
-        dialog_simpan = Valid.openDialog();
-        if (!dialog_simpan.equals("the user cancelled the operation")) {
-            if (Valid.MyReportToExcelBoolean(
-                    "select jns_perawatan_radiologi.nm_perawatan as 'Nama Pemeriksaan',penjab.png_jawab as 'Cara Bayar', "
-                    + "count( jns_perawatan_radiologi.nm_perawatan ) as 'Jumlah' from periksa_radiologi "
-                    + "inner join jns_perawatan_radiologi on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw "
-                    + "inner join reg_periksa on reg_periksa.no_rawat = periksa_radiologi.no_rawat "
-                    + "inner join penjab on penjab.kd_pj = reg_periksa.kd_pj "
-                    + "where periksa_radiologi.tgl_periksa between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and "
-                    + "jns_perawatan_radiologi.nm_perawatan like '" + "%" + TCari.getText().trim() + "%" + "' group by jns_perawatan_radiologi.nm_perawatan", dialog_simpan) == true) {
-                JOptionPane.showMessageDialog(null, "Data berhasil diexport menjadi file excel,..!!!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Data gagal diexport menjadi file excel,..!!!");
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Sequel.queryu("delete from temporary");
+        for (int r = 0; r < tabMode.getRowCount(); r++) {
+            if (!tbRadiologi.getValueAt(r, 0).toString().contains(">>")) {
+                Sequel.menyimpan("temporary", "'0','"
+                        + tabMode.getValueAt(r, 0).toString() + "','"
+                        + tabMode.getValueAt(r, 1).toString() + "','"
+                        + tabMode.getValueAt(r, 2).toString() + "','"
+                        + tabMode.getValueAt(r, 3).toString() + "','"
+                        + tabMode.getValueAt(r, 4).toString() + "','"
+                        + tabMode.getValueAt(r, 5).toString() + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Rekap Nota Pembayaran");
             }
         }
+        Sequel.AutoComitTrue();
+
+        dialog_simpan = Valid.openDialog();
+        Valid.MyReportToExcel("SELECT temp1 'No.', temp2 'Nama Pemeriksaan', temp3 'Jlh. Umum', temp4 'Jlh. BPJS', "
+                + "temp5 'Jlh. Lainnya', temp6 'Total Semua' from temporary", dialog_simpan);
+        
+        JOptionPane.showMessageDialog(rootPane, "Data selesai diexport menjadi file excel..!!");
+        this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnPrintExcelActionPerformed
-
-    private void BtnPrintExcelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintExcelKeyPressed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_BtnPrintExcelKeyPressed
 
     /**
      * @param args the command line arguments
@@ -449,33 +463,38 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Label label11;
     private widget.Label label18;
     private widget.panelisi panelGlass5;
-    private widget.Table tbBangsal;
+    private widget.Table tbRadiologi;
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
         try {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Valid.tabelKosong(tabMode);
             pstindakan.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
             pstindakan.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
             pstindakan.setString(3, "%" + TCari.getText().trim() + "%");
             rstindakan = pstindakan.executeQuery();
+            
             i = 1;
+            jlhUmum = 0;
+            jlhBpjs = 0;
+            jlhLain = 0;
             ttl = 0;
             while (rstindakan.next()) {
                 tabMode.addRow(new Object[]{
-                    i, rstindakan.getString(1), rstindakan.getInt(2)
+                    i, rstindakan.getString(1), rstindakan.getInt(2), rstindakan.getInt(3), rstindakan.getInt(4), rstindakan.getInt(5)
                 });
-                ttl = ttl + rstindakan.getInt(2);
+                jlhUmum = jlhUmum + rstindakan.getInt(2);
+                jlhBpjs = jlhBpjs + rstindakan.getInt(3);
+                jlhLain = jlhLain + rstindakan.getInt(4);
+                ttl = ttl + rstindakan.getInt(5);
                 i++;
             }
 
             if (i > 1) {
                 tabMode.addRow(new Object[]{
-                    "", "TOTAL", ttl
+                    "", "TOTAL", jlhUmum, jlhBpjs, jlhLain, ttl
                 });
-            }
-            this.setCursor(Cursor.getDefaultCursor());
+            }            
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }

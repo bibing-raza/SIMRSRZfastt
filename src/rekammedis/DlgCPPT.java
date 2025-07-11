@@ -55,6 +55,7 @@ import simrskhanza.DlgCariJumlahPemberianDiet;
 import simrskhanza.DlgCariPoli;
 import simrskhanza.DlgNotepad;
 import simrskhanza.DlgPemberianDiet;
+import simrskhanza.DlgRingkasanPulangRanap;
 
 /**
  *
@@ -1013,6 +1014,12 @@ public class DlgCPPT extends javax.swing.JDialog {
                             nmKonfirDpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
                             BtnKonfirDpjp.requestFocus();
                         }
+                    } else if (pilihan == 4) {
+                        if (dokter.getTable().getSelectedRow() != -1) {
+                            kddpjp1.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
+                            nmdpjp1.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                            btnDPJP.requestFocus();
+                        }
                     }
                 }
             }
@@ -1367,6 +1374,14 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnSimpan7 = new widget.Button();
         jLabel69 = new widget.Label();
         cmbRM = new widget.ComboBox();
+        WindowDPJPranap = new javax.swing.JDialog();
+        internalFrame38 = new widget.InternalFrame();
+        BtnCloseIn11 = new widget.Button();
+        BtnSimpan6 = new widget.Button();
+        jLabel60 = new widget.Label();
+        kddpjp1 = new widget.TextBox();
+        nmdpjp1 = new widget.TextBox();
+        btnDPJP = new widget.Button();
         TKd = new widget.TextBox();
         TabTindakanPencegahan = new javax.swing.JTabbedPane();
         panelBiasa6 = new widget.PanelBiasa();
@@ -1513,6 +1528,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnPrint = new widget.Button();
         BtnNotepad2 = new widget.Button();
         BtnResep = new widget.Button();
+        BtnResume = new widget.Button();
         BtnKeluar = new widget.Button();
         internalFrame3 = new widget.InternalFrame();
         Scroll2 = new widget.ScrollPane();
@@ -1539,6 +1555,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnHapus4 = new widget.Button();
         BtnPrint1 = new widget.Button();
         BtnResep1 = new widget.Button();
+        BtnResume1 = new widget.Button();
         BtnKeluar3 = new widget.Button();
         internalFrame26 = new widget.InternalFrame();
         panelGlass13 = new widget.panelisi();
@@ -1558,6 +1575,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnNotepad1 = new widget.Button();
         BtnPrint2 = new widget.Button();
         BtnResep2 = new widget.Button();
+        BtnResume2 = new widget.Button();
         BtnKeluar4 = new widget.Button();
         internalFrame29 = new widget.InternalFrame();
         PanelInput = new javax.swing.JPanel();
@@ -1582,6 +1600,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnVerif2 = new widget.Button();
         BtnNotepad3 = new widget.Button();
         BtnResep3 = new widget.Button();
+        BtnResume3 = new widget.Button();
         BtnKeluar5 = new widget.Button();
         internalFrame30 = new widget.InternalFrame();
         FormInput2 = new widget.PanelBiasa();
@@ -1601,6 +1620,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnVerif3 = new widget.Button();
         BtnNotepad4 = new widget.Button();
         BtnResep4 = new widget.Button();
+        BtnResume4 = new widget.Button();
         BtnKeluar6 = new widget.Button();
         internalFrame31 = new widget.InternalFrame();
         panelGlass30 = new widget.panelisi();
@@ -1618,6 +1638,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnVerif4 = new widget.Button();
         BtnNotepad5 = new widget.Button();
         BtnResep5 = new widget.Button();
+        BtnResume5 = new widget.Button();
         BtnKeluar7 = new widget.Button();
         panelGlass19 = new widget.panelisi();
         panelGlass20 = new widget.panelisi();
@@ -1651,6 +1672,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnVerif5 = new widget.Button();
         BtnNotepad6 = new widget.Button();
         BtnResep6 = new widget.Button();
+        BtnResume6 = new widget.Button();
         BtnKeluar8 = new widget.Button();
         label_rehab = new widget.Label();
 
@@ -3960,6 +3982,77 @@ public class DlgCPPT extends javax.swing.JDialog {
 
         WindowRehabMedik.getContentPane().add(internalFrame37, java.awt.BorderLayout.CENTER);
 
+        WindowDPJPranap.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowDPJPranap.setName("WindowDPJPranap"); // NOI18N
+        WindowDPJPranap.setUndecorated(true);
+        WindowDPJPranap.setResizable(false);
+
+        internalFrame38.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ DPJP Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame38.setName("internalFrame38"); // NOI18N
+        internalFrame38.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame38.setLayout(null);
+
+        BtnCloseIn11.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn11.setMnemonic('U');
+        BtnCloseIn11.setText("Tutup");
+        BtnCloseIn11.setToolTipText("Alt+U");
+        BtnCloseIn11.setName("BtnCloseIn11"); // NOI18N
+        BtnCloseIn11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn11ActionPerformed(evt);
+            }
+        });
+        internalFrame38.add(BtnCloseIn11);
+        BtnCloseIn11.setBounds(480, 60, 100, 30);
+
+        BtnSimpan6.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSimpan6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan6.setMnemonic('S');
+        BtnSimpan6.setText("Simpan");
+        BtnSimpan6.setToolTipText("Alt+S");
+        BtnSimpan6.setName("BtnSimpan6"); // NOI18N
+        BtnSimpan6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpan6ActionPerformed(evt);
+            }
+        });
+        internalFrame38.add(BtnSimpan6);
+        BtnSimpan6.setBounds(370, 60, 100, 30);
+
+        jLabel60.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel60.setText("Nama DPJP :");
+        jLabel60.setName("jLabel60"); // NOI18N
+        internalFrame38.add(jLabel60);
+        jLabel60.setBounds(0, 32, 77, 23);
+
+        kddpjp1.setEditable(false);
+        kddpjp1.setForeground(new java.awt.Color(0, 0, 0));
+        kddpjp1.setName("kddpjp1"); // NOI18N
+        internalFrame38.add(kddpjp1);
+        kddpjp1.setBounds(81, 32, 100, 23);
+
+        nmdpjp1.setEditable(false);
+        nmdpjp1.setForeground(new java.awt.Color(0, 0, 0));
+        nmdpjp1.setName("nmdpjp1"); // NOI18N
+        internalFrame38.add(nmdpjp1);
+        nmdpjp1.setBounds(183, 32, 380, 23);
+
+        btnDPJP.setForeground(new java.awt.Color(0, 0, 0));
+        btnDPJP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnDPJP.setMnemonic('7');
+        btnDPJP.setToolTipText("ALt+7");
+        btnDPJP.setName("btnDPJP"); // NOI18N
+        btnDPJP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDPJPActionPerformed(evt);
+            }
+        });
+        internalFrame38.add(btnDPJP);
+        btnDPJP.setBounds(565, 32, 28, 23);
+
+        WindowDPJPranap.getContentPane().add(internalFrame38, java.awt.BorderLayout.CENTER);
+
         TKd.setEditable(false);
         TKd.setForeground(new java.awt.Color(0, 0, 0));
         TKd.setName("TKd"); // NOI18N
@@ -5307,6 +5400,20 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnResep);
 
+        BtnResume.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResume.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientData.png"))); // NOI18N
+        BtnResume.setMnemonic('P');
+        BtnResume.setText("Ringkasan Pulang / Resume");
+        BtnResume.setToolTipText("Alt+P");
+        BtnResume.setName("BtnResume"); // NOI18N
+        BtnResume.setPreferredSize(new java.awt.Dimension(217, 30));
+        BtnResume.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResumeActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnResume);
+
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
@@ -5581,6 +5688,20 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass24.add(BtnResep1);
 
+        BtnResume1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResume1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientData.png"))); // NOI18N
+        BtnResume1.setMnemonic('P');
+        BtnResume1.setText("Ringkasan Pulang / Resume");
+        BtnResume1.setToolTipText("Alt+P");
+        BtnResume1.setName("BtnResume1"); // NOI18N
+        BtnResume1.setPreferredSize(new java.awt.Dimension(217, 30));
+        BtnResume1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResume1ActionPerformed(evt);
+            }
+        });
+        panelGlass24.add(BtnResume1);
+
         BtnKeluar3.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar3.setMnemonic('K');
@@ -5745,6 +5866,20 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         panelGlass25.add(BtnResep2);
+
+        BtnResume2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResume2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientData.png"))); // NOI18N
+        BtnResume2.setMnemonic('P');
+        BtnResume2.setText("Ringkasan Pulang / Resume");
+        BtnResume2.setToolTipText("Alt+P");
+        BtnResume2.setName("BtnResume2"); // NOI18N
+        BtnResume2.setPreferredSize(new java.awt.Dimension(217, 30));
+        BtnResume2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResume2ActionPerformed(evt);
+            }
+        });
+        panelGlass25.add(BtnResume2);
 
         BtnKeluar4.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -5983,6 +6118,20 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass16.add(BtnResep3);
 
+        BtnResume3.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResume3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientData.png"))); // NOI18N
+        BtnResume3.setMnemonic('P');
+        BtnResume3.setText("Ringkasan Pulang / Resume");
+        BtnResume3.setToolTipText("Alt+P");
+        BtnResume3.setName("BtnResume3"); // NOI18N
+        BtnResume3.setPreferredSize(new java.awt.Dimension(217, 30));
+        BtnResume3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResume3ActionPerformed(evt);
+            }
+        });
+        panelGlass16.add(BtnResume3);
+
         BtnKeluar5.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar5.setMnemonic('K');
@@ -6172,6 +6321,20 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass14.add(BtnResep4);
 
+        BtnResume4.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResume4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientData.png"))); // NOI18N
+        BtnResume4.setMnemonic('P');
+        BtnResume4.setText("Ringkasan Pulang / Resume");
+        BtnResume4.setToolTipText("Alt+P");
+        BtnResume4.setName("BtnResume4"); // NOI18N
+        BtnResume4.setPreferredSize(new java.awt.Dimension(217, 30));
+        BtnResume4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResume4ActionPerformed(evt);
+            }
+        });
+        panelGlass14.add(BtnResume4);
+
         BtnKeluar6.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar6.setMnemonic('K');
@@ -6346,6 +6509,20 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         panelGlass18.add(BtnResep5);
+
+        BtnResume5.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResume5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientData.png"))); // NOI18N
+        BtnResume5.setMnemonic('P');
+        BtnResume5.setText("Ringkasan Pulang / Resume");
+        BtnResume5.setToolTipText("Alt+P");
+        BtnResume5.setName("BtnResume5"); // NOI18N
+        BtnResume5.setPreferredSize(new java.awt.Dimension(217, 30));
+        BtnResume5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResume5ActionPerformed(evt);
+            }
+        });
+        panelGlass18.add(BtnResume5);
 
         BtnKeluar7.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -6645,6 +6822,20 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         panelGlass28.add(BtnResep6);
+
+        BtnResume6.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResume6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientData.png"))); // NOI18N
+        BtnResume6.setMnemonic('P');
+        BtnResume6.setText("Ringkasan Pulang / Resume");
+        BtnResume6.setToolTipText("Alt+P");
+        BtnResume6.setName("BtnResume6"); // NOI18N
+        BtnResume6.setPreferredSize(new java.awt.Dimension(217, 30));
+        BtnResume6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResume6ActionPerformed(evt);
+            }
+        });
+        panelGlass28.add(BtnResume6);
 
         BtnKeluar8.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -10071,6 +10262,103 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnHapusContengSiftRiwHapusActionPerformed
 
+    private void BtnResumeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResumeActionPerformed
+        if (TNoRw.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                x = JOptionPane.showConfirmDialog(rootPane, "DPJP pasien ini belum ditentukan, apakah DPJP nya akan dipilih dulu..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    WindowDPJPranap.setSize(615, 110);
+                    WindowDPJPranap.setLocationRelativeTo(internalFrame1);
+                    WindowDPJPranap.setVisible(true);
+                    kddpjp1.setText(Sequel.cariIsi("select ifnull(kd_dokter,'') from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"));
+                    if (kddpjp1.getText().equals("")) {
+                        nmdpjp1.setText("");
+                    } else {
+                        nmdpjp1.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + kddpjp1.getText() + "'"));
+                    }
+                    btnDPJP.requestFocus();
+                }
+            } else {
+                akses.setform("DlgCPPT");
+                DlgRingkasanPulangRanap ringkasan = new DlgRingkasanPulangRanap(null, false);
+                ringkasan.emptTeks();
+                ringkasan.isCek();
+                ringkasan.setPasien(TNoRw.getText());
+                ringkasan.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                ringkasan.setLocationRelativeTo(internalFrame1);
+                ringkasan.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_BtnResumeActionPerformed
+
+    private void BtnResume1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResume1ActionPerformed
+        BtnResumeActionPerformed(null);
+    }//GEN-LAST:event_BtnResume1ActionPerformed
+
+    private void BtnResume2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResume2ActionPerformed
+        BtnResumeActionPerformed(null);
+    }//GEN-LAST:event_BtnResume2ActionPerformed
+
+    private void BtnResume3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResume3ActionPerformed
+        BtnResumeActionPerformed(null);
+    }//GEN-LAST:event_BtnResume3ActionPerformed
+
+    private void BtnResume4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResume4ActionPerformed
+        BtnResumeActionPerformed(null);
+    }//GEN-LAST:event_BtnResume4ActionPerformed
+
+    private void BtnResume5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResume5ActionPerformed
+        BtnResumeActionPerformed(null);
+    }//GEN-LAST:event_BtnResume5ActionPerformed
+
+    private void BtnResume6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResume6ActionPerformed
+        BtnResumeActionPerformed(null);
+    }//GEN-LAST:event_BtnResume6ActionPerformed
+
+    private void BtnCloseIn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn11ActionPerformed
+        WindowDPJPranap.dispose();
+        kddpjp1.setText("-");
+        nmdpjp1.setText("-");
+    }//GEN-LAST:event_BtnCloseIn11ActionPerformed
+
+    private void BtnSimpan6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan6ActionPerformed
+        if (kddpjp1.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu DPJP nya...!");
+            btnDPJP.requestFocus();
+        } else if (kddpjp1.getText().equals("-") || kddpjp1.getText().equals("--")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu DPJP nya dengan benar...!");
+            btnDPJP.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                Sequel.menyimpan("dpjp_ranap", "'" + TNoRw.getText() + "','" + kddpjp1.getText() + "'");
+            }
+
+            akses.setform("DlgCPPT");
+            DlgRingkasanPulangRanap ringkasan = new DlgRingkasanPulangRanap(null, false);
+            ringkasan.emptTeks();
+            ringkasan.isCek();
+            ringkasan.setPasien(TNoRw.getText());
+            ringkasan.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            ringkasan.setLocationRelativeTo(internalFrame1);
+            ringkasan.setVisible(true);
+
+            BtnCloseIn11ActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnSimpan6ActionPerformed
+
+    private void btnDPJPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDPJPActionPerformed
+        pilihan = 4;
+        akses.setform("DlgCPPT");
+        dokter.emptTeks();
+        dokter.isCek();
+        dokter.setSize(1041, internalFrame1.getHeight() - 40);
+        dokter.setLocationRelativeTo(internalFrame1);
+        dokter.setAlwaysOnTop(false);
+        dokter.setVisible(true);
+    }//GEN-LAST:event_btnDPJPActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -10105,6 +10393,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Button BtnCetakCPPT;
     private widget.Button BtnCloseIn1;
     private widget.Button BtnCloseIn10;
+    private widget.Button BtnCloseIn11;
     private widget.Button BtnCloseIn3;
     private widget.Button BtnCloseIn4;
     private widget.Button BtnCloseIn6;
@@ -10173,11 +10462,19 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Button BtnResep5;
     private widget.Button BtnResep6;
     private widget.Button BtnRestor;
+    private widget.Button BtnResume;
+    private widget.Button BtnResume1;
+    private widget.Button BtnResume2;
+    private widget.Button BtnResume3;
+    private widget.Button BtnResume4;
+    private widget.Button BtnResume5;
+    private widget.Button BtnResume6;
     private widget.Button BtnSerah;
     private widget.Button BtnSimpan;
     private widget.Button BtnSimpan1;
     private widget.Button BtnSimpan2;
     private widget.Button BtnSimpan3;
+    private widget.Button BtnSimpan6;
     private widget.Button BtnSimpan7;
     private widget.Button BtnSimpanCeklis;
     private widget.Button BtnTerima;
@@ -10347,6 +10644,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JTabbedPane TabTindakanPencegahan;
     private widget.TextArea Ttemplate;
     private javax.swing.JDialog WindowCPPT;
+    private javax.swing.JDialog WindowDPJPranap;
     private javax.swing.JDialog WindowDataDiet;
     private javax.swing.JDialog WindowDataMonevGizi;
     private javax.swing.JDialog WindowDataSampah;
@@ -10357,6 +10655,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JDialog WindowTemplate;
     private widget.TextArea anakA;
     private widget.TextArea anakB;
+    private widget.Button btnDPJP;
     private widget.Button btnDiet;
     private widget.Button btnJumlahBeri;
     private widget.CekBox cekDietPagi;
@@ -10427,6 +10726,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame35;
     private widget.InternalFrame internalFrame36;
     private widget.InternalFrame internalFrame37;
+    private widget.InternalFrame internalFrame38;
     private widget.InternalFrame internalFrame4;
     private widget.InternalFrame internalFrame5;
     private widget.InternalFrame internalFrame6;
@@ -10487,6 +10787,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Label jLabel58;
     private widget.Label jLabel59;
     private widget.Label jLabel6;
+    private widget.Label jLabel60;
     private widget.Label jLabel61;
     private widget.Label jLabel62;
     private widget.Label jLabel69;
@@ -10511,6 +10812,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.TextBox kdberi;
     private widget.TextBox kddiet;
     private widget.TextBox kddpjp;
+    private widget.TextBox kddpjp1;
     private widget.TextBox kdpoli;
     private widget.Label label_rehab;
     private widget.TextBox nipKonfirDpjp;
@@ -10524,6 +10826,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.TextBox nmTerima;
     private widget.TextBox nmdiet;
     private widget.TextBox nmdpjp;
+    private widget.TextBox nmdpjp1;
     private widget.TextBox nmppa;
     private widget.PanelBiasa panelBiasa10;
     private widget.PanelBiasa panelBiasa14;
@@ -11041,6 +11344,13 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnInputDataTriasePonek.setEnabled(akses.getcppt());
         MnInputDataAssesmenMedikIGD.setEnabled(akses.getresep_dokter());
         MnInputDataAssesmenKeperawatanIGD.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
+        BtnResume.setEnabled(akses.getringkasanpulangranap());
+        BtnResume1.setEnabled(akses.getringkasanpulangranap());
+        BtnResume2.setEnabled(akses.getringkasanpulangranap());
+        BtnResume3.setEnabled(akses.getringkasanpulangranap());
+        BtnResume4.setEnabled(akses.getringkasanpulangranap());
+        BtnResume5.setEnabled(akses.getringkasanpulangranap());
+        BtnResume6.setEnabled(akses.getringkasanpulangranap());
     }
     
     private void tampilTemplate() {

@@ -2033,7 +2033,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel101.setPreferredSize(new java.awt.Dimension(90, 23));
         internalFrame17.add(jLabel101);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2047,7 +2047,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel102.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel102);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2789,7 +2789,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2025" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -4146,7 +4146,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         });
         panelGlass26.add(ChkTanggal);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2025" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -4160,7 +4160,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel74.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass26.add(jLabel74);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2025" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -4763,16 +4763,25 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         if (tbRingkasan.getSelectedRow() > -1) {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
-                simpanHistory();
-                if (Sequel.queryu2tf("delete from ringkasan_pulang_ranap where no_rawat=?", 1, new String[]{
-                    tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 0).toString()
-                }) == true) {                    
-                    TCari.setText(TNoRW.getText());
+                if (tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 35).toString().equals(akses.getkode())
+                        || tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 35).toString().equals("-")) {
+                    simpanHistory();
+                    if (Sequel.queryu2tf("delete from ringkasan_pulang_ranap where no_rawat=?", 1, new String[]{
+                        tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 0).toString()
+                    }) == true) {
+                        Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Ringkasan Pulang Pasien Rawat Inap", "Hapus");
+                        TCari.setText(TNoRW.getText());
+                        tampil();
+                        emptTeks();
+                        TabRingkasan.setSelectedIndex(1);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, resume medis pasien ini hanya bisa dihapus oleh "
+                            + tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 37).toString() + ".");
                     tampil();
                     emptTeks();
-                    TabRingkasan.setSelectedIndex(1);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
             } else {
                 TCari.setText(TNoRW.getText());
