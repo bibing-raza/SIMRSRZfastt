@@ -32,6 +32,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
@@ -60,11 +61,14 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
     public RMMonitoringEWSObsgyn(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
-        Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Ruang Rawat", "Tanggal", "Jam", "Laju Respirasi", "Skor",
-            "Saturasi", "Skor", "Suplemen", "Skor", "Tensi", "Skor", "Laju Jantung", "Skor", "Kesadaran", "Skor", 
-            "Temperatur", "Skor", "Tot. Skor", "GDS", "Skor Nyeri", "Urin Output", "Nama Perawat", "tanggal", "jam", 
-            "nip", "waktu_simpan"
+        String[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Ruang Rawat", "Tanggal", "Jam", "Laju Respirasi", "Skor", "Saturasi", "Skor",
+            "Suplemen", "Skor", "Temperatur", "Skor", "TD. Sistole", "Skor", "TD. Diastole", "Skor", "Laju Jantung", "Skor", "Kesadaran",
+            "Skor", "Nyeri", "Skor", "Discharge", "Skor", "Proteinuria", "Skor", "Tot. Skor", "Nama Bidan", "tanggal", "jam", 
+            "nip_bidan", "waktu_simpan"
         };
         
         tabMode=new DefaultTableModel(null,row){
@@ -75,7 +79,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         tbEWS.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbEWS.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 29; i++) {
+        for (int i = 0; i < 34; i++) {
             TableColumn column = tbEWS.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -120,30 +124,53 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
             } else if (i == 20) {
                 column.setPreferredWidth(80);
             } else if (i == 21) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(40);
             } else if (i == 22) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(80);
             } else if (i == 23) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(40);
             } else if (i == 24) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(80);
             } else if (i == 25) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(40);
             } else if (i == 26) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(80);
             } else if (i == 27) {
+                column.setPreferredWidth(40);
+            } else if (i == 28) {
+                column.setPreferredWidth(60);
+            } else if (i == 29) {
+                column.setPreferredWidth(220);
+            } else if (i == 30) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 28) {
+            } else if (i == 31) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 32) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 33) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
         }
         tbEWS.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbEWS.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
+        tbEWS.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
+        tbEWS.getColumnModel().getColumn(11).setCellRenderer(centerRenderer);
+        tbEWS.getColumnModel().getColumn(13).setCellRenderer(centerRenderer);
+        tbEWS.getColumnModel().getColumn(15).setCellRenderer(centerRenderer);
+        tbEWS.getColumnModel().getColumn(17).setCellRenderer(centerRenderer);
+        tbEWS.getColumnModel().getColumn(19).setCellRenderer(centerRenderer);
+        tbEWS.getColumnModel().getColumn(21).setCellRenderer(centerRenderer);
+        tbEWS.getColumnModel().getColumn(23).setCellRenderer(centerRenderer);
+        tbEWS.getColumnModel().getColumn(25).setCellRenderer(centerRenderer);
+        tbEWS.getColumnModel().getColumn(27).setCellRenderer(centerRenderer);
+        tbEWS.getColumnModel().getColumn(28).setCellRenderer(centerRenderer);
         
-        tabModeCppt=new DefaultTableModel(null, new Object[]{
+        tabModeCppt=new DefaultTableModel(null, new String[]{
             "Tgl. CPPT", "Jam CPPT", "Jenis Bagian", "DPJP Konsulen", "Jenis PPA",
             "Nama PPA", "Shift", "hasil", "instruksi", "no_rawat", "tgl_cppt", "jam_cppt"
         }) {
@@ -193,7 +220,6 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         }
         tbCPPT.setDefaultRenderer(Object.class, new WarnaTable());
 
-        TskorNyeri.setDocument(new batasInput((int) 5).getKata(TskorNyeri));
         TCari.setDocument(new batasInput((int) 100).getKata(TCari));
         
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -427,7 +453,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         internalFrame10.add(BtnCetak);
         BtnCetak.setBounds(320, 23, 90, 26);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-07-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-07-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -442,7 +468,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         internalFrame10.add(jLabel49);
         jLabel49.setBounds(185, 25, 30, 23);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-07-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-07-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -627,7 +653,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel30);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -641,7 +667,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         jLabel32.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel32);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -802,7 +828,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         panelGlass7.add(jLabel9);
         jLabel9.setBounds(260, 66, 40, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-07-2025" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-07-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1041,6 +1067,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
 
         TtotSkor.setEditable(false);
         TtotSkor.setForeground(new java.awt.Color(0, 0, 0));
+        TtotSkor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TtotSkor.setName("TtotSkor"); // NOI18N
         panelGlass7.add(TtotSkor);
         TtotSkor.setBounds(460, 374, 55, 23);
@@ -1387,19 +1414,20 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
             hitungSkor();
-//            if (Sequel.menyimpantf("monitoring_ews_dewasa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Monitoring EWS", 24, new String[]{
-//                TNoRw.getText(), TruangRwt.getText(), Valid.SetTgl(Ttgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-//                cmbRespirasi.getSelectedItem().toString(), cmbSaturasi.getSelectedItem().toString(), cmbSuplemen.getSelectedItem().toString(), cmbTensiSistol.getSelectedItem().toString(),
-//                cmbNadi.getSelectedItem().toString(), cmbKesadaran.getSelectedItem().toString(), cmbTempe.getSelectedItem().toString(),
-//                TtotSkor.getText(), Tgds.getText(), TskorNyeri.getText(), Turin.getText(), nip, Sequel.cariIsi("select now()"), TskorRespi.getText(), TskorSatu.getText(),
-//                TskorSuple.getText(), TskorTensiSistol.getText(), TskorNadi.getText(), TskorKesadaran.getText(), TskorTempe.getText()
-//            }) == true) {
-//                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Monitoring Early Warning Score (EWS)", "Simpan");
-//                TCari.setText(TNoRw.getText());
-//                Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
-//                emptTeks();
-//                BtnCariActionPerformed(null);
-//            }
+            if (Sequel.menyimpantf("monitoring_ews_obsgyn", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Monitoring EWS", 29, new String[]{
+                TNoRw.getText(), TruangRwt.getText(), Valid.SetTgl(Ttgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                cmbRespirasi.getSelectedItem().toString(), cmbSaturasi.getSelectedItem().toString(), cmbSuplemen.getSelectedItem().toString(), cmbTempe.getSelectedItem().toString(),
+                cmbTensiSistol.getSelectedItem().toString(), cmbTensiDiastol.getSelectedItem().toString(), cmbNadi.getSelectedItem().toString(), cmbKesadaran.getSelectedItem().toString(), 
+                cmbNyeri.getSelectedItem().toString(), cmbDiscarge.getSelectedItem().toString(), cmbProteinuria.getSelectedItem().toString(), TskorRespi.getText(), TskorSatu.getText(), 
+                TskorSuple.getText(), TskorTempe.getText(), TskorTensiSistol.getText(),TskorTensiDiastol.getText(), TskorNadi.getText(), TskorKesadaran.getText(), TskorNyeri.getText(),
+                TskorDiscarge.getText(), TskorProteinuria.getText(), TtotSkor.getText(), nip, Sequel.cariIsi("select now()")
+            }) == true) {
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Monitoring Early Warning Score (EWS) Obsgyn", "Simpan");
+                TCari.setText(TNoRw.getText());
+                Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
+                emptTeks();
+                BtnCariActionPerformed(null);
+            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -1426,8 +1454,8 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         if (tbEWS.getSelectedRow() > -1) {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
-                if (Sequel.queryu2tf("delete from monitoring_ews_dewasa where waktu_simpan=?", 1, new String[]{
-                    tbEWS.getValueAt(tbEWS.getSelectedRow(), 28).toString()
+                if (Sequel.queryu2tf("delete from monitoring_ews_obsgyn where waktu_simpan=?", 1, new String[]{
+                    tbEWS.getValueAt(tbEWS.getSelectedRow(), 33).toString()
                 }) == true) {
                     TCari.setText(TNoRw.getText());
                     Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
@@ -1443,7 +1471,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
                 BtnCariActionPerformed(null);
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salh satu datanya terlebih dahulu..!!");
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
         }
 }//GEN-LAST:event_BtnHapusActionPerformed
 
@@ -1459,34 +1487,37 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         if (TNoRw.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
-//            if (tbEWS.getSelectedRow() > -1) {
-//                if (Sequel.mengedittf("monitoring_ews_dewasa", "waktu_simpan=?", "tanggal=?, jam=?, laju_respirasi=?, saturasi=?, suplemen=?, "
-//                        + "tensi=?, nadi=?, kesadaran=?, temperatur=?, nilai_skor=?, gds=?, skor_nyeri=?, urin_output=?, nip_perawat=?, skor_respirasi=?, "
-//                        + "skor_saturasi=?, skor_suplemen=?, skor_tensi=?, skor_nadi=?, skor_kesadaran=?, skor_temperatur=?", 22, new String[]{
-//                            Valid.SetTgl(Ttgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-//                            cmbRespirasi.getSelectedItem().toString(), cmbSaturasi.getSelectedItem().toString(), cmbSuplemen.getSelectedItem().toString(), 
-//                            cmbTensiSistol.getSelectedItem().toString(), cmbNadi.getSelectedItem().toString(), cmbKesadaran.getSelectedItem().toString(), 
-//                            cmbTempe.getSelectedItem().toString(), TtotSkor.getText(), Tgds.getText(), TskorNyeri.getText(), Turin.getText(), nip,
-//                            TskorRespi.getText(), TskorSatu.getText(), TskorSuple.getText(), TskorTensiSistol.getText(), TskorNadi.getText(), TskorKesadaran.getText(), 
-//                            TskorTempe.getText(), tbEWS.getValueAt(tbEWS.getSelectedRow(), 28).toString()
-//                        }) == true) {
-//
-//                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Monitoring Early Warning Score (EWS)", "Ganti");
-//                    TCari.setText(TNoRw.getText());
-//                    Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
-//                    emptTeks();
-//                    BtnCariActionPerformed(null);
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
-//            }
+            if (tbEWS.getSelectedRow() > -1) {
+                if (Sequel.mengedittf("monitoring_ews_obsgyn", "waktu_simpan=?", "tanggal=?, jam=?, laju_respirasi=?, saturasi=?, suplemen=?, "
+                        + "temperatur=?, tekanan_darah_sistole=?, tekanan_darah_diastole=?, nadi=?, kesadaran=?, nyeri=?, discharge=?, proteinuria=?, skor_respirasi=?, "
+                        + "skor_saturasi=?, skor_suplemen=?, skor_temperatur=?, skor_tekanan_darah_sistole=?, skor_tekanan_darah_diastole=?, skor_nadi=?, skor_kesadaran=?, "
+                        + "skor_nyeri=?, skor_discharge=?, skor_proteinuria=?, total_skor=?, nip_bidan=?", 27, new String[]{
+                            Valid.SetTgl(Ttgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                            cmbRespirasi.getSelectedItem().toString(), cmbSaturasi.getSelectedItem().toString(), cmbSuplemen.getSelectedItem().toString(),
+                            cmbTempe.getSelectedItem().toString(), cmbTensiSistol.getSelectedItem().toString(), cmbTensiDiastol.getSelectedItem().toString(),
+                            cmbNadi.getSelectedItem().toString(), cmbKesadaran.getSelectedItem().toString(), cmbNyeri.getSelectedItem().toString(),
+                            cmbDiscarge.getSelectedItem().toString(), cmbProteinuria.getSelectedItem().toString(), TskorRespi.getText(), TskorSatu.getText(),
+                            TskorSuple.getText(), TskorTempe.getText(), TskorTensiSistol.getText(), TskorTensiDiastol.getText(), TskorNadi.getText(), TskorKesadaran.getText(),
+                            TskorNyeri.getText(), TskorDiscarge.getText(), TskorProteinuria.getText(), TtotSkor.getText(), nip,
+                            tbEWS.getValueAt(tbEWS.getSelectedRow(), 33).toString()
+                        }) == true) {
+
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Monitoring Early Warning Score (EWS) Obsgyn", "Ganti");
+                    TCari.setText(TNoRw.getText());
+                    Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
+                    emptTeks();
+                    BtnCariActionPerformed(null);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
+            }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
 
     private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEditKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnEditActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, BtnHapus, BtnKeluar);
         }
 }//GEN-LAST:event_BtnEditKeyPressed
@@ -1578,7 +1609,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbJamMouseReleased
 
     private void BtnBidanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBidanActionPerformed
-        akses.setform("RMMonitoringEWSDewasa");
+        akses.setform("RMMonitoringEWSObsgyn");
         petugas.isCek();
         petugas.setSize(983, internalFrame1.getHeight() - 40);
         petugas.setLocationRelativeTo(internalFrame1);
@@ -1806,7 +1837,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
-            akses.setform("RMMonitoringEWSDewasa");
+            akses.setform("RMMonitoringEWSObsgyn");
             DlgHasilPenunjangMedis form = new DlgHasilPenunjangMedis(null, false);
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
@@ -2044,12 +2075,12 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("select me.*, p.no_rkm_medis, p.nm_pasien, date_format(me.tanggal,'%d-%m-%Y') tgl, time_format(me.jam,'%H:%i') jamEws, "
-                    + "pg.nama perawat from monitoring_ews_dewasa me inner join reg_periksa rp on rp.no_rawat=me.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=me.nip_perawat where "
+                    + "pg.nama nmBidan FROM monitoring_ews_obsgyn me INNER JOIN reg_periksa rp ON rp.no_rawat = me.no_rawat "
+                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN pegawai pg ON pg.nik = me.nip_bidan WHERE "
                     + "me.tanggal between ? and ? and me.no_rawat like ? or "
                     + "me.tanggal between ? and ? and p.no_rkm_medis like ? or "
                     + "me.tanggal between ? and ? and p.nm_pasien like ? or "
-                    + "me.tanggal between ? and ? and me.nip_perawat like ? or "
+                    + "me.tanggal between ? and ? and me.nip_bidan like ? or "
                     + "me.tanggal between ? and ? and pg.nama like ? or "
                     + "me.tanggal between ? and ? and me.ruang_rawat like ? or "
                     + "me.tanggal between ? and ? and me.kesadaran like ? order by me.tanggal desc, me.jam desc");
@@ -2083,29 +2114,34 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
                         rs.getString("nm_pasien"),
                         rs.getString("ruang_rawat"),
                         rs.getString("tgl"),
-                        rs.getString("jamEws"),
+                        rs.getString("jamEws"),                        
                         rs.getString("laju_respirasi"),
                         rs.getString("skor_respirasi"),
                         rs.getString("saturasi"),
                         rs.getString("skor_saturasi"),
                         rs.getString("suplemen"),
                         rs.getString("skor_suplemen"),
-                        rs.getString("tensi"),
-                        rs.getString("skor_tensi"),
+                        rs.getString("temperatur"),
+                        rs.getString("skor_temperatur"),                        
+                        rs.getString("tekanan_darah_sistole"),
+                        rs.getString("skor_tekanan_darah_sistole"),
+                        rs.getString("tekanan_darah_diastole"),
+                        rs.getString("skor_tekanan_darah_diastole"),                        
                         rs.getString("nadi"),
-                        rs.getString("skor_nadi"),
+                        rs.getString("skor_nadi"),                        
                         rs.getString("kesadaran"),
                         rs.getString("skor_kesadaran"),
-                        rs.getString("temperatur"),
-                        rs.getString("skor_temperatur"),
-                        rs.getString("nilai_skor"),
-                        rs.getString("gds"),
+                        rs.getString("nyeri"),
                         rs.getString("skor_nyeri"),
-                        rs.getString("urin_output"),
-                        rs.getString("perawat"),
+                        rs.getString("discharge"),
+                        rs.getString("skor_discharge"),
+                        rs.getString("proteinuria"),
+                        rs.getString("skor_proteinuria"),                        
+                        rs.getString("total_skor"),
+                        rs.getString("nmBidan"),
                         rs.getString("tanggal"),
                         rs.getString("jam"),
-                        rs.getString("nip_perawat"),
+                        rs.getString("nip_bidan"),
                         rs.getString("waktu_simpan")
                     });
                 }
@@ -2172,38 +2208,45 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         hitungSkor();
         TskorNyeri.setText("");
         chkSaya.setSelected(false);
-        TabSkor.setSelectedIndex(1);
+        TabSkor.setSelectedIndex(0);
     }
 
     private void getData() {
         nip = "";
         if (tbEWS.getSelectedRow() != -1) {
-            TNoRw.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),0).toString());
-            TNoRm.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),1).toString());
-            TPasien.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),2).toString());
-            TruangRwt.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),3).toString());
-            Valid.SetTgl(Ttgl, tbEWS.getValueAt(tbEWS.getSelectedRow(),25).toString());
-            cmbJam.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),26).toString().substring(0, 2));
-            cmbMnt.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),26).toString().substring(3, 5));
-            cmbDtk.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),26).toString().substring(6, 8));
-            cmbRespirasi.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),6).toString());
-            TskorRespi.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),7).toString());
-            cmbSaturasi.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),8).toString());
-            TskorSatu.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),9).toString());
-            cmbSuplemen.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),10).toString());
-            TskorSuple.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),11).toString());
-            cmbTensiSistol.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),12).toString());
-            TskorTensiSistol.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),13).toString());
-            cmbNadi.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),14).toString());
-            TskorNadi.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),15).toString());
-            cmbKesadaran.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),16).toString());
-            TskorKesadaran.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),17).toString());
-            cmbTempe.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),18).toString());
-            TskorTempe.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),19).toString());
-            TtotSkor.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),20).toString());
-            TskorNyeri.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),22).toString());
-            nip = tbEWS.getValueAt(tbEWS.getSelectedRow(),27).toString();
-            TnmBidan.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),24).toString());
+            TNoRw.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 0).toString());
+            TNoRm.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 1).toString());
+            TPasien.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 2).toString());
+            TruangRwt.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 3).toString());
+            Valid.SetTgl(Ttgl, tbEWS.getValueAt(tbEWS.getSelectedRow(), 30).toString());
+            cmbJam.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 31).toString().substring(0, 2));
+            cmbMnt.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 31).toString().substring(3, 5));
+            cmbDtk.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 31).toString().substring(6, 8));
+            cmbRespirasi.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 6).toString());
+            TskorRespi.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 7).toString());
+            cmbSaturasi.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 8).toString());
+            TskorSatu.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 9).toString());
+            cmbSuplemen.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 10).toString());
+            TskorSuple.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 11).toString());
+            cmbTempe.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 12).toString());
+            TskorTempe.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 13).toString());
+            cmbTensiSistol.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 14).toString());
+            TskorTensiSistol.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 15).toString());
+            cmbTensiDiastol.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 16).toString());
+            TskorTensiDiastol.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 17).toString());
+            cmbNadi.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 18).toString());
+            TskorNadi.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 19).toString());
+            cmbKesadaran.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 20).toString());
+            TskorKesadaran.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 21).toString());
+            cmbNyeri.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 22).toString());
+            TskorNyeri.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 23).toString());
+            cmbDiscarge.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 24).toString());
+            TskorDiscarge.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 25).toString());
+            cmbProteinuria.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(), 26).toString());
+            TskorProteinuria.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 27).toString());
+            TtotSkor.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 28).toString());
+            nip = tbEWS.getValueAt(tbEWS.getSelectedRow(), 32).toString();
+            TnmBidan.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(), 29).toString());
         }
     }
     
@@ -2292,8 +2335,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
                         rscppt.getString("tgl_cppt"),
                         rscppt.getString("jam_cppt")
                     });
-                }
-                this.setCursor(Cursor.getDefaultCursor());
+                }                
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {

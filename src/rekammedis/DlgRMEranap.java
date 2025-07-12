@@ -137,6 +137,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnPengelolaanTranfusiDarah = new widget.ButtonBig();
         BtnMonitoringEWSdewasa = new widget.ButtonBig();
         BtnMonitoringPEWSanak = new widget.ButtonBig();
+        BtnMonitoringEWSobsgyn = new widget.ButtonBig();
         BtnScoreApgarPerinatologi = new widget.ButtonBig();
         BtnPengamatanMenyusui = new widget.ButtonBig();
         BtnSerahTerimaBayiPulang = new widget.ButtonBig();
@@ -603,6 +604,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnMonitoringPEWSanak);
+
+        BtnMonitoringEWSobsgyn.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMonitoringEWSobsgyn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940.png"))); // NOI18N
+        BtnMonitoringEWSobsgyn.setText("Monitoring EWS Obsgyn");
+        BtnMonitoringEWSobsgyn.setIconTextGap(0);
+        BtnMonitoringEWSobsgyn.setName("BtnMonitoringEWSobsgyn"); // NOI18N
+        BtnMonitoringEWSobsgyn.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMonitoringEWSobsgyn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMonitoringEWSobsgynActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnMonitoringEWSobsgyn);
 
         BtnScoreApgarPerinatologi.setForeground(new java.awt.Color(0, 0, 0));
         BtnScoreApgarPerinatologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/score_icon.png"))); // NOI18N
@@ -1892,6 +1906,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnTriasePonekActionPerformed
 
+    private void BtnMonitoringEWSobsgynActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMonitoringEWSobsgynActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            if (Sequel.cariInteger("select count(-1) from pasien where no_rkm_medis='" + TNoRM.getText() + "' and jk='P'") > 0) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                RMMonitoringEWSObsgyn form = new RMMonitoringEWSObsgyn(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, Monitoring Early Warning Score (EWS) Obsgyn hanya untuk pasien perempuan...!!!");
+            }
+        }
+    }//GEN-LAST:event_BtnMonitoringEWSobsgynActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1940,6 +1975,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnLembarObservasi;
     private widget.ButtonBig BtnMonevAsuhanGizi;
     private widget.ButtonBig BtnMonitoringEWSdewasa;
+    private widget.ButtonBig BtnMonitoringEWSobsgyn;
     private widget.ButtonBig BtnMonitoringPEWSanak;
     private widget.ButtonBig BtnObservasiRestrain;
     private widget.ButtonBig BtnPantauHarianPasien;
@@ -2013,6 +2049,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnPengelolaanTranfusiDarah.setEnabled(akses.getcppt());
         BtnMonitoringEWSdewasa.setEnabled(akses.getcppt());
         BtnMonitoringPEWSanak.setEnabled(akses.getcppt());
+        BtnMonitoringEWSobsgyn.setEnabled(akses.getcppt());
         BtnTransferSerahTerima.setEnabled(akses.getpemberian_obat());
         BtnPersetujuanTindakan.setEnabled(akses.getpemberian_obat());
         BtnSkriningUlangGizi.setEnabled(akses.getassesmen_gizi_harian());
@@ -2228,6 +2265,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
         } else {
             BtnAsesmenUlangGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
             BtnAsesmenUlangGizi.setToolTipText("Asesmen Ulang Gizi Pasien SUDAH diisi oleh petugas..!!!");
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from monitoring_ews_obsgyn where no_rawat='" + norawat + "' and tanggal=date(now())") == 0) {
+            BtnMonitoringEWSobsgyn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940.png")));
+            BtnMonitoringEWSobsgyn.setToolTipText("Monitoring EWS Obsgyn BELUM diisi oleh petugas..!!!");
+        } else {
+            BtnMonitoringEWSobsgyn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940_biru.png")));
+            BtnMonitoringEWSobsgyn.setToolTipText("Monitoring EWS Obsgyn SUDAH diisi oleh petugas..!!!");
         }
     }
 }

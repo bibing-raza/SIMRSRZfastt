@@ -389,6 +389,7 @@ import java.net.InetAddress;
 import laporan.DlgQuerySql;
 import rekammedis.DlgHistoriIPAddressPetugasERM;
 import rekammedis.RMAsesmenKeperawatanPerinatologi;
+import rekammedis.RMMonitoringEWSObsgyn;
 import rekammedis.RMPemberianInformasiEdukasi;
 import rekammedis.RMPengamatanMenyusui;
 import rekammedis.RMRekonsiliasiObat;
@@ -926,6 +927,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnPemberianInformasiEdukasi = new widget.ButtonBig();
         btnTriasePonek = new widget.ButtonBig();
         btnStatusKakiDiabetes = new widget.ButtonBig();
+        btnMonitoringEWSObsgyn = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6312,6 +6314,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnStatusKakiDiabetes);
 
+        btnMonitoringEWSObsgyn.setForeground(new java.awt.Color(0, 0, 0));
+        btnMonitoringEWSObsgyn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940.png"))); // NOI18N
+        btnMonitoringEWSObsgyn.setText("Monitoring EWS Obsgyn");
+        btnMonitoringEWSObsgyn.setIconTextGap(0);
+        btnMonitoringEWSObsgyn.setName("btnMonitoringEWSObsgyn"); // NOI18N
+        btnMonitoringEWSObsgyn.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMonitoringEWSObsgyn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMonitoringEWSObsgynActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnMonitoringEWSObsgyn);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6320,7 +6335,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20/06/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/07/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12442,6 +12457,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnStatusKakiDiabetesActionPerformed
 
+    private void btnMonitoringEWSObsgynActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitoringEWSObsgynActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMMonitoringEWSObsgyn aplikasi = new RMMonitoringEWSObsgyn(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnMonitoringEWSObsgynActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12700,6 +12728,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnMerkInventaris;
     private widget.ButtonBig btnMonevAsuhanGizi;
     private widget.ButtonBig btnMonitoringEWSDewasa;
+    private widget.ButtonBig btnMonitoringEWSObsgyn;
     private widget.ButtonBig btnMonitoringKlaimBPJS;
     private widget.ButtonBig btnMonitoringPediatricEWS;
     private widget.ButtonBig btnMutasiBarang;
@@ -13348,6 +13377,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getcppt()== true) {
                 Panelmenu.add(btnMonitoringPediatricEWS);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt()== true) {
+                Panelmenu.add(btnMonitoringEWSObsgyn);
                 jmlmenu++;
             }
             
@@ -15207,6 +15241,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getcppt() == true) {
             Panelmenu.add(btnMonitoringPediatricEWS);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnMonitoringEWSObsgyn);
             jmlmenu++;
         }
         
@@ -17253,6 +17292,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getcppt()== true) {
             if (btnMonitoringPediatricEWS.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnMonitoringPediatricEWS);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnMonitoringEWSObsgyn.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnMonitoringEWSObsgyn);
                 jmlmenu++;
             }
         }

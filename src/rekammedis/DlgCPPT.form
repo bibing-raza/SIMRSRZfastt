@@ -1969,7 +1969,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="11-07-2025"/>
+                        <StringItem index="0" value="12-07-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2005,7 +2005,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="11-07-2025"/>
+                        <StringItem index="0" value="12-07-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2856,7 +2856,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="11-07-2025"/>
+                            <StringItem index="0" value="12-07-2025"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3295,7 +3295,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="11-07-2025"/>
+                            <StringItem index="0" value="12-07-2025"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3323,7 +3323,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="11-07-2025"/>
+                            <StringItem index="0" value="12-07-2025"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3694,7 +3694,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="11-07-2025"/>
+                        <StringItem index="0" value="12-07-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3722,7 +3722,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="11-07-2025"/>
+                        <StringItem index="0" value="12-07-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -4878,7 +4878,7 @@
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
-                                    <StringItem index="0" value="11-07-2025"/>
+                                    <StringItem index="0" value="12-07-2025"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -6767,7 +6767,7 @@
                                                     <Property name="editable" type="boolean" value="false"/>
                                                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                                       <StringArray count="1">
-                                                        <StringItem index="0" value="11-07-2025"/>
+                                                        <StringItem index="0" value="12-07-2025"/>
                                                       </StringArray>
                                                     </Property>
                                                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7020,7 +7020,7 @@
                                                     <Property name="editable" type="boolean" value="false"/>
                                                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                                       <StringArray count="1">
-                                                        <StringItem index="0" value="11-07-2025"/>
+                                                        <StringItem index="0" value="12-07-2025"/>
                                                       </StringArray>
                                                     </Property>
                                                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7941,7 +7941,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="11-07-2025"/>
+                                <StringItem index="0" value="12-07-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7969,7 +7969,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="11-07-2025"/>
+                                <StringItem index="0" value="12-07-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -9619,8 +9619,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
                     <Property name="alignment" type="int" value="0"/>
-                    <Property name="horizontalGap" type="int" value="8"/>
-                    <Property name="verticalGap" type="int" value="12"/>
+                    <Property name="verticalGap" type="int" value="9"/>
                   </Layout>
                   <SubComponents>
                     <Component class="widget.CekBox" name="ChkDokumen">
@@ -9646,7 +9645,7 @@
                         <Property name="name" type="java.lang.String" value="ChkDokumen" noResource="true"/>
                         <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[210, 23]"/>
+                          <Dimension value="[210, 30]"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -9669,7 +9668,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Alt+U"/>
                         <Property name="name" type="java.lang.String" value="BtnUpload" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[140, 23]"/>
+                          <Dimension value="[140, 30]"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -9689,7 +9688,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Alt+H"/>
                         <Property name="name" type="java.lang.String" value="BtnHapus3" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[140, 23]"/>
+                          <Dimension value="[140, 30]"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -9709,7 +9708,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Alt+1"/>
                         <Property name="name" type="java.lang.String" value="BtnCari6" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[130, 23]"/>
+                          <Dimension value="[130, 30]"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -9730,7 +9729,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Alt+V"/>
                         <Property name="name" type="java.lang.String" value="BtnVerif4" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[110, 23]"/>
+                          <Dimension value="[110, 30]"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -9750,7 +9749,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Alt+N"/>
                         <Property name="name" type="java.lang.String" value="BtnNotepad5" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[100, 23]"/>
+                          <Dimension value="[100, 30]"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -9770,7 +9769,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Alt+R"/>
                         <Property name="name" type="java.lang.String" value="BtnResep5" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[130, 23]"/>
+                          <Dimension value="[130, 30]"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -9810,7 +9809,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Alt+K"/>
                         <Property name="name" type="java.lang.String" value="BtnKeluar7" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[100, 23]"/>
+                          <Dimension value="[100, 30]"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -10136,7 +10135,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="11-07-2025"/>
+                                <StringItem index="0" value="12-07-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -10164,7 +10163,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="11-07-2025"/>
+                                <StringItem index="0" value="12-07-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
