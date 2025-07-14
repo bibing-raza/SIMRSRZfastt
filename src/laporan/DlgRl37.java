@@ -103,7 +103,7 @@ public final class DlgRl37 extends javax.swing.JDialog {
                     + "SUM(CASE WHEN rp.kd_pj = 'B01' THEN 1 ELSE 0 END) jlh_bpjs, SUM(CASE WHEN rp.kd_pj NOT IN ('U01', 'B01') THEN 1 ELSE 0 END) jlh_lainnya, "
                     + "count(jpr.nm_perawatan) total FROM periksa_radiologi pr INNER JOIN jns_perawatan_radiologi jpr ON pr.kd_jenis_prw = jpr.kd_jenis_prw "
                     + "INNER JOIN reg_periksa rp on rp.no_rawat=pr.no_rawat INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj "
-                    + "where pr.tgl_periksa between ? and ? and jpr.nm_perawatan like ? GROUP BY jpr.nm_perawatan, rp.kd_pj ORDER BY jpr.nm_perawatan");
+                    + "where pr.tgl_periksa between ? and ? and jpr.nm_perawatan like ? GROUP BY jpr.nm_perawatan ORDER BY jpr.nm_perawatan");
         } catch (Exception e) {
             System.out.println(e);
         }
