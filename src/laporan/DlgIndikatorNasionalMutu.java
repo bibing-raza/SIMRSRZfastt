@@ -24,6 +24,7 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -55,6 +56,9 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     public DlgIndikatorNasionalMutu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         tabMode = new DefaultTableModel(null, new String[]{
             "Ruangan", "No.", "Indikator", "Jenis Indikator", "Kalimat Deskripsi", "Tgl. 1", "Tgl. 2", "Tgl. 3", "Tgl. 4", "Tgl. 5", "Tgl. 6", "Tgl. 7", "Tgl. 8", "Tgl. 9", "Tgl. 10",
@@ -159,6 +163,40 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             }
         }
         tbIndikator.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbIndikator.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(11).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(12).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(13).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(14).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(15).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(16).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(17).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(18).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(19).setCellRenderer(centerRenderer);        
+        tbIndikator.getColumnModel().getColumn(20).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(21).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(22).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(23).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(24).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(25).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(26).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(27).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(28).setCellRenderer(centerRenderer);        
+        tbIndikator.getColumnModel().getColumn(29).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(30).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(31).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(32).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(33).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(34).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(35).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(36).setCellRenderer(centerRenderer);
         
         tabMode1 = new DefaultTableModel(null, new Object[]{
             "Cek", "Tgl. Dilaporkan", "Jumlah Dilaporkan", "tgl_catat"
@@ -198,6 +236,9 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             } 
         }
         tbHapus.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbHapus.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbHapus.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         
         tabMode2 = new DefaultTableModel(null, new String[]{
             "Tgl. Dilaporkan", "Jumlah Dilaporkan", "tgl_catat"
@@ -223,6 +264,9 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             }
         }
         tbGanti.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbGanti.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbGanti.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
         
         tabMode3 = new DefaultTableModel(null, new String[]{
             "kode", "Jenis Indikator", "Kalimat Deskripsi"

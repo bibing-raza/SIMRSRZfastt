@@ -794,6 +794,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         MnCetakRingkasan = new javax.swing.JMenuItem();
         MnGantiDokterSimpan = new javax.swing.JMenuItem();
         MnRiwayatData = new javax.swing.JMenuItem();
+        MnBersihkanStringSampah = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnHapusDipilih = new javax.swing.JMenuItem();
         MnHapusSemua = new javax.swing.JMenuItem();
@@ -1309,6 +1310,21 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnRiwayatData);
+
+        MnBersihkanStringSampah.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnBersihkanStringSampah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnBersihkanStringSampah.setText("Bersihkan String Sampah");
+        MnBersihkanStringSampah.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnBersihkanStringSampah.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnBersihkanStringSampah.setIconTextGap(5);
+        MnBersihkanStringSampah.setName("MnBersihkanStringSampah"); // NOI18N
+        MnBersihkanStringSampah.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnBersihkanStringSampah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnBersihkanStringSampahActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnBersihkanStringSampah);
 
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
 
@@ -2033,7 +2049,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel101.setPreferredSize(new java.awt.Dimension(90, 23));
         internalFrame17.add(jLabel101);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2047,7 +2063,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel102.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel102);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2789,7 +2805,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -4146,7 +4162,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         });
         panelGlass26.add(ChkTanggal);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -4160,7 +4176,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel74.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass26.add(jLabel74);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -6152,6 +6168,18 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         WindowRiwayat.setVisible(true);
     }//GEN-LAST:event_MnRiwayatDataActionPerformed
 
+    private void MnBersihkanStringSampahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBersihkanStringSampahActionPerformed
+        x = JOptionPane.showConfirmDialog(rootPane, "Apakah string sampah ini (\\\\\\\\,\\\\,false) akan dibersihkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            Sequel.queryu("UPDATE ringkasan_pulang_ranap SET pemeriksaan_penunjang = REPLACE(pemeriksaan_penunjang, 'false', ' ') WHERE pemeriksaan_penunjang LIKE '%false%'");
+            Sequel.queryu("UPDATE ringkasan_pulang_ranap SET pemeriksaan_penunjang = REPLACE(pemeriksaan_penunjang, '\\\\''', ' ') WHERE pemeriksaan_penunjang LIKE '%\\\\''%'");
+            Sequel.queryu("UPDATE ringkasan_pulang_ranap_histori SET pemeriksaan_penunjang = REPLACE(pemeriksaan_penunjang, 'false', ' ') WHERE pemeriksaan_penunjang LIKE '%false%'");
+            Sequel.queryu("UPDATE ringkasan_pulang_ranap_histori SET pemeriksaan_penunjang = REPLACE(pemeriksaan_penunjang, '\\\\''', ' ') WHERE pemeriksaan_penunjang LIKE '%\\\\''%'");
+            
+            JOptionPane.showMessageDialog(null, "Proses selesai, affected row bisa dicek dikotak hitam/terminal/console...!");
+        }
+    }//GEN-LAST:event_MnBersihkanStringSampahActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -6249,6 +6277,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnAsesmenKeperawatanIGD;
     private javax.swing.JMenuItem MnAsesmenMedikIGD;
     private javax.swing.JMenuItem MnAsesmenMedikObstetriIGD;
+    private javax.swing.JMenuItem MnBersihkanStringSampah;
     private javax.swing.JMenuItem MnCetakRingkasan;
     private javax.swing.JMenuItem MnDiagnosa;
     private javax.swing.JMenuItem MnDokumenJangMed;
@@ -6520,7 +6549,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Table tbRiwayat;
     // End of variables declaration//GEN-END:variables
 
-    public void tampil() {     
+    public void tampil() {
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT rr.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgl_lhr, IF(p.jk='L','Laki-laki','Perempuan') jk, "
@@ -6831,6 +6860,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         BtnHapus.setEnabled(akses.getringkasanpulangranap());
         BtnGanti.setEnabled(akses.getringkasanpulangranap());
         MnRiwayatData.setEnabled(akses.getadmin());
+        MnBersihkanStringSampah.setEnabled(akses.getadmin());
     }
     
     private void cetakDataTriase() {

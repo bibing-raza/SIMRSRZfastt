@@ -834,6 +834,8 @@ public final class sekuel {
             ps = connect.prepareStatement(qry);
             try {
                 ps.executeUpdate();
+                int totalBerhasil = ps.executeUpdate();
+                System.out.println("Affected rows : " + totalBerhasil);
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
                 JOptionPane.showMessageDialog(null, "Maaf, Query tidak bisa dijalankan...!!!!");
