@@ -57,7 +57,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private Date date = new Date();
     private String now = dateFormat.format(date), status = "", penjab = "", nmPrinter1 = "", nmPrinter2 = "",
-            kodeobat = "", tglrsp = "", jamrsp = "", kdUnit = "", programPRB = "", resepObatKronis = "";
+            kodeobat = "", tglrsp = "", jamrsp = "", kdUnit = "", programPRB = "", resepObatKronis = "", ukuranLabel = "";
     private double total = 0, jumlahtotal = 0;
     private int i = 0, conteng = 0, x = 0;
 
@@ -253,8 +253,10 @@ public final class DlgResepObat extends javax.swing.JDialog {
         MnSemuanya = new javax.swing.JMenuItem();
         MnHilangkan = new javax.swing.JMenuItem();
         MnAturanPakai = new javax.swing.JMenuItem();
-        ppLabelObatMinum = new javax.swing.JMenuItem();
-        ppLabelObatLuar = new javax.swing.JMenuItem();
+        ppLabelObatMinumKecil = new javax.swing.JMenuItem();
+        ppLabelObatMinumBesar = new javax.swing.JMenuItem();
+        ppLabelObatLuarKecil = new javax.swing.JMenuItem();
+        ppLabelObatLuarBesar = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         PanelInput = new javax.swing.JPanel();
         FormInput = new widget.PanelBiasa();
@@ -373,7 +375,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         MnSemuanya.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnSemuanya.setIconTextGap(8);
         MnSemuanya.setName("MnSemuanya"); // NOI18N
-        MnSemuanya.setPreferredSize(new java.awt.Dimension(200, 25));
+        MnSemuanya.setPreferredSize(new java.awt.Dimension(285, 25));
         MnSemuanya.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSemuanyaActionPerformed(evt);
@@ -388,7 +390,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         MnHilangkan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnHilangkan.setIconTextGap(8);
         MnHilangkan.setName("MnHilangkan"); // NOI18N
-        MnHilangkan.setPreferredSize(new java.awt.Dimension(200, 25));
+        MnHilangkan.setPreferredSize(new java.awt.Dimension(285, 25));
         MnHilangkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnHilangkanActionPerformed(evt);
@@ -403,7 +405,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         MnAturanPakai.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnAturanPakai.setIconTextGap(8);
         MnAturanPakai.setName("MnAturanPakai"); // NOI18N
-        MnAturanPakai.setPreferredSize(new java.awt.Dimension(200, 25));
+        MnAturanPakai.setPreferredSize(new java.awt.Dimension(285, 25));
         MnAturanPakai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnAturanPakaiActionPerformed(evt);
@@ -411,35 +413,65 @@ public final class DlgResepObat extends javax.swing.JDialog {
         });
         Popup2.add(MnAturanPakai);
 
-        ppLabelObatMinum.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppLabelObatMinum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        ppLabelObatMinum.setText("Cetak Aturan Pakai Obat Minum");
-        ppLabelObatMinum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ppLabelObatMinum.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ppLabelObatMinum.setIconTextGap(8);
-        ppLabelObatMinum.setName("ppLabelObatMinum"); // NOI18N
-        ppLabelObatMinum.setPreferredSize(new java.awt.Dimension(200, 25));
-        ppLabelObatMinum.addActionListener(new java.awt.event.ActionListener() {
+        ppLabelObatMinumKecil.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppLabelObatMinumKecil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        ppLabelObatMinumKecil.setText("Cetak Aturan Pakai Obat Minum (Label KECIL)");
+        ppLabelObatMinumKecil.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppLabelObatMinumKecil.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppLabelObatMinumKecil.setIconTextGap(8);
+        ppLabelObatMinumKecil.setName("ppLabelObatMinumKecil"); // NOI18N
+        ppLabelObatMinumKecil.setPreferredSize(new java.awt.Dimension(285, 25));
+        ppLabelObatMinumKecil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ppLabelObatMinumActionPerformed(evt);
+                ppLabelObatMinumKecilActionPerformed(evt);
             }
         });
-        Popup2.add(ppLabelObatMinum);
+        Popup2.add(ppLabelObatMinumKecil);
 
-        ppLabelObatLuar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppLabelObatLuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        ppLabelObatLuar.setText("Cetak Aturan Pakai Obat Luar");
-        ppLabelObatLuar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ppLabelObatLuar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ppLabelObatLuar.setIconTextGap(8);
-        ppLabelObatLuar.setName("ppLabelObatLuar"); // NOI18N
-        ppLabelObatLuar.setPreferredSize(new java.awt.Dimension(200, 25));
-        ppLabelObatLuar.addActionListener(new java.awt.event.ActionListener() {
+        ppLabelObatMinumBesar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppLabelObatMinumBesar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        ppLabelObatMinumBesar.setText("Cetak Aturan Pakai Obat Minum (Label BESAR)");
+        ppLabelObatMinumBesar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppLabelObatMinumBesar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppLabelObatMinumBesar.setIconTextGap(8);
+        ppLabelObatMinumBesar.setName("ppLabelObatMinumBesar"); // NOI18N
+        ppLabelObatMinumBesar.setPreferredSize(new java.awt.Dimension(285, 25));
+        ppLabelObatMinumBesar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ppLabelObatLuarActionPerformed(evt);
+                ppLabelObatMinumBesarActionPerformed(evt);
             }
         });
-        Popup2.add(ppLabelObatLuar);
+        Popup2.add(ppLabelObatMinumBesar);
+
+        ppLabelObatLuarKecil.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppLabelObatLuarKecil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        ppLabelObatLuarKecil.setText("Cetak Aturan Pakai Obat Luar (Label KECIL)");
+        ppLabelObatLuarKecil.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppLabelObatLuarKecil.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppLabelObatLuarKecil.setIconTextGap(8);
+        ppLabelObatLuarKecil.setName("ppLabelObatLuarKecil"); // NOI18N
+        ppLabelObatLuarKecil.setPreferredSize(new java.awt.Dimension(285, 25));
+        ppLabelObatLuarKecil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppLabelObatLuarKecilActionPerformed(evt);
+            }
+        });
+        Popup2.add(ppLabelObatLuarKecil);
+
+        ppLabelObatLuarBesar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppLabelObatLuarBesar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        ppLabelObatLuarBesar.setText("Cetak Aturan Pakai Obat Luar (Label BESAR)");
+        ppLabelObatLuarBesar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppLabelObatLuarBesar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppLabelObatLuarBesar.setIconTextGap(8);
+        ppLabelObatLuarBesar.setName("ppLabelObatLuarBesar"); // NOI18N
+        ppLabelObatLuarBesar.setPreferredSize(new java.awt.Dimension(285, 25));
+        ppLabelObatLuarBesar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppLabelObatLuarBesarActionPerformed(evt);
+            }
+        });
+        Popup2.add(ppLabelObatLuarBesar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -535,7 +567,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         jLabel8.setBounds(0, 42, 95, 23);
 
         DTPBeri.setEditable(false);
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-07-2025" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);
@@ -830,7 +862,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -845,7 +877,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -898,11 +930,6 @@ public final class DlgResepObat extends javax.swing.JDialog {
         TTotalResep.setForeground(new java.awt.Color(0, 0, 0));
         TTotalResep.setName("TTotalResep"); // NOI18N
         TTotalResep.setPreferredSize(new java.awt.Dimension(50, 23));
-        TTotalResep.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TTotalResepKeyPressed(evt);
-            }
-        });
         panelGlass9.add(TTotalResep);
 
         jPanel3.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
@@ -1233,15 +1260,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
     }//GEN-LAST:event_TKamarInapKeyPressed
 
-    private void TTotalResepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TTotalResepKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TTotalResepKeyPressed
-
-    private void ppLabelObatLuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppLabelObatLuarActionPerformed
+    private void ppLabelObatLuarKecilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppLabelObatLuarKecilActionPerformed
         if (tabMode2.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, Item obat yang diresepkan belum ada...!!!!");
             tbResep.requestFocus();
         } else {
+            ukuranLabel = "";
+            ukuranLabel = "kecil";
             for (i = 0; i < tbItemObat.getRowCount(); i++) {
                 if (tbItemObat.getValueAt(i, 0).toString().equals("true")) {
                     cetakLabelLuar();
@@ -1255,13 +1280,15 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 }
             }
         }
-    }//GEN-LAST:event_ppLabelObatLuarActionPerformed
+    }//GEN-LAST:event_ppLabelObatLuarKecilActionPerformed
 
-    private void ppLabelObatMinumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppLabelObatMinumActionPerformed
+    private void ppLabelObatMinumKecilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppLabelObatMinumKecilActionPerformed
         if (tabMode2.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, Item obat yang diresepkan belum ada...!!!!");
             tbResep.requestFocus();
         } else {
+            ukuranLabel = "";
+            ukuranLabel = "kecil";
             for (i = 0; i < tbItemObat.getRowCount(); i++) {
                 if (tbItemObat.getValueAt(i, 0).toString().equals("true")) {
                     cetakLabelMinum();
@@ -1275,7 +1302,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 }
             }
         }
-    }//GEN-LAST:event_ppLabelObatMinumActionPerformed
+    }//GEN-LAST:event_ppLabelObatMinumKecilActionPerformed
 
     private void MnSemuanyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSemuanyaActionPerformed
         if (tabMode2.getRowCount() == 0) {
@@ -1395,6 +1422,50 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_ppBatalResepObatKronisActionPerformed
 
+    private void ppLabelObatMinumBesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppLabelObatMinumBesarActionPerformed
+        if (tabMode2.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, Item obat yang diresepkan belum ada...!!!!");
+            tbResep.requestFocus();
+        } else {
+            ukuranLabel = "";
+            ukuranLabel = "besar";
+            for (i = 0; i < tbItemObat.getRowCount(); i++) {
+                if (tbItemObat.getValueAt(i, 0).toString().equals("true")) {
+                    cetakLabelMinum();
+                }
+            }
+
+            tampilObat();
+            for (i = 0; i < tbItemObat.getRowCount(); i++) {
+                if (tbItemObat.getValueAt(i, 1).equals(TNoRw.getText())) {
+                    tbItemObat.setValueAt(Boolean.FALSE, i, 0);
+                }
+            }
+        }
+    }//GEN-LAST:event_ppLabelObatMinumBesarActionPerformed
+
+    private void ppLabelObatLuarBesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppLabelObatLuarBesarActionPerformed
+        if (tabMode2.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, Item obat yang diresepkan belum ada...!!!!");
+            tbResep.requestFocus();
+        } else {
+            ukuranLabel = "";
+            ukuranLabel = "besar";
+            for (i = 0; i < tbItemObat.getRowCount(); i++) {
+                if (tbItemObat.getValueAt(i, 0).toString().equals("true")) {
+                    cetakLabelLuar();
+                }
+            }
+
+            tampilObat();
+            for (i = 0; i < tbItemObat.getRowCount(); i++) {
+                if (tbItemObat.getValueAt(i, 1).equals(TNoRw.getText())) {
+                    tbItemObat.setValueAt(Boolean.FALSE, i, 0);
+                }
+            }
+        }
+    }//GEN-LAST:event_ppLabelObatLuarBesarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1463,8 +1534,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.panelisi panelGlass9;
     private javax.swing.JMenuItem ppBatalResepObatKronis;
     private javax.swing.JMenuItem ppBilResep;
-    private javax.swing.JMenuItem ppLabelObatLuar;
-    private javax.swing.JMenuItem ppLabelObatMinum;
+    private javax.swing.JMenuItem ppLabelObatLuarBesar;
+    private javax.swing.JMenuItem ppLabelObatLuarKecil;
+    private javax.swing.JMenuItem ppLabelObatMinumBesar;
+    private javax.swing.JMenuItem ppLabelObatMinumKecil;
     private javax.swing.JMenuItem ppRekapResep;
     private javax.swing.JMenuItem ppSimpanResepObatKronis;
     private widget.Table tbItemObat;
@@ -1715,25 +1788,49 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         param.put("propinsirs", akses.getpropinsirs());
         param.put("logo", Sequel.cariGambar("select logo_hitam_putih from setting"));
         param.put("jns_label", "");
-//        Valid.MyReport("rptAturanPakai.jasper", "report", "::[ Labeling Obat Minum ]::",
-//                "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
-//                + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
-//                + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
-//                + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-//                + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
-//                + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
-//                + "ap.tgl_perawatan='" + tbItemObat.getValueAt(i, 13).toString() + "' and "
-//                + "ap.jam='" + tbItemObat.getValueAt(i, 14).toString() + "'", param);
-        
-        Valid.AutoPrintMulti("rptAturanPakai.jasper", "report", "::[ Labeling Obat Minum ]::",
-                "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
-                + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
-                + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
-                + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
-                + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
-                + "ap.tgl_perawatan='" + tbItemObat.getValueAt(i, 13).toString() + "' and "
-                + "ap.jam='" + tbItemObat.getValueAt(i, 14).toString() + "'", param, nmPrinter1);
+
+        if (ukuranLabel.equals("kecil")) {
+//            Valid.MyReport("rptAturanPakai.jasper", "report", "::[ Labeling Obat Minum ]::",
+//                    "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
+//                    + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
+//                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+//                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+//                    + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
+//                    + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
+//                    + "ap.tgl_perawatan='" + tbItemObat.getValueAt(i, 13).toString() + "' and "
+//                    + "ap.jam='" + tbItemObat.getValueAt(i, 14).toString() + "'", param);
+
+            Valid.AutoPrintMulti("rptAturanPakai.jasper", "report", "::[ Labeling Obat Minum ]::",
+                    "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
+                    + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
+                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+                    + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
+                    + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
+                    + "ap.tgl_perawatan='" + tbItemObat.getValueAt(i, 13).toString() + "' and "
+                    + "ap.jam='" + tbItemObat.getValueAt(i, 14).toString() + "'", param, nmPrinter1);
+
+        } else if (ukuranLabel.equals("besar")) {
+//            Valid.MyReport("rptAturanPakai8x6koma5cm.jasper", "report", "::[ Labeling Obat Minum ]::",
+//                    "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
+//                    + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
+//                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+//                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+//                    + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
+//                    + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
+//                    + "ap.tgl_perawatan='" + tbItemObat.getValueAt(i, 13).toString() + "' and "
+//                    + "ap.jam='" + tbItemObat.getValueAt(i, 14).toString() + "'", param);
+
+            Valid.AutoPrintMulti("rptAturanPakai8x6koma5cm.jasper", "report", "::[ Labeling Obat Minum ]::",
+                    "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
+                    + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
+                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+                    + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
+                    + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
+                    + "ap.tgl_perawatan='" + tbItemObat.getValueAt(i, 13).toString() + "' and "
+                    + "ap.jam='" + tbItemObat.getValueAt(i, 14).toString() + "'", param, nmPrinter1);
+        }
         this.setCursor(Cursor.getDefaultCursor());
     }
     
@@ -1745,26 +1842,50 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         param.put("kotars", akses.getkabupatenrs());
         param.put("propinsirs", akses.getpropinsirs());
         param.put("logo", Sequel.cariGambar("select logo_hitam_putih from setting"));
-        param.put("jns_label", "OBAT LUAR");
-//        Valid.MyReport("rptAturanPakai.jasper", "report", "::[ Labeling Obat Luar ]::",
-//                "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
-//                + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
-//                + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
-//                + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-//                + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
-//                + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
-//                + "ap.tgl_perawatan='" + tbItemObat.getValueAt(i, 13).toString() + "' and "
-//                + "ap.jam='" + tbItemObat.getValueAt(i, 14).toString() + "'", param);
-        
-        Valid.AutoPrintMulti("rptAturanPakai.jasper", "report", "::[ Labeling Obat Luar ]::",
-                "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
-                + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
-                + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
-                + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
-                + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
-                + "ap.tgl_perawatan='" + tbItemObat.getValueAt(i, 13).toString() + "' and "
-                + "ap.jam='" + tbItemObat.getValueAt(i, 14).toString() + "'", param, nmPrinter2);
+        param.put("jns_label", "(OBAT LUAR)");
+
+        if (ukuranLabel.equals("kecil")) {
+//            Valid.MyReport("rptAturanPakai.jasper", "report", "::[ Labeling Obat Luar ]::",
+//                    "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
+//                    + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
+//                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+//                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+//                    + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
+//                    + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
+//                    + "ap.tgl_perawatan='" + tbItemObat.getValueAt(i, 13).toString() + "' and "
+//                    + "ap.jam='" + tbItemObat.getValueAt(i, 14).toString() + "'", param);
+
+            Valid.AutoPrintMulti("rptAturanPakai.jasper", "report", "::[ Labeling Obat Luar ]::",
+                    "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
+                    + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
+                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+                    + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
+                    + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
+                    + "ap.tgl_perawatan='" + tbItemObat.getValueAt(i, 13).toString() + "' and "
+                    + "ap.jam='" + tbItemObat.getValueAt(i, 14).toString() + "'", param, nmPrinter2);
+
+        } else if (ukuranLabel.equals("besar")) {
+//            Valid.MyReport("rptAturanPakai8x6koma5cm.jasper", "report", "::[ Labeling Obat Luar ]::",
+//                    "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
+//                    + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
+//                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+//                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+//                    + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
+//                    + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
+//                    + "ap.tgl_perawatan='" + tbItemObat.getValueAt(i, 13).toString() + "' and "
+//                    + "ap.jam='" + tbItemObat.getValueAt(i, 14).toString() + "'", param);
+
+            Valid.AutoPrintMulti("rptAturanPakai8x6koma5cm.jasper", "report", "::[ Labeling Obat Luar ]::",
+                    "select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
+                    + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
+                    + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
+                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+                    + "ap.no_rawat='" + tbItemObat.getValueAt(i, 1).toString() + "' and "
+                    + "ap.kode_brng='" + tbItemObat.getValueAt(i, 2).toString() + "' and "
+                    + "ap.tgl_perawatan='" + tbItemObat.getValueAt(i, 13).toString() + "' and "
+                    + "ap.jam='" + tbItemObat.getValueAt(i, 14).toString() + "'", param, nmPrinter2);
+        }
         this.setCursor(Cursor.getDefaultCursor());
     }
     
