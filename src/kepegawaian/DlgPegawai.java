@@ -25,6 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -561,7 +562,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TNm);
-        TNm.setBounds(109, 42, 310, 23);
+        TNm.setBounds(109, 42, 350, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Jenis Kelamin :");
@@ -575,7 +576,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 102, 105, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2021" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2025" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -591,7 +592,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         jLabel19.setText("Status Aktif :");
         jLabel19.setName("jLabel19"); // NOI18N
         FormInput.add(jLabel19);
-        jLabel19.setBounds(431, 12, 80, 23);
+        jLabel19.setBounds(471, 12, 80, 23);
 
         cmbSttsAktif.setForeground(new java.awt.Color(0, 0, 0));
         cmbSttsAktif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AKTIF", "CUTI", "KELUAR", "TENAGA LUAR", "PENSIUN" }));
@@ -603,13 +604,13 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbSttsAktif);
-        cmbSttsAktif.setBounds(515, 12, 115, 23);
+        cmbSttsAktif.setBounds(555, 12, 115, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Alamat :");
         jLabel20.setName("jLabel20"); // NOI18N
         FormInput.add(jLabel20);
-        jLabel20.setBounds(431, 42, 80, 23);
+        jLabel20.setBounds(471, 42, 80, 23);
 
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("NIK KTP :");
@@ -621,7 +622,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         jLabel12.setText("Jabatan  :");
         jLabel12.setName("jLabel12"); // NOI18N
         FormInput.add(jLabel12);
-        jLabel12.setBounds(431, 102, 80, 23);
+        jLabel12.setBounds(471, 102, 80, 23);
 
         TAlmt.setForeground(new java.awt.Color(0, 0, 0));
         TAlmt.setName("TAlmt"); // NOI18N
@@ -631,7 +632,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TAlmt);
-        TAlmt.setBounds(515, 42, 330, 23);
+        TAlmt.setBounds(555, 42, 330, 23);
 
         TNip.setForeground(new java.awt.Color(0, 0, 0));
         TNip.setName("TNip"); // NOI18N
@@ -641,7 +642,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TNip);
-        TNip.setBounds(109, 12, 270, 23);
+        TNip.setBounds(109, 12, 200, 23);
 
         TnoKTP.setForeground(new java.awt.Color(0, 0, 0));
         TnoKTP.setName("TnoKTP"); // NOI18N
@@ -663,7 +664,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         jLabel17.setText("Jenjang Jab. :");
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput.add(jLabel17);
-        jLabel17.setBounds(431, 132, 80, 23);
+        jLabel17.setBounds(471, 132, 80, 23);
 
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Bidang :");
@@ -702,8 +703,13 @@ public final class DlgPegawai extends javax.swing.JDialog {
         cmbDep.setForeground(new java.awt.Color(0, 0, 0));
         cmbDep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbDep.setName("cmbDep"); // NOI18N
+        cmbDep.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbDepMouseReleased(evt);
+            }
+        });
         FormInput.add(cmbDep);
-        cmbDep.setBounds(109, 132, 170, 23);
+        cmbDep.setBounds(109, 132, 350, 23);
 
         cmbBid.setForeground(new java.awt.Color(0, 0, 0));
         cmbBid.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
@@ -727,26 +733,26 @@ public final class DlgPegawai extends javax.swing.JDialog {
         cmbJenjang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbJenjang.setName("cmbJenjang"); // NOI18N
         FormInput.add(cmbJenjang);
-        cmbJenjang.setBounds(515, 132, 150, 23);
+        cmbJenjang.setBounds(555, 132, 150, 23);
 
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Pendidikan :");
         jLabel27.setName("jLabel27"); // NOI18N
         FormInput.add(jLabel27);
-        jLabel27.setBounds(431, 162, 80, 23);
+        jLabel27.setBounds(471, 162, 80, 23);
 
         cmbPendidikan.setForeground(new java.awt.Color(0, 0, 0));
         cmbPendidikan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbPendidikan.setName("cmbPendidikan"); // NOI18N
         FormInput.add(cmbPendidikan);
-        cmbPendidikan.setBounds(515, 162, 165, 23);
+        cmbPendidikan.setBounds(555, 162, 165, 23);
 
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Gaji Pokok :");
         jLabel28.setToolTipText("");
         jLabel28.setName("jLabel28"); // NOI18N
         FormInput.add(jLabel28);
-        jLabel28.setBounds(431, 192, 80, 23);
+        jLabel28.setBounds(471, 192, 80, 23);
 
         TGapok.setForeground(new java.awt.Color(0, 0, 0));
         TGapok.setName("TGapok"); // NOI18N
@@ -756,13 +762,13 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TGapok);
-        TGapok.setBounds(515, 192, 150, 23);
+        TGapok.setBounds(555, 192, 150, 23);
 
         jLabel29.setForeground(new java.awt.Color(0, 0, 0));
         jLabel29.setText("Kota :");
         jLabel29.setName("jLabel29"); // NOI18N
         FormInput.add(jLabel29);
-        jLabel29.setBounds(431, 72, 80, 23);
+        jLabel29.setBounds(471, 72, 80, 23);
 
         TKota.setForeground(new java.awt.Color(0, 0, 0));
         TKota.setName("TKota"); // NOI18N
@@ -772,67 +778,67 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TKota);
-        TKota.setBounds(515, 72, 330, 23);
+        TKota.setBounds(555, 72, 330, 23);
 
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Mulai Kerja :");
         jLabel30.setToolTipText("");
         jLabel30.setName("jLabel30"); // NOI18N
         FormInput.add(jLabel30);
-        jLabel30.setBounds(680, 102, 70, 23);
+        jLabel30.setBounds(720, 102, 70, 23);
 
-        DTPmulaiKJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2021" }));
+        DTPmulaiKJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2025" }));
         DTPmulaiKJ.setDisplayFormat("dd-MM-yyyy");
         DTPmulaiKJ.setName("DTPmulaiKJ"); // NOI18N
         DTPmulaiKJ.setOpaque(false);
         FormInput.add(DTPmulaiKJ);
-        DTPmulaiKJ.setBounds(755, 102, 90, 23);
+        DTPmulaiKJ.setBounds(795, 102, 90, 23);
 
         jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("Masa Kerja :");
         jLabel31.setToolTipText("");
         jLabel31.setName("jLabel31"); // NOI18N
         FormInput.add(jLabel31);
-        jLabel31.setBounds(680, 132, 70, 23);
+        jLabel31.setBounds(720, 132, 70, 23);
 
         cmbMasaKJ.setForeground(new java.awt.Color(0, 0, 0));
         cmbMasaKJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "<1", "PT", "FT>1" }));
         cmbMasaKJ.setName("cmbMasaKJ"); // NOI18N
         FormInput.add(cmbMasaKJ);
-        cmbMasaKJ.setBounds(755, 132, 60, 23);
+        cmbMasaKJ.setBounds(795, 132, 60, 23);
 
         jLabel32.setForeground(new java.awt.Color(0, 0, 0));
         jLabel32.setText("Indexing :");
         jLabel32.setToolTipText("");
         jLabel32.setName("jLabel32"); // NOI18N
         FormInput.add(jLabel32);
-        jLabel32.setBounds(680, 192, 70, 23);
+        jLabel32.setBounds(720, 192, 70, 23);
 
         cmbIndex.setForeground(new java.awt.Color(0, 0, 0));
         cmbIndex.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbIndex.setName("cmbIndex"); // NOI18N
         FormInput.add(cmbIndex);
-        cmbIndex.setBounds(755, 192, 60, 23);
+        cmbIndex.setBounds(795, 192, 60, 23);
 
         jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setText("Bank :");
         jLabel33.setToolTipText("");
         jLabel33.setName("jLabel33"); // NOI18N
         FormInput.add(jLabel33);
-        jLabel33.setBounds(680, 162, 70, 23);
+        jLabel33.setBounds(720, 162, 70, 23);
 
         cmbBank.setForeground(new java.awt.Color(0, 0, 0));
         cmbBank.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbBank.setName("cmbBank"); // NOI18N
         FormInput.add(cmbBank);
-        cmbBank.setBounds(755, 162, 120, 23);
+        cmbBank.setBounds(795, 162, 120, 23);
 
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setText("Rekening :");
         jLabel34.setToolTipText("");
         jLabel34.setName("jLabel34"); // NOI18N
         FormInput.add(jLabel34);
-        jLabel34.setBounds(431, 222, 80, 23);
+        jLabel34.setBounds(471, 222, 80, 23);
 
         TRek.setForeground(new java.awt.Color(0, 0, 0));
         TRek.setName("TRek"); // NOI18N
@@ -842,14 +848,14 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TRek);
-        TRek.setBounds(515, 222, 330, 23);
+        TRek.setBounds(555, 222, 330, 23);
 
         jLabel35.setForeground(new java.awt.Color(0, 0, 0));
         jLabel35.setText("Wajib Masuk :");
         jLabel35.setToolTipText("");
         jLabel35.setName("jLabel35"); // NOI18N
         FormInput.add(jLabel35);
-        jLabel35.setBounds(431, 252, 80, 23);
+        jLabel35.setBounds(471, 252, 80, 23);
 
         TwajibMsk.setForeground(new java.awt.Color(0, 0, 0));
         TwajibMsk.setName("TwajibMsk"); // NOI18N
@@ -859,14 +865,14 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TwajibMsk);
-        TwajibMsk.setBounds(515, 252, 50, 23);
+        TwajibMsk.setBounds(555, 252, 50, 23);
 
         jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setText("Pengurang :");
         jLabel36.setToolTipText("");
         jLabel36.setName("jLabel36"); // NOI18N
         FormInput.add(jLabel36);
-        jLabel36.setBounds(565, 252, 70, 23);
+        jLabel36.setBounds(605, 252, 70, 23);
 
         Tpengurang.setForeground(new java.awt.Color(0, 0, 0));
         Tpengurang.setName("Tpengurang"); // NOI18N
@@ -876,14 +882,14 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tpengurang);
-        Tpengurang.setBounds(640, 252, 125, 23);
+        Tpengurang.setBounds(680, 252, 125, 23);
 
         jLabel37.setForeground(new java.awt.Color(0, 0, 0));
         jLabel37.setText("Indek :");
         jLabel37.setToolTipText("");
         jLabel37.setName("jLabel37"); // NOI18N
         FormInput.add(jLabel37);
-        jLabel37.setBounds(765, 252, 45, 23);
+        jLabel37.setBounds(805, 252, 45, 23);
 
         Tindek.setForeground(new java.awt.Color(0, 0, 0));
         Tindek.setName("Tindek"); // NOI18N
@@ -893,7 +899,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tindek);
-        Tindek.setBounds(815, 252, 50, 23);
+        Tindek.setBounds(855, 252, 50, 23);
 
         jLabel38.setForeground(new java.awt.Color(0, 0, 0));
         jLabel38.setText("Mulai Kontrak :");
@@ -901,7 +907,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         FormInput.add(jLabel38);
         jLabel38.setBounds(0, 282, 105, 23);
 
-        DTPmulaiKontrak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2021" }));
+        DTPmulaiKontrak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2025" }));
         DTPmulaiKontrak.setDisplayFormat("dd-MM-yyyy");
         DTPmulaiKontrak.setName("DTPmulaiKontrak"); // NOI18N
         DTPmulaiKontrak.setOpaque(false);
@@ -912,7 +918,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         jLabel39.setText("Cuti Diambil :");
         jLabel39.setName("jLabel39"); // NOI18N
         FormInput.add(jLabel39);
-        jLabel39.setBounds(431, 282, 80, 23);
+        jLabel39.setBounds(471, 282, 80, 23);
 
         Tcuti.setForeground(new java.awt.Color(0, 0, 0));
         Tcuti.setName("Tcuti"); // NOI18N
@@ -922,7 +928,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tcuti);
-        Tcuti.setBounds(515, 282, 50, 23);
+        Tcuti.setBounds(555, 282, 50, 23);
 
         jLabel40.setForeground(new java.awt.Color(0, 0, 0));
         jLabel40.setText("Dankes :");
@@ -944,7 +950,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         cmbJabatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbJabatan.setName("cmbJabatan"); // NOI18N
         FormInput.add(cmbJabatan);
-        cmbJabatan.setBounds(515, 102, 165, 23);
+        cmbJabatan.setBounds(555, 102, 165, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -1347,6 +1353,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             tampilNonAktif();
         }
     }//GEN-LAST:event_TabPegawaiMouseClicked
+
+    private void cmbDepMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDepMouseReleased
+        AutoCompleteDecorator.decorate(cmbDep);
+    }//GEN-LAST:event_cmbDepMouseReleased
 
     /**
     * @param args the command line arguments

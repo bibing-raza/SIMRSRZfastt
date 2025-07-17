@@ -27,6 +27,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -50,10 +51,13 @@ public final class DlgCariPoli2 extends javax.swing.JDialog {
     public DlgCariPoli2(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         this.setLocation(10,2);
         setSize(656,250);
 
-        Object[] row = {"Kode Unit", "Nama Unit", "Registrasi Baru", "Registrasi Lama", "No. Telpon"};
+        Object[] row = {"Kode Unit", "Nama Unit", "Registrasi Baru", "Registrasi Lama", "No. Telpon", "Status Terjadwal"};
         tabMode = new DefaultTableModel(null, row) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -65,21 +69,28 @@ public final class DlgCariPoli2 extends javax.swing.JDialog {
         tbPoliklinik.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPoliklinik.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             TableColumn column = tbPoliklinik.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(70);
             } else if (i == 1) {
                 column.setPreferredWidth(300);
             } else if (i == 2) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(100);
             } else if (i == 3) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(100);
             } else if (i == 4) {
+                column.setPreferredWidth(100);
+            } else if (i == 5) {
                 column.setPreferredWidth(100);
             }
         }
         tbPoliklinik.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPoliklinik.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbPoliklinik.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbPoliklinik.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbPoliklinik.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -368,7 +379,7 @@ public final class DlgCariPoli2 extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             ps=koneksi.prepareStatement(
-                    "select poliklinik.kd_poli,poliklinik.nm_poli,poliklinik.registrasi,poliklinik.registrasilama,poliklinik.no_tlp "+
+                    "select poliklinik.kd_poli,poliklinik.nm_poli,poliklinik.registrasi,poliklinik.registrasilama,poliklinik.no_tlp, poliklinik.status_terjadwal "+
                     "from poliklinik inner join jadwal inner join dokter on poliklinik.kd_poli=jadwal.kd_poli "+
                     "and dokter.kd_dokter=jadwal.kd_dokter "+
                     "where jadwal.hari_kerja=? and poliklinik.kd_poli like ?  or "+
@@ -410,7 +421,8 @@ public final class DlgCariPoli2 extends javax.swing.JDialog {
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
-                        rs.getString(5)
+                        rs.getString(5),
+                        rs.getString(6)
                     });
                 }  
             }catch(Exception ex){

@@ -256,6 +256,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         Tumur.setDocument(new batasInput((int) 3).getKata(Tumur));
         Ttb.setDocument(new batasInput((int) 3).getKata(Ttb));
         Tbb.setDocument(new batasInput((int) 3).getKata(Tbb));
+        Tlpt.setDocument(new batasInput((int) 7).getKata(Tlpt));
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
         
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -433,7 +434,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel14 = new widget.Label();
         Tbb = new widget.TextBox();
         jLabel15 = new widget.Label();
-        jLabel16 = new widget.Label();
         Tlpt = new widget.TextBox();
         jLabel17 = new widget.Label();
         Scroll24 = new widget.ScrollPane();
@@ -452,6 +452,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         Tket = new widget.TextBox();
         BtnProgram = new widget.Button();
         ChkKunjungan = new widget.CekBox();
+        BtnLPT = new widget.Button();
         PanelAccor = new widget.PanelBiasa();
         ChkAccor = new widget.CekBox();
         FormMenu = new widget.PanelBiasa();
@@ -520,7 +521,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-10-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -534,7 +535,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-10-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1119,7 +1120,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel8.setBounds(160, 66, 70, 23);
 
         TtglSiklus.setForeground(new java.awt.Color(50, 70, 50));
-        TtglSiklus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-10-2024" }));
+        TtglSiklus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2025" }));
         TtglSiklus.setDisplayFormat("dd-MM-yyyy");
         TtglSiklus.setName("TtglSiklus"); // NOI18N
         TtglSiklus.setOpaque(false);
@@ -1214,16 +1215,10 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel15.setText("Kg.");
+        jLabel15.setText("Kg.    LPT :");
         jLabel15.setName("jLabel15"); // NOI18N
         panelGlass7.add(jLabel15);
-        jLabel15.setBounds(485, 230, 30, 23);
-
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("LPT : ");
-        jLabel16.setName("jLabel16"); // NOI18N
-        panelGlass7.add(jLabel16);
-        jLabel16.setBounds(2, 258, 110, 23);
+        jLabel15.setBounds(485, 230, 55, 23);
 
         Tlpt.setForeground(new java.awt.Color(0, 0, 0));
         Tlpt.setName("Tlpt"); // NOI18N
@@ -1233,13 +1228,13 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tlpt);
-        Tlpt.setBounds(115, 258, 555, 23);
+        Tlpt.setBounds(543, 230, 60, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Diagnosis : ");
         jLabel17.setName("jLabel17"); // NOI18N
         panelGlass7.add(jLabel17);
-        jLabel17.setBounds(2, 286, 110, 23);
+        jLabel17.setBounds(2, 258, 110, 23);
 
         Scroll24.setName("Scroll24"); // NOI18N
         Scroll24.setOpaque(true);
@@ -1256,7 +1251,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         Scroll24.setViewportView(Tdiagnosis);
 
         panelGlass7.add(Scroll24);
-        Scroll24.setBounds(115, 286, 555, 60);
+        Scroll24.setBounds(115, 258, 555, 88);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Program : ");
@@ -1391,6 +1386,28 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         });
         panelGlass7.add(ChkKunjungan);
         ChkKunjungan.setBounds(330, 66, 340, 23);
+
+        BtnLPT.setForeground(new java.awt.Color(0, 0, 0));
+        BtnLPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        BtnLPT.setText("Hitung LPT");
+        BtnLPT.setToolTipText("");
+        BtnLPT.setGlassColor(new java.awt.Color(255, 204, 0));
+        BtnLPT.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        BtnLPT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnLPT.setName("BtnLPT"); // NOI18N
+        BtnLPT.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnLPT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLPTActionPerformed(evt);
+            }
+        });
+        BtnLPT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnLPTKeyPressed(evt);
+            }
+        });
+        panelGlass7.add(BtnLPT);
+        BtnLPT.setBounds(610, 230, 100, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -1715,6 +1732,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
     private void TlptKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlptKeyPressed
         Valid.pindah(evt, Tbb, Tdiagnosis);
+        hitungLPT();
     }//GEN-LAST:event_TlptKeyPressed
 
     private void chkSayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSayaActionPerformed
@@ -2038,6 +2056,16 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         tampilTemplate();
     }//GEN-LAST:event_BtnAll2ActionPerformed
 
+    private void BtnLPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLPTActionPerformed
+        hitungLPT();
+    }//GEN-LAST:event_BtnLPTActionPerformed
+
+    private void BtnLPTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnLPTKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnLPTActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnLPTKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -2069,6 +2097,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnLPT;
     private widget.Button BtnNotepad;
     private widget.Button BtnPerawat;
     private widget.Button BtnPrint;
@@ -2130,7 +2159,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private widget.Label jLabel13;
     private widget.Label jLabel14;
     private widget.Label jLabel15;
-    private widget.Label jLabel16;
     private widget.Label jLabel17;
     private widget.Label jLabel18;
     private widget.Label jLabel19;
@@ -2315,24 +2343,49 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         TnoRM.setText(norm);
         TnmPasien.setText(nmpasien);
         Tumur.setText(Sequel.cariIsi("select umurdaftar from reg_periksa where no_rawat='" + norw + "' and sttsumur='Th'"));
-        Ttb.setText(Sequel.cariIsi("select ifnull(tb,'') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norw + "'"));
-        Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norw + "'"));
         Tsiklus.setText(Sequel.cariIsi("select ifnull(MAX(siklus_ke)+1,1) from protokol_kemoterapi where no_rkm_medis='" + norm + "'"));
         nipDokter = "197606202002121006";
         TnmDokter.setText(Sequel.cariIsi("select ifnull(nm_dokter,'') from dokter where kd_dokter='" + nipDokter + "'"));
         TCari.setText(norm);
-        
+
         if (stts.equals("Ralan")) {
             nipDokter = Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + norw + "'");
             TnmDokter.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipDokter + "'"));
             Tdiagnosis.setText(Sequel.cariIsi("select ifnull(diagnosa,'') from pemeriksaan_ralan where no_rawat='" + norw + "'"));
             nipPerawat = "-";
             TnmPerawat.setText("-");
-        } else {            
+            
+            if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_ralan_kemoterapi p inner join reg_periksa rp on rp.no_rawat=p.no_rawat "
+                    + "where rp.no_rkm_medis='" + norm + "' order by p.no_rawat desc limit 1") > 1) {
+                Ttb.setText(Sequel.cariIsi("select if(tb='','0',tb) from penilaian_awal_keperawatan_ralan_kemoterapi p inner join reg_periksa rp on rp.no_rawat=p.no_rawat "
+                        + "where rp.no_rkm_medis='" + norm + "' order by p.no_rawat desc limit 1"));
+                Tbb.setText(Sequel.cariIsi("select if(bb='','0',bb) from penilaian_awal_keperawatan_ralan_kemoterapi p inner join reg_periksa rp on rp.no_rawat=p.no_rawat "
+                        + "where rp.no_rkm_medis='" + norm + "' order by p.no_rawat desc limit 1"));
+            } else {
+                Ttb.setText("0");
+                Tbb.setText("0");
+            }
+        } else {
             Tdiagnosis.setText("");
             nipPerawat = "-";
             TnmPerawat.setText("-");
+            
+            if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap p "
+                    + "inner join reg_periksa rp on rp.no_rawat=p.no_rawat inner join kamar k on k.kd_kamar=p.kd_kamar_msk "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where rp.no_rkm_medis='" + norm + "' and b.nm_gedung='AS-SAMI' order by p.no_rawat desc limit 1") > 1) {
+                Ttb.setText(Sequel.cariIsi("select if(tb='','0',tb) from penilaian_awal_keperawatan_dewasa_ranap p "
+                        + "inner join reg_periksa rp on rp.no_rawat=p.no_rawat inner join kamar k on k.kd_kamar=p.kd_kamar_msk "
+                        + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where rp.no_rkm_medis='" + norm + "' and b.nm_gedung='AS-SAMI' order by p.no_rawat desc limit 1"));
+                Tbb.setText(Sequel.cariIsi("select if(bb_msk_rs='','0',bb_msk_rs) from penilaian_awal_keperawatan_dewasa_ranap p "
+                        + "inner join reg_periksa rp on rp.no_rawat=p.no_rawat inner join kamar k on k.kd_kamar=p.kd_kamar_msk "
+                        + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where rp.no_rkm_medis='" + norm + "' and b.nm_gedung='AS-SAMI' order by p.no_rawat desc limit 1"));
+            } else {
+                Ttb.setText("0");
+                Tbb.setText("0");
+            }
         }
+        
+        hitungLPT();
         
         //jika bukan dokter atau admin utama
         if (akses.getadmin() == true) {
@@ -2648,6 +2701,45 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                     + "Nama Perawat Ruangan : " + Sequel.cariIsi("select nama from pegawai where nik='" + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 14).toString() + "'") + "\n"
                     + "Keterangan : " + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 18).toString();
             Ttemplate.setText(protokolKemoPasienLain);
+        }
+    }
+
+    private void hitungLPT() {
+        try {
+            double A, B, C, D, hasil;
+            if (Tbb.getText().equals("")) {
+                Tbb.setText("0");
+            }
+
+            if (Ttb.getText().equals("")) {
+                Ttb.setText("0");
+            }
+            
+            if (Tbb.getText().contains(",") == true) {
+                Tbb.setText(Tbb.getText().replaceAll(",", "."));
+            }
+            
+            if (Ttb.getText().contains(",") == true) {
+                Ttb.setText(Ttb.getText().replaceAll(",", "."));
+            }
+            
+            A = Double.parseDouble(Tbb.getText());
+            B = Double.parseDouble(Ttb.getText());
+            C = A * B;
+            D = C / 3600;
+            //nilai D hasilnya diakarkan
+            hasil = Math.sqrt(D);
+            
+            if (Valid.SetAngka4(hasil).equals("NaN")) {
+                Tlpt.setText("0");
+            } else {
+                Tlpt.setText(Valid.SetAngka4(hasil));
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+            JOptionPane.showMessageDialog(rootPane, "Silahkan koreksi lagi angka BB masuk RS & tinggi badannya,    \n"
+                    + "jika menggunakan koma, gantilah tanda koma dengan titik sebagai komanya !!");
         }
     }
 }

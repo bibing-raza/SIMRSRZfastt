@@ -87,6 +87,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.DlgLhtPiutang;
@@ -206,6 +207,9 @@ public final class DlgReg extends javax.swing.JDialog {
     public DlgReg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         this.setLocation(8, 1);
         setSize(885, 674);
@@ -353,6 +357,9 @@ public final class DlgReg extends javax.swing.JDialog {
             } 
         }
         tbregSemua.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbregSemua.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbregSemua.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         
         tabMode3 = new DefaultTableModel(null, new String[]{
             "No.", "Poliklinik", "Total Booking", "Jumlah Terdaftar", "Jumlah Menunggu", "Jumlah Batal"
@@ -384,6 +391,12 @@ public final class DlgReg extends javax.swing.JDialog {
             } 
         }
         tbregSipo.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbregSipo.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);        
+        tbregSipo.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 
         TNoReg.setDocument(new batasInput((byte) 8).getKata(TNoReg));
         TNoRw.setDocument(new batasInput((byte) 17).getKata(TNoRw));

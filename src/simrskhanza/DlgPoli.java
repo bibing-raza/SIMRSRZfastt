@@ -31,6 +31,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -54,11 +55,14 @@ public final class DlgPoli extends javax.swing.JDialog {
     public DlgPoli(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         this.setLocation(10,2);
         setSize(628,674);
 
-        Object[] row = {"P", "Kode Unit", "Nama Unit", "Registrasi Baru", "Registrasi Lama", "Status Online", 
-            "Status e-RM", "No. Telpon"};
+        Object[] row = {"P", "Kode Unit", "Nama Unit", "Registrasi Baru", "Registrasi Lama", "Status Online",
+            "Status e-RM", "No. Telpon", "Status Terjadwal"};
         tabMode = new DefaultTableModel(null, row) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -71,7 +75,7 @@ public final class DlgPoli extends javax.swing.JDialog {
             Class[] types = new Class[]{
                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, 
-                java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -84,27 +88,36 @@ public final class DlgPoli extends javax.swing.JDialog {
         tbPoliklinik.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPoliklinik.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < 9; i++) {
             TableColumn column = tbPoliklinik.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(20);
+                column.setPreferredWidth(30);
             } else if (i == 1) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(70);
             } else if (i == 2) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(350);
             } else if (i == 3) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(100);
             } else if (i == 4) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(100);
             } else if (i == 5) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(80);
             } else if (i == 6) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(80);
             } else if (i == 7) {
+                column.setPreferredWidth(100);
+            } else if (i == 8) {
                 column.setPreferredWidth(100);
             }
         }
         tbPoliklinik.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPoliklinik.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbPoliklinik.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbPoliklinik.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbPoliklinik.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbPoliklinik.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+        tbPoliklinik.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
         
         Kd.setDocument(new batasInput((byte) 5).getKata(Kd));
         By.setDocument(new batasInput((byte) 13).getOnlyAngka(By));
@@ -154,6 +167,8 @@ public final class DlgPoli extends javax.swing.JDialog {
         statusERM = new widget.ComboBox();
         label38 = new widget.Label();
         TnoTelp = new widget.TextBox();
+        label39 = new widget.Label();
+        statusTerjadwal = new widget.ComboBox();
         jPanel1 = new javax.swing.JPanel();
         panelisi3 = new widget.panelisi();
         label9 = new widget.Label();
@@ -212,7 +227,7 @@ public final class DlgPoli extends javax.swing.JDialog {
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
 
         panelisi4.setName("panelisi4"); // NOI18N
-        panelisi4.setPreferredSize(new java.awt.Dimension(100, 77));
+        panelisi4.setPreferredSize(new java.awt.Dimension(100, 107));
         panelisi4.setLayout(null);
 
         label34.setForeground(new java.awt.Color(0, 0, 0));
@@ -220,14 +235,14 @@ public final class DlgPoli extends javax.swing.JDialog {
         label34.setName("label34"); // NOI18N
         label34.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi4.add(label34);
-        label34.setBounds(0, 12, 85, 23);
+        label34.setBounds(0, 12, 110, 23);
 
         label32.setForeground(new java.awt.Color(0, 0, 0));
         label32.setText("Registrasi Baru :");
         label32.setName("label32"); // NOI18N
         label32.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi4.add(label32);
-        label32.setBounds(194, 12, 110, 23);
+        label32.setBounds(219, 12, 110, 23);
 
         Kd.setForeground(new java.awt.Color(0, 0, 0));
         Kd.setName("Kd"); // NOI18N
@@ -237,7 +252,7 @@ public final class DlgPoli extends javax.swing.JDialog {
             }
         });
         panelisi4.add(Kd);
-        Kd.setBounds(89, 12, 100, 23);
+        Kd.setBounds(114, 12, 100, 23);
 
         By.setForeground(new java.awt.Color(0, 0, 0));
         By.setText("0");
@@ -248,14 +263,14 @@ public final class DlgPoli extends javax.swing.JDialog {
             }
         });
         panelisi4.add(By);
-        By.setBounds(308, 12, 100, 23);
+        By.setBounds(333, 12, 100, 23);
 
         label36.setForeground(new java.awt.Color(0, 0, 0));
         label36.setText("Nama Unit :");
         label36.setName("label36"); // NOI18N
         label36.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi4.add(label36);
-        label36.setBounds(0, 42, 85, 23);
+        label36.setBounds(0, 42, 110, 23);
 
         Nm.setForeground(new java.awt.Color(0, 0, 0));
         Nm.setName("Nm"); // NOI18N
@@ -265,14 +280,14 @@ public final class DlgPoli extends javax.swing.JDialog {
             }
         });
         panelisi4.add(Nm);
-        Nm.setBounds(89, 42, 319, 23);
+        Nm.setBounds(114, 42, 319, 23);
 
         label33.setForeground(new java.awt.Color(0, 0, 0));
         label33.setText("Registrasi Lama :");
         label33.setName("label33"); // NOI18N
         label33.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi4.add(label33);
-        label33.setBounds(413, 12, 100, 23);
+        label33.setBounds(438, 12, 100, 23);
 
         ByLm.setForeground(new java.awt.Color(0, 0, 0));
         ByLm.setText("0");
@@ -283,40 +298,40 @@ public final class DlgPoli extends javax.swing.JDialog {
             }
         });
         panelisi4.add(ByLm);
-        ByLm.setBounds(517, 12, 100, 23);
+        ByLm.setBounds(542, 12, 100, 23);
 
         statusOL.setForeground(new java.awt.Color(0, 0, 0));
         statusOL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Non Aktif", "Aktif" }));
         statusOL.setName("statusOL"); // NOI18N
         panelisi4.add(statusOL);
-        statusOL.setBounds(710, 12, 80, 23);
+        statusOL.setBounds(277, 72, 80, 23);
 
         label35.setForeground(new java.awt.Color(0, 0, 0));
         label35.setText("Status e-RM :");
         label35.setName("label35"); // NOI18N
         label35.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi4.add(label35);
-        label35.setBounds(623, 42, 80, 23);
+        label35.setBounds(360, 72, 90, 23);
 
         label37.setForeground(new java.awt.Color(0, 0, 0));
         label37.setText("Status Online :");
         label37.setName("label37"); // NOI18N
         label37.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi4.add(label37);
-        label37.setBounds(623, 12, 80, 23);
+        label37.setBounds(180, 72, 90, 23);
 
         statusERM.setForeground(new java.awt.Color(0, 0, 0));
         statusERM.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Non Aktif", "Aktif" }));
         statusERM.setName("statusERM"); // NOI18N
         panelisi4.add(statusERM);
-        statusERM.setBounds(710, 42, 80, 23);
+        statusERM.setBounds(457, 72, 80, 23);
 
         label38.setForeground(new java.awt.Color(0, 0, 0));
         label38.setText("No. Telpon :");
         label38.setName("label38"); // NOI18N
         label38.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi4.add(label38);
-        label38.setBounds(413, 42, 100, 23);
+        label38.setBounds(438, 42, 100, 23);
 
         TnoTelp.setForeground(new java.awt.Color(0, 0, 0));
         TnoTelp.setText("0");
@@ -327,7 +342,20 @@ public final class DlgPoli extends javax.swing.JDialog {
             }
         });
         panelisi4.add(TnoTelp);
-        TnoTelp.setBounds(517, 42, 100, 23);
+        TnoTelp.setBounds(542, 42, 100, 23);
+
+        label39.setForeground(new java.awt.Color(0, 0, 0));
+        label39.setText("Status Terjadwal :");
+        label39.setName("label39"); // NOI18N
+        label39.setPreferredSize(new java.awt.Dimension(35, 23));
+        panelisi4.add(label39);
+        label39.setBounds(0, 72, 110, 23);
+
+        statusTerjadwal.setForeground(new java.awt.Color(0, 0, 0));
+        statusTerjadwal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BUKA", "TUTUP" }));
+        statusTerjadwal.setName("statusTerjadwal"); // NOI18N
+        panelisi4.add(statusTerjadwal);
+        statusTerjadwal.setBounds(114, 72, 65, 23);
 
         internalFrame1.add(panelisi4, java.awt.BorderLayout.PAGE_START);
 
@@ -573,7 +601,8 @@ public final class DlgPoli extends javax.swing.JDialog {
                     + ByLm.getText() + "','"
                     + cekonline + "','" 
                     + cekERM + "','" 
-                    + TnoTelp.getText() + "'", "Kode Unit");
+                    + TnoTelp.getText() + "','" 
+                    + statusTerjadwal.getSelectedItem().toString() + "'", "Kode Unit");
             BtnCariActionPerformed(evt);
             emptTeks();
         }
@@ -589,6 +618,7 @@ public final class DlgPoli extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil(" order by kd_poli");
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -640,7 +670,7 @@ public final class DlgPoli extends javax.swing.JDialog {
             Valid.editTable(tabMode, "poliklinik", "kd_poli", Kd2, "registrasi='" + By.getText()
                     + "',nm_poli='" + Nm.getText() + "',registrasilama='" + ByLm.getText()
                     + "',kd_poli='" + Kd.getText() + "',status_online='" + cekonline + "',status_erm='" + cekERM 
-                    + "',no_tlp='" + TnoTelp.getText() + "'");
+                    + "',no_tlp='" + TnoTelp.getText() + "', status_terjadwal='" + statusTerjadwal.getSelectedItem().toString() + "'");
             if (tabMode.getRowCount() != 0) {
                 BtnCariActionPerformed(evt);
             }
@@ -815,23 +845,25 @@ private void NmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmKeyP
     private widget.Label label36;
     private widget.Label label37;
     private widget.Label label38;
+    private widget.Label label39;
     private widget.Label label9;
     private widget.panelisi panelisi1;
     private widget.panelisi panelisi3;
     private widget.panelisi panelisi4;
     private widget.ComboBox statusERM;
     private widget.ComboBox statusOL;
+    private widget.ComboBox statusTerjadwal;
     private widget.Table tbPoliklinik;
     // End of variables declaration//GEN-END:variables
 
     private void tampil(String order) {
         String sql = "";
         if (TCari.getText().equals("")) {
-            sql = "select kd_poli, nm_poli, registrasi,registrasilama, if(status_online='0','Non Aktif','Aktif') online, if(status_erm='0','Non Aktif','Aktif') erm, no_tlp "
-                    + "from poliklinik " + order;
+            sql = "select kd_poli, nm_poli, registrasi,registrasilama, if(status_online='0','Non Aktif','Aktif') online, "
+                    + "if(status_erm='0','Non Aktif','Aktif') erm, no_tlp, status_terjadwal from poliklinik " + order;
         } else if (!TCari.getText().equals("")) {
-            sql = "select kd_poli, nm_poli, registrasi,registrasilama, if(status_online='0','Non Aktif','Aktif') online, if(status_erm='0','Non Aktif','Aktif') erm, no_tlp "
-                    + " from poliklinik where kd_poli like '%" + TCari.getText().trim() + "%' or "
+            sql = "select kd_poli, nm_poli, registrasi,registrasilama, if(status_online='0','Non Aktif','Aktif') online, "
+                    + "if(status_erm='0','Non Aktif','Aktif') erm, no_tlp, status_terjadwal from poliklinik where kd_poli like '%" + TCari.getText().trim() + "%' or "
                     + " if(status_online='0','Non Aktif','Aktif') like '%" + TCari.getText().trim() + "%' or "
                     + " if(status_erm='0','Non Aktif','Aktif') like '%" + TCari.getText().trim() + "%' or "
                     + " nm_poli like '%" + TCari.getText().trim() + "%' " + order;
@@ -849,11 +881,12 @@ private void NmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmKeyP
                     tabMode.addRow(new Object[]{false,
                         rs.getString(1),
                         rs.getString(2),
-                        rs.getDouble(3),
-                        rs.getDouble(4),
+                        rs.getString(3),
+                        rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
-                        rs.getString(7)
+                        rs.getString(7),
+                        rs.getString(8)
                     });
                 }
             } catch (SQLException e) {
@@ -884,6 +917,7 @@ private void NmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmKeyP
         Kd.requestFocus();        
         Valid.autoNomer("poliklinik","U",4,Kd);
         TnoTelp.setText("0");
+        statusTerjadwal.setSelectedIndex(0);
     }
 
     private void getData() {
@@ -899,6 +933,7 @@ private void NmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NmKeyP
             statusOL.setSelectedItem(tbPoliklinik.getValueAt(tbPoliklinik.getSelectedRow(), 5).toString());
             statusERM.setSelectedItem(tbPoliklinik.getValueAt(tbPoliklinik.getSelectedRow(), 6).toString());
             TnoTelp.setText(tbPoliklinik.getValueAt(tbPoliklinik.getSelectedRow(),7).toString());
+            statusTerjadwal.setSelectedItem(tbPoliklinik.getValueAt(tbPoliklinik.getSelectedRow(), 8).toString());
 
             if (statusOL.getSelectedItem().toString().equals("Non Aktif")) {
                 cekonline = "0";

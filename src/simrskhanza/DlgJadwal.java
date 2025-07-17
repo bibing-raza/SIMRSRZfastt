@@ -30,6 +30,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -52,69 +53,80 @@ public class DlgJadwal extends javax.swing.JDialog {
     public DlgJadwal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         this.setLocation(8,1);
         setSize(628,674);
 
-        Object[] row = {"#", "Kode Dokter", "Nama Dokter", "Hari Kerja", "Jam Mulai", "Jam Selesai", "Poliklinik", "kdpoli"};
-        tabMode=new DefaultTableModel(null,row){
-             @Override public boolean isCellEditable(int rowIndex, int colIndex){
-                boolean a = false;
-                if (colIndex==0) {
-                    a=true;
-                }
-                return a;
-             }
-             Class[] types = new Class[] {
-                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-             };
-             @Override
-             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-             }
+        String[] row = {"Kode Dokter", "Nama Dokter", "Hari Kerja", "Jam Mulai", "Jam Selesai", "Poliklinik", "kdpoli",
+            "Kuota Layanan JKN", "Kuota Layanan Non JKN"};
+        tabMode = new DefaultTableModel(null, row) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
         
         tbJadwal.setModel(tabMode);
         tbJadwal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbJadwal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 9; i++) {
             TableColumn column = tbJadwal.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(20);
-            } else if (i == 1) {
                 column.setPreferredWidth(130);
+            } else if (i == 1) {
+                column.setPreferredWidth(250);
             } else if (i == 2) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(70);
             } else if (i == 3) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(75);
             } else if (i == 4) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(75);
             } else if (i == 5) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(350);
             } else if (i == 6) {
-                column.setPreferredWidth(250);
-            } else if (i == 7) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 7) {
+                column.setPreferredWidth(120);
+            } else if (i == 8) {
+                column.setPreferredWidth(150);
             }
         }
         tbJadwal.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbJadwal.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbJadwal.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbJadwal.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
+        tbJadwal.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
 
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         kddokter.setDocument(new batasInput((byte)20).getKata(kddokter));
         KdPoli.setDocument(new batasInput((byte)5).getKata(KdPoli));
-        if(koneksiDB.cariCepat().equals("aktif")){
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+        TkuotaJkn.setDocument(new batasInput((byte) 3).getOnlyAngka(TkuotaJkn));
+        TkuotaNonJkn.setDocument(new batasInput((byte) 3).getOnlyAngka(TkuotaNonJkn));
+        
+        if (koneksiDB.cariCepat().equals("aktif")) {
+            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
                 @Override
-                public void insertUpdate(DocumentEvent e) {tampil();}
+                public void insertUpdate(DocumentEvent e) {
+                    tampil();
+                }
+
                 @Override
-                public void removeUpdate(DocumentEvent e) {tampil();}
+                public void removeUpdate(DocumentEvent e) {
+                    tampil();
+                }
+
                 @Override
-                public void changedUpdate(DocumentEvent e) {tampil();}
+                public void changedUpdate(DocumentEvent e) {
+                    tampil();
+                }
             });
-        } 
+        }
         
         dokter.addWindowListener(new WindowListener() {
             @Override
@@ -212,6 +224,10 @@ public class DlgJadwal extends javax.swing.JDialog {
         kddokter = new widget.TextBox();
         KdPoli = new widget.TextBox();
         BtnPoli = new widget.Button();
+        jLabel5 = new widget.Label();
+        jLabel8 = new widget.Label();
+        TkuotaJkn = new widget.TextBox();
+        TkuotaNonJkn = new widget.TextBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -631,6 +647,40 @@ public class DlgJadwal extends javax.swing.JDialog {
         panelBiasa1.add(BtnPoli);
         BtnPoli.setBounds(577, 72, 28, 23);
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Kuota Layanan Pasien JKN :");
+        jLabel5.setName("jLabel5"); // NOI18N
+        panelBiasa1.add(jLabel5);
+        jLabel5.setBounds(620, 12, 170, 23);
+
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Kuota Layanan Pasien Non JKN :");
+        jLabel8.setName("jLabel8"); // NOI18N
+        panelBiasa1.add(jLabel8);
+        jLabel8.setBounds(620, 42, 170, 23);
+
+        TkuotaJkn.setForeground(new java.awt.Color(0, 0, 0));
+        TkuotaJkn.setHighlighter(null);
+        TkuotaJkn.setName("TkuotaJkn"); // NOI18N
+        TkuotaJkn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TkuotaJknKeyPressed(evt);
+            }
+        });
+        panelBiasa1.add(TkuotaJkn);
+        TkuotaJkn.setBounds(796, 12, 60, 23);
+
+        TkuotaNonJkn.setForeground(new java.awt.Color(0, 0, 0));
+        TkuotaNonJkn.setHighlighter(null);
+        TkuotaNonJkn.setName("TkuotaNonJkn"); // NOI18N
+        TkuotaNonJkn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TkuotaNonJknKeyPressed(evt);
+            }
+        });
+        panelBiasa1.add(TkuotaNonJkn);
+        TkuotaNonJkn.setBounds(796, 42, 60, 23);
+
         internalFrame1.add(panelBiasa1, java.awt.BorderLayout.PAGE_START);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
@@ -679,12 +729,16 @@ public class DlgJadwal extends javax.swing.JDialog {
             Valid.textKosong(kddokter, "Dokter");
         } else if (TPoli.getText().trim().equals("")) {
             Valid.textKosong(KdPoli, "Poliklinik");
+        } else if (TkuotaJkn.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Kuota layanan pasien JKN tidak boleh kosong, jika tidak ada isi dengan 0 ...!!!!");
+        } else if (TkuotaNonJkn.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Kuota layanan pasien Non JKN tidak boleh kosong, jika tidak ada isi dengan 0 ...!!!!");
         } else {
             hariDiurutkan();
             Sequel.menyimpan("jadwal", "'" + kddokter.getText() + "','" + cmbHari.getSelectedItem() + "','"
                     + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "','"
                     + cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem() + "','"
-                    + KdPoli.getText() + "','" + urutanHari + "'", "Kode Dokter");
+                    + KdPoli.getText() + "','" + urutanHari + "','" + TkuotaJkn.getText() + "','" + TkuotaNonJkn.getText() + "'", "Kode Dokter");
 
             tampil();
             emptTeks();
@@ -693,29 +747,32 @@ public class DlgJadwal extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnSimpanActionPerformed(null);
-        }else{
-            Valid.pindah(evt,KdPoli,BtnBatal);
+        } else {
+            Valid.pindah(evt, KdPoli, BtnBatal);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             emptTeks();
-        }else{Valid.pindah(evt, BtnSimpan, BtnHapus);}
+        } else {
+            Valid.pindah(evt, BtnSimpan, BtnHapus);
+        }
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         for (int i = 0; i < tbJadwal.getRowCount(); i++) {
             if (tbJadwal.getValueAt(i, 0).toString().equals("true")) {
-                Sequel.queryu("delete from jadwal where kd_dokter='" + tbJadwal.getValueAt(i, 1).toString() + "' "
-                        + "and hari_kerja='" + tbJadwal.getValueAt(i, 3).toString() + "' "
-                        + "and kd_poli='" + tbJadwal.getValueAt(i, 7).toString() + "'");
+                Sequel.queryu("delete from jadwal where kd_dokter='" + tbJadwal.getValueAt(i, 0).toString() + "' "
+                        + "and hari_kerja='" + tbJadwal.getValueAt(i, 2).toString() + "' "
+                        + "and kd_poli='" + tbJadwal.getValueAt(i, 6).toString() + "'");
             }
         }
         tampil();
@@ -723,9 +780,9 @@ public class DlgJadwal extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnHapusActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, BtnBatal, BtnEdit);
         }
 }//GEN-LAST:event_BtnHapusKeyPressed
@@ -735,20 +792,28 @@ public class DlgJadwal extends javax.swing.JDialog {
             Valid.textKosong(kddokter, "Dokter");
         } else if (TPoli.getText().trim().equals("")) {
             Valid.textKosong(KdPoli, "Poliklinik");
+        } else if (TkuotaJkn.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Kuota layanan pasien JKN tidak boleh kosong, jika tidak ada isi dengan 0 ...!!!!");
+        } else if (TkuotaNonJkn.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Kuota layanan pasien Non JKN tidak boleh kosong, jika tidak ada isi dengan 0 ...!!!!");
         } else {
             if (tbJadwal.getSelectedRow() != -1) {
                 hariDiurutkan();
                 Sequel.queryu("update jadwal set jam_mulai='" + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "',"
                         + "jam_selesai='" + cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem() + "',"
                         + "kd_poli='" + KdPoli.getText() + "',kd_dokter='" + kddokter.getText() + "',hari_kerja='" + cmbHari.getSelectedItem() + "',"
-                        + "urutan_hari='" + urutanHari + "' where "
-                        + "kd_dokter='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 1).toString() + "' "
-                        + "and hari_kerja='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 3).toString() + "' "
-                        + "and jam_mulai='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 4).toString() + "' "
-                        + "and jam_selesai='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 5).toString() + "'");
+                        + "urutan_hari='" + urutanHari + "', kuota_jkn='" + TkuotaJkn.getText() + "', kuota_nonjkn='" + TkuotaNonJkn.getText() + "' where "
+                        + "kd_dokter='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 0).toString() + "' "
+                        + "and hari_kerja='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 2).toString() + "' "
+                        + "and jam_mulai='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 3).toString() + "' "
+                        + "and jam_selesai='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 4).toString() + "'");
                 
                 tampil();
                 emptTeks();
+            } else {
+                JOptionPane.showMessageDialog(null, "Silahkan klik/pilih dulu salah satu datanya pada tabel...!!!!");
+                tampil();
+                tbJadwal.requestFocus();                
             }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
@@ -911,6 +976,14 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         tampil();
     }//GEN-LAST:event_formWindowOpened
 
+    private void TkuotaJknKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TkuotaJknKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TkuotaJknKeyPressed
+
+    private void TkuotaNonJknKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TkuotaNonJknKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TkuotaNonJknKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -942,6 +1015,8 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;
     private widget.TextBox TPoli;
+    private widget.TextBox TkuotaJkn;
+    private widget.TextBox TkuotaNonJkn;
     private widget.Button btnDokter;
     private widget.ComboBox cmbDtk1;
     private widget.ComboBox cmbDtk2;
@@ -955,8 +1030,10 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private widget.Label jLabel11;
     private widget.Label jLabel3;
     private widget.Label jLabel4;
+    private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
+    private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
     private widget.TextBox kddokter;
@@ -970,8 +1047,9 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("select j.kd_dokter, d.nm_dokter, j.hari_kerja, j.jam_mulai, j.jam_selesai, pl.nm_poli, j.kd_poli from jadwal j "
-                    + "inner join poliklinik pl on pl.kd_poli=j.kd_poli inner join dokter d on d.kd_dokter=j.kd_dokter where "
+            ps = koneksi.prepareStatement("select j.kd_dokter, d.nm_dokter, j.hari_kerja, j.jam_mulai, j.jam_selesai, pl.nm_poli, "
+                    + "j.kd_poli, j.kuota_jkn, j.kuota_nonjkn from jadwal j inner join poliklinik pl on pl.kd_poli=j.kd_poli "
+                    + "inner join dokter d on d.kd_dokter=j.kd_dokter where "
                     + "j.kd_dokter like ? or "
                     + "d.nm_dokter like ? or "
                     + "j.hari_kerja like ? or "
@@ -987,14 +1065,16 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 ps.setString(6, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new Object[]{false,
+                    tabMode.addRow(new String[]{
                         rs.getString("kd_dokter"),
                         rs.getString("nm_dokter"),
                         rs.getString("hari_kerja"),
                         rs.getString("jam_mulai"),
                         rs.getString("jam_selesai"),
                         rs.getString("nm_poli"),
-                        rs.getString("kd_poli")
+                        rs.getString("kd_poli"),
+                        rs.getString("kuota_jkn"),
+                        rs.getString("kuota_nonjkn")
                     });
                 }
             } catch (Exception e) {
@@ -1028,22 +1108,26 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         cmbDtk1.setSelectedItem("00");
         cmbDtk2.setSelectedItem("00");
         kddokter.requestFocus();
+        TkuotaJkn.setText("0");
+        TkuotaNonJkn.setText("0");
     }
 
     private void getData() {
         int row=tbJadwal.getSelectedRow();
         if(row!= -1){
-            kddokter.setText(tabMode.getValueAt(row,1).toString());
-            nmdokter.setText(tabMode.getValueAt(row,2).toString());
-            cmbHari.setSelectedItem(tabMode.getValueAt(row,3).toString());
-            cmbJam1.setSelectedItem(tabMode.getValueAt(row,4).toString().substring(0,2));
-            cmbMnt1.setSelectedItem(tabMode.getValueAt(row,4).toString().substring(3,5));
-            cmbDtk1.setSelectedItem(tabMode.getValueAt(row,4).toString().substring(6,8));
-            cmbJam2.setSelectedItem(tabMode.getValueAt(row,5).toString().substring(0,2));
-            cmbMnt2.setSelectedItem(tabMode.getValueAt(row,5).toString().substring(3,5));
-            cmbDtk2.setSelectedItem(tabMode.getValueAt(row,5).toString().substring(6,8));            
-            TPoli.setText(tabMode.getValueAt(row,6).toString());
-            KdPoli.setText(tabMode.getValueAt(row,7).toString());
+            kddokter.setText(tabMode.getValueAt(row,0).toString());
+            nmdokter.setText(tabMode.getValueAt(row,1).toString());
+            cmbHari.setSelectedItem(tabMode.getValueAt(row,2).toString());
+            cmbJam1.setSelectedItem(tabMode.getValueAt(row,3).toString().substring(0,2));
+            cmbMnt1.setSelectedItem(tabMode.getValueAt(row,3).toString().substring(3,5));
+            cmbDtk1.setSelectedItem(tabMode.getValueAt(row,3).toString().substring(6,8));
+            cmbJam2.setSelectedItem(tabMode.getValueAt(row,4).toString().substring(0,2));
+            cmbMnt2.setSelectedItem(tabMode.getValueAt(row,4).toString().substring(3,5));
+            cmbDtk2.setSelectedItem(tabMode.getValueAt(row,4).toString().substring(6,8));            
+            TPoli.setText(tabMode.getValueAt(row,5).toString());
+            KdPoli.setText(tabMode.getValueAt(row,6).toString());            
+            TkuotaJkn.setText(tabMode.getValueAt(row,7).toString());
+            TkuotaNonJkn.setText(tabMode.getValueAt(row,8).toString());
         }
     }  
     

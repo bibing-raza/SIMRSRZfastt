@@ -26,6 +26,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -46,10 +47,13 @@ public final class DlgCariPoli extends javax.swing.JDialog {
     public DlgCariPoli(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         this.setLocation(10,2);
         setSize(656,250);
 
-        Object[] row = {"Kode Unit", "Nama Unit", "Registrasi Baru", "Registrasi Lama", "No. Telpon"};
+        Object[] row = {"Kode Unit", "Nama Unit", "Registrasi Baru", "Registrasi Lama", "No. Telpon", "Status Terjadwal"};
         tabMode = new DefaultTableModel(null, row) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -61,21 +65,28 @@ public final class DlgCariPoli extends javax.swing.JDialog {
         tbPoliklinik.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPoliklinik.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             TableColumn column = tbPoliklinik.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(70);
             } else if (i == 1) {
                 column.setPreferredWidth(300);
             } else if (i == 2) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(100);
             } else if (i == 3) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(100);
             } else if (i == 4) {
+                column.setPreferredWidth(100);
+            } else if (i == 5) {
                 column.setPreferredWidth(100);
             }
         }
         tbPoliklinik.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPoliklinik.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbPoliklinik.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbPoliklinik.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbPoliklinik.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
         
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         
@@ -319,10 +330,10 @@ public final class DlgCariPoli extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnTambahActionPerformed
 
     private void tbPoliklinikKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbPoliklinikKeyPressed
-        if(tabMode.getRowCount()!=0){
-            if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (tabMode.getRowCount() != 0) {
+            if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
                 dispose();
-            }else if(evt.getKeyCode()==KeyEvent.VK_SHIFT){
+            } else if (evt.getKeyCode() == KeyEvent.VK_SHIFT) {
                 TCari.setText("");
                 TCari.requestFocus();
             }
@@ -371,7 +382,7 @@ public final class DlgCariPoli extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("select kd_poli, nm_poli, registrasi, registrasilama, no_tlp "
+            ps = koneksi.prepareStatement("select kd_poli, nm_poli, registrasi, registrasilama, no_tlp, status_terjadwal "
                     + " from poliklinik where kd_poli like ? or "
                     + " nm_poli like ? order by nm_poli");
             try {
@@ -384,7 +395,8 @@ public final class DlgCariPoli extends javax.swing.JDialog {
                         rs.getString(2),
                         Valid.SetAngka(rs.getDouble(3)),
                         Valid.SetAngka(rs.getDouble(4)),
-                        rs.getString(5)
+                        rs.getString(5),
+                        rs.getString(6)
                     });
                 }
             } catch (SQLException e) {
