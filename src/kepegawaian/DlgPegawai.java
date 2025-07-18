@@ -38,8 +38,9 @@ public final class DlgPegawai extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
-    private String idDep = "", idSttsWP = "", idSttsKJ = "", idJenjang = "", idIndex = "", nipDipilih = "";
+    private String idSttsWP = "", idSttsKJ = "", idJenjang = "", idIndex = "", nipDipilih = "";
     private int cekNIK = 0;
+    private DlgCariDepartemen departemen = new DlgCariDepartemen(null, false);
 
     /** Creates new form DlgPetugas
      * @param parent
@@ -52,8 +53,8 @@ public final class DlgPegawai extends javax.swing.JDialog {
         setSize(885,674);
 
         Object[] row = {"NIP", "Nama Pegawai/Karyawan", "Tmp. Lahir", "Tgl. Lahir", "J.K.", "Alamat", "Pendidikan", "Jabatan", "Jenjang Jabatan", "Status Aktif",
-            "NIK KTP", "Departeman", "Bidang", "Status WP", "Status Kerja", "NPWP", "Gaji Pokok (Rp.)", "Mulai Kerja", "Masa Kerja", "Indexing", "Nama Bank", 
-            "No. Rekening", "Wajib Masuk", "Pengurang","Indek", "Mulai Kontrak","Cuti Diambil", "Dankes"};
+            "NIK KTP", "Departeman", "Bidang", "Status WP", "Status Kerja", "NPWP", "Gaji Pokok (Rp.)", "Mulai Kerja", "Masa Kerja", "Indexing", "Nama Bank",
+            "No. Rekening", "Wajib Masuk", "Pengurang", "Indek", "Mulai Kontrak", "Cuti Diambil", "Dankes", "dep_id"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -62,7 +63,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         tbPegawai.setPreferredScrollableViewportSize(new Dimension(800,800));
         tbPegawai.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 28; i++) {
+        for (int i = 0; i < 29; i++) {
             TableColumn column = tbPegawai.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
@@ -87,7 +88,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
             } else if (i == 10) {
                 column.setPreferredWidth(150);
             } else if (i == 11) {
-                column.setPreferredWidth(140);
+                column.setPreferredWidth(350);
             } else if (i == 12) {
                 column.setPreferredWidth(140);
             } else if (i == 13) {
@@ -120,42 +121,27 @@ public final class DlgPegawai extends javax.swing.JDialog {
                 column.setPreferredWidth(72);
             } else if (i == 27) {
                 column.setPreferredWidth(90);
+            } else if (i == 28) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbPegawai.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode1 = new DefaultTableModel(null, new Object[]{"NIP", "Nama Pegawai/Karyawan", "Tmp. Lahir", "Tgl. Lahir", "J.K.", "Alamat", "Pendidikan", "Jabatan", "Jenjang Jabatan", "Status Aktif",
-            "NIK KTP", "Departeman", "Bidang", "Status WP", "Status Kerja", "NPWP", "Gaji Pokok (Rp.)", "Mulai Kerja", "Masa Kerja", "Indexing", "Nama Bank", 
-            "No. Rekening", "Wajib Masuk", "Pengurang","Indek", "Mulai Kontrak","Cuti Diambil", "Dankes"}) {
-                @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
-//            @Override
-//            public boolean isCellEditable(int rowIndex, int colIndex) {
-//                boolean a = false;
-//                if (colIndex == 0) {
-//                    a = true;
-//                }
-//                return a;
-//            }
-//            Class[] types = new Class[]{
-//                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-//                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-//                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-//                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-//                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-//                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-//                java.lang.Object.class
-//            };
-//
-//            @Override
-//            public Class getColumnClass(int columnIndex) {
-//                return types[columnIndex];
-//            }
+        tabMode1 = new DefaultTableModel(null, new Object[]{"NIP", "Nama Pegawai/Karyawan", "Tmp. Lahir", "Tgl. Lahir", "J.K.", "Alamat", "Pendidikan",
+            "Jabatan", "Jenjang Jabatan", "Status Aktif", "NIK KTP", "Departeman", "Bidang", "Status WP", "Status Kerja", "NPWP", "Gaji Pokok (Rp.)",
+            "Mulai Kerja", "Masa Kerja", "Indexing", "Nama Bank", "No. Rekening", "Wajib Masuk", "Pengurang", "Indek", "Mulai Kontrak", "Cuti Diambil",
+            "Dankes", "dep_id"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
         tbPegawai1.setModel(tabMode1);
         tbPegawai1.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPegawai1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 28; i++) {
+        for (int i = 0; i < 29; i++) {
             TableColumn column = tbPegawai1.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
@@ -213,6 +199,9 @@ public final class DlgPegawai extends javax.swing.JDialog {
                 column.setPreferredWidth(72);
             } else if (i == 27) {
                 column.setPreferredWidth(90);
+            } else if (i == 28) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbPegawai1.setDefaultRenderer(Object.class, new WarnaTable());
@@ -242,6 +231,29 @@ public final class DlgPegawai extends javax.swing.JDialog {
                 public void changedUpdate(DocumentEvent e) {tampilAktif();}
             });
         }
+        
+        departemen.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {}
+            @Override
+            public void windowClosing(WindowEvent e) {}
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (departemen.getTable().getSelectedRow() != -1) {
+                    TkdDep.setText(departemen.getTable().getValueAt(departemen.getTable().getSelectedRow(), 0).toString());
+                    TnmDepartemen.setText(departemen.getTable().getValueAt(departemen.getTable().getSelectedRow(), 1).toString());
+                    btnDepartemen.requestFocus();
+                }             
+            }
+            @Override
+            public void windowIconified(WindowEvent e) {}
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+            @Override
+            public void windowActivated(WindowEvent e) {}
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });
         
         ChkInput.setSelected(false);
         isForm(); 
@@ -295,7 +307,6 @@ public final class DlgPegawai extends javax.swing.JDialog {
         jLabel25 = new widget.Label();
         jLabel26 = new widget.Label();
         npwp = new widget.TextBox();
-        cmbDep = new widget.ComboBox();
         cmbBid = new widget.ComboBox();
         cmbsttsWP = new widget.ComboBox();
         cmbsttsKJ = new widget.ComboBox();
@@ -329,6 +340,9 @@ public final class DlgPegawai extends javax.swing.JDialog {
         jLabel40 = new widget.Label();
         Tdankes = new widget.TextBox();
         cmbJabatan = new widget.ComboBox();
+        TkdDep = new widget.TextBox();
+        TnmDepartemen = new widget.TextBox();
+        btnDepartemen = new widget.Button();
         ChkInput = new widget.CekBox();
         TabPegawai = new javax.swing.JTabbedPane();
         scrollPane1 = new widget.ScrollPane();
@@ -562,7 +576,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TNm);
-        TNm.setBounds(109, 42, 350, 23);
+        TNm.setBounds(109, 42, 425, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Jenis Kelamin :");
@@ -576,15 +590,10 @@ public final class DlgPegawai extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 102, 105, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2025" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-07-2025" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
-        DTPLahir.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                DTPLahirKeyPressed(evt);
-            }
-        });
         FormInput.add(DTPLahir);
         DTPLahir.setBounds(319, 102, 100, 23);
 
@@ -592,7 +601,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         jLabel19.setText("Status Aktif :");
         jLabel19.setName("jLabel19"); // NOI18N
         FormInput.add(jLabel19);
-        jLabel19.setBounds(471, 12, 80, 23);
+        jLabel19.setBounds(577, 12, 80, 23);
 
         cmbSttsAktif.setForeground(new java.awt.Color(0, 0, 0));
         cmbSttsAktif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AKTIF", "CUTI", "KELUAR", "TENAGA LUAR", "PENSIUN" }));
@@ -604,13 +613,13 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbSttsAktif);
-        cmbSttsAktif.setBounds(555, 12, 115, 23);
+        cmbSttsAktif.setBounds(661, 12, 115, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Alamat :");
         jLabel20.setName("jLabel20"); // NOI18N
         FormInput.add(jLabel20);
-        jLabel20.setBounds(471, 42, 80, 23);
+        jLabel20.setBounds(577, 42, 80, 23);
 
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("NIK KTP :");
@@ -622,7 +631,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         jLabel12.setText("Jabatan  :");
         jLabel12.setName("jLabel12"); // NOI18N
         FormInput.add(jLabel12);
-        jLabel12.setBounds(471, 102, 80, 23);
+        jLabel12.setBounds(577, 102, 80, 23);
 
         TAlmt.setForeground(new java.awt.Color(0, 0, 0));
         TAlmt.setName("TAlmt"); // NOI18N
@@ -632,7 +641,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TAlmt);
-        TAlmt.setBounds(555, 42, 330, 23);
+        TAlmt.setBounds(661, 42, 330, 23);
 
         TNip.setForeground(new java.awt.Color(0, 0, 0));
         TNip.setName("TNip"); // NOI18N
@@ -664,7 +673,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         jLabel17.setText("Jenjang Jab. :");
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput.add(jLabel17);
-        jLabel17.setBounds(471, 132, 80, 23);
+        jLabel17.setBounds(577, 132, 80, 23);
 
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Bidang :");
@@ -700,17 +709,6 @@ public final class DlgPegawai extends javax.swing.JDialog {
         FormInput.add(npwp);
         npwp.setBounds(109, 252, 310, 23);
 
-        cmbDep.setForeground(new java.awt.Color(0, 0, 0));
-        cmbDep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
-        cmbDep.setName("cmbDep"); // NOI18N
-        cmbDep.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbDepMouseReleased(evt);
-            }
-        });
-        FormInput.add(cmbDep);
-        cmbDep.setBounds(109, 132, 350, 23);
-
         cmbBid.setForeground(new java.awt.Color(0, 0, 0));
         cmbBid.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbBid.setName("cmbBid"); // NOI18N
@@ -733,26 +731,26 @@ public final class DlgPegawai extends javax.swing.JDialog {
         cmbJenjang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbJenjang.setName("cmbJenjang"); // NOI18N
         FormInput.add(cmbJenjang);
-        cmbJenjang.setBounds(555, 132, 150, 23);
+        cmbJenjang.setBounds(661, 132, 150, 23);
 
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Pendidikan :");
         jLabel27.setName("jLabel27"); // NOI18N
         FormInput.add(jLabel27);
-        jLabel27.setBounds(471, 162, 80, 23);
+        jLabel27.setBounds(577, 162, 80, 23);
 
         cmbPendidikan.setForeground(new java.awt.Color(0, 0, 0));
         cmbPendidikan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbPendidikan.setName("cmbPendidikan"); // NOI18N
         FormInput.add(cmbPendidikan);
-        cmbPendidikan.setBounds(555, 162, 165, 23);
+        cmbPendidikan.setBounds(661, 162, 165, 23);
 
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Gaji Pokok :");
         jLabel28.setToolTipText("");
         jLabel28.setName("jLabel28"); // NOI18N
         FormInput.add(jLabel28);
-        jLabel28.setBounds(471, 192, 80, 23);
+        jLabel28.setBounds(577, 192, 80, 23);
 
         TGapok.setForeground(new java.awt.Color(0, 0, 0));
         TGapok.setName("TGapok"); // NOI18N
@@ -762,13 +760,13 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TGapok);
-        TGapok.setBounds(555, 192, 150, 23);
+        TGapok.setBounds(661, 192, 150, 23);
 
         jLabel29.setForeground(new java.awt.Color(0, 0, 0));
         jLabel29.setText("Kota :");
         jLabel29.setName("jLabel29"); // NOI18N
         FormInput.add(jLabel29);
-        jLabel29.setBounds(471, 72, 80, 23);
+        jLabel29.setBounds(577, 72, 80, 23);
 
         TKota.setForeground(new java.awt.Color(0, 0, 0));
         TKota.setName("TKota"); // NOI18N
@@ -778,67 +776,67 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TKota);
-        TKota.setBounds(555, 72, 330, 23);
+        TKota.setBounds(661, 72, 330, 23);
 
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Mulai Kerja :");
         jLabel30.setToolTipText("");
         jLabel30.setName("jLabel30"); // NOI18N
         FormInput.add(jLabel30);
-        jLabel30.setBounds(720, 102, 70, 23);
+        jLabel30.setBounds(826, 102, 70, 23);
 
-        DTPmulaiKJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2025" }));
+        DTPmulaiKJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-07-2025" }));
         DTPmulaiKJ.setDisplayFormat("dd-MM-yyyy");
         DTPmulaiKJ.setName("DTPmulaiKJ"); // NOI18N
         DTPmulaiKJ.setOpaque(false);
         FormInput.add(DTPmulaiKJ);
-        DTPmulaiKJ.setBounds(795, 102, 90, 23);
+        DTPmulaiKJ.setBounds(901, 102, 90, 23);
 
         jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("Masa Kerja :");
         jLabel31.setToolTipText("");
         jLabel31.setName("jLabel31"); // NOI18N
         FormInput.add(jLabel31);
-        jLabel31.setBounds(720, 132, 70, 23);
+        jLabel31.setBounds(826, 132, 70, 23);
 
         cmbMasaKJ.setForeground(new java.awt.Color(0, 0, 0));
         cmbMasaKJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "<1", "PT", "FT>1" }));
         cmbMasaKJ.setName("cmbMasaKJ"); // NOI18N
         FormInput.add(cmbMasaKJ);
-        cmbMasaKJ.setBounds(795, 132, 60, 23);
+        cmbMasaKJ.setBounds(901, 132, 60, 23);
 
         jLabel32.setForeground(new java.awt.Color(0, 0, 0));
         jLabel32.setText("Indexing :");
         jLabel32.setToolTipText("");
         jLabel32.setName("jLabel32"); // NOI18N
         FormInput.add(jLabel32);
-        jLabel32.setBounds(720, 192, 70, 23);
+        jLabel32.setBounds(826, 192, 70, 23);
 
         cmbIndex.setForeground(new java.awt.Color(0, 0, 0));
         cmbIndex.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbIndex.setName("cmbIndex"); // NOI18N
         FormInput.add(cmbIndex);
-        cmbIndex.setBounds(795, 192, 60, 23);
+        cmbIndex.setBounds(901, 192, 60, 23);
 
         jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setText("Bank :");
         jLabel33.setToolTipText("");
         jLabel33.setName("jLabel33"); // NOI18N
         FormInput.add(jLabel33);
-        jLabel33.setBounds(720, 162, 70, 23);
+        jLabel33.setBounds(826, 162, 70, 23);
 
         cmbBank.setForeground(new java.awt.Color(0, 0, 0));
         cmbBank.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbBank.setName("cmbBank"); // NOI18N
         FormInput.add(cmbBank);
-        cmbBank.setBounds(795, 162, 120, 23);
+        cmbBank.setBounds(901, 162, 120, 23);
 
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setText("Rekening :");
         jLabel34.setToolTipText("");
         jLabel34.setName("jLabel34"); // NOI18N
         FormInput.add(jLabel34);
-        jLabel34.setBounds(471, 222, 80, 23);
+        jLabel34.setBounds(577, 222, 80, 23);
 
         TRek.setForeground(new java.awt.Color(0, 0, 0));
         TRek.setName("TRek"); // NOI18N
@@ -848,14 +846,14 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TRek);
-        TRek.setBounds(555, 222, 330, 23);
+        TRek.setBounds(661, 222, 330, 23);
 
         jLabel35.setForeground(new java.awt.Color(0, 0, 0));
         jLabel35.setText("Wajib Masuk :");
         jLabel35.setToolTipText("");
         jLabel35.setName("jLabel35"); // NOI18N
         FormInput.add(jLabel35);
-        jLabel35.setBounds(471, 252, 80, 23);
+        jLabel35.setBounds(577, 252, 80, 23);
 
         TwajibMsk.setForeground(new java.awt.Color(0, 0, 0));
         TwajibMsk.setName("TwajibMsk"); // NOI18N
@@ -865,14 +863,14 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(TwajibMsk);
-        TwajibMsk.setBounds(555, 252, 50, 23);
+        TwajibMsk.setBounds(661, 252, 50, 23);
 
         jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setText("Pengurang :");
         jLabel36.setToolTipText("");
         jLabel36.setName("jLabel36"); // NOI18N
         FormInput.add(jLabel36);
-        jLabel36.setBounds(605, 252, 70, 23);
+        jLabel36.setBounds(711, 252, 70, 23);
 
         Tpengurang.setForeground(new java.awt.Color(0, 0, 0));
         Tpengurang.setName("Tpengurang"); // NOI18N
@@ -882,14 +880,14 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tpengurang);
-        Tpengurang.setBounds(680, 252, 125, 23);
+        Tpengurang.setBounds(786, 252, 125, 23);
 
         jLabel37.setForeground(new java.awt.Color(0, 0, 0));
         jLabel37.setText("Indek :");
         jLabel37.setToolTipText("");
         jLabel37.setName("jLabel37"); // NOI18N
         FormInput.add(jLabel37);
-        jLabel37.setBounds(805, 252, 45, 23);
+        jLabel37.setBounds(911, 252, 45, 23);
 
         Tindek.setForeground(new java.awt.Color(0, 0, 0));
         Tindek.setName("Tindek"); // NOI18N
@@ -899,7 +897,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tindek);
-        Tindek.setBounds(855, 252, 50, 23);
+        Tindek.setBounds(961, 252, 50, 23);
 
         jLabel38.setForeground(new java.awt.Color(0, 0, 0));
         jLabel38.setText("Mulai Kontrak :");
@@ -907,7 +905,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         FormInput.add(jLabel38);
         jLabel38.setBounds(0, 282, 105, 23);
 
-        DTPmulaiKontrak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2025" }));
+        DTPmulaiKontrak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-07-2025" }));
         DTPmulaiKontrak.setDisplayFormat("dd-MM-yyyy");
         DTPmulaiKontrak.setName("DTPmulaiKontrak"); // NOI18N
         DTPmulaiKontrak.setOpaque(false);
@@ -918,7 +916,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         jLabel39.setText("Cuti Diambil :");
         jLabel39.setName("jLabel39"); // NOI18N
         FormInput.add(jLabel39);
-        jLabel39.setBounds(471, 282, 80, 23);
+        jLabel39.setBounds(577, 282, 80, 23);
 
         Tcuti.setForeground(new java.awt.Color(0, 0, 0));
         Tcuti.setName("Tcuti"); // NOI18N
@@ -928,7 +926,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tcuti);
-        Tcuti.setBounds(555, 282, 50, 23);
+        Tcuti.setBounds(661, 282, 50, 23);
 
         jLabel40.setForeground(new java.awt.Color(0, 0, 0));
         jLabel40.setText("Dankes :");
@@ -950,7 +948,32 @@ public final class DlgPegawai extends javax.swing.JDialog {
         cmbJabatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbJabatan.setName("cmbJabatan"); // NOI18N
         FormInput.add(cmbJabatan);
-        cmbJabatan.setBounds(555, 102, 165, 23);
+        cmbJabatan.setBounds(661, 102, 165, 23);
+
+        TkdDep.setEditable(false);
+        TkdDep.setForeground(new java.awt.Color(0, 0, 0));
+        TkdDep.setName("TkdDep"); // NOI18N
+        FormInput.add(TkdDep);
+        TkdDep.setBounds(109, 132, 70, 23);
+
+        TnmDepartemen.setEditable(false);
+        TnmDepartemen.setForeground(new java.awt.Color(0, 0, 0));
+        TnmDepartemen.setName("TnmDepartemen"); // NOI18N
+        FormInput.add(TnmDepartemen);
+        TnmDepartemen.setBounds(183, 132, 350, 23);
+
+        btnDepartemen.setForeground(new java.awt.Color(0, 0, 0));
+        btnDepartemen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnDepartemen.setMnemonic('1');
+        btnDepartemen.setToolTipText("Alt+1");
+        btnDepartemen.setName("btnDepartemen"); // NOI18N
+        btnDepartemen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepartemenActionPerformed(evt);
+            }
+        });
+        FormInput.add(btnDepartemen);
+        btnDepartemen.setBounds(536, 132, 28, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -1051,10 +1074,6 @@ public final class DlgPegawai extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_TNmKeyPressed
 
-    private void DTPLahirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPLahirKeyPressed
-        Valid.pindah(evt, TTmp, cmbDep);
-}//GEN-LAST:event_DTPLahirKeyPressed
-
     private void cmbSttsAktifKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbSttsAktifKeyPressed
         Valid.pindah(evt, DTPmulaiKontrak, TAlmt);
 }//GEN-LAST:event_cmbSttsAktifKeyPressed
@@ -1095,7 +1114,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
                 cekData();
                 Sequel.menyimpan("pegawai", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", 30, new String[]{
                     "0", TNip.getText(), TNm.getText(), CmbJk.getSelectedItem().toString().replaceAll("PEREMPUAN", "Wanita").replaceAll("LAKI-LAKI", "Pria"),
-                    cmbJabatan.getSelectedItem().toString(), idJenjang, idDep, cmbBid.getSelectedItem().toString(), idSttsWP, idSttsKJ, npwp.getText(),
+                    cmbJabatan.getSelectedItem().toString(), idJenjang, TkdDep.getText(), cmbBid.getSelectedItem().toString(), idSttsWP, idSttsKJ, npwp.getText(),
                     cmbPendidikan.getSelectedItem().toString(), TGapok.getText(), TTmp.getText(), Valid.SetTgl(DTPLahir.getSelectedItem() + ""), TAlmt.getText(),
                     TKota.getText(), Valid.SetTgl(DTPmulaiKJ.getSelectedItem() + ""), cmbMasaKJ.getSelectedItem().toString(), idIndex, cmbBank.getSelectedItem().toString(),
                     TRek.getText(), cmbSttsAktif.getSelectedItem().toString(), TwajibMsk.getText(), Tpengurang.getText(), Tindek.getText(), Valid.SetTgl(DTPmulaiKontrak.getSelectedItem() + ""),
@@ -1175,26 +1194,50 @@ public final class DlgPegawai extends javax.swing.JDialog {
         } else if (cmbMasaKJ.getSelectedIndex() == 0) {
             Valid.textKosong(cmbMasaKJ, "Masa kerja");
         } else {
-            if (tbPegawai.getSelectedRow() > -1) {
-                cekData();
-                Sequel.mengedit("pegawai", "nik='" + nipDipilih + "'",
-                        "nik='" + TNip.getText() + "', nama='" + TNm.getText() + "', jk='" + CmbJk.getSelectedItem().toString().replaceAll("PEREMPUAN", "Wanita").replaceAll("LAKI-LAKI", "Pria") + "',"
-                        + "jbtn='" + cmbJabatan.getSelectedItem().toString() + "', jnj_jabatan='" + idJenjang + "', departemen='" + idDep + "', bidang='" + cmbBid.getSelectedItem().toString() + "',"
-                        + "stts_wp='" + idSttsWP + "', stts_kerja='" + idSttsKJ + "', npwp='" + npwp.getText() + "', pendidikan='" + cmbPendidikan.getSelectedItem().toString() + "', gapok='" + TGapok.getText() + "',"
-                        + "tmp_lahir='" + TTmp.getText() + "', tgl_lahir='" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "', alamat='" + TAlmt.getText() + "', kota='" + TKota.getText() + "',"
-                        + "mulai_kerja='" + Valid.SetTgl(DTPmulaiKJ.getSelectedItem() + "") + "', ms_kerja='" + cmbMasaKJ.getSelectedItem().toString() + "', indexins='" + idIndex + "',"
-                        + "bpd='" + cmbBank.getSelectedItem().toString() + "', rekening='" + TRek.getText() + "', stts_aktif='" + cmbSttsAktif.getSelectedItem().toString() + "', wajibmasuk='" + TwajibMsk.getText() + "',"
-                        + "pengurang='" + Tpengurang.getText() + "', indek='" + Tindek.getText() + "', mulai_kontrak='" + Valid.SetTgl(DTPmulaiKontrak.getSelectedItem() + "") + "', cuti_diambil='" + Tcuti.getText() + "',"
-                        + "dankes='" + Tdankes.getText() + "', no_ktp='" + TnoKTP.getText() + "'");
-                
-                Sequel.mengedit("rawat_inap_dr", "kd_dokter='" + nipDipilih + "'", "kd_dokter='" + TNip.getText() + "'");
-                Sequel.mengedit("rawat_inap_dr", "kd_dokter_mewakili='" + nipDipilih + "'", "kd_dokter_mewakili='" + TNip.getText() + "'");
+            if (TabPegawai.getSelectedIndex() == 0) {
+                if (tbPegawai.getSelectedRow() > -1) {
+                    cekData();
+                    Sequel.mengedit("pegawai", "nik='" + nipDipilih + "'",
+                            "nik='" + TNip.getText() + "', nama='" + TNm.getText() + "', jk='" + CmbJk.getSelectedItem().toString().replaceAll("PEREMPUAN", "Wanita").replaceAll("LAKI-LAKI", "Pria") + "',"
+                            + "jbtn='" + cmbJabatan.getSelectedItem().toString() + "', jnj_jabatan='" + idJenjang + "', departemen='" + TkdDep.getText() + "', bidang='" + cmbBid.getSelectedItem().toString() + "',"
+                            + "stts_wp='" + idSttsWP + "', stts_kerja='" + idSttsKJ + "', npwp='" + npwp.getText() + "', pendidikan='" + cmbPendidikan.getSelectedItem().toString() + "', gapok='" + TGapok.getText() + "',"
+                            + "tmp_lahir='" + TTmp.getText() + "', tgl_lahir='" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "', alamat='" + TAlmt.getText() + "', kota='" + TKota.getText() + "',"
+                            + "mulai_kerja='" + Valid.SetTgl(DTPmulaiKJ.getSelectedItem() + "") + "', ms_kerja='" + cmbMasaKJ.getSelectedItem().toString() + "', indexins='" + idIndex + "',"
+                            + "bpd='" + cmbBank.getSelectedItem().toString() + "', rekening='" + TRek.getText() + "', stts_aktif='" + cmbSttsAktif.getSelectedItem().toString() + "', wajibmasuk='" + TwajibMsk.getText() + "',"
+                            + "pengurang='" + Tpengurang.getText() + "', indek='" + Tindek.getText() + "', mulai_kontrak='" + Valid.SetTgl(DTPmulaiKontrak.getSelectedItem() + "") + "', cuti_diambil='" + Tcuti.getText() + "',"
+                            + "dankes='" + Tdankes.getText() + "', no_ktp='" + TnoKTP.getText() + "'");
 
-                TabPegawaiMouseClicked(null);
-                emptTeks();
+                    Sequel.mengedit("rawat_inap_dr", "kd_dokter='" + nipDipilih + "'", "kd_dokter='" + TNip.getText() + "'");
+                    Sequel.mengedit("rawat_inap_dr", "kd_dokter_mewakili='" + nipDipilih + "'", "kd_dokter_mewakili='" + TNip.getText() + "'");
+
+                    TabPegawaiMouseClicked(null);
+                    emptTeks();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+                    tbPegawai.requestFocus();
+                }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
-                tbPegawai.requestFocus();
+                if (tbPegawai1.getSelectedRow() > -1) {
+                    cekData();
+                    Sequel.mengedit("pegawai", "nik='" + nipDipilih + "'",
+                            "nik='" + TNip.getText() + "', nama='" + TNm.getText() + "', jk='" + CmbJk.getSelectedItem().toString().replaceAll("PEREMPUAN", "Wanita").replaceAll("LAKI-LAKI", "Pria") + "',"
+                            + "jbtn='" + cmbJabatan.getSelectedItem().toString() + "', jnj_jabatan='" + idJenjang + "', departemen='" + TkdDep.getText() + "', bidang='" + cmbBid.getSelectedItem().toString() + "',"
+                            + "stts_wp='" + idSttsWP + "', stts_kerja='" + idSttsKJ + "', npwp='" + npwp.getText() + "', pendidikan='" + cmbPendidikan.getSelectedItem().toString() + "', gapok='" + TGapok.getText() + "',"
+                            + "tmp_lahir='" + TTmp.getText() + "', tgl_lahir='" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "', alamat='" + TAlmt.getText() + "', kota='" + TKota.getText() + "',"
+                            + "mulai_kerja='" + Valid.SetTgl(DTPmulaiKJ.getSelectedItem() + "") + "', ms_kerja='" + cmbMasaKJ.getSelectedItem().toString() + "', indexins='" + idIndex + "',"
+                            + "bpd='" + cmbBank.getSelectedItem().toString() + "', rekening='" + TRek.getText() + "', stts_aktif='" + cmbSttsAktif.getSelectedItem().toString() + "', wajibmasuk='" + TwajibMsk.getText() + "',"
+                            + "pengurang='" + Tpengurang.getText() + "', indek='" + Tindek.getText() + "', mulai_kontrak='" + Valid.SetTgl(DTPmulaiKontrak.getSelectedItem() + "") + "', cuti_diambil='" + Tcuti.getText() + "',"
+                            + "dankes='" + Tdankes.getText() + "', no_ktp='" + TnoKTP.getText() + "'");
+
+                    Sequel.mengedit("rawat_inap_dr", "kd_dokter='" + nipDipilih + "'", "kd_dokter='" + TNip.getText() + "'");
+                    Sequel.mengedit("rawat_inap_dr", "kd_dokter_mewakili='" + nipDipilih + "'", "kd_dokter_mewakili='" + TNip.getText() + "'");
+
+                    TabPegawaiMouseClicked(null);
+                    emptTeks();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+                    tbPegawai1.requestFocus();
+                }
             }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
@@ -1255,7 +1298,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         TabPegawaiMouseClicked(null);
-        Sequel.cariIsiComboDB("select nama from departemen where dep_id <>'-'", cmbDep);
         Sequel.cariIsiComboDB("select nama from bidang where nama <>'-'", cmbBid);
         Sequel.cariIsiComboDB("select ktg from stts_wp WHERE stts <>'-'", cmbsttsWP);
         Sequel.cariIsiComboDB("select ktg from stts_kerja WHERE stts <>'-'", cmbsttsKJ);
@@ -1354,9 +1396,11 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_TabPegawaiMouseClicked
 
-    private void cmbDepMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDepMouseReleased
-        AutoCompleteDecorator.decorate(cmbDep);
-    }//GEN-LAST:event_cmbDepMouseReleased
+    private void btnDepartemenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartemenActionPerformed
+        departemen.setSize(886, internalFrame1.getHeight() - 40);
+        departemen.setLocationRelativeTo(internalFrame1);
+        departemen.setVisible(true);
+    }//GEN-LAST:event_btnDepartemenActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1401,12 +1445,14 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox Tcuti;
     private widget.TextBox Tdankes;
     private widget.TextBox Tindek;
+    private widget.TextBox TkdDep;
+    private widget.TextBox TnmDepartemen;
     private widget.TextBox TnoKTP;
     private widget.TextBox Tpengurang;
     private widget.TextBox TwajibMsk;
+    private widget.Button btnDepartemen;
     private widget.ComboBox cmbBank;
     private widget.ComboBox cmbBid;
-    private widget.ComboBox cmbDep;
     private widget.ComboBox cmbIndex;
     private widget.ComboBox cmbJabatan;
     private widget.ComboBox cmbJenjang;
@@ -1462,7 +1508,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             ps = koneksi.prepareStatement("SELECT p.nik, p.nama, p.tmp_lahir, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgl_lhr, IF(p.jk='Pria','Laki-laki','Perempuan') jk, CONCAT(p.alamat,', ',p.kota) almt,"
                     + "p.pendidikan, p.jbtn, jj.nama nm_jbtn, p.stts_aktif, p.no_ktp, d.nama nm_dep, p.bidang, sw.ktg stwp, sk.ktg stsk, p.npwp, format(p.gapok,0) gapok, date_format(p.mulai_kerja,'%d-%m-%Y') ml_krja,"
                     + "p.ms_kerja, i.persen indeksing, p.bpd nm_bank, p.rekening, p.wajibmasuk, p.pengurang, p.indek, date_format(p.mulai_kontrak,'%d-%m-%Y') ml_kontrak, p.cuti_diambil,"
-                    + "p.dankes FROM pegawai p INNER JOIN jnj_jabatan jj ON jj.kode=p.jnj_jabatan INNER JOIN departemen d ON d.dep_id=p.departemen "
+                    + "p.dankes, d.dep_id FROM pegawai p INNER JOIN jnj_jabatan jj ON jj.kode=p.jnj_jabatan INNER JOIN departemen d ON d.dep_id=p.departemen "
                     + "INNER JOIN stts_wp sw ON sw.stts=p.stts_wp INNER JOIN stts_kerja sk ON sk.stts=p.stts_kerja INNER JOIN indexins i ON i.dep_id=p.indexins where "
                     + "p.stts_aktif in ('aktif','tenaga luar') and p.nik like ? or "
                     + "p.stts_aktif in ('aktif','tenaga luar') and p.nama like ? or "
@@ -1543,7 +1589,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         rs.getString("indek"),
                         rs.getString("ml_kontrak"),
                         rs.getString("cuti_diambil"),
-                        rs.getString("dankes")
+                        rs.getString("dankes"),
+                        rs.getString("dep_id")
                     });
                 }
             } catch (Exception e) {
@@ -1568,7 +1615,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             ps1 = koneksi.prepareStatement("SELECT p.nik, p.nama, p.tmp_lahir, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgl_lhr, IF(p.jk='Pria','Laki-laki','Perempuan') jk, CONCAT(p.alamat,', ',p.kota) almt,"
                     + "p.pendidikan, p.jbtn, jj.nama nm_jbtn, p.stts_aktif, p.no_ktp, d.nama nm_dep, p.bidang, sw.ktg stwp, sk.ktg stsk, p.npwp, format(p.gapok,0) gapok, date_format(p.mulai_kerja,'%d-%m-%Y') ml_krja,"
                     + "p.ms_kerja, i.persen indeksing, p.bpd nm_bank, p.rekening, p.wajibmasuk, p.pengurang, p.indek, date_format(p.mulai_kontrak,'%d-%m-%Y') ml_kontrak, p.cuti_diambil,"
-                    + "p.dankes FROM pegawai p INNER JOIN jnj_jabatan jj ON jj.kode=p.jnj_jabatan INNER JOIN departemen d ON d.dep_id=p.departemen "
+                    + "p.dankes, d.dep_id FROM pegawai p INNER JOIN jnj_jabatan jj ON jj.kode=p.jnj_jabatan INNER JOIN departemen d ON d.dep_id=p.departemen "
                     + "INNER JOIN stts_wp sw ON sw.stts=p.stts_wp INNER JOIN stts_kerja sk ON sk.stts=p.stts_kerja INNER JOIN indexins i ON i.dep_id=p.indexins where "
                     + "p.stts_aktif not in ('aktif','tenaga luar') and p.nik like ? or "
                     + "p.stts_aktif not in ('aktif','tenaga luar') and p.nama like ? or "
@@ -1649,7 +1696,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         rs1.getString("indek"),
                         rs1.getString("ml_kontrak"),
                         rs1.getString("cuti_diambil"),
-                        rs1.getString("dankes")
+                        rs1.getString("dankes"),
+                        rs1.getString("dep_id")
                     });
                 }
             } catch (Exception e) {
@@ -1675,7 +1723,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         CmbJk.setSelectedIndex(0);
         TTmp.setText("");
         DTPLahir.setDate(new Date());
-        cmbDep.setSelectedIndex(0);
+        TkdDep.setText("-");
+        TnmDepartemen.setText("-");
         cmbBid.setSelectedIndex(0);
         cmbsttsWP.setSelectedIndex(0);
         cmbsttsKJ.setSelectedIndex(0);
@@ -1710,7 +1759,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             TnoKTP.setText(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 10).toString());
             TTmp.setText(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 2).toString());
             Valid.SetTgl(DTPLahir, Sequel.cariIsi("select tgl_lahir from pegawai where nik='" + TNip.getText() + "'"));
-            cmbDep.setSelectedItem(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 11).toString());
+            TkdDep.setText(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 28).toString());
+            TnmDepartemen.setText(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 11).toString());
             cmbBid.setSelectedItem(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 12).toString());
             cmbsttsWP.setSelectedItem(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 13).toString());
             cmbsttsKJ.setSelectedItem(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 14).toString());
@@ -1754,7 +1804,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             TnoKTP.setText(tbPegawai1.getValueAt(tbPegawai1.getSelectedRow(), 10).toString());
             TTmp.setText(tbPegawai1.getValueAt(tbPegawai1.getSelectedRow(), 2).toString());
             Valid.SetTgl(DTPLahir, Sequel.cariIsi("select tgl_lahir from pegawai where nik='" + TNip.getText() + "'"));
-            cmbDep.setSelectedItem(tbPegawai1.getValueAt(tbPegawai1.getSelectedRow(), 11).toString());
+            TkdDep.setText(tbPegawai1.getValueAt(tbPegawai1.getSelectedRow(), 28).toString());
+            TnmDepartemen.setText(tbPegawai1.getValueAt(tbPegawai1.getSelectedRow(), 11).toString());
             cmbBid.setSelectedItem(tbPegawai1.getValueAt(tbPegawai1.getSelectedRow(), 12).toString());
             cmbsttsWP.setSelectedItem(tbPegawai1.getValueAt(tbPegawai1.getSelectedRow(), 13).toString());
             cmbsttsKJ.setSelectedItem(tbPegawai1.getValueAt(tbPegawai1.getSelectedRow(), 14).toString());
@@ -1817,18 +1868,11 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
     
     private void cekData() {
-        idDep = "";
         idSttsWP = "";
         idSttsKJ = "";
         idJenjang = "";
         idIndex = "";
 
-        if (cmbDep.getSelectedIndex() == 0) {
-            idDep = Sequel.cariIsi("select dep_id from departemen where nama='" + cmbDep.getSelectedItem().toString() + "'");
-        } else {
-            idDep = Sequel.cariIsi("select dep_id from departemen where nama='" + cmbDep.getSelectedItem().toString() + "'");
-        }
-        
         if (cmbsttsWP.getSelectedIndex() == 0) {
             idSttsWP = Sequel.cariIsi("select stts from stts_wp where ktg='" + cmbsttsWP.getSelectedItem().toString() + "'");
         } else {

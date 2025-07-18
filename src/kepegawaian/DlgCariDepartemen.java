@@ -330,7 +330,7 @@ public final class DlgCariDepartemen extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("select * from departemen where dep_id like ? or nama like ? order by nama desc");
+            ps = koneksi.prepareStatement("select * from departemen where dep_id like ? or nama like ? order by nama");
             try {
                 ps.setString(1, "%" + TCari.getText().trim() + "%");
                 ps.setString(2, "%" + TCari.getText().trim() + "%");
