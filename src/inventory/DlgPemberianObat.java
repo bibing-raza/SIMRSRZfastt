@@ -47,6 +47,7 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import keuangan.Jurnal;
 import laporan.DlgLaporanFarmasi;
 import simrskhanza.DlgCariObatPenyakit;
@@ -89,10 +90,14 @@ public class DlgPemberianObat extends javax.swing.JDialog {
     public DlgPemberianObat(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         Object[] row = {"Tgl.Beri", "Jam Beri", "No.Rawat", "No.R.M.",
             "Nama Pasien", "Kode Obat", "Nama Obat/Alkes", "Embalase",
             "Tuslah", "Jml", "Biaya Obat", "Total", "Harga Beli", "Gudang"};
+        
         tabModePO = new DefaultTableModel(null, row) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -108,9 +113,8 @@ public class DlgPemberianObat extends javax.swing.JDialog {
                 return types[columnIndex];
             }
         };
+        
         tbPemberianObat.setModel(tabModePO);
-        //tampilPO("");
-
         tbPemberianObat.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPemberianObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -121,17 +125,16 @@ public class DlgPemberianObat extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(60);
             } else if (i == 2) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(110);
             } else if (i == 3) {
                 column.setPreferredWidth(70);
             } else if (i == 4) {
-                column.setPreferredWidth(200);
-            } else if (i == 5) {//sembunyi
-                //column.setPreferredWidth(100);
+                column.setPreferredWidth(250);
+            } else if (i == 5) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 6) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(550);
             } else if (i == 7) {
                 column.setPreferredWidth(80);
             } else if (i == 8) {
@@ -150,6 +153,11 @@ public class DlgPemberianObat extends javax.swing.JDialog {
             }
         }
         tbPemberianObat.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPemberianObat.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbPemberianObat.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbPemberianObat.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbPemberianObat.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 
         this.setLocation(8, 1);
         setSize(885, 674);
@@ -2450,8 +2458,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         sql = "select detail_pemberian_obat.tgl_perawatan,detail_pemberian_obat.jam,"
                 + "detail_pemberian_obat.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"
                 + "detail_pemberian_obat.kode_brng,databarang.nama_brng,detail_pemberian_obat.embalase,detail_pemberian_obat.tuslah,"
-                + "detail_pemberian_obat.jml,detail_pemberian_obat.biaya_obat,detail_pemberian_obat.total,detail_pemberian_obat.h_beli,bangsal.nm_bangsal,detail_pemberian_obat.urutan  "
-                + "from detail_pemberian_obat inner join reg_periksa inner join pasien inner join databarang "
+                + "detail_pemberian_obat.jml,detail_pemberian_obat.biaya_obat,detail_pemberian_obat.total,detail_pemberian_obat.h_beli, "
+                + "if(bangsal.nm_bangsal is null,(select nm_bangsal from bangsal where kd_bangsal=detail_pemberian_obat.kd_bangsal),bangsal.nm_bangsal) nm_bangsal, "
+                + "detail_pemberian_obat.urutan from detail_pemberian_obat inner join reg_periksa inner join pasien inner join databarang "
                 + "on detail_pemberian_obat.no_rawat=reg_periksa.no_rawat "
                 + "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
                 + "and detail_pemberian_obat.kode_brng=databarang.kode_brng "
