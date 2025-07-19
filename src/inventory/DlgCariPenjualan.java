@@ -1599,7 +1599,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             tbObat.requestFocus();
         } else {
             DlgGantiAturanPakai aturan = new DlgGantiAturanPakai(null, false);
-            aturan.setSize(644, 316);
+            aturan.setSize(743, 316);
             aturan.setLocationRelativeTo(internalFrame1);
             aturan.setData(no_nota, kd_obat,
                     Sequel.cariIsi("SELECT p.tgl_jual FROM penjualan p INNER JOIN detailjual dj on p.nota_jual = dj.nota_jual WHERE dj.nota_jual='" + no_nota + "'"),
