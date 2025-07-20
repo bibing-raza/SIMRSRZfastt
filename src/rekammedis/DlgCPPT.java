@@ -97,7 +97,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             amputasiKiri = "", amputasiKanan = "", mataDiabet = "", ginjal = "", pnyJantung = "", hipertensi = "", strok = "", pad = "",
             nonUlkus = "", ulkus = "", ulkusGang = "", sellu = "", jarKakiKanan = "", jarKakiKiri = "", der0 = "", der1 = "", der2 = "", 
             der3 = "", der4 = "", der5 = "", surgi = "", chemi = "", bio = "", hydro = "", foam = "", algi = "", silver = "", cadex = "", 
-            madu = "", lainModern = "", debri = "", modernDres = "", ruangRawat = "", kodeKamar = "", verified = "", gedungData = "";
+            madu = "", lainModern = "", debri = "", modernDres = "", ruangRawat = "", kodeKamar = "", verified = "", gedungData = "", cekGedung = "";
     private String noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "",
             hasilDipilih = "", kdItem = "", norawat = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", link = "";
 
@@ -20819,13 +20819,22 @@ public class DlgCPPT extends javax.swing.JDialog {
     
     private void cekDatadanPetugas() {
         verified = "";
+        cekGedung = "";
         gedungData = "";
 
         if (statusOK.equals("Ranap")) {
-            if (Sequel.cariIsi("select b.nm_gedung from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kodeKamar + "'").equals("")) {
+            cekGedung = Sequel.cariIsi("select b.nm_gedung from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kodeKamar + "'");
+            
+            if (cekGedung.equals("")) {
                 gedungData = "-";
-            } else {
-                gedungData = Sequel.cariIsi("select b.nm_gedung from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kodeKamar + "'");
+            } else {                
+                if (cekGedung.equals("AR-RAUDAH ATAS") || cekGedung.equals("AR-RAUDAH BAWAH")) {
+                    gedungData = "AR-RAUDAH";
+                } else if (cekGedung.equals("PERINATOLOGI") || cekGedung.equals("BAYI SEHAT")) {
+                    gedungData = "BAYI";
+                } else {
+                    gedungData = cekGedung;
+                }
             }
         } else if (statusOK.equals("Ralan")) {
             if (Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodeKamar + "'").equals("-")) {
@@ -20844,7 +20853,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             } else {
                 if (Sequel.cariInteger("select count(-1) from pegawai p inner join departemen d on d.dep_id=p.departemen "
                         + "where p.nik='" + akses.getkode() + "' and d.nama like '%(" + gedungData + ")%'") > 0
-                        || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen in ('D314','D711','D304','D713','D507','-')") > 0) {
+                        || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen in ('D314','D304','D713','D507','-')") > 0) {
                     verified = "cocok";
                 } else {
                     verified = "tidak cocok";
@@ -20854,11 +20863,18 @@ public class DlgCPPT extends javax.swing.JDialog {
             verified = "cocok";
         }
         
-        //catatan :
-        //D304 INSTALASI FARMASI
-        //D314 INSTALASI GIZI
-        //D711 RUANG PERAWATAN BAYI-SEHAT & PERINATOLOGI (BAYI)
-        //D713 RUANG PERAWATAN VK BERSALIN
-        //D507 RUANG PERAWATAN BERSALIN/AL-KHALIQ (BERSALIN)
+        /*
+        catatan :
+        yang ini bebas :
+        D304 INSTALASI FARMASI
+        D314 INSTALASI GIZI        
+        D713 RUANG PERAWATAN VK BERSALIN
+        D507 RUANG PERAWATAN BERSALIN/AL-KHALIQ (BERSALIN)
+        
+        yang ini pengecualian :
+        D711 RUANG PERAWATAN BAYI-SEHAT & PERINATOLOGI (BAYI)
+        D709 RUANG PERAWATAN AR-RAUDAH ATAS (AR-RAUDAH ATAS)
+        D710 RUANG PERAWATAN AR-RAUDAH BAWAH (AR-RAUDAH BAWAH)
+        */
     }
 }
