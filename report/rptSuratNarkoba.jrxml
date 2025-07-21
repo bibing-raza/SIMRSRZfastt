@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="517" leftMargin="39" rightMargin="39" topMargin="39" bottomMargin="20">
 	<property name="ireport.zoom" value="1.6105100000000014"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="416"/>
+	<property name="ireport.y" value="480"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -275,7 +275,7 @@ menerangkan bahwa telah memeriksa dengan teliti terhadap sampel urine :]]></text
 		</band>
 	</detail>
 	<summary>
-		<band height="274">
+		<band height="326">
 			<staticText>
 				<reportElement x="57" y="12" width="342" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
@@ -297,64 +297,64 @@ menerangkan bahwa telah memeriksa dengan teliti terhadap sampel urine :]]></text
 				</textElement>
 				<text><![CDATA[Keperluan :]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="94" y="52" width="423" height="29"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="94" y="52" width="423" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{keperluan}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="40" y="84" width="477" height="28"/>
+				<reportElement x="40" y="126" width="477" height="28"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Demikian disampaikan surat keterangan pemeriksaan ini diberikan untuk dipergunakan sebagaimana mestinya.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="286" y="112" width="89" height="14"/>
+				<reportElement x="286" y="154" width="89" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[DIKELUARKAN DI]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="286" y="125" width="89" height="14"/>
+				<reportElement x="286" y="167" width="89" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[PADA TANGGAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="374" y="112" width="6" height="14"/>
+				<reportElement x="374" y="154" width="6" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="374" y="125" width="6" height="14"/>
+				<reportElement x="374" y="167" width="6" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="380" y="112" width="137" height="14"/>
+				<reportElement x="380" y="154" width="137" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{kotars}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="380" y="125" width="137" height="14"/>
+				<reportElement x="380" y="167" width="137" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" isBold="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{tglsurat}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="286" y="143" width="231" height="50"/>
+				<reportElement x="286" y="185" width="231" height="50"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
@@ -364,14 +364,14 @@ MARTAPURA
 Dokter Pemeriksa,]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="286" y="241" width="231" height="14"/>
+				<reportElement x="286" y="283" width="231" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" isBold="false" isUnderline="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{nmdokter}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="286" y="253" width="231" height="14"/>
+				<reportElement x="286" y="295" width="231" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" isBold="false"/>
 				</textElement>

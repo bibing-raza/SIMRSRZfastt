@@ -11181,7 +11181,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     DlgSuratKeteranganSakit form = new DlgSuratKeteranganSakit(null, false);
                     form.isCek();
-                    form.setData(norawat.getText(), tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 8).toString(), tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 9).toString());
+                    form.setData(norawat.getText(), tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 8).toString(), 
+                            tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 9).toString(), "ranap");
                     form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     form.setLocationRelativeTo(internalFrame1);
                     form.setVisible(true);
@@ -11196,7 +11197,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     DlgSuratKeteranganSakit form = new DlgSuratKeteranganSakit(null, false);
                     form.isCek();
-                    form.setData(norawat.getText(), tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 8).toString(), tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 9).toString());
+                    form.setData(norawat.getText(), tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 8).toString(),
+                            tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 9).toString(), "ranap");
                     form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     form.setLocationRelativeTo(internalFrame1);
                     form.setVisible(true);

@@ -7000,8 +7000,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                     }
                 }
             } else {
-                cekDatadanPetugas();
-                if (verified.equals("cocok")) {
+//                cekDatadanPetugas();
+//                if (verified.equals("cocok")) {
                     x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (x == JOptionPane.YES_OPTION) {
                         Sequel.mengedit("cppt", "waktu_simpan=?", "flag_hapus=?, nip_penghapus=?", 3, new String[]{
@@ -7013,11 +7013,11 @@ public class DlgCPPT extends javax.swing.JDialog {
                         tampil();
                         emptTeks();
                     }
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Maaf, data CPPT ini hanya bisa dihapus oleh petugas yang bertugas diruang " + gedungData + ", ...!!");
-                    tampil();
-                    emptTeks();
-                }
+//                } else {
+//                    JOptionPane.showMessageDialog(rootPane, "Maaf, data CPPT ini hanya bisa dihapus oleh petugas yang bertugas diruang " + gedungData + ", ...!!");
+//                    tampil();
+//                    emptTeks();
+//                }
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
@@ -7054,8 +7054,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                 instruksi_nakes = TPlaning.getText();
             }
 
-            cekDatadanPetugas();
-            if (verified.equals("cocok")) {
+//            cekDatadanPetugas();
+//            if (verified.equals("cocok")) {
                 try {
                     if (tbCPPT.getSelectedRow() > -1) {
                         //sebelum diganti data cppt sebelumnya disimpan dulu ke tabel cppt_history
@@ -7101,11 +7101,11 @@ public class DlgCPPT extends javax.swing.JDialog {
                 } catch (Exception e) {
                     System.out.println("Ganti CPPT : " + e);
                 }
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Maaf, data CPPT ini hanya bisa diganti/perbaiki oleh petugas yang bertugas diruang " + gedungData + ", ...!!");
-                tampil();
-                emptTeks();
-            }
+//            } else {
+//                JOptionPane.showMessageDialog(rootPane, "Maaf, data CPPT ini hanya bisa diganti/perbaiki oleh petugas yang bertugas diruang " + gedungData + ", ...!!");
+//                tampil();
+//                emptTeks();
+//            }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
 

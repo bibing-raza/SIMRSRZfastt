@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="517" leftMargin="39" rightMargin="39" topMargin="39" bottomMargin="20" uuid="33736fa2-0370-432f-b645-33a22f47f154">
 	<property name="ireport.zoom" value="1.6105100000000012"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="65"/>
+	<property name="ireport.y" value="144"/>
 	<parameter name="ttl" class="java.lang.String"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -14,6 +14,7 @@
 	<parameter name="tglsurat" class="java.lang.String"/>
 	<parameter name="ruangan" class="java.lang.String"/>
 	<parameter name="tglizin" class="java.lang.String"/>
+	<parameter name="kalimat" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT rp.no_rawat, concat('848 / ',sk.no_surat) nosrt, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jk, 
 sk.pekerjaan, sk.alamat_domisili, pg.nama dokter, date_format(sk.sejak_tgl,'%d/%m/%Y') tgl_mulai, date_format(sk.sampai_tgl,'%d/%m/%Y') tgl_selesai FROM reg_periksa rp 
@@ -248,14 +249,6 @@ INNER JOIN pegawai pg ON pg.nik = sk.kd_dokter WHERE sk.no_rawat = '2021/10/03/0
 				</textElement>
 				<text><![CDATA[Alamat Domisili]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="20" y="227" width="497" height="14" uuid="cba8df9b-580e-4565-a3fd-b55ec3e1d544"/>
-				<textElement>
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Yang bersangkutan diatas adalah BENAR dalam keadaan SAKIT, dan dirawat diruang perawatan inap]]></text>
-			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="259" y="309" width="110" height="110" uuid="3063b25b-4203-413d-8925-86db0a2c171e"/>
 				<imageExpression><![CDATA["setting/stempelRS.jpg"]]></imageExpression>
@@ -314,6 +307,13 @@ INNER JOIN pegawai pg ON pg.nik = sk.kd_dokter WHERE sk.no_rawat = '2021/10/03/0
 					<font fontName="Tahoma"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{tglizin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="227" width="497" height="14" uuid="44ca16a0-ba62-4a78-a819-af015f44c9ec"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kalimat}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

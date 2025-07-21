@@ -43,12 +43,12 @@ import javax.swing.table.TableColumn;
  * @author perpustakaan
  */
 public class DlgSetAplikasi extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private PreparedStatement ps, ps1;
+    private ResultSet rs, rs1;
     private String kd_update = "";
 
     /** Creates new form DlgAdmin
@@ -107,6 +107,30 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             }
         }
         tbUpdate.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode2 = new DefaultTableModel(null, new String[]{"IP Address", "Versi", "Nama Aplikasi", "Waktu Update"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        tbHistoryUpdate.setModel(tabMode2);
+        tbHistoryUpdate.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbHistoryUpdate.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 4; i++) {
+            TableColumn column = tbHistoryUpdate.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(110);
+            } else if (i == 1) {
+                column.setPreferredWidth(70);
+            } else if (i == 2) {
+                column.setPreferredWidth(150);
+            } else if (i == 3) {
+                column.setPreferredWidth(120);
+            }
+        }
+        tbHistoryUpdate.setDefaultRenderer(Object.class, new WarnaTable());
 
         versi.setDocument(new batasInput((byte)8).getKata(versi));
         Nm.setDocument(new batasInput((byte)60).getKata(Nm));
@@ -200,8 +224,18 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbAdmin = new widget.Table();
+        internalFrame3 = new widget.InternalFrame();
         Scroll1 = new widget.ScrollPane();
         tbUpdate = new widget.Table();
+        panelisi2 = new widget.panelisi();
+        Scroll2 = new widget.ScrollPane();
+        tbHistoryUpdate = new widget.Table();
+        panelisi3 = new widget.panelisi();
+        jLabel6 = new widget.Label();
+        TCari = new widget.TextBox();
+        jLabel7 = new widget.Label();
+        LCount = new widget.Label();
+        BtnCari = new widget.Button();
         panelisi1 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
@@ -499,7 +533,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         jLabel23.setBounds(550, 325, 70, 23);
 
         tglUpdate.setEditable(false);
-        tglUpdate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-10-2024" }));
+        tglUpdate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-07-2025" }));
         tglUpdate.setDisplayFormat("dd-MM-yyyy");
         tglUpdate.setName("tglUpdate"); // NOI18N
         tglUpdate.setOpaque(false);
@@ -824,6 +858,9 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
 
         internalFrame2.add(Scroll, java.awt.BorderLayout.PAGE_START);
 
+        internalFrame3.setName("internalFrame3"); // NOI18N
+        internalFrame3.setLayout(new java.awt.BorderLayout());
+
         Scroll1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "::[ Daftar Catatan Update ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
@@ -844,7 +881,91 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         });
         Scroll1.setViewportView(tbUpdate);
 
-        internalFrame2.add(Scroll1, java.awt.BorderLayout.CENTER);
+        internalFrame3.add(Scroll1, java.awt.BorderLayout.CENTER);
+
+        panelisi2.setName("panelisi2"); // NOI18N
+        panelisi2.setPreferredSize(new java.awt.Dimension(550, 54));
+        panelisi2.setLayout(new java.awt.BorderLayout());
+
+        Scroll2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "::[ History Update ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll2.setName("Scroll2"); // NOI18N
+        Scroll2.setOpaque(true);
+        Scroll2.setPreferredSize(new java.awt.Dimension(452, 400));
+
+        tbHistoryUpdate.setAutoCreateRowSorter(true);
+        tbHistoryUpdate.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbHistoryUpdate.setName("tbHistoryUpdate"); // NOI18N
+        tbHistoryUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbHistoryUpdateMouseClicked(evt);
+            }
+        });
+        tbHistoryUpdate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbHistoryUpdateKeyPressed(evt);
+            }
+        });
+        Scroll2.setViewportView(tbHistoryUpdate);
+
+        panelisi2.add(Scroll2, java.awt.BorderLayout.CENTER);
+
+        panelisi3.setName("panelisi3"); // NOI18N
+        panelisi3.setPreferredSize(new java.awt.Dimension(100, 47));
+        panelisi3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Key Word :");
+        jLabel6.setName("jLabel6"); // NOI18N
+        jLabel6.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelisi3.add(jLabel6);
+
+        TCari.setForeground(new java.awt.Color(0, 0, 0));
+        TCari.setName("TCari"); // NOI18N
+        TCari.setPreferredSize(new java.awt.Dimension(180, 23));
+        TCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCariKeyPressed(evt);
+            }
+        });
+        panelisi3.add(TCari);
+
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Record :");
+        jLabel7.setName("jLabel7"); // NOI18N
+        jLabel7.setPreferredSize(new java.awt.Dimension(55, 30));
+        panelisi3.add(jLabel7);
+
+        LCount.setForeground(new java.awt.Color(0, 0, 0));
+        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount.setText("0");
+        LCount.setName("LCount"); // NOI18N
+        LCount.setPreferredSize(new java.awt.Dimension(45, 30));
+        panelisi3.add(LCount);
+
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('4');
+        BtnCari.setText("Tampilkan Data");
+        BtnCari.setToolTipText("Alt+4");
+        BtnCari.setName("BtnCari"); // NOI18N
+        BtnCari.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCariActionPerformed(evt);
+            }
+        });
+        BtnCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCariKeyPressed(evt);
+            }
+        });
+        panelisi3.add(BtnCari);
+
+        panelisi2.add(panelisi3, java.awt.BorderLayout.PAGE_END);
+
+        internalFrame3.add(panelisi2, java.awt.BorderLayout.EAST);
+
+        internalFrame2.add(internalFrame3, java.awt.BorderLayout.CENTER);
 
         internalFrame1.add(internalFrame2, java.awt.BorderLayout.CENTER);
 
@@ -1092,6 +1213,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
         tampilUpdate();
+        tampilHistori();
     }//GEN-LAST:event_formWindowOpened
 
     private void KontakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KontakKeyPressed
@@ -1355,6 +1477,34 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnCariLogo3KeyPressed
 
+    private void tbHistoryUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbHistoryUpdateMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbHistoryUpdateMouseClicked
+
+    private void tbHistoryUpdateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbHistoryUpdateKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbHistoryUpdateKeyPressed
+
+    private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCariActionPerformed(null);
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
+            BtnCari.requestFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
+            BtnKeluar.requestFocus();
+        }
+    }//GEN-LAST:event_TCariKeyPressed
+
+    private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
+        tampilHistori();
+    }//GEN-LAST:event_BtnCariActionPerformed
+
+    private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnCariActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnCariKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -1374,6 +1524,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnBaru1;
     private widget.Button BtnBatal;
+    private widget.Button BtnCari;
     private widget.Button BtnCari1;
     private widget.Button BtnCariGb;
     private widget.Button BtnCariLogo;
@@ -1395,6 +1546,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     private widget.TextBox Email;
     private widget.TextBox Kontak;
     private widget.TextBox Kota;
+    private widget.Label LCount;
     private widget.TextBox Nm;
     private java.awt.Canvas PhotoGambar;
     private java.awt.Canvas PhotoLogo;
@@ -1404,13 +1556,18 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     private widget.TextBox Propinsi;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
+    private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll21;
+    private widget.TextBox TCari;
     private widget.ComboBox YesNo;
     private widget.TextBox alamatrs;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
+    private widget.InternalFrame internalFrame3;
     private widget.Label jLabel23;
     private widget.Label jLabel24;
+    private widget.Label jLabel6;
+    private widget.Label jLabel7;
     private widget.TextBox jamUpdate;
     private widget.TextBox kdPPK;
     private widget.TextBox kdPPK1;
@@ -1432,12 +1589,15 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     private widget.Label label47;
     private widget.panelGlass panelGlass1;
     private widget.panelisi panelisi1;
+    private widget.panelisi panelisi2;
+    private widget.panelisi panelisi3;
     private widget.ScrollPane scrollPane2;
     private widget.ScrollPane scrollPane3;
     private widget.ScrollPane scrollPane4;
     private widget.ScrollPane scrollPane5;
     private widget.ScrollPane scrollPane6;
     private widget.Table tbAdmin;
+    private widget.Table tbHistoryUpdate;
     private widget.Table tbUpdate;
     private widget.Tanggal tglUpdate;
     private widget.TextBox versi;
@@ -1627,6 +1787,40 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    private void tampilHistori() {
+        Valid.tabelKosong(tabMode2);
+        try {
+            ps1 = koneksi.prepareStatement("SELECT *, date_format(waktu_update,'%d-%m-%Y %H:%i:%s') wktupdate FROM history_aplikasi where "
+                    + "ip_address like ? or versi like ? or aplikasi like ? ORDER BY waktu_update desc");
+            try {
+                ps1.setString(1, "%" + TCari.getText().trim() + "%");
+                ps1.setString(2, "%" + TCari.getText().trim() + "%");
+                ps1.setString(3, "%" + TCari.getText().trim() + "%");
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    tabMode2.addRow(new String[]{
+                        rs1.getString("ip_address"),
+                        rs1.getString("versi"),
+                        rs1.getString("aplikasi"),
+                        rs1.getString("wktupdate")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("simrskhanza.DlgSetAplikasi.tampilHistori() : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        LCount.setText("" + tabMode2.getRowCount());
     }
     
     private void getdataUpdate() {

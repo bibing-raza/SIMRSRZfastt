@@ -276,7 +276,7 @@ PSIKOTROPIKA, PRECURSOR, DAN ZAT ADIKTIF LAINNYA]]></text>
 		</band>
 	</detail>
 	<summary>
-		<band height="288">
+		<band height="328">
 			<staticText>
 				<reportElement x="57" y="14" width="342" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
@@ -298,64 +298,64 @@ PSIKOTROPIKA, PRECURSOR, DAN ZAT ADIKTIF LAINNYA]]></text>
 				</textElement>
 				<text><![CDATA[Keperluan :]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="94" y="54" width="423" height="29"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="94" y="54" width="423" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{keperluan}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="40" y="86" width="477" height="28"/>
+				<reportElement x="40" y="137" width="477" height="28"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Demikian disampaikan surat keterangan pemeriksaan ini diberikan untuk dipergunakan sebagaimana mestinya.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="286" y="114" width="89" height="14"/>
+				<reportElement x="286" y="165" width="89" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[DIKELUARKAN DI]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="286" y="127" width="89" height="14"/>
+				<reportElement x="286" y="178" width="89" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[PADA TANGGAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="374" y="114" width="6" height="14"/>
+				<reportElement x="374" y="165" width="6" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="374" y="127" width="6" height="14"/>
+				<reportElement x="374" y="178" width="6" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="380" y="114" width="137" height="14"/>
+				<reportElement x="380" y="165" width="137" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{kotars}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="380" y="127" width="137" height="14"/>
+				<reportElement x="380" y="178" width="137" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" isBold="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{tglsurat}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="286" y="145" width="231" height="50"/>
+				<reportElement x="286" y="196" width="231" height="50"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
@@ -365,14 +365,14 @@ MARTAPURA
 Dokter Pemeriksa,]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="286" y="243" width="231" height="14"/>
+				<reportElement x="286" y="294" width="231" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" isBold="false" isUnderline="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{nmdokter}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="286" y="255" width="231" height="14"/>
+				<reportElement x="286" y="306" width="231" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" isBold="false"/>
 				</textElement>

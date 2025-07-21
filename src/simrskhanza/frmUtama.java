@@ -386,6 +386,7 @@ import tranfusidarah.UTDStokDarah;
 import simrskhanza.DlgInputPonek;
 import simrskhanza.DlgPenanggungJawab;
 import java.net.InetAddress;
+import kepegawaian.DlgDepartemen;
 import laporan.DlgQuerySql;
 import rekammedis.DlgHistoriIPAddressPetugasERM;
 import rekammedis.RMAsesmenKeperawatanPerinatologi;
@@ -413,7 +414,7 @@ public class frmUtama extends javax.swing.JFrame {
     private ResultSet rs;
     private final Properties prop = new Properties();
     private int jmlmenu = 0, grid = 0, tinggi = 0, i = 0;
-    private String coder_nik = "", pilihpage = "", judulform = "", host = "", cek = "", cekApt = "";
+    private String coder_nik = "", pilihpage = "", judulform = "", host = "", cek = "", cekApt = "", versi = "", ipKomputer = "";
     private final DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
     private final DlgKamarInap kamarinap = new DlgKamarInap(null, false);
     private final DlgIGD igd = new DlgIGD(this, false);  
@@ -928,6 +929,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnTriasePonek = new widget.ButtonBig();
         btnStatusKakiDiabetes = new widget.ButtonBig();
         btnMonitoringEWSObsgyn = new widget.ButtonBig();
+        btnDepartemen = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6327,6 +6329,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnMonitoringEWSObsgyn);
 
+        btnDepartemen.setForeground(new java.awt.Color(0, 0, 0));
+        btnDepartemen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_kde-folder-public_25193.png"))); // NOI18N
+        btnDepartemen.setText("Departemen & Mapping Gedung");
+        btnDepartemen.setIconTextGap(0);
+        btnDepartemen.setName("btnDepartemen"); // NOI18N
+        btnDepartemen.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnDepartemen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepartemenActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnDepartemen);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6335,7 +6350,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/07/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21/07/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7222,6 +7237,9 @@ public class frmUtama extends javax.swing.JFrame {
                     lblUser.setText("Log Out");
                     ket_update.setText("");
                 }
+                
+                Sequel.menyimpanIgnore("history_aplikasi", "'" + ipKomputer + "','" + versi + "','SIMRS','" + Sequel.cariIsi("select now()") + "'", "Update versi SIMRS");
+                Sequel.queryu("delete from history_aplikasi where date(waktu_update) < DATE_FORMAT(date_sub(now(), interval 30 day),'%Y-%m-%d')");
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }
@@ -12470,6 +12488,18 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnMonitoringEWSObsgynActionPerformed
 
+    private void btnDepartemenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepartemenActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgDepartemen aplikasi = new DlgDepartemen(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.emptTeks();
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnDepartemenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12616,6 +12646,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnDataSEPIndukKLLJasaRaharja;
     private widget.ButtonBig btnDataSuplesiJasaRaharja;
     private widget.ButtonBig btnDataTriaseIGD;
+    private widget.ButtonBig btnDepartemen;
     private widget.ButtonBig btnDeposit;
     private widget.ButtonBig btnDiagnosa;
     private widget.ButtonBig btnDiagnosaPasienCorona;
@@ -13506,6 +13537,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getpegawai_admin() == true) {
                 Panelmenu.add(btnMasterJabatanKomite);
+                jmlmenu++;
+            }
+            
+            if (akses.getadmin()== true) {
+                Panelmenu.add(btnDepartemen);
                 jmlmenu++;
             }
 
@@ -16061,6 +16097,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             Panelmenu.add(btnDokter);
             jmlmenu++;
         }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnDepartemen);
+            jmlmenu++;
+        }
 
         if ((akses.getpegawai_admin() == true) || (akses.getpegawai_user() == true)) {
             Panelmenu.add(btnPenggajian);
@@ -18420,6 +18461,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
         }
+        
+        if ((akses.getadmin()== true)) {
+            if (btnDepartemen.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnDepartemen);
+                jmlmenu++;
+            }
+        }
 
         if ((akses.getpegawai_admin() == true) || (akses.getpegawai_user() == true)) {
             if (btnPenggajian.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
@@ -19926,11 +19974,15 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }
     
     private void tampilIpAddress() {
+        versi = "";
+        ipKomputer = "";
         String ipAddresKomputer = "";
         try {
             InetAddress ip = InetAddress.getLocalHost();
             ipAddresKomputer = ip.getHostAddress();
             lblIPaddress.setText("IP Address : " + ipAddresKomputer);
+            versi = Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1");
+            ipKomputer = ipAddresKomputer;
         } catch (Exception e) {            
             System.out.println("Gagal mendapatkan alamat IP host: " + e.getMessage());
         }

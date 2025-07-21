@@ -47,7 +47,7 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private String bln = "", thn = "", kdkamar = "";
+    private String bln = "", thn = "", kdkamar = "", statusRawat = "";
     private int x = 0;
 
     /** Creates new form DlgSpesialis
@@ -414,7 +414,7 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -428,7 +428,7 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -622,7 +622,7 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
         jLabel12.setBounds(0, 178, 105, 23);
 
         Tgl1.setEditable(false);
-        Tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024" }));
+        Tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2024" }));
         Tgl1.setDisplayFormat("dd-MM-yyyy");
         Tgl1.setName("Tgl1"); // NOI18N
         Tgl1.setOpaque(false);
@@ -636,7 +636,7 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
         jLabel14.setBounds(204, 178, 130, 23);
 
         Tgl2.setEditable(false);
-        Tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024" }));
+        Tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2024" }));
         Tgl2.setDisplayFormat("dd-MM-yyyy");
         Tgl2.setName("Tgl2"); // NOI18N
         Tgl2.setOpaque(false);
@@ -681,16 +681,16 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
         TtglLahir.setBounds(105, 66, 160, 23);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Dirawat Di Ruang : ");
+        jLabel16.setText("Dirawat Di Rg./Poliklinik : ");
         jLabel16.setName("jLabel16"); // NOI18N
         panelGlass7.add(jLabel16);
-        jLabel16.setBounds(0, 150, 105, 23);
+        jLabel16.setBounds(0, 150, 145, 23);
 
         TruangRawat.setEditable(false);
         TruangRawat.setForeground(new java.awt.Color(0, 0, 0));
         TruangRawat.setName("TruangRawat"); // NOI18N
         panelGlass7.add(TruangRawat);
-        TruangRawat.setBounds(105, 150, 570, 23);
+        TruangRawat.setBounds(145, 150, 530, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Tgl. Surat :");
@@ -944,11 +944,18 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
                 param.put("ruangan", TruangRawat.getText());
                 param.put("tglsurat", akses.getkabupatenrs() + ", " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_simpan from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'")));
 
+                if (statusRawat.equals("ranap") || Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRW.getText() + "' and status_lanjut='Ranap'") > 0) {
+                    param.put("kalimat", "Yang bersangkutan diatas adalah BENAR dalam keadaan SAKIT, dan dirawat diruang perawatan inap");
                     //belum pulang ranap
-                if (Sequel.cariInteger("select count(-1) from kamar_inap where no_rawat='" + TNoRW.getText() + "' and stts_pulang in ('-','Pindah Kamar')") > 0) {
-                    param.put("tglizin", "sejak tanggal " + Valid.SetTglINDONESIA(Sequel.cariIsi("select sejak_tgl from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'")) + ".");
-                    //sudah dipulangkan
-                } else {
+                    if (Sequel.cariInteger("select count(-1) from kamar_inap where no_rawat='" + TNoRW.getText() + "' and stts_pulang in ('-','Pindah Kamar')") > 0) {
+                        param.put("tglizin", "sejak tanggal " + Valid.SetTglINDONESIA(Sequel.cariIsi("select sejak_tgl from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'")) + ".");
+                        //sudah dipulangkan
+                    } else {
+                        param.put("tglizin", "sejak tanggal " + Sequel.cariIsi("select date_format(sejak_tgl,'%d/%m/%Y') from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'")
+                                + " sampai dengan tanggal " + Sequel.cariIsi("select date_format(sampai_tgl,'%d/%m/%Y') from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'") + ".");
+                    }
+                } else if (statusRawat.equals("ralan") || Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRW.getText() + "' and status_lanjut='Ralan'") > 0) {
+                    param.put("kalimat", "Yang bersangkutan diatas adalah BENAR dalam keadaan SAKIT, dan menjalani perawatan dipoliklinik");
                     param.put("tglizin", "sejak tanggal " + Sequel.cariIsi("select date_format(sejak_tgl,'%d/%m/%Y') from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'")
                             + " sampai dengan tanggal " + Sequel.cariIsi("select date_format(sampai_tgl,'%d/%m/%Y') from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'") + ".");
                 }
@@ -1177,15 +1184,16 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
        BtnHapus.setEnabled(akses.getsurat_sakit());
     }
     
-    public void setData(String norw, String kdkmr, String bangsal) {
+    public void setData(String norw, String kdkmr, String bangsal, String stts) {
         autoNomorSurat();
         kdkamar = kdkmr;
-        TruangRawat.setText(bangsal);        
+        TruangRawat.setText(bangsal);
+        statusRawat = stts;
         Tgl1.requestFocus();
         
         try {
             ps1 = koneksi.prepareStatement("SELECT rp.no_rawat, p.no_rkm_medis, p.nm_pasien, p.tmp_lahir, if(p.jk='L','Laki-laki','Perempuan') jk, p.pekerjaan, "
-                    + "concat(p.alamat,', Kel./Desa ',kl.nm_kel,', Kec. ',kc.nm_kec,', Kab./Kodya ',kb.nm_kab) alamat, rp.tgl_registrasi, p.tgl_lahir FROM reg_periksa rp "
+                    + "concat(p.alamat,', Kel./Desa ',kl.nm_kel,', Kec. ',kc.nm_kec,', Kab./Kodya ',kb.nm_kab) alamat, rp.tgl_registrasi, p.tgl_lahir, rp.kd_dokter FROM reg_periksa rp "
                     + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel_domisili_pasien "
                     + "INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec_domisili_pasien INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab_domisili_pasien "
                     + "WHERE rp.no_rawat = '" + norw + "'");
@@ -1202,10 +1210,19 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
                     Valid.SetTgl(Tgl1, rs1.getString("tgl_registrasi"));
                     Tgl2.setDate(new Date());
                     Valid.SetTgl(DTPCari1, rs1.getString("tgl_registrasi"));
-                    DTPCari2.setDate(new Date());
-                    Tkddokter.setText(Sequel.cariIsi("select ifnull(kd_dokter,'-') from dpjp_ranap where no_rawat='" + rs1.getString("no_rawat") + "'"));
-                    Tnmdokter.setText(Sequel.cariIsi("select nama from pegawai where nik='" + Tkddokter.getText() + "'"));
+                    DTPCari2.setDate(new Date());                    
                     TtglLahir.setText(Valid.SetTglINDONESIA(rs1.getString("tgl_lahir")));
+                    
+                    if (stts.equals("ranap")) {
+                        if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + rs1.getString("no_rawat") + "'") == 0) {
+                            Tkddokter.setText("-");
+                        } else {
+                            Tkddokter.setText(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + rs1.getString("no_rawat") + "'"));
+                        }
+                    } else {
+                        Tkddokter.setText(rs1.getString("kd_dokter"));
+                    }
+                    Tnmdokter.setText(Sequel.cariIsi("select nama from pegawai where nik='" + Tkddokter.getText() + "'"));
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);

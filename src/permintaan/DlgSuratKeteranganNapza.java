@@ -707,7 +707,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -721,7 +721,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -919,7 +919,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         jLabel14.setBounds(1064, 290, 70, 23);
 
         Ttgl_surat.setEditable(false);
-        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
+        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-03-2025" }));
         Ttgl_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_surat.setName("Ttgl_surat"); // NOI18N
         Ttgl_surat.setOpaque(false);
@@ -990,7 +990,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         TnoSuratDari.setBounds(135, 206, 360, 23);
 
         TtglSuratDari.setEditable(false);
-        TtglSuratDari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
+        TtglSuratDari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-03-2025" }));
         TtglSuratDari.setDisplayFormat("dd-MM-yyyy");
         TtglSuratDari.setName("TtglSuratDari"); // NOI18N
         TtglSuratDari.setOpaque(false);
