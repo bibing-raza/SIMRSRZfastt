@@ -46,6 +46,7 @@ public class DlgJadwal extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private String urutanHari = "";
+    private int x = 0;
 
     /** Creates new form DlgJadwal
      * @param parent
@@ -768,15 +769,23 @@ public class DlgJadwal extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        for (int i = 0; i < tbJadwal.getRowCount(); i++) {
-            if (tbJadwal.getValueAt(i, 0).toString().equals("true")) {
-                Sequel.queryu("delete from jadwal where kd_dokter='" + tbJadwal.getValueAt(i, 0).toString() + "' "
-                        + "and hari_kerja='" + tbJadwal.getValueAt(i, 2).toString() + "' "
-                        + "and kd_poli='" + tbJadwal.getValueAt(i, 6).toString() + "'");
+        if (tbJadwal.getSelectedRow() != -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data ini akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                Sequel.queryu("delete from jadwal where kd_dokter='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 0).toString() + "' "
+                        + "and hari_kerja='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 2).toString() + "' "
+                        + "and kd_poli='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 6).toString() + "'");
+                tampil();
+                emptTeks();
+            } else {
+                tampil();
+                emptTeks();
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Silahkan klik/pilih dulu salah satu datanya pada tabel...!!!!");
+            tampil();
+            tbJadwal.requestFocus();
         }
-        tampil();
-        emptTeks();
 }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed

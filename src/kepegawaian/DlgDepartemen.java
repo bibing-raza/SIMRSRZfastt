@@ -205,7 +205,7 @@ public final class DlgDepartemen extends javax.swing.JDialog {
         label14.setBounds(225, 66, 140, 23);
 
         cmbGedung.setForeground(new java.awt.Color(0, 0, 0));
-        cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "BAYI", "AR-RAUDAH", "APOTEK", "GUDANG FARMASI", "IBS", "VK BERSALIN", "LABORATORIUM", "RADIOLOGI", "KAMAR JENAZAH", "RAWAT JALAN", "IPSRS", "SANITASI", "REKAM MEDIK", "CSSD", "DAPUR" }));
+        cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "BAYI", "AR-RAUDAH", "APOTEK", "GUDANG FARMASI", "IBS", "VK BERSALIN", "LABORATORIUM", "RADIOLOGI", "KAMAR JENAZAH", "RAWAT JALAN", "IPSRS", "SANITASI", "REKAM MEDIK", "CSSD", "DAPUR", "MANAJEMEN", "PONEK - VK BERSALIN" }));
         cmbGedung.setName("cmbGedung"); // NOI18N
         cmbGedung.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -524,21 +524,17 @@ public final class DlgDepartemen extends javax.swing.JDialog {
                 } else {
                     cekStatus = "0";
                 }
-                
+
                 if (Sequel.mengedittf("departemen", "dep_id=?", "dep_id=?, nama=?, aktif=?", 4, new String[]{
                     Tkode.getText(), TnmDepartemen.getText(), cekStatus,
                     tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString()
                 }) == true) {
-                    if (Sequel.cariInteger("select count(-1) from mapping_departemen_gedung where dep_id='" + tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString() + "'") > 0) {
-                        Sequel.mengedit("mapping_departemen_gedung", "dep_id='" + tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString() + "'",
-                                "dep_id='" + Tkode.getText() + "', nm_gedung='" + cmbGedung.getSelectedItem().toString() + "'");
-                    } else {
-                        Sequel.menyimpan("mapping_departemen_gedung", "'" + Tkode.getText() + "','" + cmbGedung.getSelectedItem().toString() + "'", "Mapping Departemen & Gedung");
-                    }                    
-                    
+                    Sequel.mengedit("mapping_departemen_gedung", "dep_id='" + tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString() + "'",
+                            "dep_id='" + Tkode.getText() + "', nm_gedung='" + cmbGedung.getSelectedItem().toString() + "'");
+
                     Sequel.mengedit("pegawai", "departemen='" + tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString() + "'",
-                            "departemen='" + Tkode.getText() + "'");
-                    
+                            "departemen='" + Tkode.getText() + "', indexins='" + Tkode.getText() + "'");
+
                     emptTeks();
                     tampil();
                 }
@@ -584,6 +580,9 @@ public final class DlgDepartemen extends javax.swing.JDialog {
                     if (Sequel.queryu2tf("delete from departemen where dep_id=?", 1, new String[]{
                         tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString()
                     }) == true) {
+                        Sequel.queryu("delete from mapping_departemen_gedung where dep_id='" + tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString() + "' "
+                                + "and nm_gedung='" + cmbGedung.getSelectedItem().toString() + "'");
+
                         tampil();
                         emptTeks();
                     } else {

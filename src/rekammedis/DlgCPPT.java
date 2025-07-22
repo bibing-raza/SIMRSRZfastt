@@ -97,7 +97,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             amputasiKiri = "", amputasiKanan = "", mataDiabet = "", ginjal = "", pnyJantung = "", hipertensi = "", strok = "", pad = "",
             nonUlkus = "", ulkus = "", ulkusGang = "", sellu = "", jarKakiKanan = "", jarKakiKiri = "", der0 = "", der1 = "", der2 = "", 
             der3 = "", der4 = "", der5 = "", surgi = "", chemi = "", bio = "", hydro = "", foam = "", algi = "", silver = "", cadex = "", 
-            madu = "", lainModern = "", debri = "", modernDres = "", ruangRawat = "", kodeKamar = "", verified = "", gedungData = "", cekGedung = "";
+            madu = "", lainModern = "", debri = "", modernDres = "", ruangRawat = "", kodeKamar = "", verified = "", gedungData = "";
     private String noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "",
             hasilDipilih = "", kdItem = "", norawat = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", link = "";
 
@@ -7004,6 +7004,8 @@ public class DlgCPPT extends javax.swing.JDialog {
 //                if (verified.equals("cocok")) {
                     x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (x == JOptionPane.YES_OPTION) {
+//                        JOptionPane.showMessageDialog(rootPane, "bisa menghapus data, ...!!");
+                        
                         Sequel.mengedit("cppt", "waktu_simpan=?", "flag_hapus=?, nip_penghapus=?", 3, new String[]{
                             "ya", akses.getkode(), tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString()
                         });
@@ -20819,45 +20821,29 @@ public class DlgCPPT extends javax.swing.JDialog {
     
     private void cekDatadanPetugas() {
         verified = "";
-        cekGedung = "";
         gedungData = "";
 
-        if (statusOK.equals("Ranap")) {
-            cekGedung = Sequel.cariIsi("select b.nm_gedung from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kodeKamar + "'");
+        if (Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodeKamar + "'").equals("-")
+                || Sequel.cariIsi("select b.nm_gedung from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kodeKamar + "'").equals("")) {
+            gedungData = "-";
+        } else {
+            if (statusOK.equals("Ranap")) {
             
-            if (cekGedung.equals("")) {
-                gedungData = "-";
-            } else {                
-                if (cekGedung.equals("AR-RAUDAH ATAS") || cekGedung.equals("AR-RAUDAH BAWAH")) {
-                    gedungData = "AR-RAUDAH";
-                } else if (cekGedung.equals("PERINATOLOGI") || cekGedung.equals("BAYI SEHAT")) {
-                    gedungData = "BAYI";
-                } else {
-                    gedungData = cekGedung;
-                }
+            } else if (statusOK.equals("Ralan")) {
+            
             }
-        } else if (statusOK.equals("Ralan")) {
-            if (Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodeKamar + "'").equals("-")) {
-                gedungData = "-";
-            } else {
-                gedungData = Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodeKamar + "'");
-            }
+            gedungData = Sequel.cariIsi("select nm_gedung from mapping_departemen_gedung where "
+                    + "dep_id='" + Sequel.cariIsi("select departemen from pegawai where nik='" + akses.getkode() + "'") + "'");
         }
 
         //jika bukan dokter
         if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") == 0) {
-            //validasi tidak berlaku
-            if (gedungData.equals("-")) {
+            if (gedungData.equals("-") || Sequel.cariInteger("select count(-1) from pegawai p inner join mapping_departemen_gedung m on m.dep_id=p.departemen "
+                    + "where p.nik='" + akses.getkode() + "' and m.nm_gedung='" + gedungData + "'") > 0
+                    || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen in ('D079','D034','-')") > 0) {
                 verified = "cocok";
-                //validasi berlaku
             } else {
-                if (Sequel.cariInteger("select count(-1) from pegawai p inner join departemen d on d.dep_id=p.departemen "
-                        + "where p.nik='" + akses.getkode() + "' and d.nama like '%(" + gedungData + ")%'") > 0
-                        || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen in ('D314','D304','D713','D507','-')") > 0) {
-                    verified = "cocok";
-                } else {
-                    verified = "tidak cocok";
-                }
+                verified = "tidak cocok";
             }
         } else {
             verified = "cocok";
@@ -20865,16 +20851,9 @@ public class DlgCPPT extends javax.swing.JDialog {
         
         /*
         catatan :
-        yang ini bebas :
-        D304 INSTALASI FARMASI
-        D314 INSTALASI GIZI        
-        D713 RUANG PERAWATAN VK BERSALIN
-        D507 RUANG PERAWATAN BERSALIN/AL-KHALIQ (BERSALIN)
-        
-        yang ini pengecualian :
-        D711 RUANG PERAWATAN BAYI-SEHAT & PERINATOLOGI (BAYI)
-        D709 RUANG PERAWATAN AR-RAUDAH ATAS (AR-RAUDAH ATAS)
-        D710 RUANG PERAWATAN AR-RAUDAH BAWAH (AR-RAUDAH BAWAH)
+        yang ini sementara bebas :        
+        D079 RUANG PERAWATAN VK BERSALIN
+        D034 RUANG PERAWATAN BERSALIN/AL-KHALIQ
         */
     }
 }

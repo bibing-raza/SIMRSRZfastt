@@ -197,7 +197,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="16">
+                  <StringArray count="18">
                     <StringItem index="0" value="-"/>
                     <StringItem index="1" value="BAYI"/>
                     <StringItem index="2" value="AR-RAUDAH"/>
@@ -214,6 +214,8 @@
                     <StringItem index="13" value="REKAM MEDIK"/>
                     <StringItem index="14" value="CSSD"/>
                     <StringItem index="15" value="DAPUR"/>
+                    <StringItem index="16" value="MANAJEMEN"/>
+                    <StringItem index="17" value="PONEK - VK BERSALIN"/>
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbGedung" noResource="true"/>
