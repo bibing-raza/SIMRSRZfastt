@@ -410,17 +410,17 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         LoadHTML = new widget.editorpane();
         WindowTemplate = new javax.swing.JDialog();
         internalFrame5 = new widget.InternalFrame();
+        jPanel1 = new javax.swing.JPanel();
+        Scroll1 = new widget.ScrollPane();
+        tbTemplate = new widget.Table();
+        Scroll3 = new widget.ScrollPane();
+        Ttemplate = new widget.TextArea();
         panelisi4 = new widget.panelisi();
         jLabel38 = new widget.Label();
         TCari1 = new widget.TextBox();
         BtnCari1 = new widget.Button();
         BtnCopas = new widget.Button();
         BtnCloseIn1 = new widget.Button();
-        jPanel1 = new javax.swing.JPanel();
-        Scroll1 = new widget.ScrollPane();
-        tbTemplate = new widget.Table();
-        Scroll3 = new widget.ScrollPane();
-        Ttemplate = new widget.TextArea();
         internalFrame1 = new widget.InternalFrame();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
@@ -635,7 +635,40 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         internalFrame5.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame5.setLayout(new java.awt.BorderLayout());
 
-        panelisi4.setBackground(new java.awt.Color(255, 150, 255));
+        jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(816, 250));
+        jPanel1.setLayout(new java.awt.GridLayout(1, 2));
+
+        Scroll1.setName("Scroll1"); // NOI18N
+        Scroll1.setOpaque(true);
+        Scroll1.setPreferredSize(new java.awt.Dimension(452, 250));
+
+        tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
+        tbTemplate.setName("tbTemplate"); // NOI18N
+        tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbTemplateMouseClicked(evt);
+            }
+        });
+        Scroll1.setViewportView(tbTemplate);
+
+        jPanel1.add(Scroll1);
+
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+
+        Ttemplate.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Baca Template Dipilih ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Ttemplate.setColumns(20);
+        Ttemplate.setRows(5);
+        Ttemplate.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Ttemplate.setName("Ttemplate"); // NOI18N
+        Scroll3.setViewportView(Ttemplate);
+
+        jPanel1.add(Scroll3);
+
+        internalFrame5.add(jPanel1, java.awt.BorderLayout.CENTER);
+
         panelisi4.setName("panelisi4"); // NOI18N
         panelisi4.setPreferredSize(new java.awt.Dimension(100, 44));
         panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
@@ -704,41 +737,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         });
         panelisi4.add(BtnCloseIn1);
 
-        internalFrame5.add(panelisi4, java.awt.BorderLayout.CENTER);
-
-        jPanel1.setName("jPanel1"); // NOI18N
-        jPanel1.setOpaque(false);
-        jPanel1.setPreferredSize(new java.awt.Dimension(816, 250));
-        jPanel1.setLayout(new java.awt.GridLayout(1, 2));
-
-        Scroll1.setName("Scroll1"); // NOI18N
-        Scroll1.setOpaque(true);
-        Scroll1.setPreferredSize(new java.awt.Dimension(452, 250));
-
-        tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
-        tbTemplate.setName("tbTemplate"); // NOI18N
-        tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbTemplateMouseClicked(evt);
-            }
-        });
-        Scroll1.setViewportView(tbTemplate);
-
-        jPanel1.add(Scroll1);
-
-        Scroll3.setName("Scroll3"); // NOI18N
-        Scroll3.setOpaque(true);
-
-        Ttemplate.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Baca Template Dipilih ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        Ttemplate.setColumns(20);
-        Ttemplate.setRows(5);
-        Ttemplate.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Ttemplate.setName("Ttemplate"); // NOI18N
-        Scroll3.setViewportView(Ttemplate);
-
-        jPanel1.add(Scroll3);
-
-        internalFrame5.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        internalFrame5.add(panelisi4, java.awt.BorderLayout.PAGE_END);
 
         WindowTemplate.getContentPane().add(internalFrame5, java.awt.BorderLayout.CENTER);
 
@@ -1944,7 +1943,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         FormInput.add(TotalHasil);
         TotalHasil.setBounds(774, 770, 80, 23);
 
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2024 11:51:09" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-07-2025 12:38:38" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -2324,7 +2323,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2339,7 +2338,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3381,6 +3380,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         form.setSize(739, internalFrame1.getHeight() - 40);
         form.setLocationRelativeTo(internalFrame1);
         form.setVisible(true);
+        form.setAlwaysOnTop(true);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnTambahMasalahActionPerformed
 
@@ -3486,15 +3486,15 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         Ttemplate.setText("");
         TCari1.setText("");
 
-        tampilTemplate();
         internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3),
                 "::[ Data Template Rencana Keperawatan ]::",
                 javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                 javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
-        WindowTemplate.setSize(998, 325);
-        WindowTemplate.setLocationRelativeTo(internalFrame1);
-        WindowTemplate.setAlwaysOnTop(false);
+        WindowTemplate.setSize(998, internalFrame1.getHeight() - 40);
+        WindowTemplate.setLocationRelativeTo(internalFrame1);        
         WindowTemplate.setVisible(true);
+        WindowTemplate.setAlwaysOnTop(true);
+        tampilTemplate();
         TCari1.requestFocus();
     }//GEN-LAST:event_BtnRencanaActionPerformed
 
@@ -4250,7 +4250,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                     + "pa.rencana<>'' and p.no_rkm_medis like ? OR "
                     + "pa.rencana<>'' and p.nm_pasien like ? OR "
-                    + "pa.rencana<>'' and pa.rencana like ? ORDER BY pa.tanggal desc limit 20");
+                    + "pa.rencana<>'' and pa.rencana like ? ORDER BY pa.tanggal desc limit 100");
             try {
                 ps4.setString(1, "%" + TCari1.getText() + "%");
                 ps4.setString(2, "%" + TCari1.getText() + "%");
