@@ -6331,7 +6331,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         btnDepartemen.setForeground(new java.awt.Color(0, 0, 0));
         btnDepartemen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_kde-folder-public_25193.png"))); // NOI18N
-        btnDepartemen.setText("Departemen & Mapping Gedung");
+        btnDepartemen.setText("Departemen & Mapping Bangsal");
         btnDepartemen.setIconTextGap(0);
         btnDepartemen.setName("btnDepartemen"); // NOI18N
         btnDepartemen.setPreferredSize(new java.awt.Dimension(200, 90));

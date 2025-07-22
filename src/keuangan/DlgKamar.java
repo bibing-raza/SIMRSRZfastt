@@ -270,7 +270,6 @@ public final class DlgKamar extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnRestore.setBackground(new java.awt.Color(255, 255, 255));
         MnRestore.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRestore.setForeground(new java.awt.Color(60, 80, 50));
         MnRestore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -297,7 +296,7 @@ public final class DlgKamar extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Nomor Kamar ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Nomor Kamar ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -561,7 +560,6 @@ public final class DlgKamar extends javax.swing.JDialog {
         CmbCrIsi.setForeground(new java.awt.Color(0, 0, 0));
         CmbCrIsi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "ISI", "KOSONG", "RUSAK", "BOOKING" }));
         CmbCrIsi.setName("CmbCrIsi"); // NOI18N
-        CmbCrIsi.setOpaque(false);
         CmbCrIsi.setPreferredSize(new java.awt.Dimension(95, 23));
         CmbCrIsi.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -667,7 +665,6 @@ public final class DlgKamar extends javax.swing.JDialog {
         CmbStatus.setForeground(new java.awt.Color(0, 0, 0));
         CmbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ISI", "KOSONG", "RUSAK", "BOOKING" }));
         CmbStatus.setName("CmbStatus"); // NOI18N
-        CmbStatus.setOpaque(false);
         CmbStatus.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CmbStatusKeyPressed(evt);
@@ -715,7 +712,6 @@ public final class DlgKamar extends javax.swing.JDialog {
         Kelas.setForeground(new java.awt.Color(0, 0, 0));
         Kelas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kelas 1", "Kelas 2", "Kelas 3", "Kelas Utama", "Kelas VIP", "Kelas VVIP", "Rawat Khusus", "Intensif", "High Care", "Isolasi" }));
         Kelas.setName("Kelas"); // NOI18N
-        Kelas.setOpaque(false);
         Kelas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 KelasKeyPressed(evt);
@@ -733,7 +729,6 @@ public final class DlgKamar extends javax.swing.JDialog {
         CmbStatusAktif.setForeground(new java.awt.Color(0, 0, 0));
         CmbStatusAktif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AKTIF", "NON AKTIF" }));
         CmbStatusAktif.setName("CmbStatusAktif"); // NOI18N
-        CmbStatusAktif.setOpaque(false);
         CmbStatusAktif.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CmbStatusAktifKeyPressed(evt);
@@ -746,7 +741,6 @@ public final class DlgKamar extends javax.swing.JDialog {
 
         TabKamar.setBackground(new java.awt.Color(250, 255, 245));
         TabKamar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)));
-        TabKamar.setForeground(new java.awt.Color(0, 0, 0));
         TabKamar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         TabKamar.setName("TabKamar"); // NOI18N
         TabKamar.addMouseListener(new java.awt.event.MouseAdapter() {

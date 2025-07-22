@@ -97,7 +97,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             amputasiKiri = "", amputasiKanan = "", mataDiabet = "", ginjal = "", pnyJantung = "", hipertensi = "", strok = "", pad = "",
             nonUlkus = "", ulkus = "", ulkusGang = "", sellu = "", jarKakiKanan = "", jarKakiKiri = "", der0 = "", der1 = "", der2 = "", 
             der3 = "", der4 = "", der5 = "", surgi = "", chemi = "", bio = "", hydro = "", foam = "", algi = "", silver = "", cadex = "", 
-            madu = "", lainModern = "", debri = "", modernDres = "", ruangRawat = "", kodeKamar = "", verified = "", gedungData = "";
+            madu = "", lainModern = "", debri = "", modernDres = "", ruangRawat = "", kodeKamar = "", verified = "", gedungData = "", namaGedung = "";
     private String noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "",
             hasilDipilih = "", kdItem = "", norawat = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", link = "";
 
@@ -7000,12 +7000,10 @@ public class DlgCPPT extends javax.swing.JDialog {
                     }
                 }
             } else {
-//                cekDatadanPetugas();
-//                if (verified.equals("cocok")) {
+                cekDatadanPetugas();
+                if (verified.equals("bebas") || verified.equals("cocok")) {
                     x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (x == JOptionPane.YES_OPTION) {
-//                        JOptionPane.showMessageDialog(rootPane, "bisa menghapus data, ...!!");
-                        
                         Sequel.mengedit("cppt", "waktu_simpan=?", "flag_hapus=?, nip_penghapus=?", 3, new String[]{
                             "ya", akses.getkode(), tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString()
                         });
@@ -7015,11 +7013,11 @@ public class DlgCPPT extends javax.swing.JDialog {
                         tampil();
                         emptTeks();
                     }
-//                } else {
-//                    JOptionPane.showMessageDialog(rootPane, "Maaf, data CPPT ini hanya bisa dihapus oleh petugas yang bertugas diruang " + gedungData + ", ...!!");
-//                    tampil();
-//                    emptTeks();
-//                }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, data CPPT ini hanya bisa dihapus oleh petugas " + namaGedung + ", ...!!");
+                    tampil();
+                    emptTeks();
+                }
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
@@ -7056,8 +7054,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                 instruksi_nakes = TPlaning.getText();
             }
 
-//            cekDatadanPetugas();
-//            if (verified.equals("cocok")) {
+            cekDatadanPetugas();
+            if (verified.equals("bebas") || verified.equals("cocok")) {
                 try {
                     if (tbCPPT.getSelectedRow() > -1) {
                         //sebelum diganti data cppt sebelumnya disimpan dulu ke tabel cppt_history
@@ -7103,11 +7101,11 @@ public class DlgCPPT extends javax.swing.JDialog {
                 } catch (Exception e) {
                     System.out.println("Ganti CPPT : " + e);
                 }
-//            } else {
-//                JOptionPane.showMessageDialog(rootPane, "Maaf, data CPPT ini hanya bisa diganti/perbaiki oleh petugas yang bertugas diruang " + gedungData + ", ...!!");
-//                tampil();
-//                emptTeks();
-//            }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, data CPPT ini hanya bisa diganti/perbaiki oleh petugas " + namaGedung + ", ...!!");
+                tampil();
+                emptTeks();
+            }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
 
@@ -20822,31 +20820,32 @@ public class DlgCPPT extends javax.swing.JDialog {
     private void cekDatadanPetugas() {
         verified = "";
         gedungData = "";
+        namaGedung = "";
 
-        if (Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodeKamar + "'").equals("-")
-                || Sequel.cariIsi("select b.nm_gedung from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kodeKamar + "'").equals("")) {
-            gedungData = "-";
+        if (kodeKamar.equals("IGDK")) {
+            namaGedung = "di " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodeKamar + "'");
+            gedungData = "IGD01";
+        } else if (kodeKamar.equals("PON")) {
+            namaGedung = "di " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodeKamar + "'");
+            gedungData = "PON00";
         } else {
-            if (statusOK.equals("Ranap")) {
-            
-            } else if (statusOK.equals("Ralan")) {
-            
-            }
-            gedungData = Sequel.cariIsi("select nm_gedung from mapping_departemen_gedung where "
-                    + "dep_id='" + Sequel.cariIsi("select departemen from pegawai where nik='" + akses.getkode() + "'") + "'");
+            namaGedung = "diruang " + Sequel.cariIsi("select b.nm_gedung from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kodeKamar + "'");
+            gedungData = Sequel.cariIsi("select b.kd_bangsal from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kodeKamar + "'");
         }
 
-        //jika bukan dokter
-        if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") == 0) {
-            if (gedungData.equals("-") || Sequel.cariInteger("select count(-1) from pegawai p inner join mapping_departemen_gedung m on m.dep_id=p.departemen "
-                    + "where p.nik='" + akses.getkode() + "' and m.nm_gedung='" + gedungData + "'") > 0
-                    || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen in ('D079','D034','-')") > 0) {
-                verified = "cocok";
-            } else {
-                verified = "tidak cocok";
-            }
-        } else {
+        //yang bebas dokter, apoteker, nutrisionis, petugas dg. departemen -        
+        if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0 || Sequel.cariInteger("SELECT count(-1) FROM pegawai p "
+                + "inner join mapping_departemen_gedung m on m.dep_id=p.departemen inner join bangsal b on b.kd_bangsal=m.kd_bangsal WHERE "
+                + "p.nik='" + akses.getkode() + "' and m.kd_bangsal='-'") > 0 || Sequel.cariInteger("select count(-1) from pegawai where "
+                + "nik='" + akses.getkode() + "' and departemen='-'") > 0 || kodeKamar.equals("-")) {
+            verified = "bebas";
+        
+        //yang bisa petugas sudah termappping
+        } else if (Sequel.cariInteger("SELECT count(-1) FROM pegawai p inner join mapping_departemen_gedung m on m.dep_id=p.departemen "
+                + "inner join bangsal b on b.kd_bangsal=m.kd_bangsal WHERE p.nik='" + akses.getkode() + "' and m.kd_bangsal='" + gedungData + "'") > 0) {
             verified = "cocok";
+        } else {
+            verified = "tidak cocok";
         }
         
         /*

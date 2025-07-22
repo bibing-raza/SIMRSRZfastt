@@ -13,12 +13,16 @@ package kepegawaian;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fungsi.WarnaTable;
+import fungsi.akses;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,6 +32,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import simrskhanza.DlgCariBangsal;
 
 /**
  *
@@ -42,6 +47,7 @@ public final class DlgDepartemen extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private String cekStatus = "";
     private int x = 0;
+    public DlgCariBangsal bangsal=new DlgCariBangsal(null,false);
     
     /** Creates new form DlgPenyakit
      * @param parent
@@ -53,7 +59,7 @@ public final class DlgDepartemen extends javax.swing.JDialog {
         this.setLocation(10,2);
         setSize(656,250);
 
-        String[] row = {"Kode Departemen", "Nama Departemen", "Status", "Nama Gedung"};
+        String[] row = {"Kode Departemen", "Nama Departemen", "Status", "Kode Bangsal", "Nama Bangsal"};
         
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -63,7 +69,7 @@ public final class DlgDepartemen extends javax.swing.JDialog {
         tbDepartemen.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbDepartemen.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             TableColumn column = tbDepartemen.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(110);
@@ -72,7 +78,9 @@ public final class DlgDepartemen extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(80);
             } else if (i == 3) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(80);
+            } else if (i == 4) {
+                column.setPreferredWidth(250);
             }
         }
         tbDepartemen.setDefaultRenderer(Object.class, new WarnaTable());
@@ -103,6 +111,31 @@ public final class DlgDepartemen extends javax.swing.JDialog {
                 }
             });
         }
+        
+        bangsal.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {}
+            @Override
+            public void windowClosing(WindowEvent e) {}
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (akses.getform().equals("DlgDepartemen")) {
+                    if (bangsal.getTable().getSelectedRow() != -1) {
+                        TkdBangsal.setText(bangsal.getTable().getValueAt(bangsal.getTable().getSelectedRow(), 0).toString());
+                        TnmBangsal.setText(bangsal.getTable().getValueAt(bangsal.getTable().getSelectedRow(), 1).toString());
+                        btnBangsal.requestFocus();
+                    }
+                }
+            }
+            @Override
+            public void windowIconified(WindowEvent e) {}
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+            @Override
+            public void windowActivated(WindowEvent e) {}
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });
     }
 
     /** This method is called from within the constructor to
@@ -123,7 +156,9 @@ public final class DlgDepartemen extends javax.swing.JDialog {
         label13 = new widget.Label();
         cmbStatus = new widget.ComboBox();
         label14 = new widget.Label();
-        cmbGedung = new widget.ComboBox();
+        TnmBangsal = new widget.TextBox();
+        TkdBangsal = new widget.TextBox();
+        btnBangsal = new widget.Button();
         Scroll = new widget.ScrollPane();
         tbDepartemen = new widget.Table();
         panelisi5 = new widget.panelisi();
@@ -150,7 +185,7 @@ public final class DlgDepartemen extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Departemen & Mapping Gedung ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Departemen & Mapping Bangsal ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -168,6 +203,11 @@ public final class DlgDepartemen extends javax.swing.JDialog {
         Tkode.setForeground(new java.awt.Color(0, 0, 0));
         Tkode.setName("Tkode"); // NOI18N
         Tkode.setPreferredSize(new java.awt.Dimension(312, 23));
+        Tkode.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TkodeKeyPressed(evt);
+            }
+        });
         panelisi4.add(Tkode);
         Tkode.setBounds(145, 10, 70, 23);
 
@@ -181,6 +221,11 @@ public final class DlgDepartemen extends javax.swing.JDialog {
         TnmDepartemen.setForeground(new java.awt.Color(0, 0, 0));
         TnmDepartemen.setName("TnmDepartemen"); // NOI18N
         TnmDepartemen.setPreferredSize(new java.awt.Dimension(312, 23));
+        TnmDepartemen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TnmDepartemenKeyPressed(evt);
+            }
+        });
         panelisi4.add(TnmDepartemen);
         TnmDepartemen.setBounds(145, 38, 530, 23);
 
@@ -198,22 +243,38 @@ public final class DlgDepartemen extends javax.swing.JDialog {
         cmbStatus.setBounds(145, 66, 80, 23);
 
         label14.setForeground(new java.awt.Color(0, 0, 0));
-        label14.setText("Gedung Rawat Inap/RS :");
+        label14.setText("Bangsal RS :");
         label14.setName("label14"); // NOI18N
         label14.setPreferredSize(new java.awt.Dimension(68, 23));
         panelisi4.add(label14);
-        label14.setBounds(225, 66, 140, 23);
+        label14.setBounds(225, 66, 80, 23);
 
-        cmbGedung.setForeground(new java.awt.Color(0, 0, 0));
-        cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "BAYI", "AR-RAUDAH", "APOTEK", "GUDANG FARMASI", "IBS", "VK BERSALIN", "LABORATORIUM", "RADIOLOGI", "KAMAR JENAZAH", "RAWAT JALAN", "IPSRS", "SANITASI", "REKAM MEDIK", "CSSD", "DAPUR", "MANAJEMEN", "PONEK - VK BERSALIN" }));
-        cmbGedung.setName("cmbGedung"); // NOI18N
-        cmbGedung.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbGedungMouseReleased(evt);
+        TnmBangsal.setEditable(false);
+        TnmBangsal.setForeground(new java.awt.Color(0, 0, 0));
+        TnmBangsal.setName("TnmBangsal"); // NOI18N
+        TnmBangsal.setPreferredSize(new java.awt.Dimension(312, 23));
+        panelisi4.add(TnmBangsal);
+        TnmBangsal.setBounds(385, 66, 290, 23);
+
+        TkdBangsal.setEditable(false);
+        TkdBangsal.setForeground(new java.awt.Color(0, 0, 0));
+        TkdBangsal.setName("TkdBangsal"); // NOI18N
+        TkdBangsal.setPreferredSize(new java.awt.Dimension(312, 23));
+        panelisi4.add(TkdBangsal);
+        TkdBangsal.setBounds(310, 66, 71, 23);
+
+        btnBangsal.setForeground(new java.awt.Color(0, 0, 0));
+        btnBangsal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnBangsal.setMnemonic('2');
+        btnBangsal.setToolTipText("Alt+2");
+        btnBangsal.setName("btnBangsal"); // NOI18N
+        btnBangsal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBangsalActionPerformed(evt);
             }
         });
-        panelisi4.add(cmbGedung);
-        cmbGedung.setBounds(370, 66, 230, 23);
+        panelisi4.add(btnBangsal);
+        btnBangsal.setBounds(675, 66, 28, 23);
 
         internalFrame1.add(panelisi4, java.awt.BorderLayout.PAGE_START);
 
@@ -455,7 +516,6 @@ public final class DlgDepartemen extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbGedung);
         tampil();
     }//GEN-LAST:event_formWindowOpened
 
@@ -475,6 +535,8 @@ public final class DlgDepartemen extends javax.swing.JDialog {
             Valid.textKosong(Tkode, "Kode Departemen");
         } else if (TnmDepartemen.getText().trim().equals("")) {
             Valid.textKosong(TnmDepartemen, "Nama Departemen");
+        } else if (TkdBangsal.getText().equals("")) {
+            Valid.textKosong(TkdBangsal, "Bangsal RS");
         } else {
             cekStatus = "";
             Valid.autoNomerDokter("departemen", "D", 3, Tkode);
@@ -486,7 +548,7 @@ public final class DlgDepartemen extends javax.swing.JDialog {
 
             if (Sequel.menyimpantf("departemen", "'" + Tkode.getText() + "','" + TnmDepartemen.getText() + "','" + cekStatus + "'", "Departemen") == true) {
                 Sequel.menyimpan("mapping_departemen_gedung", "?,?", "Mapping Departemen & Gedung", 2, new String[]{
-                    Tkode.getText(), cmbGedung.getSelectedItem().toString()});
+                    Tkode.getText(), TkdBangsal.getText()});
                 
                 emptTeks();
                 tampil();
@@ -517,6 +579,8 @@ public final class DlgDepartemen extends javax.swing.JDialog {
                 Valid.textKosong(Tkode, "Kode Departemen");
             } else if (TnmDepartemen.getText().trim().equals("")) {
                 Valid.textKosong(TnmDepartemen, "Nama Departemen");
+            } else if (TkdBangsal.getText().equals("")) {
+                Valid.textKosong(TkdBangsal, "Bangsal RS");
             } else {
                 cekStatus = "";
                 if (cmbStatus.getSelectedIndex() == 0) {
@@ -530,7 +594,7 @@ public final class DlgDepartemen extends javax.swing.JDialog {
                     tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString()
                 }) == true) {
                     Sequel.mengedit("mapping_departemen_gedung", "dep_id='" + tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString() + "'",
-                            "dep_id='" + Tkode.getText() + "', nm_gedung='" + cmbGedung.getSelectedItem().toString() + "'");
+                            "dep_id='" + Tkode.getText() + "', kd_bangsal='" + TkdBangsal.getText() + "'");
 
                     Sequel.mengedit("pegawai", "departemen='" + tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString() + "'",
                             "departemen='" + Tkode.getText() + "', indexins='" + Tkode.getText() + "'");
@@ -561,10 +625,6 @@ public final class DlgDepartemen extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tbDepartemenMouseClicked
 
-    private void cmbGedungMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbGedungMouseReleased
-        AutoCompleteDecorator.decorate(cmbGedung);
-    }//GEN-LAST:event_cmbGedungMouseReleased
-
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbDepartemen.getSelectedRow() > -1) {
             x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
@@ -574,14 +634,14 @@ public final class DlgDepartemen extends javax.swing.JDialog {
                         || Sequel.cariInteger("select count(-1) from pegawai where indexins='" + Tkode.getText() + "'") > 0 
                         || Sequel.cariInteger("select count(-1) from indexins where dep_id='" + Tkode.getText() + "'") > 0 
                         || Sequel.cariInteger("select count(-1) from jam_jaga where dep_id='" + Tkode.getText() + "'") > 0) {
-                    JOptionPane.showMessageDialog(null, "Kode departemen tersebut masih terpakai ditabel pegawai, satu_sehat_mapping_departemen, indexins, jam_jaga..!!");
+                    JOptionPane.showMessageDialog(null, "Kode departemen tersebut masih terpakai ditabel pegawai, satu_sehat_mapping_departemen, indexins, & jam_jaga..!!");
                     tampil();
                 } else {
                     if (Sequel.queryu2tf("delete from departemen where dep_id=?", 1, new String[]{
                         tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString()
                     }) == true) {
                         Sequel.queryu("delete from mapping_departemen_gedung where dep_id='" + tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString() + "' "
-                                + "and nm_gedung='" + cmbGedung.getSelectedItem().toString() + "'");
+                                + "and kd_bangsal='" + TkdBangsal.getText() + "'");
 
                         tampil();
                         emptTeks();
@@ -599,6 +659,23 @@ public final class DlgDepartemen extends javax.swing.JDialog {
             tbDepartemen.requestFocus();
         }
     }//GEN-LAST:event_BtnHapusActionPerformed
+
+    private void btnBangsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBangsalActionPerformed
+        akses.setform("DlgDepartemen");        
+        bangsal.isCek();
+        bangsal.emptTeks();        
+        bangsal.setSize(1046, internalFrame1.getHeight() - 40);
+        bangsal.setLocationRelativeTo(internalFrame1);
+        bangsal.setVisible(true);
+    }//GEN-LAST:event_btnBangsalActionPerformed
+
+    private void TkodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TkodeKeyPressed
+        Valid.pindah(evt, Tkode, TnmDepartemen);
+    }//GEN-LAST:event_TkodeKeyPressed
+
+    private void TnmDepartemenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmDepartemenKeyPressed
+        Valid.pindah(evt, Tkode, cmbStatus);
+    }//GEN-LAST:event_TnmDepartemenKeyPressed
 
     /**
     * @param args the command line arguments
@@ -627,9 +704,11 @@ public final class DlgDepartemen extends javax.swing.JDialog {
     private widget.Label LCount;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
+    private widget.TextBox TkdBangsal;
     private widget.TextBox Tkode;
+    private widget.TextBox TnmBangsal;
     private widget.TextBox TnmDepartemen;
-    private widget.ComboBox cmbGedung;
+    private widget.Button btnBangsal;
     private widget.ComboBox cmbStatus;
     private widget.InternalFrame internalFrame1;
     private widget.Label label10;
@@ -648,9 +727,10 @@ public final class DlgDepartemen extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("select d.*, if(d.aktif='0','Non Aktif','Aktif') status, ifnull(m.nm_gedung,'- Belum Dimapping -') gedung from departemen d "
-                    + "inner join mapping_departemen_gedung m on m.dep_id=d.dep_id "
-                    + "where d.dep_id like ? or d.nama like ? or d.aktif like ? or m.nm_gedung like ? order by d.dep_id");
+            ps = koneksi.prepareStatement("select d.*, if(d.aktif='0','Non Aktif','Aktif') status, if(m.dep_id is null,'- Belum Dimapping -',b.nm_bangsal) nmBangsal, "
+                    + "ifnull(m.kd_bangsal,'- belum -') kdBangsal from departemen d "
+                    + "left join mapping_departemen_gedung m on m.dep_id=d.dep_id left join bangsal b on b.kd_bangsal=m.kd_bangsal "                    
+                    + "where d.dep_id like ? or d.nama like ? or d.aktif like ? or b.nm_bangsal like ? order by d.dep_id");
             try {
                 ps.setString(1, "%" + TCari.getText().trim() + "%");
                 ps.setString(2, "%" + TCari.getText().trim() + "%");
@@ -662,7 +742,8 @@ public final class DlgDepartemen extends javax.swing.JDialog {
                         rs.getString("dep_id"),
                         rs.getString("nama"),
                         rs.getString("status"),
-                        rs.getString("gedung")
+                        rs.getString("kdBangsal"),
+                        rs.getString("nmBangsal")
                     });
                 }
             } catch (Exception e) {
@@ -685,7 +766,8 @@ public final class DlgDepartemen extends javax.swing.JDialog {
         Tkode.setText("");
         TnmDepartemen.setText("");
         cmbStatus.setSelectedIndex(0);
-        cmbGedung.setSelectedIndex(0);
+        TkdBangsal.setText("");
+        TnmBangsal.setText("");
         Valid.autoNomerDokter("departemen","D",3,Tkode);
     }
     
@@ -694,12 +776,8 @@ public final class DlgDepartemen extends javax.swing.JDialog {
             Tkode.setText(tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 0).toString());
             TnmDepartemen.setText(tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 1).toString());
             cmbStatus.setSelectedItem(tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 2).toString());
-
-            if (tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 3).toString().equals("- Belum Dimapping -")) {
-                cmbGedung.setSelectedIndex(0);
-            } else {
-                cmbGedung.setSelectedItem(tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 3).toString());
-            }
+            TkdBangsal.setText(tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 3).toString());
+            TnmBangsal.setText(tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 4).toString());
         }
     }
 }
