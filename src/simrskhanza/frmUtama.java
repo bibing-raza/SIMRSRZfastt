@@ -414,7 +414,7 @@ public class frmUtama extends javax.swing.JFrame {
     private ResultSet rs;
     private final Properties prop = new Properties();
     private int jmlmenu = 0, grid = 0, tinggi = 0, i = 0;
-    private String coder_nik = "", pilihpage = "", judulform = "", host = "", cek = "", cekApt = "", versi = "", ipKomputer = "";
+    private String coder_nik = "", pilihpage = "", judulform = "", host = "", cek = "", cekApt = "", versi = "", ipKomputer = "", nipLogin = "";
     private final DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
     private final DlgKamarInap kamarinap = new DlgKamarInap(null, false);
     private final DlgIGD igd = new DlgIGD(this, false);  
@@ -6350,7 +6350,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21/07/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23/07/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7163,6 +7163,7 @@ public class frmUtama extends javax.swing.JFrame {
         } else if (edPwd.getText().trim().equals("")) {
             Valid.textKosong(edPwd, "Password");
         } else {
+            nipLogin = "";
             try {
                 akses.setData(edAdmin.getText(), edPwd.getText());
                 if (edAdmin.getText().equals("admin") && edPwd.getText().equals("satu")) {
@@ -7238,7 +7239,13 @@ public class frmUtama extends javax.swing.JFrame {
                     ket_update.setText("");
                 }
                 
-                Sequel.menyimpanIgnore("history_aplikasi", "'" + ipKomputer + "','" + versi + "','SIMRS','" + Sequel.cariIsi("select now()") + "'", "Update versi SIMRS");
+                if (akses.getadmin() == true) {
+                    nipLogin = "-";
+                } else {
+                    nipLogin = akses.getkode();
+                }
+                
+                Sequel.menyimpanIgnore("history_aplikasi", "'" + ipKomputer + "','" + versi + "','SIMRS','" + nipLogin + "','" + Sequel.cariIsi("select now()") + "'", "Update versi SIMRS");
                 Sequel.queryu("delete from history_aplikasi where date(waktu_update) < DATE_FORMAT(date_sub(now(), interval 30 day),'%Y-%m-%d')");
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);

@@ -43,8 +43,8 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps1, ps2;
-    private ResultSet rs, rs1, rs2, rsPrev;
+    private PreparedStatement ps, ps1, ps2, ps3;
+    private ResultSet rs, rs1, rs2, rs3, rsPrev;
     private int i = 0, x = 0, skor = 0, pilihan = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
@@ -5895,8 +5895,9 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
         if (TabRawat.getSelectedIndex() == 1) {
+//            Valid.SetTgl(DTPCari1, "24-06-2025");
             tampil();
-        } else if (TabRawat.getSelectedIndex() == 2) {
+        } else if (TabRawat.getSelectedIndex() == 2) {            
             tampilPreview();
         }
     }//GEN-LAST:event_TabRawatMouseClicked
@@ -10713,6 +10714,381 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                 "<tr class='isi'>"
                                 + "<td valign='top' colspan='1'><b>Riwayat KB</b></td>"
                                 + "<td valign='top' colspan='7'>: " + prevPil + prevSuntik1 + prevSuntik3 + prevImplan + prevIud + prevTdkKb + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='8' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>RIWAYAT KEHAMILAN, PERSALINAN DAN NIFAS YANG LALU</span></td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' bgcolor='#f8fdf3' align='center'>Tahun Partus</td>"
+                                + "<td valign='top' bgcolor='#f8fdf3' align='center'>Tempat Partus</td>"
+                                + "<td valign='top' bgcolor='#f8fdf3' align='center'>Umur Hamil</td>"
+                                + "<td valign='top' bgcolor='#f8fdf3' align='center'>Jenis Persalinan</td>"
+                                + "<td valign='top' bgcolor='#f8fdf3' align='center'>Penolong Persalinan</td>"
+                                + "<td valign='top' bgcolor='#f8fdf3' align='center'>Penyulit</td>"
+                                + "<td valign='top' bgcolor='#f8fdf3' align='center'>Jenis Kelamin/Berat Lahir</td>"
+                                + "<td valign='top' bgcolor='#f8fdf3' align='center'>Keadaan Anak Sekarang</td>"
+                                + "</tr>");
+
+                        try {
+                            ps3 = koneksi.prepareStatement("select * from riwayat_kehamilan_asesmen_awal_kebidanan where no_rawat='" + rsPrev.getString("no_rawat") + "' order by waktu_simpan");
+                            try {
+                                rs3 = ps3.executeQuery();
+                                while (rs3.next()) {
+                                    htmlContent.append(
+                                            "<tr class='isi'>"
+                                            + "<td valign='top' align='center'>" + rs3.getString("tahun_partus") + "</td>"
+                                            + "<td valign='top' align='left'>" + rs3.getString("tempat_partus") + "</td>"
+                                            + "<td valign='top' align='left'>" + rs3.getString("umur_hamil") + "</td>"
+                                            + "<td valign='top' align='left'>" + rs3.getString("jns_persalinan") + "</td>"
+                                            + "<td valign='top' align='left'>" + rs3.getString("penolong_persalinan") + "</td>"
+                                            + "<td valign='top' align='left'>" + rs3.getString("penyulit") + "</td>"
+                                            + "<td valign='top' align='left'>" + rs3.getString("jk") + " (" + rs3.getString("bb") + ")</td>"
+                                            + "<td valign='top' align='left'>" + rs3.getString("keadaan_anak_skrng") + "</td>"
+                                            + "</tr>");
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Notifikasi : " + e);
+                            } finally {
+                                if (rs3 != null) {
+                                    rs3.close();
+                                }
+                                if (ps3 != null) {
+                                    ps3.close();
+                                }
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Notifikasi : " + e);
+                        }
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='8' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>RIWAYAT PSIKOSOSIAL DAN SPIRITUAL</span></td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'>Status Perkawinan</td>"
+                                + "<td valign='top' colspan='7'>: " + rsPrev.getString("status_perkawinan") + "</td>"
+                                + "</tr>");
+                        
+                        String prevIstri = "", prevSuami = "";
+                        if (rsPrev.getString("cek_istri_kawin").equals("ya")) {
+                            prevIstri = "Istri (" + rsPrev.getString("jlh_perkawinan_istri") + "), ";
+                        } else {
+                            prevIstri = "-";
+                        }
+                        
+                        if (rsPrev.getString("cek_suami_kawin").equals("ya")) {
+                            prevSuami = "Suami (" + rsPrev.getString("jlh_perkawinan_suami") + ")";
+                        } else {
+                            prevSuami = "-";
+                        }
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'>Jumlah Perkawinan</td>"
+                                + "<td valign='top' colspan='7'>: " + prevIstri + prevSuami + "</td>"
+                                + "</tr>");
+                        
+                        String prevUsiaPertamaNikah = "", prevUsiaPerkawinan = "";
+                        if (rsPrev.getString("usia_pertama_nikah").equals("")) {
+                            prevUsiaPertamaNikah = "...... Tahun, Usia Perkawinan : ";
+                        } else {
+                            prevUsiaPertamaNikah = rsPrev.getString("usia_pertama_nikah") + " Tahun, Usia Perkawinan : ";
+                        }
+                        
+                        if (rsPrev.getString("usia_perkawinan").equals("")) {
+                            prevUsiaPerkawinan = "...... Tahun";
+                        } else {
+                            prevUsiaPerkawinan = rsPrev.getString("usia_perkawinan") + " Tahun";
+                        }
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'>Usia Pertama Kali Nikah</td>"
+                                + "<td valign='top' colspan='7'>: " + prevUsiaPertamaNikah + prevUsiaPerkawinan + "</td>"
+                                + "</tr>");
+                        
+                        String prevKlgDekat = "", prevHub = "", prevOrtu = "", prevTglSuami = "", prevTglAnak = "", prevTglSendiri = "";
+                        if (rsPrev.getString("keluarga_terdekat").equals("")) {
+                            prevKlgDekat = "......, Hubungan ";
+                        } else {
+                            prevKlgDekat = rsPrev.getString("keluarga_terdekat") + ", Hubungan ";
+                        }
+                        
+                        if (rsPrev.getString("hubungan").equals("")) {
+                            prevHub = "......, Tinggal Dengan : ";
+                        } else {
+                            prevHub = rsPrev.getString("hubungan") + ", Tinggal Dengan : ";
+                        }
+                        
+                        if (rsPrev.getString("cek_orang_tua").equals("ya")) {
+                            prevOrtu = "Orang Tua, ";
+                        } else {
+                            prevOrtu = "";
+                        }
+                        
+                        if (rsPrev.getString("cek_suami").equals("ya")) {
+                            prevTglSuami = "Suami, ";
+                        } else {
+                            prevTglSuami = "";
+                        }
+                        
+                        if (rsPrev.getString("cek_anak").equals("ya")) {
+                            prevTglAnak = "Anak, ";
+                        } else {
+                            prevTglAnak = "";
+                        }
+                        
+                        if (rsPrev.getString("cek_tinggal_sendiri").equals("ya")) {
+                            prevTglSendiri = "Sendiri";
+                        } else {
+                            prevTglSendiri = "";
+                        }
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'>Keluarga Terdekat</td>"
+                                + "<td valign='top' colspan='7'>: " + prevKlgDekat + prevHub + prevOrtu + prevTglSuami + prevTglAnak + prevTglSendiri + ", Curiga Penganiayaan / Penelantaran : " + rsPrev.getString("curiga_penganiayaan") + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'>Kegiatan Ibadah</td>"
+                                + "<td valign='top' colspan='7'>: " + rsPrev.getString("kegiatan_ibadah") + ", Status Emosional : " + rsPrev.getString("status_emosional") + "</td>"
+                                + "</tr>");
+                        
+                        String prevAsuransi = "", prevJaminan = "", prevBySendiri = "", prevLainSttsEko = "";
+                        if (rsPrev.getString("cek_asuransi").equals("ya")) {
+                            prevAsuransi = "Asuransi, ";
+                        } else {
+                            prevAsuransi = "";
+                        }
+                        
+                        if (rsPrev.getString("cek_jaminan").equals("ya")) {
+                            prevJaminan = "Jaminan, ";
+                        } else {
+                            prevJaminan = "";
+                        }
+                        
+                        if (rsPrev.getString("cek_biaya_sendiri").equals("ya")) {
+                            prevBySendiri = "Biaya Sendiri, ";
+                        } else {
+                            prevBySendiri = "";
+                        }
+                        
+                        if (rsPrev.getString("cek_lain_status_ekonomi").equals("ya")) {
+                            if (rsPrev.getString("ket_lain_status_ekonomi").equals("")) {
+                                prevLainSttsEko = "Lainnya : .......";
+                            } else {
+                                prevLainSttsEko = "Lainnya : " + rsPrev.getString("ket_lain_status_ekonomi");
+                            }                            
+                        } else {
+                            prevLainSttsEko = "";
+                        }
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'>Status Ekonomi</td>"
+                                + "<td valign='top' colspan='7'>: " + prevAsuransi + prevJaminan + prevBySendiri + prevLainSttsEko + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"                                
+                                + "<td valign='top' colspan='6' bgcolor='#f8fdf3' align='left'><span style='font-weight:bold'>Pemeriksaan OBSTETRI</span></td>"                                
+                                + "<td valign='top' colspan='2' bgcolor='#f8fdf3' align='left'><span style='font-weight:bold'>Pemeriksaan GINEKOLOGI</span></td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'>Leopold 1</td>"
+                                + "<td valign='top' colspan='5'>: " + rsPrev.getString("leopold1") + "</td>"
+                                + "<td valign='top' colspan='1'>Palpasi</td>"
+                                + "<td valign='top' colspan='1'>: " + rsPrev.getString("palpasi") + "</td>"
+                                + "</tr>");
+
+                        String prevSebesar = "";
+                        if (rsPrev.getString("sebesar").equals("")) {
+                            prevSebesar = ", Sebesar ........";
+                        } else {
+                            prevSebesar = ", Sebesar " + rsPrev.getString("sebesar");
+                        }
+
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'>Leopold 2</td>"
+                                + "<td valign='top' colspan='5'>: " + rsPrev.getString("leopold2") + "</td>"
+                                + "<td valign='top' colspan='1'>Teraba Massa</td>"
+                                + "<td valign='top' colspan='1'>: " + rsPrev.getString("teraba_massa") + prevSebesar + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'>Leopold 3</td>"
+                                + "<td valign='top' colspan='5'>: " + rsPrev.getString("leopold3") + "</td>"
+                                + "<td valign='top' colspan='1'>Goyang</td>"
+                                + "<td valign='top' colspan='1'>: " + rsPrev.getString("goyang") + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'>Leopold 4</td>"
+                                + "<td valign='top' colspan='5'>: " + rsPrev.getString("leopold4") + "</td>"
+                                + "<td valign='top' colspan='1'>Nyeri Tekan</td>"
+                                + "<td valign='top' colspan='1'>: " + rsPrev.getString("nyeri_tekan") + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'>Bandle Ring</td>"
+                                + "<td valign='top' colspan='5'>: " + rsPrev.getString("bandle_ring") + "</td>"
+                                + "<td valign='top' colspan='1'>VT Pembukaan</td>"
+                                + "<td valign='top' colspan='1'>: " + rsPrev.getString("vt_pembukaan") + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='6'>Perut Tegang Terus Menerus Seperti Papan : " + rsPrev.getString("perut_tegang") + "</td>"
+                                + "<td valign='top' colspan='1'>VT Nyeri Goyang</td>"
+                                + "<td valign='top' colspan='1'>: " + rsPrev.getString("vt_nyeri_goyang") + "</td>"
+                                + "</tr>");
+
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>TFU</span></td>"
+                                + "<td valign='top' colspan='1' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>Taksiran Berat Janin</span></td>"
+                                + "<td valign='top' colspan='1' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>His/Kontraksi</span></td>"
+                                + "<td valign='top' colspan='1' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>Durasi</span></td>"
+                                + "<td valign='top' colspan='1' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>Auskultasi</span></td>"
+                                + "<td valign='top' colspan='3' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>Pemeriksaan Genitalia</span></td>"
+                                + "</tr>");
+                        
+                        String prevTfu = "", prevTaksiran = "", prevHis = "", prevJnsHis = "", prevDurasi = "", prevJnsDurasi = "", prevAus = "", prevGeni = "",
+                                prevBrsh = "", prevOdema = "", prevRuftur = "", prevCandi = "", prevLainGeni = "", prevInspekulo = "";
+                        if (rsPrev.getString("tfu").equals("")) {
+                            prevTfu = "-";
+                        } else {
+                            prevTfu = rsPrev.getString("tfu") + " Cm.";
+                        }
+                        
+                        if (rsPrev.getString("taksiran_berat_janin").equals("")) {
+                            prevTaksiran = "-";
+                        } else {
+                            prevTaksiran = rsPrev.getString("taksiran_berat_janin") + " gram";
+                        }
+                        
+                        if (rsPrev.getString("jns_his_kontraksi").equals("-")) {
+                            prevJnsHis = "";
+                        } else {
+                            prevJnsHis = " (" + rsPrev.getString("jns_his_kontraksi") + ")";
+                        }
+                        
+                        if (rsPrev.getString("his_kontraksi").equals("")) {
+                            prevHis = "-" + prevJnsHis;
+                        } else {
+                            prevHis = rsPrev.getString("his_kontraksi") + " x/10 menit" + prevJnsHis;
+                        }
+                        
+                        if (rsPrev.getString("jns_durasi").equals("-")) {
+                            prevJnsDurasi = "";
+                        } else {
+                            prevJnsDurasi = " (" + rsPrev.getString("jns_durasi") + ")";
+                        }
+                        
+                        if (rsPrev.getString("durasi").equals("")) {
+                            prevDurasi = "-" + prevJnsDurasi;
+                        } else {
+                            prevDurasi = rsPrev.getString("durasi") + " detik" + prevJnsDurasi;
+                        }
+                        
+                        if (rsPrev.getString("auskultasi").equals("")) {
+                            prevAus = "-";
+                        } else {
+                            prevAus = "DJJ " + rsPrev.getString("auskultasi") + " x/mnt";
+                        }
+                        
+                        if (rsPrev.getString("cek_bersih").equals("ya")) {
+                            prevBrsh = "Bersih, ";
+                        } else {
+                            prevBrsh = "";
+                        }
+                        
+                        if (rsPrev.getString("cek_oedema").equals("ya")) {
+                            prevOdema = "Oedema, ";
+                        } else {
+                            prevOdema = "";
+                        }
+                        
+                        if (rsPrev.getString("cek_ruftur").equals("ya")) {
+                            prevRuftur = "Ruftur, ";
+                        } else {
+                            prevRuftur = "";
+                        }
+                        
+                        if (rsPrev.getString("cek_candiloma").equals("ya")) {
+                            prevCandi = "Candiloma, ";
+                        } else {
+                            prevCandi = "";
+                        }
+                        
+                        if (rsPrev.getString("cek_lain_pemeriksaan_geni").equals("ya")) {
+                            if (rsPrev.getString("ket_lain_pemeriksaan_geni").equals("")) {
+                                prevLainGeni = "Lainnya : ......";
+                            } else {
+                                prevLainGeni = "Lainnya : " + rsPrev.getString("ket_lain_pemeriksaan_geni");
+                            }                            
+                        } else {
+                            prevLainGeni = "";
+                        }
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1' align='center'>" + prevTfu + "</td>"
+                                + "<td valign='top' colspan='1' align='center'>" + prevTaksiran + "</td>"
+                                + "<td valign='top' colspan='1' align='center'>" + prevHis + "</td>"
+                                + "<td valign='top' colspan='1' align='center'>" + prevDurasi + "</td>"
+                                + "<td valign='top' colspan='1' align='center'>" + prevAus + "</td>"
+                                + "<td valign='top' colspan='3' align='left'>" + prevBrsh + prevOdema + prevRuftur + prevCandi + prevLainGeni + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'><b>Pemeriksaan Dalam (Obstetri)</b></td>"
+                                + "<td valign='top' colspan='7'>: " + rsPrev.getString("periksa_dalam_obstetri") + "</td>"
+                                + "</tr>");
+                        
+                        if (rsPrev.getString("inspekulo").equals("-")) {
+                            prevInspekulo = "-";
+                        } else {
+                            if (rsPrev.getString("hasil_inspekulo").equals("")) {
+                                prevInspekulo = rsPrev.getString("inspekulo");
+                            } else {
+                                prevInspekulo = rsPrev.getString("inspekulo") + ", Hasil : " + rsPrev.getString("hasil_inspekulo");
+                            }
+                        }
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'><b>Inspekulo</b></td>"
+                                + "<td valign='top' colspan='7'>: " + prevInspekulo + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'><b>DIAGNOSIS SEMENTARA</b></td>"
+                                + "<td valign='top' colspan='5'>: " + rsPrev.getString("diagnosis_sementara") + "</td>"
+                                + "<td valign='top' colspan='1'><b>ICD-10</b></td>"
+                                + "<td valign='top' colspan='1'>: " + rsPrev.getString("icd_10") + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'><b>PLANNING</b></td>"
+                                + "<td valign='top' colspan='7'>: " + rsPrev.getString("planing") + "</td>"
                                 + "</tr>");
                     }
                     

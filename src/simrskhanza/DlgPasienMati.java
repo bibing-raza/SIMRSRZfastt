@@ -58,7 +58,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
     private ResultSet rs;
     private int x = 0;
     private String sql = " pasien_mati.no_rkm_medis=pasien.no_rkm_medis  ", umur = "0", nipDokter = "",
-            sttsumur = "Th", a, b, noSurat = "", regBulan = "", thmati = "", blmati = "";
+            sttsumur = "Th", a, b, noSurat = "", regBulan = "", thmati = "", blmati = "", noRwNew = "";
     private String now = dateformat.format(date), timeIn = timeFormat.format(date);
     private double cek = 0, pasienIGD = 0;
     private Date date2 = new Date(), timeOut, dateIn, dateOut, timeIn2;
@@ -401,6 +401,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
         MnFormulirKematian = new javax.swing.JMenuItem();
         MnTindakan = new javax.swing.JMenuItem();
         MnNomorSurat = new javax.swing.JMenuItem();
+        MnRegistrasikan = new javax.swing.JMenuItem();
         MnAngkutJenazah = new javax.swing.JMenuItem();
         TNoReg = new widget.TextBox();
         TNoRw = new widget.TextBox();
@@ -523,6 +524,19 @@ public class DlgPasienMati extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnNomorSurat);
 
+        MnRegistrasikan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRegistrasikan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnRegistrasikan.setText("Registrasikan Jenazah");
+        MnRegistrasikan.setEnabled(false);
+        MnRegistrasikan.setName("MnRegistrasikan"); // NOI18N
+        MnRegistrasikan.setPreferredSize(new java.awt.Dimension(250, 28));
+        MnRegistrasikan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRegistrasikanActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnRegistrasikan);
+
         MnAngkutJenazah.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnAngkutJenazah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnAngkutJenazah.setText("Surat Angkut Jenazah");
@@ -539,20 +553,10 @@ public class DlgPasienMati extends javax.swing.JDialog {
         TNoReg.setForeground(new java.awt.Color(0, 0, 0));
         TNoReg.setHighlighter(null);
         TNoReg.setName("TNoReg"); // NOI18N
-        TNoReg.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TNoRegKeyPressed(evt);
-            }
-        });
 
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
         TNoRw.setHighlighter(null);
         TNoRw.setName("TNoRw"); // NOI18N
-        TNoRw.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TNoRwKeyPressed(evt);
-            }
-        });
 
         StatusReg.setForeground(new java.awt.Color(0, 0, 0));
         StatusReg.setHighlighter(null);
@@ -818,7 +822,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
         TPasien.setBounds(203, 40, 390, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1004,7 +1008,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
         jLabel16.setBounds(650, 10, 80, 23);
 
         Tgl1.setEditable(false);
-        Tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        Tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2025" }));
         Tgl1.setDisplayFormat("dd-MM-yyyy");
         Tgl1.setName("Tgl1"); // NOI18N
         Tgl1.setOpaque(false);
@@ -1024,7 +1028,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
         jLabel17.setBounds(827, 10, 30, 23);
 
         Tgl2.setEditable(false);
-        Tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        Tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2025" }));
         Tgl2.setDisplayFormat("dd-MM-yyyy");
         Tgl2.setName("Tgl2"); // NOI18N
         Tgl2.setOpaque(false);
@@ -1738,10 +1742,6 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
         Valid.pindah(evt, icd4, BtnSimpan);
     }//GEN-LAST:event_TKtgKeyPressed
 
-    private void TNoRwKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoRwKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TNoRwKeyPressed
-
     private void MnTindakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTindakanActionPerformed
         if (tbMati.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
@@ -1907,6 +1907,38 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
         dokter.setVisible(true);
     }//GEN-LAST:event_BtnDokterActionPerformed
 
+    private void MnRegistrasikanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRegistrasikanActionPerformed
+        if (tbMati.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah jenazah ini akan diregistrasikan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                cekDaftar();
+                if (cek > 0) {
+                    JOptionPane.showMessageDialog(null, "Pasien sudah didaftarkan....");
+                } else {
+                    isCekPasien();
+                    noRwNew = "";
+                    Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='KJH' and tgl_registrasi='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "'", "", 3, TNoReg);
+                    noRwNew = Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rawat,6),signed)),0) from reg_periksa where tgl_registrasi='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "' ", Valid.SetTglMiring(DTPTgl.getSelectedItem() + "") + "/", 6);
+
+                    Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19,
+                            new String[]{TNoReg.getText(), noRwNew, Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                                "-", TNoRM.getText(), "KJH", "-", "-", "-", 0 + "", "Belum",
+                                "Baru", "Ralan", "U01", umur, sttsumur, akses.getkode(), "Tidak"});
+                    tampil();
+                    emptTeks();
+                    JOptionPane.showMessageDialog(null, "Jenazah berhasil diregistrasikan....");
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...");
+            tampil();
+            emptTeks();
+        }
+    }//GEN-LAST:event_MnRegistrasikanActionPerformed
+
     private void TNoRegKeyPressed(java.awt.event.KeyEvent evt) {
         // TODO add your handling code here:
     }
@@ -1946,6 +1978,7 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
     private javax.swing.JMenuItem MnCetakSuratMati;
     private javax.swing.JMenuItem MnFormulirKematian;
     private javax.swing.JMenuItem MnNomorSurat;
+    private javax.swing.JMenuItem MnRegistrasikan;
     private javax.swing.JMenuItem MnTindakan;
     private widget.ScrollPane Scroll;
     private widget.TextBox StatusReg;
@@ -2135,6 +2168,7 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
         BtnHapus.setEnabled(akses.getpasien_meninggal());
         BtnPrint.setEnabled(akses.getpasien_meninggal());
         MnNomorSurat.setEnabled(akses.getedit_data_kematian());
+        MnRegistrasikan.setEnabled(akses.getadmin());
     }
 
     public void setNoRm(String norm) {
@@ -2188,6 +2222,7 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
     }
 
     private void cekDaftar() {
+        cek = 0;
         cek = Sequel.cekIGD("select count(1) from reg_periksa where tgl_registrasi = ? and kd_dokter = ? and no_rkm_medis = ? "
                 + "and kd_poli = ? and jam_reg = ?", Valid.SetTgl(DTPTgl.getSelectedItem() + ""), "-", TNoRM.getText(), "KJH",
                 Sequel.cariIsi("select jam from pasien_mati where no_rkm_medis='" + TNoRM.getText() + "'"));

@@ -35,6 +35,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -57,6 +58,9 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     public DlgSetAplikasi(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         this.setLocation(10,10);
         setSize(457,249);
 
@@ -108,7 +112,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         }
         tbUpdate.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode2 = new DefaultTableModel(null, new String[]{"IP Address", "Versi", "Nama Aplikasi", "Waktu Update"}) {
+        tabMode2 = new DefaultTableModel(null, new String[]{"IP Address", "Versi", "Nama Aplikasi", "Waktu Update", "Petugas Login"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -118,7 +122,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         tbHistoryUpdate.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbHistoryUpdate.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             TableColumn column = tbHistoryUpdate.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(110);
@@ -128,9 +132,14 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
                 column.setPreferredWidth(150);
             } else if (i == 3) {
                 column.setPreferredWidth(120);
+            } else if (i == 4) {
+                column.setPreferredWidth(240);
             }
         }
         tbHistoryUpdate.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbHistoryUpdate.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbHistoryUpdate.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 
         versi.setDocument(new batasInput((byte)8).getKata(versi));
         Nm.setDocument(new batasInput((byte)60).getKata(Nm));
@@ -533,7 +542,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         jLabel23.setBounds(550, 325, 70, 23);
 
         tglUpdate.setEditable(false);
-        tglUpdate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-07-2025" }));
+        tglUpdate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2025" }));
         tglUpdate.setDisplayFormat("dd-MM-yyyy");
         tglUpdate.setName("tglUpdate"); // NOI18N
         tglUpdate.setOpaque(false);
@@ -884,7 +893,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         internalFrame3.add(Scroll1, java.awt.BorderLayout.CENTER);
 
         panelisi2.setName("panelisi2"); // NOI18N
-        panelisi2.setPreferredSize(new java.awt.Dimension(550, 54));
+        panelisi2.setPreferredSize(new java.awt.Dimension(720, 54));
         panelisi2.setLayout(new java.awt.BorderLayout());
 
         Scroll2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "::[ History Update ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -893,7 +902,6 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         Scroll2.setPreferredSize(new java.awt.Dimension(452, 400));
 
         tbHistoryUpdate.setAutoCreateRowSorter(true);
-        tbHistoryUpdate.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbHistoryUpdate.setName("tbHistoryUpdate"); // NOI18N
         tbHistoryUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1213,6 +1221,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
         tampilUpdate();
+        TCari.setText(Sequel.cariIsi("select ifnull(versi,'') FROM history_aplikasi ORDER BY waktu_update desc limit 1"));
         tampilHistori();
     }//GEN-LAST:event_formWindowOpened
 
@@ -1792,19 +1801,25 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     private void tampilHistori() {
         Valid.tabelKosong(tabMode2);
         try {
-            ps1 = koneksi.prepareStatement("SELECT *, date_format(waktu_update,'%d-%m-%Y %H:%i:%s') wktupdate FROM history_aplikasi where "
-                    + "ip_address like ? or versi like ? or aplikasi like ? ORDER BY waktu_update desc");
+            ps1 = koneksi.prepareStatement("SELECT *, date_format(waktu_update,'%d-%m-%Y %H:%i:%s') wktupdate, if(h.nip_login='-','Admin Utama',p.nama) nmPetugas "
+                    + "FROM history_aplikasi h inner join pegawai p on p.nik=h.nip_login where "
+                    + "h.ip_address like ? or "
+                    + "h.versi like ? or "
+                    + "h.aplikasi like ? or "
+                    + "if(h.nip_login='-','Admin Utama',p.nama) like ? ORDER BY h.waktu_update desc");
             try {
                 ps1.setString(1, "%" + TCari.getText().trim() + "%");
                 ps1.setString(2, "%" + TCari.getText().trim() + "%");
                 ps1.setString(3, "%" + TCari.getText().trim() + "%");
+                ps1.setString(4, "%" + TCari.getText().trim() + "%");
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
                     tabMode2.addRow(new String[]{
                         rs1.getString("ip_address"),
                         rs1.getString("versi"),
                         rs1.getString("aplikasi"),
-                        rs1.getString("wktupdate")
+                        rs1.getString("wktupdate"),
+                        rs1.getString("nmPetugas")                        
                     });
                 }
             } catch (Exception e) {
