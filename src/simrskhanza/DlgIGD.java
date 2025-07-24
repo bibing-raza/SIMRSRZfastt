@@ -60,6 +60,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.DlgLhtPiutang;
@@ -147,6 +148,9 @@ public final class DlgIGD extends javax.swing.JDialog {
     public DlgIGD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         
         this.setLocation(8, 1);
         setSize(885, 674);
@@ -193,11 +197,11 @@ public final class DlgIGD extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(50);
             } else if (i == 2) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(130);
             } else if (i == 3) {
                 column.setPreferredWidth(70);
             } else if (i == 4) {
-                column.setPreferredWidth(50);
+                column.setPreferredWidth(70);
             } else if (i == 5) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -218,7 +222,7 @@ public final class DlgIGD extends javax.swing.JDialog {
             } else if (i == 13) {
                 column.setPreferredWidth(125);
             } else if (i == 14) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(70);
             } else if (i == 15) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -259,6 +263,15 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         }
         tbregistrasiIGD.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbregistrasiIGD.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbregistrasiIGD.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbregistrasiIGD.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbregistrasiIGD.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbregistrasiIGD.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
+        tbregistrasiIGD.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
+        tbregistrasiIGD.getColumnModel().getColumn(14).setCellRenderer(centerRenderer);
+        tbregistrasiIGD.getColumnModel().getColumn(20).setCellRenderer(centerRenderer);
         
         tabMode1 = new DefaultTableModel(null, new Object[]{"Kode Alasan","Jenis Alasan APS"}) {
             @Override

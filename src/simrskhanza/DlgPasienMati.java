@@ -22,6 +22,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,6 +32,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
@@ -58,11 +60,12 @@ public class DlgPasienMati extends javax.swing.JDialog {
     private ResultSet rs;
     private int x = 0;
     private String sql = " pasien_mati.no_rkm_medis=pasien.no_rkm_medis  ", umur = "0", nipDokter = "",
-            sttsumur = "Th", a, b, noSurat = "", regBulan = "", thmati = "", blmati = "", noRwNew = "";
+            sttsumur = "Th", a, b, noSurat = "", regBulan = "", thmati = "", blmati = "", noRwNew = "", URUTNOREG = "", aktifjadwal = "";
     private String now = dateformat.format(date), timeIn = timeFormat.format(date);
     private double cek = 0, pasienIGD = 0;
     private Date date2 = new Date(), timeOut, dateIn, dateOut, timeIn2;
     private Calendar date3 = Calendar.getInstance();
+    private Properties prop = new Properties();
 
     /**
      * Creates new form DlgPasienMati
@@ -385,6 +388,15 @@ public class DlgPasienMati extends javax.swing.JDialog {
             public void windowDeactivated(WindowEvent e) {
             }
         });
+        
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            aktifjadwal = prop.getProperty("JADWALDOKTERDIREGISTRASI");
+            URUTNOREG = prop.getProperty("URUTNOREG");
+        } catch (Exception ex) {
+            aktifjadwal = "";
+            URUTNOREG = "";
+        }
     }
 
     /**
@@ -406,6 +418,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
         TNoReg = new widget.TextBox();
         TNoRw = new widget.TextBox();
         StatusReg = new widget.TextBox();
+        TNoRegNew = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbMati = new widget.Table();
@@ -566,6 +579,9 @@ public class DlgPasienMati extends javax.swing.JDialog {
                 StatusRegKeyPressed(evt);
             }
         });
+
+        TNoRegNew.setName("TNoRegNew"); // NOI18N
+        TNoRegNew.setPreferredSize(new java.awt.Dimension(207, 23));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1917,11 +1933,29 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
                 } else {
                     isCekPasien();
                     noRwNew = "";
-                    Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='KJH' and tgl_registrasi='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "'", "", 3, TNoReg);
+                    TNoRegNew.setText("");
+                    switch (URUTNOREG) {
+                        case "poli":
+                            Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where "
+                                    + "kd_poli='KJH' and tgl_registrasi='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "'", "", 3, TNoRegNew);
+                            break;
+                        case "dokter":
+                            Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where "
+                                    + "kd_dokter='-' and tgl_registrasi='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "'", "", 3, TNoRegNew);
+                            break;
+                        case "dokter & poli":
+                            Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where "
+                                    + "kd_dokter='-' and kd_poli='KJH' and tgl_registrasi='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "'", "", 3, TNoRegNew);
+                            break;
+                        default:
+                            Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where "
+                                    + "kd_dokter='-' and tgl_registrasi='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "'", "", 3, TNoRegNew);
+                            break;
+                    }
+                    
                     noRwNew = Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rawat,6),signed)),0) from reg_periksa where tgl_registrasi='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "' ", Valid.SetTglMiring(DTPTgl.getSelectedItem() + "") + "/", 6);
-
                     Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19,
-                            new String[]{TNoReg.getText(), noRwNew, Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                            new String[]{TNoRegNew.getText(), noRwNew, Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                                 "-", TNoRM.getText(), "KJH", "-", "-", "-", 0 + "", "Belum",
                                 "Baru", "Ralan", "U01", umur, sttsumur, akses.getkode(), "Tidak"});
                     tampil();
@@ -1987,6 +2021,7 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
     private widget.TextBox TNoRM;
     private widget.TextBox TNoReg;
     private widget.TextBox TNoRegBulan;
+    private widget.TextBox TNoRegNew;
     private widget.TextBox TNoRw;
     private widget.TextBox TNoSurat;
     private widget.TextBox TPasien;

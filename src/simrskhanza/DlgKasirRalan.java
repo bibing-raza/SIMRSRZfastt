@@ -6604,7 +6604,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
-                form.setAlwaysOnTop(true);
+                dispose();
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }
