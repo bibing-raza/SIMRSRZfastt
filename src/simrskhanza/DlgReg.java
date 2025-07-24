@@ -10775,7 +10775,12 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                             + "kd_poli='" + tbKuota.getValueAt(tbKuota.getSelectedRow(), 0).toString() + "'");
 
                     tampilKuotaPoli();
-                    emptTeksKuota();
+                    TpoliKuota.setText("");
+                    Thari.setText("");
+                    TdokterKuota.setText("");
+                    TkuotaJkn.setText("");
+                    TkuotaNonJkn.setText("");
+                    cmbStatusTerjadwal.setSelectedIndex(0);
                 }
             }
         } else {
@@ -11419,9 +11424,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         TNoReg.setText("");
         TNoRw.setText("");
         Kd2.setText("");
-//        tulisan_tanggal.setText(Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%d')") + " "
-//                + Sequel.bulanINDONESIA("SELECT DATE_FORMAT(NOW(),'%m')") + " "
-//                + Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%Y')"));        
         tglDaftar = Sequel.cariIsi("SELECT DATE(NOW())");
         tglnoRW = Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%Y/%m/%d')");
         tulisan_tanggal.setText(Valid.SetTglINDONESIA(tglDaftar));
