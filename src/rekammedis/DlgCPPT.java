@@ -97,7 +97,8 @@ public class DlgCPPT extends javax.swing.JDialog {
             amputasiKiri = "", amputasiKanan = "", mataDiabet = "", ginjal = "", pnyJantung = "", hipertensi = "", strok = "", pad = "",
             nonUlkus = "", ulkus = "", ulkusGang = "", sellu = "", jarKakiKanan = "", jarKakiKiri = "", der0 = "", der1 = "", der2 = "", 
             der3 = "", der4 = "", der5 = "", surgi = "", chemi = "", bio = "", hydro = "", foam = "", algi = "", silver = "", cadex = "", 
-            madu = "", lainModern = "", debri = "", modernDres = "", ruangRawat = "", kodeKamar = "", verified = "", gedungData = "", namaGedung = "";
+            madu = "", lainModern = "", debri = "", modernDres = "", ruangRawat = "", kodeKamar = "", verified = "", gedungData = "", namaGedung = "",
+            kdKamarSaatIni = "";
     private String noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "",
             hasilDipilih = "", kdItem = "", norawat = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", link = "";
 
@@ -6933,11 +6934,11 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "O : " + TObjektif.getText() + "\n\n"
                         + "A : " + TAsesmen.getText() + "\n";
                 instruksi_nakes = TPlaning.getText();
-            }
+            }         
 
             try {
                 if (Sequel.menyimpantf("cppt", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "CPPT Pasien", 27, new String[]{
-                    TNoRw.getText(), Valid.SetTgl(tglCppt.getSelectedItem() + ""), kodeKamar, Valid.mysql_real_escape_stringERM(hasil_pemeriksaan),
+                    TNoRw.getText(), Valid.SetTgl(tglCppt.getSelectedItem() + ""), kdKamarSaatIni, Valid.mysql_real_escape_stringERM(hasil_pemeriksaan),
                     Valid.mysql_real_escape_stringERM(instruksi_nakes), "Belum", kddpjp.getText(), statusOK, Sequel.cariIsi("select now()"),
                     cekjam, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), cmbPPA.getSelectedItem().toString(), nipppa,
                     cmbBagian.getSelectedItem().toString(), cmbSertim.getSelectedItem().toString(), nipDPJPlain, nipSerah.getText(), nipTerima.getText(),
@@ -11615,7 +11616,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         TCari.setText(norw); 
         status = sttsrawat;
         ruangRawat = rgrawat;
-        kodeKamar = kdkmr;
+        kdKamarSaatIni = kdkmr;
         
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norw + "'"));
         DTPCari2.setDate(new Date());
