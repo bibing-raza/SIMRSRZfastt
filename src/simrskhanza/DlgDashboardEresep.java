@@ -62,7 +62,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2;
     private ResultSet rs, rs1, rs2;
     private int i = 0, x = 0;
-    private String norawat = "", norm = "", idObat = "", kdUnit = "", resepObatKronis = "";
+    private String norawat = "", norm = "", idObat = "", kdUnit = "", resepObatKronis = "", resepIter = "";
     public Timer tEresep;
     private BackgroundMusic music;
 
@@ -903,6 +903,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
             } else if (x > 1) {
                 idObat = "";
                 resepObatKronis = "";
+                resepIter = "";
                 for (i = 0; i < tbdaftarResep.getRowCount(); i++) {
                     if (tbdaftarResep.getValueAt(i, 0).toString().equals("true")) {
                         if (idObat.equals("")) {
@@ -919,6 +920,13 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 } else {
                     resepObatKronis = "-";
                 }
+                
+                //cek resep iter
+                if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + norawat + "'") > 0) {
+                    resepIter = " (RESEP ITER)";
+                } else {
+                    resepIter = "";
+                }
 
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 Map<String, Object> param = new HashMap<>();
@@ -927,7 +935,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 param.put("ketResep", resepObatKronis);
                 
                 Valid.MyReport("rptStrukResepRalan.jasper", "report", "::[ Struk Resep Dokter Poliklinik/Unit Rawat Jalan Kertas Thermal ]::",
-                        " SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
+                        " SELECT pl.nm_poli, concat(date_format(cr.tgl_perawatan,'%d-%m-%Y'),'" + resepIter + "') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
                         + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, cr.nama_obat, concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                         + "FROM catatan_resep cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                         + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
@@ -1043,14 +1051,14 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 }
 
                 Valid.MyReport("rptResepRalan.jasper", "report", "::[ Resep Dokter Poliklinik/Unit Rawat Jalan Kertas HVS/A5 ]::",
-                        " select c.no_rawat, pl.nm_poli, d.nm_dokter, CONCAT('Martapura, ',DATE_FORMAT(c.tgl_perawatan,'%d/%m/%Y')) tgl_resep, c.nama_obat, "
-                        + "r.no_rkm_medis, p.nm_pasien, CONCAT(r.umurdaftar,' ',r.sttsumur) umur, "
+                        " select c.no_rawat, pl.nm_poli, d.nm_dokter, CONCAT(if(iob.no_rawat is null,'','(RESEP ITER) '),'Martapura, ',DATE_FORMAT(c.tgl_perawatan,'%d/%m/%Y')) tgl_resep, "
+                        + "c.nama_obat, r.no_rkm_medis, p.nm_pasien, CONCAT(r.umurdaftar,' ',r.sttsumur) umur, "
                         + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, d.no_ijn_praktek no_sip, ifnull(p.no_tlp,'-') noHP from catatan_resep c "
                         + "inner join reg_periksa r on r.no_rawat = c.no_rawat inner join dokter d on d.kd_dokter = c.kd_dokter "
                         + "INNER JOIN poliklinik pl on pl.kd_poli=r.kd_poli INNER JOIN pasien p on p.no_rkm_medis=r.no_rkm_medis "
                         + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
-                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='" + norawat + "' AND c.noId in (" + idObat + ") "
-                        + "ORDER BY c.tgl_perawatan DESC, c.jam_perawatan DESC", param);
+                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab left join iter_obat_bpjs iob on iob.no_rawat=c.no_rawat where "
+                        + "c.no_rawat ='" + norawat + "' AND c.noId in (" + idObat + ") ORDER BY c.tgl_perawatan DESC, c.jam_perawatan DESC", param);
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }
@@ -1181,6 +1189,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
             } else if (x > 1) {
                 idObat = "";
                 resepObatKronis = "";
+                resepIter = "";
                 for (i = 0; i < tbdaftarResep.getRowCount(); i++) {
                     if (tbdaftarResep.getValueAt(i, 0).toString().equals("true")) {
                         if (idObat.equals("")) {
@@ -1198,6 +1207,13 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                     resepObatKronis = "-";
                 }
 
+                //cek resep iter
+                if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + norawat + "'") > 0) {
+                    resepIter = "RESEP ITER RAWAT JALAN";
+                } else {
+                    resepIter = "RESEP RAWAT JALAN";
+                }
+
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 Map<String, Object> param = new HashMap<>();
                 param.put("namars", akses.getnamars());
@@ -1211,6 +1227,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                         +"rp.no_rawat='" + norawat + "'"));
                 param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + norawat + "' and jnspelayanan='2'"));
                 param.put("ketResep", resepObatKronis);
+                param.put("judul", resepIter);
                 
                 Valid.MyReport("rptCatatanResepRalan.jasper", "report", "::[ Cetak e-Resep ]::",
                         "SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "

@@ -1320,7 +1320,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "No.Rawat");
         } else {
             akses.setform("DlgPemberianObat");
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 if (status.equals("ranap")) {
                     dlgobt.setNoRm(TNoRw.getText(), DTPBeri.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), 
                             cmbDtk.getSelectedItem().toString(), false, kdUnit);

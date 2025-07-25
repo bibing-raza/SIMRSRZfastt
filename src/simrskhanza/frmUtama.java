@@ -245,6 +245,7 @@ import inventory.DlgPelaksanaPemberiObat;
 import inventory.DlgPemberianObat;
 import inventory.DlgPemberianObatPasien;
 import inventory.DlgPenjualanPerTanggal;
+import inventory.DlgResepIterObat;
 import inventory.DlgRiwayatBarangMedis;
 import inventory.DlgSatuan;
 import java.awt.event.ActionEvent;
@@ -930,6 +931,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnStatusKakiDiabetes = new widget.ButtonBig();
         btnMonitoringEWSObsgyn = new widget.ButtonBig();
         btnDepartemen = new widget.ButtonBig();
+        btnResepIterBpjs = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6342,6 +6344,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnDepartemen);
 
+        btnResepIterBpjs.setForeground(new java.awt.Color(0, 0, 0));
+        btnResepIterBpjs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360487125_system-restart-panel.png"))); // NOI18N
+        btnResepIterBpjs.setText("Resep Obat Iter BPJS");
+        btnResepIterBpjs.setIconTextGap(0);
+        btnResepIterBpjs.setName("btnResepIterBpjs"); // NOI18N
+        btnResepIterBpjs.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnResepIterBpjs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResepIterBpjsActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnResepIterBpjs);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6350,7 +6365,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23/07/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25/07/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12507,6 +12522,17 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnDepartemenActionPerformed
 
+    private void btnResepIterBpjsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResepIterBpjsActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgResepIterObat aplikasi = new DlgResepIterObat(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnResepIterBpjsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12852,6 +12878,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnRekeningTahun;
     private widget.ButtonBig btnRekonsiliasiObat;
     private widget.ButtonBig btnRencanaKontrolBPJS;
+    private widget.ButtonBig btnResepIterBpjs;
     private widget.ButtonBig btnResepObat;
     private widget.ButtonBig btnResepPulang;
     private widget.ButtonBig btnResume;
@@ -13620,6 +13647,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
             if (akses.getobat() == true) {
                 Panelmenu.add(btnObat);
+                jmlmenu++;
+            }
+            
+            if (akses.getobat() == true) {
+                Panelmenu.add(btnResepIterBpjs);
                 jmlmenu++;
             }
             
@@ -16154,6 +16186,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             Panelmenu.add(btnObat);
             jmlmenu++;
         }
+        
+        if (akses.getobat() == true) {
+            Panelmenu.add(btnResepIterBpjs);
+            jmlmenu++;
+        }
 
         if (akses.getstok_opname_obat() == true) {
             Panelmenu.add(btnOpname);
@@ -18535,6 +18572,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getobat() == true) {
             if (btnObat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnObat);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getobat() == true) {
+            if (btnResepIterBpjs.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnResepIterBpjs);
                 jmlmenu++;
             }
         }

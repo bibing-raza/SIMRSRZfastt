@@ -57,7 +57,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private Date date = new Date();
     private String now = dateFormat.format(date), status = "", penjab = "", nmPrinter1 = "", nmPrinter2 = "",
-            kodeobat = "", tglrsp = "", jamrsp = "", kdUnit = "", programPRB = "", resepObatKronis = "", ukuranLabel = "";
+            kodeobat = "", tglrsp = "", jamrsp = "", kdUnit = "", programPRB = "", resepObatKronis = "", ukuranLabel = "", resepIter = "";
     private double total = 0, jumlahtotal = 0;
     private int i = 0, conteng = 0, x = 0;
 
@@ -1183,6 +1183,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } else if (tabMode1.getRowCount() != 0) {
             programPRB = "";
             resepObatKronis = "";
+            resepIter = "";
             Sequel.queryu("delete from temporary");
             Sequel.AutoComitFalse();
             for (int i = 0; i < tabMode1.getRowCount(); i++) {
@@ -1205,6 +1206,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 resepObatKronis = "Resep dalam kategori obat kronis";
             } else {
                 resepObatKronis = "-";
+            }
+            
+            //cek resep iter
+            if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                resepIter = " (RESEP ITER)";
+            } else {
+                resepIter = "";
             }
 
             Map<String, Object> param = new HashMap<>();
@@ -1231,7 +1239,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 param.put("petugas", Sequel.cariIsi("select nama from pegawai where nik='" + akses.getkode() + "'"));
             }
             Valid.MyReport("rptResepJalan.jasper", "report", "::[ Kwitansi Resep Obat ]::", " "
-                    + "SELECT a.tgl_perawatan, a.jam, a.no_rawat, a.no_resep, a.no_rkm_medis, a.nm_pasien, a.png_jawab, a.nm_dokter, a.nama_brng, "
+                    + "SELECT a.tgl_perawatan, a.jam, concat(a.no_rawat,'" + resepIter + "') no_rawat, a.no_resep, a.no_rkm_medis, a.nm_pasien, a.png_jawab, a.nm_dokter, a.nama_brng, "
                     + "a.jml, a.hrg_jual, a.embalase, a.tuslah, a.total, b.total Total_Semua, c.nm_bangsal Asal_apotek, a.status_lanjut, a.Ruangan "
                     + "FROM ((SELECT detail_pemberian_obat.tgl_perawatan, detail_pemberian_obat.jam, detail_pemberian_obat.no_rawat, resep_obat.no_resep, "
                     + "reg_periksa.no_rkm_medis, pasien.nm_pasien, penjab.png_jawab, dokter.nm_dokter, databarang.nama_brng, detail_pemberian_obat.jml, "

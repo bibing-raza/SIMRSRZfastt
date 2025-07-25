@@ -63,7 +63,8 @@ public final class DlgCariObat2 extends javax.swing.JDialog {
     private String[] kodebarang, namabarang, kodesatuan, letakbarang, namajenis, industri, aturan, kategori, golongan;
     private DlgBarang barang = new DlgBarang(null, false);
     private String Suspen_Piutang_Obat_Ranap = "", Obat_Ranap = "", HPP_Obat_Rawat_Inap = "", Persediaan_Obat_Rawat_Inap = "",
-            bangsal = "", status = "", stat = "", idObat = "", jenisResep = "", resepPulang = "", kdUnit = "", resepObatKronis = "";
+            bangsal = "", status = "", stat = "", idObat = "", jenisResep = "", resepPulang = "", kdUnit = "", resepObatKronis = "", 
+            resepIter = "", resepIterJudul = "";
     private WarnaTable2 warna = new WarnaTable2();
     private DlgCariBangsal caribangsal = new DlgCariBangsal(null, false);
     public DlgAturanPakai aturanpakai = new DlgAturanPakai(null, false);
@@ -1790,6 +1791,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
             } else if (conteng > 0) {
                 idObat = "";
                 resepObatKronis = "";
+                resepIter = "";
+                resepIterJudul = "";
                 for (i = 0; i < tbResepRalan.getRowCount(); i++) {
                     if (tbResepRalan.getValueAt(i, 0).toString().equals("true")) {
                         if (idObat.equals("")) {
@@ -1806,6 +1809,15 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 } else {
                     resepObatKronis = "-";
                 }
+                
+                //cek resep iter
+                if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                    resepIter = " (RESEP ITER)";
+                    resepIterJudul = "RESEP ITER RAWAT JALAN";
+                } else {
+                    resepIter = "";
+                    resepIterJudul = "RESEP RAWAT JALAN";
+                }
 
                 if (cmbKertas1.getSelectedIndex() == 0) {
                     Map<String, Object> param = new HashMap<>();
@@ -1820,6 +1832,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                             + "where rp.no_rawat='" + TNoRw.getText() + "'"));
                     param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'"));
                     param.put("ketResep", resepObatKronis);
+                    param.put("judul", resepIterJudul);
                     
                     Valid.MyReport("rptCatatanResepRalan.jasper", "report", "::[ Cetak e-Resep ]::",
                             "SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
@@ -1835,7 +1848,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                     param.put("ketResep", resepObatKronis);
                     
                     Valid.MyReport("rptStrukResepRalan.jasper", "report", "::[ Struk Resep Dokter Poliklinik/Unit Rawat Jalan Kertas Thermal ]::",
-                            " SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
+                            " SELECT pl.nm_poli, concat(date_format(cr.tgl_perawatan,'%d-%m-%Y'),'" + resepIter + "') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
                             + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, cr.nama_obat, concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
