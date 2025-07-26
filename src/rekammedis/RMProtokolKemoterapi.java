@@ -51,7 +51,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private ResultSet rs, rs1, rs2, rs3, rs4, rsrestor;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    private String nipDokter = "", nipPerawat = "", user = "", dataProtokol = "", protokolKemoPasienLain = "";
+    private String nipDokter = "", nipPerawat = "", user = "", dataProtokol = "", protokolKemoPasienLain = "", sttsRawat = "";
     private int i = 0, x = 0, pilihan = 0;
     
     /** Creates new form DlgSpesialis
@@ -252,10 +252,10 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         tbTemplate.setDefaultRenderer(Object.class, new WarnaTable());
 
         TnmProtokol.setDocument(new batasInput((int) 200).getKata(TnmProtokol));
-        Tsiklus.setDocument(new batasInput((byte) 3).getOnlyAngka(Tsiklus));
+        Tsiklus.setDocument(new batasInput((int) 3).getKata(Tsiklus));        
         Tumur.setDocument(new batasInput((int) 3).getKata(Tumur));
         Ttb.setDocument(new batasInput((int) 3).getKata(Ttb));
-        Tbb.setDocument(new batasInput((int) 3).getKata(Tbb));
+        Tbb.setDocument(new batasInput((int) 5).getKata(Tbb));
         Tlpt.setDocument(new batasInput((int) 7).getKata(Tlpt));
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
         
@@ -431,7 +431,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel12 = new widget.Label();
         Ttb = new widget.TextBox();
         jLabel13 = new widget.Label();
-        jLabel14 = new widget.Label();
         Tbb = new widget.TextBox();
         jLabel15 = new widget.Label();
         Tlpt = new widget.TextBox();
@@ -1192,16 +1191,10 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel13.setText("Cm.");
+        jLabel13.setText("Cm.   Berat Badan : ");
         jLabel13.setName("jLabel13"); // NOI18N
         panelGlass7.add(jLabel13);
-        jLabel13.setBounds(325, 230, 30, 23);
-
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Berat Badan : ");
-        jLabel14.setName("jLabel14"); // NOI18N
-        panelGlass7.add(jLabel14);
-        jLabel14.setBounds(352, 230, 80, 23);
+        jLabel13.setBounds(325, 230, 98, 23);
 
         Tbb.setForeground(new java.awt.Color(0, 0, 0));
         Tbb.setName("Tbb"); // NOI18N
@@ -1211,7 +1204,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tbb);
-        Tbb.setBounds(435, 230, 44, 23);
+        Tbb.setBounds(425, 230, 54, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2157,7 +2150,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private widget.Label jLabel11;
     private widget.Label jLabel12;
     private widget.Label jLabel13;
-    private widget.Label jLabel14;
     private widget.Label jLabel15;
     private widget.Label jLabel17;
     private widget.Label jLabel18;
@@ -2268,12 +2260,11 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
     public void emptTeks() {
         TnmProtokol.setText("");
-        Tsiklus.setText(Sequel.cariIsi("select ifnull(MAX(siklus_ke)+1,1) from protokol_kemoterapi where no_rkm_medis='" + TnoRM.getText() + "'"));
+//        Tsiklus.setText(Sequel.cariIsi("select ifnull(MAX(siklus_ke)+1,1) from protokol_kemoterapi where no_rkm_medis='" + TnoRM.getText() + "'"));
+        Tsiklus.setText("");
         TtglSiklus.setDate(new Date());
         Tdosis.setText("");
-        Tumur.setText(Sequel.cariIsi("select umurdaftar from reg_periksa where no_rawat='" + TnoRW.getText() + "' and sttsumur='Th'"));
-        Ttb.setText(Sequel.cariIsi("select ifnull(tb,'') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + TnoRW.getText() + "'"));
-        Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + TnoRW.getText() + "'"));
+        Tumur.setText(Sequel.cariIsi("select umurdaftar from reg_periksa where no_rawat='" + TnoRW.getText() + "' and sttsumur='Th'"));        
         Tlpt.setText("");
         Tdiagnosis.setText("");
         Tprogram.setText("");
@@ -2281,6 +2272,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         TnmDokter.setText(Sequel.cariIsi("select ifnull(nm_dokter,'') from dokter where kd_dokter='" + nipDokter + "'"));
         nipPerawat = "-";
         TnmPerawat.setText("-");
+        cekTbBb(TnoRW.getText(), TnoRM.getText(), sttsRawat, nipDokter);
+        hitungLPT();
         chkSaya.setSelected(false);
         Tket.setText("");
         ChkKunjungan.setSelected(false);
@@ -2342,49 +2335,13 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         TnoRW.setText(norw);
         TnoRM.setText(norm);
         TnmPasien.setText(nmpasien);
+        sttsRawat = stts;
         Tumur.setText(Sequel.cariIsi("select umurdaftar from reg_periksa where no_rawat='" + norw + "' and sttsumur='Th'"));
-        Tsiklus.setText(Sequel.cariIsi("select ifnull(MAX(siklus_ke)+1,1) from protokol_kemoterapi where no_rkm_medis='" + norm + "'"));
+//        Tsiklus.setText(Sequel.cariIsi("select ifnull(MAX(siklus_ke)+1,1) from protokol_kemoterapi where no_rkm_medis='" + norm + "'"));
         nipDokter = "197606202002121006";
         TnmDokter.setText(Sequel.cariIsi("select ifnull(nm_dokter,'') from dokter where kd_dokter='" + nipDokter + "'"));
         TCari.setText(norm);
-
-        if (stts.equals("Ralan")) {
-            nipDokter = Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + norw + "'");
-            TnmDokter.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipDokter + "'"));
-            Tdiagnosis.setText(Sequel.cariIsi("select ifnull(diagnosa,'') from pemeriksaan_ralan where no_rawat='" + norw + "'"));
-            nipPerawat = "-";
-            TnmPerawat.setText("-");
-            
-            if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_ralan_kemoterapi p inner join reg_periksa rp on rp.no_rawat=p.no_rawat "
-                    + "where rp.no_rkm_medis='" + norm + "' order by p.no_rawat desc limit 1") > 1) {
-                Ttb.setText(Sequel.cariIsi("select if(tb='','0',tb) from penilaian_awal_keperawatan_ralan_kemoterapi p inner join reg_periksa rp on rp.no_rawat=p.no_rawat "
-                        + "where rp.no_rkm_medis='" + norm + "' order by p.no_rawat desc limit 1"));
-                Tbb.setText(Sequel.cariIsi("select if(bb='','0',bb) from penilaian_awal_keperawatan_ralan_kemoterapi p inner join reg_periksa rp on rp.no_rawat=p.no_rawat "
-                        + "where rp.no_rkm_medis='" + norm + "' order by p.no_rawat desc limit 1"));
-            } else {
-                Ttb.setText("0");
-                Tbb.setText("0");
-            }
-        } else {
-            Tdiagnosis.setText("");
-            nipPerawat = "-";
-            TnmPerawat.setText("-");
-            
-            if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap p "
-                    + "inner join reg_periksa rp on rp.no_rawat=p.no_rawat inner join kamar k on k.kd_kamar=p.kd_kamar_msk "
-                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where rp.no_rkm_medis='" + norm + "' and b.nm_gedung='AS-SAMI' order by p.no_rawat desc limit 1") > 1) {
-                Ttb.setText(Sequel.cariIsi("select if(tb='','0',tb) from penilaian_awal_keperawatan_dewasa_ranap p "
-                        + "inner join reg_periksa rp on rp.no_rawat=p.no_rawat inner join kamar k on k.kd_kamar=p.kd_kamar_msk "
-                        + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where rp.no_rkm_medis='" + norm + "' and b.nm_gedung='AS-SAMI' order by p.no_rawat desc limit 1"));
-                Tbb.setText(Sequel.cariIsi("select if(bb_msk_rs='','0',bb_msk_rs) from penilaian_awal_keperawatan_dewasa_ranap p "
-                        + "inner join reg_periksa rp on rp.no_rawat=p.no_rawat inner join kamar k on k.kd_kamar=p.kd_kamar_msk "
-                        + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where rp.no_rkm_medis='" + norm + "' and b.nm_gedung='AS-SAMI' order by p.no_rawat desc limit 1"));
-            } else {
-                Ttb.setText("0");
-                Tbb.setText("0");
-            }
-        }
-        
+        cekTbBb(norw, norm, stts, nipDokter);        
         hitungLPT();
         
         //jika bukan dokter atau admin utama
@@ -2740,6 +2697,45 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             System.out.println("Notifikasi : " + e);
             JOptionPane.showMessageDialog(rootPane, "Silahkan koreksi lagi angka BB masuk RS & tinggi badannya,    \n"
                     + "jika menggunakan koma, gantilah tanda koma dengan titik sebagai komanya !!");
+        }
+    }
+
+    private void cekTbBb(String norwt, String norekmed, String status, String nipDr) {
+        if (status.equals("Ralan")) {
+            nipDokter = Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + norwt + "'");
+            TnmDokter.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipDr + "'"));
+            Tdiagnosis.setText(Sequel.cariIsi("select ifnull(diagnosa,'') from pemeriksaan_ralan where no_rawat='" + norwt + "'"));
+            nipPerawat = "-";
+            TnmPerawat.setText("-");
+
+            if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_ralan_kemoterapi p inner join reg_periksa rp on rp.no_rawat=p.no_rawat "
+                    + "where rp.no_rkm_medis='" + norekmed + "' order by p.no_rawat desc limit 1") > 1) {
+                Ttb.setText(Sequel.cariIsi("select if(tb='','0',tb) from penilaian_awal_keperawatan_ralan_kemoterapi p inner join reg_periksa rp on rp.no_rawat=p.no_rawat "
+                        + "where rp.no_rkm_medis='" + norekmed + "' order by p.no_rawat desc limit 1"));
+                Tbb.setText(Sequel.cariIsi("select if(bb='','0',bb) from penilaian_awal_keperawatan_ralan_kemoterapi p inner join reg_periksa rp on rp.no_rawat=p.no_rawat "
+                        + "where rp.no_rkm_medis='" + norekmed + "' order by p.no_rawat desc limit 1"));
+            } else {
+                Ttb.setText("0");
+                Tbb.setText("0");
+            }
+        } else {
+            Tdiagnosis.setText("");
+            nipPerawat = "-";
+            TnmPerawat.setText("-");
+
+            if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap p "
+                    + "inner join reg_periksa rp on rp.no_rawat=p.no_rawat inner join kamar k on k.kd_kamar=p.kd_kamar_msk "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where rp.no_rkm_medis='" + norekmed + "' and b.nm_gedung='AS-SAMI' order by p.no_rawat desc limit 1") > 1) {
+                Ttb.setText(Sequel.cariIsi("select if(tb='','0',tb) from penilaian_awal_keperawatan_dewasa_ranap p "
+                        + "inner join reg_periksa rp on rp.no_rawat=p.no_rawat inner join kamar k on k.kd_kamar=p.kd_kamar_msk "
+                        + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where rp.no_rkm_medis='" + norekmed + "' and b.nm_gedung='AS-SAMI' order by p.no_rawat desc limit 1"));
+                Tbb.setText(Sequel.cariIsi("select if(bb_msk_rs='','0',bb_msk_rs) from penilaian_awal_keperawatan_dewasa_ranap p "
+                        + "inner join reg_periksa rp on rp.no_rawat=p.no_rawat inner join kamar k on k.kd_kamar=p.kd_kamar_msk "
+                        + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where rp.no_rkm_medis='" + norekmed + "' and b.nm_gedung='AS-SAMI' order by p.no_rawat desc limit 1"));
+            } else {
+                Ttb.setText("0");
+                Tbb.setText("0");
+            }
         }
     }
 }

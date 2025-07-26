@@ -77,7 +77,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(135);
             } else if (i == 3) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(55);
             } else if (i == 4) {
                 column.setPreferredWidth(250);
             } else if (i == 5) {
@@ -85,11 +85,11 @@ public class DlgResepIterObat extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(250);
             } else if (i == 7) {
-                column.setPreferredWidth(95);
+                column.setPreferredWidth(115);
             } else if (i == 8) {
                 column.setPreferredWidth(90);
             } else if (i == 9) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(85);
             } else if (i == 10) {
                 column.setPreferredWidth(200);
             } else if (i == 11) {
@@ -747,8 +747,8 @@ public class DlgResepIterObat extends javax.swing.JDialog {
     private void tampilCatatan(String norwt) {
         Valid.tabelKosong(tabMode1);
         try {
-            ps1 = koneksi.prepareStatement("select c.tgl_perawatan, c.jam_perawatan, c.nama_obat, c.status, c.noID, c.kd_dokter, "
-                    + "if(prb.saran is null,'TIDAK','YA') programPrb, ifnull(i.kode_iter,'-') kodeIter from catatan_resep c "
+            ps1 = koneksi.prepareStatement("select date_format(c.tgl_perawatan,'%d-%m-%Y') tgl_perawatan, c.jam_perawatan, c.nama_obat, c.status, "
+                    + "c.noID, c.kd_dokter, if(prb.saran is null,'TIDAK','YA') programPrb, ifnull(i.kode_iter,'-') kodeIter from catatan_resep c "
                     + "inner join reg_periksa r on r.no_rawat = c.no_rawat inner join dokter d on d.kd_dokter = c.kd_dokter "
                     + "inner join iter_obat_bpjs i on i.no_rawat=c.no_rawat left join bridging_srb_bpjs prb on prb.no_srb=c.no_rawat and prb.keterangan=c.noID "
                     + "where c.no_rawat='" + norwt + "' order by c.noId");
