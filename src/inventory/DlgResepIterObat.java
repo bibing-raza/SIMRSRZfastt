@@ -644,7 +644,8 @@ public class DlgResepIterObat extends javax.swing.JDialog {
     public void tampil() {     
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT iob.*, p.no_rkm_medis, p.nm_pasien, pl.nm_poli, d.nm_dokter, DATE_FORMAT(iob.tgl_ambil_obat,'%d-%m-%Y') tglAmbilObat, "
+            ps = koneksi.prepareStatement("SELECT iob.*, p.no_rkm_medis, p.nm_pasien, pl.nm_poli, d.nm_dokter, "
+                    + "if(iob.tgl_ambil_obat='0000-00-00','-',DATE_FORMAT(iob.tgl_ambil_obat,'%d-%m-%Y')) tglAmbilObat, "
                     + "rp.kd_poli, date(waktu_simpan) tglResep FROM iter_obat_bpjs iob inner join reg_periksa rp on rp.no_rawat =iob.no_rawat "
                     + "inner join pasien p on p.no_rkm_medis =rp.no_rkm_medis inner join dokter d on d.kd_dokter =rp.kd_dokter "
                     + "inner join poliklinik pl on pl.kd_poli =rp.kd_poli where "
