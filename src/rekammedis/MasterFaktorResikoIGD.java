@@ -359,9 +359,13 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
         panelGlass7.add(jLabel4);
         jLabel4.setBounds(122, 10, 90, 23);
 
-        TKd.setEditable(false);
         TKd.setForeground(new java.awt.Color(0, 0, 0));
         TKd.setName("TKd"); // NOI18N
+        TKd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TKdKeyPressed(evt);
+            }
+        });
         panelGlass7.add(TKd);
         TKd.setBounds(48, 10, 70, 23);
 
@@ -605,6 +609,10 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
     private void cmbAsesmenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbAsesmenKeyPressed
         Valid.pindah(evt, Tskor, BtnSimpan);
     }//GEN-LAST:event_cmbAsesmenKeyPressed
+
+    private void TKdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKeyPressed
+        Valid.pindah(evt, TKd, TNm);
+    }//GEN-LAST:event_TKdKeyPressed
 
     /**
     * @param args the command line arguments

@@ -7646,7 +7646,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         try {
             ps1 = koneksi.prepareStatement("select kode_resiko, faktor_resiko, skala, skor, asesmen from master_faktor_resiko_igd where "
                     + "asesmen = 'Anak Ranap' and faktor_resiko like ? or "
-                    + "asesmen = 'Anak Ranap' and skala like ? order by kode_resiko");
+                    + "asesmen = 'Anak Ranap' and skala like ? order by faktor_resiko, skor");
             try {
                 ps1.setString(1, "%" + TCariResiko.getText().trim() + "%");
                 ps1.setString(2, "%" + TCariResiko.getText().trim() + "%");
