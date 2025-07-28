@@ -7416,25 +7416,25 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbRawatActionPerformed
 
     private void cmbBagianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBagianActionPerformed
-        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
-            nipDPJPlain = "-";
-            nmDPJPlainya.setText("-");
-            cmbPPA.setSelectedIndex(0);
-            cmbSertim.setSelectedIndex(0);
-            nipppa = "-";
-            nmppa.setText("-");
-
-            if (cmbBagian.getSelectedIndex() == 3) {
-                JOptionPane.showMessageDialog(rootPane, "Jenis bagian PPA hanya untuk pengisian CPPT rawat inap..!!!");
-                cmbBagian.setSelectedIndex(0);
-                BtnDPJPLain.setEnabled(false);
-                cmbBagian.requestFocus();
-            } else if (cmbBagian.getSelectedIndex() == 2 || cmbBagian.getSelectedIndex() == 4 || cmbBagian.getSelectedIndex() == 5) {
-                BtnDPJPLain.setEnabled(true);
-            } else {
-                BtnDPJPLain.setEnabled(false);
-            }
-        }
+//        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+//            nipDPJPlain = "-";
+//            nmDPJPlainya.setText("-");
+//            cmbPPA.setSelectedIndex(0);
+//            cmbSertim.setSelectedIndex(0);
+//            nipppa = "-";
+//            nmppa.setText("-");
+//
+//            if (cmbBagian.getSelectedIndex() == 3) {
+//                JOptionPane.showMessageDialog(rootPane, "Jenis bagian PPA hanya untuk pengisian CPPT rawat inap..!!!");
+//                cmbBagian.setSelectedIndex(0);
+//                BtnDPJPLain.setEnabled(false);
+//                cmbBagian.requestFocus();
+//            } else if (cmbBagian.getSelectedIndex() == 2 || cmbBagian.getSelectedIndex() == 4 || cmbBagian.getSelectedIndex() == 5) {
+//                BtnDPJPLain.setEnabled(true);
+//            } else {
+//                BtnDPJPLain.setEnabled(false);
+//            }
+//        }
     }//GEN-LAST:event_cmbBagianActionPerformed
 
     private void BtnCloseIn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn6ActionPerformed
@@ -7580,6 +7580,11 @@ public class DlgCPPT extends javax.swing.JDialog {
         } else {
             BtnPPA.setEnabled(true);
             cmbSertim.setEnabled(true);
+            MnCeklisFarmasi.setEnabled(false);
+        }
+        
+        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+            cmbSertim.setEnabled(false);
             MnCeklisFarmasi.setEnabled(false);
         }
     }//GEN-LAST:event_cmbPPAActionPerformed
@@ -13565,7 +13570,8 @@ public class DlgCPPT extends javax.swing.JDialog {
     private void isIGD_Ralan() {
         cmbRawat.setSelectedIndex(0);
         cmbPPA.setSelectedIndex(0);
-        cmbPPA.setEnabled(false);
+//        cmbPPA.setEnabled(false);
+        cmbPPA.setEnabled(true);
         cmbSertim.setSelectedIndex(0);
         cmbSertim.setEnabled(false);
         cmbJam1.setEnabled(false);
@@ -13573,8 +13579,10 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbDtk1.setEnabled(false);
         nipppa = "-";
         nmppa.setText("-");
-        nmppa.setEnabled(false);
-        BtnPPA.setEnabled(false);
+//        nmppa.setEnabled(false);
+        nmppa.setEnabled(true);
+//        BtnPPA.setEnabled(false);
+        BtnPPA.setEnabled(true);
         cmbSift.setEnabled(false);
         cmbSiftCppt.setEnabled(false);
 

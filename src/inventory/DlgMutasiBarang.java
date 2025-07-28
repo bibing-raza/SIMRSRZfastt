@@ -206,7 +206,6 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        ppBersihkan.setBackground(new java.awt.Color(255, 255, 255));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppBersihkan.setForeground(new java.awt.Color(102, 51, 0));
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -223,7 +222,6 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         });
         Popup.add(ppBersihkan);
 
-        ppStok.setBackground(new java.awt.Color(255, 255, 255));
         ppStok.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppStok.setForeground(new java.awt.Color(102, 51, 0));
         ppStok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -249,7 +247,7 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Mutasi Antar Gudang Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Mutasi Antar Gudang Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -284,6 +282,7 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         panelisi1.setPreferredSize(new java.awt.Dimension(734, 56));
         panelisi1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
         BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
@@ -302,11 +301,13 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnSimpan);
 
+        label10.setForeground(new java.awt.Color(0, 0, 0));
         label10.setText("Key Word :");
         label10.setName("label10"); // NOI18N
         label10.setPreferredSize(new java.awt.Dimension(77, 23));
         panelisi1.add(label10);
 
+        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(270, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -316,6 +317,7 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         });
         panelisi1.add(TCari);
 
+        BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari1.setMnemonic('1');
         BtnCari1.setToolTipText("Alt+1");
@@ -333,10 +335,12 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnCari1);
 
+        label11.setForeground(new java.awt.Color(0, 0, 0));
         label11.setName("label11"); // NOI18N
         label11.setPreferredSize(new java.awt.Dimension(25, 23));
         panelisi1.add(label11);
 
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnCari.setMnemonic('C');
         BtnCari.setText("Cari");
@@ -355,6 +359,7 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnCari);
 
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -379,12 +384,14 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         panelisi3.setPreferredSize(new java.awt.Dimension(100, 73));
         panelisi3.setLayout(null);
 
+        label17.setForeground(new java.awt.Color(0, 0, 0));
         label17.setText("Dari :");
         label17.setName("label17"); // NOI18N
         label17.setPreferredSize(new java.awt.Dimension(65, 23));
         panelisi3.add(label17);
         label17.setBounds(0, 10, 45, 23);
 
+        kddari.setForeground(new java.awt.Color(0, 0, 0));
         kddari.setName("kddari"); // NOI18N
         kddari.setPreferredSize(new java.awt.Dimension(80, 23));
         kddari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -396,11 +403,13 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         kddari.setBounds(49, 10, 90, 23);
 
         nmdari.setEditable(false);
+        nmdari.setForeground(new java.awt.Color(0, 0, 0));
         nmdari.setName("nmdari"); // NOI18N
         nmdari.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisi3.add(nmdari);
         nmdari.setBounds(141, 10, 257, 23);
 
+        btnDari.setForeground(new java.awt.Color(0, 0, 0));
         btnDari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnDari.setMnemonic('1');
         btnDari.setToolTipText("Alt+1");
@@ -414,6 +423,7 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         panelisi3.add(btnDari);
         btnDari.setBounds(400, 10, 28, 23);
 
+        btnKe.setForeground(new java.awt.Color(0, 0, 0));
         btnKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnKe.setMnemonic('1');
         btnKe.setToolTipText("Alt+1");
@@ -428,11 +438,13 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         btnKe.setBounds(400, 40, 28, 23);
 
         nmke.setEditable(false);
+        nmke.setForeground(new java.awt.Color(0, 0, 0));
         nmke.setName("nmke"); // NOI18N
         nmke.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisi3.add(nmke);
         nmke.setBounds(141, 40, 257, 23);
 
+        kdke.setForeground(new java.awt.Color(0, 0, 0));
         kdke.setName("kdke"); // NOI18N
         kdke.setPreferredSize(new java.awt.Dimension(80, 23));
         kdke.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -443,6 +455,7 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         panelisi3.add(kdke);
         kdke.setBounds(49, 40, 90, 23);
 
+        label32.setForeground(new java.awt.Color(0, 0, 0));
         label32.setText("Tanggal :");
         label32.setName("label32"); // NOI18N
         label32.setPreferredSize(new java.awt.Dimension(35, 23));
@@ -460,6 +473,7 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         panelisi3.add(Tanggal);
         Tanggal.setBounds(532, 10, 100, 23);
 
+        Keterangan.setForeground(new java.awt.Color(0, 0, 0));
         Keterangan.setHighlighter(null);
         Keterangan.setName("Keterangan"); // NOI18N
         Keterangan.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -470,12 +484,14 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
         panelisi3.add(Keterangan);
         Keterangan.setBounds(532, 40, 190, 23);
 
+        label39.setForeground(new java.awt.Color(0, 0, 0));
         label39.setText("Keterangan :");
         label39.setName("label39"); // NOI18N
         label39.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi3.add(label39);
         label39.setBounds(458, 40, 70, 23);
 
+        label18.setForeground(new java.awt.Color(0, 0, 0));
         label18.setText("Ke :");
         label18.setName("label18"); // NOI18N
         label18.setPreferredSize(new java.awt.Dimension(65, 23));

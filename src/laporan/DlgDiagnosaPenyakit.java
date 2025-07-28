@@ -48,19 +48,19 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private DlgPasien pasien = new DlgPasien(null, false);
-    private PreparedStatement pspenyakit, psdiagnosapasien, psprosedur, pstindakanpasien, psralan, ps2, ps3, ps4, psreg, pskamar, psanak,
+    private PreparedStatement pspenyakit, psdiagnosapasien, psprosedur, pstindakanpasien, psralan, ps2, ps3, ps4, ps5, psreg, pskamar, psanak,
             pspenyakitsekunder, pspasien, psdiagnosa, pstindakan, psdokter, psinadrg, psTINinadrg, pscekbilling, pscarirm, pscaripasien, pspros,
             pscarialamat, pscaridpjp, psdokterranap, psdokterralan, pskamarin, pstamkur, psbiayasekali, psbiayaharian, pskategori, psralandokter,
             psralandrpr, psranapdokter, psranapdrpr, psralanperawat, psranapperawat, psperiksalab, psdetaillab, psperiksarad, psoperasi, pscariobat,
             psobatlangsung, psobatoperasi, psreturobat, psreseppulang, pstambahanbiaya, pspotonganbiaya, psservice, pssudahmasuk, psRujuk, pscaripoli,
             pscariralandokter, pscariralandrpr, pscariralanperawat, pscarilab, pscariradiologi, pstambahan, pspotongan, psbilling, psLaprm, psdiag;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rspasien, rsdiagnosa, rstindakan, rsdokter, rsralan, rsrad, rshslRad, rsreg, rskamar, rscaripoli,
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rspasien, rsdiagnosa, rstindakan, rsdokter, rsralan, rsrad, rshslRad, rsreg, rskamar, rscaripoli,
             rsLISMaster, rsLIS1, rsLIS2, rsLIS3, rscekbilling, rscarirm, rscaripasien, rsanak, rscarialamat, rscaridpjp, rsdokterranap, rspros,
             rsdokterralan, rskamarin, rstamkur, rsbiayasekali, rsbiayaharian, rskategori, rsralandokter, rsralandrpr, rsranapdokter, rsranapdrpr,
             rsralanperawat, rsranapperawat, rsperiksalab, rsdetaillab, rsperiksarad, rsoperasi, rscariobat, rsobatlangsung, rsobatoperasi, 
             rsreturobat, rsreseppulang, rstambahanbiaya, rspotonganbiaya, rsservice, rssudahmasuk, rsRujuk, rscariralandokter, rscariralandrpr,
-            rscariralanperawat, rscarilab, rscariradiologi, rstambahan, rspotongan, rsbilling, rsLaprm, rsdiag;
-    private int jml = 0, i = 0, index = 0, jml1 = 0, s = 0, index1 = 0, cek = 0, cekINADRG = 0, r = 0,
+            rscariralanperawat, rscarilab, rscariradiologi, rstambahan, rspotongan, rsbilling, rsLaprm, rsdiag, rsPrev;
+    private int jml = 0, i = 0, index = 0, jml1 = 0, s = 0, index1 = 0, cek = 0, cekINADRG = 0, r = 0, cekKonfirmasi = 0,
             cekPremier = 0, cekPremierINADRG = 0, lis1 = 0, lis2 = 0, lisM = 0, x = 0, z = 0;
     private double Jasa_Medik_Dokter_Tindakan_Ralan = 0, Jasa_Medik_Paramedis_Tindakan_Ralan = 0, KSO_Tindakan_Ralan = 0, Jasa_Medik_Dokter_Laborat_Ralan = 0,
             Jasa_Medik_Petugas_Laborat_Ralan = 0, so_Laborat_Ralan = 0, Persediaan_Laborat_Rawat_Jalan = 0, Jasa_Medik_Dokter_Radiologi_Ralan = 0,
@@ -70,7 +70,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             kode1, nama1, ciripny1, keterangan1, kategori1, cirium1;
     private boolean[] pilih, pilih2, pilih3;
     private String tglklaim = "", drdpjp = "", poli = "", crBayar = "", cekKlaim = "", jlhTindakan = "", noRWTerakhir = "", nmPoli = "", centangdokterralan = "",
-            rinciandokterralan = "", centangobatralan = "", tampilkan_ppnobat_ralan = "", diagsekunder = "", tindakan = "";
+            rinciandokterralan = "", centangobatralan = "", tampilkan_ppnobat_ralan = "", diagsekunder = "", tindakan = "", konfirmasi_terapi = "";
     private String biaya = "", tambahan = "", totals = "", norawatbayi = "", centangdokterranap = "", kd_pj = "", jamplgRS1 = "",
             rinciandokterranap = "", rincianoperasi = "", hariawal = "", notaranap = "", tampilkan_administrasi_di_billingranap = "",
             Tindakan_Ranap = "", Laborat_Ranap = "", Radiologi_Ranap = "", Obat_Ranap = "", Registrasi_Ranap = "",
@@ -912,19 +912,31 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         
         LoadHTML1.setEditable(true);
         LoadHTML2.setEditable(true);
+        LoadHTML3.setEditable(true);
+        LoadHTML4.setEditable(true);
+        LoadHTML5.setEditable(true);
         
         HTMLEditorKit kit = new HTMLEditorKit();
         LoadHTML1.setEditorKit(kit);
         LoadHTML2.setEditorKit(kit);
+        LoadHTML3.setEditorKit(kit);
+        LoadHTML4.setEditorKit(kit);
+        LoadHTML5.setEditorKit(kit);
         
         StyleSheet styleSheet = kit.getStyleSheet();
         styleSheet.addRule(".isi td{border-right: 1px solid #edf2e8;font: 10px tahoma;height:12px;border-bottom: 1px solid #edf2e8;background: 0000000;color:0000000;}");
         Document doc = kit.createDefaultDocument();
         LoadHTML1.setDocument(doc);
         LoadHTML2.setDocument(doc);
+        LoadHTML3.setDocument(doc);
+        LoadHTML4.setDocument(doc);
+        LoadHTML5.setDocument(doc);
         
         LoadHTML1.setEditable(false);
         LoadHTML2.setEditable(false);
+        LoadHTML3.setEditable(false);
+        LoadHTML4.setEditable(false);
+        LoadHTML5.setEditable(false);
         
         LoadHTML1.addHyperlinkListener(e -> {
             if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
@@ -938,6 +950,39 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         });
         
         LoadHTML2.addHyperlinkListener(e -> {
+            if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.browse(e.getURL().toURI());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        
+        LoadHTML3.addHyperlinkListener(e -> {
+            if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.browse(e.getURL().toURI());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        
+        LoadHTML4.addHyperlinkListener(e -> {
+            if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.browse(e.getURL().toURI());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+                
+        LoadHTML5.addHyperlinkListener(e -> {
             if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
                 Desktop desktop = Desktop.getDesktop();
                 try {
@@ -1037,6 +1082,20 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         lbl_jns_byr = new widget.Label();
         Scroll14 = new widget.ScrollPane();
         tbBilling = new widget.Table();
+        internalFrame26 = new widget.InternalFrame();
+        panelGlass13 = new widget.panelisi();
+        jLabel27 = new widget.Label();
+        TNoRw1 = new widget.TextBox();
+        TNoRm1 = new widget.TextBox();
+        TPasien1 = new widget.TextBox();
+        chkTglCppt = new widget.CekBox();
+        TabPreview = new javax.swing.JTabbedPane();
+        Scroll15 = new widget.ScrollPane();
+        LoadHTML3 = new widget.editorpane();
+        Scroll17 = new widget.ScrollPane();
+        LoadHTML4 = new widget.editorpane();
+        Scroll18 = new widget.ScrollPane();
+        LoadHTML5 = new widget.editorpane();
         ChkInput = new widget.CekBox();
         TabRawat = new javax.swing.JTabbedPane();
         internalFrame2 = new widget.InternalFrame();
@@ -1122,7 +1181,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         nmpoli.setHighlighter(null);
         nmpoli.setName("nmpoli"); // NOI18N
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-04-2025 17:38:34" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025 16:06:58" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1339,7 +1398,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-04-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1353,7 +1412,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-04-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1799,6 +1858,109 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         internalFrame10.add(Scroll14, java.awt.BorderLayout.CENTER);
 
         TabData.addTab("Billing/Pembayaran", internalFrame10);
+
+        internalFrame26.setBorder(null);
+        internalFrame26.setName("internalFrame26"); // NOI18N
+        internalFrame26.setLayout(new java.awt.BorderLayout(1, 1));
+
+        panelGlass13.setName("panelGlass13"); // NOI18N
+        panelGlass13.setPreferredSize(new java.awt.Dimension(44, 45));
+        panelGlass13.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("Pasien :");
+        jLabel27.setName("jLabel27"); // NOI18N
+        jLabel27.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass13.add(jLabel27);
+
+        TNoRw1.setEditable(false);
+        TNoRw1.setForeground(new java.awt.Color(0, 0, 0));
+        TNoRw1.setName("TNoRw1"); // NOI18N
+        TNoRw1.setPreferredSize(new java.awt.Dimension(122, 24));
+        panelGlass13.add(TNoRw1);
+
+        TNoRm1.setEditable(false);
+        TNoRm1.setForeground(new java.awt.Color(0, 0, 0));
+        TNoRm1.setName("TNoRm1"); // NOI18N
+        TNoRm1.setPreferredSize(new java.awt.Dimension(70, 24));
+        panelGlass13.add(TNoRm1);
+
+        TPasien1.setEditable(false);
+        TPasien1.setForeground(new java.awt.Color(0, 0, 0));
+        TPasien1.setName("TPasien1"); // NOI18N
+        TPasien1.setPreferredSize(new java.awt.Dimension(407, 24));
+        panelGlass13.add(TPasien1);
+
+        chkTglCppt.setBackground(new java.awt.Color(255, 255, 250));
+        chkTglCppt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkTglCppt.setForeground(new java.awt.Color(0, 0, 0));
+        chkTglCppt.setSelected(true);
+        chkTglCppt.setText("Sesuai Tgl. Rawat Dipilih");
+        chkTglCppt.setBorderPainted(true);
+        chkTglCppt.setBorderPaintedFlat(true);
+        chkTglCppt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkTglCppt.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkTglCppt.setName("chkTglCppt"); // NOI18N
+        chkTglCppt.setOpaque(false);
+        chkTglCppt.setPreferredSize(new java.awt.Dimension(155, 23));
+        chkTglCppt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkTglCpptActionPerformed(evt);
+            }
+        });
+        panelGlass13.add(chkTglCppt);
+
+        internalFrame26.add(panelGlass13, java.awt.BorderLayout.PAGE_START);
+
+        TabPreview.setBackground(new java.awt.Color(254, 255, 254));
+        TabPreview.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TabPreview.setName("TabPreview"); // NOI18N
+        TabPreview.setPreferredSize(new java.awt.Dimension(0, 2000));
+        TabPreview.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabPreviewMouseClicked(evt);
+            }
+        });
+
+        Scroll15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Scroll15.setName("Scroll15"); // NOI18N
+        Scroll15.setOpaque(true);
+        Scroll15.setPreferredSize(new java.awt.Dimension(452, 200));
+
+        LoadHTML3.setBorder(null);
+        LoadHTML3.setForeground(new java.awt.Color(0, 0, 0));
+        LoadHTML3.setName("LoadHTML3"); // NOI18N
+        Scroll15.setViewportView(LoadHTML3);
+
+        TabPreview.addTab("Semua PPA", Scroll15);
+
+        Scroll17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Scroll17.setName("Scroll17"); // NOI18N
+        Scroll17.setOpaque(true);
+        Scroll17.setPreferredSize(new java.awt.Dimension(452, 200));
+
+        LoadHTML4.setBorder(null);
+        LoadHTML4.setForeground(new java.awt.Color(0, 0, 0));
+        LoadHTML4.setName("LoadHTML4"); // NOI18N
+        Scroll17.setViewportView(LoadHTML4);
+
+        TabPreview.addTab("PPA Dokter", Scroll17);
+
+        Scroll18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Scroll18.setName("Scroll18"); // NOI18N
+        Scroll18.setOpaque(true);
+        Scroll18.setPreferredSize(new java.awt.Dimension(452, 200));
+
+        LoadHTML5.setBorder(null);
+        LoadHTML5.setForeground(new java.awt.Color(0, 0, 0));
+        LoadHTML5.setName("LoadHTML5"); // NOI18N
+        Scroll18.setViewportView(LoadHTML5);
+
+        TabPreview.addTab("PPA Selain Dokter", Scroll18);
+
+        internalFrame26.add(TabPreview, java.awt.BorderLayout.CENTER);
+
+        TabData.addTab("Preview CPPT", internalFrame26);
 
         PanelInput.add(TabData, java.awt.BorderLayout.CENTER);
 
@@ -2686,6 +2848,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 chkBayar.setVisible(false);
                 tampilBilingRanap();
             }
+        } else if (TabData.getSelectedIndex() == 4) {
+            TNoRw1.setText(TNoRw.getText());
+            TNoRm1.setText(TNoRM.getText());
+            TPasien1.setText(TPasien.getText());
+            TabPreview.setSelectedIndex(0);
+            TabPreviewMouseClicked(null);
         }
     }//GEN-LAST:event_TabDataMouseClicked
 
@@ -2731,6 +2899,20 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_BtnResumeActionPerformed
 
+    private void TabPreviewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabPreviewMouseClicked
+        if (TabPreview.getSelectedIndex() == 0) {
+            tampilPreviewCppt();
+        } else if (TabPreview.getSelectedIndex() == 1) {
+            tampilPreviewCpptDokter();
+        } else if (TabPreview.getSelectedIndex() == 2) {
+            tampilPreviewCpptSelainDokter();
+        }
+    }//GEN-LAST:event_TabPreviewMouseClicked
+
+    private void chkTglCpptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkTglCpptActionPerformed
+        TabPreviewMouseClicked(null);
+    }//GEN-LAST:event_chkTglCpptActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2773,6 +2955,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label LCount;
     private widget.editorpane LoadHTML1;
     private widget.editorpane LoadHTML2;
+    private widget.editorpane LoadHTML3;
+    private widget.editorpane LoadHTML4;
+    private widget.editorpane LoadHTML5;
     private javax.swing.JMenuItem MnContengSemua;
     private javax.swing.JMenuItem MnHapusConteng;
     private javax.swing.JMenuItem MnSimpanQTYinadrg;
@@ -2785,6 +2970,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.ScrollPane Scroll12;
     private widget.ScrollPane Scroll13;
     private widget.ScrollPane Scroll14;
+    private widget.ScrollPane Scroll15;
+    private widget.ScrollPane Scroll17;
+    private widget.ScrollPane Scroll18;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll4;
@@ -2804,11 +2992,15 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextArea TKeluhan2;
     public widget.TextBox TNoNota;
     private widget.TextBox TNoRM;
+    private widget.TextBox TNoRm1;
     private widget.TextBox TNoRw;
+    private widget.TextBox TNoRw1;
     private widget.TextBox TPasien;
+    private widget.TextBox TPasien1;
     private widget.TextArea TRincianTindakan1;
     private widget.TextArea TRincianTindakan2;
     private javax.swing.JTabbedPane TabData;
+    private javax.swing.JTabbedPane TabPreview;
     private javax.swing.JTabbedPane TabRawat;
     private widget.TextBox TtlSemua;
     private widget.Button btnTambahPenyakit;
@@ -2816,10 +3008,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button btnTambahProsedur;
     private widget.CekBox chkBayar;
     public widget.CekBox chkDiagnosa;
+    public widget.CekBox chkTglCppt;
     private widget.ComboBox cmbDiagPro;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame10;
     private widget.InternalFrame internalFrame2;
+    private widget.InternalFrame internalFrame26;
     private widget.InternalFrame internalFrame3;
     private widget.InternalFrame internalFrame4;
     private widget.InternalFrame internalFrame9;
@@ -2839,6 +3033,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel24;
     private widget.Label jLabel25;
     private widget.Label jLabel26;
+    private widget.Label jLabel27;
     private widget.Label jLabel3;
     private widget.Label jLabel6;
     private javax.swing.JPanel jPanel3;
@@ -2849,6 +3044,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label lbl_jns_byr;
     private widget.TextBox nmpoli;
     private widget.panelisi panelGlass10;
+    private widget.panelisi panelGlass13;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.Table tbBilling;
@@ -7073,5 +7269,364 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    private void tampilPreviewCppt() {
+        cekKonfirmasi = 0;
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            StringBuilder htmlContent = new StringBuilder();
+            try {
+                if (chkTglCppt.isSelected() == true) {
+                    rsPrev = koneksi.prepareStatement("SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),'<br/>',date_format(c.jam_cppt,'%H:%i'),' Wita'), "
+                            + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                            + "replace(c.hasil_pemeriksaan,'<','&lt') hasil_pemeriksaan, "
+                            + "concat(replace(c.instruksi_nakes,'<','&lt'),if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('<br/><br/>(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('<br/><br/>(',pg2.nama,')'),''))) instruksi_nakes, "
+                            + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
+                            + "if(c.serah_terima_cppt='ya',concat('<br/><br/>Tgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'<br/>','Menyerahkan :<br/>',pg3.nama),'') ptgsSerah, "
+                            + "if(c.serah_terima_cppt='ya',concat('Menerima :<br/>',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift "
+                            + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
+                            + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima WHERE "
+                            + "c.no_rawat = '" + TNoRw.getText() + "' and c.flag_hapus='tidak' and c.tgl_cppt between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
+                } else {
+                    rsPrev = koneksi.prepareStatement("SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),'<br/>',date_format(c.jam_cppt,'%H:%i'),' Wita'), "
+                            + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                            + "replace(c.hasil_pemeriksaan,'<','&lt') hasil_pemeriksaan, "
+                            + "concat(replace(c.instruksi_nakes,'<','&lt'),if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('<br/><br/>(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('<br/><br/>(',pg2.nama,')'),''))) instruksi_nakes, "
+                            + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
+                            + "if(c.serah_terima_cppt='ya',concat('<br/><br/>Tgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'<br/>','Menyerahkan :<br/>',pg3.nama),'') ptgsSerah, "
+                            + "if(c.serah_terima_cppt='ya',concat('Menerima :<br/>',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift "
+                            + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
+                            + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                            + "WHERE c.no_rawat = '" + TNoRw.getText() + "' and c.flag_hapus='tidak' ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
+                }                
+
+                if (rsPrev.next()) {
+                    htmlContent.append(
+                            "<table width='100%' class='isi'>"
+                            + "<thead>"
+                            + "<tr class='isi'>"
+                            + "<td width='20%' align='center' bgcolor='#f8fdf3'><b>TANGGAL<br/>JAM</b></td>"
+                            + "<td width='50%' align='center' bgcolor='#f8fdf3'><b>BAGIAN</b></td>"
+                            + "<td width='80%' align='center' bgcolor='#f8fdf3'><b>HASIL PEMERIKSAAN, ANALISA, RENCANA,<br/>PENATALAKSANAAN PASIEN</b></td>"
+                            + "<td width='80%' align='center' bgcolor='#f8fdf3'><b>INSTRUKSI TENAGA KESEHATAN<br/>TERMASUK PASCA BEDAH/PROSEDUR</b></td>"
+                            + "<td width='60%' align='center' bgcolor='#f8fdf3'><b>VERIFIKASI TANDA TANGAN DAN<br/>NAMA JELAS DPJP</b></td>"
+                            + "</tr>"
+                            + "</thead>"
+                            + "<tbody>"
+                    );
+                    
+                    rsPrev.beforeFirst();
+                    while (rsPrev.next()) {
+                        cekKonfirmasi = Sequel.cariInteger("select count(-1) from cppt_konfirmasi_terapi where no_rawat='" + TNoRw.getText() + "' "
+                                + "and tgl_cppt='" + rsPrev.getString("tgl_cppt") + "' and jam_cppt='" + rsPrev.getString("jam_cppt") + "' "
+                                + "and cppt_shift='" + rsPrev.getString("cppt_shift") + "'");
+                        
+                        if (cekKonfirmasi == 0) {
+                            konfirmasi_terapi = "";
+                        } else {
+                            konfirmasiTerapiPreview(TNoRw.getText(), rsPrev.getString("tgl_cppt"), rsPrev.getString("jam_cppt"), rsPrev.getString("cppt_shift"));
+                        }
+                        
+                        if (rsPrev.getString("bagian_cppt").contains("DPJP")
+                                || rsPrev.getString("bagian_cppt").contains("DPJP (K)")
+                                || rsPrev.getString("bagian_cppt").contains("DPJP Raber")) {
+                            htmlContent.append(
+                                    "<tr style='background-color: #d2e9e9' class='isi'>"
+                                    + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                    + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                    + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                    + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                    + "<td width='60%' valign='top'>" + rsPrev.getString("verif") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                    + "</tr>"
+                            );
+                        } else {
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                    + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                    + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                    + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                    + "<td width='60%' valign='top'>" + rsPrev.getString("verif") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                    + "</tr>"
+                            );
+                        }
+                    }
+                    htmlContent.append(
+                            "</tbody>"
+                            + "</table>"
+                    );
+                }
+                LoadHTML3.setText(
+                        "<html>"
+                        + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"                        
+                        + htmlContent.toString()
+                        + "</table>"
+                        + "</html>");
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsPrev != null) {
+                    rsPrev.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void konfirmasiTerapiPreview(String norw, String tgl, String jam, String sift) {
+        konfirmasi_terapi = "";
+        try {
+            ps5 = koneksi.prepareStatement("SELECT date_format(ck.tgl_lapor,'%d-%m-%Y') tgllapor, time_format(ck.jam_lapor,'%H:%i WITA') jamlapor, "
+                    + "date_format(ck.tgl_verifikasi,'%d-%m-%Y') tglverif, time_format(ck.jam_verifikasi,'%H:%i WITA') jamverif, "
+                    + "pg1.nama ptgs, pg2.nama dpjp FROM cppt_konfirmasi_terapi ck INNER JOIN pegawai pg1 ON pg1.nik = ck.nip_petugas_konfir "
+                    + "INNER JOIN pegawai pg2 ON pg2.nik = ck.nip_dpjp_konfir WHERE "
+                    + "ck.no_rawat = '" + norw + "' and ck.tgl_cppt='" + tgl + "' and ck.jam_cppt='" + jam + "' and ck.cppt_shift='" + sift + "' "
+                    + "ORDER BY ck.waktu_simpan");
+            try {
+                rs5 = ps5.executeQuery();
+                while (rs5.next()) {
+                    if (konfirmasi_terapi.equals("")) {
+                        konfirmasi_terapi
+                                = "KONFIRMASI TERAPI VIA TELP. :<br/>Tgl. Lapor : " + rs5.getString("tgllapor") + ", Jam : " + rs5.getString("jamlapor") + "<br/>"
+                                + "Tgl. Verif : " + rs5.getString("tglverif") + ", Jam : " + rs5.getString("jamverif") + "<br/>"
+                                + "Petugas,<br/><br/><br/><br/>(" + rs5.getString("ptgs") + ")<br/><br/>"
+                                + "Dengan DPJP,<br/><br/><br/><br/>(" + rs5.getString("dpjp") + ")";
+                    } else {
+                        konfirmasi_terapi = konfirmasi_terapi + "<br/>"
+                                + "KONFIRMASI TERAPI VIA TELP. :<br/>Tgl. Lapor : " + rs5.getString("tgllapor") + ", Jam : " + rs5.getString("jamlapor") + "<br/>"
+                                + "Tgl. Verif : " + rs5.getString("tglverif") + ", Jam : " + rs5.getString("jamverif") + "<br/>"
+                                + "Petugas,<br/><br/><br/><br/>(" + rs5.getString("ptgs") + ")<br/><br/>"
+                                + "Dengan DPJP,<br/><br/><br/><br/>(" + rs5.getString("dpjp") + ")";
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs5 != null) {
+                    rs5.close();
+                }
+                if (ps5 != null) {
+                    ps5.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilPreviewCpptDokter() {
+        cekKonfirmasi = 0;
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            StringBuilder htmlContent = new StringBuilder();
+            try {
+                if (chkTglCppt.isSelected() == true) {
+                    rsPrev = koneksi.prepareStatement("SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),'<br/>',date_format(c.jam_cppt,'%H:%i'),' Wita'), "
+                            + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                            + "replace(c.hasil_pemeriksaan,'<','&lt') hasil_pemeriksaan, "
+                            + "concat(replace(c.instruksi_nakes,'<','&lt'),if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('<br/><br/>(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('<br/><br/>(',pg2.nama,')'),''))) instruksi_nakes, "
+                            + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
+                            + "if(c.serah_terima_cppt='ya',concat('<br/><br/>Tgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'<br/>','Menyerahkan :<br/>',pg3.nama),'') ptgsSerah, "
+                            + "if(c.serah_terima_cppt='ya',concat('Menerima :<br/>',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift "
+                            + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
+                            + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                            + "WHERE c.no_rawat = '" + TNoRw.getText() + "' and c.flag_hapus='tidak' and "
+                            + "(ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') like '%DPJP%' or "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') like '%DPJP (K)%' or "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') like '%DPJP Raber%') "
+                            + "and c.tgl_cppt between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
+                } else {
+                    rsPrev = koneksi.prepareStatement("SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),'<br/>',date_format(c.jam_cppt,'%H:%i'),' Wita'), "
+                            + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                            + "replace(c.hasil_pemeriksaan,'<','&lt') hasil_pemeriksaan, "
+                            + "concat(replace(c.instruksi_nakes,'<','&lt'),if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('<br/><br/>(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('<br/><br/>(',pg2.nama,')'),''))) instruksi_nakes, "
+                            + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
+                            + "if(c.serah_terima_cppt='ya',concat('<br/><br/>Tgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'<br/>','Menyerahkan :<br/>',pg3.nama),'') ptgsSerah, "
+                            + "if(c.serah_terima_cppt='ya',concat('Menerima :<br/>',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift "
+                            + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
+                            + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                            + "WHERE c.no_rawat = '" + TNoRw.getText() + "' and c.flag_hapus='tidak' and "
+                            + "(ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') like '%DPJP%' or "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') like '%DPJP (K)%' or "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') like '%DPJP Raber%') "
+                            + "ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
+                }
+                
+                if (rsPrev.next()) {
+                    htmlContent.append(
+                            "<table width='100%' class='isi'>"
+                            + "<thead>"
+                            + "<tr class='isi'>"
+                            + "<td width='20%' align='center' bgcolor='#f8fdf3'><b>TANGGAL<br/>JAM</b></td>"
+                            + "<td width='50%' align='center' bgcolor='#f8fdf3'><b>BAGIAN</b></td>"
+                            + "<td width='80%' align='center' bgcolor='#f8fdf3'><b>HASIL PEMERIKSAAN, ANALISA, RENCANA,<br/>PENATALAKSANAAN PASIEN</b></td>"
+                            + "<td width='80%' align='center' bgcolor='#f8fdf3'><b>INSTRUKSI TENAGA KESEHATAN<br/>TERMASUK PASCA BEDAH/PROSEDUR</b></td>"
+                            + "<td width='60%' align='center' bgcolor='#f8fdf3'><b>VERIFIKASI TANDA TANGAN DAN<br/>NAMA JELAS DPJP</b></td>"
+                            + "</tr>"
+                            + "</thead>"
+                            + "<tbody>"
+                    );
+                    
+                    rsPrev.beforeFirst();
+                    while (rsPrev.next()) {
+                        cekKonfirmasi = Sequel.cariInteger("select count(-1) from cppt_konfirmasi_terapi where no_rawat='" + TNoRw.getText() + "' "
+                                + "and tgl_cppt='" + rsPrev.getString("tgl_cppt") + "' and jam_cppt='" + rsPrev.getString("jam_cppt") + "' "
+                                + "and cppt_shift='" + rsPrev.getString("cppt_shift") + "'");
+                        
+                        if (cekKonfirmasi == 0) {
+                            konfirmasi_terapi = "";
+                        } else {
+                            konfirmasiTerapiPreview(TNoRw.getText(), rsPrev.getString("tgl_cppt"), rsPrev.getString("jam_cppt"), rsPrev.getString("cppt_shift"));
+                        }
+
+                        htmlContent.append(
+                                "<tr style='background-color: #d2e9e9' class='isi'>"
+                                + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                + "<td width='60%' valign='top'>" + rsPrev.getString("verif") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                + "</tr>"
+                        );
+                    }
+                    htmlContent.append(
+                            "</tbody>"
+                            + "</table>"
+                    );
+                }
+                LoadHTML4.setText(
+                        "<html>"
+                        + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"                        
+                        + htmlContent.toString()
+                        + "</table>"
+                        + "</html>");
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsPrev != null) {
+                    rsPrev.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void tampilPreviewCpptSelainDokter() {
+        cekKonfirmasi = 0;
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            StringBuilder htmlContent = new StringBuilder();
+            try {
+                if (chkTglCppt.isSelected() == true) {
+                    rsPrev = koneksi.prepareStatement("SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),'<br/>',date_format(c.jam_cppt,'%H:%i'),' Wita'), "
+                            + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                            + "replace(c.hasil_pemeriksaan,'<','&lt') hasil_pemeriksaan, "
+                            + "concat(replace(c.instruksi_nakes,'<','&lt'),if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('<br/><br/>(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('<br/><br/>(',pg2.nama,')'),''))) instruksi_nakes, "
+                            + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
+                            + "if(c.serah_terima_cppt='ya',concat('<br/><br/>Tgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'<br/>','Menyerahkan :<br/>',pg3.nama),'') ptgsSerah, "
+                            + "if(c.serah_terima_cppt='ya',concat('Menerima :<br/>',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift "
+                            + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
+                            + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                            + "WHERE c.no_rawat = '" + TNoRw.getText() + "' and c.flag_hapus='tidak' and "
+                            + "(ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') not like '%DPJP%' or "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') not like '%DPJP (K)%' or "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') not like '%DPJP Raber%') "
+                            + "and c.tgl_cppt between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
+                } else {
+                    rsPrev = koneksi.prepareStatement("SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),'<br/>',date_format(c.jam_cppt,'%H:%i'),' Wita'), "
+                            + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                            + "replace(c.hasil_pemeriksaan,'<','&lt') hasil_pemeriksaan, "
+                            + "concat(replace(c.instruksi_nakes,'<','&lt'),if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('<br/><br/>(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('<br/><br/>(',pg2.nama,')'),''))) instruksi_nakes, "
+                            + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
+                            + "if(c.serah_terima_cppt='ya',concat('<br/><br/>Tgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'<br/>','Menyerahkan :<br/>',pg3.nama),'') ptgsSerah, "
+                            + "if(c.serah_terima_cppt='ya',concat('Menerima :<br/>',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift "
+                            + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
+                            + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                            + "WHERE c.no_rawat = '" + TNoRw.getText() + "' and c.flag_hapus='tidak' and "
+                            + "(ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') not like '%DPJP%' or "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') not like '%DPJP (K)%' or "
+                            + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') not like '%DPJP Raber%') "
+                            + "ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
+                }
+
+                if (rsPrev.next()) {
+                    htmlContent.append(
+                            "<table width='100%' class='isi'>"
+                            + "<thead>"
+                            + "<tr class='isi'>"
+                            + "<td width='20%' align='center' bgcolor='#f8fdf3'><b>TANGGAL<br/>JAM</b></td>"
+                            + "<td width='50%' align='center' bgcolor='#f8fdf3'><b>BAGIAN</b></td>"
+                            + "<td width='80%' align='center' bgcolor='#f8fdf3'><b>HASIL PEMERIKSAAN, ANALISA, RENCANA,<br/>PENATALAKSANAAN PASIEN</b></td>"
+                            + "<td width='80%' align='center' bgcolor='#f8fdf3'><b>INSTRUKSI TENAGA KESEHATAN<br/>TERMASUK PASCA BEDAH/PROSEDUR</b></td>"
+                            + "<td width='60%' align='center' bgcolor='#f8fdf3'><b>VERIFIKASI TANDA TANGAN DAN<br/>NAMA JELAS DPJP</b></td>"
+                            + "</tr>"
+                            + "</thead>"
+                            + "<tbody>"
+                    );
+                    
+                    rsPrev.beforeFirst();
+                    while (rsPrev.next()) {
+                        cekKonfirmasi = Sequel.cariInteger("select count(-1) from cppt_konfirmasi_terapi where no_rawat='" + TNoRw.getText() + "' "
+                                + "and tgl_cppt='" + rsPrev.getString("tgl_cppt") + "' and jam_cppt='" + rsPrev.getString("jam_cppt") + "' "
+                                + "and cppt_shift='" + rsPrev.getString("cppt_shift") + "'");
+                        
+                        if (cekKonfirmasi == 0) {
+                            konfirmasi_terapi = "";
+                        } else {
+                            konfirmasiTerapiPreview(TNoRw.getText(), rsPrev.getString("tgl_cppt"), rsPrev.getString("jam_cppt"), rsPrev.getString("cppt_shift"));
+                        }
+
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                + "<td width='60%' valign='top'>" + rsPrev.getString("verif") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                + "</tr>"
+                        );
+                    }
+                    htmlContent.append(
+                            "</tbody>"
+                            + "</table>"
+                    );
+                }
+                LoadHTML5.setText(
+                        "<html>"
+                        + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"                        
+                        + htmlContent.toString()
+                        + "</table>"
+                        + "</html>");
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsPrev != null) {
+                    rsPrev.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        this.setCursor(Cursor.getDefaultCursor());
     }
 }

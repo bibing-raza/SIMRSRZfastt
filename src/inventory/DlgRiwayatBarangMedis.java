@@ -21,6 +21,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
@@ -47,10 +48,13 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
     public DlgRiwayatBarangMedis(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
-        tabMode = new DefaultTableModel(null, new Object[]{
-            "Barang", "Awal", "Masuk", "Keluar", "Akhir", "Posisi",
-            "Tanggal", "Jam", "Petugas", "Lokasi", "Status", "Waktu Input"
+        tabMode = new DefaultTableModel(null, new String[]{
+            "Kode Barang", "Nama Barang", "Awal", "Masuk", "Keluar", "Akhir", "Posisi",
+            "Tanggal", "Jam", "NIP Petugas", "Nama Petugas", "Lokasi", "Status", "Waktu Input"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -62,12 +66,12 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         tbRiwayat.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbRiwayat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 14; i++) {
             TableColumn column = tbRiwayat.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(230);
+                column.setPreferredWidth(120);
             } else if (i == 1) {
-                column.setPreferredWidth(45);
+                column.setPreferredWidth(400);
             } else if (i == 2) {
                 column.setPreferredWidth(45);
             } else if (i == 3) {
@@ -75,22 +79,35 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
             } else if (i == 4) {
                 column.setPreferredWidth(45);
             } else if (i == 5) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(45);
             } else if (i == 6) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(120);
             } else if (i == 7) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(70);
             } else if (i == 8) {
-                column.setPreferredWidth(110);
-            } else if (i == 9) {
-                column.setPreferredWidth(150);
-            } else if (i == 10) {
                 column.setPreferredWidth(60);
+            } else if (i == 9) {
+                column.setPreferredWidth(130);
+            } else if (i == 10) {
+                column.setPreferredWidth(240);
             } else if (i == 11) {
-                column.setPreferredWidth(230);
+                column.setPreferredWidth(150);
+            } else if (i == 12) {
+                column.setPreferredWidth(50);
+            } else if (i == 13) {
+                column.setPreferredWidth(130);
             }
         }
         tbRiwayat.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbRiwayat.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbRiwayat.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbRiwayat.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbRiwayat.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbRiwayat.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
+        tbRiwayat.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
+        tbRiwayat.getColumnModel().getColumn(12).setCellRenderer(centerRenderer);
+        tbRiwayat.getColumnModel().getColumn(13).setCellRenderer(centerRenderer);
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         if (koneksiDB.cariCepat().equals("aktif")) {
@@ -570,7 +587,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
 
             }
         ));
-        tbRiwayat.setToolTipText("Silahkan klik kanan untuk memilih laporan yang akan dicetak");
         tbRiwayat.setComponentPopupMenu(jPopupMenu1);
         tbRiwayat.setName("tbRiwayat"); // NOI18N
         scrollPane1.setViewportView(tbRiwayat);
@@ -1665,40 +1681,27 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         try {
             if (filterTgl.getSelectedIndex() == 0) {
                 ps = koneksi.prepareStatement(
-                        "select riwayat_barang_medis.kode_brng,databarang.nama_brng,"
-                        + "riwayat_barang_medis.stok_awal,riwayat_barang_medis.masuk,"
-                        + "riwayat_barang_medis.keluar,riwayat_barang_medis.stok_akhir,"
-                        + "riwayat_barang_medis.posisi,riwayat_barang_medis.tanggal,"
-                        + "riwayat_barang_medis.jam,riwayat_barang_medis.petugas,"
-                        + "riwayat_barang_medis.kd_bangsal,bangsal.nm_bangsal,"
-                        + "riwayat_barang_medis.status,riwayat_barang_medis.wkt_eks from riwayat_barang_medis "
-                        + "inner join bangsal inner join databarang on "
-                        + "riwayat_barang_medis.kode_brng=databarang.kode_brng and "
-                        + "riwayat_barang_medis.kd_bangsal=bangsal.kd_bangsal where "
-                        + "riwayat_barang_medis.tanggal between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.kode_brng like ? or "
-                        + "riwayat_barang_medis.tanggal between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and databarang.nama_brng like ? or "
-                        + "riwayat_barang_medis.tanggal between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.petugas like ? or "
-                        + "riwayat_barang_medis.tanggal between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and bangsal.nm_bangsal like ? or "
-                        + "riwayat_barang_medis.tanggal between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.kd_bangsal like ? or "
-                        + "riwayat_barang_medis.tanggal between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.status like ? order by riwayat_barang_medis.tanggal,riwayat_barang_medis.jam ");
+                        "select rb.kode_brng,db.nama_brng, rb.stok_awal,rb.masuk, rb.keluar,rb.stok_akhir, rb.posisi,rb.tanggal, rb.jam,rb.petugas, "
+                        + "p.nama, rb.kd_bangsal,b.nm_bangsal, rb.status, date_format(rb.wkt_eks,'%d-%m-%Y %H:%i:%s') wkt_eks from riwayat_barang_medis rb "
+                        + "inner join bangsal b on rb.kd_bangsal=b.kd_bangsal inner join databarang db on rb.kode_brng=db.kode_brng "
+                        + "inner join pegawai p on p.nik=rb.petugas where rb.tanggal between ? and ? and db.nama_brng like ? and b.nm_bangsal like ? and rb.kode_brng like ? or "
+                        + "rb.tanggal between ? and ? and db.nama_brng like ? and b.nm_bangsal like ? and db.nama_brng like ? or "
+                        + "rb.tanggal between ? and ? and db.nama_brng like ? and b.nm_bangsal like ? and rb.petugas like ? or "
+                        + "rb.tanggal between ? and ? and db.nama_brng like ? and b.nm_bangsal like ? and b.nm_bangsal like ? or "
+                        + "rb.tanggal between ? and ? and db.nama_brng like ? and b.nm_bangsal like ? and rb.kd_bangsal like ? or "
+                        + "rb.tanggal between ? and ? and db.nama_brng like ? and b.nm_bangsal like ? and rb.status like ? order by rb.tanggal,rb.jam");
             } else {
                 ps = koneksi.prepareStatement(
-                        "select riwayat_barang_medis.kode_brng,databarang.nama_brng,"
-                        + "riwayat_barang_medis.stok_awal,riwayat_barang_medis.masuk,"
-                        + "riwayat_barang_medis.keluar,riwayat_barang_medis.stok_akhir,"
-                        + "riwayat_barang_medis.posisi,riwayat_barang_medis.tanggal,"
-                        + "riwayat_barang_medis.jam,riwayat_barang_medis.petugas,"
-                        + "riwayat_barang_medis.kd_bangsal,bangsal.nm_bangsal,"
-                        + "riwayat_barang_medis.status,riwayat_barang_medis.wkt_eks from riwayat_barang_medis "
-                        + "inner join bangsal inner join databarang on "
-                        + "riwayat_barang_medis.kode_brng=databarang.kode_brng and "
-                        + "riwayat_barang_medis.kd_bangsal=bangsal.kd_bangsal where "
-                        + "DATE_FORMAT(riwayat_barang_medis.wkt_eks,'%Y-%m-%d') between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.kode_brng like ? or "
-                        + "DATE_FORMAT(riwayat_barang_medis.wkt_eks,'%Y-%m-%d') between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and databarang.nama_brng like ? or "
-                        + "DATE_FORMAT(riwayat_barang_medis.wkt_eks,'%Y-%m-%d') between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.petugas like ? or "
-                        + "DATE_FORMAT(riwayat_barang_medis.wkt_eks,'%Y-%m-%d') between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and bangsal.nm_bangsal like ? or "
-                        + "DATE_FORMAT(riwayat_barang_medis.wkt_eks,'%Y-%m-%d') between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.kd_bangsal like ? or "
-                        + "DATE_FORMAT(riwayat_barang_medis.wkt_eks,'%Y-%m-%d') between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.status like ? order by riwayat_barang_medis.tanggal,riwayat_barang_medis.jam ");
+                        "select rb.kode_brng, db.nama_brng, rb.stok_awal,rb.masuk, rb.keluar,rb.stok_akhir, rb.posisi,rb.tanggal, "
+                        + "rb.jam,rb.petugas, p.nama, rb.kd_bangsal,b.nm_bangsal, rb.status, date_format(rb.wkt_eks,'%d-%m-%Y %H:%i:%s') wkt_eks "
+                        + "from riwayat_barang_medis rb inner join bangsal b on rb.kd_bangsal=b.kd_bangsal inner join databarang db on rb.kode_brng=db.kode_brng "
+                        + "inner join pegawai p on p.nik=rb.petugas where "
+                        + "DATE_FORMAT(rb.wkt_eks,'%Y-%m-%d') between ? and ? and db.nama_brng like ? and b.nm_bangsal like ? and rb.kode_brng like ? or "
+                        + "DATE_FORMAT(rb.wkt_eks,'%Y-%m-%d') between ? and ? and db.nama_brng like ? and b.nm_bangsal like ? and db.nama_brng like ? or "
+                        + "DATE_FORMAT(rb.wkt_eks,'%Y-%m-%d') between ? and ? and db.nama_brng like ? and b.nm_bangsal like ? and rb.petugas like ? or "
+                        + "DATE_FORMAT(rb.wkt_eks,'%Y-%m-%d') between ? and ? and db.nama_brng like ? and b.nm_bangsal like ? and b.nm_bangsal like ? or "
+                        + "DATE_FORMAT(rb.wkt_eks,'%Y-%m-%d') between ? and ? and db.nama_brng like ? and b.nm_bangsal like ? and rb.kd_bangsal like ? or "
+                        + "DATE_FORMAT(rb.wkt_eks,'%Y-%m-%d') between ? and ? and db.nama_brng like ? and b.nm_bangsal like ? and rb.status like ? order by rb.tanggal,rb.jam");
             }
 
             try {
@@ -1734,12 +1737,12 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                 ps.setString(30, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new Object[]{
-                        rs.getString("kode_brng") + " " + rs.getString("nama_brng"),
+                    tabMode.addRow(new String[]{
+                        rs.getString("kode_brng"), rs.getString("nama_brng"),
                         rs.getString("stok_awal"), rs.getString("masuk"),
                         rs.getString("keluar"), rs.getString("stok_akhir"),
                         rs.getString("posisi"), rs.getString("tanggal"),
-                        rs.getString("jam"), rs.getString("petugas"),
+                        rs.getString("jam"), rs.getString("petugas"), rs.getString("nama"),
                         rs.getString("kd_bangsal") + " " + rs.getString("nm_bangsal"),
                         rs.getString("status"), rs.getString("wkt_eks")
                     });
