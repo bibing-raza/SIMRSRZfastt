@@ -40,7 +40,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
     private Properties prop = new Properties();
     private PreparedStatement ps, ps1, ps2;
     private ResultSet rs, rs1, rs2;
-    private int i = 0;
+    private int i = 0, x = 0;
     private String norawat = "", wktSimpan = "", tglAmbilObat = "";
     
     /** Creates new form DlgPemberianInfus
@@ -247,6 +247,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
 
         Popup1 = new javax.swing.JPopupMenu();
         ppCetakKodeIter = new javax.swing.JMenuItem();
+        ppBatalPembambilan = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -278,13 +279,28 @@ public class DlgResepIterObat extends javax.swing.JDialog {
         ppCetakKodeIter.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppCetakKodeIter.setIconTextGap(8);
         ppCetakKodeIter.setName("ppCetakKodeIter"); // NOI18N
-        ppCetakKodeIter.setPreferredSize(new java.awt.Dimension(160, 25));
+        ppCetakKodeIter.setPreferredSize(new java.awt.Dimension(200, 25));
         ppCetakKodeIter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppCetakKodeIterActionPerformed(evt);
             }
         });
         Popup1.add(ppCetakKodeIter);
+
+        ppBatalPembambilan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppBatalPembambilan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        ppBatalPembambilan.setText("Batalkan Pengambilan Obat");
+        ppBatalPembambilan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppBatalPembambilan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppBatalPembambilan.setIconTextGap(8);
+        ppBatalPembambilan.setName("ppBatalPembambilan"); // NOI18N
+        ppBatalPembambilan.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppBatalPembambilan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppBatalPembambilanActionPerformed(evt);
+            }
+        });
+        Popup1.add(ppBatalPembambilan);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -361,7 +377,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
         panelGlass10.add(jLabel23);
 
         tglCari1.setEditable(false);
-        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2025" }));
+        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
         tglCari1.setDisplayFormat("dd-MM-yyyy");
         tglCari1.setName("tglCari1"); // NOI18N
         tglCari1.setOpaque(false);
@@ -376,7 +392,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
         panelGlass10.add(jLabel24);
 
         tglCari2.setEditable(false);
-        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2025" }));
+        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
         tglCari2.setDisplayFormat("dd-MM-yyyy");
         tglCari2.setName("tglCari2"); // NOI18N
         tglCari2.setOpaque(false);
@@ -599,6 +615,44 @@ public class DlgResepIterObat extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ppCetakKodeIterActionPerformed
 
+    private void ppBatalPembambilanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppBatalPembambilanActionPerformed
+        if (tbIter.getSelectedRow() > -1) {            
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin kode iter " + tbIter.getValueAt(tbIter.getSelectedRow(), 0).toString() + " pasien atas nama " 
+                    + tbIter.getValueAt(tbIter.getSelectedRow(), 4).toString() + ", utk. pengambilan yang       \n"
+                    + tbIter.getValueAt(tbIter.getSelectedRow(), 16).toString().replaceAll("1", "Pertama (1)").replaceAll("2", "Kedua (2)").replaceAll("3", "Terakhir (3)")
+                    + " akan dibatalkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.cariInteger("select count(-1) FROM detail_pemberian_obat dpo INNER JOIN databarang db ON dpo.kode_brng=db.kode_brng "
+                        + "INNER JOIN reg_periksa rp ON rp.no_rawat=dpo.no_rawat WHERE "
+                        + "dpo.tgl_perawatan='" + tbIter.getValueAt(tbIter.getSelectedRow(), 25).toString() + "' and "
+                        + "rp.no_rkm_medis='" + tbIter.getValueAt(tbIter.getSelectedRow(), 3).toString() + "' and "
+                        + "rp.kd_poli='" + tbIter.getValueAt(tbIter.getSelectedRow(), 24).toString() + "' and rp.status_lanjut='ralan'") > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, kode iter tersebut tidak bisa dibatalkan, karena resep sudah dilayani farmasi...!!");
+                    BtnCariActionPerformed(null);
+                } else {
+                    if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where waktu_simpan='" + wktSimpan + "' and kunjungan in ('2','3')") > 0) {
+                        if (Sequel.queryu2tf("delete from catatan_resep where no_rawat=?", 1, new String[]{norawat}) == true) {
+                            Sequel.meghapus("iter_obat_bpjs", "waktu_simpan", wktSimpan);
+                            Sequel.meghapus("reg_periksa", "no_rawat", norawat);
+                            BtnCariActionPerformed(null);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Gagal menghapus/membatalkan kode iter tersebut..!!");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Pengambilan pertama (1) hanya bisa dibatalkan oleh dokter..!!");
+                        BtnCariActionPerformed(null);
+                    }
+                }
+            } else {
+                BtnCariActionPerformed(null);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel resep iter obat BPJS ...!!");
+            tbIter.requestFocus();
+            tampil();
+        }
+    }//GEN-LAST:event_ppBatalPembambilanActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -633,6 +687,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
     private widget.Label jLabel7;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass9;
+    private javax.swing.JMenuItem ppBatalPembambilan;
     private javax.swing.JMenuItem ppCetakKodeIter;
     private widget.Table tbCatatanResep;
     private widget.Table tbFarmasi;

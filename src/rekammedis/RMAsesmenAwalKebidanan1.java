@@ -11090,6 +11090,58 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                 + "<td valign='top' colspan='1'><b>PLANNING</b></td>"
                                 + "<td valign='top' colspan='7'>: " + rsPrev.getString("planing") + "</td>"
                                 + "</tr>");
+                        
+                        String prevNyeri = "", prevProvo = "", prevQuality = "";
+                        if (rsPrev.getString("nyeri").equals("Ya")) {
+                            if (rsPrev.getString("lokasi_nyeri").equals("")) {
+                                prevNyeri = "Ya, Lokasi : -";
+                            } else {
+                                prevNyeri = "Ya, Lokasi : " + rsPrev.getString("lokasi_nyeri");
+                            }
+                        } else {
+                            prevNyeri = rsPrev.getString("nyeri");
+                        }
+                        
+                        if (rsPrev.getString("provocation").equals("Lainnya")) {
+                            if (rsPrev.getString("ket_lain_provocation").equals("")) {
+                                prevProvo = "Lainnya : -";
+                            } else {
+                                prevProvo = "Lainnya : " + rsPrev.getString("ket_lain_provocation");
+                            }
+                        } else {
+                            prevProvo = rsPrev.getString("provocation");
+                        }
+                        
+                        if (rsPrev.getString("quality").equals("Lainnya")) {
+                            if (rsPrev.getString("ket_lain_quality").equals("")) {
+                                prevQuality = "Lainnya : -";
+                            } else {
+                                prevQuality = "Lainnya : " + rsPrev.getString("ket_lain_quality");
+                            }
+                        } else {
+                            prevQuality = rsPrev.getString("quality");
+                        }
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='8' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>ASSESMEN NYERI</span></td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1'>Nyeri</td>"
+                                + "<td valign='top' colspan='5'>: " + prevNyeri + "</td>"
+                                + "<td valign='top' colspan='1'>Jenis : " + rsPrev.getString("jenis") + "</td>"                                
+                                + "<td valign='top' colspan='1'>Skala : " + rsPrev.getString("skala_nyeri") + "</td>"
+                                + "</tr>");
+                        
+//                        htmlContent.append(
+//                                "<tr class='isi'>"
+//                                + "<td valign='top' colspan='1'>Provocation</td>"
+//                                + "<td valign='top' colspan='4'>: Faktor yang memperburuk rasa nyeri " + prevProvo + "</td>"
+//                                + "<td valign='top' colspan='3' rowspan='4'><img src='setting/ttd_karu_covid.jpg' width='100' height='100'></td>"
+//                                + "</tr>");
+                        
                     }
                     
                     htmlContent.append(

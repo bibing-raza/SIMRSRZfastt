@@ -14,6 +14,7 @@
 	<parameter name="ruangan" class="java.lang.String"/>
 	<parameter name="tgl_beri_diet" class="java.lang.String"/>
 	<parameter name="tgl_sekarang" class="java.lang.String"/>
+	<parameter name="statusRawat" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lhr, 
 b.nm_bangsal, LOWER(IFNULL(ki.diagnosa_awal, '-')) diag_awal, IFNULL(d.nama_diet, '') nm_diet, b.nm_gedung, if(dd.disajikan='biasa','',ifnull(dd.disajikan,'-')) kemasan FROM kamar_inap ki 
@@ -39,62 +40,35 @@ ki.stts_pulang = '-' AND b.nm_gedung<>'-' ORDER BY b.nm_gedung, k.kelas, pasien]
 	<group name="gedung_ranap" isStartNewPage="true">
 		<groupExpression><![CDATA[$F{nm_gedung}]]></groupExpression>
 		<groupHeader>
-			<band height="116">
+			<band height="132">
 				<staticText>
-					<reportElement x="23" y="100" width="117" height="14"/>
+					<reportElement x="23" y="116" width="117" height="14"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
 						<font fontName="Tahoma" size="9" isBold="false"/>
 					</textElement>
 					<text><![CDATA[ No. RM - Nama Pasien]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="140" y="100" width="50" height="14"/>
+					<reportElement x="140" y="116" width="50" height="14"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 						<font fontName="Tahoma" size="9" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Tgl. Lahir]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="496" y="100" width="49" height="14"/>
+					<reportElement x="496" y="116" width="49" height="14"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
 						<font fontName="Tahoma" size="9" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Kmsan./Ket.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="193" y="100" width="105" height="14"/>
+					<reportElement x="193" y="116" width="105" height="14"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
 						<font fontName="Tahoma" size="9" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Rg. Perawatan]]></text>
 				</staticText>
-				<line>
-					<reportElement x="0" y="99" width="545" height="1"/>
-					<graphicElement>
-						<pen lineWidth="0.5"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement x="0" y="100" width="23" height="14"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
-						<font fontName="Tahoma" size="9" isBold="false"/>
-					</textElement>
-					<text><![CDATA[No.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="407" y="100" width="86" height="14"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
-						<font fontName="Tahoma" size="9" isBold="false"/>
-					</textElement>
-					<text><![CDATA[Diet]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="true">
-					<reportElement x="0" y="53" width="545" height="15"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
-						<font fontName="Tahoma" size="10" isBold="true"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$P{ruangan}+" "+$F{nm_gedung}]]></textFieldExpression>
-				</textField>
 				<line>
 					<reportElement x="0" y="115" width="545" height="1"/>
 					<graphicElement>
@@ -102,84 +76,76 @@ ki.stts_pulang = '-' AND b.nm_gedung<>'-' ORDER BY b.nm_gedung, k.kelas, pasien]
 					</graphicElement>
 				</line>
 				<staticText>
-					<reportElement x="302" y="100" width="101" height="14"/>
+					<reportElement x="0" y="116" width="23" height="14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Tahoma" size="9" isBold="false"/>
+					</textElement>
+					<text><![CDATA[No.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="407" y="116" width="86" height="14"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Tahoma" size="9" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Diet]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="131" width="545" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="302" y="116" width="101" height="14"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
 						<font fontName="Tahoma" size="9" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Diagnosa Awal]]></text>
 				</staticText>
-				<staticText>
-					<reportElement x="0" y="72" width="82" height="14"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
-						<font fontName="Tahoma" size="9" isBold="false"/>
-					</textElement>
-					<text><![CDATA[Tgl. Pemberian Diet]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="84" width="82" height="14"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
-						<font fontName="Tahoma" size="9" isBold="false"/>
-					</textElement>
-					<text><![CDATA[Tgl. Sekarang]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="82" y="72" width="325" height="14"/>
-					<textElement verticalAlignment="Middle" lineSpacing="Single">
-						<font fontName="Tahoma" size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{tgl_beri_diet}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="82" y="84" width="325" height="14"/>
-					<textElement verticalAlignment="Middle" lineSpacing="Single">
-						<font fontName="Tahoma" size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{tgl_sekarang}]]></textFieldExpression>
-				</textField>
 				<line>
-					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="99" width="1" height="17"/>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="115" width="1" height="17"/>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
 				</line>
 				<line>
-					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="22" y="99" width="1" height="17"/>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="22" y="115" width="1" height="17"/>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
 				</line>
 				<line>
-					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="139" y="99" width="1" height="17"/>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="139" y="115" width="1" height="17"/>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
 				</line>
 				<line>
-					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="190" y="99" width="1" height="17"/>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="190" y="115" width="1" height="17"/>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
 				</line>
 				<line>
-					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="298" y="99" width="1" height="17"/>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="298" y="115" width="1" height="17"/>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
 				</line>
 				<line>
-					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="403" y="99" width="1" height="17"/>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="403" y="115" width="1" height="17"/>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
 				</line>
 				<line>
-					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="492" y="99" width="1" height="17"/>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="492" y="115" width="1" height="17"/>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
 				</line>
 				<line>
-					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="545" y="99" width="1" height="17"/>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="545" y="115" width="1" height="17"/>
 					<graphicElement>
 						<pen lineWidth="0.5"/>
 					</graphicElement>
@@ -190,10 +156,13 @@ ki.stts_pulang = '-' AND b.nm_gedung<>'-' ORDER BY b.nm_gedung, k.kelas, pasien]
 						<pen lineWidth="2.0" lineStyle="Double"/>
 					</graphicElement>
 				</line>
-				<image scaleImage="FillFrame" onErrorType="Blank">
-					<reportElement x="130" y="0" width="30" height="38"/>
-					<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
-				</image>
+				<staticText>
+					<reportElement x="0" y="71" width="82" height="14"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Tahoma" size="9" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Tgl. Pemberian Diet]]></text>
+				</staticText>
 				<textField>
 					<reportElement x="0" y="25" width="545" height="14"/>
 					<textElement textAlignment="Center" lineSpacing="Single">
@@ -201,12 +170,51 @@ ki.stts_pulang = '-' AND b.nm_gedung<>'-' ORDER BY b.nm_gedung, k.kelas, pasien]
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA["E-mail : "+$P{emailrs}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="0" y="84" width="82" height="14"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Tahoma" size="9" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Tgl. Sekarang]]></text>
+				</staticText>
 				<textField>
 					<reportElement x="0" y="0" width="545" height="17"/>
 					<textElement textAlignment="Center" lineSpacing="Single">
 						<font fontName="Tahoma" size="12"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$P{namars}]]></textFieldExpression>
+				</textField>
+				<image scaleImage="FillFrame" onErrorType="Blank">
+					<reportElement x="130" y="0" width="30" height="38"/>
+					<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
+				</image>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="53" width="545" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Tahoma" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{ruangan}+" "+$F{nm_gedung}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="97" width="82" height="14"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Tahoma" size="9" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Status Rawat]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="82" y="97" width="325" height="14"/>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{statusRawat}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="82" y="71" width="325" height="14"/>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{tgl_beri_diet}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="0" y="14" width="545" height="14"/>
@@ -215,10 +223,17 @@ ki.stts_pulang = '-' AND b.nm_gedung<>'-' ORDER BY b.nm_gedung, k.kelas, pasien]
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$P{alamatrs}+", "+$P{kotars}+", "+$P{propinsirs}]]></textFieldExpression>
 				</textField>
+				<textField>
+					<reportElement x="82" y="84" width="325" height="14"/>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Tahoma" size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{tgl_sekarang}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="157">
+			<band height="154">
 				<line>
 					<reportElement positionType="FixRelativeToBottom" x="492" y="0" width="1" height="78"/>
 					<graphicElement>

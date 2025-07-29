@@ -2243,6 +2243,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
                     + "sg.tgl_skrining between ? and ? and sg.no_rawat like ? or "
                     + "sg.tgl_skrining between ? and ? and p.no_rkm_medis like ? or "
                     + "sg.tgl_skrining between ? and ? and p.nm_pasien like ? or "
+                    + "sg.tgl_skrining between ? and ? and sg.ruang_rawat like ? or "
                     + "sg.tgl_skrining between ? and ? and pg.nama like ? order by sg.tgl_skrining, sg.jam_skrining");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -2256,7 +2257,10 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
                 ps.setString(9, "%" + TCari.getText().trim() + "%");
                 ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(12, "%" + TCari.getText().trim() + "%");
+                ps.setString(12, "%" + TCari.getText().trim() + "%");                
+                ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(15, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{

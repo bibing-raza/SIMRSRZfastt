@@ -9745,7 +9745,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             JOptionPane.showMessageDialog(null, "Data diet makanan hanya bisa dicetak utk. pasien yg. masih dirawat inap...!!");
         } else {
             DlgDataDietRanap dietRanap = new DlgDataDietRanap(null, false);
-            dietRanap.setSize(716, 370);
+            dietRanap.setSize(1069, 600);
             dietRanap.setLocationRelativeTo(internalFrame1);
             dietRanap.emptTeks();
             dietRanap.tampil();

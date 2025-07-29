@@ -6572,6 +6572,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     + "ag.tgl_asuhan BETWEEN ? AND ? AND rp.no_rawat LIKE ? OR "
                     + "ag.tgl_asuhan BETWEEN ? AND ? AND p.no_rkm_medis LIKE ? OR "
                     + "ag.tgl_asuhan BETWEEN ? AND ? AND p.nm_pasien LIKE ? OR "
+                    + "ag.tgl_asuhan BETWEEN ? AND ? AND ag.ruang_rawat LIKE ? OR "
                     + "ag.tgl_asuhan BETWEEN ? AND ? AND pg.nama LIKE ? ORDER BY ag.tgl_asuhan");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -6585,7 +6586,10 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 ps.setString(9, "%" + TCari.getText() + "%");
                 ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(12, "%" + TCari.getText() + "%");
+                ps.setString(12, "%" + TCari.getText() + "%");                
+                ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(15, "%" + TCari.getText() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     if (rs.getString("jenis_asuhan").equals("Dewasa")) {

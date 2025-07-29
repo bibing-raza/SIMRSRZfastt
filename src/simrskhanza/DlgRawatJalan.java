@@ -11805,7 +11805,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         isForm();
         isFormRiwayatObat();
         Sequel.cariIsi("select tinggi_badan from pasien where no_rkm_medis = '" + TNoRM.getText() + "'", TTinggi);
-        Valid.SetTgl(DTPTgl, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
+        Valid.SetTgl(DTPTgl, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));        
 
         if (cekPilihanRehab == 0) {
             label_rehab.setVisible(false);
@@ -17779,6 +17779,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 //                    } else {
 //                        ChkReasesmen.setSelected(false);
 //                    }
+
                     if (ChkReasesmen.isSelected() == true) {
                         reasesmen = "1";
                     } else {
@@ -19835,8 +19836,15 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
         TNoRw2.setText("");
         ChkPemeriksaan.setSelected(false);
-        ChkPrmrj.setSelected(false);
         ChkCopyPemeriksaanDR.setSelected(false);
+
+        if (polinya.equals("005") || polinya.equals("008") || polinya.equals("010")
+                || polinya.equals("132") || polinya.equals("152") || polinya.equals("BDO") 
+                || polinya.equals("KKD")) {
+            ChkPrmrj.setSelected(true);
+        } else {
+            ChkPrmrj.setSelected(false);
+        }
 
         ChkLihat.setSelected(false);
         cmbBulan.setSelectedIndex(0);
