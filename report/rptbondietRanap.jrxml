@@ -35,7 +35,7 @@ ki.stts_pulang = '-' AND b.nm_gedung = 'BERSALIN' ORDER BY b.nm_bangsal, k.kelas
 	<field name="nm_diet" class="java.lang.String"/>
 	<field name="kemasan" class="java.lang.String"/>
 	<title>
-		<band height="113">
+		<band height="97">
 			<line>
 				<reportElement x="0" y="45" width="545" height="1"/>
 				<graphicElement>
@@ -101,20 +101,6 @@ ki.stts_pulang = '-' AND b.nm_gedung = 'BERSALIN' ORDER BY b.nm_bangsal, k.kelas
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{tgl_beri_diet}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="0" y="95" width="82" height="14"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="9" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Status Rawat]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="82" y="95" width="325" height="14"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{statusRawat}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

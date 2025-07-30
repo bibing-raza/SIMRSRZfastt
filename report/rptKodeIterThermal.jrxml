@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="223" pageHeight="466" columnWidth="190" leftMargin="11" rightMargin="22" topMargin="0" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="223" pageHeight="476" columnWidth="190" leftMargin="11" rightMargin="22" topMargin="0" bottomMargin="20">
 	<property name="ireport.zoom" value="2.000000000000001"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="125"/>
+	<property name="ireport.y" value="131"/>
 	<parameter name="logors" class="java.io.InputStream"/>
 	<parameter name="loket" class="java.lang.String"/>
 	<parameter name="poliAwal" class="java.lang.String"/>
@@ -10,6 +10,7 @@
 	<parameter name="lokasi" class="java.io.InputStream"/>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="wktuCetak" class="java.lang.String"/>
+	<parameter name="tglDatang" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT i.*, p.nm_pasien, pl.nm_poli, 
 CONCAT(DAY(i.tgl_exp_rujukan), ' ', CASE MONTH(i.tgl_exp_rujukan) 
@@ -71,7 +72,7 @@ inner join poliklinik pl on pl.kd_poli=rp.kd_poli where i.waktu_simpan='2025-07-
 	<field name="tglExpRujukan" class="java.lang.String"/>
 	<field name="pengambilan" class="java.lang.String"/>
 	<title>
-		<band height="446">
+		<band height="456">
 			<staticText>
 				<reportElement x="0" y="37" width="179" height="33"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -114,7 +115,7 @@ RESEP ITER BPJS]]></text>
 				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{no_sep}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="413" width="179" height="30"/>
+				<reportElement x="0" y="423" width="179" height="30"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true" isItalic="false"/>
 				</textElement>
@@ -123,13 +124,13 @@ RSUD Ratu Zalecha
 Sebagai Mitra Sehat Anda]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="412" width="179" height="1"/>
+				<reportElement x="0" y="422" width="179" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.7"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="443" width="179" height="1"/>
+				<reportElement x="0" y="453" width="179" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.7"/>
 				</graphicElement>
@@ -219,7 +220,7 @@ Sebagai Mitra Sehat Anda]]></text>
 				<textFieldExpression class="java.lang.String"><![CDATA[": Yang "+$F{pengambilan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="7" y="314" width="179" height="11"/>
+				<reportElement x="7" y="324" width="179" height="11"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
@@ -240,7 +241,7 @@ Sebagai Mitra Sehat Anda]]></text>
 				<text><![CDATA[Catatan :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="334" width="179" height="79"/>
+				<reportElement x="0" y="344" width="179" height="79"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
@@ -282,12 +283,19 @@ Sebagai Mitra Sehat Anda]]></text>
 				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{wktuCetak}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="7" y="324" width="179" height="11"/>
+				<reportElement x="7" y="334" width="179" height="11"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[masa aktif surat rujukan berakhir]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="7" y="314" width="179" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["pada tanggal "+$P{tglDatang}+" atau "]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 </jasperReport>

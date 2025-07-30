@@ -41,7 +41,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2;
     private ResultSet rs, rs1, rs2;
     private int i = 0, x = 0;
-    private String norawat = "", wktSimpan = "", tglAmbilObat = "";
+    private String norawat = "", wktSimpan = "", tglAmbilObat = "", ketHari = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -56,7 +56,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
         tabMode = new DefaultTableModel(null, new String[]{
             "Kode Iter", "No. Rawat", "No. SEP", "No. RM", "Nama Pasien", "Poliklinik", "Nama Dokter", "Pengambilan Ke", "Tgl. Ambil Obat", "Proses", "Keterangan",
             "kode_iter", "no_sep", "no_kartu", "no_rkm_medis", "no_rawat", "kunjungan", "tgl_exp_rujukan", "stts_pengambilan", "poli_ke", "tgl_ambil_obat", "selesai", 
-            "keterangan", "waktu_simpan", "kd_poli", "tglResep"
+            "keterangan", "waktu_simpan", "kd_poli", "tglResep", "Pengambilan Berikutnya", "Ket. Hari Pengambilan Berikutnya"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -68,7 +68,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
         tbIter.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbIter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 26; i++) {
+        for (i = 0; i < 28; i++) {
             TableColumn column = tbIter.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(120);
@@ -91,7 +91,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
             } else if (i == 9) {
                 column.setPreferredWidth(85);
             } else if (i == 10) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(140);
             } else if (i == 11) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -137,7 +137,11 @@ public class DlgResepIterObat extends javax.swing.JDialog {
             } else if (i == 25) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            }
+            } else if (i == 26) {
+                column.setPreferredWidth(135);
+            } else if (i == 27) {
+                column.setPreferredWidth(250);
+            } 
         }
         tbIter.setDefaultRenderer(Object.class, new WarnaTable());
         //ini posisi kolom yang datanya ingin rata tengah
@@ -148,6 +152,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
         tbIter.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
         tbIter.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
         tbIter.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
+        tbIter.getColumnModel().getColumn(26).setCellRenderer(centerRenderer);
         
         tabMode1 = new DefaultTableModel(null, new String[]{
             "Tgl. Input", "Jam Input", "Nama Obat", "Status", "Id", "kddokter", "Program PRB", "Kode Resep Iter"}) {
@@ -587,6 +592,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
             Sequel.menyimpanQr("setting_qr", "'QRkodeIter'", "file QRCode Kode Resep Iter", Sequel.cariFolderPrintKodeIter());
             param.put("lokasi", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRkodeIter'"));
             param.put("wktuCetak", Sequel.cariIsi("select date_format(now(),'%d/%m/%Y %H:%i Wita')"));
+            param.put("tglDatang", Valid.SetTglINDONESIA(Sequel.cariIsi("SELECT DATE_ADD('" + tbIter.getValueAt(tbIter.getSelectedRow(), 25).toString() + "', INTERVAL 30 DAY)")));
 
             Valid.MyReport("rptKodeIterThermal.jasper", "report", "::[ Cetak Bukti Pengambilan Resep Iter Yang Ke-" + tbIter.getValueAt(tbIter.getSelectedRow(), 7).toString() + " ]::",
                     "SELECT i.*, p.nm_pasien, pl.nm_poli, CONCAT(DAY(i.tgl_exp_rujukan), ' ', CASE MONTH(i.tgl_exp_rujukan) "
@@ -697,13 +703,14 @@ public class DlgResepIterObat extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {     
+        ketHari = "";
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT iob.*, p.no_rkm_medis, p.nm_pasien, pl.nm_poli, d.nm_dokter, "
                     + "if(iob.tgl_ambil_obat='0000-00-00','-',DATE_FORMAT(iob.tgl_ambil_obat,'%d-%m-%Y')) tglAmbilObat, "
-                    + "rp.kd_poli, date(waktu_simpan) tglResep FROM iter_obat_bpjs iob inner join reg_periksa rp on rp.no_rawat =iob.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis =rp.no_rkm_medis inner join dokter d on d.kd_dokter =rp.kd_dokter "
-                    + "inner join poliklinik pl on pl.kd_poli =rp.kd_poli where "
+                    + "rp.kd_poli, date(iob.waktu_simpan) tglResep FROM iter_obat_bpjs iob "
+                    + "inner join reg_periksa rp on rp.no_rawat =iob.no_rawat inner join pasien p on p.no_rkm_medis =rp.no_rkm_medis "
+                    + "inner join dokter d on d.kd_dokter =rp.kd_dokter inner join poliklinik pl on pl.kd_poli =rp.kd_poli where "
                     + "date(waktu_simpan) between ? and ? and iob.kode_iter like ? or "
                     + "date(waktu_simpan) between ? and ? and iob.no_sep like ? or "
                     + "date(waktu_simpan) between ? and ? and iob.no_kartu like ? or "
@@ -755,6 +762,16 @@ public class DlgResepIterObat extends javax.swing.JDialog {
                 ps.setString(36, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
+                    if (Sequel.cariIsi("select ifnull(tgl_libur,'') from hari_libur where tgl_libur='" + Sequel.cariIsi("SELECT DATE_ADD('" + rs.getString("tglResep") + "', INTERVAL 30 DAY)") + "'").equals("")) {
+                        if (Sequel.cariIsi("SELECT date_format(DATE_ADD('" + rs.getString("tglResep") + "', INTERVAL 30 DAY),'%W')").equals("Sunday")) {
+                            ketHari = "bertepatan dengan hari MINGGU";
+                        } else {
+                            ketHari = "normal hari kerja seperti biasa";
+                        }
+                    } else {
+                        ketHari = Sequel.cariIsi("select keterangan from hari_libur where tgl_libur='" + rs.getString("tglResep") + "'");
+                    }
+                    
                     tabMode.addRow(new String[]{
                         rs.getString("kode_iter"),
                         rs.getString("no_rawat"),
@@ -781,7 +798,9 @@ public class DlgResepIterObat extends javax.swing.JDialog {
                         rs.getString("keterangan"),
                         rs.getString("waktu_simpan"),                        
                         rs.getString("kd_poli"),
-                        rs.getString("tglResep")
+                        rs.getString("tglResep"),
+                        Sequel.cariIsi("SELECT date_format(DATE_ADD('" + rs.getString("tglResep") + "', INTERVAL 30 DAY),'%d-%m-%Y')"),
+                        ketHari
                     });
                 }                
             } catch (Exception e) {

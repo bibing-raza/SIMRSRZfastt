@@ -932,6 +932,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnMonitoringEWSObsgyn = new widget.ButtonBig();
         btnDepartemen = new widget.ButtonBig();
         btnResepIterBpjs = new widget.ButtonBig();
+        BtnPerubahanDpjp = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6357,6 +6358,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnResepIterBpjs);
 
+        BtnPerubahanDpjp.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPerubahanDpjp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/doctor (1).png"))); // NOI18N
+        BtnPerubahanDpjp.setText("Perubahan DPJP Ranap");
+        BtnPerubahanDpjp.setIconTextGap(0);
+        BtnPerubahanDpjp.setName("BtnPerubahanDpjp"); // NOI18N
+        BtnPerubahanDpjp.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPerubahanDpjp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPerubahanDpjpActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(BtnPerubahanDpjp);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6365,7 +6379,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25/07/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30/07/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12533,6 +12547,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnResepIterBpjsActionPerformed
 
+    private void BtnPerubahanDpjpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPerubahanDpjpActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgPerubahanDpjp aplikasi = new DlgPerubahanDpjp(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnPerubahanDpjpActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12552,6 +12579,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig BtnLog;
     private widget.Button BtnLogin;
     private widget.ButtonBig BtnMenu;
+    private widget.ButtonBig BtnPerubahanDpjp;
     private widget.Button BtnSimpanPass;
     private widget.ButtonBig BtnToolJualObat;
     private widget.ButtonBig BtnToolKamnap;
@@ -13201,6 +13229,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
             if (akses.getdpjp_ranap() == true) {
                 Panelmenu.add(BtnDpjp);
+                jmlmenu++;
+            }
+            
+            if (akses.getdpjp_ranap() == true) {
+                Panelmenu.add(BtnPerubahanDpjp);
                 jmlmenu++;
             }
 
@@ -16056,6 +16089,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             Panelmenu.add(BtnDpjp);
             jmlmenu++;
         }
+        
+        if (akses.getdpjp_ranap() == true) {
+            Panelmenu.add(BtnPerubahanDpjp);
+            jmlmenu++;
+        }
 
         if (akses.gettindakan_ranap() == true) {
             Panelmenu.add(btnRanap);
@@ -18383,6 +18421,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getdpjp_ranap() == true) {
             if (BtnDpjp.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(BtnDpjp);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getdpjp_ranap() == true) {
+            if (BtnPerubahanDpjp.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(BtnPerubahanDpjp);
                 jmlmenu++;
             }
         }

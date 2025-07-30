@@ -760,6 +760,21 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_btnDPJPActionPerformed
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
+//        if (tbDPJP.getSelectedRow() > -1) {
+//            akses.setform("DlgDpjp");
+//            DlgPerubahanDpjp form = new DlgPerubahanDpjp(null, false);
+//            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+//            form.setLocationRelativeTo(internalFrame1);
+//            form.emptTeks();
+//            form.isCek();
+//            form.setData(tbDPJP.getValueAt(tbDPJP.getSelectedRow(), 1).toString(), tbDPJP.getValueAt(tbDPJP.getSelectedRow(), 2).toString(),
+//                    tbDPJP.getValueAt(tbDPJP.getSelectedRow(), 3).toString(), tbDPJP.getValueAt(tbDPJP.getSelectedRow(), 4).toString());
+//            form.setVisible(true);
+//        } else {
+//            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih/klik dulu salah satu datanya pada tabel..!!");
+//            tampil();
+//        }
+
         if (TNoRw.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
         } else if (Tkddokter.getText().equals("") || Tkddokter.getText().equals("-") || Tkddokter.getText().equals("--")) {

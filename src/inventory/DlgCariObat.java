@@ -207,7 +207,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         tabModeIter = new DefaultTableModel(null, new String[]{
             "Kode Iter", "no_sep", "no_kartu", "No. RM", "Nama Pasien", "no_rawat", "Poliklinik", "Pengambilan Ke",
-            "Tgl. Ambil Obat", "Status Pengambilan", "poli_ke", "tgl_exp_rujukan", "kd_poli", "tgl_ambil_obat", "waktu_simpan"}) {
+            "Tgl. Ambil Obat", "Status Pengambilan", "poli_ke", "tgl_exp_rujukan", "kd_poli", "tgl_ambil_obat", "waktu_simpan", "tglResep"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -218,7 +218,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         tbResepIter.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbResepIter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 16; i++) {
             TableColumn column = tbResepIter.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(110);
@@ -256,6 +256,9 @@ public final class DlgCariObat extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 14) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 15) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -2120,6 +2123,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             Sequel.menyimpanQr("setting_qr", "'QRkodeIter'", "file QRCode Kode Resep Iter", Sequel.cariFolderPrintKodeIter());
             param.put("lokasi", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRkodeIter'"));
             param.put("wktuCetak", Sequel.cariIsi("select date_format(now(),'%d/%m/%Y %H:%i Wita')"));
+            param.put("tglDatang", Valid.SetTglINDONESIA(Sequel.cariIsi("SELECT DATE_ADD('" + tbResepIter.getValueAt(tbResepIter.getSelectedRow(), 15).toString() + "', INTERVAL 30 DAY)")));
 
             Valid.MyReport("rptKodeIterThermal.jasper", "report", "::[ Cetak Bukti Pengambilan Resep Iter Yang Ke-" + pengambilan + " ]::",
                     "SELECT i.*, p.nm_pasien, pl.nm_poli, CONCAT(DAY(i.tgl_exp_rujukan), ' ', CASE MONTH(i.tgl_exp_rujukan) "
@@ -2959,7 +2963,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     private void tampilResepIter() {
         Valid.tabelKosong(tabModeIter);
         try {
-            ps1 = koneksi.prepareStatement("SELECT i.*, p.nm_pasien, pl.nm_poli, rp.kd_poli, "
+            ps1 = koneksi.prepareStatement("SELECT i.*, p.nm_pasien, pl.nm_poli, rp.kd_poli, date(i.waktu_simpan) tglResep, "
                     + "if(i.tgl_ambil_obat='0000-00-00','-',date_format(i.tgl_ambil_obat,'%d-%m-%Y')) tglAmbil FROM iter_obat_bpjs i "
                     + "inner join reg_periksa rp on rp.no_rawat = i.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli WHERE "
@@ -2982,7 +2986,8 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                         rs1.getString("tgl_exp_rujukan"),
                         rs1.getString("kd_poli"),
                         rs1.getString("tgl_ambil_obat"),
-                        rs1.getString("waktu_simpan")
+                        rs1.getString("waktu_simpan"),
+                        rs1.getString("tglResep")
                     });
                 }
             } catch (Exception e) {

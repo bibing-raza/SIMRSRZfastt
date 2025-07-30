@@ -1795,7 +1795,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void MnDataDietRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDataDietRanapActionPerformed
         DlgDataDietRanap dietRanap = new DlgDataDietRanap(null, false);
-        dietRanap.setSize(1069, 600);
+        dietRanap.setSize(933, 600);
         dietRanap.setLocationRelativeTo(internalFrame1);
         dietRanap.emptTeks();
         dietRanap.tampil();

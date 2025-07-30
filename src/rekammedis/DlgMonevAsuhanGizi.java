@@ -1231,6 +1231,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
                     + "m.tgl_monev BETWEEN ? and ? and m.perkembangan_fisik_klinis like ? or "
                     + "m.tgl_monev BETWEEN ? and ? and m.perkembangan_diet like ? or "
                     + "m.tgl_monev BETWEEN ? and ? and m.evaluasi_tindak_lanjut like ? or "
+                    + "m.tgl_monev BETWEEN ? and ? and m.ruang_rawat like ? or "
                     + "m.tgl_monev BETWEEN ? and ? and pg.nama like ? order by m.tgl_monev desc");
             try {
                 ps.setString(1, Valid.SetTgl(tgl1.getSelectedItem() + ""));
@@ -1253,7 +1254,10 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
                 ps.setString(18, "%" + TCari.getText().trim() + "%");
                 ps.setString(19, Valid.SetTgl(tgl1.getSelectedItem() + ""));
                 ps.setString(20, Valid.SetTgl(tgl2.getSelectedItem() + ""));
-                ps.setString(21, "%" + TCari.getText().trim() + "%");
+                ps.setString(21, "%" + TCari.getText().trim() + "%");                
+                ps.setString(22, Valid.SetTgl(tgl1.getSelectedItem() + ""));
+                ps.setString(23, Valid.SetTgl(tgl2.getSelectedItem() + ""));
+                ps.setString(24, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
