@@ -117,7 +117,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             bblPeri = "", pbPeri = "", lkPeri = "", ldPeri = "", lpPeri = "", llaPeri = "", poinI = "", poinJ = "", poinK = "", poinL = "", poinM = "", poinN = "",
             poinO = "", poinP = "", poinQ = "", poinR = "", ketRetraksi = "", anusPeri = "";
     private String noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "",
-            hasilDipilih = "", kdItem = "", norawat = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", link = "";
+            hasilDipilih = "", kdItem = "", norawat = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", link = "", nipDpjpAwal = "";
     private HttpHeaders headers;
     private HttpEntity requestEntity;
     private JsonNode root;
@@ -5381,8 +5381,14 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             btnDPJP.requestFocus();
         } else {
             if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + TNoRW.getText() + "'") > 0) {
-                Sequel.mengedit("dpjp_ranap", "no_rawat='" + TNoRW.getText() + "'", "kd_dokter='" + kddpjp.getText() + "'");
-                BtnCloseIn10ActionPerformed(null);
+                if (Sequel.menyimpantf("perubahan_dpjp_ranap", "?,?,?,?,?,?", "No.Rawat", 6, new String[]{
+                    TNoRW.getText(), nipDpjpAwal, kddpjp.getText(), Sequel.cariIsi("select date(now())"),
+                    "Perubahan menyesuaikan dengan resume medis", Sequel.cariIsi("select now()")
+                }) == true) {
+                    Sequel.queryu("delete from dpjp_ranap where no_rawat='" + TNoRW.getText() + "'");
+                    Sequel.menyimpan("dpjp_ranap", "'" + TNoRW.getText() + "','" + kddpjp.getText() + "'", "DPJP");
+                    BtnCloseIn10ActionPerformed(null);
+                }
             } else {
                 Sequel.menyimpanPesanGagalnyaDiTerminal("dpjp_ranap", "?,?", "DPJP Rawat Inap", 2, new String[]{
                     TNoRW.getText(), kddpjp.getText()
@@ -5407,6 +5413,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu pasiennya...!");
         } else {
+            nipDpjpAwal = "";
             ChkAccor.setSelected(false);
             isMenu();
 
@@ -5414,6 +5421,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             WindowDPJPranap.setLocationRelativeTo(internalFrame1);
             WindowDPJPranap.setVisible(true);
             kddpjp.setText(Sequel.cariIsi("select ifnull(kd_dokter,'') from dpjp_ranap where no_rawat='" + TNoRW.getText() + "'"));
+            nipDpjpAwal = kddpjp.getText();
             if (kddpjp.getText().equals("")) {
                 nmdpjp.setText("");
             } else {

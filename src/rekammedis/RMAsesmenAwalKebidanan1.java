@@ -11135,13 +11135,42 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                 + "<td valign='top' colspan='1'>Skala : " + rsPrev.getString("skala_nyeri") + "</td>"
                                 + "</tr>");
                         
-//                        htmlContent.append(
-//                                "<tr class='isi'>"
-//                                + "<td valign='top' colspan='1'>Provocation</td>"
-//                                + "<td valign='top' colspan='4'>: Faktor yang memperburuk rasa nyeri " + prevProvo + "</td>"
-//                                + "<td valign='top' colspan='3' rowspan='4'><img src='setting/ttd_karu_covid.jpg' width='100' height='100'></td>"
-//                                + "</tr>");
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='middle' colspan='1'>Provocation</td>"
+                                + "<td valign='middle' colspan='4'>: Faktor yang memperburuk rasa nyeri " + prevProvo + "</td>"
+                                + "<td valign='middle' colspan='3' rowspan='5'><img src='https://raw.githubusercontent.com/bibing-raza/gambar_online/main/skala_nyeri.png' width='500' alt='Skala Nyeri'></td>"
+                                + "</tr>");
                         
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='middle' colspan='1'>Quality</td>"
+                                + "<td valign='middle' colspan='4'>: Rasa nyeri seperti " + prevQuality + "</td>"                                
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='middle' colspan='1'>Radiation</td>"
+                                + "<td valign='middle' colspan='4'>: Nyeri menjalar ke bagian tubuh yang lain " + rsPrev.getString("radiation") + "</td>"                                
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='middle' colspan='1'>Severity</td>"
+                                + "<td valign='middle' colspan='4'>: Tingkat keparahan nyeri " + rsPrev.getString("severity") + "</td>"                                
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='middle' colspan='1'>Time</td>"
+                                + "<td valign='middle' colspan='4'>: Nyeri berlangsung " + rsPrev.getString("time") + ", Lama : " + rsPrev.getString("time_lama") + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"                                
+                                + "<td valign='top' colspan='4' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>SKRINING GIZI AWAL</span></td>"                                
+                                + "<td valign='top' colspan='4' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>RIWAYAT ALERGI</span></td>"
+                                + "</tr>");
                     }
                     
                     htmlContent.append(

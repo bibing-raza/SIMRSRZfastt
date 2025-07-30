@@ -14250,6 +14250,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             Sequel.meghapus("bridging_jamkesda", "no_sep", sepJKD);
             Sequel.meghapus("pasien_mati", "no_rkm_medis", TNoRM.getText());
             Sequel.meghapus("dpjp_ranap", "no_rawat", norawat.getText());
+            Sequel.meghapus("perubahan_dpjp_ranap", "no_rawat", norawat.getText());
             Sequel.meghapus("persalinan_dinkes", "no_rawat", norawat.getText());
             Sequel.meghapus("detail_persalinan_dinkes", "no_rawat", norawat.getText());
             Sequel.mengedit("kamar", "kd_kamar='" + kdkamar.getText() + "'", "status='KOSONG'");

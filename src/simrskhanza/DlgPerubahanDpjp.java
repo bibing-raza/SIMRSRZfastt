@@ -43,7 +43,7 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
     private ResultSet rs;
     private int i = 0, x = 0, pilihan = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private String kode = "";
+    private String dialog_simpan = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -57,7 +57,7 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
 
         tabMode = new DefaultTableModel(null, new String[]{
             "No. Rawat", "No. RM", "Nama Pasien", "Tgl. MRS", "Rg. Rawat Terakhir", "NIP DPJP", "Nama DPJP Sebelumnya", "NIP DPJP",
-            "Nama DPJP Pengganti", "Tgl. Pergantian", "Keterangan", "tgl_pergantian", "waktu_simpan"}) {
+            "Nama DPJP Pengganti", "Tgl. Pergantian", "Keterangan / Alasan", "tgl_pergantian", "waktu_simpan"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -89,13 +89,13 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
             } else if (i == 8) {
                 column.setPreferredWidth(250);
             } else if (i == 9) {
-                column.setPreferredWidth(90);
-            } else if (i == 11) {
+                column.setPreferredWidth(140);
+            } else if (i == 10) {
                 column.setPreferredWidth(300);
-            } else if (i == 11) {
+            } else if (i == 11) {                
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 12) {
+            } else if (i == 12) {                
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -179,14 +179,16 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnGanti = new javax.swing.JMenuItem();
+        MnHapus = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
-        BtnHapus = new widget.Button();
-        BtnGanti = new widget.Button();
         BtnAll = new widget.Button();
+        BtnExcel = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass10 = new widget.panelisi();
         jLabel19 = new widget.Label();
@@ -220,6 +222,32 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbDpjp = new widget.Table();
+
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+
+        MnGanti.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        MnGanti.setText("Ganti Data");
+        MnGanti.setName("MnGanti"); // NOI18N
+        MnGanti.setPreferredSize(new java.awt.Dimension(110, 25));
+        MnGanti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnGantiActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnGanti);
+
+        MnHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapus.setText("Hapus Data");
+        MnHapus.setName("MnHapus"); // NOI18N
+        MnHapus.setPreferredSize(new java.awt.Dimension(110, 25));
+        MnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapus);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -281,44 +309,6 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnBatal);
 
-        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
-        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
-        BtnHapus.setText("Hapus");
-        BtnHapus.setToolTipText("Alt+H");
-        BtnHapus.setName("BtnHapus"); // NOI18N
-        BtnHapus.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnHapusActionPerformed(evt);
-            }
-        });
-        BtnHapus.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnHapusKeyPressed(evt);
-            }
-        });
-        panelGlass8.add(BtnHapus);
-
-        BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
-        BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
-        BtnGanti.setText("Ganti");
-        BtnGanti.setToolTipText("Alt+G");
-        BtnGanti.setName("BtnGanti"); // NOI18N
-        BtnGanti.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnGanti.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGantiActionPerformed(evt);
-            }
-        });
-        BtnGanti.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnGantiKeyPressed(evt);
-            }
-        });
-        panelGlass8.add(BtnGanti);
-
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('M');
@@ -337,6 +327,20 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnAll);
+
+        BtnExcel.setForeground(new java.awt.Color(0, 0, 0));
+        BtnExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        BtnExcel.setMnemonic('M');
+        BtnExcel.setText("Export Data Ke Ms. Excel");
+        BtnExcel.setToolTipText("Alt+M");
+        BtnExcel.setName("BtnExcel"); // NOI18N
+        BtnExcel.setPreferredSize(new java.awt.Dimension(180, 30));
+        BtnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExcelActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnExcel);
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -487,7 +491,7 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
         TnmDpjpSebelum.setForeground(new java.awt.Color(0, 0, 0));
         TnmDpjpSebelum.setName("TnmDpjpSebelum"); // NOI18N
         FormInput.add(TnmDpjpSebelum);
-        TnmDpjpSebelum.setBounds(322, 40, 439, 23);
+        TnmDpjpSebelum.setBounds(302, 40, 459, 23);
 
         TNoRw.setEditable(false);
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
@@ -512,7 +516,7 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
         TnipSebelum.setForeground(new java.awt.Color(0, 0, 0));
         TnipSebelum.setName("TnipSebelum"); // NOI18N
         FormInput.add(TnipSebelum);
-        TnipSebelum.setBounds(143, 40, 175, 23);
+        TnipSebelum.setBounds(143, 40, 155, 23);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Diganti Oleh DPJP : ");
@@ -524,13 +528,13 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
         TnipPengganti.setForeground(new java.awt.Color(0, 0, 0));
         TnipPengganti.setName("TnipPengganti"); // NOI18N
         FormInput.add(TnipPengganti);
-        TnipPengganti.setBounds(143, 68, 175, 23);
+        TnipPengganti.setBounds(143, 68, 155, 23);
 
         TnmDpjpPengganti.setEditable(false);
         TnmDpjpPengganti.setForeground(new java.awt.Color(0, 0, 0));
         TnmDpjpPengganti.setName("TnmDpjpPengganti"); // NOI18N
         FormInput.add(TnmDpjpPengganti);
-        TnmDpjpPengganti.setBounds(322, 68, 439, 23);
+        TnmDpjpPengganti.setBounds(302, 68, 459, 23);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Tgl. Pergantian : ");
@@ -591,6 +595,7 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbDpjp.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
+        tbDpjp.setComponentPopupMenu(jPopupMenu1);
         tbDpjp.setName("tbDpjp"); // NOI18N
         tbDpjp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -630,10 +635,15 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
                 TNoRw.getText(), TnipSebelum.getText(), TnipPengganti.getText(), Valid.SetTgl(TtglPergantian.getSelectedItem() + ""),
                 Tketerangan.getText(), Sequel.cariIsi("select now()")
             }) == true) {
+                Sequel.queryu("delete from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'");
+                Sequel.menyimpan("dpjp_ranap", "'" + TNoRw.getText() + "','" + TnipPengganti.getText() + "'", "DPJP");
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Perubahan DPJP", "Simpan");
+                
+                akses.setCopyData("");
+                akses.setCopyData("perubahan dpjp");
                 TCari.setText(TNoRw.getText());
                 emptTeks();
-                tampil();
+                tampil();                
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -654,48 +664,8 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             emptTeks();
-        } else {
-            Valid.pindah(evt, BtnSimpan, BtnGanti);
         }
 }//GEN-LAST:event_BtnBatalKeyPressed
-
-    private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
-        if (tbDpjp.getSelectedRow() > -1) {
-            if (TnipSebelum.getText().equals("") || TnipSebelum.getText().equals("-") || TnipSebelum.getText().equals("--")) {
-                JOptionPane.showMessageDialog(null, "Pilihlah DPJP sebelumnyanya dengan benar..!!");
-                btnDPJPSebelum.requestFocus();
-            } else if (TnipPengganti.getText().equals("") || TnipPengganti.getText().equals("-") || TnipPengganti.getText().equals("--")) {
-                JOptionPane.showMessageDialog(null, "Pilihlah DPJP penggantinya dengan benar..!!");
-                btnDPJPPengganti.requestFocus();
-            } else if (Tketerangan.getText().trim().equals("")) {
-                Valid.textKosong(Tketerangan, "Keterangan / Alasan");
-                Tketerangan.requestFocus();
-            } else {
-                if (Sequel.mengedittf("perubahan_dpjp_ranap", "waktu_simpan=?", "kd_dokter_sebelum=?, kd_dokter_pengganti=?, "
-                        + "tgl_pergantian=?, keterangan=?", 5, new String[]{
-                            TnipSebelum.getText(), TnipPengganti.getText(), Valid.SetTgl(TtglPergantian.getSelectedItem() + ""), Tketerangan.getText(),
-                            tbDpjp.getValueAt(tbDpjp.getSelectedRow(), 14).toString()
-                        }) == true) {
-                    
-                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Perubahan DPJP", "Ganti");
-                    TCari.setText(TNoRw.getText());
-                    tampil();
-                    emptTeks();
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
-            tampil();
-        }
-}//GEN-LAST:event_BtnGantiActionPerformed
-
-    private void BtnGantiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGantiKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            BtnGantiActionPerformed(null);
-        }else{
-            Valid.pindah(evt, BtnBatal, BtnKeluar);
-        }
-}//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
@@ -788,7 +758,11 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
         dokter.setVisible(true);
     }//GEN-LAST:event_btnDPJPPenggantiActionPerformed
 
-    private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        tampil();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void MnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusActionPerformed
         if (tbDpjp.getSelectedRow() > -1) {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
@@ -808,17 +782,78 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             tampil();
         }
-    }//GEN-LAST:event_BtnHapusActionPerformed
+    }//GEN-LAST:event_MnHapusActionPerformed
 
-    private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            BtnHapusActionPerformed(null);
+    private void MnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnGantiActionPerformed
+        if (tbDpjp.getSelectedRow() > -1) {
+            if (TnipSebelum.getText().equals("") || TnipSebelum.getText().equals("-") || TnipSebelum.getText().equals("--")) {
+                JOptionPane.showMessageDialog(null, "Pilihlah DPJP sebelumnyanya dengan benar..!!");
+                btnDPJPSebelum.requestFocus();
+            } else if (TnipPengganti.getText().equals("") || TnipPengganti.getText().equals("-") || TnipPengganti.getText().equals("--")) {
+                JOptionPane.showMessageDialog(null, "Pilihlah DPJP penggantinya dengan benar..!!");
+                btnDPJPPengganti.requestFocus();
+            } else if (Tketerangan.getText().trim().equals("")) {
+                Valid.textKosong(Tketerangan, "Keterangan / Alasan");
+                Tketerangan.requestFocus();
+            } else {
+                if (Sequel.mengedittf("perubahan_dpjp_ranap", "waktu_simpan=?", "kd_dokter_sebelum=?, kd_dokter_pengganti=?, "
+                        + "tgl_pergantian=?, keterangan=?", 5, new String[]{
+                            TnipSebelum.getText(), TnipPengganti.getText(), Valid.SetTgl(TtglPergantian.getSelectedItem() + ""), Tketerangan.getText(),
+                            tbDpjp.getValueAt(tbDpjp.getSelectedRow(), 14).toString()
+                        }) == true) {
+                    
+                    Sequel.queryu("delete from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'");
+                    Sequel.menyimpan("dpjp_ranap", "'" + TNoRw.getText() + "','" + TnipPengganti.getText() + "'", "DPJP");
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Perubahan DPJP", "Ganti");
+                    
+                    akses.setCopyData("");
+                    akses.setCopyData("perubahan dpjp");
+                    TCari.setText(TNoRw.getText());
+                    tampil();
+                    emptTeks();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            tampil();
         }
-    }//GEN-LAST:event_BtnHapusKeyPressed
+    }//GEN-LAST:event_MnGantiActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        tampil();
-    }//GEN-LAST:event_formWindowOpened
+    private void BtnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcelActionPerformed
+        if (tbDpjp.getRowCount() <= -1) {
+            JOptionPane.showMessageDialog(rootPane, "Maaf, data pada tabel masih kosong...!!!");
+            tampil();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary");
+            int row = tabMode.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary", "'0','"
+                        + tabMode.getValueAt(r, 0).toString() + "','"
+                        + tabMode.getValueAt(r, 1).toString() + "','"
+                        + tabMode.getValueAt(r, 2).toString() + "','"
+                        + tabMode.getValueAt(r, 3).toString() + "','"
+                        + tabMode.getValueAt(r, 4).toString() + "','"
+                        + tabMode.getValueAt(r, 5).toString() + "','"
+                        + tabMode.getValueAt(r, 6).toString() + "','"
+                        + tabMode.getValueAt(r, 7).toString() + "','"
+                        + tabMode.getValueAt(r, 8).toString() + "','"
+                        + tabMode.getValueAt(r, 9).toString() + "','"
+                        + tabMode.getValueAt(r, 10).toString() + "','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Perubahan DPJP");
+            }
+            Sequel.AutoComitTrue();
+            
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT temp1 'No. Rawat', temp2 'No. RM', temp3 'Nama Pasien', temp4 'Tgl. MRS', temp5 'Rg. Rawat Terakhir', "
+                    + "temp6 'NIP DPJP', temp7 'Nama DPJP Sebelumnya', temp8 'NIP DPJP', temp9 'Nama DPJP Pengganti', temp10 'Tgl. Pergantian', "
+                    + "temp11 'Keterangan / Alasan' FROM temporary", dialog_simpan);
+            
+            JOptionPane.showMessageDialog(null, "Data perubahan DPJP berhasil diexport menjadi file excel,..!!!");
+            tampil();
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnExcelActionPerformed
 
     /**
     * @param args the command line arguments
@@ -840,8 +875,7 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
     private widget.Button BtnAll;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
-    private widget.Button BtnGanti;
-    private widget.Button BtnHapus;
+    private widget.Button BtnExcel;
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
     public widget.CekBox ChkInput;
@@ -849,6 +883,8 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormInput;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnGanti;
+    private javax.swing.JMenuItem MnHapus;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;
@@ -875,6 +911,7 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
     private widget.Label jLabel7;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass8;
     private widget.Table tbDpjp;
@@ -884,8 +921,8 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT pdr.*, p.no_rkm_medis, p.nm_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tglMrs, pg1.nama dpjpSebelum, "
-                    + "pg2.nama dpjpPengganti, date_format(pdr.tgl_pergantian,'%d-%m-%Y') tglGanti, (select b.nm_bangsal from kamar_inap ki "
-                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal where "
+                    + "pg2.nama dpjpPengganti, concat(date_format(pdr.tgl_pergantian,'%d-%m-%Y'),', ',time_format(pdr.waktu_simpan,'%H:%i Wita')) tglGanti, "
+                    + "(select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal where "
                     + "ki.no_rawat=pdr.no_rawat order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1) rgRawat FROM perubahan_dpjp_ranap pdr "
                     + "inner join reg_periksa rp on rp.no_rawat =pdr.no_rawat inner join pasien p on p.no_rkm_medis =rp.no_rkm_medis "
                     + "inner join pegawai pg1 on pg1.nik =pdr.kd_dokter_sebelum inner join pegawai pg2 on pg2.nik =pdr.kd_dokter_pengganti WHERE "
@@ -998,8 +1035,10 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
     
     public void isCek() {
         BtnSimpan.setEnabled(akses.getdpjp_ranap());
-        BtnGanti.setEnabled(akses.getdpjp_ranap());
-        BtnHapus.setEnabled(akses.getdpjp_ranap());
+        BtnExcel.setEnabled(akses.getdpjp_ranap());
+        MnGanti.setEnabled(akses.getadmin());
+        MnHapus.setEnabled(akses.getadmin());
+        btnDPJPSebelum.setEnabled(akses.getadmin());
     }
     
     public void setData(String norwt, String norm, String nmPasien, String nipSebelumnya) {
@@ -1007,6 +1046,8 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
         TNoRM.setText(norm);
         TPasien.setText(nmPasien);
         TnipSebelum.setText(nipSebelumnya);
-        TnmDpjpSebelum.setText(Sequel.cariIsi("select nama from pasien where nik='" + TnipSebelum.getText() + "'"));
+        TnmDpjpSebelum.setText(Sequel.cariIsi("select nama from pegawai where nik='" + TnipSebelum.getText() + "'"));
+        ChkInput.setSelected(true);
+        isForm();
     }
 }
