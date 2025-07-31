@@ -102,7 +102,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(80);
             } else if (i == 2) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(95);
             } else if (i == 3) {
                 column.setPreferredWidth(800);
             } else if (i == 4) {
@@ -127,13 +127,13 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(110);
             } else if (i == 1) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(95);
             } else if (i == 2) {
                 column.setPreferredWidth(150);
             } else if (i == 3) {
                 column.setPreferredWidth(120);
             } else if (i == 4) {
-                column.setPreferredWidth(240);
+                column.setPreferredWidth(220);
             }
         }
         tbHistoryUpdate.setDefaultRenderer(Object.class, new WarnaTable());
@@ -141,15 +141,15 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         tbHistoryUpdate.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
         tbHistoryUpdate.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 
-        versi.setDocument(new batasInput((byte)8).getKata(versi));
-        Nm.setDocument(new batasInput((byte)60).getKata(Nm));
+        versi.setDocument(new batasInput((byte) 20).getKata(versi));
+        Nm.setDocument(new batasInput((byte) 60).getKata(Nm));
 //        alamatrs.setDocument(new batasInput((byte)150).getKata(alamatrs));
-        Kota.setDocument(new batasInput((byte)30).getKata(Kota));
-        Propinsi.setDocument(new batasInput((byte)30).getKata(Propinsi));
-        Kontak.setDocument(new batasInput((byte)50).getKata(Kontak));
-        Email.setDocument(new batasInput((byte)50).getKata(Email));
-        kdPPK.setDocument(new batasInput((byte)15).getKata(kdPPK));
-        kdPPK1.setDocument(new batasInput((byte)15).getKata(kdPPK1));
+        Kota.setDocument(new batasInput((byte) 30).getKata(Kota));
+        Propinsi.setDocument(new batasInput((byte) 30).getKata(Propinsi));
+        Kontak.setDocument(new batasInput((byte) 50).getKata(Kontak));
+        Email.setDocument(new batasInput((byte) 50).getKata(Email));
+        kdPPK.setDocument(new batasInput((byte) 15).getKata(kdPPK));
+        kdPPK1.setDocument(new batasInput((byte) 15).getKata(kdPPK1));
     }
     
     Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
@@ -653,7 +653,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             }
         });
         panelGlass1.add(versi);
-        versi.setBounds(705, 210, 90, 23);
+        versi.setBounds(705, 210, 120, 23);
 
         scrollPane4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane4.setName("scrollPane4"); // NOI18N

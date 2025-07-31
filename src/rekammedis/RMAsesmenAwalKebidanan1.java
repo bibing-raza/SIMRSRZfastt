@@ -11091,7 +11091,13 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                 + "<td valign='top' colspan='7'>: " + rsPrev.getString("planing") + "</td>"
                                 + "</tr>");
                         
-                        String prevNyeri = "", prevProvo = "", prevQuality = "";
+                        String prevNyeri = "", prevProvo = "", prevQuality = "", prevGambar = "";
+                        try {
+                            prevGambar = "/picture/skala_nteri.png";
+                        } catch (Exception e) {
+                            prevGambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/skala_nyeri.png";
+                        }
+                        
                         if (rsPrev.getString("nyeri").equals("Ya")) {
                             if (rsPrev.getString("lokasi_nyeri").equals("")) {
                                 prevNyeri = "Ya, Lokasi : -";
@@ -11126,22 +11132,22 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                 "<tr class='isi'>"
                                 + "<td valign='top' colspan='8' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>ASSESMEN NYERI</span></td>"
                                 + "</tr>");
-                        
+
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='top' colspan='1'>Nyeri</td>"
                                 + "<td valign='top' colspan='5'>: " + prevNyeri + "</td>"
-                                + "<td valign='top' colspan='1'>Jenis : " + rsPrev.getString("jenis") + "</td>"                                
+                                + "<td valign='top' colspan='1'>Jenis : " + rsPrev.getString("jenis") + "</td>"
                                 + "<td valign='top' colspan='1'>Skala : " + rsPrev.getString("skala_nyeri") + "</td>"
                                 + "</tr>");
-                        
+
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='middle' colspan='1'>Provocation</td>"
                                 + "<td valign='middle' colspan='4'>: Faktor yang memperburuk rasa nyeri " + prevProvo + "</td>"
-                                + "<td valign='middle' colspan='3' rowspan='5'><img src='https://raw.githubusercontent.com/bibing-raza/gambar_online/main/skala_nyeri.png' width='500' alt='Skala Nyeri'></td>"
+                                + "<td valign='middle' colspan='3' rowspan='5'><img src='" + prevGambar + "' width='500' alt='Skala Nyeri'></td>"
                                 + "</tr>");
-                        
+
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='middle' colspan='1'>Quality</td>"
