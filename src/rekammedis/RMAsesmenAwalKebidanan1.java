@@ -11093,7 +11093,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                         
                         String prevNyeri = "", prevProvo = "", prevQuality = "", prevGambar = "";
                         try {
-                            prevGambar = "/picture/skala_nteri.png";
+                            prevGambar = "http://192.168.0.230:7183/img-rme/skala_nyeri.png";
                         } catch (Exception e) {
                             prevGambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/skala_nyeri.png";
                         }
