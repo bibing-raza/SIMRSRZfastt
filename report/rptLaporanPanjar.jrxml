@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="767" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
-	<property name="ireport.zoom" value="1.8181818181818272"/>
-	<property name="ireport.x" value="233"/>
+	<property name="ireport.zoom" value="2.0000000000000107"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
@@ -24,6 +24,7 @@
 	<parameter name="emailrs" class="java.lang.String"/>
 	<parameter name="judul" class="java.lang.String"/>
 	<parameter name="periode" class="java.lang.String"/>
+	<parameter name="judulKolom" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, 
 TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, 
@@ -100,7 +101,7 @@ INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where tp.tgl_panjar BETWE
 		<variableExpression><![CDATA[$F{nominal_balik}]]></variableExpression>
 	</variable>
 	<title>
-		<band height="58">
+		<band height="94">
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="238" y="10" width="30" height="38"/>
 				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
@@ -132,12 +133,26 @@ INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where tp.tgl_panjar BETWE
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["E-mail : "+$P{emailrs}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="0" y="62" width="767" height="15"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{judul}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="76" width="767" height="15"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{periode}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="60">
+		<band height="23">
 			<staticText>
-				<reportElement x="0" y="37" width="28" height="22">
+				<reportElement x="0" y="0" width="28" height="22">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -146,7 +161,7 @@ INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where tp.tgl_panjar BETWE
 				<text><![CDATA[No.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="28" y="37" width="80" height="22">
+				<reportElement x="28" y="0" width="80" height="22">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -156,7 +171,7 @@ INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where tp.tgl_panjar BETWE
 (Tanggal Jam)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="108" y="37" width="80" height="22">
+				<reportElement x="108" y="0" width="80" height="22">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -165,7 +180,7 @@ INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where tp.tgl_panjar BETWE
 				<text><![CDATA[No. Rawat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="337" y="37" width="120" height="22">
+				<reportElement x="337" y="0" width="120" height="22">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -174,7 +189,7 @@ INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where tp.tgl_panjar BETWE
 				<text><![CDATA[Ruang Rawat]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="59" width="767" height="1">
+				<reportElement x="0" y="22" width="767" height="1">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -182,43 +197,43 @@ INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where tp.tgl_panjar BETWE
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="38" width="1" height="22"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="1" width="1" height="22"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="27" y="37" width="1" height="23"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="27" y="0" width="1" height="23"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="107" y="37" width="1" height="23"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="107" y="0" width="1" height="23"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="336" y="37" width="1" height="23"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="336" y="0" width="1" height="23"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="457" y="37" width="1" height="22"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="457" y="0" width="1" height="22"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="670" y="37" width="1" height="22"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="670" y="0" width="1" height="22"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="532" y="37" width="64" height="22">
+				<reportElement x="532" y="0" width="64" height="22">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -227,13 +242,13 @@ INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where tp.tgl_panjar BETWE
 				<text><![CDATA[Status Panjar]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="531" y="37" width="1" height="22"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="531" y="0" width="1" height="22"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="671" y="37" width="95" height="22">
+				<reportElement x="671" y="0" width="95" height="22">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -242,43 +257,19 @@ INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where tp.tgl_panjar BETWE
 				<text><![CDATA[Petugas Yang Menerima]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="596" y="37" width="1" height="22"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="596" y="0" width="1" height="22"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
-			<staticText>
-				<reportElement x="597" y="37" width="74" height="22">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<text><![CDATA[Nominal
-Status (Rp.)]]></text>
-			</staticText>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="766" y="37" width="1" height="23"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="766" y="0" width="1" height="23"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
-			<textField>
-				<reportElement x="0" y="5" width="767" height="15"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
-					<font fontName="Tahoma" size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{judul}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="17" width="767" height="15"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
-					<font fontName="Tahoma" size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{periode}]]></textFieldExpression>
-			</textField>
 			<line>
-				<reportElement x="0" y="37" width="767" height="1">
+				<reportElement x="0" y="0" width="767" height="1">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -286,13 +277,13 @@ Status (Rp.)]]></text>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="188" y="37" width="1" height="23"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="188" y="0" width="1" height="23"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="188" y="37" width="38" height="22">
+				<reportElement x="188" y="0" width="38" height="22">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -301,13 +292,13 @@ Status (Rp.)]]></text>
 				<text><![CDATA[No. RM]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="226" y="37" width="1" height="23"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="226" y="0" width="1" height="23"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="227" y="37" width="109" height="22">
+				<reportElement x="227" y="0" width="109" height="22">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -316,7 +307,7 @@ Status (Rp.)]]></text>
 				<text><![CDATA[Nama Pasien]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="458" y="37" width="74" height="22">
+				<reportElement x="458" y="0" width="74" height="22">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -325,6 +316,13 @@ Status (Rp.)]]></text>
 				<text><![CDATA[Nominal
 Panjar (Rp.)]]></text>
 			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="597" y="0" width="74" height="22"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{judulKolom}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<detail>

@@ -820,7 +820,7 @@ public class DlgPerubahanDpjp extends javax.swing.JDialog {
     }//GEN-LAST:event_MnGantiActionPerformed
 
     private void BtnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcelActionPerformed
-        if (tbDpjp.getRowCount() <= -1) {
+        if (tbDpjp.getRowCount() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Maaf, data pada tabel masih kosong...!!!");
             tampil();
         } else {

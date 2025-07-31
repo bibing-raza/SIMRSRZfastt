@@ -380,36 +380,9 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         });
 
         ChkInput.setSelected(false);
+        
         try {
-            ps = koneksi.prepareStatement(
-                    " SELECT pl.no_transaksi, pl.tanggal, pl.jam_penerimaan, kpl.nama_kategori, "
-                    + " p.nama, pl.besar, if(pl.kode_kategori='AMBLN',pl.keterangan,concat(pl.keterangan,' angsuran ke ',IFNULL(b.pembayaran_ke,'-'),' (',UPPER(IFNULL(b.status_transaksi,'-')),')')) keterangan, "
-                    + " IFNULL(pl.telah_terima_dari,'-') pembayar, "
-                    + " pl.no_sep, pl.no_rkm_medis, pl.no_kartu, pl.no_rawat, pl.tgl_masuk, pl.tgl_pulang, "
-                    + " pl.ruang_inap, pl.kode_inacbg, pl.trf_kls1, pl.trf_kls2, pl.trf_kls3, "
-                    + " pl.hak_kelas, pl.naik_kelas, pl.lm_rawat, pl.persen_tambahan, pl.rumus_selisih_tarif, pl.total_byr, "
-                    + " pl.nominal_pajak_sewa, pl.nominal_sewa, "
-                    + " IFNULL(b.sudah_dibayar,'0') sdb_dibyr, IFNULL(b.sisa_tagihan,'0') sisa_tag, "
-                    + " IFNULL(b.jumlah_byr,'0') jlh_byr, IFNULL(b.sisa_setelah_byr,'0') sisa_stlh_byr "
-                    + " FROM pemasukan_lain pl INNER JOIN petugas p ON p.nip=pl.nip "
-                    + " INNER JOIN kategori_pemasukan_lain kpl ON kpl.kode_kategori=pl.kode_kategori "
-                    + " LEFT JOIN biaya_naik_kelas_bpjs b ON b.no_transaksi=pl.no_transaksi WHERE "
-                    + "pl.tanggal between ? and ? and pl.keterangan like ? or "
-                    + "pl.tanggal between ? and ? and pl.nip like ? or "
-                    + "pl.tanggal between ? and ? and p.nama like ? or "
-                    + "pl.tanggal between ? and ? and pl.kode_kategori like ? or "
-                    + "pl.tanggal between ? and ? and pl.no_sep like ? or "
-                    + "pl.tanggal between ? and ? and pl.no_rkm_medis like ? or "
-                    + "pl.tanggal between ? and ? and pl.no_kartu like ? or "
-                    + "pl.tanggal between ? and ? and pl.no_rawat like ? or "
-                    + "pl.tanggal between ? and ? and pl.naik_kelas like ? or "
-                    + "pl.tanggal between ? and ? and b.status_transaksi like ? or "
-                    + "pl.tanggal between ? and ? and pl.persen_tambahan like ? or "
-                    + "pl.tanggal between ? and ? and kpl.nama_kategori like ? order by pl.tanggal desc, "
-                    + "pl.jam_penerimaan desc");
-            psakun = koneksi.prepareStatement(
-                    "select kd_rek,'Akun',"
-                    + "kd_rek2,'Kontra Akun' from kategori_pemasukan_lain where kode_kategori=?");
+            psakun = koneksi.prepareStatement("select kd_rek,'Akun',kd_rek2,'Kontra Akun' from kategori_pemasukan_lain where kode_kategori=?");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -3335,86 +3308,114 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-            ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-            ps.setString(3, "%" + TCari.getText().trim() + "%");
-            ps.setString(4, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-            ps.setString(5, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-            ps.setString(6, "%" + TCari.getText().trim() + "%");
-            ps.setString(7, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-            ps.setString(8, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-            ps.setString(9, "%" + TCari.getText().trim() + "%");
-            ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-            ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-            ps.setString(12, "%" + TCari.getText().trim() + "%");
-            ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-            ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-            ps.setString(15, "%" + TCari.getText().trim() + "%");
-
-            ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-            ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-            ps.setString(18, "%" + TCari.getText().trim() + "%");
-            ps.setString(19, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-            ps.setString(20, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-            ps.setString(21, "%" + TCari.getText().trim() + "%");
-            ps.setString(22, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-            ps.setString(23, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-            ps.setString(24, "%" + TCari.getText().trim() + "%");
-            ps.setString(25, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-            ps.setString(26, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-            ps.setString(27, "%" + TCari.getText().trim() + "%");
-            ps.setString(28, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-            ps.setString(29, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-            ps.setString(30, "%" + TCari.getText().trim() + "%");
-            ps.setString(31, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-            ps.setString(32, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-            ps.setString(33, "%" + TCari.getText().trim() + "%");
-            
-            ps.setString(34, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-            ps.setString(35, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-            ps.setString(36, "%" + TCari.getText().trim() + "%");
-            rs = ps.executeQuery();
-            total = 0;
-            while (rs.next()) {
-                tabMode.addRow(new Object[]{
-                    rs.getString(1), rs.getString(2), rs.getString(3),
-                    rs.getString(4), rs.getString(5), rs.getDouble(6),
-                    rs.getString(7), rs.getString(8),
-                    rs.getString(9),
-                    rs.getString(10),
-                    rs.getString(11),
-                    rs.getString(12),
-                    rs.getString(13),
-                    rs.getString(14),
-                    rs.getString(15),
-                    rs.getString(16),
-                    rs.getDouble(17),
-                    rs.getDouble(18),
-                    rs.getDouble(19),
-                    rs.getString(20),
-                    rs.getString(21),
-                    rs.getString(22),
-                    rs.getDouble(23),
-                    rs.getString(24),
-                    rs.getDouble(25),
-                    rs.getDouble(26),
-                    rs.getDouble(27),
-                    
-                    rs.getDouble(28),
-                    rs.getDouble(29),
-                    rs.getDouble(30),
-                    rs.getDouble(31),
-                    rs.getString("besar")
-                });
-                total = total + rs.getDouble(6);
-            }
-//            if (total > 0) {
-//                tabMode.addRow(new Object[]{">>", "", "", "", "Jumlah Total Pemasukan : Rp.", total, ""});
-//            }
-            LCount.setText(("" + (tabMode.getRowCount() - 1)).replaceAll("-1", "0"));
+            ps = koneksi.prepareStatement(" SELECT pl.no_transaksi, pl.tanggal, pl.jam_penerimaan, kpl.nama_kategori, p.nama, pl.besar, "
+                    + "if(pl.kode_kategori='AMBLN',pl.keterangan,concat(pl.keterangan,' angsuran ke ',IFNULL(b.pembayaran_ke,'-'),' (',UPPER(IFNULL(b.status_transaksi,'-')),')')) keterangan, "
+                    + "IFNULL(pl.telah_terima_dari,'-') pembayar, pl.no_sep, pl.no_rkm_medis, pl.no_kartu, pl.no_rawat, pl.tgl_masuk, pl.tgl_pulang, "
+                    + "pl.ruang_inap, pl.kode_inacbg, pl.trf_kls1, pl.trf_kls2, pl.trf_kls3, pl.hak_kelas, pl.naik_kelas, pl.lm_rawat, pl.persen_tambahan, pl.rumus_selisih_tarif, "
+                    + "pl.total_byr, pl.nominal_pajak_sewa, pl.nominal_sewa, IFNULL(b.sudah_dibayar,'0') sdb_dibyr, IFNULL(b.sisa_tagihan,'0') sisa_tag, "
+                    + "IFNULL(b.jumlah_byr,'0') jlh_byr, IFNULL(b.sisa_setelah_byr,'0') sisa_stlh_byr FROM pemasukan_lain pl INNER JOIN petugas p ON p.nip=pl.nip "
+                    + "INNER JOIN kategori_pemasukan_lain kpl ON kpl.kode_kategori=pl.kode_kategori LEFT JOIN biaya_naik_kelas_bpjs b ON b.no_transaksi=pl.no_transaksi WHERE "
+                    + "pl.tanggal between ? and ? and pl.keterangan like ? or "
+                    + "pl.tanggal between ? and ? and pl.nip like ? or "
+                    + "pl.tanggal between ? and ? and p.nama like ? or "
+                    + "pl.tanggal between ? and ? and pl.kode_kategori like ? or "
+                    + "pl.tanggal between ? and ? and pl.no_sep like ? or "
+                    + "pl.tanggal between ? and ? and pl.no_rkm_medis like ? or "
+                    + "pl.tanggal between ? and ? and pl.no_kartu like ? or "
+                    + "pl.tanggal between ? and ? and pl.no_rawat like ? or "
+                    + "pl.tanggal between ? and ? and pl.naik_kelas like ? or "
+                    + "pl.tanggal between ? and ? and b.status_transaksi like ? or "
+                    + "pl.tanggal between ? and ? and pl.persen_tambahan like ? or "
+                    + "pl.tanggal between ? and ? and kpl.nama_kategori like ? order by pl.tanggal desc, pl.jam_penerimaan desc");
+            try {
+                ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(3, "%" + TCari.getText().trim() + "%");                
+                ps.setString(4, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(5, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(6, "%" + TCari.getText().trim() + "%");
+                ps.setString(7, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(8, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(9, "%" + TCari.getText().trim() + "%");
+                ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(12, "%" + TCari.getText().trim() + "%");
+                ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(15, "%" + TCari.getText().trim() + "%");
+                ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(18, "%" + TCari.getText().trim() + "%");
+                ps.setString(19, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(20, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(21, "%" + TCari.getText().trim() + "%");
+                ps.setString(22, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(23, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(24, "%" + TCari.getText().trim() + "%");
+                ps.setString(25, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(26, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(27, "%" + TCari.getText().trim() + "%");
+                ps.setString(28, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(29, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(30, "%" + TCari.getText().trim() + "%");
+                ps.setString(31, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(32, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(33, "%" + TCari.getText().trim() + "%");
+                ps.setString(34, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(35, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(36, "%" + TCari.getText().trim() + "%");
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    tabMode.addRow(new Object[]{
+                        rs.getString(1), 
+                        rs.getString(2), 
+                        rs.getString(3),
+                        rs.getString(4), 
+                        rs.getString(5), 
+                        rs.getDouble(6),
+                        rs.getString(7), 
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12),
+                        rs.getString(13),
+                        rs.getString(14),
+                        rs.getString(15),
+                        rs.getString(16),
+                        rs.getDouble(17),
+                        rs.getDouble(18),
+                        rs.getDouble(19),
+                        rs.getString(20),
+                        rs.getString(21),
+                        rs.getString(22),
+                        rs.getDouble(23),
+                        rs.getString(24),
+                        rs.getDouble(25),
+                        rs.getDouble(26),
+                        rs.getDouble(27),
+                        rs.getDouble(28),
+                        rs.getDouble(29),
+                        rs.getDouble(30),
+                        rs.getDouble(31),
+                        rs.getString("besar")
+                    });
+                    total = total + rs.getDouble(6);
+                }
+            } catch (Exception e) {
+                System.out.println("tampil() : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }            
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
         }
+        LCount.setText(("" + (tabMode.getRowCount() - 1)).replaceAll("-1", "0"));
     }
 
     public void emptTeks() {
