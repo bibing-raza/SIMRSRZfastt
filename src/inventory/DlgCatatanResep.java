@@ -3136,11 +3136,16 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private void getDataCatatanResep() {
         jenisResep = "";
         if (tbResepObat.getSelectedRow() != -1) {
-            TNoRM.setText(tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 1).toString());
+            TNoRw.setText(tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 1).toString());
+            TNoRM.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
+            TPasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            TtglLahir.setText(Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            Tjk.setText(Sequel.cariIsi("select if(jk='L','Laki-laki','Perempuan') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            Tcara_byr.setText(Sequel.cariIsi("select pj.png_jawab from reg_periksa rp inner join penjab pj on pj.kd_pj=rp.kd_pj where rp.no_rawat='" + TNoRw.getText() + "'"));            
             TResepObat.setText(tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 4).toString());            
             TIdObat.setText(tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 7).toString());
             jenisResep = tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 9).toString();
-          
+            
             if (jenisResep.equals("CITO")) {
                 ChkCito.setSelected(true);
             } else if (jenisResep.equals("BIASA")) {

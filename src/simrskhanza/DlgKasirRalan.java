@@ -3965,7 +3965,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-07-2025" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2025" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4831,7 +4831,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-07-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4855,7 +4855,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-07-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -5075,7 +5075,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5094,7 +5094,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6048,8 +6048,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             Sequel.queryu("delete from lis_reg where no_rawat='" + TNoRw.getText() + "'");
             Sequel.queryu("delete from permintaan_lab_raza where no_rawat='" + TNoRw.getText() + "'");
 
-            Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + cekSEPboking + "'", "status_cetak_sep='BELUM' ");
-            Sequel.mengedit("booking_registrasi", "kd_booking='" + cekSEPboking + "'", "status_booking='Batal' ");
+            Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + cekSEPboking + "'", "status_cetak_sep='BELUM', no_rawat='-'");
+            Sequel.mengedit("booking_registrasi", "kd_booking='" + cekSEPboking + "'", "status_booking='Batal', no_rawat='-'");
 
             Sequel.AutoComitTrue();
             tampilkasir();
@@ -6382,12 +6382,12 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private void BtnPxBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPxBookingActionPerformed
         i = 0;
         pilihMenu = (String) JOptionPane.showInputDialog(null, "Silahkan tentukan pilihanya..!!", "Jenis Pasien Booking",
-                JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Pasien BPJS   ", "Pasien UMUM   "}, "Pasien BPJS   ");
+                JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Pasien BPJS   ", "Pasien Non BPJS   "}, "Pasien BPJS   ");
         switch (pilihMenu) {
             case "Pasien BPJS   ":
                 i = 1;
                 break;
-            case "Pasien UMUM   ":
+            case "Pasien Non BPJS   ":
                 i = 2;
                 break;
         }

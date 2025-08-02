@@ -3849,19 +3849,10 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
 }//GEN-LAST:event_TNoRMKeyPressed
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-        cekRujukan = "";
         Sequel.cariIsi("select kd_booking from booking_registrasi where kd_poli='" + KdPoli.getText() + "' and "
                 + "tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "' and "
                 + "no_rkm_medis=?", cekKDboking, TNoRM.getText());
         cekNoIdentitas();
-        
-        if (NoRujukan.getText().equals(Sequel.cariIsi("select k.no_rujukan from booking_registrasi b "
-                + "inner join kelengkapan_booking_sep_bpjs k on k.kd_booking=b.kd_booking where "
-                + "b.tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "' and b.no_rkm_medis='" + TNoRM.getText() + "'"))) {
-            cekRujukan = NoRujukan.getText();
-        } else {
-            cekRujukan = NoRujukan.getText();
-        }
 
         if (TNoRM.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
             Valid.textKosong(TNoRM, "pasien");
@@ -3913,14 +3904,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Pelayanan rawat jalan poliklinik TUTUP, karena sedang/memperingati "
                     + Sequel.cariIsi("select keterangan from hari_libur where tgl_libur='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "'")
                     + ", silahkan ganti hari lain utk. rencana tgl. periksanya");
-        } else if (Sequel.cariInteger("SELECT COUNT(-1) from booking_registrasi b inner join kelengkapan_booking_sep_bpjs k on k.kd_booking=b.kd_booking WHERE "
-                + "b.tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "' and b.no_rkm_medis='" + TNoRM.getText() + "' "
-                + "and b.kd_pj='B01' and k.no_rujukan='" + cekRujukan + "'") > 0) {
-            JOptionPane.showMessageDialog(rootPane, "Pasien ini sudah mendaftar dipoliklinik " + Sequel.cariIsi("select concat(p.nm_poli,' pada tgl. ',date_format(b.tanggal_periksa,'%d-%m-%Y')) "
-                    + "from booking_registrasi b inner join poliklinik p on p.kd_poli=b.kd_poli WHERE b.kd_pj='B01' and "
-                    + "b.tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "' and b.no_rkm_medis='" + TNoRM.getText() + "'") + " dg. No. Rujukan   \n"
-                    + "yang sama, silahkan konfirmasi lagi ke pasiennya utk. penjadwalan ulang di tgl. yang berbeda\n"
-                    + "untuk kunjungan kepoliklinik " + NmPoli.getText() + ".");
         } else if (cmbAntrianKhusus.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Apakah pasien tersebut termasuk antrian khusus/prioritas dipoliklinik..?, silahkan pilih dulu salah satu..!!");
             cmbAntrianKhusus.requestFocus();
@@ -3929,7 +3912,15 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
                 || (Sequel.cariInteger("select count(-1) from pasien_blacklist where no_peserta='" + nokartu + "'") > 0 && KdPoli.getText().equals("IRS"))) {
             JOptionPane.showMessageDialog(null, Sequel.cariIsi("select pesan_notifikasi from pasien_blacklist where no_rkm_medis='" + TNoRM.getText() + "'") + "...!!");
         } else {
-            if (kdpnj.getText().equals("B01") || (kdpnj.getText().equals("A03"))) {
+            if (kdpnj.getText().equals("B01") || kdpnj.getText().equals("A03")) {
+                cekRujukan = "";
+                if (NoRujukan.getText().equals(Sequel.cariIsi("select k.no_rujukan from booking_registrasi b "
+                        + "inner join kelengkapan_booking_sep_bpjs k on k.kd_booking=b.kd_booking where "
+                        + "b.tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "' and b.no_rkm_medis='" + TNoRM.getText() + "'"))) {
+                    cekRujukan = NoRujukan.getText();
+                } else {
+                    cekRujukan = NoRujukan.getText();
+                }
 
                 date1 = LocalDate.parse(Valid.SetTgl(TanggalPeriksa.getSelectedItem() + ""));
                 date2 = LocalDate.parse(Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""));
@@ -3955,8 +3946,16 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
                     Valid.textKosong(KdPenyakit, "Diagnosa Pasien");
                 } else if (KdPoli1.getText().trim().equals("") || (NmPoli1.getText().trim().equals(""))) {
                     Valid.textKosong(KdPoli1, "Poliklinik");
-                } else if (days > 90){
-                    JOptionPane.showMessageDialog(null, "Surat Rujukan ini Masa Berlaku Habis,Maksimal 3(tiga) bulan dari tanggal rujukan.Silahkan ke Faskes Perujuk Untuk Perbarui Rujukan");                    
+                } else if (Sequel.cariInteger("SELECT COUNT(-1) from booking_registrasi b inner join kelengkapan_booking_sep_bpjs k on k.kd_booking=b.kd_booking WHERE "
+                        + "b.tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "' and b.no_rkm_medis='" + TNoRM.getText() + "' "
+                        + "and b.kd_pj='B01' and k.no_rujukan='" + cekRujukan + "'") > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Pasien ini sudah mendaftar dipoliklinik " + Sequel.cariIsi("select concat(p.nm_poli,' pada tgl. ',date_format(b.tanggal_periksa,'%d-%m-%Y')) "
+                            + "from booking_registrasi b inner join poliklinik p on p.kd_poli=b.kd_poli WHERE b.kd_pj='B01' and "
+                            + "b.tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "' and b.no_rkm_medis='" + TNoRM.getText() + "'") + " dg. No. Rujukan   \n"
+                            + "yang sama, silahkan konfirmasi lagi ke pasiennya utk. penjadwalan ulang di tgl. yang berbeda\n"
+                            + "untuk kunjungan kepoliklinik " + NmPoli.getText() + ".");
+                } else if (days > 90) {
+                    JOptionPane.showMessageDialog(null, "Surat rujukan ini masa berlakunya habis, maksimal 3(tiga) bulan dari tgl. surat rujukan. Silahkan ke faskes perujuk untuk perbarui rujukan...!!!!");
                 } else {
                     autoNomorBooking();
                     simpanBooking();
@@ -3965,15 +3964,12 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
                     emptTeks();
                     tampil();
                 }
-            } else if (kdpnj.getText().equals("U01")) {
+            } else {
                 autoNomorBooking();
                 simpanBooking();
                 Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
                 emptTeks();
                 tampil();
-            } else {
-                JOptionPane.showMessageDialog(null, "Selain pasien Umum atau BPJS silakan lsg. ke loket pendaftaran, utk. saat ini belum ada kebijakan dari menejemen...");
-                btnPenjab.requestFocus();
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -3988,6 +3984,8 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        emptKelengkapanSEP();
+        tampil();
         ChkInput.setSelected(true);
         isForm();
 }//GEN-LAST:event_BtnBatalActionPerformed
@@ -4090,7 +4088,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
         tampil();
         emptTeks();
-        emptKelengkapanSEP();        
+        emptKelengkapanSEP();
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
@@ -4353,15 +4351,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     tampil();
                     emptTeks();
                 }
-            } else if (kdpnj.getText().equals("U01")) {
+            } else {
                 gantiDataBooking();
                 Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
                 Sequel.meghapus("kelengkapan_booking_sep_bpjs", "kd_booking", kdboking.getText());
                 tampil();
                 emptTeks();
-            } else {
-                JOptionPane.showMessageDialog(null, "Selain pasien Umum atau BPJS silakan lsg. ke loket pendaftaran, utk. saat ini belum ada kebijakan dari menejemen...");
-                btnPenjab.requestFocus();
             }
         }
     }//GEN-LAST:event_BtnGantiActionPerformed
@@ -5480,7 +5475,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     "select br.kd_booking,DATE_FORMAT(br.tanggal_booking,'%d-%m-%Y') tgl_boking,br.no_rkm_medis, p.nm_pasien,br.tanggal_periksa,pj.png_jawab,pl.nm_poli, "
                     + "d.nm_dokter,br.no_reg,concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,',',kb.nm_kab) alamat, "
                     + "br.status_booking, br.data_dari, br.kd_poli, br.kd_dokter, br.kd_pj, br.no_telp_pemesan, br.no_rawat, "
-                    + "if(br.kd_pj='U01','Tidak ada SEP',ks.status_cetak_sep) sep_bpjs, br.antrian_khusus from booking_registrasi br "
+                    + "if(br.kd_pj='B01',ks.status_cetak_sep,'Tidak ada SEP') sep_bpjs, br.antrian_khusus from booking_registrasi br "
                     + "inner join pasien p on p.no_rkm_medis=br.no_rkm_medis inner join dokter d on d.kd_dokter=br.kd_dokter "
                     + "inner join poliklinik pl on pl.kd_poli=br.kd_poli INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel "
                     + "INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab "

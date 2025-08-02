@@ -509,6 +509,7 @@ public class DlgDpjp extends javax.swing.JDialog {
 }//GEN-LAST:event_TCariKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
+        akses.setCopyData("");
         tampil();
 }//GEN-LAST:event_BtnCariActionPerformed
 

@@ -610,7 +610,7 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                     + "penilaian_awal_medis_ralan_kebidanan,penilaian_awal_keperawatan_kebidanan,ikhtisar_perawatan_hiv,survey_kepuasan,kemenkes_kanker,"
                     + "aktivasi_bridging,operator_antrian,penilaian_awal_medis_ralan_tht,rekam_psikologis,penilaian_pasien_geriatri,penilaian_awal_medis_ralan_mata,"
                     + "surat_sakit,surat_keterangan_kir_mcu,asesmen_medik_dewasa_ranap,pemberian_obat,cppt,bridging_satu_sehat,kemoterapi,cek_piutang,"
-                    + "asesmen_medik_anak_ranap,kegiatan_operasi,asesmen_medik_bedah_ranap from user where id_user=AES_ENCRYPT(?,'nur')");
+                    + "asesmen_medik_anak_ranap,kegiatan_operasi,asesmen_medik_bedah_ranap, indikator_mutu from user where id_user=AES_ENCRYPT(?,'nur')");
             try {
                 ps.setString(1, user);
                 rs = ps.executeQuery();
@@ -1981,6 +1981,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
                     if ("[M]Stok Darah".toLowerCase().contains(TCari.getText().toLowerCase())) {
                         tabMode.addRow(new Object[]{false, "[M]Stok Darah", rs.getBoolean("utd_stok_darah")});
+                    }
+                    
+                    if ("[N]Indikator Mutu".toLowerCase().contains(TCari.getText().toLowerCase())) {
+                        tabMode.addRow(new Object[]{false, "[N]Indikator Mutu", rs.getBoolean("indikator_mutu")});
                     }
 
                     if ("[N]Batal Periksa Per Bulan".toLowerCase().contains(TCari.getText().toLowerCase())) {
@@ -3532,6 +3536,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
             
             if("[M]Stok Darah".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","utd_stok_darah='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[N]Indikator Mutu".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","indikator_mutu='"+tbUser.getValueAt(i,2).toString()+"'");
             }
             
             if("[N]Batal Periksa Per Bulan".equals(tbUser.getValueAt(i,1).toString())){

@@ -47,7 +47,7 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private String bln = "", thn = "", kdkamar = "", statusRawat = "";
+    private String bln = "", thn = "", kdkamar = "", statusRawat = "", nmunit = "";
     private int x = 0;
 
     /** Creates new form DlgSpesialis
@@ -1048,6 +1048,7 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
 
     private void tampil() {
         Valid.tabelKosong(tabMode);
+        nmunit = "";
         try {
             ps = koneksi.prepareStatement("SELECT rp.no_rawat, concat('848 / ',sk.no_surat) nosrt, p.no_rkm_medis, p.nm_pasien, sk.tmpt_lahir, if(p.jk='L','Laki-laki','Perempuan') jk, "
                     + "sk.pekerjaan, sk.alamat_domisili, sk.kd_kamar, date_format(sk.sejak_tgl,'%d-%m-%Y') sejaktgl, date_format(sk.sampai_tgl,'%d-%m-%Y') tglselesai, "
@@ -1098,6 +1099,11 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
                 ps.setString(30, "%" + TCari.getText().trim() + "%"); 
                 rs = ps.executeQuery();
                 while (rs.next()) {
+                    if (Sequel.cariInteger("select count(-1) from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar ='" + rs.getString("kd_kamar") + "'") > 0) {
+                        nmunit = Sequel.cariIsi("SELECT b.nm_bangsal from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar ='" + rs.getString("kd_kamar") + "'");
+                    } else {
+                        nmunit = Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + rs.getString("kd_kamar") + "'");
+                    }
                     tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
                         rs.getString("nosrt"),
@@ -1108,7 +1114,7 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
                         rs.getString("tgllhr"),
                         rs.getString("pekerjaan"),
                         rs.getString("alamat_domisili"),
-                        Sequel.cariIsi("SELECT b.nm_bangsal from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar ='" + rs.getString("kd_kamar") + "'"),                        
+                        nmunit,
                         rs.getString("sejaktgl"),
                         rs.getString("tglselesai"),
                         rs.getString("dokter"),
