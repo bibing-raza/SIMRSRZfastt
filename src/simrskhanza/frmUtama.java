@@ -388,6 +388,8 @@ import simrskhanza.DlgInputPonek;
 import simrskhanza.DlgPenanggungJawab;
 import java.net.InetAddress;
 import kepegawaian.DlgDepartemen;
+import keuangan.DlgJaminanTransaksi;
+import keuangan.DlgPengembalianJaminan;
 import laporan.DlgQuerySql;
 import rekammedis.DlgHistoriIPAddressPetugasERM;
 import rekammedis.RMAsesmenKeperawatanPerinatologi;
@@ -933,6 +935,8 @@ public class frmUtama extends javax.swing.JFrame {
         btnDepartemen = new widget.ButtonBig();
         btnResepIterBpjs = new widget.ButtonBig();
         BtnPerubahanDpjp = new widget.ButtonBig();
+        BtnJaminanTransaksi = new widget.ButtonBig();
+        BtnPengembalianJaminanTransaksi = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6371,6 +6375,32 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(BtnPerubahanDpjp);
 
+        BtnJaminanTransaksi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnJaminanTransaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/money_bag.png"))); // NOI18N
+        BtnJaminanTransaksi.setText("Jaminan Transaksi");
+        BtnJaminanTransaksi.setIconTextGap(0);
+        BtnJaminanTransaksi.setName("BtnJaminanTransaksi"); // NOI18N
+        BtnJaminanTransaksi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnJaminanTransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnJaminanTransaksiActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(BtnJaminanTransaksi);
+
+        BtnPengembalianJaminanTransaksi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPengembalianJaminanTransaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816189_arrow_down.png"))); // NOI18N
+        BtnPengembalianJaminanTransaksi.setText("Pengembalian Jaminan Transaksi");
+        BtnPengembalianJaminanTransaksi.setIconTextGap(0);
+        BtnPengembalianJaminanTransaksi.setName("BtnPengembalianJaminanTransaksi"); // NOI18N
+        BtnPengembalianJaminanTransaksi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPengembalianJaminanTransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPengembalianJaminanTransaksiActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(BtnPengembalianJaminanTransaksi);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6379,7 +6409,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30/07/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02/08/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12560,6 +12590,32 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnPerubahanDpjpActionPerformed
 
+    private void BtnJaminanTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJaminanTransaksiActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgJaminanTransaksi aplikasi = new DlgJaminanTransaksi(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnJaminanTransaksiActionPerformed
+
+    private void BtnPengembalianJaminanTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPengembalianJaminanTransaksiActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgPengembalianJaminan aplikasi = new DlgPengembalianJaminan(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnPengembalianJaminanTransaksiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12576,9 +12632,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig BtnDasboard;
     private widget.ButtonBig BtnDpjp;
     private widget.ButtonBig BtnJadwal;
+    private widget.ButtonBig BtnJaminanTransaksi;
     private widget.ButtonBig BtnLog;
     private widget.Button BtnLogin;
     private widget.ButtonBig BtnMenu;
+    private widget.ButtonBig BtnPengembalianJaminanTransaksi;
     private widget.ButtonBig BtnPerubahanDpjp;
     private widget.Button BtnSimpanPass;
     private widget.ButtonBig BtnToolJualObat;
@@ -13960,6 +14018,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu = 0;
             if (akses.getbilling_ranap() == true) {
                 Panelmenu.add(btnTransaksiPanjar);
+                jmlmenu++;
+            }
+            
+            if (akses.getbilling_ranap() == true) {
+                Panelmenu.add(BtnJaminanTransaksi);
+                jmlmenu++;
+            }
+            
+            if (akses.getbilling_ranap() == true) {
+                Panelmenu.add(BtnPengembalianJaminanTransaksi);
                 jmlmenu++;
             }
             
@@ -16147,6 +16215,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getbilling_ranap() == true) {
             Panelmenu.add(btnTransaksiPanjar);
+            jmlmenu++;
+        }
+        
+        if (akses.getbilling_ranap() == true) {
+            Panelmenu.add(BtnJaminanTransaksi);
+            jmlmenu++;
+        }
+        
+        if (akses.getbilling_ranap() == true) {
+            Panelmenu.add(BtnPengembalianJaminanTransaksi);
             jmlmenu++;
         }
 
@@ -18519,6 +18597,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getbilling_ranap() == true) {
             if (btnTransaksiPanjar.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnTransaksiPanjar);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getbilling_ranap() == true) {
+            if (BtnJaminanTransaksi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(BtnJaminanTransaksi);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getbilling_ranap() == true) {
+            if (BtnPengembalianJaminanTransaksi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(BtnPengembalianJaminanTransaksi);
                 jmlmenu++;
             }
         }

@@ -252,6 +252,11 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Jaminan Transaksi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
@@ -368,9 +373,9 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         panelGlass10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setText("Tgl.Terima :");
+        jLabel19.setText("Tgl. Terima :");
         jLabel19.setName("jLabel19"); // NOI18N
-        jLabel19.setPreferredSize(new java.awt.Dimension(65, 23));
+        jLabel19.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass10.add(jLabel19);
 
         DTPCari1.setEditable(false);
@@ -778,6 +783,9 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
             } else if (ChkJaminanBatal.isSelected() == true && TalasanBatal.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Alasan pembatalan jaminan harus diisi dulu..!!");
                 TalasanBatal.requestFocus();
+            } else if (Sequel.cariInteger("select count(-1) from jaminan_transaksi where no_rawat='" + TNoRw.getText() + "' and date(tgl_dikembalikan)<>'0000-00-00'") > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, jaminan transaksi sudah dilakukan pengembalian, data tidak bisa diperbaiki..!!");
+                tampil();
             } else {
                 cekBatal = "";
                 if (ChkJaminanBatal.isSelected() == true) {
@@ -960,6 +968,10 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnHapusActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        tampil();
+    }//GEN-LAST:event_formWindowOpened
+
     /**
     * @param args the command line arguments
     */
@@ -983,7 +995,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
     private widget.Button BtnGanti;
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
-    private widget.CekBox ChkJaminanBatal;
+    public widget.CekBox ChkJaminanBatal;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormInput;
@@ -1035,10 +1047,10 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
     public void tampil() {     
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT jt.*, p.no_rkm_medis, p.nm_pasien, date_format(jt.tgl_terima,'%d-%m-%Y, %H:%i') tglTerima, pg1.nama petugasMenerima, "
-                    + "format(jt.jumlah_nominal,0) jmlNominal, date_format(jt.tgl_dikembalikan,'%d-%m-%Y, %H:%i') tglDikembalikan, pg2.nama petugasMengembalikan, date(jt.tgl_terima) tglTer "
+            ps = koneksi.prepareStatement("SELECT jt.*, p.no_rkm_medis, p.nm_pasien, date_format(jt.tgl_terima,'%d-%m-%Y, %H:%i') tglTerima, pg.nama petugasMenerima, "
+                    + "format(jt.jumlah_nominal,0) jmlNominal, date_format(jt.tgl_dikembalikan,'%d-%m-%Y, %H:%i') tglDikembalikan, date(jt.tgl_terima) tglTer "
                     + "FROM jaminan_transaksi jt inner join reg_periksa rp on rp.no_rawat =jt.no_rawat inner join pasien p on p.no_rkm_medis =rp.no_rkm_medis "
-                    + "inner join pegawai pg1 on pg1.nik=jt.nip_penerima inner join pegawai pg2 on pg2.nik=jt.nip_mengembalikan where "
+                    + "inner join pegawai pg on pg.nik=jt.nip_penerima where "
                     + "date(jt.tgl_terima) between ? and ? and jt.no_rawat like ? or "
                     + "date(jt.tgl_terima) between ? and ? and p.no_rkm_medis like ? or "
                     + "date(jt.tgl_terima) between ? and ? and p.nm_pasien like ? or "
@@ -1047,8 +1059,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
                     + "date(jt.tgl_terima) between ? and ? and jt.telah_terima like ? or "
                     + "date(jt.tgl_terima) between ? and ? and jt.jenis_jaminan like ? or "
                     + "date(jt.tgl_terima) between ? and ? and jt.keterangan like ? or "
-                    + "date(jt.tgl_terima) between ? and ? and pg1.nama like ? or "
-                    + "date(jt.tgl_terima) between ? and ? and pg2.nama like ? or "
+                    + "date(jt.tgl_terima) between ? and ? and pg.nama like ? or "
                     + "date(jt.tgl_terima) between ? and ? and jt.jaminan_batal like ? or "
                     + "date(jt.tgl_terima) between ? and ? and jt.jumlah_nominal like ? order by jt.tgl_terima");
             try {
@@ -1084,11 +1095,8 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
                 ps.setString(30, "%" + TCari.getText().trim() + "%");
                 ps.setString(31, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(32, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(33, "%" + TCari.getText().trim() + "%");
-                ps.setString(34, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(35, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(36, "%" + TCari.getText().trim() + "%");
-                rs = ps.executeQuery();                
+                ps.setString(33, "%" + TCari.getText().trim() + "%");                
+                rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{                        
                         rs.getString("no_rawat"),
