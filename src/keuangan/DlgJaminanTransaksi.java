@@ -124,6 +124,9 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         tbJaminan.getColumnModel().getColumn(14).setCellRenderer(centerRenderer);
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
+        TnmPemberi.setDocument(new batasInput((int) 150).getKata(TnmPemberi));
+        TnoTelp.setDocument(new batasInput((byte) 17).getOnlyAngka(TnoTelp));
+        TJmlNominal.setDocument(new batasInput((byte) 9).getOnlyAngka(TJmlNominal));
         
         if (koneksiDB.cariCepat().equals("aktif")) {
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
@@ -185,6 +188,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
         BtnGanti = new widget.Button();
+        BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass10 = new widget.panelisi();
@@ -328,6 +332,25 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
+        BtnPrint.setText("Cetak");
+        BtnPrint.setToolTipText("Alt+T");
+        BtnPrint.setName("BtnPrint"); // NOI18N
+        BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPrintActionPerformed(evt);
+            }
+        });
+        BtnPrint.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnPrintKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnPrint);
+
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('M');
@@ -379,7 +402,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         panelGlass10.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -394,7 +417,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         panelGlass10.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -465,57 +488,57 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         jLabel10.setText("No. Rawat :");
         jLabel10.setName("jLabel10"); // NOI18N
         FormInput.add(jLabel10);
-        jLabel10.setBounds(0, 10, 150, 23);
+        jLabel10.setBounds(0, 10, 120, 23);
 
         TNoRw.setEditable(false);
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
         TNoRw.setName("TNoRw"); // NOI18N
         FormInput.add(TNoRw);
-        TNoRw.setBounds(155, 10, 131, 23);
+        TNoRw.setBounds(125, 10, 131, 23);
 
         TNoRM.setEditable(false);
         TNoRM.setForeground(new java.awt.Color(0, 0, 0));
         TNoRM.setName("TNoRM"); // NOI18N
         FormInput.add(TNoRM);
-        TNoRM.setBounds(290, 10, 70, 23);
+        TNoRM.setBounds(260, 10, 70, 23);
 
         TPasien.setEditable(false);
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
         TPasien.setHighlighter(null);
         TPasien.setName("TPasien"); // NOI18N
         FormInput.add(TPasien);
-        TPasien.setBounds(364, 10, 410, 23);
+        TPasien.setBounds(334, 10, 410, 23);
 
         jLabel63.setForeground(new java.awt.Color(0, 0, 0));
         jLabel63.setText("Ruang Rawat/Inst. :");
         jLabel63.setName("jLabel63"); // NOI18N
         FormInput.add(jLabel63);
-        jLabel63.setBounds(0, 38, 150, 23);
+        jLabel63.setBounds(0, 38, 120, 23);
 
         TrgRawat.setEditable(false);
         TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
         TrgRawat.setName("TrgRawat"); // NOI18N
         FormInput.add(TrgRawat);
-        TrgRawat.setBounds(155, 38, 619, 23);
+        TrgRawat.setBounds(125, 38, 619, 23);
 
         jLabel65.setForeground(new java.awt.Color(0, 0, 0));
         jLabel65.setText("Jenis Jaminan :");
         jLabel65.setName("jLabel65"); // NOI18N
         FormInput.add(jLabel65);
-        jLabel65.setBounds(0, 66, 150, 23);
+        jLabel65.setBounds(0, 66, 120, 23);
 
         cmbJnsJaminan.setForeground(new java.awt.Color(0, 0, 0));
         cmbJnsJaminan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Kartu Identitas", "Nominal Uang", "Surat Berharga", "Barang Elektronik", "Lainnya" }));
         cmbJnsJaminan.setName("cmbJnsJaminan"); // NOI18N
         cmbJnsJaminan.setPreferredSize(new java.awt.Dimension(55, 28));
         FormInput.add(cmbJnsJaminan);
-        cmbJnsJaminan.setBounds(155, 66, 115, 23);
+        cmbJnsJaminan.setBounds(125, 66, 115, 23);
 
         jLabel66.setForeground(new java.awt.Color(0, 0, 0));
         jLabel66.setText("Nama Pemberi Jaminan :");
         jLabel66.setName("jLabel66"); // NOI18N
         FormInput.add(jLabel66);
-        jLabel66.setBounds(270, 66, 140, 23);
+        jLabel66.setBounds(240, 66, 140, 23);
 
         TnmPemberi.setForeground(new java.awt.Color(0, 0, 0));
         TnmPemberi.setName("TnmPemberi"); // NOI18N
@@ -525,13 +548,13 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
             }
         });
         FormInput.add(TnmPemberi);
-        TnmPemberi.setBounds(415, 66, 359, 23);
+        TnmPemberi.setBounds(385, 66, 359, 23);
 
         jLabel67.setForeground(new java.awt.Color(0, 0, 0));
         jLabel67.setText("No. Telp./HP :");
         jLabel67.setName("jLabel67"); // NOI18N
         FormInput.add(jLabel67);
-        jLabel67.setBounds(0, 94, 150, 23);
+        jLabel67.setBounds(0, 94, 120, 23);
 
         TnoTelp.setForeground(new java.awt.Color(0, 0, 0));
         TnoTelp.setName("TnoTelp"); // NOI18N
@@ -541,46 +564,46 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
             }
         });
         FormInput.add(TnoTelp);
-        TnoTelp.setBounds(155, 94, 160, 23);
+        TnoTelp.setBounds(125, 94, 160, 23);
 
         jLabel68.setForeground(new java.awt.Color(0, 0, 0));
         jLabel68.setText("Tgl. Terima :");
         jLabel68.setName("jLabel68"); // NOI18N
         FormInput.add(jLabel68);
-        jLabel68.setBounds(320, 94, 90, 23);
+        jLabel68.setBounds(290, 94, 90, 23);
 
         TtglTerima.setEditable(false);
-        TtglTerima.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2025" }));
+        TtglTerima.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
         TtglTerima.setDisplayFormat("dd-MM-yyyy");
         TtglTerima.setName("TtglTerima"); // NOI18N
         TtglTerima.setOpaque(false);
         TtglTerima.setPreferredSize(new java.awt.Dimension(90, 23));
         FormInput.add(TtglTerima);
-        TtglTerima.setBounds(415, 94, 90, 23);
+        TtglTerima.setBounds(385, 94, 90, 23);
 
         jLabel69.setForeground(new java.awt.Color(0, 0, 0));
         jLabel69.setText("Petugas Menerima :");
         jLabel69.setName("jLabel69"); // NOI18N
         FormInput.add(jLabel69);
-        jLabel69.setBounds(0, 122, 150, 23);
+        jLabel69.setBounds(0, 122, 120, 23);
 
         TnipMenerima.setEditable(false);
         TnipMenerima.setForeground(new java.awt.Color(0, 0, 0));
         TnipMenerima.setName("TnipMenerima"); // NOI18N
         FormInput.add(TnipMenerima);
-        TnipMenerima.setBounds(155, 122, 170, 23);
+        TnipMenerima.setBounds(125, 122, 170, 23);
 
         TnmMenerima.setEditable(false);
         TnmMenerima.setForeground(new java.awt.Color(0, 0, 0));
         TnmMenerima.setName("TnmMenerima"); // NOI18N
         FormInput.add(TnmMenerima);
-        TnmMenerima.setBounds(328, 122, 445, 23);
+        TnmMenerima.setBounds(298, 122, 445, 23);
 
         jLabel70.setForeground(new java.awt.Color(0, 0, 0));
         jLabel70.setText("Keterangan :");
         jLabel70.setName("jLabel70"); // NOI18N
         FormInput.add(jLabel70);
-        jLabel70.setBounds(0, 150, 150, 23);
+        jLabel70.setBounds(0, 150, 120, 23);
 
         scrollPane9.setName("scrollPane9"); // NOI18N
 
@@ -597,13 +620,13 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         scrollPane9.setViewportView(Tketerangan);
 
         FormInput.add(scrollPane9);
-        scrollPane9.setBounds(158, 150, 615, 70);
+        scrollPane9.setBounds(125, 150, 615, 70);
 
         jLabel71.setForeground(new java.awt.Color(0, 0, 0));
         jLabel71.setText("Jumlah Nominal :");
         jLabel71.setName("jLabel71"); // NOI18N
         FormInput.add(jLabel71);
-        jLabel71.setBounds(0, 225, 150, 23);
+        jLabel71.setBounds(0, 225, 120, 23);
 
         TJmlNominal.setForeground(new java.awt.Color(0, 0, 0));
         TJmlNominal.setName("TJmlNominal"); // NOI18N
@@ -618,7 +641,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
             }
         });
         FormInput.add(TJmlNominal);
-        TJmlNominal.setBounds(155, 225, 131, 23);
+        TJmlNominal.setBounds(125, 225, 131, 23);
 
         labelNominal.setForeground(new java.awt.Color(0, 0, 0));
         labelNominal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -626,13 +649,13 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         labelNominal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelNominal.setName("labelNominal"); // NOI18N
         FormInput.add(labelNominal);
-        labelNominal.setBounds(290, 225, 300, 23);
+        labelNominal.setBounds(265, 225, 300, 23);
 
         jLabel72.setForeground(new java.awt.Color(0, 0, 0));
         jLabel72.setText("Alasan Pembatalan :");
         jLabel72.setName("jLabel72"); // NOI18N
         FormInput.add(jLabel72);
-        jLabel72.setBounds(0, 253, 150, 23);
+        jLabel72.setBounds(0, 253, 120, 23);
 
         btnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -645,7 +668,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnPetugas);
-        btnPetugas.setBounds(775, 122, 28, 23);
+        btnPetugas.setBounds(745, 122, 28, 23);
 
         ChkJaminanBatal.setBackground(new java.awt.Color(255, 255, 250));
         ChkJaminanBatal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -664,7 +687,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkJaminanBatal);
-        ChkJaminanBatal.setBounds(650, 225, 130, 23);
+        ChkJaminanBatal.setBounds(620, 225, 130, 23);
 
         scrollPane10.setName("scrollPane10"); // NOI18N
 
@@ -681,7 +704,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         scrollPane10.setViewportView(TalasanBatal);
 
         FormInput.add(scrollPane10);
-        scrollPane10.setBounds(158, 253, 615, 70);
+        scrollPane10.setBounds(125, 253, 615, 70);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -785,7 +808,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
                 TalasanBatal.requestFocus();
             } else if (Sequel.cariInteger("select count(-1) from jaminan_transaksi where no_rawat='" + TNoRw.getText() + "' and date(tgl_dikembalikan)<>'0000-00-00'") > 0) {
                 JOptionPane.showMessageDialog(rootPane, "Maaf, jaminan transaksi sudah dilakukan pengembalian, data tidak bisa diperbaiki..!!");
-                tampil();
+                BtnBatalActionPerformed(null);
             } else {
                 cekBatal = "";
                 if (ChkJaminanBatal.isSelected() == true) {
@@ -972,6 +995,41 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         tampil();
     }//GEN-LAST:event_formWindowOpened
 
+    private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
+        if (Sequel.cariInteger("select count(-1) from jaminan_transaksi where "
+                + "date(tgl_terima) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data jaminan transaksi tidak ditemukan..!!!!");
+            BtnBatalActionPerformed(null);
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("periode", "PERIODE TANGGAL " + DTPCari1.getSelectedItem() + " S.D " + DTPCari2.getSelectedItem());
+            param.put("judul", "LAPORAN JAMINAN TRANSAKSI YANG DITERIMA");
+            Valid.MyReport("rptLaporanJaminanDiterima.jasper", "report", "::[ Laporan Penerimaan Jaminan Transaksi ]::",
+                    "SELECT jt.*, p.no_rkm_medis, p.nm_pasien, date_format(jt.tgl_terima,'%d-%m-%Y\n%H:%i Wita') tglTerima, pg.nama petugasMenerima, "
+                    + "format(jt.jumlah_nominal,0) jmlNominal, date_format(jt.tgl_dikembalikan,'%d-%m-%Y, %H:%i') tglDikembalikan, date(jt.tgl_terima) tglTer "
+                    + "FROM jaminan_transaksi jt inner join reg_periksa rp on rp.no_rawat =jt.no_rawat inner join pasien p on p.no_rkm_medis =rp.no_rkm_medis "
+                    + "inner join pegawai pg on pg.nik=jt.nip_penerima where "
+                    + "date(jt.tgl_terima) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "order by jt.tgl_terima", param);
+
+            BtnBatalActionPerformed(null);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnPrintActionPerformed
+
+    private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnPrintActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnPrintKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -994,6 +1052,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
     private widget.Button BtnCari;
     private widget.Button BtnGanti;
     private widget.Button BtnKeluar;
+    private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     public widget.CekBox ChkJaminanBatal;
     private widget.Tanggal DTPCari1;

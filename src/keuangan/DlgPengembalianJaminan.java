@@ -42,9 +42,8 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
     private Properties prop = new Properties();
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
-    private int i = 0;
+    private int i = 0, x = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    private String kode = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -194,6 +193,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         tbJaminan.getColumnModel().getColumn(13).setCellRenderer(centerRenderer);
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
+        TnmTelah.setDocument(new batasInput((int) 150).getKata(TnmTelah));
         
         if (koneksiDB.cariCepat().equals("aktif")) {
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
@@ -310,7 +310,9 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
+        BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
 
@@ -479,7 +481,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         jLabel72.setBounds(0, 225, 150, 23);
 
         TtglDikembalikan.setEditable(false);
-        TtglDikembalikan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2025" }));
+        TtglDikembalikan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
         TtglDikembalikan.setDisplayFormat("dd-MM-yyyy");
         TtglDikembalikan.setName("TtglDikembalikan"); // NOI18N
         TtglDikembalikan.setOpaque(false);
@@ -577,7 +579,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         panelGlass10.add(jLabel20);
 
         DTPa.setEditable(false);
-        DTPa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2025" }));
+        DTPa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
         DTPa.setDisplayFormat("dd-MM-yyyy");
         DTPa.setName("DTPa"); // NOI18N
         DTPa.setOpaque(false);
@@ -592,7 +594,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         panelGlass10.add(jLabel22);
 
         DTPb.setEditable(false);
-        DTPb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2025" }));
+        DTPb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
         DTPb.setDisplayFormat("dd-MM-yyyy");
         DTPb.setName("DTPb"); // NOI18N
         DTPb.setOpaque(false);
@@ -685,7 +687,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         panelGlass11.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -700,7 +702,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         panelGlass11.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -802,6 +804,20 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnBatal);
 
+        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
+        BtnHapus.setText("Hapus");
+        BtnHapus.setToolTipText("Alt+H");
+        BtnHapus.setName("BtnHapus"); // NOI18N
+        BtnHapus.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnHapus);
+
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
         BtnGanti.setMnemonic('G');
@@ -820,6 +836,25 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnGanti);
+
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
+        BtnPrint.setText("Cetak");
+        BtnPrint.setToolTipText("Alt+T");
+        BtnPrint.setName("BtnPrint"); // NOI18N
+        BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPrintActionPerformed(evt);
+            }
+        });
+        BtnPrint.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnPrintKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnPrint);
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
@@ -867,21 +902,31 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-//        if (kdkomite.getText().trim().equals("")) {
-//            Valid.textKosong(kdkomite, "kode komite");
-//            kdkomite.requestFocus();
-//        } else if (nmkomite.getText().trim().equals("")) {
-//            Valid.textKosong(nmkomite, "nama komite");
-//            nmkomite.requestFocus();
-//        } else {            
-//            Sequel.menyimpan("jabatan_komite", "'" + kdkomite.getText() + "','" + nmkomite.getText() + "'", "Jabatan Komite");
-//            emptTeks();
-//            BtnCariActionPerformed(null);
-//        }
+        if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu jaminan transaksi yang telah diterima pada tabel...!!!!");
+            tbJaminan.requestFocus();
+        } else if (TnmTelah.getText().equals("")) {
+            Valid.textKosong(TnmTelah, "Nama Telah Terima Dari");
+            TnmTelah.requestFocus();
+        } else if (TnipMengembalikan.getText().equals("") || TnipMengembalikan.getText().equals("-") || TnipMengembalikan.getText().equals("--")) {
+            JOptionPane.showMessageDialog(null, "Petugas yang menngembalikan jaminan transaksi harus diisi dulu..!!");
+            btnPetugas.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from jaminan_transaksi where no_rawat='" + TNoRw.getText() + "' and date(tgl_dikembalikan)<>'0000-00-00'") > 0) {
+            JOptionPane.showMessageDialog(null, "Pengembalian jaminan transaksi pasien ini sudah tersimpan..!!");
+            BtnBatalActionPerformed(null);
+        } else {
+            if (Sequel.mengedittf("jaminan_transaksi", "no_rawat=?", "tgl_dikembalikan=?, nip_mengembalikan=?, telah_terima=?", 4, new String[]{
+                Valid.SetTgl(TtglDikembalikan.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), TnipMengembalikan.getText(), TnmTelah.getText(),
+                TNoRw.getText()
+            }) == true) {
+                TCari.setText(TNoRw.getText());
+                BtnBatalActionPerformed(null);
+            }
+        }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnSimpanActionPerformed(null);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
@@ -901,26 +946,36 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
-//        if (kdkomite.getText().trim().equals("")) {
-//            Valid.textKosong(kdkomite, "kode komite");
-//            kdkomite.requestFocus();
-//        } else if (nmkomite.getText().trim().equals("")) {
-//            Valid.textKosong(nmkomite, "nama komite");
-//            nmkomite.requestFocus();
-//        } else if (kode.equals("")) {
-//            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu jabatan komitenya pada tabel...!!!!");
-//            tbPengembalian.requestFocus();
-//        } else {           
-//            Sequel.mengedit("jabatan_komite", "kd_komite='" + kode + "'", "kd_komite='" + kdkomite.getText() + "',nm_komite='" + nmkomite.getText() + "'");
-//            emptTeks();
-//            BtnCariActionPerformed(null);
-//        }
+        if (tbPengembalian.getSelectedRow() > -1) {
+            if (TNoRw.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu jaminan transaksi yang telah diterima pada tabel...!!!!");
+                tbJaminan.requestFocus();
+            } else if (TnmTelah.getText().equals("")) {
+                Valid.textKosong(TnmTelah, "Nama Telah Terima Dari");
+                TnmTelah.requestFocus();
+            } else if (TnipMengembalikan.getText().equals("") || TnipMengembalikan.getText().equals("-") || TnipMengembalikan.getText().equals("--")) {
+                JOptionPane.showMessageDialog(null, "Petugas yang menngembalikan jaminan transaksi harus diisi dulu..!!");
+                btnPetugas.requestFocus();
+            } else {
+                if (Sequel.mengedittf("jaminan_transaksi", "no_rawat=?", "tgl_dikembalikan=?, nip_mengembalikan=?, telah_terima=?", 4, new String[]{
+                    Valid.SetTgl(TtglDikembalikan.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), TnipMengembalikan.getText(), TnmTelah.getText(),
+                    TNoRw.getText()
+                }) == true) {
+                    TCari.setText(TNoRw.getText());
+                    BtnBatalActionPerformed(null);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel pengembalian jaminan..!!");
+            BtnBatalActionPerformed(null);
+            tbJaminan.requestFocus();
+        }
 }//GEN-LAST:event_BtnGantiActionPerformed
 
     private void BtnGantiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGantiKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnGantiActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, BtnBatal, BtnKeluar);
         }
 }//GEN-LAST:event_BtnGantiKeyPressed
@@ -930,9 +985,11 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             dispose();
-        }else{Valid.pindah(evt,BtnBatal,TCari);}
+        } else {
+            Valid.pindah(evt, BtnBatal, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
@@ -971,19 +1028,19 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllKeyPressed
 
     private void tbPengembalianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPengembalianMouseClicked
-        if(tabMode.getRowCount()!=0){
+        if (tabMode.getRowCount() != 0) {
             try {
-                getData();
+                getDataKembali();
             } catch (java.lang.NullPointerException e) {
             }
         }
 }//GEN-LAST:event_tbPengembalianMouseClicked
 
     private void tbPengembalianKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbPengembalianKeyPressed
-        if(tabMode.getRowCount()!=0){
-            if((evt.getKeyCode()==KeyEvent.VK_ENTER)||(evt.getKeyCode()==KeyEvent.VK_UP)||(evt.getKeyCode()==KeyEvent.VK_DOWN)){
+        if (tabMode.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
                 try {
-                    getData();
+                    getDataKembali();
                 } catch (java.lang.NullPointerException e) {
                 }
             }
@@ -1048,6 +1105,65 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         tampilTerima();
     }//GEN-LAST:event_formWindowOpened
 
+    private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
+        if (tbPengembalian.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data pengembalian jaminan transaksi pasien ini akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.mengedittf("jaminan_transaksi", "no_rawat=?", "tgl_dikembalikan=?, nip_mengembalikan=?, telah_terima=?", 4, new String[]{
+                    "0000-00-00 00:00:00", "-", "-",
+                    TNoRw.getText()
+                }) == true) {
+                    TCari.setText(TNoRw.getText());
+                    BtnBatalActionPerformed(null);
+                }
+            } else {
+                BtnBatalActionPerformed(null);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel pengembalian jaminan..!!");
+            BtnBatalActionPerformed(null);
+            tbJaminan.requestFocus();
+        }
+    }//GEN-LAST:event_BtnHapusActionPerformed
+
+    private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
+        if (Sequel.cariInteger("select count(-1) from jaminan_transaksi where "
+                + "date(tgl_dikembalikan) BETWEEN '" + Valid.SetTgl(DTPa.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPb.getSelectedItem() + "") + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data pengembalian jaminan transaksi tidak ditemukan..!!!!");
+            BtnBatalActionPerformed(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "Dalam proses dikerjakan..!!!!");
+
+//            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+//            Map<String, Object> param = new HashMap<>();
+//            param.put("namars", akses.getnamars());
+//            param.put("logo", Sequel.cariGambar("select logo from setting"));
+//            param.put("alamatrs", akses.getalamatrs());
+//            param.put("kotars", akses.getkabupatenrs());
+//            param.put("propinsirs", akses.getpropinsirs());
+//            param.put("emailrs", akses.getemailrs());
+//            param.put("periode", "PERIODE TANGGAL " + DTPa.getSelectedItem() + " S.D " + DTPb.getSelectedItem());
+//            param.put("judul", "LAPORAN JAMINAN TRANSAKSI YANG DIKEMBALIKAN");
+//            Valid.MyReport("rptLaporanJaminanDikembalikan.jasper", "report", "::[ Laporan Pengembalian Jaminan Transaksi ]::",
+//                    "SELECT jt.*, p.no_rkm_medis, p.nm_pasien, date_format(jt.tgl_terima,'%d-%m-%Y, %H:%i') tglTerima, pg1.nama petugasMenerima, "
+//                    + "format(jt.jumlah_nominal,0) jmlNominal, date_format(jt.tgl_dikembalikan,'%d-%m-%Y, %H:%i') tglDikembalikan, pg2.nama petugasMengembalikan, "
+//                    + "date_format(jt.tgl_dikembalikan,'%d-%m-%Y, %H:%i') tglKembali, date(jt.tgl_dikembalikan) tglkembalikan "
+//                    + "FROM jaminan_transaksi jt inner join reg_periksa rp on rp.no_rawat =jt.no_rawat inner join pasien p on p.no_rkm_medis =rp.no_rkm_medis "
+//                    + "inner join pegawai pg1 on pg1.nik=jt.nip_penerima inner join pegawai pg2 on pg2.nik=jt.nip_mengembalikan where "
+//                    + "date(jt.tgl_dikembalikan) between '" + Valid.SetTgl(DTPa.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPb.getSelectedItem() + "") + "' "
+//                    + "order by jt.tgl_dikembalikan", param);
+//
+//            BtnBatalActionPerformed(null);
+//            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnPrintActionPerformed
+
+    private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnPrintActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnPrintKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -1070,7 +1186,9 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
     private widget.Button BtnGanti;
+    private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
@@ -1153,16 +1271,36 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         TtglDikembalikan.requestFocus();
     }
 
-    private void getData() {
-        if (tbPengembalian.getSelectedRow() != -1) {
-//            kdkomite.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 0).toString());
-//            nmkomite.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 1).toString());        
+    private void getDataKembali() {
+        if (tbPengembalian.getSelectedRow() != -1) {            
+            TNoRw.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 0).toString());
+            TNoRM.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 1).toString());
+            TPasien.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 2).toString());
+            TrgRawat.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 3).toString());
+            TjnsJaminan.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 4).toString());
+            TnmPemberi.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 5).toString());
+            TnoTelp.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 6).toString());
+            TtglTerima.setText(Valid.SetTglINDONESIA(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 14).toString()));
+            TnipMenerima.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 15).toString());
+            TnmMenerima.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 8).toString());
+            Tketerangan.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 9).toString());
+            Valid.SetTgl(TtglDikembalikan, tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 17).toString());
+            TnmTelah.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 13).toString());
+            TnipMengembalikan.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 18).toString());
+            TnmMengembalikan.setText(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 12).toString());
+            
+            if (tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 16).toString().equals("0")) {
+                labelNominal.setText("Rp. 0");
+            } else {
+                labelNominal.setText("Rp. " + Valid.SetAngka(Double.parseDouble(tbPengembalian.getValueAt(tbPengembalian.getSelectedRow(), 16).toString())));
+            }
         }
     }
     
     public void isCek() {
         BtnSimpan.setEnabled(akses.getbilling_ranap());
         BtnGanti.setEnabled(akses.getbilling_ranap());
+        BtnHapus.setEnabled(akses.getbilling_ranap());
     }
     
     private void tampilTerima() {
@@ -1264,7 +1402,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
             TjnsJaminan.setText(tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 4).toString());
             TnmPemberi.setText(tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 5).toString());
             TnoTelp.setText(tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 6).toString());
-            TtglTerima.setText(Valid.SetTglINDONESIA(tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 16).toString()));
+            TtglTerima.setText(Valid.SetTglINDONESIA(tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 15).toString()));
             TnipMenerima.setText(tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 12).toString());
             TnmMenerima.setText(tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 8).toString());
             Tketerangan.setText(tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 9).toString());
