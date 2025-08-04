@@ -44,7 +44,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
     private ResultSet rs;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private int i = 0, x = 0;
-    private String cekBatal = "";
+    private String cekBatal = "", jumlahNom = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -767,7 +767,6 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
                 Tketerangan.getText(), TJmlNominal.getText(), "0000-00-00 00:00:00", "-", "-", cekBatal, TalasanBatal.getText(),
                 Sequel.cariIsi("select now()")
             }) == true) {
-                TCari.setText(TNoRw.getText());
                 BtnBatalActionPerformed(null);
             }
         }
@@ -824,8 +823,6 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
                             Tketerangan.getText(), TJmlNominal.getText(), cekBatal, TalasanBatal.getText(),
                             tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 0).toString()
                         }) == true) {
-
-                    TCari.setText(TNoRw.getText());
                     BtnBatalActionPerformed(null);
                 }
             }
@@ -1013,7 +1010,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
             param.put("judul", "LAPORAN JAMINAN TRANSAKSI YANG DITERIMA");
             Valid.MyReport("rptLaporanJaminanDiterima.jasper", "report", "::[ Laporan Penerimaan Jaminan Transaksi ]::",
                     "SELECT jt.*, p.no_rkm_medis, p.nm_pasien, date_format(jt.tgl_terima,'%d-%m-%Y\n%H:%i Wita') tglTerima, pg.nama petugasMenerima, "
-                    + "format(jt.jumlah_nominal,0) jmlNominal, date_format(jt.tgl_dikembalikan,'%d-%m-%Y, %H:%i') tglDikembalikan, date(jt.tgl_terima) tglTer "
+                    + "if(jt.jumlah_nominal='0','-',format(jt.jumlah_nominal,0)) jmlNominal, date_format(jt.tgl_dikembalikan,'%d-%m-%Y, %H:%i') tglDikembalikan, date(jt.tgl_terima) tglTer "
                     + "FROM jaminan_transaksi jt inner join reg_periksa rp on rp.no_rawat =jt.no_rawat inner join pasien p on p.no_rkm_medis =rp.no_rkm_medis "
                     + "inner join pegawai pg on pg.nik=jt.nip_penerima where "
                     + "date(jt.tgl_terima) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
@@ -1105,6 +1102,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
 
     public void tampil() {     
         Valid.tabelKosong(tabMode);
+        jumlahNom = "";
         try {
             ps = koneksi.prepareStatement("SELECT jt.*, p.no_rkm_medis, p.nm_pasien, date_format(jt.tgl_terima,'%d-%m-%Y, %H:%i') tglTerima, pg.nama petugasMenerima, "
                     + "format(jt.jumlah_nominal,0) jmlNominal, date_format(jt.tgl_dikembalikan,'%d-%m-%Y, %H:%i') tglDikembalikan, date(jt.tgl_terima) tglTer "
@@ -1157,7 +1155,13 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
                 ps.setString(33, "%" + TCari.getText().trim() + "%");                
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new String[]{                        
+                    if (rs.getString("jmlNominal").equals("0")) {
+                        jumlahNom = "-";
+                    } else {
+                        jumlahNom = rs.getString("jmlNominal");
+                    }
+
+                    tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
@@ -1168,10 +1172,10 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
                         rs.getString("tglTerima"),
                         rs.getString("petugasMenerima"),
                         rs.getString("keterangan"),
-                        rs.getString("jmlNominal"),                        
+                        jumlahNom,
                         rs.getString("tgl_terima"),
                         rs.getString("nip_penerima"),
-                        rs.getString("jumlah_nominal"),                        
+                        rs.getString("jumlah_nominal"),
                         rs.getString("jaminan_batal"),
                         rs.getString("alasan_pembatalan"),
                         rs.getString("tglTer"),

@@ -44,6 +44,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
     private ResultSet rs, rs1;
     private int i = 0, x = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private String jumlahNomKem = "", jumlahNomTer = "";;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -919,7 +920,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
                 Valid.SetTgl(TtglDikembalikan.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), TnipMengembalikan.getText(), TnmTelah.getText(),
                 TNoRw.getText()
             }) == true) {
-                TCari.setText(TNoRw.getText());
                 BtnBatalActionPerformed(null);
             }
         }
@@ -961,7 +961,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
                     Valid.SetTgl(TtglDikembalikan.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), TnipMengembalikan.getText(), TnmTelah.getText(),
                     TNoRw.getText()
                 }) == true) {
-                    TCari.setText(TNoRw.getText());
                     BtnBatalActionPerformed(null);
                 }
             }
@@ -1113,7 +1112,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
                     "0000-00-00 00:00:00", "-", "-",
                     TNoRw.getText()
                 }) == true) {
-                    TCari.setText(TNoRw.getText());
                     BtnBatalActionPerformed(null);
                 }
             } else {
@@ -1132,29 +1130,26 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Data pengembalian jaminan transaksi tidak ditemukan..!!!!");
             BtnBatalActionPerformed(null);
         } else {
-            JOptionPane.showMessageDialog(null, "Dalam proses dikerjakan..!!!!");
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("periode", "PERIODE TANGGAL " + DTPa.getSelectedItem() + " S.D " + DTPb.getSelectedItem());
+            param.put("judul", "LAPORAN JAMINAN TRANSAKSI YANG DIKEMBALIKAN");
+            Valid.MyReport("rptLaporanJaminanDikembalikan.jasper", "report", "::[ Laporan Pengembalian Jaminan Transaksi ]::",
+                    "SELECT jt.*, p.no_rkm_medis, p.nm_pasien, date_format(jt.tgl_terima,'%d-%m-%Y\n%H:%i Wita') tglTerima, pg1.nama petugasMenerima, "
+                    + "if(jt.jumlah_nominal='0','-',format(jt.jumlah_nominal,0)) jmlNominal, date_format(jt.tgl_dikembalikan,'%d-%m-%Y\n%H:%i Wita') tglDikembalikan, "
+                    + "pg2.nama petugasMengembalikan FROM jaminan_transaksi jt inner join reg_periksa rp on rp.no_rawat =jt.no_rawat "
+                    + "inner join pasien p on p.no_rkm_medis =rp.no_rkm_medis inner join pegawai pg1 on pg1.nik=jt.nip_penerima inner join pegawai pg2 on pg2.nik=jt.nip_mengembalikan where "
+                    + "date(jt.tgl_dikembalikan) between '" + Valid.SetTgl(DTPa.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPb.getSelectedItem() + "") + "' "
+                    + "order by jt.tgl_dikembalikan", param);
 
-//            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-//            Map<String, Object> param = new HashMap<>();
-//            param.put("namars", akses.getnamars());
-//            param.put("logo", Sequel.cariGambar("select logo from setting"));
-//            param.put("alamatrs", akses.getalamatrs());
-//            param.put("kotars", akses.getkabupatenrs());
-//            param.put("propinsirs", akses.getpropinsirs());
-//            param.put("emailrs", akses.getemailrs());
-//            param.put("periode", "PERIODE TANGGAL " + DTPa.getSelectedItem() + " S.D " + DTPb.getSelectedItem());
-//            param.put("judul", "LAPORAN JAMINAN TRANSAKSI YANG DIKEMBALIKAN");
-//            Valid.MyReport("rptLaporanJaminanDikembalikan.jasper", "report", "::[ Laporan Pengembalian Jaminan Transaksi ]::",
-//                    "SELECT jt.*, p.no_rkm_medis, p.nm_pasien, date_format(jt.tgl_terima,'%d-%m-%Y, %H:%i') tglTerima, pg1.nama petugasMenerima, "
-//                    + "format(jt.jumlah_nominal,0) jmlNominal, date_format(jt.tgl_dikembalikan,'%d-%m-%Y, %H:%i') tglDikembalikan, pg2.nama petugasMengembalikan, "
-//                    + "date_format(jt.tgl_dikembalikan,'%d-%m-%Y, %H:%i') tglKembali, date(jt.tgl_dikembalikan) tglkembalikan "
-//                    + "FROM jaminan_transaksi jt inner join reg_periksa rp on rp.no_rawat =jt.no_rawat inner join pasien p on p.no_rkm_medis =rp.no_rkm_medis "
-//                    + "inner join pegawai pg1 on pg1.nik=jt.nip_penerima inner join pegawai pg2 on pg2.nik=jt.nip_mengembalikan where "
-//                    + "date(jt.tgl_dikembalikan) between '" + Valid.SetTgl(DTPa.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPb.getSelectedItem() + "") + "' "
-//                    + "order by jt.tgl_dikembalikan", param);
-//
-//            BtnBatalActionPerformed(null);
-//            this.setCursor(Cursor.getDefaultCursor());
+            BtnBatalActionPerformed(null);
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
 
@@ -1301,10 +1296,19 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getbilling_ranap());
         BtnGanti.setEnabled(akses.getbilling_ranap());
         BtnHapus.setEnabled(akses.getbilling_ranap());
+        
+        if (akses.getadmin() == true) {
+            TnipMengembalikan.setText("-");
+            TnmMengembalikan.setText("-");
+        } else {
+            TnipMengembalikan.setText(akses.getkode());
+            TnmMengembalikan.setText(Sequel.cariIsi("select nama from pegawai where nik='" + TnipMengembalikan.getText() + "'"));
+        }
     }
     
     private void tampilTerima() {
         Valid.tabelKosong(tabMode1);
+        jumlahNomTer = "";
         try {
             ps1 = koneksi.prepareStatement("SELECT jt.*, p.no_rkm_medis, p.nm_pasien, date_format(jt.tgl_terima,'%d-%m-%Y, %H:%i') tglTerima, pg.nama petugasMenerima, "
                     + "format(jt.jumlah_nominal,0) jmlNominal, date_format(jt.tgl_dikembalikan,'%d-%m-%Y, %H:%i') tglDikembalikan, date(jt.tgl_terima) tglTer "
@@ -1357,6 +1361,12 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
                 ps1.setString(33, "%" + TCari1.getText().trim() + "%");
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
+                    if (rs1.getString("jmlNominal").equals("0")) {
+                        jumlahNomTer = "-";
+                    } else {
+                        jumlahNomTer = rs1.getString("jmlNominal");
+                    }
+
                     tabMode1.addRow(new String[]{
                         rs1.getString("no_rawat"),
                         rs1.getString("no_rkm_medis"),
@@ -1368,7 +1378,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
                         rs1.getString("tglTerima"),
                         rs1.getString("petugasMenerima"),
                         rs1.getString("keterangan"),
-                        rs1.getString("jmlNominal"),
+                        jumlahNomTer,
                         rs1.getString("tgl_terima"),
                         rs1.getString("nip_penerima"),
                         rs1.getString("jumlah_nominal"),
@@ -1417,6 +1427,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 
     private void tampilDikembalikan() {
         Valid.tabelKosong(tabMode);
+        jumlahNomKem = "";
         try {
             ps = koneksi.prepareStatement("SELECT jt.*, p.no_rkm_medis, p.nm_pasien, date_format(jt.tgl_terima,'%d-%m-%Y, %H:%i') tglTerima, pg1.nama petugasMenerima, "
                     + "format(jt.jumlah_nominal,0) jmlNominal, date_format(jt.tgl_dikembalikan,'%d-%m-%Y, %H:%i') tglDikembalikan, pg2.nama petugasMengembalikan, "
@@ -1474,6 +1485,12 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
                 ps.setString(36, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
+                    if (rs.getString("jmlNominal").equals("0")) {
+                        jumlahNomKem = "-";
+                    } else {
+                        jumlahNomKem = rs.getString("jmlNominal");
+                    }
+                    
                     tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
@@ -1485,7 +1502,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
                         rs.getString("tglTerima"),
                         rs.getString("petugasMenerima"),
                         rs.getString("keterangan"),
-                        rs.getString("jmlNominal"),
+                        jumlahNomKem,
                         rs.getString("tglKembali"),
                         rs.getString("petugasMengembalikan"),
                         rs.getString("telah_terima"),                        
