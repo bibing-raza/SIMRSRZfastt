@@ -44,7 +44,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
     private ResultSet rs, rs1;
     private int i = 0, x = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    private String jumlahNomKem = "", jumlahNomTer = "";;
+    private String jumlahNomKem = "", jumlahNomTer = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
