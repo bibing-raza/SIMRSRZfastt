@@ -7345,7 +7345,7 @@ public final class DlgReg extends javax.swing.JDialog {
                         //cek kunjungan iter
                         if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rkm_medis='" + TNoRM.getText() + "'") > 0
                                 && Sequel.cariInteger("SELECT CASE WHEN SUM(CASE WHEN kunjungan = '3' AND selesai = 'sudah' THEN 1 ELSE 0 END) >= 1 THEN 0 ELSE 1 END AS status_kunjungan_3 "
-                                        + "FROM iter_obat_bpjs where no_rkm_medis='508993' GROUP BY no_rkm_medis HAVING status_kunjungan_3 = 1") > 0) {
+                                        + "FROM iter_obat_bpjs where no_rkm_medis='" + TNoRM.getText() + "' GROUP BY no_rkm_medis HAVING status_kunjungan_3 = 1") > 0) {
                             x = JOptionPane.showConfirmDialog(rootPane, "Pasien ini memiliki kode/resep/kunjungan ITER yang belum diselesaikan yaitu dari       \n"
                                     + "poliklinik " + poliIter + " yang lalu,       \n"
                                     + "apakah tetap akan lanjut didaftarkan ke poli " + TPoli.getText() + " pada hari ini..??        ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
@@ -7361,7 +7361,7 @@ public final class DlgReg extends javax.swing.JDialog {
                         //cek kunjungan iter
                         if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rkm_medis='" + TNoRM.getText() + "'") > 0
                                 && Sequel.cariInteger("SELECT CASE WHEN SUM(CASE WHEN kunjungan = '3' AND selesai = 'sudah' THEN 1 ELSE 0 END) >= 1 THEN 0 ELSE 1 END AS status_kunjungan_3 "
-                                        + "FROM iter_obat_bpjs where no_rkm_medis='508993' GROUP BY no_rkm_medis HAVING status_kunjungan_3 = 1") > 0) {
+                                        + "FROM iter_obat_bpjs where no_rkm_medis='" + TNoRM.getText() + "' GROUP BY no_rkm_medis HAVING status_kunjungan_3 = 1") > 0) {
                             x = JOptionPane.showConfirmDialog(rootPane, "Pasien ini memiliki kode/resep/kunjungan ITER yang belum diselesaikan yaitu dari       \n"
                                     + "poliklinik " + poliIter + " yang lalu,       \n"
                                     + "apakah tetap akan lanjut didaftarkan ke poli " + TPoli.getText() + " pada hari ini..??        ", "Konfirmasi", JOptionPane.YES_NO_OPTION);
