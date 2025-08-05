@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="964" pageHeight="608" orientation="Landscape" columnWidth="927" leftMargin="18" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="1.81818181818183"/>
-	<property name="ireport.x" value="534"/>
+	<property name="ireport.x" value="40"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
@@ -372,7 +372,7 @@ Mengembalikan]]></text>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="108" y="0" width="52" height="12"/>
+				<reportElement x="108" y="0" width="51" height="12"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -383,14 +383,14 @@ Mengembalikan]]></text>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+" - "+$F{nm_pasien}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+" - "+$F{nm_pasien}+"\n"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="278" y="0" width="102" height="12"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{ruang_rawat}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ruang_rawat}+"\n"]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement stretchType="RelativeToTallestObject" x="27" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
@@ -519,7 +519,7 @@ Mengembalikan]]></text>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{keterangan}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{keterangan}+"\n"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

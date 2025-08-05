@@ -382,9 +382,15 @@ public final class DlgCariPoli extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("select kd_poli, nm_poli, registrasi, registrasilama, no_tlp, status_terjadwal "
-                    + " from poliklinik where kd_poli like ? or "
-                    + " nm_poli like ? order by nm_poli");
+            if (akses.getadmin() == true) {
+                ps = koneksi.prepareStatement("select kd_poli, nm_poli, registrasi, registrasilama, no_tlp, status_terjadwal "
+                        + "from poliklinik where kd_poli like ? or "
+                        + "nm_poli like ? order by nm_poli");
+            } else {
+                ps = koneksi.prepareStatement("select kd_poli, nm_poli, registrasi, registrasilama, no_tlp, status_terjadwal "
+                        + "from poliklinik where kd_poli<>'IOB' and kd_poli like ? or "
+                        + "kd_poli<>'IOB' and nm_poli like ? order by nm_poli");
+            }
             try {
                 ps.setString(1, "%" + TCari.getText().trim() + "%");
                 ps.setString(2, "%" + TCari.getText().trim() + "%");

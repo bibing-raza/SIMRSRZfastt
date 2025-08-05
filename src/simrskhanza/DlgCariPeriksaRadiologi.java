@@ -2681,9 +2681,9 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
         TCari.requestFocus();
     } else if (Kd2.getText().trim().equals("")) {
-        JOptionPane.showMessageDialog(null, "Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus. Klik No.Rawat pada table untuk memilih...!!!!");
+        JOptionPane.showMessageDialog(null, "Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus. Klik No.Rawat pada tabel untuk memilih...!!!!");
     } else if (!(Kd2.getText().trim().equals(""))) {
-        if (akses.getkode().equals("Admin Utama")) {
+        if (akses.getadmin() == true) {
             try {
                 Sequel.AutoComitFalse();
                 status = "";
@@ -4944,8 +4944,17 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         param.put("drRad", dokterRad.getText());
         param.put("cara_byr", Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + Kd2.getText() + "'"));
         param.put("tglNota", "Martapura, " + tglNota.getSelectedItem().toString());
+        param.put("umur", Sequel.cariIsi("select concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (',rp.umurdaftar,' ',rp.sttsumur,'.)') from reg_periksa rp "
+                + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + Kd2.getText() + "'"));
+        
+        if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + Kd2.getText() + "' and status_lanjut='Ralan'") > 0) {
+            param.put("nmUnit", Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + Kd2.getText() + "'"));
+        } else {
+            param.put("nmUnit", Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + Kd2.getText() + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
+        }
 
-        if (akses.getkode().equals("Admin Utama")) {
+        if (akses.getadmin() == true) {
             param.put("petugas_ksr", "( ................... )");
         } else {
             param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");

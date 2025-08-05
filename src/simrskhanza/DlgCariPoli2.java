@@ -378,44 +378,51 @@ public final class DlgCariPoli2 extends javax.swing.JDialog {
     public void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps=koneksi.prepareStatement(
-                    "select poliklinik.kd_poli,poliklinik.nm_poli,poliklinik.registrasi,poliklinik.registrasilama,poliklinik.no_tlp, poliklinik.status_terjadwal "+
-                    "from poliklinik inner join jadwal inner join dokter on poliklinik.kd_poli=jadwal.kd_poli "+
-                    "and dokter.kd_dokter=jadwal.kd_dokter "+
-                    "where jadwal.hari_kerja=? and poliklinik.kd_poli like ?  or "+
-                    "jadwal.hari_kerja=? and poliklinik.nm_poli like ? group by poliklinik.kd_poli order by poliklinik.nm_poli "); 
-            try{                
+            if (akses.getadmin() == true) {
+                ps = koneksi.prepareStatement("select poliklinik.kd_poli,poliklinik.nm_poli,poliklinik.registrasi,poliklinik.registrasilama,poliklinik.no_tlp, "
+                        + "poliklinik.status_terjadwal from poliklinik inner join jadwal inner join dokter on poliklinik.kd_poli=jadwal.kd_poli "
+                        + "and dokter.kd_dokter=jadwal.kd_dokter where "
+                        + "jadwal.hari_kerja=? and poliklinik.kd_poli like ? or "
+                        + "jadwal.hari_kerja=? and poliklinik.nm_poli like ? group by poliklinik.kd_poli order by poliklinik.nm_poli");
+            } else {
+                ps = koneksi.prepareStatement("select poliklinik.kd_poli,poliklinik.nm_poli,poliklinik.registrasi,poliklinik.registrasilama,poliklinik.no_tlp, "
+                        + "poliklinik.status_terjadwal from poliklinik inner join jadwal inner join dokter on poliklinik.kd_poli=jadwal.kd_poli "
+                        + "and dokter.kd_dokter=jadwal.kd_dokter where "
+                        + "jadwal.hari_kerja=? and poliklinik.kd_poli<>'IOB' and poliklinik.kd_poli like ? or "
+                        + "jadwal.hari_kerja=? and poliklinik.kd_poli<>'IOB' and poliklinik.nm_poli like ? group by poliklinik.kd_poli order by poliklinik.nm_poli");
+            }
+            try {
                 switch (day) {
                     case 1:
-                        hari="AKHAD";
+                        hari = "AKHAD";
                         break;
                     case 2:
-                        hari="SENIN";
+                        hari = "SENIN";
                         break;
                     case 3:
-                        hari="SELASA";
+                        hari = "SELASA";
                         break;
                     case 4:
-                        hari="RABU";
+                        hari = "RABU";
                         break;
                     case 5:
-                        hari="KAMIS";
+                        hari = "KAMIS";
                         break;
                     case 6:
-                        hari="JUMAT";
+                        hari = "JUMAT";
                         break;
                     case 7:
-                        hari="SABTU";
+                        hari = "SABTU";
                         break;
                     default:
                         break;
                 }
-                ps.setString(1,hari);
-                ps.setString(2,"%"+TCari.getText().trim()+"%");
-                ps.setString(3,hari);
-                ps.setString(4,"%"+TCari.getText().trim()+"%");
-                rs=ps.executeQuery(); 
-                while(rs.next()){
+                ps.setString(1, hari);
+                ps.setString(2, "%" + TCari.getText().trim() + "%");
+                ps.setString(3, hari);
+                ps.setString(4, "%" + TCari.getText().trim() + "%");
+                rs = ps.executeQuery();
+                while (rs.next()) {
                     tabMode.addRow(new Object[]{
                         rs.getString(1),
                         rs.getString(2),
@@ -424,21 +431,21 @@ public final class DlgCariPoli2 extends javax.swing.JDialog {
                         rs.getString(5),
                         rs.getString(6)
                     });
-                }  
-            }catch(Exception ex){
+                }
+            } catch (Exception ex) {
                 System.out.println(ex);
-            }finally{
-                if(rs!=null){
+            } finally {
+                if (rs != null) {
                     rs.close();
                 }
-                if(ps!=null){
+                if (ps != null) {
                     ps.close();
                 }
-            }     
+            }
         } catch (Exception e) {
-            System.out.println("Notifikasi : "+e);
+            System.out.println("Notifikasi : " + e);
         }
-        LCount.setText(""+tabMode.getRowCount());
+        LCount.setText("" + tabMode.getRowCount());
     }
 
     public void emptTeks() {   
