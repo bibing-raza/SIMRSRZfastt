@@ -278,7 +278,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         panelGlass10.add(jLabel12);
 
         cmbGedung1.setForeground(new java.awt.Color(0, 0, 0));
-        cmbGedung1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "VK BERSALIN", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
+        cmbGedung1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
         cmbGedung1.setName("cmbGedung1"); // NOI18N
         cmbGedung1.setPreferredSize(new java.awt.Dimension(150, 23));
         panelGlass10.add(cmbGedung1);
@@ -345,7 +345,6 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         PanelInput.add(jLabel4);
         jLabel4.setBounds(0, 10, 100, 23);
 
-        kdIndikator.setEditable(false);
         kdIndikator.setForeground(new java.awt.Color(0, 0, 0));
         kdIndikator.setName("kdIndikator"); // NOI18N
         PanelInput.add(kdIndikator);
@@ -390,7 +389,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         jLabel10.setBounds(0, 66, 100, 23);
 
         cmbGedung.setForeground(new java.awt.Color(0, 0, 0));
-        cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "VK BERSALIN", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
+        cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
         cmbGedung.setName("cmbGedung"); // NOI18N
         cmbGedung.setPreferredSize(new java.awt.Dimension(55, 28));
         PanelInput.add(cmbGedung);
@@ -460,8 +459,8 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
             } else {
                 stts = "non aktif";
             }
-            kdIndikator.setText(Valid.autoNomer("master_indikator_nasional_mutu", "INM", 3));
-            
+
+//            kdIndikator.setText(Valid.autoNomer("master_indikator_nasional_mutu", "INM", 3));
             Sequel.menyimpan("master_indikator_nasional_mutu", "'" + kdIndikator.getText() + "','" + TnoUrut.getText() + "',"
                     + "'" + TnmIndikator.getText() + "','" + cmbGedung.getSelectedItem().toString() + "','" + stts + "'", "Indikator Nasional Mutu");
             emptTeks();

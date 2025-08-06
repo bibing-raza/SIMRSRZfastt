@@ -5773,7 +5773,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 periksarad.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 periksarad.setLocationRelativeTo(internalFrame1);
                 periksarad.emptTeks();
-                periksarad.setNoRm(TNoRw.getText(), "Ralan");
+                periksarad.setNoRm(TNoRw.getText(), "Ralan", "input baru", "", "");
                 periksarad.tampil();
                 periksarad.isCek();
                 periksarad.setVisible(true);
@@ -9337,7 +9337,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 periksarad.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 periksarad.setLocationRelativeTo(internalFrame1);
                 periksarad.emptTeks();
-                periksarad.setNoRm(TNoRw.getText(), "Ralan");
+                periksarad.setNoRm(TNoRw.getText(), "Ralan", "input baru", "", "");
                 periksarad.tampil();
                 periksarad.isCek();
                 periksarad.setVisible(true);

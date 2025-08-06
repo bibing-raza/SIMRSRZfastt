@@ -181,6 +181,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnPanjar = new javax.swing.JMenuItem();
         MnHapus = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
@@ -236,6 +237,22 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         tbJaminan = new widget.Table();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+
+        MnPanjar.setBackground(new java.awt.Color(242, 242, 242));
+        MnPanjar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPanjar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        MnPanjar.setText("Jaminan Ke Panjar");
+        MnPanjar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPanjar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPanjar.setIconTextGap(5);
+        MnPanjar.setName("MnPanjar"); // NOI18N
+        MnPanjar.setPreferredSize(new java.awt.Dimension(140, 26));
+        MnPanjar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPanjarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnPanjar);
 
         MnHapus.setBackground(new java.awt.Color(242, 242, 242));
         MnHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -402,7 +419,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         panelGlass10.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -417,7 +434,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         panelGlass10.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -573,7 +590,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         jLabel68.setBounds(290, 94, 90, 23);
 
         TtglTerima.setEditable(false);
-        TtglTerima.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
+        TtglTerima.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
         TtglTerima.setDisplayFormat("dd-MM-yyyy");
         TtglTerima.setName("TtglTerima"); // NOI18N
         TtglTerima.setOpaque(false);
@@ -1027,6 +1044,55 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPrintKeyPressed
 
+    private void MnPanjarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPanjarActionPerformed
+        if (tbJaminan.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah jaminan transaksi pasien ini akan dilanjutkan menjadi panjar..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.mengedittf("jaminan_transaksi", "no_rawat=?", "nm_pemberi_jaminan=?, no_telp=?, jenis_jaminan=?, tgl_terima=?, "
+                        + "nip_penerima=?, keterangan=?, jumlah_nominal=?, jaminan_batal=?, alasan_pembatalan=?", 10, new String[]{
+                            TnmPemberi.getText(), TnoTelp.getText(), cmbJnsJaminan.getSelectedItem().toString(),
+                            Valid.SetTgl(TtglTerima.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), TnipMenerima.getText(),
+                            Tketerangan.getText(), TJmlNominal.getText(), "Ya", "Jaminan transaksi dilanjutkan menjadi panjar",
+                            tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 0).toString()
+                        }) == true) {
+                    
+                    String cekSelisih = "", cekTagihan = "";
+                    if (Sequel.cariIsi("select total_tagihan from biaya_naik_kelas_bpjs where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                        cekSelisih = "0";
+                    } else {
+                        cekSelisih = Sequel.cariIsi("select total_tagihan from biaya_naik_kelas_bpjs where no_rawat='" + TNoRw.getText() + "'");
+                    }
+                    
+                    if (Sequel.cariIsi("select jumlah_bayar from tagihan_sadewa where no_nota='" + TNoRw.getText() + "' and jenis_bayar ='Pelunasan' and status='sudah'").equals("")) {
+                        cekTagihan = "0";
+                    } else {
+                        cekTagihan = Sequel.cariIsi("select jumlah_bayar from tagihan_sadewa where no_nota='" + TNoRw.getText() + "' and jenis_bayar ='Pelunasan' and status='sudah'");
+                    }
+                    
+                    akses.setform("DlgJaminanTransaksi");
+                    DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
+                    panjar.emptTeks();
+                    panjar.isCek();
+                    panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
+                            Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal where "
+                                    + "ki.no_rawat='" + TNoRw.getText() + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"),
+                            Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
+                            cekSelisih, cekTagihan);
+                    panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    panjar.setLocationRelativeTo(internalFrame1);
+                    panjar.setVisible(true);
+                    BtnBatalActionPerformed(null);
+                }
+            } else {
+                BtnBatalActionPerformed(null);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            tampil();
+            tbJaminan.requestFocus();
+        }
+    }//GEN-LAST:event_MnPanjarActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1057,6 +1123,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnHapus;
+    private javax.swing.JMenuItem MnPanjar;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;

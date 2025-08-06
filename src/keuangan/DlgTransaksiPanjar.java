@@ -28,6 +28,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.DlgPenanggungJawab;
 
 /**
  *
@@ -42,8 +43,9 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private int i = 0, x = 0, totBayarKurang = 0, totBayarLebih = 0, totBayar = 0;
+    public DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
     private String nipSimpan = "", nipGanti = "", totReal = "", totSelisih = "", 
-            totSelisihAwalnya = "", totRealTerakhir = "", jlhKurangDibayar = "", lebihDikembalikan = "";
+            totSelisihAwalnya = "", totRealTerakhir = "", jlhKurangDibayar = "", lebihDikembalikan = "", nilaiReal = "", nilaiSelisih = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -56,7 +58,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         tabMode = new DefaultTableModel(null, new String[]{
-            "No. Panjar", "No. Rawat", "No. RM", "Nama Pasien", "Ruang Rawat", "Tgl. Panjar", "Jam",
+            "No. Panjar", "No. Rawat", "No. RM", "Nama Pasien", "Ruang Rawat", "Cara Bayar", "Tgl. Panjar", "Jam",
             "No. Hp/Telp. Konfirmasi", "Alternatif No. Hp.Telp.", "Nominal Panjar (Rp.)", "Status Panjar",
             "Nominal Status (Rp.)", "Petugas Penerima", "Perbaikan Panjar Oleh", "Keterangan", "Telah Terima Dari",
             "tgl_panjar", "nip_petugas_simpan", "waktu_simpan", "nip_petugas_ganti", "waktu_ganti", "nominal_panjar",
@@ -73,7 +75,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         tbPanjar.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPanjar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 30; i++) {
+        for (i = 0; i < 31; i++) {
             TableColumn column = tbPanjar.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -86,31 +88,30 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
             } else if (i == 4) {
                 column.setPreferredWidth(220);
             } else if (i == 5) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(100);
             } else if (i == 6) {
-                column.setPreferredWidth(50);
+                column.setPreferredWidth(75);
             } else if (i == 7) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(50);
             } else if (i == 8) {
                 column.setPreferredWidth(150);
             } else if (i == 9) {
-                column.setPreferredWidth(130);
+                column.setPreferredWidth(150);
             } else if (i == 10) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(130);
             } else if (i == 11) {
+                column.setPreferredWidth(80);
+            } else if (i == 12) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 12) {
-                column.setPreferredWidth(180);
             } else if (i == 13) {
                 column.setPreferredWidth(180);
             } else if (i == 14) {
                 column.setPreferredWidth(180);
             } else if (i == 15) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(180);
             } else if (i == 16) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(220);
             } else if (i == 17) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -130,19 +131,22 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 23) {
-                column.setPreferredWidth(100);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 24) {
                 column.setPreferredWidth(100);
             } else if (i == 25) {
-                column.setPreferredWidth(140);
-            } else if (i == 26) {
-                column.setPreferredWidth(125);
-            } else if (i == 27) {
                 column.setPreferredWidth(100);
+            } else if (i == 26) {
+                column.setPreferredWidth(140);
+            } else if (i == 27) {
+                column.setPreferredWidth(125);
             } else if (i == 28) {
+                column.setPreferredWidth(100);
+            } else if (i == 29) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 29) {
+            } else if (i == 30) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } 
@@ -152,8 +156,8 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         tbPanjar.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         tbPanjar.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
         tbPanjar.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
-        tbPanjar.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
         tbPanjar.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+        tbPanjar.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         TnoTelp1.setDocument(new batasInput((byte) 16).getOnlyAngka(TnoTelp1));
@@ -172,6 +176,62 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                 public void changedUpdate(DocumentEvent e) {tampil();}
             });
         }
+        
+        penjab.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (akses.getform().equals("DlgTransaksiPanjar")) {
+                    if (penjab.getTable().getSelectedRow() != -1) {
+                        kdpnj.setText(penjab.getTable().getValueAt(penjab.getTable().getSelectedRow(), 1).toString());
+                        nmpnj.setText(penjab.getTable().getValueAt(penjab.getTable().getSelectedRow(), 2).toString());
+                        btnPenjab.requestFocus();
+                    }                    
+                }
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+
+        penjab.getTable().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (akses.getform().equals("DlgTransaksiPanjar")) {
+                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        penjab.dispose();
+                    }
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
     }
  
     /** This method is called from within the constructor to
@@ -196,6 +256,10 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
+        label16 = new widget.Label();
+        kdpnj = new widget.TextBox();
+        nmpnj = new widget.TextBox();
+        btnPenjab = new widget.Button();
         panelGlass10 = new widget.panelisi();
         jLabel19 = new widget.Label();
         DTPCari1 = new widget.Tanggal();
@@ -245,6 +309,8 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         labelnom_selisih = new widget.Label();
         BtnCekSelisih = new widget.Button();
         BtnCekRealCost = new widget.Button();
+        jLabel25 = new widget.Label();
+        TcaraBayar = new widget.TextBox();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbPanjar = new widget.Table();
@@ -436,6 +502,46 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnKeluar);
 
+        label16.setForeground(new java.awt.Color(0, 0, 0));
+        label16.setText("Cara Bayar :");
+        label16.setName("label16"); // NOI18N
+        label16.setPreferredSize(new java.awt.Dimension(80, 23));
+        panelGlass8.add(label16);
+
+        kdpnj.setEditable(false);
+        kdpnj.setForeground(new java.awt.Color(0, 0, 0));
+        kdpnj.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        kdpnj.setEnabled(false);
+        kdpnj.setHighlighter(null);
+        kdpnj.setName("kdpnj"); // NOI18N
+        kdpnj.setPreferredSize(new java.awt.Dimension(55, 24));
+        kdpnj.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                kdpnjKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(kdpnj);
+
+        nmpnj.setEditable(false);
+        nmpnj.setForeground(new java.awt.Color(0, 0, 0));
+        nmpnj.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        nmpnj.setEnabled(false);
+        nmpnj.setName("nmpnj"); // NOI18N
+        nmpnj.setPreferredSize(new java.awt.Dimension(250, 24));
+        panelGlass8.add(nmpnj);
+
+        btnPenjab.setForeground(new java.awt.Color(0, 0, 0));
+        btnPenjab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPenjab.setMnemonic('2');
+        btnPenjab.setToolTipText("ALt+2");
+        btnPenjab.setName("btnPenjab"); // NOI18N
+        btnPenjab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPenjabActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(btnPenjab);
+
         jPanel3.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
         panelGlass10.setName("panelGlass10"); // NOI18N
@@ -448,7 +554,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(78, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -462,7 +568,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -580,7 +686,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         PanelInput.add(jLabel11);
         jLabel11.setBounds(525, 94, 70, 23);
 
-        TtglPanjar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-08-2025" }));
+        TtglPanjar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2025" }));
         TtglPanjar.setDisplayFormat("dd-MM-yyyy");
         TtglPanjar.setName("TtglPanjar"); // NOI18N
         TtglPanjar.setOpaque(false);
@@ -832,6 +938,18 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         });
         PanelInput.add(BtnCekRealCost);
         BtnCekRealCost.setBounds(740, 66, 220, 26);
+
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setText("Cara Bayar :");
+        jLabel25.setName("jLabel25"); // NOI18N
+        PanelInput.add(jLabel25);
+        jLabel25.setBounds(245, 66, 85, 23);
+
+        TcaraBayar.setEditable(false);
+        TcaraBayar.setForeground(new java.awt.Color(0, 0, 0));
+        TcaraBayar.setName("TcaraBayar"); // NOI18N
+        PanelInput.add(TcaraBayar);
+        TcaraBayar.setBounds(334, 66, 395, 23);
 
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
@@ -1185,16 +1303,16 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                 param.put("nopanjar", TnoPanjar.getText());
                 param.put("telahTerima", TtelahTerima.getText());                
                 param.put("keterangan", Tketerangan.getText() + "\nNo. Hp/Telp. yang bisa dihubungi " + TnoTelp1.getText() + " / " + TnoTelp2.getText());
-                param.put("tanggal", "Martapura, " + Valid.SetTglINDONESIA(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 16).toString()));
+                param.put("tanggal", "Martapura, " + Valid.SetTglINDONESIA(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 17).toString()));
                 
                 if (cmbStatus.getSelectedIndex() == 2 || cmbStatus.getSelectedIndex() == 3) {
                     param.put("terbilang", Sequel.Terbilang(Double.parseDouble(TnominalStatus.getText())).toUpperCase() + " RUPIAH");
                     param.put("nominal", labelnom_status.getText().replaceAll(",", "."));
-                    param.put("petugas", "(" + tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 13).toString() + ")");
+                    param.put("petugas", "(" + tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 14).toString() + ")");
                 } else {
                     param.put("terbilang", Sequel.Terbilang(Double.parseDouble(TnominalPanjar.getText())).toUpperCase() + " RUPIAH");
                     param.put("nominal", labelnom_panjar.getText().replaceAll(",", "."));
-                    param.put("petugas", "(" + tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 12).toString() + ")");
+                    param.put("petugas", "(" + tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 13).toString() + ")");
                 }
 
                 Valid.MyReport("rptKwitansiPanjar.jasper", "report", "::[ Kuitansi Transaksi Panjar ]::",
@@ -1331,6 +1449,28 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnCekRealCostActionPerformed
 
+    private void kdpnjKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdpnjKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
+            Sequel.cariIsi("select png_jawab from penjab where kd_pj=?", nmpnj, kdpnj.getText());
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
+            btnPenjab.requestFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnPenjab.requestFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            btnPenjabActionPerformed(null);
+        }
+    }//GEN-LAST:event_kdpnjKeyPressed
+
+    private void btnPenjabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPenjabActionPerformed
+        akses.setform("DlgTransaksiPanjar");
+        penjab.isCek();
+        penjab.onCari();
+        penjab.setSize(868, 519);
+        penjab.setLocationRelativeTo(internalFrame1);
+        penjab.setVisible(true);
+        penjab.TCari.requestFocus();
+    }//GEN-LAST:event_btnPenjabActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1369,6 +1509,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
+    private widget.TextBox TcaraBayar;
     private widget.TextArea Tketerangan;
     private widget.TextBox TnoPanjar;
     private widget.TextBox TnoTelp1;
@@ -1379,6 +1520,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private widget.TextBox TtelahTerima;
     private widget.TextBox TtglMrs;
     private widget.Tanggal TtglPanjar;
+    private widget.Button btnPenjab;
     private widget.ComboBox cmbStatus;
     private widget.ComboBox cmbStatus1;
     private widget.InternalFrame internalFrame1;
@@ -1398,17 +1540,21 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private widget.Label jLabel22;
     private widget.Label jLabel23;
     private widget.Label jLabel24;
+    private widget.Label jLabel25;
     private widget.Label jLabel6;
     private widget.Label jLabel63;
     private widget.Label jLabel7;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private widget.TextBox kdpnj;
+    private widget.Label label16;
     private widget.Label label_tot_tagihan;
     private widget.Label labelnom_panjar;
     private widget.Label labelnom_real;
     private widget.Label labelnom_selisih;
     private widget.Label labelnom_status;
+    private widget.TextBox nmpnj;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass8;
     private widget.ScrollPane scrollPane13;
@@ -1419,15 +1565,17 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         jlhKurangDibayar = "";
         lebihDikembalikan = "";
+        nilaiReal = "";
+        nilaiSelisih = "";
         totBayarKurang = 0;
         totBayarLebih = 0;
         totBayar = 0;
         try {
             ps = koneksi.prepareStatement("SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d-%m-%Y') tglpanjar, "
                     + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
-                    + "pg1.nama petugas1, pg2.nama petugas2 from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
+                    + "pg1.nama petugas1, pg2.nama petugas2, rp.kd_pj, pj.png_jawab from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
                     + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
-                    + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where "
+                    + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti inner join penjab pj on pj.kd_pj=rp.kd_pj where "
                     + "tp.tgl_panjar between ? and ? and tp.no_panjar like ? or "
                     + "tp.tgl_panjar between ? and ? and tp.ruang_rawat like ? or "
                     + "tp.tgl_panjar between ? and ? and tp.no_rawat like ? or "
@@ -1436,6 +1584,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                     + "tp.tgl_panjar between ? and ? and tp.telp_1 like ? or "
                     + "tp.tgl_panjar between ? and ? and tp.telp_2 like ? or "
                     + "tp.tgl_panjar between ? and ? and tp.status_panjar like ? or "
+                    + "tp.tgl_panjar between ? and ? and pj.png_jawab like ? or "
                     + "tp.tgl_panjar between ? and ? and pg1.nama like ? order by tp.waktu_simpan desc");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -1465,17 +1614,20 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                 ps.setString(25, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(26, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
                 ps.setString(27, "%" + TCari.getText() + "%");
+                ps.setString(28, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(29, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(30, "%" + TCari.getText() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     Sequel.queryu("UPDATE transaksi_panjar tp inner join biaya_naik_kelas_bpjs bnkb on tp.no_rawat=bnkb.no_rawat set tp.selisih_tarif_bpjs=bnkb.total_tagihan "
                             + "where tp.no_rawat='" + rs.getString("no_rawat") + "'");
 
-                    int a = 0, b = 0, c = 0, d = 0;
+                    int a = 0, b = 0, c = 0;
+                    a = Integer.parseInt(rs.getString("nominal_panjar"));
                     if (rs.getString("status_panjar").equals("Kurang Bayar")) {
-                        jlhKurangDibayar = rs.getString("nomStatus");
-                        a = Integer.parseInt(rs.getString("nominal_panjar"));
+                        jlhKurangDibayar = rs.getString("nomStatus");                        
                         b = Integer.parseInt(rs.getString("nominal_balik"));
-                        totBayarKurang = a - b;                        
+                        totBayarKurang = a + b;
                     } else {
                         jlhKurangDibayar = "-";
                         totBayarKurang = 0;
@@ -1483,17 +1635,8 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
 
                     if (rs.getString("status_panjar").equals("Lebih Bayar")) {
                         lebihDikembalikan = rs.getString("nomStatus");
-                        if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + rs.getString("no_rawat") + "' and kd_pj='U01'") > 0) {
-                            c = Integer.parseInt(rs.getString("nominal_panjar"));
-                            d = Integer.parseInt(rs.getString("jumlah_tagihan"));
-                            totBayarLebih = c - d;
-                        } else if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + rs.getString("no_rawat") + "' and kd_pj in ('B01','A03')") > 0) {
-                            c = Integer.parseInt(rs.getString("nominal_panjar"));
-                            d = Integer.parseInt(rs.getString("selisih_tarif_bpjs"));
-                            totBayarLebih = c - d;
-                        } else {
-                            totBayarLebih = 0;
-                        }
+                        c = Integer.parseInt(rs.getString("nominal_balik"));
+                        totBayarLebih = a - c;
                     } else {
                         lebihDikembalikan = "-";
                         totBayarLebih = 0;
@@ -1507,12 +1650,26 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                         totBayar = totBayarLebih;
                     }
                     
+                    if (rs.getString("kd_pj").equals("B01") || rs.getString("kd_pj").equals("A03")) {
+                        if (rs.getString("status_panjar").equals("Kurang Bayar") || rs.getString("status_panjar").equals("Lebih Bayar")) {
+                            nilaiReal = "-";
+                            nilaiSelisih = Valid.SetAngka(Integer.parseInt(rs.getString("selisih_tarif_bpjs")));
+                        } else {
+                            nilaiReal = Valid.SetAngka(Integer.parseInt(rs.getString("jumlah_tagihan")));
+                            nilaiSelisih = Valid.SetAngka(Integer.parseInt(rs.getString("selisih_tarif_bpjs")));
+                        }
+                    } else {
+                        nilaiReal = Valid.SetAngka(Integer.parseInt(rs.getString("jumlah_tagihan")));
+                        nilaiSelisih = "-";
+                    }
+                    
                     tabMode.addRow(new String[]{
                         rs.getString("no_panjar"),
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
                         rs.getString("ruang_rawat"),
+                        rs.getString("png_jawab"),
                         rs.getString("tglpanjar"),
                         rs.getString("jam"),
                         rs.getString("telp_1"),
@@ -1531,8 +1688,8 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                         rs.getString("waktu_ganti"),
                         rs.getString("nominal_panjar"),
                         rs.getString("nominal_balik"),
-                        Valid.SetAngka(Integer.parseInt(rs.getString("jumlah_tagihan"))),
-                        Valid.SetAngka(Integer.parseInt(rs.getString("selisih_tarif_bpjs"))),
+                        nilaiReal,
+                        nilaiSelisih,
                         jlhKurangDibayar,
                         lebihDikembalikan,
                         Valid.SetAngka(totBayar),
@@ -1563,6 +1720,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         TrgRawat.setText("");
         TtglMrs.setText("");
         TtglPanjar.setDate(new Date());
+        TcaraBayar.setText("");
         TtelahTerima.setText("");
         TnoTelp1.setText("0");
         TnoTelp2.setText("0");
@@ -1579,6 +1737,8 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         totSelisihAwalnya = "0";
         labelnom_real.setText("Rp. 0");
         labelnom_selisih.setText("Rp. 0");
+        kdpnj.setText("");
+        nmpnj.setText("");
         AutoNomorPanjar();
     }
 
@@ -1594,20 +1754,21 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
             TPasien.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 3).toString());
             TrgRawat.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 4).toString());
             TtglMrs.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'")));
-            Valid.SetTgl(TtglPanjar, tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 16).toString());
-            TnoTelp1.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 7).toString());
-            TnoTelp2.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 8).toString());
-            TnominalPanjar.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 21).toString());
-            cmbStatus.setSelectedItem(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 10).toString());            
-            TnominalStatus.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 22).toString());
-            Tketerangan.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 14).toString());
-            TtelahTerima.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 15).toString());
-            nipSimpan = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 17).toString();
-            nipGanti = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 19).toString();
-            totReal = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 28).toString();
-            totRealTerakhir = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 28).toString();
-            totSelisih = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 29).toString();
-            totSelisihAwalnya = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 29).toString();
+            TcaraBayar.setText(Sequel.cariIsi("select p.png_jawab from reg_periksa rp inner join penjab p on p.kd_pj=rp.kd_pj where rp.no_rawat='" + TNoRw.getText() + "'"));
+            Valid.SetTgl(TtglPanjar, tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 17).toString());
+            TnoTelp1.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 8).toString());
+            TnoTelp2.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 9).toString());
+            TnominalPanjar.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 22).toString());
+            cmbStatus.setSelectedItem(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 11).toString());            
+            TnominalStatus.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 23).toString());
+            Tketerangan.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 15).toString());
+            TtelahTerima.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 16).toString());
+            nipSimpan = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 18).toString();
+            nipGanti = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 20).toString();
+            totReal = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 29).toString();
+            totRealTerakhir = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 29).toString();
+            totSelisih = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 30).toString();
+            totSelisihAwalnya = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 30).toString();
             cekCurency();
             
             if (cmbStatus.getSelectedIndex() == 2 || cmbStatus.getSelectedIndex() == 3) {
@@ -1641,6 +1802,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         TPasien.setText(nmpasien);
         TrgRawat.setText(ruangan);
         TtglMrs.setText(Valid.SetTglINDONESIA(tglmrs));
+        TcaraBayar.setText(Sequel.cariIsi("select p.png_jawab from reg_periksa rp inner join penjab p on p.kd_pj=rp.kd_pj where rp.no_rawat='" + norw + "'"));
         TCari.setText(norw);
         Tketerangan.setText("BIAYA JAMINAN PERAWATAN DIRUANG " + Sequel.cariIsi("select ifnull(nm_gedung,'-') from bangsal where nm_bangsal='" + ruangan + "'").toUpperCase());
         totReal = nomRealCost.replaceAll(",", "");

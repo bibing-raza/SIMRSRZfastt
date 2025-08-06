@@ -262,13 +262,12 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="6">
+                      <StringArray count="5">
                         <StringItem index="0" value="-"/>
-                        <StringItem index="1" value="VK BERSALIN"/>
-                        <StringItem index="2" value="RAWAT JALAN"/>
-                        <StringItem index="3" value="IBS"/>
-                        <StringItem index="4" value="AR RAUDAH"/>
-                        <StringItem index="5" value="HEMODIALISA"/>
+                        <StringItem index="1" value="RAWAT JALAN"/>
+                        <StringItem index="2" value="IBS"/>
+                        <StringItem index="3" value="AR RAUDAH"/>
+                        <StringItem index="4" value="HEMODIALISA"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbGedung1" noResource="true"/>
@@ -389,7 +388,6 @@
             </Component>
             <Component class="widget.TextBox" name="kdIndikator">
               <Properties>
-                <Property name="editable" type="boolean" value="false"/>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
@@ -481,13 +479,12 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="6">
+                  <StringArray count="5">
                     <StringItem index="0" value="-"/>
-                    <StringItem index="1" value="VK BERSALIN"/>
-                    <StringItem index="2" value="RAWAT JALAN"/>
-                    <StringItem index="3" value="IBS"/>
-                    <StringItem index="4" value="AR RAUDAH"/>
-                    <StringItem index="5" value="HEMODIALISA"/>
+                    <StringItem index="1" value="RAWAT JALAN"/>
+                    <StringItem index="2" value="IBS"/>
+                    <StringItem index="3" value="AR RAUDAH"/>
+                    <StringItem index="4" value="HEMODIALISA"/>
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbGedung" noResource="true"/>

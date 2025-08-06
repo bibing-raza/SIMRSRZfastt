@@ -54,8 +54,8 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
     private Jurnal jur = new Jurnal();
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private PreparedStatement psset_tarif, pssetpj, pspemeriksaan, pspemeriksaan2, pspemeriksaan3, pspemeriksaan4, psbhp, psrekening, ps1;
-    private ResultSet rs, rsset_tarif, rssetpj, rsrekening, rs1;
+    private PreparedStatement psset_tarif, pssetpj, pspemeriksaan, pspemeriksaan2, pspemeriksaan3, pspemeriksaan4, psbhp, psrekening, ps1, ps2;
+    private ResultSet rs, rsset_tarif, rssetpj, rsrekening, rs1, rs2;
     private boolean[] pilih;
     private String[] kode, nama, kodebarang, namabarang, satuan;
     private double[] jumlah, total, bagian_rs, bhp, tarif_perujuk, tarif_tindakan_dokter, tarif_tindakan_petugas, kso, menejemen;
@@ -65,8 +65,9 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
     private double ttljmdokter = 0, ttljmpetugas = 0, ttlkso = 0, ttlpendapatan = 0, ttlbhp = 0;
     private String Suspen_Piutang_Radiologi_Ranap = "", Radiologi_Ranap = "", Beban_Jasa_Medik_Dokter_Radiologi_Ranap = "", cekPetugas = "",
             Utang_Jasa_Medik_Dokter_Radiologi_Ranap = "", Beban_Jasa_Medik_Petugas_Radiologi_Ranap = "", cekPeriksa = "",
-            Utang_Jasa_Medik_Petugas_Radiologi_Ranap = "", Beban_Kso_Radiologi_Ranap = "", Utang_Kso_Radiologi_Ranap = "",
-            HPP_Persediaan_Radiologi_Rawat_Inap = "", Persediaan_BHP_Radiologi_Rawat_Inap = "", kdPenjab = "", kdPoli = "";
+            Utang_Jasa_Medik_Petugas_Radiologi_Ranap = "", Beban_Kso_Radiologi_Ranap = "", Utang_Kso_Radiologi_Ranap = "", 
+            HPP_Persediaan_Radiologi_Rawat_Inap = "", Persediaan_BHP_Radiologi_Rawat_Inap = "", kdPenjab = "", kdPoli = "", sttsProses = "",
+            tglperiksa = "", jamperiksa = "";
 
     /**
      * Creates new form DlgPerawatan
@@ -393,6 +394,16 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
                     psset_tarif.close();
                 }
             }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        try {
+            StringBuilder sb = new StringBuilder();
+            sb.append("select beri_bhp_radiologi.kode_brng,ipsrsbarang.nama_brng,beri_bhp_radiologi.kode_sat,beri_bhp_radiologi.jumlah, ");
+            sb.append("beri_bhp_radiologi.total from beri_bhp_radiologi inner join ipsrsbarang on ipsrsbarang.kode_brng=beri_bhp_radiologi.kode_brng ");
+            sb.append("where beri_bhp_radiologi.no_rawat like ? and beri_bhp_radiologi.tgl_periksa like ? and beri_bhp_radiologi.jam like ?");
+            ps2 = koneksi.prepareStatement(sb.toString());
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -1888,8 +1899,11 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         new Timer(1000, taskPerformer).start();
     }
 
-    public void setNoRm(String norwt, String posisi) {
+    public void setNoRm(String norwt, String posisi, String proses, String tglPerik, String jamPerik) {
         TNoRw.setText(norwt);
+        sttsProses = proses;
+        tglperiksa = tglPerik;
+        jamperiksa = jamPerik;
         this.status = posisi;
         try {
             pssetpj = koneksi.prepareStatement("select * from set_pjlab");
@@ -1911,6 +1925,12 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
             }
         } catch (Exception e) {
             System.out.println(e);
+        }
+        
+        if (proses.equals("perbaikan")) {
+            BtnCari.setEnabled(false);
+        } else {
+            BtnCari.setEnabled(true);
         }
 
         isRawat();
@@ -2012,6 +2032,11 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 ttlkso = 0;
                 ttlpendapatan = 0;
                 Sequel.AutoComitFalse();
+                
+                if (sttsProses.equals("perbaikan")) {
+                    hapusPeriksaRadiologi();
+                }
+                
                 for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
                     if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
                         if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 18, new String[]{
@@ -2088,6 +2113,11 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 ttlkso = 0;
                 ttlpendapatan = 0;
                 Sequel.AutoComitFalse();
+                
+                if (sttsProses.equals("perbaikan")) {
+                    hapusPeriksaRadiologi();
+                }
+                
                 for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
                     if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
                         if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 18, new String[]{
@@ -2154,4 +2184,67 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         }
     }
 
+    private void hapusPeriksaRadiologi() {
+        try {
+            Sequel.AutoComitFalse();
+            status = "";
+            ttljmdokter = 0;
+            ttljmpetugas = 0;
+            ttlkso = 0;
+            ttlpendapatan = 0;
+            ttlbhp = 0;
+            ttljmdokter = Sequel.cariIsiAngka("select sum(tarif_perujuk)+sum(tarif_tindakan_dokter) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "' and tgl_periksa='" + tglperiksa + "' and jam='" + jamperiksa + "'");
+            ttljmpetugas = Sequel.cariIsiAngka("select sum(tarif_tindakan_petugas) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "' and tgl_periksa='" + jamperiksa + "' and jam='" + tglperiksa + "'");
+            ttlkso = Sequel.cariIsiAngka("select sum(kso) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "' and tgl_periksa='" + tglperiksa + "' and jam='" + jamperiksa + "'");
+            ttlpendapatan = Sequel.cariIsiAngka("select sum(biaya) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "' and tgl_periksa='" + tglperiksa + "' and jam='" + jamperiksa + "'");
+            status = Sequel.cariIsi("select status from periksa_radiologi where no_rawat='" + TNoRw.getText() + "' and tgl_periksa='" + tglperiksa + "' and jam='" + jamperiksa + "'");
+
+            if (Sequel.queryu2tf("delete from periksa_radiologi where no_rawat=? and tgl_periksa=? and jam=?", 3, new String[]{
+                TNoRw.getText(), tglperiksa, jamperiksa
+            }) == true) {
+                ps2.setString(1, TNoRw.getText());
+                ps2.setString(2, tglperiksa);
+                ps2.setString(3, jamperiksa);
+                rs2 = ps2.executeQuery();
+                while (rs2.next()) {
+                    Sequel.mengedit("ipsrsbarang", "kode_brng=?", "stok=stok+?", 2, new String[]{
+                        rs2.getString("jumlah"), rs2.getString("kode_brng")
+                    });
+                }
+                ttlbhp = Sequel.cariIsiAngka("select sum(total) from beri_bhp_radiologi where no_rawat='" + TNoRw.getText() + "' and tgl_periksa='" + tglperiksa + "' and jam='" + jamperiksa + "'");
+                if (Sequel.queryu2tf("delete from beri_bhp_radiologi where no_rawat=? and tgl_periksa=? and jam=?", 3, new String[]{
+                    TNoRw.getText(), tglperiksa, jamperiksa
+                }) == false) {
+                    ttlbhp = 0;
+                }
+                if (status.equals("Ranap")) {
+                    Sequel.queryu("delete from tampjurnal");
+                    if (ttlpendapatan > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + Suspen_Piutang_Radiologi_Ranap + "','Suspen Piutang Radiologi Ranap','0','" + ttlpendapatan + "'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Radiologi_Ranap + "','Pendapatan Radiologi Rawat Inap','" + ttlpendapatan + "','0'", "Rekening");
+                    }
+                    if (ttljmdokter > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + Beban_Jasa_Medik_Dokter_Radiologi_Ranap + "','Beban Jasa Medik Dokter Radiologi Ranap','0','" + ttljmdokter + "'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Utang_Jasa_Medik_Dokter_Radiologi_Ranap + "','Utang Jasa Medik Dokter Radiologi Ranap','" + ttljmdokter + "','0'", "Rekening");
+                    }
+                    if (ttljmpetugas > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + Beban_Jasa_Medik_Petugas_Radiologi_Ranap + "','Beban Jasa Medik Petugas Radiologi Ranap','0','" + ttljmpetugas + "'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Utang_Jasa_Medik_Petugas_Radiologi_Ranap + "','Utang Jasa Medik Petugas Radiologi Ranap','" + ttljmpetugas + "','0'", "Rekening");
+                    }
+                    if (ttlbhp > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + HPP_Persediaan_Radiologi_Rawat_Inap + "','HPP Persediaan Radiologi Rawat Inap','0','" + ttlbhp + "'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Persediaan_BHP_Radiologi_Rawat_Inap + "','Persediaan BHP Radiologi Rawat Inap','" + ttlbhp + "','0'", "Rekening");
+                    }
+                    if (ttlkso > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + Beban_Kso_Radiologi_Ranap + "','Beban KSO Radiologi Ranap','0','" + ttlkso + "'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Utang_Kso_Radiologi_Ranap + "','Utang KSO Radiologi Ranap','" + ttlkso + "','0'", "Rekening");
+                    }
+                    jur.simpanJurnal(TNoRw.getText(), Sequel.cariIsi("select current_date()"), "U", "PEMBATALAN PEMERIKSAAN RADIOLOGI RAWAT INAP PASIEN OLEH " + akses.getkode());
+                }
+            }
+            Sequel.AutoComitTrue();
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);            
+        }
+    }
 }

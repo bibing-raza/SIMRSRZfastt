@@ -8183,11 +8183,11 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             TCari.requestFocus();
         } else {
             if (Sequel.cariRegistrasi(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 0).toString()) > 0) {
-                if (akses.getnamauser().equals("Admin Utama")) {
+                if (akses.getadmin() == true) {
                     periksarad.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                     periksarad.setLocationRelativeTo(internalFrame1);
                     periksarad.emptTeks();
-                    periksarad.setNoRm(norawat.getText(), "Ranap");
+                    periksarad.setNoRm(norawat.getText(), "Ranap", "input baru", "", "");
                     periksarad.tampil();
                     periksarad.isCek();
                     periksarad.setVisible(true);
@@ -8199,7 +8199,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 periksarad.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 periksarad.setLocationRelativeTo(internalFrame1);
                 periksarad.emptTeks();
-                periksarad.setNoRm(norawat.getText(), "Ranap");
+                periksarad.setNoRm(norawat.getText(), "Ranap", "input baru", "", "");
                 periksarad.tampil();
                 periksarad.isCek();
                 periksarad.setVisible(true);
@@ -12246,18 +12246,18 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             tbKamIn.requestFocus();
         } else {
             if (tbKamIn.getSelectedRow() != -1) {
-                if (Sequel.cariRegistrasi(norawat.getText()) > 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi, jaminan transaksi tidak diperlukan ..!!");
-                } else {
-                    DlgJaminanTransaksi jaminan = new DlgJaminanTransaksi(null, false);
-                    akses.setform("DlgKamarInap");
-                    jaminan.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-                    jaminan.setLocationRelativeTo(internalFrame1);
-                    jaminan.isCek();
-                    jaminan.emptTeks();
-                    jaminan.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), ruangrawat.getText());
-                    jaminan.setVisible(true);
-                }
+//                if (Sequel.cariRegistrasi(norawat.getText()) > 0) {
+//                    JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi, jaminan transaksi tidak diperlukan ..!!");
+//                } else {
+                DlgJaminanTransaksi jaminan = new DlgJaminanTransaksi(null, false);
+                akses.setform("DlgKamarInap");
+                jaminan.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                jaminan.setLocationRelativeTo(internalFrame1);
+                jaminan.isCek();
+                jaminan.emptTeks();
+                jaminan.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), ruangrawat.getText());
+                jaminan.setVisible(true);
+//                }
             }
         }
     }//GEN-LAST:event_MnJaminanTransaksiBtnPrintActionPerformed

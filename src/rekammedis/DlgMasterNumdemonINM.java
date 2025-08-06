@@ -276,7 +276,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         panelGlass10.add(jLabel13);
 
         cmbGedung1.setForeground(new java.awt.Color(0, 0, 0));
-        cmbGedung1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "VK BERSALIN", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
+        cmbGedung1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
         cmbGedung1.setName("cmbGedung1"); // NOI18N
         cmbGedung1.setPreferredSize(new java.awt.Dimension(150, 23));
         panelGlass10.add(cmbGedung1);
@@ -343,7 +343,6 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         PanelInput.add(jLabel4);
         jLabel4.setBounds(0, 10, 115, 23);
 
-        kdNumdenom.setEditable(false);
         kdNumdenom.setForeground(new java.awt.Color(0, 0, 0));
         kdNumdenom.setName("kdNumdenom"); // NOI18N
         PanelInput.add(kdNumdenom);
@@ -414,7 +413,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         jLabel12.setBounds(0, 38, 115, 23);
 
         cmbGedung.setForeground(new java.awt.Color(0, 0, 0));
-        cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "VK BERSALIN", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
+        cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
         cmbGedung.setName("cmbGedung"); // NOI18N
         cmbGedung.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbGedung.addMouseListener(new java.awt.event.MouseAdapter() {

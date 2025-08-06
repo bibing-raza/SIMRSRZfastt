@@ -4143,7 +4143,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 periksalab.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 periksalab.setLocationRelativeTo(internalFrame1);
                 periksalab.emptTeks();
-                periksalab.setNoRm(TNoRw.getText(), "Ralan");
+                periksalab.setNoRm(TNoRw.getText(), "Ralan", "input baru", "", "");
                 periksalab.tampil();
                 periksalab.isCek();
                 periksalab.setAlwaysOnTop(false);
@@ -4156,7 +4156,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     periksalab.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                     periksalab.setLocationRelativeTo(internalFrame1);
                     periksalab.emptTeks();
-                    periksalab.setNoRm(TNoRw.getText(), "Ralan");
+                    periksalab.setNoRm(TNoRw.getText(), "Ralan", "input baru", "", "");
                     periksalab.tampil();
                     periksalab.isCek();
                     periksalab.setAlwaysOnTop(false);

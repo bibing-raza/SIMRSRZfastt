@@ -797,7 +797,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                             dlgro.setLocationRelativeTo(internalFrame1);
                             dlgro.emptTeks();
                             dlgro.isCek();
-                            dlgro.setNoRm(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString(), "Ranap");
+                            dlgro.setNoRm(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString(), "Ranap", "input baru", "", "");
                             dlgro.setOrder(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 11).toString());
                             dlgro.tampil();
                             dlgro.setVisible(true);
@@ -810,7 +810,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                             dlgro.setLocationRelativeTo(internalFrame1);
                             dlgro.emptTeks();
                             dlgro.isCek();
-                            dlgro.setNoRm(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString(), "Ralan");
+                            dlgro.setNoRm(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString(), "Ralan", "input baru", "", "");
                             dlgro.setOrder(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 11).toString());
                             dlgro.tampil();
                             dlgro.setVisible(true);
@@ -974,7 +974,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                             dlgro.setLocationRelativeTo(internalFrame1);
                             dlgro.emptTeks();
                             dlgro.isCek();
-                            dlgro.setNoRm(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString(), "Ranap");
+                            dlgro.setNoRm(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString(), "Ranap", "input baru", "", "");
                             dlgro.setOrder(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 11).toString());
                             dlgro.tampil();
                             dlgro.setVisible(true);
@@ -987,7 +987,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                             dlgro.setLocationRelativeTo(internalFrame1);
                             dlgro.emptTeks();
                             dlgro.isCek();
-                            dlgro.setNoRm(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString(), "Ralan");
+                            dlgro.setNoRm(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString(), "Ralan", "input baru", "", "");
                             dlgro.setOrder(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 11).toString());
                             dlgro.tampil();
                             dlgro.setVisible(true);

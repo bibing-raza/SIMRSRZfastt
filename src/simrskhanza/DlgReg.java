@@ -8516,7 +8516,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 dlgro.setLocationRelativeTo(internalFrame1);
                 dlgro.emptTeks();
                 dlgro.isCek();
-                dlgro.setNoRm(TNoRw.getText(), "Ralan");
+                dlgro.setNoRm(TNoRw.getText(), "Ralan", "input baru", "", "");
                 dlgro.tampil();
                 dlgro.setVisible(true);
                 dlgro.fokus_kursor();

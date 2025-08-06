@@ -478,7 +478,7 @@ public final class DlgBangsal extends javax.swing.JDialog {
         jLabel8.setBounds(165, 38, 90, 23);
 
         CmbGedung.setForeground(new java.awt.Color(0, 0, 0));
-        CmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "AL-HAKIM/PARU", "ANAK", "AR-RAUDAH ATAS", "AR-RAUDAH BAWAH", "AS-SAMI", "BEDAH", "BERSALIN", "ICU", "RKPD", "VIP", "ZAAL" }));
+        CmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         CmbGedung.setName("CmbGedung"); // NOI18N
         CmbGedung.setPreferredSize(new java.awt.Dimension(95, 23));
         CmbGedung.addItemListener(new java.awt.event.ItemListener() {
@@ -714,6 +714,7 @@ public final class DlgBangsal extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         emptTeks();
         tampil();
+        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal GROUP BY nm_gedung ORDER BY nm_gedung", CmbGedung);
     }//GEN-LAST:event_formWindowOpened
 
     private void MnRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRestoreActionPerformed

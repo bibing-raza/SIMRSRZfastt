@@ -675,6 +675,8 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println(e);
         }
+        
+        Tnotelp.setDocument(new batasInput((byte) 15).getOnlyAngka(Tnotelp));
     }
 
     /**
@@ -779,6 +781,8 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         BtnSimpan5 = new widget.Button();
         jLabel19 = new widget.Label();
         nm_telah_terima = new widget.TextBox();
+        jLabel21 = new widget.Label();
+        Tnotelp = new widget.TextBox();
         WindowSelisihTarif = new javax.swing.JDialog();
         internalFrame10 = new widget.InternalFrame();
         internalFrame11 = new widget.InternalFrame();
@@ -932,7 +936,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         MnNamaTelahTerima.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnNamaTelahTerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnNamaTelahTerima.setText("Nama Org. Telah Terima Di Kwitansi");
+        MnNamaTelahTerima.setText("Nama Org. Telah Terima & No. Telp.");
         MnNamaTelahTerima.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnNamaTelahTerima.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnNamaTelahTerima.setIconTextGap(5);
@@ -1929,7 +1933,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         WindowInput7.setUndecorated(true);
         WindowInput7.setResizable(false);
 
-        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Ganti Nama Orang Telah Terima Di Kwitansi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Ganti Nama Orang Telah Terima & No. Telp. Di Kwitansi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame8.setName("internalFrame8"); // NOI18N
         internalFrame8.setWarnaBawah(new java.awt.Color(240, 245, 235));
         internalFrame8.setLayout(null);
@@ -1972,6 +1976,17 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         nm_telah_terima.setName("nm_telah_terima"); // NOI18N
         internalFrame8.add(nm_telah_terima);
         nm_telah_terima.setBounds(183, 32, 320, 23);
+
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setText("No. Telp./HP : ");
+        jLabel21.setName("jLabel21"); // NOI18N
+        internalFrame8.add(jLabel21);
+        jLabel21.setBounds(0, 60, 180, 23);
+
+        Tnotelp.setForeground(new java.awt.Color(0, 0, 0));
+        Tnotelp.setName("Tnotelp"); // NOI18N
+        internalFrame8.add(Tnotelp);
+        Tnotelp.setBounds(183, 60, 190, 23);
 
         WindowInput7.getContentPane().add(internalFrame8, java.awt.BorderLayout.CENTER);
 
@@ -2385,7 +2400,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2024" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -2466,7 +2481,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2024 14:04:36" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2025 13:41:01" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2578,7 +2593,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelGlass2.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -4058,7 +4073,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             periksarad.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             periksarad.setLocationRelativeTo(internalFrame1);
             periksarad.emptTeks();
-            periksarad.setNoRm(TNoRw.getText(), "Ranap");
+            periksarad.setNoRm(TNoRw.getText(), "Ranap", "input baru", "", "");
             periksarad.tampil();
             periksarad.isCek();
             periksarad.setAlwaysOnTop(false);
@@ -4338,7 +4353,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             periksarad.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             periksarad.setLocationRelativeTo(internalFrame1);
             periksarad.emptTeks();
-            periksarad.setNoRm(TNoRw.getText(), "Ranap");
+            periksarad.setNoRm(TNoRw.getText(), "Ranap", "input baru", "", "");
             periksarad.tampil();
             periksarad.isCek();
             periksarad.setAlwaysOnTop(false);
@@ -4640,13 +4655,15 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     private void BtnSimpan5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan5ActionPerformed
         Sequel.mengedit("reg_periksa", "no_rawat='" + TNoRw.getText() + "'", "p_jawab='" + nm_telah_terima.getText() + "' ");
+        Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "no_tlp='" + Tnotelp.getText() + "' ");
         WindowInput7.dispose();
     }//GEN-LAST:event_BtnSimpan5ActionPerformed
 
     private void MnNamaTelahTerimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnNamaTelahTerimaActionPerformed
         Sequel.cariIsi("select p_jawab from reg_periksa where no_rawat=? ", nm_telah_terima, TNoRw.getText());
+        Sequel.cariIsi("select no_tlp from pasien where no_rkm_medis=? ", Tnotelp, TNoRM.getText());
 
-        WindowInput7.setSize(731, 77);
+        WindowInput7.setSize(731, 104);
         WindowInput7.setLocationRelativeTo(internalFrame1);
         WindowInput7.setAlwaysOnTop(false);
         WindowInput7.setVisible(true);
@@ -5059,6 +5076,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.TextBox TketPenjamin;
     public widget.TextBox TnoPanjar;
     public widget.TextBox TnominalPanjar;
+    private widget.TextBox Tnotelp;
     private widget.TextBox TotalObat;
     public widget.TextBox TtglPanjar;
     private widget.TextBox TtlSemua;
@@ -5098,6 +5116,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Label jLabel18;
     private widget.Label jLabel19;
     private widget.Label jLabel20;
+    private widget.Label jLabel21;
     private widget.Label jLabel23;
     private widget.Label jLabel3;
     private widget.Label jLabel4;
@@ -7704,14 +7723,15 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         param.put("emailrs", akses.getemailrs());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
         param.put("no_kwitansi", Sequel.cariIsi("SELECT REPLACE(temp2,': ','') no_kwitansi FROM temporary_bayar_ranap WHERE temp1='No.Nota'"));
-        param.put("telah_terima", Sequel.cariIsi("select p_jawab from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
+        param.put("telah_terima", Sequel.cariIsi("select concat(rp.p_jawab,' (No. Telp./HP. ',p.no_tlp,')') from reg_periksa rp "
+                + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + TNoRw.getText() + "'"));
         param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp7,'.',''),',','') tot_bayar FROM temporary_bayar_ranap WHERE temp1='BAYAR'")) + " Rupiah.");
         param.put("untuk_byr", "Pelayanan Kesehatan Rawat Inap di " + Sequel.cariIsi("select nama_instansi from setting") + " a/n "
                 + Sequel.cariIsi("SELECT REPLACE(temp2,': ','') pasien FROM temporary_bayar_ranap WHERE temp1='Pasien'"));
         param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp7,'.','.'),',','.')) terbilang FROM temporary_bayar_ranap WHERE temp1='BAYAR'"));
-        param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(tglNota.getSelectedItem() + "")));
+        param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(tglNota.getSelectedItem() + "")));        
 
-        if (akses.getkode().equals("Admin Utama") || BtnSimpan.isEnabled() == false) {
+        if (akses.getadmin() == true || BtnSimpan.isEnabled() == false) {
             param.put("petugas_ksr", "( ____________________ )");
         } else if (akses.getbilling_ranap()) {
             param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
@@ -7730,14 +7750,15 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         param.put("emailrs", akses.getemailrs());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
         param.put("no_kwitansi", Sequel.cariIsi("SELECT REPLACE(temp2,': ','') no_kwitansi FROM temporary_bayar_ranap WHERE temp1='No.Nota'"));
-        param.put("telah_terima", Sequel.cariIsi("select p_jawab from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
+        param.put("telah_terima", Sequel.cariIsi("select concat(rp.p_jawab,' (No. Telp./HP. ',p.no_tlp,')') from reg_periksa rp "
+                + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + TNoRw.getText() + "'"));
         param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp7,'.',''),',','') tot_bayar FROM temporary_bayar_ranap WHERE temp1='UANG MUKA'")) + " Rupiah.");
         param.put("untuk_byr", "Pelayanan Kesehatan Rawat Inap di " + Sequel.cariIsi("select nama_instansi from setting") + " a/n "
                 + Sequel.cariIsi("SELECT REPLACE(temp2,': ','') pasien FROM temporary_bayar_ranap WHERE temp1='Pasien'") + " sebagai uang muka.");
         param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp7,'.','.'),',','.')) terbilang FROM temporary_bayar_ranap WHERE temp1='UANG MUKA'"));
         param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(tglNota.getSelectedItem() + "")));
 
-        if (akses.getkode().equals("Admin Utama") || BtnSimpan.isEnabled() == false) {
+        if (akses.getadmin() == true || BtnSimpan.isEnabled() == false) {
             param.put("petugas_ksr", "( ____________________ )");
         } else if (akses.getbilling_ranap()) {
             param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
