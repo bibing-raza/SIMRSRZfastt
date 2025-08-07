@@ -920,6 +920,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
                 Valid.SetTgl(TtglDikembalikan.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), TnipMengembalikan.getText(), TnmTelah.getText(),
                 TNoRw.getText()
             }) == true) {
+                Valid.SetTgl(DTPa, Valid.SetTgl(TtglDikembalikan.getSelectedItem() + ""));
                 BtnBatalActionPerformed(null);
             }
         }
@@ -961,6 +962,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
                     Valid.SetTgl(TtglDikembalikan.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), TnipMengembalikan.getText(), TnmTelah.getText(),
                     TNoRw.getText()
                 }) == true) {
+                    Valid.SetTgl(DTPa, Valid.SetTgl(TtglDikembalikan.getSelectedItem() + ""));
                     BtnBatalActionPerformed(null);
                 }
             }

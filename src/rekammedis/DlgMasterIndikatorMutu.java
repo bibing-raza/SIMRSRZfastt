@@ -49,7 +49,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         initComponents();
 
         tabMode=new DefaultTableModel(null,new String[]{
-            "Kode Indikator", "No. Urut", "Nama Indikator", "Gedung Perawatan", "Status Data"}) {
+            "Kode Indikator", "No. Urut", "Nama Indikator", "Gedung Perawatan", "Status Data", "Target"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -60,7 +60,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         tbMutu.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbMutu.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 5; i++) {
+        for (i = 0; i < 6; i++) {
             TableColumn column = tbMutu.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(90);
@@ -72,22 +72,33 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                 column.setPreferredWidth(130);
             } else if (i == 4) {
                 column.setPreferredWidth(90);
+            } else if (i == 5) {
+                column.setPreferredWidth(60);
             }
         }
         tbMutu.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         TnoUrut.setDocument(new batasInput((byte) 3).getOnlyAngka(TnoUrut));
-        TnmIndikator.setDocument(new batasInput((int) 255).getKata(TnmIndikator));        
+        TnmIndikator.setDocument(new batasInput((int) 255).getKata(TnmIndikator));
+        Ttarget.setDocument(new batasInput((int) 10).getKata(Ttarget));
         
-        if(koneksiDB.cariCepat().equals("aktif")){
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+        if (koneksiDB.cariCepat().equals("aktif")) {
+            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
                 @Override
-                public void insertUpdate(DocumentEvent e) {tampil();}
+                public void insertUpdate(DocumentEvent e) {
+                    tampil();
+                }
+
                 @Override
-                public void removeUpdate(DocumentEvent e) {tampil();}
+                public void removeUpdate(DocumentEvent e) {
+                    tampil();
+                }
+
                 @Override
-                public void changedUpdate(DocumentEvent e) {tampil();}
+                public void changedUpdate(DocumentEvent e) {
+                    tampil();
+                }
             });
         }
     }
@@ -129,6 +140,8 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         cmbGedung = new widget.ComboBox();
         jLabel11 = new widget.Label();
         cmbStatus = new widget.ComboBox();
+        jLabel13 = new widget.Label();
+        Ttarget = new widget.TextBox();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbMutu = new widget.Table();
@@ -408,6 +421,17 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         PanelInput.add(cmbStatus);
         cmbStatus.setBounds(425, 66, 80, 23);
 
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Target :");
+        jLabel13.setName("jLabel13"); // NOI18N
+        PanelInput.add(jLabel13);
+        jLabel13.setBounds(510, 66, 55, 23);
+
+        Ttarget.setForeground(new java.awt.Color(0, 0, 0));
+        Ttarget.setName("Ttarget"); // NOI18N
+        PanelInput.add(Ttarget);
+        Ttarget.setBounds(573, 66, 80, 23);
+
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
         internalFrame2.setBorder(null);
@@ -462,7 +486,8 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
 
 //            kdIndikator.setText(Valid.autoNomer("master_indikator_nasional_mutu", "INM", 3));
             Sequel.menyimpan("master_indikator_nasional_mutu", "'" + kdIndikator.getText() + "','" + TnoUrut.getText() + "',"
-                    + "'" + TnmIndikator.getText() + "','" + cmbGedung.getSelectedItem().toString() + "','" + stts + "'", "Indikator Nasional Mutu");
+                    + "'" + TnmIndikator.getText() + "','" + cmbGedung.getSelectedItem().toString() + "','" + stts + "',"
+                    + "'" + Ttarget.getText() + "'", "Indikator Nasional Mutu");
             emptTeks();
             BtnCariActionPerformed(null);
         }
@@ -513,7 +538,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                 Sequel.mengedit("master_indikator_nasional_mutu", "kd_indikator='" + kode + "'",
                         "kd_indikator='" + kdIndikator.getText() + "', no_urut='" + TnoUrut.getText() + "', "
                         + "nm_indikator='" + TnmIndikator.getText() + "', gedung='" + cmbGedung.getSelectedItem().toString() + "', "
-                        + "status_data='" + stts + "'");
+                        + "status_data='" + stts + "', target='" + Ttarget.getText() + "'");
                 emptTeks();                
                 BtnCariActionPerformed(null);
             } else {
@@ -652,6 +677,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     public widget.TextBox TCari;
     private widget.TextBox TnmIndikator;
     private widget.TextBox TnoUrut;
+    private widget.TextBox Ttarget;
     private widget.ComboBox cmbGedung;
     private widget.ComboBox cmbGedung1;
     private widget.ComboBox cmbStatus;
@@ -660,6 +686,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     private widget.Label jLabel10;
     private widget.Label jLabel11;
     private widget.Label jLabel12;
+    private widget.Label jLabel13;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
@@ -678,12 +705,14 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
             ps = koneksi.prepareStatement("SELECT * FROM master_indikator_nasional_mutu WHERE "
                     + "gedung='" + cmbGedung1.getSelectedItem().toString() + "' and kd_indikator LIKE ? or "
                     + "gedung='" + cmbGedung1.getSelectedItem().toString() + "' and nm_indikator like ? or "
+                    + "gedung='" + cmbGedung1.getSelectedItem().toString() + "' and target like ? or "
                     + "gedung='" + cmbGedung1.getSelectedItem().toString() + "' and status_data like ? ORDER BY no_urut, gedung");
 
             try {
                 ps.setString(1, "%" + TCari.getText().trim() + "%");
                 ps.setString(2, "%" + TCari.getText().trim() + "%");
                 ps.setString(3, "%" + TCari.getText().trim() + "%");
+                ps.setString(4, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();                
                 while (rs.next()) {
                     tabMode.addRow(new String[]{                        
@@ -691,7 +720,8 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                         rs.getString("no_urut"),
                         rs.getString("nm_indikator"),
                         rs.getString("gedung"),
-                        rs.getString("status_data").toUpperCase()
+                        rs.getString("status_data").toUpperCase(),
+                        rs.getString("target")
                     });
                 }                
             } catch (Exception e) {
@@ -716,6 +746,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         TnoUrut.requestFocus();
         TnmIndikator.setText("");
         cmbStatus.setSelectedIndex(0);
+        Ttarget.setText("");
     }
 
     private void getData() {
@@ -726,6 +757,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
             TnoUrut.setText(tbMutu.getValueAt(tbMutu.getSelectedRow(), 1).toString());
             TnmIndikator.setText(tbMutu.getValueAt(tbMutu.getSelectedRow(), 2).toString());
             cmbGedung.setSelectedItem(tbMutu.getValueAt(tbMutu.getSelectedRow(), 3).toString());
+            Ttarget.setText(tbMutu.getValueAt(tbMutu.getSelectedRow(), 5).toString());
             
             if (tbMutu.getValueAt(tbMutu.getSelectedRow(), 4).toString().equals("AKTIF")) {
                 cmbStatus.setSelectedIndex(0);

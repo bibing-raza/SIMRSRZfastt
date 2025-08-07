@@ -467,6 +467,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         TtglPanjar = new widget.TextBox();
         TnominalPanjar = new widget.TextBox();
         BtnPanjar = new widget.Button();
+        BtnJaminan = new widget.Button();
         internalFrame10 = new widget.InternalFrame();
         BtnSelisihBaru = new widget.Button();
         BtnSimpan6 = new widget.Button();
@@ -1064,43 +1065,42 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel57.setText("No. Panjar : ");
         jLabel57.setName("jLabel57"); // NOI18N
         internalFrame9.add(jLabel57);
-        jLabel57.setBounds(370, 337, 110, 23);
+        jLabel57.setBounds(320, 337, 110, 23);
 
         jLabel58.setForeground(new java.awt.Color(0, 0, 0));
         jLabel58.setText("Tgl. Panjar : ");
         jLabel58.setName("jLabel58"); // NOI18N
         internalFrame9.add(jLabel58);
-        jLabel58.setBounds(370, 365, 110, 23);
+        jLabel58.setBounds(320, 365, 110, 23);
 
         jLabel59.setForeground(new java.awt.Color(0, 0, 0));
         jLabel59.setText("Uang Panjar : Rp. ");
         jLabel59.setName("jLabel59"); // NOI18N
         internalFrame9.add(jLabel59);
-        jLabel59.setBounds(370, 393, 110, 23);
+        jLabel59.setBounds(320, 393, 110, 23);
 
         TnoPanjar.setEditable(false);
         TnoPanjar.setForeground(new java.awt.Color(0, 0, 0));
         TnoPanjar.setName("TnoPanjar"); // NOI18N
         internalFrame9.add(TnoPanjar);
-        TnoPanjar.setBounds(480, 337, 131, 23);
+        TnoPanjar.setBounds(430, 337, 131, 23);
 
         TtglPanjar.setEditable(false);
         TtglPanjar.setForeground(new java.awt.Color(0, 0, 0));
         TtglPanjar.setHighlighter(null);
         TtglPanjar.setName("TtglPanjar"); // NOI18N
         internalFrame9.add(TtglPanjar);
-        TtglPanjar.setBounds(480, 365, 260, 23);
+        TtglPanjar.setBounds(430, 365, 260, 23);
 
         TnominalPanjar.setEditable(false);
         TnominalPanjar.setForeground(new java.awt.Color(0, 0, 0));
         TnominalPanjar.setName("TnominalPanjar"); // NOI18N
         internalFrame9.add(TnominalPanjar);
-        TnominalPanjar.setBounds(480, 393, 131, 23);
+        TnominalPanjar.setBounds(430, 393, 131, 23);
 
         BtnPanjar.setForeground(new java.awt.Color(0, 0, 0));
         BtnPanjar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPanjar.setMnemonic('3');
-        BtnPanjar.setToolTipText("Alt+3");
+        BtnPanjar.setText("Panjar");
         BtnPanjar.setName("BtnPanjar"); // NOI18N
         BtnPanjar.setPreferredSize(new java.awt.Dimension(28, 23));
         BtnPanjar.addActionListener(new java.awt.event.ActionListener() {
@@ -1109,7 +1109,20 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
             }
         });
         internalFrame9.add(BtnPanjar);
-        BtnPanjar.setBounds(612, 337, 25, 23);
+        BtnPanjar.setBounds(562, 337, 80, 23);
+
+        BtnJaminan.setForeground(new java.awt.Color(0, 0, 0));
+        BtnJaminan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnJaminan.setText("Jaminan");
+        BtnJaminan.setName("BtnJaminan"); // NOI18N
+        BtnJaminan.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnJaminan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnJaminanActionPerformed(evt);
+            }
+        });
+        internalFrame9.add(BtnJaminan);
+        BtnJaminan.setBounds(650, 337, 90, 23);
 
         internalFrame7.add(internalFrame9, java.awt.BorderLayout.CENTER);
 
@@ -1649,7 +1662,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass8.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -1668,7 +1681,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1683,7 +1696,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1817,7 +1830,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         btnKategori.setBounds(610, 40, 28, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2025" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -3110,6 +3123,23 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         pemasukanKeyPressed(null);
     }//GEN-LAST:event_pemasukanKeyReleased
 
+    private void BtnJaminanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJaminanActionPerformed
+        if (norm.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Pasien belum dipilih...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgPemasukanLain");
+            DlgJaminanTransaksi jaminan = new DlgJaminanTransaksi(null, false);            
+            jaminan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            jaminan.setLocationRelativeTo(internalFrame1);
+            jaminan.isCek();
+            jaminan.emptTeks();
+            jaminan.setData(norawat.getText(), norm.getText(), nmpasien.getText(), rginap.getText());
+            jaminan.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnJaminanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3134,6 +3164,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnCloseIn6;
     private widget.Button BtnHapus;
     private widget.Button BtnHitung;
+    private widget.Button BtnJaminan;
     private widget.Button BtnKeluar;
     private widget.Button BtnPanjar;
     private widget.Button BtnPrint;

@@ -892,6 +892,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         TtglPanjar = new widget.TextBox();
         TnominalPanjar = new widget.TextBox();
         BtnPanjar = new widget.Button();
+        BtnJaminan = new widget.Button();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -2400,7 +2401,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -2481,7 +2482,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2025 13:41:01" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025 13:11:44" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2593,7 +2594,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelGlass2.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -2885,8 +2886,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSeek2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnSeek2.setMnemonic('3');
-        BtnSeek2.setToolTipText("Alt+3");
         BtnSeek2.setName("BtnSeek2"); // NOI18N
         BtnSeek2.setPreferredSize(new java.awt.Dimension(28, 23));
         BtnSeek2.addActionListener(new java.awt.event.ActionListener() {
@@ -3018,8 +3017,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnPanjar.setForeground(new java.awt.Color(0, 0, 0));
         BtnPanjar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPanjar.setMnemonic('3');
-        BtnPanjar.setToolTipText("Alt+3");
+        BtnPanjar.setText("Panjar");
         BtnPanjar.setName("BtnPanjar"); // NOI18N
         BtnPanjar.setPreferredSize(new java.awt.Dimension(28, 23));
         BtnPanjar.addActionListener(new java.awt.event.ActionListener() {
@@ -3028,7 +3026,20 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             }
         });
         panelBayar.add(BtnPanjar);
-        BtnPanjar.setBounds(242, 443, 25, 23);
+        BtnPanjar.setBounds(242, 443, 80, 23);
+
+        BtnJaminan.setForeground(new java.awt.Color(0, 0, 0));
+        BtnJaminan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnJaminan.setText("Jaminan");
+        BtnJaminan.setName("BtnJaminan"); // NOI18N
+        BtnJaminan.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnJaminan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnJaminanActionPerformed(evt);
+            }
+        });
+        panelBayar.add(BtnJaminan);
+        BtnJaminan.setBounds(330, 443, 90, 23);
 
         Scroll1.setViewportView(panelBayar);
 
@@ -4971,6 +4982,27 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }//GEN-LAST:event_BtnHapusKodeKeyPressed
 
+    private void BtnJaminanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJaminanActionPerformed
+        if (TPasien.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Pasien belum dipilih...!!!");
+            TNoRw.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            isHitung();
+            akses.setform("DlgBilingRanap");
+            DlgJaminanTransaksi jaminan = new DlgJaminanTransaksi(null, false);            
+            jaminan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            jaminan.setLocationRelativeTo(internalFrame1);
+            jaminan.isCek();
+            jaminan.emptTeks();
+            jaminan.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
+                    Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamar + "'"));
+            jaminan.setVisible(true);
+            BtnCariActionPerformed(null);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnJaminanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4999,6 +5031,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnHapus;
     private widget.Button BtnHapusKode;
     private widget.Button BtnHapusPotongan;
+    private widget.Button BtnJaminan;
     private widget.Button BtnKeluar;
     private widget.Button BtnKeluar1;
     private widget.Button BtnKeluarPotongan;
@@ -7726,7 +7759,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         param.put("telah_terima", Sequel.cariIsi("select concat(rp.p_jawab,' (No. Telp./HP. ',p.no_tlp,')') from reg_periksa rp "
                 + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + TNoRw.getText() + "'"));
         param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp7,'.',''),',','') tot_bayar FROM temporary_bayar_ranap WHERE temp1='BAYAR'")) + " Rupiah.");
-        param.put("untuk_byr", "Pelayanan Kesehatan Rawat Inap di " + Sequel.cariIsi("select nama_instansi from setting") + " a/n "
+        param.put("untuk_byr", "Pelayanan Kesehatan Rawat Inap di " + Sequel.cariIsi("select nama_instansi from setting") + " ruang perawatan " + Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki "
+                + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal where "
+                + "ki.no_rawat='" + TNoRw.getText() + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1") + " a/n "
                 + Sequel.cariIsi("SELECT REPLACE(temp2,': ','') pasien FROM temporary_bayar_ranap WHERE temp1='Pasien'"));
         param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp7,'.','.'),',','.')) terbilang FROM temporary_bayar_ranap WHERE temp1='BAYAR'"));
         param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(tglNota.getSelectedItem() + "")));        

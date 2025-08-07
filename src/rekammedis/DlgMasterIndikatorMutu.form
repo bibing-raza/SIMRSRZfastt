@@ -534,6 +534,33 @@
                 </Constraint>
               </Constraints>
             </Component>
+            <Component class="widget.Label" name="jLabel13">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Target :"/>
+                <Property name="name" type="java.lang.String" value="jLabel13" noResource="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="510" y="66" width="55" height="23"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="widget.TextBox" name="Ttarget">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="Ttarget" noResource="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="573" y="66" width="80" height="23"/>
+                </Constraint>
+              </Constraints>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="widget.InternalFrame" name="internalFrame2">
