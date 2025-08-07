@@ -4552,7 +4552,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
                         Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + TNoRw.getText() + "'"),
                         Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
-                        "0", TtlSemua.getText());
+                        "0", TtlSemua.getText(),"0");
                 panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 panjar.setLocationRelativeTo(internalFrame1);
                 panjar.setVisible(true);

@@ -1167,7 +1167,6 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
             param.put("propinsirs", akses.getpropinsirs());
             param.put("emailrs", akses.getemailrs());
             param.put("periode", "PERIODE TANGGAL " + DTPCari1.getSelectedItem() + " S.D " + DTPCari2.getSelectedItem());
-            param.put("emailrs", akses.getemailrs());
 
             if (cmbStatus1.getSelectedIndex() == 0 || cmbStatus1.getSelectedIndex() == 1) {
                 param.put("judulKolom", "Nominal Status");
@@ -1180,45 +1179,119 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
             }
             
             if (cmbStatus1.getSelectedIndex() == 0) {
-                if (Sequel.cariInteger("select count(-1) from transaksi_panjar where "
-                        + "tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "'") == 0) {
-                    JOptionPane.showMessageDialog(null, "Data tidak ditemukan..!!!!");
+                if (kdpnj.getText().equals("")) {
+                    if (Sequel.cariInteger("select count(-1) from transaksi_panjar where "
+                            + "tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "'") == 0) {
+                        JOptionPane.showMessageDialog(null, "Data tidak ditemukan..!!!!");
+                    } else {
+                        param.put("judul", "LAPORAN PENERIMAAN PEMBAYARAN PANJAR SEMUA CARA BAYAR");
+                        Valid.MyReport("rptLaporanPanjar.jasper", "report", "::[ Laporan Penerimaan Pembayaran Panjar ]::",
+                                "SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
+                                + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
+                                + "pg1.nama petugas1, pg2.nama petugas2, format(tp.jumlah_tagihan,0) byReal, format(tp.selisih_tarif_bpjs,0) bySelisih, "
+                                + "tp.jumlah_tagihan, tp.selisih_tarif_bpjs, CASE "
+                                + "WHEN tp.status_panjar = 'Kurang Bayar' THEN tp.nominal_panjar + tp.nominal_balik "
+                                + "WHEN tp.status_panjar = 'Lebih Bayar' THEN tp.nominal_panjar - tp.nominal_balik "
+                                + "ELSE 0 END AS total_bayar, pj.png_jawab from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
+                                + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
+                                + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti inner join penjab pj on pj.kd_pj=rp.kd_pj where "
+                                + "tp.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                + "order by tp.waktu_simpan", param);
+                    }
                 } else {
-                    param.put("judul", "LAPORAN PENERIMAAN PEMBAYARAN PANJAR");
-                    Valid.MyReport("rptLaporanPanjar.jasper", "report", "::[ Laporan Penerimaan Pembayaran Panjar ]::",
-                            "SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
-                            + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
-                            + "pg1.nama petugas1, pg2.nama petugas2, format(tp.jumlah_tagihan,0) byReal, format(tp.selisih_tarif_bpjs,0) bySelisih, "
-                            + "tp.jumlah_tagihan, tp.selisih_tarif_bpjs, CASE "
-                            + "WHEN tp.status_panjar = 'Kurang Bayar' THEN tp.nominal_panjar - tp.nominal_balik "
-                            + "WHEN tp.status_panjar = 'Lebih Bayar' AND rp.kd_pj = 'U01' THEN tp.nominal_panjar - tp.jumlah_tagihan "
-                            + "WHEN tp.status_panjar = 'Lebih Bayar' AND rp.kd_pj IN ('B01','A03') THEN tp.nominal_panjar - tp.selisih_tarif_bpjs "
-                            + "ELSE 0 END AS total_bayar from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
-                            + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
-                            + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where "
-                            + "tp.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
-                            + "order by tp.waktu_simpan", param);
+                    if (Sequel.cariInteger("select count(-1) from transaksi_panjar t inner join reg_periksa rp on rp.no_rawat=t.no_rawat where "
+                            + "t.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "and rp.kd_pj='" + kdpnj.getText() + "'") == 0) {
+                        JOptionPane.showMessageDialog(null, "Data tidak ditemukan..!!!!");
+                    } else {
+                        if (kdpnj.getText().equals("U01")) {
+                            param.put("judul", "LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + nmpnj.getText() + ")");
+                            Valid.MyReport("rptLaporanPanjarCaraBayarUmum.jasper", "report", "::[ Laporan Penerimaan Pembayaran Panjar ]::",
+                                    "SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
+                                    + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
+                                    + "pg1.nama petugas1, pg2.nama petugas2, format(tp.jumlah_tagihan,0) byReal, format(tp.selisih_tarif_bpjs,0) bySelisih, "
+                                    + "tp.jumlah_tagihan, tp.selisih_tarif_bpjs, CASE "
+                                    + "WHEN tp.status_panjar = 'Kurang Bayar' THEN tp.nominal_panjar + tp.nominal_balik "
+                                    + "WHEN tp.status_panjar = 'Lebih Bayar' THEN tp.nominal_panjar - tp.nominal_balik "
+                                    + "ELSE 0 END AS total_bayar from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
+                                    + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
+                                    + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where "
+                                    + "tp.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                    + "and rp.kd_pj='" + kdpnj.getText() + "' order by tp.waktu_simpan", param);
+                        } else {
+                            param.put("judul", "LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + nmpnj.getText() + ")");
+                            Valid.MyReport("rptLaporanPanjarCaraBayar.jasper", "report", "::[ Laporan Penerimaan Pembayaran Panjar ]::",
+                                    "SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
+                                    + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
+                                    + "pg1.nama petugas1, pg2.nama petugas2, format(tp.jumlah_tagihan,0) byReal, format(tp.selisih_tarif_bpjs,0) bySelisih, "
+                                    + "tp.jumlah_tagihan, tp.selisih_tarif_bpjs, CASE "
+                                    + "WHEN tp.status_panjar = 'Kurang Bayar' THEN tp.nominal_panjar + tp.nominal_balik "
+                                    + "WHEN tp.status_panjar = 'Lebih Bayar' THEN tp.nominal_panjar - tp.nominal_balik "
+                                    + "ELSE 0 END AS total_bayar from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
+                                    + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
+                                    + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where "
+                                    + "tp.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                    + "and rp.kd_pj='" + kdpnj.getText() + "' order by tp.waktu_simpan", param);
+                        }                        
+                    }
                 }
             } else {
-                if (Sequel.cariInteger("select count(-1) from transaksi_panjar where "
-                        + "tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
-                        + "and status_panjar='" + cmbStatus1.getSelectedItem().toString() + "'") == 0) {
-                    JOptionPane.showMessageDialog(null, "Data tidak ditemukan..!!!!");
+                if (kdpnj.getText().equals("")) {
+                    if (Sequel.cariInteger("select count(-1) from transaksi_panjar where "
+                            + "tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "and status_panjar='" + cmbStatus1.getSelectedItem().toString() + "'") == 0) {
+                        JOptionPane.showMessageDialog(null, "Data tidak ditemukan..!!!!");
+                    } else {
+                        param.put("judul", "LAPORAN PENERIMAAN PEMBAYARAN PANJAR SEMUA CARA BAYAR (" + cmbStatus1.getSelectedItem().toString().toUpperCase() + ")");
+                        Valid.MyReport("rptLaporanPanjar.jasper", "report", "::[ Laporan Penerimaan Pembayaran Panjar ]::",
+                                "SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
+                                + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
+                                + "pg1.nama petugas1, pg2.nama petugas2, format(tp.jumlah_tagihan,0) byReal, format(tp.selisih_tarif_bpjs,0) bySelisih, "
+                                + "tp.jumlah_tagihan, tp.selisih_tarif_bpjs, CASE "
+                                + "WHEN tp.status_panjar = 'Kurang Bayar' THEN tp.nominal_panjar + tp.nominal_balik "
+                                + "WHEN tp.status_panjar = 'Lebih Bayar' THEN tp.nominal_panjar - tp.nominal_balik "
+                                + "ELSE 0 END AS total_bayar, pj.png_jawab from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
+                                + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
+                                + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti inner join penjab pj on pj.kd_pj=rp.kd_pj where "
+                                + "tp.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                + "and tp.status_panjar='" + cmbStatus1.getSelectedItem().toString() + "' order by tp.waktu_simpan", param);
+                    }
                 } else {
-                    param.put("judul", "LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + cmbStatus1.getSelectedItem().toString().toUpperCase() + ")");
-                    Valid.MyReport("rptLaporanPanjar.jasper", "report", "::[ Laporan Penerimaan Pembayaran Panjar ]::",
-                            "SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
-                            + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
-                            + "pg1.nama petugas1, pg2.nama petugas2, format(tp.jumlah_tagihan,0) byReal, format(tp.selisih_tarif_bpjs,0) bySelisih, "
-                            + "tp.jumlah_tagihan, tp.selisih_tarif_bpjs, CASE "
-                            + "WHEN tp.status_panjar = 'Kurang Bayar' THEN tp.nominal_panjar - tp.nominal_balik "
-                            + "WHEN tp.status_panjar = 'Lebih Bayar' AND rp.kd_pj = 'U01' THEN tp.nominal_panjar - tp.jumlah_tagihan "
-                            + "WHEN tp.status_panjar = 'Lebih Bayar' AND rp.kd_pj IN ('B01','A03') THEN tp.nominal_panjar - tp.selisih_tarif_bpjs "
-                            + "ELSE 0 END AS total_bayar from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
-                            + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
-                            + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where "
-                            + "tp.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
-                            + "and tp.status_panjar='" + cmbStatus1.getSelectedItem().toString() + "' order by tp.waktu_simpan", param);
+                    if (Sequel.cariInteger("select count(-1) from transaksi_panjar t inner join reg_periksa rp on rp.no_rawat=t.no_rawat where "
+                            + "t.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "and rp.kd_pj='" + kdpnj.getText() + "'") == 0) {
+                        JOptionPane.showMessageDialog(null, "Data tidak ditemukan..!!!!");
+                    } else {
+                        if (kdpnj.getText().equals("U01")) {
+                            param.put("judul", "LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + cmbStatus1.getSelectedItem().toString().toUpperCase() + " - " + nmpnj.getText() + ")");
+                            Valid.MyReport("rptLaporanPanjarCaraBayarUmum.jasper", "report", "::[ Laporan Penerimaan Pembayaran Panjar ]::",
+                                    "SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
+                                    + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
+                                    + "pg1.nama petugas1, pg2.nama petugas2, format(tp.jumlah_tagihan,0) byReal, format(tp.selisih_tarif_bpjs,0) bySelisih, "
+                                    + "tp.jumlah_tagihan, tp.selisih_tarif_bpjs, CASE "
+                                    + "WHEN tp.status_panjar = 'Kurang Bayar' THEN tp.nominal_panjar + tp.nominal_balik "
+                                    + "WHEN tp.status_panjar = 'Lebih Bayar' THEN tp.nominal_panjar - tp.nominal_balik "
+                                    + "ELSE 0 END AS total_bayar from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
+                                    + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
+                                    + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where "
+                                    + "tp.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                    + "and tp.status_panjar='" + cmbStatus1.getSelectedItem().toString() + "' and rp.kd_pj='" + kdpnj.getText() + "' order by tp.waktu_simpan", param);
+                        } else {
+                            param.put("judul", "LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + cmbStatus1.getSelectedItem().toString().toUpperCase() + " - " + nmpnj.getText() + ")");
+                            Valid.MyReport("rptLaporanPanjarCaraBayar.jasper", "report", "::[ Laporan Penerimaan Pembayaran Panjar ]::",
+                                    "SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
+                                    + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
+                                    + "pg1.nama petugas1, pg2.nama petugas2, format(tp.jumlah_tagihan,0) byReal, format(tp.selisih_tarif_bpjs,0) bySelisih, "
+                                    + "tp.jumlah_tagihan, tp.selisih_tarif_bpjs, CASE "
+                                    + "WHEN tp.status_panjar = 'Kurang Bayar' THEN tp.nominal_panjar + tp.nominal_balik "
+                                    + "WHEN tp.status_panjar = 'Lebih Bayar' THEN tp.nominal_panjar - tp.nominal_balik "
+                                    + "ELSE 0 END AS total_bayar from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
+                                    + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
+                                    + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where "
+                                    + "tp.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                    + "and tp.status_panjar='" + cmbStatus1.getSelectedItem().toString() + "' and rp.kd_pj='" + kdpnj.getText() + "' order by tp.waktu_simpan", param);
+                        }                        
+                    }
                 }
             }
             this.setCursor(Cursor.getDefaultCursor());
@@ -1796,7 +1869,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                 + "/" + Valid.SetTgl(TtglPanjar.getSelectedItem() + "").substring(0, 4), 4, TnoPanjar);
     }
     
-    public void setData(String norw, String norm, String nmpasien, String ruangan, String tglmrs, String nomSelisih, String nomRealCost) {
+    public void setData(String norw, String norm, String nmpasien, String ruangan, String tglmrs, String nomSelisih, String nomRealCost, String uangPanjar) {
         TNoRw.setText(norw);
         TNoRM.setText(norm);
         TPasien.setText(nmpasien);
@@ -1809,6 +1882,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         totSelisih = nomSelisih.replaceAll(",", "");
         totRealTerakhir = nomRealCost.replaceAll(",", "");
         totSelisihAwalnya = nomSelisih.replaceAll(",", "");
+        TnominalPanjar.setText(uangPanjar);
         cekCurency();
         
         if (Sequel.cariInteger("select count(-1) from transaksi_panjar where no_rawat='" + norw + "'") > 0) {

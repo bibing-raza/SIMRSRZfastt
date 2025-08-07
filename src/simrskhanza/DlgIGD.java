@@ -6889,14 +6889,10 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan pilih dulu salah satu data pasien pada tabel...!!!");
             tbregistrasiIGD.requestFocus();
         } else {
-            if (akses.getkode().equals("Admin Utama")) {                
-                DlgGantiUmurReg.setSize(457, 98);
-                DlgGantiUmurReg.setLocationRelativeTo(internalFrame1);
-                DlgGantiUmurReg.setVisible(true);
-                Tumur.requestFocus();
-            } else {
-                JOptionPane.showMessageDialog(null, "Maaf, akses anda tertutup untuk menu ini...!!!!");
-            }
+            DlgGantiUmurReg.setSize(457, 98);
+            DlgGantiUmurReg.setLocationRelativeTo(internalFrame1);
+            DlgGantiUmurReg.setVisible(true);
+            Tumur.requestFocus();
         }
     }//GEN-LAST:event_MnGantiUmurRegActionPerformed
 
@@ -7661,6 +7657,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         MnRujuk.setEnabled(akses.getrujukan_keluar());
         MnRujukMasuk.setEnabled(akses.getrujukan_masuk());
         MnCatatanPasien.setEnabled(akses.getcatatan_pasien());
+        MnGantiUmurReg.setEnabled(akses.getigd());
     }
 
     private void isNumber() {

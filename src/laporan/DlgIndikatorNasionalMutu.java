@@ -294,8 +294,10 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         tbNumdenom.setDefaultRenderer(Object.class, new WarnaTable());
 
         Ttahun.setDocument(new batasInput((byte) 4).getOnlyAngka(Ttahun));
-        Tjumlah.setDocument(new batasInput((int) 5).getKata(Tjumlah));
-        Tjumlah1.setDocument(new batasInput((int) 5).getKata(Tjumlah1));
+        Tjumlah.setDocument(new batasInput((byte) 4).getOnlyAngka(Tjumlah));
+        Tjumlah1.setDocument(new batasInput((byte) 4).getOnlyAngka(Tjumlah1));        
+//        Tjumlah.setDocument(new batasInput((int) 5).getKata(Tjumlah));
+//        Tjumlah1.setDocument(new batasInput((int) 5).getKata(Tjumlah1));
     }
  
     /** This method is called from within the constructor to
@@ -605,7 +607,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         internalFrame9.add(jLabel36);
         jLabel36.setBounds(0, 94, 150, 23);
 
-        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
+        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2025" }));
         TtglCatat1.setDisplayFormat("dd-MM-yyyy");
         TtglCatat1.setName("TtglCatat1"); // NOI18N
         TtglCatat1.setOpaque(false);
@@ -983,7 +985,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         PanelInput.add(jLabel8);
         jLabel8.setBounds(0, 154, 120, 23);
 
-        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
+        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-08-2025" }));
         TtglCatat.setDisplayFormat("dd-MM-yyyy");
         TtglCatat.setName("TtglCatat"); // NOI18N
         TtglCatat.setOpaque(false);
@@ -1073,6 +1075,12 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             Valid.textKosong(Tjumlah, "jumlah dilaporkan");
             Tjumlah.requestFocus();
         } else {
+            if (Tjumlah.getText().equals("")) {
+                Tjumlah.setText("0");
+            } else {
+                Tjumlah.setText(Tjumlah.getText());
+            }
+            
             kdIndikator = Sequel.cariIsi("select kd_indikator from master_indikator_nasional_mutu "
                     + "where gedung='" + cmbGedung.getSelectedItem().toString() + "' and "
                     + "nm_indikator='" + cmbIndikator.getSelectedItem().toString() + "'");
@@ -1448,7 +1456,13 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             if (Tjumlah1.getText().trim().equals("")) {
                 JOptionPane.showMessageDialog(rootPane, "Angka jumlah dilaporkan harus diisi dengan benar..!!");
                 Tjumlah1.requestFocus();
-            } else {                
+            } else {
+                if (Tjumlah1.getText().equals("")) {
+                    Tjumlah1.setText("0");
+                } else {
+                    Tjumlah1.setText(Tjumlah1.getText());
+                }
+
                 Sequel.mengedit("indikator_nasional_mutu", "kd_indikator='" + TkdIndikator1.getText() + "' and "
                         + "gedung='" + Truangan1.getText() + "' and tgl_catat='" + tbGanti.getValueAt(tbGanti.getSelectedRow(), 2).toString() + "' and kd_numdemon='" + TkdNumdenom1.getText() + "'",
                         "tgl_catat='" + Valid.SetTgl(TtglCatat1.getSelectedItem() + "") + "', jumlah_pertanggal='" + Tjumlah1.getText().trim().replaceAll(",", ".") + "'");

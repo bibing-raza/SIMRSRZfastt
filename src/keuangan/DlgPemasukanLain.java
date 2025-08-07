@@ -3092,7 +3092,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             panjar.isCek();
             panjar.setData(norawat.getText(), norm.getText(), nmpasien.getText(), rginap.getText(),
                     Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat.getText() + "'"), 
-                    Totdibayar.getText(), tarifrc.getText());
+                    Totdibayar.getText(), tarifrc.getText(),"0");
             panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             panjar.setLocationRelativeTo(internalFrame1);
             panjar.setVisible(true);

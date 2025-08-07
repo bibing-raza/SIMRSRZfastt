@@ -1077,7 +1077,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
                             Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal where "
                                     + "ki.no_rawat='" + TNoRw.getText() + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"),
                             Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
-                            cekSelisih, cekTagihan);
+                            cekSelisih, cekTagihan, TJmlNominal.getText());
                     panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     panjar.setLocationRelativeTo(internalFrame1);
                     panjar.setVisible(true);
