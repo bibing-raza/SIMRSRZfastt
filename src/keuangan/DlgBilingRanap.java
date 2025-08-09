@@ -84,7 +84,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             rsperiksarad, rsanak, rstamkur, rsrekening, rsservice, rsakunbayar, rsakunpiutang, rscaridpjp;
     private String biaya = "", tambahan = "", totals = "", norawatbayi = "", centangdokterranap = "", kd_pj = "", jamplgRS1 = "",
             rinciandokterranap = "", rincianoperasi = "", hariawal = "", notaranap = "", tampilkan_administrasi_di_billingranap = "",
-            Tindakan_Ranap = "", Laborat_Ranap = "", Radiologi_Ranap = "", Obat_Ranap = "", Registrasi_Ranap = "",
+            Tindakan_Ranap = "", Laborat_Ranap = "", Radiologi_Ranap = "", Obat_Ranap = "", Registrasi_Ranap = "", kodePJ = "", 
             Tambahan_Ranap = "", Potongan_Ranap = "", Retur_Obat_Ranap = "", Resep_Pulang_Ranap = "", Kamar_Inap = "", Operasi_Ranap = "",
             Harian_Ranap = "", Uang_Muka_Ranap = "", Piutang_Pasien_Ranap = "", tampilkan_ppnobat_ranap = "", tglmskRS = "", tglklrRS1 = "",
             Service_Ranap = "", status = "", diagnosa_ok = "", cekdokter = "", kdkamar = "", data_pasien = "", tglklrRS2 = "", jamplgRS2 = "",
@@ -4933,18 +4933,44 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             isHitung();
-            akses.setform("DlgBilingRanap");
-            DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
-            panjar.emptTeks();
-            panjar.isCek();
-            panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
-                    Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamar + "'"),
-                    Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"), 
-                    "0", TtlSemua.getText(),"0");
-            panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-            panjar.setLocationRelativeTo(internalFrame1);
-            panjar.setVisible(true);
-            BtnCariActionPerformed(null);
+            if (kodePJ.equals("B01")) {
+                if (Sequel.cariSelisihTarifInacbg(TNoRw.getText()) > 0) {
+                    akses.setform("DlgBilingRanap");
+                    DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
+                    panjar.emptTeks();
+                    panjar.isCek();
+                    panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
+                            Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamar + "'"),
+                            Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
+                            Sequel.cariIsi("select total_tagihan from biaya_naik_kelas_bpjs where no_rawat='" + TNoRw.getText() + "'"),
+                            TtlSemua.getText(), "0");
+                    panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    panjar.setLocationRelativeTo(internalFrame1);
+                    panjar.setVisible(true);
+                    BtnCariActionPerformed(null);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Hitungan biaya selisih tarif INACBG belum tersimpan, gunakan sebagai jaminan saja..!!");
+                    BtnCariActionPerformed(null);
+                }
+            } else {
+                if (Sequel.cariRealCostPiutang(TNoRw.getText()) > 0 || Sequel.cariRegistrasi(TNoRw.getText()) > 0) {                    
+                    akses.setform("DlgBilingRanap");
+                    DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
+                    panjar.emptTeks();
+                    panjar.isCek();
+                    panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
+                            Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamar + "'"),
+                            Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
+                            "0", TtlSemua.getText(), "0");
+                    panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    panjar.setLocationRelativeTo(internalFrame1);
+                    panjar.setVisible(true);
+                    BtnCariActionPerformed(null);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Hitungan biaya tagihan sesuai Real Cost belum tersimpan, gunakan sebagai jaminan saja..!!");
+                    BtnCariActionPerformed(null);
+                }
+            }
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnPanjarPasienActionPerformed
@@ -5247,13 +5273,14 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 }
             }
 
-            pscarirm = koneksi.prepareStatement("select r.no_rkm_medis, pj.png_jawab from reg_periksa r inner join penjab pj on pj.kd_pj=r.kd_pj where r.no_rawat=?");
+            pscarirm = koneksi.prepareStatement("select r.no_rkm_medis, pj.png_jawab, r.kd_pj from reg_periksa r inner join penjab pj on pj.kd_pj=r.kd_pj where r.no_rawat=?");
             try {
                 pscarirm.setString(1, TNoRw.getText());
                 rscarirm = pscarirm.executeQuery();
                 if (rscarirm.next()) {
                     TNoRM.setText(rscarirm.getString(1));
                     lbl_jns_byr.setText(" Cara Bayar : " + rscarirm.getString("png_jawab"));
+                    kodePJ = rscarirm.getString("kd_pj");
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);

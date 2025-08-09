@@ -1768,6 +1768,58 @@ public final class sekuel {
         return angka;
     }
     
+    public int cariRealCostPiutang(String norawat) {
+        angka = 0;
+        try {
+            ps = connect.prepareStatement("select count(-1) from piutang_pasien where no_rawat=?");
+            try {
+                ps.setString(1, norawat);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    angka = rs.getInt(1);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return angka;
+    }
+    
+    public int cariSelisihTarifInacbg(String norawat) {
+        angka = 0;
+        try {
+            ps = connect.prepareStatement("select count(-1) from biaya_naik_kelas_bpjs where no_rawat=?");
+            try {
+                ps.setString(1, norawat);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    angka = rs.getInt(1);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return angka;
+    }
+    
     public void cariIsi(String sql, JTextField txt, String kunci) {
         try {
             ps = connect.prepareStatement(sql);

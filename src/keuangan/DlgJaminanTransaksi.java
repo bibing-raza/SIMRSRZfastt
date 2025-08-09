@@ -873,15 +873,20 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
                     cekBatal = "Tidak";
                 }
 
-                if (Sequel.mengedittf("jaminan_transaksi", "no_rawat=?", "nm_pemberi_jaminan=?, no_telp=?, jenis_jaminan=?, tgl_terima=?, "
-                        + "nip_penerima=?, keterangan=?, jumlah_nominal=?, jaminan_batal=?, alasan_pembatalan=?", 10, new String[]{
-                            TnmPemberi.getText(), TnoTelp.getText(), cmbJnsJaminan.getSelectedItem().toString(),
-                            Valid.SetTgl(TtglTerima.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), TnipMenerima.getText(),
-                            Tketerangan.getText(), TJmlNominal.getText(), cekBatal, TalasanBatal.getText(),
-                            tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 0).toString()
-                        }) == true) {
-                    Valid.SetTgl(DTPCari1, Valid.SetTgl(TtglTerima.getSelectedItem() + ""));
-                    BtnBatalActionPerformed(null);
+                if (tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 13).toString().equals(akses.getkode()) || akses.getadmin() == true) {
+                    if (Sequel.mengedittf("jaminan_transaksi", "no_rawat=?", "nm_pemberi_jaminan=?, no_telp=?, jenis_jaminan=?, tgl_terima=?, "
+                            + "nip_penerima=?, keterangan=?, jumlah_nominal=?, jaminan_batal=?, alasan_pembatalan=?", 10, new String[]{
+                                TnmPemberi.getText(), TnoTelp.getText(), cmbJnsJaminan.getSelectedItem().toString(),
+                                Valid.SetTgl(TtglTerima.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), TnipMenerima.getText(),
+                                Tketerangan.getText(), TJmlNominal.getText(), cekBatal, TalasanBatal.getText(),
+                                tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 0).toString()
+                            }) == true) {
+                        Valid.SetTgl(DTPCari1, Valid.SetTgl(TtglTerima.getSelectedItem() + ""));
+                        BtnBatalActionPerformed(null);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Data jaminan ini cuma bisa diperbaiki oleh " + tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 9).toString() + ", karena dia yang menerima..!!");
+                    tampil();
                 }
             }
         } else {
@@ -1087,54 +1092,20 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
 
     private void MnPanjarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPanjarActionPerformed
         if (tbJaminan.getSelectedRow() > -1) {
-            x = JOptionPane.showConfirmDialog(rootPane, "Apakah jaminan transaksi pasien ini akan dilanjutkan menjadi panjar..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-            if (x == JOptionPane.YES_OPTION) {
-                if (Sequel.mengedittf("jaminan_transaksi", "no_rawat=?", "nm_pemberi_jaminan=?, no_telp=?, jenis_jaminan=?, tgl_terima=?, "
-                        + "nip_penerima=?, keterangan=?, jumlah_nominal=?, jaminan_batal=?, alasan_pembatalan=?", 10, new String[]{
-                            TnmPemberi.getText(), TnoTelp.getText(), cmbJnsJaminan.getSelectedItem().toString(),
-                            Valid.SetTgl(TtglTerima.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), TnipMenerima.getText(),
-                            Tketerangan.getText(), TJmlNominal.getText(), "Ya", "Jaminan transaksi dilanjutkan menjadi panjar",
-                            tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 0).toString()
-                        }) == true) {
-
-                    String cekSelisih = "", cekTagihan = "";
-                    if (Sequel.cariInteger("select count(-1) from piutang_pasien where no_rawat='" + TNoRw.getText() + "'") > 0) {
-                        cekTagihan = Sequel.cariIsi("select totalpiutang from piutang_pasien where no_rawat='" + TNoRw.getText() + "'");
-                    } else {
-                        if (!Sequel.cariIsi("select jumlah_bayar from tagihan_sadewa where no_nota='" + TNoRw.getText() + "'").equals("")) {
-                            cekTagihan = Sequel.cariIsi("select jumlah_bayar from tagihan_sadewa where no_nota='" + TNoRw.getText() + "'");
-                        } else {
-                            cekTagihan = "0";
-                        }
-                    }
-
-                    if (kodePJ.equals("B01")) {
-                        if (!Sequel.cariIsi("select total_tagihan from biaya_naik_kelas_bpjs where no_rawat='" + TNoRw.getText() + "'").equals("")) {
-                            cekSelisih = Sequel.cariIsi("select total_tagihan from biaya_naik_kelas_bpjs where no_rawat='" + TNoRw.getText() + "'");
-                        } else {
-                            cekSelisih = "0";
-                        }
-                    } else {
-                        cekSelisih = "0";
-                    }
-                    
-                    akses.setform("DlgJaminanTransaksi");
-                    DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
-                    panjar.emptTeks();
-                    panjar.isCek();
-                    panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
-                            Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal where "
-                                    + "ki.no_rawat='" + TNoRw.getText() + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"),
-                            Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
-                            cekSelisih, cekTagihan, TJmlNominal.getText());
-                    panjar.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-                    panjar.setLocationRelativeTo(internalFrame1);
-                    panjar.setVisible(true);
-                    panjar.setAlwaysOnTop(true);
-                    BtnBatalActionPerformed(null);
+            if (kodePJ.equals("B01")) {
+                if (Sequel.cariSelisihTarifInacbg(TNoRw.getText()) > 0) {
+                    keTransaksiPanjar();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Hitungan biaya selisih tarif INACBG belum tersimpan..!!");
+                    tampil();
                 }
             } else {
-                BtnBatalActionPerformed(null);
+                if (Sequel.cariRealCostPiutang(TNoRw.getText()) > 0 || Sequel.cariRegistrasi(TNoRw.getText()) > 0) {
+                    keTransaksiPanjar();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Hitungan biaya tagihan sesuai Real Cost belum tersimpan..!!");
+                    tampil();
+                }
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
@@ -1447,5 +1418,57 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
             TnmMenerima.setText(Sequel.cariIsi("select nama from pegawai where nik='" + TnipMenerima.getText() + "'"));
         }        
         TCari.setText(norwt);
+    }
+    
+    private void keTransaksiPanjar() {
+        x = JOptionPane.showConfirmDialog(rootPane, "Apakah jaminan transaksi pasien ini akan dilanjutkan menjadi panjar..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            if (Sequel.mengedittf("jaminan_transaksi", "no_rawat=?", "nm_pemberi_jaminan=?, no_telp=?, jenis_jaminan=?, tgl_terima=?, "
+                    + "nip_penerima=?, keterangan=?, jumlah_nominal=?, jaminan_batal=?, alasan_pembatalan=?", 10, new String[]{
+                        TnmPemberi.getText(), TnoTelp.getText(), cmbJnsJaminan.getSelectedItem().toString(),
+                        Valid.SetTgl(TtglTerima.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), TnipMenerima.getText(),
+                        Tketerangan.getText(), TJmlNominal.getText(), "Ya", "Jaminan transaksi dilanjutkan menjadi panjar",
+                        tbJaminan.getValueAt(tbJaminan.getSelectedRow(), 0).toString()
+                    }) == true) {
+
+                String cekSelisih = "", cekTagihan = "";
+                if (Sequel.cariInteger("select count(-1) from piutang_pasien where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                    cekTagihan = Sequel.cariIsi("select totalpiutang from piutang_pasien where no_rawat='" + TNoRw.getText() + "'");
+                } else {
+                    if (!Sequel.cariIsi("select jumlah_bayar from tagihan_sadewa where no_nota='" + TNoRw.getText() + "'").equals("")) {
+                        cekTagihan = Sequel.cariIsi("select jumlah_bayar from tagihan_sadewa where no_nota='" + TNoRw.getText() + "' order by tgl_bayar desc limit 1");
+                    } else {
+                        cekTagihan = "0";
+                    }
+                }
+
+                if (kodePJ.equals("B01")) {
+                    if (!Sequel.cariIsi("select total_tagihan from biaya_naik_kelas_bpjs where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                        cekSelisih = Sequel.cariIsi("select total_tagihan from biaya_naik_kelas_bpjs where no_rawat='" + TNoRw.getText() + "'");
+                    } else {
+                        cekSelisih = "0";
+                    }
+                } else {
+                    cekSelisih = "0";
+                }
+
+                akses.setform("DlgJaminanTransaksi");
+                DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
+                panjar.emptTeks();
+                panjar.isCek();
+                panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
+                        Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal where "
+                                + "ki.no_rawat='" + TNoRw.getText() + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"),
+                        Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
+                        cekSelisih, cekTagihan, TJmlNominal.getText());
+                panjar.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                panjar.setLocationRelativeTo(internalFrame1);
+                panjar.setVisible(true);
+                panjar.setAlwaysOnTop(true);
+                BtnBatalActionPerformed(null);
+            }
+        } else {
+            BtnBatalActionPerformed(null);
+        }
     }
 }
