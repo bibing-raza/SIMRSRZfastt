@@ -6308,6 +6308,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         MnPiutangPasien.setEnabled(akses.getbayar_piutang());
         MnPanjarPasien.setEnabled(akses.getbilling_ranap());
         BtnPanjar.setEnabled(akses.getbilling_ranap());
+        BtnJaminan.setEnabled(akses.getbilling_ranap());
         ppPerbaikiHakKelas.setEnabled(akses.getadmin());
 
         if (Sequel.cariIsi("select tampilkan_tombol_nota_ranap from set_nota").equals("Yes")) {

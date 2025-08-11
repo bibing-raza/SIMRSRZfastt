@@ -71,7 +71,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
     private String status = "", biaya = "", tambahan = "", totals = "", kdptg = "", nmptg = "", kd_pj = "", notaralan = "", centangdokterralan = "",
             rinciandokterralan = "", Tindakan_Ralan = "", Laborat_Ralan = "", Radiologi_Ralan = "", ceknonota = "",
             Obat_Ralan = "", Registrasi_Ralan = "", Tambahan_Ralan = "", Potongan_Ralan = "", kdUnit = "",
-            Beban_Jasa_Medik_Dokter_Tindakan_Ralan = "", Utang_Jasa_Medik_Dokter_Tindakan_Ralan = "",
+            Beban_Jasa_Medik_Dokter_Tindakan_Ralan = "", Utang_Jasa_Medik_Dokter_Tindakan_Ralan = "", 
             Beban_Jasa_Medik_Paramedis_Tindakan_Ralan = "", Utang_Jasa_Medik_Paramedis_Tindakan_Ralan = "",
             Beban_KSO_Tindakan_Ralan = "", Utang_KSO_Tindakan_Ralan = "", Beban_Jasa_Medik_Dokter_Laborat_Ralan = "",
             Utang_Jasa_Medik_Dokter_Laborat_Ralan = "", Beban_Jasa_Medik_Petugas_Laborat_Ralan = "",
@@ -86,7 +86,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             HPP_Obat_Operasi_Ralan = "", Persediaan_Obat_Kamar_Operasi_Ralan = "", diagnosa_ok = "", cekdokter = "",
             Operasi_Ralan = "", tampilkan_ppnobat_ralan = "", rincianoperasi = "", centangobatralan = "No",
             sqlpscekbilling = "select count(billing.no_rawat) from billing where billing.no_rawat=?",
-            sqlpscarirm = "select r.no_rkm_medis, pj.png_jawab from reg_periksa r inner join penjab pj on pj.kd_pj=r.kd_pj where r.no_rawat=?",
+            sqlpscarirm = "select r.no_rkm_medis, pj.png_jawab, r.kd_pj from reg_periksa r inner join penjab pj on pj.kd_pj=r.kd_pj where r.no_rawat=?",
             sqlpscaripasien = "select p.nm_pasien, concat(r.umurdaftar,' ',r.sttsumur) umur from pasien p "
             + "inner join reg_periksa r on r.no_rkm_medis=p.no_rkm_medis where p.no_rkm_medis=? ",
             sqlpsreg = "select reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,"
@@ -1058,6 +1058,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         TtglPanjar = new widget.TextBox();
         jLabel21 = new widget.Label();
         TnominalPanjar = new widget.TextBox();
+        BtnJaminan = new widget.Button();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnNota = new widget.Button();
@@ -2148,7 +2149,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         PopupPiutang.add(ppBersihkan1);
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-09-2024" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -2235,7 +2236,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(50, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2024 14:03:00" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2025 07:38:36" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2678,8 +2679,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
 
         BtnPanjar.setForeground(new java.awt.Color(0, 0, 0));
         BtnPanjar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPanjar.setMnemonic('3');
-        BtnPanjar.setToolTipText("Alt+3");
+        BtnPanjar.setText("Panjar");
         BtnPanjar.setName("BtnPanjar"); // NOI18N
         BtnPanjar.setPreferredSize(new java.awt.Dimension(28, 23));
         BtnPanjar.addActionListener(new java.awt.event.ActionListener() {
@@ -2688,7 +2688,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             }
         });
         panelBayar.add(BtnPanjar);
-        BtnPanjar.setBounds(242, 417, 25, 23);
+        BtnPanjar.setBounds(242, 417, 80, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Tgl. Panjar : ");
@@ -2715,6 +2715,19 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         TnominalPanjar.setName("TnominalPanjar"); // NOI18N
         panelBayar.add(TnominalPanjar);
         TnominalPanjar.setBounds(110, 473, 131, 23);
+
+        BtnJaminan.setForeground(new java.awt.Color(0, 0, 0));
+        BtnJaminan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnJaminan.setText("Jaminan");
+        BtnJaminan.setName("BtnJaminan"); // NOI18N
+        BtnJaminan.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnJaminan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnJaminanActionPerformed(evt);
+            }
+        });
+        panelBayar.add(BtnJaminan);
+        BtnJaminan.setBounds(330, 417, 90, 23);
 
         Scroll2.setViewportView(panelBayar);
 
@@ -2813,7 +2826,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelGlass8.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -4545,18 +4558,23 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "silahkan conteng transaksi belum dibayar utk. memastikan transaksinya..!!     ");
             } else {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                akses.setform("DlgBilingRalan");
-                DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
-                panjar.emptTeks();
-                panjar.isCek();
-                panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
-                        Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + TNoRw.getText() + "'"),
-                        Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
-                        "0", TtlSemua.getText(),"0");
-                panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                panjar.setLocationRelativeTo(internalFrame1);
-                panjar.setVisible(true);
-                BtnCariActionPerformed(null);
+                if (Sequel.cariRealCostPiutang(TNoRw.getText()) > 0 || Sequel.cariRegistrasi(TNoRw.getText()) > 0) {
+                    akses.setform("DlgBilingRalan");
+                    DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
+                    panjar.emptTeks();
+                    panjar.isCek();
+                    panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
+                            Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + TNoRw.getText() + "'"),
+                            Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
+                            "0", TtlSemua.getText(), "0");
+                    panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    panjar.setLocationRelativeTo(internalFrame1);
+                    panjar.setVisible(true);
+                    BtnCariActionPerformed(null);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Hitungan biaya tagihan sesuai Real Cost belum tersimpan, gunakan sebagai jaminan saja..!!");
+                    BtnCariActionPerformed(null);
+                }
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }
@@ -4591,6 +4609,27 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }//GEN-LAST:event_MnPiutangPasienActionPerformed
 
+    private void BtnJaminanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJaminanActionPerformed
+        if (TPasien.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Pasien belum dipilih...!!!");
+            TNoRw.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            isHitung();
+            akses.setform("DlgBilingRalan");
+            DlgJaminanTransaksi jaminan = new DlgJaminanTransaksi(null, false);            
+            jaminan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            jaminan.setLocationRelativeTo(internalFrame1);
+            jaminan.isCek();
+            jaminan.emptTeks();
+            jaminan.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
+                    Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + TNoRw.getText() + "'"));
+            jaminan.setVisible(true);
+            BtnCariActionPerformed(null);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnJaminanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4621,6 +4660,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Button BtnHapus1;
     private widget.Button BtnHapusPotongan;
     private widget.Button BtnHapusTuslah;
+    private widget.Button BtnJaminan;
     private widget.Button BtnKeluar;
     private widget.Button BtnKeluar1;
     private widget.Button BtnKeluar2;
@@ -5798,6 +5838,8 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         MnNamaTelahTerima.setEnabled(akses.getbilling_ralan());
         MnHapusTuslah.setEnabled(akses.getbilling_ralan());
         MnPanjarPasien.setEnabled(akses.getbilling_ralan());
+        BtnPanjar.setEnabled(akses.getbilling_ralan());
+        BtnJaminan.setEnabled(akses.getbilling_ralan());
         MnPiutangPasien.setEnabled(akses.getbilling_ralan());
         
         if (Sequel.cariIsi("select tampilkan_tombol_nota_ralan from set_nota").equals("Yes")) {

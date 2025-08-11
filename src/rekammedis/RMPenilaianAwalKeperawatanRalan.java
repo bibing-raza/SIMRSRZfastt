@@ -1387,7 +1387,8 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         jLabel55.setBounds(0, 340, 120, 23);
 
         ADL.setForeground(new java.awt.Color(0, 0, 0));
-        ADL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mandiri", "Dibantu" }));
+        ADL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mandiri", "Dibantu", "-" }));
+        ADL.setSelectedIndex(2);
         ADL.setName("ADL"); // NOI18N
         ADL.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1432,7 +1433,8 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         jLabel58.setBounds(226, 530, 140, 23);
 
         HubunganKeluarga.setForeground(new java.awt.Color(0, 0, 0));
-        HubunganKeluarga.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Baik", "Tidak Baik" }));
+        HubunganKeluarga.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Baik", "Tidak Baik", "-" }));
+        HubunganKeluarga.setSelectedIndex(2);
         HubunganKeluarga.setName("HubunganKeluarga"); // NOI18N
         HubunganKeluarga.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1449,7 +1451,8 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         jLabel59.setBounds(0, 450, 176, 23);
 
         TinggalDengan.setForeground(new java.awt.Color(0, 0, 0));
-        TinggalDengan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sendiri", "Orang Tua", "Suami / Istri", "Lainnya" }));
+        TinggalDengan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sendiri", "Orang Tua", "Suami / Istri", "Lainnya", "-" }));
+        TinggalDengan.setSelectedIndex(4);
         TinggalDengan.setName("TinggalDengan"); // NOI18N
         TinggalDengan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1477,7 +1480,8 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         jLabel60.setBounds(393, 470, 100, 23);
 
         Ekonomi.setForeground(new java.awt.Color(0, 0, 0));
-        Ekonomi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Baik", "Cukup", "Kurang" }));
+        Ekonomi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Baik", "Cukup", "Kurang", "-" }));
+        Ekonomi.setSelectedIndex(3);
         Ekonomi.setName("Ekonomi"); // NOI18N
         Ekonomi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1573,7 +1577,8 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         jLabel67.setBounds(725, 940, 60, 23);
 
         Hasil.setForeground(new java.awt.Color(0, 0, 0));
-        Hasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak beresiko (tidak ditemukan a dan b)", "Resiko rendah (ditemukan a/b)", "Resiko tinggi (ditemukan a dan b)" }));
+        Hasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak beresiko (tidak ditemukan a dan b)", "Resiko rendah (ditemukan a/b)", "Resiko tinggi (ditemukan a dan b)", "-" }));
+        Hasil.setSelectedIndex(3);
         Hasil.setName("Hasil"); // NOI18N
         Hasil.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1748,7 +1753,8 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         jLabel80.setBounds(585, 820, 60, 23);
 
         Quality.setForeground(new java.awt.Color(0, 0, 0));
-        Quality.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seperti Tertusuk", "Berdenyut", "Teriris", "Tertindih", "Tertiban", "Lain-lain" }));
+        Quality.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seperti Tertusuk", "Berdenyut", "Teriris", "Tertindih", "Tertiban", "Lain-lain", "-" }));
+        Quality.setSelectedIndex(6);
         Quality.setName("Quality"); // NOI18N
         Quality.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1858,7 +1864,8 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         jLabel88.setBounds(470, 970, 110, 23);
 
         NyeriHilang.setForeground(new java.awt.Color(0, 0, 0));
-        NyeriHilang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Istirahat", "Medengar Musik", "Minum Obat" }));
+        NyeriHilang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Istirahat", "Medengar Musik", "Minum Obat", "-" }));
+        NyeriHilang.setSelectedIndex(3);
         NyeriHilang.setName("NyeriHilang"); // NOI18N
         NyeriHilang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1943,7 +1950,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         FormInput.add(TotalHasil);
         TotalHasil.setBounds(774, 770, 80, 23);
 
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-07-2025 12:38:38" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2025 10:43:56" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -2323,7 +2330,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2338,7 +2345,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3873,13 +3880,13 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         KetBantu.setText("");
         Prothesa.setSelectedIndex(0);
         KetProthesa.setText("");
-        ADL.setSelectedIndex(0);
+        ADL.setSelectedIndex(2);
         StatusPsiko.setSelectedIndex(0);
         KetPsiko.setText("");
-        HubunganKeluarga.setSelectedIndex(0);
-        TinggalDengan.setSelectedIndex(0);
+        HubunganKeluarga.setSelectedIndex(2);
+        TinggalDengan.setSelectedIndex(4);
         KetTinggal.setText("");
-        Ekonomi.setSelectedIndex(0);
+        Ekonomi.setSelectedIndex(3);
         StatusBudaya.setSelectedIndex(0);
         KetBudaya.setText("");
         Edukasi.setSelectedIndex(0);
@@ -3887,7 +3894,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         ATS.setSelectedIndex(0);
         BJM.setSelectedIndex(0);
         MSA.setSelectedIndex(0);
-        Hasil.setSelectedIndex(0);
+        Hasil.setSelectedIndex(3);
         Lapor.setSelectedIndex(0);
         KetLapor.setText("");
         SG1.setSelectedIndex(0);
@@ -3898,13 +3905,13 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         Nyeri.setSelectedIndex(0);
         Provokes.setSelectedIndex(0);
         KetProvokes.setText("");
-        Quality.setSelectedIndex(0);
+        Quality.setSelectedIndex(6);
         KetQuality.setText("");
         Lokasi.setText("");
         Menyebar.setSelectedIndex(0);
         SkalaNyeri.setSelectedIndex(0);
         Durasi.setText("");
-        NyeriHilang.setSelectedIndex(0);
+        NyeriHilang.setSelectedIndex(3);
         KetNyeri.setText("");
         PadaDokter.setSelectedIndex(0);
         KetDokter.setText("");
