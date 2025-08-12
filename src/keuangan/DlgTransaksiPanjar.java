@@ -637,7 +637,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         panelGlass10.add(jLabel22);
 
         cmbStatus1.setForeground(new java.awt.Color(0, 0, 0));
-        cmbStatus1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Selesai", "Kurang Bayar", "Lebih Bayar", "Lanjut Piutang" }));
+        cmbStatus1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Selesai", "Kurang Bayar", "Lebih Bayar" }));
         cmbStatus1.setName("cmbStatus1"); // NOI18N
         cmbStatus1.setPreferredSize(new java.awt.Dimension(105, 23));
         panelGlass10.add(cmbStatus1);
@@ -1113,6 +1113,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             emptTeks();
+            tampil();
         }
     }//GEN-LAST:event_BtnBatalKeyPressed
 
@@ -1935,6 +1936,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         labelnom_selisih.setText("Rp. 0");
         kdpnj.setText("");
         nmpnj.setText("");
+        ChkSekaligus.setSelected(false);
         AutoNomorPanjar();
     }
 
