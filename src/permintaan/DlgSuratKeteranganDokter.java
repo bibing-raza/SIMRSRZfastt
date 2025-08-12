@@ -2941,7 +2941,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
             Valid.MyReport("rptSuratDokterKirCpns.jasper", "report", "::[ Surat KIR CPNS 100 % ]::",
                     "SELECT c.*, s.*, concat(s.no_surat,' / ',s.no_dokumen) noSurat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(c.tgl_surat_menkes,'%d-%m-%Y') tglMenkes, "
-                    + "DATE_FORMAT(c.tgl_atas_permintaan,'%d-%m-%Y') tglAtasPermintaan, concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', Kab. ',kb.nm_kab) almt, "
+                    + "DATE_FORMAT(c.tgl_atas_permintaan,'%d-%m-%Y') tglAtasPermintaan, concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', ',kb.nm_kab) almt, "
                     + "if(p.jk='L','Laki-laki','Perempuan') jenkel, pg.nama nmDokter FROM cpns_seratus_persen c "
                     + "inner join surat_keterangan_dokter s on s.no_rawat=c.no_rawat inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "

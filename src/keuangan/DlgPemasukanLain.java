@@ -1662,7 +1662,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass8.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-08-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -1681,7 +1681,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1696,7 +1696,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1830,7 +1830,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         btnKategori.setBounds(610, 40, 28, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-08-2025" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -2389,6 +2389,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         WindowSelisihTarif.dispose();
         selisihBaru();
         emptTeks();
+        tampil();
         ChkInput.setSelected(true);
         isForm();
     }//GEN-LAST:event_BtnCloseIn6ActionPerformed
@@ -2432,7 +2433,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             if (sisaTagihan >= Double.parseDouble(jlhdibayar.getText())) {
                 autoNomorTransaksi();                
                 Sequel.AutoComitFalse();
-                try {                    
+                try {
                     stlhByr = sisaTagihan - Double.parseDouble(jlhdibayar.getText());
                     
                     Sequel.menyimpan("pemasukan_lain", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemasukan", 27, new String[]{
@@ -2477,7 +2478,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 //                WindowSelisihTarif.dispose();
                 tampil();
 //                selisihBaru();
-                emptTeks();                
+//                emptTeks();                
                 ChkInput.setSelected(true);
                 isForm();
             } else {
@@ -3110,11 +3111,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 panjar.setLocationRelativeTo(internalFrame1);
                 panjar.setVisible(true);
-                BtnCariActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Hitungan biaya selisih tarif INACBG belum tersimpan, simpan dulu proses ini    \n"
                         + "kemudian bisa dilanjutkan ke panjar atau jaminan..!!");
-                BtnCariActionPerformed(null);
             }
             this.setCursor(Cursor.getDefaultCursor());
         }

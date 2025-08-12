@@ -189,7 +189,9 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         ppHapus = new javax.swing.JMenuItem();
         jMnLaporan = new javax.swing.JMenu();
         MnSummaryMutasiPerUnit = new javax.swing.JMenuItem();
+        MnSummaryMutasiPerUnitExcel = new javax.swing.JMenuItem();
         MnSummaryMutasiPerAllUnit = new javax.swing.JMenuItem();
+        MnSummaryMutasiPerAllUnitExcel = new javax.swing.JMenuItem();
         MnSummaryMutasiGlobalUnit = new javax.swing.JMenuItem();
         MnSummaryMutasiGlobalUnitExcel = new javax.swing.JMenuItem();
         panelisi4 = new widget.panelisi();
@@ -255,7 +257,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         MnSummaryMutasiPerUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnSummaryMutasiPerUnit.setText("Summary Mutasi Per Unit Farmasi");
         MnSummaryMutasiPerUnit.setName("MnSummaryMutasiPerUnit"); // NOI18N
-        MnSummaryMutasiPerUnit.setPreferredSize(new java.awt.Dimension(220, 27));
+        MnSummaryMutasiPerUnit.setPreferredSize(new java.awt.Dimension(280, 27));
         MnSummaryMutasiPerUnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSummaryMutasiPerUnitActionPerformed(evt);
@@ -263,11 +265,26 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         });
         jMnLaporan.add(MnSummaryMutasiPerUnit);
 
+        MnSummaryMutasiPerUnitExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSummaryMutasiPerUnitExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnSummaryMutasiPerUnitExcel.setText("Summary Mutasi Per Unit Farmasi (Ms. Excel)");
+        MnSummaryMutasiPerUnitExcel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnSummaryMutasiPerUnitExcel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSummaryMutasiPerUnitExcel.setIconTextGap(5);
+        MnSummaryMutasiPerUnitExcel.setName("MnSummaryMutasiPerUnitExcel"); // NOI18N
+        MnSummaryMutasiPerUnitExcel.setPreferredSize(new java.awt.Dimension(280, 27));
+        MnSummaryMutasiPerUnitExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnSummaryMutasiPerUnitExcelActionPerformed(evt);
+            }
+        });
+        jMnLaporan.add(MnSummaryMutasiPerUnitExcel);
+
         MnSummaryMutasiPerAllUnit.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSummaryMutasiPerAllUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnSummaryMutasiPerAllUnit.setText("Summary Mutasi Semua Unit Farmasi");
         MnSummaryMutasiPerAllUnit.setName("MnSummaryMutasiPerAllUnit"); // NOI18N
-        MnSummaryMutasiPerAllUnit.setPreferredSize(new java.awt.Dimension(220, 27));
+        MnSummaryMutasiPerAllUnit.setPreferredSize(new java.awt.Dimension(280, 27));
         MnSummaryMutasiPerAllUnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSummaryMutasiPerAllUnitActionPerformed(evt);
@@ -275,11 +292,26 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         });
         jMnLaporan.add(MnSummaryMutasiPerAllUnit);
 
+        MnSummaryMutasiPerAllUnitExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSummaryMutasiPerAllUnitExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnSummaryMutasiPerAllUnitExcel.setText("Summary Mutasi Semua Unit Farmasi (Ms. Excel)");
+        MnSummaryMutasiPerAllUnitExcel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnSummaryMutasiPerAllUnitExcel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSummaryMutasiPerAllUnitExcel.setIconTextGap(5);
+        MnSummaryMutasiPerAllUnitExcel.setName("MnSummaryMutasiPerAllUnitExcel"); // NOI18N
+        MnSummaryMutasiPerAllUnitExcel.setPreferredSize(new java.awt.Dimension(280, 27));
+        MnSummaryMutasiPerAllUnitExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnSummaryMutasiPerAllUnitExcelActionPerformed(evt);
+            }
+        });
+        jMnLaporan.add(MnSummaryMutasiPerAllUnitExcel);
+
         MnSummaryMutasiGlobalUnit.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSummaryMutasiGlobalUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnSummaryMutasiGlobalUnit.setText("Global Summary Mutasi Unit Farmasi");
         MnSummaryMutasiGlobalUnit.setName("MnSummaryMutasiGlobalUnit"); // NOI18N
-        MnSummaryMutasiGlobalUnit.setPreferredSize(new java.awt.Dimension(220, 27));
+        MnSummaryMutasiGlobalUnit.setPreferredSize(new java.awt.Dimension(280, 27));
         MnSummaryMutasiGlobalUnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSummaryMutasiGlobalUnitActionPerformed(evt);
@@ -288,10 +320,10 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         jMnLaporan.add(MnSummaryMutasiGlobalUnit);
 
         MnSummaryMutasiGlobalUnitExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnSummaryMutasiGlobalUnitExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        MnSummaryMutasiGlobalUnitExcel.setText("Global Summary Mutasi Unit Farmasi Excel");
+        MnSummaryMutasiGlobalUnitExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnSummaryMutasiGlobalUnitExcel.setText("Global Summary Mutasi Unit Farmasi (Ms. Excell)");
         MnSummaryMutasiGlobalUnitExcel.setName("MnSummaryMutasiGlobalUnitExcel"); // NOI18N
-        MnSummaryMutasiGlobalUnitExcel.setPreferredSize(new java.awt.Dimension(220, 27));
+        MnSummaryMutasiGlobalUnitExcel.setPreferredSize(new java.awt.Dimension(280, 27));
         MnSummaryMutasiGlobalUnitExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSummaryMutasiGlobalUnitExcelActionPerformed(evt);
@@ -487,7 +519,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         panelisi3.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -502,7 +534,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         panelisi3.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -923,7 +955,6 @@ private void BtnCetakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     }//GEN-LAST:event_MnSummaryMutasiGlobalUnitActionPerformed
 
     private void MnSummaryMutasiGlobalUnitExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSummaryMutasiGlobalUnitExcelActionPerformed
-        // TODO add your handling code here:
         dialog_simpan = "";
         dialog_simpan = Valid.openDialog();
         if (!dialog_simpan.equals("the user cancelled the operation")) {
@@ -942,6 +973,39 @@ private void BtnCetakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             }
         }
     }//GEN-LAST:event_MnSummaryMutasiGlobalUnitExcelActionPerformed
+
+    private void MnSummaryMutasiPerUnitExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSummaryMutasiPerUnitExcelActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        dialog_simpan = Valid.openDialog();
+        Valid.MyReportToExcel("select (select nm_bangsal from bangsal where kd_bangsal=kd_bangsaldari) 'Dikirim Oleh', "
+                + "(select nm_bangsal from bangsal where kd_bangsal=kd_bangsalke) 'Tujuan/Penerima', "
+                + "databarang.nama_brng 'Nama Obat/Alkes', sum(mutasibarang.jml) 'Jumlah', databarang.h_beli 'Harga Beli', sum(mutasibarang.jml)*databarang.ralan 'Total Nominal', "
+                + "UPPER(mutasibarang.keterangan) 'Keterangan', concat('" + DTPCari1.getSelectedItem() + "',' s.d ','" + DTPCari2.getSelectedItem() + "') 'Tgl. Periode' "
+                + "from mutasibarang inner join databarang on mutasibarang.kode_brng=databarang.kode_brng "
+                + "where mutasibarang.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and (select nm_bangsal from bangsal where kd_bangsal=kd_bangsalke) like '%" + TCari.getText().trim() + "%' "
+                + "GROUP BY mutasibarang.kode_brng, UPPER(mutasibarang.keterangan) "
+                + "order by mutasibarang.keterangan, mutasibarang.tanggal, databarang.nama_brng", dialog_simpan);
+        
+        JOptionPane.showMessageDialog(null, "Data Mutasi Per Unit Farmasi berhasil diexport menjadi file excel,..!!!");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnSummaryMutasiPerUnitExcelActionPerformed
+
+    private void MnSummaryMutasiPerAllUnitExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSummaryMutasiPerAllUnitExcelActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        dialog_simpan = Valid.openDialog();
+        Valid.MyReportToExcel("select (select nm_bangsal from bangsal where kd_bangsal=kd_bangsaldari) 'Dikirim Oleh', "
+                + "(select nm_bangsal from bangsal where kd_bangsal=kd_bangsalke) 'Tujuan/Penerima', "
+                + "databarang.nama_brng 'Nama Obat/Alkes', sum(mutasibarang.jml) 'Jumlah', databarang.h_beli 'Harga Beli', sum(mutasibarang.jml)*databarang.ralan 'Total Nominal', "
+                + "UPPER(mutasibarang.keterangan) 'Keterangan', concat('" + DTPCari1.getSelectedItem() + "',' s.d ','" + DTPCari2.getSelectedItem() + "') 'Tgl. Periode' "
+                + "from mutasibarang inner join databarang on mutasibarang.kode_brng=databarang.kode_brng "
+                + "where mutasibarang.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "GROUP BY mutasibarang.kode_brng, UPPER(mutasibarang.keterangan) "
+                + "order by mutasibarang.keterangan, databarang.nama_brng", dialog_simpan);
+        
+        JOptionPane.showMessageDialog(null, "Data Mutasi Semua Unit Farmasi berhasil diexport menjadi file excel,..!!!");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnSummaryMutasiPerAllUnitExcelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -972,7 +1036,9 @@ private void BtnCetakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private javax.swing.JMenuItem MnSummaryMutasiGlobalUnit;
     private javax.swing.JMenuItem MnSummaryMutasiGlobalUnitExcel;
     private javax.swing.JMenuItem MnSummaryMutasiPerAllUnit;
+    private javax.swing.JMenuItem MnSummaryMutasiPerAllUnitExcel;
     private javax.swing.JMenuItem MnSummaryMutasiPerUnit;
+    private javax.swing.JMenuItem MnSummaryMutasiPerUnitExcel;
     private javax.swing.JPopupMenu Popup;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;

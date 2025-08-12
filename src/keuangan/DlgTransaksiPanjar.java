@@ -315,6 +315,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         BtnCekRealCost = new widget.Button();
         jLabel25 = new widget.Label();
         TcaraBayar = new widget.TextBox();
+        ChkSekaligus = new widget.CekBox();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbPanjar = new widget.Table();
@@ -574,7 +575,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(78, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -588,7 +589,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -706,7 +707,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         PanelInput.add(jLabel11);
         jLabel11.setBounds(525, 94, 70, 23);
 
-        TtglPanjar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
+        TtglPanjar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2025" }));
         TtglPanjar.setDisplayFormat("dd-MM-yyyy");
         TtglPanjar.setName("TtglPanjar"); // NOI18N
         TtglPanjar.setOpaque(false);
@@ -971,6 +972,20 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         PanelInput.add(TcaraBayar);
         TcaraBayar.setBounds(334, 66, 395, 23);
 
+        ChkSekaligus.setBackground(new java.awt.Color(255, 255, 250));
+        ChkSekaligus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkSekaligus.setForeground(new java.awt.Color(0, 0, 0));
+        ChkSekaligus.setText("Panjar Diterima & Diakhiri");
+        ChkSekaligus.setBorderPainted(true);
+        ChkSekaligus.setBorderPaintedFlat(true);
+        ChkSekaligus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChkSekaligus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkSekaligus.setName("ChkSekaligus"); // NOI18N
+        ChkSekaligus.setOpaque(false);
+        ChkSekaligus.setPreferredSize(new java.awt.Dimension(175, 23));
+        PanelInput.add(ChkSekaligus);
+        ChkSekaligus.setBounds(745, 234, 160, 23);
+
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
         internalFrame2.setBorder(null);
@@ -1060,17 +1075,31 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                 nipSimpan = akses.getkode();
             }
             AutoNomorPanjar();
-            
-            if (Sequel.menyimpantf("transaksi_panjar", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Transaksi Panjar", 17, new String[]{
-                TnoPanjar.getText(), Valid.SetTgl(TtglPanjar.getSelectedItem() + ""), TrgRawat.getText(), TNoRw.getText(),
-                TnoTelp1.getText(), TnoTelp2.getText(), TnominalPanjar.getText(), cmbStatus.getSelectedItem().toString(),
-                TnominalStatus.getText(), nipSimpan, Sequel.cariIsi("select now()"), "-", "0000-00-00 00:00:00", Tketerangan.getText(),
-                TtelahTerima.getText(), totReal, totSelisihAwalnya
-            }) == true) {
-                Valid.SetTgl(DTPCari1, Valid.SetTgl(TtglPanjar.getSelectedItem() + ""));
-                TCari.setText(TNoRw.getText());
-                emptTeks();
-                tampil();
+
+            if (ChkSekaligus.isSelected() == true) {
+                if (Sequel.menyimpantf("transaksi_panjar", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Transaksi Panjar", 17, new String[]{
+                    TnoPanjar.getText(), Valid.SetTgl(TtglPanjar.getSelectedItem() + ""), TrgRawat.getText(), TNoRw.getText(),
+                    TnoTelp1.getText(), TnoTelp2.getText(), TnominalPanjar.getText(), cmbStatus.getSelectedItem().toString(),
+                    TnominalStatus.getText(), nipSimpan, Sequel.cariIsi("select now()"), nipSimpan, Sequel.cariIsi("select now()"), Tketerangan.getText(),
+                    TtelahTerima.getText(), totReal, totSelisihAwalnya
+                }) == true) {
+                    Valid.SetTgl(DTPCari1, Valid.SetTgl(TtglPanjar.getSelectedItem() + ""));
+                    TCari.setText(TNoRw.getText());
+                    emptTeks();
+                    tampil();
+                }
+            } else {
+                if (Sequel.menyimpantf("transaksi_panjar", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Transaksi Panjar", 17, new String[]{
+                    TnoPanjar.getText(), Valid.SetTgl(TtglPanjar.getSelectedItem() + ""), TrgRawat.getText(), TNoRw.getText(),
+                    TnoTelp1.getText(), TnoTelp2.getText(), TnominalPanjar.getText(), cmbStatus.getSelectedItem().toString(),
+                    TnominalStatus.getText(), nipSimpan, Sequel.cariIsi("select now()"), "-", "0000-00-00 00:00:00", Tketerangan.getText(),
+                    TtelahTerima.getText(), totReal, totSelisihAwalnya
+                }) == true) {
+                    Valid.SetTgl(DTPCari1, Valid.SetTgl(TtglPanjar.getSelectedItem() + ""));
+                    TCari.setText(TNoRw.getText());
+                    emptTeks();
+                    tampil();
+                }
             }
         }
     }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -1661,6 +1690,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
+    public widget.CekBox ChkSekaligus;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.Label LCount;
@@ -1943,6 +1973,12 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                 label_tot_tagihan.setVisible(true);
             } else {
                 label_tot_tagihan.setVisible(false);
+            }
+            
+            if (totSelisihAwalnya.equals("0")) {
+                label_tot_tagihan.setText("Dari Total Tagihan Real Cost");
+            } else {
+                label_tot_tagihan.setText("Dari Total Tagihan Selisih Tarif INACBG");
             }
             
             BtnCekRealCostActionPerformed(null);
