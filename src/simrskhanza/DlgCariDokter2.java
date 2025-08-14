@@ -39,15 +39,16 @@ import javax.swing.table.TableColumn;
  */
 public final class DlgCariDokter2 extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private Connection koneksi=koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private Connection koneksi = koneksiDB.condb();
     private PreparedStatement ps;
     private ResultSet rs;
     private Calendar cal = Calendar.getInstance();
     private int day = cal.get(Calendar.DAY_OF_WEEK);
     private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-    private String hari="",poli="";
+    private String hari = "", poli = "", pakaiHari = "";
+    
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
@@ -387,117 +388,138 @@ public final class DlgCariDokter2 extends javax.swing.JDialog {
     public void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps=koneksi.prepareStatement(
-                "select dokter.kd_dokter,dokter.nm_dokter,dokter.jk,dokter.tmp_lahir, "+
-                "dokter.tgl_lahir,dokter.gol_drh,dokter.agama,dokter.almt_tgl,dokter.no_telp, "+
-                "dokter.stts_nikah,spesialis.nm_sps,dokter.alumni,dokter.no_ijn_praktek "+
-                "from dokter inner join spesialis inner join jadwal inner join poliklinik "+
-                "on dokter.kd_sps=spesialis.kd_sps and dokter.kd_dokter=jadwal.kd_dokter and poliklinik.kd_poli=jadwal.kd_poli "+
-                "where jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and dokter.kd_dokter like ? or "+
-                " jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and dokter.nm_dokter like ? or "+
-                " jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and dokter.jk like ? or "+
-                " jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and dokter.tmp_lahir like ? or "+
-                " jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and dokter.tgl_lahir like ? or "+
-                " jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and dokter.gol_drh like ? or "+
-                " jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and dokter.agama like ? or "+
-                " jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and dokter.almt_tgl like ? or "+
-                " jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and dokter.no_telp like ? or "+
-                " jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and dokter.stts_nikah like ? or "+
-                " jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and spesialis.nm_sps like ? or "+
-                " jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and dokter.alumni like ? or "+
-                " jadwal.hari_kerja=? and poliklinik.nm_poli like ? and dokter.status='1' and dokter.no_ijn_praktek like ? order by dokter.nm_dokter");
-            try{
-                if(day==1){
-                    hari="AKHAD";
-                }else if(day==2){
-                    hari="SENIN";
-                }else if(day==3){
-                    hari="SELASA";
-                }else if(day==4){
-                    hari="RABU";
-                }else if(day==5){
-                    hari="KAMIS";
-                }else if(day==6){
-                    hari="JUMAT";
-                }else if(day==7){
-                    hari="SABTU";
+            if (pakaiHari.equals("ya")) {
+                ps = koneksi.prepareStatement("select d.kd_dokter,d.nm_dokter,d.jk,d.tmp_lahir, d.tgl_lahir,d.gol_drh,d.agama,d.almt_tgl,d.no_telp, "
+                        + "d.stts_nikah,s.nm_sps,d.alumni,d.no_ijn_praktek from dokter d inner join spesialis s on s.kd_sps=d.kd_sps "
+                        + "inner join jadwal j on j.kd_dokter=d.kd_dokter inner join poliklinik pl on pl.kd_poli=j.kd_poli where "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and d.kd_dokter like ? or "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and d.nm_dokter like ? or "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and d.jk like ? or "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and d.tmp_lahir like ? or "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and d.tgl_lahir like ? or "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and d.gol_drh like ? or "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and d.agama like ? or "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and d.almt_tgl like ? or "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and d.no_telp like ? or "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and d.stts_nikah like ? or "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and s.nm_sps like ? or "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and d.alumni like ? or "
+                        + "j.hari_kerja=? and pl.nm_poli like ? and d.status='1' and d.no_ijn_praktek like ? order by d.nm_dokter");
+                
+            } else if (pakaiHari.equals("tidak")) {
+                ps = koneksi.prepareStatement("select d.kd_dokter,d.nm_dokter,d.jk,d.tmp_lahir, d.tgl_lahir,d.gol_drh,d.agama,d.almt_tgl,d.no_telp, "
+                        + "d.stts_nikah,s.nm_sps,d.alumni,d.no_ijn_praktek from dokter d inner join spesialis s on s.kd_sps=d.kd_sps "
+                        + "inner join jadwal j on j.kd_dokter=d.kd_dokter inner join poliklinik pl on pl.kd_poli=j.kd_poli where "
+                        + "pl.nm_poli like ? and d.status='1' and d.kd_dokter like ? or "
+                        + "pl.nm_poli like ? and d.status='1' and d.nm_dokter like ? or "
+                        + "pl.nm_poli like ? and d.status='1' and s.nm_sps like ? group by d.kd_dokter order by d.nm_dokter");
+            }
+            try {
+                if (day == 1) {
+                    hari = "AKHAD";
+                } else if (day == 2) {
+                    hari = "SENIN";
+                } else if (day == 3) {
+                    hari = "SELASA";
+                } else if (day == 4) {
+                    hari = "RABU";
+                } else if (day == 5) {
+                    hari = "KAMIS";
+                } else if (day == 6) {
+                    hari = "JUMAT";
+                } else if (day == 7) {
+                    hari = "SABTU";
                 }
-                ps.setString(1,hari);
-                ps.setString(2,poli);
-                ps.setString(3,"%"+TCari.getText().trim()+"%");
-                ps.setString(4,hari);
-                ps.setString(5,poli);
-                ps.setString(6,"%"+TCari.getText().trim()+"%");
-                ps.setString(7,hari);
-                ps.setString(8,poli);
-                ps.setString(9,"%"+TCari.getText().trim()+"%");
-                ps.setString(10,hari);
-                ps.setString(11,poli);
-                ps.setString(12,"%"+TCari.getText().trim()+"%");
-                ps.setString(13,hari);
-                ps.setString(14,poli);
-                ps.setString(15,"%"+TCari.getText().trim()+"%");
-                ps.setString(16,hari);
-                ps.setString(17,poli);
-                ps.setString(18,"%"+TCari.getText().trim()+"%");
-                ps.setString(19,hari);
-                ps.setString(20,poli);
-                ps.setString(21,"%"+TCari.getText().trim()+"%");
-                ps.setString(22,hari);
-                ps.setString(23,poli);
-                ps.setString(24,"%"+TCari.getText().trim()+"%");
-                ps.setString(25,hari);
-                ps.setString(26,poli);
-                ps.setString(27,"%"+TCari.getText().trim()+"%");
-                ps.setString(28,hari);
-                ps.setString(29,poli);
-                ps.setString(30,"%"+TCari.getText().trim()+"%");
-                ps.setString(31,hari);
-                ps.setString(32,poli);
-                ps.setString(33,"%"+TCari.getText().trim()+"%");
-                ps.setString(34,hari);
-                ps.setString(35,poli);
-                ps.setString(36,"%"+TCari.getText().trim()+"%");
-                ps.setString(37,hari);
-                ps.setString(38,poli);
-                ps.setString(39,"%"+TCari.getText().trim()+"%");
-                rs=ps.executeQuery();
-                while(rs.next()){
-                    String[] data={rs.getString(1),
-                                   rs.getString(2),
-                                   rs.getString(3),
-                                   rs.getString(4),
-                                   rs.getString(5),
-                                   rs.getString(6),
-                                   rs.getString(7),
-                                   rs.getString(8),
-                                   rs.getString(9),
-                                   rs.getString(10),
-                                   rs.getString(11),
-                                   rs.getString(12),
-                                   rs.getString(13)};
+
+                if (pakaiHari.equals("ya")) {
+                    ps.setString(1, hari);
+                    ps.setString(2, poli);
+                    ps.setString(3, "%" + TCari.getText().trim() + "%");
+                    ps.setString(4, hari);
+                    ps.setString(5, poli);
+                    ps.setString(6, "%" + TCari.getText().trim() + "%");
+                    ps.setString(7, hari);
+                    ps.setString(8, poli);
+                    ps.setString(9, "%" + TCari.getText().trim() + "%");
+                    ps.setString(10, hari);
+                    ps.setString(11, poli);
+                    ps.setString(12, "%" + TCari.getText().trim() + "%");
+                    ps.setString(13, hari);
+                    ps.setString(14, poli);
+                    ps.setString(15, "%" + TCari.getText().trim() + "%");
+                    ps.setString(16, hari);
+                    ps.setString(17, poli);
+                    ps.setString(18, "%" + TCari.getText().trim() + "%");
+                    ps.setString(19, hari);
+                    ps.setString(20, poli);
+                    ps.setString(21, "%" + TCari.getText().trim() + "%");
+                    ps.setString(22, hari);
+                    ps.setString(23, poli);
+                    ps.setString(24, "%" + TCari.getText().trim() + "%");
+                    ps.setString(25, hari);
+                    ps.setString(26, poli);
+                    ps.setString(27, "%" + TCari.getText().trim() + "%");
+                    ps.setString(28, hari);
+                    ps.setString(29, poli);
+                    ps.setString(30, "%" + TCari.getText().trim() + "%");
+                    ps.setString(31, hari);
+                    ps.setString(32, poli);
+                    ps.setString(33, "%" + TCari.getText().trim() + "%");
+                    ps.setString(34, hari);
+                    ps.setString(35, poli);
+                    ps.setString(36, "%" + TCari.getText().trim() + "%");
+                    ps.setString(37, hari);
+                    ps.setString(38, poli);
+                    ps.setString(39, "%" + TCari.getText().trim() + "%");
+
+                } else if (pakaiHari.equals("tidak")) {
+                    ps.setString(1, poli);
+                    ps.setString(2, "%" + TCari.getText().trim() + "%");
+                    ps.setString(3, poli);
+                    ps.setString(4, "%" + TCari.getText().trim() + "%");
+                    ps.setString(5, poli);
+                    ps.setString(6, "%" + TCari.getText().trim() + "%");
+                }
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    String[] data = {
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12),
+                        rs.getString(13)
+                    };
                     tabMode.addRow(data);
                 }
-            }catch(SQLException e){
-                System.out.println("Notifikasi : "+e);
-            }finally{
-                if( rs != null ){
+            } catch (SQLException e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
                     rs.close();
                 }
-                
-                if( ps != null ){
+
+                if (ps != null) {
                     ps.close();
                 }
             }
         } catch (Exception e) {
             System.out.println(e);
         }
-        int b=tabMode.getRowCount();
-        LCount.setText(""+b);
+        int b = tabMode.getRowCount();
+        LCount.setText("" + b);
     }
 
-    public void setPoli(String namapoli){
-        this.poli=namapoli;
+    public void setPoli(String namapoli, String cekHari) {
+        this.poli = namapoli;
+        pakaiHari = cekHari;        
     }
     
     public void emptTeks() { 

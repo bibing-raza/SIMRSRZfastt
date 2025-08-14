@@ -41,7 +41,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2;
     private ResultSet rs, rs1, rs2;
     private int i = 0, x = 0;
-    private String norawat = "", wktSimpan = "", tglAmbilObat = "", ketHari = "";
+    private String norawat = "", wktSimpan = "", tglAmbilObat = "", ketHari = "", tglAkanDatang = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -704,6 +704,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
 
     public void tampil() {     
         ketHari = "";
+        tglAkanDatang = "";
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT iob.*, p.no_rkm_medis, p.nm_pasien, pl.nm_poli, d.nm_dokter, "
@@ -762,14 +763,15 @@ public class DlgResepIterObat extends javax.swing.JDialog {
                 ps.setString(36, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    if (Sequel.cariIsi("select ifnull(tgl_libur,'') from hari_libur where tgl_libur='" + Sequel.cariIsi("SELECT DATE_ADD('" + rs.getString("tglResep") + "', INTERVAL 30 DAY)") + "'").equals("")) {
-                        if (Sequel.cariIsi("SELECT date_format(DATE_ADD('" + rs.getString("tglResep") + "', INTERVAL 30 DAY),'%W')").equals("Sunday")) {
+                    tglAkanDatang = Sequel.cariIsi("SELECT DATE_ADD('" + rs.getString("tglResep") + "', INTERVAL 30 DAY)");
+                    if (Sequel.cariIsi("select ifnull(tgl_libur,'') from hari_libur where tgl_libur='" + tglAkanDatang + "'").equals("")) {
+                        if (tglAkanDatang.equals("Sunday")) {
                             ketHari = "bertepatan dengan hari MINGGU";
                         } else {
                             ketHari = "normal hari kerja seperti biasa";
                         }
                     } else {
-                        ketHari = Sequel.cariIsi("select keterangan from hari_libur where tgl_libur='" + rs.getString("tglResep") + "'");
+                        ketHari = Sequel.cariIsi("select keterangan from hari_libur where tgl_libur='" + tglAkanDatang + "'");
                     }
                     
                     tabMode.addRow(new String[]{

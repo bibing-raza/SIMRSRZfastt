@@ -2678,7 +2678,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             if (statusTran.getText().equals("dicicil")) {
                 SimpanNotaNaikKelas();
                 param.put("keterangan", Keterangan.getText());
-                param.put("judul_kwitansi", "KWITANSI PEMBAYARAN (Angsuran Ke - " + bayarKe.getText() + ")");
+                param.put("judul_kwitansi", "KUITANSI PEMBAYARAN (Angsuran Ke - " + bayarKe.getText() + ")");
                 param.put("telah_terimaAN", telahTerimaAN.getText());
                 param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp13,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
                 param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp13,'.','.'),',','.')) FROM temporary_bayar_ranap"));

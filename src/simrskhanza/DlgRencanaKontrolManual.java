@@ -349,7 +349,7 @@ public final class DlgRencanaKontrolManual extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokterActionPerformed
-        dokter.setPoli(nmpoli.getText());
+        dokter.setPoli(nmpoli.getText(), "tidak");
         dokter.isCek();
         dokter.setHari(Valid.SetTgl(TanggalKontrol.getSelectedItem() + ""));
         dokter.tampil();

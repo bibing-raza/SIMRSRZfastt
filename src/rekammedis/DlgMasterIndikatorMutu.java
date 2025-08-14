@@ -31,13 +31,13 @@ import javax.swing.table.TableColumn;
  * @author dosen
  */
 public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode;
+    private final DefaultTableModel tabMode, tabMode1;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private PreparedStatement ps, ps1;
+    private ResultSet rs, rs1;
     private int i = 0, x = 0;
     private String kode = "", stts = "";
     
@@ -48,7 +48,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        tabMode=new DefaultTableModel(null,new String[]{
+        tabMode = new DefaultTableModel(null, new String[]{
             "Kode Indikator", "No. Urut", "Nama Indikator", "Gedung Perawatan", "Status Data", "Target"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -67,21 +67,53 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(60);
             } else if (i == 2) {
-                column.setPreferredWidth(450);
+                column.setPreferredWidth(800);
             } else if (i == 3) {
                 column.setPreferredWidth(130);
             } else if (i == 4) {
                 column.setPreferredWidth(90);
             } else if (i == 5) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             }
         }
         tbMutu.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode1 = new DefaultTableModel(null, new String[]{
+            "Kode Indikator", "No. Urut", "Nama Indikator", "Gedung Perawatan", "Status Data", "Target"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbIndikator.setModel(tabMode1);
+        tbIndikator.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbIndikator.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 6; i++) {
+            TableColumn column = tbIndikator.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(90);
+            } else if (i == 1) {
+                column.setPreferredWidth(60);
+            } else if (i == 2) {
+                column.setPreferredWidth(800);
+            } else if (i == 3) {
+                column.setPreferredWidth(130);
+            } else if (i == 4) {
+                column.setPreferredWidth(90);
+            } else if (i == 5) {
+                column.setPreferredWidth(90);
+            }
+        }
+        tbIndikator.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
+        TCari1.setDocument(new batasInput((byte) 100).getKata(TCari1));
         TnoUrut.setDocument(new batasInput((byte) 3).getOnlyAngka(TnoUrut));
         TnmIndikator.setDocument(new batasInput((int) 255).getKata(TnmIndikator));
         Ttarget.setDocument(new batasInput((int) 10).getKata(Ttarget));
+        TtargetSemua.setDocument(new batasInput((int) 10).getKata(TtargetSemua));
         
         if (koneksiDB.cariCepat().equals("aktif")) {
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
@@ -112,6 +144,29 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnSemuaIndikator = new javax.swing.JMenuItem();
+        WindowIndikator = new javax.swing.JDialog();
+        internalFrame3 = new widget.InternalFrame();
+        panelisi3 = new widget.panelisi();
+        jLabel14 = new widget.Label();
+        TkdIndikator = new widget.TextBox();
+        TnmIndi = new widget.TextBox();
+        jLabel15 = new widget.Label();
+        cmbSttsIndikator = new widget.ComboBox();
+        jLabel17 = new widget.Label();
+        TtargetSemua = new widget.TextBox();
+        Scroll1 = new widget.ScrollPane();
+        tbIndikator = new widget.Table();
+        panelisi4 = new widget.panelisi();
+        jLabel8 = new widget.Label();
+        TCari1 = new widget.TextBox();
+        BtnCari1 = new widget.Button();
+        jLabel16 = new widget.Label();
+        LCount1 = new widget.Label();
+        BtnAll1 = new widget.Button();
+        BtnGanti1 = new widget.Button();
+        BtnCloseIn1 = new widget.Button();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -145,6 +200,208 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbMutu = new widget.Table();
+
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+
+        MnSemuaIndikator.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSemuaIndikator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnSemuaIndikator.setText("Semua Indikator Mutu");
+        MnSemuaIndikator.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnSemuaIndikator.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSemuaIndikator.setIconTextGap(5);
+        MnSemuaIndikator.setName("MnSemuaIndikator"); // NOI18N
+        MnSemuaIndikator.setPreferredSize(new java.awt.Dimension(160, 26));
+        MnSemuaIndikator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnSemuaIndikatorActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnSemuaIndikator);
+
+        WindowIndikator.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowIndikator.setName("WindowIndikator"); // NOI18N
+        WindowIndikator.setUndecorated(true);
+        WindowIndikator.setResizable(false);
+
+        internalFrame3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Semua Indikator Mutu Unit ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame3.setName("internalFrame3"); // NOI18N
+        internalFrame3.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame3.setLayout(new java.awt.BorderLayout());
+
+        panelisi3.setName("panelisi3"); // NOI18N
+        panelisi3.setPreferredSize(new java.awt.Dimension(100, 70));
+        panelisi3.setLayout(null);
+
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Nama Indikator : ");
+        jLabel14.setName("jLabel14"); // NOI18N
+        panelisi3.add(jLabel14);
+        jLabel14.setBounds(0, 10, 110, 23);
+
+        TkdIndikator.setEditable(false);
+        TkdIndikator.setForeground(new java.awt.Color(0, 0, 0));
+        TkdIndikator.setName("TkdIndikator"); // NOI18N
+        panelisi3.add(TkdIndikator);
+        TkdIndikator.setBounds(113, 10, 80, 23);
+
+        TnmIndi.setEditable(false);
+        TnmIndi.setForeground(new java.awt.Color(0, 0, 0));
+        TnmIndi.setName("TnmIndi"); // NOI18N
+        panelisi3.add(TnmIndi);
+        TnmIndi.setBounds(197, 10, 730, 23);
+
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Status Indikator : ");
+        jLabel15.setName("jLabel15"); // NOI18N
+        panelisi3.add(jLabel15);
+        jLabel15.setBounds(0, 38, 110, 23);
+
+        cmbSttsIndikator.setForeground(new java.awt.Color(0, 0, 0));
+        cmbSttsIndikator.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aktif", "Non Aktif", "Semua" }));
+        cmbSttsIndikator.setName("cmbSttsIndikator"); // NOI18N
+        cmbSttsIndikator.setPreferredSize(new java.awt.Dimension(80, 23));
+        panelisi3.add(cmbSttsIndikator);
+        cmbSttsIndikator.setBounds(113, 38, 80, 23);
+
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("Target :");
+        jLabel17.setName("jLabel17"); // NOI18N
+        panelisi3.add(jLabel17);
+        jLabel17.setBounds(200, 38, 50, 23);
+
+        TtargetSemua.setForeground(new java.awt.Color(0, 0, 0));
+        TtargetSemua.setName("TtargetSemua"); // NOI18N
+        panelisi3.add(TtargetSemua);
+        TtargetSemua.setBounds(255, 38, 100, 23);
+
+        internalFrame3.add(panelisi3, java.awt.BorderLayout.PAGE_START);
+
+        Scroll1.setName("Scroll1"); // NOI18N
+        Scroll1.setOpaque(true);
+
+        tbIndikator.setAutoCreateRowSorter(true);
+        tbIndikator.setToolTipText("Silahkan klik untuk memilih data yang akan diupdate");
+        tbIndikator.setName("tbIndikator"); // NOI18N
+        tbIndikator.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbIndikatorMouseClicked(evt);
+            }
+        });
+        tbIndikator.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbIndikatorKeyPressed(evt);
+            }
+        });
+        Scroll1.setViewportView(tbIndikator);
+
+        internalFrame3.add(Scroll1, java.awt.BorderLayout.CENTER);
+
+        panelisi4.setName("panelisi4"); // NOI18N
+        panelisi4.setPreferredSize(new java.awt.Dimension(100, 48));
+        panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Key Word :");
+        jLabel8.setName("jLabel8"); // NOI18N
+        jLabel8.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelisi4.add(jLabel8);
+
+        TCari1.setForeground(new java.awt.Color(0, 0, 0));
+        TCari1.setName("TCari1"); // NOI18N
+        TCari1.setPreferredSize(new java.awt.Dimension(250, 23));
+        TCari1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCari1KeyPressed(evt);
+            }
+        });
+        panelisi4.add(TCari1);
+
+        BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('2');
+        BtnCari1.setText("Tampilkan Data");
+        BtnCari1.setName("BtnCari1"); // NOI18N
+        BtnCari1.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnCari1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari1ActionPerformed(evt);
+            }
+        });
+        BtnCari1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCari1KeyPressed(evt);
+            }
+        });
+        panelisi4.add(BtnCari1);
+
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Record :");
+        jLabel16.setName("jLabel16"); // NOI18N
+        jLabel16.setPreferredSize(new java.awt.Dimension(65, 23));
+        panelisi4.add(jLabel16);
+
+        LCount1.setForeground(new java.awt.Color(0, 0, 0));
+        LCount1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount1.setText("0");
+        LCount1.setName("LCount1"); // NOI18N
+        LCount1.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelisi4.add(LCount1);
+
+        BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll1.setMnemonic('M');
+        BtnAll1.setText("Semua");
+        BtnAll1.setToolTipText("Alt+M");
+        BtnAll1.setName("BtnAll1"); // NOI18N
+        BtnAll1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnAll1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAll1ActionPerformed(evt);
+            }
+        });
+        BtnAll1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnAll1KeyPressed(evt);
+            }
+        });
+        panelisi4.add(BtnAll1);
+
+        BtnGanti1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGanti1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGanti1.setMnemonic('G');
+        BtnGanti1.setText("Ganti");
+        BtnGanti1.setToolTipText("Alt+G");
+        BtnGanti1.setName("BtnGanti1"); // NOI18N
+        BtnGanti1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnGanti1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGanti1ActionPerformed(evt);
+            }
+        });
+        BtnGanti1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnGanti1KeyPressed(evt);
+            }
+        });
+        panelisi4.add(BtnGanti1);
+
+        BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn1.setMnemonic('U');
+        BtnCloseIn1.setText("Tutup");
+        BtnCloseIn1.setToolTipText("Alt+U");
+        BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
+        BtnCloseIn1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnCloseIn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn1ActionPerformed(evt);
+            }
+        });
+        panelisi4.add(BtnCloseIn1);
+
+        internalFrame3.add(panelisi4, java.awt.BorderLayout.PAGE_END);
+
+        WindowIndikator.getContentPane().add(internalFrame3, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -293,7 +550,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         cmbGedung1.setForeground(new java.awt.Color(0, 0, 0));
         cmbGedung1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
         cmbGedung1.setName("cmbGedung1"); // NOI18N
-        cmbGedung1.setPreferredSize(new java.awt.Dimension(150, 23));
+        cmbGedung1.setPreferredSize(new java.awt.Dimension(200, 23));
         panelGlass10.add(cmbGedung1);
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -438,10 +695,12 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         internalFrame2.setName("internalFrame2"); // NOI18N
         internalFrame2.setLayout(new java.awt.BorderLayout(1, 1));
 
+        Scroll.setComponentPopupMenu(jPopupMenu1);
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
         tbMutu.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
+        tbMutu.setComponentPopupMenu(jPopupMenu1);
         tbMutu.setName("tbMutu"); // NOI18N
         tbMutu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -647,6 +906,110 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         mutu.setVisible(true);
     }//GEN-LAST:event_BtnNumdenomActionPerformed
 
+    private void BtnCloseIn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn1ActionPerformed
+        WindowIndikator.dispose();
+    }//GEN-LAST:event_BtnCloseIn1ActionPerformed
+
+    private void tbIndikatorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIndikatorMouseClicked
+        if(tabMode1.getRowCount()!=0){
+            try {
+                getDataSemua();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
+    }//GEN-LAST:event_tbIndikatorMouseClicked
+
+    private void tbIndikatorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbIndikatorKeyPressed
+        if(tabMode1.getRowCount()!=0){
+            if((evt.getKeyCode()==KeyEvent.VK_ENTER)||(evt.getKeyCode()==KeyEvent.VK_UP)||(evt.getKeyCode()==KeyEvent.VK_DOWN)){
+                try {
+                    getDataSemua();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
+    }//GEN-LAST:event_tbIndikatorKeyPressed
+
+    private void TCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCari1ActionPerformed(null);
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
+            BtnCari1.requestFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
+            BtnCloseIn1.requestFocus();
+        }
+    }//GEN-LAST:event_TCari1KeyPressed
+
+    private void BtnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari1ActionPerformed
+        tampilSemua();
+    }//GEN-LAST:event_BtnCari1ActionPerformed
+
+    private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCari1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnCari1ActionPerformed(null);
+        } else {
+            Valid.pindah(evt, TCari1, BtnAll1);
+        }
+    }//GEN-LAST:event_BtnCari1KeyPressed
+
+    private void BtnAll1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAll1ActionPerformed
+        TCari1.setText("");
+        BtnCari1ActionPerformed(null);
+        emptTeksSemua();
+    }//GEN-LAST:event_BtnAll1ActionPerformed
+
+    private void BtnAll1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAll1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnCari1ActionPerformed(null);
+            TCari1.setText("");
+        } else {
+            Valid.pindah(evt, BtnCari1, TkdIndikator);
+        }
+    }//GEN-LAST:event_BtnAll1KeyPressed
+
+    private void BtnGanti1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGanti1ActionPerformed
+        if (TkdIndikator.getText().trim().equals("")) {
+            Valid.textKosong(TkdIndikator, "Indikator Mutu");
+        } else {
+            if (tbIndikator.getSelectedRow() > -1) {
+                if (cmbSttsIndikator.getSelectedIndex() == 0) {
+                    stts = "aktif";
+                } else {
+                    stts = "non aktif";
+                }
+
+                x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin semua data indikator mutu ini mau diupdate status data & targetnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    Sequel.mengedit("master_indikator_nasional_mutu", "nm_indikator='" + TnmIndi.getText() + "'", "status_data='" + stts + "', target='" + TtargetSemua.getText() + "'");
+                    emptTeksSemua();
+                    BtnCari1ActionPerformed(null);
+                } else {
+                    emptTeksSemua();
+                    BtnCari1ActionPerformed(null);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+                tbIndikator.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_BtnGanti1ActionPerformed
+
+    private void BtnGanti1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGanti1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnGantiActionPerformed(null);
+        } else {
+            Valid.pindah(evt, BtnBatal, BtnKeluar);
+        }
+    }//GEN-LAST:event_BtnGanti1KeyPressed
+
+    private void MnSemuaIndikatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSemuaIndikatorActionPerformed
+        WindowIndikator.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        WindowIndikator.setLocationRelativeTo(internalFrame1);
+        WindowIndikator.setVisible(true);
+        emptTeksSemua();
+        tampilSemua();
+    }//GEN-LAST:event_MnSemuaIndikatorActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -665,37 +1028,60 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
+    private widget.Button BtnAll1;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
+    private widget.Button BtnCari1;
+    private widget.Button BtnCloseIn1;
     private widget.Button BtnGanti;
+    private widget.Button BtnGanti1;
     private widget.Button BtnKeluar;
     private widget.Button BtnNumdenom;
     private widget.Button BtnSimpan;
     private widget.Label LCount;
+    private widget.Label LCount1;
+    private javax.swing.JMenuItem MnSemuaIndikator;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
+    private widget.ScrollPane Scroll1;
     public widget.TextBox TCari;
+    public widget.TextBox TCari1;
+    private widget.TextBox TkdIndikator;
+    private widget.TextBox TnmIndi;
     private widget.TextBox TnmIndikator;
     private widget.TextBox TnoUrut;
     private widget.TextBox Ttarget;
+    private widget.TextBox TtargetSemua;
+    private javax.swing.JDialog WindowIndikator;
     private widget.ComboBox cmbGedung;
     private widget.ComboBox cmbGedung1;
     private widget.ComboBox cmbStatus;
+    private widget.ComboBox cmbSttsIndikator;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
+    private widget.InternalFrame internalFrame3;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
     private widget.Label jLabel12;
     private widget.Label jLabel13;
+    private widget.Label jLabel14;
+    private widget.Label jLabel15;
+    private widget.Label jLabel16;
+    private widget.Label jLabel17;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
+    private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.TextBox kdIndikator;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass8;
+    private widget.panelisi panelisi3;
+    private widget.panelisi panelisi4;
+    private widget.Table tbIndikator;
     private widget.Table tbMutu;
     // End of variables declaration//GEN-END:variables
 
@@ -770,5 +1156,71 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     public void isCek() {
         BtnSimpan.setEnabled(akses.getpegawai_admin());
         BtnGanti.setEnabled(akses.getpegawai_admin());
+    }
+    
+    private void tampilSemua() {
+        Valid.tabelKosong(tabMode1);
+        try {
+            ps1 = koneksi.prepareStatement("SELECT * FROM master_indikator_nasional_mutu WHERE "
+                    + "kd_indikator LIKE ? or "
+                    + "nm_indikator like ? or "
+                    + "target like ? or "
+                    + "gedung like ? or "
+                    + "status_data like ? ORDER BY no_urut, gedung");
+
+            try {
+                ps1.setString(1, "%" + TCari1.getText().trim() + "%");
+                ps1.setString(2, "%" + TCari1.getText().trim() + "%");
+                ps1.setString(3, "%" + TCari1.getText().trim() + "%");
+                ps1.setString(4, "%" + TCari1.getText().trim() + "%");
+                ps1.setString(5, "%" + TCari1.getText().trim() + "%");
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    tabMode1.addRow(new String[]{
+                        rs1.getString("kd_indikator"),
+                        rs1.getString("no_urut"),
+                        rs1.getString("nm_indikator"),
+                        rs1.getString("gedung"),
+                        rs1.getString("status_data").toUpperCase(),
+                        rs1.getString("target")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("rekammedis.DlgMasterIndikatorMutu.tampilSemua() : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        LCount1.setText("" + tabMode1.getRowCount());
+    }
+    
+    private void emptTeksSemua() {
+        TkdIndikator.setText("");
+        TnmIndi.setText("");
+        cmbSttsIndikator.setSelectedIndex(0);
+        TtargetSemua.setText("");
+        cmbSttsIndikator.requestFocus();
+    }
+
+    private void getDataSemua() {
+        stts = "";
+        if (tbIndikator.getSelectedRow() != -1) {
+            TkdIndikator.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 0).toString());
+            TnmIndi.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 2).toString());
+            TtargetSemua.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 5).toString());
+
+            if (tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 4).toString().equals("AKTIF")) {
+                cmbSttsIndikator.setSelectedIndex(0);
+            } else {
+                cmbSttsIndikator.setSelectedIndex(1);
+            }
+        }
     }
 }

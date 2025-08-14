@@ -7763,7 +7763,7 @@ private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             dokter.setVisible(true);
             dokter.emptTeks();
         } else {
-            dokter2.setPoli(TPoli.getText());
+            dokter2.setPoli(TPoli.getText(), "tidak");
             dokter2.isCek();
             dokter2.tampil();
             dokter2.TCari.requestFocus();
@@ -10121,7 +10121,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 dokter3.setVisible(true);
                 dokter3.emptTeks();
             } else {
-                dokter4.setPoli(nmpoliRujuk.getText());
+                dokter4.setPoli(nmpoliRujuk.getText(), "tidak");
                 dokter4.isCek();
                 dokter4.tampil();
                 dokter4.TCari.requestFocus();

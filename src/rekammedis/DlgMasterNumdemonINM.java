@@ -72,11 +72,11 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(90);
             } else if (i == 3) {
-                column.setPreferredWidth(450);
+                column.setPreferredWidth(600);
             } else if (i == 4) {
                 column.setPreferredWidth(100);
             } else if (i == 5) {
-                column.setPreferredWidth(450);
+                column.setPreferredWidth(600);
             } else if (i == 6) {
                 column.setPreferredWidth(200);
             } else if (i == 7) {
@@ -141,6 +141,8 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         cmbGedung = new widget.ComboBox();
         jLabel14 = new widget.Label();
         cmbJnsIndikator = new widget.ComboBox();
+        TsttsIndikator = new widget.TextBox();
+        BtnSttsIndikator = new widget.Button();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbMutu = new widget.Table();
@@ -278,7 +280,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         cmbGedung1.setForeground(new java.awt.Color(0, 0, 0));
         cmbGedung1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
         cmbGedung1.setName("cmbGedung1"); // NOI18N
-        cmbGedung1.setPreferredSize(new java.awt.Dimension(150, 23));
+        cmbGedung1.setPreferredSize(new java.awt.Dimension(200, 23));
         panelGlass10.add(cmbGedung1);
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -362,7 +364,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TnmNumdenom);
-        TnmNumdenom.setBounds(118, 94, 740, 23);
+        TnmNumdenom.setBounds(118, 94, 800, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("No. Urut :");
@@ -391,7 +393,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         cmbIndikator.setName("cmbIndikator"); // NOI18N
         cmbIndikator.setPreferredSize(new java.awt.Dimension(55, 28));
         PanelInput.add(cmbIndikator);
-        cmbIndikator.setBounds(118, 66, 590, 23);
+        cmbIndikator.setBounds(118, 66, 800, 23);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Status Data :");
@@ -441,6 +443,25 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         cmbJnsIndikator.setPreferredSize(new java.awt.Dimension(55, 28));
         PanelInput.add(cmbJnsIndikator);
         cmbJnsIndikator.setBounds(118, 122, 95, 23);
+
+        TsttsIndikator.setEditable(false);
+        TsttsIndikator.setForeground(new java.awt.Color(0, 0, 0));
+        TsttsIndikator.setName("TsttsIndikator"); // NOI18N
+        PanelInput.add(TsttsIndikator);
+        TsttsIndikator.setBounds(1075, 66, 100, 23);
+
+        BtnSttsIndikator.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSttsIndikator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnSttsIndikator.setText("Status Indikator");
+        BtnSttsIndikator.setName("BtnSttsIndikator"); // NOI18N
+        BtnSttsIndikator.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnSttsIndikator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSttsIndikatorActionPerformed(evt);
+            }
+        });
+        PanelInput.add(BtnSttsIndikator);
+        BtnSttsIndikator.setBounds(925, 64, 140, 26);
 
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
@@ -649,7 +670,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     private void cmbGedungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGedungActionPerformed
         cmbIndikator.removeAllItems();
         Sequel.cariIsiComboDB("SELECT nm_indikator from master_indikator_nasional_mutu "
-            + "WHERE gedung='" + cmbGedung.getSelectedItem().toString() + "' and status_data='aktif' order by no_urut", cmbIndikator);
+            + "WHERE gedung='" + cmbGedung.getSelectedItem().toString() + "' order by no_urut", cmbIndikator);
     }//GEN-LAST:event_cmbGedungActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -661,6 +682,11 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     private void TnmNumdenomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmNumdenomKeyPressed
         Valid.pindah(evt, cmbIndikator, cmbJnsIndikator);
     }//GEN-LAST:event_TnmNumdenomKeyPressed
+
+    private void BtnSttsIndikatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSttsIndikatorActionPerformed
+        TsttsIndikator.setText(Sequel.cariIsi("select ifnull(status_data,'') from master_indikator_nasional_mutu where "
+            + "gedung like '%" + cmbGedung.getSelectedItem() + "%' and nm_indikator like '%" + cmbIndikator.getSelectedItem() + "%'").toUpperCase());
+    }//GEN-LAST:event_BtnSttsIndikatorActionPerformed
 
     /**
     * @param args the command line arguments
@@ -685,12 +711,14 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     private widget.Button BtnGanti;
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
+    private widget.Button BtnSttsIndikator;
     private widget.Label LCount;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;
     private widget.TextBox TnmNumdenom;
     private widget.TextBox TnoUrut;
+    private widget.TextBox TsttsIndikator;
     private widget.ComboBox cmbGedung;
     private widget.ComboBox cmbGedung1;
     private widget.ComboBox cmbIndikator;
@@ -768,11 +796,12 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         TnoUrut.setText("");
         TnoUrut.requestFocus();
         TnmNumdenom.setText("");
-        cmbGedung.setSelectedIndex(0);        
-        cmbStatus.setSelectedIndex(0);
+        cmbGedung.setSelectedIndex(0);
+        cmbStatus.setSelectedIndex(0); 
         cmbJnsIndikator.setSelectedIndex(0);
         kdINM = "";
         stts = "";
+        TsttsIndikator.setText("");
     }
 
     private void getData() {
@@ -789,6 +818,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             cmbGedung.setSelectedItem(tbMutu.getValueAt(tbMutu.getSelectedRow(), 6).toString());
             cmbIndikator.setSelectedItem(tbMutu.getValueAt(tbMutu.getSelectedRow(), 3).toString());
             cmbJnsIndikator.setSelectedItem(tbMutu.getValueAt(tbMutu.getSelectedRow(), 4).toString());
+            TsttsIndikator.setText(Sequel.cariIsi("select status_data from master_indikator_nasional_mutu where kd_indikator='" + kdINM + "'").toUpperCase());
             
             if (tbMutu.getValueAt(tbMutu.getSelectedRow(), 7).toString().equals("AKTIF")) {
                 cmbStatus.setSelectedIndex(0);

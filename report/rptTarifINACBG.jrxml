@@ -88,7 +88,7 @@ AND b.INACBG='E-4-10-III' order by b.KELAS_RAWAT asc]]>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="true"/>
 				</textElement>
-				<text><![CDATA[LAMPIRAN KWITANSI]]></text>
+				<text><![CDATA[LAMPIRAN KUITANSI]]></text>
 			</staticText>
 			<line>
 				<reportElement x="1" y="189" width="514" height="1"/>

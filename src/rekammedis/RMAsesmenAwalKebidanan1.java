@@ -5895,7 +5895,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
         if (TabRawat.getSelectedIndex() == 1) {
-//            Valid.SetTgl(DTPCari1, "24-06-2025");
+            Valid.SetTgl(DTPCari1, "13-08-2025");
             tampil();
         } else if (TabRawat.getSelectedIndex() == 2) {            
             tampilPreview();
@@ -9854,11 +9854,11 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             try {
                 rsPrev = koneksi.prepareStatement("SELECT ak1.*, ak2.*, pg1.nama nmBidan, pg2.nama nmDokter, pg3.nama nmBidanDp, concat(p.nm_pasien,' (No. RM : ',p.no_rkm_medis,')') nm_pasien, "
                         + "concat(rp.umurdaftar,' ',rp.sttsumur,' (Tgl. Lahir : ',date_format(p.tgl_lahir,'%d-%m-%Y'),')') umurPasien, p.pekerjaan, p.agama, "
-                        + "concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', Kab. ',kb.nm_kab) almtPasien, time_format(ak1.jam_asesmen,'%H:%i') jamAses FROM asesmen_awal_kebidanan1 ak1 "
-                        + "inner join asesmen_awal_kebidanan2 ak2 on ak1.no_rawat=ak2.no_rawat inner join reg_periksa rp on rp.no_rawat=ak1.no_rawat "
-                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel inner join kecamatan kc on kc.kd_kec=p.kd_kec "
-                        + "inner join kabupaten kb on kb.kd_kab=p.kd_kab inner join pegawai pg1 on pg1.nik=ak2.nip_bidan inner join pegawai pg2 on pg2.nik=ak2.nip_dokter "
-                        + "inner join pegawai pg3 on pg3.nik=ak2.nip_bidan_dp where ak1.no_rawat='" + TNoRw.getText() + "'").executeQuery();
+                        + "concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', Kab. ',kb.nm_kab) almtPasien, time_format(ak1.jam_asesmen,'%H:%i') jamAses "
+                        + "FROM asesmen_awal_kebidanan1 ak1 inner join reg_periksa rp on rp.no_rawat=ak1.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join kelurahan kl on kl.kd_kel=p.kd_kel inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
+                        + "left join asesmen_awal_kebidanan2 ak2 on ak1.no_rawat=ak2.no_rawat left join pegawai pg1 on pg1.nik=ak2.nip_bidan "
+                        + "left join pegawai pg2 on pg2.nik=ak2.nip_dokter left join pegawai pg3 on pg3.nik=ak2.nip_bidan_dp where ak1.no_rawat='" + TNoRw.getText() + "'").executeQuery();
                 if (rsPrev.next()) {
                     htmlContent.append(
                             "<tr class='isi'>"
@@ -9899,7 +9899,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                 + "<td valign='top'>Umur</td>"
                                 + "<td valign='top' colspan='3'>: " + rsPrev.getString("umurPasien") + "</td>"
                                 + "<td valign='top'>Umur</td>"
-                                + "<td valign='top' colspan='3'>: " + rsPrev.getString("umur_suami") + "</td>"
+                                + "<td valign='top' colspan='3'>: " + rsPrev.getString("umur_suami") + " tahun</td>"
                                 + "</tr>");
                         
                         htmlContent.append(
@@ -11090,93 +11090,115 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                 + "<td valign='top' colspan='1'><b>PLANNING</b></td>"
                                 + "<td valign='top' colspan='7'>: " + rsPrev.getString("planing") + "</td>"
                                 + "</tr>");
-                        
-                        String prevNyeri = "", prevProvo = "", prevQuality = "", prevGambar = "";
-                        try {
-                            prevGambar = "http://192.168.0.230:7183/img-rme/skala_nyeri.png";
-                        } catch (Exception e) {
-                            prevGambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/skala_nyeri.png";
-                        }
-                        
-                        if (rsPrev.getString("nyeri").equals("Ya")) {
-                            if (rsPrev.getString("lokasi_nyeri").equals("")) {
-                                prevNyeri = "Ya, Lokasi : -";
-                            } else {
-                                prevNyeri = "Ya, Lokasi : " + rsPrev.getString("lokasi_nyeri");
-                            }
-                        } else {
-                            prevNyeri = rsPrev.getString("nyeri");
-                        }
-                        
-                        if (rsPrev.getString("provocation").equals("Lainnya")) {
-                            if (rsPrev.getString("ket_lain_provocation").equals("")) {
-                                prevProvo = "Lainnya : -";
-                            } else {
-                                prevProvo = "Lainnya : " + rsPrev.getString("ket_lain_provocation");
-                            }
-                        } else {
-                            prevProvo = rsPrev.getString("provocation");
-                        }
-                        
-                        if (rsPrev.getString("quality").equals("Lainnya")) {
-                            if (rsPrev.getString("ket_lain_quality").equals("")) {
-                                prevQuality = "Lainnya : -";
-                            } else {
-                                prevQuality = "Lainnya : " + rsPrev.getString("ket_lain_quality");
-                            }
-                        } else {
-                            prevQuality = rsPrev.getString("quality");
-                        }
-                        
-                        htmlContent.append(
-                                "<tr class='isi'>"
-                                + "<td valign='top' colspan='8' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>ASSESMEN NYERI</span></td>"
-                                + "</tr>");
 
-                        htmlContent.append(
-                                "<tr class='isi'>"
-                                + "<td valign='top' colspan='1'>Nyeri</td>"
-                                + "<td valign='top' colspan='5'>: " + prevNyeri + "</td>"
-                                + "<td valign='top' colspan='1'>Jenis : " + rsPrev.getString("jenis") + "</td>"
-                                + "<td valign='top' colspan='1'>Skala : " + rsPrev.getString("skala_nyeri") + "</td>"
-                                + "</tr>");
+                        //ini mulai halaman 2
+                        if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + rsPrev.getString("no_rawat") + "'") > 0) {
+                            String prevNyeri = "", prevProvo = "", prevQuality = "", prevGambar = "";
+                            try {
+                                prevGambar = "http://192.168.0.230:7183/img-rme/skala_nyeri.png";
+                            } catch (Exception e) {
+                                prevGambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/skala_nyeri.png";
+                            }
 
-                        htmlContent.append(
-                                "<tr class='isi'>"
-                                + "<td valign='middle' colspan='1'>Provocation</td>"
-                                + "<td valign='middle' colspan='4'>: Faktor yang memperburuk rasa nyeri " + prevProvo + "</td>"
-                                + "<td valign='middle' colspan='3' rowspan='5'><img src='" + prevGambar + "' width='500' alt='Skala Nyeri'></td>"
-                                + "</tr>");
+                            if (rsPrev.getString("nyeri").equals("Ya")) {
+                                if (rsPrev.getString("lokasi_nyeri").equals("")) {
+                                    prevNyeri = "Ya, Lokasi : -";
+                                } else {
+                                    prevNyeri = "Ya, Lokasi : " + rsPrev.getString("lokasi_nyeri");
+                                }
+                            } else {
+                                prevNyeri = rsPrev.getString("nyeri");
+                            }
 
-                        htmlContent.append(
-                                "<tr class='isi'>"
-                                + "<td valign='middle' colspan='1'>Quality</td>"
-                                + "<td valign='middle' colspan='4'>: Rasa nyeri seperti " + prevQuality + "</td>"                                
-                                + "</tr>");
-                        
-                        htmlContent.append(
-                                "<tr class='isi'>"
-                                + "<td valign='middle' colspan='1'>Radiation</td>"
-                                + "<td valign='middle' colspan='4'>: Nyeri menjalar ke bagian tubuh yang lain " + rsPrev.getString("radiation") + "</td>"                                
-                                + "</tr>");
-                        
-                        htmlContent.append(
-                                "<tr class='isi'>"
-                                + "<td valign='middle' colspan='1'>Severity</td>"
-                                + "<td valign='middle' colspan='4'>: Tingkat keparahan nyeri " + rsPrev.getString("severity") + "</td>"                                
-                                + "</tr>");
-                        
-                        htmlContent.append(
-                                "<tr class='isi'>"
-                                + "<td valign='middle' colspan='1'>Time</td>"
-                                + "<td valign='middle' colspan='4'>: Nyeri berlangsung " + rsPrev.getString("time") + ", Lama : " + rsPrev.getString("time_lama") + "</td>"
-                                + "</tr>");
-                        
-                        htmlContent.append(
-                                "<tr class='isi'>"                                
-                                + "<td valign='top' colspan='4' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>SKRINING GIZI AWAL</span></td>"                                
-                                + "<td valign='top' colspan='4' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>RIWAYAT ALERGI</span></td>"
-                                + "</tr>");
+                            if (rsPrev.getString("provocation").equals("Lainnya")) {
+                                if (rsPrev.getString("ket_lain_provocation").equals("")) {
+                                    prevProvo = "Lainnya : -";
+                                } else {
+                                    prevProvo = "Lainnya : " + rsPrev.getString("ket_lain_provocation");
+                                }
+                            } else {
+                                prevProvo = rsPrev.getString("provocation");
+                            }
+
+                            if (rsPrev.getString("quality").equals("Lainnya")) {
+                                if (rsPrev.getString("ket_lain_quality").equals("")) {
+                                    prevQuality = "Lainnya : -";
+                                } else {
+                                    prevQuality = "Lainnya : " + rsPrev.getString("ket_lain_quality");
+                                }
+                            } else {
+                                prevQuality = rsPrev.getString("quality");
+                            }
+
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='8' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>ASSESMEN NYERI</span></td>"
+                                    + "</tr>");
+
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='1'>Nyeri</td>"
+                                    + "<td valign='top' colspan='5'>: " + prevNyeri + "</td>"
+                                    + "<td valign='top' colspan='1'>Jenis : " + rsPrev.getString("jenis") + "</td>"
+                                    + "<td valign='top' colspan='1'>Skala : " + rsPrev.getString("skala_nyeri") + "</td>"
+                                    + "</tr>");
+
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='middle' colspan='1'>Provocation</td>"
+                                    + "<td valign='middle' colspan='4'>: Faktor yang memperburuk rasa nyeri " + prevProvo + "</td>"
+                                    + "<td valign='middle' colspan='3' rowspan='5'><img src='" + prevGambar + "' width='500' alt='Skala Nyeri'></td>"
+                                    + "</tr>");
+
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='middle' colspan='1'>Quality</td>"
+                                    + "<td valign='middle' colspan='4'>: Rasa nyeri seperti " + prevQuality + "</td>"
+                                    + "</tr>");
+
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='middle' colspan='1'>Radiation</td>"
+                                    + "<td valign='middle' colspan='4'>: Nyeri menjalar ke bagian tubuh yang lain " + rsPrev.getString("radiation") + "</td>"
+                                    + "</tr>");
+
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='middle' colspan='1'>Severity</td>"
+                                    + "<td valign='middle' colspan='4'>: Tingkat keparahan nyeri " + rsPrev.getString("severity") + "</td>"
+                                    + "</tr>");
+
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='middle' colspan='1'>Time</td>"
+                                    + "<td valign='middle' colspan='4'>: Nyeri berlangsung " + rsPrev.getString("time") + ", Lama : " + rsPrev.getString("time_lama") + "</td>"
+                                    + "</tr>");
+
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='4' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>SKRINING GIZI AWAL</span></td>"
+                                    + "<td valign='top' colspan='4' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>RIWAYAT ALERGI</span></td>"
+                                    + "</tr>");
+                            
+                            String prevRiwAlerAda = "", prevRiwAlerTdk = "";
+                            if (rsPrev.getString("cek_tidak_ada").equals("ya")) {
+                                prevRiwAlerAda = "Tidak Ada, ";
+                            } else {
+                                prevRiwAlerAda = "";
+                            }
+                            
+                            if (rsPrev.getString("cek_tidak_diketahui").equals("ya")) {
+                                prevRiwAlerTdk = "Tidak Diketahui";
+                            } else {
+                                prevRiwAlerTdk = "";
+                            }
+                            
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='4' align='left'>1. Apakah pasien mengalami penurunan BB yang tidak direncanakan/tidak diinginkan dalam 6 bulan terakhir ?</td>"
+                                    + "<td valign='top' colspan='4' align='left'>" + prevRiwAlerAda + prevRiwAlerTdk + "</td>"
+                                    + "</tr>");
+                        }
                     }
                     
                     htmlContent.append(

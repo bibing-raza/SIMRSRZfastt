@@ -82,7 +82,7 @@ pemasukan_lain.nominal_sewa
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[KWITANSI PEMBAYARAN]]></text>
+				<text><![CDATA[KUITANSI PEMBAYARAN]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="2" y="84" width="51" height="11"/>

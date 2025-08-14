@@ -4136,7 +4136,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
 }//GEN-LAST:event_tbBokingKeyPressed
 
 private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokterActionPerformed
-    dokter.setPoli(NmPoli.getText());
+    dokter.setPoli(NmPoli.getText(), "ya");
     dokter.isCek();
     dokter.setHari(Valid.SetTgl(TanggalPeriksa.getSelectedItem() + ""));
     dokter.tampil();
