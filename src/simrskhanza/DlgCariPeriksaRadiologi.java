@@ -611,15 +611,19 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         try {
             StringBuilder sb1 = new StringBuilder();
             sb1.append("select pr.no_rawat, rp.no_rkm_medis, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur) as umur_thn, pt.nama, pr.tgl_periksa, pr.jam, ");
-            sb1.append("pr.dokter_perujuk, pr.kd_dokter, d.nm_dokter, rp.status_lanjut, pr.nip, pj.png_jawab, rp.kd_pj from periksa_radiologi pr ");
-            sb1.append("inner join reg_periksa rp on rp.no_rawat=pr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+            sb1.append("pr.dokter_perujuk, pr.kd_dokter, d.nm_dokter, rp.status_lanjut, pr.nip, pj.png_jawab, rp.kd_pj, pl.nm_poli, ifnull(b.nm_bangsal,'-') nmBangsal ");
+            sb1.append("from periksa_radiologi pr inner join reg_periksa rp on rp.no_rawat=pr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
             sb1.append("inner join petugas pt on pt.nip=pr.nip inner join dokter d on d.kd_dokter=pr.kd_dokter inner join penjab pj on pj.kd_pj=rp.kd_pj ");
-            sb1.append("inner join jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw where ");
+            sb1.append("inner join jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw inner join poliklinik pl on pl.kd_poli=rp.kd_poli ");
+            sb1.append("left join kamar_inap ki on ki.no_rawat=pr.no_rawat left join kamar k on k.kd_kamar=ki.kd_kamar ");
+            sb1.append("left join bangsal b on b.kd_bangsal=k.kd_bangsal where ");
             sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and p.nm_pasien like ? or ");
             sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and pt.nama like ? or ");
             sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and rp.no_rkm_medis like ? or ");
             sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and rp.no_rawat like ? or ");
-            sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and jpr.nm_perawatan like ? or ");
+            sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and jpr.nm_perawatan like ? or ");            
+            sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and pl.nm_poli like ? or ");
+            sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and ifnull(b.nm_bangsal,'-') like ? or ");
             sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and d.nm_dokter like ? ");
             sb1.append("group by concat(pr.no_rawat,pr.tgl_periksa,pr.jam) order by pr.tgl_periksa desc, pr.jam desc");
             ps = koneksi.prepareStatement(sb1.toString());
@@ -5210,7 +5214,19 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
             ps.setString(33, "%" + NoRawat.getText() + "%");
             ps.setString(34, "%" + kdmem.getText() + "%");
             ps.setString(35, "%" + kdptg.getText() + "%");
-            ps.setString(36, "%" + TCari.getText().trim() + "%");
+            ps.setString(36, "%" + TCari.getText().trim() + "%");            
+            ps.setString(37, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+            ps.setString(38, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+            ps.setString(39, "%" + NoRawat.getText() + "%");
+            ps.setString(40, "%" + kdmem.getText() + "%");
+            ps.setString(41, "%" + kdptg.getText() + "%");
+            ps.setString(42, "%" + TCari.getText().trim() + "%");            
+            ps.setString(43, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+            ps.setString(44, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+            ps.setString(45, "%" + NoRawat.getText() + "%");
+            ps.setString(46, "%" + kdmem.getText() + "%");
+            ps.setString(47, "%" + kdptg.getText() + "%");
+            ps.setString(48, "%" + TCari.getText().trim() + "%");
             rs = ps.executeQuery();
             ttl = 0;
             while (rs.next()) {
@@ -5225,16 +5241,25 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     cekSttsBayar = "(Piutang)";
                 }
                 
-                kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat='" + rs.getString("no_rawat") + "' order by tgl_masuk desc limit 1");
-                if (!kamar.equals("")) {
-                    namakamar = Sequel.cariIsi("select nm_bangsal from bangsal inner join kamar on bangsal.kd_bangsal=kamar.kd_bangsal "
-                            + " where kamar.kd_kamar='" + kamar + "' ");
+//                kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat='" + rs.getString("no_rawat") + "' order by tgl_masuk desc limit 1");
+//                if (!kamar.equals("")) {
+//                    namakamar = Sequel.cariIsi("select nm_bangsal from bangsal inner join kamar on bangsal.kd_bangsal=kamar.kd_bangsal "
+//                            + " where kamar.kd_kamar='" + kamar + "' ");
+//                    kamar = "Kamar";
+//                } else if (kamar.equals("")) {
+//                    kamar = "Poliklinik/Inst.";
+//                    namakamar = Sequel.cariIsi("select nm_poli from poliklinik inner join reg_periksa on poliklinik.kd_poli=reg_periksa.kd_poli "
+//                            + "where reg_periksa.no_rawat='" + rs.getString("no_rawat") + "'");
+//                }
+                
+                if (rs.getString("status_lanjut").equals("Ranap")) {
+                    namakamar = rs.getString("nmBangsal");
                     kamar = "Kamar";
-                } else if (kamar.equals("")) {
+                } else {
+                    namakamar = rs.getString("nm_poli");
                     kamar = "Poliklinik/Inst.";
-                    namakamar = Sequel.cariIsi("select nm_poli from poliklinik inner join reg_periksa on poliklinik.kd_poli=reg_periksa.kd_poli "
-                            + "where reg_periksa.no_rawat='" + rs.getString("no_rawat") + "'");
                 }
+                
                 tabMode.addRow(new Object[]{
                     rs.getString("no_rawat"), rs.getString("no_rkm_medis") + " - " + rs.getString("nm_pasien") + " Umur : " + rs.getString("umur_thn") + ". (" + kamar + " : " + namakamar + ")", rs.getString("nama"),
                     rs.getString("tgl_periksa"), rs.getString("jam"), Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?", rs.getString("dokter_perujuk")),
