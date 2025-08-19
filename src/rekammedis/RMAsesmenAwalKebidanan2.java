@@ -14,6 +14,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileInputStream;
+import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -75,7 +76,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             "cek_obat_obatan", "cek_rehabilitasi", "cek_diet", "cek_manajemen_nyeri", "cek_pasien", "cek_keluarga_pasien", "nama_keluarga_pasien", "cek_tidak_dapat", "ket_tidak_dapat",
             "tgl_edukasi", "jam_edukasi", "nip_dokter", "cek_identifikasi1", "cek_identifikasi2", "cek_identifikasi3", "cek_identifikasi4", "cek_identifikasi5", "cek_identifikasi6",
             "cek_identifikasi7", "cek_identifikasi8", "cek_identifikasi9", "cek_identifikasi10", "memerlukan", "mpp", "dp", "tgl_dp", "nm_keluarga_pasien", "nip_bidan_dp", "status_rawat",
-            "waktu_simpan"
+            "waktu_simpan", "riw_jatuh_resiko_jatuh", "kondisi_kesehatan", "alat_bantu_resiko_jatuh", "terapi_IV", "gaya_berjalan", "status_mental", "jumlah_skor", "kesimpulan_resiko_jatuh"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -87,7 +88,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         tbAsesmen.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbAsesmen.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 97; i++) {
+        for (i = 0; i < 105; i++) {
             TableColumn column = tbAsesmen.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -365,6 +366,30 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 96) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 97) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 98) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 99) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 100) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 101) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 102) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 103) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 104) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -660,6 +685,34 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         TnmSuami = new widget.Label();
         jLabel373 = new widget.Label();
         TalasanMrs = new widget.Label();
+        jLabel135 = new widget.Label();
+        jLabel93 = new widget.Label();
+        cmbResJatuh = new widget.ComboBox();
+        jLabel94 = new widget.Label();
+        cmbKondisi = new widget.ComboBox();
+        jLabel95 = new widget.Label();
+        cmbResAlatBantu = new widget.ComboBox();
+        jLabel96 = new widget.Label();
+        cmbTerapiIV = new widget.ComboBox();
+        jLabel97 = new widget.Label();
+        cmbGaya = new widget.ComboBox();
+        jLabel98 = new widget.Label();
+        cmbSttsMental = new widget.ComboBox();
+        jLabel99 = new widget.Label();
+        jLabel101 = new widget.Label();
+        jLabel102 = new widget.Label();
+        jLabel103 = new widget.Label();
+        jLabel104 = new widget.Label();
+        jLabel105 = new widget.Label();
+        TskorResJatuh = new widget.TextBox();
+        TskorKondisi = new widget.TextBox();
+        TskorResAlatBantu = new widget.TextBox();
+        TskorTerapi = new widget.TextBox();
+        TskorGaya = new widget.TextBox();
+        TskorSttsMental = new widget.TextBox();
+        jLabel106 = new widget.Label();
+        TJmlSkor = new widget.TextBox();
+        kesimpulanResJatuh = new widget.TextArea();
         panelTombol = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
@@ -716,7 +769,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(192, 1458));
+        PanelInput.setPreferredSize(new java.awt.Dimension(192, 1654));
         PanelInput.setRequestFocusEnabled(false);
         PanelInput.setLayout(null);
 
@@ -1256,7 +1309,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         jLabel131.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel131.setName("jLabel131"); // NOI18N
         PanelInput.add(jLabel131);
-        jLabel131.setBounds(0, 693, 110, 23);
+        jLabel131.setBounds(0, 889, 110, 23);
 
         chkDokter.setBackground(new java.awt.Color(255, 255, 250));
         chkDokter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1304,7 +1357,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         jLabel86.setText("1. Alat Bantu :");
         jLabel86.setName("jLabel86"); // NOI18N
         PanelInput.add(jLabel86);
-        jLabel86.setBounds(0, 721, 120, 23);
+        jLabel86.setBounds(0, 917, 120, 23);
 
         TalatBantu.setForeground(new java.awt.Color(0, 0, 0));
         TalatBantu.setName("TalatBantu"); // NOI18N
@@ -1314,13 +1367,13 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TalatBantu);
-        TalatBantu.setBounds(125, 721, 530, 23);
+        TalatBantu.setBounds(125, 917, 530, 23);
 
         jLabel87.setForeground(new java.awt.Color(0, 0, 0));
         jLabel87.setText("2. Prothesis :");
         jLabel87.setName("jLabel87"); // NOI18N
         PanelInput.add(jLabel87);
-        jLabel87.setBounds(0, 749, 120, 23);
+        jLabel87.setBounds(0, 945, 120, 23);
 
         Tprotesis.setForeground(new java.awt.Color(0, 0, 0));
         Tprotesis.setName("Tprotesis"); // NOI18N
@@ -1330,13 +1383,13 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(Tprotesis);
-        Tprotesis.setBounds(125, 749, 530, 23);
+        Tprotesis.setBounds(125, 945, 530, 23);
 
         jLabel88.setForeground(new java.awt.Color(0, 0, 0));
         jLabel88.setText("3. Cacat Tubuh :");
         jLabel88.setName("jLabel88"); // NOI18N
         PanelInput.add(jLabel88);
-        jLabel88.setBounds(0, 777, 120, 23);
+        jLabel88.setBounds(0, 973, 120, 23);
 
         TcacatTubuh.setForeground(new java.awt.Color(0, 0, 0));
         TcacatTubuh.setName("TcacatTubuh"); // NOI18N
@@ -1346,44 +1399,44 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TcacatTubuh);
-        TcacatTubuh.setBounds(125, 777, 530, 23);
+        TcacatTubuh.setBounds(125, 973, 530, 23);
 
         jLabel89.setForeground(new java.awt.Color(0, 0, 0));
         jLabel89.setText("4. ADL :");
         jLabel89.setName("jLabel89"); // NOI18N
         PanelInput.add(jLabel89);
-        jLabel89.setBounds(0, 805, 120, 23);
+        jLabel89.setBounds(0, 1001, 120, 23);
 
         cmbAdl.setForeground(new java.awt.Color(0, 0, 0));
         cmbAdl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Mandiri", "Dibantu" }));
         cmbAdl.setName("cmbAdl"); // NOI18N
         PanelInput.add(cmbAdl);
-        cmbAdl.setBounds(125, 805, 70, 23);
+        cmbAdl.setBounds(125, 1001, 70, 23);
 
         jLabel90.setForeground(new java.awt.Color(0, 0, 0));
         jLabel90.setText("5. Riwayat Jatuh Dalam 3 Bulan Terakhir ? :");
         jLabel90.setName("jLabel90"); // NOI18N
         PanelInput.add(jLabel90);
-        jLabel90.setBounds(195, 805, 230, 23);
+        jLabel90.setBounds(195, 1001, 230, 23);
 
         cmbRiwJatuh.setForeground(new java.awt.Color(0, 0, 0));
         cmbRiwJatuh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ya", "Tidak" }));
         cmbRiwJatuh.setName("cmbRiwJatuh"); // NOI18N
         PanelInput.add(cmbRiwJatuh);
-        cmbRiwJatuh.setBounds(432, 805, 60, 23);
+        cmbRiwJatuh.setBounds(432, 1001, 60, 23);
 
         label14.setForeground(new java.awt.Color(0, 0, 0));
         label14.setText("Nama Bidan :");
         label14.setName("label14"); // NOI18N
         label14.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label14);
-        label14.setBounds(0, 833, 120, 23);
+        label14.setBounds(0, 1029, 120, 23);
 
         TnmBidan1.setEditable(false);
         TnmBidan1.setForeground(new java.awt.Color(0, 0, 0));
         TnmBidan1.setName("TnmBidan1"); // NOI18N
         PanelInput.add(TnmBidan1);
-        TnmBidan1.setBounds(125, 833, 430, 23);
+        TnmBidan1.setBounds(125, 1029, 430, 23);
 
         BtnBidan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnBidan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1397,7 +1450,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(BtnBidan1);
-        BtnBidan1.setBounds(555, 833, 28, 23);
+        BtnBidan1.setBounds(555, 1029, 28, 23);
 
         chkSaya1.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya1.setForeground(new java.awt.Color(0, 0, 0));
@@ -1413,21 +1466,21 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(chkSaya1);
-        chkSaya1.setBounds(590, 833, 90, 23);
+        chkSaya1.setBounds(590, 1029, 90, 23);
 
         jLabel132.setForeground(new java.awt.Color(0, 0, 0));
         jLabel132.setText("KEBUTUHAN KOMUNIKASI DAN EDUKASI");
         jLabel132.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel132.setName("jLabel132"); // NOI18N
         PanelInput.add(jLabel132);
-        jLabel132.setBounds(0, 861, 250, 23);
+        jLabel132.setBounds(0, 1057, 250, 23);
 
         label15.setForeground(new java.awt.Color(0, 0, 0));
         label15.setText("Terdapat Hambatan Dalam Pembelajaran :");
         label15.setName("label15"); // NOI18N
         label15.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label15);
-        label15.setBounds(0, 889, 230, 23);
+        label15.setBounds(0, 1085, 230, 23);
 
         chkYaTerdapat.setBackground(new java.awt.Color(255, 255, 250));
         chkYaTerdapat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1446,7 +1499,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(chkYaTerdapat);
-        chkYaTerdapat.setBounds(237, 889, 85, 23);
+        chkYaTerdapat.setBounds(237, 1085, 85, 23);
 
         chkPendengaran.setBackground(new java.awt.Color(255, 255, 250));
         chkPendengaran.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1460,7 +1513,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkPendengaran.setOpaque(false);
         chkPendengaran.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkPendengaran);
-        chkPendengaran.setBounds(330, 889, 90, 23);
+        chkPendengaran.setBounds(330, 1085, 90, 23);
 
         chkPenglihatan.setBackground(new java.awt.Color(255, 255, 250));
         chkPenglihatan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1474,7 +1527,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkPenglihatan.setOpaque(false);
         chkPenglihatan.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkPenglihatan);
-        chkPenglihatan.setBounds(430, 889, 85, 23);
+        chkPenglihatan.setBounds(430, 1085, 85, 23);
 
         chkKognitif.setBackground(new java.awt.Color(255, 255, 250));
         chkKognitif.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1488,7 +1541,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkKognitif.setOpaque(false);
         chkKognitif.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkKognitif);
-        chkKognitif.setBounds(523, 889, 65, 23);
+        chkKognitif.setBounds(523, 1085, 65, 23);
 
         chkBudaya.setBackground(new java.awt.Color(255, 255, 250));
         chkBudaya.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1502,7 +1555,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkBudaya.setOpaque(false);
         chkBudaya.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkBudaya);
-        chkBudaya.setBounds(660, 889, 65, 23);
+        chkBudaya.setBounds(660, 1085, 65, 23);
 
         chkEmosi.setBackground(new java.awt.Color(255, 255, 250));
         chkEmosi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1516,7 +1569,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkEmosi.setOpaque(false);
         chkEmosi.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkEmosi);
-        chkEmosi.setBounds(735, 889, 55, 23);
+        chkEmosi.setBounds(735, 1085, 55, 23);
 
         chkBahasa.setBackground(new java.awt.Color(255, 255, 250));
         chkBahasa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1530,7 +1583,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkBahasa.setOpaque(false);
         chkBahasa.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkBahasa);
-        chkBahasa.setBounds(237, 917, 65, 23);
+        chkBahasa.setBounds(237, 1113, 65, 23);
 
         chkLainHambatan.setBackground(new java.awt.Color(255, 255, 250));
         chkLainHambatan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1549,7 +1602,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(chkLainHambatan);
-        chkLainHambatan.setBounds(312, 917, 65, 23);
+        chkLainHambatan.setBounds(312, 1113, 65, 23);
 
         TketLainHambatan.setBackground(new java.awt.Color(245, 250, 240));
         TketLainHambatan.setForeground(new java.awt.Color(0, 0, 0));
@@ -1560,14 +1613,14 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TketLainHambatan);
-        TketLainHambatan.setBounds(377, 917, 595, 23);
+        TketLainHambatan.setBounds(377, 1113, 595, 23);
 
         label16.setForeground(new java.awt.Color(0, 0, 0));
         label16.setText("Dibutuhkan Penerjemah :");
         label16.setName("label16"); // NOI18N
         label16.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label16);
-        label16.setBounds(0, 945, 230, 23);
+        label16.setBounds(0, 1141, 230, 23);
 
         cmbDibutuhkan.setForeground(new java.awt.Color(0, 0, 0));
         cmbDibutuhkan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ya", "Tidak" }));
@@ -1578,13 +1631,13 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(cmbDibutuhkan);
-        cmbDibutuhkan.setBounds(237, 945, 60, 23);
+        cmbDibutuhkan.setBounds(237, 1141, 60, 23);
 
         jLabel91.setForeground(new java.awt.Color(0, 0, 0));
         jLabel91.setText("Sebutkan :");
         jLabel91.setName("jLabel91"); // NOI18N
         PanelInput.add(jLabel91);
-        jLabel91.setBounds(296, 945, 75, 23);
+        jLabel91.setBounds(296, 1141, 75, 23);
 
         Tsebutkan.setForeground(new java.awt.Color(0, 0, 0));
         Tsebutkan.setName("Tsebutkan"); // NOI18N
@@ -1594,26 +1647,26 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(Tsebutkan);
-        Tsebutkan.setBounds(377, 945, 300, 23);
+        Tsebutkan.setBounds(377, 1141, 300, 23);
 
         jLabel92.setForeground(new java.awt.Color(0, 0, 0));
         jLabel92.setText("Bahasa Isyarat :");
         jLabel92.setName("jLabel92"); // NOI18N
         PanelInput.add(jLabel92);
-        jLabel92.setBounds(677, 945, 100, 23);
+        jLabel92.setBounds(677, 1141, 100, 23);
 
         cmbBahasa.setForeground(new java.awt.Color(0, 0, 0));
         cmbBahasa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ya", "Tidak" }));
         cmbBahasa.setName("cmbBahasa"); // NOI18N
         PanelInput.add(cmbBahasa);
-        cmbBahasa.setBounds(785, 945, 60, 23);
+        cmbBahasa.setBounds(785, 1141, 60, 23);
 
         label17.setForeground(new java.awt.Color(0, 0, 0));
         label17.setText("Kebutuhan Edukasi (Pilih Topik Edukasi Yang Tersedia) :");
         label17.setName("label17"); // NOI18N
         label17.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label17);
-        label17.setBounds(0, 973, 300, 23);
+        label17.setBounds(0, 1169, 300, 23);
 
         chkDiagnosa.setBackground(new java.awt.Color(255, 255, 250));
         chkDiagnosa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1627,7 +1680,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkDiagnosa.setOpaque(false);
         chkDiagnosa.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkDiagnosa);
-        chkDiagnosa.setBounds(305, 973, 195, 23);
+        chkDiagnosa.setBounds(305, 1169, 195, 23);
 
         chkObatTerapi.setBackground(new java.awt.Color(255, 255, 250));
         chkObatTerapi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1641,7 +1694,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkObatTerapi.setOpaque(false);
         chkObatTerapi.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkObatTerapi);
-        chkObatTerapi.setBounds(510, 973, 130, 23);
+        chkObatTerapi.setBounds(510, 1169, 130, 23);
 
         chkDietNutrisi.setBackground(new java.awt.Color(255, 255, 250));
         chkDietNutrisi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1655,7 +1708,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkDietNutrisi.setOpaque(false);
         chkDietNutrisi.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkDietNutrisi);
-        chkDietNutrisi.setBounds(650, 973, 100, 23);
+        chkDietNutrisi.setBounds(650, 1169, 100, 23);
 
         chkRehabilitasi.setBackground(new java.awt.Color(255, 255, 250));
         chkRehabilitasi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1669,7 +1722,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkRehabilitasi.setOpaque(false);
         chkRehabilitasi.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkRehabilitasi);
-        chkRehabilitasi.setBounds(760, 973, 83, 23);
+        chkRehabilitasi.setBounds(760, 1169, 83, 23);
 
         chkManajemenNyeri.setBackground(new java.awt.Color(255, 255, 250));
         chkManajemenNyeri.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1683,7 +1736,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkManajemenNyeri.setOpaque(false);
         chkManajemenNyeri.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkManajemenNyeri);
-        chkManajemenNyeri.setBounds(850, 973, 120, 23);
+        chkManajemenNyeri.setBounds(850, 1169, 120, 23);
 
         chkTindakanKep.setBackground(new java.awt.Color(255, 255, 250));
         chkTindakanKep.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1702,7 +1755,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(chkTindakanKep);
-        chkTindakanKep.setBounds(305, 1001, 140, 23);
+        chkTindakanKep.setBounds(305, 1197, 140, 23);
 
         TtindakanKep.setForeground(new java.awt.Color(0, 0, 0));
         TtindakanKep.setName("TtindakanKep"); // NOI18N
@@ -1712,7 +1765,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TtindakanKep);
-        TtindakanKep.setBounds(445, 1001, 530, 23);
+        TtindakanKep.setBounds(445, 1197, 530, 23);
 
         chkLainKebutuhan.setBackground(new java.awt.Color(255, 255, 250));
         chkLainKebutuhan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1731,7 +1784,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(chkLainKebutuhan);
-        chkLainKebutuhan.setBounds(305, 1029, 125, 23);
+        chkLainKebutuhan.setBounds(305, 1225, 125, 23);
 
         TlainKebutuhan.setForeground(new java.awt.Color(0, 0, 0));
         TlainKebutuhan.setName("TlainKebutuhan"); // NOI18N
@@ -1741,21 +1794,21 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TlainKebutuhan);
-        TlainKebutuhan.setBounds(430, 1029, 545, 23);
+        TlainKebutuhan.setBounds(430, 1225, 545, 23);
 
         jLabel133.setForeground(new java.awt.Color(0, 0, 0));
         jLabel133.setText("EDUKASI PASIEN");
         jLabel133.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel133.setName("jLabel133"); // NOI18N
         PanelInput.add(jLabel133);
-        jLabel133.setBounds(0, 1057, 130, 23);
+        jLabel133.setBounds(0, 1253, 130, 23);
 
         label18.setForeground(new java.awt.Color(0, 0, 0));
         label18.setText("Edukasi Awal Disampaikan Tentang Diagnosis, Rencana, Dan Tujuan Terapi Kepada :");
         label18.setName("label18"); // NOI18N
         label18.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label18);
-        label18.setBounds(0, 1085, 440, 23);
+        label18.setBounds(0, 1281, 440, 23);
 
         chkPasien.setBackground(new java.awt.Color(255, 255, 250));
         chkPasien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1769,7 +1822,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkPasien.setOpaque(false);
         chkPasien.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkPasien);
-        chkPasien.setBounds(445, 1085, 60, 23);
+        chkPasien.setBounds(445, 1281, 60, 23);
 
         chkKlgPasien.setBackground(new java.awt.Color(255, 255, 250));
         chkKlgPasien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1788,7 +1841,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(chkKlgPasien);
-        chkKlgPasien.setBounds(515, 1085, 140, 23);
+        chkKlgPasien.setBounds(515, 1281, 140, 23);
 
         TnmKlgPasien.setForeground(new java.awt.Color(0, 0, 0));
         TnmKlgPasien.setName("TnmKlgPasien"); // NOI18N
@@ -1798,7 +1851,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TnmKlgPasien);
-        TnmKlgPasien.setBounds(660, 1085, 315, 23);
+        TnmKlgPasien.setBounds(660, 1281, 315, 23);
 
         chkTidakDapat.setBackground(new java.awt.Color(255, 255, 250));
         chkTidakDapat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1817,7 +1870,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(chkTidakDapat);
-        chkTidakDapat.setBounds(445, 1113, 375, 23);
+        chkTidakDapat.setBounds(445, 1309, 375, 23);
 
         TtidakDapat.setForeground(new java.awt.Color(0, 0, 0));
         TtidakDapat.setName("TtidakDapat"); // NOI18N
@@ -1827,30 +1880,30 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TtidakDapat);
-        TtidakDapat.setBounds(445, 1141, 685, 23);
+        TtidakDapat.setBounds(445, 1337, 685, 23);
 
         label19.setForeground(new java.awt.Color(0, 0, 0));
         label19.setText("Tgl. Edukasi :");
         label19.setName("label19"); // NOI18N
         label19.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label19);
-        label19.setBounds(0, 1169, 120, 23);
+        label19.setBounds(0, 1365, 120, 23);
 
         TtglEdukasi.setEditable(false);
-        TtglEdukasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
+        TtglEdukasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-08-2025" }));
         TtglEdukasi.setDisplayFormat("dd-MM-yyyy");
         TtglEdukasi.setName("TtglEdukasi"); // NOI18N
         TtglEdukasi.setOpaque(false);
         TtglEdukasi.setPreferredSize(new java.awt.Dimension(90, 23));
         PanelInput.add(TtglEdukasi);
-        TtglEdukasi.setBounds(125, 1169, 90, 23);
+        TtglEdukasi.setBounds(125, 1365, 90, 23);
 
         label20.setForeground(new java.awt.Color(0, 0, 0));
         label20.setText("Jam Edukasi :");
         label20.setName("label20"); // NOI18N
         label20.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label20);
-        label20.setBounds(215, 1169, 80, 23);
+        label20.setBounds(215, 1365, 80, 23);
 
         cmbJam.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1861,7 +1914,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(cmbJam);
-        cmbJam.setBounds(300, 1169, 45, 23);
+        cmbJam.setBounds(300, 1365, 45, 23);
 
         cmbMnt.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1872,7 +1925,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(cmbMnt);
-        cmbMnt.setBounds(352, 1169, 45, 23);
+        cmbMnt.setBounds(352, 1365, 45, 23);
 
         cmbDtk.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1883,20 +1936,20 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(cmbDtk);
-        cmbDtk.setBounds(404, 1169, 45, 23);
+        cmbDtk.setBounds(404, 1365, 45, 23);
 
         jLabel368.setForeground(new java.awt.Color(0, 0, 0));
         jLabel368.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel368.setText("Wita       Nama Dokter :");
         jLabel368.setName("jLabel368"); // NOI18N
         PanelInput.add(jLabel368);
-        jLabel368.setBounds(456, 1169, 118, 23);
+        jLabel368.setBounds(456, 1365, 118, 23);
 
         TnmDokter.setEditable(false);
         TnmDokter.setForeground(new java.awt.Color(0, 0, 0));
         TnmDokter.setName("TnmDokter"); // NOI18N
         PanelInput.add(TnmDokter);
-        TnmDokter.setBounds(575, 1169, 420, 23);
+        TnmDokter.setBounds(575, 1365, 420, 23);
 
         BtnDokter.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1910,21 +1963,21 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(BtnDokter);
-        BtnDokter.setBounds(1000, 1169, 28, 23);
+        BtnDokter.setBounds(1000, 1365, 28, 23);
 
         jLabel134.setForeground(new java.awt.Color(0, 0, 0));
         jLabel134.setText("LEMBAR DISCHARGE PLANNING");
         jLabel134.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel134.setName("jLabel134"); // NOI18N
         PanelInput.add(jLabel134);
-        jLabel134.setBounds(0, 1197, 210, 23);
+        jLabel134.setBounds(0, 1393, 210, 23);
 
         label21.setForeground(new java.awt.Color(0, 0, 0));
         label21.setText("Identifikasi, Seleksi / Skrining Pasien :");
         label21.setName("label21"); // NOI18N
         label21.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label21);
-        label21.setBounds(0, 1225, 220, 23);
+        label21.setBounds(0, 1421, 220, 23);
 
         chkIdentifikai1.setBackground(new java.awt.Color(255, 255, 250));
         chkIdentifikai1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1938,7 +1991,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkIdentifikai1.setOpaque(false);
         chkIdentifikai1.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkIdentifikai1);
-        chkIdentifikai1.setBounds(228, 1225, 350, 23);
+        chkIdentifikai1.setBounds(228, 1421, 350, 23);
 
         chkIdentifikai6.setBackground(new java.awt.Color(255, 255, 250));
         chkIdentifikai6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1952,7 +2005,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkIdentifikai6.setOpaque(false);
         chkIdentifikai6.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkIdentifikai6);
-        chkIdentifikai6.setBounds(640, 1225, 180, 23);
+        chkIdentifikai6.setBounds(640, 1421, 180, 23);
 
         chkIdentifikai2.setBackground(new java.awt.Color(255, 255, 250));
         chkIdentifikai2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1966,7 +2019,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkIdentifikai2.setOpaque(false);
         chkIdentifikai2.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkIdentifikai2);
-        chkIdentifikai2.setBounds(228, 1253, 280, 23);
+        chkIdentifikai2.setBounds(228, 1449, 280, 23);
 
         chkIdentifikai7.setBackground(new java.awt.Color(255, 255, 250));
         chkIdentifikai7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1980,7 +2033,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkIdentifikai7.setOpaque(false);
         chkIdentifikai7.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkIdentifikai7);
-        chkIdentifikai7.setBounds(640, 1253, 210, 23);
+        chkIdentifikai7.setBounds(640, 1449, 210, 23);
 
         chkIdentifikai3.setBackground(new java.awt.Color(255, 255, 250));
         chkIdentifikai3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1994,7 +2047,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkIdentifikai3.setOpaque(false);
         chkIdentifikai3.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkIdentifikai3);
-        chkIdentifikai3.setBounds(228, 1281, 350, 23);
+        chkIdentifikai3.setBounds(228, 1477, 350, 23);
 
         chkIdentifikai8.setBackground(new java.awt.Color(255, 255, 250));
         chkIdentifikai8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2008,7 +2061,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkIdentifikai8.setOpaque(false);
         chkIdentifikai8.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkIdentifikai8);
-        chkIdentifikai8.setBounds(640, 1281, 260, 23);
+        chkIdentifikai8.setBounds(640, 1477, 260, 23);
 
         chkIdentifikai4.setBackground(new java.awt.Color(255, 255, 250));
         chkIdentifikai4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2022,7 +2075,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkIdentifikai4.setOpaque(false);
         chkIdentifikai4.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkIdentifikai4);
-        chkIdentifikai4.setBounds(228, 1309, 140, 23);
+        chkIdentifikai4.setBounds(228, 1505, 140, 23);
 
         chkIdentifikai9.setBackground(new java.awt.Color(255, 255, 250));
         chkIdentifikai9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2036,7 +2089,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkIdentifikai9.setOpaque(false);
         chkIdentifikai9.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkIdentifikai9);
-        chkIdentifikai9.setBounds(640, 1309, 240, 23);
+        chkIdentifikai9.setBounds(640, 1505, 240, 23);
 
         chkIdentifikai5.setBackground(new java.awt.Color(255, 255, 250));
         chkIdentifikai5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2050,7 +2103,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkIdentifikai5.setOpaque(false);
         chkIdentifikai5.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkIdentifikai5);
-        chkIdentifikai5.setBounds(228, 1337, 400, 23);
+        chkIdentifikai5.setBounds(228, 1533, 400, 23);
 
         chkIdentifikai10.setBackground(new java.awt.Color(255, 255, 250));
         chkIdentifikai10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2064,14 +2117,14 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkIdentifikai10.setOpaque(false);
         chkIdentifikai10.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkIdentifikai10);
-        chkIdentifikai10.setBounds(640, 1337, 460, 23);
+        chkIdentifikai10.setBounds(640, 1533, 460, 23);
 
         label22.setForeground(new java.awt.Color(0, 0, 0));
         label22.setText("Memerlukan :");
         label22.setName("label22"); // NOI18N
         label22.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label22);
-        label22.setBounds(0, 1365, 220, 23);
+        label22.setBounds(0, 1561, 220, 23);
 
         Tmemerlukan.setForeground(new java.awt.Color(0, 0, 0));
         Tmemerlukan.setName("Tmemerlukan"); // NOI18N
@@ -2081,40 +2134,40 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(Tmemerlukan);
-        Tmemerlukan.setBounds(228, 1365, 685, 23);
+        Tmemerlukan.setBounds(228, 1561, 685, 23);
 
         label23.setForeground(new java.awt.Color(0, 0, 0));
         label23.setText("Manajer Pelayanan Pasien :");
         label23.setName("label23"); // NOI18N
         label23.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label23);
-        label23.setBounds(0, 1393, 220, 23);
+        label23.setBounds(0, 1589, 220, 23);
 
         cmbMPP.setForeground(new java.awt.Color(0, 0, 0));
         cmbMPP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ya", "Tidak" }));
         cmbMPP.setName("cmbMPP"); // NOI18N
         PanelInput.add(cmbMPP);
-        cmbMPP.setBounds(228, 1393, 60, 23);
+        cmbMPP.setBounds(228, 1589, 60, 23);
 
         label24.setForeground(new java.awt.Color(0, 0, 0));
         label24.setText("Discharge Planning :");
         label24.setName("label24"); // NOI18N
         label24.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label24);
-        label24.setBounds(290, 1393, 120, 23);
+        label24.setBounds(290, 1589, 120, 23);
 
         cmbDP.setForeground(new java.awt.Color(0, 0, 0));
         cmbDP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ya", "Tidak" }));
         cmbDP.setName("cmbDP"); // NOI18N
         PanelInput.add(cmbDP);
-        cmbDP.setBounds(420, 1393, 60, 23);
+        cmbDP.setBounds(420, 1589, 60, 23);
 
         label25.setForeground(new java.awt.Color(0, 0, 0));
         label25.setText("Nama Pasien / Keluarga Pasien :");
         label25.setName("label25"); // NOI18N
         label25.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label25);
-        label25.setBounds(0, 1421, 220, 23);
+        label25.setBounds(0, 1617, 220, 23);
 
         TnmKeluargaPasien.setForeground(new java.awt.Color(0, 0, 0));
         TnmKeluargaPasien.setName("TnmKeluargaPasien"); // NOI18N
@@ -2124,20 +2177,20 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TnmKeluargaPasien);
-        TnmKeluargaPasien.setBounds(228, 1421, 330, 23);
+        TnmKeluargaPasien.setBounds(228, 1617, 330, 23);
 
         label26.setForeground(new java.awt.Color(0, 0, 0));
         label26.setText("Nama Bidan :");
         label26.setName("label26"); // NOI18N
         label26.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label26);
-        label26.setBounds(560, 1421, 80, 23);
+        label26.setBounds(560, 1617, 80, 23);
 
         TnmBidan2.setEditable(false);
         TnmBidan2.setForeground(new java.awt.Color(0, 0, 0));
         TnmBidan2.setName("TnmBidan2"); // NOI18N
         PanelInput.add(TnmBidan2);
-        TnmBidan2.setBounds(646, 1421, 350, 23);
+        TnmBidan2.setBounds(646, 1617, 350, 23);
 
         BtnBidan2.setForeground(new java.awt.Color(0, 0, 0));
         BtnBidan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -2151,7 +2204,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(BtnBidan2);
-        BtnBidan2.setBounds(1000, 1421, 28, 23);
+        BtnBidan2.setBounds(1000, 1617, 28, 23);
 
         chkSaya2.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya2.setForeground(new java.awt.Color(0, 0, 0));
@@ -2167,7 +2220,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(chkSaya2);
-        chkSaya2.setBounds(1035, 1421, 90, 23);
+        chkSaya2.setBounds(1035, 1617, 90, 23);
 
         chkFisik.setBackground(new java.awt.Color(255, 255, 250));
         chkFisik.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2181,23 +2234,23 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkFisik.setOpaque(false);
         chkFisik.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkFisik);
-        chkFisik.setBounds(598, 889, 50, 23);
+        chkFisik.setBounds(598, 1085, 50, 23);
 
         label27.setForeground(new java.awt.Color(0, 0, 0));
         label27.setText("Tanggal :");
         label27.setName("label27"); // NOI18N
         label27.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label27);
-        label27.setBounds(480, 1393, 60, 23);
+        label27.setBounds(480, 1589, 60, 23);
 
         TtglDp.setEditable(false);
-        TtglDp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
+        TtglDp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-08-2025" }));
         TtglDp.setDisplayFormat("dd-MM-yyyy");
         TtglDp.setName("TtglDp"); // NOI18N
         TtglDp.setOpaque(false);
         TtglDp.setPreferredSize(new java.awt.Dimension(90, 23));
         PanelInput.add(TtglDp);
-        TtglDp.setBounds(545, 1393, 90, 23);
+        TtglDp.setBounds(545, 1589, 90, 23);
 
         jLabel369.setForeground(new java.awt.Color(0, 0, 0));
         jLabel369.setText("Pasien : ");
@@ -2268,6 +2321,228 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         TalasanMrs.setName("TalasanMrs"); // NOI18N
         PanelInput.add(TalasanMrs);
         TalasanMrs.setBounds(865, 122, 750, 23);
+
+        jLabel135.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel135.setText("ASSESMEN RESIKO JATUH MORSE");
+        jLabel135.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel135.setName("jLabel135"); // NOI18N
+        PanelInput.add(jLabel135);
+        jLabel135.setBounds(0, 693, 220, 23);
+
+        jLabel93.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel93.setText("Resiko Jatuh :");
+        jLabel93.setName("jLabel93"); // NOI18N
+        PanelInput.add(jLabel93);
+        jLabel93.setBounds(0, 721, 120, 23);
+
+        cmbResJatuh.setForeground(new java.awt.Color(0, 0, 0));
+        cmbResJatuh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "< dari 3 bulan", "Tidak ada atau >= 3 bulan" }));
+        cmbResJatuh.setName("cmbResJatuh"); // NOI18N
+        cmbResJatuh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbResJatuhActionPerformed(evt);
+            }
+        });
+        PanelInput.add(cmbResJatuh);
+        cmbResJatuh.setBounds(125, 721, 160, 23);
+
+        jLabel94.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel94.setText("Kondisi Kesehatan :");
+        jLabel94.setName("jLabel94"); // NOI18N
+        PanelInput.add(jLabel94);
+        jLabel94.setBounds(0, 749, 120, 23);
+
+        cmbKondisi.setForeground(new java.awt.Color(0, 0, 0));
+        cmbKondisi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "> diagnosa penyakit", "< diagnosa penyakit" }));
+        cmbKondisi.setName("cmbKondisi"); // NOI18N
+        cmbKondisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbKondisiActionPerformed(evt);
+            }
+        });
+        PanelInput.add(cmbKondisi);
+        cmbKondisi.setBounds(125, 749, 130, 23);
+
+        jLabel95.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel95.setText("Alat Bantu :");
+        jLabel95.setName("jLabel95"); // NOI18N
+        PanelInput.add(jLabel95);
+        jLabel95.setBounds(0, 777, 120, 23);
+
+        cmbResAlatBantu.setForeground(new java.awt.Color(0, 0, 0));
+        cmbResAlatBantu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Berpegangan pada perabot", "Tongkat/alat penopang", "Tidak ada/kursi roda/tirah baring" }));
+        cmbResAlatBantu.setName("cmbResAlatBantu"); // NOI18N
+        cmbResAlatBantu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbResAlatBantuActionPerformed(evt);
+            }
+        });
+        PanelInput.add(cmbResAlatBantu);
+        cmbResAlatBantu.setBounds(125, 777, 190, 23);
+
+        jLabel96.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel96.setText("Terapi IV :");
+        jLabel96.setName("jLabel96"); // NOI18N
+        PanelInput.add(jLabel96);
+        jLabel96.setBounds(0, 805, 120, 23);
+
+        cmbTerapiIV.setForeground(new java.awt.Color(0, 0, 0));
+        cmbTerapiIV.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Terapi IV terus menerus", "Tidak" }));
+        cmbTerapiIV.setName("cmbTerapiIV"); // NOI18N
+        cmbTerapiIV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTerapiIVActionPerformed(evt);
+            }
+        });
+        PanelInput.add(cmbTerapiIV);
+        cmbTerapiIV.setBounds(125, 805, 150, 23);
+
+        jLabel97.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel97.setText("Gaya Berjalan :");
+        jLabel97.setName("jLabel97"); // NOI18N
+        PanelInput.add(jLabel97);
+        jLabel97.setBounds(0, 833, 120, 23);
+
+        cmbGaya.setForeground(new java.awt.Color(0, 0, 0));
+        cmbGaya.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Kerusakan/terganggu", "Lemah", "Normal/tirah baring/immobilisasi" }));
+        cmbGaya.setName("cmbGaya"); // NOI18N
+        cmbGaya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbGayaActionPerformed(evt);
+            }
+        });
+        PanelInput.add(cmbGaya);
+        cmbGaya.setBounds(125, 833, 185, 23);
+
+        jLabel98.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel98.setText("Status Mental :");
+        jLabel98.setName("jLabel98"); // NOI18N
+        PanelInput.add(jLabel98);
+        jLabel98.setBounds(0, 861, 120, 23);
+
+        cmbSttsMental.setForeground(new java.awt.Color(0, 0, 0));
+        cmbSttsMental.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Lupa keterbatasan yang dimiliki", "Sadar kemampuan diri sendiri" }));
+        cmbSttsMental.setName("cmbSttsMental"); // NOI18N
+        cmbSttsMental.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSttsMentalActionPerformed(evt);
+            }
+        });
+        PanelInput.add(cmbSttsMental);
+        cmbSttsMental.setBounds(125, 861, 185, 23);
+
+        jLabel99.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel99.setText("Skor :");
+        jLabel99.setName("jLabel99"); // NOI18N
+        PanelInput.add(jLabel99);
+        jLabel99.setBounds(320, 721, 50, 23);
+
+        jLabel101.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel101.setText("Skor :");
+        jLabel101.setName("jLabel101"); // NOI18N
+        PanelInput.add(jLabel101);
+        jLabel101.setBounds(320, 749, 50, 23);
+
+        jLabel102.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel102.setText("Skor :");
+        jLabel102.setName("jLabel102"); // NOI18N
+        PanelInput.add(jLabel102);
+        jLabel102.setBounds(320, 777, 50, 23);
+
+        jLabel103.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel103.setText("Skor :");
+        jLabel103.setName("jLabel103"); // NOI18N
+        PanelInput.add(jLabel103);
+        jLabel103.setBounds(320, 805, 50, 23);
+
+        jLabel104.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel104.setText("Skor :");
+        jLabel104.setName("jLabel104"); // NOI18N
+        PanelInput.add(jLabel104);
+        jLabel104.setBounds(320, 833, 50, 23);
+
+        jLabel105.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel105.setText("Skor :");
+        jLabel105.setName("jLabel105"); // NOI18N
+        PanelInput.add(jLabel105);
+        jLabel105.setBounds(320, 861, 50, 23);
+
+        TskorResJatuh.setEditable(false);
+        TskorResJatuh.setForeground(new java.awt.Color(0, 0, 0));
+        TskorResJatuh.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TskorResJatuh.setText("0");
+        TskorResJatuh.setFocusTraversalPolicyProvider(true);
+        TskorResJatuh.setName("TskorResJatuh"); // NOI18N
+        PanelInput.add(TskorResJatuh);
+        TskorResJatuh.setBounds(375, 721, 40, 23);
+
+        TskorKondisi.setEditable(false);
+        TskorKondisi.setForeground(new java.awt.Color(0, 0, 0));
+        TskorKondisi.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TskorKondisi.setText("0");
+        TskorKondisi.setFocusTraversalPolicyProvider(true);
+        TskorKondisi.setName("TskorKondisi"); // NOI18N
+        PanelInput.add(TskorKondisi);
+        TskorKondisi.setBounds(375, 749, 40, 23);
+
+        TskorResAlatBantu.setEditable(false);
+        TskorResAlatBantu.setForeground(new java.awt.Color(0, 0, 0));
+        TskorResAlatBantu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TskorResAlatBantu.setText("0");
+        TskorResAlatBantu.setFocusTraversalPolicyProvider(true);
+        TskorResAlatBantu.setName("TskorResAlatBantu"); // NOI18N
+        PanelInput.add(TskorResAlatBantu);
+        TskorResAlatBantu.setBounds(375, 777, 40, 23);
+
+        TskorTerapi.setEditable(false);
+        TskorTerapi.setForeground(new java.awt.Color(0, 0, 0));
+        TskorTerapi.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TskorTerapi.setText("0");
+        TskorTerapi.setFocusTraversalPolicyProvider(true);
+        TskorTerapi.setName("TskorTerapi"); // NOI18N
+        PanelInput.add(TskorTerapi);
+        TskorTerapi.setBounds(375, 805, 40, 23);
+
+        TskorGaya.setEditable(false);
+        TskorGaya.setForeground(new java.awt.Color(0, 0, 0));
+        TskorGaya.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TskorGaya.setText("0");
+        TskorGaya.setFocusTraversalPolicyProvider(true);
+        TskorGaya.setName("TskorGaya"); // NOI18N
+        PanelInput.add(TskorGaya);
+        TskorGaya.setBounds(375, 833, 40, 23);
+
+        TskorSttsMental.setEditable(false);
+        TskorSttsMental.setForeground(new java.awt.Color(0, 0, 0));
+        TskorSttsMental.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TskorSttsMental.setText("0");
+        TskorSttsMental.setFocusTraversalPolicyProvider(true);
+        TskorSttsMental.setName("TskorSttsMental"); // NOI18N
+        PanelInput.add(TskorSttsMental);
+        TskorSttsMental.setBounds(375, 861, 40, 23);
+
+        jLabel106.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel106.setText("Jumlah Skor :");
+        jLabel106.setName("jLabel106"); // NOI18N
+        PanelInput.add(jLabel106);
+        jLabel106.setBounds(420, 861, 80, 23);
+
+        TJmlSkor.setEditable(false);
+        TJmlSkor.setForeground(new java.awt.Color(0, 0, 0));
+        TJmlSkor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TJmlSkor.setText("0");
+        TJmlSkor.setFocusTraversalPolicyProvider(true);
+        TJmlSkor.setName("TJmlSkor"); // NOI18N
+        PanelInput.add(TJmlSkor);
+        TJmlSkor.setBounds(505, 861, 60, 23);
+
+        kesimpulanResJatuh.setEditable(false);
+        kesimpulanResJatuh.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan Asesmen Resiko Jatuh Morse : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
+        kesimpulanResJatuh.setColumns(20);
+        kesimpulanResJatuh.setRows(5);
+        kesimpulanResJatuh.setName("kesimpulanResJatuh"); // NOI18N
+        PanelInput.add(kesimpulanResJatuh);
+        kesimpulanResJatuh.setBounds(430, 721, 350, 50);
 
         scrollInput.setViewportView(PanelInput);
 
@@ -2968,7 +3243,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         if (TabRawat.getSelectedIndex() == 1) {
             tampil(noRawat);
         } else if (TabRawat.getSelectedIndex() == 2) {
-            if (tbAsesmen.getSelectedRow() > -1) {
+            if (tbAsesmen.getSelectedRow() > -1 || Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan1 where no_rawat='" + noRawat + "'") > 0) {
                 tampilPreview();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih/klik dulu datanya pada tabel..!!");
@@ -2985,7 +3260,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         } else {
             cekData();
             if (Sequel.menyimpantf("asesmen_awal_kebidanan2", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 85, new String[]{
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 93, new String[]{
                         noRawat, cmbNyeri.getSelectedItem().toString(), Tlokasi.getText(), cmbJenis.getSelectedItem().toString(), cmbSkala.getSelectedItem().toString(),
                         cmbProvo.getSelectedItem().toString(), Tprovo.getText(), cmbQuality.getSelectedItem().toString(), Tquality.getText(), cmbRadia.getSelectedItem().toString(),
                         cmbSever.getSelectedItem().toString(), cmbTime.getSelectedItem().toString(), cmbLama.getSelectedItem().toString(), cmbGizi1.getSelectedItem().toString(),
@@ -2999,7 +3274,9 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                         Valid.SetTgl(TtglEdukasi.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                         nipDokter, identifikasi1, identifikasi2, identifikasi3, identifikasi4, identifikasi5, identifikasi6, identifikasi7, identifikasi8, identifikasi9,
                         identifikasi10, Tmemerlukan.getText(), cmbMPP.getSelectedItem().toString(), cmbDP.getSelectedItem().toString(), Valid.SetTgl(TtglDp.getSelectedItem() + ""),
-                        TnmKeluargaPasien.getText(), nipBidan2, stsrwt, Sequel.cariIsi("select now()")
+                        TnmKeluargaPasien.getText(), nipBidan2, stsrwt, Sequel.cariIsi("select now()"), cmbResJatuh.getSelectedItem().toString(), cmbKondisi.getSelectedItem().toString(),
+                        cmbResAlatBantu.getSelectedItem().toString(), cmbTerapiIV.getSelectedItem().toString(), cmbGaya.getSelectedItem().toString(), cmbSttsMental.getSelectedItem().toString(),
+                        TJmlSkor.getText(), kesimpulanResJatuh.getText()
                     }) == true) {
 
                 TabRawat.setSelectedIndex(1);
@@ -3182,6 +3459,30 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         BtnKeluarActionPerformed(null);
     }//GEN-LAST:event_BtnKeluar2ActionPerformed
 
+    private void cmbResJatuhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbResJatuhActionPerformed
+        hitungResikoJatuh();
+    }//GEN-LAST:event_cmbResJatuhActionPerformed
+
+    private void cmbKondisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKondisiActionPerformed
+        hitungResikoJatuh();
+    }//GEN-LAST:event_cmbKondisiActionPerformed
+
+    private void cmbResAlatBantuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbResAlatBantuActionPerformed
+        hitungResikoJatuh();
+    }//GEN-LAST:event_cmbResAlatBantuActionPerformed
+
+    private void cmbTerapiIVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTerapiIVActionPerformed
+        hitungResikoJatuh();
+    }//GEN-LAST:event_cmbTerapiIVActionPerformed
+
+    private void cmbGayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGayaActionPerformed
+        hitungResikoJatuh();
+    }//GEN-LAST:event_cmbGayaActionPerformed
+
+    private void cmbSttsMentalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSttsMentalActionPerformed
+        hitungResikoJatuh();
+    }//GEN-LAST:event_cmbSttsMentalActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3220,6 +3521,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     private usu.widget.glass.PanelGlass PanelWall;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll19;
+    private widget.TextBox TJmlSkor;
     private javax.swing.JTabbedPane TabRawat;
     private widget.Label TalasanMrs;
     private widget.TextBox TalatBantu;
@@ -3247,6 +3549,12 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     private widget.TextBox TreakRiwAlergiObat;
     private widget.Label TrgRawat;
     private widget.TextBox Tsebutkan;
+    private widget.TextBox TskorGaya;
+    private widget.TextBox TskorKondisi;
+    private widget.TextBox TskorResAlatBantu;
+    private widget.TextBox TskorResJatuh;
+    private widget.TextBox TskorSttsMental;
+    private widget.TextBox TskorTerapi;
     private widget.Tanggal TtglDp;
     private widget.Tanggal TtglEdukasi;
     private widget.TextBox TtidakDapat;
@@ -3297,10 +3605,12 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     private widget.ComboBox cmbDP;
     private widget.ComboBox cmbDibutuhkan;
     private widget.ComboBox cmbDtk;
+    private widget.ComboBox cmbGaya;
     private widget.ComboBox cmbGizi1;
     private widget.ComboBox cmbGizi2;
     private widget.ComboBox cmbJam;
     private widget.ComboBox cmbJenis;
+    private widget.ComboBox cmbKondisi;
     private widget.ComboBox cmbLama;
     private widget.ComboBox cmbMPP;
     private widget.ComboBox cmbMnt;
@@ -3308,9 +3618,13 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     private widget.ComboBox cmbProvo;
     private widget.ComboBox cmbQuality;
     private widget.ComboBox cmbRadia;
+    private widget.ComboBox cmbResAlatBantu;
+    private widget.ComboBox cmbResJatuh;
     private widget.ComboBox cmbRiwJatuh;
     private widget.ComboBox cmbSever;
     private widget.ComboBox cmbSkala;
+    private widget.ComboBox cmbSttsMental;
+    private widget.ComboBox cmbTerapiIV;
     private widget.ComboBox cmbTime;
     private widget.ComboBox cmbYaGizi1;
     private widget.InternalFrame internalFrame1;
@@ -3318,6 +3632,12 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame25;
     private widget.InternalFrame internalFrame4;
     private widget.Label jLabel100;
+    private widget.Label jLabel101;
+    private widget.Label jLabel102;
+    private widget.Label jLabel103;
+    private widget.Label jLabel104;
+    private widget.Label jLabel105;
+    private widget.Label jLabel106;
     private widget.Label jLabel128;
     private widget.Label jLabel129;
     private widget.Label jLabel130;
@@ -3325,6 +3645,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     private widget.Label jLabel132;
     private widget.Label jLabel133;
     private widget.Label jLabel134;
+    private widget.Label jLabel135;
     private widget.Label jLabel365;
     private widget.Label jLabel366;
     private widget.Label jLabel367;
@@ -3361,7 +3682,15 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     private widget.Label jLabel90;
     private widget.Label jLabel91;
     private widget.Label jLabel92;
+    private widget.Label jLabel93;
+    private widget.Label jLabel94;
+    private widget.Label jLabel95;
+    private widget.Label jLabel96;
+    private widget.Label jLabel97;
+    private widget.Label jLabel98;
+    private widget.Label jLabel99;
     private widget.TextArea kesimpulanGizi;
+    private widget.TextArea kesimpulanResJatuh;
     private widget.Label label14;
     private widget.Label label15;
     private widget.Label label16;
@@ -3441,6 +3770,22 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkDokter.setSelected(false);
         chkFarmasis.setSelected(false);
         chkAhliGz.setSelected(false);
+        
+        cmbResJatuh.setSelectedIndex(0);
+        cmbKondisi.setSelectedIndex(0);
+        cmbResAlatBantu.setSelectedIndex(0);
+        cmbTerapiIV.setSelectedIndex(0);
+        cmbGaya.setSelectedIndex(0);
+        cmbSttsMental.setSelectedIndex(0);        
+        TskorResJatuh.setText("0");
+        TskorKondisi.setText("0");
+        TskorResAlatBantu.setText("0");
+        TskorTerapi.setText("0");
+        TskorGaya.setText("0");
+        TskorSttsMental.setText("0");
+        TJmlSkor.setText("0");
+        kesimpulanResJatuh.setText("");
+        hitungResikoJatuh();
 
         TalatBantu.setText("");
         Tprotesis.setText("");
@@ -3674,7 +4019,15 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                         rs.getString("nm_keluarga_pasien"),
                         rs.getString("nip_bidan_dp"),
                         rs.getString("status_rawat"),
-                        rs.getString("waktu_simpan")
+                        rs.getString("waktu_simpan"),                        
+                        rs.getString("riw_jatuh_resiko_jatuh"),
+                        rs.getString("kondisi_kesehatan"),
+                        rs.getString("alat_bantu_resiko_jatuh"),
+                        rs.getString("terapi_IV"),
+                        rs.getString("gaya_berjalan"),
+                        rs.getString("status_mental"),
+                        rs.getString("jumlah_skor"),
+                        rs.getString("kesimpulan_resiko_jatuh")
                     });
                 }
             } catch (Exception e) {
@@ -4347,7 +4700,8 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                 + "ket_tindakan_keperawatan=?, cek_lain_kebutuhan_edukasi=?, ket_lain_kebutuhan_edukasi=?, cek_obat_obatan=?, cek_rehabilitasi=?, cek_diet=?, cek_manajemen_nyeri=?, "
                 + "cek_pasien=?, cek_keluarga_pasien=?, nama_keluarga_pasien=?, cek_tidak_dapat=?, ket_tidak_dapat=?, tgl_edukasi=?, jam_edukasi=?, nip_dokter=?, cek_identifikasi1=?, "
                 + "cek_identifikasi2=?, cek_identifikasi3=?, cek_identifikasi4=?, cek_identifikasi5=?, cek_identifikasi6=?, cek_identifikasi7=?, cek_identifikasi8=?, cek_identifikasi9=?, "
-                + "cek_identifikasi10=?, memerlukan=?, mpp=?, dp=?, tgl_dp=?, nm_keluarga_pasien=?, nip_bidan_dp=?", 83, new String[]{
+                + "cek_identifikasi10=?, memerlukan=?, mpp=?, dp=?, tgl_dp=?, nm_keluarga_pasien=?, nip_bidan_dp=?, riw_jatuh_resiko_jatuh=?, kondisi_kesehatan=?, alat_bantu_resiko_jatuh=?, "
+                + "terapi_IV=?, gaya_berjalan=?, status_mental=?, jumlah_skor=?, kesimpulan_resiko_jatuh=?", 91, new String[]{
                     cmbNyeri.getSelectedItem().toString(), Tlokasi.getText(), cmbJenis.getSelectedItem().toString(), cmbSkala.getSelectedItem().toString(),
                     cmbProvo.getSelectedItem().toString(), Tprovo.getText(), cmbQuality.getSelectedItem().toString(), Tquality.getText(), cmbRadia.getSelectedItem().toString(),
                     cmbSever.getSelectedItem().toString(), cmbTime.getSelectedItem().toString(), cmbLama.getSelectedItem().toString(), cmbGizi1.getSelectedItem().toString(),
@@ -4361,7 +4715,9 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                     Valid.SetTgl(TtglEdukasi.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                     nipDokter, identifikasi1, identifikasi2, identifikasi3, identifikasi4, identifikasi5, identifikasi6, identifikasi7, identifikasi8, identifikasi9,
                     identifikasi10, Tmemerlukan.getText(), cmbMPP.getSelectedItem().toString(), cmbDP.getSelectedItem().toString(), Valid.SetTgl(TtglDp.getSelectedItem() + ""),
-                    TnmKeluargaPasien.getText(), nipBidan2, tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
+                    TnmKeluargaPasien.getText(), nipBidan2, cmbResJatuh.getSelectedItem().toString(), cmbKondisi.getSelectedItem().toString(),
+                    cmbResAlatBantu.getSelectedItem().toString(), cmbTerapiIV.getSelectedItem().toString(), cmbGaya.getSelectedItem().toString(), cmbSttsMental.getSelectedItem().toString(),
+                    TJmlSkor.getText(), kesimpulanResJatuh.getText(), tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                 }) == true) {
 
             TabRawat.setSelectedIndex(1);
@@ -4462,7 +4818,14 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             TnmKeluargaPasien.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 93).toString());
             nipBidan2 = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 94).toString();
             TnmBidan2.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipBidan2 + "'"));
-            stsrwt = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 95).toString();
+            stsrwt = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 95).toString();            
+            cmbResJatuh.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 97).toString());
+            cmbKondisi.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 98).toString());
+            cmbResAlatBantu.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 99).toString());
+            cmbTerapiIV.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 100).toString());
+            cmbGaya.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 101).toString());
+            cmbSttsMental.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 102).toString());
+            hitungResikoJatuh();
             dataCek();
             isPasien();
         }
@@ -5744,11 +6107,21 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
 
                         //ini mulai halaman 2
                         if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + rsPrev.getString("no_rawat") + "'") > 0) {
-                            String prevNyeri = "", prevProvo = "", prevQuality = "", prevGambar = "";
+                            String prevNyeri = "", prevProvo = "", prevQuality = "", prevGambar = "", ipGambar = "";
                             try {
-                                prevGambar = "http://192.168.0.230:7183/img-rme/skala_nyeri.png";
+                                //cek atau ping ip addres
+                                ipGambar = "192.168.0.230";
+                                InetAddress inet = InetAddress.getByName(ipGambar);
+
+                                    //ping sukses timeout 100 ms (0.1 detik)
+                                if (inet.isReachable(100)) {
+                                    prevGambar = "http://192.168.0.230:7183/img-rme/skala_nyeri.png";
+                                    //ping gagal
+                                } else {
+                                    prevGambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/skala_nyeri.png";
+                                }
                             } catch (Exception e) {
-                                prevGambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/skala_nyeri.png";
+                                System.out.println("Notif : " + e);
                             }
 
                             if (rsPrev.getString("nyeri").equals("Ya")) {
@@ -5822,7 +6195,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                             htmlContent.append(
                                     "<tr class='isi'>"
                                     + "<td valign='middle' colspan='1'>Time</td>"
-                                    + "<td valign='middle' colspan='4'>: Nyeri berlangsung " + rsPrev.getString("time") + ", Lama : " + rsPrev.getString("time_lama") + "</td>"
+                                    + "<td valign='middle' colspan='4'>: Nyeri berlangsung " + rsPrev.getString("time") + ", Lama : " + rsPrev.getString("time_lama").replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "</td>"
                                     + "</tr>");
 
                             htmlContent.append(
@@ -5990,7 +6363,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                             
                             htmlContent.append(
                                     "<tr class='isi'>"
-                                    + "<td valign='top' colspan='3' align='left'>" + rsPrev.getString("gizi_1ya") + "</td>"
+                                    + "<td valign='top' colspan='3' align='left'>" + rsPrev.getString("gizi_1ya").replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "</td>"
                                     + "<td valign='top' colspan='1' align='left'>" + prevLihaSkorYaGz1 + "</td>"
                                     + "<td valign='top' colspan='4' align='left'>" + prevAlergiMak + "</td>"
                                     + "</tr>");
@@ -6017,7 +6390,85 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                             
                             htmlContent.append(
                                     "<tr class='isi'>"
-                                    + "<td valign='top' colspan='8' align='left'>Kesimpulan Skrining Gizi : " + prevKesimSkriningGZ + "</td>"
+                                    + "<td valign='top' colspan='8' align='left'>Kesimpulan Skrining Gizi : " + prevKesimSkriningGZ.replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "</td>"
+                                    + "</tr>");
+                            
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='8' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>ASSESMEN RESIKO JATUH MORSE</span></td>"
+                                    + "</tr>");
+                            
+                            String resJatuh = "", kondisi = "", resAlatBantu = "", terapi = "", gaya = "", sttsMental = "";
+                            if (rsPrev.getString("riw_jatuh_resiko_jatuh").equals("-") || rsPrev.getString("riw_jatuh_resiko_jatuh").equals("Tidak ada atau >= 3 bulan")) {
+                                resJatuh = "0";
+                            } else {
+                                resJatuh = "25";
+                            }
+
+                            if (rsPrev.getString("kondisi_kesehatan").equals("-") || rsPrev.getString("kondisi_kesehatan").equals("< diagnosa penyakit")) {
+                                kondisi = "0";
+                            } else {
+                                kondisi = "15";
+                            }
+
+                            if (rsPrev.getString("alat_bantu_resiko_jatuh").equals("-") || rsPrev.getString("alat_bantu_resiko_jatuh").equals("Tidak ada/kursi roda/tirah baring")) {
+                                resAlatBantu = "0";
+                            } else if (rsPrev.getString("alat_bantu_resiko_jatuh").equals("Berpegangan pada perabot")) {
+                                resAlatBantu = "30";
+                            } else if (rsPrev.getString("alat_bantu_resiko_jatuh").equals("Tongkat/alat penopang")) {
+                                resAlatBantu = "15";
+                            }
+
+                            if (rsPrev.getString("terapi_IV").equals("-") || rsPrev.getString("terapi_IV").equals("Tidak")) {
+                                terapi = "0";
+                            } else {
+                                terapi = "20";
+                            }
+
+                            if (rsPrev.getString("gaya_berjalan").equals("-") || rsPrev.getString("gaya_berjalan").equals("Normal/tirah baring/immobilisasi")) {
+                                gaya = "0";
+                            } else if (rsPrev.getString("gaya_berjalan").equals("Kerusakan/terganggu")) {
+                                gaya = "20";
+                            } else if (rsPrev.getString("gaya_berjalan").equals("Lemah")) {
+                                gaya = "10";
+                            }
+
+                            if (rsPrev.getString("status_mental").equals("-") || rsPrev.getString("status_mental").equals("Sadar kemampuan diri sendiri")) {
+                                sttsMental = "0";
+                            } else {
+                                sttsMental = "15";
+                            }
+                            
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='1' align='left'>Resiko Jatuh</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("riw_jatuh_resiko_jatuh").replaceAll("<", "&lt;").replaceAll(">", "&gt;") + " (Skor : " + resJatuh + ")</td>"
+                                    + "<td valign='top' colspan='1' align='left'>Terapi IV</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("terapi_IV") + " (Skor : " + terapi + ")</td>"
+                                    + "</tr>");
+                            
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='1' align='left'>Kondisi Kesehatan</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("kondisi_kesehatan").replaceAll("<", "&lt;").replaceAll(">", "&gt;") + " (Skor : " + kondisi + ")</td>"
+                                    + "<td valign='top' colspan='1' align='left'>Gaya Berjalan</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("gaya_berjalan") + " (Skor : " + gaya + ")</td>"
+                                    + "</tr>");
+                            
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='1' align='left'>Alat Bantu</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("alat_bantu_resiko_jatuh") + " (Skor : " + resAlatBantu + ")</td>"
+                                    + "<td valign='top' colspan='1' align='left'>Status Mental</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("status_mental") + " (Skor : " + sttsMental + ")</td>"
+                                    + "</tr>");
+                            
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='1' align='left'>Jumlah Skor</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("jumlah_skor") + "</td>"
+                                    + "<td valign='top' colspan='2' align='left'>Kesimpulan Assesmen Resiko Jatuh Morse</td>"
+                                    + "<td valign='top' colspan='2' align='left'>: " + rsPrev.getString("kesimpulan_resiko_jatuh").replaceAll(">", "&gt;") + "</td>"
                                     + "</tr>");
                             
                             htmlContent.append(
@@ -6378,5 +6829,65 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             System.out.println("Notifikasi : " + e);
         }
         this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void hitungResikoJatuh() {
+        int A = 0, B = 0, C = 0, D = 0, E = 0, F = 0, hasil = 0;
+        if (cmbResJatuh.getSelectedIndex() == 0 || cmbResJatuh.getSelectedIndex() == 2) {
+            TskorResJatuh.setText("0");
+        } else {
+            TskorResJatuh.setText("25");
+        }
+        
+        if (cmbKondisi.getSelectedIndex() == 0 || cmbKondisi.getSelectedIndex() == 2) {
+            TskorKondisi.setText("0");
+        } else {
+            TskorKondisi.setText("15");
+        }
+        
+        if (cmbResAlatBantu.getSelectedIndex() == 0 || cmbResAlatBantu.getSelectedIndex() == 3) {
+            TskorResAlatBantu.setText("0");
+        } else if (cmbResAlatBantu.getSelectedIndex() == 1) {
+            TskorResAlatBantu.setText("30");
+        } else if (cmbResAlatBantu.getSelectedIndex() == 2) {
+            TskorResAlatBantu.setText("15");
+        }
+        
+        if (cmbTerapiIV.getSelectedIndex() == 0 || cmbTerapiIV.getSelectedIndex() == 2) {
+            TskorTerapi.setText("0");
+        } else {
+            TskorTerapi.setText("20");
+        }
+        
+        if (cmbGaya.getSelectedIndex() == 0 || cmbGaya.getSelectedIndex() == 3) {
+            TskorGaya.setText("0");
+        } else if (cmbGaya.getSelectedIndex() == 1) {
+            TskorGaya.setText("20");
+        } else if (cmbGaya.getSelectedIndex() == 2) {
+            TskorGaya.setText("10");
+        }
+        
+        if (cmbSttsMental.getSelectedIndex() == 0 || cmbSttsMental.getSelectedIndex() == 2) {
+            TskorSttsMental.setText("0");
+        } else {
+            TskorSttsMental.setText("15");
+        }
+        
+        A = Integer.parseInt(TskorResJatuh.getText());
+        B = Integer.parseInt(TskorKondisi.getText());
+        C = Integer.parseInt(TskorResAlatBantu.getText());
+        D = Integer.parseInt(TskorTerapi.getText());
+        E = Integer.parseInt(TskorGaya.getText());
+        F = Integer.parseInt(TskorSttsMental.getText());
+        hasil = A + B + C + D + E + F;
+        TJmlSkor.setText(Valid.SetAngka(hasil));
+        
+        if (hasil == 0 && hasil <= 24) {
+            kesimpulanResJatuh.setText("Skor 0-24 Resiko Rendah");
+        } else if (hasil >= 25 && hasil <= 45) {
+            kesimpulanResJatuh.setText("Skor 25-45 Resiko Sedang");
+        } else if (hasil >= 46) {
+            kesimpulanResJatuh.setText("Skor > 45 Resiko Tinggi");
+        }
     }
 }

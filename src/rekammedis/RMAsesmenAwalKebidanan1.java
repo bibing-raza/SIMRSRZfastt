@@ -15,6 +15,7 @@ import java.awt.event.WindowListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6564,7 +6565,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             Valid.SetTgl(DTPCari1, "2025-07-13");
             tampil();
         } else if (TabRawat.getSelectedIndex() == 2) {
-            if (tbAsesmen.getSelectedRow() > -1) {
+            if (tbAsesmen.getSelectedRow() > -1 || Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan1 where no_rawat='" + TNoRw.getText() + "'") > 0) {
                 tampilPreview();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih/klik dulu datanya pada tabel..!!");
@@ -11771,11 +11772,21 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 
                         //ini mulai halaman 2
                         if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + rsPrev.getString("no_rawat") + "'") > 0) {
-                            String prevNyeri = "", prevProvo = "", prevQuality = "", prevGambar = "";
+                            String prevNyeri = "", prevProvo = "", prevQuality = "", prevGambar = "", ipGambar = "";
                             try {
-                                prevGambar = "http://192.168.0.230:7183/img-rme/skala_nyeri.png";
+                                //cek atau ping ip addres
+                                ipGambar = "192.168.0.230";
+                                InetAddress inet = InetAddress.getByName(ipGambar);
+
+                                    //ping sukses timeout 100 ms (0.1 detik)
+                                if (inet.isReachable(100)) {
+                                    prevGambar = "http://192.168.0.230:7183/img-rme/skala_nyeri.png";
+                                    //ping gagal
+                                } else {
+                                    prevGambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/skala_nyeri.png";
+                                }
                             } catch (Exception e) {
-                                prevGambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/skala_nyeri.png";
+                                System.out.println("Notif : " + e);
                             }
 
                             if (rsPrev.getString("nyeri").equals("Ya")) {
@@ -11849,7 +11860,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                             htmlContent.append(
                                     "<tr class='isi'>"
                                     + "<td valign='middle' colspan='1'>Time</td>"
-                                    + "<td valign='middle' colspan='4'>: Nyeri berlangsung " + rsPrev.getString("time") + ", Lama : " + rsPrev.getString("time_lama") + "</td>"
+                                    + "<td valign='middle' colspan='4'>: Nyeri berlangsung " + rsPrev.getString("time") + ", Lama : " + rsPrev.getString("time_lama").replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "</td>"
                                     + "</tr>");
 
                             htmlContent.append(
@@ -12017,7 +12028,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                             
                             htmlContent.append(
                                     "<tr class='isi'>"
-                                    + "<td valign='top' colspan='3' align='left'>" + rsPrev.getString("gizi_1ya") + "</td>"
+                                    + "<td valign='top' colspan='3' align='left'>" + rsPrev.getString("gizi_1ya").replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "</td>"
                                     + "<td valign='top' colspan='1' align='left'>" + prevLihaSkorYaGz1 + "</td>"
                                     + "<td valign='top' colspan='4' align='left'>" + prevAlergiMak + "</td>"
                                     + "</tr>");
@@ -12044,7 +12055,85 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                             
                             htmlContent.append(
                                     "<tr class='isi'>"
-                                    + "<td valign='top' colspan='8' align='left'>Kesimpulan Skrining Gizi : " + prevKesimSkriningGZ + "</td>"
+                                    + "<td valign='top' colspan='8' align='left'>Kesimpulan Skrining Gizi : " + prevKesimSkriningGZ.replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "</td>"
+                                    + "</tr>");
+                            
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='8' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>ASSESMEN RESIKO JATUH MORSE</span></td>"
+                                    + "</tr>");
+                            
+                            String resJatuh = "", kondisi = "", resAlatBantu = "", terapi = "", gaya = "", sttsMental = "";
+                            if (rsPrev.getString("riw_jatuh_resiko_jatuh").equals("-") || rsPrev.getString("riw_jatuh_resiko_jatuh").equals("Tidak ada atau >= 3 bulan")) {
+                                resJatuh = "0";
+                            } else {
+                                resJatuh = "25";
+                            }
+
+                            if (rsPrev.getString("kondisi_kesehatan").equals("-") || rsPrev.getString("kondisi_kesehatan").equals("< diagnosa penyakit")) {
+                                kondisi = "0";
+                            } else {
+                                kondisi = "15";
+                            }
+
+                            if (rsPrev.getString("alat_bantu_resiko_jatuh").equals("-") || rsPrev.getString("alat_bantu_resiko_jatuh").equals("Tidak ada/kursi roda/tirah baring")) {
+                                resAlatBantu = "0";
+                            } else if (rsPrev.getString("alat_bantu_resiko_jatuh").equals("Berpegangan pada perabot")) {
+                                resAlatBantu = "30";
+                            } else if (rsPrev.getString("alat_bantu_resiko_jatuh").equals("Tongkat/alat penopang")) {
+                                resAlatBantu = "15";
+                            }
+
+                            if (rsPrev.getString("terapi_IV").equals("-") || rsPrev.getString("terapi_IV").equals("Tidak")) {
+                                terapi = "0";
+                            } else {
+                                terapi = "20";
+                            }
+
+                            if (rsPrev.getString("gaya_berjalan").equals("-") || rsPrev.getString("gaya_berjalan").equals("Normal/tirah baring/immobilisasi")) {
+                                gaya = "0";
+                            } else if (rsPrev.getString("gaya_berjalan").equals("Kerusakan/terganggu")) {
+                                gaya = "20";
+                            } else if (rsPrev.getString("gaya_berjalan").equals("Lemah")) {
+                                gaya = "10";
+                            }
+
+                            if (rsPrev.getString("status_mental").equals("-") || rsPrev.getString("status_mental").equals("Sadar kemampuan diri sendiri")) {
+                                sttsMental = "0";
+                            } else {
+                                sttsMental = "15";
+                            }
+                            
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='1' align='left'>Resiko Jatuh</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("riw_jatuh_resiko_jatuh").replaceAll("<", "&lt;").replaceAll(">", "&gt;") + " (Skor : " + resJatuh + ")</td>"
+                                    + "<td valign='top' colspan='1' align='left'>Terapi IV</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("terapi_IV") + " (Skor : " + terapi + ")</td>"
+                                    + "</tr>");
+                            
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='1' align='left'>Kondisi Kesehatan</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("kondisi_kesehatan").replaceAll("<", "&lt;").replaceAll(">", "&gt;") + " (Skor : " + kondisi + ")</td>"
+                                    + "<td valign='top' colspan='1' align='left'>Gaya Berjalan</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("gaya_berjalan") + " (Skor : " + gaya + ")</td>"
+                                    + "</tr>");
+                            
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='1' align='left'>Alat Bantu</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("alat_bantu_resiko_jatuh") + " (Skor : " + resAlatBantu + ")</td>"
+                                    + "<td valign='top' colspan='1' align='left'>Status Mental</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("status_mental") + " (Skor : " + sttsMental + ")</td>"
+                                    + "</tr>");
+                            
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='1' align='left'>Jumlah Skor</td>"
+                                    + "<td valign='top' colspan='3' align='left'>: " + rsPrev.getString("jumlah_skor") + "</td>"
+                                    + "<td valign='top' colspan='2' align='left'>Kesimpulan Assesmen Resiko Jatuh Morse</td>"
+                                    + "<td valign='top' colspan='2' align='left'>: " + rsPrev.getString("kesimpulan_resiko_jatuh").replaceAll(">", "&gt;") + "</td>"
                                     + "</tr>");
                             
                             htmlContent.append(
