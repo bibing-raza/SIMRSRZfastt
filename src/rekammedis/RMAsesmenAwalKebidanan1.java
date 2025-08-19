@@ -5833,7 +5833,136 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             BtnBatal.requestFocus();
         } else if (tabMode.getRowCount() != 0) {
-
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());            
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("norm", TNoRM.getText());
+            param.put("nmpasien", TPasien.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            param.put("ruangRwt", TrgRawat.getText());
+            param.put("tglAses", Valid.SetTglINDONESIA(Valid.SetTgl(TtglAsesmen.getSelectedItem() + "")));
+            param.put("jamAses", cmbJam1.getSelectedItem().toString() + ":" + cmbMnt1.getSelectedItem().toString() + " Wita");
+            
+            param.put("nmPasien", TPasien.getText());
+            param.put("umurPasien", TumurPasien.getText());
+            param.put("pekerPasien", TpekerjaanPasien.getText());
+            param.put("almtPasien", TalamatPasien.getText());
+            param.put("agmaPasien", TagamaPasien.getText());
+            
+            if (TnamaSuami.getText().equals("")) {
+                param.put("nmSuami", "..............");
+            } else {
+                param.put("nmSuami", TnamaSuami.getText());
+            }
+            
+            if (TumurSuami.getText().equals("")) {
+                param.put("umurSuami", "...... tahun");
+            } else {
+                param.put("umurSuami", TumurSuami.getText() + " tahun");
+            }
+            
+            if (TpekerjaanSuami.getText().equals("")) {
+                param.put("pekerSuami", "..............");
+            } else {
+                param.put("pekerSuami", TpekerjaanSuami.getText());
+            }
+            
+            if (TalamatSuami.getText().equals("")) {
+                param.put("almtSuami", "..............");
+            } else {
+                param.put("almtSuami", TalamatSuami.getText());
+            }
+            
+            if (cmbAgamaSuami.getSelectedIndex() == 0) {
+                param.put("agmaSuami", "..............");
+            } else {
+                param.put("agmaSuami", cmbAgamaSuami.getSelectedItem().toString());
+            }
+            
+            if (TalasanMskRS.getText().equals("")) {
+                param.put("alasanMrs", "..............");
+            } else {
+                param.put("alasanMrs", TalasanMskRS.getText());
+            }
+            
+            if (Ttd.getText().equals("")) {
+                param.put("td", ".......... mmHg");
+            } else {
+                param.put("td", Ttd.getText() + " mmHg");
+            }
+            
+            if (Tnadi.getText().equals("")) {
+                param.put("nadi", ".......... x/menit");
+            } else {
+                param.put("nadi", Tnadi.getText() + " x/menit");
+            }
+            
+            if (Trespi.getText().equals("")) {
+                param.put("respi", ".......... x/menit");
+            } else {
+                param.put("respi", Trespi.getText() + " x/menit");
+            }
+            
+            if (Tsuhu.getText().equals("")) {
+                param.put("suhu", "....... °C");
+            } else {
+                param.put("suhu", Tsuhu.getText() + " °C");
+            }
+            
+            if (Tkesadaran.getText().equals("")) {
+                param.put("kesadaran", "..............");
+            } else {
+                param.put("kesadaran", Tkesadaran.getText());
+            }
+            
+            if (Tsaturasi.getText().equals("")) {
+                param.put("saturasi", "....... %");
+            } else {
+                param.put("saturasi", Tsaturasi.getText() + " %");
+            }
+            
+            String crPxDtg = "", cekSen = "", cekRuj = "", cekPkm = "", cekSpog = "", cekrsLain = "";
+            if (chkSendiri.isSelected() == true) {
+                cekSen = "Sendiri";
+            } else {
+                cekSen = "";
+            }
+            
+            if (chkRujukan.isSelected() == true) {
+                if (TketRujukan.getText().equals("")) {
+                    cekRuj = "Rujukan : " + cmbJnsRujukan.getSelectedItem().toString();
+                } else {
+                    cekRuj = "Rujukan : " + cmbJnsRujukan.getSelectedItem().toString() + " " + TketRujukan.getText();
+                }
+            } else {
+                cekRuj = "";
+            }
+            
+            if (chkPkm.isSelected() == true) {
+                if (TketPkm.getText().equals("")) {
+                    cekPkm = "PKM";
+                } else {
+                    cekPkm = "PKM (" + TketPkm.getText() + ")";
+                }
+            } else {
+                cekPkm = "";
+            }
+            
+            if (chkSpog.isSelected() == true) {
+                cekSpog = "SPOG";
+            } else {
+                cekSpog = "";
+            }
+            
+            if (chkRsLain.isSelected() == true) {
+                if (TketRsLain.getText().equals("")) {
+                    cekrsLain = "RS Lain";
+                } else {
+                    cekrsLain = "RS Lain (" + TketRsLain.getText() + ")";
+                }
+            } else {
+                cekrsLain = "";
+            }
         }
         this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_BtnPrintActionPerformed
@@ -7342,7 +7471,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Silahkan isi dan simpan dulu datanya utk. asesmen halaman 1 ....!!");
         } else {
             akses.setform("RMAsesmenAwalKebidanan1");
-            halaman2.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            halaman2.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             halaman2.setLocationRelativeTo(internalFrame1);
             halaman2.emptTeks();
             halaman2.isCek();
@@ -8756,7 +8885,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     }
 
     public void setData(String norwt, String unit, String sttsRawat) {
-        TNoRw.setText(norwt);
+        TNoRw.setText(norwt);        
         TrgRawat.setText(unit);
         stsrwt = sttsRawat;
         TCari.setText(norwt);
@@ -8766,9 +8895,9 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     }
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
-        BtnHapus.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
-        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
+        BtnSimpan.setEnabled(akses.getcppt());
+        BtnHapus.setEnabled(akses.getcppt());
+        BtnEdit.setEnabled(akses.getcppt());
     }
 
     private void hapus() {

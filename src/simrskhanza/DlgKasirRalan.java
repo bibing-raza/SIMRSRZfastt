@@ -8427,7 +8427,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
         } else {
-            if (kdpoli.getText().equals("IGDK") || kdpoli.getText().equals("OBG")) {
+            if (kdpoli.getText().equals("PON") || kdpoli.getText().equals("OBG")) {
                 if (tbKasirRalan.getSelectedRow() != -1) {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     akses.setform("DlgKasirRalan");
@@ -8622,8 +8622,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("IGDK") && !kdpoli.getText().equals("OBG")) {
-            JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien yg. terdaftar di IGD Ponek/Poli Kandungan saja...!!!");
+        } else if (!kdpoli.getText().equals("PON") && !kdpoli.getText().equals("OBG")) {
+            JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien yg. terdaftar di Ponek/Poli Kandungan saja...!!!");
             tbKasirRalan.requestFocus();
         } else if (Sequel.cariIsi("select jk from pasien where no_rkm_medis='" + NoRM.getText() + "'").equals("L")) {
             JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang berjenis kelamin perempuan saja...!!!!");
@@ -8637,7 +8637,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     RMAsesmenAwalKebidanan1 form = new RMAsesmenAwalKebidanan1(null, false);
                     form.emptTeks();
                     form.isCek();
-                    form.setData(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString(), "ralan");
+                    form.setData(TNoRw.getText(), Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"), "ralan");
                     form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     form.setLocationRelativeTo(internalFrame1);
                     form.setVisible(true);
@@ -8651,7 +8651,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         RMAsesmenAwalKebidanan1 form = new RMAsesmenAwalKebidanan1(null, false);
                         form.emptTeks();
                         form.isCek();
-                        form.setData(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString(), "ralan");
+                        form.setData(TNoRw.getText(), Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"), "ralan");
                         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                         form.setLocationRelativeTo(internalFrame1);
                         form.setVisible(true);
@@ -9762,8 +9762,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("IGDK")) {
-            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di Ponek IGD saja...!!!");
+        } else if (!kdpoli.getText().equals("PON")) {
+            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di Ponek saja...!!!");
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
@@ -10917,7 +10917,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnCPPTvkBersalin.setEnabled(akses.getcppt());
         MnInputDataAssesmenMedikIGD.setEnabled(akses.getresep_dokter());
         MnInputDataAssesmenKeperawatanIGD.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
-        MnInputDataKebidanan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
+        MnInputDataKebidanan.setEnabled(akses.getcppt());
         MnInputDataAsesmenMedikObstetri.setEnabled(akses.getresep_dokter());
         ppPersetujuanTindakan.setEnabled(akses.getcppt());
         MnProtokolKemoterapi.setEnabled(akses.getkemoterapi());

@@ -3543,6 +3543,10 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     }
 
     public void isCek() {
+        BtnSimpan.setEnabled(akses.getcppt());
+        BtnHapus.setEnabled(akses.getcppt());
+        BtnEdit.setEnabled(akses.getcppt());
+        
         if (akses.getjml2() >= 1) {
             BtnBidan1.setEnabled(false);
             BtnBidan2.setEnabled(false);
