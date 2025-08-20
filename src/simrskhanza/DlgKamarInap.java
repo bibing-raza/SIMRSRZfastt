@@ -12744,7 +12744,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         StringBuilder sb = new StringBuilder();        
         //update status pulang ringkasan/resume pulang pasien
         Sequel.queryu("update ringkasan_pulang_ranap r, kamar_inap k set r.stts_pulang=k.stts_pulang WHERE "
-                + "r.no_rawat=k.no_rawat and k.stts_pulang<>'Pindah Kamar'");
+                + "k.tgl_keluar=date(now()) and r.no_rawat=k.no_rawat and k.stts_pulang<>'Pindah Kamar'");
         //----------------------------------------------------------------------
         
         if (R1.isSelected() == true) {
@@ -13647,7 +13647,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         StringBuilder sb = new StringBuilder();        
         //update status pulang ringkasan/resume pulang pasien
         Sequel.queryu("update ringkasan_pulang_ranap r, kamar_inap k set r.stts_pulang=k.stts_pulang WHERE "
-                + "r.no_rawat=k.no_rawat and k.stts_pulang<>'Pindah Kamar'");
+                + "k.tgl_keluar=date(now()) and r.no_rawat=k.no_rawat and k.stts_pulang<>'Pindah Kamar'");
         //----------------------------------------------------------------------
         
         if (R1.isSelected() == true) {
