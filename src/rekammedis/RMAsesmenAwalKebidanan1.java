@@ -6412,7 +6412,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             if (chkIstri.isSelected() == true) {
                 param.put("cekIstri", "V");
                 if (cmbJlhIstri.getSelectedIndex() != 0) {
-                    param.put("dataIstri", "Istri " + cmbJlhIstri.getSelectedItem().toString());
+                    param.put("dataIstri", "Istri (" + cmbJlhIstri.getSelectedItem().toString() + ")");
                 } else {
                     param.put("dataIstri", "Istri");
                 }
@@ -6424,7 +6424,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             if (chkSuami.isSelected() == true) {
                 param.put("cekSuami", "V");
                 if (cmbJlhSuami.getSelectedIndex() != 0) {
-                    param.put("dataSuami", " Suami " + cmbJlhSuami.getSelectedItem().toString());
+                    param.put("dataSuami", " Suami (" + cmbJlhSuami.getSelectedItem().toString() + ")");
                 } else {
                     param.put("dataSuami", " Suami");
                 }
@@ -6610,9 +6610,9 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             }
             
             if (chkOedema.isSelected() == true) {
-                param.put("odema", "V");
+                param.put("oedema", "V");
             } else {
-                param.put("odema", "");
+                param.put("oedema", "");
             }
             
             if (chkRuftur.isSelected() == true) {
@@ -6676,8 +6676,12 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             Valid.MyReport("rptAsesmenAwalKebidanan1.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 1 ]::",
                     "select date(now()) tgl", param);
             
-//            Valid.MyReport("rptAsesmenAwalKebidanan2.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 2 ]::",
-//                    "select * from riwayat_kehamilan_asesmen_awal_kebidanan where no_rawat='" + TNoRw.getText() + "'", param);
+            Valid.MyReport("rptAsesmenAwalKebidanan2.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 2 ]::",
+                    "select * from riwayat_kehamilan_asesmen_awal_kebidanan where no_rawat='" + TNoRw.getText() + "'", param);
+            
+//            if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + TNoRw.getText() + "'") > 0) {
+//
+//            }
             
             this.setCursor(Cursor.getDefaultCursor());
         } else {
