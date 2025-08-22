@@ -241,9 +241,9 @@ WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN + PPN','PPN','DEPOSIT','UANG MUKA',
 		</band>
 	</detail>
 	<summary>
-		<band height="223" splitType="Stretch">
+		<band height="197" splitType="Stretch">
 			<staticText>
-				<reportElement x="335" y="117" width="222" height="14"/>
+				<reportElement x="335" y="89" width="222" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="10"/>
 				</textElement>
@@ -278,27 +278,6 @@ WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN + PPN','PPN','DEPOSIT','UANG MUKA',
 				<text><![CDATA[DEPOSIT]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="56" width="410" height="15"/>
-				<textElement textAlignment="Right" lineSpacing="Single">
-					<font fontName="Tahoma" size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[UANG MUKA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="13" y="70" width="410" height="15"/>
-				<textElement textAlignment="Right" lineSpacing="Single">
-					<font fontName="Tahoma" size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[SISA PIUTANG]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="427" y="56" width="23" height="15"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Rp.]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="427" y="42" width="23" height="15"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="true"/>
@@ -321,13 +300,6 @@ WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN + PPN','PPN','DEPOSIT','UANG MUKA',
 			</staticText>
 			<staticText>
 				<reportElement x="427" y="0" width="23" height="15"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Rp.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="427" y="70" width="23" height="15"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="true"/>
 				</textElement>
@@ -361,64 +333,50 @@ WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN + PPN','PPN','DEPOSIT','UANG MUKA',
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{tagihan_ppn}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="450" y="70" width="122" height="15"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="11" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{sisa_piutang}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="450" y="56" width="122" height="15"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="11" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{uang_muka}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="11" y="190" width="42" height="14"/>
+				<reportElement x="11" y="162" width="42" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Catatan : ]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="335" y="170" width="222" height="14"/>
+				<reportElement x="335" y="142" width="222" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{petugas_ksr}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="54" y="190" width="489" height="29"/>
+				<reportElement x="54" y="162" width="489" height="29"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Mohon maaf apabila ada tagihan yang belum tertagihkan dalam perincian ini akan ditagihkan kemudian, dan apabila berlebih akan dikembalikan.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="335" y="105" width="222" height="14"/>
+				<reportElement x="335" y="77" width="222" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{tglNota}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="84" width="410" height="15"/>
+				<reportElement x="13" y="56" width="410" height="15"/>
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL DIBAYAR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="427" y="84" width="23" height="15"/>
+				<reportElement x="427" y="56" width="23" height="15"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Rp.]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="450" y="84" width="122" height="15"/>
+				<reportElement x="450" y="56" width="122" height="15"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="true"/>
 				</textElement>

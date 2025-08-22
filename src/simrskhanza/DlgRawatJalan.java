@@ -11874,12 +11874,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             label_rehab.setText("Jenis Rehabilitasi Medik : " + Sequel.cariIsi("select jns_rehabmedik from data_rehab_medik where no_rawat='" + norwt + "'"));
         }
 
-        if (polinya.equals("IGDK") || akses.getadmin() == true) {
+        if (polinya.equals("IGDK") || polinya.equals("PON") || akses.getadmin() == true) {
             MnCopasTindakanIgd.setEnabled(true);
+            MnCopasTindakanPonek.setEnabled(true);
             MnCopasAnamnesisIGDPonek.setEnabled(true);
             MnCopasDiagnosisIGDPonek.setEnabled(true);
         } else {
             MnCopasTindakanIgd.setEnabled(false);
+            MnCopasTindakanPonek.setEnabled(false);
             MnCopasAnamnesisIGDPonek.setEnabled(false);
             MnCopasDiagnosisIGDPonek.setEnabled(false);
         }
