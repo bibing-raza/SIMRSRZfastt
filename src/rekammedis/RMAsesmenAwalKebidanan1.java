@@ -5829,7 +5829,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
-        if (tbAsesmen.getSelectedRow() > -1 || Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan1 where no_rawat='" + TNoRw.getText() + "'") > 0) {
+        if (tbAsesmen.getSelectedRow() > -1) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());            
@@ -6682,7 +6682,11 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 //            if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + TNoRw.getText() + "'") > 0) {
 //
 //            }
-            
+
+            TCari.setText(TNoRw.getText());
+            emptTeks();
+            TabRawat.setSelectedIndex(1);
+            tampil();
             this.setCursor(Cursor.getDefaultCursor());
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih/klik dulu datanya pada tabel..!!");

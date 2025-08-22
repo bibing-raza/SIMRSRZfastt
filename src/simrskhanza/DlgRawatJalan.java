@@ -1447,9 +1447,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jPopupMenu4 = new javax.swing.JPopupMenu();
         MnRiwayatData = new javax.swing.JMenuItem();
         jPopupMenu5 = new javax.swing.JPopupMenu();
-        MnCopasTindakan = new javax.swing.JMenuItem();
-        MnCopasAnamnesisIGD = new javax.swing.JMenuItem();
-        MnCopasDiagnosisIGD = new javax.swing.JMenuItem();
+        MnCopasTindakanIgd = new javax.swing.JMenuItem();
+        MnCopasTindakanPonek = new javax.swing.JMenuItem();
+        MnCopasAnamnesisIGDPonek = new javax.swing.JMenuItem();
+        MnCopasDiagnosisIGDPonek = new javax.swing.JMenuItem();
         WindowDataParu = new javax.swing.JDialog();
         internalFrame12 = new widget.InternalFrame();
         BtnCloseIn5 = new widget.Button();
@@ -2520,51 +2521,66 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         jPopupMenu5.setName("jPopupMenu5"); // NOI18N
 
-        MnCopasTindakan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCopasTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        MnCopasTindakan.setText("CoPas Pemeriksaan/Tindakan");
-        MnCopasTindakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnCopasTindakan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnCopasTindakan.setIconTextGap(5);
-        MnCopasTindakan.setName("MnCopasTindakan"); // NOI18N
-        MnCopasTindakan.setPreferredSize(new java.awt.Dimension(250, 26));
-        MnCopasTindakan.addActionListener(new java.awt.event.ActionListener() {
+        MnCopasTindakanIgd.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCopasTindakanIgd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        MnCopasTindakanIgd.setText("CoPas Pemeriksaan/Tindakan (IGD)");
+        MnCopasTindakanIgd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCopasTindakanIgd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCopasTindakanIgd.setIconTextGap(5);
+        MnCopasTindakanIgd.setName("MnCopasTindakanIgd"); // NOI18N
+        MnCopasTindakanIgd.setPreferredSize(new java.awt.Dimension(280, 26));
+        MnCopasTindakanIgd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCopasTindakanActionPerformed(evt);
+                MnCopasTindakanIgdActionPerformed(evt);
             }
         });
-        jPopupMenu5.add(MnCopasTindakan);
+        jPopupMenu5.add(MnCopasTindakanIgd);
 
-        MnCopasAnamnesisIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCopasAnamnesisIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        MnCopasAnamnesisIGD.setText("CoPas Asesmen Medik IGD (ANAMNESIS)");
-        MnCopasAnamnesisIGD.setActionCommand("Copy Asesmen Medik IGD (ANAMNESIS)");
-        MnCopasAnamnesisIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnCopasAnamnesisIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnCopasAnamnesisIGD.setIconTextGap(5);
-        MnCopasAnamnesisIGD.setName("MnCopasAnamnesisIGD"); // NOI18N
-        MnCopasAnamnesisIGD.setPreferredSize(new java.awt.Dimension(250, 26));
-        MnCopasAnamnesisIGD.addActionListener(new java.awt.event.ActionListener() {
+        MnCopasTindakanPonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCopasTindakanPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        MnCopasTindakanPonek.setText("CoPas Pemeriksaan/Tindakan (Ponek)");
+        MnCopasTindakanPonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCopasTindakanPonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCopasTindakanPonek.setIconTextGap(5);
+        MnCopasTindakanPonek.setName("MnCopasTindakanPonek"); // NOI18N
+        MnCopasTindakanPonek.setPreferredSize(new java.awt.Dimension(280, 26));
+        MnCopasTindakanPonek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCopasAnamnesisIGDActionPerformed(evt);
+                MnCopasTindakanPonekActionPerformed(evt);
             }
         });
-        jPopupMenu5.add(MnCopasAnamnesisIGD);
+        jPopupMenu5.add(MnCopasTindakanPonek);
 
-        MnCopasDiagnosisIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCopasDiagnosisIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        MnCopasDiagnosisIGD.setText("CoPas Asesmen Medik IGD (DIAGNOSIS)");
-        MnCopasDiagnosisIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnCopasDiagnosisIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnCopasDiagnosisIGD.setIconTextGap(5);
-        MnCopasDiagnosisIGD.setName("MnCopasDiagnosisIGD"); // NOI18N
-        MnCopasDiagnosisIGD.setPreferredSize(new java.awt.Dimension(250, 26));
-        MnCopasDiagnosisIGD.addActionListener(new java.awt.event.ActionListener() {
+        MnCopasAnamnesisIGDPonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCopasAnamnesisIGDPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        MnCopasAnamnesisIGDPonek.setText("CoPas Asesmen Medik IGD/Ponek (ANAMNESIS)");
+        MnCopasAnamnesisIGDPonek.setActionCommand("Copy Asesmen Medik IGD (ANAMNESIS)");
+        MnCopasAnamnesisIGDPonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCopasAnamnesisIGDPonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCopasAnamnesisIGDPonek.setIconTextGap(5);
+        MnCopasAnamnesisIGDPonek.setName("MnCopasAnamnesisIGDPonek"); // NOI18N
+        MnCopasAnamnesisIGDPonek.setPreferredSize(new java.awt.Dimension(280, 26));
+        MnCopasAnamnesisIGDPonek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCopasDiagnosisIGDActionPerformed(evt);
+                MnCopasAnamnesisIGDPonekActionPerformed(evt);
             }
         });
-        jPopupMenu5.add(MnCopasDiagnosisIGD);
+        jPopupMenu5.add(MnCopasAnamnesisIGDPonek);
+
+        MnCopasDiagnosisIGDPonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCopasDiagnosisIGDPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        MnCopasDiagnosisIGDPonek.setText("CoPas Asesmen Medik IGD/Ponek (DIAGNOSIS)");
+        MnCopasDiagnosisIGDPonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCopasDiagnosisIGDPonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCopasDiagnosisIGDPonek.setIconTextGap(5);
+        MnCopasDiagnosisIGDPonek.setName("MnCopasDiagnosisIGDPonek"); // NOI18N
+        MnCopasDiagnosisIGDPonek.setPreferredSize(new java.awt.Dimension(280, 26));
+        MnCopasDiagnosisIGDPonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCopasDiagnosisIGDPonekActionPerformed(evt);
+            }
+        });
+        jPopupMenu5.add(MnCopasDiagnosisIGDPonek);
 
         WindowDataParu.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowDataParu.setName("WindowDataParu"); // NOI18N
@@ -3202,7 +3218,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3216,7 +3232,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3409,7 +3425,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -3642,7 +3658,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3656,7 +3672,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6059,7 +6075,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         ChkKonsul.setBounds(113, 115, 102, 23);
 
         TtglKonsulUlang.setEditable(false);
-        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
+        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
         TtglKonsulUlang.setDisplayFormat("dd-MM-yyyy");
         TtglKonsulUlang.setName("TtglKonsulUlang"); // NOI18N
         TtglKonsulUlang.setOpaque(false);
@@ -6224,7 +6240,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-07-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -10664,7 +10680,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         TCari2.setText("");
     }//GEN-LAST:event_BtnCloseIn10ActionPerformed
 
-    private void MnCopasTindakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCopasTindakanActionPerformed
+    private void MnCopasTindakanIgdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCopasTindakanIgdActionPerformed
         tampilDrPr();
         if (tbRawatDrPr.getRowCount() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Data tarif Pemeriksaan/Tindakan belum tersimpan..!!");
@@ -10704,11 +10720,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 TRincianTindakan1.setText(TRincianTindakan1.getText() + "\n" + tindakanPemeriksaan);
             }
         }
-    }//GEN-LAST:event_MnCopasTindakanActionPerformed
+    }//GEN-LAST:event_MnCopasTindakanIgdActionPerformed
 
-    private void MnCopasAnamnesisIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCopasAnamnesisIGDActionPerformed
+    private void MnCopasAnamnesisIGDPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCopasAnamnesisIGDPonekActionPerformed
         if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Data asesmen medik IGD (Anamnesis) belum tersimpan..!!");
+            JOptionPane.showMessageDialog(rootPane, "Data asesmen medik (Anamnesis) belum tersimpan..!!");
         } else {
             if (TKeluhan1.getText().equals("")) {
                 TKeluhan1.setText(Sequel.cariIsi("select anamnesis from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'"));
@@ -10716,11 +10732,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 TKeluhan1.setText(TKeluhan1.getText() + "\n" + Sequel.cariIsi("select anamnesis from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'"));
             }
         }
-    }//GEN-LAST:event_MnCopasAnamnesisIGDActionPerformed
+    }//GEN-LAST:event_MnCopasAnamnesisIGDPonekActionPerformed
 
-    private void MnCopasDiagnosisIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCopasDiagnosisIGDActionPerformed
+    private void MnCopasDiagnosisIGDPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCopasDiagnosisIGDPonekActionPerformed
         if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Data asesmen medik IGD (Diagnosis) belum tersimpan..!!");
+            JOptionPane.showMessageDialog(rootPane, "Data asesmen medik (Diagnosis) belum tersimpan..!!");
         } else {
             if (TDiagnosa1.getText().equals("")) {
                 TDiagnosa1.setText(Sequel.cariIsi("select diag_medis_sementara from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'"));
@@ -10728,7 +10744,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 TDiagnosa1.setText(TDiagnosa1.getText() + "\n" + Sequel.cariIsi("select diag_medis_sementara from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'"));
             }
         }
-    }//GEN-LAST:event_MnCopasDiagnosisIGDActionPerformed
+    }//GEN-LAST:event_MnCopasDiagnosisIGDPonekActionPerformed
 
     private void BtnRiwayatRujukanKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRiwayatRujukanKeluarActionPerformed
         if (TPasien.getText().trim().equals("") || TNoRw.getText().trim().equals("")) {
@@ -11140,6 +11156,48 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             }
         }
     }//GEN-LAST:event_ChkHapusContengSemuaActionPerformed
+
+    private void MnCopasTindakanPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCopasTindakanPonekActionPerformed
+        tampilDrPr();
+        if (tbRawatDrPr.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Data tarif Pemeriksaan/Tindakan belum tersimpan..!!");
+        } else {
+            tindakanPemeriksaan = "";
+            try {
+                ps16 = koneksi.prepareStatement("select jp.nm_perawatan from jns_perawatan jp "
+                        + "inner join rawat_jl_drpr dj on dj.kd_jenis_prw=jp.kd_jenis_prw inner join reg_periksa rp on rp.no_rawat=dj.no_rawat "
+                        + "where rp.kd_poli='PON' and dj.no_rawat like ?");
+                try {
+                    ps16.setString(1, "%" + TNoRw.getText().trim() + "%");
+                    rs16 = ps16.executeQuery();
+                    while (rs16.next()) {
+                        if (tindakanPemeriksaan.equals("")) {
+                            tindakanPemeriksaan = rs16.getString("nm_perawatan");
+                        } else {
+                            tindakanPemeriksaan = tindakanPemeriksaan + ", " + rs16.getString("nm_perawatan");
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                } finally {
+                    if (rs16 != null) {
+                        rs16.close();
+                    }
+                    if (ps16 != null) {
+                        ps16.close();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            }
+
+            if (TRincianTindakan1.getText().equals("")) {
+                TRincianTindakan1.setText(tindakanPemeriksaan);
+            } else {
+                TRincianTindakan1.setText(TRincianTindakan1.getText() + "\n" + tindakanPemeriksaan);
+            }
+        }
+    }//GEN-LAST:event_MnCopasTindakanPonekActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -11260,9 +11318,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JMenuItem MnCetakJawabanRujukan;
     private javax.swing.JMenuItem MnCetakPemeriksaanTHT;
     private javax.swing.JMenu MnContengResep;
-    private javax.swing.JMenuItem MnCopasAnamnesisIGD;
-    private javax.swing.JMenuItem MnCopasDiagnosisIGD;
-    private javax.swing.JMenuItem MnCopasTindakan;
+    private javax.swing.JMenuItem MnCopasAnamnesisIGDPonek;
+    private javax.swing.JMenuItem MnCopasDiagnosisIGDPonek;
+    private javax.swing.JMenuItem MnCopasTindakanIgd;
+    private javax.swing.JMenuItem MnCopasTindakanPonek;
     private javax.swing.JMenuItem MnDataParu;
     private javax.swing.JMenuItem MnDiagnosa;
     private javax.swing.JMenuItem MnDibatalkan;
@@ -11816,13 +11875,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
 
         if (polinya.equals("IGDK") || akses.getadmin() == true) {
-            MnCopasTindakan.setEnabled(true);
-            MnCopasAnamnesisIGD.setEnabled(true);
-            MnCopasDiagnosisIGD.setEnabled(true);
+            MnCopasTindakanIgd.setEnabled(true);
+            MnCopasAnamnesisIGDPonek.setEnabled(true);
+            MnCopasDiagnosisIGDPonek.setEnabled(true);
         } else {
-            MnCopasTindakan.setEnabled(false);
-            MnCopasAnamnesisIGD.setEnabled(false);
-            MnCopasDiagnosisIGD.setEnabled(false);
+            MnCopasTindakanIgd.setEnabled(false);
+            MnCopasAnamnesisIGDPonek.setEnabled(false);
+            MnCopasDiagnosisIGDPonek.setEnabled(false);
         }
 
         if (polinya.equals("THT")) {

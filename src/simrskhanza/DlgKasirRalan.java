@@ -8239,7 +8239,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
-                if (kdpoli.getText().equals("IGDK") || kdpoli.getText().equals("KJH")) {
+                if (kdpoli.getText().equals("IGDK") || kdpoli.getText().equals("KJH") || kdpoli.getText().equals("PON")) {
                     if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
                             + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -8272,7 +8272,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD / Kamar Jenazah saja...!!!");
+                    JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD/Kamar Jenazah/Ponek saja...!!!");
                     tbKasirRalan.requestFocus();
                 }
             }

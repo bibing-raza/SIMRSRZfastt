@@ -50,7 +50,7 @@ public class DlgInputKodeICD extends javax.swing.JDialog {
     private int i = 0, jml = 0, index = 0, jml1 = 0, s = 0, index1 = 0, cek = 0, 
             cekPremier = 0, cekINADRG = 0, cekPremierINADRG = 0;
     private boolean[] pilih, pilih2, pilih3;
-    private String kdpoli = "", kdpenjab = "", norw = "", norm = "", status = "", cekKlaim = "", jlhTindakan = "";
+    private String kdpoli = "", kdpenjab = "", norw = "", norm = "", status = "", cekKlaim = "", jlhTindakan = "", dialog_simpan = "";
     private String[] kode, nama, ciripny, keterangan, kategori, cirium, kode2, panjang, pendek,
             kode1, nama1, ciripny1, keterangan1, kategori1, cirium1;
     
@@ -627,6 +627,7 @@ public class DlgInputKodeICD extends javax.swing.JDialog {
         MnSimpanQTYinadrg = new javax.swing.JMenuItem();
         PopupPengajuanKlaim = new javax.swing.JPopupMenu();
         MnPengajuanKlaim = new javax.swing.JMenuItem();
+        MnExportExcelDataKoding = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -751,6 +752,22 @@ public class DlgInputKodeICD extends javax.swing.JDialog {
             }
         });
         PopupPengajuanKlaim.add(MnPengajuanKlaim);
+
+        MnExportExcelDataKoding.setBackground(new java.awt.Color(242, 242, 242));
+        MnExportExcelDataKoding.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnExportExcelDataKoding.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnExportExcelDataKoding.setText("Export Koding Ke Ms. Excell ");
+        MnExportExcelDataKoding.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnExportExcelDataKoding.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnExportExcelDataKoding.setIconTextGap(8);
+        MnExportExcelDataKoding.setName("MnExportExcelDataKoding"); // NOI18N
+        MnExportExcelDataKoding.setPreferredSize(new java.awt.Dimension(210, 25));
+        MnExportExcelDataKoding.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnExportExcelDataKodingBtnPrintActionPerformed(evt);
+            }
+        });
+        PopupPengajuanKlaim.add(MnExportExcelDataKoding);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1991,6 +2008,33 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_MnPengajuanKlaimBtnPrintActionPerformed
 
+    private void MnExportExcelDataKodingBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnExportExcelDataKodingBtnPrintActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        dialog_simpan = Valid.openDialog();
+        if (kdpoli.equals("")) {
+            Valid.MyReportToExcel("SELECT date_format(rp.tgl_registrasi,'%d-%m-%Y') 'Tgl. Kunjungan', p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', pl.nm_poli 'Nama Poliklinik', "
+                    + "d.nm_dokter 'Nama Dokter', py.kd_penyakit 'Kode ICD-10', py.ciri_ciri 'Deskripsi Diagnosa', if(dp.prioritas='1','Primer','Sekunder') 'Status Diagnosa', "
+                    + "pg.nama 'ICD-10 Diinput Oleh' FROM diagnosa_pasien dp inner join reg_periksa rp on rp.no_rawat=dp.no_rawat "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join poliklinik pl on pl.kd_poli=rp.kd_poli "
+                    + "inner join dokter d on d.kd_dokter=rp.kd_dokter inner join penyakit py on py.kd_penyakit=dp.kd_penyakit inner join pegawai pg on pg.nik=dp.nip_petugas "
+                    + "where rp.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "order by rp.tgl_registrasi, p.no_rkm_medis, dp.prioritas", dialog_simpan);
+        } else {
+            Valid.MyReportToExcel("SELECT date_format(rp.tgl_registrasi,'%d-%m-%Y') 'Tgl. Kunjungan', p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', pl.nm_poli 'Nama Poliklinik', "
+                    + "d.nm_dokter 'Nama Dokter', py.kd_penyakit 'Kode ICD-10', py.ciri_ciri 'Deskripsi Diagnosa', if(dp.prioritas='1','Primer','Sekunder') 'Status Diagnosa', "
+                    + "pg.nama 'ICD-10 Diinput Oleh' FROM diagnosa_pasien dp inner join reg_periksa rp on rp.no_rawat=dp.no_rawat "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join poliklinik pl on pl.kd_poli=rp.kd_poli "
+                    + "inner join dokter d on d.kd_dokter=rp.kd_dokter inner join penyakit py on py.kd_penyakit=dp.kd_penyakit inner join pegawai pg on pg.nik=dp.nip_petugas "
+                    + "where rp.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "and rp.kd_poli='" + kdpoli + "' order by rp.tgl_registrasi, p.no_rkm_medis, dp.prioritas", dialog_simpan);
+        }
+        
+        JOptionPane.showMessageDialog(null, "Data Koding ICD-10 poliklinik/rawat jalan berhasil diexport menjadi file excel,..!!!");
+        tampil();
+        emptTeks();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnExportExcelDataKodingBtnPrintActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2026,6 +2070,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.PanelBiasa FormInput;
     private widget.PanelBiasa FormInput2;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnExportExcelDataKoding;
     private javax.swing.JMenuItem MnPengajuanKlaim;
     private javax.swing.JMenuItem MnSimpanQTYinadrg;
     private javax.swing.JPanel PanelInput;
