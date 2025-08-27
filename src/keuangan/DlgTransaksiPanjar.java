@@ -2456,7 +2456,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     public void isCek() {
         BtnSimpan.setEnabled(akses.getbilling_ranap());
         BtnGanti.setEnabled(akses.getbilling_ranap());
-        MnHapus.setEnabled(akses.getbilling_ranap());
+        MnHapus.setEnabled(akses.getpic_keuangan());
         MnDataSampah.setEnabled(akses.getadmin());
     }
     

@@ -7323,6 +7323,11 @@ public final class DlgReg extends javax.swing.JDialog {
                 || (Sequel.cariInteger("select count(-1) from pasien_blacklist where no_ktp='" + nik + "'") > 0 && kdpoli.getText().equals("IRS"))
                 || (Sequel.cariInteger("select count(-1) from pasien_blacklist where no_peserta='" + nokartu + "'") > 0 && kdpoli.getText().equals("IRS"))) {
             JOptionPane.showMessageDialog(null, Sequel.cariIsi("select pesan_notifikasi from pasien_blacklist where no_rkm_medis='" + TNoRM.getText() + "'") + "...!!");
+        } else if (Sequel.cariInteger("select count(-1) from booking_registrasi where no_rkm_medis='" + TNoRM.getText() + "' and "
+                + "tanggal_periksa=date(now()) and status_booking='Menunggu'") > 0) {
+            JOptionPane.showMessageDialog(null, "Pasien ini sdh. melakukan pendaftaran online sebelumnya utk. kepoliklinik " + TPoli.getText() + "      \n"
+                    + "pada hari ini, gunakan kode booking yang dimiliki pasien utk. registrasi pada      \n"
+                    + "anjungan pasien yang tersedia ...!!!");
         } else {
             poliIter = "";
             poliIter = Sequel.cariIsi("select ifnull(concat(pl.nm_poli,' kunjungan iter ',if(i.kunjungan='1','Pertama (1)',if(i.kunjungan='2','Kedua (2)','Terakhir (3)')),' tgl. ',date_format(rp.tgl_registrasi,'%d/%m/%Y')),'') from iter_obat_bpjs i "

@@ -1127,6 +1127,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
+        TtglCatat.setDate(new Date());
         emptTeks();
         tampil();
         tampilNumdenom();
@@ -2164,8 +2165,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         }
     }
     
-    public void emptTeks() {
-        TtglCatat.setDate(new Date());
+    public void emptTeks() {        
         Tjumlah.setText("0");
         cmbSttsIndikator.setSelectedIndex(0);
     }

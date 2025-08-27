@@ -3710,7 +3710,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
                     Sequel.menyimpan("temporary_formulir_klaim", "'Kode RS',': 6303015','Nama RS',': RSUD Ratu Zalecha Martapura',"
                             + "'1. No. RM',': " + rspasien.getString("no_rkm_medis") + "',"
-                            + "'2. Nama Pasien',': " + rspasien.getString("nm_pasien") + "',"
+                            + "'2. Nama Pasien',': " + rspasien.getString("nm_pasien").replaceAll("'", "") + "',"
                             + "'3. Jenis Kelamin',': " + rspasien.getString("jk") + "',"
                             + "'4. Jenis Perawatan',': " + rspasien.getString("status_kunjungan") + "',"
                             + "'5. Tgl. Lahir',': " + rspasien.getString("tgl_lhr") + " " 

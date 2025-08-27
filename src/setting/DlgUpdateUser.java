@@ -546,71 +546,7 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                     pilih[i], menu[i], akses[i]
                 });
             }
-            ps = koneksi.prepareStatement("select penyakit, obat_penyakit, dokter, jadwal_praktek, petugas, pasien, registrasi, "
-                    + "tindakan_ralan, kamar_inap, tindakan_ranap, operasi, rujukan_keluar, rujukan_masuk, beri_obat, resep_pulang, "
-                    + "pasien_meninggal, diet_pasien, kelahiran_bayi, periksa_lab, periksa_radiologi, kasir_ralan, "
-                    + "deposit_pasien, piutang_pasien, peminjaman_berkas, barcode, presensi_harian, presensi_bulanan, "
-                    + "pegawai_admin, pegawai_user, suplier, satuan_barang, konversi_satuan, jenis_barang, obat, "
-                    + "stok_opname_obat, stok_obat_pasien, pengadaan_obat, pemesanan_obat, penjualan_obat, piutang_obat, "
-                    + "retur_ke_suplier, retur_dari_pembeli, retur_obat_ranap, retur_piutang_pasien, keuntungan_penjualan, "
-                    + "keuntungan_beri_obat, sirkulasi_obat, ipsrs_barang, ipsrs_pengadaan_barang, ipsrs_stok_keluar, "
-                    + "ipsrs_rekap_pengadaan, ipsrs_rekap_stok_keluar, ipsrs_pengeluaran_harian, inventaris_jenis, "
-                    + "inventaris_kategori, inventaris_merk, inventaris_ruang, inventaris_produsen, inventaris_koleksi,"
-                    + "inventaris_inventaris, inventaris_sirkulasi, parkir_jenis, parkir_in, parkir_out, parkir_rekap_harian, "
-                    + "parkir_rekap_bulanan, informasi_kamar, harian_tindakan_poli, obat_per_poli, obat_per_kamar, "
-                    + "obat_per_dokter_ralan, obat_per_dokter_ranap, harian_dokter, bulanan_dokter, harian_paramedis,"
-                    + "bulanan_paramedis, pembayaran_ralan, pembayaran_ranap, rekap_pembayaran_ralan, rekap_pembayaran_ranap,"
-                    + "tagihan_masuk, tambahan_biaya, potongan_biaya, resep_obat, resume_pasien, penyakit_ralan, penyakit_ranap, "
-                    + "kamar, tarif_ralan, tarif_ranap, tarif_lab, tarif_radiologi, tarif_operasi, akun_rekening, rekening_tahun, "
-                    + "posting_jurnal, buku_besar, cashflow, keuangan, pengeluaran, setup_pjlab, setup_otolokasi, setup_jam_kamin, "
-                    + "setup_embalase, tracer_login, display, set_harga_obat, set_penggunaan_tarif, set_oto_ralan, biaya_harian, "
-                    + "biaya_masuk_sekali, set_no_rm, billing_ralan, billing_ranap, jm_ranap_dokter, igd, barcoderalan, barcoderanap, "
-                    + "set_harga_obat_ralan,set_harga_obat_ranap,penyakit_pd3i,surveilans_pd3i,surveilans_ralan,diagnosa_pasien, "
-                    + "surveilans_ranap,pny_takmenular_ranap,pny_takmenular_ralan,kunjungan_ralan,rl32,rl33,rl37,rl38,harian_tindakan_dokter,sms, "
-                    + "sidikjari,jam_masuk,jadwal_pegawai,parkir_barcode,set_nota,dpjp_ranap,mutasi_barang,rl34,rl36,"
-                    + "fee_visit_dokter,fee_bacaan_ekg,fee_rujukan_rontgen,fee_rujukan_ranap,fee_ralan,akun_bayar,bayar_pemesanan_obat,"
-                    + "obat_per_dokter_peresep,ipsrs_jenis_barang,pemasukan_lain,pengaturan_rekening,closing_kasir,keterlambatan_presensi,"
-                    + "set_harga_kamar,rekap_per_shift,bpjs_cek_nik,bpjs_cek_kartu,bpjs_cek_riwayat,obat_per_cara_bayar,kunjungan_ranap,"
-                    + "bayar_piutang,payment_point,bpjs_cek_nomor_rujukan,icd9,darurat_stok,retensi_rm,temporary_presensi,jurnal_harian, "
-                    + "sirkulasi_obat2,edit_registrasi,bpjs_referensi_diagnosa,bpjs_referensi_poli,industrifarmasi,harian_js,bulanan_js,"
-                    + "harian_paket_bhp,bulanan_paket_bhp,piutang_pasien2,bpjs_referensi_faskes,bpjs_sep,pengambilan_utd,tarif_utd, "
-                    + "pengambilan_utd2,utd_medis_rusak,pengambilan_penunjang_utd,pengambilan_penunjang_utd2,utd_penunjang_rusak,"
-                    + "suplier_penunjang,utd_donor,bpjs_monitoring_klaim,utd_cekal_darah,utd_komponen_darah,utd_stok_darah, "
-                    + "utd_pemisahan_darah,harian_kamar,rincian_piutang_pasien,keuntungan_beri_obat_nonpiutang,reklasifikasi_ralan, "
-                    + "reklasifikasi_ranap,utd_penyerahan_darah,hutang_obat,riwayat_obat_alkes_bhp,sensus_harian_poli,rl4a,aplicare_referensi_kamar, "
-                    + "aplicare_ketersediaan_kamar,inacbg_klaim_baru_otomatis,inacbg_klaim_baru_manual,inacbg_coder_nik,mutasi_berkas, "
-                    + "akun_piutang,harian_kso,bulanan_kso,harian_menejemen,bulanan_menejemen,inhealth_cek_eligibilitas,inhealth_referensi_jenpel_ruang_rawat, "
-                    + "inhealth_referensi_poli,inhealth_referensi_faskes,inhealth_sjp,piutang_ralan,piutang_ranap,detail_piutang_penjab, "
-                    + "lama_pelayanan_ralan,catatan_pasien,rl4b,rl4asebab,rl4bsebab,data_HAIs,harian_HAIs,bulanan_HAIs,hitung_bor,perusahaan_pasien, "
-                    + "resep_dokter,lama_pelayanan_apotek,hitung_alos,detail_tindakan,rujukan_poli_internal,rekap_poli_anak,grafik_kunjungan_poli, "
-                    + "grafik_kunjungan_perdokter,grafik_kunjungan_perpekerjaan,grafik_kunjungan_perpendidikan,grafik_kunjungan_pertahun,"
-                    + "berkas_digital_perawatan,penyakit_menular_ranap,penyakit_menular_ralan,grafik_kunjungan_perbulan,grafik_kunjungan_pertanggal, "
-                    + "grafik_kunjungan_demografi,grafik_kunjungan_statusdaftartahun,grafik_kunjungan_statusdaftartahun2, "
-                    + "grafik_kunjungan_statusdaftarbulan,grafik_kunjungan_statusdaftarbulan2,grafik_kunjungan_statusdaftartanggal,"
-                    + "grafik_kunjungan_statusdaftartanggal2,grafik_kunjungan_statusbataltahun,grafik_kunjungan_statusbatalbulan,"
-                    + "pcare_cek_penyakit,grafik_kunjungan_statusbataltanggal,kategori_barang,golongan_barang,pemberian_obat_pertanggal,"
-                    + "penjualan_obat_pertanggal,skdp_bpjs,rujukan_keluar_vclaim_bpjs,booking_registrasi,"
-                    + "bpjs_cek_riwayat_rujukan_pcare,bpjs_cek_riwayat_rujukan_rs,bpjs_cek_rujukan_kartu_rs,"
-                    + "bpjs_cek_tanggal_rujukan,bpjs_cek_no_rujukan_rs,bpjs_cek_rujukan_kartu_pcare,"
-                    + "bpjs_cek_referensi_kelas_rawat,bpjs_cek_referensi_prosedur,bpjs_cek_referensi_dpjp,"
-                    + "bpjs_cek_referensi_dokter,bpjs_cek_referensi_spesialistik,bpjs_cek_referensi_ruang_rawat,"
-                    + "bpjs_cek_referensi_cara_keluar,bpjs_cek_referensi_pasca_pulang,bpjs_cek_referensi_propinsi,bpjs_cek_referensi_kabupaten,"
-                    + "bpjs_cek_referensi_kecamatan,permintaan_lab,permintaan_radiologi,selisih_tarif_bpjs,edit_data_kematian,"
-                    + "bridging_jamkesda,masuk_pindah_pulang_inap,masuk_pindah_inap,jumlah_macam_diet,jumlah_porsi_diet,status_gizi,"
-                    + "gizi_buruk,master_faskes,set_status_registrasi_ralan,telusur_kunjungan_pasien,sisrute_rujukan_keluar,sisrute_rujukan_masuk,"
-                    + "sisrute_referensi_diagnosa,sisrute_referensi_alasanrujuk,sisrute_referensi_faskes,barang_cssd,status_pulang_inap,data_persalinan,"
-                    + "data_ponek,registrasi_booking_dikasir,bahasa_pasien,suku_pasien,harian_hais_ranap,bulanan_hais_ranap,harian_hais_ralan,"
-                    + "bulanan_hais_ralan,ringkasan_pulang_ranap,laporan_farmasi,master_masalah_keperawatan,penilaian_awal_keperawatan_ralan,master_triase_skala1,"
-                    + "master_triase_skala2,master_triase_skala3,master_triase_skala4,master_triase_skala5,master_triase_macamkasus,master_triase_pemeriksaan,"
-                    + "data_triase_igd,master_cara_bayar,status_kerja_dokter,pasien_corona,diagnosa_pasien_corona,perawatan_pasien_corona,inacbg_klaim_baru_manual2,"
-                    + "indikator_ranap,sensus_inap,review_rm_igd,review_rm_ruangan_h1,review_rm_ruangan_pulang,review_rm_laporan,assesmen_gizi_harian,"
-                    + "assesmen_gizi_ulang,tombol_nota_billing,tombol_simpan_hasil_radiologi,monev_asuhan_gizi,inacbg_klaim_raza,"
-                    + "pengajuan_klaim_inacbg_raza,copy_pemeriksaan_dokter_kepetugas_ralan,jkn_belum_diproses_klaim,input_kode_icd,indikator_mutu_unit,"
-                    + "kendali_Mutu_kendali_Biaya_INACBG,dashboard_eResep,bpjs_sep_internal,kemenkes_sitt,rencana_kontrol_jkn,spri_jkn,hapus_sep,"
-                    + "penilaian_awal_medis_ralan_kebidanan,penilaian_awal_keperawatan_kebidanan,ikhtisar_perawatan_hiv,survey_kepuasan,kemenkes_kanker,"
-                    + "aktivasi_bridging,operator_antrian,penilaian_awal_medis_ralan_tht,rekam_psikologis,penilaian_pasien_geriatri,penilaian_awal_medis_ralan_mata,"
-                    + "surat_sakit,surat_keterangan_kir_mcu,asesmen_medik_dewasa_ranap,pemberian_obat,cppt,bridging_satu_sehat,kemoterapi,cek_piutang,"
-                    + "asesmen_medik_anak_ranap,kegiatan_operasi,asesmen_medik_bedah_ranap, indikator_mutu from user where id_user=AES_ENCRYPT(?,'nur')");
+            ps = koneksi.prepareStatement("select * from user where id_user=AES_ENCRYPT(?,'nur')");
             try {
                 ps.setString(1, user);
                 rs = ps.executeQuery();
@@ -1401,6 +1337,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
                     if ("[I]Telusur Kunjungan Pasien".toLowerCase().contains(TCari.getText().toLowerCase())) {
                         tabMode.addRow(new Object[]{false, "[I]Telusur Kunjungan Pasien", rs.getBoolean("telusur_kunjungan_pasien")});
+                    }
+                    
+                    if ("[J]PIC Keuangan".toLowerCase().contains(TCari.getText().toLowerCase())) {
+                        tabMode.addRow(new Object[]{false, "[J]PIC Keuangan", rs.getBoolean("pic_keuangan")});
                     }
                     
                     if ("[J]Cek Piutang".toLowerCase().contains(TCari.getText().toLowerCase())) {
@@ -2956,6 +2896,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
             if("[I]Telusur Kunjungan Pasien".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","telusur_kunjungan_pasien='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[J]PIC Keuangan".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","pic_keuangan='"+tbUser.getValueAt(i,2).toString()+"'");
             }
             
             if("[J]Cek Piutang".equals(tbUser.getValueAt(i,1).toString())){

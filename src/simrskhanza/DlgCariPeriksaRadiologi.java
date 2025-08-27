@@ -46,8 +46,8 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     public DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
     private final Properties prop = new Properties();
     private int i, x = 0, pilihanDokter = 0, cekRujukan = 0, n = 0, cekHasil = 0, cekPeriksa = 0, pilihPetugas = 0;
-    private PreparedStatement ps, ps2, ps3, ps4, ps5, ps6, ps7, psrekening, psItem;
-    private ResultSet rs, rs2, rs3, rs5, rs6, rs7, rsrekening, rsItem;
+    private PreparedStatement ps, ps2, ps3, ps4, ps5, ps6, ps7, ps8, psrekening, psItem;
+    private ResultSet rs, rs2, rs3, rs5, rs6, rs7, rs8, rsrekening, rsItem;
     private String kamar, namakamar, pemeriksaan = "", pilihan = "", status = "", tglperiksa = "", jam = "", sttsRawat = "",
             tglhasil = "", jamhasil = "", lihatHasil = "", kodeRujukan = "", tgldaftar = "", tglnoRW = "", alamatFaskes = "",
             kdItem = "", cekDiagnos = "";
@@ -609,7 +609,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         });
 
         try {
-            StringBuilder sb1 = new StringBuilder();
+            StringBuilder sb1 = new StringBuilder();            
             sb1.append("select pr.no_rawat, rp.no_rkm_medis, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur) as umur_thn, pt.nama, pr.tgl_periksa, pr.jam, ");
             sb1.append("pr.dokter_perujuk, pr.kd_dokter, d.nm_dokter, rp.status_lanjut, pr.nip, pj.png_jawab, rp.kd_pj, pl.nm_poli, ifnull(b.nm_bangsal,'-') nmBangsal ");
             sb1.append("from periksa_radiologi pr inner join reg_periksa rp on rp.no_rawat=pr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
@@ -621,9 +621,11 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and pt.nama like ? or ");
             sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and rp.no_rkm_medis like ? or ");
             sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and rp.no_rawat like ? or ");
-            sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and jpr.nm_perawatan like ? or ");            
+            sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and jpr.nm_perawatan like ? or ");
             sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and pl.nm_poli like ? or ");
             sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and ifnull(b.nm_bangsal,'-') like ? or ");
+            sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and pj.png_jawab like ? or ");
+            sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and rp.kd_pj like ? or ");
             sb1.append("pr.tgl_periksa between ? and ? and pr.no_rawat like ? and rp.no_rkm_medis like ? and pt.nip like ? and d.nm_dokter like ? ");
             sb1.append("group by concat(pr.no_rawat,pr.tgl_periksa,pr.jam) order by pr.tgl_periksa desc, pr.jam desc");
             ps = koneksi.prepareStatement(sb1.toString());
@@ -892,7 +894,8 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         label10 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
-        label9 = new widget.Label();
+        jLabel7 = new widget.Label();
+        LCount = new widget.Label();
         BtnHapus = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -1972,7 +1975,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel51.setBounds(0, 25, 130, 23);
 
         tanggalPeriksa.setEditable(false);
-        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2025" }));
+        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-08-2025" }));
         tanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         tanggalPeriksa.setName("tanggalPeriksa"); // NOI18N
         tanggalPeriksa.setOpaque(false);
@@ -2826,10 +2829,18 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         });
         panelisi1.add(BtnCari);
 
-        label9.setForeground(new java.awt.Color(0, 0, 0));
-        label9.setName("label9"); // NOI18N
-        label9.setPreferredSize(new java.awt.Dimension(100, 30));
-        panelisi1.add(label9);
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Record :");
+        jLabel7.setName("jLabel7"); // NOI18N
+        jLabel7.setPreferredSize(new java.awt.Dimension(60, 23));
+        panelisi1.add(jLabel7);
+
+        LCount.setForeground(new java.awt.Color(0, 0, 0));
+        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount.setText("0");
+        LCount.setName("LCount"); // NOI18N
+        LCount.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelisi1.add(LCount);
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
@@ -2895,7 +2906,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         panelisi1.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-08-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -5003,6 +5014,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     private widget.TextArea HasilPeriksa;
     private widget.TextArea HasilPeriksa1;
     private widget.TextBox Kd2;
+    private widget.Label LCount;
     private javax.swing.JMenuItem MnAsalRujukan;
     private javax.swing.JMenuItem MnAsalRujukan1;
     private javax.swing.JMenuItem MnCetakNota;
@@ -5125,6 +5137,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     private widget.Label jLabel31;
     private widget.Label jLabel51;
     private widget.Label jLabel52;
+    private widget.Label jLabel7;
     private javax.swing.JMenu jMnGantiData1;
     private javax.swing.JMenu jMnLapInap;
     private javax.swing.JMenu jMnLapJalan;
@@ -5153,7 +5166,6 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     private widget.Label label16;
     private widget.Label label17;
     private widget.Label label18;
-    private widget.Label label9;
     private widget.Label labelunit;
     private widget.TextBox nmFaskes;
     private widget.TextBox nmmem;
@@ -5226,7 +5238,19 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
             ps.setString(45, "%" + NoRawat.getText() + "%");
             ps.setString(46, "%" + kdmem.getText() + "%");
             ps.setString(47, "%" + kdptg.getText() + "%");
-            ps.setString(48, "%" + TCari.getText().trim() + "%");
+            ps.setString(48, "%" + TCari.getText().trim() + "%");            
+            ps.setString(49, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+            ps.setString(50, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+            ps.setString(51, "%" + NoRawat.getText() + "%");
+            ps.setString(52, "%" + kdmem.getText() + "%");
+            ps.setString(53, "%" + kdptg.getText() + "%");
+            ps.setString(54, "%" + TCari.getText().trim() + "%");            
+            ps.setString(55, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+            ps.setString(56, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+            ps.setString(57, "%" + NoRawat.getText() + "%");
+            ps.setString(58, "%" + kdmem.getText() + "%");
+            ps.setString(59, "%" + kdptg.getText() + "%");
+            ps.setString(60, "%" + TCari.getText().trim() + "%");
             rs = ps.executeQuery();
             ttl = 0;
             while (rs.next()) {
@@ -5240,17 +5264,6 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                 } else {
                     cekSttsBayar = "(Piutang)";
                 }
-                
-//                kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat='" + rs.getString("no_rawat") + "' order by tgl_masuk desc limit 1");
-//                if (!kamar.equals("")) {
-//                    namakamar = Sequel.cariIsi("select nm_bangsal from bangsal inner join kamar on bangsal.kd_bangsal=kamar.kd_bangsal "
-//                            + " where kamar.kd_kamar='" + kamar + "' ");
-//                    kamar = "Kamar";
-//                } else if (kamar.equals("")) {
-//                    kamar = "Poliklinik/Inst.";
-//                    namakamar = Sequel.cariIsi("select nm_poli from poliklinik inner join reg_periksa on poliklinik.kd_poli=reg_periksa.kd_poli "
-//                            + "where reg_periksa.no_rawat='" + rs.getString("no_rawat") + "'");
-//                }
                 
                 if (rs.getString("status_lanjut").equals("Ranap")) {
                     namakamar = rs.getString("nmBangsal");
@@ -5286,11 +5299,10 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
             if (ttl > 0) {
                 tabMode.addRow(new Object[]{">>", "Total : " + Valid.SetAngka(ttl), "", "", "", "", ""});
             }
-
+            jumlahNoRawat();
         } catch (Exception ex) {
             System.out.println(ex);
         }
-
     }
 
     public void SetNoRw(String norw) {
@@ -5668,5 +5680,103 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         TpemeriksaanExp.setText("");
         TtglExp.setText("");
         TjamExp.setText("");
+    }
+
+    private void jumlahNoRawat() {
+        try {
+            ps8 = koneksi.prepareStatement("select count(*) jml from periksa_radiologi pr2 inner join reg_periksa rp2 on rp2.no_rawat=pr2.no_rawat "
+                    + "inner join pasien p2 on p2.no_rkm_medis=rp2.no_rkm_medis inner join petugas pt2 on pt2.nip=pr2.nip "
+                    + "inner join dokter d2 on d2.kd_dokter=pr2.kd_dokter inner join penjab pj2 on pj2.kd_pj=rp2.kd_pj "
+                    + "inner join jns_perawatan_radiologi jpr2 on jpr2.kd_jenis_prw=pr2.kd_jenis_prw inner join poliklinik pl2 on pl2.kd_poli=rp2.kd_poli "
+                    + "left join kamar_inap ki2 on ki2.no_rawat=pr2.no_rawat left join kamar k2 on k2.kd_kamar=ki2.kd_kamar "
+                    + "left join bangsal b2 on b2.kd_bangsal=k2.kd_bangsal where "
+                    + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and p2.nm_pasien like ? or "
+                    + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and pt2.nama like ? or "
+                    + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and rp2.no_rkm_medis like ? or "
+                    + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and rp2.no_rawat like ? or "
+                    + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and jpr2.nm_perawatan like ? or "
+                    + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and pl2.nm_poli like ? or "
+                    + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and pj2.png_jawab like ? or "
+                    + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and rp2.kd_pj like ? or "
+                    + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and ifnull(b2.nm_bangsal,'-') like ? or "
+                    + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and d2.nm_dokter like ?");
+            try {
+                ps8.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps8.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps8.setString(3, "%" + NoRawat.getText() + "%");
+                ps8.setString(4, "%" + kdmem.getText() + "%");
+                ps8.setString(5, "%" + kdptg.getText() + "%");
+                ps8.setString(6, "%" + TCari.getText().trim() + "%");
+                ps8.setString(7, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps8.setString(8, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps8.setString(9, "%" + NoRawat.getText() + "%");
+                ps8.setString(10, "%" + kdmem.getText() + "%");
+                ps8.setString(11, "%" + kdptg.getText() + "%");
+                ps8.setString(12, "%" + TCari.getText().trim() + "%");
+                ps8.setString(13, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps8.setString(14, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps8.setString(15, "%" + NoRawat.getText() + "%");
+                ps8.setString(16, "%" + kdmem.getText() + "%");
+                ps8.setString(17, "%" + kdptg.getText() + "%");
+                ps8.setString(18, "%" + TCari.getText().trim() + "%");
+                ps8.setString(19, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps8.setString(20, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps8.setString(21, "%" + NoRawat.getText() + "%");
+                ps8.setString(22, "%" + kdmem.getText() + "%");
+                ps8.setString(23, "%" + kdptg.getText() + "%");
+                ps8.setString(24, "%" + TCari.getText().trim() + "%");
+                ps8.setString(25, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps8.setString(26, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps8.setString(27, "%" + NoRawat.getText() + "%");
+                ps8.setString(28, "%" + kdmem.getText() + "%");
+                ps8.setString(29, "%" + kdptg.getText() + "%");
+                ps8.setString(30, "%" + TCari.getText().trim() + "%");
+                ps8.setString(31, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps8.setString(32, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps8.setString(33, "%" + NoRawat.getText() + "%");
+                ps8.setString(34, "%" + kdmem.getText() + "%");
+                ps8.setString(35, "%" + kdptg.getText() + "%");
+                ps8.setString(36, "%" + TCari.getText().trim() + "%");
+                ps8.setString(37, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps8.setString(38, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps8.setString(39, "%" + NoRawat.getText() + "%");
+                ps8.setString(40, "%" + kdmem.getText() + "%");
+                ps8.setString(41, "%" + kdptg.getText() + "%");
+                ps8.setString(42, "%" + TCari.getText().trim() + "%");
+                ps8.setString(43, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps8.setString(44, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps8.setString(45, "%" + NoRawat.getText() + "%");
+                ps8.setString(46, "%" + kdmem.getText() + "%");
+                ps8.setString(47, "%" + kdptg.getText() + "%");
+                ps8.setString(48, "%" + TCari.getText().trim() + "%");
+                ps8.setString(49, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps8.setString(50, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps8.setString(51, "%" + NoRawat.getText() + "%");
+                ps8.setString(52, "%" + kdmem.getText() + "%");
+                ps8.setString(53, "%" + kdptg.getText() + "%");
+                ps8.setString(54, "%" + TCari.getText().trim() + "%");
+                ps8.setString(55, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps8.setString(56, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps8.setString(57, "%" + NoRawat.getText() + "%");
+                ps8.setString(58, "%" + kdmem.getText() + "%");
+                ps8.setString(59, "%" + kdptg.getText() + "%");
+                ps8.setString(60, "%" + TCari.getText().trim() + "%");
+                rs8 = ps8.executeQuery();
+                while (rs8.next()) {
+                    LCount.setText(rs8.getString("jml"));
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs8 != null) {
+                    rs8.close();
+                }
+                if (ps8 != null) {
+                    ps8.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 }

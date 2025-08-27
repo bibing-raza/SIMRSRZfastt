@@ -1303,6 +1303,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         TabPiutang.setSelectedIndex(0);
         TabPiutang.setEnabledAt(1, akses.getbayar_piutang());
+        BtnHapus.setEnabled(akses.getpic_keuangan());
         tampilPenjab();
         tampil();
         emptTeks();
