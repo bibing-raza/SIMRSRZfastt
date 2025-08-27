@@ -7325,7 +7325,7 @@ public final class DlgReg extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, Sequel.cariIsi("select pesan_notifikasi from pasien_blacklist where no_rkm_medis='" + TNoRM.getText() + "'") + "...!!");
         } else if (Sequel.cariInteger("select count(-1) from booking_registrasi where no_rkm_medis='" + TNoRM.getText() + "' and "
                 + "tanggal_periksa=date(now()) and status_booking='Menunggu'") > 0) {
-            JOptionPane.showMessageDialog(null, "Pasien ini sdh. melakukan pendaftaran online sebelumnya utk. kepoliklinik " + TPoli.getText() + "      \n"
+            JOptionPane.showMessageDialog(null, "Pasien ini sdh. melakukan pendaftaran online sebelumnya utk. kunjungan kepoliklinik      \n"
                     + "pada hari ini, gunakan kode booking yang dimiliki pasien utk. registrasi pada      \n"
                     + "anjungan pasien yang tersedia ...!!!");
         } else {
