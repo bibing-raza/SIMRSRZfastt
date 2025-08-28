@@ -167,6 +167,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         BtnAll1 = new widget.Button();
         BtnGanti1 = new widget.Button();
         BtnCloseIn1 = new widget.Button();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -197,6 +198,10 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         cmbStatus = new widget.ComboBox();
         jLabel13 = new widget.Label();
         Ttarget = new widget.TextBox();
+        chkImu = new widget.CekBox();
+        jLabel18 = new widget.Label();
+        chkImp = new widget.CekBox();
+        chkInm = new widget.CekBox();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbMutu = new widget.Table();
@@ -542,9 +547,9 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         panelGlass10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Nama Gedung : ");
+        jLabel12.setText("Rg. Perawatan/Unit/Inst./Bidang/Sub :");
         jLabel12.setName("jLabel12"); // NOI18N
-        jLabel12.setPreferredSize(new java.awt.Dimension(100, 23));
+        jLabel12.setPreferredSize(new java.awt.Dimension(200, 23));
         panelGlass10.add(jLabel12);
 
         cmbGedung1.setForeground(new java.awt.Color(0, 0, 0));
@@ -634,7 +639,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TnmIndikator);
-        TnmIndikator.setBounds(103, 38, 590, 23);
+        TnmIndikator.setBounds(103, 38, 660, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("No. Urut :");
@@ -653,41 +658,107 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         TnoUrut.setBounds(260, 10, 50, 23);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Nama Gedung : ");
+        jLabel10.setText("Rg. Perawatan/Unit/Inst./Bidang/Sub : ");
         jLabel10.setName("jLabel10"); // NOI18N
         PanelInput.add(jLabel10);
-        jLabel10.setBounds(0, 66, 100, 23);
+        jLabel10.setBounds(0, 66, 210, 23);
 
         cmbGedung.setForeground(new java.awt.Color(0, 0, 0));
         cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
         cmbGedung.setName("cmbGedung"); // NOI18N
         cmbGedung.setPreferredSize(new java.awt.Dimension(55, 28));
         PanelInput.add(cmbGedung);
-        cmbGedung.setBounds(103, 66, 230, 23);
+        cmbGedung.setBounds(213, 66, 230, 23);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Status Data :");
         jLabel11.setName("jLabel11"); // NOI18N
         PanelInput.add(jLabel11);
-        jLabel11.setBounds(340, 66, 80, 23);
+        jLabel11.setBounds(450, 66, 80, 23);
 
         cmbStatus.setForeground(new java.awt.Color(0, 0, 0));
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aktif", "Non Aktif" }));
         cmbStatus.setName("cmbStatus"); // NOI18N
         cmbStatus.setPreferredSize(new java.awt.Dimension(55, 28));
         PanelInput.add(cmbStatus);
-        cmbStatus.setBounds(425, 66, 80, 23);
+        cmbStatus.setBounds(535, 66, 80, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Target :");
         jLabel13.setName("jLabel13"); // NOI18N
         PanelInput.add(jLabel13);
-        jLabel13.setBounds(510, 66, 55, 23);
+        jLabel13.setBounds(620, 66, 55, 23);
 
         Ttarget.setForeground(new java.awt.Color(0, 0, 0));
         Ttarget.setName("Ttarget"); // NOI18N
         PanelInput.add(Ttarget);
-        Ttarget.setBounds(573, 66, 80, 23);
+        Ttarget.setBounds(683, 66, 80, 23);
+
+        chkImu.setBackground(new java.awt.Color(255, 255, 250));
+        chkImu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup1.add(chkImu);
+        chkImu.setForeground(new java.awt.Color(0, 0, 0));
+        chkImu.setText("Mutu Unit (IMU)");
+        chkImu.setBorderPainted(true);
+        chkImu.setBorderPaintedFlat(true);
+        chkImu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkImu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkImu.setName("chkImu"); // NOI18N
+        chkImu.setOpaque(false);
+        chkImu.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkImu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkImuActionPerformed(evt);
+            }
+        });
+        PanelInput.add(chkImu);
+        chkImu.setBounds(415, 10, 105, 23);
+
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Jenis Indikator : ");
+        jLabel18.setName("jLabel18"); // NOI18N
+        PanelInput.add(jLabel18);
+        jLabel18.setBounds(310, 10, 100, 23);
+
+        chkImp.setBackground(new java.awt.Color(255, 255, 250));
+        chkImp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup1.add(chkImp);
+        chkImp.setForeground(new java.awt.Color(0, 0, 0));
+        chkImp.setText("Mutu Prioritas RS (IMP)");
+        chkImp.setBorderPainted(true);
+        chkImp.setBorderPaintedFlat(true);
+        chkImp.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkImp.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkImp.setName("chkImp"); // NOI18N
+        chkImp.setOpaque(false);
+        chkImp.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkImp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkImpActionPerformed(evt);
+            }
+        });
+        PanelInput.add(chkImp);
+        chkImp.setBounds(530, 10, 140, 23);
+
+        chkInm.setBackground(new java.awt.Color(255, 255, 250));
+        chkInm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup1.add(chkInm);
+        chkInm.setForeground(new java.awt.Color(0, 0, 0));
+        chkInm.setText("Mutu Nasional (INM)");
+        chkInm.setBorderPainted(true);
+        chkInm.setBorderPaintedFlat(true);
+        chkInm.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkInm.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkInm.setName("chkInm"); // NOI18N
+        chkInm.setOpaque(false);
+        chkInm.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkInm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkInmActionPerformed(evt);
+            }
+        });
+        PanelInput.add(chkInm);
+        chkInm.setBounds(680, 10, 125, 23);
 
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
@@ -736,6 +807,8 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         } else if (cmbGedung.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu gedung perawatanya...!!");
             cmbGedung.requestFocus();
+        } else if (chkImu.isSelected() == false && chkImp.isSelected() == false && chkInm.isSelected() == false) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih/conteng dulu salah satu jenis indikatornya...!!");
         } else {
             if (cmbStatus.getSelectedIndex() == 0) {
                 stts = "aktif";
@@ -743,7 +816,6 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                 stts = "non aktif";
             }
 
-//            kdIndikator.setText(Valid.autoNomer("master_indikator_nasional_mutu", "INM", 3));
             Sequel.menyimpan("master_indikator_nasional_mutu", "'" + kdIndikator.getText() + "','" + TnoUrut.getText() + "',"
                     + "'" + TnmIndikator.getText() + "','" + cmbGedung.getSelectedItem().toString() + "','" + stts + "',"
                     + "'" + Ttarget.getText() + "'", "Indikator Nasional Mutu");
@@ -753,10 +825,10 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnSimpanActionPerformed(null);
-        }else{
-            Valid.pindah(evt,kdIndikator,BtnBatal);
+        } else {
+            Valid.pindah(evt, kdIndikator, BtnBatal);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
@@ -863,7 +935,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllKeyPressed
 
     private void tbMutuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMutuMouseClicked
-        if(tabMode.getRowCount()!=0){
+        if (tabMode.getRowCount() != 0) {
             try {
                 getData();
             } catch (java.lang.NullPointerException e) {
@@ -872,8 +944,8 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
 }//GEN-LAST:event_tbMutuMouseClicked
 
     private void tbMutuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbMutuKeyPressed
-        if(tabMode.getRowCount()!=0){
-            if((evt.getKeyCode()==KeyEvent.VK_ENTER)||(evt.getKeyCode()==KeyEvent.VK_UP)||(evt.getKeyCode()==KeyEvent.VK_DOWN)){
+        if (tabMode.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
                 try {
                     getData();
                 } catch (java.lang.NullPointerException e) {
@@ -1010,6 +1082,30 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         tampilSemua();
     }//GEN-LAST:event_MnSemuaIndikatorActionPerformed
 
+    private void chkImuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkImuActionPerformed
+        if (chkImu.isSelected() == true) {
+            kdIndikator.setText(Valid.autoNomer("master_indikator_nasional_mutu where kd_indikator like '%imu%'", "IMU", 3));
+        } else {
+            kdIndikator.setText("");
+        }
+    }//GEN-LAST:event_chkImuActionPerformed
+
+    private void chkImpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkImpActionPerformed
+        if (chkImp.isSelected() == true) {
+            kdIndikator.setText(Valid.autoNomer("master_indikator_nasional_mutu where kd_indikator like '%imp%'", "IMP", 3));
+        } else {
+            kdIndikator.setText("");
+        }
+    }//GEN-LAST:event_chkImpActionPerformed
+
+    private void chkInmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkInmActionPerformed
+        if (chkInm.isSelected() == true) {
+            kdIndikator.setText(Valid.autoNomer("master_indikator_nasional_mutu where kd_indikator like '%inm%'", "INM", 3));
+        } else {
+            kdIndikator.setText("");
+        }
+    }//GEN-LAST:event_chkInmActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1053,6 +1149,10 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     private widget.TextBox Ttarget;
     private widget.TextBox TtargetSemua;
     private javax.swing.JDialog WindowIndikator;
+    private javax.swing.ButtonGroup buttonGroup1;
+    public widget.CekBox chkImp;
+    public widget.CekBox chkImu;
+    public widget.CekBox chkInm;
     private widget.ComboBox cmbGedung;
     private widget.ComboBox cmbGedung1;
     private widget.ComboBox cmbStatus;
@@ -1068,6 +1168,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
+    private widget.Label jLabel18;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
@@ -1127,16 +1228,18 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     }
     
     public void emptTeks() {
-        kdIndikator.setText(Valid.autoNomer("master_indikator_nasional_mutu", "INM", 3));        
         TnoUrut.setText("");
         TnoUrut.requestFocus();
         TnmIndikator.setText("");
         cmbStatus.setSelectedIndex(0);
         Ttarget.setText("");
+        buttonGroup1.clearSelection();
     }
 
     private void getData() {
-        kode = "";        
+        kode = "";
+        buttonGroup1.clearSelection();
+        
         if (tbMutu.getSelectedRow() != -1) {
             kode = tbMutu.getValueAt(tbMutu.getSelectedRow(), 0).toString();
             kdIndikator.setText(tbMutu.getValueAt(tbMutu.getSelectedRow(), 0).toString());

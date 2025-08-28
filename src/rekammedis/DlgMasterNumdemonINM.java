@@ -272,9 +272,9 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         panelGlass10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("Ruang Perawatan : ");
+        jLabel13.setText("Rg. Perawatan/Unit/Inst./Bidang/Sub :");
         jLabel13.setName("jLabel13"); // NOI18N
-        jLabel13.setPreferredSize(new java.awt.Dimension(120, 23));
+        jLabel13.setPreferredSize(new java.awt.Dimension(210, 23));
         panelGlass10.add(jLabel13);
 
         cmbGedung1.setForeground(new java.awt.Color(0, 0, 0));
@@ -340,7 +340,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         PanelInput.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Kode Numdenom : ");
+        jLabel4.setText("Kode ND : ");
         jLabel4.setName("jLabel4"); // NOI18N
         PanelInput.add(jLabel4);
         jLabel4.setBounds(0, 10, 115, 23);
@@ -383,7 +383,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         TnoUrut.setBounds(275, 10, 50, 23);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Jenis INM : ");
+        jLabel10.setText("Jenis indikator : ");
         jLabel10.setName("jLabel10"); // NOI18N
         PanelInput.add(jLabel10);
         jLabel10.setBounds(0, 66, 115, 23);
@@ -399,20 +399,20 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         jLabel11.setText("Status Data :");
         jLabel11.setName("jLabel11"); // NOI18N
         PanelInput.add(jLabel11);
-        jLabel11.setBounds(315, 38, 80, 23);
+        jLabel11.setBounds(415, 38, 80, 23);
 
         cmbStatus.setForeground(new java.awt.Color(0, 0, 0));
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aktif", "Non Aktif" }));
         cmbStatus.setName("cmbStatus"); // NOI18N
         cmbStatus.setPreferredSize(new java.awt.Dimension(55, 28));
         PanelInput.add(cmbStatus);
-        cmbStatus.setBounds(400, 38, 80, 23);
+        cmbStatus.setBounds(500, 38, 80, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Ruang Perawatan : ");
+        jLabel12.setText("Rg. Perawatan/Unit/Inst./Bidang/Sub :");
         jLabel12.setName("jLabel12"); // NOI18N
         PanelInput.add(jLabel12);
-        jLabel12.setBounds(0, 38, 115, 23);
+        jLabel12.setBounds(0, 38, 215, 23);
 
         cmbGedung.setForeground(new java.awt.Color(0, 0, 0));
         cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
@@ -429,10 +429,10 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             }
         });
         PanelInput.add(cmbGedung);
-        cmbGedung.setBounds(118, 38, 190, 23);
+        cmbGedung.setBounds(222, 38, 190, 23);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Jenis Indikator : ");
+        jLabel14.setText("Jenis ND : ");
         jLabel14.setName("jLabel14"); // NOI18N
         PanelInput.add(jLabel14);
         jLabel14.setBounds(0, 122, 115, 23);

@@ -609,7 +609,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         internalFrame9.add(jLabel36);
         jLabel36.setBounds(0, 94, 150, 23);
 
-        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-08-2025" }));
+        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-08-2025" }));
         TtglCatat1.setDisplayFormat("dd-MM-yyyy");
         TtglCatat1.setName("TtglCatat1"); // NOI18N
         TtglCatat1.setOpaque(false);
@@ -907,9 +907,9 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         panelGlass10.add(Ttahun);
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Ruang Perawatan :");
+        jLabel6.setText("Rg. Perawatan/Unit/Inst./Bidang/Sub :");
         jLabel6.setName("jLabel6"); // NOI18N
-        jLabel6.setPreferredSize(new java.awt.Dimension(110, 23));
+        jLabel6.setPreferredSize(new java.awt.Dimension(210, 23));
         panelGlass10.add(jLabel6);
 
         cmbGedung1.setForeground(new java.awt.Color(0, 0, 0));
@@ -958,10 +958,10 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         PanelInput.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Ruang Perawatan :");
+        jLabel4.setText("Rg. Perawatan/Unit/Inst./Bidang/Sub :");
         jLabel4.setName("jLabel4"); // NOI18N
         PanelInput.add(jLabel4);
-        jLabel4.setBounds(0, 10, 120, 23);
+        jLabel4.setBounds(0, 10, 220, 23);
 
         cmbGedung.setForeground(new java.awt.Color(0, 0, 0));
         cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
@@ -973,7 +973,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             }
         });
         PanelInput.add(cmbGedung);
-        cmbGedung.setBounds(125, 10, 190, 23);
+        cmbGedung.setBounds(225, 10, 190, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Jenis Indikator :");
@@ -999,7 +999,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         PanelInput.add(jLabel8);
         jLabel8.setBounds(0, 154, 120, 23);
 
-        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-08-2025" }));
+        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-08-2025" }));
         TtglCatat.setDisplayFormat("dd-MM-yyyy");
         TtglCatat.setName("TtglCatat"); // NOI18N
         TtglCatat.setOpaque(false);
@@ -1707,7 +1707,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     public void tampil() {
         jnsIndikator = "";
         Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null,
-                ".: Data Indikator Mutu Rumah Sakit Bulan " + cmbBulan.getSelectedItem().toString() + " Tahun " + Ttahun.getText() + " Ruang Perawatan " + cmbGedung1.getSelectedItem().toString() + " :.",
+                ".: Data Indikator Mutu Rumah Sakit Bulan " + cmbBulan.getSelectedItem().toString() + " Tahun " + Ttahun.getText() + " Rg. Perawatan/Unit/Inst./Bidang/Sub " + cmbGedung1.getSelectedItem().toString() + " :.",
                 javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                 javax.swing.border.TitledBorder.DEFAULT_POSITION,
                 new java.awt.Font("Tahoma", 0, 13)));
@@ -1724,7 +1724,8 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         try {
             StringBuilder sb = new StringBuilder();
             if (cmbSttsIndikator.getSelectedIndex() == 0) {
-                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
                 sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
                 sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
                 sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
@@ -1764,7 +1765,8 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
                 sb.append("and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "' and m.status_data='aktif'");
                 sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");                
             } else if (cmbSttsIndikator.getSelectedIndex() == 1) {
-                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
                 sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
                 sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
                 sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
@@ -1804,7 +1806,8 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
                 sb.append("and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "' and m.status_data='non aktif'");
                 sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
             } else {
-                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
                 sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
                 sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
                 sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");

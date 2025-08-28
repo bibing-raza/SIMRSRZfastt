@@ -20836,7 +20836,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             gedungData = "IGD01";
         } else if (kodeKamar.equals("PON")) {
             namaGedung = "di " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodeKamar + "'");
-            gedungData = "PON00";
+            gedungData = "VK000";
         } else {
             namaGedung = "diruang " + Sequel.cariIsi("select b.nm_gedung from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kodeKamar + "'");
             gedungData = Sequel.cariIsi("select b.kd_bangsal from kamar k inner join bangsal b on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kodeKamar + "'");
@@ -20860,7 +20860,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         /*
         catatan :
         yang ini sementara bebas :        
-        D079 RUANG PERAWATAN VK BERSALIN
         D034 RUANG PERAWATAN BERSALIN/AL-KHALIQ
         */
     }

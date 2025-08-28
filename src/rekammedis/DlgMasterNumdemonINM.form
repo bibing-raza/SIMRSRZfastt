@@ -229,10 +229,10 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Ruang Perawatan : "/>
+                    <Property name="text" type="java.lang.String" value="Rg. Perawatan/Unit/Inst./Bidang/Sub :"/>
                     <Property name="name" type="java.lang.String" value="jLabel13" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[120, 23]"/>
+                      <Dimension value="[210, 23]"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -357,7 +357,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Kode Numdenom : "/>
+                <Property name="text" type="java.lang.String" value="Kode ND : "/>
                 <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
               </Properties>
               <Constraints>
@@ -444,7 +444,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Jenis INM : "/>
+                <Property name="text" type="java.lang.String" value="Jenis indikator : "/>
                 <Property name="name" type="java.lang.String" value="jLabel10" noResource="true"/>
               </Properties>
               <Constraints>
@@ -484,7 +484,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="315" y="38" width="80" height="23"/>
+                  <AbsoluteConstraints x="415" y="38" width="80" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -506,7 +506,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="400" y="38" width="80" height="23"/>
+                  <AbsoluteConstraints x="500" y="38" width="80" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -515,12 +515,12 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Ruang Perawatan : "/>
+                <Property name="text" type="java.lang.String" value="Rg. Perawatan/Unit/Inst./Bidang/Sub :"/>
                 <Property name="name" type="java.lang.String" value="jLabel12" noResource="true"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="0" y="38" width="115" height="23"/>
+                  <AbsoluteConstraints x="0" y="38" width="215" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -549,7 +549,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="118" y="38" width="190" height="23"/>
+                  <AbsoluteConstraints x="222" y="38" width="190" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -558,7 +558,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Jenis Indikator : "/>
+                <Property name="text" type="java.lang.String" value="Jenis ND : "/>
                 <Property name="name" type="java.lang.String" value="jLabel14" noResource="true"/>
               </Properties>
               <Constraints>
