@@ -3387,7 +3387,9 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         form.setSize(739, internalFrame1.getHeight() - 40);
         form.setLocationRelativeTo(internalFrame1);
         form.setVisible(true);
-        form.setAlwaysOnTop(true);
+        form.toFront();
+        form.requestFocus();
+//        form.setAlwaysOnTop(true);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnTambahMasalahActionPerformed
 
@@ -3500,7 +3502,9 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         WindowTemplate.setSize(998, internalFrame1.getHeight() - 40);
         WindowTemplate.setLocationRelativeTo(internalFrame1);        
         WindowTemplate.setVisible(true);
-        WindowTemplate.setAlwaysOnTop(true);
+        WindowTemplate.toFront();
+        WindowTemplate.requestFocus();
+//        WindowTemplate.setAlwaysOnTop(true);
         tampilTemplate();
         TCari1.requestFocus();
     }//GEN-LAST:event_BtnRencanaActionPerformed

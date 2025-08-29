@@ -5599,7 +5599,9 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         petugas.setSize(983, internalFrame1.getHeight() - 40);
         petugas.setLocationRelativeTo(internalFrame1);
         petugas.setVisible(true);
-        petugas.setAlwaysOnTop(true);
+        petugas.toFront();
+        petugas.requestFocus();
+//        petugas.setAlwaysOnTop(true);
     }//GEN-LAST:event_BtnPerawatActionPerformed
 
     private void BtnNotepadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepadActionPerformed
@@ -5624,7 +5626,9 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
-            form.setAlwaysOnTop(true);
+            form.toFront();
+            form.requestFocus();
+//            form.setAlwaysOnTop(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnDokumenJangMedActionPerformed
@@ -5635,7 +5639,9 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         dokter.setSize(1041, internalFrame1.getHeight() - 40);
         dokter.setLocationRelativeTo(internalFrame1);
         dokter.setVisible(true);
-        dokter.setAlwaysOnTop(true);
+        dokter.toFront();
+        dokter.requestFocus();
+//        dokter.setAlwaysOnTop(true);
     }//GEN-LAST:event_BtnDokterActionPerformed
 
     private void tbRiwPengobatanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRiwPengobatanMouseClicked
@@ -6372,7 +6378,9 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             form.setLocationRelativeTo(internalFrame1);
             form.setData(TNoRw.getText(), TPasien.getText(), TNoRM.getText());
             form.setVisible(true);
-            form.setAlwaysOnTop(true);
+            form.toFront();
+            form.requestFocus();
+//            form.setAlwaysOnTop(true);
         }
     }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
 

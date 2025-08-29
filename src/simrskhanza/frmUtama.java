@@ -1189,7 +1189,6 @@ public class frmUtama extends javax.swing.JFrame {
         WindowInput.getContentPane().add(internalFrame6, java.awt.BorderLayout.CENTER);
 
         DlgHome.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        DlgHome.setAlwaysOnTop(true);
         DlgHome.setIconImage(null);
         DlgHome.setName("DlgHome"); // NOI18N
         DlgHome.setUndecorated(true);
@@ -6409,7 +6408,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02/08/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29/08/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7344,6 +7343,8 @@ private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     isTampil();
     DlgHome.setLocationRelativeTo(PanelUtama);
     DlgHome.setVisible(true);
+    DlgHome.toFront();
+    DlgHome.requestFocus();
 
     if (TCari.isVisible() == true) {
         button2.setVisible(true);

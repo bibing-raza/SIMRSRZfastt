@@ -69,7 +69,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
     private double[] jumlah, harga, eb, ts, stok, beli;
     private String[] kodebarang, namabarang, kodesatuan, aturan1, aturan2, aturan3, waktu1, waktu2, keterangan, wktSmpn;
     private String kodedokter = "", namadokter = "", noresep = "", bangsal = "", bangsaldefault = Sequel.cariIsi("select kd_bangsal from set_lokasi limit 1"), tampilkan_ppnobat_ralan = "", status = "";
-    private String stat = "", obat = "", nmObat = "", idObat = "", kdUnit = "", programPRB = "", resepObatKronis = "", 
+    private String stat = "", obat = "", nmObat = "", idObat = "", kdUnit = "", programPRB = "", resepObatKronis = "", noSep = "", 
             tglHabisRujukan = "", noRM = "", noSEP = "", noKARTU = "", noRAWATiter = "", pengambilan = "", sttsAmbil = "", poliKe = "", 
             tglhabisRujukan = "", kdpoliIter = "", tglAmbilObat = "", resepIter = "", resepIterJudul = "";
     private DlgCariBangsal caribangsal = new DlgCariBangsal(null, false);
@@ -1681,14 +1681,16 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     resep.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                     resep.setLocationRelativeTo(internalFrame1);
                     resep.emptTeks();
-                    resep.isCek();
-                    resep.setAlwaysOnTop(true);
+                    resep.isCek();                    
+//                    resep.setAlwaysOnTop(true);
                     resep.dokter.setAlwaysOnTop(true);
                     resep.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate(), cmbJam.getSelectedItem().toString(),
                             cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), kdUnit);
                     resep.tampil();
                     resep.setDokterRalan();
                     resep.setVisible(true);
+                    resep.toFront();
+                    resep.requestFocus();
                     dispose();
                 } else {
                     dispose();
@@ -1926,6 +1928,9 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                 resepObatKronis = "";
                 resepIter = "";
                 resepIterJudul = "";
+                noSep = "";
+                noSep = Sequel.cariIsi("select no_sep from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "' limit 1");
+                
                 for (i = 0; i < tbResepObat.getRowCount(); i++) {
                     if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
                         if (idObat.equals("")) {
@@ -1944,7 +1949,8 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                 }
                 
                 //cek resep obat kronis
-                if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
+                if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0
+                        || Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSep + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
                     resepObatKronis = "Resep dalam kategori obat kronis";
                 } else {
                     resepObatKronis = "-";

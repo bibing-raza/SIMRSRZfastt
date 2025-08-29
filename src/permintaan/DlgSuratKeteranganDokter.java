@@ -2453,8 +2453,10 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         dokumen.isForm();
         dokumen.setSize(650, internalFrame1.getHeight() - 40);
         dokumen.setLocationRelativeTo(internalFrame1);
-        dokumen.setAlwaysOnTop(true);
+//        dokumen.setAlwaysOnTop(true);
         dokumen.setVisible(true);
+        dokumen.toFront();
+        dokumen.requestFocus();
     }//GEN-LAST:event_BtnDokumenActionPerformed
 
     private void MnHasilPemeriksaanPenunjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanPenunjangActionPerformed

@@ -1916,7 +1916,9 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         penjab.setSize(868, 519);
         penjab.setLocationRelativeTo(internalFrame1);
         penjab.setVisible(true);
-        penjab.setAlwaysOnTop(true);
+        penjab.toFront();
+        penjab.requestFocus();
+//        penjab.setAlwaysOnTop(true);
         penjab.TCari.requestFocus();
     }//GEN-LAST:event_btnPenjabActionPerformed
 

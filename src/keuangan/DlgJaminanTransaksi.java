@@ -1948,7 +1948,9 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
                 panjar.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 panjar.setLocationRelativeTo(internalFrame1);
                 panjar.setVisible(true);
-                panjar.setAlwaysOnTop(true);
+                panjar.toFront();
+                panjar.requestFocus();
+//                panjar.setAlwaysOnTop(true);
                 BtnBatalActionPerformed(null);
             }
         } else {

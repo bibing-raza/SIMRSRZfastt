@@ -1228,12 +1228,14 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     }
     
     public void emptTeks() {
+        kdIndikator.setText("");
         TnoUrut.setText("");
         TnoUrut.requestFocus();
+        buttonGroup1.clearSelection();
         TnmIndikator.setText("");
+        cmbGedung.setSelectedIndex(0);
         cmbStatus.setSelectedIndex(0);
         Ttarget.setText("");
-        buttonGroup1.clearSelection();
     }
 
     private void getData() {

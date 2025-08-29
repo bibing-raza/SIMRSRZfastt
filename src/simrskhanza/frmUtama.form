@@ -410,7 +410,6 @@
     <Container class="javax.swing.JDialog" name="DlgHome">
       <Properties>
         <Property name="defaultCloseOperation" type="int" value="2"/>
-        <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="null"/>
         </Property>
@@ -8148,7 +8147,7 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="02/08/2025"/>
+            <StringItem index="0" value="29/08/2025"/>
           </StringArray>
         </Property>
         <Property name="displayFormat" type="java.lang.String" value="dd/MM/yyyy"/>

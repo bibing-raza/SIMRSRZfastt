@@ -62,7 +62,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2;
     private ResultSet rs, rs1, rs2;
     private int i = 0, x = 0;
-    private String norawat = "", norm = "", idObat = "", kdUnit = "", resepObatKronis = "", resepIter = "";
+    private String norawat = "", norm = "", idObat = "", kdUnit = "", resepObatKronis = "", resepIter = "", noSep = "";
     public Timer tEresep;
     private BackgroundMusic music;
 
@@ -904,6 +904,9 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 idObat = "";
                 resepObatKronis = "";
                 resepIter = "";
+                noSep = "";
+                noSep = Sequel.cariIsi("select no_sep from iter_obat_bpjs where no_rawat='" + norawat + "' limit 1");
+
                 for (i = 0; i < tbdaftarResep.getRowCount(); i++) {
                     if (tbdaftarResep.getValueAt(i, 0).toString().equals("true")) {
                         if (idObat.equals("")) {
@@ -915,7 +918,8 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 }
                 
                 //cek resep obat kronis
-                if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + norawat + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
+                if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + norawat + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0
+                        || Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSep + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
                     resepObatKronis = "Resep dalam kategori obat kronis";
                 } else {
                     resepObatKronis = "-";

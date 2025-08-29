@@ -1701,8 +1701,10 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         if (tbTransfusi.getSelectedRow() > -1) {            
             WindowCetak.setSize(533, 70);
             WindowCetak.setLocationRelativeTo(internalFrame1);
-            WindowCetak.setAlwaysOnTop(true);
+//            WindowCetak.setAlwaysOnTop(true);
             WindowCetak.setVisible(true);
+            WindowCetak.toFront();
+            WindowCetak.requestFocus();
             Valid.SetTgl(tglA, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
             tglB.setDate(new Date());
         } else {
@@ -1771,8 +1773,10 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         BtnCari2ActionPerformed(null);
         WindowRiwayat.setSize(985, internalFrame1.getHeight() - 40);
         WindowRiwayat.setLocationRelativeTo(internalFrame1);
-        WindowRiwayat.setAlwaysOnTop(true);
+//        WindowRiwayat.setAlwaysOnTop(true);
         WindowRiwayat.setVisible(true);
+        WindowRiwayat.toFront();
+        WindowRiwayat.requestFocus();
     }//GEN-LAST:event_MnRiwayatDataActionPerformed
 
     private void TCari2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari2KeyPressed

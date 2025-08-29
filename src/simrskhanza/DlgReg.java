@@ -7768,7 +7768,7 @@ private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             dokter.setVisible(true);
             dokter.emptTeks();
         } else {
-            dokter2.setPoli(TPoli.getText(), "tidak");
+            dokter2.setPoli(TPoli.getText(), "ya");
             dokter2.isCek();
             dokter2.tampil();
             dokter2.TCari.requestFocus();
