@@ -1236,7 +1236,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         angkaBulan = Sequel.cariIsi("select month(now())");
         Ttahun.setText(Sequel.cariIsi("select year(now())"));
         tampil();
-        MnMasterIndikator.setEnabled(akses.getadmin());
+        MnMasterIndikator.setEnabled(akses.getpic_kmkp());
     }//GEN-LAST:event_formWindowOpened
 
     private void cmbGedungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGedungActionPerformed

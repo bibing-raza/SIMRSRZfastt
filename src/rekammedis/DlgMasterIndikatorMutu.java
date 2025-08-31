@@ -1259,8 +1259,8 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     }
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getpegawai_admin());
-        BtnGanti.setEnabled(akses.getpegawai_admin());
+        BtnSimpan.setEnabled(akses.getpic_kmkp());
+        BtnGanti.setEnabled(akses.getpic_kmkp());
     }
     
     private void tampilSemua() {

@@ -1923,6 +1923,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                         tabMode.addRow(new Object[]{false, "[M]Stok Darah", rs.getBoolean("utd_stok_darah")});
                     }
                     
+                    if ("[N]PIC KMKP".toLowerCase().contains(TCari.getText().toLowerCase())) {
+                        tabMode.addRow(new Object[]{false, "[N]PIC KMKP", rs.getBoolean("pic_kmkp")});
+                    }
+                    
                     if ("[N]Indikator Mutu".toLowerCase().contains(TCari.getText().toLowerCase())) {
                         tabMode.addRow(new Object[]{false, "[N]Indikator Mutu", rs.getBoolean("indikator_mutu")});
                     }
@@ -3480,6 +3484,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
             
             if("[M]Stok Darah".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","utd_stok_darah='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[N]PIC KMKP".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","pic_kmkp='"+tbUser.getValueAt(i,2).toString()+"'");
             }
             
             if("[N]Indikator Mutu".equals(tbUser.getValueAt(i,1).toString())){
