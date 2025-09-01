@@ -23,6 +23,7 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -47,9 +48,12 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     public DlgMasterIndikatorMutu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         tabMode = new DefaultTableModel(null, new String[]{
-            "Kode Indikator", "No. Urut", "Nama Indikator", "Gedung Perawatan", "Status Data", "Target"}) {
+            "Kode Indikator", "No. Urut", "Nama Indikator", "Gedung Perawatan", "Status Data", "Target", "Jenis Indikator"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -60,7 +64,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         tbMutu.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbMutu.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 6; i++) {
+        for (i = 0; i < 7; i++) {
             TableColumn column = tbMutu.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(90);
@@ -74,12 +78,17 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                 column.setPreferredWidth(90);
             } else if (i == 5) {
                 column.setPreferredWidth(90);
+            } else if (i == 6) {
+                column.setPreferredWidth(100);
             }
         }
         tbMutu.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbMutu.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbMutu.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
         
         tabMode1 = new DefaultTableModel(null, new String[]{
-            "Kode Indikator", "No. Urut", "Nama Indikator", "Gedung Perawatan", "Status Data", "Target"}) {
+            "Kode Indikator", "No. Urut", "Nama Indikator", "Gedung Perawatan", "Status Data", "Target", "Jenis Indikator"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -90,7 +99,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         tbIndikator.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbIndikator.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 6; i++) {
+        for (i = 0; i < 7; i++) {
             TableColumn column = tbIndikator.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(90);
@@ -104,9 +113,14 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                 column.setPreferredWidth(90);
             } else if (i == 5) {
                 column.setPreferredWidth(90);
+            } else if (i == 6) {
+                column.setPreferredWidth(100);
             }
         }
         tbIndikator.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbIndikator.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbIndikator.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         TCari1.setDocument(new batasInput((byte) 100).getKata(TCari1));
@@ -1331,6 +1345,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                     + "gedung='" + cmbGedung1.getSelectedItem().toString() + "' and kd_indikator LIKE ? or "
                     + "gedung='" + cmbGedung1.getSelectedItem().toString() + "' and nm_indikator like ? or "
                     + "gedung='" + cmbGedung1.getSelectedItem().toString() + "' and target like ? or "
+                    + "gedung='" + cmbGedung1.getSelectedItem().toString() + "' and jenis_indikator like ? or "
                     + "gedung='" + cmbGedung1.getSelectedItem().toString() + "' and status_data like ? ORDER BY no_urut, gedung");
 
             try {
@@ -1338,6 +1353,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                 ps.setString(2, "%" + TCari.getText().trim() + "%");
                 ps.setString(3, "%" + TCari.getText().trim() + "%");
                 ps.setString(4, "%" + TCari.getText().trim() + "%");
+                ps.setString(5, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();                
                 while (rs.next()) {
                     tabMode.addRow(new String[]{                        
@@ -1346,7 +1362,8 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                         rs.getString("nm_indikator"),
                         rs.getString("gedung"),
                         rs.getString("status_data").toUpperCase(),
-                        rs.getString("target")
+                        rs.getString("target"),
+                        rs.getString("jenis_indikator")
                     });
                 }                
             } catch (Exception e) {
@@ -1388,6 +1405,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
             TnmIndikator.setText(tbMutu.getValueAt(tbMutu.getSelectedRow(), 2).toString());
             cmbGedung.setSelectedItem(tbMutu.getValueAt(tbMutu.getSelectedRow(), 3).toString());
             Ttarget.setText(tbMutu.getValueAt(tbMutu.getSelectedRow(), 5).toString());
+            cmbJnsIndikator.setSelectedItem(tbMutu.getValueAt(tbMutu.getSelectedRow(), 6).toString());
             
             if (tbMutu.getValueAt(tbMutu.getSelectedRow(), 4).toString().equals("AKTIF")) {
                 cmbStatus.setSelectedIndex(0);
@@ -1410,6 +1428,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                     + "nm_indikator like ? or "
                     + "target like ? or "
                     + "gedung like ? or "
+                    + "jenis_indikator like ? or "
                     + "status_data like ? ORDER BY no_urut, gedung");
 
             try {
@@ -1418,6 +1437,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                 ps1.setString(3, "%" + TCari1.getText().trim() + "%");
                 ps1.setString(4, "%" + TCari1.getText().trim() + "%");
                 ps1.setString(5, "%" + TCari1.getText().trim() + "%");
+                ps1.setString(6, "%" + TCari1.getText().trim() + "%");
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
                     tabMode1.addRow(new String[]{
@@ -1426,7 +1446,8 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                         rs1.getString("nm_indikator"),
                         rs1.getString("gedung"),
                         rs1.getString("status_data").toUpperCase(),
-                        rs1.getString("target")
+                        rs1.getString("target"),
+                        rs1.getString("jenis_indikator")
                     });
                 }
             } catch (Exception e) {

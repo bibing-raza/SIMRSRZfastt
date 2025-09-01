@@ -23,6 +23,7 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -48,10 +49,13 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     public DlgMasterNumdemonINM(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         tabMode = new DefaultTableModel(null, new String[]{
-            "Kode Numdenom", "No. Urut", "Kode Indikator", "Nama Indikator", "Jenis Indikator", "Kalimat Deskripsi", 
-            "Ruang Perawatan/Gedung", "Status Data"
+            "Kode ND", "No. Urut", "Kode Indikator", "Nama Indikator", "Jenis ND", "Kalimat Deskripsi", 
+            "Ruang Perawatan/Gedung", "Status Data ND", "Jenis Indikator"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -63,10 +67,10 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         tbMutu.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbMutu.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < 9; i++) {
             TableColumn column = tbMutu.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(70);
             } else if (i == 1) {
                 column.setPreferredWidth(60);
             } else if (i == 2) {
@@ -80,13 +84,19 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(200);
             } else if (i == 7) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(100);
+            } else if (i == 8) {
+                column.setPreferredWidth(100);
             }
         }
         tbMutu.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbMutu.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbMutu.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbMutu.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         
         tabMode1 = new DefaultTableModel(null, new String[]{
-            "Cek", "Kode Numerator", "No. Urut", "Nama Numerator", "Nama Indikator", "Rg./Unit/Inst./Gedung", "Status Data"}) {
+            "Cek", "Kode ND", "No. Urut", "Nama Numerator", "Nama Indikator", "Rg./Unit/Inst./Gedung", "Status Data ND", "Jenis Indikator"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 boolean a = false;
@@ -98,7 +108,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             Class[] types = new Class[]{
                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, 
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
-                java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -111,12 +121,12 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         tbNumerator.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbNumerator.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 7; i++) {
+        for (i = 0; i < 8; i++) {
             TableColumn column = tbNumerator.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(30);
             } else if (i == 1) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(70);
             } else if (i == 2) {
                 column.setPreferredWidth(60);
             } else if (i == 3) {
@@ -126,13 +136,18 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             } else if (i == 5) {
                 column.setPreferredWidth(160);
             } else if (i == 6) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(100);
+            } else if (i == 7) {
+                column.setPreferredWidth(100);
             }
         }
         tbNumerator.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbNumerator.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbNumerator.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         
         tabMode2 = new DefaultTableModel(null, new String[]{
-            "Cek", "Kode Numerator", "No. Urut", "Nama Denominator", "Nama Denominator", "Rg./Unit/Inst./Gedung", "Status Data"}) {
+            "Cek", "Kode ND", "No. Urut", "Nama Denominator", "Nama Indikator", "Rg./Unit/Inst./Gedung", "Status Data ND", "Jenis Indikator"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 boolean a = false;
@@ -144,7 +159,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             Class[] types = new Class[]{
                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, 
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
-                java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -157,12 +172,12 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         tbDenominator.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbDenominator.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 7; i++) {
+        for (i = 0; i < 8; i++) {
             TableColumn column = tbDenominator.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(30);
             } else if (i == 1) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(70);
             } else if (i == 2) {
                 column.setPreferredWidth(60);
             } else if (i == 3) {
@@ -172,10 +187,15 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             } else if (i == 5) {
                 column.setPreferredWidth(160);
             } else if (i == 6) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(100);
+            } else if (i == 7) {
+                column.setPreferredWidth(100);
             }
         }
         tbDenominator.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbDenominator.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbDenominator.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         TnoUrut.setDocument(new batasInput((byte) 3).getOnlyAngka(TnoUrut));
@@ -959,7 +979,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         TnoUrut.setBounds(275, 10, 50, 23);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Jenis indikator : ");
+        jLabel10.setText("Nama Indikator : ");
         jLabel10.setName("jLabel10"); // NOI18N
         PanelInput.add(jLabel10);
         jLabel10.setBounds(0, 66, 115, 23);
@@ -1666,7 +1686,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     public void tampil() {     
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT m1.*, m2.kd_indikator, m2.nm_indikator, m2.gedung FROM master_numdemon_indikator_nasional_mutu m1 "
+            ps = koneksi.prepareStatement("SELECT m1.*, m2.kd_indikator, m2.nm_indikator, m2.gedung, m2.jenis_indikator FROM master_numdemon_indikator_nasional_mutu m1 "
                     +"inner join master_indikator_nasional_mutu m2 on m1.kd_indikator=m2.kd_indikator WHERE "
                     + "m2.gedung='" + cmbGedung1.getSelectedItem().toString() + "' and m2.kd_indikator like ? or "
                     + "m2.gedung='" + cmbGedung1.getSelectedItem().toString() + "' and m2.nm_indikator like ? or "
@@ -1682,7 +1702,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
                 ps.setString(4, "%" + TCari.getText().trim() + "%");
                 ps.setString(5, "%" + TCari.getText().trim() + "%");
                 ps.setString(6, "%" + TCari.getText().trim() + "%");
-                rs = ps.executeQuery();                
+                rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
                         rs.getString("kd_numdemon"),
@@ -1692,7 +1712,8 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
                         rs.getString("jenis_numdemon"),
                         rs.getString("nm_numdemon"),
                         rs.getString("gedung"),
-                        rs.getString("status_data").toUpperCase()
+                        rs.getString("status_data").toUpperCase(),
+                        rs.getString("jenis_indikator")
                     });
                 }                
             } catch (Exception e) {
@@ -1781,7 +1802,8 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
                         rs1.getString("nm_numdemon"),
                         rs1.getString("nm_indikator"),
                         rs1.getString("gedung"),
-                        rs1.getString("sttsDataNum").toUpperCase()
+                        rs1.getString("sttsDataNum").toUpperCase(),
+                        rs1.getString("jenis_indikator")
                     });
                 }                
             } catch (Exception e) {
@@ -1828,7 +1850,8 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
                         rs2.getString("nm_numdemon"),
                         rs2.getString("nm_indikator"),
                         rs2.getString("gedung"),
-                        rs2.getString("sttsDataNum").toUpperCase()
+                        rs2.getString("sttsDataNum").toUpperCase(),
+                        rs2.getString("jenis_indikator")
                     });
                 }                
             } catch (Exception e) {
