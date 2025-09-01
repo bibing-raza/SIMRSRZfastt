@@ -6179,10 +6179,10 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private void MnBersihkanStringSampahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBersihkanStringSampahActionPerformed
         x = JOptionPane.showConfirmDialog(rootPane, "Apakah string sampah ini (\\\\\\\\,\\\\,false) akan dibersihkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (x == JOptionPane.YES_OPTION) {
-            Sequel.queryu("UPDATE ringkasan_pulang_ranap SET pemeriksaan_penunjang = REPLACE(pemeriksaan_penunjang, 'false', ' ') WHERE pemeriksaan_penunjang LIKE '%false%'");
-            Sequel.queryu("UPDATE ringkasan_pulang_ranap SET pemeriksaan_penunjang = REPLACE(pemeriksaan_penunjang, '\\\\''', ' ') WHERE pemeriksaan_penunjang LIKE '%\\\\''%'");
-            Sequel.queryu("UPDATE ringkasan_pulang_ranap_histori SET pemeriksaan_penunjang = REPLACE(pemeriksaan_penunjang, 'false', ' ') WHERE pemeriksaan_penunjang LIKE '%false%'");
-            Sequel.queryu("UPDATE ringkasan_pulang_ranap_histori SET pemeriksaan_penunjang = REPLACE(pemeriksaan_penunjang, '\\\\''', ' ') WHERE pemeriksaan_penunjang LIKE '%\\\\''%'");
+            Sequel.queryu("UPDATE ringkasan_pulang_ranap SET pemeriksaan_penunjang = REPLACE(pemeriksaan_penunjang, 'false', ' ') WHERE no_rawat='" + TNoRW.getText() + "' and pemeriksaan_penunjang LIKE '%false%'");
+            Sequel.queryu("UPDATE ringkasan_pulang_ranap SET pemeriksaan_penunjang = REPLACE(pemeriksaan_penunjang, '\\\\''', ' ') WHERE no_rawat='" + TNoRW.getText() + "' and pemeriksaan_penunjang LIKE '%\\\\''%'");
+            Sequel.queryu("UPDATE ringkasan_pulang_ranap_histori SET pemeriksaan_penunjang = REPLACE(pemeriksaan_penunjang, 'false', ' ') WHERE no_rawat='" + TNoRW.getText() + "' and pemeriksaan_penunjang LIKE '%false%'");
+            Sequel.queryu("UPDATE ringkasan_pulang_ranap_histori SET pemeriksaan_penunjang = REPLACE(pemeriksaan_penunjang, '\\\\''', ' ') WHERE no_rawat='" + TNoRW.getText() + "' and pemeriksaan_penunjang LIKE '%\\\\''%'");
             
             JOptionPane.showMessageDialog(null, "Proses selesai, affected row bisa dicek dikotak hitam/terminal/console...!");
         }

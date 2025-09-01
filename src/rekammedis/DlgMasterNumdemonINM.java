@@ -32,13 +32,13 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  * @author dosen
  */
 public class DlgMasterNumdemonINM extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps, ps1;
-    private ResultSet rs, rs1;
+    private PreparedStatement ps, ps1, ps2;
+    private ResultSet rs, rs1, rs2;
     private int i = 0, x = 0, n = 0;
     private String kode = "", stts = "", kdINM = "";
     
@@ -130,6 +130,52 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             }
         }
         tbNumerator.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode2 = new DefaultTableModel(null, new String[]{
+            "Cek", "Kode Numerator", "No. Urut", "Nama Denominator", "Nama Denominator", "Rg./Unit/Inst./Gedung", "Status Data"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                boolean a = false;
+                if (colIndex == 0) {
+                    a = true;
+                }
+                return a;
+            }
+            Class[] types = new Class[]{
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, 
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
+                java.lang.Object.class
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        };
+        
+        tbDenominator.setModel(tabMode2);
+        tbDenominator.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbDenominator.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 7; i++) {
+            TableColumn column = tbDenominator.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(30);
+            } else if (i == 1) {
+                column.setPreferredWidth(90);
+            } else if (i == 2) {
+                column.setPreferredWidth(60);
+            } else if (i == 3) {
+                column.setPreferredWidth(600);
+            } else if (i == 4) {
+                column.setPreferredWidth(600);
+            } else if (i == 5) {
+                column.setPreferredWidth(160);
+            } else if (i == 6) {
+                column.setPreferredWidth(90);
+            }
+        }
+        tbDenominator.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         TnoUrut.setDocument(new batasInput((byte) 3).getOnlyAngka(TnoUrut));
@@ -159,12 +205,15 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnNumerator = new javax.swing.JMenuItem();
         MnDenominator = new javax.swing.JMenuItem();
+        MnRefresKode = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnContengNum = new javax.swing.JMenuItem();
         MnHapusContengNum = new javax.swing.JMenuItem();
+        MnRefresKodeNum = new javax.swing.JMenuItem();
         jPopupMenu3 = new javax.swing.JPopupMenu();
         MnContengDen = new javax.swing.JMenuItem();
         MnHapusContengDen = new javax.swing.JMenuItem();
+        MnRefresKodeDen = new javax.swing.JMenuItem();
         WindowNumerator = new javax.swing.JDialog();
         internalFrame3 = new widget.InternalFrame();
         panelisi3 = new widget.panelisi();
@@ -181,6 +230,22 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         BtnAll1 = new widget.Button();
         BtnGanti1 = new widget.Button();
         BtnCloseIn1 = new widget.Button();
+        WindowDenominator = new javax.swing.JDialog();
+        internalFrame4 = new widget.InternalFrame();
+        panelisi5 = new widget.panelisi();
+        jLabel17 = new widget.Label();
+        cmbSttsDenominator = new widget.ComboBox();
+        Scroll2 = new widget.ScrollPane();
+        tbDenominator = new widget.Table();
+        panelisi6 = new widget.panelisi();
+        jLabel15 = new widget.Label();
+        TCari2 = new widget.TextBox();
+        BtnCari2 = new widget.Button();
+        jLabel19 = new widget.Label();
+        LCount2 = new widget.Label();
+        BtnAll2 = new widget.Button();
+        BtnGanti2 = new widget.Button();
+        BtnCloseIn2 = new widget.Button();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -227,7 +292,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         MnNumerator.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnNumerator.setIconTextGap(5);
         MnNumerator.setName("MnNumerator"); // NOI18N
-        MnNumerator.setPreferredSize(new java.awt.Dimension(160, 26));
+        MnNumerator.setPreferredSize(new java.awt.Dimension(175, 26));
         MnNumerator.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnNumeratorActionPerformed(evt);
@@ -242,13 +307,28 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         MnDenominator.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnDenominator.setIconTextGap(5);
         MnDenominator.setName("MnDenominator"); // NOI18N
-        MnDenominator.setPreferredSize(new java.awt.Dimension(160, 26));
+        MnDenominator.setPreferredSize(new java.awt.Dimension(175, 26));
         MnDenominator.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnDenominatorActionPerformed(evt);
             }
         });
         jPopupMenu1.add(MnDenominator);
+
+        MnRefresKode.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRefresKode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        MnRefresKode.setText("Refresh Kode ND");
+        MnRefresKode.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRefresKode.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRefresKode.setIconTextGap(5);
+        MnRefresKode.setName("MnRefresKode"); // NOI18N
+        MnRefresKode.setPreferredSize(new java.awt.Dimension(175, 26));
+        MnRefresKode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRefresKodeActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnRefresKode);
 
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
 
@@ -282,6 +362,21 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         });
         jPopupMenu2.add(MnHapusContengNum);
 
+        MnRefresKodeNum.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRefresKodeNum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        MnRefresKodeNum.setText("Refresh Kode ND");
+        MnRefresKodeNum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRefresKodeNum.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRefresKodeNum.setIconTextGap(5);
+        MnRefresKodeNum.setName("MnRefresKodeNum"); // NOI18N
+        MnRefresKodeNum.setPreferredSize(new java.awt.Dimension(160, 26));
+        MnRefresKodeNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRefresKodeNumActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnRefresKodeNum);
+
         jPopupMenu3.setName("jPopupMenu3"); // NOI18N
 
         MnContengDen.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -314,6 +409,21 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         });
         jPopupMenu3.add(MnHapusContengDen);
 
+        MnRefresKodeDen.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRefresKodeDen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        MnRefresKodeDen.setText("Refresh Kode ND");
+        MnRefresKodeDen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRefresKodeDen.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRefresKodeDen.setIconTextGap(5);
+        MnRefresKodeDen.setName("MnRefresKodeDen"); // NOI18N
+        MnRefresKodeDen.setPreferredSize(new java.awt.Dimension(160, 26));
+        MnRefresKodeDen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRefresKodeDenActionPerformed(evt);
+            }
+        });
+        jPopupMenu3.add(MnRefresKodeDen);
+
         WindowNumerator.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowNumerator.setName("WindowNumerator"); // NOI18N
         WindowNumerator.setUndecorated(true);
@@ -335,7 +445,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         jLabel16.setBounds(0, 10, 130, 23);
 
         cmbSttsNumerator.setForeground(new java.awt.Color(0, 0, 0));
-        cmbSttsNumerator.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aktif", "Non Aktif", "Semua" }));
+        cmbSttsNumerator.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Aktif", "Non Aktif" }));
         cmbSttsNumerator.setName("cmbSttsNumerator"); // NOI18N
         cmbSttsNumerator.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi3.add(cmbSttsNumerator);
@@ -460,6 +570,153 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         internalFrame3.add(panelisi4, java.awt.BorderLayout.PAGE_END);
 
         WindowNumerator.getContentPane().add(internalFrame3, java.awt.BorderLayout.CENTER);
+
+        WindowDenominator.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowDenominator.setName("WindowDenominator"); // NOI18N
+        WindowDenominator.setUndecorated(true);
+        WindowDenominator.setResizable(false);
+
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Semua Denominator Mutu Layanan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame4.setName("internalFrame4"); // NOI18N
+        internalFrame4.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame4.setLayout(new java.awt.BorderLayout());
+
+        panelisi5.setName("panelisi5"); // NOI18N
+        panelisi5.setPreferredSize(new java.awt.Dimension(100, 45));
+        panelisi5.setLayout(null);
+
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("Status Denominator : ");
+        jLabel17.setName("jLabel17"); // NOI18N
+        panelisi5.add(jLabel17);
+        jLabel17.setBounds(0, 10, 130, 23);
+
+        cmbSttsDenominator.setForeground(new java.awt.Color(0, 0, 0));
+        cmbSttsDenominator.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Aktif", "Non Aktif" }));
+        cmbSttsDenominator.setName("cmbSttsDenominator"); // NOI18N
+        cmbSttsDenominator.setPreferredSize(new java.awt.Dimension(80, 23));
+        panelisi5.add(cmbSttsDenominator);
+        cmbSttsDenominator.setBounds(133, 10, 80, 23);
+
+        internalFrame4.add(panelisi5, java.awt.BorderLayout.PAGE_START);
+
+        Scroll2.setName("Scroll2"); // NOI18N
+        Scroll2.setOpaque(true);
+
+        tbDenominator.setAutoCreateRowSorter(true);
+        tbDenominator.setToolTipText("Silahkan klik conteng untuk memilih data yang akan diupdate");
+        tbDenominator.setComponentPopupMenu(jPopupMenu3);
+        tbDenominator.setName("tbDenominator"); // NOI18N
+        Scroll2.setViewportView(tbDenominator);
+
+        internalFrame4.add(Scroll2, java.awt.BorderLayout.CENTER);
+
+        panelisi6.setName("panelisi6"); // NOI18N
+        panelisi6.setPreferredSize(new java.awt.Dimension(100, 48));
+        panelisi6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Key Word :");
+        jLabel15.setName("jLabel15"); // NOI18N
+        jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelisi6.add(jLabel15);
+
+        TCari2.setForeground(new java.awt.Color(0, 0, 0));
+        TCari2.setName("TCari2"); // NOI18N
+        TCari2.setPreferredSize(new java.awt.Dimension(250, 23));
+        TCari2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCari2KeyPressed(evt);
+            }
+        });
+        panelisi6.add(TCari2);
+
+        BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari2.setMnemonic('2');
+        BtnCari2.setText("Tampilkan Data");
+        BtnCari2.setName("BtnCari2"); // NOI18N
+        BtnCari2.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnCari2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari2ActionPerformed(evt);
+            }
+        });
+        BtnCari2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCari2KeyPressed(evt);
+            }
+        });
+        panelisi6.add(BtnCari2);
+
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Record :");
+        jLabel19.setName("jLabel19"); // NOI18N
+        jLabel19.setPreferredSize(new java.awt.Dimension(65, 23));
+        panelisi6.add(jLabel19);
+
+        LCount2.setForeground(new java.awt.Color(0, 0, 0));
+        LCount2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount2.setText("0");
+        LCount2.setName("LCount2"); // NOI18N
+        LCount2.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelisi6.add(LCount2);
+
+        BtnAll2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAll2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll2.setMnemonic('M');
+        BtnAll2.setText("Semua");
+        BtnAll2.setToolTipText("Alt+M");
+        BtnAll2.setName("BtnAll2"); // NOI18N
+        BtnAll2.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnAll2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAll2ActionPerformed(evt);
+            }
+        });
+        BtnAll2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnAll2KeyPressed(evt);
+            }
+        });
+        panelisi6.add(BtnAll2);
+
+        BtnGanti2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGanti2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGanti2.setMnemonic('G');
+        BtnGanti2.setText("Ganti");
+        BtnGanti2.setToolTipText("Alt+G");
+        BtnGanti2.setName("BtnGanti2"); // NOI18N
+        BtnGanti2.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnGanti2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGanti2ActionPerformed(evt);
+            }
+        });
+        BtnGanti2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnGanti2KeyPressed(evt);
+            }
+        });
+        panelisi6.add(BtnGanti2);
+
+        BtnCloseIn2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn2.setMnemonic('U');
+        BtnCloseIn2.setText("Tutup");
+        BtnCloseIn2.setToolTipText("Alt+U");
+        BtnCloseIn2.setName("BtnCloseIn2"); // NOI18N
+        BtnCloseIn2.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnCloseIn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn2ActionPerformed(evt);
+            }
+        });
+        panelisi6.add(BtnCloseIn2);
+
+        internalFrame4.add(panelisi6, java.awt.BorderLayout.PAGE_END);
+
+        WindowDenominator.getContentPane().add(internalFrame4, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -918,6 +1175,8 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
+        WindowNumerator.dispose();
+        WindowDenominator.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -1060,28 +1319,33 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         }
 
         if (n == 0) {
-            JOptionPane.showMessageDialog(null, "Silahkan conteng dulu pada tabel nama numerator indikator mutu yang dipilih..!!!!");
+            JOptionPane.showMessageDialog(null, "Silahkan conteng dulu pada tabel nama numerator mutu layanan yang dipilih..!!!!");
             tbNumerator.requestFocus();
         } else {
             x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin nama numerator mutu layanan yang dipilih mau diupdate status data..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 if (cmbSttsNumerator.getSelectedIndex() == 0) {
-                    stts = "aktif";
+                    JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu status numeratornya dulu dengan benar..!!!!");
+                    cmbSttsNumerator.requestFocus();
                 } else {
-                    stts = "non aktif";
-                }
-
-                try {
-                    for (i = 0; i < tbNumerator.getRowCount(); i++) {
-                        if (tbNumerator.getValueAt(i, 0).toString().equals("true")) {
-                            Sequel.mengedit("master_numdemon_indikator_nasional_mutu", "kd_numdemon='" + tbNumerator.getValueAt(i, 1).toString() + "'",
-                                    "status_data='" + stts + "'");
-                        }
+                    if (cmbSttsNumerator.getSelectedIndex() == 1) {
+                        stts = "aktif";
+                    } else if (cmbSttsNumerator.getSelectedIndex() == 2) {
+                        stts = "non aktif";
                     }
-                    emptTeksNum();
-                    BtnCari1ActionPerformed(null);
-                } catch (Exception e) {
-                    System.out.println("Notifikasi : " + e);
+
+                    try {
+                        for (i = 0; i < tbNumerator.getRowCount(); i++) {
+                            if (tbNumerator.getValueAt(i, 0).toString().equals("true")) {
+                                Sequel.mengedit("master_numdemon_indikator_nasional_mutu", "kd_numdemon='" + tbNumerator.getValueAt(i, 1).toString() + "'",
+                                        "status_data='" + stts + "'");
+                            }
+                        }
+                        emptTeksNum();
+                        BtnCari1ActionPerformed(null);
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
                 }
             } else {
                 emptTeksNum();
@@ -1092,9 +1356,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
 
     private void BtnGanti1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGanti1KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            BtnGantiActionPerformed(null);
-        } else {
-            Valid.pindah(evt, BtnBatal, BtnKeluar);
+            BtnGanti1ActionPerformed(null);
         }
     }//GEN-LAST:event_BtnGanti1KeyPressed
 
@@ -1136,16 +1398,171 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     }//GEN-LAST:event_MnHapusContengNumActionPerformed
 
     private void MnDenominatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDenominatorActionPerformed
-        // TODO add your handling code here:
+        WindowDenominator.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        WindowDenominator.setLocationRelativeTo(internalFrame1);
+        WindowDenominator.setVisible(true);
+        emptTeksDen();
+        tampilDenominator();
     }//GEN-LAST:event_MnDenominatorActionPerformed
 
     private void MnContengDenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengDenActionPerformed
-        // TODO add your handling code here:
+        if (tabMode2.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data denominator mutu masih kosong...!!!!");
+            tbDenominator.requestFocus();
+        } else {
+            tampilDenominator();
+            for (i = 0; i < tbDenominator.getRowCount(); i++) {
+                tbDenominator.setValueAt(Boolean.TRUE, i, 0);
+            }
+        }
     }//GEN-LAST:event_MnContengDenActionPerformed
 
     private void MnHapusContengDenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusContengDenActionPerformed
-        // TODO add your handling code here:
+        if (tabMode2.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data denominator mutu masih kosong...!!!!");
+            tbDenominator.requestFocus();
+        } else {
+            tampilDenominator();
+
+            for (i = 0; i < tbDenominator.getRowCount(); i++) {
+                tbDenominator.setValueAt(Boolean.FALSE, i, 0);
+            }
+        }
     }//GEN-LAST:event_MnHapusContengDenActionPerformed
+
+    private void TCari2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari2KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCari2ActionPerformed(null);
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
+            BtnCari2.requestFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
+            BtnCloseIn2.requestFocus();
+        }
+    }//GEN-LAST:event_TCari2KeyPressed
+
+    private void BtnCari2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari2ActionPerformed
+        tampilDenominator();
+    }//GEN-LAST:event_BtnCari2ActionPerformed
+
+    private void BtnCari2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCari2KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnCari2ActionPerformed(null);
+        } else {
+            Valid.pindah(evt, TCari2, BtnAll2);
+        }
+    }//GEN-LAST:event_BtnCari2KeyPressed
+
+    private void BtnAll2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAll2ActionPerformed
+        TCari2.setText("");
+        BtnCari2ActionPerformed(null);
+        emptTeksDen();
+    }//GEN-LAST:event_BtnAll2ActionPerformed
+
+    private void BtnAll2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAll2KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnCari2ActionPerformed(null);
+            TCari2.setText("");
+        } 
+    }//GEN-LAST:event_BtnAll2KeyPressed
+
+    private void BtnGanti2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGanti2ActionPerformed
+        n = 0;
+        for (i = 0; i < tbDenominator.getRowCount(); i++) {
+            if (tbDenominator.getValueAt(i, 0).toString().equals("true")) {
+                n++;
+            }
+        }
+
+        if (n == 0) {
+            JOptionPane.showMessageDialog(null, "Silahkan conteng dulu pada tabel nama denominator mutu layanan yang dipilih..!!!!");
+            tbDenominator.requestFocus();
+        } else {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin nama denominator mutu layanan yang dipilih mau diupdate status data..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (cmbSttsDenominator.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu status denominatornya dulu dengan benar..!!!!");
+                    cmbSttsDenominator.requestFocus();
+                } else {
+                    if (cmbSttsDenominator.getSelectedIndex() == 1) {
+                        stts = "aktif";
+                    } else if (cmbSttsDenominator.getSelectedIndex() == 2) {
+                        stts = "non aktif";
+                    }
+
+                    try {
+                        for (i = 0; i < tbDenominator.getRowCount(); i++) {
+                            if (tbDenominator.getValueAt(i, 0).toString().equals("true")) {
+                                Sequel.mengedit("master_numdemon_indikator_nasional_mutu", "kd_numdemon='" + tbDenominator.getValueAt(i, 1).toString() + "'",
+                                        "status_data='" + stts + "'");
+                            }
+                        }
+                        emptTeksDen();
+                        BtnCari2ActionPerformed(null);
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
+                }
+            } else {
+                emptTeksDen();
+                BtnCari2ActionPerformed(null);
+            }
+        }
+    }//GEN-LAST:event_BtnGanti2ActionPerformed
+
+    private void BtnGanti2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGanti2KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnGanti2ActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnGanti2KeyPressed
+
+    private void BtnCloseIn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn2ActionPerformed
+        WindowDenominator.dispose();
+    }//GEN-LAST:event_BtnCloseIn2ActionPerformed
+
+    private void MnRefresKodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRefresKodeActionPerformed
+        x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin kode numerator & denominator akan direfresh..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            Sequel.queryuBuilder("SET @urutan := 0;", "UPDATE master_numdemon_indikator_nasional_mutu JOIN (SELECT kd_numdemon, (@urutan := @urutan + 1) AS new_no FROM master_numdemon_indikator_nasional_mutu ORDER BY no_urut) "
+                    + "t ON master_numdemon_indikator_nasional_mutu.kd_numdemon = t.kd_numdemon "
+                    + "SET master_numdemon_indikator_nasional_mutu.kd_numdemon = CONCAT('TMP', LPAD(t.new_no, 6, '0'));",
+                    "SET @urutan := 0;", "UPDATE master_numdemon_indikator_nasional_mutu JOIN (SELECT kd_numdemon, (@urutan := @urutan + 1) AS new_no FROM master_numdemon_indikator_nasional_mutu WHERE kd_numdemon LIKE 'TMP%' ORDER BY no_urut) "
+                    + "t ON master_numdemon_indikator_nasional_mutu.kd_numdemon = t.kd_numdemon "
+                    + "SET master_numdemon_indikator_nasional_mutu.kd_numdemon = CONCAT('ND', LPAD(t.new_no, 6, '0'));", "Kode Numerator & Denominator");
+            
+            JOptionPane.showMessageDialog(null, "Kode Numerator & Denominator sudah berhasil direfresh & terurut kembali..!!!!");
+            tampil();
+        }
+    }//GEN-LAST:event_MnRefresKodeActionPerformed
+
+    private void MnRefresKodeNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRefresKodeNumActionPerformed
+        x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin kode numerator & denominator akan direfresh..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            Sequel.queryuBuilder("SET @urutan := 0;", "UPDATE master_numdemon_indikator_nasional_mutu JOIN (SELECT kd_numdemon, (@urutan := @urutan + 1) AS new_no FROM master_numdemon_indikator_nasional_mutu ORDER BY no_urut) "
+                    + "t ON master_numdemon_indikator_nasional_mutu.kd_numdemon = t.kd_numdemon "
+                    + "SET master_numdemon_indikator_nasional_mutu.kd_numdemon = CONCAT('TMP', LPAD(t.new_no, 6, '0'));",
+                    "SET @urutan := 0;", "UPDATE master_numdemon_indikator_nasional_mutu JOIN (SELECT kd_numdemon, (@urutan := @urutan + 1) AS new_no FROM master_numdemon_indikator_nasional_mutu WHERE kd_numdemon LIKE 'TMP%' ORDER BY no_urut) "
+                    + "t ON master_numdemon_indikator_nasional_mutu.kd_numdemon = t.kd_numdemon "
+                    + "SET master_numdemon_indikator_nasional_mutu.kd_numdemon = CONCAT('ND', LPAD(t.new_no, 6, '0'));", "Kode Numerator & Denominator");
+
+            JOptionPane.showMessageDialog(null, "Kode Numerator & Denominator sudah berhasil direfresh & terurut kembali..!!!!");
+            tampilNumerator();
+        }
+    }//GEN-LAST:event_MnRefresKodeNumActionPerformed
+
+    private void MnRefresKodeDenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRefresKodeDenActionPerformed
+        x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin kode numerator & denominator akan direfresh..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            Sequel.queryuBuilder("SET @urutan := 0;", "UPDATE master_numdemon_indikator_nasional_mutu JOIN (SELECT kd_numdemon, (@urutan := @urutan + 1) AS new_no FROM master_numdemon_indikator_nasional_mutu ORDER BY no_urut) "
+                    + "t ON master_numdemon_indikator_nasional_mutu.kd_numdemon = t.kd_numdemon "
+                    + "SET master_numdemon_indikator_nasional_mutu.kd_numdemon = CONCAT('TMP', LPAD(t.new_no, 6, '0'));",
+                    "SET @urutan := 0;", "UPDATE master_numdemon_indikator_nasional_mutu JOIN (SELECT kd_numdemon, (@urutan := @urutan + 1) AS new_no FROM master_numdemon_indikator_nasional_mutu WHERE kd_numdemon LIKE 'TMP%' ORDER BY no_urut) "
+                    + "t ON master_numdemon_indikator_nasional_mutu.kd_numdemon = t.kd_numdemon "
+                    + "SET master_numdemon_indikator_nasional_mutu.kd_numdemon = CONCAT('ND', LPAD(t.new_no, 6, '0'));", "Kode Numerator & Denominator");
+
+            JOptionPane.showMessageDialog(null, "Kode Numerator & Denominator sudah berhasil direfresh & terurut kembali..!!!!");
+            tampilDenominator();
+        }
+    }//GEN-LAST:event_MnRefresKodeDenActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1166,48 +1583,64 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
     private widget.Button BtnAll1;
+    private widget.Button BtnAll2;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
+    private widget.Button BtnCari2;
     private widget.Button BtnCloseIn1;
+    private widget.Button BtnCloseIn2;
     private widget.Button BtnGanti;
     private widget.Button BtnGanti1;
+    private widget.Button BtnGanti2;
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
     private widget.Button BtnSttsIndikator;
     private widget.Label LCount;
     private widget.Label LCount1;
+    private widget.Label LCount2;
     private javax.swing.JMenuItem MnContengDen;
     private javax.swing.JMenuItem MnContengNum;
     private javax.swing.JMenuItem MnDenominator;
     private javax.swing.JMenuItem MnHapusContengDen;
     private javax.swing.JMenuItem MnHapusContengNum;
     private javax.swing.JMenuItem MnNumerator;
+    private javax.swing.JMenuItem MnRefresKode;
+    private javax.swing.JMenuItem MnRefresKodeDen;
+    private javax.swing.JMenuItem MnRefresKodeNum;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
+    private widget.ScrollPane Scroll2;
     public widget.TextBox TCari;
     public widget.TextBox TCari1;
+    public widget.TextBox TCari2;
     private widget.TextBox TnmNumdenom;
     private widget.TextBox TnoUrut;
     private widget.TextBox TsttsIndikator;
+    private javax.swing.JDialog WindowDenominator;
     private javax.swing.JDialog WindowNumerator;
     private widget.ComboBox cmbGedung;
     private widget.ComboBox cmbGedung1;
     private widget.ComboBox cmbIndikator;
     private widget.ComboBox cmbJnsIndikator;
     private widget.ComboBox cmbStatus;
+    private widget.ComboBox cmbSttsDenominator;
     private widget.ComboBox cmbSttsNumerator;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
+    private widget.InternalFrame internalFrame4;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
     private widget.Label jLabel12;
     private widget.Label jLabel13;
     private widget.Label jLabel14;
+    private widget.Label jLabel15;
     private widget.Label jLabel16;
+    private widget.Label jLabel17;
     private widget.Label jLabel18;
+    private widget.Label jLabel19;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
@@ -1223,6 +1656,9 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     private widget.panelisi panelGlass8;
     private widget.panelisi panelisi3;
     private widget.panelisi panelisi4;
+    private widget.panelisi panelisi5;
+    private widget.panelisi panelisi6;
+    private widget.Table tbDenominator;
     private widget.Table tbMutu;
     private widget.Table tbNumerator;
     // End of variables declaration//GEN-END:variables
@@ -1276,7 +1712,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     }
     
     public void emptTeks() {
-        kdNumdenom.setText(Valid.autoNomer("master_numdemon_indikator_nasional_mutu", "ND", 3));
+        kdNumdenom.setText(Valid.autoNomer("master_numdemon_indikator_nasional_mutu", "ND", 6));
         TnoUrut.setText("");
         TnoUrut.requestFocus();
         TnmNumdenom.setText("");
@@ -1364,8 +1800,60 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         LCount1.setText("" + tabMode1.getRowCount());
     }
     
+    private void tampilDenominator() {
+        Valid.tabelKosong(tabMode2);
+        try {
+            ps2 = koneksi.prepareStatement("SELECT mn.*, mi.*, mn.status_data sttsDataNum FROM master_numdemon_indikator_nasional_mutu mn "
+                    + "inner join master_indikator_nasional_mutu mi on mi.kd_indikator=mn.kd_indikator WHERE "
+                    + "mn.jenis_numdemon='Denominator' and mn.kd_numdemon LIKE ? or "
+                    + "mn.jenis_numdemon='Denominator' and mn.kd_indikator like ? or "
+                    + "mn.jenis_numdemon='Denominator' and mn.nm_numdemon like ? or "                    
+                    + "mn.jenis_numdemon='Denominator' and mn.status_data like ? or "
+                    + "mn.jenis_numdemon='Denominator' and mi.nm_indikator like ? or "
+                    + "mn.jenis_numdemon='Denominator' and mi.gedung like ? ORDER BY mn.no_urut, mi.gedung");
+
+            try {
+                ps2.setString(1, "%" + TCari2.getText().trim() + "%");
+                ps2.setString(2, "%" + TCari2.getText().trim() + "%");
+                ps2.setString(3, "%" + TCari2.getText().trim() + "%");
+                ps2.setString(4, "%" + TCari2.getText().trim() + "%");
+                ps2.setString(5, "%" + TCari2.getText().trim() + "%");
+                ps2.setString(6, "%" + TCari2.getText().trim() + "%");
+                rs2 = ps2.executeQuery();                
+                while (rs2.next()) {
+                    tabMode2.addRow(new Object[]{
+                        false,
+                        rs2.getString("kd_numdemon"),
+                        rs2.getString("no_urut"),
+                        rs2.getString("nm_numdemon"),
+                        rs2.getString("nm_indikator"),
+                        rs2.getString("gedung"),
+                        rs2.getString("sttsDataNum").toUpperCase()
+                    });
+                }                
+            } catch (Exception e) {
+                System.out.println("tampilDenominator() : " + e);
+            } finally {
+                if (rs2 != null) {
+                    rs2.close();
+                }
+                if (ps2 != null) {
+                    ps2.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        LCount2.setText("" + tabMode2.getRowCount());
+    }
+    
     private void emptTeksNum() {
         cmbSttsNumerator.setSelectedIndex(0);
         cmbSttsNumerator.requestFocus();
+    }
+    
+    private void emptTeksDen() {
+        cmbSttsDenominator.setSelectedIndex(0);
+        cmbSttsDenominator.requestFocus();
     }
 }

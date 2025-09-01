@@ -46,6 +46,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.net.InetAddress;
+import java.sql.Statement;
 //import org.apache.poi.hssf.record.formula.functions.Len;
 //import org.apache.poi.hssf.record.formula.functions.Mid;
 import uz.ncipro.calendar.JDateTimePicker;
@@ -62,6 +63,7 @@ public final class sekuel {
     private final Connection connect = koneksiDB.condb();
     private PreparedStatement ps, ps1;
     private ResultSet rs;
+    private Statement st;
     private int angka = 0;
     private static int angka3 = 0;
     private double angka2 = 0;
@@ -842,6 +844,67 @@ public final class sekuel {
             } finally {
                 if (ps != null) {
                     ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    public void queryuBuilder(String qry1, String qry2, String qry3, String qry4, String pesan) {
+        /**
+           -- untuk penerapan query seperti ini (contoh)
+           -- Tahap 1: ubah ke kode sementara biar tidak bentrok
+        SET @urut := 0;
+        UPDATE master_indikator_nasional_mutu
+        JOIN (
+            SELECT kd_indikator, (@urut := @urut + 1) AS new_no
+            FROM master_indikator_nasional_mutu
+            WHERE kd_indikator LIKE 'IMU%'
+            ORDER BY no_urut
+        ) t ON master_indikator_nasional_mutu.kd_indikator = t.kd_indikator
+        SET master_indikator_nasional_mutu.kd_indikator = CONCAT('TMP', LPAD(t.new_no, 6, '0'));
+
+        -- Tahap 2: ubah dari TMP ke IMU
+        SET @urut := 0;
+        UPDATE master_indikator_nasional_mutu
+        JOIN (
+            SELECT kd_indikator, (@urut := @urut + 1) AS new_no
+            FROM master_indikator_nasional_mutu
+            WHERE kd_indikator LIKE 'TMP%'
+            ORDER BY no_urut
+        ) t ON master_indikator_nasional_mutu.kd_indikator = t.kd_indikator
+        SET master_indikator_nasional_mutu.kd_indikator = CONCAT('IMU', LPAD(t.new_no, 6, '0'));
+        **/
+        
+        try {
+            StringBuilder sb = new StringBuilder();
+            if (qry1 != null && !qry1.trim().isEmpty()) sb.append(qry1.trim()).append(";");
+            if (qry2 != null && !qry2.trim().isEmpty()) sb.append(qry2.trim()).append(";");
+            if (qry3 != null && !qry3.trim().isEmpty()) sb.append(qry3.trim()).append(";");
+            if (qry4 != null && !qry4.trim().isEmpty()) sb.append(qry4.trim()).append(";");
+
+            String query = sb.toString();
+            String[] queries = query.split(";");
+
+            st = connect.createStatement();
+            int totalBerhasil = 0;
+
+            try {
+                for (String q : queries) {
+                    q = q.trim();
+                    if (!q.isEmpty()) {
+                        int hasil = st.executeUpdate(q);
+                        totalBerhasil += hasil;
+                        System.out.println("Affected rows : " + hasil + " " + pesan);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+                JOptionPane.showMessageDialog(null, "Maaf, Query tidak bisa dijalankan...!!!!");
+            } finally {
+                if (st != null) {
+                    st.close();
                 }
             }
         } catch (Exception e) {

@@ -10400,12 +10400,12 @@ public class DlgCPPT extends javax.swing.JDialog {
     private void MnBersihkanStringSampahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBersihkanStringSampahActionPerformed
         x = JOptionPane.showConfirmDialog(rootPane, "Apakah string sampah ini (\\\\\\\\,\\\\,') akan dibersihkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (x == JOptionPane.YES_OPTION) {
-            Sequel.queryu("UPDATE cppt SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '\\\\\\\\', ' ') WHERE hasil_pemeriksaan LIKE '%\\\\\\\\%'");
-            Sequel.queryu("UPDATE cppt SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '\\\\''', ' ') WHERE hasil_pemeriksaan LIKE '%\\\\''%'");
-            Sequel.queryu("UPDATE cppt SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '''', ' ') WHERE hasil_pemeriksaan LIKE '%''%'");
-            Sequel.queryu("UPDATE cppt_history SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '\\\\\\\\', ' ') WHERE hasil_pemeriksaan LIKE '%\\\\\\\\%'");
-            Sequel.queryu("UPDATE cppt_history SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '\\\\''', ' ') WHERE hasil_pemeriksaan LIKE '%\\\\''%'");
-            Sequel.queryu("UPDATE cppt_history SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '''', ' ') WHERE hasil_pemeriksaan LIKE '%''%'");
+            Sequel.queryu("UPDATE cppt SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '\\\\\\\\', ' ') WHERE no_rawat='" + TNoRw.getText() + "' and hasil_pemeriksaan LIKE '%\\\\\\\\%'");
+            Sequel.queryu("UPDATE cppt SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '\\\\''', ' ') WHERE no_rawat='" + TNoRw.getText() + "' and hasil_pemeriksaan LIKE '%\\\\''%'");
+            Sequel.queryu("UPDATE cppt SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '''', ' ') WHERE no_rawat='" + TNoRw.getText() + "' and hasil_pemeriksaan LIKE '%''%'");
+            Sequel.queryu("UPDATE cppt_history SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '\\\\\\\\', ' ') WHERE no_rawat='" + TNoRw.getText() + "' and hasil_pemeriksaan LIKE '%\\\\\\\\%'");
+            Sequel.queryu("UPDATE cppt_history SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '\\\\''', ' ') WHERE no_rawat='" + TNoRw.getText() + "' and hasil_pemeriksaan LIKE '%\\\\''%'");
+            Sequel.queryu("UPDATE cppt_history SET hasil_pemeriksaan = REPLACE(hasil_pemeriksaan, '''', ' ') WHERE no_rawat='" + TNoRw.getText() + "' and hasil_pemeriksaan LIKE '%''%'");
             
             JOptionPane.showMessageDialog(null, "Proses selesai, affected row bisa dicek dikotak hitam/terminal/console...!");
         }
