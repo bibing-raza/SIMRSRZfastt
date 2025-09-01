@@ -902,13 +902,13 @@ public class frmUtama extends javax.swing.JFrame {
         btnTransaksiPanjar = new widget.ButtonBig();
         btnTransferPasienTindakan = new widget.ButtonBig();
         btnAsesmenPraSedasi = new widget.ButtonBig();
-        btnMasterIndikatorNasionalMutu = new widget.ButtonBig();
+        btnMasterIndikatorMutuLayanan = new widget.ButtonBig();
         btnIndikatorNasionalMutu = new widget.ButtonBig();
         btnSuratKeteranganDisabilitas = new widget.ButtonBig();
         btnCeklisPraOperasi = new widget.ButtonBig();
         btnCeklisKesiapanAnestesi = new widget.ButtonBig();
         btnAsesmenPreInduksi = new widget.ButtonBig();
-        btnMasterNumdenomINM = new widget.ButtonBig();
+        btnMasterNumdenom = new widget.ButtonBig();
         btnAsesmenKeperawatanPerioperatif = new widget.ButtonBig();
         btnPerencanaanPulang = new widget.ButtonBig();
         btnCeklisKeselamatanOperasi = new widget.ButtonBig();
@@ -5945,18 +5945,18 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnAsesmenPraSedasi);
 
-        btnMasterIndikatorNasionalMutu.setForeground(new java.awt.Color(0, 0, 0));
-        btnMasterIndikatorNasionalMutu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_address-book_285679.png"))); // NOI18N
-        btnMasterIndikatorNasionalMutu.setText("Master Indikator Mutu Nasional");
-        btnMasterIndikatorNasionalMutu.setIconTextGap(0);
-        btnMasterIndikatorNasionalMutu.setName("btnMasterIndikatorNasionalMutu"); // NOI18N
-        btnMasterIndikatorNasionalMutu.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnMasterIndikatorNasionalMutu.addActionListener(new java.awt.event.ActionListener() {
+        btnMasterIndikatorMutuLayanan.setForeground(new java.awt.Color(0, 0, 0));
+        btnMasterIndikatorMutuLayanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_address-book_285679.png"))); // NOI18N
+        btnMasterIndikatorMutuLayanan.setText("Master Indikator Mutu Layanan");
+        btnMasterIndikatorMutuLayanan.setIconTextGap(0);
+        btnMasterIndikatorMutuLayanan.setName("btnMasterIndikatorMutuLayanan"); // NOI18N
+        btnMasterIndikatorMutuLayanan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMasterIndikatorMutuLayanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterIndikatorNasionalMutuActionPerformed(evt);
+                btnMasterIndikatorMutuLayananActionPerformed(evt);
             }
         });
-        Panelmenu.add(btnMasterIndikatorNasionalMutu);
+        Panelmenu.add(btnMasterIndikatorMutuLayanan);
 
         btnIndikatorNasionalMutu.setForeground(new java.awt.Color(0, 0, 0));
         btnIndikatorNasionalMutu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1491582089_Finance_financial_report.png"))); // NOI18N
@@ -6023,18 +6023,18 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnAsesmenPreInduksi);
 
-        btnMasterNumdenomINM.setForeground(new java.awt.Color(0, 0, 0));
-        btnMasterNumdenomINM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_address-book_285679.png"))); // NOI18N
-        btnMasterNumdenomINM.setText("Master Numerator Denominator INM");
-        btnMasterNumdenomINM.setIconTextGap(0);
-        btnMasterNumdenomINM.setName("btnMasterNumdenomINM"); // NOI18N
-        btnMasterNumdenomINM.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnMasterNumdenomINM.addActionListener(new java.awt.event.ActionListener() {
+        btnMasterNumdenom.setForeground(new java.awt.Color(0, 0, 0));
+        btnMasterNumdenom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_address-book_285679.png"))); // NOI18N
+        btnMasterNumdenom.setText("Master Numerator Denominator Mutu");
+        btnMasterNumdenom.setIconTextGap(0);
+        btnMasterNumdenom.setName("btnMasterNumdenom"); // NOI18N
+        btnMasterNumdenom.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMasterNumdenom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterNumdenomINMActionPerformed(evt);
+                btnMasterNumdenomActionPerformed(evt);
             }
         });
-        Panelmenu.add(btnMasterNumdenomINM);
+        Panelmenu.add(btnMasterNumdenom);
 
         btnAsesmenKeperawatanPerioperatif.setForeground(new java.awt.Color(0, 0, 0));
         btnAsesmenKeperawatanPerioperatif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
@@ -6408,7 +6408,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29/08/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01/09/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12162,7 +12162,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnAsesmenPraSedasiActionPerformed
 
-    private void btnMasterIndikatorNasionalMutuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterIndikatorNasionalMutuActionPerformed
+    private void btnMasterIndikatorMutuLayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterIndikatorMutuLayananActionPerformed
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         DlgMasterIndikatorMutu mutu = new DlgMasterIndikatorMutu(this, false);
@@ -12173,7 +12173,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         mutu.setVisible(true);
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnMasterIndikatorNasionalMutuActionPerformed
+    }//GEN-LAST:event_btnMasterIndikatorMutuLayananActionPerformed
 
     private void btnIndikatorNasionalMutuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndikatorNasionalMutuActionPerformed
         isTutup();
@@ -12240,7 +12240,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnAsesmenPreInduksiActionPerformed
 
-    private void btnMasterNumdenomINMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterNumdenomINMActionPerformed
+    private void btnMasterNumdenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterNumdenomActionPerformed
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         DlgMasterNumdemonINM mutu = new DlgMasterNumdemonINM(this, false);
@@ -12251,7 +12251,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         mutu.setVisible(true);
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnMasterNumdenomINMActionPerformed
+    }//GEN-LAST:event_btnMasterNumdenomActionPerformed
 
     private void btnAsesmenKeperawatanPerioperatifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsesmenKeperawatanPerioperatifActionPerformed
         isTutup();
@@ -12866,14 +12866,14 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnMasterDiagnosaGizi;
     private widget.ButtonBig btnMasterFaktorResikoJatuh;
     private widget.ButtonBig btnMasterFaskes;
-    private widget.ButtonBig btnMasterIndikatorNasionalMutu;
+    private widget.ButtonBig btnMasterIndikatorMutuLayanan;
     private widget.ButtonBig btnMasterJabatanKomite;
     private widget.ButtonBig btnMasterJenisDokumenJangMed;
     private widget.ButtonBig btnMasterKasusPersalinanDinkes;
     private widget.ButtonBig btnMasterKeluhanPsikologis;
     private widget.ButtonBig btnMasterMasalahKeperawatan;
     private widget.ButtonBig btnMasterNomorDokumen;
-    private widget.ButtonBig btnMasterNumdenomINM;
+    private widget.ButtonBig btnMasterNumdenom;
     private widget.ButtonBig btnMasterRencanaTritmenPsikologis;
     private widget.ButtonBig btnMasterResikoDecubitus;
     private widget.ButtonBig btnMerkInventaris;
@@ -14863,13 +14863,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
             
-            if (akses.getadmin()== true) {
-                Panelmenu.add(btnMasterIndikatorNasionalMutu);
+            if (akses.getpic_kmkp()== true) {
+                Panelmenu.add(btnMasterIndikatorMutuLayanan);
                 jmlmenu++;
             }
             
-            if (akses.getadmin()== true) {
-                Panelmenu.add(btnMasterNumdenomINM);
+            if (akses.getpic_kmkp()== true) {
+                Panelmenu.add(btnMasterNumdenom);
                 jmlmenu++;
             }
                     
@@ -15654,13 +15654,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu++;
         }
         
-        if (akses.getadmin() == true) {
-            Panelmenu.add(btnMasterIndikatorNasionalMutu);
+        if (akses.getpic_kmkp() == true) {
+            Panelmenu.add(btnMasterIndikatorMutuLayanan);
             jmlmenu++;
         }
         
-        if (akses.getadmin() == true) {
-            Panelmenu.add(btnMasterNumdenomINM);
+        if (akses.getpic_kmkp() == true) {
+            Panelmenu.add(btnMasterNumdenom);
             jmlmenu++;
         }
         
@@ -17750,16 +17750,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         }
         
-        if (akses.getadmin()== true) {
-            if (btnMasterIndikatorNasionalMutu.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnMasterIndikatorNasionalMutu);
+        if (akses.getpic_kmkp()== true) {
+            if (btnMasterIndikatorMutuLayanan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnMasterIndikatorMutuLayanan);
                 jmlmenu++;
             }
         }
         
-        if (akses.getadmin()== true) {
-            if (btnMasterNumdenomINM.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnMasterNumdenomINM);
+        if (akses.getpic_kmkp()== true) {
+            if (btnMasterNumdenom.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnMasterNumdenom);
                 jmlmenu++;
             }
         }

@@ -1682,15 +1682,13 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     resep.setLocationRelativeTo(internalFrame1);
                     resep.emptTeks();
                     resep.isCek();                    
-//                    resep.setAlwaysOnTop(true);
+                    resep.setAlwaysOnTop(true);
                     resep.dokter.setAlwaysOnTop(true);
                     resep.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate(), cmbJam.getSelectedItem().toString(),
                             cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), kdUnit);
                     resep.tampil();
                     resep.setDokterRalan();
                     resep.setVisible(true);
-                    resep.toFront();
-                    resep.requestFocus();
                     dispose();
                 } else {
                     dispose();
