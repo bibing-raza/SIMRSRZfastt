@@ -12,265 +12,45 @@
 	<parameter name="periode" class="java.lang.String"/>
 	<parameter name="nm_ruangan" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT
-	a.tgl_registrasi,
-	(
-		SELECT
-			count(x.stts_daftar) Total
-		FROM
-			(
-				SELECT
-					reg_periksa.tgl_registrasi,
-					reg_periksa.stts_daftar,
-					reg_periksa.no_rkm_medis,
-					pasien.nm_pasien,
-					pasien.alamat,
-					pasien.jk,
-					concat(
-						reg_periksa.umurdaftar,
-						' ',
-						reg_periksa.sttsumur
-					) AS umur,
-					pasien.tgl_daftar,
-					bangsal.nm_bangsal,
-					reg_periksa.almt_pj,
-					kamar_inap.stts_pulang,
-					kamar_inap.diagnosa_awal,
-					kamar_inap.tgl_masuk,
-					dokter.nm_dokter
-				FROM
-					reg_periksa
-				INNER JOIN pasien
-				INNER JOIN kamar_inap
-				INNER JOIN kamar
-				INNER JOIN bangsal
-				INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis
-				AND reg_periksa.no_rawat = kamar_inap.no_rawat
-				AND kamar_inap.kd_kamar = kamar.kd_kamar
-				AND kamar.kd_bangsal = bangsal.kd_bangsal
-				AND reg_periksa.kd_dokter = dokter.kd_dokter
-				WHERE
-					reg_periksa.status_lanjut = 'Ranap'
-				AND reg_periksa.stts <> 'Batal'
-				AND kamar_inap.tgl_masuk BETWEEN '2017-10-01'
-				AND '2017-10-31'
-				AND reg_periksa.stts_daftar = 'Lama'
-				GROUP BY
-					reg_periksa.no_rawat
-				ORDER BY
-					kamar_inap.tgl_masuk
-			) AS x
-	) AS Total_Lama,
-	(
-		SELECT
-			count(x.stts_daftar) Total
-		FROM
-			(
-				SELECT
-					reg_periksa.tgl_registrasi,
-					reg_periksa.stts_daftar,
-					reg_periksa.no_rkm_medis,
-					pasien.nm_pasien,
-					pasien.alamat,
-					pasien.jk,
-					concat(
-						reg_periksa.umurdaftar,
-						' ',
-						reg_periksa.sttsumur
-					) AS umur,
-					pasien.tgl_daftar,
-					bangsal.nm_bangsal,
-					reg_periksa.almt_pj,
-					kamar_inap.stts_pulang,
-					kamar_inap.diagnosa_awal,
-					kamar_inap.tgl_masuk,
-					dokter.nm_dokter
-				FROM
-					reg_periksa
-				INNER JOIN pasien
-				INNER JOIN kamar_inap
-				INNER JOIN kamar
-				INNER JOIN bangsal
-				INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis
-				AND reg_periksa.no_rawat = kamar_inap.no_rawat
-				AND kamar_inap.kd_kamar = kamar.kd_kamar
-				AND kamar.kd_bangsal = bangsal.kd_bangsal
-				AND reg_periksa.kd_dokter = dokter.kd_dokter
-				WHERE
-					reg_periksa.status_lanjut = 'Ranap'
-				AND reg_periksa.stts <> 'Batal'
-				AND kamar_inap.tgl_masuk BETWEEN '2017-10-01'
-				AND '2017-10-31'
-				AND reg_periksa.stts_daftar = 'Baru'
-				GROUP BY
-					reg_periksa.no_rawat
-				ORDER BY
-					kamar_inap.tgl_masuk
-			) AS x
-	) AS Total_Baru,
-
-IF (
-	a.stts_daftar = 'Lama',
-	a.no_rkm_medis,
-	''
-) AS Lama,
-
-IF (
-	a.stts_daftar = 'Baru',
-	a.no_rkm_medis,
-	''
-) AS Baru,
- a.nm_pasien,
- a.alamat,
- (
-	SELECT
-		count(x.stts_daftar) Tota
-	FROM
-		(
-			SELECT
-				reg_periksa.tgl_registrasi,
-				reg_periksa.stts_daftar,
-				reg_periksa.no_rkm_medis,
-				pasien.nm_pasien,
-				pasien.alamat,
-				pasien.jk,
-				concat(
-					reg_periksa.umurdaftar,
-					' ',
-					reg_periksa.sttsumur
-				) AS umur,
-				pasien.tgl_daftar,
-				bangsal.nm_bangsal,
-				reg_periksa.almt_pj,
-				kamar_inap.stts_pulang,
-				kamar_inap.diagnosa_awal,
-				kamar_inap.tgl_masuk,
-				dokter.nm_dokter
-			FROM
-				reg_periksa
-			INNER JOIN pasien
-			INNER JOIN kamar_inap
-			INNER JOIN kamar
-			INNER JOIN bangsal
-			INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis
-			AND reg_periksa.no_rawat = kamar_inap.no_rawat
-			AND kamar_inap.kd_kamar = kamar.kd_kamar
-			AND kamar.kd_bangsal = bangsal.kd_bangsal
-			AND reg_periksa.kd_dokter = dokter.kd_dokter
-			WHERE
-				reg_periksa.status_lanjut = 'Ranap'
-			AND reg_periksa.stts <> 'Batal'
-			AND kamar_inap.tgl_masuk BETWEEN '2017-10-01'
-			AND '2017-10-31'
-			AND pasien.jk = 'L'
-			GROUP BY
-				reg_periksa.no_rawat
-			ORDER BY
-				kamar_inap.tgl_masuk
-		) AS x
-) AS Total_LK,
- (
-	SELECT
-		count(x.stts_daftar) Total
-	FROM
-		(
-			SELECT
-				reg_periksa.tgl_registrasi,
-				reg_periksa.stts_daftar,
-				reg_periksa.no_rkm_medis,
-				pasien.nm_pasien,
-				pasien.alamat,
-				pasien.jk,
-				concat(
-					reg_periksa.umurdaftar,
-					' ',
-					reg_periksa.sttsumur
-				) AS umur,
-				pasien.tgl_daftar,
-				bangsal.nm_bangsal,
-				reg_periksa.almt_pj,
-				kamar_inap.stts_pulang,
-				kamar_inap.diagnosa_awal,
-				kamar_inap.tgl_masuk,
-				dokter.nm_dokter
-			FROM
-				reg_periksa
-			INNER JOIN pasien
-			INNER JOIN kamar_inap
-			INNER JOIN kamar
-			INNER JOIN bangsal
-			INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis
-			AND reg_periksa.no_rawat = kamar_inap.no_rawat
-			AND kamar_inap.kd_kamar = kamar.kd_kamar
-			AND kamar.kd_bangsal = bangsal.kd_bangsal
-			AND reg_periksa.kd_dokter = dokter.kd_dokter
-			WHERE
-				reg_periksa.status_lanjut = 'Ranap'
-			AND reg_periksa.stts <> 'Batal'
-			AND kamar_inap.tgl_masuk BETWEEN '2017-10-01'
-			AND '2017-10-31'
-			AND pasien.jk = 'P'
-			GROUP BY
-				reg_periksa.no_rawat
-			ORDER BY
-				kamar_inap.tgl_masuk
-		) AS x
-) AS Total_PR,
-
-IF (a.jk = 'L', a.umur, '') AS LK,
-
-IF (a.jk = 'P', a.umur, '') AS PR,
- a.tgl_daftar,
- a.nm_bangsal,
- a.diagnosa_awal,	
- a.almt_pj,
- a.stts_pulang,
- a.tgl_masuk,
- a.nm_dokter
-FROM
-	(
-		(
-			SELECT
-				reg_periksa.tgl_registrasi,
-				reg_periksa.stts_daftar,
-				reg_periksa.no_rkm_medis,
-				pasien.nm_pasien,
-				pasien.alamat,
-				pasien.jk,
-				concat(
-					reg_periksa.umurdaftar,
-					' ',
-					reg_periksa.sttsumur
-				) AS umur,
-				pasien.tgl_daftar,
-				bangsal.nm_bangsal,
-				reg_periksa.almt_pj,
-				kamar_inap.stts_pulang,
-				kamar_inap.diagnosa_awal,				
-				kamar_inap.tgl_masuk,
-				dokter.nm_dokter
-			FROM
-				reg_periksa
-			INNER JOIN pasien
-			INNER JOIN kamar_inap
-			INNER JOIN kamar
-			INNER JOIN bangsal
-			INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis
-			AND reg_periksa.no_rawat = kamar_inap.no_rawat
-			AND kamar_inap.kd_kamar = kamar.kd_kamar
-			AND kamar.kd_bangsal = bangsal.kd_bangsal
-			AND reg_periksa.kd_dokter = dokter.kd_dokter
-			WHERE
-				reg_periksa.status_lanjut = 'Ranap'
-			AND reg_periksa.stts <> 'Batal'
-			AND kamar_inap.tgl_masuk BETWEEN '2017-10-01'
-			AND '2017-10-31'
-			GROUP BY
-				reg_periksa.no_rawat
-			ORDER BY
-				kamar_inap.tgl_masuk
-		) AS a
-	)]]>
+		<![CDATA[SELECT a.tgl_registrasi, (SELECT count(x.stts_daftar) Total FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, 
+pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, 
+reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa 
+INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis 
+AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal 
+AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') 
+AND reg_periksa.tgl_registrasi BETWEEN '2025-08-01' and '2025-08-31' AND reg_periksa.stts_daftar = 'Lama' 
+GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Lama, (SELECT count(x.stts_daftar) Total 
+FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, 
+concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, 
+kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal 
+INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat 
+AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter 
+WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') 
+AND reg_periksa.tgl_registrasi BETWEEN '2025-08-01' and '2025-08-31' AND reg_periksa.stts_daftar = 'Baru' 
+GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Baru, IF (a.stts_daftar = 'Lama',a.no_rkm_medis,'') AS Lama, 
+IF (a.stts_daftar = 'Baru',a.no_rkm_medis,'') AS Baru, a.nm_pasien, a.alamat, (select count(x.stts_daftar) Tota 
+from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, 
+concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, 
+kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal 
+INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar 
+AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') 
+AND reg_periksa.tgl_registrasi BETWEEN '2025-08-01' and '2025-08-31' And pasien.jk = 'L' GROUP BY reg_periksa.no_rawat 
+ORDER BY kamar_inap.tgl_masuk) as x) AS Total_LK, (select count(x.stts_daftar) Total from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, 
+reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, 
+bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa 
+INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis 
+AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter 
+WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') 
+AND reg_periksa.tgl_registrasi BETWEEN '2025-08-01' and '2025-08-31' 
+And pasien.jk = 'P' GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) as x) AS Total_PR, 
+IF (a.jk = 'L', a.umur, '') AS LK, IF (a.jk = 'P', a.umur, '') AS PR, a.tgl_daftar, a.nm_bangsal, a.diagnosa_awal, a.almt_pj, a.stts_pulang, a.tgl_masuk, a.nm_dokter 
+FROM ((SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, 
+concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, 
+kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal 
+INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar 
+AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') 
+AND reg_periksa.tgl_registrasi BETWEEN '2025-08-01' and '2025-08-31' 
+ GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS a)]]>
 	</queryString>
 	<field name="tgl_registrasi" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -289,8 +69,12 @@ FROM
 	</field>
 	<field name="Total_LK" class="java.lang.Long"/>
 	<field name="Total_PR" class="java.lang.Long"/>
-	<field name="LK" class="java.lang.String"/>
-	<field name="PR" class="java.lang.String"/>
+	<field name="LK" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="tgl_daftar" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -507,19 +291,19 @@ FROM
 			<line>
 				<reportElement x="25" y="13" width="93" height="1"/>
 				<graphicElement>
-					<pen lineWidth="0.25"/>
+					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
 				<reportElement x="71" y="14" width="1" height="12"/>
 				<graphicElement>
-					<pen lineWidth="0.25"/>
+					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
 				<reportElement x="262" y="14" width="1" height="12"/>
 				<graphicElement>
-					<pen lineWidth="0.25"/>
+					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<staticText>
@@ -562,7 +346,7 @@ FROM
 			<line>
 				<reportElement x="236" y="13" width="53" height="1"/>
 				<graphicElement>
-					<pen lineWidth="0.25"/>
+					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<staticText>
@@ -637,125 +421,125 @@ FROM
 	<detail>
 		<band height="12" splitType="Stretch">
 			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="27" y="1" width="43" height="10"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="27" y="1" width="43" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{Lama}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="121" y="1" width="113" height="10"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="121" y="1" width="113" height="10"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="238" y="1" width="24" height="10"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="238" y="1" width="24" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{LK}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="265" y="1" width="24" height="10"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="265" y="1" width="24" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{PR}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="292" y="1" width="108" height="10"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="292" y="1" width="108" height="10"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{alamat}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="404" y="1" width="65" height="10"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="404" y="1" width="65" height="10"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{diagnosa_awal}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="473" y="1" width="79" height="10"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="473" y="1" width="79" height="10"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_bangsal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="74" y="1" width="43" height="10"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="74" y="1" width="43" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{Baru}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="12"/>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="24" y="0" width="1" height="12"/>
+				<reportElement stretchType="RelativeToTallestObject" x="24" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="118" y="0" width="1" height="12"/>
+				<reportElement stretchType="RelativeToTallestObject" x="118" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="71" y="0" width="1" height="12"/>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="235" y="0" width="1" height="12"/>
+				<reportElement stretchType="RelativeToTallestObject" x="71" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="289" y="0" width="1" height="12"/>
+				<reportElement stretchType="RelativeToTallestObject" x="235" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="262" y="0" width="1" height="12"/>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="401" y="0" width="1" height="12"/>
+				<reportElement stretchType="RelativeToTallestObject" x="289" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="470" y="0" width="1" height="12"/>
+				<reportElement stretchType="RelativeToTallestObject" x="262" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="553" y="0" width="1" height="12"/>
+				<reportElement stretchType="RelativeToTallestObject" x="401" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="1" y="11" width="801" height="1"/>
+				<reportElement stretchType="RelativeToTallestObject" x="470" y="0" width="1" height="12"/>
 				<graphicElement>
-					<pen lineWidth="0.25"/>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="553" y="0" width="1" height="12"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="11" width="801" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<textField isBlankWhenNull="true">
@@ -772,7 +556,7 @@ FROM
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{tgl_masuk}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="691" y="1" width="110" height="10"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
@@ -780,19 +564,19 @@ FROM
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_dokter}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="632" y="0" width="1" height="12"/>
+				<reportElement stretchType="RelativeToTallestObject" x="632" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="688" y="0" width="1" height="12"/>
+				<reportElement stretchType="RelativeToTallestObject" x="688" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToBandHeight" x="802" y="0" width="1" height="12"/>
+				<reportElement stretchType="RelativeToTallestObject" x="802" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -825,12 +609,6 @@ FROM
 				</textElement>
 				<text><![CDATA[NIP.                                                                     ]]></text>
 			</staticText>
-			<line>
-				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="1" y="0" width="801" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</line>
 			<line>
 				<reportElement x="348" y="68" width="183" height="1"/>
 				<graphicElement>

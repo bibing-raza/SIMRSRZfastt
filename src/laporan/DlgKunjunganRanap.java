@@ -29,6 +29,7 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -55,9 +56,14 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
     public DlgKunjunganRanap(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
+        
         this.setLocation(8,1);
         setSize(885, 674);
-        tabMode = new DefaultTableModel(null, new String[]{"No.", "Lama", "Baru", "Nama Pasien", "L", "P", "Alamat", "Diagnosa", "Ruang", "Stts.Pulang", "Tgl.Masuk", "DPJP"}) {
+        tabMode = new DefaultTableModel(null, new String[]{"No.", "Lama", "Baru", "Nama Pasien", "L", "P", "Alamat", 
+            "Diagnosa", "Ruang Perawatan", "Stts.Pulang", "Tgl.Masuk", "DPJP"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -77,28 +83,36 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(70);
             } else if (i == 3) {
-                column.setPreferredWidth(190);
+                column.setPreferredWidth(220);
             } else if (i == 4) {
                 column.setPreferredWidth(40);
             } else if (i == 5) {
                 column.setPreferredWidth(40);
             } else if (i == 6) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(400);
             } else if (i == 7) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(350);
             } else if (i == 8) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(300);
             } else if (i == 9) {
-                column.setPreferredWidth(85);
+                column.setPreferredWidth(130);
             } else if (i == 10) {
                 column.setPreferredWidth(75);
             } else if (i == 11) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(250);
             }
         }
         tbBangsal.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbBangsal.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbBangsal.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbBangsal.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbBangsal.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbBangsal.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbBangsal.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
         
-        tabMode2 = new DefaultTableModel(null, new String[]{"No.", "Lama", "Baru", "Nama Pasien", "L", "P", "Alamat", "Diagnosa", "Ruang", "Stts.Pulang", "Tgl.Pulang", "DPJP"}) {
+        tabMode2 = new DefaultTableModel(null, new String[]{"No.", "Lama", "Baru", "Nama Pasien", "L", "P", "Alamat", 
+            "Diagnosa", "Ruang Perawatan", "Stts.Pulang", "Tgl.Pulang", "DPJP"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -118,19 +132,19 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(70);
             } else if (i == 3) {
-                column.setPreferredWidth(190);
+                column.setPreferredWidth(220);
             } else if (i == 4) {
                 column.setPreferredWidth(40);
             } else if (i == 5) {
                 column.setPreferredWidth(40);
             } else if (i == 6) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(400);
             } else if (i == 7) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(350);
             } else if (i == 8) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(300);
             } else if (i == 9) {
-                column.setPreferredWidth(85);
+                column.setPreferredWidth(130);
             } else if (i == 10) {
                 column.setPreferredWidth(75);
             } else if (i == 11) {
@@ -138,8 +152,16 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
             }
         }
         tbBangsal2.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbBangsal2.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbBangsal2.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbBangsal2.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbBangsal2.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbBangsal2.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbBangsal2.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
 
         TKd.setDocument(new batasInput((byte)20).getKata(TKd));
+        
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
@@ -168,7 +190,6 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
                 }
             });
         }
-        emptText();
     }    
 
     /** This method is called from within the constructor to
@@ -181,9 +202,6 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
     private void initComponents() {
 
         TKd = new widget.TextBox();
-        userBerizin = new widget.TextBox();
-        kdAkses = new widget.TextBox();
-        ruangDicetak = new widget.TextBox();
         PopupMnTglMasuk = new javax.swing.JPopupMenu();
         MnKunTglMasuk = new javax.swing.JMenuItem();
         MnKunCB = new javax.swing.JMenuItem();
@@ -208,30 +226,14 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
         panelisi1 = new widget.panelisi();
         jLabel8 = new widget.Label();
         cmbRuangan = new widget.ComboBox();
-        cmbRuangKhusus1 = new widget.ComboBox();
-        cmbRuangKhusus2 = new widget.ComboBox();
-        cmbRuangKhusus3 = new widget.ComboBox();
-        cmbRuangKhusus4 = new widget.ComboBox();
         BtnIndikatorPelayanan = new widget.Button();
 
         TKd.setForeground(new java.awt.Color(255, 255, 255));
         TKd.setName("TKd"); // NOI18N
 
-        userBerizin.setForeground(new java.awt.Color(255, 255, 255));
-        userBerizin.setName("userBerizin"); // NOI18N
-
-        kdAkses.setForeground(new java.awt.Color(0, 0, 0));
-        kdAkses.setName("kdAkses"); // NOI18N
-        kdAkses.setPreferredSize(new java.awt.Dimension(120, 24));
-
-        ruangDicetak.setForeground(new java.awt.Color(0, 0, 0));
-        ruangDicetak.setName("ruangDicetak"); // NOI18N
-        ruangDicetak.setPreferredSize(new java.awt.Dimension(120, 24));
-
         PopupMnTglMasuk.setName("PopupMnTglMasuk"); // NOI18N
 
         MnKunTglMasuk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnKunTglMasuk.setForeground(new java.awt.Color(0, 0, 0));
         MnKunTglMasuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         MnKunTglMasuk.setText("Lap. Rekap Kunjungan");
         MnKunTglMasuk.setName("MnKunTglMasuk"); // NOI18N
@@ -244,7 +246,6 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
         PopupMnTglMasuk.add(MnKunTglMasuk);
 
         MnKunCB.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnKunCB.setForeground(new java.awt.Color(0, 0, 0));
         MnKunCB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         MnKunCB.setText("Lap. Rekap Total Kunjgn. Cara Bayar");
         MnKunCB.setName("MnKunCB"); // NOI18N
@@ -260,15 +261,15 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Kunjungan Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Kunjungan Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -291,7 +292,6 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbBangsal.setToolTipText("");
         tbBangsal.setComponentPopupMenu(PopupMnTglMasuk);
         tbBangsal.setName("tbBangsal"); // NOI18N
         tbBangsal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -318,7 +318,6 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
         Scroll2.setName("Scroll2"); // NOI18N
         Scroll2.setOpaque(true);
 
-        tbBangsal2.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbBangsal2.setName("tbBangsal2"); // NOI18N
         tbBangsal2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -441,84 +440,10 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
         panelisi1.add(jLabel8);
 
         cmbRuangan.setForeground(new java.awt.Color(0, 0, 0));
-        cmbRuangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SEMUA RUANG", "AR-RAUDAH", "AS-SAMI/1", "AS-SAMI/2", "INTERNIST", "PERINATOLOGI & BAYI SEHAT" }));
+        cmbRuangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SEMUA RUANGAN" }));
         cmbRuangan.setName("cmbRuangan"); // NOI18N
         cmbRuangan.setPreferredSize(new java.awt.Dimension(180, 23));
-        cmbRuangan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbRuanganMouseClicked(evt);
-            }
-        });
-        cmbRuangan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbRuanganActionPerformed(evt);
-            }
-        });
         panelisi1.add(cmbRuangan);
-
-        cmbRuangKhusus1.setForeground(new java.awt.Color(0, 0, 0));
-        cmbRuangKhusus1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "- pilih salah satu -", "AS-SAMI", "AS-SAMI/1", "AS-SAMI/2" }));
-        cmbRuangKhusus1.setName("cmbRuangKhusus1"); // NOI18N
-        cmbRuangKhusus1.setPreferredSize(new java.awt.Dimension(120, 23));
-        cmbRuangKhusus1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbRuangKhusus1MouseClicked(evt);
-            }
-        });
-        cmbRuangKhusus1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbRuangKhusus1ActionPerformed(evt);
-            }
-        });
-        panelisi1.add(cmbRuangKhusus1);
-
-        cmbRuangKhusus2.setForeground(new java.awt.Color(0, 0, 0));
-        cmbRuangKhusus2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "- pilih salah satu -", "ZAAL", "RKPD", "INTERNIST" }));
-        cmbRuangKhusus2.setName("cmbRuangKhusus2"); // NOI18N
-        cmbRuangKhusus2.setPreferredSize(new java.awt.Dimension(120, 23));
-        cmbRuangKhusus2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbRuangKhusus2MouseClicked(evt);
-            }
-        });
-        cmbRuangKhusus2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbRuangKhusus2ActionPerformed(evt);
-            }
-        });
-        panelisi1.add(cmbRuangKhusus2);
-
-        cmbRuangKhusus3.setForeground(new java.awt.Color(0, 0, 0));
-        cmbRuangKhusus3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "- pilih salah satu -", "PERINATOLOGI", "BAYI SEHAT" }));
-        cmbRuangKhusus3.setName("cmbRuangKhusus3"); // NOI18N
-        cmbRuangKhusus3.setPreferredSize(new java.awt.Dimension(120, 23));
-        cmbRuangKhusus3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbRuangKhusus3MouseClicked(evt);
-            }
-        });
-        cmbRuangKhusus3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbRuangKhusus3ActionPerformed(evt);
-            }
-        });
-        panelisi1.add(cmbRuangKhusus3);
-
-        cmbRuangKhusus4.setForeground(new java.awt.Color(0, 0, 0));
-        cmbRuangKhusus4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "- pilih salah satu -", "AR-RAUDAH", "AR-RAUDAH ATAS", "AR-RAUDAH BAWAH" }));
-        cmbRuangKhusus4.setName("cmbRuangKhusus4"); // NOI18N
-        cmbRuangKhusus4.setPreferredSize(new java.awt.Dimension(120, 23));
-        cmbRuangKhusus4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbRuangKhusus4MouseClicked(evt);
-            }
-        });
-        cmbRuangKhusus4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbRuangKhusus4ActionPerformed(evt);
-            }
-        });
-        panelisi1.add(cmbRuangKhusus4);
 
         BtnIndikatorPelayanan.setForeground(new java.awt.Color(0, 0, 0));
         BtnIndikatorPelayanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
@@ -577,59 +502,37 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
 }//GEN-LAST:event_tbBangsalKeyPressed
 
 private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
-    if ((!cmbRuangan.getSelectedItem().equals("- pilih salah satu -"))
-            || (!cmbRuangKhusus1.getSelectedItem().equals("- pilih salah satu -"))
-            || (!cmbRuangKhusus2.getSelectedItem().equals("- pilih salah satu -"))
-            || (!cmbRuangKhusus3.getSelectedItem().equals("- pilih salah satu -"))
-            || (!cmbRuangKhusus4.getSelectedItem().equals("- pilih salah satu -"))) {
-        if (TabRawat.getSelectedIndex() == 0) {
-            tampil();
-        } else if (TabRawat.getSelectedIndex() == 1) {
-            tampil2();
-        }
-
-    } else if ((cmbRuangan.getSelectedItem().equals("- pilih salah satu -"))
-            || (cmbRuangKhusus1.getSelectedItem().equals("- pilih salah satu -"))
-            || (cmbRuangKhusus2.getSelectedItem().equals("- pilih salah satu -"))
-            || (cmbRuangKhusus3.getSelectedItem().equals("- pilih salah satu -"))
-            || (cmbRuangKhusus4.getSelectedItem().equals("- pilih salah satu -"))) {
-        JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu nama ruangannya dulu...!!!");
-        Tgl1.requestFocus();
+    if (TabRawat.getSelectedIndex() == 0) {
+        tampil();
+    } else if (TabRawat.getSelectedIndex() == 1) {
+        tampil2();
     }
 }//GEN-LAST:event_BtnCariActionPerformed
 
 private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
-            tampil();
-            this.setCursor(Cursor.getDefaultCursor());
-        }else{
-            Valid.pindah(evt, TKd, Tgl1);
-        }
+    if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        tampil();
+        this.setCursor(Cursor.getDefaultCursor());
+    } else {
+        Valid.pindah(evt, TKd, Tgl1);
+    }
 }//GEN-LAST:event_BtnCariKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'igd' and nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuangan);
-
-        if (akses.getregistrasi() == true || akses.getpenyakit() == true || akses.getkode().equals("PR13")) {
-            BtnCari.setEnabled(true);
-            cmbRuangan.setSelectedIndex(0);
-            cmbRuangan.setEnabled(true);
-            cmbRuangan.setVisible(true);
-            cmbRuangKhusus1.setVisible(false);
-            cmbRuangKhusus2.setVisible(false);
-            cmbRuangKhusus3.setVisible(false);
-            cmbRuangKhusus4.setVisible(false);
-            tampil();
-        }
+        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung not in ('-','BAGIAN KEUANGAN','BID. PELAYANAN MEDIK',"
+                + "'IGD','INST. LABORATORIUM','INST. PEM. JENAZAH','INST. RADIOLOGI','INST. REHAB MEDIK','INST. REKAM MEDIS','INSTALASI FARMASI',"
+                + "'INSTALASI GIZI','INSTALASI SANITASI','IPSRS','PONEK - VK BERSALIN','SUB. BAG. SDM','UNIT AMBULANCE','UPM') "
+                + "GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuangan);
+        tampil();
     }//GEN-LAST:event_formWindowOpened
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             BtnCari.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
             BtnKeluar.requestFocus();
         }
     }//GEN-LAST:event_TCariKeyPressed
@@ -655,62 +558,63 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }//GEN-LAST:event_tbBangsal2KeyPressed
 
     private void MnKunTglMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKunTglMasukActionPerformed
-        if ((!cmbRuangKhusus1.getSelectedItem().equals("- pilih salah satu -"))
-                || (!cmbRuangKhusus2.getSelectedItem().equals("- pilih salah satu -"))
-                || (!cmbRuangKhusus3.getSelectedItem().equals("- pilih salah satu -"))
-                || (!cmbRuangKhusus4.getSelectedItem().equals("- pilih salah satu -"))) {
-            if (ruangDicetak.getText().equals("SEMUA RUANG")) {
+        if (cmbRuangan.getSelectedIndex() == 0) {
+            if (Sequel.cariInteger("SELECT count(-1) FROM reg_periksa rp INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                    + "INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
+                    + "rp.status_lanjut = 'Ranap' AND rp.stts <> 'Batal' AND ki.stts_pulang not in ('-','Pindah Kamar') and "
+                    + "rp.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ") > 0) {
                 ctkSemuaRuang();
-            } else if (ruangDicetak.getText().equals("AR-RAUDAH") || ruangDicetak.getText().equals("AR-RAUDAH ATAS") || ruangDicetak.getText().equals("AR-RAUDAH BAWAH")) {
-                ctkRuangArRaudah();
-            } else if (ruangDicetak.getText().equals("AS-SAMI") || ruangDicetak.getText().equals("AS-SAMI/1") || ruangDicetak.getText().equals("AS-SAMI/2")) {
-                ctkRuangAsSami();
-            } else if (ruangDicetak.getText().equals("INTERNIST")) {
-                ctkRuangRKPDzaal();
-            } else if (ruangDicetak.getText().equals("PERINATOLOGI & BAYI SEHAT")) {
-                ctkRuangPeriBayi();
             } else {
-                ctkPerRuangan();
+                JOptionPane.showMessageDialog(null, "Maaf, data kunjungan pasien yang sudah pulang rawat inap tidak ditemukan...!!!!");
             }
-
-        } else if ((cmbRuangKhusus1.getSelectedItem().equals("- pilih salah satu -"))
-                || (cmbRuangKhusus2.getSelectedItem().equals("- pilih salah satu -"))
-                || (cmbRuangKhusus3.getSelectedItem().equals("- pilih salah satu -"))
-                || (cmbRuangKhusus4.getSelectedItem().equals("- pilih salah satu -"))) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu nama ruangannya dulu...!!!");
-            Tgl1.requestFocus();
+        } else {
+            if (Sequel.cariInteger("SELECT count(-1) FROM reg_periksa rp INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                    + "INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
+                    + "rp.status_lanjut = 'Ranap' AND rp.stts <> 'Batal' AND ki.stts_pulang not in ('-','Pindah Kamar') and b.nm_gedung='" + cmbRuangan.getSelectedItem().toString() + "' and "
+                    + "rp.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' ") > 0) {
+                cetakPerRuangan();
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, data kunjungan pasien yang sudah pulang rawat inap dari ruang " + cmbRuangan.getSelectedItem().toString() + " tidak ditemukan...!!!!");
+            }
         }
     }//GEN-LAST:event_MnKunTglMasukActionPerformed
 
     private void MnKunCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKunCBActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        Map<String, Object> param = new HashMap<>();
-        param.put("namars", akses.getnamars());
-        param.put("alamatrs", akses.getalamatrs());
-        param.put("kotars", akses.getkabupatenrs());
-        param.put("propinsirs", akses.getpropinsirs());
-        param.put("kontakrs", akses.getkontakrs());
-        param.put("emailrs", akses.getemailrs());
-        param.put("logo", Sequel.cariGambar("select logo from setting"));
-        param.put("periode", Tgl1.getSelectedItem() + " s.d " + Tgl2.getSelectedItem());      
-        Valid.MyReport("rptRekapKunCBTglMsk.jasper", "report", "::[ Laporan Rekap Total Kunjungan Pasien Rawat Inap Berdasarkan Cara Bayar & Tanggal Masuk ]::",
-                " select a.png_jawab, ifnull(b.total,0) Pasien_Lama, ifnull(c.total,0) Pasien_Baru, (ifnull(b.total,0)+ifnull(c.total,0)) as total_LB from "
-                + " ((select png_jawab, kd_pj from penjab) as a left join (SELECT penjab.png_jawab,penjab.kd_pj, COUNT(penjab.kd_pj) as total "
-                + " FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat "
-                + " AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                + " INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj "
-                + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and reg_periksa.stts_daftar = 'Lama' "
-                + " GROUP BY penjab.kd_pj) as b on a.kd_pj = b.kd_pj left join (SELECT penjab.png_jawab,penjab.kd_pj, COUNT(penjab.kd_pj) as total "
-                + " FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat "
-                + " AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                + " INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj "
-                + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and reg_periksa.stts_daftar = 'Baru' "
-                + " GROUP BY penjab.kd_pj) as c on c.kd_pj = a.kd_pj) WHERE (ifnull(b.total,0)+ifnull(c.total,0))  > 0 ORDER BY a.png_jawab", param);
-        this.setCursor(Cursor.getDefaultCursor());
+        if (Sequel.cariInteger("SELECT count(-1) FROM reg_periksa rp INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                + "INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
+                + "rp.status_lanjut = 'Ranap' AND rp.stts <> 'Batal' AND ki.stts_pulang not in ('-','Pindah Kamar') AND "
+                + "rp.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data kunjungan pasien yang sudah pulang rawat inap tidak ditemukan...!!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("periode", Tgl1.getSelectedItem() + " s.d " + Tgl2.getSelectedItem());
+            Valid.MyReport("rptRekapKunCBTglMsk.jasper", "report", "::[ Laporan Rekap Total Kunjungan Pasien Rawat Inap Berdasarkan Cara Bayar & Tanggal Masuk ]::",
+                    " select a.png_jawab, ifnull(b.total,0) Pasien_Lama, ifnull(c.total,0) Pasien_Baru, (ifnull(b.total,0)+ifnull(c.total,0)) as total_LB from "
+                    + " ((select png_jawab, kd_pj from penjab) as a left join (SELECT penjab.png_jawab,penjab.kd_pj, COUNT(penjab.kd_pj) as total "
+                    + " FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
+                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat "
+                    + " AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
+                    + " INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj "
+                    + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
+                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and reg_periksa.stts_daftar = 'Lama' "
+                    + " GROUP BY penjab.kd_pj) as b on a.kd_pj = b.kd_pj left join (SELECT penjab.png_jawab,penjab.kd_pj, COUNT(penjab.kd_pj) as total "
+                    + " FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
+                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat "
+                    + " AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
+                    + " INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj "
+                    + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
+                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and reg_periksa.stts_daftar = 'Baru' "
+                    + " GROUP BY penjab.kd_pj) as c on c.kd_pj = a.kd_pj) WHERE (ifnull(b.total,0)+ifnull(c.total,0))  > 0 ORDER BY a.png_jawab", param);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_MnKunCBActionPerformed
 
     private void BtnIndikatorPelayananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIndikatorPelayananActionPerformed
@@ -732,46 +636,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private void BtnIndikatorPelayananKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnIndikatorPelayananKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnIndikatorPelayananKeyPressed
-
-    private void cmbRuanganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbRuanganMouseClicked
-        cmbRuanganActionPerformed(null);
-    }//GEN-LAST:event_cmbRuanganMouseClicked
-
-    private void cmbRuanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRuanganActionPerformed
-        ruangDicetak.setText(cmbRuangan.getSelectedItem().toString());
-    }//GEN-LAST:event_cmbRuanganActionPerformed
-
-    private void cmbRuangKhusus1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbRuangKhusus1MouseClicked
-        cmbRuangKhusus1ActionPerformed(null);
-    }//GEN-LAST:event_cmbRuangKhusus1MouseClicked
-
-    private void cmbRuangKhusus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRuangKhusus1ActionPerformed
-        ruangDicetak.setText(cmbRuangKhusus1.getSelectedItem().toString());
-    }//GEN-LAST:event_cmbRuangKhusus1ActionPerformed
-
-    private void cmbRuangKhusus2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbRuangKhusus2MouseClicked
-        cmbRuangKhusus2ActionPerformed(null);        
-    }//GEN-LAST:event_cmbRuangKhusus2MouseClicked
-
-    private void cmbRuangKhusus2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRuangKhusus2ActionPerformed
-        ruangDicetak.setText(cmbRuangKhusus2.getSelectedItem().toString());
-    }//GEN-LAST:event_cmbRuangKhusus2ActionPerformed
-
-    private void cmbRuangKhusus3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbRuangKhusus3MouseClicked
-        cmbRuangKhusus3ActionPerformed(null);
-    }//GEN-LAST:event_cmbRuangKhusus3MouseClicked
-
-    private void cmbRuangKhusus3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRuangKhusus3ActionPerformed
-        ruangDicetak.setText(cmbRuangKhusus3.getSelectedItem().toString());
-    }//GEN-LAST:event_cmbRuangKhusus3ActionPerformed
-
-    private void cmbRuangKhusus4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbRuangKhusus4MouseClicked
-        cmbRuangKhusus4ActionPerformed(null);
-    }//GEN-LAST:event_cmbRuangKhusus4MouseClicked
-
-    private void cmbRuangKhusus4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRuangKhusus4ActionPerformed
-        ruangDicetak.setText(cmbRuangKhusus4.getSelectedItem().toString());
-    }//GEN-LAST:event_cmbRuangKhusus4ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -803,10 +667,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JTabbedPane TabRawat;
     private widget.Tanggal Tgl1;
     private widget.Tanggal Tgl2;
-    private widget.ComboBox cmbRuangKhusus1;
-    private widget.ComboBox cmbRuangKhusus2;
-    private widget.ComboBox cmbRuangKhusus3;
-    private widget.ComboBox cmbRuangKhusus4;
     private widget.ComboBox cmbRuangan;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
@@ -814,67 +674,50 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
-    private widget.TextBox kdAkses;
     private widget.Label label11;
     private widget.Label label18;
     private widget.panelisi panelGlass5;
     private widget.panelisi panelisi1;
-    private widget.TextBox ruangDicetak;
     private widget.Table tbBangsal;
     private widget.Table tbBangsal2;
-    private widget.TextBox userBerizin;
     // End of variables declaration//GEN-END:variables
 
     public void tampil(){        
+        Valid.tabelKosong(tabMode);
         try{   
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
-            Valid.tabelKosong(tabMode);   
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            if (cmbRuangan.getSelectedIndex() == 0) {
+                ps = koneksi.prepareStatement("select rp.no_rawat,rp.tgl_registrasi,rp.no_rkm_medis,p.nm_pasien,p.alamat,p.jk, "
+                        + "concat(rp.umurdaftar,' ',rp.sttsumur) as umur,p.tgl_daftar, ki.kd_kamar,b.nm_bangsal,rp.almt_pj,ki.stts_pulang, "
+                        + "date_format(ki.tgl_masuk,'%d-%m-%Y') tgl_masuk,d.nm_dokter from reg_periksa rp inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                        + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal inner join dokter d on d.kd_dokter=rp.kd_dokter WHERE "
+                        + "rp.status_lanjut='Ranap' and rp.stts<>'Batal' AND ki.stts_pulang not in ('-','Pindah Kamar') "
+                        + "and rp.tgl_registrasi between ? and ? and b.nm_gedung like ? or "
+                        + "(rp.status_lanjut='Ranap' and rp.stts<>'Batal' and rp.tgl_registrasi between ? and ? and p.alamat like ? or "
+                        + "rp.status_lanjut='Ranap' and rp.stts<>'Batal' and rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or "
+                        + "rp.status_lanjut='Ranap' and rp.stts<>'Batal' and rp.tgl_registrasi between ? and ? and rp.no_rkm_medis like ? or "
+                        + "rp.status_lanjut='Ranap' and rp.stts<>'Batal' and rp.tgl_registrasi between ? and ? and ki.kd_kamar like ?) "
+                        + "group by rp.no_rawat order by rp.tgl_registrasi");
+            } else {
+                ps = koneksi.prepareStatement("select rp.no_rawat,rp.tgl_registrasi,rp.no_rkm_medis,p.nm_pasien,p.alamat,p.jk, "
+                        + "concat(rp.umurdaftar,' ',rp.sttsumur) as umur,p.tgl_daftar, ki.kd_kamar,b.nm_bangsal,rp.almt_pj,ki.stts_pulang, "
+                        + "date_format(ki.tgl_masuk,'%d-%m-%Y') tgl_masuk,d.nm_dokter from reg_periksa rp inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                        + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal inner join dokter d on d.kd_dokter=rp.kd_dokter WHERE "
+                        + "rp.status_lanjut='Ranap' and rp.stts<>'Batal' AND ki.stts_pulang not in ('-','Pindah Kamar') and b.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' "
+                        + "and rp.tgl_registrasi between ? and ? and b.nm_gedung like ? or "
+                        + "(rp.status_lanjut='Ranap' and rp.stts<>'Batal' and b.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' and rp.tgl_registrasi between ? and ? and p.alamat like ? or "
+                        + "rp.status_lanjut='Ranap' and rp.stts<>'Batal' and b.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' and rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or "
+                        + "rp.status_lanjut='Ranap' and rp.stts<>'Batal' and b.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' and rp.tgl_registrasi between ? and ? and rp.no_rkm_medis like ? or "
+                        + "rp.status_lanjut='Ranap' and rp.stts<>'Batal' and b.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' and rp.tgl_registrasi between ? and ? and ki.kd_kamar like ?) "
+                        + "group by rp.no_rawat order by rp.tgl_registrasi");
+            }            
             
-            if (ruangDicetak.getText().equals("SEMUA RUANG")) {
-            ps = koneksi.prepareStatement(
-                        "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.alamat,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) as umur,pasien.tgl_daftar,"
-                        + "kamar_inap.kd_kamar,bangsal.nm_bangsal,reg_periksa.almt_pj,kamar_inap.stts_pulang,kamar_inap.tgl_masuk,dokter.nm_dokter "
-                        + "from reg_periksa inner join pasien inner join kamar_inap inner join kamar inner join bangsal inner join dokter "
-                        + "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.no_rawat=kamar_inap.no_rawat and kamar_inap.kd_kamar=kamar.kd_kamar "
-                        + "and kamar.kd_bangsal=bangsal.kd_bangsal and reg_periksa.kd_dokter=dokter.kd_dokter WHERE "
-                        + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') and "
-                        + "reg_periksa.tgl_registrasi between ? and ? and bangsal.nm_gedung like ? or "
-                        + "(reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and pasien.alamat like ? or "
-                        + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and pasien.nm_pasien like ? or "
-                        + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.no_rkm_medis like ? or "
-                        + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and kamar_inap.kd_kamar like ?) "
-                        + "group by reg_periksa.no_rawat order by reg_periksa.tgl_registrasi");            
-            }
-            
-            if (!ruangDicetak.getText().equals("- pilih salah satu -") || !ruangDicetak.getText().equals("SEMUA RUANG")) {
-            ps = koneksi.prepareStatement(
-                        "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.alamat,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) as umur,pasien.tgl_daftar,"
-                        + "kamar_inap.kd_kamar,bangsal.nm_bangsal,reg_periksa.almt_pj,kamar_inap.stts_pulang,kamar_inap.tgl_masuk,dokter.nm_dokter "
-                        + "from reg_periksa inner join pasien inner join kamar_inap inner join kamar inner join bangsal inner join dokter "
-                        + "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.no_rawat=kamar_inap.no_rawat and kamar_inap.kd_kamar=kamar.kd_kamar "
-                        + "and kamar.kd_bangsal=bangsal.kd_bangsal and reg_periksa.kd_dokter=dokter.kd_dokter WHERE "
-                        + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') and "
-                        + "reg_periksa.tgl_registrasi between ? and ? and bangsal.nm_gedung like ? and "
-                        + "(reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and pasien.alamat like ? or "
-                        + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and pasien.nm_pasien like ? or "
-                        + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.no_rkm_medis like ? or "
-                        + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and kamar_inap.kd_kamar like ?) "
-                        + "group by reg_periksa.no_rawat order by reg_periksa.tgl_registrasi");            
-            }             
-            
-            try {               
-                
+            try {
                 ps.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                
-                if (ruangDicetak.getText().equals("SEMUA RUANG")) {
-                    ps.setString(3, "%%");
-                }
-                
-                if (!ruangDicetak.getText().equals("- pilih salah satu -") || !ruangDicetak.getText().equals("SEMUA RUANG")) {
-                    ps.setString(3, "%" + ruangDicetak.getText() + "%");
-                }
-                                
+                ps.setString(3, "%" + TCari.getText().trim() + "%");
                 ps.setString(4, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
                 ps.setString(5, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
                 ps.setString(6, "%" + TCari.getText().trim() + "%");
@@ -887,49 +730,52 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 ps.setString(13, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
                 ps.setString(14, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
                 ps.setString(15, "%" + TCari.getText().trim() + "%");
-                rs=ps.executeQuery();
-                i=1;   
-                lama=0;baru=0;laki=0;per=0;
-                while(rs.next()){
-                    setbaru="";
-                    setlama="";
-                    if(rs.getString("tgl_registrasi").equals(rs.getString("tgl_daftar"))){
-                        setbaru=rs.getString("no_rkm_medis");
+                rs = ps.executeQuery();
+                i = 1;
+                lama = 0;
+                baru = 0;
+                laki = 0;
+                per = 0;
+                while (rs.next()) {
+                    setbaru = "";
+                    setlama = "";
+                    if (rs.getString("tgl_registrasi").equals(rs.getString("tgl_daftar"))) {
+                        setbaru = rs.getString("no_rkm_medis");
                         baru++;
-                    }else if(!rs.getString("tgl_registrasi").equals(rs.getString("tgl_daftar"))){
-                        setlama=rs.getString("no_rkm_medis");
+                    } else if (!rs.getString("tgl_registrasi").equals(rs.getString("tgl_daftar"))) {
+                        setlama = rs.getString("no_rkm_medis");
                         lama++;
                     }
-                    umurlk="";
-                    umurpr="";
+                    umurlk = "";
+                    umurpr = "";
                     switch (rs.getString("jk")) {
                         case "L":
-                            umurlk=rs.getString("umur");
+                            umurlk = rs.getString("umur");
                             laki++;
                             break;
                         case "P":
-                            umurpr=rs.getString("umur");
+                            umurpr = rs.getString("umur");
                             per++;
                             break;
                     }
-                    diagnosa="";
-                    ps2=koneksi.prepareStatement(
-                            "select penyakit.nm_penyakit from penyakit inner join diagnosa_pasien " +
-                            "on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit " +
-                            "where diagnosa_pasien.no_rawat=? order by prioritas asc limit 1");
-                    try {                                    
-                        ps2.setString(1,rs.getString("no_rawat"));
-                        rs2=ps2.executeQuery();
-                        if(rs2.next()){
-                            diagnosa=rs2.getString(1);
+                    diagnosa = "";
+                    ps2 = koneksi.prepareStatement(
+                            "select penyakit.nm_penyakit from penyakit inner join diagnosa_pasien "
+                            + "on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit "
+                            + "where diagnosa_pasien.no_rawat=? order by prioritas asc limit 1");
+                    try {
+                        ps2.setString(1, rs.getString("no_rawat"));
+                        rs2 = ps2.executeQuery();
+                        if (rs2.next()) {
+                            diagnosa = rs2.getString(1);
                         }
                     } catch (Exception e) {
                         System.out.println(e);
-                    } finally{
-                        if(rs2!=null){
+                    } finally {
+                        if (rs2 != null) {
                             rs2.close();
                         }
-                        if(ps2!=null){
+                        if (ps2 != null) {
                             ps2.close();
                         }
                     }
@@ -949,129 +795,116 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     });
                     i++;
                 }
-                if(i>=2){
+                if (i >= 2) {
                     tabMode.addRow(new Object[]{
-                        ">>",lama,baru,"",laki,per,"","",""
+                        ">>", lama, baru, "", laki, per, "", "", ""
                     });
                 }
             } catch (Exception e) {
-                System.out.println("Notifikasi : "+e);
-            } finally{
-                if(rs!=null){
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
                     rs.close();
                 }
-                if(ps!=null){
+                if (ps != null) {
                     ps.close();
                 }
-            }    
+            }
             this.setCursor(Cursor.getDefaultCursor());
-        }catch(Exception e){
-            System.out.println("Notifikasi : "+e);
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 
     public void tampil2(){        
-        try{   
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
-            Valid.tabelKosong(tabMode2);   
-            
-            if (ruangDicetak.getText().equals("SEMUA RUANG")) {
-            ps3=koneksi.prepareStatement(
-                        "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.alamat,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) as umur,pasien.tgl_daftar,"
-                        + "kamar_inap.kd_kamar,bangsal.nm_bangsal,reg_periksa.almt_pj,kamar_inap.stts_pulang,kamar_inap.tgl_keluar,dokter.nm_dokter "
-                        + "from reg_periksa inner join pasien inner join kamar_inap inner join kamar inner join bangsal inner join dokter "
-                        + "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.no_rawat=kamar_inap.no_rawat and kamar_inap.kd_kamar=kamar.kd_kamar "
-                        + "and kamar.kd_bangsal=bangsal.kd_bangsal and reg_periksa.kd_dokter=dokter.kd_dokter WHERE "
-                        + "kamar_inap.stts_pulang not in ('-','Pindah Kamar') and kamar_inap.tgl_keluar between ? and ? and bangsal.nm_bangsal like ? or "
-                        + "(kamar_inap.stts_pulang<>'Pindah Kamar' and kamar_inap.tgl_keluar between ? and ? and pasien.alamat like ? or "
-                        + "kamar_inap.stts_pulang<>'Pindah Kamar' and kamar_inap.tgl_keluar between ? and ? and pasien.nm_pasien like ? or "
-                        + "kamar_inap.stts_pulang<>'Pindah Kamar' and kamar_inap.tgl_keluar between ? and ? and reg_periksa.no_rkm_medis like ? or "
-                        + "kamar_inap.stts_pulang<>'Pindah Kamar' and kamar_inap.tgl_keluar between ? and ? and kamar_inap.kd_kamar like ?) "
-                        + "group by reg_periksa.no_rawat order by kamar_inap.tgl_keluar");
-            }
-            
-            if (!ruangDicetak.getText().equals("- pilih salah satu -") || !ruangDicetak.getText().equals("SEMUA RUANG")) {
-                ps3 = koneksi.prepareStatement(
-                        "select reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.alamat,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) as umur,pasien.tgl_daftar,"
-                        + "kamar_inap.kd_kamar,bangsal.nm_bangsal,reg_periksa.almt_pj,kamar_inap.stts_pulang,kamar_inap.tgl_keluar,dokter.nm_dokter "
-                        + "from reg_periksa inner join pasien inner join kamar_inap inner join kamar inner join bangsal inner join dokter "
-                        + "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.no_rawat=kamar_inap.no_rawat and kamar_inap.kd_kamar=kamar.kd_kamar "
-                        + "and kamar.kd_bangsal=bangsal.kd_bangsal and reg_periksa.kd_dokter=dokter.kd_dokter WHERE "
-                        + "kamar_inap.stts_pulang not in ('-','Pindah Kamar') and kamar_inap.tgl_keluar between ? and ? and bangsal.nm_bangsal like ? and "
-                        + "(kamar_inap.stts_pulang<>'Pindah Kamar' and kamar_inap.tgl_keluar between ? and ? and pasien.alamat like ? or "
-                        + "kamar_inap.stts_pulang<>'Pindah Kamar' and kamar_inap.tgl_keluar between ? and ? and pasien.nm_pasien like ? or "
-                        + "kamar_inap.stts_pulang<>'Pindah Kamar' and kamar_inap.tgl_keluar between ? and ? and reg_periksa.no_rkm_medis like ? or "
-                        + "kamar_inap.stts_pulang<>'Pindah Kamar' and kamar_inap.tgl_keluar between ? and ? and kamar_inap.kd_kamar like ?) "
-                        + "group by reg_periksa.no_rawat order by kamar_inap.tgl_keluar");
+        Valid.tabelKosong(tabMode2);
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));            
+            if (cmbRuangan.getSelectedIndex() == 0) {
+                ps3 = koneksi.prepareStatement("select rp.no_rawat,rp.tgl_registrasi,rp.no_rkm_medis,p.nm_pasien,p.alamat,p.jk,concat(rp.umurdaftar,' ',rp.sttsumur) as umur,p.tgl_daftar, "
+                        + "ki.kd_kamar,b.nm_bangsal,rp.almt_pj,ki.stts_pulang,date_format(ki.tgl_keluar,'%d-%m-%Y') tgl_keluar, d.nm_dokter from reg_periksa rp "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                        + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal inner join dokter d on d.kd_dokter=rp.kd_dokter WHERE "
+                        + "ki.stts_pulang not in ('-','Pindah Kamar') and ki.tgl_keluar between ? and ? and b.nm_gedung like ? or "
+                        + "(ki.stts_pulang<>'Pindah Kamar' and ki.tgl_keluar between ? and ? and p.alamat like ? or "
+                        + "ki.stts_pulang<>'Pindah Kamar' and ki.tgl_keluar between ? and ? and p.nm_pasien like ? or "
+                        + "ki.stts_pulang<>'Pindah Kamar' and ki.tgl_keluar between ? and ? and rp.no_rkm_medis like ? or "
+                        + "ki.stts_pulang<>'Pindah Kamar' and ki.tgl_keluar between ? and ? and ki.kd_kamar like ?) group by rp.no_rawat order by ki.tgl_keluar");
+            } else {
+                ps3 = koneksi.prepareStatement("select rp.no_rawat,rp.tgl_registrasi,rp.no_rkm_medis,p.nm_pasien,p.alamat,p.jk,concat(rp.umurdaftar,' ',rp.sttsumur) as umur,p.tgl_daftar, "
+                        + "ki.kd_kamar,b.nm_bangsal,rp.almt_pj,ki.stts_pulang,date_format(ki.tgl_keluar,'%d-%m-%Y') tgl_keluar, d.nm_dokter from reg_periksa rp "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                        + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal inner join dokter d on d.kd_dokter=rp.kd_dokter WHERE "
+                        + "ki.stts_pulang not in ('-','Pindah Kamar') and b.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' and ki.tgl_keluar between ? and ? and b.nm_bangsal like ? or "
+                        + "(ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' and ki.tgl_keluar between ? and ? and p.alamat like ? or "
+                        + "ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' and ki.tgl_keluar between ? and ? and p.nm_pasien like ? or "
+                        + "ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' and ki.tgl_keluar between ? and ? and rp.no_rkm_medis like ? or "
+                        + "ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' and ki.tgl_keluar between ? and ? and ki.kd_kamar like ?) "
+                        + "group by rp.no_rawat order by ki.tgl_keluar");
             }
             
             try {
-                ps3.setString(1,Valid.SetTgl(Tgl1.getSelectedItem()+""));
-                ps3.setString(2,Valid.SetTgl(Tgl2.getSelectedItem()+""));
-                
-                if (ruangDicetak.getText().equals("SEMUA RUANG")) {
-                    ps3.setString(3, "%%");
-                }
-
-                if (!ruangDicetak.getText().equals("- pilih salah satu -") || !ruangDicetak.getText().equals("SEMUA RUANG")) {
-                    ps3.setString(3, "%" + ruangDicetak.getText() + "%");
-                }
-                                
-                ps3.setString(4,Valid.SetTgl(Tgl1.getSelectedItem()+""));
-                ps3.setString(5,Valid.SetTgl(Tgl2.getSelectedItem()+""));
-                ps3.setString(6,"%"+TCari.getText().trim()+"%");
-                ps3.setString(7,Valid.SetTgl(Tgl1.getSelectedItem()+""));
-                ps3.setString(8,Valid.SetTgl(Tgl2.getSelectedItem()+""));
-                ps3.setString(9,"%"+TCari.getText().trim()+"%");
-                ps3.setString(10,Valid.SetTgl(Tgl1.getSelectedItem()+""));
-                ps3.setString(11,Valid.SetTgl(Tgl2.getSelectedItem()+""));
-                ps3.setString(12,"%"+TCari.getText().trim()+"%");
-                ps3.setString(13,Valid.SetTgl(Tgl1.getSelectedItem()+""));
-                ps3.setString(14,Valid.SetTgl(Tgl2.getSelectedItem()+""));
-                ps3.setString(15,"%"+TCari.getText().trim()+"%");
-                rs=ps3.executeQuery();
-                i=1;   
-                lama=0;baru=0;laki=0;per=0;
-                while(rs.next()){
-                    setbaru="";
-                    setlama="";
-                    if(rs.getString("tgl_registrasi").equals(rs.getString("tgl_daftar"))){
-                        setbaru=rs.getString("no_rkm_medis");
+                ps3.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps3.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps3.setString(3, "%" + TCari.getText().trim() + "%");
+                ps3.setString(4, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps3.setString(5, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps3.setString(6, "%" + TCari.getText().trim() + "%");
+                ps3.setString(7, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps3.setString(8, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps3.setString(9, "%" + TCari.getText().trim() + "%");
+                ps3.setString(10, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps3.setString(11, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps3.setString(12, "%" + TCari.getText().trim() + "%");
+                ps3.setString(13, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps3.setString(14, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps3.setString(15, "%" + TCari.getText().trim() + "%");
+                rs = ps3.executeQuery();
+                i = 1;
+                lama = 0;
+                baru = 0;
+                laki = 0;
+                per = 0;
+                while (rs.next()) {
+                    setbaru = "";
+                    setlama = "";
+                    if (rs.getString("tgl_registrasi").equals(rs.getString("tgl_daftar"))) {
+                        setbaru = rs.getString("no_rkm_medis");
                         baru++;
-                    }else if(!rs.getString("tgl_registrasi").equals(rs.getString("tgl_daftar"))){
-                        setlama=rs.getString("no_rkm_medis");
+                    } else if (!rs.getString("tgl_registrasi").equals(rs.getString("tgl_daftar"))) {
+                        setlama = rs.getString("no_rkm_medis");
                         lama++;
                     }
-                    umurlk="";
-                    umurpr="";
+                    umurlk = "";
+                    umurpr = "";
                     switch (rs.getString("jk")) {
                         case "L":
-                            umurlk=rs.getString("umur");
+                            umurlk = rs.getString("umur");
                             laki++;
                             break;
                         case "P":
-                            umurpr=rs.getString("umur");
+                            umurpr = rs.getString("umur");
                             per++;
                             break;
                     }
-                    diagnosa="";
-                    ps2=koneksi.prepareStatement(
-                            "select penyakit.nm_penyakit from penyakit inner join diagnosa_pasien " +
-                            "on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit " +
-                            "where diagnosa_pasien.no_rawat=? order by prioritas asc limit 1");
-                    try {                                    
-                        ps2.setString(1,rs.getString("no_rawat"));
-                        rs2=ps2.executeQuery();
-                        if(rs2.next()){
-                            diagnosa=rs2.getString(1);
+                    diagnosa = "";
+                    ps2 = koneksi.prepareStatement(
+                            "select penyakit.nm_penyakit from penyakit inner join diagnosa_pasien "
+                            + "on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit "
+                            + "where diagnosa_pasien.no_rawat=? order by prioritas asc limit 1");
+                    try {
+                        ps2.setString(1, rs.getString("no_rawat"));
+                        rs2 = ps2.executeQuery();
+                        if (rs2.next()) {
+                            diagnosa = rs2.getString(1);
                         }
                     } catch (Exception e) {
                         System.out.println(e);
-                    } finally{
-                        if(rs2!=null){
+                    } finally {
+                        if (rs2 != null) {
                             rs2.close();
                         }
-                        if(ps2!=null){
+                        if (ps2 != null) {
                             ps2.close();
                         }
                     }
@@ -1088,27 +921,27 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         rs.getString("stts_pulang"),
                         rs.getString("tgl_keluar"),
                         rs.getString("nm_dokter")
-                    });    
+                    });
                     i++;
                 }
-                if(i>=2){
+                if (i >= 2) {
                     tabMode2.addRow(new Object[]{
-                        ">>",lama,baru,"",laki,per,"","",""
+                        ">>", lama, baru, "", laki, per, "", "", ""
                     });
                 }
             } catch (Exception e) {
-                System.out.println("Notifikasi : "+e);
-            } finally{
-                if(rs!=null){
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
                     rs.close();
                 }
-                if(ps3!=null){
+                if (ps3 != null) {
                     ps3.close();
                 }
-            }    
+            }
             this.setCursor(Cursor.getDefaultCursor());
-        }catch(Exception e){
-            System.out.println("Notifikasi : "+e);
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
     
@@ -1119,86 +952,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
     
-    public void emptText() {
-        userBerizin.setText("");
-        kdAkses.setText("");
-        ruangDicetak.setText("");
-    }
-    
-    public void UserValid() {
-        userBerizin.setText(Sequel.cariIsi("SELECT nip FROM hak_akses_unit WHERE nip='" + akses.getkode() + "' "));
-
-        if (akses.getkode().equals("Admin Utama")) {
-            BtnCari.setEnabled(true);            
-            cmbRuangan.setSelectedIndex(0);
-            cmbRuangan.setEnabled(true);
-            cmbRuangan.setVisible(true);
-            cmbRuangKhusus1.setVisible(false);
-            cmbRuangKhusus2.setVisible(false);
-            cmbRuangKhusus3.setVisible(false);
-            cmbRuangKhusus4.setVisible(false);
-            tampil();
-            
-        } else if (!userBerizin.getText().equals("") || !akses.getkode().equals("Admin Utama") || !userBerizin.getText().equals("PR13")) {
-            
-            if (userBerizin.getText().equals("PR04")) {
-                BtnCari.setEnabled(true);
-                cmbRuangKhusus1.setVisible(true);
-                cmbRuangKhusus1.setSelectedIndex(0);
-                cmbRuangan.setVisible(false);
-                cmbRuangKhusus2.setVisible(false);
-                cmbRuangKhusus3.setVisible(false);
-                cmbRuangKhusus4.setVisible(false);
-                kdAkses.setText("");
-            
-            } else if (userBerizin.getText().equals("PR06")) {
-                BtnCari.setEnabled(true);
-                cmbRuangKhusus2.setVisible(true);
-                cmbRuangKhusus2.setSelectedIndex(0);
-                cmbRuangan.setVisible(false);
-                cmbRuangKhusus1.setVisible(false);
-                cmbRuangKhusus3.setVisible(false);
-                cmbRuangKhusus4.setVisible(false);
-                kdAkses.setText("");
-            
-            } else if (userBerizin.getText().equals("PR10")) {
-                BtnCari.setEnabled(true);
-                cmbRuangKhusus3.setVisible(true);
-                cmbRuangKhusus3.setSelectedIndex(0);
-                cmbRuangan.setVisible(false);
-                cmbRuangKhusus1.setVisible(false);
-                cmbRuangKhusus2.setVisible(false);
-                cmbRuangKhusus4.setVisible(false);
-                kdAkses.setText("");
-            
-            } else if (userBerizin.getText().equals("PR07")) {
-                BtnCari.setEnabled(true);
-                cmbRuangKhusus4.setVisible(true);
-                cmbRuangKhusus4.setSelectedIndex(0);
-                cmbRuangan.setVisible(false);
-                cmbRuangKhusus1.setVisible(false);
-                cmbRuangKhusus2.setVisible(false);
-                cmbRuangKhusus3.setVisible(false);
-                kdAkses.setText("");
-
-            } else {
-                BtnCari.setEnabled(true);
-                cmbRuangan.setEnabled(false);
-                cmbRuangan.setVisible(true);
-                cmbRuangKhusus1.setVisible(false);
-                cmbRuangKhusus2.setVisible(false);
-                cmbRuangKhusus3.setVisible(false);
-                cmbRuangKhusus4.setVisible(false);
-
-                formWindowOpened(null);
-                kdAkses.setText(Sequel.cariIsi("SELECT kode_unit FROM hak_akses_unit WHERE nip='" + akses.getkode() + "' "));
-                cmbRuangan.setSelectedItem(kdAkses.getText());
-                tampil();
-            }
-        }
-    }
-                   
-    public void ctkRuangArRaudah() {
+    private void ctkSemuaRuang() {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
@@ -1208,370 +962,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         param.put("kontakrs", akses.getkontakrs());
         param.put("emailrs", akses.getemailrs());
         param.put("periode", Tgl1.getSelectedItem() + " s.d " + Tgl2.getSelectedItem());
-        if (ruangDicetak.getText().equals("AR-RAUDAH")) {
-            param.put("nm_ruangan", "DI RUANGAN AR-RAUDAH");
-        } else if (ruangDicetak.getText().equals("AR-RAUDAH ATAS")) {
-            param.put("nm_ruangan", "DI RUANGAN AR-RAUDAH ATAS (MATA, THT, KULKEL)");
-        } else if (ruangDicetak.getText().equals("AR-RAUDAH BAWAH")) {
-            param.put("nm_ruangan", "DI RUANGAN AR-RAUDAH BAWAH (SARAF)");
-        }
-        
-        if (ruangDicetak.getText().equals("AR-RAUDAH")) {
-            Valid.MyReport("rptKunjunganRanap.jasper", "report", "::[ Laporan Rekap Kunjungan Pasien Rawat Inap Per Ruangan ]::",
-                    " SELECT a.tgl_registrasi, (SELECT count(x.stts_daftar) Total FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, "
-                    + " pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, "
-                    + " reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                    + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                    + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal "
-                    + " AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '" + ruangDicetak.getText() + "' AND reg_periksa.stts_daftar = 'Lama' "
-                    + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Lama, (SELECT count(x.stts_daftar) Total "
-                    + " FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat "
-                    + " AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                    + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '" + ruangDicetak.getText() + "' AND reg_periksa.stts_daftar = 'Baru' "
-                    + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Baru, IF (a.stts_daftar = 'Lama',a.no_rkm_medis,'') AS Lama, "
-                    + " IF (a.stts_daftar = 'Baru',a.no_rkm_medis,'') AS Baru, a.nm_pasien, a.alamat, (select count(x.stts_daftar) Tota "
-                    + " from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                    + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '" + ruangDicetak.getText() + "' And pasien.jk = 'L' GROUP BY reg_periksa.no_rawat "
-                    + " ORDER BY kamar_inap.tgl_masuk) as x) AS Total_LK, (select count(x.stts_daftar) Total from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, "
-                    + " reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, "
-                    + " bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                    + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                    + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                    + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '" + ruangDicetak.getText() + "' "
-                    + " And pasien.jk = 'P' GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) as x) AS Total_PR, "
-                    + " IF (a.jk = 'L', a.umur, '') AS LK, IF (a.jk = 'P', a.umur, '') AS PR, a.tgl_daftar, a.nm_bangsal, a.diagnosa_awal, a.almt_pj, a.stts_pulang, a.tgl_masuk, a.nm_dokter "
-                    + " FROM ((SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                    + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '" + ruangDicetak.getText() + "' "
-                    + "  GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS a)", param);
-
-        } else if (ruangDicetak.getText().equals("AR-RAUDAH ATAS")) {
-            Valid.MyReport("rptKunjunganRanap.jasper", "report", "::[ Laporan Rekap Kunjungan Pasien Rawat Inap Per Ruangan ]::",
-                    " SELECT a.tgl_registrasi, (SELECT count(x.stts_daftar) Total FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, "
-                    + " pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, "
-                    + " reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                    + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                    + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal "
-                    + " AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%Ar-Raudah/Atas%' AND reg_periksa.stts_daftar = 'Lama' "
-                    + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Lama, (SELECT count(x.stts_daftar) Total "
-                    + " FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat "
-                    + " AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                    + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%Ar-Raudah/Atas%' AND reg_periksa.stts_daftar = 'Baru' "
-                    + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Baru, IF (a.stts_daftar = 'Lama',a.no_rkm_medis,'') AS Lama, "
-                    + " IF (a.stts_daftar = 'Baru',a.no_rkm_medis,'') AS Baru, a.nm_pasien, a.alamat, (select count(x.stts_daftar) Tota "
-                    + " from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                    + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%Ar-Raudah/Atas%' And pasien.jk = 'L' GROUP BY reg_periksa.no_rawat "
-                    + " ORDER BY kamar_inap.tgl_masuk) as x) AS Total_LK, (select count(x.stts_daftar) Total from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, "
-                    + " reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, "
-                    + " bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                    + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                    + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                    + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%Ar-Raudah/Atas%' "
-                    + " And pasien.jk = 'P' GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) as x) AS Total_PR, "
-                    + " IF (a.jk = 'L', a.umur, '') AS LK, IF (a.jk = 'P', a.umur, '') AS PR, a.tgl_daftar, a.nm_bangsal, a.diagnosa_awal, a.almt_pj, a.stts_pulang, a.tgl_masuk, a.nm_dokter "
-                    + " FROM ((SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                    + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%Ar-Raudah/Atas%' "
-                    + "  GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS a)", param);
-
-        } else if (ruangDicetak.getText().equals("AR-RAUDAH BAWAH")) {
-            Valid.MyReport("rptKunjunganRanap.jasper", "report", "::[ Laporan Rekap Kunjungan Pasien Rawat Inap Per Ruangan ]::",
-                    " SELECT a.tgl_registrasi, (SELECT count(x.stts_daftar) Total FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, "
-                    + " pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, "
-                    + " reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                    + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                    + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal "
-                    + " AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%Ar-Raudah/Bawah%' AND reg_periksa.stts_daftar = 'Lama' "
-                    + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Lama, (SELECT count(x.stts_daftar) Total "
-                    + " FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat "
-                    + " AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                    + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%Ar-Raudah/Bawah%' AND reg_periksa.stts_daftar = 'Baru' "
-                    + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Baru, IF (a.stts_daftar = 'Lama',a.no_rkm_medis,'') AS Lama, "
-                    + " IF (a.stts_daftar = 'Baru',a.no_rkm_medis,'') AS Baru, a.nm_pasien, a.alamat, (select count(x.stts_daftar) Tota "
-                    + " from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                    + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%Ar-Raudah/Bawah%' And pasien.jk = 'L' GROUP BY reg_periksa.no_rawat "
-                    + " ORDER BY kamar_inap.tgl_masuk) as x) AS Total_LK, (select count(x.stts_daftar) Total from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, "
-                    + " reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, "
-                    + " bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                    + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                    + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                    + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%Ar-Raudah/Bawah%' "
-                    + " And pasien.jk = 'P' GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) as x) AS Total_PR, "
-                    + " IF (a.jk = 'L', a.umur, '') AS LK, IF (a.jk = 'P', a.umur, '') AS PR, a.tgl_daftar, a.nm_bangsal, a.diagnosa_awal, a.almt_pj, a.stts_pulang, a.tgl_masuk, a.nm_dokter "
-                    + " FROM ((SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                    + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%Ar-Raudah/Bawah%' "
-                    + "  GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS a)", param);
-        }
-        this.setCursor(Cursor.getDefaultCursor());
-    }
-    
-    public void ctkRuangAsSami() {
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        Map<String, Object> param = new HashMap<>();
-        param.put("namars", akses.getnamars());
-        param.put("alamatrs", akses.getalamatrs());
-        param.put("kotars", akses.getkabupatenrs());
-        param.put("propinsirs", akses.getpropinsirs());
-        param.put("kontakrs", akses.getkontakrs());
-        param.put("emailrs", akses.getemailrs());
-        param.put("periode", Tgl1.getSelectedItem() + " s.d " + Tgl2.getSelectedItem());
-        if (ruangDicetak.getText().equals("AS-SAMI")) {
-            param.put("nm_ruangan", "DI RUANGAN " + ruangDicetak.getText());
-        } else if (ruangDicetak.getText().equals("AS-SAMI/1")) {
-            param.put("nm_ruangan", "DI RUANGAN AS-SAMI/JANTUNG DAN LAINNYA");
-        } else if (ruangDicetak.getText().equals("AS-SAMI/2")) {
-            param.put("nm_ruangan", "DI RUANGAN AS-SAMI/KEMOTERAPI");
-        }
-
-        if (ruangDicetak.getText().equals("AS-SAMI")) {
-            Valid.MyReport("rptKunjunganRanap.jasper", "report", "::[ Laporan Rekap Kunjungan Pasien Rawat Inap Per Ruangan ]::",
-                    " SELECT a.tgl_registrasi, (SELECT count(x.stts_daftar) Total FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, "
-                    + " pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, "
-                    + " reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                    + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                    + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal "
-                    + " AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '" + ruangDicetak.getText() + "' AND reg_periksa.stts_daftar = 'Lama' "
-                    + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Lama, (SELECT count(x.stts_daftar) Total "
-                    + " FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat "
-                    + " AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                    + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '" + ruangDicetak.getText() + "' AND reg_periksa.stts_daftar = 'Baru' "
-                    + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Baru, IF (a.stts_daftar = 'Lama',a.no_rkm_medis,'') AS Lama, "
-                    + " IF (a.stts_daftar = 'Baru',a.no_rkm_medis,'') AS Baru, a.nm_pasien, a.alamat, (select count(x.stts_daftar) Tota "
-                    + " from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                    + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '" + ruangDicetak.getText() + "' And pasien.jk = 'L' GROUP BY reg_periksa.no_rawat "
-                    + " ORDER BY kamar_inap.tgl_masuk) as x) AS Total_LK, (select count(x.stts_daftar) Total from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, "
-                    + " reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, "
-                    + " bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                    + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                    + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                    + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '" + ruangDicetak.getText() + "' "
-                    + " And pasien.jk = 'P' GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) as x) AS Total_PR, "
-                    + " IF (a.jk = 'L', a.umur, '') AS LK, IF (a.jk = 'P', a.umur, '') AS PR, a.tgl_daftar, a.nm_bangsal, a.diagnosa_awal, a.almt_pj, a.stts_pulang, a.tgl_masuk, a.nm_dokter "
-                    + " FROM ((SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                    + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '" + ruangDicetak.getText() + "' "
-                    + "  GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS a)", param);
-
-        } else if (ruangDicetak.getText().equals("AS-SAMI/1") || ruangDicetak.getText().equals("AS-SAMI/2")) {
-            Valid.MyReport("rptKunjunganRanap.jasper", "report", "::[ Laporan Rekap Kunjungan Pasien Rawat Inap Per Ruangan ]::",
-                    " SELECT a.tgl_registrasi, (SELECT count(x.stts_daftar) Total FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, "
-                    + " pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, "
-                    + " reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                    + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                    + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal "
-                    + " AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%" + ruangDicetak.getText() + "%' AND reg_periksa.stts_daftar = 'Lama' "
-                    + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Lama, (SELECT count(x.stts_daftar) Total "
-                    + " FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat "
-                    + " AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                    + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%" + ruangDicetak.getText() + "%' AND reg_periksa.stts_daftar = 'Baru' "
-                    + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Baru, IF (a.stts_daftar = 'Lama',a.no_rkm_medis,'') AS Lama, "
-                    + " IF (a.stts_daftar = 'Baru',a.no_rkm_medis,'') AS Baru, a.nm_pasien, a.alamat, (select count(x.stts_daftar) Tota "
-                    + " from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                    + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%" + ruangDicetak.getText() + "%' And pasien.jk = 'L' GROUP BY reg_periksa.no_rawat "
-                    + " ORDER BY kamar_inap.tgl_masuk) as x) AS Total_LK, (select count(x.stts_daftar) Total from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, "
-                    + " reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, "
-                    + " bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                    + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                    + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                    + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%" + ruangDicetak.getText() + "%' "
-                    + " And pasien.jk = 'P' GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) as x) AS Total_PR, "
-                    + " IF (a.jk = 'L', a.umur, '') AS LK, IF (a.jk = 'P', a.umur, '') AS PR, a.tgl_daftar, a.nm_bangsal, a.diagnosa_awal, a.almt_pj, a.stts_pulang, a.tgl_masuk, a.nm_dokter "
-                    + " FROM ((SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                    + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                    + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                    + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                    + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                    + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_bangsal like '%" + ruangDicetak.getText() + "%' "
-                    + "  GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS a)", param);
-        }
-        this.setCursor(Cursor.getDefaultCursor());
-    }
-    
-    public void ctkRuangPeriBayi() {
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        Map<String, Object> param = new HashMap<>();
-        param.put("namars", akses.getnamars());
-        param.put("alamatrs", akses.getalamatrs());
-        param.put("kotars", akses.getkabupatenrs());
-        param.put("propinsirs", akses.getpropinsirs());
-        param.put("kontakrs", akses.getkontakrs());
-        param.put("emailrs", akses.getemailrs());
-        param.put("periode", Tgl1.getSelectedItem() + " s.d " + Tgl2.getSelectedItem());
-        param.put("nm_ruangan", "DI RUANGAN " + ruangDicetak.getText());
-
-        Valid.MyReport("rptKunjunganRanap.jasper", "report", "::[ Laporan Rekap Kunjungan Pasien Rawat Inap Per Ruangan ]::",
-                " SELECT a.tgl_registrasi, (SELECT count(x.stts_daftar) Total FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, "
-                + " pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, "
-                + " reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal "
-                + " AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung in ('PERINATOLOGI','BAYI SEHAT') AND reg_periksa.stts_daftar = 'Lama' "
-                + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Lama, (SELECT count(x.stts_daftar) Total "
-                + " FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat "
-                + " AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung in ('PERINATOLOGI','BAYI SEHAT') AND reg_periksa.stts_daftar = 'Baru' "
-                + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Baru, IF (a.stts_daftar = 'Lama',a.no_rkm_medis,'') AS Lama, "
-                + " IF (a.stts_daftar = 'Baru',a.no_rkm_medis,'') AS Baru, a.nm_pasien, a.alamat, (select count(x.stts_daftar) Tota "
-                + " from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung in ('PERINATOLOGI','BAYI SEHAT') And pasien.jk = 'L' GROUP BY reg_periksa.no_rawat "
-                + " ORDER BY kamar_inap.tgl_masuk) as x) AS Total_LK, (select count(x.stts_daftar) Total from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, "
-                + " reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, "
-                + " bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung in ('PERINATOLOGI','BAYI SEHAT') "
-                + " And pasien.jk = 'P' GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) as x) AS Total_PR, "
-                + " IF (a.jk = 'L', a.umur, '') AS LK, IF (a.jk = 'P', a.umur, '') AS PR, a.tgl_daftar, a.nm_bangsal, a.diagnosa_awal, a.almt_pj, a.stts_pulang, a.tgl_masuk, a.nm_dokter "
-                + " FROM ((SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung in ('PERINATOLOGI','BAYI SEHAT') "
-                + "  GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS a)", param);
-        this.setCursor(Cursor.getDefaultCursor());
-    }
-    
-    public void ctkPerRuangan() {
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        Map<String, Object> param = new HashMap<>();
-        param.put("namars", akses.getnamars());
-        param.put("alamatrs", akses.getalamatrs());
-        param.put("kotars", akses.getkabupatenrs());
-        param.put("propinsirs", akses.getpropinsirs());
-        param.put("kontakrs", akses.getkontakrs());
-        param.put("emailrs", akses.getemailrs());
-        param.put("periode", Tgl1.getSelectedItem() + " s.d " + Tgl2.getSelectedItem());
-        param.put("nm_ruangan", "DI RUANGAN " + ruangDicetak.getText());
-       
-        Valid.MyReport("rptKunjunganRanap.jasper", "report", "::[ Laporan Rekap Kunjungan Pasien Rawat Inap Per Ruangan ]::",
-                " SELECT a.tgl_registrasi, (SELECT count(x.stts_daftar) Total FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, "
-                + " pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, "
-                + " reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal "
-                + " AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '"+ ruangDicetak.getText() +"' AND reg_periksa.stts_daftar = 'Lama' "
-                + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Lama, (SELECT count(x.stts_daftar) Total "
-                + " FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat "
-                + " AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '"+ ruangDicetak.getText() +"' AND reg_periksa.stts_daftar = 'Baru' "
-                + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Baru, IF (a.stts_daftar = 'Lama',a.no_rkm_medis,'') AS Lama, "
-                + " IF (a.stts_daftar = 'Baru',a.no_rkm_medis,'') AS Baru, a.nm_pasien, a.alamat, (select count(x.stts_daftar) Tota "
-                + " from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '"+ ruangDicetak.getText() +"' And pasien.jk = 'L' GROUP BY reg_periksa.no_rawat "
-                + " ORDER BY kamar_inap.tgl_masuk) as x) AS Total_LK, (select count(x.stts_daftar) Total from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, "
-                + " reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, "
-                + " bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
-                + " INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
-                + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '"+ ruangDicetak.getText() +"' "
-                + " And pasien.jk = 'P' GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) as x) AS Total_PR, "
-                + " IF (a.jk = 'L', a.umur, '') AS LK, IF (a.jk = 'P', a.umur, '') AS PR, a.tgl_daftar, a.nm_bangsal, a.diagnosa_awal, a.almt_pj, a.stts_pulang, a.tgl_masuk, a.nm_dokter "
-                + " FROM ((SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
-                + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
-                + " kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa INNER JOIN pasien INNER JOIN kamar_inap INNER JOIN kamar INNER JOIN bangsal "
-                + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
-                + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
-                + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and bangsal.nm_gedung = '"+ ruangDicetak.getText() +"' "
-                +"  GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS a)", param);
-        this.setCursor(Cursor.getDefaultCursor());
-    }
-    
-    public void ctkSemuaRuang() {
-    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        Map<String, Object> param = new HashMap<>();
-        param.put("namars", akses.getnamars());
-        param.put("alamatrs", akses.getalamatrs());
-        param.put("kotars", akses.getkabupatenrs());
-        param.put("propinsirs", akses.getpropinsirs());
-        param.put("kontakrs", akses.getkontakrs());
-        param.put("emailrs", akses.getemailrs());
-        param.put("periode", Tgl1.getSelectedItem() + " s.d " + Tgl2.getSelectedItem());
-        param.put("nm_ruangan", "DI " + ruangDicetak.getText() + "AN");
-        Valid.MyReport("rptKunjunganRanap.jasper", "report", "::[ Laporan Rekap Kunjungan Pasien Rawat Inap Per Ruangan ]::",
+        param.put("nm_ruangan", "DI " + cmbRuangan.getSelectedItem().toString());
+        Valid.MyReport("rptKunjunganRanap.jasper", "report", "::[ Laporan Rekap Kunjungan Pasien Rawat Inap Semua Ruangan ]::",
                 " SELECT a.tgl_registrasi, (SELECT count(x.stts_daftar) Total FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, "
                 + " pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, "
                 + " reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
@@ -1610,12 +1002,14 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
                 + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
                 + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
-                +"  GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS a)", param);
+                + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS a)", param);
+        
+        BtnCariActionPerformed(null);
         this.setCursor(Cursor.getDefaultCursor());
     }
-    
-    public void ctkRuangRKPDzaal() {
-    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+    private void cetakPerRuangan() {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("alamatrs", akses.getalamatrs());
@@ -1624,8 +1018,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         param.put("kontakrs", akses.getkontakrs());
         param.put("emailrs", akses.getemailrs());
         param.put("periode", Tgl1.getSelectedItem() + " s.d " + Tgl2.getSelectedItem());
-        param.put("nm_ruangan", "DI RUANGAN INTERNIST");        
-        
+        param.put("nm_ruangan", "DI RUANGAN " + cmbRuangan.getSelectedItem().toString());
         Valid.MyReport("rptKunjunganRanap.jasper", "report", "::[ Laporan Rekap Kunjungan Pasien Rawat Inap Per Ruangan ]::",
                 " SELECT a.tgl_registrasi, (SELECT count(x.stts_daftar) Total FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, "
                 + " pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, "
@@ -1634,7 +1027,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal "
                 + " AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
                 + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
-                + " AND reg_periksa.stts_daftar = 'Lama' and bangsal.nm_gedung in ('RKPD','ZAAL') "
+                + " AND reg_periksa.stts_daftar = 'Lama' and bangsal.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' "
                 + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Lama, (SELECT count(x.stts_daftar) Total "
                 + " FROM (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
                 + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
@@ -1643,7 +1036,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 + " AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
                 + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
                 + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
-                +"  AND reg_periksa.stts_daftar = 'Baru' and bangsal.nm_gedung in ('RKPD','ZAAL') "
+                + "  AND reg_periksa.stts_daftar = 'Baru' and bangsal.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' "
                 + " GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS x ) AS Total_Baru, IF (a.stts_daftar = 'Lama',a.no_rkm_medis,'') AS Lama, "
                 + " IF (a.stts_daftar = 'Baru',a.no_rkm_medis,'') AS Baru, a.nm_pasien, a.alamat, (select count(x.stts_daftar) Tota "
                 + " from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
@@ -1652,7 +1045,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
                 + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
                 + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
-                + " And pasien.jk = 'L' and bangsal.nm_gedung in ('RKPD','ZAAL') GROUP BY reg_periksa.no_rawat "
+                + " And pasien.jk = 'L' and bangsal.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' GROUP BY reg_periksa.no_rawat "
                 + " ORDER BY kamar_inap.tgl_masuk) as x) AS Total_LK, (select count(x.stts_daftar) Total from (SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, "
                 + " reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, "
                 + " bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, kamar_inap.tgl_masuk, dokter.nm_dokter FROM reg_periksa "
@@ -1660,7 +1053,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 + " AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter "
                 + " WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
                 + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
-                + " And pasien.jk = 'P' and bangsal.nm_gedung in ('RKPD','ZAAL') GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) as x) AS Total_PR, "
+                + " And pasien.jk = 'P' and bangsal.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) as x) AS Total_PR, "
                 + " IF (a.jk = 'L', a.umur, '') AS LK, IF (a.jk = 'P', a.umur, '') AS PR, a.tgl_daftar, a.nm_bangsal, a.diagnosa_awal, a.almt_pj, a.stts_pulang, a.tgl_masuk, a.nm_dokter "
                 + " FROM ((SELECT reg_periksa.tgl_registrasi, reg_periksa.stts_daftar, reg_periksa.no_rkm_medis, pasien.nm_pasien, pasien.alamat, pasien.jk, "
                 + " concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) AS umur, pasien.tgl_daftar, bangsal.nm_bangsal, reg_periksa.almt_pj, kamar_inap.stts_pulang, kamar_inap.diagnosa_awal, "
@@ -1668,7 +1061,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 + " INNER JOIN dokter ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis AND reg_periksa.no_rawat = kamar_inap.no_rawat AND kamar_inap.kd_kamar = kamar.kd_kamar "
                 + " AND kamar.kd_bangsal = bangsal.kd_bangsal AND reg_periksa.kd_dokter = dokter.kd_dokter WHERE reg_periksa.status_lanjut = 'Ranap' AND reg_periksa.stts <> 'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') "
                 + " AND reg_periksa.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
-                +"  and bangsal.nm_gedung in ('RKPD','ZAAL') GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS a)", param);
+                + "  and bangsal.nm_gedung like '%" + cmbRuangan.getSelectedItem().toString() + "%' GROUP BY reg_periksa.no_rawat ORDER BY kamar_inap.tgl_masuk) AS a)", param);
+        
+        BtnCariActionPerformed(null);
         this.setCursor(Cursor.getDefaultCursor());
     }
 }

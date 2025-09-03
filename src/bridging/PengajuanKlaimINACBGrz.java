@@ -8478,10 +8478,12 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 ChkRawatIntensif.setEnabled(false);
                 losIntensif.setEnabled(false);
                 ventilator.setEnabled(false);
-                wktMasuk.setText(Sequel.cariIsi("select ifnull(concat(date_format(tgl_registrasi,'%d %b %Y'),' ',jam_reg),'') from reg_periksa where no_rawat='" + norawat + "'"));
+                wktMasuk.setText(Sequel.cariIsi("select ifnull(concat(date_format(bs.tglsep,'%d %b %Y'),' ',rp.jam_reg),'') FROM reg_periksa rp "
+                        + "INNER JOIN bridging_sep bs ON bs.no_rawat=rp.no_rawat WHERE bs.no_sep='" + noSEP.getText() + "' and bs.jnspelayanan='2'"));
+//                wktMasuk.setText(Sequel.cariIsi("select ifnull(concat(date_format(tgl_registrasi,'%d %b %Y'),' ',jam_reg),'') from reg_periksa where no_rawat='" + norawat + "'"));
                 wktPulang.setText(wktMasuk.getText());
                 tglmsk = Sequel.cariIsi("SELECT CONCAT(bs.tglsep,' ',rp.jam_reg) FROM reg_periksa rp "
-                        + "INNER JOIN bridging_sep bs ON bs.no_rawat=rp.no_rawat WHERE bs.no_rawat='" + norawat + "' and bs.jnspelayanan='2'");
+                        + "INNER JOIN bridging_sep bs ON bs.no_rawat=rp.no_rawat WHERE bs.no_sep='" + noSEP.getText() + "' and bs.jnspelayanan='2'");
                 tglplg = tglmsk;
                 kdPulang = "1";
                 cmbcrPulang.setSelectedIndex(4);
