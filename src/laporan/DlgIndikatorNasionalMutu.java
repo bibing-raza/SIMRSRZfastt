@@ -500,7 +500,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnHapus1.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnHapus1.setMnemonic('M');
         BtnHapus1.setText("Hapus Conteng");
         BtnHapus1.setToolTipText("Alt+M");
         BtnHapus1.setName("BtnHapus1"); // NOI18N
@@ -514,7 +513,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnConteng.setForeground(new java.awt.Color(0, 0, 0));
         BtnConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnConteng.setMnemonic('G');
         BtnConteng.setText("Conteng Semua");
         BtnConteng.setToolTipText("Alt+G");
         BtnConteng.setName("BtnConteng"); // NOI18N
@@ -528,7 +526,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnHapusINM.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusINM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnHapusINM.setMnemonic('H');
         BtnHapusINM.setText("Hapus");
         BtnHapusINM.setToolTipText("Alt+H");
         BtnHapusINM.setName("BtnHapusINM"); // NOI18N
@@ -542,7 +539,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn4.setMnemonic('U');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+U");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -609,7 +605,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         internalFrame9.add(jLabel36);
         jLabel36.setBounds(0, 94, 150, 23);
 
-        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-08-2025" }));
+        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2025" }));
         TtglCatat1.setDisplayFormat("dd-MM-yyyy");
         TtglCatat1.setName("TtglCatat1"); // NOI18N
         TtglCatat1.setOpaque(false);
@@ -681,7 +677,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnGantiINM.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiINM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGantiINM.setMnemonic('G');
         BtnGantiINM.setText("Ganti");
         BtnGantiINM.setToolTipText("Alt+G");
         BtnGantiINM.setName("BtnGantiINM"); // NOI18N
@@ -695,7 +690,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnCloseIn5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn5.setMnemonic('U');
         BtnCloseIn5.setText("Tutup");
         BtnCloseIn5.setToolTipText("Alt+U");
         BtnCloseIn5.setName("BtnCloseIn5"); // NOI18N
@@ -735,7 +729,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -754,7 +747,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -773,7 +765,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -792,7 +783,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -811,7 +801,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -830,7 +819,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -849,7 +837,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -920,7 +907,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -999,7 +985,8 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         PanelInput.add(jLabel8);
         jLabel8.setBounds(0, 154, 120, 23);
 
-        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-08-2025" }));
+        TtglCatat.setEditable(false);
+        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2025" }));
         TtglCatat.setDisplayFormat("dd-MM-yyyy");
         TtglCatat.setName("TtglCatat"); // NOI18N
         TtglCatat.setOpaque(false);
@@ -1037,7 +1024,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnNumdenom.setForeground(new java.awt.Color(0, 0, 0));
         BtnNumdenom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
-        BtnNumdenom.setMnemonic('2');
         BtnNumdenom.setText("Numerator Denominator");
         BtnNumdenom.setName("BtnNumdenom"); // NOI18N
         BtnNumdenom.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -1242,7 +1228,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     private void cmbGedungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGedungActionPerformed
         cmbIndikator.removeAllItems();
         Sequel.cariIsiComboDB("SELECT nm_indikator from master_indikator_nasional_mutu "
-                + "WHERE gedung='" + cmbGedung.getSelectedItem().toString() + "' and status_data='aktif' order by no_urut", cmbIndikator);
+                + "WHERE gedung='" + cmbGedung.getSelectedItem().toString() + "' and status_data='aktif' and tujuan_aktivasi='Input Data' order by no_urut", cmbIndikator);
         
         cmbGedung1.setSelectedItem(cmbGedung.getSelectedItem().toString());
     }//GEN-LAST:event_cmbGedungActionPerformed
@@ -1762,7 +1748,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
                 sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
                 sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
                 sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' ");
-                sb.append("and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "' and m.status_data='aktif'");
+                sb.append("and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "' and m.status_data='aktif' and m.tujuan_aktivasi='Input Data' ");
                 sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");                
             } else if (cmbSttsIndikator.getSelectedIndex() == 1) {
                 sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
@@ -1844,7 +1830,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
                 sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
                 sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
                 sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' ");
-                sb.append("and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "'");
+                sb.append("and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "' ");
                 sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
             }
             ps = koneksi.prepareStatement(sb.toString());
