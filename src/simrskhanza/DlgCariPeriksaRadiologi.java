@@ -54,7 +54,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     private double ttl = 0, item = 0, cekRad;
     private double ttljmdokter = 0, ttljmpetugas = 0, ttlkso = 0, ttlpendapatan = 0, ttlbhp = 0;
     private String Suspen_Piutang_Radiologi_Ranap = "", Radiologi_Ranap = "", Beban_Jasa_Medik_Dokter_Radiologi_Ranap = "",
-            Utang_Jasa_Medik_Dokter_Radiologi_Ranap = "", Beban_Jasa_Medik_Petugas_Radiologi_Ranap = "",
+            Utang_Jasa_Medik_Dokter_Radiologi_Ranap = "", Beban_Jasa_Medik_Petugas_Radiologi_Ranap = "", dialog_simpan = "",
             Utang_Jasa_Medik_Petugas_Radiologi_Ranap = "", Beban_Kso_Radiologi_Ranap = "", Utang_Kso_Radiologi_Ranap = "",
             HPP_Persediaan_Radiologi_Rawat_Inap = "", Persediaan_BHP_Radiologi_Rawat_Inap = "", cekDataRad = "", cekSttsBayar = "";
 
@@ -716,6 +716,9 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         MnPemeriksaanRadiologi = new javax.swing.JMenuItem();
         MnWaktuPeriksa = new javax.swing.JMenuItem();
         MnAsalRujukan = new javax.swing.JMenuItem();
+        MnExportDataKeExcel = new javax.swing.JMenu();
+        MnTglReg = new javax.swing.JMenuItem();
+        MnTglPemeriksaan = new javax.swing.JMenuItem();
         jMnLapInap = new javax.swing.JMenu();
         MnInapSemuaCaraBayar = new javax.swing.JMenuItem();
         MnInapDetailSemuaCaraBayar = new javax.swing.JMenuItem();
@@ -910,13 +913,14 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
 
         jPopupMenu1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
-        jPopupMenu1.setPreferredSize(new java.awt.Dimension(260, 300));
+        jPopupMenu1.setPreferredSize(new java.awt.Dimension(260, 350));
+        jPopupMenu1.setRequestFocusEnabled(false);
 
         MnCetakNota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCetakNota.setText("Cetak Nota Radiologi");
         MnCetakNota.setName("MnCetakNota"); // NOI18N
-        MnCetakNota.setPreferredSize(new java.awt.Dimension(260, 300));
+        MnCetakNota.setPreferredSize(new java.awt.Dimension(260, 26));
         MnCetakNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCetakNotaActionPerformed(evt);
@@ -928,7 +932,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         MnHasilPemeriksaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnHasilPemeriksaan.setText("Hasil Pemeriksaan Radiologi");
         MnHasilPemeriksaan.setName("MnHasilPemeriksaan"); // NOI18N
-        MnHasilPemeriksaan.setPreferredSize(new java.awt.Dimension(260, 300));
+        MnHasilPemeriksaan.setPreferredSize(new java.awt.Dimension(260, 26));
         MnHasilPemeriksaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnHasilPemeriksaanActionPerformed(evt);
@@ -943,7 +947,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         MnRiwayatPerawatan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnRiwayatPerawatan.setIconTextGap(5);
         MnRiwayatPerawatan.setName("MnRiwayatPerawatan"); // NOI18N
-        MnRiwayatPerawatan.setPreferredSize(new java.awt.Dimension(260, 300));
+        MnRiwayatPerawatan.setPreferredSize(new java.awt.Dimension(260, 26));
         MnRiwayatPerawatan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRiwayatPerawatanActionPerformed(evt);
@@ -955,7 +959,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         MnDokumenPenunjangMedis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDokumenPenunjangMedis.setText("Dokumen Penunjang Medis");
         MnDokumenPenunjangMedis.setName("Dokumen Penunjang Medis"); // NOI18N
-        MnDokumenPenunjangMedis.setPreferredSize(new java.awt.Dimension(260, 300));
+        MnDokumenPenunjangMedis.setPreferredSize(new java.awt.Dimension(260, 26));
         MnDokumenPenunjangMedis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnDokumenPenunjangMedisActionPerformed(evt);
@@ -967,7 +971,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         MnRiwayatExpertise.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRiwayatExpertise.setText("Riwayat Hasil Expertise");
         MnRiwayatExpertise.setName("MnRiwayatExpertise"); // NOI18N
-        MnRiwayatExpertise.setPreferredSize(new java.awt.Dimension(260, 300));
+        MnRiwayatExpertise.setPreferredSize(new java.awt.Dimension(260, 26));
         MnRiwayatExpertise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRiwayatExpertiseActionPerformed(evt);
@@ -979,7 +983,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         MnGantiData.setText("Ganti Data");
         MnGantiData.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnGantiData.setName("MnGantiData"); // NOI18N
-        MnGantiData.setPreferredSize(new java.awt.Dimension(260, 300));
+        MnGantiData.setPreferredSize(new java.awt.Dimension(260, 26));
 
         MnDokterPemeriksaRad.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDokterPemeriksaRad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -1073,11 +1077,49 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
 
         jPopupMenu1.add(MnGantiData);
 
+        MnExportDataKeExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnExportDataKeExcel.setText("Export Data Menjadi File Excel");
+        MnExportDataKeExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnExportDataKeExcel.setName("MnExportDataKeExcel"); // NOI18N
+        MnExportDataKeExcel.setPreferredSize(new java.awt.Dimension(260, 26));
+
+        MnTglReg.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTglReg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnTglReg.setText("Berdasarkan Tgl. Registrasi");
+        MnTglReg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTglReg.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTglReg.setIconTextGap(5);
+        MnTglReg.setName("MnTglReg"); // NOI18N
+        MnTglReg.setPreferredSize(new java.awt.Dimension(200, 26));
+        MnTglReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTglRegActionPerformed(evt);
+            }
+        });
+        MnExportDataKeExcel.add(MnTglReg);
+
+        MnTglPemeriksaan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTglPemeriksaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnTglPemeriksaan.setText("Berdasarkan Tgl. Pemeriksaan");
+        MnTglPemeriksaan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTglPemeriksaan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTglPemeriksaan.setIconTextGap(5);
+        MnTglPemeriksaan.setName("MnTglPemeriksaan"); // NOI18N
+        MnTglPemeriksaan.setPreferredSize(new java.awt.Dimension(200, 26));
+        MnTglPemeriksaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTglPemeriksaanActionPerformed(evt);
+            }
+        });
+        MnExportDataKeExcel.add(MnTglPemeriksaan);
+
+        jPopupMenu1.add(MnExportDataKeExcel);
+
         jMnLapInap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         jMnLapInap.setText("Lap. Transaksi Radiologi Rawat Inap");
         jMnLapInap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jMnLapInap.setName("jMnLapInap"); // NOI18N
-        jMnLapInap.setPreferredSize(new java.awt.Dimension(260, 300));
+        jMnLapInap.setPreferredSize(new java.awt.Dimension(260, 26));
 
         MnInapSemuaCaraBayar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnInapSemuaCaraBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -1133,7 +1175,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jMnLapJalan.setText("Lap. Transaksi Radiologi Rawat Jalan");
         jMnLapJalan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jMnLapJalan.setName("jMnLapJalan"); // NOI18N
-        jMnLapJalan.setPreferredSize(new java.awt.Dimension(260, 300));
+        jMnLapJalan.setPreferredSize(new java.awt.Dimension(260, 26));
 
         MnJalanSemuaCaraBayar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnJalanSemuaCaraBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -1213,7 +1255,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jMnLapSemuaRawat.setText("Lap. Transaksi Radiologi Semua Rawat");
         jMnLapSemuaRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jMnLapSemuaRawat.setName("jMnLapSemuaRawat"); // NOI18N
-        jMnLapSemuaRawat.setPreferredSize(new java.awt.Dimension(260, 300));
+        jMnLapSemuaRawat.setPreferredSize(new java.awt.Dimension(260, 26));
 
         MnSRSemuaCaraBayar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSRSemuaCaraBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -1269,7 +1311,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jMnLapJenisPeriksaRad.setText("Lap. Jns. Pmriksn. Rad. PerCara Bayar");
         jMnLapJenisPeriksaRad.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jMnLapJenisPeriksaRad.setName("jMnLapJenisPeriksaRad"); // NOI18N
-        jMnLapJenisPeriksaRad.setPreferredSize(new java.awt.Dimension(260, 300));
+        jMnLapJenisPeriksaRad.setPreferredSize(new java.awt.Dimension(260, 26));
 
         MnRekapJenisPeriksaRadInap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRekapJenisPeriksaRadInap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -1313,7 +1355,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jMnLapPendapatan.setText("Lap. Rekap Pendapatan Radiologi");
         jMnLapPendapatan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jMnLapPendapatan.setName("jMnLapPendapatan"); // NOI18N
-        jMnLapPendapatan.setPreferredSize(new java.awt.Dimension(260, 300));
+        jMnLapPendapatan.setPreferredSize(new java.awt.Dimension(260, 26));
 
         MnPendapatanRalan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPendapatanRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -1357,7 +1399,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jMnLapPemeriksaanDokter.setText("Lap. Rekap Pemeriksaan Dokter");
         jMnLapPemeriksaanDokter.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jMnLapPemeriksaanDokter.setName("jMnLapPemeriksaanDokter"); // NOI18N
-        jMnLapPemeriksaanDokter.setPreferredSize(new java.awt.Dimension(260, 300));
+        jMnLapPemeriksaanDokter.setPreferredSize(new java.awt.Dimension(260, 26));
 
         MnRekapTotalPemeriksaan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRekapTotalPemeriksaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -1975,7 +2017,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel51.setBounds(0, 25, 130, 23);
 
         tanggalPeriksa.setEditable(false);
-        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-08-2025" }));
+        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2025" }));
         tanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         tanggalPeriksa.setName("tanggalPeriksa"); // NOI18N
         tanggalPeriksa.setOpaque(false);
@@ -2906,7 +2948,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         panelisi1.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-08-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -4969,6 +5011,60 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         }
     }//GEN-LAST:event_MnRiwayatExpertiseActionPerformed
 
+    private void MnTglRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTglRegActionPerformed
+        if (Sequel.cariInteger("SELECT count(-1) FROM reg_periksa rp INNER JOIN periksa_radiologi pr ON pr.no_rawat = rp.no_rawat "
+                + "WHERE rp.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data tidak ditemukan, atur lagi tgl. periode registrasinya...!!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT @rownum := @rownum + 1 'No.', sub.`No. RM`, sub.`Nama Pasien`, sub.`Jns. Kelamin`, sub.`Umur`, "
+                    + "sub.`Tgl. Registrasi`, sub.`R. Jalan`, sub.`R. Inap`, sub.`Nama Pemeriksaan Rad.`, sub.`Tgl. Pemeriksaan`, sub.`Cara Bayar` "
+                    + "FROM (SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', IF(p.jk='L', 'Laki-laki', 'Perempuan') 'Jns. Kelamin', "
+                    + "CONCAT(rp.umurdaftar, ' ', rp.sttsumur, '.') 'Umur', DATE_FORMAT(rp.tgl_registrasi, '%d-%m-%Y') 'Tgl. Registrasi', "
+                    + "IF(rp.status_lanjut='Ralan', 'V', '-') 'R. Jalan', IF(rp.status_lanjut='Ranap', 'V', '-') 'R. Inap', "
+                    + "GROUP_CONCAT(jpr.nm_perawatan SEPARATOR ', ') 'Nama Pemeriksaan Rad.', DATE_FORMAT(pr.tgl_periksa, '%d-%m-%Y') 'Tgl. Pemeriksaan', "
+                    + "pj.png_jawab 'Cara Bayar', rp.no_rawat, DATE_FORMAT(pr.tgl_periksa, '%Y-%m-%d') tgl_periksa_sort, pr.jam jam_sort, "
+                    + "p.no_rkm_medis no_rkm_medis_sort FROM reg_periksa rp INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj INNER JOIN periksa_radiologi pr ON pr.no_rawat = rp.no_rawat "
+                    + "INNER JOIN jns_perawatan_radiologi jpr ON jpr.kd_jenis_prw = pr.kd_jenis_prw WHERE "
+                    + "rp.tgl_registrasi BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + "GROUP BY rp.no_rawat, p.no_rkm_medis, p.nm_pasien, p.jk, rp.umurdaftar, rp.sttsumur, rp.tgl_registrasi, rp.status_lanjut, pr.tgl_periksa, pj.png_jawab "
+                    + "ORDER BY tgl_periksa_sort, jam_sort, no_rkm_medis_sort) sub, (SELECT @rownum := 0) r "
+                    + "ORDER BY sub.tgl_periksa_sort, sub.jam_sort, sub.no_rkm_medis_sort;", dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Data pemeriksaan radiologi sesuai dg. tgl. registrasinya berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnTglRegActionPerformed
+
+    private void MnTglPemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTglPemeriksaanActionPerformed
+        if (Sequel.cariInteger("SELECT count(-1) FROM reg_periksa rp INNER JOIN periksa_radiologi pr ON pr.no_rawat = rp.no_rawat "
+                + "WHERE pr.tgl_periksa BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data tidak ditemukan, atur lagi tgl. periode pemeriksaan radiologinya...!!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT @rownum := @rownum + 1 'No.', sub.`No. RM`, sub.`Nama Pasien`, sub.`Jns. Kelamin`, sub.`Umur`, "
+                    + "sub.`Tgl. Registrasi`, sub.`R. Jalan`, sub.`R. Inap`, sub.`Nama Pemeriksaan Rad.`, sub.`Tgl. Pemeriksaan`, sub.`Cara Bayar` "
+                    + "FROM (SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', IF(p.jk='L', 'Laki-laki', 'Perempuan') 'Jns. Kelamin', "
+                    + "CONCAT(rp.umurdaftar, ' ', rp.sttsumur, '.') 'Umur', DATE_FORMAT(rp.tgl_registrasi, '%d-%m-%Y') 'Tgl. Registrasi', "
+                    + "IF(rp.status_lanjut='Ralan', 'V', '-') 'R. Jalan', IF(rp.status_lanjut='Ranap', 'V', '-') 'R. Inap', "
+                    + "GROUP_CONCAT(jpr.nm_perawatan SEPARATOR ', ') 'Nama Pemeriksaan Rad.', DATE_FORMAT(pr.tgl_periksa, '%d-%m-%Y') 'Tgl. Pemeriksaan', "
+                    + "pj.png_jawab 'Cara Bayar', rp.no_rawat, DATE_FORMAT(pr.tgl_periksa, '%Y-%m-%d') tgl_periksa_sort, pr.jam jam_sort, "
+                    + "p.no_rkm_medis no_rkm_medis_sort FROM reg_periksa rp INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj INNER JOIN periksa_radiologi pr ON pr.no_rawat = rp.no_rawat "
+                    + "INNER JOIN jns_perawatan_radiologi jpr ON jpr.kd_jenis_prw = pr.kd_jenis_prw WHERE "
+                    + "pr.tgl_periksa BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + "GROUP BY rp.no_rawat, p.no_rkm_medis, p.nm_pasien, p.jk, rp.umurdaftar, rp.sttsumur, rp.tgl_registrasi, rp.status_lanjut, pr.tgl_periksa, pj.png_jawab "
+                    + "ORDER BY tgl_periksa_sort, jam_sort, no_rkm_medis_sort) sub, (SELECT @rownum := 0) r "
+                    + "ORDER BY sub.tgl_periksa_sort, sub.jam_sort, sub.no_rkm_medis_sort;", dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Data pemeriksaan radiologi sesuai dg. tgl. pemeriksaannya berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnTglPemeriksaanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5023,6 +5119,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     private javax.swing.JMenuItem MnDokterPengirim;
     private javax.swing.JMenuItem MnDokterPengirim1;
     private javax.swing.JMenuItem MnDokumenPenunjangMedis;
+    private javax.swing.JMenu MnExportDataKeExcel;
     private javax.swing.JMenu MnGantiData;
     private javax.swing.JMenuItem MnHasilPemeriksaan;
     private javax.swing.JMenuItem MnInapDetailPerCaraBayar;
@@ -5053,6 +5150,8 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     private javax.swing.JMenuItem MnSRDetailSemuaCaraBayar;
     private javax.swing.JMenuItem MnSRPerCaraBayar;
     private javax.swing.JMenuItem MnSRSemuaCaraBayar;
+    private javax.swing.JMenuItem MnTglPemeriksaan;
+    private javax.swing.JMenuItem MnTglReg;
     private javax.swing.JMenuItem MnWaktuPeriksa;
     private javax.swing.JMenuItem MnWaktuPeriksa1;
     private widget.TextBox NoBalasan;

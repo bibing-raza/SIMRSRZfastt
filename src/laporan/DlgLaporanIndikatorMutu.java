@@ -1191,6 +1191,5 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
     
     public void isCek() {
         BtnMasterIndikator.setEnabled(akses.getpic_kmkp());
-        BtnExportKeExcel.setEnabled(akses.getpic_kmkp());
     }
 }
