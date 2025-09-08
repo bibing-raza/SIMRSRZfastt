@@ -35,20 +35,20 @@ import rekammedis.DlgMasterIndikatorMutu;
  * @author dosen
  */
 public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabMode4, tabMode5, tabMode6, tabMode7;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps, ps1, ps2, ps3;
-    private ResultSet rs, rs1, rs2, rs3;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7;
     private int i = 0, x = 0, n = 0;
     private double hitungTot = 0;
     private String kdIndikator = "", kdNumdenom = "", gedungDIpilih = "", tglDipilih = "", angkaBulan = "", cekBulan = "", total = "",
             tgl1 = "", tgl2 = "", tgl3 = "", tgl4 = "", tgl5 = "", tgl6 = "", tgl7 = "", tgl8 = "", tgl9 = "", tgl10 = "",
             tgl11 = "", tgl12 = "", tgl13 = "", tgl14 = "", tgl15 = "", tgl16 = "", tgl17 = "", tgl18 = "", tgl19 = "", tgl20 = "",
             tgl21 = "", tgl22 = "", tgl23 = "", tgl24 = "", tgl25 = "", tgl26 = "", tgl27 = "", tgl28 = "", tgl29 = "", tgl30 = "", tgl31 = "",
-            dialog_simpan = "", jnsIndikator = "";
+            dialog_simpan = "", jnsIndikator = "", pakaiGedung = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -292,6 +292,340 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             } 
         }
         tbNumdenom.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode4 = new DefaultTableModel(null, new String[]{
+            "Ruangan", "Indikator", "Jenis Indikator", "Kalimat Deskripsi", "Tgl. 1", "Tgl. 2", "Tgl. 3", "Tgl. 4", "Tgl. 5", "Tgl. 6", "Tgl. 7", "Tgl. 8", "Tgl. 9", "Tgl. 10",
+            "Tgl. 11", "Tgl. 12", "Tgl. 13", "Tgl. 14", "Tgl. 15", "Tgl. 16", "Tgl. 17", "Tgl. 18", "Tgl. 19", "Tgl. 20",
+            "Tgl. 21", "Tgl. 22", "Tgl. 23", "Tgl. 24", "Tgl. 25", "Tgl. 26", "Tgl. 27", "Tgl. 28", "Tgl. 29", "Tgl. 30", "Tgl. 31", "Total",
+            "kdindikator", "tglcatat", "kdnumdemon"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbPrioritas.setModel(tabMode4);
+        tbPrioritas.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbPrioritas.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 39; i++) {
+            TableColumn column = tbPrioritas.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(130);
+            } else if (i == 1) {
+                column.setPreferredWidth(400);
+            } else if (i == 2) {
+                column.setPreferredWidth(100);
+            } else if (i == 3) {
+                column.setPreferredWidth(450);
+            } else if (i == 4) {
+                column.setPreferredWidth(48);
+            } else if (i == 5) {
+                column.setPreferredWidth(48);
+            } else if (i == 6) {
+                column.setPreferredWidth(48);
+            } else if (i == 7) {
+                column.setPreferredWidth(48);
+            } else if (i == 8) {
+                column.setPreferredWidth(48);
+            } else if (i == 9) {
+                column.setPreferredWidth(48);
+            } else if (i == 10) {
+                column.setPreferredWidth(48);
+            } else if (i == 11) {
+                column.setPreferredWidth(48);
+            } else if (i == 12) {
+                column.setPreferredWidth(48);
+            } else if (i == 13) {
+                column.setPreferredWidth(48);
+            } else if (i == 14) {
+                column.setPreferredWidth(48);
+            } else if (i == 15) {
+                column.setPreferredWidth(48);
+            } else if (i == 16) {
+                column.setPreferredWidth(48);
+            } else if (i == 17) {
+                column.setPreferredWidth(48);
+            } else if (i == 18) {
+                column.setPreferredWidth(48);
+            } else if (i == 19) {
+                column.setPreferredWidth(48);
+            } else if (i == 20) {
+                column.setPreferredWidth(48);
+            } else if (i == 21) {
+                column.setPreferredWidth(48);
+            } else if (i == 22) {
+                column.setPreferredWidth(48);
+            } else if (i == 23) {
+                column.setPreferredWidth(48);
+            } else if (i == 24) {
+                column.setPreferredWidth(48);
+            } else if (i == 25) {
+                column.setPreferredWidth(48);
+            } else if (i == 26) {
+                column.setPreferredWidth(48);
+            } else if (i == 27) {
+                column.setPreferredWidth(48);
+            } else if (i == 28) {
+                column.setPreferredWidth(48);
+            } else if (i == 29) {
+                column.setPreferredWidth(48);
+            } else if (i == 30) {
+                column.setPreferredWidth(48);
+            } else if (i == 31) {
+                column.setPreferredWidth(48);
+            } else if (i == 32) {
+                column.setPreferredWidth(48);
+            } else if (i == 33) {
+                column.setPreferredWidth(48);
+            } else if (i == 34) {
+                column.setPreferredWidth(48);
+            } else if (i == 35) {
+                column.setPreferredWidth(55);
+            } else if (i == 36) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 37) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 38) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }
+        }
+        tbPrioritas.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah        
+        tbPrioritas.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(11).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(12).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(13).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(14).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(15).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(16).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(17).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(18).setCellRenderer(centerRenderer);        
+        tbPrioritas.getColumnModel().getColumn(19).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(20).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(21).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(22).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(23).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(24).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(25).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(26).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(27).setCellRenderer(centerRenderer);        
+        tbPrioritas.getColumnModel().getColumn(28).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(29).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(30).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(31).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(32).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(33).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(34).setCellRenderer(centerRenderer);
+        tbPrioritas.getColumnModel().getColumn(35).setCellRenderer(centerRenderer);
+        
+        tabMode5 = new DefaultTableModel(null, new String[]{
+            "Ruangan", "Indikator", "Jenis Indikator", "Kalimat Deskripsi", "Tgl. 1", "Tgl. 2", "Tgl. 3", "Tgl. 4", "Tgl. 5", "Tgl. 6", "Tgl. 7", "Tgl. 8", "Tgl. 9", "Tgl. 10",
+            "Tgl. 11", "Tgl. 12", "Tgl. 13", "Tgl. 14", "Tgl. 15", "Tgl. 16", "Tgl. 17", "Tgl. 18", "Tgl. 19", "Tgl. 20",
+            "Tgl. 21", "Tgl. 22", "Tgl. 23", "Tgl. 24", "Tgl. 25", "Tgl. 26", "Tgl. 27", "Tgl. 28", "Tgl. 29", "Tgl. 30", "Tgl. 31", "Total",
+            "kdindikator", "tglcatat", "kdnumdemon"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbNasional.setModel(tabMode5);
+        tbNasional.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbNasional.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 39; i++) {
+            TableColumn column = tbNasional.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(130);
+            } else if (i == 1) {
+                column.setPreferredWidth(400);
+            } else if (i == 2) {
+                column.setPreferredWidth(100);
+            } else if (i == 3) {
+                column.setPreferredWidth(450);
+            } else if (i == 4) {
+                column.setPreferredWidth(48);
+            } else if (i == 5) {
+                column.setPreferredWidth(48);
+            } else if (i == 6) {
+                column.setPreferredWidth(48);
+            } else if (i == 7) {
+                column.setPreferredWidth(48);
+            } else if (i == 8) {
+                column.setPreferredWidth(48);
+            } else if (i == 9) {
+                column.setPreferredWidth(48);
+            } else if (i == 10) {
+                column.setPreferredWidth(48);
+            } else if (i == 11) {
+                column.setPreferredWidth(48);
+            } else if (i == 12) {
+                column.setPreferredWidth(48);
+            } else if (i == 13) {
+                column.setPreferredWidth(48);
+            } else if (i == 14) {
+                column.setPreferredWidth(48);
+            } else if (i == 15) {
+                column.setPreferredWidth(48);
+            } else if (i == 16) {
+                column.setPreferredWidth(48);
+            } else if (i == 17) {
+                column.setPreferredWidth(48);
+            } else if (i == 18) {
+                column.setPreferredWidth(48);
+            } else if (i == 19) {
+                column.setPreferredWidth(48);
+            } else if (i == 20) {
+                column.setPreferredWidth(48);
+            } else if (i == 21) {
+                column.setPreferredWidth(48);
+            } else if (i == 22) {
+                column.setPreferredWidth(48);
+            } else if (i == 23) {
+                column.setPreferredWidth(48);
+            } else if (i == 24) {
+                column.setPreferredWidth(48);
+            } else if (i == 25) {
+                column.setPreferredWidth(48);
+            } else if (i == 26) {
+                column.setPreferredWidth(48);
+            } else if (i == 27) {
+                column.setPreferredWidth(48);
+            } else if (i == 28) {
+                column.setPreferredWidth(48);
+            } else if (i == 29) {
+                column.setPreferredWidth(48);
+            } else if (i == 30) {
+                column.setPreferredWidth(48);
+            } else if (i == 31) {
+                column.setPreferredWidth(48);
+            } else if (i == 32) {
+                column.setPreferredWidth(48);
+            } else if (i == 33) {
+                column.setPreferredWidth(48);
+            } else if (i == 34) {
+                column.setPreferredWidth(48);
+            } else if (i == 35) {
+                column.setPreferredWidth(55);
+            } else if (i == 36) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 37) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 38) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }
+        }
+        tbNasional.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah        
+        tbNasional.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(11).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(12).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(13).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(14).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(15).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(16).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(17).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(18).setCellRenderer(centerRenderer);        
+        tbNasional.getColumnModel().getColumn(19).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(20).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(21).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(22).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(23).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(24).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(25).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(26).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(27).setCellRenderer(centerRenderer);        
+        tbNasional.getColumnModel().getColumn(28).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(29).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(30).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(31).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(32).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(33).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(34).setCellRenderer(centerRenderer);
+        tbNasional.getColumnModel().getColumn(35).setCellRenderer(centerRenderer);
+        
+        tabMode6 = new DefaultTableModel(null, new String[]{
+            "Ruangan", "Indikator", "Tot. Numerator", "Tot. Denominator", "Tot. Semua"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbTotPrioritas.setModel(tabMode6);
+        tbTotPrioritas.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbTotPrioritas.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        for (i = 0; i < 5; i++) {
+            TableColumn column = tbTotPrioritas.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(130);
+            } else if (i == 1) {
+                column.setPreferredWidth(500);
+            } else if (i == 2) {
+                column.setPreferredWidth(100);
+            } else if (i == 3) {
+                column.setPreferredWidth(100);
+            } else if (i == 4) {
+                column.setPreferredWidth(70);
+            }        
+        }
+        tbTotPrioritas.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah        
+        tbTotPrioritas.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbTotPrioritas.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbTotPrioritas.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        
+        tabMode7 = new DefaultTableModel(null, new String[]{
+            "Ruangan", "Indikator", "Tot. Numerator", "Tot. Denominator", "Tot. Semua"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbTotNasional.setModel(tabMode7);
+        tbTotNasional.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbTotNasional.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        for (i = 0; i < 5; i++) {
+            TableColumn column = tbTotNasional.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(130);
+            } else if (i == 1) {
+                column.setPreferredWidth(500);
+            } else if (i == 2) {
+                column.setPreferredWidth(100);
+            } else if (i == 3) {
+                column.setPreferredWidth(100);
+            } else if (i == 4) {
+                column.setPreferredWidth(70);
+            }        
+        }
+        tbTotNasional.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah        
+        tbTotNasional.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbTotNasional.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbTotNasional.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
 
         Ttahun.setDocument(new batasInput((byte) 4).getOnlyAngka(Ttahun));
         Tjumlah.setDocument(new batasInput((byte) 4).getOnlyAngka(Tjumlah));
@@ -382,8 +716,19 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         Scroll1 = new widget.ScrollPane();
         tbNumdenom = new widget.Table();
         BtnNumdenom = new widget.Button();
+        TabMutu = new javax.swing.JTabbedPane();
         Scroll = new widget.ScrollPane();
         tbIndikator = new widget.Table();
+        panelGlass9 = new widget.panelisi();
+        Scroll2 = new widget.ScrollPane();
+        tbPrioritas = new widget.Table();
+        Scroll6 = new widget.ScrollPane();
+        tbTotPrioritas = new widget.Table();
+        panelGlass11 = new widget.panelisi();
+        Scroll5 = new widget.ScrollPane();
+        tbNasional = new widget.Table();
+        Scroll7 = new widget.ScrollPane();
+        tbTotNasional = new widget.Table();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -500,6 +845,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnHapus1.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnHapus1.setMnemonic('M');
         BtnHapus1.setText("Hapus Conteng");
         BtnHapus1.setToolTipText("Alt+M");
         BtnHapus1.setName("BtnHapus1"); // NOI18N
@@ -513,6 +859,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnConteng.setForeground(new java.awt.Color(0, 0, 0));
         BtnConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnConteng.setMnemonic('G');
         BtnConteng.setText("Conteng Semua");
         BtnConteng.setToolTipText("Alt+G");
         BtnConteng.setName("BtnConteng"); // NOI18N
@@ -526,6 +873,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnHapusINM.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusINM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnHapusINM.setMnemonic('H');
         BtnHapusINM.setText("Hapus");
         BtnHapusINM.setToolTipText("Alt+H");
         BtnHapusINM.setName("BtnHapusINM"); // NOI18N
@@ -539,6 +887,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn4.setMnemonic('U');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+U");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -605,7 +954,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         internalFrame9.add(jLabel36);
         jLabel36.setBounds(0, 94, 150, 23);
 
-        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2025" }));
+        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-09-2025" }));
         TtglCatat1.setDisplayFormat("dd-MM-yyyy");
         TtglCatat1.setName("TtglCatat1"); // NOI18N
         TtglCatat1.setOpaque(false);
@@ -677,6 +1026,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnGantiINM.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiINM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGantiINM.setMnemonic('G');
         BtnGantiINM.setText("Ganti");
         BtnGantiINM.setToolTipText("Alt+G");
         BtnGantiINM.setName("BtnGantiINM"); // NOI18N
@@ -690,6 +1040,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnCloseIn5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn5.setMnemonic('U');
         BtnCloseIn5.setText("Tutup");
         BtnCloseIn5.setToolTipText("Alt+U");
         BtnCloseIn5.setName("BtnCloseIn5"); // NOI18N
@@ -729,6 +1080,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -747,6 +1099,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -765,6 +1118,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -783,6 +1137,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -801,6 +1156,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -819,6 +1175,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -837,6 +1194,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -907,6 +1265,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -986,7 +1345,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         jLabel8.setBounds(0, 154, 120, 23);
 
         TtglCatat.setEditable(false);
-        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2025" }));
+        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-09-2025" }));
         TtglCatat.setDisplayFormat("dd-MM-yyyy");
         TtglCatat.setName("TtglCatat"); // NOI18N
         TtglCatat.setOpaque(false);
@@ -1024,6 +1383,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         BtnNumdenom.setForeground(new java.awt.Color(0, 0, 0));
         BtnNumdenom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        BtnNumdenom.setMnemonic('2');
         BtnNumdenom.setText("Numerator Denominator");
         BtnNumdenom.setName("BtnNumdenom"); // NOI18N
         BtnNumdenom.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -1036,6 +1396,16 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         BtnNumdenom.setBounds(410, 154, 210, 23);
 
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
+
+        TabMutu.setBackground(new java.awt.Color(254, 255, 254));
+        TabMutu.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TabMutu.setName("TabMutu"); // NOI18N
+        TabMutu.setPreferredSize(new java.awt.Dimension(0, 2000));
+        TabMutu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabMutuMouseClicked(evt);
+            }
+        });
 
         Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Judul", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         Scroll.setComponentPopupMenu(jPopupMenu1);
@@ -1057,7 +1427,55 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         });
         Scroll.setViewportView(tbIndikator);
 
-        internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
+        TabMutu.addTab("Indikator Mutu Pelayanan", Scroll);
+
+        panelGlass9.setName("panelGlass9"); // NOI18N
+        panelGlass9.setPreferredSize(new java.awt.Dimension(55, 55));
+        panelGlass9.setLayout(new java.awt.GridLayout(1, 2));
+
+        Scroll2.setName("Scroll2"); // NOI18N
+        Scroll2.setOpaque(true);
+
+        tbPrioritas.setName("tbPrioritas"); // NOI18N
+        Scroll2.setViewportView(tbPrioritas);
+
+        panelGlass9.add(Scroll2);
+
+        Scroll6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Total Indikator Mutu Prioritas ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        Scroll6.setName("Scroll6"); // NOI18N
+        Scroll6.setOpaque(true);
+
+        tbTotPrioritas.setName("tbTotPrioritas"); // NOI18N
+        Scroll6.setViewportView(tbTotPrioritas);
+
+        panelGlass9.add(Scroll6);
+
+        TabMutu.addTab("Indikator Mutu Prioritas", panelGlass9);
+
+        panelGlass11.setName("panelGlass11"); // NOI18N
+        panelGlass11.setPreferredSize(new java.awt.Dimension(55, 55));
+        panelGlass11.setLayout(new java.awt.GridLayout(1, 2));
+
+        Scroll5.setName("Scroll5"); // NOI18N
+        Scroll5.setOpaque(true);
+
+        tbNasional.setName("tbNasional"); // NOI18N
+        Scroll5.setViewportView(tbNasional);
+
+        panelGlass11.add(Scroll5);
+
+        Scroll7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Total Indikator Nasional Mutu ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        Scroll7.setName("Scroll7"); // NOI18N
+        Scroll7.setOpaque(true);
+
+        tbTotNasional.setName("tbTotNasional"); // NOI18N
+        Scroll7.setViewportView(tbTotNasional);
+
+        panelGlass11.add(Scroll7);
+
+        TabMutu.addTab("Indikator Nasional Mutu", panelGlass11);
+
+        internalFrame1.add(TabMutu, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
@@ -1114,6 +1532,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         TtglCatat.setDate(new Date());
+        TabMutu.setSelectedIndex(0);
         emptTeks();
         tampil();
         tampilNumdenom();
@@ -1165,7 +1584,22 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
-        tampil();
+        if (TabMutu.getSelectedIndex() == 0) {
+            tampil();
+            BtnSimpan.setEnabled(true);
+            BtnHapus.setEnabled(true);
+            BtnGanti.setEnabled(true);
+        } else if (TabMutu.getSelectedIndex() == 1) {
+            tampilPrioritas();
+            BtnSimpan.setEnabled(false);
+            BtnHapus.setEnabled(false);
+            BtnGanti.setEnabled(false);
+        } else if (TabMutu.getSelectedIndex() == 2) {
+            tampilNasional();
+            BtnSimpan.setEnabled(false);
+            BtnHapus.setEnabled(false);
+            BtnGanti.setEnabled(false);
+        }
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
@@ -1221,6 +1655,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         cmbBulan.setSelectedItem(Sequel.bulanINDONESIA("select month(now())"));
         angkaBulan = Sequel.cariIsi("select month(now())");
         Ttahun.setText(Sequel.cariIsi("select year(now())"));
+        TabMutu.setSelectedIndex(0);
         tampil();
         MnMasterIndikator.setEnabled(akses.getpic_kmkp());
     }//GEN-LAST:event_formWindowOpened
@@ -1596,6 +2031,25 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnExportKeExcelActionPerformed
 
+    private void TabMutuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabMutuMouseClicked
+        if (TabMutu.getSelectedIndex() == 0) {
+            tampil();
+            BtnSimpan.setEnabled(true);
+            BtnHapus.setEnabled(true);
+            BtnGanti.setEnabled(true);
+        } else if (TabMutu.getSelectedIndex() == 1) {
+            tampilPrioritas();
+            BtnSimpan.setEnabled(false);
+            BtnHapus.setEnabled(false);
+            BtnGanti.setEnabled(false);
+        } else if (TabMutu.getSelectedIndex() == 2) {
+            tampilNasional();
+            BtnSimpan.setEnabled(false);
+            BtnHapus.setEnabled(false);
+            BtnGanti.setEnabled(false);
+        }
+    }//GEN-LAST:event_TabMutuMouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -1633,8 +2087,13 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
+    private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll4;
+    private widget.ScrollPane Scroll5;
+    private widget.ScrollPane Scroll6;
+    private widget.ScrollPane Scroll7;
+    private javax.swing.JTabbedPane TabMutu;
     private widget.TextBox Tjumlah;
     private widget.TextBox Tjumlah1;
     private widget.TextBox TkdIndikator;
@@ -1683,11 +2142,17 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass10;
+    private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass8;
+    private widget.panelisi panelGlass9;
     private widget.Table tbGanti;
     private widget.Table tbHapus;
     private widget.Table tbIndikator;
+    private widget.Table tbNasional;
     private widget.Table tbNumdenom;
+    private widget.Table tbPrioritas;
+    private widget.Table tbTotNasional;
+    private widget.Table tbTotPrioritas;
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
@@ -2320,5 +2785,1100 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notif : " + e);
         }
+    }
+    
+    private void tampilPrioritas() {
+        pakaiGedung = "";
+        if (Ttahun.getText().equals("")) {
+            Ttahun.setText(Sequel.cariIsi("select year(now())"));
+        } else {
+            Ttahun.setText(Ttahun.getText());
+        }
+        
+        if (cmbGedung1.getSelectedIndex() == 0) {
+            pakaiGedung = "";
+        } else {
+            pakaiGedung = "and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "'";
+        }
+
+        hitungTot = 0;
+        Valid.tabelKosong(tabMode4);
+        try {
+            StringBuilder sb = new StringBuilder();
+            if (cmbSttsIndikator.getSelectedIndex() == 0) {
+                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
+                sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
+                sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
+                sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
+                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
+                sb.append("and m.jenis_indikator='Mutu Prioritas RS' and m.status_data='aktif' and m.tujuan_aktivasi='Input Data' ");
+                sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
+            } else if (cmbSttsIndikator.getSelectedIndex() == 1) {
+                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
+                sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
+                sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
+                sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
+                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
+                sb.append("and m.jenis_indikator='Mutu Prioritas RS' and m.status_data='non aktif' ");
+                sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
+            } else {
+                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
+                sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
+                sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
+                sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
+                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " and m.jenis_indikator='Mutu Prioritas RS' ");
+                sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
+            }
+            ps4 = koneksi.prepareStatement(sb.toString());
+            try {
+                rs4 = ps4.executeQuery();
+                while (rs4.next()) {
+                    try {
+                        hitungTot = Double.parseDouble(rs4.getString("tgl1"))
+                                + Double.parseDouble(rs4.getString("tgl2"))
+                                + Double.parseDouble(rs4.getString("tgl3"))
+                                + Double.parseDouble(rs4.getString("tgl4"))
+                                + Double.parseDouble(rs4.getString("tgl5"))
+                                + Double.parseDouble(rs4.getString("tgl6"))
+                                + Double.parseDouble(rs4.getString("tgl7"))
+                                + Double.parseDouble(rs4.getString("tgl8"))
+                                + Double.parseDouble(rs4.getString("tgl9"))
+                                + Double.parseDouble(rs4.getString("tgl10"))
+                                + Double.parseDouble(rs4.getString("tgl11"))
+                                + Double.parseDouble(rs4.getString("tgl12"))
+                                + Double.parseDouble(rs4.getString("tgl13"))
+                                + Double.parseDouble(rs4.getString("tgl14"))
+                                + Double.parseDouble(rs4.getString("tgl15"))
+                                + Double.parseDouble(rs4.getString("tgl16"))
+                                + Double.parseDouble(rs4.getString("tgl17"))
+                                + Double.parseDouble(rs4.getString("tgl18"))
+                                + Double.parseDouble(rs4.getString("tgl19"))
+                                + Double.parseDouble(rs4.getString("tgl20"))
+                                + Double.parseDouble(rs4.getString("tgl21"))
+                                + Double.parseDouble(rs4.getString("tgl22"))
+                                + Double.parseDouble(rs4.getString("tgl23"))
+                                + Double.parseDouble(rs4.getString("tgl24"))
+                                + Double.parseDouble(rs4.getString("tgl25"))
+                                + Double.parseDouble(rs4.getString("tgl26"))
+                                + Double.parseDouble(rs4.getString("tgl27"))
+                                + Double.parseDouble(rs4.getString("tgl28"))
+                                + Double.parseDouble(rs4.getString("tgl29"))
+                                + Double.parseDouble(rs4.getString("tgl30"))
+                                + Double.parseDouble(rs4.getString("tgl31"));
+                        total = Valid.SetAngka2(hitungTot);
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                        total = "error";
+                    }
+
+                    //cek angka jumlah
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=1 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl1 = "";
+                    } else {
+                        tgl1 = rs4.getString("tgl1");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=2 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl2 = "";
+                    } else {
+                        tgl2 = rs4.getString("tgl2");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=3 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl3 = "";
+                    } else {
+                        tgl3 = rs4.getString("tgl3");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=4 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl4 = "";
+                    } else {
+                        tgl4 = rs4.getString("tgl4");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=5 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl5 = "";
+                    } else {
+                        tgl5 = rs4.getString("tgl5");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=6 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl6 = "";
+                    } else {
+                        tgl6 = rs4.getString("tgl6");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=7 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl7 = "";
+                    } else {
+                        tgl7 = rs4.getString("tgl7");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=8 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl8 = "";
+                    } else {
+                        tgl8 = rs4.getString("tgl8");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=9 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl9 = "";
+                    } else {
+                        tgl9 = rs4.getString("tgl9");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=10 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl10 = "";
+                    } else {
+                        tgl10 = rs4.getString("tgl10");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=11 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl11 = "";
+                    } else {
+                        tgl11 = rs4.getString("tgl11");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=12 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl12 = "";
+                    } else {
+                        tgl12 = rs4.getString("tgl12");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=13 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl13 = "";
+                    } else {
+                        tgl13 = rs4.getString("tgl13");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=14 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl14 = "";
+                    } else {
+                        tgl14 = rs4.getString("tgl14");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=15 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl15 = "";
+                    } else {
+                        tgl15 = rs4.getString("tgl15");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=16 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl16 = "";
+                    } else {
+                        tgl16 = rs4.getString("tgl16");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=17 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl17 = "";
+                    } else {
+                        tgl17 = rs4.getString("tgl17");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=18 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl18 = "";
+                    } else {
+                        tgl18 = rs4.getString("tgl18");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=19 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl19 = "";
+                    } else {
+                        tgl19 = rs4.getString("tgl19");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=20 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl20 = "";
+                    } else {
+                        tgl20 = rs4.getString("tgl20");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=21 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl21 = "";
+                    } else {
+                        tgl21 = rs4.getString("tgl21");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=22 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl22 = "";
+                    } else {
+                        tgl22 = rs4.getString("tgl22");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=23 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl23 = "";
+                    } else {
+                        tgl23 = rs4.getString("tgl23");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=24 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl24 = "";
+                    } else {
+                        tgl24 = rs4.getString("tgl24");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=25 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl25 = "";
+                    } else {
+                        tgl25 = rs4.getString("tgl25");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=26 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl26 = "";
+                    } else {
+                        tgl26 = rs4.getString("tgl26");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=27 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl27 = "";
+                    } else {
+                        tgl27 = rs4.getString("tgl27");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=28 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl28 = "";
+                    } else {
+                        tgl28 = rs4.getString("tgl28");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=29 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl29 = "";
+                    } else {
+                        tgl29 = rs4.getString("tgl29");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=30 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl30 = "";
+                    } else {
+                        tgl30 = rs4.getString("tgl30");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=31 and "
+                            + "MONTH(tgl_catat)='" + rs4.getString("bln") + "' and YEAR(tgl_catat)='" + rs4.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs4.getString("kd_numdemon") + "'") == 0) {
+                        tgl31 = "";
+                    } else {
+                        tgl31 = rs4.getString("tgl31");
+                    }
+                    
+                    tabMode4.addRow(new String[]{
+                        rs4.getString("gedung"),
+                        rs4.getString("nm_indikator"),                        
+                        rs4.getString("jenis_numdemon"),
+                        rs4.getString("nm_numdemon"),
+                        tgl1, tgl2, tgl3, tgl4, tgl5, tgl6, tgl7, tgl8, tgl9, tgl10,
+                        tgl11, tgl12, tgl13, tgl14, tgl15, tgl16, tgl17, tgl18, tgl19, tgl20,
+                        tgl21, tgl22, tgl23, tgl24, tgl25, tgl26, tgl27, tgl28, tgl29, tgl30, tgl31, total,
+                        rs4.getString("kd_indikator"),
+                        rs4.getString("tgl_catat"),
+                        rs4.getString("kd_numdemon")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("laporan.DlgIndikatorNasionalMutu.tampilPrioritas() : " + e);
+            } finally {
+                if (rs4 != null) {
+                    rs4.close();
+                }
+                if (ps4 != null) {
+                    ps4.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }        
+        tampilTotPrioritas();
+    }
+
+    private void tampilNasional() {
+        pakaiGedung = "";
+        if (Ttahun.getText().equals("")) {
+            Ttahun.setText(Sequel.cariIsi("select year(now())"));
+        } else {
+            Ttahun.setText(Ttahun.getText());
+        }
+        
+        if (cmbGedung1.getSelectedIndex() == 0) {
+            pakaiGedung = "";
+        } else {
+            pakaiGedung = "and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "'";
+        }
+
+        hitungTot = 0;
+        Valid.tabelKosong(tabMode5);
+        try {
+            StringBuilder sb = new StringBuilder();
+            if (cmbSttsIndikator.getSelectedIndex() == 0) {
+                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
+                sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
+                sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
+                sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
+                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
+                sb.append("and m.jenis_indikator='Mutu Nasional' and m.status_data='aktif' and m.tujuan_aktivasi='Input Data' ");
+                sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by inm.gedung, m.no_urut, mn.no_urut");
+            } else if (cmbSttsIndikator.getSelectedIndex() == 1) {
+                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
+                sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
+                sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
+                sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
+                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
+                sb.append("and m.jenis_indikator='Mutu Nasional' and m.status_data='non aktif'");
+                sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by inm.gedung, m.no_urut, mn.no_urut");
+            } else {
+                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
+                sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
+                sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
+                sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
+                sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
+                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " and m.jenis_indikator='Mutu Nasional' ");
+                sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by inm.gedung, m.no_urut, mn.no_urut");
+            }
+            ps5 = koneksi.prepareStatement(sb.toString());
+            try {
+                rs5 = ps5.executeQuery();
+                while (rs5.next()) {
+                    try {
+                        hitungTot = Double.parseDouble(rs5.getString("tgl1"))
+                                + Double.parseDouble(rs5.getString("tgl2"))
+                                + Double.parseDouble(rs5.getString("tgl3"))
+                                + Double.parseDouble(rs5.getString("tgl4"))
+                                + Double.parseDouble(rs5.getString("tgl5"))
+                                + Double.parseDouble(rs5.getString("tgl6"))
+                                + Double.parseDouble(rs5.getString("tgl7"))
+                                + Double.parseDouble(rs5.getString("tgl8"))
+                                + Double.parseDouble(rs5.getString("tgl9"))
+                                + Double.parseDouble(rs5.getString("tgl10"))
+                                + Double.parseDouble(rs5.getString("tgl11"))
+                                + Double.parseDouble(rs5.getString("tgl12"))
+                                + Double.parseDouble(rs5.getString("tgl13"))
+                                + Double.parseDouble(rs5.getString("tgl14"))
+                                + Double.parseDouble(rs5.getString("tgl15"))
+                                + Double.parseDouble(rs5.getString("tgl16"))
+                                + Double.parseDouble(rs5.getString("tgl17"))
+                                + Double.parseDouble(rs5.getString("tgl18"))
+                                + Double.parseDouble(rs5.getString("tgl19"))
+                                + Double.parseDouble(rs5.getString("tgl20"))
+                                + Double.parseDouble(rs5.getString("tgl21"))
+                                + Double.parseDouble(rs5.getString("tgl22"))
+                                + Double.parseDouble(rs5.getString("tgl23"))
+                                + Double.parseDouble(rs5.getString("tgl24"))
+                                + Double.parseDouble(rs5.getString("tgl25"))
+                                + Double.parseDouble(rs5.getString("tgl26"))
+                                + Double.parseDouble(rs5.getString("tgl27"))
+                                + Double.parseDouble(rs5.getString("tgl28"))
+                                + Double.parseDouble(rs5.getString("tgl29"))
+                                + Double.parseDouble(rs5.getString("tgl30"))
+                                + Double.parseDouble(rs5.getString("tgl31"));
+                        total = Valid.SetAngka2(hitungTot);
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                        total = "error";
+                    }
+
+                    //cek angka jumlah
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=1 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl1 = "";
+                    } else {
+                        tgl1 = rs5.getString("tgl1");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=2 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl2 = "";
+                    } else {
+                        tgl2 = rs5.getString("tgl2");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=3 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl3 = "";
+                    } else {
+                        tgl3 = rs5.getString("tgl3");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=4 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl4 = "";
+                    } else {
+                        tgl4 = rs5.getString("tgl4");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=5 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl5 = "";
+                    } else {
+                        tgl5 = rs5.getString("tgl5");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=6 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl6 = "";
+                    } else {
+                        tgl6 = rs5.getString("tgl6");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=7 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl7 = "";
+                    } else {
+                        tgl7 = rs5.getString("tgl7");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=8 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl8 = "";
+                    } else {
+                        tgl8 = rs5.getString("tgl8");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=9 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl9 = "";
+                    } else {
+                        tgl9 = rs5.getString("tgl9");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=10 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl10 = "";
+                    } else {
+                        tgl10 = rs5.getString("tgl10");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=11 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl11 = "";
+                    } else {
+                        tgl11 = rs5.getString("tgl11");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=12 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl12 = "";
+                    } else {
+                        tgl12 = rs5.getString("tgl12");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=13 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl13 = "";
+                    } else {
+                        tgl13 = rs5.getString("tgl13");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=14 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl14 = "";
+                    } else {
+                        tgl14 = rs5.getString("tgl14");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=15 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl15 = "";
+                    } else {
+                        tgl15 = rs5.getString("tgl15");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=16 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl16 = "";
+                    } else {
+                        tgl16 = rs5.getString("tgl16");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=17 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl17 = "";
+                    } else {
+                        tgl17 = rs5.getString("tgl17");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=18 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl18 = "";
+                    } else {
+                        tgl18 = rs5.getString("tgl18");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=19 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl19 = "";
+                    } else {
+                        tgl19 = rs5.getString("tgl19");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=20 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl20 = "";
+                    } else {
+                        tgl20 = rs5.getString("tgl20");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=21 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl21 = "";
+                    } else {
+                        tgl21 = rs5.getString("tgl21");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=22 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl22 = "";
+                    } else {
+                        tgl22 = rs5.getString("tgl22");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=23 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl23 = "";
+                    } else {
+                        tgl23 = rs5.getString("tgl23");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=24 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl24 = "";
+                    } else {
+                        tgl24 = rs5.getString("tgl24");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=25 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl25 = "";
+                    } else {
+                        tgl25 = rs5.getString("tgl25");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=26 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl26 = "";
+                    } else {
+                        tgl26 = rs5.getString("tgl26");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=27 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl27 = "";
+                    } else {
+                        tgl27 = rs5.getString("tgl27");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=28 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl28 = "";
+                    } else {
+                        tgl28 = rs5.getString("tgl28");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=29 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl29 = "";
+                    } else {
+                        tgl29 = rs5.getString("tgl29");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=30 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl30 = "";
+                    } else {
+                        tgl30 = rs5.getString("tgl30");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from indikator_nasional_mutu where day(tgl_catat)=31 and "
+                            + "MONTH(tgl_catat)='" + rs5.getString("bln") + "' and YEAR(tgl_catat)='" + rs5.getString("thn") + "' "
+                            + "and kd_numdemon='" + rs5.getString("kd_numdemon") + "'") == 0) {
+                        tgl31 = "";
+                    } else {
+                        tgl31 = rs5.getString("tgl31");
+                    }
+
+                    tabMode5.addRow(new String[]{
+                        rs5.getString("gedung"),
+                        rs5.getString("nm_indikator"),
+                        rs5.getString("jenis_numdemon"),
+                        rs5.getString("nm_numdemon"),
+                        tgl1, tgl2, tgl3, tgl4, tgl5, tgl6, tgl7, tgl8, tgl9, tgl10,
+                        tgl11, tgl12, tgl13, tgl14, tgl15, tgl16, tgl17, tgl18, tgl19, tgl20,
+                        tgl21, tgl22, tgl23, tgl24, tgl25, tgl26, tgl27, tgl28, tgl29, tgl30, tgl31, total,
+                        rs5.getString("kd_indikator"),
+                        rs5.getString("tgl_catat"),
+                        rs5.getString("kd_numdemon")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("laporan.DlgIndikatorNasionalMutu.tampilNasional() : " + e);
+            } finally {
+                if (rs5 != null) {
+                    rs5.close();
+                }
+                if (ps5 != null) {
+                    ps5.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        
+        tampilTotNasional();
+    }
+
+    private void tampilTotPrioritas() {
+        pakaiGedung = "";
+        if (Ttahun.getText().equals("")) {
+            Ttahun.setText(Sequel.cariIsi("select year(now())"));
+        } else {
+            Ttahun.setText(Ttahun.getText());
+        }
+        
+        if (cmbGedung1.getSelectedIndex() == 0) {
+            pakaiGedung = "";
+        } else {
+            pakaiGedung = "and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "'";
+        }
+        
+        Valid.tabelKosong(tabMode6);
+        try {
+            StringBuilder sb = new StringBuilder();
+            if (cmbSttsIndikator.getSelectedIndex() == 0) {
+                sb.append("SELECT inm.gedung, CASE ");
+                sb.append("WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ");
+                sb.append("ELSE m.nm_indikator END nama_Indikator, ");
+                sb.append("IFNULL(SUM(CASE WHEN mn.jenis_numdemon='Numerator' THEN inm.jumlah_pertanggal END),0) tot_num, ");
+                sb.append("IFNULL(SUM(CASE WHEN mn.jenis_numdemon='Denominator' THEN inm.jumlah_pertanggal END),0) tot_den, ");
+                sb.append("IFNULL(SUM(inm.jumlah_pertanggal),0) tot_semua FROM indikator_nasional_mutu inm ");
+                sb.append("INNER JOIN master_indikator_nasional_mutu m ON m.kd_indikator=inm.kd_indikator ");
+                sb.append("INNER JOIN master_numdemon_indikator_nasional_mutu mn ON mn.kd_numdemon=inm.kd_numdemon WHERE ");
+                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
+                sb.append("and m.jenis_indikator='Mutu Prioritas RS' and m.status_data='aktif' and m.tujuan_aktivasi='Input Data' ");
+                sb.append("GROUP BY inm.kd_indikator, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
+            } else if (cmbSttsIndikator.getSelectedIndex() == 1) {
+                sb.append("SELECT inm.gedung, CASE ");
+                sb.append("WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ");
+                sb.append("ELSE m.nm_indikator END nama_Indikator, ");
+                sb.append("IFNULL(SUM(CASE WHEN mn.jenis_numdemon='Numerator' THEN inm.jumlah_pertanggal END),0) tot_num, ");
+                sb.append("IFNULL(SUM(CASE WHEN mn.jenis_numdemon='Denominator' THEN inm.jumlah_pertanggal END),0) tot_den, ");
+                sb.append("IFNULL(SUM(inm.jumlah_pertanggal),0) tot_semua FROM indikator_nasional_mutu inm ");
+                sb.append("INNER JOIN master_indikator_nasional_mutu m ON m.kd_indikator=inm.kd_indikator ");
+                sb.append("INNER JOIN master_numdemon_indikator_nasional_mutu mn ON mn.kd_numdemon=inm.kd_numdemon WHERE ");
+                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
+                sb.append("and m.jenis_indikator='Mutu Prioritas RS' and m.status_data='non aktif' ");
+                sb.append("GROUP BY inm.kd_indikator, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
+            } else {
+                sb.append("SELECT inm.gedung, CASE ");
+                sb.append("WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ");
+                sb.append("ELSE m.nm_indikator END nama_Indikator, ");
+                sb.append("IFNULL(SUM(CASE WHEN mn.jenis_numdemon='Numerator' THEN inm.jumlah_pertanggal END),0) tot_num, ");
+                sb.append("IFNULL(SUM(CASE WHEN mn.jenis_numdemon='Denominator' THEN inm.jumlah_pertanggal END),0) tot_den, ");
+                sb.append("IFNULL(SUM(inm.jumlah_pertanggal),0) tot_semua FROM indikator_nasional_mutu inm ");
+                sb.append("INNER JOIN master_indikator_nasional_mutu m ON m.kd_indikator=inm.kd_indikator ");
+                sb.append("INNER JOIN master_numdemon_indikator_nasional_mutu mn ON mn.kd_numdemon=inm.kd_numdemon WHERE ");
+                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " and m.jenis_indikator='Mutu Prioritas RS' ");
+                sb.append("GROUP BY inm.kd_indikator, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
+            }
+            ps6 = koneksi.prepareStatement(sb.toString());
+            try {
+                rs6 = ps6.executeQuery();
+                while (rs6.next()) {
+                    tabMode6.addRow(new String[]{
+                        rs6.getString("gedung"),
+                        rs6.getString("nama_Indikator"),
+                        rs6.getString("tot_num"),
+                        rs6.getString("tot_den"),
+                        rs6.getString("tot_semua")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("laporan.DlgIndikatorNasionalMutu.tampilTotPrioritas() : " + e);
+            } finally {
+                if (rs6 != null) {
+                    rs6.close();
+                }
+                if (ps6 != null) {
+                    ps6.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilTotNasional() {
+        pakaiGedung = "";
+        if (Ttahun.getText().equals("")) {
+            Ttahun.setText(Sequel.cariIsi("select year(now())"));
+        } else {
+            Ttahun.setText(Ttahun.getText());
+        }
+        
+        if (cmbGedung1.getSelectedIndex() == 0) {
+            pakaiGedung = "";
+        } else {
+            pakaiGedung = "and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "'";
+        }
+
+        Valid.tabelKosong(tabMode7);
+        try {
+            StringBuilder sb = new StringBuilder();
+            if (cmbSttsIndikator.getSelectedIndex() == 0) {
+                sb.append("SELECT inm.gedung, CASE ");
+                sb.append("WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ");
+                sb.append("ELSE m.nm_indikator END nama_Indikator, ");
+                sb.append("IFNULL(SUM(CASE WHEN mn.jenis_numdemon='Numerator' THEN inm.jumlah_pertanggal END),0) tot_num, ");
+                sb.append("IFNULL(SUM(CASE WHEN mn.jenis_numdemon='Denominator' THEN inm.jumlah_pertanggal END),0) tot_den, ");
+                sb.append("IFNULL(SUM(inm.jumlah_pertanggal),0) tot_semua FROM indikator_nasional_mutu inm ");
+                sb.append("INNER JOIN master_indikator_nasional_mutu m ON m.kd_indikator=inm.kd_indikator ");
+                sb.append("INNER JOIN master_numdemon_indikator_nasional_mutu mn ON mn.kd_numdemon=inm.kd_numdemon WHERE ");
+                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
+                sb.append("and m.jenis_indikator='Mutu Nasional' and m.status_data='aktif' and m.tujuan_aktivasi='Input Data' ");
+                sb.append("GROUP BY inm.kd_indikator, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by inm.gedung, m.no_urut, mn.no_urut");
+            } else if (cmbSttsIndikator.getSelectedIndex() == 1) {
+                sb.append("SELECT inm.gedung, CASE ");
+                sb.append("WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ");
+                sb.append("ELSE m.nm_indikator END nama_Indikator, ");
+                sb.append("IFNULL(SUM(CASE WHEN mn.jenis_numdemon='Numerator' THEN inm.jumlah_pertanggal END),0) tot_num, ");
+                sb.append("IFNULL(SUM(CASE WHEN mn.jenis_numdemon='Denominator' THEN inm.jumlah_pertanggal END),0) tot_den, ");
+                sb.append("IFNULL(SUM(inm.jumlah_pertanggal),0) tot_semua FROM indikator_nasional_mutu inm ");
+                sb.append("INNER JOIN master_indikator_nasional_mutu m ON m.kd_indikator=inm.kd_indikator ");
+                sb.append("INNER JOIN master_numdemon_indikator_nasional_mutu mn ON mn.kd_numdemon=inm.kd_numdemon WHERE ");
+                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
+                sb.append("and m.jenis_indikator='Mutu Nasional' and m.status_data='non aktif' ");
+                sb.append("GROUP BY inm.kd_indikator, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by inm.gedung, m.no_urut, mn.no_urut");
+            } else {
+                sb.append("SELECT inm.gedung, CASE ");
+                sb.append("WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ");
+                sb.append("ELSE m.nm_indikator END nama_Indikator, ");
+                sb.append("IFNULL(SUM(CASE WHEN mn.jenis_numdemon='Numerator' THEN inm.jumlah_pertanggal END),0) tot_num, ");
+                sb.append("IFNULL(SUM(CASE WHEN mn.jenis_numdemon='Denominator' THEN inm.jumlah_pertanggal END),0) tot_den, ");
+                sb.append("IFNULL(SUM(inm.jumlah_pertanggal),0) tot_semua FROM indikator_nasional_mutu inm ");
+                sb.append("INNER JOIN master_indikator_nasional_mutu m ON m.kd_indikator=inm.kd_indikator ");
+                sb.append("INNER JOIN master_numdemon_indikator_nasional_mutu mn ON mn.kd_numdemon=inm.kd_numdemon WHERE ");
+                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " and m.jenis_indikator='Mutu Nasional' ");
+                sb.append("GROUP BY inm.kd_indikator, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by inm.gedung, m.no_urut, mn.no_urut");
+            }
+            ps7 = koneksi.prepareStatement(sb.toString());
+            try {
+                rs7 = ps7.executeQuery();
+                while (rs7.next()) {
+                    tabMode7.addRow(new String[]{
+                        rs7.getString("gedung"),
+                        rs7.getString("nama_Indikator"),
+                        rs7.getString("tot_num"),
+                        rs7.getString("tot_den"),
+                        rs7.getString("tot_semua")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("laporan.DlgIndikatorNasionalMutu.tampilTotNasional() : " + e);
+            } finally {
+                if (rs7 != null) {
+                    rs7.close();
+                }
+                if (ps7 != null) {
+                    ps7.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }        
     }
 }

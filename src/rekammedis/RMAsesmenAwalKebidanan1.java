@@ -6691,9 +6691,67 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                         Valid.MyReport("rptAsesmenAwalKebidanan2.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 2 ]::",
                                 "select * from riwayat_kehamilan_asesmen_awal_kebidanan where no_rawat='" + TNoRw.getText() + "'", param);
 
-//                        if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                        //halaman 2
+                        if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                            if (rsLaprm.getString("nyeri").equals("Ya")) {
+                                if (rsLaprm.getString("lokasi_nyeri").equals("")) {
+                                    param.put("AsesNyeri", rsLaprm.getString("nyeri") + ", Lokasi : ..........");
+                                } else {
+                                    param.put("AsesNyeri", rsLaprm.getString("nyeri") + ", Lokasi : " + rsLaprm.getString("lokasi_nyeri"));
+                                }                                
+                            } else {
+                                param.put("AsesNyeri", rsLaprm.getString("nyeri"));
+                            }
+
+                            param.put("AsesJenis", rsLaprm.getString("jenis"));
+                            param.put("AsesSkala", rsLaprm.getString("skala_nyeri"));
+
+                            if (rsLaprm.getString("provocation").equals("Lainnya")) {
+                                if (rsLaprm.getString("ket_lain_provocation").equals("")) {
+                                    param.put("AsesProvo", rsLaprm.getString("provocation") + " ..........");
+                                } else {
+                                    param.put("AsesProvo", rsLaprm.getString("provocation") + " : " + rsLaprm.getString("ket_lain_provocation"));
+                                }
+                            } else {
+                                param.put("AsesProvo", rsLaprm.getString("provocation"));
+                            }
+                            
+                            if (rsLaprm.getString("quality").equals("Lainnya")) {
+                                if (rsLaprm.getString("ket_lain_quality").equals("")) {
+                                    param.put("AsesQuality", rsLaprm.getString("quality") + " ..........");
+                                } else {
+                                    param.put("AsesQuality", rsLaprm.getString("quality") + " : " + rsLaprm.getString("ket_lain_quality"));
+                                }
+                            } else {
+                                param.put("AsesQuality", rsLaprm.getString("quality"));
+                            }
+                            
+                            param.put("AsesRadia", rsLaprm.getString("radiation"));
+                            param.put("AsesSever", rsLaprm.getString("severity"));
+                            
+                            if (!rsLaprm.getString("time").equals("-")) {
+                                param.put("AsesTime", rsLaprm.getString("time") + ", Lama : " + rsLaprm.getString("time_lama"));
+                            } else {
+                                param.put("AsesTime", rsLaprm.getString("time"));
+                            }
+                            
+                            //hitung skor gizi
+//                            int skorA, skorB, skorC, skorTotal;
+//                            skorA = Integer.parseInt(rsLaprm.getString("time").toString());
+//                            skorB = Integer.parseInt(skorYaGizi1.getText());
+//                            skorC = Integer.parseInt(skorGizi2.getText());
 //
-//                        }
+//                            Total = 0;
+//                            Total = A + B + C;
+//                            TotSkorGizi.setText(Valid.SetAngka2(Total));
+//
+//                            if (Total == 0 || Total == 1) {
+//                                kesimpulanGizi.setText("Pasien tidak beresiko malnutrisi");
+//                            } else if (Total >= 2) {
+//                                kesimpulanGizi.setText("Skor >= 2, pasien beresiko malnutrisi, konsul ke Ahli Gizi");
+//                            }
+//                            jhgj
+                        }
 
                         TCari.setText(TNoRw.getText());
                         emptTeks();

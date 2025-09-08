@@ -2665,11 +2665,9 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 resep.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate(), cmbJam.getSelectedItem().toString(), 
                         cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), kdUnit);
                 resep.tampil();
-//                resep.setAlwaysOnTop(true);
+                resep.setAlwaysOnTop(true);
                 resep.dokter.setAlwaysOnTop(true);
                 resep.setVisible(true);
-                resep.toFront();
-                resep.requestFocus();
 //                resep.setStatus(status);
             } else {
                 dispose();
