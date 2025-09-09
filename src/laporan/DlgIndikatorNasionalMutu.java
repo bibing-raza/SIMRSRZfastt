@@ -42,7 +42,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     private Properties prop = new Properties();
     private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7;
     private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7;
-    private int i = 0, x = 0, n = 0;
+    private int i = 0, x = 0, n = 0, ttlNum = 0, ttlDen = 0, ttlSemua = 0;
     private double hitungTot = 0;
     private String kdIndikator = "", kdNumdenom = "", gedungDIpilih = "", tglDipilih = "", angkaBulan = "", cekBulan = "", total = "",
             tgl1 = "", tgl2 = "", tgl3 = "", tgl4 = "", tgl5 = "", tgl6 = "", tgl7 = "", tgl8 = "", tgl9 = "", tgl10 = "",
@@ -564,7 +564,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         tbNasional.getColumnModel().getColumn(35).setCellRenderer(centerRenderer);
         
         tabMode6 = new DefaultTableModel(null, new String[]{
-            "Ruangan", "Indikator", "Tot. Numerator", "Tot. Denominator", "Tot. Semua"}) {
+            "Ruangan", "Indikator", "Jml. Numerator", "Jml. Denominator", "Total ND"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -596,7 +596,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         tbTotPrioritas.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         
         tabMode7 = new DefaultTableModel(null, new String[]{
-            "Ruangan", "Indikator", "Tot. Numerator", "Tot. Denominator", "Tot. Semua"}) {
+            "Ruangan", "Indikator", "Jml. Numerator", "Jml. Denominator", "Total ND"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -646,6 +646,12 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnMasterIndikator = new javax.swing.JMenuItem();
         MnExportKeExcel = new javax.swing.JMenuItem();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        MnExportKeExcelMutuPrio = new javax.swing.JMenuItem();
+        MnExportKeExcelRekapPrio = new javax.swing.JMenuItem();
+        jPopupMenu3 = new javax.swing.JPopupMenu();
+        MnExportKeExcelMutuNas = new javax.swing.JMenuItem();
+        MnExportKeExcelRekapNas = new javax.swing.JMenuItem();
         WindowHapus = new javax.swing.JDialog();
         internalFrame6 = new widget.InternalFrame();
         internalFrame7 = new widget.InternalFrame();
@@ -761,6 +767,70 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnExportKeExcel);
+
+        jPopupMenu2.setName("jPopupMenu2"); // NOI18N
+
+        MnExportKeExcelMutuPrio.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnExportKeExcelMutuPrio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnExportKeExcelMutuPrio.setText("Export Data Mutu Prioritas Ke Excel");
+        MnExportKeExcelMutuPrio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnExportKeExcelMutuPrio.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnExportKeExcelMutuPrio.setIconTextGap(5);
+        MnExportKeExcelMutuPrio.setName("MnExportKeExcelMutuPrio"); // NOI18N
+        MnExportKeExcelMutuPrio.setPreferredSize(new java.awt.Dimension(270, 26));
+        MnExportKeExcelMutuPrio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnExportKeExcelMutuPrioActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnExportKeExcelMutuPrio);
+
+        MnExportKeExcelRekapPrio.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnExportKeExcelRekapPrio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnExportKeExcelRekapPrio.setText("Export Rekap Data Mutu Prioritas Ke Ms. Excel");
+        MnExportKeExcelRekapPrio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnExportKeExcelRekapPrio.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnExportKeExcelRekapPrio.setIconTextGap(5);
+        MnExportKeExcelRekapPrio.setName("MnExportKeExcelRekapPrio"); // NOI18N
+        MnExportKeExcelRekapPrio.setPreferredSize(new java.awt.Dimension(270, 26));
+        MnExportKeExcelRekapPrio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnExportKeExcelRekapPrioActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnExportKeExcelRekapPrio);
+
+        jPopupMenu3.setName("jPopupMenu3"); // NOI18N
+
+        MnExportKeExcelMutuNas.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnExportKeExcelMutuNas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnExportKeExcelMutuNas.setText("Export Data Nasional Mutu Ke Excel");
+        MnExportKeExcelMutuNas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnExportKeExcelMutuNas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnExportKeExcelMutuNas.setIconTextGap(5);
+        MnExportKeExcelMutuNas.setName("MnExportKeExcelMutuNas"); // NOI18N
+        MnExportKeExcelMutuNas.setPreferredSize(new java.awt.Dimension(270, 26));
+        MnExportKeExcelMutuNas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnExportKeExcelMutuNasActionPerformed(evt);
+            }
+        });
+        jPopupMenu3.add(MnExportKeExcelMutuNas);
+
+        MnExportKeExcelRekapNas.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnExportKeExcelRekapNas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnExportKeExcelRekapNas.setText("Export Rekap Data Nasional Mutu Ke Ms. Excel");
+        MnExportKeExcelRekapNas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnExportKeExcelRekapNas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnExportKeExcelRekapNas.setIconTextGap(5);
+        MnExportKeExcelRekapNas.setName("MnExportKeExcelRekapNas"); // NOI18N
+        MnExportKeExcelRekapNas.setPreferredSize(new java.awt.Dimension(270, 26));
+        MnExportKeExcelRekapNas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnExportKeExcelRekapNasActionPerformed(evt);
+            }
+        });
+        jPopupMenu3.add(MnExportKeExcelRekapNas);
 
         WindowHapus.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowHapus.setName("WindowHapus"); // NOI18N
@@ -954,7 +1024,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         internalFrame9.add(jLabel36);
         jLabel36.setBounds(0, 94, 150, 23);
 
-        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-09-2025" }));
+        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2025" }));
         TtglCatat1.setDisplayFormat("dd-MM-yyyy");
         TtglCatat1.setName("TtglCatat1"); // NOI18N
         TtglCatat1.setOpaque(false);
@@ -1345,7 +1415,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         jLabel8.setBounds(0, 154, 120, 23);
 
         TtglCatat.setEditable(false);
-        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-09-2025" }));
+        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2025" }));
         TtglCatat.setDisplayFormat("dd-MM-yyyy");
         TtglCatat.setName("TtglCatat"); // NOI18N
         TtglCatat.setOpaque(false);
@@ -1436,6 +1506,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         Scroll2.setName("Scroll2"); // NOI18N
         Scroll2.setOpaque(true);
 
+        tbPrioritas.setComponentPopupMenu(jPopupMenu2);
         tbPrioritas.setName("tbPrioritas"); // NOI18N
         Scroll2.setViewportView(tbPrioritas);
 
@@ -1445,6 +1516,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
 
+        tbTotPrioritas.setComponentPopupMenu(jPopupMenu2);
         tbTotPrioritas.setName("tbTotPrioritas"); // NOI18N
         Scroll6.setViewportView(tbTotPrioritas);
 
@@ -1459,6 +1531,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         Scroll5.setName("Scroll5"); // NOI18N
         Scroll5.setOpaque(true);
 
+        tbNasional.setComponentPopupMenu(jPopupMenu3);
         tbNasional.setName("tbNasional"); // NOI18N
         Scroll5.setViewportView(tbNasional);
 
@@ -1468,6 +1541,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
 
+        tbTotNasional.setComponentPopupMenu(jPopupMenu3);
         tbTotNasional.setName("tbTotNasional"); // NOI18N
         Scroll7.setViewportView(tbTotNasional);
 
@@ -2037,18 +2111,213 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             BtnSimpan.setEnabled(true);
             BtnHapus.setEnabled(true);
             BtnGanti.setEnabled(true);
+            BtnPrint.setEnabled(true);
         } else if (TabMutu.getSelectedIndex() == 1) {
             tampilPrioritas();
             BtnSimpan.setEnabled(false);
             BtnHapus.setEnabled(false);
             BtnGanti.setEnabled(false);
+            BtnPrint.setEnabled(false);
         } else if (TabMutu.getSelectedIndex() == 2) {
             tampilNasional();
             BtnSimpan.setEnabled(false);
             BtnHapus.setEnabled(false);
             BtnGanti.setEnabled(false);
+            BtnPrint.setEnabled(false);
         }
     }//GEN-LAST:event_TabMutuMouseClicked
+
+    private void MnExportKeExcelMutuPrioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnExportKeExcelMutuPrioActionPerformed
+        if (tabMode4.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Data indikator mutu prioritas rumah sakit masih kosong..!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary");            
+            int row = tabMode4.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary", "'0','"
+                        + tabMode4.getValueAt(r, 0).toString() + "','"
+                        + tabMode4.getValueAt(r, 1).toString() + "','"
+                        + tabMode4.getValueAt(r, 2).toString() + "','"
+                        + tabMode4.getValueAt(r, 3).toString() + "','"
+                        + tabMode4.getValueAt(r, 4).toString() + "','"
+                        + tabMode4.getValueAt(r, 5).toString() + "','"
+                        + tabMode4.getValueAt(r, 6).toString() + "','"
+                        + tabMode4.getValueAt(r, 7).toString() + "','"
+                        + tabMode4.getValueAt(r, 8).toString() + "','"
+                        + tabMode4.getValueAt(r, 9).toString() + "','"
+                        + tabMode4.getValueAt(r, 10).toString() + "','"
+                        + tabMode4.getValueAt(r, 11).toString() + "','"
+                        + tabMode4.getValueAt(r, 12).toString() + "','"
+                        + tabMode4.getValueAt(r, 13).toString() + "','"
+                        + tabMode4.getValueAt(r, 14).toString() + "','"
+                        + tabMode4.getValueAt(r, 15).toString() + "','"
+                        + tabMode4.getValueAt(r, 16).toString() + "','"
+                        + tabMode4.getValueAt(r, 17).toString() + "','"
+                        + tabMode4.getValueAt(r, 18).toString() + "','"
+                        + tabMode4.getValueAt(r, 19).toString() + "','"
+                        + tabMode4.getValueAt(r, 20).toString() + "','"
+                        + tabMode4.getValueAt(r, 21).toString() + "','"
+                        + tabMode4.getValueAt(r, 22).toString() + "','"
+                        + tabMode4.getValueAt(r, 23).toString() + "','"
+                        + tabMode4.getValueAt(r, 24).toString() + "','"
+                        + tabMode4.getValueAt(r, 25).toString() + "','"
+                        + tabMode4.getValueAt(r, 26).toString() + "','"
+                        + tabMode4.getValueAt(r, 27).toString() + "','"
+                        + tabMode4.getValueAt(r, 28).toString() + "','"
+                        + tabMode4.getValueAt(r, 29).toString() + "','"
+                        + tabMode4.getValueAt(r, 30).toString() + "','"
+                        + tabMode4.getValueAt(r, 31).toString() + "','"
+                        + tabMode4.getValueAt(r, 32).toString() + "','"
+                        + tabMode4.getValueAt(r, 33).toString() + "','"
+                        + tabMode4.getValueAt(r, 34).toString() + "','" 
+                        + tabMode4.getValueAt(r, 35).toString() + "',''", "Indikator Mutu Rumah Sakit");
+            }
+            Sequel.AutoComitTrue();
+            dialog_simpan = Valid.openDialog();
+
+            StringBuilder sb1 = new StringBuilder();
+            sb1.append("select temp1 'Rg. Rawat/Inst./Unit/Bidang/Sub.', temp2 Indikator, temp3 'Jenis Indikator', temp4 'Kalimat Deskripsi', ");
+            sb1.append("CONVERT(temp5,int) 'Tgl. 1', CONVERT(temp6,int) 'Tgl. 2', CONVERT(temp7,int) 'Tgl. 3', CONVERT(temp8,int) 'Tgl. 4', CONVERT(temp9,int) 'Tgl. 5', ");
+            sb1.append("CONVERT(temp10,int) 'Tgl. 6', CONVERT(temp11,int) 'Tgl. 7', CONVERT(temp12,int) 'Tgl. 8', CONVERT(temp13,int) 'Tgl. 9', CONVERT(temp14,int) 'Tgl. 10', ");
+            sb1.append("CONVERT(temp15,int) 'Tgl. 11', CONVERT(temp16,int) 'Tgl. 12', CONVERT(temp17,int) 'Tgl. 13', CONVERT(temp18,int) 'Tgl. 14', CONVERT(temp19,int) 'Tgl. 15', ");
+            sb1.append("CONVERT(temp20,int) 'Tgl. 16', CONVERT(temp21,int) 'Tgl. 17', CONVERT(temp22,int) 'Tgl. 18', CONVERT(temp23,int) 'Tgl. 19', CONVERT(temp24,int) 'Tgl. 20', ");
+            sb1.append("CONVERT(temp25,int) 'Tgl. 21', CONVERT(temp26,int) 'Tgl. 22', CONVERT(temp27,int) 'Tgl. 23', CONVERT(temp28,int) 'Tgl. 24', CONVERT(temp29,int) 'Tgl. 25', ");
+            sb1.append("CONVERT(temp30,int) 'Tgl. 26', CONVERT(temp31,int) 'Tgl. 27', CONVERT(temp32,int) 'Tgl. 28', CONVERT(temp33,int) 'Tgl. 29', CONVERT(temp34,int) 'Tgl. 30', ");
+            sb1.append("CONVERT(temp35,int) 'Tgl. 31', temp36 Total from temporary");
+            Valid.MyReportToExcel(sb1.toString(), dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Data Indikator Mutu Prioritas Rumah Sakit berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnExportKeExcelMutuPrioActionPerformed
+
+    private void MnExportKeExcelRekapPrioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnExportKeExcelRekapPrioActionPerformed
+        if (tabMode6.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Rekap data indikator mutu prioritas rumah sakit masih kosong..!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary");            
+            int row = tabMode6.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary", "'0','"
+                        + tabMode6.getValueAt(r, 0).toString() + "','"
+                        + tabMode6.getValueAt(r, 1).toString() + "','"
+                        + tabMode6.getValueAt(r, 2).toString().replaceAll(",", "") + "','"
+                        + tabMode6.getValueAt(r, 3).toString().replaceAll(",", "") + "','"
+                        + tabMode6.getValueAt(r, 4).toString().replaceAll(",", "") + "',"
+                        + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Indikator Mutu Rumah Sakit");
+            }
+            Sequel.AutoComitTrue();
+            dialog_simpan = Valid.openDialog();
+
+            StringBuilder sb1 = new StringBuilder();
+            sb1.append("select temp1 'Rg. Rawat/Inst./Unit/Bidang/Sub.', temp2 'Indikator', convert(temp3,int) 'Jml. Numerator', ");
+            sb1.append("convert(temp4,int) 'Jml. Denominator', convert(temp5,int) 'Total ND' from temporary");
+            Valid.MyReportToExcel(sb1.toString(), dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Rekap Data Indikator Mutu Prioritas Rumah Sakit berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnExportKeExcelRekapPrioActionPerformed
+
+    private void MnExportKeExcelMutuNasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnExportKeExcelMutuNasActionPerformed
+        if (tabMode5.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Data indikator nasional mutu rumah sakit masih kosong..!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary");            
+            int row = tabMode5.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary", "'0','"
+                        + tabMode5.getValueAt(r, 0).toString() + "','"
+                        + tabMode5.getValueAt(r, 1).toString() + "','"
+                        + tabMode5.getValueAt(r, 2).toString() + "','"
+                        + tabMode5.getValueAt(r, 3).toString() + "','"
+                        + tabMode5.getValueAt(r, 4).toString() + "','"
+                        + tabMode5.getValueAt(r, 5).toString() + "','"
+                        + tabMode5.getValueAt(r, 6).toString() + "','"
+                        + tabMode5.getValueAt(r, 7).toString() + "','"
+                        + tabMode5.getValueAt(r, 8).toString() + "','"
+                        + tabMode5.getValueAt(r, 9).toString() + "','"
+                        + tabMode5.getValueAt(r, 10).toString() + "','"
+                        + tabMode5.getValueAt(r, 11).toString() + "','"
+                        + tabMode5.getValueAt(r, 12).toString() + "','"
+                        + tabMode5.getValueAt(r, 13).toString() + "','"
+                        + tabMode5.getValueAt(r, 14).toString() + "','"
+                        + tabMode5.getValueAt(r, 15).toString() + "','"
+                        + tabMode5.getValueAt(r, 16).toString() + "','"
+                        + tabMode5.getValueAt(r, 17).toString() + "','"
+                        + tabMode5.getValueAt(r, 18).toString() + "','"
+                        + tabMode5.getValueAt(r, 19).toString() + "','"
+                        + tabMode5.getValueAt(r, 20).toString() + "','"
+                        + tabMode5.getValueAt(r, 21).toString() + "','"
+                        + tabMode5.getValueAt(r, 22).toString() + "','"
+                        + tabMode5.getValueAt(r, 23).toString() + "','"
+                        + tabMode5.getValueAt(r, 24).toString() + "','"
+                        + tabMode5.getValueAt(r, 25).toString() + "','"
+                        + tabMode5.getValueAt(r, 26).toString() + "','"
+                        + tabMode5.getValueAt(r, 27).toString() + "','"
+                        + tabMode5.getValueAt(r, 28).toString() + "','"
+                        + tabMode5.getValueAt(r, 29).toString() + "','"
+                        + tabMode5.getValueAt(r, 30).toString() + "','"
+                        + tabMode5.getValueAt(r, 31).toString() + "','"
+                        + tabMode5.getValueAt(r, 32).toString() + "','"
+                        + tabMode5.getValueAt(r, 33).toString() + "','"
+                        + tabMode5.getValueAt(r, 34).toString() + "','" 
+                        + tabMode5.getValueAt(r, 35).toString() + "',''", "Indikator Mutu Rumah Sakit");
+            }
+            Sequel.AutoComitTrue();
+            dialog_simpan = Valid.openDialog();
+
+            StringBuilder sb1 = new StringBuilder();
+            sb1.append("select temp1 'Rg. Rawat/Inst./Unit/Bidang/Sub.', temp2 Indikator, temp3 'Jenis Indikator', temp4 'Kalimat Deskripsi', ");
+            sb1.append("CONVERT(temp5,int) 'Tgl. 1', CONVERT(temp6,int) 'Tgl. 2', CONVERT(temp7,int) 'Tgl. 3', CONVERT(temp8,int) 'Tgl. 4', CONVERT(temp9,int) 'Tgl. 5', ");
+            sb1.append("CONVERT(temp10,int) 'Tgl. 6', CONVERT(temp11,int) 'Tgl. 7', CONVERT(temp12,int) 'Tgl. 8', CONVERT(temp13,int) 'Tgl. 9', CONVERT(temp14,int) 'Tgl. 10', ");
+            sb1.append("CONVERT(temp15,int) 'Tgl. 11', CONVERT(temp16,int) 'Tgl. 12', CONVERT(temp17,int) 'Tgl. 13', CONVERT(temp18,int) 'Tgl. 14', CONVERT(temp19,int) 'Tgl. 15', ");
+            sb1.append("CONVERT(temp20,int) 'Tgl. 16', CONVERT(temp21,int) 'Tgl. 17', CONVERT(temp22,int) 'Tgl. 18', CONVERT(temp23,int) 'Tgl. 19', CONVERT(temp24,int) 'Tgl. 20', ");
+            sb1.append("CONVERT(temp25,int) 'Tgl. 21', CONVERT(temp26,int) 'Tgl. 22', CONVERT(temp27,int) 'Tgl. 23', CONVERT(temp28,int) 'Tgl. 24', CONVERT(temp29,int) 'Tgl. 25', ");
+            sb1.append("CONVERT(temp30,int) 'Tgl. 26', CONVERT(temp31,int) 'Tgl. 27', CONVERT(temp32,int) 'Tgl. 28', CONVERT(temp33,int) 'Tgl. 29', CONVERT(temp34,int) 'Tgl. 30', ");
+            sb1.append("CONVERT(temp35,int) 'Tgl. 31', temp36 Total from temporary");
+            Valid.MyReportToExcel(sb1.toString(), dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Data Indikator Nasional Mutu Rumah Sakit berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnExportKeExcelMutuNasActionPerformed
+
+    private void MnExportKeExcelRekapNasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnExportKeExcelRekapNasActionPerformed
+        if (tabMode7.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Rekap data indikator nasional mutu rumah sakit masih kosong..!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary");            
+            int row = tabMode7.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary", "'0','"
+                        + tabMode7.getValueAt(r, 0).toString() + "','"
+                        + tabMode7.getValueAt(r, 1).toString() + "','"
+                        + tabMode7.getValueAt(r, 2).toString().replaceAll(",", "") + "','"
+                        + tabMode7.getValueAt(r, 3).toString().replaceAll(",", "") + "','"
+                        + tabMode7.getValueAt(r, 4).toString().replaceAll(",", "") + "',"
+                        + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Indikator Mutu Rumah Sakit");
+            }
+            Sequel.AutoComitTrue();
+            dialog_simpan = Valid.openDialog();
+
+            StringBuilder sb1 = new StringBuilder();
+            sb1.append("select temp1 'Rg. Rawat/Inst./Unit/Bidang/Sub.', temp2 'Indikator', convert(temp3,int) 'Jml. Numerator', ");
+            sb1.append("convert(temp4,int) 'Jml. Denominator', convert(temp5,int) 'Total ND' from temporary");
+            Valid.MyReportToExcel(sb1.toString(), dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Rekap Data Indikator Nasional Mutu Rumah Sakit berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnExportKeExcelRekapNasActionPerformed
 
     /**
     * @param args the command line arguments
@@ -2083,6 +2352,10 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private javax.swing.JMenuItem MnExportKeExcel;
+    private javax.swing.JMenuItem MnExportKeExcelMutuNas;
+    private javax.swing.JMenuItem MnExportKeExcelMutuPrio;
+    private javax.swing.JMenuItem MnExportKeExcelRekapNas;
+    private javax.swing.JMenuItem MnExportKeExcelRekapPrio;
     private javax.swing.JMenuItem MnMasterIndikator;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
@@ -2141,6 +2414,8 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
+    private javax.swing.JPopupMenu jPopupMenu3;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass8;
@@ -3712,6 +3987,10 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
     private void tampilTotPrioritas() {
         pakaiGedung = "";
+        ttlNum = 0;
+        ttlDen = 0;
+        ttlSemua = 0;
+        
         if (Ttahun.getText().equals("")) {
             Ttahun.setText(Sequel.cariIsi("select year(now())"));
         } else {
@@ -3773,14 +4052,22 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             try {
                 rs6 = ps6.executeQuery();
                 while (rs6.next()) {
+                    ttlNum = ttlNum + Integer.parseInt(rs6.getString("tot_num").toString());
+                    ttlDen = ttlDen + Integer.parseInt(rs6.getString("tot_den").toString());
+                    ttlSemua = ttlSemua + Integer.parseInt(rs6.getString("tot_semua").toString());
+                    
                     tabMode6.addRow(new String[]{
                         rs6.getString("gedung"),
                         rs6.getString("nama_Indikator"),
                         rs6.getString("tot_num"),
                         rs6.getString("tot_den"),
                         rs6.getString("tot_semua")
-                    });
+                    });                    
                 }
+                
+                if (tabMode4.getRowCount() > 0) {
+                    tabMode6.addRow(new String[]{"", "TOTAL : ", Valid.SetAngka(ttlNum), Valid.SetAngka(ttlDen), Valid.SetAngka(ttlSemua)});
+                }                
             } catch (Exception e) {
                 System.out.println("laporan.DlgIndikatorNasionalMutu.tampilTotPrioritas() : " + e);
             } finally {
@@ -3798,6 +4085,10 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     
     private void tampilTotNasional() {
         pakaiGedung = "";
+        ttlNum = 0;
+        ttlDen = 0;
+        ttlSemua = 0;
+        
         if (Ttahun.getText().equals("")) {
             Ttahun.setText(Sequel.cariIsi("select year(now())"));
         } else {
@@ -3859,14 +4150,22 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             try {
                 rs7 = ps7.executeQuery();
                 while (rs7.next()) {
+                    ttlNum = ttlNum + Integer.parseInt(rs7.getString("tot_num").toString());
+                    ttlDen = ttlDen + Integer.parseInt(rs7.getString("tot_den").toString());
+                    ttlSemua = ttlSemua + Integer.parseInt(rs7.getString("tot_semua").toString());
+                    
                     tabMode7.addRow(new String[]{
                         rs7.getString("gedung"),
                         rs7.getString("nama_Indikator"),
                         rs7.getString("tot_num"),
                         rs7.getString("tot_den"),
                         rs7.getString("tot_semua")
-                    });
+                    });                    
                 }
+                
+                if (tabMode5.getRowCount() > 0) {
+                    tabMode7.addRow(new String[]{"", "TOTAL : ", Valid.SetAngka(ttlNum), Valid.SetAngka(ttlDen), Valid.SetAngka(ttlSemua)});
+                }                
             } catch (Exception e) {
                 System.out.println("laporan.DlgIndikatorNasionalMutu.tampilTotNasional() : " + e);
             } finally {
