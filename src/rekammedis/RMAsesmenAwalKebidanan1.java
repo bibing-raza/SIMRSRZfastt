@@ -6736,21 +6736,466 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                             }
                             
                             //hitung skor gizi
-//                            int skorA, skorB, skorC, skorTotal;
-//                            skorA = Integer.parseInt(rsLaprm.getString("time").toString());
-//                            skorB = Integer.parseInt(skorYaGizi1.getText());
-//                            skorC = Integer.parseInt(skorGizi2.getText());
-//
-//                            Total = 0;
-//                            Total = A + B + C;
-//                            TotSkorGizi.setText(Valid.SetAngka2(Total));
-//
-//                            if (Total == 0 || Total == 1) {
-//                                kesimpulanGizi.setText("Pasien tidak beresiko malnutrisi");
-//                            } else if (Total >= 2) {
-//                                kesimpulanGizi.setText("Skor >= 2, pasien beresiko malnutrisi, konsul ke Ahli Gizi");
-//                            }
-//                            jhgj
+                            int skorA = 0, skorB = 0, skorC = 0, skorTotal = 0;
+                            if (rsLaprm.getString("gizi_1").equals("Tidak") || rsLaprm.getString("gizi_1").equals("Ya ada penurunan BB sebanyak :")) {
+                                skorA = 0;                                
+                            } else if (rsLaprm.getString("gizi_1").equals("Tidak Yakin (ada tanda : baju menjadi longgar)")) {
+                                skorA = 2;
+                            }
+                            
+                            if (rsLaprm.getString("gizi_1ya").equals("-")) {
+                                skorB = 0;
+                            } else if (rsLaprm.getString("gizi_1ya").equals("1 - 5 Kg")) {
+                                skorB = 1;
+                            } else if (rsLaprm.getString("gizi_1ya").equals("6 - 10 Kg") || rsLaprm.getString("gizi_1ya").equals("Tidak tahu berapa Kg penurunanya")) {
+                                skorB = 2;
+                            } else if (rsLaprm.getString("gizi_1ya").equals("11 - 15 Kg")) {
+                                skorB = 3;
+                            } else if (rsLaprm.getString("gizi_1ya").equals("> 15 Kg")) {
+                                skorB = 4;
+                            }
+                            
+                            if (rsLaprm.getString("gizi_2").equals("Tidak")) {
+                                skorC = 0;
+                            } else if (rsLaprm.getString("gizi_2").equals("Ya")) {
+                                skorC = 1;
+                            }
+                            
+                            skorTotal = skorA + skorB + skorC;
+                            param.put("gizi1", rsLaprm.getString("gizi_1") + " (Skor : " + skorA + ")");
+                            param.put("gizi1Ya", rsLaprm.getString("gizi_1ya") + " (Skor : " + skorB + ")");
+                            param.put("gizi2", rsLaprm.getString("gizi_2") + " (Skor : " + skorC + ")");
+                            
+                            if (skorTotal == 0 || skorTotal == 1) {
+                                param.put("kesGizi", "Pasien tidak beresiko malnutrisi");
+                            } else if (skorTotal >= 2) {
+                                param.put("kesGizi", "Skor >= 2, pasien beresiko malnutrisi, konsul ke Ahli Gizi");
+                            }
+                            //---------------------------------------
+                            
+                            if (rsLaprm.getString("cek_tidak_ada").equals("ya")) {
+                                param.put("cekRiwTdkAda", "V");
+                            } else {
+                                param.put("cekRiwTdkAda", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_tidak_diketahui").equals("ya")) {
+                                param.put("cekRiwTdkDik", "V");
+                            } else {
+                                param.put("cekRiwTdkDik", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_alergi_obat").equals("ya")) {
+                                param.put("cekriwAlerObat", "V");
+                                if (rsLaprm.getString("ket_alergi_obat").equals("")) {
+                                    param.put("ketAlerObat", "Alergi Obat");
+                                } else {
+                                    param.put("ketAlerObat", "Alergi Obat : " + rsLaprm.getString("ket_alergi_obat"));
+                                }
+                                
+                                if (rsLaprm.getString("ket_reaksi_alergi_obat").equals("")) {
+                                    param.put("ketReakAlerObat", "Reaksi ..........");
+                                } else {
+                                    param.put("ketReakAlerObat", "Reaksi : " + rsLaprm.getString("ket_reaksi_alergi_obat"));
+                                }                                
+                            } else {
+                                param.put("cekriwAlerObat", "");
+                                param.put("ketAlerObat", "Alergi Obat");
+                                param.put("ketReakAlerObat", "Reaksi ..........");
+                            }
+                            
+                            if (rsLaprm.getString("cek_alergi_makanan").equals("ya")) {
+                                param.put("cekriwAlerMak", "V");
+                                if (rsLaprm.getString("ket_alergi_makanan").equals("")) {
+                                    param.put("ketAlerMak", "Alergi Makanan");
+                                } else {
+                                    param.put("ketAlerMak", "Alergi Makanan : " + rsLaprm.getString("ket_alergi_makanan"));
+                                }
+                                
+                                if (rsLaprm.getString("ket_reaksi_alergi_makanan").equals("")) {
+                                    param.put("ketReakAlerMak", "Reaksi ..........");
+                                } else {
+                                    param.put("ketReakAlerMak", "Reaksi : " + rsLaprm.getString("ket_reaksi_alergi_makanan"));
+                                }                                
+                            } else {
+                                param.put("cekriwAlerMak", "");
+                                param.put("ketAlerMak", "Alergi Makanan");
+                                param.put("ketReakAlerMak", "Reaksi ..........");
+                            }
+                            
+                            if (rsLaprm.getString("cek_alergi_lainya").equals("ya")) {
+                                param.put("cekriwAlerLain", "V");
+                                if (rsLaprm.getString("ket_alergi_lainya").equals("")) {
+                                    param.put("ketAlerLain", "Alergi Lainnya");
+                                } else {
+                                    param.put("ketAlerLain", "Alergi Lainnya : " + rsLaprm.getString("ket_alergi_lainya"));
+                                }
+                                
+                                if (rsLaprm.getString("ket_reaksi_alergi_lainya").equals("")) {
+                                    param.put("ketReakAlerLain", "Reaksi ..........");
+                                } else {
+                                    param.put("ketReakAlerLain", "Reaksi : " + rsLaprm.getString("ket_reaksi_alergi_lainya"));
+                                }                                
+                            } else {
+                                param.put("cekriwAlerLain", "");
+                                param.put("ketAlerLain", "Alergi Lainnya");
+                                param.put("ketReakAlerLain", "Reaksi ..........");
+                            }
+                            
+                            if (rsLaprm.getString("cek_gelang_tanda").equals("ya")) {
+                                param.put("cekGelang", "V");
+                            } else {
+                                param.put("cekGelang", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_alergi_diberitahukan_dokter").equals("ya")) {
+                                param.put("cekDokter", "V");
+                            } else {
+                                param.put("cekDokter", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_alergi_diberitahukan_farmasis").equals("ya")) {
+                                param.put("cekFarmasi", "V");
+                            } else {
+                                param.put("cekFarmasi", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_alergi_diberitahukan_ahliGizi").equals("ya")) {
+                                param.put("cekAhliGz", "V");
+                            } else {
+                                param.put("cekAhliGz", "");
+                            }
+                            
+                            //hitung skor resiko jatuh
+                            int skorRJ = 0, skorKS = 0, skorAB = 0, skorT = 0, skorGB = 0, skorSM = 0, totSkorRJ = 0;
+                            if (rsLaprm.getString("riw_jatuh_resiko_jatuh").equals("-") || rsLaprm.getString("riw_jatuh_resiko_jatuh").equals("Tidak ada atau >= 3 bulan")) {
+                                skorRJ = 0;
+                            } else if (rsLaprm.getString("riw_jatuh_resiko_jatuh").equals("< dari 3 bulan")) {
+                                skorRJ = 25;
+                            }
+                            
+                            if (rsLaprm.getString("kondisi_kesehatan").equals("-") || rsLaprm.getString("kondisi_kesehatan").equals("< diagnosa penyakit")) {
+                                skorKS = 0;
+                            } else if (rsLaprm.getString("kondisi_kesehatan").equals("> diagnosa penyakit")) {
+                                skorKS = 15;
+                            }
+                            
+                            if (rsLaprm.getString("alat_bantu_resiko_jatuh").equals("-") || rsLaprm.getString("alat_bantu_resiko_jatuh").equals("Tidak ada/kursi roda/tirah baring")) {
+                                skorAB = 0;
+                            } else if (rsLaprm.getString("alat_bantu_resiko_jatuh").equals("Berpegangan pada perabot")) {
+                                skorAB = 30;
+                            } else if (rsLaprm.getString("alat_bantu_resiko_jatuh").equals("Tongkat/alat penopang")) {
+                                skorAB = 15;
+                            }
+                            
+                            if (rsLaprm.getString("terapi_IV").equals("-") || rsLaprm.getString("terapi_IV").equals("Tidak")) {
+                                skorT = 0;
+                            } else if (rsLaprm.getString("terapi_IV").equals("Terapi IV terus menerus")) {
+                                skorT = 20;
+                            }
+                            
+                            if (rsLaprm.getString("gaya_berjalan").equals("-") || rsLaprm.getString("gaya_berjalan").equals("Normal/tirah baring/immobilisasi")) {
+                                skorGB = 0;
+                            } else if (rsLaprm.getString("gaya_berjalan").equals("Kerusakan/terganggu")) {
+                                skorGB = 20;
+                            } else if (rsLaprm.getString("gaya_berjalan").equals("Lemah")) {
+                                skorGB = 10;
+                            }
+                            
+                            if (rsLaprm.getString("status_mental").equals("-") || rsLaprm.getString("status_mental").equals("Sadar kemampuan diri sendiri")) {
+                                skorSM = 0;
+                            } else if (rsLaprm.getString("status_mental").equals("Lupa keterbatasan yang dimiliki")) {
+                                skorSM = 15;
+                            }
+                            
+                            totSkorRJ = skorRJ + skorKS + skorAB + skorT + skorGB + skorSM;
+                            param.put("asesRiwJatuh", rsLaprm.getString("riw_jatuh_resiko_jatuh"));
+                            param.put("skorAsesRJ", skorRJ);
+                            param.put("asesKonKes", rsLaprm.getString("kondisi_kesehatan"));
+                            param.put("skorAsesKS", skorKS);
+                            param.put("asesAlatBan", rsLaprm.getString("alat_bantu_resiko_jatuh"));
+                            param.put("skorAsesAB", skorAB);
+                            param.put("asesTer", rsLaprm.getString("terapi_IV"));
+                            param.put("skorAsesT", skorT);
+                            param.put("asesGayBer", rsLaprm.getString("gaya_berjalan"));
+                            param.put("skorAsesGB", skorGB);
+                            param.put("asesStaMen", rsLaprm.getString("status_mental"));
+                            param.put("skorAsesSM", skorSM);
+                            
+                            if (totSkorRJ == 0 && totSkorRJ <= 24) {
+                                param.put("kesResJatuh", "Skor 0-24 Resiko Rendah");
+                            } else if (totSkorRJ >= 25 && totSkorRJ <= 45) {
+                                param.put("kesResJatuh", "Skor 25-45 Resiko Sedang");
+                            } else if (totSkorRJ >= 46) {
+                                param.put("kesResJatuh", "Skor > 45 Resiko Tinggi");
+                            }
+                            //---------------------------------------
+                            
+                            if (rsLaprm.getString("alat_bantu").equals("")) {
+                                param.put("alatBan", "-");
+                            } else {
+                                param.put("alatBan", rsLaprm.getString("alat_bantu"));
+                            }
+                            
+                            if (rsLaprm.getString("prothesis").equals("")) {
+                                param.put("protesis", "-");
+                            } else {
+                                param.put("protesis", rsLaprm.getString("prothesis"));
+                            }
+                            
+                            if (rsLaprm.getString("cacat_tubuh").equals("")) {
+                                param.put("cacat", "-");
+                            } else {
+                                param.put("cacat", rsLaprm.getString("cacat_tubuh"));
+                            }
+                            
+                            param.put("adl", rsLaprm.getString("adl"));
+                            param.put("fungRiwJat", rsLaprm.getString("riwayat_jatuh"));
+                            param.put("fungNmBidan", Sequel.cariIsi("select nama from pegawai where nip='" + rsLaprm.getString("nip_bidan") + "'"));
+                            param.put("fungNip", rsLaprm.getString("nip_bidan"));
+                            
+                            if (rsLaprm.getString("cek_ya").equals("ya")) {
+                                param.put("cekYa", "V");
+                            } else {
+                                param.put("cekYa", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_pendengaran").equals("ya")) {
+                                param.put("cekDengar", "V");
+                            } else {
+                                param.put("cekDengar", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_penglihatan").equals("ya")) {
+                                param.put("cekLihat", "V");
+                            } else {
+                                param.put("cekLihat", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_kognitif").equals("ya")) {
+                                param.put("cekKognitif", "V");
+                            } else {
+                                param.put("cekKognitif", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_fisik").equals("ya")) {
+                                param.put("cekFisik", "V");
+                            } else {
+                                param.put("cekFisik", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_budaya").equals("ya")) {
+                                param.put("cekBudaya", "V");
+                            } else {
+                                param.put("cekBudaya", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_emosi").equals("ya")) {
+                                param.put("cekEmosi", "V");
+                            } else {
+                                param.put("cekEmosi", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_bahasa").equals("ya")) {
+                                param.put("cekBahasa", "V");
+                            } else {
+                                param.put("cekBahasa", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_lain_hambatan").equals("ya")) {
+                                param.put("cekLainHam", "V");
+                                if (rsLaprm.getString("ket_lain_hambatan").equals("")) {
+                                    param.put("ketLainHam", "Lainnya ...........");
+                                } else {
+                                    param.put("ketLainHam", "Lainnya : " + rsLaprm.getString("ket_lain_hambatan"));
+                                }
+                            } else {
+                                param.put("cekLainHam", "");
+                                param.put("ketLainHam", "Lainnya ...........");
+                            }
+                            
+                            if (rsLaprm.getString("dibutuhkan_penerjemah").equals("Ya")) {
+                                if (rsLaprm.getString("sebutkan").equals("")) {
+                                    param.put("dibutuhkan", rsLaprm.getString("dibutuhkan_penerjemah") + ", sebutkan .........");
+                                } else {
+                                    param.put("dibutuhkan", rsLaprm.getString("dibutuhkan_penerjemah") + ", sebutkan : " + rsLaprm.getString("sebutkan"));
+                                }
+                            } else {
+                                param.put("dibutuhkan", rsLaprm.getString("dibutuhkan_penerjemah"));
+                            }
+                            
+                            param.put("bahasaIsya", rsLaprm.getString("bahasa_isyarat"));
+                            
+                            if (rsLaprm.getString("cek_diagnosa").equals("ya")) {
+                                param.put("cekDiagnosa", "V");
+                            } else {
+                                param.put("cekDiagnosa", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_tindakan_keperawatan").equals("ya")) {
+                                param.put("cekTindakan", "V");
+                                if (rsLaprm.getString("ket_tindakan_keperawatan").equals("")) {
+                                    param.put("ketTindakan", "Tindakan Keperawatan ............");
+                                } else {
+                                    param.put("ketTindakan", "Tindakan Keperawatan : " + rsLaprm.getString("ket_tindakan_keperawatan"));
+                                }
+                            } else {
+                                param.put("cekTindakan", "");
+                                param.put("ketTindakan", "Tindakan Keperawatan ............");
+                            }
+                            
+                            if (rsLaprm.getString("cek_lain_kebutuhan_edukasi").equals("ya")) {
+                                param.put("cekLainKeb", "V");
+                                if (rsLaprm.getString("ket_lain_kebutuhan_edukasi").equals("")) {
+                                    param.put("ketLainKeb", "Lain-lain, Sebutkan ............");
+                                } else {
+                                    param.put("ketLainKeb", "Lain-lain, Sebutkan : " + rsLaprm.getString("ket_lain_kebutuhan_edukasi"));
+                                }
+                            } else {
+                                param.put("cekLainKeb", "");
+                                param.put("ketLainKeb", "Lain-lain, Sebutkan ............");
+                            }
+                            
+                            if (rsLaprm.getString("cek_obat_obatan").equals("ya")) {
+                                param.put("cekObatan", "V");
+                            } else {
+                                param.put("cekObatan", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_rehabilitasi").equals("ya")) {
+                                param.put("cekRehab", "V");
+                            } else {
+                                param.put("cekRehab", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_diet").equals("ya")) {
+                                param.put("cekDiet", "V");
+                            } else {
+                                param.put("cekDiet", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_manajemen_nyeri").equals("ya")) {
+                                param.put("cekMana", "V");
+                            } else {
+                                param.put("cekMana", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_pasien").equals("ya")) {
+                                param.put("cekPasien", "V");
+                            } else {
+                                param.put("cekPasien", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_keluarga_pasien").equals("ya")) {
+                                param.put("cekKlgPasien", "V");
+                                if (rsLaprm.getString("nama_keluarga_pasien").equals("")) {
+                                    param.put("nmKlgPasien", "Keluarga Pasien, Nama : ........");
+                                } else {
+                                    param.put("nmKlgPasien", "Keluarga Pasien, Nama : " + rsLaprm.getString("nama_keluarga_pasien"));
+                                }    
+                            } else {
+                                param.put("cekKlgPasien", "");
+                                param.put("nmKlgPasien", "Keluarga Pasien, Nama : ........");
+                            }
+                            
+                            if (rsLaprm.getString("cek_tidak_dapat").equals("ya")) {
+                                param.put("cekTdkDapat", "V");
+                                if (rsLaprm.getString("ket_tidak_dapat").equals("")) {
+                                    param.put("ketTdkDapat", "Tidak Dapat Memberikan Edukasi Kepada Pasien Atau Keluarga, Karena : ........");
+                                } else {
+                                    param.put("ketTdkDapat", "Tidak Dapat Memberikan Edukasi Kepada Pasien Atau Keluarga, Karena : " + rsLaprm.getString("ket_tidak_dapat"));
+                                }    
+                            } else {
+                                param.put("cekTdkDapat", "");
+                                param.put("ketTdkDapat", "Tidak Dapat Memberikan Edukasi Kepada Pasien Atau Keluarga, Karena : ........");
+                            }
+                            
+                            param.put("tglEdukasi", Valid.SetTglINDONESIA(rsLaprm.getString("tgl_edukasi")));
+                            param.put("jamEdukasi", rsLaprm.getString("jam_edukasi").substring(0, 5) + " Wita");
+                            param.put("nmDokter", Sequel.cariIsi("select nama from pegawai where nip='" + rsLaprm.getString("nip_dokter") + "'"));
+                            param.put("nipDokter", rsLaprm.getString("nip_dokter"));
+                            
+                            if (rsLaprm.getString("cek_identifikasi1").equals("ya")) {
+                                param.put("cekIden1", "V");
+                            } else {
+                                param.put("cekIden1", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_identifikasi2").equals("ya")) {
+                                param.put("cekIden2", "V");
+                            } else {
+                                param.put("cekIden2", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_identifikasi3").equals("ya")) {
+                                param.put("cekIden3", "V");
+                            } else {
+                                param.put("cekIden3", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_identifikasi4").equals("ya")) {
+                                param.put("cekIden4", "V");
+                            } else {
+                                param.put("cekIden4", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_identifikasi5").equals("ya")) {
+                                param.put("cekIden5", "V");
+                            } else {
+                                param.put("cekIden5", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_identifikasi6").equals("ya")) {
+                                param.put("cekIden6", "V");
+                            } else {
+                                param.put("cekIden6", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_identifikasi7").equals("ya")) {
+                                param.put("cekIden7", "V");
+                            } else {
+                                param.put("cekIden7", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_identifikasi8").equals("ya")) {
+                                param.put("cekIden8", "V");
+                            } else {
+                                param.put("cekIden8", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_identifikasi9").equals("ya")) {
+                                param.put("cekIden9", "V");
+                            } else {
+                                param.put("cekIden9", "");
+                            }
+                            
+                            if (rsLaprm.getString("cek_identifikasi10").equals("ya")) {
+                                param.put("cekIden10", "V");
+                            } else {
+                                param.put("cekIden10", "");
+                            }
+                            
+                            if (rsLaprm.getString("memerlukan").equals("")) {
+                                param.put("memer", "-");
+                            } else {
+                                param.put("memer", rsLaprm.getString("memerlukan"));
+                            }
+                            
+                            param.put("mpp", rsLaprm.getString("mpp"));
+                            param.put("dp", rsLaprm.getString("dp"));
+                            param.put("tglDp", Valid.SetTglINDONESIA(rsLaprm.getString("tgl_dp")));
+                            
+                            if (rsLaprm.getString("nm_keluarga_pasien").equals("")) {
+                                param.put("nmKeluarga", "-");
+                            } else {
+                                param.put("nmKeluarga", rsLaprm.getString("nm_keluarga_pasien"));
+                            }
+                            
+                            param.put("namaBidanDp", Sequel.cariIsi("select nama from pegawai where nip='" + rsLaprm.getString("nip_bidan_dp") + "'"));
+                            param.put("nipBidanDp", rsLaprm.getString("nip_bidan_dp"));
+                            
+//                            Valid.MyReport("rptAsesmenAwalKebidanan3.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 3 ]::",
+//                                "select date(now()) tgl", param);
                         }
 
                         TCari.setText(TNoRw.getText());
