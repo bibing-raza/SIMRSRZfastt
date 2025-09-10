@@ -544,6 +544,9 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu0 = new javax.swing.JPopupMenu();
+        MnExportKeExcel = new javax.swing.JMenuItem();
+        MnExportKeExcelSemua = new javax.swing.JMenuItem();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnExportKeExcelMutuPrio = new javax.swing.JMenuItem();
         MnExportKeExcelRekapPrio = new javax.swing.JMenuItem();
@@ -554,7 +557,6 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
         BtnMasterIndikator = new widget.Button();
-        BtnExportKeExcel = new widget.Button();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -583,6 +585,38 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
         tbNasional = new widget.Table();
         Scroll7 = new widget.ScrollPane();
         tbTotNasional = new widget.Table();
+
+        jPopupMenu0.setName("jPopupMenu0"); // NOI18N
+
+        MnExportKeExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnExportKeExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnExportKeExcel.setText("Export Data Ke Ms. Excel");
+        MnExportKeExcel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnExportKeExcel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnExportKeExcel.setIconTextGap(5);
+        MnExportKeExcel.setName("MnExportKeExcel"); // NOI18N
+        MnExportKeExcel.setPreferredSize(new java.awt.Dimension(210, 26));
+        MnExportKeExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnExportKeExcelActionPerformed(evt);
+            }
+        });
+        jPopupMenu0.add(MnExportKeExcel);
+
+        MnExportKeExcelSemua.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnExportKeExcelSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnExportKeExcelSemua.setText("Export Data Ke Excel Semua Unit");
+        MnExportKeExcelSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnExportKeExcelSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnExportKeExcelSemua.setIconTextGap(5);
+        MnExportKeExcelSemua.setName("MnExportKeExcelSemua"); // NOI18N
+        MnExportKeExcelSemua.setPreferredSize(new java.awt.Dimension(210, 26));
+        MnExportKeExcelSemua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnExportKeExcelSemuaActionPerformed(evt);
+            }
+        });
+        jPopupMenu0.add(MnExportKeExcelSemua);
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -668,7 +702,7 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
 
         panelGlass8.setName("panelGlass8"); // NOI18N
         panelGlass8.setPreferredSize(new java.awt.Dimension(55, 55));
-        panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+        panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 9));
 
         BtnMasterIndikator.setForeground(new java.awt.Color(0, 0, 0));
         BtnMasterIndikator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -683,18 +717,6 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnMasterIndikator);
-
-        BtnExportKeExcel.setForeground(new java.awt.Color(0, 0, 0));
-        BtnExportKeExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
-        BtnExportKeExcel.setText("Export Data Ke Ms. Excel");
-        BtnExportKeExcel.setName("BtnExportKeExcel"); // NOI18N
-        BtnExportKeExcel.setPreferredSize(new java.awt.Dimension(190, 30));
-        BtnExportKeExcel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnExportKeExcelActionPerformed(evt);
-            }
-        });
-        panelGlass8.add(BtnExportKeExcel);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -863,6 +885,7 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
         });
 
         Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Judul", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        Scroll.setComponentPopupMenu(jPopupMenu0);
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
@@ -1098,90 +1121,15 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
         mutu.setVisible(true);
     }//GEN-LAST:event_BtnMasterIndikatorActionPerformed
 
-    private void BtnExportKeExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExportKeExcelActionPerformed
-        if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Data indikator mutu rumah sakit belum ditampilkan pada tabel..!!");
-        } else if (Ttahun.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Tahun harus diisi dulu dengan benar..!!");
-            Ttahun.requestFocus();
-        } else if (cmbGedung.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu ruang perawatannya dulu..!!");
-            cmbGedung.requestFocus();
-        } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Sequel.AutoComitFalse();
-            Sequel.queryu("delete from temporary");            
-            int row = tabMode.getRowCount();
-            for (int r = 0; r < row; r++) {
-                Sequel.menyimpan("temporary", "'0','"
-                        + tabMode.getValueAt(r, 1).toString() + "','"
-                        + tabMode.getValueAt(r, 2).toString() + "','"
-                        + tabMode.getValueAt(r, 3).toString() + "','"
-                        + tabMode.getValueAt(r, 4).toString() + "','"
-                        + tabMode.getValueAt(r, 5).toString() + "','"
-                        + tabMode.getValueAt(r, 6).toString() + "','"
-                        + tabMode.getValueAt(r, 7).toString() + "','"
-                        + tabMode.getValueAt(r, 8).toString() + "','"
-                        + tabMode.getValueAt(r, 9).toString() + "','"
-                        + tabMode.getValueAt(r, 10).toString() + "','"
-                        + tabMode.getValueAt(r, 11).toString() + "','"
-                        + tabMode.getValueAt(r, 12).toString() + "','"
-                        + tabMode.getValueAt(r, 13).toString() + "','"
-                        + tabMode.getValueAt(r, 14).toString() + "','"
-                        + tabMode.getValueAt(r, 15).toString() + "','"
-                        + tabMode.getValueAt(r, 16).toString() + "','"
-                        + tabMode.getValueAt(r, 17).toString() + "','"
-                        + tabMode.getValueAt(r, 18).toString() + "','"
-                        + tabMode.getValueAt(r, 19).toString() + "','"
-                        + tabMode.getValueAt(r, 20).toString() + "','"
-                        + tabMode.getValueAt(r, 21).toString() + "','"
-                        + tabMode.getValueAt(r, 22).toString() + "','"
-                        + tabMode.getValueAt(r, 23).toString() + "','"
-                        + tabMode.getValueAt(r, 24).toString() + "','"
-                        + tabMode.getValueAt(r, 25).toString() + "','"
-                        + tabMode.getValueAt(r, 26).toString() + "','"
-                        + tabMode.getValueAt(r, 27).toString() + "','"
-                        + tabMode.getValueAt(r, 28).toString() + "','"
-                        + tabMode.getValueAt(r, 29).toString() + "','"
-                        + tabMode.getValueAt(r, 30).toString() + "','"
-                        + tabMode.getValueAt(r, 31).toString() + "','"
-                        + tabMode.getValueAt(r, 32).toString() + "','"
-                        + tabMode.getValueAt(r, 33).toString() + "','"
-                        + tabMode.getValueAt(r, 34).toString() + "','"
-                        + tabMode.getValueAt(r, 35).toString() + "','"
-                        + tabMode.getValueAt(r, 36).toString() + "',''", "Indikator Mutu Rumah Sakit");
-            }
-            Sequel.AutoComitTrue();
-            dialog_simpan = Valid.openDialog();
-
-            StringBuilder sb1 = new StringBuilder();
-            sb1.append("select temp1 'No.', temp2 Indikator, temp3 'Jenis Indikator', temp4 'Kalimat Deskripsi', ");
-            sb1.append("CONVERT(temp5,int) 'Tgl. 1', CONVERT(temp6,int) 'Tgl. 2', CONVERT(temp7,int) 'Tgl. 3', CONVERT(temp8,int) 'Tgl. 4', CONVERT(temp9,int) 'Tgl. 5', ");
-            sb1.append("CONVERT(temp10,int) 'Tgl. 6', CONVERT(temp11,int) 'Tgl. 7', CONVERT(temp12,int) 'Tgl. 8', CONVERT(temp13,int) 'Tgl. 9', CONVERT(temp14,int) 'Tgl. 10', ");
-            sb1.append("CONVERT(temp15,int) 'Tgl. 11', CONVERT(temp16,int) 'Tgl. 12', CONVERT(temp17,int) 'Tgl. 13', CONVERT(temp18,int) 'Tgl. 14', CONVERT(temp19,int) 'Tgl. 15', ");
-            sb1.append("CONVERT(temp20,int) 'Tgl. 16', CONVERT(temp21,int) 'Tgl. 17', CONVERT(temp22,int) 'Tgl. 18', CONVERT(temp23,int) 'Tgl. 19', CONVERT(temp24,int) 'Tgl. 20', ");
-            sb1.append("CONVERT(temp25,int) 'Tgl. 21', CONVERT(temp26,int) 'Tgl. 22', CONVERT(temp27,int) 'Tgl. 23', CONVERT(temp28,int) 'Tgl. 24', CONVERT(temp29,int) 'Tgl. 25', ");
-            sb1.append("CONVERT(temp30,int) 'Tgl. 26', CONVERT(temp31,int) 'Tgl. 27', CONVERT(temp32,int) 'Tgl. 28', CONVERT(temp33,int) 'Tgl. 29', CONVERT(temp34,int) 'Tgl. 30', ");
-            sb1.append("CONVERT(temp35,int) 'Tgl. 31', temp36 Total from temporary");
-            Valid.MyReportToExcel(sb1.toString(), dialog_simpan);
-
-            JOptionPane.showMessageDialog(null, "Data Indikator Mutu Rumah Sakit berhasil diexport menjadi file excel,..!!!");
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }//GEN-LAST:event_BtnExportKeExcelActionPerformed
-
     private void TabMutuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabMutuMouseClicked
         if (TabMutu.getSelectedIndex() == 0) {
             tampil();
-            BtnExportKeExcel.setEnabled(true);
             BtnPrint.setEnabled(true);
         } else if (TabMutu.getSelectedIndex() == 1) {
             tampilPrioritas();
-            BtnExportKeExcel.setEnabled(false);
             BtnPrint.setEnabled(false);
         } else if (TabMutu.getSelectedIndex() == 2) {
             tampilNasional();
-            BtnExportKeExcel.setEnabled(false);
             BtnPrint.setEnabled(false);
         }
     }//GEN-LAST:event_TabMutuMouseClicked
@@ -1378,6 +1326,141 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnExportKeExcelRekapNasActionPerformed
 
+    private void MnExportKeExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnExportKeExcelActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Data indikator mutu rumah sakit belum ditampilkan pada tabel..!!");
+        } else if (Ttahun.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Tahun harus diisi dulu dengan benar..!!");
+            Ttahun.requestFocus();
+        } else if (cmbGedung.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu ruang perawatannya dulu..!!");
+            cmbGedung.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary");            
+            int row = tabMode.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary", "'0','"
+                        + tabMode.getValueAt(r, 1).toString() + "','"
+                        + tabMode.getValueAt(r, 2).toString() + "','"
+                        + tabMode.getValueAt(r, 3).toString() + "','"
+                        + tabMode.getValueAt(r, 4).toString() + "','"
+                        + tabMode.getValueAt(r, 5).toString() + "','"
+                        + tabMode.getValueAt(r, 6).toString() + "','"
+                        + tabMode.getValueAt(r, 7).toString() + "','"
+                        + tabMode.getValueAt(r, 8).toString() + "','"
+                        + tabMode.getValueAt(r, 9).toString() + "','"
+                        + tabMode.getValueAt(r, 10).toString() + "','"
+                        + tabMode.getValueAt(r, 11).toString() + "','"
+                        + tabMode.getValueAt(r, 12).toString() + "','"
+                        + tabMode.getValueAt(r, 13).toString() + "','"
+                        + tabMode.getValueAt(r, 14).toString() + "','"
+                        + tabMode.getValueAt(r, 15).toString() + "','"
+                        + tabMode.getValueAt(r, 16).toString() + "','"
+                        + tabMode.getValueAt(r, 17).toString() + "','"
+                        + tabMode.getValueAt(r, 18).toString() + "','"
+                        + tabMode.getValueAt(r, 19).toString() + "','"
+                        + tabMode.getValueAt(r, 20).toString() + "','"
+                        + tabMode.getValueAt(r, 21).toString() + "','"
+                        + tabMode.getValueAt(r, 22).toString() + "','"
+                        + tabMode.getValueAt(r, 23).toString() + "','"
+                        + tabMode.getValueAt(r, 24).toString() + "','"
+                        + tabMode.getValueAt(r, 25).toString() + "','"
+                        + tabMode.getValueAt(r, 26).toString() + "','"
+                        + tabMode.getValueAt(r, 27).toString() + "','"
+                        + tabMode.getValueAt(r, 28).toString() + "','"
+                        + tabMode.getValueAt(r, 29).toString() + "','"
+                        + tabMode.getValueAt(r, 30).toString() + "','"
+                        + tabMode.getValueAt(r, 31).toString() + "','"
+                        + tabMode.getValueAt(r, 32).toString() + "','"
+                        + tabMode.getValueAt(r, 33).toString() + "','"
+                        + tabMode.getValueAt(r, 34).toString() + "','"
+                        + tabMode.getValueAt(r, 35).toString() + "','"
+                        + tabMode.getValueAt(r, 36).toString() + "',''", "Indikator Mutu Rumah Sakit");
+            }
+            Sequel.AutoComitTrue();
+            dialog_simpan = Valid.openDialog();
+
+            StringBuilder sb1 = new StringBuilder();
+            sb1.append("select temp1 'No.', temp2 Indikator, temp3 'Jenis Indikator', temp4 'Kalimat Deskripsi', ");
+            sb1.append("CONVERT(temp5,int) 'Tgl. 1', CONVERT(temp6,int) 'Tgl. 2', CONVERT(temp7,int) 'Tgl. 3', CONVERT(temp8,int) 'Tgl. 4', CONVERT(temp9,int) 'Tgl. 5', ");
+            sb1.append("CONVERT(temp10,int) 'Tgl. 6', CONVERT(temp11,int) 'Tgl. 7', CONVERT(temp12,int) 'Tgl. 8', CONVERT(temp13,int) 'Tgl. 9', CONVERT(temp14,int) 'Tgl. 10', ");
+            sb1.append("CONVERT(temp15,int) 'Tgl. 11', CONVERT(temp16,int) 'Tgl. 12', CONVERT(temp17,int) 'Tgl. 13', CONVERT(temp18,int) 'Tgl. 14', CONVERT(temp19,int) 'Tgl. 15', ");
+            sb1.append("CONVERT(temp20,int) 'Tgl. 16', CONVERT(temp21,int) 'Tgl. 17', CONVERT(temp22,int) 'Tgl. 18', CONVERT(temp23,int) 'Tgl. 19', CONVERT(temp24,int) 'Tgl. 20', ");
+            sb1.append("CONVERT(temp25,int) 'Tgl. 21', CONVERT(temp26,int) 'Tgl. 22', CONVERT(temp27,int) 'Tgl. 23', CONVERT(temp28,int) 'Tgl. 24', CONVERT(temp29,int) 'Tgl. 25', ");
+            sb1.append("CONVERT(temp30,int) 'Tgl. 26', CONVERT(temp31,int) 'Tgl. 27', CONVERT(temp32,int) 'Tgl. 28', CONVERT(temp33,int) 'Tgl. 29', CONVERT(temp34,int) 'Tgl. 30', ");
+            sb1.append("CONVERT(temp35,int) 'Tgl. 31', temp36 Total from temporary");
+            Valid.MyReportToExcel(sb1.toString(), dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Data Indikator Mutu Rumah Sakit berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnExportKeExcelActionPerformed
+
+    private void MnExportKeExcelSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnExportKeExcelSemuaActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        if (Ttahun.getText().equals("")) {
+            Ttahun.setText(Sequel.cariIsi("select year(now())"));
+        } else {
+            Ttahun.setText(Ttahun.getText());
+        }
+
+        if (cmbSttsIndikator.getSelectedIndex() == 2) {
+            sttsData = "";
+        } else {
+            sttsData = "AND m.status_data = '" + cmbSttsIndikator.getSelectedItem().toString().toLowerCase() + "'";
+        }
+
+        dialog_simpan = Valid.openDialog();
+        Valid.MyReportToExcel("SELECT inm.gedung 'Rg. Rawat/Inst./Unit/Bidang/Sub.', "
+                + "CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator, ' (IMU)') "
+                + "WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator, ' (INM)') "
+                + "WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator <> '' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator,3), ')') "
+                + "ELSE m.nm_indikator END 'Indikator', mn.jenis_numdemon 'Jenis Indikator', mn.nm_numdemon 'Kalimat Deskripsi', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=1  THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 1', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=2  THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 2', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=3  THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 3', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=4  THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 4', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=5  THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 5', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=6  THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 6', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=7  THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 7', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=8  THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 8', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=9  THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 9', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=10 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 10', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=11 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 11', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=12 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 12', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=13 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 13', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=14 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 14', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=15 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 15', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=16 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 16', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=17 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 17', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=18 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 18', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=19 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 19', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=20 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 20', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=21 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 21', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=22 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 22', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=23 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 23', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=24 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 24', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=25 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 25', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=26 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 26', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=27 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 27', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=28 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 28', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=29 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 29', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=30 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 30', "
+                + "  SUM(CASE WHEN DAY(inm.tgl_catat)=31 THEN COALESCE(inm.jumlah_pertanggal,0) ELSE 0 END) 'Tgl. 31', "
+                + "  COALESCE(SUM(inm.jumlah_pertanggal),0) 'Total' FROM indikator_nasional_mutu inm "
+                + "INNER JOIN master_indikator_nasional_mutu m ON m.kd_indikator = inm.kd_indikator "
+                + "INNER JOIN master_numdemon_indikator_nasional_mutu mn ON mn.kd_numdemon = inm.kd_numdemon WHERE "
+                + "MONTH(inm.tgl_catat) = '" + angkaBulan + "' AND YEAR(inm.tgl_catat) = '" + Ttahun.getText() + "' " + sttsData + " "
+                + "AND m.tujuan_aktivasi = '" + cmbJnsData.getSelectedItem().toString() + "' "
+                + "GROUP BY inm.gedung, inm.kd_indikator, m.nm_indikator, mn.kd_numdemon, mn.nm_numdemon, mn.jenis_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat) "
+                + "ORDER BY inm.gedung, m.no_urut, mn.no_urut", dialog_simpan);
+
+        JOptionPane.showMessageDialog(null, "Data indikator mutu layanan semua unit berhasil diexport menjadi file excel,..!!!");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnExportKeExcelSemuaActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1397,14 +1480,15 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
     private widget.Button BtnCari;
-    private widget.Button BtnExportKeExcel;
     private widget.Button BtnKeluar;
     private widget.Button BtnMasterIndikator;
     private widget.Button BtnPrint;
+    private javax.swing.JMenuItem MnExportKeExcel;
     private javax.swing.JMenuItem MnExportKeExcelMutuNas;
     private javax.swing.JMenuItem MnExportKeExcelMutuPrio;
     private javax.swing.JMenuItem MnExportKeExcelRekapNas;
     private javax.swing.JMenuItem MnExportKeExcelRekapPrio;
+    private javax.swing.JMenuItem MnExportKeExcelSemua;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll5;
@@ -1423,6 +1507,7 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
     private widget.Label jLabel40;
     private widget.Label jLabel6;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu0;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private widget.panelisi panelGlass10;
@@ -1450,103 +1535,58 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
             Ttahun.setText(Ttahun.getText());
         }
 
-        if (cmbSttsIndikator.getSelectedIndex() == 0) {
-            sttsData = "aktif";
-        } else if (cmbSttsIndikator.getSelectedIndex() == 1) {
-            sttsData = "non aktif";
+        if (cmbSttsIndikator.getSelectedIndex() == 2) {
+            sttsData = "";
         } else {
-            sttsData = "-";
+            sttsData = "AND m.status_data = '" + cmbSttsIndikator.getSelectedItem().toString().toLowerCase() + "'";
         }
 
         hitungTot = 0;
         Valid.tabelKosong(tabMode);
         try {
             StringBuilder sb = new StringBuilder();
-            if (cmbSttsIndikator.getSelectedIndex() == 0 || cmbSttsIndikator.getSelectedIndex() == 1) {
-                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
-                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
-                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
-                sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
-                sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
-                sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
-                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' ");
-                sb.append("and inm.gedung='" + cmbGedung.getSelectedItem().toString() + "' and m.status_data='" + sttsData + "' ");
-                sb.append("and m.tujuan_aktivasi='" + cmbJnsData.getSelectedItem().toString() + "' ");
-                sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");                
-            } else {
-                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
-                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
-                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
-                sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
-                sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
-                sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
-                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' ");
-                sb.append("and inm.gedung='" + cmbGedung.getSelectedItem().toString() + "' and m.tujuan_aktivasi='" + cmbJnsData.getSelectedItem().toString() + "' ");
-                sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
-            }
-            ps = koneksi.prepareStatement(sb.toString());            
+            sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+            sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+            sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
+            sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
+            sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
+            sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
+            sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' ");
+            sb.append("and inm.gedung='" + cmbGedung.getSelectedItem().toString() + "' " + sttsData + " ");
+            sb.append("and m.tujuan_aktivasi='" + cmbJnsData.getSelectedItem().toString() + "' ");
+            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
+            ps = koneksi.prepareStatement(sb.toString());
             try {
                 rs = ps.executeQuery();
                 while (rs.next()) {
@@ -1910,12 +1950,10 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
             Ttahun.setText(Ttahun.getText());
         }
 
-        if (cmbSttsIndikator.getSelectedIndex() == 0) {
-            sttsData = "aktif";
-        } else if (cmbSttsIndikator.getSelectedIndex() == 1) {
-            sttsData = "non aktif";
+        if (cmbSttsIndikator.getSelectedIndex() == 2) {
+            sttsData = "";
         } else {
-            sttsData = "-";
+            sttsData = "AND m.status_data = '" + cmbSttsIndikator.getSelectedItem().toString().toLowerCase() + "'";
         }
         
         if (cmbGedung.getSelectedIndex() == 0) {
@@ -1928,90 +1966,46 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode1);
         try {
             StringBuilder sb = new StringBuilder();
-            if (cmbSttsIndikator.getSelectedIndex() == 0 || cmbSttsIndikator.getSelectedIndex() == 1) {
-                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
-                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
-                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
-                sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
-                sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
-                sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
-                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
-                sb.append("and m.jenis_indikator='Mutu Prioritas RS' and m.status_data='" + sttsData + "' ");
-                sb.append("and m.tujuan_aktivasi='" + cmbJnsData.getSelectedItem().toString() + "' ");
-                sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
-            } else {
-                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
-                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
-                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
-                sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
-                sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
-                sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
-                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
-                sb.append("and m.jenis_indikator='Mutu Prioritas RS' and m.tujuan_aktivasi='" + cmbJnsData.getSelectedItem().toString() + "' ");
-                sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
-            }
+            sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+            sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+            sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
+            sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
+            sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
+            sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
+            sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
+            sb.append("and m.jenis_indikator='Mutu Prioritas RS' " + sttsData + " and m.tujuan_aktivasi='" + cmbJnsData.getSelectedItem().toString() + "' ");
+            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
             ps1 = koneksi.prepareStatement(sb.toString());
             try {
                 rs1 = ps1.executeQuery();
@@ -2342,12 +2336,10 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
             Ttahun.setText(Ttahun.getText());
         }
 
-        if (cmbSttsIndikator.getSelectedIndex() == 0) {
-            sttsData = "aktif";
-        } else if (cmbSttsIndikator.getSelectedIndex() == 1) {
-            sttsData = "non aktif";
+        if (cmbSttsIndikator.getSelectedIndex() == 2) {
+            sttsData = "";
         } else {
-            sttsData = "-";
+            sttsData = "AND m.status_data = '" + cmbSttsIndikator.getSelectedItem().toString().toLowerCase() + "'";
         }
         
         if (cmbGedung.getSelectedIndex() == 0) {
@@ -2360,90 +2352,46 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode2);
         try {
             StringBuilder sb = new StringBuilder();
-            if (cmbSttsIndikator.getSelectedIndex() == 0 || cmbSttsIndikator.getSelectedIndex() == 1) {
-                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
-                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
-                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
-                sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
-                sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
-                sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
-                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
-                sb.append("and m.jenis_indikator='Mutu Nasional' and m.status_data='" + sttsData + "' ");
-                sb.append("and m.tujuan_aktivasi='" + cmbJnsData.getSelectedItem().toString() + "' ");
-                sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by inm.gedung, m.no_urut, mn.no_urut");
-            } else {
-                sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
-                sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
-                sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
-                sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
-                sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
-                sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
-                sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
-                sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
-                sb.append("and m.jenis_indikator='Mutu Nasional' and m.tujuan_aktivasi='" + cmbJnsData.getSelectedItem().toString() + "' ");
-                sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by inm.gedung, m.no_urut, mn.no_urut");
-            }
+            sb.append("SELECT inm.*, m.no_urut urutInm, mn.no_urut, CASE WHEN inm.kd_indikator LIKE '%IMU%' THEN CONCAT(m.nm_indikator,' (IMU)') ");
+            sb.append("WHEN inm.kd_indikator LIKE '%INM%' THEN CONCAT(m.nm_indikator,' (INM)') ");
+            sb.append("WHEN inm.kd_indikator IS NOT NULL AND inm.kd_indikator<>'' THEN CONCAT(m.nm_indikator, ' (', LEFT(inm.kd_indikator, 3), ')') ELSE m.nm_indikator END AS nm_indikator, ");
+            sb.append("mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, ");
+            sb.append("ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 ");
+            sb.append("from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator ");
+            sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
+            sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
+            sb.append("and m.jenis_indikator='Mutu Nasional' " + sttsData + " and m.tujuan_aktivasi='" + cmbJnsData.getSelectedItem().toString() + "' ");
+            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by inm.gedung, m.no_urut, mn.no_urut");
             ps2 = koneksi.prepareStatement(sb.toString());
             try {
                 rs2 = ps2.executeQuery();

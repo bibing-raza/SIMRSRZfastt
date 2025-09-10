@@ -296,38 +296,31 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         }
         tbMasalahDetailMasalah.setDefaultRenderer(Object.class, new WarnaTable());
 
-        TNoRw.setDocument(new batasInput((byte)17).getKata(TNoRw));
-        TD.setDocument(new batasInput((byte)10).getKata(TD));
-        Nadi.setDocument(new batasInput((byte)5).getKata(Nadi));
-        RR.setDocument(new batasInput((byte)5).getKata(RR));
-        Suhu.setDocument(new batasInput((byte)5).getKata(Suhu));
-        GCS.setDocument(new batasInput((byte)5).getKata(GCS));
-        BB.setDocument(new batasInput((byte)5).getKata(BB));
-        TB.setDocument(new batasInput((byte)5).getKata(TB));
-        BMI.setDocument(new batasInput((byte)5).getKata(BMI));
-        KeluhanUtama.setDocument(new batasInput((int)150).getKata(KeluhanUtama));
-        RPD.setDocument(new batasInput((int)100).getKata(RPD));
-        RPK.setDocument(new batasInput((int)100).getKata(RPK));
-        RPO.setDocument(new batasInput((int)100).getKata(RPO));
-        Alergi.setDocument(new batasInput((int)25).getKata(Alergi));
-        KetBantu.setDocument(new batasInput((int)50).getKata(KetBantu));
-        KetProthesa.setDocument(new batasInput((int)50).getKata(KetProthesa));
-        KetPsiko.setDocument(new batasInput((int)70).getKata(KetPsiko));
-        KetTinggal.setDocument(new batasInput((int)40).getKata(KetTinggal));
-        KetEdukasi.setDocument(new batasInput((int)50).getKata(KetEdukasi));
-        KetLapor.setDocument(new batasInput((int)15).getKata(KetLapor));
-        KetProvokes.setDocument(new batasInput((int)40).getKata(KetProvokes));
-        KetQuality.setDocument(new batasInput((int)50).getKata(KetQuality));
-        Lokasi.setDocument(new batasInput((int)50).getKata(Lokasi));
-        Durasi.setDocument(new batasInput((int)25).getKata(Durasi));
-        KetNyeri.setDocument(new batasInput((int)40).getKata(KetNyeri));
-        KetDokter.setDocument(new batasInput((int)15).getKata(KetDokter));
-        Rencana.setDocument(new batasInput((int)200).getKata(Rencana));
-        Durasi.setDocument(new batasInput((int)4).getKata(Durasi));
-        KetDokter.setDocument(new batasInput((int)8).getKata(KetDokter));
-        KetLapor.setDocument(new batasInput((int)8).getKata(KetLapor));
-        
-        TCari.setDocument(new batasInput((int)100).getKata(TCari));
+        TNoRw.setDocument(new batasInput((byte) 17).getKata(TNoRw));
+        TD.setDocument(new batasInput((byte) 10).getKata(TD));
+        Nadi.setDocument(new batasInput((byte) 5).getKata(Nadi));
+        RR.setDocument(new batasInput((byte) 5).getKata(RR));
+        Suhu.setDocument(new batasInput((byte) 5).getKata(Suhu));
+        GCS.setDocument(new batasInput((byte) 5).getKata(GCS));
+        BB.setDocument(new batasInput((byte) 5).getKata(BB));
+        TB.setDocument(new batasInput((byte) 5).getKata(TB));
+        BMI.setDocument(new batasInput((byte) 5).getKata(BMI));
+        Alergi.setDocument(new batasInput((int) 200).getKata(Alergi));
+        KetBantu.setDocument(new batasInput((int) 200).getKata(KetBantu));
+        KetProthesa.setDocument(new batasInput((int) 200).getKata(KetProthesa));
+        CacatFisik.setDocument(new batasInput((int) 200).getKata(CacatFisik));        
+        KetPsiko.setDocument(new batasInput((int) 200).getKata(KetPsiko));        
+        KetTinggal.setDocument(new batasInput((int) 200).getKata(KetTinggal));
+        KetBudaya.setDocument(new batasInput((int) 200).getKata(KetBudaya));
+        KetEdukasi.setDocument(new batasInput((int) 200).getKata(KetEdukasi));
+        KetLapor.setDocument(new batasInput((int) 10).getKata(KetLapor));        
+        KetProvokes.setDocument(new batasInput((int) 200).getKata(KetProvokes));
+        KetQuality.setDocument(new batasInput((int) 200).getKata(KetQuality));
+        Lokasi.setDocument(new batasInput((int) 200).getKata(Lokasi));
+        Durasi.setDocument(new batasInput((int) 10).getKata(Durasi));
+        KetNyeri.setDocument(new batasInput((int) 200).getKata(KetNyeri));
+        KetDokter.setDocument(new batasInput((int) 10).getKata(KetDokter));
+        TCari.setDocument(new batasInput((int) 100).getKata(TCari));
         
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
@@ -1210,7 +1203,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
             }
         });
         FormInput.add(Alergi);
-        Alergi.setBounds(179, 290, 260, 23);
+        Alergi.setBounds(179, 290, 680, 23);
 
         jLabel43.setForeground(new java.awt.Color(0, 0, 0));
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1255,6 +1248,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         KeluhanUtama.setColumns(20);
         KeluhanUtama.setRows(5);
         KeluhanUtama.setName("KeluhanUtama"); // NOI18N
+        KeluhanUtama.setPreferredSize(new java.awt.Dimension(170, 1000));
         KeluhanUtama.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 KeluhanUtamaKeyPressed(evt);
@@ -1277,6 +1271,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         RPD.setColumns(20);
         RPD.setRows(5);
         RPD.setName("RPD"); // NOI18N
+        RPD.setPreferredSize(new java.awt.Dimension(162, 1000));
         RPD.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 RPDKeyPressed(evt);
@@ -1299,6 +1294,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         RPK.setColumns(20);
         RPK.setRows(5);
         RPK.setName("RPK"); // NOI18N
+        RPK.setPreferredSize(new java.awt.Dimension(162, 1000));
         RPK.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 RPKKeyPressed(evt);
@@ -1321,6 +1317,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         RPO.setColumns(20);
         RPO.setRows(5);
         RPO.setName("RPO"); // NOI18N
+        RPO.setPreferredSize(new java.awt.Dimension(162, 1000));
         RPO.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 RPOKeyPressed(evt);
@@ -1914,6 +1911,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         Rencana.setColumns(20);
         Rencana.setRows(5);
         Rencana.setName("Rencana"); // NOI18N
+        Rencana.setPreferredSize(new java.awt.Dimension(162, 2000));
         Rencana.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 RencanaKeyPressed(evt);
@@ -1944,7 +1942,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         FormInput.add(TotalHasil);
         TotalHasil.setBounds(774, 770, 80, 23);
 
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-01-2025 08:35:58" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2025 07:35:58" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -2324,7 +2322,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-01-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2339,7 +2337,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-01-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
