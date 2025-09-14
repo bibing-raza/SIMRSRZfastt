@@ -6762,8 +6762,17 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                             }
                             
                             skorTotal = skorA + skorB + skorC;
-                            param.put("gizi1", rsLaprm.getString("gizi_1") + " (Skor : " + skorA + ")");
-                            param.put("gizi1Ya", rsLaprm.getString("gizi_1ya") + " (Skor : " + skorB + ")");
+                            if (rsLaprm.getString("gizi_1").equals("Ya ada penurunan BB sebanyak :")) {
+                                param.put("gizi1", rsLaprm.getString("gizi_1"));
+                            } else {
+                                param.put("gizi1", rsLaprm.getString("gizi_1") + " (Skor : " + skorA + ")");
+                            }
+
+                            if (rsLaprm.getString("gizi_1ya").equals("-")) {
+                                param.put("gizi1Ya", rsLaprm.getString("gizi_1ya"));
+                            } else {
+                                param.put("gizi1Ya", rsLaprm.getString("gizi_1ya") + " (Skor : " + skorB + ")");
+                            }
                             param.put("gizi2", rsLaprm.getString("gizi_2") + " (Skor : " + skorC + ")");
                             
                             if (skorTotal == 0 || skorTotal == 1) {
@@ -6921,6 +6930,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                             param.put("skorAsesGB", skorGB);
                             param.put("asesStaMen", rsLaprm.getString("status_mental"));
                             param.put("skorAsesSM", skorSM);
+                            param.put("TotSkorRJ", totSkorRJ);
                             
                             if (totSkorRJ == 0 && totSkorRJ <= 24) {
                                 param.put("kesResJatuh", "Skor 0-24 Resiko Rendah");
@@ -6951,7 +6961,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                             
                             param.put("adl", rsLaprm.getString("adl"));
                             param.put("fungRiwJat", rsLaprm.getString("riwayat_jatuh"));
-                            param.put("fungNmBidan", Sequel.cariIsi("select nama from pegawai where nip='" + rsLaprm.getString("nip_bidan") + "'"));
+                            param.put("fungNmBidan", Sequel.cariIsi("select nama from pegawai where nik='" + rsLaprm.getString("nip_bidan") + "'"));
                             param.put("fungNip", rsLaprm.getString("nip_bidan"));
                             
                             if (rsLaprm.getString("cek_ya").equals("ya")) {
@@ -7112,7 +7122,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                             
                             param.put("tglEdukasi", Valid.SetTglINDONESIA(rsLaprm.getString("tgl_edukasi")));
                             param.put("jamEdukasi", rsLaprm.getString("jam_edukasi").substring(0, 5) + " Wita");
-                            param.put("nmDokter", Sequel.cariIsi("select nama from pegawai where nip='" + rsLaprm.getString("nip_dokter") + "'"));
+                            param.put("nmDokter", Sequel.cariIsi("select nama from pegawai where nik='" + rsLaprm.getString("nip_dokter") + "'"));
                             param.put("nipDokter", rsLaprm.getString("nip_dokter"));
                             
                             if (rsLaprm.getString("cek_identifikasi1").equals("ya")) {
@@ -7191,11 +7201,15 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                 param.put("nmKeluarga", rsLaprm.getString("nm_keluarga_pasien"));
                             }
                             
-                            param.put("namaBidanDp", Sequel.cariIsi("select nama from pegawai where nip='" + rsLaprm.getString("nip_bidan_dp") + "'"));
+                            param.put("namaBidanDp", Sequel.cariIsi("select nama from pegawai where nik='" + rsLaprm.getString("nip_bidan_dp") + "'"));
                             param.put("nipBidanDp", rsLaprm.getString("nip_bidan_dp"));
                             
-//                            Valid.MyReport("rptAsesmenAwalKebidanan3.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 3 ]::",
+                            Valid.MyReport("rptAsesmenAwalKebidanan3.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 3 ]::",
+                                "select date(now()) tgl", param);
+//                            Valid.MyReport("rptAsesmenAwalKebidanan4.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 4 ]::",
 //                                "select date(now()) tgl", param);
+                            
+//                            dsaa
                         }
 
                         TCari.setText(TNoRw.getText());
