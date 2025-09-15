@@ -6688,8 +6688,10 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                         Valid.MyReport("rptAsesmenAwalKebidanan1.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 1 ]::",
                                 "select date(now()) tgl", param);
 
-                        Valid.MyReport("rptAsesmenAwalKebidanan2.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 2 ]::",
-                                "select * from riwayat_kehamilan_asesmen_awal_kebidanan where no_rawat='" + TNoRw.getText() + "'", param);
+                        if (Sequel.cariInteger("select count(-1) from riwayat_kehamilan_asesmen_awal_kebidanan where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                            Valid.MyReport("rptAsesmenAwalKebidanan2.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 2 ]::",
+                                    "select * from riwayat_kehamilan_asesmen_awal_kebidanan where no_rawat='" + TNoRw.getText() + "'", param);
+                        }
 
                         //halaman 2
                         if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + TNoRw.getText() + "'") > 0) {
@@ -7206,10 +7208,9 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                             
                             Valid.MyReport("rptAsesmenAwalKebidanan3.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 3 ]::",
                                 "select date(now()) tgl", param);
-//                            Valid.MyReport("rptAsesmenAwalKebidanan4.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 4 ]::",
-//                                "select date(now()) tgl", param);
                             
-//                            dsaa
+                            Valid.MyReport("rptAsesmenAwalKebidanan4.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 4 ]::",
+                                "select date(now()) tgl", param);
                         }
 
                         TCari.setText(TNoRw.getText());
@@ -7311,7 +7312,6 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
         if (TabRawat.getSelectedIndex() == 1) {
-            Valid.SetTgl(DTPCari1, "2025-07-13");
             tampil();
         } else if (TabRawat.getSelectedIndex() == 2) {
             if (tbAsesmen.getSelectedRow() > -1 || Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan1 where no_rawat='" + TNoRw.getText() + "'") > 0) {
@@ -8749,6 +8749,8 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             halaman2.isCek();
             halaman2.setData(TNoRw.getText(), stsrwt);
             halaman2.setVisible(true);
+            emptTeks();
+            tampil();
         }
     }//GEN-LAST:event_BtnHalamanActionPerformed
 
@@ -10167,9 +10169,12 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     }
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getcppt());
-        BtnHapus.setEnabled(akses.getcppt());
+        BtnSimpan.setEnabled(akses.getcppt());        
+        BtnHapus.setEnabled(akses.getcppt());        
         BtnEdit.setEnabled(akses.getcppt());
+//        BtnSimpan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
+//        BtnHapus.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());        
+//        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
     }
 
     private void hapus() {
