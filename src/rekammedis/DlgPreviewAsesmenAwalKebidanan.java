@@ -1061,10 +1061,23 @@ public class DlgPreviewAsesmenAwalKebidanan extends javax.swing.JDialog {
                         Valid.MyReport("rptAsesmenAwalKebidanan1.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 1 ]::",
                                 "select date(now()) tgl", param);
 
-                        if (Sequel.cariInteger("select count(-1) from riwayat_kehamilan_asesmen_awal_kebidanan where no_rawat='" + norawat + "'") > 0) {
-                            Valid.MyReport("rptAsesmenAwalKebidanan2.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 2 ]::",
-                                    "select * from riwayat_kehamilan_asesmen_awal_kebidanan where no_rawat='" + norawat + "'", param);
-                        }
+                        Valid.MyReport("rptAsesmenAwalKebidanan2.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 2 ]::",
+                                "SELECT COALESCE(no_rawat, '-') AS no_rawat, "
+                                + "COALESCE(tahun_partus, '-') AS tahun_partus, "
+                                + "COALESCE(tempat_partus, '-') AS tempat_partus, "
+                                + "COALESCE(umur_hamil, '-') AS umur_hamil, "
+                                + "COALESCE(jns_persalinan, '-') AS jns_persalinan, "
+                                + "COALESCE(penolong_persalinan, '-') AS penolong_persalinan, "
+                                + "COALESCE(penyulit, '-') AS penyulit, "
+                                + "COALESCE(jk, '-') AS jk, "
+                                + "COALESCE(bb, '-') AS bb, "
+                                + "COALESCE(keadaan_anak_skrng, '-') AS keadaan_anak_skrng, "
+                                + "COALESCE(waktu_simpan, '-') AS waktu_simpan "
+                                + "FROM (SELECT * FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE no_rawat = '" + norawat + "' "
+                                + "UNION ALL "
+                                + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL "
+                                + "WHERE NOT EXISTS (SELECT 1 FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE "
+                                + "no_rawat = '" + norawat + "')) AS x ORDER BY x.waktu_simpan IS NULL, x.waktu_simpan", param);
 
                         //halaman 2
                         if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + norawat + "'") > 0) {
@@ -2522,7 +2535,22 @@ public class DlgPreviewAsesmenAwalKebidanan extends javax.swing.JDialog {
                                 + "</tr>");
 
                         try {
-                            ps3 = koneksi.prepareStatement("select * from riwayat_kehamilan_asesmen_awal_kebidanan where no_rawat='" + rsPrev.getString("no_rawat") + "' order by waktu_simpan");
+                            ps3 = koneksi.prepareStatement("SELECT COALESCE(no_rawat, '-') AS no_rawat, "
+                                    + "COALESCE(tahun_partus, '-') AS tahun_partus, "
+                                    + "COALESCE(tempat_partus, '-') AS tempat_partus, "
+                                    + "COALESCE(umur_hamil, '-') AS umur_hamil, "
+                                    + "COALESCE(jns_persalinan, '-') AS jns_persalinan, "
+                                    + "COALESCE(penolong_persalinan, '-') AS penolong_persalinan, "
+                                    + "COALESCE(penyulit, '-') AS penyulit, "
+                                    + "COALESCE(jk, '-') AS jk, "
+                                    + "COALESCE(bb, '-') AS bb, "
+                                    + "COALESCE(keadaan_anak_skrng, '-') AS keadaan_anak_skrng, "
+                                    + "COALESCE(waktu_simpan, '-') AS waktu_simpan "
+                                    + "FROM (SELECT * FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE no_rawat = '" + rsPrev.getString("no_rawat") + "' "
+                                    + "UNION ALL "
+                                    + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL "
+                                    + "WHERE NOT EXISTS (SELECT 1 FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE "
+                                    + "no_rawat = '" + rsPrev.getString("no_rawat") + "')) AS x ORDER BY x.waktu_simpan IS NULL, x.waktu_simpan");
                             try {
                                 rs3 = ps3.executeQuery();
                                 while (rs3.next()) {

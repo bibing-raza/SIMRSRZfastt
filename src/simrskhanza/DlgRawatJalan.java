@@ -8688,6 +8688,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
+                form.toFront();
+                form.requestFocus();
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }
@@ -9649,6 +9651,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
+            form.toFront();
+            form.requestFocus();
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnPenilaianAwalKeperawatanKebidananActionPerformed
@@ -11071,6 +11075,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
+                form.toFront();
+                form.requestFocus();
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }
