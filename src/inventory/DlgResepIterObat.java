@@ -906,10 +906,15 @@ public class DlgResepIterObat extends javax.swing.JDialog {
                     javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                     javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
 
-            tampilCatatan(norawat);
-            tampilApotek(tbIter.getValueAt(tbIter.getSelectedRow(), 25).toString(), 
-                    tbIter.getValueAt(tbIter.getSelectedRow(), 3).toString(), 
-                    tbIter.getValueAt(tbIter.getSelectedRow(), 24).toString());
+            if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + norawat + "' and stts_pengambilan='Proses pelayanan'") > 0) {
+                tampilCatatan(norawat);
+                Valid.tabelKosong(tabMode2);
+            } else {
+                tampilCatatan(norawat);
+                tampilApotek(tbIter.getValueAt(tbIter.getSelectedRow(), 25).toString(),
+                        tbIter.getValueAt(tbIter.getSelectedRow(), 3).toString(),
+                        tbIter.getValueAt(tbIter.getSelectedRow(), 24).toString());
+            }
         }
     }
 }
