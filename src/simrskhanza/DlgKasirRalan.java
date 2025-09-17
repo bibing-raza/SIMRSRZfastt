@@ -136,7 +136,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             namapoli = "", norw_dipilih = "", kddokter_dipilih = "", TPngJwb = "", TAlmt = "", THbngn = "", TBiaya = "", TStatus = "", sttsumur1 = "",
             kdsuku = "", kdbahasa = "", skorAsesIGD = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", TotSkorGZD = "", TotSkorGZA = "",
             faktorresikoigd = "", TotSkorRJ = "", kesimpulanResikoJatuh = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "", pilihMenu = "",
-            konfirmasi_terapi = "", aksesRM = "", dataKonfir = "", triaseIGD = "", triasePediatrik = "", triasePonek = "";
+            konfirmasi_terapi = "", aksesRM = "", dataKonfir = "", triaseIGD = "", triasePediatrik = "", triasePonek = "", dialog_simpan = "";
     private String bangsal = Sequel.cariIsi("select kd_bangsal from set_lokasi limit 1"), nonota = "", URUTNOREG = "",
             sqlpsotomatis2 = "insert into rawat_jl_dr values (?,?,?,?,?,?,?,?,?,?,?)",
             sqlpsotomatis2petugas = "insert into rawat_jl_pr values (?,?,?,?,?,?,?,?,?,?,?)",
@@ -773,6 +773,17 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnRekap = new javax.swing.JMenu();
         MnDietMakanan = new javax.swing.JMenuItem();
         MnRekapTindakanPerbup = new javax.swing.JMenuItem();
+        MnRekapTriaseIGD = new javax.swing.JMenu();
+        MnRekapIgdResus = new javax.swing.JMenuItem();
+        MnRekapIgdNonResus = new javax.swing.JMenuItem();
+        MnRekapIgdKlinik = new javax.swing.JMenuItem();
+        MnRekapIgdDoa = new javax.swing.JMenuItem();
+        MnRekapTriasePediatrik = new javax.swing.JMenu();
+        MnRekapPediaLevel1 = new javax.swing.JMenuItem();
+        MnRekapPediaLevel2 = new javax.swing.JMenuItem();
+        MnRekapPediaLevel3 = new javax.swing.JMenuItem();
+        MnRekapPediaLevel4 = new javax.swing.JMenuItem();
+        MnRekapPediaLevel5 = new javax.swing.JMenuItem();
         MnStatus = new javax.swing.JMenu();
         ppSudahDiperiksaDokter = new javax.swing.JMenuItem();
         ppBerkas = new javax.swing.JMenuItem();
@@ -1815,7 +1826,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnDietMakanan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnDietMakanan.setIconTextGap(5);
         MnDietMakanan.setName("MnDietMakanan"); // NOI18N
-        MnDietMakanan.setPreferredSize(new java.awt.Dimension(240, 26));
+        MnDietMakanan.setPreferredSize(new java.awt.Dimension(205, 26));
         MnDietMakanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnDietMakananActionPerformed(evt);
@@ -1830,13 +1841,174 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnRekapTindakanPerbup.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnRekapTindakanPerbup.setIconTextGap(5);
         MnRekapTindakanPerbup.setName("MnRekapTindakanPerbup"); // NOI18N
-        MnRekapTindakanPerbup.setPreferredSize(new java.awt.Dimension(195, 26));
+        MnRekapTindakanPerbup.setPreferredSize(new java.awt.Dimension(205, 26));
         MnRekapTindakanPerbup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapTindakanPerbupActionPerformed(evt);
             }
         });
         MnRekap.add(MnRekapTindakanPerbup);
+
+        MnRekapTriaseIGD.setBackground(new java.awt.Color(248, 253, 243));
+        MnRekapTriaseIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnRekapTriaseIGD.setText("Rekap Data Triase IGD");
+        MnRekapTriaseIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapTriaseIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapTriaseIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapTriaseIGD.setIconTextGap(5);
+        MnRekapTriaseIGD.setName("MnRekapTriaseIGD"); // NOI18N
+        MnRekapTriaseIGD.setOpaque(true);
+        MnRekapTriaseIGD.setPreferredSize(new java.awt.Dimension(205, 26));
+
+        MnRekapIgdResus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapIgdResus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnRekapIgdResus.setText("Rekap Ruang Resusitasi");
+        MnRekapIgdResus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapIgdResus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapIgdResus.setIconTextGap(5);
+        MnRekapIgdResus.setName("MnRekapIgdResus"); // NOI18N
+        MnRekapIgdResus.setPreferredSize(new java.awt.Dimension(195, 26));
+        MnRekapIgdResus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapIgdResusActionPerformed(evt);
+            }
+        });
+        MnRekapTriaseIGD.add(MnRekapIgdResus);
+
+        MnRekapIgdNonResus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapIgdNonResus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnRekapIgdNonResus.setText("Rekap Ruang Non Resusitasi");
+        MnRekapIgdNonResus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapIgdNonResus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapIgdNonResus.setIconTextGap(5);
+        MnRekapIgdNonResus.setName("MnRekapIgdNonResus"); // NOI18N
+        MnRekapIgdNonResus.setPreferredSize(new java.awt.Dimension(195, 26));
+        MnRekapIgdNonResus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapIgdNonResusActionPerformed(evt);
+            }
+        });
+        MnRekapTriaseIGD.add(MnRekapIgdNonResus);
+
+        MnRekapIgdKlinik.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapIgdKlinik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnRekapIgdKlinik.setText("Rekap Klinik Umum 24 Jam");
+        MnRekapIgdKlinik.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapIgdKlinik.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapIgdKlinik.setIconTextGap(5);
+        MnRekapIgdKlinik.setName("MnRekapIgdKlinik"); // NOI18N
+        MnRekapIgdKlinik.setPreferredSize(new java.awt.Dimension(195, 26));
+        MnRekapIgdKlinik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapIgdKlinikActionPerformed(evt);
+            }
+        });
+        MnRekapTriaseIGD.add(MnRekapIgdKlinik);
+
+        MnRekapIgdDoa.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapIgdDoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnRekapIgdDoa.setText("Rekap DOA (Death On Arrival)");
+        MnRekapIgdDoa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapIgdDoa.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapIgdDoa.setIconTextGap(5);
+        MnRekapIgdDoa.setName("MnRekapIgdDoa"); // NOI18N
+        MnRekapIgdDoa.setPreferredSize(new java.awt.Dimension(195, 26));
+        MnRekapIgdDoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapIgdDoaActionPerformed(evt);
+            }
+        });
+        MnRekapTriaseIGD.add(MnRekapIgdDoa);
+
+        MnRekap.add(MnRekapTriaseIGD);
+
+        MnRekapTriasePediatrik.setBackground(new java.awt.Color(248, 253, 243));
+        MnRekapTriasePediatrik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnRekapTriasePediatrik.setText("Rekap Data Triase Pediatrik");
+        MnRekapTriasePediatrik.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapTriasePediatrik.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapTriasePediatrik.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapTriasePediatrik.setIconTextGap(5);
+        MnRekapTriasePediatrik.setName("MnRekapTriasePediatrik"); // NOI18N
+        MnRekapTriasePediatrik.setOpaque(true);
+        MnRekapTriasePediatrik.setPreferredSize(new java.awt.Dimension(205, 26));
+
+        MnRekapPediaLevel1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapPediaLevel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnRekapPediaLevel1.setText("Rekap Level 1 (Resusitasi)");
+        MnRekapPediaLevel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapPediaLevel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapPediaLevel1.setIconTextGap(5);
+        MnRekapPediaLevel1.setName("MnRekapPediaLevel1"); // NOI18N
+        MnRekapPediaLevel1.setPreferredSize(new java.awt.Dimension(210, 26));
+        MnRekapPediaLevel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapPediaLevel1ActionPerformed(evt);
+            }
+        });
+        MnRekapTriasePediatrik.add(MnRekapPediaLevel1);
+
+        MnRekapPediaLevel2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapPediaLevel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnRekapPediaLevel2.setText("Rekap Level 2 (Emergensi)");
+        MnRekapPediaLevel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapPediaLevel2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapPediaLevel2.setIconTextGap(5);
+        MnRekapPediaLevel2.setName("MnRekapPediaLevel2"); // NOI18N
+        MnRekapPediaLevel2.setPreferredSize(new java.awt.Dimension(210, 26));
+        MnRekapPediaLevel2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapPediaLevel2ActionPerformed(evt);
+            }
+        });
+        MnRekapTriasePediatrik.add(MnRekapPediaLevel2);
+
+        MnRekapPediaLevel3.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapPediaLevel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnRekapPediaLevel3.setText("Rekap Level 3 (Urgent 30 Menit)");
+        MnRekapPediaLevel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapPediaLevel3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapPediaLevel3.setIconTextGap(5);
+        MnRekapPediaLevel3.setName("MnRekapPediaLevel3"); // NOI18N
+        MnRekapPediaLevel3.setPreferredSize(new java.awt.Dimension(210, 26));
+        MnRekapPediaLevel3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapPediaLevel3ActionPerformed(evt);
+            }
+        });
+        MnRekapTriasePediatrik.add(MnRekapPediaLevel3);
+
+        MnRekapPediaLevel4.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapPediaLevel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnRekapPediaLevel4.setText("Rekap Level 4 (Urgent 60 Menit)");
+        MnRekapPediaLevel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapPediaLevel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapPediaLevel4.setIconTextGap(5);
+        MnRekapPediaLevel4.setName("MnRekapPediaLevel4"); // NOI18N
+        MnRekapPediaLevel4.setPreferredSize(new java.awt.Dimension(210, 26));
+        MnRekapPediaLevel4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapPediaLevel4ActionPerformed(evt);
+            }
+        });
+        MnRekapTriasePediatrik.add(MnRekapPediaLevel4);
+
+        MnRekapPediaLevel5.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapPediaLevel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnRekapPediaLevel5.setText("Rekap Level 5 (False Emergency)");
+        MnRekapPediaLevel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapPediaLevel5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapPediaLevel5.setIconTextGap(5);
+        MnRekapPediaLevel5.setName("MnRekapPediaLevel5"); // NOI18N
+        MnRekapPediaLevel5.setPreferredSize(new java.awt.Dimension(210, 26));
+        MnRekapPediaLevel5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapPediaLevel5ActionPerformed(evt);
+            }
+        });
+        MnRekapTriasePediatrik.add(MnRekapPediaLevel5);
+
+        MnRekap.add(MnRekapTriasePediatrik);
 
         jPopupMenu1.add(MnRekap);
 
@@ -4001,7 +4173,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2025" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-09-2025" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4867,7 +5039,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-09-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4891,7 +5063,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-09-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -5111,7 +5283,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-09-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5130,7 +5302,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-09-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -10064,6 +10236,186 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnCetakDataActionPerformed
 
+    private void MnRekapIgdResusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapIgdResusActionPerformed
+        if (Sequel.cariInteger("select count(-1) from triase_igd where date(waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and triase_resusitasi='ya'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data Triase Ruang Resusitasi tidak ditemukan...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', date_format(ti.tanggal,'%d-%m-%Y') 'Tgl. Triase', "
+                    + "ti.keluhan_utama 'Keluhan', p2.nama 'Nama Dokter', ifnull(pa.anamnesis,'-') 'Anamnesis', ifnull(pa.diag_medis_sementara,'-') 'Diagnosa Sementara' "
+                    + "FROM triase_igd ti inner join reg_periksa rp on rp.no_rawat=ti.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai p2 on p2.nik=rp.kd_dokter left join penilaian_awal_medis_igd pa on pa.no_rawat=ti.no_rawat where "
+                    + "date(ti.waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "and ti.triase_resusitasi='ya' order by ti.waktu_simpan ", dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Rekap data Triase Ruang Resusitasi berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnRekapIgdResusActionPerformed
+
+    private void MnRekapIgdNonResusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapIgdNonResusActionPerformed
+        if (Sequel.cariInteger("select count(-1) from triase_igd where date(waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and triase_non_resusitasi='ya'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data Triase Ruang Non Resusitasi tidak ditemukan...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', date_format(ti.tanggal,'%d-%m-%Y') 'Tgl. Triase', "
+                    + "ti.keluhan_utama 'Keluhan', p2.nama 'Nama Dokter', ifnull(pa.anamnesis,'-') 'Anamnesis', ifnull(pa.diag_medis_sementara,'-') 'Diagnosa Sementara' "
+                    + "FROM triase_igd ti inner join reg_periksa rp on rp.no_rawat=ti.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai p2 on p2.nik=rp.kd_dokter left join penilaian_awal_medis_igd pa on pa.no_rawat=ti.no_rawat where "
+                    + "date(ti.waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "and ti.triase_non_resusitasi='ya' order by ti.waktu_simpan ", dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Rekap data Triase Ruang Non Resusitasi berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnRekapIgdNonResusActionPerformed
+
+    private void MnRekapIgdKlinikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapIgdKlinikActionPerformed
+        if (Sequel.cariInteger("select count(-1) from triase_igd where date(waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and triase_klinik='ya'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data Triase Klinik Umum 24 Jam tidak ditemukan...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', date_format(ti.tanggal,'%d-%m-%Y') 'Tgl. Triase', "
+                    + "ti.keluhan_utama 'Keluhan', p2.nama 'Nama Dokter', ifnull(pa.anamnesis,'-') 'Anamnesis', ifnull(pa.diag_medis_sementara,'-') 'Diagnosa Sementara' "
+                    + "FROM triase_igd ti inner join reg_periksa rp on rp.no_rawat=ti.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai p2 on p2.nik=rp.kd_dokter left join penilaian_awal_medis_igd pa on pa.no_rawat=ti.no_rawat where "
+                    + "date(ti.waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "and ti.triase_klinik='ya' order by ti.waktu_simpan ", dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Rekap data Triase Klinik Umum 24 Jam berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnRekapIgdKlinikActionPerformed
+
+    private void MnRekapIgdDoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapIgdDoaActionPerformed
+        if (Sequel.cariInteger("select count(-1) from triase_igd where date(waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and triase_doa='ya'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data Triase DOA (Death On Arrival) tidak ditemukan...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', date_format(ti.tanggal,'%d-%m-%Y') 'Tgl. Triase', "
+                    + "ti.keluhan_utama 'Keluhan', p2.nama 'Nama Dokter', ifnull(pa.anamnesis,'-') 'Anamnesis', ifnull(pa.diag_medis_sementara,'-') 'Diagnosa Sementara' "
+                    + "FROM triase_igd ti inner join reg_periksa rp on rp.no_rawat=ti.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai p2 on p2.nik=rp.kd_dokter left join penilaian_awal_medis_igd pa on pa.no_rawat=ti.no_rawat where "
+                    + "date(ti.waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "and ti.triase_doa='ya' order by ti.waktu_simpan ", dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Rekap data Triase DOA (Death On Arrival) berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnRekapIgdDoaActionPerformed
+
+    private void MnRekapPediaLevel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapPediaLevel1ActionPerformed
+        if (Sequel.cariInteger("select count(-1) from triase_pediatrik where date(waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and kesimpulan_level1='ya'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data Triase Kesimpulan Level 1 (RESUSITASI/(RED ZONE)) tidak ditemukan...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', date_format(tp.tgl_tiba,'%d-%m-%Y') 'Tgl. Triase', p2.nama 'Nama Dokter', "
+                    + "ifnull(pa.anamnesis,'-') 'Anamnesis', ifnull(pa.diag_medis_sementara,'-') 'Diagnosa Sementara' FROM triase_pediatrik tp "
+                    + "inner join reg_periksa rp on rp.no_rawat=tp.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai p2 on p2.nik=rp.kd_dokter left join penilaian_awal_medis_igd pa on pa.no_rawat=tp.no_rawat where "
+                    + "date(tp.waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "and tp.kesimpulan_level1='ya' order by tp.waktu_simpan", dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Rekap data Triase Kesimpulan Level 1 (RESUSITASI/(RED ZONE)) berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnRekapPediaLevel1ActionPerformed
+
+    private void MnRekapPediaLevel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapPediaLevel2ActionPerformed
+        if (Sequel.cariInteger("select count(-1) from triase_pediatrik where date(waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and kesimpulan_level2='ya'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data Triase Kesimpulan Level 2 (EMERGENSI/(RED ZONE)) tidak ditemukan...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', date_format(tp.tgl_tiba,'%d-%m-%Y') 'Tgl. Triase', p2.nama 'Nama Dokter', "
+                    + "ifnull(pa.anamnesis,'-') 'Anamnesis', ifnull(pa.diag_medis_sementara,'-') 'Diagnosa Sementara' FROM triase_pediatrik tp "
+                    + "inner join reg_periksa rp on rp.no_rawat=tp.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai p2 on p2.nik=rp.kd_dokter left join penilaian_awal_medis_igd pa on pa.no_rawat=tp.no_rawat where "
+                    + "date(tp.waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "and tp.kesimpulan_level2='ya' order by tp.waktu_simpan", dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Rekap data Triase Kesimpulan Level 2 (EMERGENSI/(RED ZONE)) berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnRekapPediaLevel2ActionPerformed
+
+    private void MnRekapPediaLevel3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapPediaLevel3ActionPerformed
+        if (Sequel.cariInteger("select count(-1) from triase_pediatrik where date(waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and kesimpulan_level3='ya'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data Triase Kesimpulan Level 3 (URGENT/(YELLOW ZONE) 30 menit) tidak ditemukan...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', date_format(tp.tgl_tiba,'%d-%m-%Y') 'Tgl. Triase', p2.nama 'Nama Dokter', "
+                    + "ifnull(pa.anamnesis,'-') 'Anamnesis', ifnull(pa.diag_medis_sementara,'-') 'Diagnosa Sementara' FROM triase_pediatrik tp "
+                    + "inner join reg_periksa rp on rp.no_rawat=tp.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai p2 on p2.nik=rp.kd_dokter left join penilaian_awal_medis_igd pa on pa.no_rawat=tp.no_rawat where "
+                    + "date(tp.waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "and tp.kesimpulan_level3='ya' order by tp.waktu_simpan", dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Rekap data Triase Kesimpulan Level 3 (URGENT/(YELLOW ZONE) 30 menit) berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnRekapPediaLevel3ActionPerformed
+
+    private void MnRekapPediaLevel4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapPediaLevel4ActionPerformed
+        if (Sequel.cariInteger("select count(-1) from triase_pediatrik where date(waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and kesimpulan_level4='ya'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data Triase Kesimpulan Level 4 (URGENT/(YELLOW ZONE) 60 menit) tidak ditemukan...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', date_format(tp.tgl_tiba,'%d-%m-%Y') 'Tgl. Triase', p2.nama 'Nama Dokter', "
+                    + "ifnull(pa.anamnesis,'-') 'Anamnesis', ifnull(pa.diag_medis_sementara,'-') 'Diagnosa Sementara' FROM triase_pediatrik tp "
+                    + "inner join reg_periksa rp on rp.no_rawat=tp.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai p2 on p2.nik=rp.kd_dokter left join penilaian_awal_medis_igd pa on pa.no_rawat=tp.no_rawat where "
+                    + "date(tp.waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "and tp.kesimpulan_level4='ya' order by tp.waktu_simpan", dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Rekap data Triase Kesimpulan Level 4 (URGENT/(YELLOW ZONE) 60 menit) berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnRekapPediaLevel4ActionPerformed
+
+    private void MnRekapPediaLevel5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapPediaLevel5ActionPerformed
+        if (Sequel.cariInteger("select count(-1) from triase_pediatrik where date(waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and kesimpulan_level5='ya'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data Triase Kesimpulan Level 5 (FALSE EMERGENCY/(GREEN ZONE)) tidak ditemukan...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', date_format(tp.tgl_tiba,'%d-%m-%Y') 'Tgl. Triase', p2.nama 'Nama Dokter', "
+                    + "ifnull(pa.anamnesis,'-') 'Anamnesis', ifnull(pa.diag_medis_sementara,'-') 'Diagnosa Sementara' FROM triase_pediatrik tp "
+                    + "inner join reg_periksa rp on rp.no_rawat=tp.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai p2 on p2.nik=rp.kd_dokter left join penilaian_awal_medis_igd pa on pa.no_rawat=tp.no_rawat where "
+                    + "date(tp.waktu_simpan) between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "and tp.kesimpulan_level5='ya' order by tp.waktu_simpan", dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Rekap data Triase Kesimpulan Level 5 (FALSE EMERGENCY/(GREEN ZONE)) berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnRekapPediaLevel5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -10236,7 +10588,18 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnRehabMedik;
     private javax.swing.JMenu MnRekamMedis;
     private javax.swing.JMenu MnRekap;
+    private javax.swing.JMenuItem MnRekapIgdDoa;
+    private javax.swing.JMenuItem MnRekapIgdKlinik;
+    private javax.swing.JMenuItem MnRekapIgdNonResus;
+    private javax.swing.JMenuItem MnRekapIgdResus;
+    private javax.swing.JMenuItem MnRekapPediaLevel1;
+    private javax.swing.JMenuItem MnRekapPediaLevel2;
+    private javax.swing.JMenuItem MnRekapPediaLevel3;
+    private javax.swing.JMenuItem MnRekapPediaLevel4;
+    private javax.swing.JMenuItem MnRekapPediaLevel5;
     private javax.swing.JMenuItem MnRekapTindakanPerbup;
+    private javax.swing.JMenu MnRekapTriaseIGD;
+    private javax.swing.JMenu MnRekapTriasePediatrik;
     private javax.swing.JMenuItem MnRencanaKontrolManual;
     private javax.swing.JMenuItem MnRencanaKontrolNonBPJS;
     private javax.swing.JMenuItem MnResepFarmasi;
