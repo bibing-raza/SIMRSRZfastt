@@ -46,8 +46,8 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
     public DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
     private final Properties prop = new Properties();
     private int i, x = 0, pilihanDokter = 0, cekRujukan = 0, n = 0, cekHasil = 0, cekPeriksa = 0, pilihPetugas = 0;
-    private PreparedStatement ps, ps2, ps3, ps4, ps5, ps6, ps7, ps8, psrekening, psItem;
-    private ResultSet rs, rs2, rs3, rs5, rs6, rs7, rs8, rsrekening, rsItem;
+    private PreparedStatement ps, ps2, ps3, ps4, ps5, ps6, ps7, psrekening, psItem;
+    private ResultSet rs, rs2, rs3, rs5, rs6, rs7, rsrekening, rsItem;
     private String kamar, namakamar, pemeriksaan = "", pilihan = "", status = "", tglperiksa = "", jam = "", sttsRawat = "",
             tglhasil = "", jamhasil = "", lihatHasil = "", kodeRujukan = "", tgldaftar = "", tglnoRW = "", alamatFaskes = "",
             kdItem = "", cekDiagnos = "";
@@ -5504,7 +5504,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     rs.getString("tgl_periksa"), rs.getString("jam"), Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?", rs.getString("dokter_perujuk")),
                     rs.getString("nm_dokter"), rs.getString("kd_dokter"), rs.getString("status_lanjut"), rs.getString("dokter_perujuk"), rs.getString("nip")
                 });
-                tabMode.addRow(new Object[]{"Cara Bayar ", ": " + rs.getString("png_jawab") + " " + cekSttsBayar, "Kode Periksa", "Nama Pemeriksaan", "Biaya Pemeriksaan", "", ""});
+                tabMode.addRow(new Object[]{"Cara Bayar", ": " + rs.getString("png_jawab") + " " + cekSttsBayar, "Kode Periksa", "Nama Pemeriksaan", "Biaya Pemeriksaan", "", ""});
                 ps2.setString(1, rs.getString("no_rawat"));
                 ps2.setString(2, rs.getString("tgl_periksa"));
                 ps2.setString(3, rs.getString("jam"));
@@ -5910,167 +5910,13 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     }
 
     private void jumlahNoRawat() {
-        try {
-            if (khususIgd.equals("ya")) {
-                ps8 = koneksi.prepareStatement("select count(*) jml from periksa_radiologi pr2 inner join reg_periksa rp2 on rp2.no_rawat=pr2.no_rawat "
-                        + "inner join pasien p2 on p2.no_rkm_medis=rp2.no_rkm_medis inner join petugas pt2 on pt2.nip=pr2.nip "
-                        + "inner join dokter d2 on d2.kd_dokter=pr2.kd_dokter inner join penjab pj2 on pj2.kd_pj=rp2.kd_pj "
-                        + "inner join jns_perawatan_radiologi jpr2 on jpr2.kd_jenis_prw=pr2.kd_jenis_prw inner join poliklinik pl2 on pl2.kd_poli=rp2.kd_poli where "
-                        + "pr2.tgl_periksa between ? and ? and rp2.kd_poli='igdk' and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and p2.nm_pasien like ? or "
-                        + "pr2.tgl_periksa between ? and ? and rp2.kd_poli='igdk' and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and pt2.nama like ? or "
-                        + "pr2.tgl_periksa between ? and ? and rp2.kd_poli='igdk' and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and rp2.no_rkm_medis like ? or "
-                        + "pr2.tgl_periksa between ? and ? and rp2.kd_poli='igdk' and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and rp2.no_rawat like ? or "
-                        + "pr2.tgl_periksa between ? and ? and rp2.kd_poli='igdk' and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and jpr2.nm_perawatan like ? or "                        
-                        + "pr2.tgl_periksa between ? and ? and rp2.kd_poli='igdk' and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and pj2.png_jawab like ? or "
-                        + "pr2.tgl_periksa between ? and ? and rp2.kd_poli='igdk' and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and rp2.kd_pj like ? or "                        
-                        + "pr2.tgl_periksa between ? and ? and rp2.kd_poli='igdk' and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and d2.nm_dokter like ?");
-            } else {
-                ps8 = koneksi.prepareStatement("select count(*) jml from periksa_radiologi pr2 inner join reg_periksa rp2 on rp2.no_rawat=pr2.no_rawat "
-                        + "inner join pasien p2 on p2.no_rkm_medis=rp2.no_rkm_medis inner join petugas pt2 on pt2.nip=pr2.nip "
-                        + "inner join dokter d2 on d2.kd_dokter=pr2.kd_dokter inner join penjab pj2 on pj2.kd_pj=rp2.kd_pj "
-                        + "inner join jns_perawatan_radiologi jpr2 on jpr2.kd_jenis_prw=pr2.kd_jenis_prw inner join poliklinik pl2 on pl2.kd_poli=rp2.kd_poli "
-                        + "left join kamar_inap ki2 on ki2.no_rawat=pr2.no_rawat left join kamar k2 on k2.kd_kamar=ki2.kd_kamar "
-                        + "left join bangsal b2 on b2.kd_bangsal=k2.kd_bangsal where "
-                        + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and p2.nm_pasien like ? or "
-                        + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and pt2.nama like ? or "
-                        + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and rp2.no_rkm_medis like ? or "
-                        + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and rp2.no_rawat like ? or "
-                        + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and jpr2.nm_perawatan like ? or "
-                        + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and pl2.nm_poli like ? or "
-                        + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and pj2.png_jawab like ? or "
-                        + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and rp2.kd_pj like ? or "
-                        + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and ifnull(b2.nm_bangsal,'-') like ? or "
-                        + "pr2.tgl_periksa between ? and ? and pr2.no_rawat like ? and rp2.no_rkm_medis like ? and pt2.nip like ? and d2.nm_dokter like ?");
+        int jmlnorwt = 0;
+        for (i = 0; i < tabMode.getRowCount(); i++) {
+            if (!tabMode.getValueAt(i, 0).equals("") && !tabMode.getValueAt(i, 0).equals("Cara Bayar") && !tabMode.getValueAt(i, 0).equals(">>")) {
+                jmlnorwt++;
             }
-            try {
-                if (khususIgd.equals("ya")) {
-                    ps8.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(3, "%" + NoRawat.getText() + "%");
-                    ps8.setString(4, "%" + kdmem.getText() + "%");
-                    ps8.setString(5, "%" + kdptg.getText() + "%");
-                    ps8.setString(6, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(7, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(8, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(9, "%" + NoRawat.getText() + "%");
-                    ps8.setString(10, "%" + kdmem.getText() + "%");
-                    ps8.setString(11, "%" + kdptg.getText() + "%");
-                    ps8.setString(12, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(13, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(14, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(15, "%" + NoRawat.getText() + "%");
-                    ps8.setString(16, "%" + kdmem.getText() + "%");
-                    ps8.setString(17, "%" + kdptg.getText() + "%");
-                    ps8.setString(18, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(19, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(20, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(21, "%" + NoRawat.getText() + "%");
-                    ps8.setString(22, "%" + kdmem.getText() + "%");
-                    ps8.setString(23, "%" + kdptg.getText() + "%");
-                    ps8.setString(24, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(25, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(26, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(27, "%" + NoRawat.getText() + "%");
-                    ps8.setString(28, "%" + kdmem.getText() + "%");
-                    ps8.setString(29, "%" + kdptg.getText() + "%");
-                    ps8.setString(30, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(31, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(32, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(33, "%" + NoRawat.getText() + "%");
-                    ps8.setString(34, "%" + kdmem.getText() + "%");
-                    ps8.setString(35, "%" + kdptg.getText() + "%");
-                    ps8.setString(36, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(37, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(38, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(39, "%" + NoRawat.getText() + "%");
-                    ps8.setString(40, "%" + kdmem.getText() + "%");
-                    ps8.setString(41, "%" + kdptg.getText() + "%");
-                    ps8.setString(42, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(43, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(44, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(45, "%" + NoRawat.getText() + "%");
-                    ps8.setString(46, "%" + kdmem.getText() + "%");
-                    ps8.setString(47, "%" + kdptg.getText() + "%");
-                    ps8.setString(48, "%" + TCari.getText().trim() + "%");                                 
-                } else {
-                    ps8.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(3, "%" + NoRawat.getText() + "%");
-                    ps8.setString(4, "%" + kdmem.getText() + "%");
-                    ps8.setString(5, "%" + kdptg.getText() + "%");
-                    ps8.setString(6, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(7, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(8, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(9, "%" + NoRawat.getText() + "%");
-                    ps8.setString(10, "%" + kdmem.getText() + "%");
-                    ps8.setString(11, "%" + kdptg.getText() + "%");
-                    ps8.setString(12, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(13, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(14, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(15, "%" + NoRawat.getText() + "%");
-                    ps8.setString(16, "%" + kdmem.getText() + "%");
-                    ps8.setString(17, "%" + kdptg.getText() + "%");
-                    ps8.setString(18, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(19, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(20, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(21, "%" + NoRawat.getText() + "%");
-                    ps8.setString(22, "%" + kdmem.getText() + "%");
-                    ps8.setString(23, "%" + kdptg.getText() + "%");
-                    ps8.setString(24, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(25, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(26, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(27, "%" + NoRawat.getText() + "%");
-                    ps8.setString(28, "%" + kdmem.getText() + "%");
-                    ps8.setString(29, "%" + kdptg.getText() + "%");
-                    ps8.setString(30, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(31, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(32, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(33, "%" + NoRawat.getText() + "%");
-                    ps8.setString(34, "%" + kdmem.getText() + "%");
-                    ps8.setString(35, "%" + kdptg.getText() + "%");
-                    ps8.setString(36, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(37, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(38, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(39, "%" + NoRawat.getText() + "%");
-                    ps8.setString(40, "%" + kdmem.getText() + "%");
-                    ps8.setString(41, "%" + kdptg.getText() + "%");
-                    ps8.setString(42, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(43, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(44, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(45, "%" + NoRawat.getText() + "%");
-                    ps8.setString(46, "%" + kdmem.getText() + "%");
-                    ps8.setString(47, "%" + kdptg.getText() + "%");
-                    ps8.setString(48, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(49, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(50, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(51, "%" + NoRawat.getText() + "%");
-                    ps8.setString(52, "%" + kdmem.getText() + "%");
-                    ps8.setString(53, "%" + kdptg.getText() + "%");
-                    ps8.setString(54, "%" + TCari.getText().trim() + "%");
-                    ps8.setString(55, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                    ps8.setString(56, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                    ps8.setString(57, "%" + NoRawat.getText() + "%");
-                    ps8.setString(58, "%" + kdmem.getText() + "%");
-                    ps8.setString(59, "%" + kdptg.getText() + "%");
-                    ps8.setString(60, "%" + TCari.getText().trim() + "%");
-                }
-                rs8 = ps8.executeQuery();
-                while (rs8.next()) {
-                    LCount.setText(rs8.getString("jml"));
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rs8 != null) {
-                    rs8.close();
-                }
-                if (ps8 != null) {
-                    ps8.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        }
+        }        
+        LCount.setText(Valid.SetAngka(jmlnorwt));
     }
 
     private void queryTampil() {
