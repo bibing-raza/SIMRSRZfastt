@@ -57,7 +57,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
             Utang_Jasa_Medik_Petugas_Laborat_Ranap = "", Beban_Kso_Laborat_Ranap = "", Utang_Kso_Laborat_Ranap = "",
             HPP_Persediaan_Laborat_Rawat_inap = "", Persediaan_BHP_Laborat_Rawat_Inap = "", status = "", cekDataLab = "",
             nolab = "", tglPeriksa = "", jamPeriksa = "", diagnosa_ok = "", tnorwt = "", kdunit = "", kdpenjab = "",
-            status_rawat = "", cekbayar = "", drLab = "", noLIS = "", nm_unit = "", kddokter = "", notelpFaskes = "", cekSttsBayar = "";
+            status_rawat = "", cekbayar = "", drLab = "", noLIS = "", nm_unit = "", kddokter = "", notelpFaskes = "";
 
     /**
      * Creates new form DlgProgramStudi
@@ -394,48 +394,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
             public void windowDeactivated(WindowEvent e) {
             }
         });
-
-        try {
-            StringBuilder sb1 = new StringBuilder();
-            sb1.append("SELECT pl.no_rawat, IFNULL(lr.no_lab,'-') no_lab, rp.no_rkm_medis, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') AS umur_thn, ");
-            sb1.append("pt.nama, pl.tgl_periksa, pl.jam, pl.dokter_perujuk, pl.kd_dokter, d.nm_dokter,IF(ifnull(h.no_lab,'-')='-','Belum','Sudah') hasil, rp.kd_pj, pj.png_jawab ");
-            sb1.append("FROM periksa_lab pl INNER JOIN reg_periksa rp on rp.no_rawat=pl.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
-            sb1.append("INNER JOIN petugas pt on pt.nip=pl.nip INNER JOIN dokter d on d.kd_dokter=pl.kd_dokter INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj ");
-            sb1.append("LEFT JOIN lis_reg lr on lr.no_rawat=pl.no_rawat and lr.tgl_periksa=pl.tgl_periksa AND lr.jam_periksa=pl.jam ");
-            sb1.append("left join lis_hasil_periksa_lab h on h.no_lab = lr.no_lab WHERE ");
-            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND p.nm_pasien LIKE ? OR ");
-            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND pt.nama LIKE ? OR ");
-            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND rp.no_rkm_medis LIKE ? OR ");
-            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND pl.no_rawat LIKE ? OR ");
-            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND lr.no_lab LIKE ? OR ");
-            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND pj.png_jawab LIKE ? OR ");
-            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND IF(ifnull(h.no_lab,'-')='-','Belum','Sudah') LIKE ? ");
-            sb1.append("GROUP BY concat(pl.no_rawat, pl.tgl_periksa, pl.jam) order by pl.tgl_periksa desc, pl.jam desc");
-            ps = koneksi.prepareStatement(sb1.toString());
-            
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append("SELECT jpl.kd_jenis_prw, jpl.nm_perawatan, pl.biaya FROM periksa_lab pl ");
-            sb2.append("INNER JOIN jns_perawatan_lab jpl ON jpl.kd_jenis_prw=pl.kd_jenis_prw WHERE pl.no_rawat =? AND pl.tgl_periksa =? AND pl.jam =?");
-            ps2 = koneksi.prepareStatement(sb2.toString());
-            
-            StringBuilder sb3 = new StringBuilder();
-            sb3.append("SELECT tl.Pemeriksaan, dpl.nilai, tl.satuan, dpl.nilai_rujukan, dpl.biaya_item, dpl.keterangan, ");
-            sb3.append("dpl.kd_jenis_prw FROM detail_periksa_lab dpl INNER JOIN template_laboratorium tl ON tl.id_template=dpl.id_template ");
-            sb3.append("WHERE dpl.no_rawat =? AND dpl.kd_jenis_prw =? AND dpl.tgl_periksa =? AND dpl.jam =?");
-            ps3 = koneksi.prepareStatement(sb3.toString());
-            
-            StringBuilder sb4 = new StringBuilder();
-            sb4.append("SELECT pl.no_rawat, IFNULL(lr.no_lab,'-') no_lab, rp.no_rkm_medis, p.nm_pasien, p.jk, p.umur, pt.nama, ");
-            sb4.append("DATE_FORMAT(pl.tgl_periksa,'%d-%m-%Y') AS tgl_periksa, pl.jam, pl.dokter_perujuk, pl.kd_dokter, p.alamat, d.nm_dokter, ");
-            sb4.append("DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') AS lahir FROM periksa_lab pl INNER JOIN reg_periksa rp on rp.no_rawat=pl.no_rawat ");
-            sb4.append("INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis INNER JOIN petugas pt ON pt.nip=pl.nip INNER JOIN dokter d ON d.kd_dokter=pl.kd_dokter ");
-            sb4.append("LEFT JOIN lis_reg lr on lr.no_rawat=pl.no_rawat and lr.tgl_periksa=pl.tgl_periksa AND lr.jam_periksa=pl.jam ");
-            sb4.append("WHERE pl.tgl_periksa =? AND pl.jam =? AND pl.no_rawat =? GROUP BY concat(pl.no_rawat, pl.tgl_periksa, pl.jam)");
-            ps4 = koneksi.prepareStatement(sb4.toString());
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
         try {
             StringBuilder sb8 = new StringBuilder();
@@ -4406,64 +4364,12 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
-        try {
-            Valid.tabelKosong(tabMode);
-            ps.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-            ps.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-            ps.setString(3, "%" + NoRawat.getText() + "%");
-            ps.setString(4, "%" + kdmem.getText() + "%");
-            ps.setString(5, "%" + kdptg.getText() + "%");
-            ps.setString(6, "%" + TCari.getText().trim() + "%");
-            ps.setString(7, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-            ps.setString(8, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-            ps.setString(9, "%" + NoRawat.getText() + "%");
-            ps.setString(10, "%" + kdmem.getText() + "%");
-            ps.setString(11, "%" + kdptg.getText() + "%");
-            ps.setString(12, "%" + TCari.getText().trim() + "%");
-            ps.setString(13, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-            ps.setString(14, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-            ps.setString(15, "%" + NoRawat.getText() + "%");
-            ps.setString(16, "%" + kdmem.getText() + "%");
-            ps.setString(17, "%" + kdptg.getText() + "%");
-            ps.setString(18, "%" + TCari.getText().trim() + "%");
-            ps.setString(19, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-            ps.setString(20, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-            ps.setString(21, "%" + NoRawat.getText() + "%");
-            ps.setString(22, "%" + kdmem.getText() + "%");
-            ps.setString(23, "%" + kdptg.getText() + "%");
-            ps.setString(24, "%" + TCari.getText().trim() + "%");
-            ps.setString(25, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-            ps.setString(26, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-            ps.setString(27, "%" + NoRawat.getText() + "%");
-            ps.setString(28, "%" + kdmem.getText() + "%");
-            ps.setString(29, "%" + kdptg.getText() + "%");
-            ps.setString(30, "%" + TCari.getText().trim() + "%");
-            ps.setString(31, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-            ps.setString(32, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-            ps.setString(33, "%" + NoRawat.getText() + "%");
-            ps.setString(34, "%" + kdmem.getText() + "%");
-            ps.setString(35, "%" + kdptg.getText() + "%");
-            ps.setString(36, "%" + TCari.getText().trim() + "%");            
-            ps.setString(37, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-            ps.setString(38, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-            ps.setString(39, "%" + NoRawat.getText() + "%");
-            ps.setString(40, "%" + kdmem.getText() + "%");
-            ps.setString(41, "%" + kdptg.getText() + "%");
-            ps.setString(42, "%" + TCari.getText().trim() + "%");
+        Valid.tabelKosong(tabMode);
+        try {            
+            queryTampil();
             rs = ps.executeQuery();
             ttl = 0;
             while (rs.next()) {
-                cekSttsBayar = "";
-                if (rs.getString("kd_pj").equals("U01")) {
-                    if (Sequel.cariRegistrasi(rs.getString("no_rawat")) > 0) {
-                        cekSttsBayar = "(Sudah Lunas)";
-                    } else {
-                        cekSttsBayar = "(Belum Bayar)";
-                    }
-                } else {
-                    cekSttsBayar = "(Piutang)";
-                }
-                
                 kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat='" + rs.getString("no_rawat") + "' order by tgl_masuk desc limit 1");
                 if (!kamar.equals("")) {
                     namakamar = kamar + ", " + Sequel.cariIsi("select nm_bangsal from bangsal inner join kamar on bangsal.kd_bangsal=kamar.kd_bangsal "
@@ -4527,7 +4433,8 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                     }
                 }
                 if (item > 0) {
-                    tabMode.addRow(new Object[]{"", "", "Total Biaya Pemeriksaan : Rp. " + Valid.SetAngka(item) + ", Cara Bayar : " + rs.getString("png_jawab") + " " + cekSttsBayar,
+                    tabMode.addRow(new Object[]{"", "", "Total Biaya Pemeriksaan : Rp. " + Valid.SetAngka(item)
+                        + ", Cara Bayar : " + rs.getString("png_jawab") + " (" + rs.getString("cekBayar") + ")",
                         "", "", "", "", ""});
                 }
             }
@@ -4836,5 +4743,56 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             }
         }        
         LCount.setText(Valid.SetAngka(jmlnorwt));
+    }
+    
+    private void queryTampil() {
+        String cariData = "", cariBayar = "";
+        cariData = "pl.no_rawat LIKE '%" + NoRawat.getText() + "%' OR "
+                + "rp.no_rkm_medis LIKE '%" + kdmem.getText() + "%' OR "
+                + "pt.nip LIKE '%" + kdptg.getText() + "%' OR "
+                + "p.nm_pasien LIKE '%" + TCari.getText() + "%' OR "
+                + "pt.nama LIKE '%" + TCari.getText() + "%' OR "
+                + "lr.no_lab LIKE '%" + TCari.getText() + "%' OR "
+                + "pj.png_jawab LIKE '%" + TCari.getText() + "%' OR "
+                + "IF(IFNULL(h.no_lab,'-')='-','Belum','Sudah') LIKE '%" + TCari.getText() + "%'";
+        cariBayar = "cekBayar LIKE '%" + TCari.getText() + "%'";
+        
+        try {
+            StringBuilder sb1 = new StringBuilder();
+            sb1.append("SELECT pl.no_rawat, IFNULL(lr.no_lab,'-') no_lab, rp.no_rkm_medis, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') AS umur_thn, ");
+            sb1.append("pt.nama, pl.tgl_periksa, pl.jam, pl.dokter_perujuk, pl.kd_dokter, d.nm_dokter,IF(ifnull(h.no_lab,'-')='-','Belum','Sudah') hasil, rp.kd_pj, pj.png_jawab, ");
+            sb1.append("CASE WHEN rp.kd_pj='U01' THEN IF(COUNT(bl.no_rawat) > 0, 'Sudah Lunas', 'Belum Bayar') ");
+            sb1.append("ELSE IF(COUNT(pp.no_rawat) > 0, 'Piutang', 'Transaksi Belum Selesai') END cekBayar ");
+            sb1.append("FROM periksa_lab pl INNER JOIN reg_periksa rp on rp.no_rawat=pl.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+            sb1.append("INNER JOIN petugas pt on pt.nip=pl.nip INNER JOIN dokter d on d.kd_dokter=pl.kd_dokter INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj ");
+            sb1.append("LEFT JOIN lis_reg lr on lr.no_rawat=pl.no_rawat and lr.tgl_periksa=pl.tgl_periksa AND lr.jam_periksa=pl.jam ");
+            sb1.append("left join lis_hasil_periksa_lab h on h.no_lab = lr.no_lab LEFT JOIN billing bl ON bl.no_rawat=pl.no_rawat LEFT JOIN piutang_pasien pp ON pp.no_rawat=pl.no_rawat WHERE ");
+            sb1.append("pl.tgl_periksa BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND (" + cariData + ") ");
+            sb1.append("GROUP BY concat(pl.no_rawat, pl.tgl_periksa, pl.jam) HAVING " + cariBayar + " order by pl.tgl_periksa desc, pl.jam desc");
+            ps = koneksi.prepareStatement(sb1.toString());
+
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append("SELECT jpl.kd_jenis_prw, jpl.nm_perawatan, pl.biaya FROM periksa_lab pl ");
+            sb2.append("INNER JOIN jns_perawatan_lab jpl ON jpl.kd_jenis_prw=pl.kd_jenis_prw WHERE pl.no_rawat =? AND pl.tgl_periksa =? AND pl.jam =?");
+            ps2 = koneksi.prepareStatement(sb2.toString());
+
+            StringBuilder sb3 = new StringBuilder();
+            sb3.append("SELECT tl.Pemeriksaan, dpl.nilai, tl.satuan, dpl.nilai_rujukan, dpl.biaya_item, dpl.keterangan, ");
+            sb3.append("dpl.kd_jenis_prw FROM detail_periksa_lab dpl INNER JOIN template_laboratorium tl ON tl.id_template=dpl.id_template ");
+            sb3.append("WHERE dpl.no_rawat =? AND dpl.kd_jenis_prw =? AND dpl.tgl_periksa =? AND dpl.jam =?");
+            ps3 = koneksi.prepareStatement(sb3.toString());
+
+            StringBuilder sb4 = new StringBuilder();
+            sb4.append("SELECT pl.no_rawat, IFNULL(lr.no_lab,'-') no_lab, rp.no_rkm_medis, p.nm_pasien, p.jk, p.umur, pt.nama, ");
+            sb4.append("DATE_FORMAT(pl.tgl_periksa,'%d-%m-%Y') AS tgl_periksa, pl.jam, pl.dokter_perujuk, pl.kd_dokter, p.alamat, d.nm_dokter, ");
+            sb4.append("DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') AS lahir FROM periksa_lab pl INNER JOIN reg_periksa rp on rp.no_rawat=pl.no_rawat ");
+            sb4.append("INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis INNER JOIN petugas pt ON pt.nip=pl.nip INNER JOIN dokter d ON d.kd_dokter=pl.kd_dokter ");
+            sb4.append("LEFT JOIN lis_reg lr on lr.no_rawat=pl.no_rawat and lr.tgl_periksa=pl.tgl_periksa AND lr.jam_periksa=pl.jam ");
+            sb4.append("WHERE pl.tgl_periksa =? AND pl.jam =? AND pl.no_rawat =? GROUP BY concat(pl.no_rawat, pl.tgl_periksa, pl.jam)");
+            ps4 = koneksi.prepareStatement(sb4.toString());
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 }
