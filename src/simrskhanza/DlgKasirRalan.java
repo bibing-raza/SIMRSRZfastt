@@ -96,6 +96,7 @@ import rekammedis.DlgVerifikasiCPPT;
 import rekammedis.RMAsesmenAwalKebidanan1;
 import rekammedis.RMDokumenPenunjangMedis;
 import rekammedis.RMLembarObservasi;
+import rekammedis.RMPasienUntukTindakan;
 import rekammedis.RMPengelolaanTransfusiDarah;
 import rekammedis.RMPenilaianAwalKeperawatanIGDrz;
 import rekammedis.RMPenilaianAwalKeperawatanKebidanan;
@@ -827,6 +828,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnTransferSerahTerimaIGDPonek = new javax.swing.JMenu();
         MnInputDataTransferSerahTerimaIGDPonek = new javax.swing.JMenuItem();
         MnLihatDataTransferSerahTerimaIGDPonek = new javax.swing.JMenuItem();
+        MnTransferTindakan = new javax.swing.JMenuItem();
         MnPemberianObat = new javax.swing.JMenuItem();
         MnPetugasPemberianObat = new javax.swing.JMenuItem();
         MnLembarObservasi = new javax.swing.JMenuItem();
@@ -2656,6 +2658,23 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnTransferSerahTerimaIGDPonek.add(MnLihatDataTransferSerahTerimaIGDPonek);
 
         MnRMGawatDarurat.add(MnTransferSerahTerimaIGDPonek);
+
+        MnTransferTindakan.setBackground(new java.awt.Color(255, 255, 254));
+        MnTransferTindakan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTransferTindakan.setForeground(new java.awt.Color(50, 50, 50));
+        MnTransferTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTransferTindakan.setText("Transfer Pasien Untuk Tindakan");
+        MnTransferTindakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTransferTindakan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTransferTindakan.setIconTextGap(5);
+        MnTransferTindakan.setName("MnTransferTindakan"); // NOI18N
+        MnTransferTindakan.setPreferredSize(new java.awt.Dimension(260, 26));
+        MnTransferTindakan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTransferTindakanActionPerformed(evt);
+            }
+        });
+        MnRMGawatDarurat.add(MnTransferTindakan);
 
         MnPemberianObat.setBackground(new java.awt.Color(255, 255, 254));
         MnPemberianObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -10416,6 +10435,30 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnRekapPediaLevel5ActionPerformed
 
+    private void MnTransferTindakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTransferTindakanActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (tbKasirRalan.getSelectedRow() != -1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgKasirRalan");
+                RMPasienUntukTindakan form = new RMPasienUntukTindakan(null, false);
+                form.emptTeksSebelum();
+                form.isCek();
+                form.setData(TNoRw.getText(), NoRM.getText(), Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + NoRM.getText() + "'"),
+                        Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }   
+        }
+    }//GEN-LAST:event_MnTransferTindakanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -10625,6 +10668,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnTeridentifikasiTB;
     private javax.swing.JMenu MnTindakanRalan;
     private javax.swing.JMenu MnTransferSerahTerimaIGDPonek;
+    private javax.swing.JMenuItem MnTransferTindakan;
     private javax.swing.JMenuItem MnUpdateJadwalOperasi;
     private javax.swing.JMenuItem MnVerifCPPT;
     private javax.swing.JMenuItem MnVerifCPPTvk;
@@ -11344,6 +11388,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         ppPengelolaanTransfusiDarah.setEnabled(akses.getcppt());
         MnPiutangPasien.setEnabled(akses.getbilling_ralan());
         MnJaminanTransaksi.setEnabled(akses.getbilling_ralan());
+        MnTransferTindakan.setEnabled(akses.getdata_triase_igd());
 
         if (akses.getbpjs_sep() == true || akses.getberi_obat() == true || akses.getadmin() == true) {
             ppProgramPRB.setEnabled(true);
