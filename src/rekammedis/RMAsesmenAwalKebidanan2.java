@@ -4244,7 +4244,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                                 + "COALESCE(waktu_simpan, '-') AS waktu_simpan "
                                 + "FROM (SELECT * FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE no_rawat = '" + noRawat + "' "
                                 + "UNION ALL "
-                                + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL "
+                                + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL from dual "
                                 + "WHERE NOT EXISTS (SELECT 1 FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE "
                                 + "no_rawat = '" + noRawat + "')) AS x ORDER BY x.waktu_simpan IS NULL, x.waktu_simpan", param);
 
@@ -7176,7 +7176,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                                     + "COALESCE(waktu_simpan, '-') AS waktu_simpan "
                                     + "FROM (SELECT * FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE no_rawat = '" + rsPrev.getString("no_rawat") + "' "
                                     + "UNION ALL "
-                                    + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL "
+                                    + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL from dual "
                                     + "WHERE NOT EXISTS (SELECT 1 FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE "
                                     + "no_rawat = '" + rsPrev.getString("no_rawat") + "')) AS x ORDER BY x.waktu_simpan IS NULL, x.waktu_simpan");
                             try {

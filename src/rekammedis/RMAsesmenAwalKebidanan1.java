@@ -767,7 +767,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         Tgr.setDocument(new batasInput((int) 7).getKata(Tgr));
         Tpr.setDocument(new batasInput((int) 7).getKata(Tpr));
         Ta.setDocument(new batasInput((int) 7).getKata(Ta));
-        Thamil.setDocument(new batasInput((int) 3).getKata(Thamil));
+        Thamil.setDocument(new batasInput((int) 15).getKata(Thamil));
         Tgpapah.setDocument(new batasInput((int) 100).getKata(Tgpapah));
         Tdengan.setDocument(new batasInput((int) 180).getKata(Tdengan));
         Tpergerakan.setDocument(new batasInput((byte) 3).getOnlyAngka(Tpergerakan));
@@ -6702,7 +6702,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                 + "COALESCE(waktu_simpan, '-') AS waktu_simpan "
                                 + "FROM (SELECT * FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE no_rawat = '" + TNoRw.getText() + "' "
                                 + "UNION ALL "
-                                + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL "
+                                + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL from dual "
                                 + "WHERE NOT EXISTS (SELECT 1 FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE "
                                 + "no_rawat = '" + TNoRw.getText() + "')) AS x ORDER BY x.waktu_simpan IS NULL, x.waktu_simpan", param);
 
@@ -12195,7 +12195,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                     + "COALESCE(waktu_simpan, '-') AS waktu_simpan "
                                     + "FROM (SELECT * FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE no_rawat = '" + rsPrev.getString("no_rawat") + "' "
                                     + "UNION ALL "
-                                    + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL "
+                                    + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL from dual "
                                     + "WHERE NOT EXISTS (SELECT 1 FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE "
                                     + "no_rawat = '" + rsPrev.getString("no_rawat") + "')) AS x ORDER BY x.waktu_simpan IS NULL, x.waktu_simpan");
                             try {
