@@ -601,6 +601,8 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         ketklinis = new widget.TextBox();
         jLabel3 = new widget.Label();
         ketAktif = new widget.Label();
+        label19 = new widget.Label();
+        cmbSttsTran = new widget.ComboBox();
         panelisi1 = new widget.panelisi();
         label10 = new widget.Label();
         TCari = new widget.TextBox();
@@ -1814,14 +1816,14 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
             }
         });
         panelisi3.add(ketklinis);
-        ketklinis.setBounds(79, 70, 397, 23);
+        ketklinis.setBounds(79, 70, 310, 23);
 
         jLabel3.setForeground(new java.awt.Color(0, 51, 255));
         jLabel3.setText("Bridging LIS :");
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
         panelisi3.add(jLabel3);
-        jLabel3.setBounds(480, 70, 88, 23);
+        jLabel3.setBounds(645, 70, 88, 23);
 
         ketAktif.setForeground(new java.awt.Color(0, 51, 255));
         ketAktif.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1829,7 +1831,20 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         ketAktif.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         ketAktif.setName("ketAktif"); // NOI18N
         panelisi3.add(ketAktif);
-        ketAktif.setBounds(575, 70, 400, 23);
+        ketAktif.setBounds(740, 70, 400, 23);
+
+        label19.setForeground(new java.awt.Color(0, 0, 0));
+        label19.setText("Status Transaksi :");
+        label19.setName("label19"); // NOI18N
+        label19.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelisi3.add(label19);
+        label19.setBounds(390, 70, 100, 23);
+
+        cmbSttsTran.setForeground(new java.awt.Color(0, 0, 0));
+        cmbSttsTran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Sudah Lunas", "Belum Bayar", "Piutang", "Transaksi Belum Selesai" }));
+        cmbSttsTran.setName("cmbSttsTran"); // NOI18N
+        panelisi3.add(cmbSttsTran);
+        cmbSttsTran.setBounds(495, 70, 145, 23);
 
         internalFrame1.add(panelisi3, java.awt.BorderLayout.PAGE_START);
 
@@ -1945,7 +1960,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi1.add(jLabel25);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-09-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -4293,6 +4308,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.Button btnPenjab;
     private widget.Button btnPetugas;
     private widget.TextBox caraByr;
+    private widget.ComboBox cmbSttsTran;
     private widget.TextBox dAwal;
     private widget.TextBox dataPasien;
     private widget.TextBox dokter_pengirim;
@@ -4347,6 +4363,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.Label label16;
     private widget.Label label17;
     private widget.Label label18;
+    private widget.Label label19;
     private widget.TextBox nLab;
     private widget.TextBox nRawat;
     private widget.TextBox nmmem;
@@ -4747,15 +4764,20 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     
     private void queryTampil() {
         String cariData = "", cariBayar = "";
-        cariData = "pl.no_rawat LIKE '%" + NoRawat.getText() + "%' OR "
-                + "rp.no_rkm_medis LIKE '%" + kdmem.getText() + "%' OR "
-                + "pt.nip LIKE '%" + kdptg.getText() + "%' OR "
+        cariData = "pl.no_rawat LIKE '%" + TCari.getText() + "%' OR "
+                + "rp.no_rkm_medis LIKE '%" + TCari.getText() + "%' OR "
+                + "pt.nip LIKE '%" + TCari.getText() + "%' OR "
                 + "p.nm_pasien LIKE '%" + TCari.getText() + "%' OR "
                 + "pt.nama LIKE '%" + TCari.getText() + "%' OR "
                 + "lr.no_lab LIKE '%" + TCari.getText() + "%' OR "
                 + "pj.png_jawab LIKE '%" + TCari.getText() + "%' OR "
                 + "IF(IFNULL(h.no_lab,'-')='-','Belum','Sudah') LIKE '%" + TCari.getText() + "%'";
-        cariBayar = "cekBayar LIKE '%" + TCari.getText() + "%'";
+        
+        if (cmbSttsTran.getSelectedIndex() == 0) {
+            cariBayar = "";
+        } else {
+            cariBayar = "HAVING cekBayar = '" + cmbSttsTran.getSelectedItem().toString() + "'";
+        }
         
         try {
             StringBuilder sb1 = new StringBuilder();
@@ -4768,7 +4790,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             sb1.append("LEFT JOIN lis_reg lr on lr.no_rawat=pl.no_rawat and lr.tgl_periksa=pl.tgl_periksa AND lr.jam_periksa=pl.jam ");
             sb1.append("left join lis_hasil_periksa_lab h on h.no_lab = lr.no_lab LEFT JOIN billing bl ON bl.no_rawat=pl.no_rawat LEFT JOIN piutang_pasien pp ON pp.no_rawat=pl.no_rawat WHERE ");
             sb1.append("pl.tgl_periksa BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND (" + cariData + ") ");
-            sb1.append("GROUP BY concat(pl.no_rawat, pl.tgl_periksa, pl.jam) HAVING " + cariBayar + " order by pl.tgl_periksa desc, pl.jam desc");
+            sb1.append("GROUP BY concat(pl.no_rawat, pl.tgl_periksa, pl.jam) " + cariBayar + " order by pl.tgl_periksa desc, pl.jam desc");
             ps = koneksi.prepareStatement(sb1.toString());
 
             StringBuilder sb2 = new StringBuilder();

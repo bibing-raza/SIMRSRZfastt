@@ -844,6 +844,8 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         BtnUnit = new widget.Button();
         label12 = new widget.Label();
         diagKlinis = new widget.TextBox();
+        label14 = new widget.Label();
+        cmbSttsTran = new widget.ComboBox();
         panelisi1 = new widget.panelisi();
         label10 = new widget.Label();
         TCari = new widget.TextBox();
@@ -1984,7 +1986,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel51.setBounds(0, 25, 130, 23);
 
         tanggalPeriksa.setEditable(false);
-        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-09-2025" }));
+        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2025" }));
         tanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         tanggalPeriksa.setName("tanggalPeriksa"); // NOI18N
         tanggalPeriksa.setOpaque(false);
@@ -2795,7 +2797,20 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         diagKlinis.setName("diagKlinis"); // NOI18N
         diagKlinis.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisi3.add(diagKlinis);
-        diagKlinis.setBounds(109, 70, 640, 23);
+        diagKlinis.setBounds(109, 70, 310, 23);
+
+        label14.setForeground(new java.awt.Color(0, 0, 0));
+        label14.setText("Status Transaksi :");
+        label14.setName("label14"); // NOI18N
+        label14.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelisi3.add(label14);
+        label14.setBounds(420, 70, 100, 23);
+
+        cmbSttsTran.setForeground(new java.awt.Color(0, 0, 0));
+        cmbSttsTran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Sudah Lunas", "Belum Bayar", "Piutang", "Transaksi Belum Selesai" }));
+        cmbSttsTran.setName("cmbSttsTran"); // NOI18N
+        panelisi3.add(cmbSttsTran);
+        cmbSttsTran.setBounds(525, 70, 145, 23);
 
         internalFrame1.add(panelisi3, java.awt.BorderLayout.PAGE_START);
 
@@ -2934,7 +2949,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         panelisi1.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-09-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -5266,6 +5281,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     private widget.ComboBox cmbDtk1;
     private widget.ComboBox cmbJam1;
     private widget.ComboBox cmbMnt1;
+    private widget.ComboBox cmbSttsTran;
     private widget.TextBox diagKlinis;
     private widget.TextBox diagKlinisRad;
     private widget.TextBox dokterPengirim;
@@ -5331,6 +5347,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     private widget.Label label11;
     private widget.Label label12;
     private widget.Label label13;
+    private widget.Label label14;
     private widget.Label label15;
     private widget.Label label16;
     private widget.Label label17;
@@ -5800,9 +5817,9 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
 
     private void queryTampil() {
         String cariDataIgd = "", CariData = "", cariBayar = "";
-        cariDataIgd = "pr.no_rawat LIKE '%" + NoRawat.getText() + "%' OR "
-                + "rp.no_rkm_medis LIKE '%" + kdmem.getText() + "%' OR "
-                + "pt.nip LIKE '%" + kdptg.getText() + "%' OR "
+        cariDataIgd = "pr.no_rawat LIKE '%" + TCari.getText() + "%' OR "
+                + "rp.no_rkm_medis LIKE '%" + TCari.getText() + "%' OR "
+                + "pt.nip LIKE '%" + TCari.getText() + "%' OR "
                 + "p.nm_pasien LIKE '%" + TCari.getText() + "%' OR "
                 + "pt.nama LIKE '%" + TCari.getText() + "%' OR "
                 + "jpr.nm_perawatan LIKE '%" + TCari.getText() + "%' OR "
@@ -5810,9 +5827,9 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                 + "rp.kd_pj LIKE '%" + TCari.getText() + "%' OR "
                 + "d.nm_dokter LIKE '%" + TCari.getText() + "%'";
         
-        CariData = "pr.no_rawat LIKE '%" + NoRawat.getText() + "%' OR "
-                + "rp.no_rkm_medis LIKE '%" + kdmem.getText() + "%' OR "
-                + "pt.nip LIKE '%" + kdptg.getText() + "%' OR "
+        CariData = "pr.no_rawat LIKE '%" + TCari.getText() + "%' OR "
+                + "rp.no_rkm_medis LIKE '%" + TCari.getText() + "%' OR "
+                + "pt.nip LIKE '%" + TCari.getText() + "%' OR "
                 + "p.nm_pasien LIKE '%" + TCari.getText() + "%' OR "
                 + "pt.nama LIKE '%" + TCari.getText() + "%' OR "
                 + "jpr.nm_perawatan LIKE '%" + TCari.getText() + "%' OR "
@@ -5821,7 +5838,12 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                 + "pj.png_jawab LIKE '%" + TCari.getText() + "%' OR "
                 + "rp.kd_pj LIKE '%" + TCari.getText() + "%' OR "
                 + "d.nm_dokter LIKE '%" + TCari.getText() + "%'";
-        cariBayar = "cekBayar LIKE '%" + TCari.getText() + "%'";
+
+        if (cmbSttsTran.getSelectedIndex() == 0) {
+            cariBayar = "";
+        } else {
+            cariBayar = "HAVING cekBayar = '" + cmbSttsTran.getSelectedItem().toString() + "'";
+        }
         
         try {
             if (khususIgd.equals("ya")) {
@@ -5835,7 +5857,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                 sb1.append("inner join jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw inner join poliklinik pl on pl.kd_poli=rp.kd_poli ");
                 sb1.append("LEFT JOIN billing bl ON bl.no_rawat=pr.no_rawat LEFT JOIN piutang_pasien pp ON pp.no_rawat=pr.no_rawat where ");
                 sb1.append("pr.tgl_periksa BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND rp.kd_poli = 'igdk' AND (" + cariDataIgd + ") ");
-                sb1.append("group by concat(pr.no_rawat,pr.tgl_periksa,pr.jam) HAVING " + cariBayar + " order by pr.tgl_periksa desc, pr.jam desc");
+                sb1.append("group by concat(pr.no_rawat,pr.tgl_periksa,pr.jam) " + cariBayar + " order by pr.tgl_periksa desc, pr.jam desc");
                 ps = koneksi.prepareStatement(sb1.toString());
             } else {
                 StringBuilder sb1 = new StringBuilder();
@@ -5850,7 +5872,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                 sb1.append("left join bangsal b on b.kd_bangsal=k.kd_bangsal LEFT JOIN billing bl ON bl.no_rawat=pr.no_rawat ");
                 sb1.append("LEFT JOIN piutang_pasien pp ON pp.no_rawat=pr.no_rawat where ");
                 sb1.append("pr.tgl_periksa BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND (" + CariData + ") ");
-                sb1.append("group by concat(pr.no_rawat,pr.tgl_periksa,pr.jam) HAVING " + cariBayar + " order by pr.tgl_periksa desc, pr.jam desc");
+                sb1.append("group by concat(pr.no_rawat,pr.tgl_periksa,pr.jam) " + cariBayar + " order by pr.tgl_periksa desc, pr.jam desc");
                 ps = koneksi.prepareStatement(sb1.toString());
             }
       
