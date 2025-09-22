@@ -42,8 +42,8 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
     private DlgCariJumlahPemberianDiet jlhberi = new DlgCariJumlahPemberianDiet(null, false);
     private DlgCariBangsal bangsal = new DlgCariBangsal(null, false);
     private int i = 0, x = 0, cekBonGZ = 0, cekDataKetepatanDiet = 0, cekDataLabel = 0;
-    private String jnsRawat = "", kdUnit = "", kdPoli = "", tglDietAwal = "", waktuAwal = "",
-            nama_unit = "", nmHari = "", nmHari1 = "", nmDay = "", nmDay1 = "", dataDiet = "",
+    private String jnsRawat = "", kdUnit = "", kdPoli = "", tglDietAwal = "", waktuAwal = "", 
+            nama_unit = "", nmHari = "", nmHari1 = "", dataDiet = "",
             waktuSimpan = "", kemasan = "", waktuSimpanDiet = "";
 
     /**
@@ -758,7 +758,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         BtnCari4.setBorder(null);
         BtnCari4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari4.setMnemonic('2');
         BtnCari4.setText("Tampilkan Data");
         BtnCari4.setName("BtnCari4"); // NOI18N
         BtnCari4.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -776,7 +775,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnAll4.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll4.setMnemonic('M');
         BtnAll4.setText("Semua Data");
         BtnAll4.setToolTipText("Alt+M");
         BtnAll4.setName("BtnAll4"); // NOI18N
@@ -814,7 +812,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass13.add(jLabel100);
 
         tglKun.setEditable(false);
-        tglKun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
+        tglKun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
         tglKun.setDisplayFormat("dd-MM-yyyy");
         tglKun.setName("tglKun"); // NOI18N
         tglKun.setOpaque(false);
@@ -828,7 +826,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass13.add(jLabel99);
 
         tglDiet.setEditable(false);
-        tglDiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
+        tglDiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
         tglDiet.setDisplayFormat("dd-MM-yyyy");
         tglDiet.setName("tglDiet"); // NOI18N
         tglDiet.setOpaque(false);
@@ -855,7 +853,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnLabelGZ.setForeground(new java.awt.Color(0, 0, 0));
         BtnLabelGZ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnLabelGZ.setMnemonic('C');
         BtnLabelGZ.setText("Cetak");
         BtnLabelGZ.setToolTipText("Alt+C");
         BtnLabelGZ.setName("BtnLabelGZ"); // NOI18N
@@ -870,7 +867,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         BtnBatal1.setBorder(null);
         BtnBatal1.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal1.setMnemonic('B');
         BtnBatal1.setText("Baru");
         BtnBatal1.setToolTipText("Alt+B");
         BtnBatal1.setName("BtnBatal1"); // NOI18N
@@ -884,7 +880,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnCloseIn10.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn10.setMnemonic('U');
         BtnCloseIn10.setText("Keluar");
         BtnCloseIn10.setToolTipText("Alt+U");
         BtnCloseIn10.setName("BtnCloseIn10"); // NOI18N
@@ -967,7 +962,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         btnDiet.setForeground(new java.awt.Color(0, 0, 0));
         btnDiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnDiet.setMnemonic('X');
         btnDiet.setToolTipText("Alt+X");
         btnDiet.setName("btnDiet"); // NOI18N
         btnDiet.addActionListener(new java.awt.event.ActionListener() {
@@ -980,7 +974,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         btnJumlahBeri.setForeground(new java.awt.Color(0, 0, 0));
         btnJumlahBeri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnJumlahBeri.setMnemonic('X');
         btnJumlahBeri.setToolTipText("Alt+X");
         btnJumlahBeri.setName("btnJumlahBeri"); // NOI18N
         btnJumlahBeri.addActionListener(new java.awt.event.ActionListener() {
@@ -1005,7 +998,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnSimpan2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan2.setMnemonic('S');
         BtnSimpan2.setText("Simpan");
         BtnSimpan2.setToolTipText("Alt+S");
         BtnSimpan2.setName("BtnSimpan2"); // NOI18N
@@ -1019,7 +1011,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -1038,7 +1029,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnCloseIn3.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn3.setMnemonic('U');
         BtnCloseIn3.setText("Tutup");
         BtnCloseIn3.setToolTipText("Alt+U");
         BtnCloseIn3.setName("BtnCloseIn3"); // NOI18N
@@ -1082,7 +1072,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -1101,7 +1090,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -1120,7 +1108,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -1147,7 +1134,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1206,7 +1192,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnSeek2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnSeek2.setMnemonic('X');
         BtnSeek2.setToolTipText("Alt+X");
         BtnSeek2.setName("BtnSeek2"); // NOI18N
         BtnSeek2.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1235,7 +1220,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass10.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1255,7 +1240,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass10.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1286,7 +1271,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         BtnCari.setBorder(null);
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -1313,7 +1297,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setMnemonic('M');
         ChkInput.setText(".: Input Data");
         ChkInput.setBorderPainted(true);
         ChkInput.setBorderPaintedFlat(true);
@@ -1349,7 +1332,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         TPasien.setBounds(155, 42, 310, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1369,7 +1352,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnPilihDiet.setForeground(new java.awt.Color(0, 0, 0));
         BtnPilihDiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPilihDiet.setMnemonic('P');
         BtnPilihDiet.setText("Pilihan Diet");
         BtnPilihDiet.setToolTipText("Alt+P");
         BtnPilihDiet.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1450,7 +1432,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnHapusPilihan.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusPilihan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapusPilihan.setMnemonic('H');
         BtnHapusPilihan.setText("Hapus Dipilih");
         BtnHapusPilihan.setToolTipText("Alt+H");
         BtnHapusPilihan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1467,7 +1448,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti Dipilih");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -3164,43 +3144,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private void PrinBonDiet() {
         nmHari = "";
         nmHari1 = "";
-        nmDay = "";
-        nmDay1 = "";
-
-        nmDay = Sequel.cariIsi("SELECT DATE_FORMAT('" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "','%W') hari");
-        nmDay1 = Sequel.cariIsi("SELECT DATE_FORMAT(now(),'%W') hari");
-
-        if (nmDay.equals("Monday")) {
-            nmHari = "Senin";
-        } else if (nmDay.equals("Tuesday")) {
-            nmHari = "Selasa";
-        } else if (nmDay.equals("Wednesday")) {
-            nmHari = "Rabu";
-        } else if (nmDay.equals("Thursday")) {
-            nmHari = "Kamis";
-        } else if (nmDay.equals("Friday")) {
-            nmHari = "Jum'at";
-        } else if (nmDay.equals("Saturday")) {
-            nmHari = "Sabtu";
-        } else if (nmDay.equals("Sunday")) {
-            nmHari = "Minggu";
-        }
-
-        if (nmDay1.equals("Monday")) {
-            nmHari1 = "Senin";
-        } else if (nmDay1.equals("Tuesday")) {
-            nmHari1 = "Selasa";
-        } else if (nmDay1.equals("Wednesday")) {
-            nmHari1 = "Rabu";
-        } else if (nmDay1.equals("Thursday")) {
-            nmHari1 = "Kamis";
-        } else if (nmDay1.equals("Friday")) {
-            nmHari1 = "Jum'at";
-        } else if (nmDay1.equals("Saturday")) {
-            nmHari1 = "Sabtu";
-        } else if (nmDay1.equals("Sunday")) {
-            nmHari1 = "Minggu";
-        }
+        nmHari = Sequel.hariINDONESIA("SELECT DATE_FORMAT('" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "','%W')");
+        nmHari1 = Sequel.hariINDONESIA("SELECT DATE_FORMAT(now(),'%W')");
 
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         Map<String, Object> param = new HashMap<>();
@@ -3213,7 +3158,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         param.put("logo", Sequel.cariGambar("select logo from setting"));
         param.put("tgl_beri_diet", nmHari + ", " + tglDiet.getSelectedItem());
         param.put("tgl_sekarang", nmHari1 + ", " + Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%d-%m-%Y')"));
-        param.put("nm_unit", "BON DIET MAKANAN PASIEN POLIKLINIK/INSTALASI " + nama_unit);
+        param.put("nm_unit", "DAFTAR NAMA PASIEN POLIKLINIK/INSTALASI " + nama_unit);
         Valid.MyReport("rptbondietRalan.jasper", "report", "::[ Bon Diet Makanan Pasien ]::",
                 "SELECT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lhr, "
                 + "pl.nm_poli, lower(IFNULL(pr.diagnosa, '-')) diag_resum, IFNULL(d.nama_diet, '') nm_diet FROM reg_periksa rp "
@@ -3261,43 +3206,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private void PrinKetepatanDiet() {
         nmHari = "";
         nmHari1 = "";
-        nmDay = "";
-        nmDay1 = "";
-
-        nmDay = Sequel.cariIsi("SELECT DATE_FORMAT('" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "','%W') hari");
-        nmDay1 = Sequel.cariIsi("SELECT DATE_FORMAT(now(),'%W') hari");
-
-        if (nmDay.equals("Monday")) {
-            nmHari = "Senin";
-        } else if (nmDay.equals("Tuesday")) {
-            nmHari = "Selasa";
-        } else if (nmDay.equals("Wednesday")) {
-            nmHari = "Rabu";
-        } else if (nmDay.equals("Thursday")) {
-            nmHari = "Kamis";
-        } else if (nmDay.equals("Friday")) {
-            nmHari = "Jum'at";
-        } else if (nmDay.equals("Saturday")) {
-            nmHari = "Sabtu";
-        } else if (nmDay.equals("Sunday")) {
-            nmHari = "Minggu";
-        }
-
-        if (nmDay1.equals("Monday")) {
-            nmHari1 = "Senin";
-        } else if (nmDay1.equals("Tuesday")) {
-            nmHari1 = "Selasa";
-        } else if (nmDay1.equals("Wednesday")) {
-            nmHari1 = "Rabu";
-        } else if (nmDay1.equals("Thursday")) {
-            nmHari1 = "Kamis";
-        } else if (nmDay1.equals("Friday")) {
-            nmHari1 = "Jum'at";
-        } else if (nmDay1.equals("Saturday")) {
-            nmHari1 = "Sabtu";
-        } else if (nmDay1.equals("Sunday")) {
-            nmHari1 = "Minggu";
-        }
+        nmHari = Sequel.hariINDONESIA("SELECT DATE_FORMAT('" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "','%W')");
+        nmHari1 = Sequel.hariINDONESIA("SELECT DATE_FORMAT(now(),'%W')");
 
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         Map<String, Object> param = new HashMap<>();
