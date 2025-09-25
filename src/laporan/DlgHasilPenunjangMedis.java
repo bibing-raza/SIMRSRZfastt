@@ -24,6 +24,7 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -32,15 +33,15 @@ import javax.swing.table.TableColumn;
  * @author dosen
  */
 public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabModePembaca;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps, ps1, ps2, ps3, ps4;
-    private ResultSet rs, rs1, rs2, rs3, rs4;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5;
     private int i = 0, x = 0, cekRujukan = 0;
-    private String norawat = "", noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "",
+    private String norawat = "", noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", dokterBaca = "",
             drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "", nmpas = "", nomorrm = "", hasilDipilih = "",
             kdItem = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", kamar = "", kodeRujukan = "";
 
@@ -50,6 +51,9 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     public DlgHasilPenunjangMedis(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         tabMode = new DefaultTableModel(null, new Object[]{
             "Pasien", "No. LIS", "Keterangan Hasil Lab.", "cekok", "norawat", "Tgl. Periksa",
@@ -137,6 +141,42 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             }
         }
         tbHasil.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabModePembaca = new DefaultTableModel(null, new String[]{
+            "No. LIS", "Dokter Pembaca", "Tgl. Periksa", "Jam Periksa", "Tgl. Baca", "Jam Baca"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbPembacaLIS.setModel(tabModePembaca);
+        tbPembacaLIS.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbPembacaLIS.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        for (int i = 0; i < 6; i++) {
+            TableColumn column = tbPembacaLIS.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(75);
+            } else if (i == 1) {
+                column.setPreferredWidth(350);
+            } else if (i == 2) {
+                column.setPreferredWidth(75);
+            } else if (i == 3) {
+                column.setPreferredWidth(75);
+            } else if (i == 4) {
+                column.setPreferredWidth(70);
+            } else if (i == 5) {
+                column.setPreferredWidth(70);
+            }
+        }
+        tbPembacaLIS.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPembacaLIS.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbPembacaLIS.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbPembacaLIS.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbPembacaLIS.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbPembacaLIS.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
         
         tabMode2 = new DefaultTableModel(null, new Object[]{
             "No. RM", "Nama Pasien", "Jns. Rawat", "Pemeriksaan Rad.", "Dokter Perujuk", "Tgl. Periksa", "Jam Periksa",
@@ -241,8 +281,11 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         TabPemeriksaan = new javax.swing.JTabbedPane();
         internalFrame20 = new widget.InternalFrame();
         PanelInput = new javax.swing.JPanel();
+        panelGlass13 = new widget.panelisi();
         Scroll1 = new widget.ScrollPane();
         tbLIS = new widget.Table();
+        Scroll20 = new widget.ScrollPane();
+        tbPembacaLIS = new widget.Table();
         panelGlass9 = new widget.panelisi();
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
@@ -337,6 +380,10 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         PanelInput.setPreferredSize(new java.awt.Dimension(192, 280));
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
 
+        panelGlass13.setName("panelGlass13"); // NOI18N
+        panelGlass13.setPreferredSize(new java.awt.Dimension(55, 45));
+        panelGlass13.setLayout(new java.awt.GridLayout(1, 2));
+
         Scroll1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Nomor Pemeriksaan Lab. :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
@@ -356,7 +403,18 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         });
         Scroll1.setViewportView(tbLIS);
 
-        PanelInput.add(Scroll1, java.awt.BorderLayout.CENTER);
+        panelGlass13.add(Scroll1);
+
+        Scroll20.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Pembaca Hasil Pemeriksaan Lab. :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll20.setName("Scroll20"); // NOI18N
+        Scroll20.setOpaque(true);
+
+        tbPembacaLIS.setName("tbPembacaLIS"); // NOI18N
+        Scroll20.setViewportView(tbPembacaLIS);
+
+        panelGlass13.add(Scroll20);
+
+        PanelInput.add(panelGlass13, java.awt.BorderLayout.CENTER);
 
         panelGlass9.setName("panelGlass9"); // NOI18N
         panelGlass9.setPreferredSize(new java.awt.Dimension(55, 45));
@@ -392,7 +450,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('6');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+6");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -456,7 +513,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnConteng.setForeground(new java.awt.Color(0, 0, 0));
         BtnConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnConteng.setMnemonic('G');
         BtnConteng.setText("Conteng Semua");
         BtnConteng.setToolTipText("Alt+G");
         BtnConteng.setName("BtnConteng"); // NOI18N
@@ -470,7 +526,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnHapus.setMnemonic('M');
         BtnHapus.setText("Hapus Conteng");
         BtnHapus.setToolTipText("Alt+M");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -484,7 +539,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCopy.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopy.setMnemonic('U');
         BtnCopy.setText("Copy Hasil");
         BtnCopy.setToolTipText("Alt+U");
         BtnCopy.setName("BtnCopy"); // NOI18N
@@ -498,7 +552,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnPrinLab.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrinLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        BtnPrinLab.setMnemonic('P');
         BtnPrinLab.setText("Print Hasil Lab.");
         BtnPrinLab.setToolTipText("Alt+P");
         BtnPrinLab.setName("BtnPrinLab"); // NOI18N
@@ -512,7 +565,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -558,7 +610,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCopy1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopy1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopy1.setMnemonic('U');
         BtnCopy1.setText("Copy Hasil");
         BtnCopy1.setToolTipText("Alt+U");
         BtnCopy1.setName("BtnCopy1"); // NOI18N
@@ -584,7 +635,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnPrinRadiologi.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrinRadiologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        BtnPrinRadiologi.setMnemonic('P');
         BtnPrinRadiologi.setText("Print Expertise");
         BtnPrinRadiologi.setToolTipText("Alt+P");
         BtnPrinRadiologi.setName("BtnPrinRadiologi"); // NOI18N
@@ -598,7 +648,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -678,7 +727,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('6');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+6");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -751,6 +799,12 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                     param.put("drPengirim", drpengirim);
                     param.put("drLAB", Sequel.cariIsi("SELECT d.nm_dokter FROM set_pjlab s INNER JOIN dokter d ON d.kd_dokter=s.kd_dokterlab"));
                     param.put("tglSurat", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("SELECT DATE(waktu_insert) FROM lis_hasil_data_pasien WHERE no_lab='" + tbLIS.getValueAt(tbLIS.getSelectedRow(), 1).toString() + "'")));
+                    
+                    if (tbPembacaLIS.getRowCount() == 0) {
+                        param.put("dokterBaca", "- dokter belum membaca hasil -");
+                    } else {
+                        param.put("dokterBaca", dokterBaca);
+                    }
                     
                     kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat='" + norawat + "' order by tgl_masuk desc limit 1");
                     if (!kamar.equals("")) {
@@ -1150,6 +1204,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
+    private widget.ScrollPane Scroll20;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll4;
     private widget.TextBox TCari;
@@ -1171,11 +1226,13 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass12;
+    private widget.panelisi panelGlass13;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.Table tbHasil;
     private widget.Table tbHasilCopy;
     private widget.Table tbLIS;
+    private widget.Table tbPembacaLIS;
     private widget.Table tbRadiologi;
     // End of variables declaration//GEN-END:variables
  
@@ -1273,6 +1330,8 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             tglPeriksaLIS = Sequel.cariIsi("SELECT DATE(waktu_reg_lab) FROM lis_hasil_data_pasien WHERE no_lab='" + noLIS + "'");
             jamPeriksaLIS = Sequel.cariIsi("SELECT TIME(waktu_reg_lab) FROM lis_hasil_data_pasien WHERE no_lab='" + noLIS + "'");
             tampilHasil(noLIS);
+            tampilPembaca(tbLIS.getValueAt(tbLIS.getSelectedRow(), 4).toString(), noLIS, 
+                    Valid.SetTgl(tbLIS.getValueAt(tbLIS.getSelectedRow(), 5).toString() + ""), jamLIS);
         }
     }
     
@@ -1319,6 +1378,16 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                             rs3.getString("wkt_selesai"),
                             rs3.getString("metode")
                         });
+                        
+                        if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "' and status='1'") > 0) {
+                            Sequel.menyimpanIgnore("pembaca_hasil_lab",
+                                    "'" + tbLIS.getValueAt(tbLIS.getSelectedRow(), 4).toString() + "',"
+                                    + "'" + akses.getkode() + "',"
+                                    + "'" + tbLIS.getValueAt(tbLIS.getSelectedRow(), 1).toString() + "',"
+                                    + "'" + Valid.SetTgl(tbLIS.getValueAt(tbLIS.getSelectedRow(), 5).toString() + "") + "',"
+                                    + "'" + tbLIS.getValueAt(tbLIS.getSelectedRow(), 6).toString() + "',"
+                                    + "'" + Sequel.cariIsi("select now()") + "'", "Pembaca Hasil Lab.");
+                        }
                     }
                 }
             }
@@ -1414,6 +1483,47 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                     + "tgl_periksa like '%" + tglhasil + "%' and "
                     + "jam like '%" + jamhasil + "%' and "
                     + "kd_jenis_prw like '%" + kdItem + "%'"));
+        }
+    }
+    
+    private void tampilPembaca(String norw, String nolab, String tgl, String jam) {
+        dokterBaca = "";
+        Valid.tabelKosong(tabModePembaca);
+        try {
+            ps5 = koneksi.prepareStatement("SELECT ph.*, p.nama, date_format(ph.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(ph.waktu_simpan,'%d-%m-%Y') tglBaca, "
+                    + "time_format(ph.waktu_simpan,'%H:%i:%s') jamBaca FROM pembaca_hasil_lab ph inner join pegawai p on p.nik=ph.kd_dokter where "
+                    + "ph.no_rawat='" + norw + "' and ph.no_lab='" + nolab + "' and tgl_periksa='" + tgl + "' and jam_periksa='" + jam + "' order by waktu_simpan");            
+            try {
+                rs5 = ps5.executeQuery();
+                x = 0;
+                while (rs5.next()) {
+                    tabModePembaca.addRow(new String[]{
+                        rs5.getString("no_lab"),
+                        rs5.getString("nama"),
+                        rs5.getString("tglPeriksa"),
+                        rs5.getString("jam_periksa"),
+                        rs5.getString("tglBaca"),
+                        rs5.getString("jamBaca")
+                    });
+                    x++;
+                    if (dokterBaca.equals("")) {
+                        dokterBaca = x + ". " + rs5.getString("nama") + " (Tgl. " + rs5.getString("tglBaca") + ", Jam " + rs5.getString("jamBaca").substring(0, 5) + " Wita)";
+                    } else {
+                        dokterBaca = dokterBaca + "\n" + x + ". " + rs5.getString("nama") + " (Tgl. " + rs5.getString("tglBaca") + ", Jam " + rs5.getString("jamBaca").substring(0, 5) + " Wita)";
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs5 != null) {
+                    rs5.close();
+                }
+                if (ps5 != null) {
+                    ps5.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }

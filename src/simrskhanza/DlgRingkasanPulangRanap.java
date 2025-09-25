@@ -41,6 +41,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.HyperlinkEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
@@ -67,14 +68,14 @@ import simrskhanza.DlgCariDokter;
  */
 public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private final DefaultTableModel tabMode, tabMode1, tabMode2, tabModeResiko, tabModeCppt, tabModeLis, tabModeHasilLab, 
-            tabModeHasilCopy, tabModeRad, tabModeJangMed;
+            tabModeHasilCopy, tabModeRad, tabModeJangMed, tabModePembaca;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, psPasien, psdiag, pspros, psLaprm, psFakIGD, psRes, pscppt, 
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, psPasien, psdiag, pspros, psLaprm, psFakIGD, psRes, pscppt, 
             psLab1, psLabA, psLabB, psLabC, psRad, psFile, psRDO, psRDU, psRDD, psRDM;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rsPasien, rsdiag, rspros, rsLaprm, rsFakIGD, rsRes, rscppt, rsLab1, rsLabA, rsLabB, rsLabC,
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rsPasien, rsdiag, rspros, rsLaprm, rsFakIGD, rsRes, rscppt, rsLab1, rsLabA, rsLabB, rsLabC,
             rsRad, rsDok, rsFile, rsDiag, rsDiag1, rsObat, rsTHT, rsLISMaster, rsLIS1, rsLIS2, rsLIS3, rsDiabet, rsRDO, rsRDU, rsRDD, rsRDM;
     private int i = 0, x = 0, totskorTriase = 0, skorGZ1 = 0, skorYaGZ1 = 0, skorGZ2 = 0, skor = 0, pilihan = 0, urut = 0, cekPilihanRehab = 0,
             y = 0, w = 0, lisM = 0, lis1 = 0, lis2 = 0;
@@ -130,6 +131,9 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     public DlgRingkasanPulangRanap(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         tabMode = new DefaultTableModel(null, new String[]{
             "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Lahir", "Jns. Kelamin", "Tgl. Masuk", "Tgl. Pulang", "Ruang/Kelas Rawat",
@@ -279,6 +283,42 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         }
         tbFaktorResiko.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabModePembaca = new DefaultTableModel(null, new String[]{
+            "No. LIS", "Dokter Pembaca", "Tgl. Periksa", "Jam Periksa", "Tgl. Baca", "Jam Baca"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbPembacaLIS.setModel(tabModePembaca);
+        tbPembacaLIS.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbPembacaLIS.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        for (int i = 0; i < 6; i++) {
+            TableColumn column = tbPembacaLIS.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(75);
+            } else if (i == 1) {
+                column.setPreferredWidth(350);
+            } else if (i == 2) {
+                column.setPreferredWidth(75);
+            } else if (i == 3) {
+                column.setPreferredWidth(75);
+            } else if (i == 4) {
+                column.setPreferredWidth(70);
+            } else if (i == 5) {
+                column.setPreferredWidth(70);
+            }
+        }
+        tbPembacaLIS.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPembacaLIS.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbPembacaLIS.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbPembacaLIS.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbPembacaLIS.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbPembacaLIS.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
         
         tabMode1 = new DefaultTableModel(null, new Object[]{
             "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Lahir", "Jns. Kelamin", "Tgl. MRS", "Tgl. Pulang",
@@ -1051,8 +1091,11 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         BtnKeluar1 = new widget.Button();
         internalFrame29 = new widget.InternalFrame();
         PanelInput = new javax.swing.JPanel();
+        panelGlass11 = new widget.panelisi();
         Scroll12 = new widget.ScrollPane();
         tbLIS = new widget.Table();
+        Scroll31 = new widget.ScrollPane();
+        tbPembacaLIS = new widget.Table();
         panelGlass10 = new widget.panelisi();
         jLabel66 = new widget.Label();
         TCari3 = new widget.TextBox();
@@ -2049,7 +2092,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel101.setPreferredSize(new java.awt.Dimension(90, 23));
         internalFrame17.add(jLabel101);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2063,7 +2106,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel102.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel102);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2805,7 +2848,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2025" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -3578,6 +3621,10 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         PanelInput.setPreferredSize(new java.awt.Dimension(192, 280));
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
 
+        panelGlass11.setName("panelGlass11"); // NOI18N
+        panelGlass11.setPreferredSize(new java.awt.Dimension(55, 45));
+        panelGlass11.setLayout(new java.awt.GridLayout(1, 2));
+
         Scroll12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Nomor Pemeriksaan Lab. :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll12.setName("Scroll12"); // NOI18N
         Scroll12.setOpaque(true);
@@ -3597,7 +3644,18 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         });
         Scroll12.setViewportView(tbLIS);
 
-        PanelInput.add(Scroll12, java.awt.BorderLayout.CENTER);
+        panelGlass11.add(Scroll12);
+
+        Scroll31.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Pembaca Hasil Pemeriksaan Lab. :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll31.setName("Scroll31"); // NOI18N
+        Scroll31.setOpaque(true);
+
+        tbPembacaLIS.setName("tbPembacaLIS"); // NOI18N
+        Scroll31.setViewportView(tbPembacaLIS);
+
+        panelGlass11.add(Scroll31);
+
+        PanelInput.add(panelGlass11, java.awt.BorderLayout.CENTER);
 
         panelGlass10.setName("panelGlass10"); // NOI18N
         panelGlass10.setPreferredSize(new java.awt.Dimension(55, 45));
@@ -4162,7 +4220,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         });
         panelGlass26.add(ChkTanggal);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2025" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -4176,7 +4234,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel74.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass26.add(jLabel74);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2025" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -6326,6 +6384,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.ScrollPane Scroll29;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll30;
+    private widget.ScrollPane Scroll31;
     private widget.ScrollPane Scroll6;
     private widget.ScrollPane Scroll8;
     private widget.ScrollPane Scroll9;
@@ -6523,6 +6582,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.PanelBiasa panelBiasa8;
     private widget.PanelBiasa panelBiasa9;
     private widget.panelisi panelGlass10;
+    private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass14;
     private widget.panelisi panelGlass15;
     private widget.panelisi panelGlass16;
@@ -6552,6 +6612,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Table tbHasilCopy;
     private widget.Table tbLIS;
     private widget.Table tbPasien;
+    private widget.Table tbPembacaLIS;
     private widget.Table tbRadiologi;
     private widget.Table tbRingkasan;
     private widget.Table tbRiwayat;
@@ -9891,6 +9952,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             tglPeriksaLIS = Sequel.cariIsi("SELECT DATE(waktu_reg_lab) FROM lis_hasil_data_pasien WHERE no_lab='" + noLIS + "'");
             jamPeriksaLIS = Sequel.cariIsi("SELECT TIME(waktu_reg_lab) FROM lis_hasil_data_pasien WHERE no_lab='" + noLIS + "'");
             tampilHasil(noLIS);
+            tampilPembaca(tbLIS.getValueAt(tbLIS.getSelectedRow(), 4).toString(), noLIS, 
+                    Valid.SetTgl(tbLIS.getValueAt(tbLIS.getSelectedRow(), 5).toString() + ""), jamLIS);
         }
     }
     
@@ -9937,6 +10000,16 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                             rsLabC.getString("wkt_selesai"),
                             rsLabC.getString("metode")
                         });
+                        
+                        if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "' and status='1'") > 0) {
+                            Sequel.menyimpanIgnore("pembaca_hasil_lab",
+                                    "'" + tbLIS.getValueAt(tbLIS.getSelectedRow(), 4).toString() + "',"
+                                    + "'" + akses.getkode() + "',"
+                                    + "'" + tbLIS.getValueAt(tbLIS.getSelectedRow(), 1).toString() + "',"
+                                    + "'" + Valid.SetTgl(tbLIS.getValueAt(tbLIS.getSelectedRow(), 5).toString() + "") + "',"
+                                    + "'" + tbLIS.getValueAt(tbLIS.getSelectedRow(), 6).toString() + "',"
+                                    + "'" + Sequel.cariIsi("select now()") + "'", "Pembaca Hasil Lab.");
+                        }
                     }
                 }
             }
@@ -15794,6 +15867,39 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 }
             }
         } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilPembaca(String norw, String nolab, String tgl, String jam) {
+        Valid.tabelKosong(tabModePembaca);
+        try {
+            ps8 = koneksi.prepareStatement("SELECT ph.*, p.nama, date_format(ph.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(ph.waktu_simpan,'%d-%m-%Y') tglBaca, "
+                    + "time_format(ph.waktu_simpan,'%H:%i:%s') jamBaca FROM pembaca_hasil_lab ph inner join pegawai p on p.nik=ph.kd_dokter where "
+                    + "ph.no_rawat='" + norw + "' and ph.no_lab='" + nolab + "' and tgl_periksa='" + tgl + "' and jam_periksa='" + jam + "' order by waktu_simpan");            
+            try {
+                rs8 = ps8.executeQuery();
+                while (rs8.next()) {
+                    tabModePembaca.addRow(new String[]{
+                        rs8.getString("no_lab"),
+                        rs8.getString("nama"),
+                        rs8.getString("tglPeriksa"),
+                        rs8.getString("jam_periksa"),
+                        rs8.getString("tglBaca"),
+                        rs8.getString("jamBaca")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs8 != null) {
+                    rs8.close();
+                }
+                if (ps8 != null) {
+                    ps8.close();
+                }
+            }
+        } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
     }
