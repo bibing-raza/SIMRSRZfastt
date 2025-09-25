@@ -15,6 +15,7 @@ import inventory.DlgResepObat;
 import laporan.DlgDataHAIs;
 import bridging.AplicareCekReferensiKamar;
 import bridging.AplicareKetersediaanKamar;
+import bridging.ApotekBPJSMapingObat;
 import bridging.BPJSCekDataIndukKecelakaan;
 import bridging.BPJSCekFingerPrin;
 import bridging.BPJSCekKartu;
@@ -939,6 +940,7 @@ public class frmUtama extends javax.swing.JFrame {
         BtnJaminanTransaksi = new widget.ButtonBig();
         BtnPengembalianJaminanTransaksi = new widget.ButtonBig();
         btnLaporanIndikatorMutu = new widget.ButtonBig();
+        btnBPJSMapingObatApotek = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6409,6 +6411,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnLaporanIndikatorMutu);
 
+        btnBPJSMapingObatApotek.setForeground(new java.awt.Color(0, 0, 0));
+        btnBPJSMapingObatApotek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/bpjs_apotek.png"))); // NOI18N
+        btnBPJSMapingObatApotek.setText("Mapping Obat Apotek BPJS");
+        btnBPJSMapingObatApotek.setIconTextGap(0);
+        btnBPJSMapingObatApotek.setName("btnBPJSMapingObatApotek"); // NOI18N
+        btnBPJSMapingObatApotek.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnBPJSMapingObatApotek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBPJSMapingObatApotekActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnBPJSMapingObatApotek);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6417,7 +6432,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06/09/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25/09/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12619,6 +12634,18 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnLaporanIndikatorMutuActionPerformed
 
+    private void btnBPJSMapingObatApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBPJSMapingObatApotekActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        ApotekBPJSMapingObat form=new ApotekBPJSMapingObat(this,false);
+        form.isCek();
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnBPJSMapingObatApotekActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12696,6 +12723,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnAssesmenMedikIGD;
     private widget.ButtonBig btnAssesmenUlangGizi;
     private widget.ButtonBig btnAsuhanGiziRanap;
+    private widget.ButtonBig btnBPJSMapingObatApotek;
     private widget.ButtonBig btnBPJSSEP;
     private widget.ButtonBig btnBPJScekRiwayatRujukanPcare;
     private widget.ButtonBig btnBangsal;
@@ -14475,6 +14503,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
             
             if (akses.getadmin() == true) {
+                Panelmenu.add(btnBPJSMapingObatApotek);
+                jmlmenu++;
+            }
+            
+            if (akses.getadmin() == true) {
                 Panelmenu.add(btnMapingLokasiSatuSehat);
                 jmlmenu++;
             }
@@ -15268,6 +15301,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getadmin() == true) {
             Panelmenu.add(btnMapingLokasiSatuSehat);
+            jmlmenu++;
+        }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnBPJSMapingObatApotek);
             jmlmenu++;
         }
         
@@ -17275,6 +17313,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getadmin()== true) {
             if (btnMapingOrganisasiSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnMapingOrganisasiSatuSehat);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getadmin()== true) {
+            if (btnBPJSMapingObatApotek.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnBPJSMapingObatApotek);
                 jmlmenu++;
             }
         }

@@ -475,4 +475,54 @@ public final class koneksiDB {
         }
         return var;
     }
+    
+    public static String URLAPIAPOTEKBPJS(){
+        try{
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var=prop.getProperty("URLAPIAPOTEKBPJS");
+        }catch(Exception e){
+            var=""; 
+        }
+        return var;
+    }
+    
+    public static String CONSIDAPIAPOTEKBPJS(){
+        try{
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var = Sequel.decXML2(prop.getProperty("CONSIDAPIAPOTEKBPJS"), prop.getProperty("KEY"));
+        }catch(Exception e){
+            var=""; 
+        }
+        return var;
+    }
+    
+    public static String SECRETKEYAPIAPOTEKBPJS() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var = Sequel.decXML2(prop.getProperty("SECRETKEYAPIAPOTEKBPJS"), prop.getProperty("KEY"));
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
+    
+    public static String KODEPPKAPOTEKBPJS() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var = Sequel.decXML2(prop.getProperty("KODEPPKAPOTEKBPJS"), prop.getProperty("KEY"));
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
+    
+    public static String USERKEYAPIAPOTEKBPJS() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var = Sequel.decXML2(prop.getProperty("USERKEYAPIAPOTEKBPJS"), prop.getProperty("KEY"));
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
 }
