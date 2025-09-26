@@ -67,7 +67,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             Utang_Jasa_Medik_Dokter_Radiologi_Ranap = "", Beban_Jasa_Medik_Petugas_Radiologi_Ranap = "", cekPeriksa = "",
             Utang_Jasa_Medik_Petugas_Radiologi_Ranap = "", Beban_Kso_Radiologi_Ranap = "", Utang_Kso_Radiologi_Ranap = "", 
             HPP_Persediaan_Radiologi_Rawat_Inap = "", Persediaan_BHP_Radiologi_Rawat_Inap = "", kdPenjab = "", kdPoli = "", sttsProses = "",
-            tglperiksa = "", jamperiksa = "";
+            tglperiksa = "", jamperiksa = "", pilihMenu = "";
 
     /**
      * Creates new form DlgPerawatan
@@ -2132,14 +2132,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 }
                 Sequel.AutoComitTrue();
                 ChkJln.setSelected(true);
-                
-                x = JOptionPane.showConfirmDialog(rootPane, "Data sudah tersimpan, apakah nota akan dicetak..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
-                    cetakNota();
-                    isReset();
-                } else {
-                    isReset();
-                }
+                konfirmasiCetak();
             }
         } else {
 //                if(Sequel.cariRegistrasi(TNoRw.getText())>0){
@@ -2222,14 +2215,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 }
                 Sequel.AutoComitTrue();
                 ChkJln.setSelected(true);
-                
-                x = JOptionPane.showConfirmDialog(rootPane, "Data sudah tersimpan, apakah nota akan dicetak..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
-                    cetakNota();
-                    isReset();
-                } else {
-                    isReset();
-                }
+                konfirmasiCetak();                
             }
 //                }
         }
@@ -2358,6 +2344,95 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
             }
         } catch (Exception ex) {
             System.out.println(ex);
+        }
+    }
+    
+    private void cetakBuktiReg() {
+        try {
+            ps3.setString(1, tglperiksa);
+            ps3.setString(2, jamperiksa);
+            ps3.setString(3, TNoRw.getText());
+            rs5 = ps3.executeQuery();
+            while (rs5.next()) {
+                Sequel.queryu("delete from temporary");
+                koneksi.setAutoCommit(false);
+                ps4.setString(1, rs5.getString("no_rawat"));
+                ps4.setString(2, rs5.getString("tgl_periksa"));
+                ps4.setString(3, rs5.getString("jam"));
+                rs4 = ps4.executeQuery();
+                while (rs4.next()) {
+                    Sequel.menyimpan("temporary", "'0','" + rs4.getString("nm_perawatan") + "','','','','','','','',"
+                            + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Rad");
+                }
+
+                //cetak buktiRegnya
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("alamatrs", akses.getalamatrs());
+                param.put("kotars", akses.getkabupatenrs());
+                param.put("propinsirs", akses.getpropinsirs());
+                param.put("kontakrs", akses.getkontakrs());
+                param.put("emailrs", akses.getemailrs());
+                param.put("logo", Sequel.cariGambar("select logo from setting"));
+                param.put("norm", TNoRM.getText());
+                param.put("nmpasien", TPasien.getText());
+                param.put("tglPeriksa", tglperiksa + ", Pukul : " + jamperiksa);
+                param.put("drRad", NmDokterPj.getText());
+                param.put("cara_byr", Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + TNoRw.getText() + "'"));
+                param.put("tglReg", "Martapura, " + Tanggal.getSelectedItem().toString());
+                param.put("umur", Sequel.cariIsi("select concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (',rp.umurdaftar,' ',rp.sttsumur,'.)') from reg_periksa rp "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + TNoRw.getText() + "'"));
+
+                if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRw.getText() + "' and status_lanjut='Ralan'") > 0) {
+                    param.put("nmUnit", Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + TNoRw.getText() + "'"));
+                } else {
+                    param.put("nmUnit", Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                            + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
+                }
+
+                if (akses.getadmin() == true) {
+                    param.put("petugas", "( ................... )");
+                } else {
+                    param.put("petugas", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
+                }
+                Valid.MyReport("rptBuktiRegRadiologi.jasper", "report", "::[ Bukti Registrasi Radiologi ]::",
+                        "SELECT temp1, temp2 FROM temporary WHERE temp1 NOT LIKE '%biaya%'", param);
+
+                koneksi.setAutoCommit(true);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    private void konfirmasiCetak() {
+        x = JOptionPane.showConfirmDialog(rootPane, "Data sudah tersimpan, apakah proses mencetak akan dilanjutkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            i = 0;
+            pilihMenu = (String) JOptionPane.showInputDialog(null, "Silahkan pilih salah satu untuk mencetak..!!           ", "Konfirmasi Cetak",
+                    JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Bukti Registrasi Radiologi", "Bill/Struk Pembayaran"}, "Bukti Registrasi Radiologi");
+            switch (pilihMenu) {
+                case "Bukti Registrasi Radiologi":
+                    i = 1;
+                    break;
+                case "Bill/Struk Pembayaran":
+                    i = 2;
+                    break;
+            }
+
+            if (i == 1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                cetakBuktiReg();
+                isReset();
+                this.setCursor(Cursor.getDefaultCursor());
+            } else if (i == 2) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                cetakNota();
+                isReset();
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        } else {
+            isReset();
         }
     }
 }

@@ -655,6 +655,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         NoBalasan = new widget.TextBox();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnCetakNota = new javax.swing.JMenuItem();
+        MnCetakBuktiReg = new javax.swing.JMenuItem();
         MnHasilPemeriksaan = new javax.swing.JMenuItem();
         MnRiwayatPerawatan = new javax.swing.JMenuItem();
         MnDokumenPenunjangMedis = new javax.swing.JMenuItem();
@@ -881,6 +882,18 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnCetakNota);
+
+        MnCetakBuktiReg.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakBuktiReg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCetakBuktiReg.setText("Cetak Bukti Reg. Radiologi");
+        MnCetakBuktiReg.setName("MnCetakBuktiReg"); // NOI18N
+        MnCetakBuktiReg.setPreferredSize(new java.awt.Dimension(260, 26));
+        MnCetakBuktiReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCetakBuktiRegActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCetakBuktiReg);
 
         MnHasilPemeriksaan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnHasilPemeriksaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -5148,6 +5161,51 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         }
     }//GEN-LAST:event_MnTglRegKhususIGDActionPerformed
 
+    private void MnCetakBuktiRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakBuktiRegActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+            TCari.requestFocus();
+        } else if (tbPeriksaRadiologi.getSelectedRow() <= -1) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan pilih data..!!");
+            khususIgd = "tidak";
+            tampil();
+        } else {
+            if (Kd2.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data yang mau ditampilkan...!!!!");
+                khususIgd = "tidak";
+                tampil();
+            } else if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + Kd2.getText() + "'") == 0) {
+                JOptionPane.showMessageDialog(null, "Maaf, silahkan klik tepat pada nama pasiennya...!!!!");
+            } else {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                try {
+                    ps4.setString(1, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 3).toString());
+                    ps4.setString(2, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 4).toString());
+                    ps4.setString(3, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 0).toString());
+                    rs = ps4.executeQuery();
+                    while (rs.next()) {
+                        Sequel.queryu("delete from temporary");
+                        koneksi.setAutoCommit(false);
+                        ps2.setString(1, rs.getString("no_rawat"));
+                        ps2.setString(2, rs.getString("tgl_periksa"));
+                        ps2.setString(3, rs.getString("jam"));
+                        rs2 = ps2.executeQuery();
+                        while (rs2.next()) {
+                            Sequel.menyimpan("temporary", "'0','" + rs2.getString("nm_perawatan") + "','','','','','','','',"
+                            + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Rad");
+                        }
+                        
+                        cetakBuktiReg();
+                        koneksi.setAutoCommit(true);
+                    }
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnCetakBuktiRegActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5197,6 +5255,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     private widget.Label LCount;
     private javax.swing.JMenuItem MnAsalRujukan;
     private javax.swing.JMenuItem MnAsalRujukan1;
+    private javax.swing.JMenuItem MnCetakBuktiReg;
     private javax.swing.JMenuItem MnCetakNota;
     private javax.swing.JMenuItem MnDokterPemeriksaRad;
     private javax.swing.JMenuItem MnDokterPemeriksaRad1;
@@ -5505,6 +5564,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
 
     public void isCek() {
         MnCetakNota.setEnabled(akses.getperiksa_radiologi());
+        MnCetakBuktiReg.setEnabled(akses.getperiksa_radiologi());
         BtnHapus.setEnabled(akses.getperiksa_radiologi());
         MnGantiData.setEnabled(akses.getperiksa_radiologi());
         MnPetugasRadiologi.setEnabled(akses.getperiksa_radiologi());
@@ -5674,6 +5734,40 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         Valid.MyReport("rptNotaRadiologi.jasper", "report", "::[ Nota Transaksi Radiologi ]::",
                 " SELECT temp1, FORMAT(temp2, 0) biaya, (SELECT FORMAT(temp2, 0) FROM temporary WHERE temp1 = 'Total Biaya Pemeriksaan Radiologi') total_byr "
                 + "FROM temporary WHERE temp1 NOT LIKE '%biaya%' ", param);
+    }
+    
+    private void cetakBuktiReg() {
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("norm", kdmem.getText());
+        param.put("nmpasien", nmmem.getText());
+        param.put("tglPeriksa", tglperiksa + ", Pukul : " + jam);
+        param.put("drRad", dokterRad.getText());
+        param.put("cara_byr", Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + Kd2.getText() + "'"));
+        param.put("tglReg", "Martapura, " + tglNota.getSelectedItem().toString());
+        param.put("umur", Sequel.cariIsi("select concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (',rp.umurdaftar,' ',rp.sttsumur,'.)') from reg_periksa rp "
+                + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + Kd2.getText() + "'"));
+
+        if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + Kd2.getText() + "' and status_lanjut='Ralan'") > 0) {
+            param.put("nmUnit", Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + Kd2.getText() + "'"));
+        } else {
+            param.put("nmUnit", Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + Kd2.getText() + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
+        }
+
+        if (akses.getadmin() == true) {
+            param.put("petugas", "( ................... )");
+        } else {
+            param.put("petugas", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
+        }
+        Valid.MyReport("rptBuktiRegRadiologi.jasper", "report", "::[ Bukti Registrasi Radiologi ]::",
+                "SELECT temp1, temp2 FROM temporary WHERE temp1 NOT LIKE '%biaya%'", param);
     }
 
     public void setData(String norw, String kditem, String item, String lihathasil, String Norm, String nmPas,
