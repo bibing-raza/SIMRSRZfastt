@@ -64,15 +64,15 @@ import simrskhanza.DlgRingkasanPulangRanap;
  */
 public class DlgCPPT extends javax.swing.JDialog {
     private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabMode4, tabMode5, tabMode6, tabModeResiko,
-            tabModeLis, tabModeHasilLab, tabModeHasilCopy, tabModeRad, tabModeJangMed, tabModePembaca;
+            tabModeLis, tabModeHasilLab, tabModeHasilCopy, tabModeRad, tabModeJangMed, tabModePembaca, tabModePembaca1;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     private final Properties prop = new Properties();
-    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9, pps1, pps2, pps3, pps4, pps5, pps6, psFile, psRDO,
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9, ps10, pps1, pps2, pps3, pps4, pps5, pps6, psFile, psRDO,
             pspasien, psdiet, psrestor, psLaprm, psFakIGD, psRes, psCetak, psLab1, psLab2, psLabA, psLabB, psLabC, psRad, psRDU, 
             psRDD, psRDM;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rsRad, rsDok, rsFile,
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rs10, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rsRad, rsDok, rsFile,
             rspasien, rsdiet, rsrestor, rsLaprm, rsFakIGD, rsRes, rsPrev, rsCetak, rsLab1, rsLab2, rsLabA, rsLabB, rsLabC, rsDiag, 
             rsDiag1, rsObat, rsTHT, rsLISMaster, rsLIS1, rsLIS2, rsLIS3, rsDiabet, rsRDO, rsRDU, rsRDD, rsRDM;
     private int i = 0, x = 0, pilihan = 0, totskorTriase = 0, skorGZ1 = 0, skorYaGZ1 = 0, skorGZ2 = 0, skor = 0, paste = 0,
@@ -647,6 +647,44 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbPembacaLIS.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
         tbPembacaLIS.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         tbPembacaLIS.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        
+        tabModePembaca1 = new DefaultTableModel(null, new String[]{
+            "kd_jenis_prw", "Nama Pemeriksaaan Rad.", "Dokter Pembaca", "Tgl. Periksa", "Jam Periksa", "Tgl. Baca", "Jam Baca"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbPembacaRad.setModel(tabModePembaca1);
+        tbPembacaRad.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbPembacaRad.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        for (int i = 0; i < 7; i++) {
+            TableColumn column = tbPembacaRad.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 1) {
+                column.setPreferredWidth(220);
+            } else if (i == 2) {
+                column.setPreferredWidth(350);
+            } else if (i == 3) {
+                column.setPreferredWidth(75);
+            } else if (i == 4) {
+                column.setPreferredWidth(75);
+            } else if (i == 5) {
+                column.setPreferredWidth(70);
+            } else if (i == 6) {
+                column.setPreferredWidth(70);
+            }
+        }
+        tbPembacaRad.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPembacaRad.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbPembacaRad.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbPembacaRad.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbPembacaRad.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
         
         tabModeHasilLab = new DefaultTableModel(null, new Object[]{
             "Cek", "Jenis Pemeriksaan/Item", "Nilai Hasil", "Satuan", "Flag Kode", "Nilai Rujukan", "Waktu Selesai", "Metode Pemeriksaan"}) {
@@ -1652,8 +1690,11 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnKeluar5 = new widget.Button();
         internalFrame30 = new widget.InternalFrame();
         FormInput2 = new widget.PanelBiasa();
+        panelGlass32 = new widget.panelisi();
         Scroll14 = new widget.ScrollPane();
         tbRadiologi = new widget.Table();
+        Scroll21 = new widget.ScrollPane();
+        tbPembacaRad = new widget.Table();
         panelGlass17 = new widget.panelisi();
         jLabel55 = new widget.Label();
         TCari4 = new widget.TextBox();
@@ -6004,7 +6045,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         Scroll20.setViewportView(tbPembacaLIS);
 
         panelGlass31.add(Scroll20);
-        Scroll20.getAccessibleContext().setAccessibleName(".: Pembaca Hasil Pemeriksaan Lab. :.");
 
         PanelInput.add(panelGlass31, java.awt.BorderLayout.CENTER);
 
@@ -6237,6 +6277,10 @@ public class DlgCPPT extends javax.swing.JDialog {
         FormInput2.setPreferredSize(new java.awt.Dimension(190, 250));
         FormInput2.setLayout(new java.awt.BorderLayout());
 
+        panelGlass32.setName("panelGlass32"); // NOI18N
+        panelGlass32.setPreferredSize(new java.awt.Dimension(55, 45));
+        panelGlass32.setLayout(new java.awt.GridLayout(1, 2));
+
         Scroll14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Pemeriksaan Radiologi :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll14.setName("Scroll14"); // NOI18N
         Scroll14.setOpaque(true);
@@ -6256,7 +6300,18 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         Scroll14.setViewportView(tbRadiologi);
 
-        FormInput2.add(Scroll14, java.awt.BorderLayout.CENTER);
+        panelGlass32.add(Scroll14);
+
+        Scroll21.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Pembaca Hasil Pemeriksaan Radiologi :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll21.setName("Scroll21"); // NOI18N
+        Scroll21.setOpaque(true);
+
+        tbPembacaRad.setName("tbPembacaRad"); // NOI18N
+        Scroll21.setViewportView(tbPembacaRad);
+
+        panelGlass32.add(Scroll21);
+
+        FormInput2.add(panelGlass32, java.awt.BorderLayout.CENTER);
 
         panelGlass17.setName("panelGlass17"); // NOI18N
         panelGlass17.setPreferredSize(new java.awt.Dimension(55, 45));
@@ -10714,6 +10769,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.ScrollPane Scroll19;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll20;
+    private widget.ScrollPane Scroll21;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll4;
     private widget.ScrollPane Scroll5;
@@ -10970,6 +11026,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.panelisi panelGlass29;
     private widget.panelisi panelGlass30;
     private widget.panelisi panelGlass31;
+    private widget.panelisi panelGlass32;
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
@@ -10992,6 +11049,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Table tbLIS;
     private widget.Table tbMonev;
     private widget.Table tbPembacaLIS;
+    private widget.Table tbPembacaRad;
     private widget.Table tbRadiologi;
     private widget.Table tbRiwayat;
     private widget.Table tbSampah;
@@ -14944,7 +15002,8 @@ public class DlgCPPT extends javax.swing.JDialog {
         try {
             ps9 = koneksi.prepareStatement("SELECT ph.*, p.nama, date_format(ph.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(ph.waktu_simpan,'%d-%m-%Y') tglBaca, "
                     + "time_format(ph.waktu_simpan,'%H:%i:%s') jamBaca FROM pembaca_hasil_lab ph inner join pegawai p on p.nik=ph.kd_dokter where "
-                    + "ph.no_rawat='" + norw + "' and ph.no_lab='" + nolab + "' and tgl_periksa='" + tgl + "' and jam_periksa='" + jam + "' order by waktu_simpan");            
+                    + "ph.no_rawat='" + norw + "' and ph.no_lab='" + nolab + "' and ph.tgl_periksa='" + tgl + "' "
+                    + "and ph.jam_periksa='" + jam + "' order by ph.waktu_simpan");
             try {
                 rs9 = ps9.executeQuery();
                 while (rs9.next()) {
@@ -14965,6 +15024,42 @@ public class DlgCPPT extends javax.swing.JDialog {
                 }
                 if (ps9 != null) {
                     ps9.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilPembacaRad(String norw, String kdPemriksaan, String tgl, String jam) {
+        Valid.tabelKosong(tabModePembaca1);
+        try {
+            ps10 = koneksi.prepareStatement("SELECT ph.*, p.nama, date_format(ph.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(ph.waktu_simpan,'%d-%m-%Y') tglBaca, "
+                    + "time_format(ph.waktu_simpan,'%H:%i:%s') jamBaca, jp.nm_perawatan FROM pembaca_hasil_radiologi ph inner join pegawai p on p.nik=ph.kd_dokter "
+                    + "inner join jns_perawatan_radiologi jp on jp.kd_jenis_prw=ph.kd_jenis_prw where "
+                    + "ph.no_rawat='" + norw + "' and ph.kd_jenis_prw='" + kdPemriksaan + "' and ph.tgl_periksa='" + tgl + "' "
+                    + "and ph.jam_periksa='" + jam + "' order by ph.waktu_simpan");
+            try {
+                rs10 = ps10.executeQuery();
+                while (rs10.next()) {
+                    tabModePembaca1.addRow(new String[]{
+                        rs10.getString("kd_jenis_prw"),
+                        rs10.getString("nm_perawatan"),
+                        rs10.getString("nama"),
+                        rs10.getString("tglPeriksa"),
+                        rs10.getString("jam_periksa"),
+                        rs10.getString("tglBaca"),
+                        rs10.getString("jamBaca")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs10 != null) {
+                    rs10.close();
+                }
+                if (ps10 != null) {
+                    ps10.close();
                 }
             }
         } catch (Exception e) {
@@ -15128,6 +15223,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             kdItem = tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 8).toString();
             tglhasil = tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 9).toString();            
             deskripsiHasil();
+            tampilPembacaRad(norawat, kdItem, tglhasil, jamhasil);
         }
     }
     
@@ -15145,6 +15241,16 @@ public class DlgCPPT extends javax.swing.JDialog {
                     + "tgl_periksa like '%" + tglhasil + "%' and "
                     + "jam like '%" + jamhasil + "%' and "
                     + "kd_jenis_prw like '%" + kdItem + "%'"));
+
+            if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "' and status='1'") > 0) {
+                Sequel.menyimpanIgnore("pembaca_hasil_radiologi",
+                        "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 7).toString() + "',"
+                        + "'" + akses.getkode() + "',"
+                        + "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 8).toString() + "',"
+                        + "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 9).toString() + "',"
+                        + "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 6).toString() + "',"
+                        + "'" + Sequel.cariIsi("select now()") + "'", "Pembaca Hasil Lab.");
+            }
         }
     }
     

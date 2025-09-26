@@ -33,13 +33,13 @@ import javax.swing.table.TableColumn;
  * @author dosen
  */
 public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabModePembaca;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabModePembaca, tabModePembaca1;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rs5;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6;
     private int i = 0, x = 0, cekRujukan = 0;
     private String norawat = "", noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", dokterBaca = "",
             drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "", nmpas = "", nomorrm = "", hasilDipilih = "",
@@ -177,6 +177,44 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         tbPembacaLIS.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
         tbPembacaLIS.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         tbPembacaLIS.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        
+        tabModePembaca1 = new DefaultTableModel(null, new String[]{
+            "kd_jenis_prw", "Nama Pemeriksaaan Rad.", "Dokter Pembaca", "Tgl. Periksa", "Jam Periksa", "Tgl. Baca", "Jam Baca"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbPembacaRad.setModel(tabModePembaca1);
+        tbPembacaRad.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbPembacaRad.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        for (int i = 0; i < 7; i++) {
+            TableColumn column = tbPembacaRad.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 1) {
+                column.setPreferredWidth(220);
+            } else if (i == 2) {
+                column.setPreferredWidth(350);
+            } else if (i == 3) {
+                column.setPreferredWidth(75);
+            } else if (i == 4) {
+                column.setPreferredWidth(75);
+            } else if (i == 5) {
+                column.setPreferredWidth(70);
+            } else if (i == 6) {
+                column.setPreferredWidth(70);
+            }
+        }
+        tbPembacaRad.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPembacaRad.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbPembacaRad.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbPembacaRad.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbPembacaRad.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
         
         tabMode2 = new DefaultTableModel(null, new Object[]{
             "No. RM", "Nama Pasien", "Jns. Rawat", "Pemeriksaan Rad.", "Dokter Perujuk", "Tgl. Periksa", "Jam Periksa",
@@ -316,8 +354,11 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         BtnKeluar1 = new widget.Button();
         PanelInput2 = new javax.swing.JPanel();
         FormInput = new widget.PanelBiasa();
+        panelGlass14 = new widget.panelisi();
         Scroll3 = new widget.ScrollPane();
         tbRadiologi = new widget.Table();
+        Scroll21 = new widget.ScrollPane();
+        tbPembacaRad = new widget.Table();
         panelGlass11 = new widget.panelisi();
         jLabel8 = new widget.Label();
         TCari1 = new widget.TextBox();
@@ -672,6 +713,10 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         FormInput.setPreferredSize(new java.awt.Dimension(190, 250));
         FormInput.setLayout(new java.awt.BorderLayout());
 
+        panelGlass14.setName("panelGlass14"); // NOI18N
+        panelGlass14.setPreferredSize(new java.awt.Dimension(55, 45));
+        panelGlass14.setLayout(new java.awt.GridLayout(1, 2));
+
         Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Pemeriksaan Radiologi :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
@@ -691,7 +736,18 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         });
         Scroll3.setViewportView(tbRadiologi);
 
-        FormInput.add(Scroll3, java.awt.BorderLayout.CENTER);
+        panelGlass14.add(Scroll3);
+
+        Scroll21.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Pembaca Hasil Pemeriksaan Radiologi :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll21.setName("Scroll21"); // NOI18N
+        Scroll21.setOpaque(true);
+
+        tbPembacaRad.setName("tbPembacaRad"); // NOI18N
+        Scroll21.setViewportView(tbPembacaRad);
+
+        panelGlass14.add(Scroll21);
+
+        FormInput.add(panelGlass14, java.awt.BorderLayout.CENTER);
 
         panelGlass11.setName("panelGlass11"); // NOI18N
         panelGlass11.setPreferredSize(new java.awt.Dimension(55, 45));
@@ -990,6 +1046,12 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                             param.put("namaFaskes", Sequel.cariIsi("select concat('(',UPPER(tipe_faskes),') ',nama_rujukan) from master_nama_rujukan where kd_rujukan='" + kodeRujukan + "'"));
                         }
                     }
+                    
+                    if (tbPembacaRad.getRowCount() == 0) {
+                        param.put("dokterBaca", "- dokter belum membaca hasil -");
+                    } else {
+                        param.put("dokterBaca", dokterBaca);
+                    }
 
                     Valid.MyReport("rptPeriksaRadiologi.jasper", "report", "::[ Lembar Hasil Pemeriksaan Radiologi ]::",
                             "SELECT p.no_rkm_medis, p.nm_pasien, concat(IF(p.jk='L','Laki-laki','Perempuan'),' / ',rp.umurdaftar,' ',rp.sttsumur,'.') jk_umur, p.alamat, pr.no_rawat, "
@@ -1041,6 +1103,12 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                         } else {
                             param.put("namaFaskes", Sequel.cariIsi("select concat('(',UPPER(tipe_faskes),') ',nama_rujukan) from master_nama_rujukan where kd_rujukan='" + kodeRujukan + "'"));
                         }
+                    }
+                    
+                    if (tbPembacaRad.getRowCount() == 0) {
+                        param.put("dokterBaca", "- dokter belum membaca hasil -");
+                    } else {
+                        param.put("dokterBaca", dokterBaca);
                     }
 
                     cekWkt = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y %H:%i:%s Wita') from hasil_radiologi WHERE no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'");
@@ -1205,6 +1273,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll20;
+    private widget.ScrollPane Scroll21;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll4;
     private widget.TextBox TCari;
@@ -1227,12 +1296,14 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass12;
     private widget.panelisi panelGlass13;
+    private widget.panelisi panelGlass14;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.Table tbHasil;
     private widget.Table tbHasilCopy;
     private widget.Table tbLIS;
     private widget.Table tbPembacaLIS;
+    private widget.Table tbPembacaRad;
     private widget.Table tbRadiologi;
     // End of variables declaration//GEN-END:variables
  
@@ -1466,6 +1537,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             kdItem = tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 8).toString();
             tglhasil = tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 9).toString();            
             deskripsiHasil();
+            tampilPembacaRad(norawat, kdItem, tglhasil, jamhasil);
         }
     }
     
@@ -1483,6 +1555,60 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                     + "tgl_periksa like '%" + tglhasil + "%' and "
                     + "jam like '%" + jamhasil + "%' and "
                     + "kd_jenis_prw like '%" + kdItem + "%'"));
+            
+            if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "' and status='1'") > 0) {
+                Sequel.menyimpanIgnore("pembaca_hasil_radiologi",
+                        "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 7).toString() + "',"
+                        + "'" + akses.getkode() + "',"
+                        + "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 8).toString() + "',"
+                        + "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 9).toString() + "',"
+                        + "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 6).toString() + "',"
+                        + "'" + Sequel.cariIsi("select now()") + "'", "Pembaca Hasil Lab.");
+            }
+        }
+    }
+    
+    private void tampilPembacaRad(String norw, String kdPemriksaan, String tgl, String jam) {
+        dokterBaca = "";
+        Valid.tabelKosong(tabModePembaca1);
+        try {
+            ps6 = koneksi.prepareStatement("SELECT ph.*, p.nama, date_format(ph.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(ph.waktu_simpan,'%d-%m-%Y') tglBaca, "
+                    + "time_format(ph.waktu_simpan,'%H:%i:%s') jamBaca, jp.nm_perawatan FROM pembaca_hasil_radiologi ph inner join pegawai p on p.nik=ph.kd_dokter "
+                    + "inner join jns_perawatan_radiologi jp on jp.kd_jenis_prw=ph.kd_jenis_prw where "
+                    + "ph.no_rawat='" + norw + "' and ph.kd_jenis_prw='" + kdPemriksaan + "' and ph.tgl_periksa='" + tgl + "' "
+                    + "and ph.jam_periksa='" + jam + "' order by ph.waktu_simpan");
+            try {
+                rs6 = ps6.executeQuery();
+                x = 0;
+                while (rs6.next()) {
+                    tabModePembaca1.addRow(new String[]{
+                        rs6.getString("kd_jenis_prw"),
+                        rs6.getString("nm_perawatan"),
+                        rs6.getString("nama"),
+                        rs6.getString("tglPeriksa"),
+                        rs6.getString("jam_periksa"),
+                        rs6.getString("tglBaca"),
+                        rs6.getString("jamBaca")
+                    });
+                    x++;
+                    if (dokterBaca.equals("")) {
+                        dokterBaca = x + ". " + rs6.getString("nama") + " (Tgl. " + rs6.getString("tglBaca") + ", Jam " + rs6.getString("jamBaca").substring(0, 5) + " Wita)";
+                    } else {
+                        dokterBaca = dokterBaca + "\n" + x + ". " + rs6.getString("nama") + " (Tgl. " + rs6.getString("tglBaca") + ", Jam " + rs6.getString("jamBaca").substring(0, 5) + " Wita)";
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs6 != null) {
+                    rs6.close();
+                }
+                if (ps6 != null) {
+                    ps6.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
     
@@ -1492,7 +1618,8 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         try {
             ps5 = koneksi.prepareStatement("SELECT ph.*, p.nama, date_format(ph.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(ph.waktu_simpan,'%d-%m-%Y') tglBaca, "
                     + "time_format(ph.waktu_simpan,'%H:%i:%s') jamBaca FROM pembaca_hasil_lab ph inner join pegawai p on p.nik=ph.kd_dokter where "
-                    + "ph.no_rawat='" + norw + "' and ph.no_lab='" + nolab + "' and tgl_periksa='" + tgl + "' and jam_periksa='" + jam + "' order by waktu_simpan");            
+                    + "ph.no_rawat='" + norw + "' and ph.no_lab='" + nolab + "' and ph.tgl_periksa='" + tgl + "' "
+                    + "and ph.jam_periksa='" + jam + "' order by ph.waktu_simpan");
             try {
                 rs5 = ps5.executeQuery();
                 x = 0;

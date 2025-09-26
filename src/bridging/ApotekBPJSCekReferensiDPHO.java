@@ -89,19 +89,23 @@ public final class ApotekBPJSCekReferensiDPHO extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(300);
             } else if (i == 2) {
-                column.setPreferredWidth(50);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 3) {
-                column.setPreferredWidth(50);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 4) {
-                column.setPreferredWidth(50);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 5) {
                 column.setPreferredWidth(80);
             } else if (i == 6) {
                 column.setPreferredWidth(350);
             } else if (i == 7) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(120);
             } else if (i == 8) {
-                column.setPreferredWidth(60);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbDpho.setDefaultRenderer(Object.class, new WarnaTable());
@@ -126,19 +130,23 @@ public final class ApotekBPJSCekReferensiDPHO extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(300);
             } else if (i == 2) {
-                column.setPreferredWidth(50);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 3) {
-                column.setPreferredWidth(50);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 4) {
-                column.setPreferredWidth(50);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 5) {
                 column.setPreferredWidth(80);
             } else if (i == 6) {
                 column.setPreferredWidth(350);
             } else if (i == 7) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(120);
             } else if (i == 8) {
-                column.setPreferredWidth(60);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbMining.setDefaultRenderer(Object.class, new WarnaTable());
@@ -196,6 +204,7 @@ public final class ApotekBPJSCekReferensiDPHO extends javax.swing.JDialog {
         jLabel16 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
+        BtnCari1 = new widget.Button();
         BtnMining = new widget.Button();
         BtnKeluar = new widget.Button();
 
@@ -263,10 +272,10 @@ public final class ApotekBPJSCekReferensiDPHO extends javax.swing.JDialog {
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('6');
-        BtnCari.setText("Tampilkan Data");
+        BtnCari.setText("Tampilkan Referensi");
         BtnCari.setToolTipText("Alt+6");
         BtnCari.setName("BtnCari"); // NOI18N
-        BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari.setPreferredSize(new java.awt.Dimension(160, 23));
         BtnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCariActionPerformed(evt);
@@ -278,6 +287,20 @@ public final class ApotekBPJSCekReferensiDPHO extends javax.swing.JDialog {
             }
         });
         panelGlass6.add(BtnCari);
+
+        BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('6');
+        BtnCari1.setText("Tampilkan Master DPHO");
+        BtnCari1.setToolTipText("Alt+6");
+        BtnCari1.setName("BtnCari1"); // NOI18N
+        BtnCari1.setPreferredSize(new java.awt.Dimension(180, 23));
+        BtnCari1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari1ActionPerformed(evt);
+            }
+        });
+        panelGlass6.add(BtnCari1);
 
         BtnMining.setForeground(new java.awt.Color(0, 0, 0));
         BtnMining.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
@@ -366,15 +389,19 @@ public final class ApotekBPJSCekReferensiDPHO extends javax.swing.JDialog {
                         + "'" + tbDpho.getValueAt(i, 6).toString() + "',"
                         + "'" + tbDpho.getValueAt(i, 7).toString() + "',"
                         + "'" + tbDpho.getValueAt(i, 8).toString() + "'", "Mining DPHO Apotek BPJS");
-                tampilMining();
             }
-            JOptionPane.showMessageDialog(rootPane, "Proses minning data referensi DPHO selesai..!!");            
+            JOptionPane.showMessageDialog(rootPane, "Proses minning data referensi DPHO selesai..!!");
+            tampilMining();
         }
     }//GEN-LAST:event_BtnMiningActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampilMining();
     }//GEN-LAST:event_formWindowOpened
+
+    private void BtnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari1ActionPerformed
+        tampilMining();
+    }//GEN-LAST:event_BtnCari1ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -394,6 +421,7 @@ public final class ApotekBPJSCekReferensiDPHO extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnCari;
+    private widget.Button BtnCari1;
     private widget.Button BtnKeluar;
     private widget.Button BtnMining;
     private widget.ScrollPane Scroll;
@@ -455,11 +483,16 @@ public final class ApotekBPJSCekReferensiDPHO extends javax.swing.JDialog {
     public void tampilMining() {
         Valid.tabelKosong(tabMode1);
         try {
-            ps = koneksi.prepareStatement("select * from dpho_master_bpjs order by namaobat");
+            ps = koneksi.prepareStatement("select * from dpho_master_bpjs where "
+                    + "kodeobat like ? or namaobat like ? or restriksi like ? or generik like ? order by namaobat");
             try {
+                ps.setString(1, "%" + TCari.getText().trim() + "%");
+                ps.setString(2, "%" + TCari.getText().trim() + "%");
+                ps.setString(3, "%" + TCari.getText().trim() + "%");
+                ps.setString(4, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new String[]{
+                    tabMode1.addRow(new String[]{
                         rs.getString("kodeobat"),
                         rs.getString("namaobat"),
                         rs.getString("prb"),
@@ -472,7 +505,7 @@ public final class ApotekBPJSCekReferensiDPHO extends javax.swing.JDialog {
                     });
                 }
             } catch (Exception e) {
-                System.out.println("Notif Ketersediaan : " + e);
+                System.out.println("Notif tampilMining() : " + e);
             } finally {
                 if (rs != null) {
                     rs.close();
@@ -482,7 +515,7 @@ public final class ApotekBPJSCekReferensiDPHO extends javax.swing.JDialog {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
+            System.out.println("Notifikasi tampilMining() : " + e);
         }
     }
 }

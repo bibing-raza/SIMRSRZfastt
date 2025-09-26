@@ -6432,7 +6432,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25/09/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26/09/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -14502,7 +14502,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
             
-            if (akses.getadmin() == true) {
+            if (akses.getstok_obat_pasien() == true) {
                 Panelmenu.add(btnBPJSMapingObatApotek);
                 jmlmenu++;
             }
@@ -15304,7 +15304,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu++;
         }
         
-        if (akses.getadmin() == true) {
+        if (akses.getstok_obat_pasien() == true) {
             Panelmenu.add(btnBPJSMapingObatApotek);
             jmlmenu++;
         }
@@ -17317,7 +17317,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         }
         
-        if (akses.getadmin()== true) {
+        if (akses.getstok_obat_pasien()== true) {
             if (btnBPJSMapingObatApotek.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnBPJSMapingObatApotek);
                 jmlmenu++;
