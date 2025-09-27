@@ -47,8 +47,8 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
     private ApiLIS mas_lis = new ApiLIS();
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private int i, diagnosa_cek1 = 0, diagnosa_cek2 = 0, cekKeLIS = 0, cekdataLIS = 0, x, y;
-    private PreparedStatement ps, ps2, ps3, ps4, psrekening, psLIS1, psLIS2, psLIS3;
-    private ResultSet rs, rs2, rs3, rsrekening, rsLIS1, rsLIS2, rsLIS3;
+    private PreparedStatement ps, ps2, ps3, ps4, ps5, psrekening, psLIS1, psLIS2, psLIS3;
+    private ResultSet rs, rs2, rs3, rs5, rsrekening, rsLIS1, rsLIS2, rsLIS3;
     private String kamar, namakamar;
     private double ttl = 0, item = 0, cekLab;
     private double ttljmdokter = 0, ttljmpetugas = 0, ttlkso = 0, ttlpendapatan = 0, ttlbhp = 0;
@@ -57,7 +57,8 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
             Utang_Jasa_Medik_Petugas_Laborat_Ranap = "", Beban_Kso_Laborat_Ranap = "", Utang_Kso_Laborat_Ranap = "",
             HPP_Persediaan_Laborat_Rawat_inap = "", Persediaan_BHP_Laborat_Rawat_Inap = "", status = "", cekDataLab = "",
             nolab = "", tglPeriksa = "", jamPeriksa = "", diagnosa_ok = "", tnorwt = "", kdunit = "", kdpenjab = "",
-            status_rawat = "", cekbayar = "", drLab = "", noLIS = "", nm_unit = "", kddokter = "", notelpFaskes = "";
+            status_rawat = "", cekbayar = "", drLab = "", noLIS = "", nm_unit = "", kddokter = "", notelpFaskes = "", 
+            dokterBaca = "";
 
     /**
      * Creates new form DlgProgramStudi
@@ -1960,7 +1961,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi1.add(jLabel25);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-09-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -4146,6 +4147,14 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             param.put("drPengirim", tbLab.getValueAt(tbLab.getSelectedRow(), 6).toString());
             param.put("drLAB", tbLab.getValueAt(tbLab.getSelectedRow(), 7).toString());
             param.put("tglSurat", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("SELECT DATE(waktu_insert) FROM lis_hasil_data_pasien WHERE no_lab='" + nolab + "'")));
+            
+            if (Sequel.cariInteger("select count(-1) from pembaca_hasil_lab where no_rawat='" + NoRawat.getText() + "' and "
+                    + "no_lab='" + nolab + "' and tgl_periksa='" + tglPeriksa + "'") == 0) {
+                param.put("dokterBaca", "- dokter belum membaca hasil -");
+            } else {
+                tampilPembaca(NoRawat.getText(), nolab, tglPeriksa);
+                param.put("dokterBaca", dokterBaca);
+            }
 
             kamar = "";
             kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat='" + NoRawat.getText() + "' order by tgl_masuk desc limit 1");
@@ -4815,6 +4824,38 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
 
         } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+
+    private void tampilPembaca(String norw, String nolabb, String tgl) {
+        dokterBaca = "";
+        try {
+            ps5 = koneksi.prepareStatement("SELECT ph.*, p.nama, date_format(ph.waktu_simpan,'%d-%m-%Y') tglBaca, time_format(ph.waktu_simpan,'%H:%i:%s') jamBaca "
+                    + "FROM pembaca_hasil_lab ph inner join pegawai p on p.nik=ph.kd_dokter where "
+                    + "ph.no_rawat='" + norw + "' and ph.no_lab='" + nolabb + "' and ph.tgl_periksa='" + tgl + "' order by ph.waktu_simpan");
+            try {
+                rs5 = ps5.executeQuery();
+                x = 0;
+                while (rs5.next()) {
+                    x++;
+                    if (dokterBaca.equals("")) {
+                        dokterBaca = x + ". " + rs5.getString("nama") + " (Tgl. " + rs5.getString("tglBaca") + ", Jam " + rs5.getString("jamBaca").substring(0, 5) + " Wita)";
+                    } else {
+                        dokterBaca = dokterBaca + "\n" + x + ". " + rs5.getString("nama") + " (Tgl. " + rs5.getString("tglBaca") + ", Jam " + rs5.getString("jamBaca").substring(0, 5) + " Wita)";
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs5 != null) {
+                    rs5.close();
+                }
+                if (ps5 != null) {
+                    ps5.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }
