@@ -15,7 +15,15 @@ import inventory.DlgResepObat;
 import laporan.DlgDataHAIs;
 import bridging.AplicareCekReferensiKamar;
 import bridging.AplicareKetersediaanKamar;
+import bridging.ApotekBPJSCekReferensiDPHO;
+import bridging.ApotekBPJSCekReferensiFaskes;
+import bridging.ApotekBPJSCekReferensiObat;
+import bridging.ApotekBPJSCekReferensiPoli;
+import bridging.ApotekBPJSCekReferensiSettingPPK;
+import bridging.ApotekBPJSCekReferensiSpesialistik;
+import bridging.ApotekBPJSKunjunganSEP;
 import bridging.ApotekBPJSMapingObat;
+import bridging.ApotekBPJSMonitoringKlaim;
 import bridging.BPJSCekDataIndukKecelakaan;
 import bridging.BPJSCekFingerPrin;
 import bridging.BPJSCekKartu;
@@ -941,6 +949,14 @@ public class frmUtama extends javax.swing.JFrame {
         BtnPengembalianJaminanTransaksi = new widget.ButtonBig();
         btnLaporanIndikatorMutu = new widget.ButtonBig();
         btnBPJSMapingObatApotek = new widget.ButtonBig();
+        btnBPJSReferensiObatDPHO = new widget.ButtonBig();
+        btnBPJSReferensiPoliApotek = new widget.ButtonBig();
+        btnBPJSReferensiFaskesApotek = new widget.ButtonBig();
+        btnBPJSReferensiSpesilistikApotek = new widget.ButtonBig();
+        btnBPJSReferensiSetingPPKApotek = new widget.ButtonBig();
+        btnBPJSReferensiObatApotek = new widget.ButtonBig();
+        btnBPJSPencarianSEPApotek = new widget.ButtonBig();
+        btnBPJSMonitoringKlaimApotek = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6424,6 +6440,110 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnBPJSMapingObatApotek);
 
+        btnBPJSReferensiObatDPHO.setForeground(new java.awt.Color(0, 0, 0));
+        btnBPJSReferensiObatDPHO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/bpjs_apotek.png"))); // NOI18N
+        btnBPJSReferensiObatDPHO.setText("Referensi DPHO Apotek BPJS");
+        btnBPJSReferensiObatDPHO.setIconTextGap(0);
+        btnBPJSReferensiObatDPHO.setName("btnBPJSReferensiObatDPHO"); // NOI18N
+        btnBPJSReferensiObatDPHO.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnBPJSReferensiObatDPHO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBPJSReferensiObatDPHOActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnBPJSReferensiObatDPHO);
+
+        btnBPJSReferensiPoliApotek.setForeground(new java.awt.Color(0, 0, 0));
+        btnBPJSReferensiPoliApotek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/bpjs_apotek.png"))); // NOI18N
+        btnBPJSReferensiPoliApotek.setText("Referensi Poliklinik Apotek BPJS");
+        btnBPJSReferensiPoliApotek.setIconTextGap(0);
+        btnBPJSReferensiPoliApotek.setName("btnBPJSReferensiPoliApotek"); // NOI18N
+        btnBPJSReferensiPoliApotek.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnBPJSReferensiPoliApotek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBPJSReferensiPoliApotekActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnBPJSReferensiPoliApotek);
+
+        btnBPJSReferensiFaskesApotek.setForeground(new java.awt.Color(0, 0, 0));
+        btnBPJSReferensiFaskesApotek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/bpjs_apotek.png"))); // NOI18N
+        btnBPJSReferensiFaskesApotek.setText("Referensi Faskes Apotek BPJS");
+        btnBPJSReferensiFaskesApotek.setIconTextGap(0);
+        btnBPJSReferensiFaskesApotek.setName("btnBPJSReferensiFaskesApotek"); // NOI18N
+        btnBPJSReferensiFaskesApotek.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnBPJSReferensiFaskesApotek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBPJSReferensiFaskesApotekActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnBPJSReferensiFaskesApotek);
+
+        btnBPJSReferensiSpesilistikApotek.setForeground(new java.awt.Color(0, 0, 0));
+        btnBPJSReferensiSpesilistikApotek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/bpjs_apotek.png"))); // NOI18N
+        btnBPJSReferensiSpesilistikApotek.setText("Referensi Spesialistik Apotek BPJS");
+        btnBPJSReferensiSpesilistikApotek.setIconTextGap(0);
+        btnBPJSReferensiSpesilistikApotek.setName("btnBPJSReferensiSpesilistikApotek"); // NOI18N
+        btnBPJSReferensiSpesilistikApotek.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnBPJSReferensiSpesilistikApotek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBPJSReferensiSpesilistikApotekActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnBPJSReferensiSpesilistikApotek);
+
+        btnBPJSReferensiSetingPPKApotek.setForeground(new java.awt.Color(0, 0, 0));
+        btnBPJSReferensiSetingPPKApotek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/bpjs_apotek.png"))); // NOI18N
+        btnBPJSReferensiSetingPPKApotek.setText("Referensi Setting PPK Apotek BPJS");
+        btnBPJSReferensiSetingPPKApotek.setIconTextGap(0);
+        btnBPJSReferensiSetingPPKApotek.setName("btnBPJSReferensiSetingPPKApotek"); // NOI18N
+        btnBPJSReferensiSetingPPKApotek.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnBPJSReferensiSetingPPKApotek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBPJSReferensiSetingPPKApotekActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnBPJSReferensiSetingPPKApotek);
+
+        btnBPJSReferensiObatApotek.setForeground(new java.awt.Color(0, 0, 0));
+        btnBPJSReferensiObatApotek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/bpjs_apotek.png"))); // NOI18N
+        btnBPJSReferensiObatApotek.setText("Referensi Obat Apotek BPJS");
+        btnBPJSReferensiObatApotek.setIconTextGap(0);
+        btnBPJSReferensiObatApotek.setName("btnBPJSReferensiObatApotek"); // NOI18N
+        btnBPJSReferensiObatApotek.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnBPJSReferensiObatApotek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBPJSReferensiObatApotekActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnBPJSReferensiObatApotek);
+
+        btnBPJSPencarianSEPApotek.setForeground(new java.awt.Color(0, 0, 0));
+        btnBPJSPencarianSEPApotek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/bpjs_apotek.png"))); // NOI18N
+        btnBPJSPencarianSEPApotek.setText("Pencarian SEP Apotek BPJS");
+        btnBPJSPencarianSEPApotek.setIconTextGap(0);
+        btnBPJSPencarianSEPApotek.setName("btnBPJSPencarianSEPApotek"); // NOI18N
+        btnBPJSPencarianSEPApotek.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnBPJSPencarianSEPApotek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBPJSPencarianSEPApotekActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnBPJSPencarianSEPApotek);
+
+        btnBPJSMonitoringKlaimApotek.setForeground(new java.awt.Color(0, 0, 0));
+        btnBPJSMonitoringKlaimApotek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/bpjs_apotek.png"))); // NOI18N
+        btnBPJSMonitoringKlaimApotek.setText("Monitoring Klaim Apotek BPJS");
+        btnBPJSMonitoringKlaimApotek.setIconTextGap(0);
+        btnBPJSMonitoringKlaimApotek.setName("btnBPJSMonitoringKlaimApotek"); // NOI18N
+        btnBPJSMonitoringKlaimApotek.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnBPJSMonitoringKlaimApotek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBPJSMonitoringKlaimApotekActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnBPJSMonitoringKlaimApotek);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6432,7 +6552,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26/09/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29/09/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12646,6 +12766,94 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnBPJSMapingObatApotekActionPerformed
 
+    private void btnBPJSReferensiObatDPHOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBPJSReferensiObatDPHOActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        ApotekBPJSCekReferensiDPHO form=new ApotekBPJSCekReferensiDPHO(this,false);
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnBPJSReferensiObatDPHOActionPerformed
+
+    private void btnBPJSReferensiPoliApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBPJSReferensiPoliApotekActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        ApotekBPJSCekReferensiPoli form=new ApotekBPJSCekReferensiPoli(this,false);
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnBPJSReferensiPoliApotekActionPerformed
+
+    private void btnBPJSReferensiFaskesApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBPJSReferensiFaskesApotekActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        ApotekBPJSCekReferensiFaskes form=new ApotekBPJSCekReferensiFaskes(this,false);
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnBPJSReferensiFaskesApotekActionPerformed
+
+    private void btnBPJSReferensiSpesilistikApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBPJSReferensiSpesilistikApotekActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        ApotekBPJSCekReferensiSpesialistik form=new ApotekBPJSCekReferensiSpesialistik(this,false);
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnBPJSReferensiSpesilistikApotekActionPerformed
+
+    private void btnBPJSReferensiSetingPPKApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBPJSReferensiSetingPPKApotekActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        ApotekBPJSCekReferensiSettingPPK form=new ApotekBPJSCekReferensiSettingPPK(this,false);
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnBPJSReferensiSetingPPKApotekActionPerformed
+
+    private void btnBPJSReferensiObatApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBPJSReferensiObatApotekActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        ApotekBPJSCekReferensiObat form=new ApotekBPJSCekReferensiObat(this,false);
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnBPJSReferensiObatApotekActionPerformed
+
+    private void btnBPJSPencarianSEPApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBPJSPencarianSEPApotekActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        ApotekBPJSKunjunganSEP form=new ApotekBPJSKunjunganSEP(this,false);
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnBPJSPencarianSEPApotekActionPerformed
+
+    private void btnBPJSMonitoringKlaimApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBPJSMonitoringKlaimApotekActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        ApotekBPJSMonitoringKlaim form=new ApotekBPJSMonitoringKlaim(this,false);
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnBPJSMonitoringKlaimApotekActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12724,6 +12932,14 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnAssesmenUlangGizi;
     private widget.ButtonBig btnAsuhanGiziRanap;
     private widget.ButtonBig btnBPJSMapingObatApotek;
+    private widget.ButtonBig btnBPJSMonitoringKlaimApotek;
+    private widget.ButtonBig btnBPJSPencarianSEPApotek;
+    private widget.ButtonBig btnBPJSReferensiFaskesApotek;
+    private widget.ButtonBig btnBPJSReferensiObatApotek;
+    private widget.ButtonBig btnBPJSReferensiObatDPHO;
+    private widget.ButtonBig btnBPJSReferensiPoliApotek;
+    private widget.ButtonBig btnBPJSReferensiSetingPPKApotek;
+    private widget.ButtonBig btnBPJSReferensiSpesilistikApotek;
     private widget.ButtonBig btnBPJSSEP;
     private widget.ButtonBig btnBPJScekRiwayatRujukanPcare;
     private widget.ButtonBig btnBangsal;
@@ -14502,6 +14718,41 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
             
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnBPJSReferensiPoliApotek);
+                jmlmenu++;
+            }
+            
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnBPJSReferensiObatDPHO);
+                jmlmenu++;
+            }
+            
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnBPJSReferensiSpesilistikApotek);
+                jmlmenu++;
+            }
+            
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnBPJSReferensiSetingPPKApotek);
+                jmlmenu++;
+            }
+            
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnBPJSReferensiObatApotek);
+                jmlmenu++;
+            }
+            
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnBPJSPencarianSEPApotek);
+                jmlmenu++;
+            }
+            
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnBPJSMonitoringKlaimApotek);
+                jmlmenu++;
+            }
+            
             if (akses.getstok_obat_pasien() == true) {
                 Panelmenu.add(btnBPJSMapingObatApotek);
                 jmlmenu++;
@@ -15301,6 +15552,41 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getadmin() == true) {
             Panelmenu.add(btnMapingLokasiSatuSehat);
+            jmlmenu++;
+        }
+
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnBPJSReferensiPoliApotek);
+            jmlmenu++;
+        }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnBPJSReferensiObatDPHO);
+            jmlmenu++;
+        }
+
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnBPJSReferensiSpesilistikApotek);
+            jmlmenu++;
+        }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnBPJSReferensiSetingPPKApotek);
+            jmlmenu++;
+        }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnBPJSReferensiObatApotek);
+            jmlmenu++;
+        }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnBPJSPencarianSEPApotek);
+            jmlmenu++;
+        }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnBPJSMonitoringKlaimApotek);
             jmlmenu++;
         }
         
@@ -17313,6 +17599,55 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getadmin()== true) {
             if (btnMapingOrganisasiSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnMapingOrganisasiSatuSehat);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getadmin()== true) {
+            if (btnBPJSReferensiPoliApotek.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnBPJSReferensiPoliApotek);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getadmin()== true) {
+            if (btnBPJSReferensiObatDPHO.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnBPJSReferensiObatDPHO);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getadmin()== true) {
+            if (btnBPJSReferensiSpesilistikApotek.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnBPJSReferensiSpesilistikApotek);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getadmin()== true) {
+            if (btnBPJSReferensiSetingPPKApotek.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnBPJSReferensiSetingPPKApotek);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getadmin()== true) {
+            if (btnBPJSReferensiObatApotek.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnBPJSReferensiObatApotek);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getadmin()== true) {
+            if (btnBPJSPencarianSEPApotek.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnBPJSPencarianSEPApotek);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getadmin()== true) {
+            if (btnBPJSMonitoringKlaimApotek.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnBPJSMonitoringKlaimApotek);
                 jmlmenu++;
             }
         }
