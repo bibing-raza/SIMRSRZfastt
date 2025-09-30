@@ -38,12 +38,12 @@ import javax.swing.table.TableColumn;
  * @author dosen
  */
 public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1, tabMode2;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3;
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Connection koneksi = koneksiDB.condb();
-    private PreparedStatement ps, ps1, ps2;
-    private ResultSet rs, rs1, rs2;
+    private PreparedStatement ps, ps1, ps2, ps3;
+    private ResultSet rs, rs1, rs2, rs3;
     private int i = 0;
     private ApotekBPJSCekReferensiDPHO barangbpjs = new ApotekBPJSCekReferensiDPHO(null, false);
     
@@ -135,12 +135,12 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
             }
         };
         
-        tbFarmasi.setModel(tabMode2);
-        tbFarmasi.setPreferredScrollableViewportSize(new Dimension(500,500));
-        tbFarmasi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbKFA.setModel(tabMode2);
+        tbKFA.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbKFA.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0; i < 12; i++) {
-            TableColumn column = tbFarmasi.getColumnModel().getColumn(i);
+            TableColumn column = tbKFA.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(80);
             } else if (i == 1) {
@@ -174,7 +174,90 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             }
         }
-        tbFarmasi.setDefaultRenderer(Object.class, new WarnaTable());
+        tbKFA.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode3= new DefaultTableModel(null, new Object[]{
+            "Kode Barang", "Nama Barang", "Kode Satuan", "Nama Satuan", "Letak Barang",
+            "Hrg.Beli(Rp)", "Ralan(Rp)", "Ranap K1(Rp)", "Ranap K2(Rp)", "Ranap K3(Rp)",
+            "Kelas Utama/BPJS(Rp)", "Ranap VIP(Rp)", "Ranap VVIP(Rp)", "Beli Luar(Rp)",
+            "Jual Bebas(Rp)", "Karyawan(Rp)", "Stok Minimal", "Kode Jenis", "Nama Jenis", "Kapasitas",
+            "Kadaluwarsa", "Kode I.F.", "Industri Farmasi", "Kode Kategori", "Kategori", "Kode Golongan", 
+            "Golongan", "Tipe Barang", "High Alert"
+            }){
+             @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+        };
+        
+        tbObatRs.setModel(tabMode3);
+        tbObatRs.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbObatRs.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 29; i++) {
+            TableColumn column = tbObatRs.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(120);
+            } else if (i == 1) {
+                column.setPreferredWidth(200);
+            } else if (i == 2) {
+                column.setPreferredWidth(73);
+            } else if (i == 3) {
+                column.setPreferredWidth(120);
+            } else if (i == 4) {
+                column.setPreferredWidth(140);
+            } else if (i == 5) {
+                column.setPreferredWidth(85);
+            } else if (i == 6) {
+                column.setPreferredWidth(85);
+            } else if (i == 7) {
+                column.setPreferredWidth(85);
+            } else if (i == 8) {
+                column.setPreferredWidth(85);
+            } else if (i == 9) {
+                column.setPreferredWidth(85);
+            } else if (i == 10) {
+                column.setPreferredWidth(85);
+            } else if (i == 11) {
+                column.setPreferredWidth(85);
+            } else if (i == 12) {
+                column.setPreferredWidth(85);
+            } else if (i == 13) {
+                column.setPreferredWidth(85);
+            } else if (i == 14) {
+                column.setPreferredWidth(85);
+            } else if (i == 15) {
+                column.setPreferredWidth(85);
+            } else if (i == 16) {
+                column.setPreferredWidth(95);
+            } else if (i == 17) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 18) {
+                column.setPreferredWidth(120);
+            } else if (i == 19) {
+                column.setPreferredWidth(70);
+            } else if (i == 20) {
+                column.setPreferredWidth(70);
+            } else if (i == 21) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 22) {
+                column.setPreferredWidth(120);
+            } else if (i == 23) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 24) {
+                column.setPreferredWidth(120);
+            } else if (i == 25) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 26) {
+                column.setPreferredWidth(80);
+            } else if (i == 27) {
+                column.setPreferredWidth(80);
+            } else if (i == 28) {
+                column.setPreferredWidth(80);
+            }
+        }
+        tbObatRs.setDefaultRenderer(Object.class, new WarnaTable());
 
         kdobat.setDocument(new batasInput((byte) 5).getKata(kdobat));
         KdObatBPJS.setDocument(new batasInput((byte) 15).getKata(KdObatBPJS));
@@ -253,15 +336,25 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
         LCount1 = new widget.Label();
         Scroll1 = new widget.ScrollPane();
         tbDpho = new widget.Table();
+        TabObat = new javax.swing.JTabbedPane();
         panelGlass14 = new widget.panelisi();
         Scroll2 = new widget.ScrollPane();
-        tbFarmasi = new widget.Table();
+        tbKFA = new widget.Table();
         panelGlass15 = new widget.panelisi();
         jLabel10 = new widget.Label();
         TCari2 = new widget.TextBox();
         BtnCari2 = new widget.Button();
         jLabel11 = new widget.Label();
         LCount2 = new widget.Label();
+        panelGlass16 = new widget.panelisi();
+        Scroll3 = new widget.ScrollPane();
+        tbObatRs = new widget.Table();
+        panelGlass17 = new widget.panelisi();
+        jLabel12 = new widget.Label();
+        TCari3 = new widget.TextBox();
+        BtnCari3 = new widget.Button();
+        jLabel13 = new widget.Label();
+        LCount3 = new widget.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -424,9 +517,10 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('2');
+        BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+2");
         BtnCari.setName("BtnCari"); // NOI18N
-        BtnCari.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
         BtnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCariActionPerformed(evt);
@@ -566,9 +660,10 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari1.setMnemonic('2');
+        BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+2");
         BtnCari1.setName("BtnCari1"); // NOI18N
-        BtnCari1.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnCari1.setPreferredSize(new java.awt.Dimension(130, 23));
         BtnCari1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCari1ActionPerformed(evt);
@@ -608,22 +703,26 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
 
         panelGlass11.add(panelGlass12);
 
+        TabObat.setBackground(new java.awt.Color(254, 255, 254));
+        TabObat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TabObat.setName("TabObat"); // NOI18N
+        TabObat.setPreferredSize(new java.awt.Dimension(0, 2000));
+
         panelGlass14.setName("panelGlass14"); // NOI18N
         panelGlass14.setPreferredSize(new java.awt.Dimension(44, 44));
         panelGlass14.setLayout(new java.awt.BorderLayout());
 
-        Scroll2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Daftar Obat/Alkes Sudah Mapping Dengan KFA Satu Sehat ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         Scroll2.setName("Scroll2"); // NOI18N
         Scroll2.setOpaque(true);
 
-        tbFarmasi.setAutoCreateRowSorter(true);
-        tbFarmasi.setName("tbFarmasi"); // NOI18N
-        tbFarmasi.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbKFA.setAutoCreateRowSorter(true);
+        tbKFA.setName("tbKFA"); // NOI18N
+        tbKFA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbFarmasiMouseClicked(evt);
+                tbKFAMouseClicked(evt);
             }
         });
-        Scroll2.setViewportView(tbFarmasi);
+        Scroll2.setViewportView(tbKFA);
 
         panelGlass14.add(Scroll2, java.awt.BorderLayout.CENTER);
 
@@ -650,9 +749,10 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
         BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari2.setMnemonic('2');
+        BtnCari2.setText("Tampilkan Data");
         BtnCari2.setToolTipText("Alt+2");
         BtnCari2.setName("BtnCari2"); // NOI18N
-        BtnCari2.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnCari2.setPreferredSize(new java.awt.Dimension(130, 23));
         BtnCari2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCari2ActionPerformed(evt);
@@ -675,7 +775,78 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
 
         panelGlass14.add(panelGlass15, java.awt.BorderLayout.PAGE_END);
 
-        panelGlass11.add(panelGlass14);
+        TabObat.addTab("Daftar Obat/Alkes Sudah Mapping Dengan KFA Satu Sehat", panelGlass14);
+
+        panelGlass16.setName("panelGlass16"); // NOI18N
+        panelGlass16.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass16.setLayout(new java.awt.BorderLayout());
+
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+
+        tbObatRs.setAutoCreateRowSorter(true);
+        tbObatRs.setName("tbObatRs"); // NOI18N
+        tbObatRs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbObatRsMouseClicked(evt);
+            }
+        });
+        Scroll3.setViewportView(tbObatRs);
+
+        panelGlass16.add(Scroll3, java.awt.BorderLayout.CENTER);
+
+        panelGlass17.setName("panelGlass17"); // NOI18N
+        panelGlass17.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass17.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Key Word :");
+        jLabel12.setName("jLabel12"); // NOI18N
+        jLabel12.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass17.add(jLabel12);
+
+        TCari3.setForeground(new java.awt.Color(0, 0, 0));
+        TCari3.setName("TCari3"); // NOI18N
+        TCari3.setPreferredSize(new java.awt.Dimension(250, 23));
+        TCari3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCari3KeyPressed(evt);
+            }
+        });
+        panelGlass17.add(TCari3);
+
+        BtnCari3.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari3.setMnemonic('2');
+        BtnCari3.setText("Tampilkan Data");
+        BtnCari3.setToolTipText("Alt+2");
+        BtnCari3.setName("BtnCari3"); // NOI18N
+        BtnCari3.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari3ActionPerformed(evt);
+            }
+        });
+        panelGlass17.add(BtnCari3);
+
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Record :");
+        jLabel13.setName("jLabel13"); // NOI18N
+        jLabel13.setPreferredSize(new java.awt.Dimension(75, 23));
+        panelGlass17.add(jLabel13);
+
+        LCount3.setForeground(new java.awt.Color(0, 0, 0));
+        LCount3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount3.setText("0");
+        LCount3.setName("LCount3"); // NOI18N
+        LCount3.setPreferredSize(new java.awt.Dimension(80, 23));
+        panelGlass17.add(LCount3);
+
+        panelGlass16.add(panelGlass17, java.awt.BorderLayout.PAGE_END);
+
+        TabObat.addTab("Daftar Obat/Alkes Farmasi RS", panelGlass16);
+
+        panelGlass11.add(TabObat);
 
         panelGlass10.add(panelGlass11);
 
@@ -834,14 +1005,14 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tbDphoMouseClicked
 
-    private void tbFarmasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbFarmasiMouseClicked
+    private void tbKFAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKFAMouseClicked
         if (tabMode2.getRowCount() != 0) {
             try {
                 getDataFarmasi();
             } catch (java.lang.NullPointerException e) {
             }
         }
-    }//GEN-LAST:event_tbFarmasiMouseClicked
+    }//GEN-LAST:event_tbKFAMouseClicked
 
     private void TCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari1KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -860,7 +1031,7 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
     }//GEN-LAST:event_TCari2KeyPressed
 
     private void BtnCari2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari2ActionPerformed
-        tampilObatRS();
+        tampilObatRSKfa();
     }//GEN-LAST:event_BtnCari2ActionPerformed
 
     private void btnReferensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReferensiActionPerformed
@@ -868,6 +1039,26 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
         barangbpjs.setLocationRelativeTo(internalFrame1);
         barangbpjs.setVisible(true);
     }//GEN-LAST:event_btnReferensiActionPerformed
+
+    private void tbObatRsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbObatRsMouseClicked
+        if (tabMode3.getRowCount() != 0) {
+            try {
+                kdobat.setText(tbObatRs.getValueAt(tbObatRs.getSelectedRow(),0).toString());
+                TObat.setText(tbObatRs.getValueAt(tbObatRs.getSelectedRow(),1).toString());
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
+    }//GEN-LAST:event_tbObatRsMouseClicked
+
+    private void TCari3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari3KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCari3ActionPerformed(null);
+        }
+    }//GEN-LAST:event_TCari3KeyPressed
+
+    private void BtnCari3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari3ActionPerformed
+        tampilObatRS();
+    }//GEN-LAST:event_BtnCari3ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -891,6 +1082,7 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
     private widget.Button BtnCari2;
+    private widget.Button BtnCari3;
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
@@ -900,18 +1092,24 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
     private widget.Label LCount;
     private widget.Label LCount1;
     private widget.Label LCount2;
+    private widget.Label LCount3;
     private widget.TextBox NmObatBPJS;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
+    private widget.ScrollPane Scroll3;
     private widget.TextBox TCari;
     private widget.TextBox TCari1;
     private widget.TextBox TCari2;
+    private widget.TextBox TCari3;
     private widget.TextBox TObat;
+    private javax.swing.JTabbedPane TabObat;
     private widget.Button btnReferensi;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
+    private widget.Label jLabel12;
+    private widget.Label jLabel13;
     private widget.Label jLabel19;
     private widget.Label jLabel4;
     private widget.Label jLabel6;
@@ -926,11 +1124,14 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
     private widget.panelisi panelGlass13;
     private widget.panelisi panelGlass14;
     private widget.panelisi panelGlass15;
+    private widget.panelisi panelGlass16;
+    private widget.panelisi panelGlass17;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.Table tbDpho;
-    private widget.Table tbFarmasi;
+    private widget.Table tbKFA;
     private widget.Table tbMapping;
+    private widget.Table tbObatRs;
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
@@ -1037,7 +1238,7 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
         LCount1.setText("" + tabMode1.getRowCount());
     }
     
-    private void tampilObatRS() {
+    private void tampilObatRSKfa() {
         Valid.tabelKosong(tabMode2);
         try {
             ps2 = koneksi.prepareStatement("select ss.kode_brng,db.nama_brng,ss.obat_code, ss.obat_system,ss.obat_display,ss.form_code,ss.form_system, "
@@ -1092,9 +1293,97 @@ public final class ApotekBPJSMapingObat extends javax.swing.JDialog {
     }
     
     private void getDataFarmasi() {
-        if (tbFarmasi.getSelectedRow() != -1) {
-            kdobat.setText(tbFarmasi.getValueAt(tbFarmasi.getSelectedRow(), 2).toString());
-            TObat.setText(tbFarmasi.getValueAt(tbFarmasi.getSelectedRow(), 3).toString());
+        if (tbKFA.getSelectedRow() != -1) {
+            kdobat.setText(tbKFA.getValueAt(tbKFA.getSelectedRow(), 2).toString());
+            TObat.setText(tbKFA.getValueAt(tbKFA.getSelectedRow(), 3).toString());
         }
+    }
+    
+    private void tampilObatRS() {
+        Valid.tabelKosong(tabMode3);
+        try {
+            ps3 = koneksi.prepareStatement("SELECT db.kode_brng, db.nama_brng, db.kode_sat, ks.satuan, db.letak_barang, db.h_beli, db.ralan, "
+                    + "db.kelas1, db.kelas2, db.kelas3, db.utama, db.vip, db.vvip, db.beliluar, db.jualbebas, db.karyawan, "
+                    + "db.stokminimal, db.kdjns, j.nama, kapasitas, db.expire, db.kode_industri, ifm.nama_industri, "
+                    + "db.kode_kategori, kb.nama kategori, db.kode_golongan, gb.nama golongan, db.tipe_brg, high_alert "
+                    + "FROM databarang db INNER JOIN kodesatuan ks on db.kode_sat = ks.kode_sat "
+                    + "INNER JOIN jenis j on db.kdjns = j.kdjns INNER JOIN industrifarmasi ifm on db.kode_industri = ifm.kode_industri "
+                    + "INNER JOIN golongan_barang gb on db.kode_golongan = gb.kode INNER JOIN kategori_barang kb ON db.kode_kategori = kb.kode where "
+                    + "db.status='1' and db.kode_brng not in (select kode_brng from satu_sehat_mapping_obat) and ("
+                    + "db.kode_brng like ? or "
+                    + "db.nama_brng like ? or "
+                    + "db.kode_sat like ? or "
+                    + "ks.satuan like ? or "
+                    + "db.letak_barang like ? or "
+                    + "db.kdjns like ? or "
+                    + "kb.nama like ? or "
+                    + "gb.nama like ? or "
+                    + "j.nama like ? or "
+                    + "db.kode_industri like ? or "
+                    + "db.tipe_brg like ? or "
+                    + "db.high_alert like ? or "
+                    + "ifm.nama_industri like ?) order by db.nama_brng");
+            try {
+                ps3.setString(1, "%" + TCari3.getText().trim() + "%");
+                ps3.setString(2, "%" + TCari3.getText().trim() + "%");
+                ps3.setString(3, "%" + TCari3.getText().trim() + "%");
+                ps3.setString(4, "%" + TCari3.getText().trim() + "%");
+                ps3.setString(5, "%" + TCari3.getText().trim() + "%");
+                ps3.setString(6, "%" + TCari3.getText().trim() + "%");
+                ps3.setString(7, "%" + TCari3.getText().trim() + "%");
+                ps3.setString(8, "%" + TCari3.getText().trim() + "%");
+                ps3.setString(9, "%" + TCari3.getText().trim() + "%");
+                ps3.setString(10, "%" + TCari3.getText().trim() + "%");
+                ps3.setString(11, "%" + TCari3.getText().trim() + "%");
+                ps3.setString(12, "%" + TCari3.getText().trim() + "%");
+                ps3.setString(13, "%" + TCari3.getText().trim() + "%");
+                rs3 = ps3.executeQuery();
+                while (rs3.next()) {
+                    tabMode3.addRow(new Object[]{
+                        rs3.getString("kode_brng"),
+                        rs3.getString("nama_brng"),
+                        rs3.getString("kode_sat"),
+                        rs3.getString("satuan"),
+                        rs3.getString("letak_barang"),
+                        rs3.getDouble("h_beli"),
+                        rs3.getDouble("ralan"),
+                        rs3.getDouble("kelas1"),
+                        rs3.getDouble("kelas2"),
+                        rs3.getDouble("kelas3"),
+                        rs3.getDouble("utama"),
+                        rs3.getDouble("vip"),
+                        rs3.getDouble("vvip"),
+                        rs3.getDouble("beliluar"),
+                        rs3.getDouble("jualbebas"),
+                        rs3.getDouble("karyawan"),
+                        rs3.getString("stokminimal"),
+                        rs3.getString("kdjns"),
+                        rs3.getString("nama"),
+                        rs3.getDouble("kapasitas"),
+                        rs3.getString("expire"),
+                        rs3.getString("kode_industri"),
+                        rs3.getString("nama_industri"),
+                        rs3.getString("kode_kategori"),
+                        rs3.getString("kategori"),
+                        rs3.getString("kode_golongan"),
+                        rs3.getString("golongan"),
+                        rs3.getString("tipe_brg"),
+                        rs3.getString("high_alert")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs3 != null) {
+                    rs3.close();
+                }
+                if (ps3 != null) {
+                    ps3.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        LCount3.setText("" + tabMode3.getRowCount());
     }
 }
