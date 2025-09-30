@@ -88,7 +88,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             sqlpscekbilling = "select count(billing.no_rawat) from billing where billing.no_rawat=?",
             sqlpscarirm = "select r.no_rkm_medis, pj.png_jawab, r.kd_pj from reg_periksa r inner join penjab pj on pj.kd_pj=r.kd_pj where r.no_rawat=?",
             sqlpscaripasien = "select p.nm_pasien, concat(r.umurdaftar,' ',r.sttsumur) umur from pasien p "
-            + "inner join reg_periksa r on r.no_rkm_medis=p.no_rkm_medis where p.no_rkm_medis=? ",
+            + "inner join reg_periksa r on r.no_rkm_medis=p.no_rkm_medis where r.no_rawat=? ",
             sqlpsreg = "select reg_periksa.no_rkm_medis,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,"
             + "reg_periksa.no_rkm_medis,reg_periksa.kd_poli,reg_periksa.no_rawat,date_format(reg_periksa.jam_reg,'%H:%i:%s') jam, "
             + "reg_periksa.biaya_reg from reg_periksa where reg_periksa.no_rawat=?",
@@ -4854,7 +4854,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
             pscaripasien = koneksi.prepareStatement(sqlpscaripasien);
             try {
-                pscaripasien.setString(1, TNoRM.getText());
+                pscaripasien.setString(1, TNoRw.getText());
                 rscaripasien = pscaripasien.executeQuery();
                 if (rscaripasien.next()) {
                     TPasien.setText(rscaripasien.getString(1) + " (" + rscaripasien.getString(2) + ".)");                    

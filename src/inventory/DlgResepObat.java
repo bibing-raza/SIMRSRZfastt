@@ -10,6 +10,7 @@
  */
 package inventory;
 
+import bridging.ApotekBPJSKirimObat;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -54,6 +55,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
     private PreparedStatement ps, ps2, ps3;
     private ResultSet rs, rs2, rs3;
     public DlgCariDokter dokter = new DlgCariDokter(null, false);
+    private ApotekBPJSKirimObat dlgobtApotekBPJS=new ApotekBPJSKirimObat(null,false);
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private Date date = new Date();
     private String now = dateFormat.format(date), status = "", penjab = "", nmPrinter1 = "", nmPrinter2 = "", noSep = "",
@@ -292,6 +294,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         BtnAll = new widget.Button();
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
+        BtnKirimBpjs = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass9 = new widget.panelisi();
         jLabel19 = new widget.Label();
@@ -567,7 +570,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         jLabel8.setBounds(0, 42, 95, 23);
 
         DTPBeri.setEditable(false);
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);
@@ -830,6 +833,20 @@ public final class DlgResepObat extends javax.swing.JDialog {
         LCount.setPreferredSize(new java.awt.Dimension(52, 30));
         panelGlass8.add(LCount);
 
+        BtnKirimBpjs.setForeground(new java.awt.Color(0, 0, 0));
+        BtnKirimBpjs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        BtnKirimBpjs.setMnemonic('M');
+        BtnKirimBpjs.setText("Kirim Ke Apotek BPJS");
+        BtnKirimBpjs.setToolTipText("Alt+M");
+        BtnKirimBpjs.setName("BtnKirimBpjs"); // NOI18N
+        BtnKirimBpjs.setPreferredSize(new java.awt.Dimension(165, 30));
+        BtnKirimBpjs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKirimBpjsActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnKirimBpjs);
+
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
@@ -862,7 +879,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -877,7 +894,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1487,6 +1504,48 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_ppLabelObatLuarBesarActionPerformed
 
+    private void BtnKirimBpjsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimBpjsActionPerformed
+        if (tabMode1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+            TNoRw.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from setting_bridging where kd_bridging='4' and status_aktif='Tidak'") > 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, pengaturan bridging apotek BPJS telah dinonaktifkan sejak tgl. " 
+                    + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_non_aktif from setting_bridging where kd_bridging='4'")) + " ...!!");
+            tampil();
+        } else {
+            if (tbResep.getSelectedRow() > -1) {
+                if (NoResep.getText().trim().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Silahkan klik dulu pada nomor resepnya untuk Kirim data obat ke Apotek BPJS...!!!!");
+                    tampil();
+                } else {
+                    if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRw.getText() + "' and kd_pj='B01'") == 0) {
+                        JOptionPane.showMessageDialog(null, "Hanya untuk pasien BPJS...!!!!");
+                        tampil();
+                    } else if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") == 0) {
+                        JOptionPane.showMessageDialog(null, "Hanya untuk pasien BPJS yang rawat jalan...!!!!");
+                        tampil();
+                    } else {
+                        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                        String normk = "";
+                        normk = Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + TNoRw.getText() + "'");
+
+                        dlgobtApotekBPJS.setNoRm(TNoRw.getText(), normk, Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + normk + "'"),
+                                Valid.SetTgl(DTPBeri.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                                NoResep.getText().substring(5, 10), NoResep.getText());
+                        dlgobtApotekBPJS.tampil(NoResep.getText());
+                        dlgobtApotekBPJS.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                        dlgobtApotekBPJS.setLocationRelativeTo(internalFrame1);
+                        dlgobtApotekBPJS.setVisible(true);
+                        this.setCursor(Cursor.getDefaultCursor());
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu resepnya dulu untuk Kirim data obat ke Apotek BPJS...!!!!");
+                tampil();
+            }
+        }
+    }//GEN-LAST:event_BtnKirimBpjsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1509,6 +1568,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnCari;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnKirimBpjs;
     private widget.Button BtnSimpan;
     private widget.CekBox ChkInput;
     private widget.CekBox ChkRM;
@@ -1749,6 +1809,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public void isCek() {
         BtnSimpan.setEnabled(akses.getresep_obat());
         BtnHapus.setEnabled(akses.getresep_obat());
+        BtnKirimBpjs.setEnabled(akses.getresep_obat());
     }
 
     public void setStatus(String stat) {

@@ -21,6 +21,7 @@ import bridging.ApotekBPJSCekReferensiObat;
 import bridging.ApotekBPJSCekReferensiPoli;
 import bridging.ApotekBPJSCekReferensiSettingPPK;
 import bridging.ApotekBPJSCekReferensiSpesialistik;
+import bridging.ApotekBPJSDaftarPelayananObat2;
 import bridging.ApotekBPJSKunjunganSEP;
 import bridging.ApotekBPJSMapingObat;
 import bridging.ApotekBPJSMonitoringKlaim;
@@ -957,6 +958,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnBPJSReferensiObatApotek = new widget.ButtonBig();
         btnBPJSPencarianSEPApotek = new widget.ButtonBig();
         btnBPJSMonitoringKlaimApotek = new widget.ButtonBig();
+        btnBPJSDataTerkirimApotek = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6544,6 +6546,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnBPJSMonitoringKlaimApotek);
 
+        btnBPJSDataTerkirimApotek.setForeground(new java.awt.Color(0, 0, 0));
+        btnBPJSDataTerkirimApotek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/bpjs_apotek.png"))); // NOI18N
+        btnBPJSDataTerkirimApotek.setText("Data Obat Terkirim Apotek BPJS");
+        btnBPJSDataTerkirimApotek.setIconTextGap(0);
+        btnBPJSDataTerkirimApotek.setName("btnBPJSDataTerkirimApotek"); // NOI18N
+        btnBPJSDataTerkirimApotek.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnBPJSDataTerkirimApotek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBPJSDataTerkirimApotekActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnBPJSDataTerkirimApotek);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6552,7 +6567,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29/09/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30/09/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12854,6 +12869,17 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnBPJSMonitoringKlaimApotekActionPerformed
 
+    private void btnBPJSDataTerkirimApotekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBPJSDataTerkirimApotekActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        ApotekBPJSDaftarPelayananObat2 form = new ApotekBPJSDaftarPelayananObat2(null, true);
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnBPJSDataTerkirimApotekActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12931,6 +12957,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnAssesmenMedikIGD;
     private widget.ButtonBig btnAssesmenUlangGizi;
     private widget.ButtonBig btnAsuhanGiziRanap;
+    private widget.ButtonBig btnBPJSDataTerkirimApotek;
     private widget.ButtonBig btnBPJSMapingObatApotek;
     private widget.ButtonBig btnBPJSMonitoringKlaimApotek;
     private widget.ButtonBig btnBPJSPencarianSEPApotek;
@@ -14754,6 +14781,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
             
             if (akses.getstok_obat_pasien() == true) {
+                Panelmenu.add(btnBPJSDataTerkirimApotek);
+                jmlmenu++;
+            }
+            
+            if (akses.getstok_obat_pasien() == true) {
                 Panelmenu.add(btnBPJSMapingObatApotek);
                 jmlmenu++;
             }
@@ -15587,6 +15619,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getadmin() == true) {
             Panelmenu.add(btnBPJSMonitoringKlaimApotek);
+            jmlmenu++;
+        }
+
+        if (akses.getstok_obat_pasien() == true) {
+            Panelmenu.add(btnBPJSDataTerkirimApotek);
             jmlmenu++;
         }
         
@@ -17648,6 +17685,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getadmin()== true) {
             if (btnBPJSMonitoringKlaimApotek.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnBPJSMonitoringKlaimApotek);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getstok_obat_pasien()== true) {
+            if (btnBPJSDataTerkirimApotek.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnBPJSDataTerkirimApotek);
                 jmlmenu++;
             }
         }
