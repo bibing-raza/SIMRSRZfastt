@@ -8372,7 +8372,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 }) == true) {
                     if (ChkProgramPrb.isSelected() == true) {
                         Sequel.menyimpanIgnore("bridging_srb_bpjs",
-                                "'" + Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' limit 1").replaceAll("", "-") + "',"
+                                "'" + Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' limit 1") + "',"
                                 + "'" + TNoRw.getText() + "','" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','-','-','-','-','" + akses.getkode() + "',"
                                 + "'" + akses.getnamauser() + "','" + akses.getkode() + "','" + noIdObat.getText() + "','hanya sebagai penanda resep program prb',"
                                 + "'" + Sequel.cariIsi("select now()") + "'", "Resep Program PRB BPJS");
@@ -8617,7 +8617,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             if (ChkProgramPrb.isSelected() == true) {
                                 Sequel.queryu("delete from bridging_srb_bpjs where keterangan='" + TIdObat.getText() + "'");
                                 Sequel.menyimpanIgnore("bridging_srb_bpjs",
-                                        "'" + Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw2.getText() + "' and jnspelayanan='2' limit 1").replaceAll("", "-") + "',"
+                                        "'" + Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw2.getText() + "' and jnspelayanan='2' limit 1") + "',"
                                         + "'" + TNoRw2.getText() + "','" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','-','-','-','-','" + akses.getkode() + "',"
                                         + "'" + akses.getnamauser() + "','" + akses.getkode() + "','" + TIdObat.getText() + "','hanya sebagai penanda resep program prb',"
                                         + "'" + Sequel.cariIsi("select now()") + "'", "Resep Program PRB BPJS");
