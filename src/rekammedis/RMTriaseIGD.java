@@ -622,6 +622,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         Tvas = new widget.TextBox();
         scrollPane11 = new widget.ScrollPane();
         TindikasiAlergi = new widget.TextArea();
+        chkSesuaiHitungan = new widget.CekBox();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbTriase = new widget.Table();
@@ -865,7 +866,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_kunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2025 13:54:33" }));
+        tgl_kunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025 17:21:56" }));
         tgl_kunjungan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_kunjungan.setName("tgl_kunjungan"); // NOI18N
         tgl_kunjungan.setOpaque(false);
@@ -1100,7 +1101,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(tmpt_kejadian_tunggal);
         tmpt_kejadian_tunggal.setBounds(223, 240, 310, 23);
 
-        tgl_kejadian_tunggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2025 13:54:33" }));
+        tgl_kejadian_tunggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025 17:21:56" }));
         tgl_kejadian_tunggal.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_kejadian_tunggal.setName("tgl_kejadian_tunggal"); // NOI18N
         tgl_kejadian_tunggal.setOpaque(false);
@@ -1165,7 +1166,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(tmpt_kejadian);
         tmpt_kejadian.setBounds(538, 270, 228, 23);
 
-        tgl_kejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2025 13:54:33" }));
+        tgl_kejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025 17:21:56" }));
         tgl_kejadian.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_kejadian.setName("tgl_kejadian"); // NOI18N
         tgl_kejadian.setOpaque(false);
@@ -2484,6 +2485,25 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(scrollPane11);
         scrollPane11.setBounds(800, 10, 547, 170);
 
+        chkSesuaiHitungan.setBackground(new java.awt.Color(255, 255, 250));
+        chkSesuaiHitungan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkSesuaiHitungan.setForeground(new java.awt.Color(0, 0, 0));
+        chkSesuaiHitungan.setText("Sesuai Hitungan WPSS");
+        chkSesuaiHitungan.setBorderPainted(true);
+        chkSesuaiHitungan.setBorderPaintedFlat(true);
+        chkSesuaiHitungan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkSesuaiHitungan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkSesuaiHitungan.setName("chkSesuaiHitungan"); // NOI18N
+        chkSesuaiHitungan.setOpaque(false);
+        chkSesuaiHitungan.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkSesuaiHitungan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkSesuaiHitunganActionPerformed(evt);
+            }
+        });
+        FormInput.add(chkSesuaiHitungan);
+        chkSesuaiHitungan.setBounds(830, 1016, 140, 23);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormTriase.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -2526,7 +2546,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2541,7 +2561,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2758,8 +2778,11 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
             btnPetugas.requestFocus();
         } else {
             if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + TNoRw.getText() + "'") == 0) {
-                cekData();
-                hitungSkor();
+                if (chkSesuaiHitungan.isSelected() == true) {
+                    hitungSkor();
+                }
+                
+                cekData();                
                 if (Sequel.menyimpantf("triase_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 71, new String[]{
                     TNoRw.getText(), Valid.SetTgl(tgl_kunjungan.getSelectedItem() + "") + " " + tgl_kunjungan.getSelectedItem().toString().substring(11, 19), cmbCaraMasuk.getSelectedItem().toString(),
                     sdh_terpasang.getText(), cmbAlasanKedatangan.getSelectedItem().toString(), rujukan_dari.getText(), dijemput_oleh.getText(), cmbKendaraan.getSelectedItem().toString(), bkn_ambulan.getText(),
@@ -3775,6 +3798,12 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         Valid.pindah(evt, cmbNyeri, Tcttn_khusus);
     }//GEN-LAST:event_TvasKeyPressed
 
+    private void chkSesuaiHitunganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSesuaiHitunganActionPerformed
+        if (chkSesuaiHitungan.isSelected() == true) {
+            hitungSkor();
+        }
+    }//GEN-LAST:event_chkSesuaiHitunganActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3879,6 +3908,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroupSaturasi;
     private javax.swing.ButtonGroup buttonGroupTekanan;
     private javax.swing.ButtonGroup buttonGroupTemperatur;
+    public widget.CekBox chkSesuaiHitungan;
     private widget.ComboBox cmbAlasanKedatangan;
     private widget.ComboBox cmbCaraMasuk;
     private widget.ComboBox cmbDtk;
@@ -4266,6 +4296,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode1);
         bb.setText("");
         tb.setText("");
+        chkSesuaiHitungan.setSelected(false);
     }
     
     public void setNoRm(String norwt) {
@@ -4397,22 +4428,23 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
             Tcttn_khusus.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 61).toString());
             cmbJam.setSelectedItem(tbTriase.getValueAt(tbTriase.getSelectedRow(), 62).toString().substring(0, 2));
             cmbMnt.setSelectedItem(tbTriase.getValueAt(tbTriase.getSelectedRow(), 62).toString().substring(3, 5));
-            cmbDtk.setSelectedItem(tbTriase.getValueAt(tbTriase.getSelectedRow(), 62).toString().substring(6, 8));
-            resus = tbTriase.getValueAt(tbTriase.getSelectedRow(), 63).toString();
-            nonresus = tbTriase.getValueAt(tbTriase.getSelectedRow(), 64).toString();
-            klinik = tbTriase.getValueAt(tbTriase.getSelectedRow(), 65).toString();
-            doa = tbTriase.getValueAt(tbTriase.getSelectedRow(), 66).toString();
+            cmbDtk.setSelectedItem(tbTriase.getValueAt(tbTriase.getSelectedRow(), 62).toString().substring(6, 8));            
             nip = tbTriase.getValueAt(tbTriase.getSelectedRow(), 67).toString();
             nm_petugas.setText(Sequel.cariIsi("select ifnull(nama,'') from pegawai where nik='" + nip + "'"));
             tgl_kejadian_tggl = tbTriase.getValueAt(tbTriase.getSelectedRow(), 68).toString();
             tgl_kejadian_kll = tbTriase.getValueAt(tbTriase.getSelectedRow(), 69).toString();
             Tvas.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 70).toString());
             bb.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 71).toString());
-            tb.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 72).toString());
-            dataCek();
+            tb.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 72).toString());            
             cekMekanisme();
-            hitungSkor();
+            hitungSkor();            
+            resus = tbTriase.getValueAt(tbTriase.getSelectedRow(), 63).toString();
+            nonresus = tbTriase.getValueAt(tbTriase.getSelectedRow(), 64).toString();
+            klinik = tbTriase.getValueAt(tbTriase.getSelectedRow(), 65).toString();
+            doa = tbTriase.getValueAt(tbTriase.getSelectedRow(), 66).toString();
+            dataCek();
             cekAlergi();
+            chkSesuaiHitungan.setSelected(false);
         }
     }
     
@@ -4682,8 +4714,10 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     }
     
     private void ganti() {
+        if (chkSesuaiHitungan.isSelected() == true) {
+            hitungSkor();
+        }
         cekData();
-        hitungSkor();
         if (Sequel.mengedittf("triase_igd", "no_rawat=?", "no_rawat=?, tanggal=?, cara_masuk=?, sudah_terpasang=?, alasan_kedatangan=?, rujukan_dari=?, dijemput_oleh=?, kendaraan=?, bukan_ambulan=?, nm_pengantar=?, "
                 + "telp_pengantar=?, kasus=?, kll_tunggal=?, kll_tunggal_tmpt_kejadian=?, kll_tunggal_tanggal=?, kll_versus=?, versus1=?, versus2=?, kll_tmpt_kejadian=?, "
                 + "kll_tanggal=?, jatuh=?, ket_jatuh=?, luka_bakar=?, ket_luka_bakar=?, trauma_listrik=?, ket_trauma_listrik=?, trauma_zat_kimia=?, ket_trauma_zat_kimia=?, "
@@ -5237,6 +5271,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
             Chkklinik.setSelected(false);
             Chkdoa.setSelected(false);
         }
+        chkSesuaiHitungan.setSelected(true);
     }
     
     private void tampilTemplate() {

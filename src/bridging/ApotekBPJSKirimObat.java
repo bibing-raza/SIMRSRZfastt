@@ -1694,8 +1694,8 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     //non racikan
                     psobat = koneksi.prepareStatement("select m.kode_brng_apotek_bpjs, db.nama_brng, dpo.jml, "
                             + "CONCAT_WS(', ', at.aturan1, at.aturan2, at.aturan3, at.waktu1, at.waktu2, at.keterangan) aturanPakai "
-                            + "from detail_pemberian_obat dpo inner join maping_obat_apotek_bpjs m on dpo.kode_brng=m.kode_brng "
-                            + "inner join databarang db on dpo.kode_brng=db.kode_brng left join aturan_pakai at on at.no_rawat=dpo.no_rawat where "
+                            + "from detail_pemberian_obat dpo inner join maping_obat_apotek_bpjs m on dpo.kode_brng=m.kode_brng inner join databarang db on dpo.kode_brng=db.kode_brng "
+                            + "left join aturan_pakai at on at.no_rawat=dpo.no_rawat and at.tgl_perawatan=dpo.tgl_perawatan and at.jam=dpo.jam where "
                             + "dpo.tgl_perawatan=? and dpo.jam=? and dpo.no_rawat=? and db.kode_brng not in ('B000001938','B000002727','B000002610','B000002706','B000002722') "
                             + "group by db.kode_brng, dpo.tgl_perawatan, dpo.jam, dpo.no_rawat order by db.kode_brng");
                     try {
@@ -1749,7 +1749,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     //racikan
                     psracikan = koneksi.prepareStatement("select dpo.no_rawat, dpo.kode_brng, db.nama_brng, dpo.jml, db.kapasitas, dpo.tgl_perawatan, dpo.jam, "
                             + "CONCAT_WS(', ', at.aturan1, at.aturan2, at.aturan3, at.waktu1, at.waktu2) aturanPakai, at.keterangan from detail_pemberian_obat dpo "
-                            + "inner join databarang db on db.kode_brng=dpo.kode_brng left join aturan_pakai at on at.no_rawat=dpo.no_rawat where "
+                            + "inner join databarang db on db.kode_brng=dpo.kode_brng left join aturan_pakai at on at.no_rawat=dpo.no_rawat and at.tgl_perawatan=dpo.tgl_perawatan and at.jam=dpo.jam where "
                             + "dpo.tgl_perawatan=? and dpo.jam=? and dpo.no_rawat=? and db.kode_brng IN ('B000001938','B000002727','B000002610','B000002706','B000002722') "
                             + "group by dpo.kode_brng, dpo.jml, db.kapasitas, dpo.tgl_perawatan, dpo.jam, dpo.no_rawat order by db.kode_brng");
                     try {

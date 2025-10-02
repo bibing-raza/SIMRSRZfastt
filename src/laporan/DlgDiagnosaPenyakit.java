@@ -61,7 +61,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             rsreturobat, rsreseppulang, rstambahanbiaya, rspotonganbiaya, rsservice, rssudahmasuk, rsRujuk, rscariralandokter, rscariralandrpr,
             rscariralanperawat, rscarilab, rscariradiologi, rstambahan, rspotongan, rsbilling, rsLaprm, rsdiag, rsPrev;
     private int jml = 0, i = 0, index = 0, jml1 = 0, s = 0, index1 = 0, cek = 0, cekINADRG = 0, r = 0, cekKonfirmasi = 0,
-            cekPremier = 0, cekPremierINADRG = 0, lis1 = 0, lis2 = 0, lisM = 0, x = 0, z = 0;
+            cekPremier = 0, cekPremierINADRG = 0, lis1 = 0, lis2 = 0, lisM = 0, x = 0, z = 0, a = 0, b = 0, c = 0, d = 0;
     private double Jasa_Medik_Dokter_Tindakan_Ralan = 0, Jasa_Medik_Paramedis_Tindakan_Ralan = 0, KSO_Tindakan_Ralan = 0, Jasa_Medik_Dokter_Laborat_Ralan = 0,
             Jasa_Medik_Petugas_Laborat_Ralan = 0, so_Laborat_Ralan = 0, Persediaan_Laborat_Rawat_Jalan = 0, Jasa_Medik_Dokter_Radiologi_Ralan = 0,
             Jasa_Medik_Petugas_Radiologi_Ralan = 0, Kso_Radiologi_Ralan = 0, Persediaan_Radiologi_Rawat_Jalan = 0, Obat_Rawat_Jalan = 0, ttlRalan_Dokter_Param = 0,
@@ -1069,6 +1069,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         cmbDiagPro = new widget.ComboBox();
         jLabel20 = new widget.Label();
         chkDiagnosa = new widget.CekBox();
+        BtnTindakanRanap = new widget.Button();
         Scroll43 = new widget.ScrollPane();
         LoadHTML1 = new widget.editorpane();
         Scroll44 = new widget.ScrollPane();
@@ -1181,7 +1182,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         nmpoli.setHighlighter(null);
         nmpoli.setName("nmpoli"); // NOI18N
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025 16:06:58" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025 14:38:46" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1398,7 +1399,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1412,7 +1413,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1767,6 +1768,21 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         });
         FormInput.add(chkDiagnosa);
         chkDiagnosa.setBounds(445, 42, 290, 23);
+
+        BtnTindakanRanap.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTindakanRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/36.png"))); // NOI18N
+        BtnTindakanRanap.setMnemonic('1');
+        BtnTindakanRanap.setText("Paket Tind. Rawat Inap");
+        BtnTindakanRanap.setToolTipText("Alt+1");
+        BtnTindakanRanap.setName("BtnTindakanRanap"); // NOI18N
+        BtnTindakanRanap.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnTindakanRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTindakanRanapActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnTindakanRanap);
+        BtnTindakanRanap.setBounds(1135, 42, 180, 23);
 
         TabData.addTab("Input Diagnosa & Prosedur (Tindakan)", FormInput);
 
@@ -2913,6 +2929,48 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         TabPreviewMouseClicked(null);
     }//GEN-LAST:event_chkTglCpptActionPerformed
 
+    private void BtnTindakanRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTindakanRanapActionPerformed
+        a = 0;
+        b = 0;
+        c = 0;
+        d = 0;
+        
+        for (i = 0; i < tbProsedur.getRowCount(); i++) {
+            if (tbProsedur.getValueAt(i, 0).equals(true)) {
+                a++;
+            }
+        }
+        
+        for (i = 0; i < tbProsedur.getRowCount(); i++) {
+            if (tbProsedur.getValueAt(i, 0).equals(false)) {
+                b++;
+            }
+        }
+        
+        for (i = 0; i < tbProsedur.getRowCount(); i++) {
+            if (!tbProsedur.getValueAt(i, 1).equals("87.49") || !tbProsedur.getValueAt(i, 1).equals("90.59")) {
+                c++;
+            }
+        }
+        
+        for (i = 0; i < tbProsedur.getRowCount(); i++) {
+            if (tbProsedur.getValueAt(i, 1).equals("87.49") || tbProsedur.getValueAt(i, 1).equals("90.59")) {
+                d++;
+            }
+        }
+        
+        if (tbProsedur.getRowCount() > 0 && a > 0 && c > 0 && d == 0) {
+            tabModeProsedur.addRow(new Object[]{false, "87.49", "Other chest x-ray", "Chest x-ray NEC"});
+            tabModeProsedur.addRow(new Object[]{false, "90.59", "Microscopic examination of blood, other microscopic examination", "Micro exam-blood NEC"});
+        } else if (tbProsedur.getRowCount() > 0 && b > 0) {
+            Valid.tabelKosong(tabModeProsedur);
+            tabModeProsedur.addRow(new Object[]{false, "87.49", "Other chest x-ray", "Chest x-ray NEC"});
+            tabModeProsedur.addRow(new Object[]{false, "90.59", "Microscopic examination of blood, other microscopic examination", "Micro exam-blood NEC"});
+        } else if (tbProsedur.getRowCount() > 0 && a > 0 && b > 0) {
+            Prosedur.requestFocus();
+        }
+    }//GEN-LAST:event_BtnTindakanRanapActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2944,6 +3002,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnResume;
     private widget.Button BtnSeek4;
     private widget.Button BtnSimpan;
+    private widget.Button BtnTindakanRanap;
     private widget.CekBox ChkInput;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
@@ -3274,6 +3333,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } else {
             chkDiagnosa.setEnabled(false);
             BtnResume.setEnabled(true);
+        }
+        
+        if (Status.getSelectedIndex() == 1 && Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRw.getText() + "' and kd_pj in ('B01','A03')") > 0) {
+            BtnTindakanRanap.setEnabled(true);
+        } else {
+            BtnTindakanRanap.setEnabled(false);
         }
     }
 

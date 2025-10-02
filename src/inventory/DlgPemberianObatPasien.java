@@ -3113,7 +3113,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         norm.setText(TNoRM.getText());
         nmpasien.setText(TNmPasien.getText());
         
-        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("PONEK - VK BERSALIN (Ranap)") || status.equals("PONEK - VK BERSALIN")) {
             nmdpjp.setText(Sequel.cariIsi("select ifnull(p.nama,'-') from penilaian_awal_medis_igd pa inner join pegawai p on p.nik=pa.nip_dpjp where pa.no_rawat='" + TNoRW.getText() + "'"));
             rencana.setText(Sequel.cariIsi("select ifnull(rencana_instruksi,'-') from penilaian_awal_medis_igd where no_rawat='" + TNoRW.getText() + "'"));
             TketRencana.setText(Sequel.cariIsi("select ifnull(ket_rencana_instruksi,'-') from penilaian_awal_medis_igd where no_rawat='" + TNoRW.getText() + "'"));
@@ -4831,7 +4831,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         chkSaya1.setEnabled(false);
         chkSaya2.setEnabled(false);
         
-        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("PONEK - VK BERSALIN (Ranap)") || status.equals("PONEK - VK BERSALIN")) {
             cmbResep.setSelectedIndex(1);
         } else if (status.equals("ranap")) {
             cmbResep.setSelectedIndex(0);
@@ -5294,7 +5294,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private void tampilCppt() {
         Valid.tabelKosong(tabModeCppt);
         try {
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("PONEK - VK BERSALIN (Ranap)") || status.equals("PONEK - VK BERSALIN")) {
                 pscppt = koneksi.prepareStatement("SELECT c.verifikasi, DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tgl, if(c.cek_jam='ya',TIME_FORMAT(c.jam_cppt,'%H:%i'),'-') jam, "
                         + "c.jenis_bagian, pg1.nama nmdpjp, c.jenis_ppa, pg2.nama nmppa, c.cppt_shift, c.hasil_pemeriksaan, "
                         + "c.instruksi_nakes, c.waktu_simpan, c.no_rawat, c.tgl_cppt, c.jam_cppt from cppt c "
