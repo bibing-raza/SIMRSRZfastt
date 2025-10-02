@@ -2814,9 +2814,15 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                         + "apabila ruang rawat inap ingin mengcopy obat dari IGD silahkan conteng dulu Rg. Rawat Sekarang,    \n"
                         + "lalu simpan datanya....!!");
                 ChkRuangan.requestFocus();
+            } else if (nmUnit.getText().equals("PONEK - VK BERSALIN") && Sequel.cariInteger("select count(-1) from triase_ponek where nip_petugas='" + akses.getkode() + "'") == 0) {
+                JOptionPane.showMessageDialog(null, "Maaf, hanya petugas Ponek yang bisa menyimpan data pemberian obat dg. ruang rawat Ponek,     \n"
+                        + "apabila ruang rawat inap ingin mengcopy obat dari Ponek silahkan conteng dulu Rg. Rawat Sekarang,    \n"
+                        + "lalu simpan datanya....!!");
+                ChkRuangan.requestFocus();
             } else {
                 cekData();
-                if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
+                if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan") 
+                        || status.equals("PONEK - VK BERSALIN (Ranap)") || status.equals("PONEK - VK BERSALIN")) {
                     statusOK = "Ralan";
                 } else if (status.equals("ranap")) {
                     statusOK = "Ranap";
@@ -2846,7 +2852,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                         Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Pemberian Obat Pasien", "Simpan");
                         tampil();
                         tampilDoubelCek();
-                        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
+                        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")
+                                || status.equals("PONEK - VK BERSALIN (Ranap)") || status.equals("PONEK - VK BERSALIN")) {
                             emptTeks();
                         }
                     }
@@ -3258,7 +3265,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJnsObat1.setSelectedItem(cmbJnsObat.getSelectedItem());
             tgl_beriCetak.setDate(tgl_beri.getDate());
             
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")
+                    || status.equals("PONEK - VK BERSALIN (Ranap)") || status.equals("PONEK - VK BERSALIN")) {
                 cmbJnsRawat.setSelectedIndex(0);
             } else if (status.equals("ranap")) {
                 cmbJnsRawat.setSelectedIndex(1);
