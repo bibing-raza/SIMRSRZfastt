@@ -8651,10 +8651,12 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("IGDK")) {
-            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD saja...!!!");
-            tbKasirRalan.requestFocus();
-        } else {
+        } 
+//        else if (!kdpoli.getText().equals("IGDK")) {
+//            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD saja...!!!");
+//            tbKasirRalan.requestFocus();
+//        } 
+        else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
