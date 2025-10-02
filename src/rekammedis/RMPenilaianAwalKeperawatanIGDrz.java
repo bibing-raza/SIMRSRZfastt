@@ -3140,7 +3140,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbAsesmen.getSelectedRow() > -1) {
-            if (akses.getadmin() == true) {
+            if (akses.getpic_igd() == true || akses.getadmin() == true) {
                 hapus();
             } else {
                 if (nip.equals(akses.getkode())) {
@@ -3166,7 +3166,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                 cmbTindakanCegah.requestFocus();
             } else {
                 if (tbAsesmen.getSelectedRow() > -1) {
-                    if (akses.getadmin() == true) {
+                    if (akses.getpic_igd() == true || akses.getadmin() == true) {
                         ganti();
                     } else {
                         if (nip.equals(akses.getkode())) {
@@ -3181,7 +3181,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             }
         } else {
             if (tbAsesmen.getSelectedRow() > -1) {
-                if (akses.getadmin() == true) {
+                if (akses.getpic_igd() == true || akses.getadmin() == true) {
                     ganti();
                 } else {
                     if (nip.equals(akses.getkode())) {

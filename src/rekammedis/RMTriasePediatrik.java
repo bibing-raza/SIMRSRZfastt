@@ -2828,7 +2828,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbTriase.getSelectedRow() > -1) {
-            if (akses.getadmin() == true) {
+            if (akses.getpic_igd() == true || akses.getadmin() == true) {
                 hapus();
             } else {
                 if (tbTriase.getValueAt(tbTriase.getSelectedRow(), 88).toString().equals(akses.getkode())) {
@@ -2850,7 +2850,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
             BtnPetugas.requestFocus();
         } else {
             if (tbTriase.getSelectedRow() > -1) {
-                if (akses.getadmin() == true) {
+                if (akses.getpic_igd() == true || akses.getadmin() == true) {
                     ganti();
                 } else {
                     if (tbTriase.getValueAt(tbTriase.getSelectedRow(), 88).toString().equals(akses.getkode())) {

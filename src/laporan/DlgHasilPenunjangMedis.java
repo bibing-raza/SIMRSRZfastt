@@ -857,8 +857,10 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                     param.put("tglSurat", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("SELECT DATE(waktu_insert) FROM lis_hasil_data_pasien WHERE no_lab='" + tbLIS.getValueAt(tbLIS.getSelectedRow(), 1).toString() + "'")));
                     
                     if (tbPembacaLIS.getRowCount() == 0) {
-                        param.put("dokterBaca", "- dokter belum membaca hasil -");
+                        param.put("judulDokterBaca", "");
+                        param.put("dokterBaca", "");
                     } else {
+                        param.put("judulDokterBaca", "Hasil pemeriksaan Lab. telah dibaca oleh dokter :");
                         param.put("dokterBaca", dokterBaca);
                     }
                     
@@ -1563,7 +1565,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                         + "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 8).toString() + "',"
                         + "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 9).toString() + "',"
                         + "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 6).toString() + "',"
-                        + "'" + Sequel.cariIsi("select now()") + "'", "Pembaca Hasil Lab.");
+                        + "'" + Sequel.cariIsi("select now()") + "'", "Pembaca hasil radiologi");
             }
         }
     }

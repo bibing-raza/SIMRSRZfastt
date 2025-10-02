@@ -4030,7 +4030,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbPenilaian.getSelectedRow() > -1) {
-            if (akses.getadmin() == true) {
+            if (akses.getpic_igd() == true || akses.getadmin() == true) {
                 hapus();
             } else {
                 if (kddpjp.getText().equals(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 120).toString())) {
@@ -4060,7 +4060,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             BtnDpjp.requestFocus();
         } else {
             if (tbPenilaian.getSelectedRow() > -1) {
-                if (akses.getkode().equals("Admin Utama")) {
+                if (akses.getpic_igd() == true || akses.getadmin() == true) {
                     ganti();
                 } else {
                     if (kddpjp.getText().equals(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 120).toString())) {

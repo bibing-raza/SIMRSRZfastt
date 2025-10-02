@@ -1992,7 +1992,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel51.setBounds(0, 25, 130, 23);
 
         tanggalPeriksa.setEditable(false);
-        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2025" }));
+        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-09-2025" }));
         tanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         tanggalPeriksa.setName("tanggalPeriksa"); // NOI18N
         tanggalPeriksa.setOpaque(false);
@@ -2931,7 +2931,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         panelisi1.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-09-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -3546,6 +3546,12 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                 } else {
                     Sequel.mengedit("hasil_radiologi", "no_rawat='" + Kd2.getText() + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'",
                             "hasil='" + HasilPeriksa.getText() + "', diag_klinis_radiologi='" + diagKlinisRad.getText() + "', kd_jenis_prw='" + kdItem + "'");
+                }
+                
+                if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "' and status='1'") > 0) {
+                    Sequel.menyimpanIgnore("pembaca_hasil_radiologi",
+                            "'" + Kd2.getText() + "','" + akses.getkode() + "','" + kdItem + "','" + tglhasil + "','" + jamhasil + "',"
+                            + "'" + Sequel.cariIsi("select now()") + "'", "Pembaca hasil radiologi");
                 }
             }
 
@@ -4865,6 +4871,9 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
             x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin deskripsi/expertise/uraian hasil pemeriksaan akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 Sequel.queryu2("delete from hasil_radiologi where no_rawat=? and tgl_periksa=? and jam=? and kd_jenis_prw=?", 4, new String[]{
+                    Kd2.getText(), tglhasil, jamhasil, kdItem});
+                
+                Sequel.queryu2("delete from pembaca_hasil_radiologi where no_rawat=? and tgl_periksa=? and jam_periksa=? and kd_jenis_prw=?", 4, new String[]{
                     Kd2.getText(), tglhasil, jamhasil, kdItem});
                 HasilPeriksa.setText("");
             }

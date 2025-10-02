@@ -8359,7 +8359,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 if (kdpoli.getText().equals("IGDK") || kdpoli.getText().equals("KJH")) {
-                    if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
+                    if (akses.getadmin() == true || akses.getpic_igd() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
                             + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         akses.setform("DlgKasirRalan");
@@ -8423,7 +8423,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 if (kdpoli.getText().equals("IGDK") || kdpoli.getText().equals("KJH") || kdpoli.getText().equals("PON")) {
-                    if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
+                    if (akses.getadmin() == true || akses.getpic_igd() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
                             + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         akses.setform("DlgKasirRalan");
@@ -8487,7 +8487,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 if (kdpoli.getText().equals("IGDK") || kdpoli.getText().equals("KJH")) {
-                    if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
+                    if (akses.getadmin() == true || akses.getpic_igd() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
                             + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         akses.setform("DlgKasirRalan");
@@ -9133,7 +9133,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 if (kdpoli.getText().equals("IGDK") || kdpoli.getText().equals("KJH")) {
-                    if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
+                    if (akses.getadmin() == true || akses.getpic_igd() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
                             + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         RMLembarObservasi obs = new RMLembarObservasi(null, false);
@@ -9851,7 +9851,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 if (kdpoli.getText().equals("IGDK") || kdpoli.getText().equals("KJH")) {
-                    if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
+                    if (akses.getadmin() == true || akses.getpic_igd() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
                             + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         akses.setform("DlgKasirRalan");
@@ -9936,7 +9936,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
-                if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
+                if (akses.getadmin() == true || akses.getpic_igd() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
                         + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     akses.setform("DlgKasirRalan");
@@ -9994,11 +9994,13 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } else if (Sequel.cariInteger("SELECT count(-1) FROM reg_periksa rp inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis WHERE "
-                + "rp.umurdaftar BETWEEN 12 and 50 and rp.sttsumur='Th' and p.jk='P' and rp.no_rawat='" + TNoRw.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, hanya utk. pasien wanita yang dirawat diruang VK Bersalin...!!!");
-            tbKasirRalan.requestFocus();
-        } else {
+        } 
+//        else if (Sequel.cariInteger("SELECT count(-1) FROM reg_periksa rp inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis WHERE "
+//                + "rp.umurdaftar BETWEEN 12 and 50 and rp.sttsumur='Th' and p.jk='P' and rp.no_rawat='" + TNoRw.getText() + "'") == 0) {
+//            JOptionPane.showMessageDialog(null, "Maaf, hanya utk. pasien wanita yang dirawat diruang VK Bersalin...!!!");
+//            tbKasirRalan.requestFocus();
+//        } 
+        else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgKasirRalan");

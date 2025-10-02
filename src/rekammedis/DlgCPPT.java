@@ -15249,7 +15249,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 8).toString() + "',"
                         + "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 9).toString() + "',"
                         + "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 6).toString() + "',"
-                        + "'" + Sequel.cariIsi("select now()") + "'", "Pembaca Hasil Lab.");
+                        + "'" + Sequel.cariIsi("select now()") + "'", "Pembaca hasil radiologi");
             }
         }
     }

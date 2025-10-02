@@ -24,6 +24,7 @@
 	<parameter name="nmUnit" class="java.lang.String"/>
 	<parameter name="labelUnit" class="java.lang.String"/>
 	<parameter name="dokterBaca" class="java.lang.String"/>
+	<parameter name="judulDokterBaca" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT * FROM temporary_lis]]>
 	</queryString>
@@ -557,19 +558,19 @@
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{tglSurat}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="8" y="33" width="214" height="13"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Hasil pemeriksaan Lab. telah dibaca oleh dokter : ]]></text>
-			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="8" y="46" width="307" height="11"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{dokterBaca}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="8" y="33" width="246" height="13"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{judulDokterBaca}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

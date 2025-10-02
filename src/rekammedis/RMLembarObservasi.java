@@ -1550,7 +1550,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
             if (tbObservasi.getSelectedRow() > -1) {
-                if (akses.getadmin() == true) {
+                if (akses.getpic_igd() == true || akses.getadmin() == true) {
                     ganti();
                 } else {
                     if (nipPerawat.equals(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 16).toString())) {
@@ -1712,7 +1712,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbObservasi.getSelectedRow() > -1) {
-            if (akses.getadmin() == true) {
+            if (akses.getpic_igd() == true || akses.getadmin() == true) {
                 hapus();
             } else {
                 if (nipPerawat.equals(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 16).toString())) {

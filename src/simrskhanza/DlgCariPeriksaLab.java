@@ -1961,7 +1961,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi1.add(jLabel25);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-09-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -4150,9 +4150,11 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             
             if (Sequel.cariInteger("select count(-1) from pembaca_hasil_lab where no_rawat='" + NoRawat.getText() + "' and "
                     + "no_lab='" + nolab + "' and tgl_periksa='" + tglPeriksa + "'") == 0) {
-                param.put("dokterBaca", "- dokter belum membaca hasil -");
+                param.put("judulDokterBaca", "");
+                param.put("dokterBaca", "");
             } else {
                 tampilPembaca(NoRawat.getText(), nolab, tglPeriksa);
+                param.put("judulDokterBaca", "Hasil pemeriksaan Lab. telah dibaca oleh dokter :");
                 param.put("dokterBaca", dokterBaca);
             }
 
