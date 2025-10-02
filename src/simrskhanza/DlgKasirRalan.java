@@ -8944,11 +8944,13 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("IGDK")) {
-            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD saja...!!!");
-            tbKasirRalan.requestFocus();
-        } else if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='Ralan'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data pemberian obat rawat jalan/IGD utk. pasien ini belum ada tersimpan...!!!");
+        } 
+//        else if (!kdpoli.getText().equals("IGDK")) {
+//            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD saja...!!!");
+//            tbKasirRalan.requestFocus();
+//        } 
+        else if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='Ralan'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data pemberian obat rawat jalan/IGD/Ponek utk. pasien ini belum tersimpan...!!!");
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
