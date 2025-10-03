@@ -6939,6 +6939,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         try {
             ps4 = koneksi.prepareStatement("SELECT rp.no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-Laki','Perempuan') jk, "
                     + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllahir, rp.tgl_registrasi, rp.umurdaftar, rp.sttsumur, rp.no_rawat, "
+                    + "TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi) angkaUmurBln, "
                     + "TIMESTAMPDIFF(YEAR,p.tgl_lahir, rp.tgl_registrasi) umurTahun, "
                     + "concat(TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi),' ','Bl') umurBulan "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
@@ -6953,9 +6954,10 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     Valid.SetTgl(tglAsuhan, rs4.getString("tgl_registrasi"));
                     DTPCari1.setDate(rs4.getDate("tgl_registrasi"));
 
-                    if (Integer.parseInt(rs4.getString("umurTahun")) <= 5) {
+                    //usia balita 60 bulan 29 hari (5 tahun 29 hari) = 63 bulan
+                    if (Integer.parseInt(rs4.getString("angkaUmurBln")) <= 63) {
                         Tumur.setText(rs4.getString("umurBulan"));
-                        Tsttsumur.setText("");                        
+                        Tsttsumur.setText("");
                     } else {
                         if (rs4.getString("sttsumur").equals("Bl") || rs4.getString("sttsumur").equals("Hr")) {
                             Tumur.setText(rs4.getString("umurdaftar") + " " + rs4.getString("sttsumur"));

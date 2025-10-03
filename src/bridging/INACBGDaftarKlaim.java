@@ -1930,11 +1930,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
     private void tbSEPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSEPMouseClicked
         if (tabMode1.getRowCount() != 0) {
-//            try {
-//                getDataSEP();
-//            } catch (java.lang.NullPointerException e) {
-//            }
-
             if (evt.getClickCount() == 2) {
                 tglSep = "";
                 kd_payor = "3";
@@ -1951,14 +1946,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
     private void tbSEPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbSEPKeyPressed
         if (tabMode1.getRowCount() != 0) {
-//            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
-//                try {
-//                    getDataSEP();
-//                } catch (java.lang.NullPointerException e) {
-//                }
-//            }
-
-            if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            if ((evt.getKeyCode() == KeyEvent.VK_SPACE) || (evt.getKeyCode() == KeyEvent.VK_ENTER)) {
                 tglSep = "";
                 kd_payor = "3";
                 jnsRawat = "";

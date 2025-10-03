@@ -816,21 +816,18 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnDataTriasePediatrik = new javax.swing.JMenu();
         MnInputDataTriasePedia = new javax.swing.JMenuItem();
         MnLihatDataTriasePedia = new javax.swing.JMenuItem();
-        MnDataTriasePonek = new javax.swing.JMenu();
-        MnInputDataTriasePonek = new javax.swing.JMenuItem();
-        MnLihatDataTriasePonek = new javax.swing.JMenuItem();
         MnAssesmenMedikIGD = new javax.swing.JMenu();
         MnInputDataAssesmenMedikIGD = new javax.swing.JMenuItem();
         MnLihatDataAssesmenMedikIGD = new javax.swing.JMenuItem();
         MnAssesmenKeperawatanIGD = new javax.swing.JMenu();
         MnInputDataAssesmenKeperawatanIGD = new javax.swing.JMenuItem();
         MnLihatDataAssesmenKeperawatanIGD = new javax.swing.JMenuItem();
-        MnTransferSerahTerimaIGDPonek = new javax.swing.JMenu();
-        MnInputDataTransferSerahTerimaIGDPonek = new javax.swing.JMenuItem();
-        MnLihatDataTransferSerahTerimaIGDPonek = new javax.swing.JMenuItem();
+        MnTransferSerahTerimaIGD = new javax.swing.JMenu();
+        MnInputDataTransferSerahTerimaIGD = new javax.swing.JMenuItem();
+        MnLihatDataTransferSerahTerimaIGD = new javax.swing.JMenuItem();
         MnTransferTindakan = new javax.swing.JMenuItem();
-        MnPemberianObat = new javax.swing.JMenuItem();
-        MnPetugasPemberianObat = new javax.swing.JMenuItem();
+        MnPemberianObatIGD = new javax.swing.JMenuItem();
+        MnPetugasPemberianObatIGD = new javax.swing.JMenuItem();
         MnLembarObservasi = new javax.swing.JMenuItem();
         MnAsesmenMedikObstetriIGD = new javax.swing.JMenu();
         MnInputDataAsesmenMedikObstetri = new javax.swing.JMenuItem();
@@ -848,14 +845,22 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnPenilaianAwalMedisRalanTHT = new javax.swing.JMenuItem();
         MnPenilaianAwalMedisRalanMata = new javax.swing.JMenuItem();
         MnAsesmenMedikObstetri = new javax.swing.JMenuItem();
-        MnCPPTvkBersalin = new javax.swing.JMenu();
-        MnInputDataCPPTvk = new javax.swing.JMenuItem();
-        MnLihatDataCPPTvk = new javax.swing.JMenuItem();
-        MnVerifCPPTvk = new javax.swing.JMenuItem();
+        MnDataTriasePonek = new javax.swing.JMenu();
+        MnInputDataTriasePonek = new javax.swing.JMenuItem();
+        MnLihatDataTriasePonek = new javax.swing.JMenuItem();
         MnAsesmenAwalKebidanan = new javax.swing.JMenu();
         MnInputDataKebidanan = new javax.swing.JMenuItem();
         MnPreviewData = new javax.swing.JMenuItem();
         MnCetakData = new javax.swing.JMenuItem();
+        MnPemberianObatPonek = new javax.swing.JMenuItem();
+        MnPetugasPemberianObatPonek = new javax.swing.JMenuItem();
+        MnTransferSerahTerimaPonek = new javax.swing.JMenu();
+        MnInputDataTransferSerahTerimaPonek = new javax.swing.JMenuItem();
+        MnLihatDataTransferSerahTerimaPonek = new javax.swing.JMenuItem();
+        MnCPPTvkBersalin = new javax.swing.JMenu();
+        MnInputDataCPPTvk = new javax.swing.JMenuItem();
+        MnLihatDataCPPTvk = new javax.swing.JMenuItem();
+        MnVerifCPPTvk = new javax.swing.JMenuItem();
         ppDokumenJangMed = new javax.swing.JMenuItem();
         MnStatusKakiDiabetes = new javax.swing.JMenuItem();
         ppPersetujuanTindakan = new javax.swing.JMenuItem();
@@ -2471,53 +2476,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         MnRMGawatDarurat.add(MnDataTriasePediatrik);
 
-        MnDataTriasePonek.setBackground(new java.awt.Color(255, 255, 254));
-        MnDataTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnDataTriasePonek.setText("Triase Ponek IGD");
-        MnDataTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnDataTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnDataTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnDataTriasePonek.setIconTextGap(5);
-        MnDataTriasePonek.setName("MnDataTriasePonek"); // NOI18N
-        MnDataTriasePonek.setOpaque(true);
-        MnDataTriasePonek.setPreferredSize(new java.awt.Dimension(260, 26));
-
-        MnInputDataTriasePonek.setBackground(new java.awt.Color(255, 255, 254));
-        MnInputDataTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnInputDataTriasePonek.setForeground(new java.awt.Color(50, 50, 50));
-        MnInputDataTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnInputDataTriasePonek.setText("Input Data");
-        MnInputDataTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnInputDataTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnInputDataTriasePonek.setIconTextGap(5);
-        MnInputDataTriasePonek.setName("MnInputDataTriasePonek"); // NOI18N
-        MnInputDataTriasePonek.setPreferredSize(new java.awt.Dimension(98, 26));
-        MnInputDataTriasePonek.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnInputDataTriasePonekActionPerformed(evt);
-            }
-        });
-        MnDataTriasePonek.add(MnInputDataTriasePonek);
-
-        MnLihatDataTriasePonek.setBackground(new java.awt.Color(255, 255, 254));
-        MnLihatDataTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnLihatDataTriasePonek.setForeground(new java.awt.Color(50, 50, 50));
-        MnLihatDataTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnLihatDataTriasePonek.setText("Lihat Data");
-        MnLihatDataTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnLihatDataTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnLihatDataTriasePonek.setIconTextGap(5);
-        MnLihatDataTriasePonek.setName("MnLihatDataTriasePonek"); // NOI18N
-        MnLihatDataTriasePonek.setPreferredSize(new java.awt.Dimension(98, 26));
-        MnLihatDataTriasePonek.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnLihatDataTriasePonekActionPerformed(evt);
-            }
-        });
-        MnDataTriasePonek.add(MnLihatDataTriasePonek);
-
-        MnRMGawatDarurat.add(MnDataTriasePonek);
-
         MnAssesmenMedikIGD.setBackground(new java.awt.Color(255, 255, 254));
         MnAssesmenMedikIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnAssesmenMedikIGD.setText("Assesmen Medik IGD");
@@ -2612,52 +2570,52 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         MnRMGawatDarurat.add(MnAssesmenKeperawatanIGD);
 
-        MnTransferSerahTerimaIGDPonek.setBackground(new java.awt.Color(255, 255, 254));
-        MnTransferSerahTerimaIGDPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnTransferSerahTerimaIGDPonek.setText("Transfer Serah Terima Pasien IGD/Ponek");
-        MnTransferSerahTerimaIGDPonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnTransferSerahTerimaIGDPonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnTransferSerahTerimaIGDPonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnTransferSerahTerimaIGDPonek.setIconTextGap(5);
-        MnTransferSerahTerimaIGDPonek.setName("MnTransferSerahTerimaIGDPonek"); // NOI18N
-        MnTransferSerahTerimaIGDPonek.setOpaque(true);
-        MnTransferSerahTerimaIGDPonek.setPreferredSize(new java.awt.Dimension(260, 26));
+        MnTransferSerahTerimaIGD.setBackground(new java.awt.Color(255, 255, 254));
+        MnTransferSerahTerimaIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTransferSerahTerimaIGD.setText("Transfer Serah Terima Pasien IGD");
+        MnTransferSerahTerimaIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTransferSerahTerimaIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTransferSerahTerimaIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTransferSerahTerimaIGD.setIconTextGap(5);
+        MnTransferSerahTerimaIGD.setName("MnTransferSerahTerimaIGD"); // NOI18N
+        MnTransferSerahTerimaIGD.setOpaque(true);
+        MnTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(260, 26));
 
-        MnInputDataTransferSerahTerimaIGDPonek.setBackground(new java.awt.Color(255, 255, 254));
-        MnInputDataTransferSerahTerimaIGDPonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnInputDataTransferSerahTerimaIGDPonek.setForeground(new java.awt.Color(50, 50, 50));
-        MnInputDataTransferSerahTerimaIGDPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnInputDataTransferSerahTerimaIGDPonek.setText("Input Data");
-        MnInputDataTransferSerahTerimaIGDPonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnInputDataTransferSerahTerimaIGDPonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnInputDataTransferSerahTerimaIGDPonek.setIconTextGap(5);
-        MnInputDataTransferSerahTerimaIGDPonek.setName("MnInputDataTransferSerahTerimaIGDPonek"); // NOI18N
-        MnInputDataTransferSerahTerimaIGDPonek.setPreferredSize(new java.awt.Dimension(98, 26));
-        MnInputDataTransferSerahTerimaIGDPonek.addActionListener(new java.awt.event.ActionListener() {
+        MnInputDataTransferSerahTerimaIGD.setBackground(new java.awt.Color(255, 255, 254));
+        MnInputDataTransferSerahTerimaIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnInputDataTransferSerahTerimaIGD.setForeground(new java.awt.Color(50, 50, 50));
+        MnInputDataTransferSerahTerimaIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnInputDataTransferSerahTerimaIGD.setText("Input Data");
+        MnInputDataTransferSerahTerimaIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnInputDataTransferSerahTerimaIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnInputDataTransferSerahTerimaIGD.setIconTextGap(5);
+        MnInputDataTransferSerahTerimaIGD.setName("MnInputDataTransferSerahTerimaIGD"); // NOI18N
+        MnInputDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnInputDataTransferSerahTerimaIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnInputDataTransferSerahTerimaIGDPonekActionPerformed(evt);
+                MnInputDataTransferSerahTerimaIGDActionPerformed(evt);
             }
         });
-        MnTransferSerahTerimaIGDPonek.add(MnInputDataTransferSerahTerimaIGDPonek);
+        MnTransferSerahTerimaIGD.add(MnInputDataTransferSerahTerimaIGD);
 
-        MnLihatDataTransferSerahTerimaIGDPonek.setBackground(new java.awt.Color(255, 255, 254));
-        MnLihatDataTransferSerahTerimaIGDPonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnLihatDataTransferSerahTerimaIGDPonek.setForeground(new java.awt.Color(50, 50, 50));
-        MnLihatDataTransferSerahTerimaIGDPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnLihatDataTransferSerahTerimaIGDPonek.setText("Lihat Data");
-        MnLihatDataTransferSerahTerimaIGDPonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnLihatDataTransferSerahTerimaIGDPonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnLihatDataTransferSerahTerimaIGDPonek.setIconTextGap(5);
-        MnLihatDataTransferSerahTerimaIGDPonek.setName("MnLihatDataTransferSerahTerimaIGDPonek"); // NOI18N
-        MnLihatDataTransferSerahTerimaIGDPonek.setPreferredSize(new java.awt.Dimension(98, 26));
-        MnLihatDataTransferSerahTerimaIGDPonek.addActionListener(new java.awt.event.ActionListener() {
+        MnLihatDataTransferSerahTerimaIGD.setBackground(new java.awt.Color(255, 255, 254));
+        MnLihatDataTransferSerahTerimaIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLihatDataTransferSerahTerimaIGD.setForeground(new java.awt.Color(50, 50, 50));
+        MnLihatDataTransferSerahTerimaIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLihatDataTransferSerahTerimaIGD.setText("Lihat Data");
+        MnLihatDataTransferSerahTerimaIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLihatDataTransferSerahTerimaIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLihatDataTransferSerahTerimaIGD.setIconTextGap(5);
+        MnLihatDataTransferSerahTerimaIGD.setName("MnLihatDataTransferSerahTerimaIGD"); // NOI18N
+        MnLihatDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnLihatDataTransferSerahTerimaIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnLihatDataTransferSerahTerimaIGDPonekActionPerformed(evt);
+                MnLihatDataTransferSerahTerimaIGDActionPerformed(evt);
             }
         });
-        MnTransferSerahTerimaIGDPonek.add(MnLihatDataTransferSerahTerimaIGDPonek);
+        MnTransferSerahTerimaIGD.add(MnLihatDataTransferSerahTerimaIGD);
 
-        MnRMGawatDarurat.add(MnTransferSerahTerimaIGDPonek);
+        MnRMGawatDarurat.add(MnTransferSerahTerimaIGD);
 
         MnTransferTindakan.setBackground(new java.awt.Color(255, 255, 254));
         MnTransferTindakan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -2676,39 +2634,39 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
         MnRMGawatDarurat.add(MnTransferTindakan);
 
-        MnPemberianObat.setBackground(new java.awt.Color(255, 255, 254));
-        MnPemberianObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnPemberianObat.setForeground(new java.awt.Color(50, 50, 50));
-        MnPemberianObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnPemberianObat.setText("Pemberian Obat Rekam Medis");
-        MnPemberianObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnPemberianObat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnPemberianObat.setIconTextGap(5);
-        MnPemberianObat.setName("MnPemberianObat"); // NOI18N
-        MnPemberianObat.setPreferredSize(new java.awt.Dimension(260, 26));
-        MnPemberianObat.addActionListener(new java.awt.event.ActionListener() {
+        MnPemberianObatIGD.setBackground(new java.awt.Color(255, 255, 254));
+        MnPemberianObatIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPemberianObatIGD.setForeground(new java.awt.Color(50, 50, 50));
+        MnPemberianObatIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPemberianObatIGD.setText("Pemberian Obat IGD");
+        MnPemberianObatIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPemberianObatIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPemberianObatIGD.setIconTextGap(5);
+        MnPemberianObatIGD.setName("MnPemberianObatIGD"); // NOI18N
+        MnPemberianObatIGD.setPreferredSize(new java.awt.Dimension(260, 26));
+        MnPemberianObatIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnPemberianObatActionPerformed(evt);
+                MnPemberianObatIGDActionPerformed(evt);
             }
         });
-        MnRMGawatDarurat.add(MnPemberianObat);
+        MnRMGawatDarurat.add(MnPemberianObatIGD);
 
-        MnPetugasPemberianObat.setBackground(new java.awt.Color(255, 255, 254));
-        MnPetugasPemberianObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnPetugasPemberianObat.setForeground(new java.awt.Color(50, 50, 50));
-        MnPetugasPemberianObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnPetugasPemberianObat.setText("Petugas Pelaksana Pemberian Obat");
-        MnPetugasPemberianObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnPetugasPemberianObat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnPetugasPemberianObat.setIconTextGap(5);
-        MnPetugasPemberianObat.setName("MnPetugasPemberianObat"); // NOI18N
-        MnPetugasPemberianObat.setPreferredSize(new java.awt.Dimension(260, 26));
-        MnPetugasPemberianObat.addActionListener(new java.awt.event.ActionListener() {
+        MnPetugasPemberianObatIGD.setBackground(new java.awt.Color(255, 255, 254));
+        MnPetugasPemberianObatIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPetugasPemberianObatIGD.setForeground(new java.awt.Color(50, 50, 50));
+        MnPetugasPemberianObatIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPetugasPemberianObatIGD.setText("Petugas Pelaksana Pemberian Obat");
+        MnPetugasPemberianObatIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPetugasPemberianObatIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPetugasPemberianObatIGD.setIconTextGap(5);
+        MnPetugasPemberianObatIGD.setName("MnPetugasPemberianObatIGD"); // NOI18N
+        MnPetugasPemberianObatIGD.setPreferredSize(new java.awt.Dimension(260, 26));
+        MnPetugasPemberianObatIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnPetugasPemberianObatActionPerformed(evt);
+                MnPetugasPemberianObatIGDActionPerformed(evt);
             }
         });
-        MnRMGawatDarurat.add(MnPetugasPemberianObat);
+        MnRMGawatDarurat.add(MnPetugasPemberianObatIGD);
 
         MnLembarObservasi.setBackground(new java.awt.Color(255, 255, 254));
         MnLembarObservasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -2981,69 +2939,52 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         MnRekamMedis.add(MnPenilaianAwalMedis);
 
-        MnCPPTvkBersalin.setBackground(new java.awt.Color(255, 255, 254));
-        MnCPPTvkBersalin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCPPTvkBersalin.setText("CPPT Ponek / VK");
-        MnCPPTvkBersalin.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCPPTvkBersalin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnCPPTvkBersalin.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnCPPTvkBersalin.setIconTextGap(5);
-        MnCPPTvkBersalin.setName("MnCPPTvkBersalin"); // NOI18N
-        MnCPPTvkBersalin.setOpaque(true);
-        MnCPPTvkBersalin.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnDataTriasePonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnDataTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDataTriasePonek.setText("Triase Ponek");
+        MnDataTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDataTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDataTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDataTriasePonek.setIconTextGap(5);
+        MnDataTriasePonek.setName("MnDataTriasePonek"); // NOI18N
+        MnDataTriasePonek.setOpaque(true);
+        MnDataTriasePonek.setPreferredSize(new java.awt.Dimension(230, 26));
 
-        MnInputDataCPPTvk.setBackground(new java.awt.Color(255, 255, 254));
-        MnInputDataCPPTvk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnInputDataCPPTvk.setForeground(new java.awt.Color(50, 50, 50));
-        MnInputDataCPPTvk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnInputDataCPPTvk.setText("Input Data");
-        MnInputDataCPPTvk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnInputDataCPPTvk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnInputDataCPPTvk.setIconTextGap(5);
-        MnInputDataCPPTvk.setName("MnInputDataCPPTvk"); // NOI18N
-        MnInputDataCPPTvk.setPreferredSize(new java.awt.Dimension(130, 26));
-        MnInputDataCPPTvk.addActionListener(new java.awt.event.ActionListener() {
+        MnInputDataTriasePonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnInputDataTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnInputDataTriasePonek.setForeground(new java.awt.Color(50, 50, 50));
+        MnInputDataTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnInputDataTriasePonek.setText("Input Data");
+        MnInputDataTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnInputDataTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnInputDataTriasePonek.setIconTextGap(5);
+        MnInputDataTriasePonek.setName("MnInputDataTriasePonek"); // NOI18N
+        MnInputDataTriasePonek.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnInputDataTriasePonek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnInputDataCPPTvkActionPerformed(evt);
+                MnInputDataTriasePonekActionPerformed(evt);
             }
         });
-        MnCPPTvkBersalin.add(MnInputDataCPPTvk);
+        MnDataTriasePonek.add(MnInputDataTriasePonek);
 
-        MnLihatDataCPPTvk.setBackground(new java.awt.Color(255, 255, 254));
-        MnLihatDataCPPTvk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnLihatDataCPPTvk.setForeground(new java.awt.Color(50, 50, 50));
-        MnLihatDataCPPTvk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnLihatDataCPPTvk.setText("Lihat Data");
-        MnLihatDataCPPTvk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnLihatDataCPPTvk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnLihatDataCPPTvk.setIconTextGap(5);
-        MnLihatDataCPPTvk.setName("MnLihatDataCPPTvk"); // NOI18N
-        MnLihatDataCPPTvk.setPreferredSize(new java.awt.Dimension(130, 26));
-        MnLihatDataCPPTvk.addActionListener(new java.awt.event.ActionListener() {
+        MnLihatDataTriasePonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnLihatDataTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLihatDataTriasePonek.setForeground(new java.awt.Color(50, 50, 50));
+        MnLihatDataTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLihatDataTriasePonek.setText("Lihat Data");
+        MnLihatDataTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLihatDataTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLihatDataTriasePonek.setIconTextGap(5);
+        MnLihatDataTriasePonek.setName("MnLihatDataTriasePonek"); // NOI18N
+        MnLihatDataTriasePonek.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnLihatDataTriasePonek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnLihatDataCPPTvkActionPerformed(evt);
+                MnLihatDataTriasePonekActionPerformed(evt);
             }
         });
-        MnCPPTvkBersalin.add(MnLihatDataCPPTvk);
+        MnDataTriasePonek.add(MnLihatDataTriasePonek);
 
-        MnVerifCPPTvk.setBackground(new java.awt.Color(255, 255, 254));
-        MnVerifCPPTvk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnVerifCPPTvk.setForeground(new java.awt.Color(50, 50, 50));
-        MnVerifCPPTvk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnVerifCPPTvk.setText("Verifikasi CPPT");
-        MnVerifCPPTvk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnVerifCPPTvk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnVerifCPPTvk.setIconTextGap(5);
-        MnVerifCPPTvk.setName("MnVerifCPPTvk"); // NOI18N
-        MnVerifCPPTvk.setPreferredSize(new java.awt.Dimension(130, 26));
-        MnVerifCPPTvk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnVerifCPPTvkActionPerformed(evt);
-            }
-        });
-        MnCPPTvkBersalin.add(MnVerifCPPTvk);
-
-        MnRekamMedis.add(MnCPPTvkBersalin);
+        MnRekamMedis.add(MnDataTriasePonek);
 
         MnAsesmenAwalKebidanan.setBackground(new java.awt.Color(255, 255, 254));
         MnAsesmenAwalKebidanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -3108,6 +3049,151 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnAsesmenAwalKebidanan.add(MnCetakData);
 
         MnRekamMedis.add(MnAsesmenAwalKebidanan);
+
+        MnPemberianObatPonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnPemberianObatPonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPemberianObatPonek.setForeground(new java.awt.Color(50, 50, 50));
+        MnPemberianObatPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPemberianObatPonek.setText("Pemberian Obat Ponek");
+        MnPemberianObatPonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPemberianObatPonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPemberianObatPonek.setIconTextGap(5);
+        MnPemberianObatPonek.setName("MnPemberianObatPonek"); // NOI18N
+        MnPemberianObatPonek.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnPemberianObatPonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPemberianObatPonekActionPerformed(evt);
+            }
+        });
+        MnRekamMedis.add(MnPemberianObatPonek);
+
+        MnPetugasPemberianObatPonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnPetugasPemberianObatPonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPetugasPemberianObatPonek.setForeground(new java.awt.Color(50, 50, 50));
+        MnPetugasPemberianObatPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPetugasPemberianObatPonek.setText("Petugas Pelaksana Pemberian Obat");
+        MnPetugasPemberianObatPonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPetugasPemberianObatPonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPetugasPemberianObatPonek.setIconTextGap(5);
+        MnPetugasPemberianObatPonek.setName("MnPetugasPemberianObatPonek"); // NOI18N
+        MnPetugasPemberianObatPonek.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnPetugasPemberianObatPonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPetugasPemberianObatPonekActionPerformed(evt);
+            }
+        });
+        MnRekamMedis.add(MnPetugasPemberianObatPonek);
+
+        MnTransferSerahTerimaPonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnTransferSerahTerimaPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTransferSerahTerimaPonek.setText("Transfer Serah Terima Pasien Ponek");
+        MnTransferSerahTerimaPonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTransferSerahTerimaPonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTransferSerahTerimaPonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTransferSerahTerimaPonek.setIconTextGap(5);
+        MnTransferSerahTerimaPonek.setName("MnTransferSerahTerimaPonek"); // NOI18N
+        MnTransferSerahTerimaPonek.setOpaque(true);
+        MnTransferSerahTerimaPonek.setPreferredSize(new java.awt.Dimension(230, 26));
+
+        MnInputDataTransferSerahTerimaPonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnInputDataTransferSerahTerimaPonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnInputDataTransferSerahTerimaPonek.setForeground(new java.awt.Color(50, 50, 50));
+        MnInputDataTransferSerahTerimaPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnInputDataTransferSerahTerimaPonek.setText("Input Data");
+        MnInputDataTransferSerahTerimaPonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnInputDataTransferSerahTerimaPonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnInputDataTransferSerahTerimaPonek.setIconTextGap(5);
+        MnInputDataTransferSerahTerimaPonek.setName("MnInputDataTransferSerahTerimaPonek"); // NOI18N
+        MnInputDataTransferSerahTerimaPonek.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnInputDataTransferSerahTerimaPonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnInputDataTransferSerahTerimaPonekActionPerformed(evt);
+            }
+        });
+        MnTransferSerahTerimaPonek.add(MnInputDataTransferSerahTerimaPonek);
+
+        MnLihatDataTransferSerahTerimaPonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnLihatDataTransferSerahTerimaPonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLihatDataTransferSerahTerimaPonek.setForeground(new java.awt.Color(50, 50, 50));
+        MnLihatDataTransferSerahTerimaPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLihatDataTransferSerahTerimaPonek.setText("Lihat Data");
+        MnLihatDataTransferSerahTerimaPonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLihatDataTransferSerahTerimaPonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLihatDataTransferSerahTerimaPonek.setIconTextGap(5);
+        MnLihatDataTransferSerahTerimaPonek.setName("MnLihatDataTransferSerahTerimaPonek"); // NOI18N
+        MnLihatDataTransferSerahTerimaPonek.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnLihatDataTransferSerahTerimaPonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLihatDataTransferSerahTerimaPonekActionPerformed(evt);
+            }
+        });
+        MnTransferSerahTerimaPonek.add(MnLihatDataTransferSerahTerimaPonek);
+
+        MnRekamMedis.add(MnTransferSerahTerimaPonek);
+
+        MnCPPTvkBersalin.setBackground(new java.awt.Color(255, 255, 254));
+        MnCPPTvkBersalin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCPPTvkBersalin.setText("CPPT Ponek / VK");
+        MnCPPTvkBersalin.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCPPTvkBersalin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCPPTvkBersalin.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCPPTvkBersalin.setIconTextGap(5);
+        MnCPPTvkBersalin.setName("MnCPPTvkBersalin"); // NOI18N
+        MnCPPTvkBersalin.setOpaque(true);
+        MnCPPTvkBersalin.setPreferredSize(new java.awt.Dimension(230, 26));
+
+        MnInputDataCPPTvk.setBackground(new java.awt.Color(255, 255, 254));
+        MnInputDataCPPTvk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnInputDataCPPTvk.setForeground(new java.awt.Color(50, 50, 50));
+        MnInputDataCPPTvk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnInputDataCPPTvk.setText("Input Data");
+        MnInputDataCPPTvk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnInputDataCPPTvk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnInputDataCPPTvk.setIconTextGap(5);
+        MnInputDataCPPTvk.setName("MnInputDataCPPTvk"); // NOI18N
+        MnInputDataCPPTvk.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnInputDataCPPTvk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnInputDataCPPTvkActionPerformed(evt);
+            }
+        });
+        MnCPPTvkBersalin.add(MnInputDataCPPTvk);
+
+        MnLihatDataCPPTvk.setBackground(new java.awt.Color(255, 255, 254));
+        MnLihatDataCPPTvk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLihatDataCPPTvk.setForeground(new java.awt.Color(50, 50, 50));
+        MnLihatDataCPPTvk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLihatDataCPPTvk.setText("Lihat Data");
+        MnLihatDataCPPTvk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLihatDataCPPTvk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLihatDataCPPTvk.setIconTextGap(5);
+        MnLihatDataCPPTvk.setName("MnLihatDataCPPTvk"); // NOI18N
+        MnLihatDataCPPTvk.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnLihatDataCPPTvk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLihatDataCPPTvkActionPerformed(evt);
+            }
+        });
+        MnCPPTvkBersalin.add(MnLihatDataCPPTvk);
+
+        MnVerifCPPTvk.setBackground(new java.awt.Color(255, 255, 254));
+        MnVerifCPPTvk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnVerifCPPTvk.setForeground(new java.awt.Color(50, 50, 50));
+        MnVerifCPPTvk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnVerifCPPTvk.setText("Verifikasi CPPT");
+        MnVerifCPPTvk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnVerifCPPTvk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnVerifCPPTvk.setIconTextGap(5);
+        MnVerifCPPTvk.setName("MnVerifCPPTvk"); // NOI18N
+        MnVerifCPPTvk.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnVerifCPPTvk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnVerifCPPTvkActionPerformed(evt);
+            }
+        });
+        MnCPPTvkBersalin.add(MnVerifCPPTvk);
+
+        MnRekamMedis.add(MnCPPTvkBersalin);
 
         ppDokumenJangMed.setBackground(new java.awt.Color(255, 255, 254));
         ppDokumenJangMed.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -3812,6 +3898,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         btnCariDokter.setForeground(new java.awt.Color(0, 0, 0));
         btnCariDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        btnCariDokter.setMnemonic('7');
         btnCariDokter.setToolTipText("ALt+7");
         btnCariDokter.setName("btnCariDokter"); // NOI18N
         btnCariDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -3845,6 +3932,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan1.setMnemonic('S');
         BtnSimpan1.setText("Simpan");
         BtnSimpan1.setToolTipText("Alt+S");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
@@ -3858,6 +3946,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -3885,6 +3974,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn4.setMnemonic('U');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+U");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -3898,6 +3988,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSimpan4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan4.setMnemonic('S');
         BtnSimpan4.setText("Simpan");
         BtnSimpan4.setToolTipText("Alt+S");
         BtnSimpan4.setName("BtnSimpan4"); // NOI18N
@@ -3935,6 +4026,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         btnCariPoli.setForeground(new java.awt.Color(0, 0, 0));
         btnCariPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        btnCariPoli.setMnemonic('7');
         btnCariPoli.setToolTipText("ALt+7");
         btnCariPoli.setName("btnCariPoli"); // NOI18N
         btnCariPoli.addActionListener(new java.awt.event.ActionListener() {
@@ -3959,6 +4051,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn5.setMnemonic('U');
         BtnCloseIn5.setText("Tutup");
         BtnCloseIn5.setToolTipText("Alt+U");
         BtnCloseIn5.setName("BtnCloseIn5"); // NOI18N
@@ -3972,6 +4065,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSimpan5.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan5.setMnemonic('S');
         BtnSimpan5.setText("Simpan");
         BtnSimpan5.setToolTipText("Alt+S");
         BtnSimpan5.setName("BtnSimpan5"); // NOI18N
@@ -4004,6 +4098,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         btnBayar.setForeground(new java.awt.Color(0, 0, 0));
         btnBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        btnBayar.setMnemonic('7');
         btnBayar.setToolTipText("ALt+7");
         btnBayar.setName("btnBayar"); // NOI18N
         btnBayar.addActionListener(new java.awt.event.ActionListener() {
@@ -4028,6 +4123,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn6.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn6.setMnemonic('U');
         BtnCloseIn6.setText("Tutup");
         BtnCloseIn6.setToolTipText("Alt+U");
         BtnCloseIn6.setName("BtnCloseIn6"); // NOI18N
@@ -4041,6 +4137,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSimpan6.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/file-edit-16x16.png"))); // NOI18N
+        BtnSimpan6.setMnemonic('R');
         BtnSimpan6.setText("Registrasikan Pasien");
         BtnSimpan6.setToolTipText("Alt+R");
         BtnSimpan6.setName("BtnSimpan6"); // NOI18N
@@ -4152,6 +4249,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnDokter.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnDokter.setMnemonic('X');
         BtnDokter.setToolTipText("Alt+X");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -4180,7 +4278,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-09-2025" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4260,6 +4358,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('2');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+2");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -4279,6 +4378,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -4298,6 +4398,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll1.setMnemonic('M');
         BtnAll1.setText("Semua Data");
         BtnAll1.setToolTipText("Alt+M");
         BtnAll1.setName("BtnAll1"); // NOI18N
@@ -4532,6 +4633,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn7.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn7.setMnemonic('U');
         BtnCloseIn7.setText("Tutup");
         BtnCloseIn7.setToolTipText("Alt+U");
         BtnCloseIn7.setName("BtnCloseIn7"); // NOI18N
@@ -4545,6 +4647,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnLewati.setForeground(new java.awt.Color(0, 0, 0));
         BtnLewati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kanan.png"))); // NOI18N
+        BtnLewati.setMnemonic('L');
         BtnLewati.setText("Lewati");
         BtnLewati.setToolTipText("Alt+L");
         BtnLewati.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -4606,6 +4709,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnRM.setForeground(new java.awt.Color(0, 0, 0));
         BtnRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-edit24.png"))); // NOI18N
+        BtnRM.setMnemonic('R');
         BtnRM.setText("Isi Rekam Medis");
         BtnRM.setToolTipText("Alt+R");
         BtnRM.setName("BtnRM"); // NOI18N
@@ -4631,6 +4735,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn3.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn3.setMnemonic('U');
         BtnCloseIn3.setText("Tutup");
         BtnCloseIn3.setToolTipText("Alt+U");
         BtnCloseIn3.setName("BtnCloseIn3"); // NOI18N
@@ -4703,6 +4808,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnPrint2.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint2.setMnemonic('T');
         BtnPrint2.setText("Print SEP");
         BtnPrint2.setToolTipText("Alt+T");
         BtnPrint2.setName("BtnPrint2"); // NOI18N
@@ -4734,6 +4840,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn8.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn8.setMnemonic('U');
         BtnCloseIn8.setText("Tutup");
         BtnCloseIn8.setToolTipText("Alt+U");
         BtnCloseIn8.setName("BtnCloseIn8"); // NOI18N
@@ -4747,6 +4854,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSimpan7.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan7.setMnemonic('S');
         BtnSimpan7.setText("Simpan");
         BtnSimpan7.setToolTipText("Alt+S");
         BtnSimpan7.setName("BtnSimpan7"); // NOI18N
@@ -4786,6 +4894,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSimpanRujuk.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpanRujuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpanRujuk.setMnemonic('S');
         BtnSimpanRujuk.setText("Simpan");
         BtnSimpanRujuk.setToolTipText("Alt+S");
         BtnSimpanRujuk.setName("BtnSimpanRujuk"); // NOI18N
@@ -4800,6 +4909,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnKeluar5.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar5.setMnemonic('K');
         BtnKeluar5.setText("Keluar");
         BtnKeluar5.setToolTipText("Alt+K");
         BtnKeluar5.setName("BtnKeluar5"); // NOI18N
@@ -4832,6 +4942,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnDokterRujuk.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokterRujuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnDokterRujuk.setMnemonic('3');
         BtnDokterRujuk.setToolTipText("ALt+3");
         BtnDokterRujuk.setName("BtnDokterRujuk"); // NOI18N
         BtnDokterRujuk.addActionListener(new java.awt.event.ActionListener() {
@@ -5033,7 +5144,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-09-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -5057,7 +5168,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-09-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -5102,6 +5213,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('D');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+D");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -5120,6 +5232,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -5151,6 +5264,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -5187,6 +5301,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSeek3.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        BtnSeek3.setMnemonic('4');
         BtnSeek3.setToolTipText("ALt+4");
         BtnSeek3.setName("BtnSeek3"); // NOI18N
         BtnSeek3.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -5216,6 +5331,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSeek4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        BtnSeek4.setMnemonic('5');
         BtnSeek4.setToolTipText("ALt+5");
         BtnSeek4.setName("BtnSeek4"); // NOI18N
         BtnSeek4.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -5272,7 +5388,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-09-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5291,7 +5407,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-09-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5333,6 +5449,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnPxBooking.setForeground(new java.awt.Color(0, 0, 0));
         BtnPxBooking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/barralan.png"))); // NOI18N
+        BtnPxBooking.setMnemonic('B');
         BtnPxBooking.setText("Pasien Booking");
         BtnPxBooking.setToolTipText("Alt+B");
         BtnPxBooking.setName("BtnPxBooking"); // NOI18N
@@ -8539,14 +8656,14 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnLihatDataAssesmenKeperawatanIGDActionPerformed
 
-    private void MnInputDataTransferSerahTerimaIGDPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnInputDataTransferSerahTerimaIGDPonekActionPerformed
+    private void MnInputDataTransferSerahTerimaIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnInputDataTransferSerahTerimaIGDActionPerformed
         if (tabModekasir.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("IGDK") && !kdpoli.getText().equals("PON")) {
-            JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien yg. terdaftar di IGD & Ponek/VK Bersalin saja...!!!");
+        } else if (!kdpoli.getText().equals("IGDK")) {
+            JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien yg. terdaftar di IGD saja...!!!");
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
@@ -8563,9 +8680,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }
-    }//GEN-LAST:event_MnInputDataTransferSerahTerimaIGDPonekActionPerformed
+    }//GEN-LAST:event_MnInputDataTransferSerahTerimaIGDActionPerformed
 
-    private void MnLihatDataTransferSerahTerimaIGDPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataTransferSerahTerimaIGDPonekActionPerformed
+    private void MnLihatDataTransferSerahTerimaIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataTransferSerahTerimaIGDActionPerformed
         if (tabModekasir.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
         } else if (TNoRw.getText().trim().equals("")) {
@@ -8579,7 +8696,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 tbKasirRalan.requestFocus();
             }
         }
-    }//GEN-LAST:event_MnLihatDataTransferSerahTerimaIGDPonekActionPerformed
+    }//GEN-LAST:event_MnLihatDataTransferSerahTerimaIGDActionPerformed
 
     private void MnInputDataAsesmenMedikObstetriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnInputDataAsesmenMedikObstetriActionPerformed
         if (tabModekasir.getRowCount() == 0) {
@@ -8644,19 +8761,17 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnCatatanResepActionPerformed
 
-    private void MnPemberianObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPemberianObatActionPerformed
+    private void MnPemberianObatIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPemberianObatIGDActionPerformed
         if (tabModekasir.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
             TCari.requestFocus();
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } 
-//        else if (!kdpoli.getText().equals("IGDK")) {
-//            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD saja...!!!");
-//            tbKasirRalan.requestFocus();
-//        } 
-        else {
+        } else if (!kdpoli.getText().equals("IGDK")) {
+            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD saja...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
@@ -8672,7 +8787,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }
-    }//GEN-LAST:event_MnPemberianObatActionPerformed
+    }//GEN-LAST:event_MnPemberianObatIGDActionPerformed
 
     private void MnInputDataCPPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnInputDataCPPTActionPerformed
         if (tabModekasir.getRowCount() == 0) {
@@ -8937,20 +9052,18 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_ppPersetujuanTindakanBtnPrintActionPerformed
 
-    private void MnPetugasPemberianObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPetugasPemberianObatActionPerformed
+    private void MnPetugasPemberianObatIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPetugasPemberianObatIGDActionPerformed
         if (tabModekasir.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
             TCari.requestFocus();
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } 
-//        else if (!kdpoli.getText().equals("IGDK")) {
-//            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD saja...!!!");
-//            tbKasirRalan.requestFocus();
-//        } 
-        else if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='Ralan'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data pemberian obat rawat jalan/IGD/Ponek utk. pasien ini belum tersimpan...!!!");
+        } else if (!kdpoli.getText().equals("IGDK")) {
+            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD saja...!!!");
+            tbKasirRalan.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='Ralan'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data pemberian obat rawat jalan/IGD utk. pasien ini belum tersimpan...!!!");
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
@@ -8968,7 +9081,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }
-    }//GEN-LAST:event_MnPetugasPemberianObatActionPerformed
+    }//GEN-LAST:event_MnPetugasPemberianObatIGDActionPerformed
 
     private void MnNotepadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnNotepadActionPerformed
         if (tabModekasir.getRowCount() == 0) {
@@ -9940,37 +10053,16 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
-                if (akses.getadmin() == true || akses.getpic_igd() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
-                        + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
-                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    akses.setform("DlgKasirRalan");
-                    RMTriasePonek form = new RMTriasePonek(null, false);
-                    form.isCek();
-                    form.emptTeks();
-                    form.setNoRm(TNoRw.getText());
-                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                    form.setLocationRelativeTo(internalFrame1);
-                    form.setVisible(true);
-                    this.setCursor(Cursor.getDefaultCursor());
-                } else {
-                    if ((Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat = '" + TNoRw.getText() + "'") == 0)
-                            || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)
-                            || (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1)) {
-                        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                        akses.setform("DlgKasirRalan");
-                        RMTriasePonek form = new RMTriasePonek(null, false);
-                        form.isCek();
-                        form.emptTeks();
-                        form.setNoRm(TNoRw.getText());
-                        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                        form.setLocationRelativeTo(internalFrame1);
-                        form.setVisible(true);
-                        this.setCursor(Cursor.getDefaultCursor());
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
-                        tbKasirRalan.requestFocus();
-                    }
-                }
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgKasirRalan");
+                RMTriasePonek form = new RMTriasePonek(null, false);
+                form.isCek();
+                form.emptTeks();
+                form.setNoRm(TNoRw.getText());
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
             }
         }
     }//GEN-LAST:event_MnInputDataTriasePonekActionPerformed
@@ -10412,6 +10504,107 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnTransferTindakanActionPerformed
 
+    private void MnInputDataTransferSerahTerimaPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnInputDataTransferSerahTerimaPonekActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else if (!kdpoli.getText().equals("PON")) {
+            JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien yg. terdaftar diPonek saja...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (tbKasirRalan.getSelectedRow() != -1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgKasirRalan");
+                RMTransferSerahTerimaIGD form = new RMTransferSerahTerimaIGD(null, false);;
+                form.emptTeks();
+                form.isCek();
+                form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString(),
+                        kdpoli.getText(), Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnInputDataTransferSerahTerimaPonekActionPerformed
+
+    private void MnLihatDataTransferSerahTerimaPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataTransferSerahTerimaPonekActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "' and status='Ralan'") > 0) {
+                cetakTransferSerahTerimaIGD();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data transfer & serah terima pasien Ponek tidak ditemukan...!!!");
+                tbKasirRalan.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnLihatDataTransferSerahTerimaPonekActionPerformed
+
+    private void MnPemberianObatPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPemberianObatPonekActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else if (!kdpoli.getText().equals("PON")) {
+            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di Ponek saja...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (tbKasirRalan.getSelectedRow() != -1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
+                akses.setform("DlgKasirRalan");
+                beriObat.emptTeks();
+                beriObat.isCek();
+                beriObat.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString(),
+                        Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
+                beriObat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                beriObat.setLocationRelativeTo(internalFrame1);
+                beriObat.setAlwaysOnTop(false);
+                beriObat.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnPemberianObatPonekActionPerformed
+
+    private void MnPetugasPemberianObatPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPetugasPemberianObatPonekActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else if (!kdpoli.getText().equals("PON")) {
+            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di Ponek saja...!!!");
+            tbKasirRalan.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='Ralan'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data pemberian obat diruang Ponek utk. pasien ini belum tersimpan...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (tbKasirRalan.getSelectedRow() != -1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                DlgPelaksanaPemberiObat pelaksana = new DlgPelaksanaPemberiObat(null, false);
+                akses.setform("DlgKasirRalan");
+                pelaksana.emptTeks();
+                pelaksana.isCek();
+                pelaksana.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(),
+                        Sequel.cariIsi2("SELECT MIN(tgl_pemberian) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='Ralan' limit 1"), "Ralan");
+                pelaksana.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                pelaksana.setLocationRelativeTo(internalFrame1);
+                pelaksana.setAlwaysOnTop(false);
+                pelaksana.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnPetugasPemberianObatPonekActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -10520,7 +10713,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnInputDataCPPT;
     private javax.swing.JMenuItem MnInputDataCPPTvk;
     private javax.swing.JMenuItem MnInputDataKebidanan;
-    private javax.swing.JMenuItem MnInputDataTransferSerahTerimaIGDPonek;
+    private javax.swing.JMenuItem MnInputDataTransferSerahTerimaIGD;
+    private javax.swing.JMenuItem MnInputDataTransferSerahTerimaPonek;
     private javax.swing.JMenuItem MnInputDataTriaseIGD;
     private javax.swing.JMenuItem MnInputDataTriasePedia;
     private javax.swing.JMenuItem MnInputDataTriasePonek;
@@ -10542,7 +10736,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnLihatDataAssesmenMedikIGD;
     private javax.swing.JMenuItem MnLihatDataCPPT;
     private javax.swing.JMenuItem MnLihatDataCPPTvk;
-    private javax.swing.JMenuItem MnLihatDataTransferSerahTerimaIGDPonek;
+    private javax.swing.JMenuItem MnLihatDataTransferSerahTerimaIGD;
+    private javax.swing.JMenuItem MnLihatDataTransferSerahTerimaPonek;
     private javax.swing.JMenuItem MnLihatDataTriaseIGD;
     private javax.swing.JMenuItem MnLihatDataTriasePedia;
     private javax.swing.JMenuItem MnLihatDataTriasePonek;
@@ -10553,7 +10748,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenu MnObatRalan;
     private javax.swing.JMenuItem MnOperasi;
     private javax.swing.JMenuItem MnOperasi1;
-    private javax.swing.JMenuItem MnPemberianObat;
+    private javax.swing.JMenuItem MnPemberianObatIGD;
+    private javax.swing.JMenuItem MnPemberianObatPonek;
     private javax.swing.JMenuItem MnPemeriksaanKlinisLabHIV;
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanKebidanan;
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanRalan;
@@ -10572,7 +10768,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenu MnPermintaan;
     private javax.swing.JMenuItem MnPermintaanLab;
     private javax.swing.JMenuItem MnPermintaanRadiologi;
-    private javax.swing.JMenuItem MnPetugasPemberianObat;
+    private javax.swing.JMenuItem MnPetugasPemberianObatIGD;
+    private javax.swing.JMenuItem MnPetugasPemberianObatPonek;
     private javax.swing.JMenuItem MnPiutangPasien;
     private javax.swing.JMenuItem MnPiutangPasien1;
     private javax.swing.JMenuItem MnPoli;
@@ -10620,7 +10817,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnTerapiAntiretroviralHIV;
     private javax.swing.JMenuItem MnTeridentifikasiTB;
     private javax.swing.JMenu MnTindakanRalan;
-    private javax.swing.JMenu MnTransferSerahTerimaIGDPonek;
+    private javax.swing.JMenu MnTransferSerahTerimaIGD;
+    private javax.swing.JMenu MnTransferSerahTerimaPonek;
     private javax.swing.JMenuItem MnTransferTindakan;
     private javax.swing.JMenuItem MnUpdateJadwalOperasi;
     private javax.swing.JMenuItem MnVerifCPPT;
@@ -11324,9 +11522,12 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnSuratKeteranganDisabilitas.setEnabled(akses.getsurat_keterangan_kir_mcu());
         MnCekRujukanJKN.setEnabled(akses.getbpjs_cek_kartu());
         MnAsesmenMedikObstetri.setEnabled(akses.getpenilaian_awal_medis_ralan_kebidanan());
-        MnInputDataTransferSerahTerimaIGDPonek.setEnabled(akses.getpemberian_obat());
-        MnPemberianObat.setEnabled(akses.getpemberian_obat());
-        MnPetugasPemberianObat.setEnabled(akses.getpemberian_obat());
+        MnInputDataTransferSerahTerimaIGD.setEnabled(akses.getpemberian_obat());
+        MnInputDataTransferSerahTerimaPonek.setEnabled(akses.getpemberian_obat());
+        MnPemberianObatIGD.setEnabled(akses.getpemberian_obat());
+        MnPemberianObatPonek.setEnabled(akses.getpemberian_obat());
+        MnPetugasPemberianObatIGD.setEnabled(akses.getpemberian_obat());
+        MnPetugasPemberianObatPonek.setEnabled(akses.getpemberian_obat());
         MnCPPTIGD.setEnabled(akses.getcppt());
         MnCPPTvkBersalin.setEnabled(akses.getcppt());
         MnInputDataAssesmenMedikIGD.setEnabled(akses.getresep_dokter());
@@ -13778,10 +13979,10 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                     if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
                             + "no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ralan'") == 0) {
-                        Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Jalan/IGD ]::",
+                        Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Jalan/IGD/Ponek ]::",
                                 "SELECT date(now())", param);
                     } else {
-                        Valid.MyReport("rptTransferPasienIGDobat.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD (Lampiran Obat) ]::",
+                        Valid.MyReport("rptTransferPasienIGDobat.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD/Ponek (Lampiran Obat) ]::",
                                 "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
                                 + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
                                 + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
@@ -13794,7 +13995,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                                 + "inner join poliklinik p on p.kd_poli=r.kd_poli WHERE r.no_rawat='" + rsLaprm.getString("no_rawat") + "'") + "' and status='Ralan' "
                                 + "ORDER BY waktu_simpan desc", param);
 
-                        Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien (IGD) ]::",
+                        Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien (IGD/Ponek) ]::",
                                 "select date(now()) tanggal", param);
                     }
                 }
