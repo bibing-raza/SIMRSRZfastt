@@ -5634,7 +5634,6 @@
                       <SubComponents>
                         <Component class="widget.Table" name="tbPersentase">
                           <Properties>
-                            <Property name="toolTipText" type="java.lang.String" value=""/>
                             <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                               <ComponentRef name="jPopupMenu5"/>
                             </Property>
@@ -5665,7 +5664,6 @@
                       <SubComponents>
                         <Component class="widget.Table" name="tbPersentase1">
                           <Properties>
-                            <Property name="toolTipText" type="java.lang.String" value=""/>
                             <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                               <ComponentRef name="jPopupMenu5"/>
                             </Property>

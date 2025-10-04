@@ -1471,7 +1471,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1485,7 +1485,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1696,7 +1696,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame5.add(jLabel18);
         jLabel18.setBounds(0, 58, 118, 23);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -1712,7 +1712,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame5.add(jLabel23);
         jLabel23.setBounds(207, 58, 30, 23);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -1778,7 +1778,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame7.add(jLabel27);
         jLabel27.setBounds(0, 58, 118, 23);
 
-        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         tgl3.setDisplayFormat("dd-MM-yyyy");
         tgl3.setName("tgl3"); // NOI18N
         tgl3.setOpaque(false);
@@ -1794,7 +1794,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame7.add(jLabel28);
         jLabel28.setBounds(207, 58, 30, 23);
 
-        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         tgl4.setDisplayFormat("dd-MM-yyyy");
         tgl4.setName("tgl4"); // NOI18N
         tgl4.setOpaque(false);
@@ -1953,7 +1953,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         tglAsuhan.setDisplayFormat("dd-MM-yyyy");
         tglAsuhan.setName("tglAsuhan"); // NOI18N
         tglAsuhan.setOpaque(false);
@@ -3616,7 +3616,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3631,7 +3631,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3749,7 +3749,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel20.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass10.add(jLabel20);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -3763,7 +3763,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel22);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -3881,7 +3881,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel24.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass11.add(jLabel24);
 
-        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         DTPCari7.setDisplayFormat("dd-MM-yyyy");
         DTPCari7.setName("DTPCari7"); // NOI18N
         DTPCari7.setOpaque(false);
@@ -3895,7 +3895,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass11.add(jLabel25);
 
-        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         DTPCari8.setDisplayFormat("dd-MM-yyyy");
         DTPCari8.setName("DTPCari8"); // NOI18N
         DTPCari8.setOpaque(false);
@@ -4006,7 +4006,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         Scroll3.setOpaque(true);
         Scroll3.setPreferredSize(new java.awt.Dimension(452, 200));
 
-        tbPersentase.setToolTipText("");
         tbPersentase.setComponentPopupMenu(jPopupMenu5);
         tbPersentase.setName("tbPersentase"); // NOI18N
         Scroll3.setViewportView(tbPersentase);
@@ -4020,7 +4019,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         Scroll13.setOpaque(true);
         Scroll13.setPreferredSize(new java.awt.Dimension(452, 200));
 
-        tbPersentase1.setToolTipText("");
         tbPersentase1.setComponentPopupMenu(jPopupMenu5);
         tbPersentase1.setName("tbPersentase1"); // NOI18N
         Scroll13.setViewportView(tbPersentase1);
@@ -4156,7 +4154,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel109.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass13.add(jLabel109);
 
-        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         DTPCari9.setDisplayFormat("dd-MM-yyyy");
         DTPCari9.setName("DTPCari9"); // NOI18N
         DTPCari9.setOpaque(false);
@@ -4170,7 +4168,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel110.setPreferredSize(new java.awt.Dimension(20, 23));
         panelGlass13.add(jLabel110);
 
-        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         DTPCari10.setDisplayFormat("dd-MM-yyyy");
         DTPCari10.setName("DTPCari10"); // NOI18N
         DTPCari10.setOpaque(false);
@@ -4345,7 +4343,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel111.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass15.add(jLabel111);
 
-        DTPCari11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        DTPCari11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         DTPCari11.setDisplayFormat("dd-MM-yyyy");
         DTPCari11.setName("DTPCari11"); // NOI18N
         DTPCari11.setOpaque(false);
@@ -4364,7 +4362,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel112.setPreferredSize(new java.awt.Dimension(20, 23));
         panelGlass15.add(jLabel112);
 
-        DTPCari12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
+        DTPCari12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
         DTPCari12.setDisplayFormat("dd-MM-yyyy");
         DTPCari12.setName("DTPCari12"); // NOI18N
         DTPCari12.setOpaque(false);
@@ -6072,7 +6070,12 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             param.put("kontakrs", akses.getkontakrs());
             param.put("emailrs", akses.getemailrs());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("periode", "PERIODE BULAN " + cmbBulan.getSelectedItem().toString().toUpperCase() + " TAHUN " + Ttahun.getText());
+            
+            if (cmbTanggal.getSelectedIndex() == 0) {
+                param.put("periode", "PERIODE BULAN " + cmbBulan.getSelectedItem().toString().toUpperCase() + " TAHUN " + Ttahun.getText() + " SESUAI DENGAN TGL. MASUK PASIEN");
+            } else {
+                param.put("periode", "PERIODE BULAN " + cmbBulan.getSelectedItem().toString().toUpperCase() + " TAHUN " + Ttahun.getText() + " SESUAI DENGAN TGL. PULANG PASIEN");
+            }
             
             Sequel.AutoComitFalse();
             Sequel.queryu("delete from temporary1");
@@ -8870,51 +8873,49 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         }
         
         if (cmbTanggal.getSelectedIndex() == 0) {
-            whereData1 = "MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)='" + Ttahun.getText().trim() + "' GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung";
-            whereData2 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ag.jenis_asuhan='Dewasa' GROUP BY month(ag.tgl_asuhan), b.nm_gedung";
-            whereData3 = "MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)='" + Ttahun.getText().trim() + "' GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung";
-            whereData4 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ag.jenis_asuhan='Anak' and b.nm_gedung='BERSALIN' GROUP BY month(ag.tgl_asuhan), b.nm_gedung";
+            whereData1 = "MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)=" + Ttahun.getText().trim() + " and TIMESTAMPDIFF(YEAR, p.tgl_lahir, rp.tgl_registrasi) > 17 GROUP BY b.nm_gedung";
+            whereData2 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and ag.jenis_asuhan='Dewasa' GROUP BY b.nm_gedung";
+            whereData3 = "MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)=" + Ttahun.getText().trim() + " and TIMESTAMPDIFF(YEAR, p.tgl_lahir, rp.tgl_registrasi) <= 17 GROUP BY b.nm_gedung";
+            whereData4 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and ag.jenis_asuhan='Anak' and b.nm_gedung='BERSALIN' GROUP BY b.nm_gedung";
         } else {
-            whereData1 = "MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_keluar)='" + Ttahun.getText().trim() + "' and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY MONTH(ki.tgl_keluar), b.nm_gedung";
-            whereData2 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ki.stts_pulang not in ('-','Pindah Kamar') and ag.jenis_asuhan='Dewasa' GROUP BY month(ag.tgl_asuhan), b.nm_gedung";
-            whereData3 = "MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_keluar)='" + Ttahun.getText().trim() + "' and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY MONTH(ki.tgl_keluar), b.nm_gedung";
-            whereData4 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ki.stts_pulang not in ('-','Pindah Kamar') and ag.jenis_asuhan='Anak' and b.nm_gedung='BERSALIN' GROUP BY month(ag.tgl_asuhan), b.nm_gedung";
+            whereData1 = "MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_keluar)=" + Ttahun.getText().trim() + " and "
+                    + "ki.stts_pulang not in ('-','Pindah Kamar') and TIMESTAMPDIFF(YEAR, p.tgl_lahir, rp.tgl_registrasi) > 17 GROUP BY b.nm_gedung";
+            whereData2 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and "
+                    + "ki.stts_pulang not in ('-','Pindah Kamar') and ag.jenis_asuhan='Dewasa' GROUP BY b.nm_gedung";
+            whereData3 = "MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_keluar)=" + Ttahun.getText().trim() + " and "
+                    + "ki.stts_pulang not in ('-','Pindah Kamar') and TIMESTAMPDIFF(YEAR, p.tgl_lahir, rp.tgl_registrasi) <= 17 GROUP BY b.nm_gedung";
+            whereData4 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and "
+                    + "ki.stts_pulang not in ('-','Pindah Kamar') and ag.jenis_asuhan='Anak' and b.nm_gedung='BERSALIN' GROUP BY b.nm_gedung";
         }
         
         Valid.tabelKosong(tabMode6);
         try {
             ps14 = koneksi.prepareStatement("select * from (select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, "
                     + "(a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
-                    + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_tersasuhan, "
-                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan, b.jenis_asuhan from "
+                    + "CONCAT(FORMAT(LEAST((IFNULL(b.jlh_px_asuhan, 0) / NULLIF(a.jlh_px_ranap, 0)) * 100, 100),0),' %') persen_tersasuhan, "
+                    + "CONCAT(FORMAT(100 - LEAST((IFNULL(b.jlh_px_asuhan, 0) / NULLIF(a.jlh_px_ranap, 0)) * 100, 100),0),' %') persen_blm_terasuhan, b.jenis_asuhan from "
                     + "( "
-                    + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
-                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
-                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                    + "(SELECT b.nm_gedung, count(DISTINCT ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
+                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                     + "WHERE " + whereData1 + ") as a "
                     + "inner join "
-                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
-                    + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
-                    + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
-                    + "WHERE " + whereData2 + ") "
-                    + "as b on a.nm_gedung = b.nm_gedung) "
+                    + "(SELECT b.nm_gedung, count(DISTINCT ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
+                    + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
+                    + "WHERE " + whereData2 + ") as b on a.nm_gedung = b.nm_gedung) "
                     + "union ALL "
                     + "select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, (a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
-                    + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_tersasuhan, "
-                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan, b.jenis_asuhan from "
+                    + "CONCAT(FORMAT(LEAST((IFNULL(b.jlh_px_asuhan, 0) / NULLIF(a.jlh_px_ranap, 0)) * 100, 100),0),' %') persen_tersasuhan, "
+                    + "CONCAT(FORMAT(100 - LEAST((IFNULL(b.jlh_px_asuhan, 0) / NULLIF(a.jlh_px_ranap, 0)) * 100, 100),0),' %') persen_blm_terasuhan, b.jenis_asuhan from "
                     + "( "
-                    + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
-                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
-                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                    + "(SELECT b.nm_gedung, count(DISTINCT ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
+                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                     + "WHERE " + whereData3 + ") as a "
                     + "inner join "
-                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
-                    + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
-                    + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
-                    + "WHERE " + whereData4 + ") "
-                    + "as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung");
+                    + "(SELECT b.nm_gedung, count(DISTINCT ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
+                    + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
+                    + "WHERE " + whereData4 + ") as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung");
             try {
                 rs14 = ps14.executeQuery();
                 x = 1;
@@ -8959,58 +8960,52 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         }
 
         if (cmbTanggal.getSelectedIndex() == 0) {
-            whereData1 = "MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)='" + Ttahun.getText().trim() + "' and TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi)<=63 GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung";            
-            whereData2 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ag.jenis_asuhan='Anak' and b.nm_gedung<>'BERSALIN' GROUP BY month(ag.tgl_asuhan), b.nm_gedung";            
-            whereData3 = "MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)='" + Ttahun.getText().trim() + "' and TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi)>63 GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung";
-            whereData4 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ag.jenis_asuhan='Anak' and b.nm_gedung<>'BERSALIN' GROUP BY month(ag.tgl_asuhan), b.nm_gedung";            
+            whereData1 = "MONTH(ki.tgl_masuk) = " + angkaBulan + " AND YEAR(ki.tgl_masuk) = " + Ttahun.getText().trim() + " AND TIMESTAMPDIFF(MONTH, p.tgl_lahir, rp.tgl_registrasi) <= 63 GROUP BY b.nm_gedung";            
+            whereData2 = "MONTH(ag.tgl_asuhan) = " + angkaBulan + " AND YEAR(ag.tgl_asuhan) = " + Ttahun.getText().trim() + " AND ag.jenis_asuhan = 'Anak' GROUP BY b.nm_gedung";            
+            whereData3 = "MONTH(ki.tgl_masuk) = " + angkaBulan + " AND YEAR(ki.tgl_masuk) = " + Ttahun.getText().trim() + " AND TIMESTAMPDIFF(MONTH, p.tgl_lahir, rp.tgl_registrasi) > 63 GROUP BY b.nm_gedung";            
+            whereData4 = "MONTH(ag.tgl_asuhan) = " + angkaBulan + " AND YEAR(ag.tgl_asuhan) = " + Ttahun.getText().trim() + " AND ag.jenis_asuhan = 'Anak' GROUP BY b.nm_gedung";
+            
         } else {
-            whereData1 = "MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_masuk)='" + Ttahun.getText().trim() + "' and TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi)<=63 "
-                    + "and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY MONTH(ki.tgl_keluar), b.nm_gedung";
-            whereData2 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ag.jenis_asuhan='Anak' and b.nm_gedung<>'BERSALIN' "
-                    + "and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY month(ag.tgl_asuhan), b.nm_gedung";
-            whereData3 = "MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_masuk)='" + Ttahun.getText().trim() + "' and TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi)>63 "
-                    + "and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY MONTH(ki.tgl_keluar), b.nm_gedung";
-            whereData4 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ag.jenis_asuhan='Anak' and b.nm_gedung<>'BERSALIN' "
-                    + "and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY month(ag.tgl_asuhan), b.nm_gedung";
+            whereData1 = "MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_keluar)=" + Ttahun.getText().trim() + " and TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi)<=63 "
+                    + "and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY b.nm_gedung";
+            whereData2 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and ag.jenis_asuhan='Anak' "
+                    + "and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY b.nm_gedung";
+            whereData3 = "MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_keluar)=" + Ttahun.getText().trim() + " and TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi)>63 "
+                    + "and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY b.nm_gedung";
+            whereData4 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and ag.jenis_asuhan='Anak' "
+                    + "and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY b.nm_gedung";
         }
 
         Valid.tabelKosong(tabMode12);
         try {
-            ps21 = koneksi.prepareStatement("select * from (select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, "
-                    + "(a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
-                    + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_tersasuhan, "
-                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan, 'Balita' kategori from "
-                    + "( "
-                    + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
-                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
-                    + "inner join pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
-                    + "WHERE " + whereData1 + ") as a "
-                    + "inner join "
-                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
-                    + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
-                    + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
-                    + "WHERE " + whereData2 + ") "
-                    + "as b on a.nm_gedung = b.nm_gedung) "
-                    + "union all "
-                    + "select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, "
-                    + "(a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
-                    + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_tersasuhan, "
-                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan, 'Anak' kategori from "
-                    + "( "
-                    + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
-                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
-                    + "inner join pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
-                    + "WHERE " + whereData3 + ") as a "
-                    + "inner join "
-                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
-                    + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
-                    + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
-                    + "WHERE " + whereData4 + ") "
-                    + "as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung");
+            ps21 = koneksi.prepareStatement("SELECT COALESCE(a.nm_gedung, b.nm_gedung) nm_gedung, IFNULL(a.jlh_px_ranap, 0) jlh_px_ranap, IFNULL(b.jlh_px_asuhan, 0) jlh_px_asuhan, "
+                    + "(IFNULL(a.jlh_px_ranap, 0) - IFNULL(b.jlh_px_asuhan, 0)) px_belum_asuhan, CONCAT(FORMAT(LEAST(100, (IFNULL(b.jlh_px_asuhan, 0) / NULLIF(a.jlh_px_ranap, 0) * 100)),0), ' %') persen_tersasuhan, "
+                    + "CONCAT(FORMAT(GREATEST(0, (100 - LEAST(100, (IFNULL(b.jlh_px_asuhan, 0) / NULLIF(a.jlh_px_ranap, 0) * 100)))),0), ' %') persen_blm_terasuhan, 'Balita' kategori "
+                    + "FROM (SELECT b.nm_gedung, COUNT(DISTINCT ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
+                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                    + "WHERE " + whereData1 + ") a "
+                    + "inner JOIN "
+                    + "(SELECT b.nm_gedung, COUNT(DISTINCT ag.no_rawat) jlh_px_asuhan FROM asuhan_gizi_ranap ag "
+                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = ag.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "INNER JOIN kamar_inap ki ON ki.no_rawat = ag.no_rawat INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar "
+                    + "INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                    + "WHERE " + whereData2 + ") b ON a.nm_gedung = b.nm_gedung "
+                    + "WHERE COALESCE(a.nm_gedung, b.nm_gedung) NOT IN ('BAYI SEHAT', 'BERSALIN', 'PERINATOLOGI') "
+                    + "UNION ALL "
+                    + "SELECT COALESCE(a.nm_gedung, b.nm_gedung) nm_gedung, IFNULL(a.jlh_px_ranap, 0) jlh_px_ranap, IFNULL(b.jlh_px_asuhan, 0) jlh_px_asuhan, "
+                    + "(IFNULL(a.jlh_px_ranap, 0) - IFNULL(b.jlh_px_asuhan, 0)) px_belum_asuhan, CONCAT(FORMAT(LEAST(100, (IFNULL(b.jlh_px_asuhan, 0) / NULLIF(a.jlh_px_ranap, 0) * 100)),0), ' %') persen_tersasuhan, "
+                    + "CONCAT(FORMAT(GREATEST(0, (100 - LEAST(100, (IFNULL(b.jlh_px_asuhan, 0) / NULLIF(a.jlh_px_ranap, 0) * 100)))),0), ' %') persen_blm_terasuhan, 'Anak' kategori "
+                    + "FROM (SELECT b.nm_gedung, COUNT(DISTINCT ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
+                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                    + "WHERE " + whereData3 + ") a "
+                    + "inner JOIN "
+                    + "(SELECT b.nm_gedung, COUNT(DISTINCT ag.no_rawat) jlh_px_asuhan FROM asuhan_gizi_ranap ag "
+                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = ag.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "INNER JOIN kamar_inap ki ON ki.no_rawat = ag.no_rawat INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                    + "WHERE " + whereData4 + ") b ON a.nm_gedung = b.nm_gedung "
+                    + "WHERE COALESCE(a.nm_gedung, b.nm_gedung) NOT IN ('BAYI SEHAT', 'BERSALIN', 'PERINATOLOGI') ORDER BY nm_gedung");
             try {
                 rs21 = ps21.executeQuery();
                 x = 1;

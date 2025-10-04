@@ -32,6 +32,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
@@ -43,18 +44,19 @@ import simrskhanza.DlgNotepad;
  * @author dosen
  */
 public class RMSkriningUlangGizi extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabModeCppt;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabModeCppt;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps1, ps2, ps3, pscppt;
-    private ResultSet rs, rs1, rs2, rs3, rscppt;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, pscppt;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rscppt;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String nip = "", jnsSkrining = "", dataKonfirmasi = "", gz_anak1 = "", gz_anak2 = "", gz_anak3 = "",
             gz_anak4 = "", totSkor = "", kesimpulan = "", angkaBulanDewasa = "", angkaBulanAnak = "";
     private int x = 0, i = 0;
     private double jlhpxSkriningDewasa = 0, tdkberesikoDewasa = 0, PersenBeresikoDewasa = 0, PersenTdkBeresikoDewasa = 0,
-            jlhpxSkriningAnak = 0, tdkberesikoAnak = 0, PersenBeresikoSedang = 0, PersenBeresikoBerat = 0, PersenTdkBeresiko = 0;
+            jlhpxSkriningBalita = 0, tdkberesikoBalita = 0, jlhpxSkriningAnak = 0, tdkberesikoAnak = 0, 
+            PersenBeresikoSedang = 0, PersenBeresikoBerat = 0, PersenTdkBeresiko = 0;
 
     /**
      * Creates new form DlgSpesialis
@@ -65,6 +67,9 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
     public RMSkriningUlangGizi(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         tabMode = new DefaultTableModel(null, new Object[]{
             "No. Rawat", "No. RM", "Nama Pasien", "Ruang Perawatan", "Tgl. Skrining", "Jam", "Jns. Skrining", "Nama Petugas",
@@ -225,6 +230,12 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
             } 
         }
         tbPersenDewasa.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPersenDewasa.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbPersenDewasa.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbPersenDewasa.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbPersenDewasa.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbPersenDewasa.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 
         tabMode2 = new DefaultTableModel(null, new String[]{
             "No.", "Ruang Rawat/Gedung", "Jlh. Pasien Dirawat", "Persentase Terskrining",
@@ -236,7 +247,48 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
             }
         };
 
-        tbPersenAnak.setModel(tabMode2);
+        tbPersenBalita.setModel(tabMode2);
+        tbPersenBalita.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbPersenBalita.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 7; i++) {
+            TableColumn column = tbPersenBalita.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(30);
+            } else if (i == 1) {
+                column.setPreferredWidth(150);
+            } else if (i == 2) {
+                column.setPreferredWidth(130);
+            } else if (i == 3) {
+                column.setPreferredWidth(140);
+            } else if (i == 4) {
+                column.setPreferredWidth(160);
+            } else if (i == 5) {
+                column.setPreferredWidth(160);
+            } else if (i == 6) {
+                column.setPreferredWidth(150);
+            }
+        }
+        tbPersenBalita.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPersenBalita.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbPersenBalita.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbPersenBalita.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbPersenBalita.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbPersenBalita.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbPersenBalita.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+        
+        tabMode3 = new DefaultTableModel(null, new String[]{
+            "No.", "Ruang Rawat/Gedung", "Jlh. Pasien Dirawat", "Persentase Terskrining",
+            "Persentase Beresiko Sedang", "Persentase Beresiko Berat", "Persentase Tidak Beresiko"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+
+        tbPersenAnak.setModel(tabMode3);
         tbPersenAnak.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPersenAnak.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -259,6 +311,13 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
             }
         }
         tbPersenAnak.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPersenAnak.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbPersenAnak.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbPersenAnak.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbPersenAnak.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbPersenAnak.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbPersenAnak.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
 
         TtahunDewasa.setDocument(new batasInput((byte) 4).getOnlyAngka(TtahunDewasa));
         TtahunAnak.setDocument(new batasInput((byte) 4).getOnlyAngka(TtahunAnak));
@@ -424,7 +483,10 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         BtnCetakPersenDewasa = new widget.Button();
         BtnKeluar4 = new widget.Button();
         FormPersenAnak = new widget.PanelBiasa();
+        panelGlass15 = new widget.panelisi();
         Scroll2 = new widget.ScrollPane();
+        tbPersenBalita = new widget.Table();
+        Scroll4 = new widget.ScrollPane();
         tbPersenAnak = new widget.Table();
         panelGlass13 = new widget.panelisi();
         jLabel30 = new widget.Label();
@@ -491,7 +553,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         TNoRM.setBounds(233, 10, 70, 23);
 
         TtglSkrining.setEditable(false);
-        TtglSkrining.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2024" }));
+        TtglSkrining.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
         TtglSkrining.setDisplayFormat("dd-MM-yyyy");
         TtglSkrining.setName("TtglSkrining"); // NOI18N
         TtglSkrining.setOpaque(false);
@@ -610,7 +672,6 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         });
 
         FormInputDewasa.setBorder(null);
-        FormInputDewasa.setToolTipText("");
         FormInputDewasa.setName("FormInputDewasa"); // NOI18N
         FormInputDewasa.setPreferredSize(new java.awt.Dimension(870, 2421));
         FormInputDewasa.setLayout(null);
@@ -719,7 +780,6 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         TabSkrining.addTab("Skrining Gizi Dewasa", FormInputDewasa);
 
         FormInputAnak.setBorder(null);
-        FormInputAnak.setToolTipText("");
         FormInputAnak.setName("FormInputAnak"); // NOI18N
         FormInputAnak.setPreferredSize(new java.awt.Dimension(870, 2421));
         FormInputAnak.setLayout(null);
@@ -1086,7 +1146,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1100,7 +1160,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1189,7 +1249,6 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
 
-        tbPersenDewasa.setToolTipText("");
         tbPersenDewasa.setName("tbPersenDewasa"); // NOI18N
         Scroll1.setViewportView(tbPersenDewasa);
 
@@ -1289,14 +1348,30 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         FormPersenAnak.setPreferredSize(new java.awt.Dimension(870, 2421));
         FormPersenAnak.setLayout(new java.awt.BorderLayout());
 
+        panelGlass15.setName("panelGlass15"); // NOI18N
+        panelGlass15.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass15.setLayout(new java.awt.GridLayout(2, 1));
+
+        Scroll2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Kategori BALITA :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         Scroll2.setName("Scroll2"); // NOI18N
         Scroll2.setOpaque(true);
 
-        tbPersenAnak.setToolTipText("");
-        tbPersenAnak.setName("tbPersenAnak"); // NOI18N
-        Scroll2.setViewportView(tbPersenAnak);
+        tbPersenBalita.setName("tbPersenBalita"); // NOI18N
+        Scroll2.setViewportView(tbPersenBalita);
 
-        FormPersenAnak.add(Scroll2, java.awt.BorderLayout.CENTER);
+        panelGlass15.add(Scroll2);
+
+        Scroll4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Kategori ANAK :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        Scroll4.setName("Scroll4"); // NOI18N
+        Scroll4.setOpaque(true);
+
+        tbPersenAnak.setName("tbPersenAnak"); // NOI18N
+        Scroll4.setViewportView(tbPersenAnak);
+
+        panelGlass15.add(Scroll4);
+        Scroll4.getAccessibleContext().setAccessibleName(".: Kategori ANAK ");
+
+        FormPersenAnak.add(panelGlass15, java.awt.BorderLayout.CENTER);
 
         panelGlass13.setName("panelGlass13"); // NOI18N
         panelGlass13.setPreferredSize(new java.awt.Dimension(44, 44));
@@ -1925,6 +2000,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
             cmbBulanAnak.setSelectedItem(Sequel.bulanINDONESIA("select month(now())"));
             angkaBulanAnak = Sequel.cariIsi("select month(now())");
             TtahunAnak.setText(Sequel.cariIsi("select year(now())"));
+            tampilPersenBalita();
             tampilPersenAnak();
         }
     }//GEN-LAST:event_TabDataMouseClicked
@@ -2055,6 +2131,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
     }//GEN-LAST:event_TtahunAnakKeyPressed
 
     private void BtnCari5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari5ActionPerformed
+        tampilPersenBalita();
         tampilPersenAnak();
     }//GEN-LAST:event_BtnCari5ActionPerformed
 
@@ -2065,7 +2142,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCari5KeyPressed
 
     private void BtnCetakPersenAnakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCetakPersenAnakActionPerformed
-        if (tbPersenAnak.getRowCount() == 0) {
+        if (tbPersenBalita.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Silahkan tampilkan datanya terlebih dulu..!!!");
         } else {
             this.setCursor(Cursor.getDefaultCursor());
@@ -2080,25 +2157,41 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
             param.put("periode", "PERIODE BULAN " + cmbBulanAnak.getSelectedItem().toString().toUpperCase() + " TAHUN " + TtahunAnak.getText());
             
             Sequel.AutoComitFalse();
-            Sequel.queryu("delete from temporary");
+            Sequel.queryu("delete from temporary1");
+            Sequel.menyimpan("temporary1","'','Kategori BALITA','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Judul");
             int row = tabMode2.getRowCount();
             for (int r = 0; r < row; r++) {
-                Sequel.menyimpan("temporary", "'0','"
-                        + tabMode2.getValueAt(r, 0).toString() + "','"
+                Sequel.menyimpan("temporary1", 
+                        "'"+ tabMode2.getValueAt(r, 0).toString() + "','"
                         + tabMode2.getValueAt(r, 1).toString() + "','"
                         + tabMode2.getValueAt(r, 2).toString() + "','"
                         + tabMode2.getValueAt(r, 3).toString() + "','"
                         + tabMode2.getValueAt(r, 4).toString() + "','"
                         + tabMode2.getValueAt(r, 5).toString() + "','"
                         + tabMode2.getValueAt(r, 6).toString() + "',"
+                        + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Presentase Skrining Balita");
+            }
+            
+            Sequel.menyimpan("temporary1","'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spasi enter");            
+            Sequel.menyimpan("temporary1","'','Kategori ANAK','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Judul");
+            int n = tabMode3.getRowCount();
+            for (int r = 0; r < n; r++) {
+                Sequel.menyimpan("temporary1", 
+                        "'"+ tabMode3.getValueAt(r, 0).toString() + "','"
+                        + tabMode3.getValueAt(r, 1).toString() + "','"
+                        + tabMode3.getValueAt(r, 2).toString() + "','"
+                        + tabMode3.getValueAt(r, 3).toString() + "','"
+                        + tabMode3.getValueAt(r, 4).toString() + "','"
+                        + tabMode3.getValueAt(r, 5).toString() + "','"
+                        + tabMode3.getValueAt(r, 6).toString() + "',"
                         + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Presentase Skrining Anak");
             }
             Sequel.AutoComitTrue();            
             Valid.MyReport("rptPersentaseSkriningAnak.jasper", "report", "::[ Persentase Skrining Ulang Gizi (ANAK) ]::",
-                "select * from temporary", param);
+                "select * from temporary1", param);
             this.setCursor(Cursor.getDefaultCursor());
 
-            tampilPersenAnak();
+            tampilPersenBalita();
             emptTeks();
             BtnKeluar5.requestFocus();
         }
@@ -2159,6 +2252,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
+    private widget.ScrollPane Scroll4;
     private widget.TextBox TCari;
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;
@@ -2215,6 +2309,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
     private widget.panelisi panelGlass12;
     private widget.panelisi panelGlass13;
     private widget.panelisi panelGlass14;
+    private widget.panelisi panelGlass15;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.ScrollPane scrollPane4;
@@ -2229,6 +2324,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
     private widget.TextBox skorYaGZ1;
     private widget.Table tbCPPT;
     private widget.Table tbPersenAnak;
+    private widget.Table tbPersenBalita;
     private widget.Table tbPersenDewasa;
     private widget.Table tbSkrining;
     // End of variables declaration//GEN-END:variables
@@ -2709,66 +2805,68 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode1);
         try {
             ps2 = koneksi.prepareStatement("select * from (select a.nm_gedung, a.jlh_px_ranap, "
-                    + "concat(format(((ifnull(b.jlh_px_skrining,0)/a.jlh_px_ranap)*100),0),' %') persen_tersekrining, ifnull(b.jlh_px_skrining,0) jlh_px_skrining from ( "
-                    + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
-                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
+                    + "CONCAT(FORMAT(LEAST((IFNULL(b.jlh_px_skrining, 0) / NULLIF(a.jlh_px_ranap, 0)) * 100, 100), 0), ' %') persen_tersekrining, ifnull(b.jlh_px_skrining,0) jlh_px_skrining from ( "
+                    + "(SELECT b.nm_gedung, count(DISTINCT ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
+                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                     + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulanDewasa + " and "
-                    + "YEAR(ki.tgl_masuk)=" + TtahunDewasa.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
+                    + "YEAR(ki.tgl_masuk)=" + TtahunDewasa.getText().trim() + " and TIMESTAMPDIFF(YEAR, p.tgl_lahir, rp.tgl_registrasi) > 17 GROUP BY b.nm_gedung) as a "
                     + "inner join "
-                    + "(SELECT b.nm_gedung, count(s.no_rawat) jlh_px_skrining from skrining_gizi_ulang s "
+                    + "(SELECT b.nm_gedung, count(DISTINCT s.no_rawat) jlh_px_skrining from skrining_gizi_ulang s "
                     + "inner join kamar_inap ki on ki.no_rawat=s.no_rawat "
                     + "inner join bangsal b on b.nm_bangsal=s.ruang_rawat "
                     + "WHERE MONTH(s.tgl_skrining)=" + angkaBulanDewasa + " and YEAR(s.tgl_skrining)=" + TtahunDewasa.getText().trim() + " and s.jenis_skrining='dewasa' "
-                    + "GROUP BY month(s.tgl_skrining), b.nm_gedung) as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung");
+                    + "GROUP BY b.nm_gedung) as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung");
             try {
                 rs2 = ps2.executeQuery();
                 x = 1;
                 while (rs2.next()) {
-                    double A, B, C;
+                    double A = 0, B = 0, C = 0, D = 0, E = 0;
                     A = Double.parseDouble(rs2.getString("jlh_px_skrining"));
                     B = Double.parseDouble(Sequel.cariIsi("select ifnull(b.beresiko,0) beresiko from ( "
                             + "(SELECT b.nm_gedung FROM kamar_inap ki "
-                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
+                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                             + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
                             + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                             + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulanDewasa + " and "
-                            + "YEAR(ki.tgl_masuk)=" + TtahunDewasa.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
+                            + "YEAR(ki.tgl_masuk)=" + TtahunDewasa.getText().trim() + " and TIMESTAMPDIFF(YEAR, p.tgl_lahir, rp.tgl_registrasi) > 17 GROUP BY b.nm_gedung) as a "
                             + "left join "
-                            + "(SELECT b.nm_gedung, count(s.no_rawat) beresiko from skrining_gizi_ulang s "
+                            + "(SELECT b.nm_gedung, count(DISTINCT s.no_rawat) beresiko from skrining_gizi_ulang s "
                             + "inner join kamar_inap ki on ki.no_rawat=s.no_rawat "
                             + "inner join bangsal b on b.nm_bangsal=s.ruang_rawat "
                             + "WHERE MONTH(s.tgl_skrining)=" + angkaBulanDewasa + " and "
                             + "YEAR(s.tgl_skrining)=" + TtahunDewasa.getText().trim() + " and s.jenis_skrining='dewasa' and "
-                            + "CONVERT(s.total_skor,int)>=2 GROUP BY month(s.tgl_skrining), b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
+                            + "CONVERT(s.total_skor,int)>=2 GROUP BY b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
                             + "where a.nm_gedung='" + rs2.getString(1) + "'"));
                     C = Double.parseDouble(Sequel.cariIsi("select ifnull(b.tdk_beresiko,0) tdk_beresiko from ( "
                             + "(SELECT b.nm_gedung FROM kamar_inap ki "
-                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
+                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                             + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
                             + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                             + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulanDewasa + " and "
-                            + "YEAR(ki.tgl_masuk)=" + TtahunDewasa.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
+                            + "YEAR(ki.tgl_masuk)=" + TtahunDewasa.getText().trim() + " and TIMESTAMPDIFF(YEAR, p.tgl_lahir, rp.tgl_registrasi) > 17 GROUP BY b.nm_gedung) as a "
                             + "left join "
-                            + "(SELECT b.nm_gedung, count(s.no_rawat) tdk_beresiko from skrining_gizi_ulang s "
+                            + "(SELECT b.nm_gedung, count(DISTINCT s.no_rawat) tdk_beresiko from skrining_gizi_ulang s "
                             + "inner join kamar_inap ki on ki.no_rawat=s.no_rawat "
                             + "inner join bangsal b on b.nm_bangsal=s.ruang_rawat "
                             + "WHERE MONTH(s.tgl_skrining)=" + angkaBulanDewasa + " and YEAR(s.tgl_skrining)=" + TtahunDewasa.getText().trim() + " and s.jenis_skrining='dewasa' "
-                            + "and CONVERT(s.total_skor,int)<2 GROUP BY month(s.tgl_skrining), b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
+                            + "and CONVERT(s.total_skor,int)<2 GROUP BY b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
                             + "where a.nm_gedung='" + rs2.getString(1) + "'"));
 
                     PersenBeresikoDewasa = (B / A) * 100;
+                    D = Math.min(PersenBeresikoDewasa, 100);
                     tdkberesikoDewasa = A - B;
                     PersenTdkBeresikoDewasa = (tdkberesikoDewasa / A) * 100;
+                    E = Math.min(PersenTdkBeresikoDewasa, 100);
 
                     tabMode1.addRow(new String[]{
                         x + ".",
                         rs2.getString(1),
                         rs2.getString(2),
                         rs2.getString(3),
-                        Valid.SetAngka2(PersenBeresikoDewasa) + " %",
-                        Valid.SetAngka2(PersenTdkBeresikoDewasa) + " %"
+                        Valid.SetAngka2(D) + " %",
+                        Valid.SetAngka2(E) + " %"
                     });
                     x++;
                 }
@@ -2780,6 +2878,122 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
                 }
                 if (ps2 != null) {
                     ps2.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilPersenBalita() {
+        if (TtahunAnak.getText().equals("")) {
+            TtahunAnak.setText(Sequel.cariIsi("select year(now())"));
+        } else {
+            TtahunAnak.setText(TtahunAnak.getText());
+        }
+
+        jlhpxSkriningBalita = 0;
+        tdkberesikoBalita = 0;
+        PersenBeresikoSedang = 0;
+        PersenBeresikoBerat = 0;
+        PersenTdkBeresiko = 0;
+        Valid.tabelKosong(tabMode2);
+        try {
+            ps3 = koneksi.prepareStatement("select * from (select a.nm_gedung, a.jlh_px_ranap, "                    
+                    + "CONCAT(FORMAT(LEAST((IFNULL(b.jlh_px_skrining, 0) / NULLIF(a.jlh_px_ranap, 0)) * 100, 100), 0), ' %') persen_tersekrining, ifnull(b.jlh_px_skrining,0) jlh_px_skrining from ( "
+                    + "(SELECT b.nm_gedung, count(DISTINCT ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
+                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                    + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulanAnak + " and "
+                    + "YEAR(ki.tgl_masuk)=" + TtahunAnak.getText().trim() + " AND TIMESTAMPDIFF(MONTH, p.tgl_lahir, rp.tgl_registrasi) <= 63 GROUP BY b.nm_gedung) as a "
+                    + "inner join "
+                    + "(SELECT b.nm_gedung, count(DISTINCT s.no_rawat) jlh_px_skrining from skrining_gizi_ulang s "
+                    + "inner join kamar_inap ki on ki.no_rawat=s.no_rawat "
+                    + "inner join bangsal b on b.nm_bangsal=s.ruang_rawat "
+                    + "WHERE MONTH(s.tgl_skrining)=" + angkaBulanAnak + " and "
+                    + "YEAR(s.tgl_skrining)=" + TtahunAnak.getText().trim() + " and s.jenis_skrining='anak' and b.nm_gedung<>'bersalin' "
+                    + "GROUP BY b.nm_gedung) as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung");
+            try {
+                rs3 = ps3.executeQuery();
+                x = 1;
+                while (rs3.next()) {
+                    double A = 0, B = 0, C = 0, D = 0, E = 0, F = 0, G = 0;
+                    A = Double.parseDouble(rs3.getString("jlh_px_skrining"));
+                    B = Double.parseDouble(Sequel.cariIsi("select ifnull(b.tdk_beresiko,0) tdk_beresiko from ( "
+                            + "(SELECT b.nm_gedung FROM kamar_inap ki "
+                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                            + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                            + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulanAnak + " and "
+                            + "YEAR(ki.tgl_masuk)=" + TtahunAnak.getText().trim() + " AND TIMESTAMPDIFF(MONTH, p.tgl_lahir, rp.tgl_registrasi) <= 63 GROUP BY b.nm_gedung) as a "
+                            + "left join "
+                            + "(SELECT b.nm_gedung, count(DISTINCT s.no_rawat) tdk_beresiko from skrining_gizi_ulang s "
+                            + "inner join kamar_inap ki on ki.no_rawat=s.no_rawat "
+                            + "inner join bangsal b on b.nm_bangsal=s.ruang_rawat "
+                            + "WHERE MONTH(s.tgl_skrining)=" + angkaBulanAnak + " and "
+                            + "YEAR(s.tgl_skrining)=" + TtahunAnak.getText().trim() + " and s.jenis_skrining='anak' and b.nm_gedung<>'bersalin' and "
+                            + "CONVERT(s.total_skor,int)=0 GROUP BY b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
+                            + "where a.nm_gedung='" + rs3.getString(1) + "'"));
+                    C = Double.parseDouble(Sequel.cariIsi("select ifnull(b.resiko_sedang,0) resiko_sedang from ( "
+                            + "(SELECT b.nm_gedung FROM kamar_inap ki "
+                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                            + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                            + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulanAnak + " and "
+                            + "YEAR(ki.tgl_masuk)=" + TtahunAnak.getText().trim() + " AND TIMESTAMPDIFF(MONTH, p.tgl_lahir, rp.tgl_registrasi) <= 63 GROUP BY b.nm_gedung) as a "
+                            + "left join "
+                            + "(SELECT b.nm_gedung, count(DISTINCT s.no_rawat) resiko_sedang from skrining_gizi_ulang s "
+                            + "inner join kamar_inap ki on ki.no_rawat=s.no_rawat "
+                            + "inner join bangsal b on b.nm_bangsal=s.ruang_rawat "
+                            + "WHERE MONTH(s.tgl_skrining)=" + angkaBulanAnak + " and "
+                            + "YEAR(s.tgl_skrining)=" + TtahunAnak.getText().trim() + " and s.jenis_skrining='anak' and b.nm_gedung<>'bersalin' "
+                            + "and CONVERT(s.total_skor,int)>=1 and CONVERT(s.total_skor,int)<=3 "
+                            + "GROUP BY b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
+                            + "where a.nm_gedung='" + rs3.getString(1) + "'"));
+                    D = Double.parseDouble(Sequel.cariIsi("select ifnull(b.resiko_berat,0) resiko_berat from ( "
+                            + "(SELECT b.nm_gedung FROM kamar_inap ki "
+                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                            + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                            + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulanAnak + " and "
+                            + "YEAR(ki.tgl_masuk)=" + TtahunAnak.getText().trim() + " AND TIMESTAMPDIFF(MONTH, p.tgl_lahir, rp.tgl_registrasi) <= 63 GROUP BY b.nm_gedung) as a "
+                            + "left join "
+                            + "(SELECT b.nm_gedung, count(DISTINCT s.no_rawat) resiko_berat from skrining_gizi_ulang s "
+                            + "inner join kamar_inap ki on ki.no_rawat=s.no_rawat "
+                            + "inner join bangsal b on b.nm_bangsal=s.ruang_rawat "
+                            + "WHERE MONTH(s.tgl_skrining)=" + angkaBulanAnak + " and "
+                            + "YEAR(s.tgl_skrining)=" + TtahunAnak.getText().trim() + " and s.jenis_skrining='anak' and b.nm_gedung<>'bersalin' and "
+                            + "CONVERT(s.total_skor,int)>=4 GROUP BY b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
+                            + "where a.nm_gedung='" + rs3.getString(1) + "'"));
+
+                    PersenBeresikoSedang = (C / A) * 100;
+                    E = Math.min(PersenBeresikoSedang, 100);
+                    PersenBeresikoBerat = (D / A) * 100;
+                    F = Math.min(PersenBeresikoBerat, 100);
+                    tdkberesikoBalita = A - (C + D);
+                    PersenTdkBeresiko = (tdkberesikoBalita / A) * 100;
+                    G = Math.min(PersenTdkBeresiko, 100);
+
+                    tabMode2.addRow(new String[]{
+                        x + ".",
+                        rs3.getString(1),
+                        rs3.getString(2),
+                        rs3.getString(3),
+                        Valid.SetAngka2(E) + " %",
+                        Valid.SetAngka2(F) + " %",
+                        Valid.SetAngka2(G) + " %"
+                    });
+                    x++;
+                }
+            } catch (Exception e) {
+                System.out.println("tampilPersenBalita : " + e);
+            } finally {
+                if (rs3 != null) {
+                    rs3.close();
+                }
+                if (ps3 != null) {
+                    ps3.close();
                 }
             }
         } catch (SQLException e) {
@@ -2799,102 +3013,105 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         PersenBeresikoSedang = 0;
         PersenBeresikoBerat = 0;
         PersenTdkBeresiko = 0;
-        Valid.tabelKosong(tabMode2);
+        Valid.tabelKosong(tabMode3);
         try {
-            ps3 = koneksi.prepareStatement("select * from (select a.nm_gedung, a.jlh_px_ranap, "
-                    + "concat(format(((ifnull(b.jlh_px_skrining,0)/a.jlh_px_ranap)*100),0),' %') persen_tersekrining, ifnull(b.jlh_px_skrining,0) jlh_px_skrining from ( "
-                    + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
-                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
+            ps4 = koneksi.prepareStatement("select * from (select a.nm_gedung, a.jlh_px_ranap, "
+                    + "CONCAT(FORMAT(LEAST((IFNULL(b.jlh_px_skrining, 0) / NULLIF(a.jlh_px_ranap, 0)) * 100, 100), 0), ' %') persen_tersekrining, ifnull(b.jlh_px_skrining,0) jlh_px_skrining from ( "
+                    + "(SELECT b.nm_gedung, count(DISTINCT ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
+                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                     + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulanAnak + " and "
-                    + "YEAR(ki.tgl_masuk)=" + TtahunAnak.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
+                    + "YEAR(ki.tgl_masuk)=" + TtahunAnak.getText().trim() + " AND TIMESTAMPDIFF(MONTH, p.tgl_lahir, rp.tgl_registrasi) > 63 GROUP BY b.nm_gedung) as a "
                     + "inner join "
-                    + "(SELECT b.nm_gedung, count(s.no_rawat) jlh_px_skrining from skrining_gizi_ulang s "
+                    + "(SELECT b.nm_gedung, count(DISTINCT s.no_rawat) jlh_px_skrining from skrining_gizi_ulang s "
                     + "inner join kamar_inap ki on ki.no_rawat=s.no_rawat "
                     + "inner join bangsal b on b.nm_bangsal=s.ruang_rawat "
                     + "WHERE MONTH(s.tgl_skrining)=" + angkaBulanAnak + " and "
-                    + "YEAR(s.tgl_skrining)=" + TtahunAnak.getText().trim() + " and s.jenis_skrining='anak' "
-                    + "GROUP BY month(s.tgl_skrining), b.nm_gedung) as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung");
+                    + "YEAR(s.tgl_skrining)=" + TtahunAnak.getText().trim() + " and s.jenis_skrining='anak' and b.nm_gedung<>'bersalin' "
+                    + "GROUP BY b.nm_gedung) as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung");
             try {
-                rs3 = ps3.executeQuery();
+                rs4 = ps4.executeQuery();
                 x = 1;
-                while (rs3.next()) {
-                    double A, B, C, D;
-                    A = Double.parseDouble(rs3.getString("jlh_px_skrining"));
+                while (rs4.next()) {
+                    double A = 0, B = 0, C = 0, D = 0, E = 0, F = 0, G = 0;
+                    A = Double.parseDouble(rs4.getString("jlh_px_skrining"));
                     B = Double.parseDouble(Sequel.cariIsi("select ifnull(b.tdk_beresiko,0) tdk_beresiko from ( "
                             + "(SELECT b.nm_gedung FROM kamar_inap ki "
-                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
+                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                             + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
                             + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                             + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulanAnak + " and "
-                            + "YEAR(ki.tgl_masuk)=" + TtahunAnak.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
+                            + "YEAR(ki.tgl_masuk)=" + TtahunAnak.getText().trim() + " AND TIMESTAMPDIFF(MONTH, p.tgl_lahir, rp.tgl_registrasi) > 63 GROUP BY b.nm_gedung) as a "
                             + "left join "
-                            + "(SELECT b.nm_gedung, count(s.no_rawat) tdk_beresiko from skrining_gizi_ulang s "
+                            + "(SELECT b.nm_gedung, count(DISTINCT s.no_rawat) tdk_beresiko from skrining_gizi_ulang s "
                             + "inner join kamar_inap ki on ki.no_rawat=s.no_rawat "
                             + "inner join bangsal b on b.nm_bangsal=s.ruang_rawat "
                             + "WHERE MONTH(s.tgl_skrining)=" + angkaBulanAnak + " and "
-                            + "YEAR(s.tgl_skrining)=" + TtahunAnak.getText().trim() + " and s.jenis_skrining='anak' and "
-                            + "CONVERT(s.total_skor,int)=0 GROUP BY month(s.tgl_skrining), b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
-                            + "where a.nm_gedung='" + rs3.getString(1) + "'"));
+                            + "YEAR(s.tgl_skrining)=" + TtahunAnak.getText().trim() + " and s.jenis_skrining='anak' and b.nm_gedung<>'bersalin' and "
+                            + "CONVERT(s.total_skor,int)=0 GROUP BY b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
+                            + "where a.nm_gedung='" + rs4.getString(1) + "'"));
                     C = Double.parseDouble(Sequel.cariIsi("select ifnull(b.resiko_sedang,0) resiko_sedang from ( "
                             + "(SELECT b.nm_gedung FROM kamar_inap ki "
-                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
+                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                             + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
                             + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                             + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulanAnak + " and "
-                            + "YEAR(ki.tgl_masuk)=" + TtahunAnak.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
+                            + "YEAR(ki.tgl_masuk)=" + TtahunAnak.getText().trim() + " AND TIMESTAMPDIFF(MONTH, p.tgl_lahir, rp.tgl_registrasi) > 63 GROUP BY b.nm_gedung) as a "
                             + "left join "
-                            + "(SELECT b.nm_gedung, count(s.no_rawat) resiko_sedang from skrining_gizi_ulang s "
+                            + "(SELECT b.nm_gedung, count(DISTINCT s.no_rawat) resiko_sedang from skrining_gizi_ulang s "
                             + "inner join kamar_inap ki on ki.no_rawat=s.no_rawat "
                             + "inner join bangsal b on b.nm_bangsal=s.ruang_rawat "
                             + "WHERE MONTH(s.tgl_skrining)=" + angkaBulanAnak + " and "
-                            + "YEAR(s.tgl_skrining)=" + TtahunAnak.getText().trim() + " and s.jenis_skrining='anak' "
+                            + "YEAR(s.tgl_skrining)=" + TtahunAnak.getText().trim() + " and s.jenis_skrining='anak' and b.nm_gedung<>'bersalin' "
                             + "and CONVERT(s.total_skor,int)>=1 and CONVERT(s.total_skor,int)<=3 "
-                            + "GROUP BY month(s.tgl_skrining), b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
-                            + "where a.nm_gedung='" + rs3.getString(1) + "'"));
+                            + "GROUP BY b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
+                            + "where a.nm_gedung='" + rs4.getString(1) + "'"));
                     D = Double.parseDouble(Sequel.cariIsi("select ifnull(b.resiko_berat,0) resiko_berat from ( "
                             + "(SELECT b.nm_gedung FROM kamar_inap ki "
-                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
+                            + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                             + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
                             + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                             + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulanAnak + " and "
-                            + "YEAR(ki.tgl_masuk)=" + TtahunAnak.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
+                            + "YEAR(ki.tgl_masuk)=" + TtahunAnak.getText().trim() + " AND TIMESTAMPDIFF(MONTH, p.tgl_lahir, rp.tgl_registrasi) > 63 GROUP BY b.nm_gedung) as a "
                             + "left join "
-                            + "(SELECT b.nm_gedung, count(s.no_rawat) resiko_berat from skrining_gizi_ulang s "
+                            + "(SELECT b.nm_gedung, count(DISTINCT s.no_rawat) resiko_berat from skrining_gizi_ulang s "
                             + "inner join kamar_inap ki on ki.no_rawat=s.no_rawat "
                             + "inner join bangsal b on b.nm_bangsal=s.ruang_rawat "
                             + "WHERE MONTH(s.tgl_skrining)=" + angkaBulanAnak + " and "
-                            + "YEAR(s.tgl_skrining)=" + TtahunAnak.getText().trim() + " and s.jenis_skrining='anak' and "
-                            + "CONVERT(s.total_skor,int)>=4 GROUP BY month(s.tgl_skrining), b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
-                            + "where a.nm_gedung='" + rs3.getString(1) + "'"));
-
+                            + "YEAR(s.tgl_skrining)=" + TtahunAnak.getText().trim() + " and s.jenis_skrining='anak' and b.nm_gedung<>'bersalin' and "
+                            + "CONVERT(s.total_skor,int)>=4 GROUP BY b.nm_gedung) as b on a.nm_gedung = b.nm_gedung) "
+                            + "where a.nm_gedung='" + rs4.getString(1) + "'"));
+                    
                     PersenBeresikoSedang = (C / A) * 100;
+                    E = Math.min(PersenBeresikoSedang, 100);
                     PersenBeresikoBerat = (D / A) * 100;
+                    F = Math.min(PersenBeresikoBerat, 100);
                     tdkberesikoAnak = A - (C + D);
                     PersenTdkBeresiko = (tdkberesikoAnak / A) * 100;
+                    G = Math.min(PersenTdkBeresiko, 100);
 
-                    tabMode2.addRow(new String[]{
+                    tabMode3.addRow(new String[]{
                         x + ".",
-                        rs3.getString(1),
-                        rs3.getString(2),
-                        rs3.getString(3),
-                        Valid.SetAngka2(PersenBeresikoSedang) + " %",
-                        Valid.SetAngka2(PersenBeresikoBerat) + " %",
-                        Valid.SetAngka2(PersenTdkBeresiko) + " %"
+                        rs4.getString(1),
+                        rs4.getString(2),
+                        rs4.getString(3),
+                        Valid.SetAngka2(E) + " %",
+                        Valid.SetAngka2(F) + " %",
+                        Valid.SetAngka2(G) + " %"
                     });
                     x++;
                 }
             } catch (Exception e) {
                 System.out.println("tampilPersenAnak : " + e);
             } finally {
-                if (rs3 != null) {
-                    rs3.close();
+                if (rs4 != null) {
+                    rs4.close();
                 }
-                if (ps3 != null) {
-                    ps3.close();
+                if (ps4 != null) {
+                    ps4.close();
                 }
-            }
+            }            
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
         }

@@ -3548,7 +3548,8 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                             "hasil='" + HasilPeriksa.getText() + "', diag_klinis_radiologi='" + diagKlinisRad.getText() + "', kd_jenis_prw='" + kdItem + "'");
                 }
                 
-                if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "' and status='1'") > 0) {
+                if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "' and status='1' "
+                        + "and (nm_dokter like '%dr.%' or nm_dokter like '%drg.%')") > 0) {
                     Sequel.menyimpanIgnore("pembaca_hasil_radiologi",
                             "'" + Kd2.getText() + "','" + akses.getkode() + "','" + kdItem + "','" + tglhasil + "','" + jamhasil + "',"
                             + "'" + Sequel.cariIsi("select now()") + "'", "Pembaca hasil radiologi");

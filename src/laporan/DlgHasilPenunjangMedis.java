@@ -1452,7 +1452,8 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                             rs3.getString("metode")
                         });
                         
-                        if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "' and status='1'") > 0) {
+                        if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "' and status='1' "
+                                + "and (nm_dokter like '%dr.%' or nm_dokter like '%drg.%')") > 0) {
                             Sequel.menyimpanIgnore("pembaca_hasil_lab",
                                     "'" + tbLIS.getValueAt(tbLIS.getSelectedRow(), 4).toString() + "',"
                                     + "'" + akses.getkode() + "',"
@@ -1558,7 +1559,8 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                     + "jam like '%" + jamhasil + "%' and "
                     + "kd_jenis_prw like '%" + kdItem + "%'"));
             
-            if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "' and status='1'") > 0) {
+            if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "' and status='1' "
+                                + "and (nm_dokter like '%dr.%' or nm_dokter like '%drg.%')") > 0) {
                 Sequel.menyimpanIgnore("pembaca_hasil_radiologi",
                         "'" + tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 7).toString() + "',"
                         + "'" + akses.getkode() + "',"
