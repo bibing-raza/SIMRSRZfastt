@@ -33,6 +33,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
@@ -47,14 +48,14 @@ import simrskhanza.DlgNotepad;
  */
 public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabMode4, tabMode5, 
-            tabMode6, tabMode7, tabMode8, tabMode9, tabMode10, tabMode11, tabModeCppt;
+            tabMode6, tabMode7, tabMode8, tabMode9, tabMode10, tabMode11, tabMode12, tabModeCppt;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9, ps10, ps11, ps12, ps13, ps14, ps15, ps16,
-            ps17, ps18, ps19, ps20, pscppt, psrestor;
+            ps17, ps18, ps19, ps20, ps21, pscppt, psrestor;
     private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rs10, rs11, rs12, rs13, rs14, rs15, rs16,
-            rs17, rs18, rs19, rs20, rscppt, rsrestor;
+            rs17, rs18, rs19, rs20, rs21, rscppt, rsrestor;
     private int i = 0, x = 0, z = 0, jml = 0, cetakBBU = 0, cetakPBU = 0, cetakBBPB = 0, cekTampil = 0;
     private boolean[] pilih;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
@@ -67,7 +68,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             riw7 = "", riw8 = "", riw9 = "", asupanmakan = "", antro = "", biokimia = "", klinis = "", lainlain = "",
             rencanamonev = "", ren1 = "", ren2 = "", ren3 = "", ren4 = "", ren5 = "", bbu = "", pbu = "", bbpb = "",
             gizianak1 = "", gizianak2 = "", gizianak3 = "", kodekamar = "", sttsgizi = "", nmgedung = "", sttsgizibbu = "",
-            sttsgizipbu = "", sttsgizibbpb = "", sttsgiziprin = "", angkaBulan = "";
+            sttsgizipbu = "", sttsgizibbpb = "", sttsgiziprin = "", angkaBulan = "", whereData1 = "", whereData2 = "", whereData3 = "", 
+            whereData4 = "";
     private String[] kode, diagnosa;
     
     /** Creates new form DlgRujuk
@@ -76,6 +78,9 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     public RMAsuhanGiziRanap(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         
         tabMode = new DefaultTableModel(null, new Object[]{
             "No. Rawat", "No. RM", "Nama Pasien", "Umur/Jns. Asuhan", "Jns. Kelamin", "Tgl. Asuhan", "Ruang Perawatan", "Nama Ahli Gizi",
@@ -598,6 +603,55 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             } 
         }
         tbPersentase.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPersentase.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbPersentase.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbPersentase.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbPersentase.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbPersentase.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbPersentase.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+        
+        tabMode12 = new DefaultTableModel(null, new String[]{
+            "No.", "Ruang Rawat/Gedung", "Jlh. Pasien Dirawat", "Jlh. Mendapat Asuhan", "Jlh. Belum Dapat Asuhan", 
+            "Persentase Asuhan Gizi", "Persentase Belum Dapat Asuhan", "Kategori Anak"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+
+        tbPersentase1.setModel(tabMode12);
+        tbPersentase1.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbPersentase1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 8; i++) {
+            TableColumn column = tbPersentase1.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(30);
+            } else if (i == 1) {
+                column.setPreferredWidth(150);
+            } else if (i == 2) {
+                column.setPreferredWidth(130);
+            } else if (i == 3) {
+                column.setPreferredWidth(130);
+            } else if (i == 4) {
+                column.setPreferredWidth(150);
+            } else if (i == 5) {
+                column.setPreferredWidth(150);
+            } else if (i == 6) {
+                column.setPreferredWidth(200);
+            } else if (i == 7) {
+                column.setPreferredWidth(90);
+            } 
+        }
+        tbPersentase1.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbPersentase1.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbPersentase1.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbPersentase1.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbPersentase1.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbPersentase1.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbPersentase1.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
         
         tabMode7 = new DefaultTableModel(null, new String[]{
             "No.", "No. Rawat", "No. RM", "Nama Pasien", "Alamat", "Umur", "Tgl. Input", "Diagnosa Awal", "BB-Awal", "BB-Akhir",
@@ -1154,13 +1208,18 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel15 = new widget.Label();
         LCount3 = new widget.Label();
         internalFrame8 = new widget.InternalFrame();
+        panelGlass18 = new widget.panelisi();
         Scroll3 = new widget.ScrollPane();
         tbPersentase = new widget.Table();
+        Scroll13 = new widget.ScrollPane();
+        tbPersentase1 = new widget.Table();
         panelGlass12 = new widget.panelisi();
         jLabel29 = new widget.Label();
         cmbBulan = new widget.ComboBox();
         jLabel35 = new widget.Label();
         Ttahun = new widget.TextBox();
+        jLabel40 = new widget.Label();
+        cmbTanggal = new widget.ComboBox();
         BtnCari4 = new widget.Button();
         BtnCetakPersentase = new widget.Button();
         BtnKeluar4 = new widget.Button();
@@ -1412,7 +1471,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1426,7 +1485,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1637,7 +1696,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame5.add(jLabel18);
         jLabel18.setBounds(0, 58, 118, 23);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -1653,7 +1712,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame5.add(jLabel23);
         jLabel23.setBounds(207, 58, 30, 23);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -1719,7 +1778,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame7.add(jLabel27);
         jLabel27.setBounds(0, 58, 118, 23);
 
-        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         tgl3.setDisplayFormat("dd-MM-yyyy");
         tgl3.setName("tgl3"); // NOI18N
         tgl3.setOpaque(false);
@@ -1735,7 +1794,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame7.add(jLabel28);
         jLabel28.setBounds(207, 58, 30, 23);
 
-        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         tgl4.setDisplayFormat("dd-MM-yyyy");
         tgl4.setName("tgl4"); // NOI18N
         tgl4.setOpaque(false);
@@ -1894,7 +1953,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         tglAsuhan.setDisplayFormat("dd-MM-yyyy");
         tglAsuhan.setName("tglAsuhan"); // NOI18N
         tglAsuhan.setOpaque(false);
@@ -3557,7 +3616,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3572,7 +3631,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3690,7 +3749,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel20.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass10.add(jLabel20);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -3704,7 +3763,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel22);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -3822,7 +3881,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel24.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass11.add(jLabel24);
 
-        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         DTPCari7.setDisplayFormat("dd-MM-yyyy");
         DTPCari7.setName("DTPCari7"); // NOI18N
         DTPCari7.setOpaque(false);
@@ -3836,7 +3895,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass11.add(jLabel25);
 
-        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         DTPCari8.setDisplayFormat("dd-MM-yyyy");
         DTPCari8.setName("DTPCari8"); // NOI18N
         DTPCari8.setOpaque(false);
@@ -3937,7 +3996,12 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame8.setName("internalFrame8"); // NOI18N
         internalFrame8.setLayout(new java.awt.BorderLayout(1, 1));
 
+        panelGlass18.setName("panelGlass18"); // NOI18N
+        panelGlass18.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass18.setLayout(new java.awt.GridLayout(2, 1));
+
         Scroll3.setComponentPopupMenu(jPopupMenu1);
+        Scroll3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
         Scroll3.setPreferredSize(new java.awt.Dimension(452, 200));
@@ -3947,7 +4011,24 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         tbPersentase.setName("tbPersentase"); // NOI18N
         Scroll3.setViewportView(tbPersentase);
 
-        internalFrame8.add(Scroll3, java.awt.BorderLayout.CENTER);
+        panelGlass18.add(Scroll3);
+        Scroll3.getAccessibleContext().setAccessibleName(".: Persentase Asuhan Gizi Bukan Pasien Anak ");
+
+        Scroll13.setComponentPopupMenu(jPopupMenu1);
+        Scroll13.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        Scroll13.setName("Scroll13"); // NOI18N
+        Scroll13.setOpaque(true);
+        Scroll13.setPreferredSize(new java.awt.Dimension(452, 200));
+
+        tbPersentase1.setToolTipText("");
+        tbPersentase1.setComponentPopupMenu(jPopupMenu5);
+        tbPersentase1.setName("tbPersentase1"); // NOI18N
+        Scroll13.setViewportView(tbPersentase1);
+
+        panelGlass18.add(Scroll13);
+        Scroll13.getAccessibleContext().setAccessibleName(".: Persentase Asuhan Gizi Khusus Pasien Anak ");
+
+        internalFrame8.add(panelGlass18, java.awt.BorderLayout.CENTER);
 
         panelGlass12.setName("panelGlass12"); // NOI18N
         panelGlass12.setPreferredSize(new java.awt.Dimension(44, 44));
@@ -3985,6 +4066,18 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(Ttahun);
+
+        jLabel40.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel40.setText("Berdasarkan :");
+        jLabel40.setName("jLabel40"); // NOI18N
+        jLabel40.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelGlass12.add(jLabel40);
+
+        cmbTanggal.setForeground(new java.awt.Color(0, 0, 0));
+        cmbTanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tgl. Masuk", "Tgl. Pulang" }));
+        cmbTanggal.setName("cmbTanggal"); // NOI18N
+        cmbTanggal.setPreferredSize(new java.awt.Dimension(85, 23));
+        panelGlass12.add(cmbTanggal);
 
         BtnCari4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
@@ -4063,7 +4156,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel109.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass13.add(jLabel109);
 
-        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         DTPCari9.setDisplayFormat("dd-MM-yyyy");
         DTPCari9.setName("DTPCari9"); // NOI18N
         DTPCari9.setOpaque(false);
@@ -4077,7 +4170,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel110.setPreferredSize(new java.awt.Dimension(20, 23));
         panelGlass13.add(jLabel110);
 
-        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         DTPCari10.setDisplayFormat("dd-MM-yyyy");
         DTPCari10.setName("DTPCari10"); // NOI18N
         DTPCari10.setOpaque(false);
@@ -4252,7 +4345,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel111.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass15.add(jLabel111);
 
-        DTPCari11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        DTPCari11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         DTPCari11.setDisplayFormat("dd-MM-yyyy");
         DTPCari11.setName("DTPCari11"); // NOI18N
         DTPCari11.setOpaque(false);
@@ -4271,7 +4364,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel112.setPreferredSize(new java.awt.Dimension(20, 23));
         panelGlass15.add(jLabel112);
 
-        DTPCari12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2024" }));
+        DTPCari12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2025" }));
         DTPCari12.setDisplayFormat("dd-MM-yyyy");
         DTPCari12.setName("DTPCari12"); // NOI18N
         DTPCari12.setOpaque(false);
@@ -4889,7 +4982,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             cmbBulan.setSelectedItem(Sequel.bulanINDONESIA("select month(now())"));
             angkaBulan = Sequel.cariIsi("select month(now())");
             Ttahun.setText(Sequel.cariIsi("select year(now())"));
-            tampilPersentase();
+            BtnCari4ActionPerformed(null);
         } else if (TabRawat.getSelectedIndex() == 5) {
             tampilGiziBuruk();
         } else if (TabRawat.getSelectedIndex() == 6) {
@@ -5918,6 +6011,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
     private void BtnCari4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari4ActionPerformed
         tampilPersentase();
+        tampilPersentase1();
     }//GEN-LAST:event_BtnCari4ActionPerformed
 
     private void BtnCari4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCari4KeyPressed
@@ -5979,46 +6073,48 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             param.put("emailrs", akses.getemailrs());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
             param.put("periode", "PERIODE BULAN " + cmbBulan.getSelectedItem().toString().toUpperCase() + " TAHUN " + Ttahun.getText());
+            
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode6.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1",
+                        "'" + tabMode6.getValueAt(r, 0).toString() + "','"
+                        + tabMode6.getValueAt(r, 1).toString() + "','"
+                        + tabMode6.getValueAt(r, 2).toString() + "','"
+                        + tabMode6.getValueAt(r, 3).toString() + "','"
+                        + tabMode6.getValueAt(r, 4).toString() + "','"
+                        + tabMode6.getValueAt(r, 5).toString() + "','"
+                        + tabMode6.getValueAt(r, 6).toString() + "','"
+                        + tabMode6.getValueAt(r, 7).toString() + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Presentase Asuhan Gizi");
+            }
+            
+            Sequel.menyimpan("temporary1",
+                    "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spasi enter");
+            Sequel.menyimpan("temporary1",
+                    "'No.','Ruang Rawat/Gedung','Jlh. Pasien Dirawat','Jlh. Mendapat Asuhan','Jlh. Belum Dapat Asuhan','Persentase Asuhan Gizi','Persentase Belum Dapat Asuhan','Kategori Anak',"
+                    + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Judul");
+            
+            int n = tabMode12.getRowCount();
+            for (int r = 0; r < n; r++) {
+                Sequel.menyimpan("temporary1",
+                        "'" + tabMode12.getValueAt(r, 0).toString() + "','"
+                        + tabMode12.getValueAt(r, 1).toString() + "','"
+                        + tabMode12.getValueAt(r, 2).toString() + "','"
+                        + tabMode12.getValueAt(r, 3).toString() + "','"
+                        + tabMode12.getValueAt(r, 4).toString() + "','"
+                        + tabMode12.getValueAt(r, 5).toString() + "','"
+                        + tabMode12.getValueAt(r, 6).toString() + "','"
+                        + tabMode12.getValueAt(r, 7).toString() + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Presentase Asuhan Gizi Anak");
+            }
+            
+            Sequel.AutoComitTrue();
             Valid.MyReport("rptPersentaseAsuhanGizi.jasper", "report", "::[ Persentase Asuhan Gizi Pasien ]::",
-                    "select * from (select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, "
-                    + "(a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
-                    + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_tersasuhan, "
-                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan, b.jenis_asuhan from "
-                    + "( "
-                    + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
-                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
-                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
-                    + "WHERE MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_keluar)=" + Ttahun.getText().trim() + " and ki.stts_pulang not in ('-','Pindah Kamar') "
-                    + "GROUP BY MONTH(ki.tgl_keluar), b.nm_gedung) as a "
-                    + "inner join "
-                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
-                    + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
-                    + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
-                    + "WHERE MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and ki.stts_pulang not in ('-','Pindah Kamar') "
-                    + "and ag.jenis_asuhan='Dewasa' GROUP BY month(ag.tgl_asuhan), b.nm_gedung) "
-                    + "as b on a.nm_gedung = b.nm_gedung) "
-                    + "union ALL "
-                    + "select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, (a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
-                    + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_tersasuhan, "
-                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan, b.jenis_asuhan from "
-                    + "( "
-                    + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
-                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
-                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
-                    + "WHERE MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_keluar)=" + Ttahun.getText().trim() + " and ki.stts_pulang not in ('-','Pindah Kamar') "
-                    + "GROUP BY MONTH(ki.tgl_keluar), b.nm_gedung) as a "
-                    + "inner join "
-                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
-                    + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
-                    + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
-                    + "WHERE MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and ki.stts_pulang not in ('-','Pindah Kamar') "
-                    + "and ag.jenis_asuhan='Anak' GROUP BY month(ag.tgl_asuhan), b.nm_gedung) "
-                    + "as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung", param);
+                    "select * from temporary1", param);
             this.setCursor(Cursor.getDefaultCursor());
 
             tampilPersentase();
+            tampilPersentase1();
             emptTeks();
             BtnKeluar4.requestFocus();
         }
@@ -6322,6 +6418,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private widget.ScrollPane Scroll10;
     private widget.ScrollPane Scroll11;
     private widget.ScrollPane Scroll12;
+    private widget.ScrollPane Scroll13;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
     private widget.ScrollPane Scroll4;
@@ -6408,6 +6505,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private widget.ComboBox cmbProtein;
     private widget.ComboBox cmbRute;
     private widget.ComboBox cmbSttsGizi;
+    private widget.ComboBox cmbTanggal;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame10;
     private widget.InternalFrame internalFrame13;
@@ -6466,6 +6564,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private widget.Label jLabel37;
     private widget.Label jLabel38;
     private widget.Label jLabel39;
+    private widget.Label jLabel40;
     private widget.Label jLabel6;
     private widget.Label jLabel63;
     private widget.Label jLabel64;
@@ -6530,6 +6629,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private widget.panelisi panelGlass15;
     private widget.panelisi panelGlass16;
     private widget.panelisi panelGlass17;
+    private widget.panelisi panelGlass18;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.ScrollPane scrollInput;
@@ -6545,6 +6645,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private widget.Table tbCPPT;
     private widget.Table tbDiagnosa;
     private widget.Table tbPersentase;
+    private widget.Table tbPersentase1;
     private widget.Table tbRekapBBPB;
     private widget.Table tbRekapBBU;
     private widget.Table tbRekapPBU;
@@ -8757,10 +8858,27 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     }
     
     private void tampilPersentase() {
+        whereData1 = "";
+        whereData2 = "";
+        whereData3 = "";
+        whereData4 = "";
+        
         if (Ttahun.getText().equals("")) {
             Ttahun.setText(Sequel.cariIsi("select year(now())"));
         } else {
             Ttahun.setText(Ttahun.getText());
+        }
+        
+        if (cmbTanggal.getSelectedIndex() == 0) {
+            whereData1 = "MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)='" + Ttahun.getText().trim() + "' GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung";
+            whereData2 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ag.jenis_asuhan='Dewasa' GROUP BY month(ag.tgl_asuhan), b.nm_gedung";
+            whereData3 = "MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)='" + Ttahun.getText().trim() + "' GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung";
+            whereData4 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ag.jenis_asuhan='Anak' and b.nm_gedung='BERSALIN' GROUP BY month(ag.tgl_asuhan), b.nm_gedung";
+        } else {
+            whereData1 = "MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_keluar)='" + Ttahun.getText().trim() + "' and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY MONTH(ki.tgl_keluar), b.nm_gedung";
+            whereData2 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ki.stts_pulang not in ('-','Pindah Kamar') and ag.jenis_asuhan='Dewasa' GROUP BY month(ag.tgl_asuhan), b.nm_gedung";
+            whereData3 = "MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_keluar)='" + Ttahun.getText().trim() + "' and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY MONTH(ki.tgl_keluar), b.nm_gedung";
+            whereData4 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ki.stts_pulang not in ('-','Pindah Kamar') and ag.jenis_asuhan='Anak' and b.nm_gedung='BERSALIN' GROUP BY month(ag.tgl_asuhan), b.nm_gedung";
         }
         
         Valid.tabelKosong(tabMode6);
@@ -8774,13 +8892,12 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
                     + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
-                    + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)=" + Ttahun.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
+                    + "WHERE " + whereData1 + ") as a "
                     + "inner join "
                     + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
                     + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
                     + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
-                    + "WHERE MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and "
-                    + "ag.jenis_asuhan='Dewasa' GROUP BY month(ag.tgl_asuhan), b.nm_gedung) "
+                    + "WHERE " + whereData2 + ") "
                     + "as b on a.nm_gedung = b.nm_gedung) "
                     + "union ALL "
                     + "select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, (a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
@@ -8791,13 +8908,12 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
                     + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
-                    + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)=" + Ttahun.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
+                    + "WHERE " + whereData3 + ") as a "
                     + "inner join "
                     + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
                     + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
                     + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
-                    + "WHERE MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)=" + Ttahun.getText().trim() + " and "
-                    + "ag.jenis_asuhan='Anak' GROUP BY month(ag.tgl_asuhan), b.nm_gedung) "
+                    + "WHERE " + whereData4 + ") "
                     + "as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung");
             try {
                 rs14 = ps14.executeQuery();
@@ -8823,6 +8939,102 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 }
                 if (ps14 != null) {
                     ps14.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+
+    private void tampilPersentase1() {
+        whereData1 = "";
+        whereData2 = "";
+        whereData3 = "";
+        whereData4 = "";
+
+        if (Ttahun.getText().equals("")) {
+            Ttahun.setText(Sequel.cariIsi("select year(now())"));
+        } else {
+            Ttahun.setText(Ttahun.getText());
+        }
+
+        if (cmbTanggal.getSelectedIndex() == 0) {
+            whereData1 = "MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)='" + Ttahun.getText().trim() + "' and TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi)<=63 GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung";            
+            whereData2 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ag.jenis_asuhan='Anak' and b.nm_gedung<>'BERSALIN' GROUP BY month(ag.tgl_asuhan), b.nm_gedung";            
+            whereData3 = "MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)='" + Ttahun.getText().trim() + "' and TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi)>63 GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung";
+            whereData4 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ag.jenis_asuhan='Anak' and b.nm_gedung<>'BERSALIN' GROUP BY month(ag.tgl_asuhan), b.nm_gedung";            
+        } else {
+            whereData1 = "MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_masuk)='" + Ttahun.getText().trim() + "' and TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi)<=63 "
+                    + "and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY MONTH(ki.tgl_keluar), b.nm_gedung";
+            whereData2 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ag.jenis_asuhan='Anak' and b.nm_gedung<>'BERSALIN' "
+                    + "and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY month(ag.tgl_asuhan), b.nm_gedung";
+            whereData3 = "MONTH(ki.tgl_keluar)=" + angkaBulan + " and YEAR(ki.tgl_masuk)='" + Ttahun.getText().trim() + "' and TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi)>63 "
+                    + "and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY MONTH(ki.tgl_keluar), b.nm_gedung";
+            whereData4 = "MONTH(ag.tgl_asuhan)=" + angkaBulan + " and YEAR(ag.tgl_asuhan)='" + Ttahun.getText().trim() + "' and ag.jenis_asuhan='Anak' and b.nm_gedung<>'BERSALIN' "
+                    + "and ki.stts_pulang not in ('-','Pindah Kamar') GROUP BY month(ag.tgl_asuhan), b.nm_gedung";
+        }
+
+        Valid.tabelKosong(tabMode12);
+        try {
+            ps21 = koneksi.prepareStatement("select * from (select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, "
+                    + "(a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
+                    + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_tersasuhan, "
+                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan, 'Balita' kategori from "
+                    + "( "
+                    + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
+                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
+                    + "inner join pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                    + "WHERE " + whereData1 + ") as a "
+                    + "inner join "
+                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
+                    + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
+                    + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
+                    + "WHERE " + whereData2 + ") "
+                    + "as b on a.nm_gedung = b.nm_gedung) "
+                    + "union all "
+                    + "select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_asuhan, "
+                    + "(a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_asuhan, "
+                    + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_tersasuhan, "
+                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_terasuhan, 'Anak' kategori from "
+                    + "( "
+                    + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
+                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
+                    + "inner join pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                    + "WHERE " + whereData3 + ") as a "
+                    + "inner join "
+                    + "(SELECT b.nm_gedung, count(ag.no_rawat) jlh_px_asuhan, ag.jenis_asuhan from asuhan_gizi_ranap ag "
+                    + "inner join kamar_inap ki on ki.no_rawat=ag.no_rawat "
+                    + "inner join bangsal b on b.nm_bangsal=ag.ruang_rawat "
+                    + "WHERE " + whereData4 + ") "
+                    + "as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung");
+            try {
+                rs21 = ps21.executeQuery();
+                x = 1;
+                while (rs21.next()) {
+                    tabMode12.addRow(new String[]{
+                        x + ".",
+                        rs21.getString(1),
+                        rs21.getString(2),
+                        rs21.getString(3),
+                        rs21.getString(4),
+                        rs21.getString(5),
+                        rs21.getString(6),
+                        rs21.getString(7)
+                    });
+                    x++;
+                }
+            } catch (Exception e) {
+                System.out.println("tampilPersentase : " + e);
+            } finally {
+                if (rs21 != null) {
+                    rs21.close();
+                }
+                if (ps21 != null) {
+                    ps21.close();
                 }
             }
         } catch (SQLException e) {

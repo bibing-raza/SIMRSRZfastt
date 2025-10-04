@@ -8499,9 +8499,6 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     private void BtnSimpanRiwayatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanRiwayatActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
-        } else if (cmbJenkel.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu jns. kelaminnya dengan benar..!!");
-            cmbJenkel.requestFocus();
         } else {
             tabModeRiwayat.addRow(new String[]{TNoRw.getText(), TthnPartus.getText(), TtempatPartus.getText(),
                 TumurHamil.getText(), TjnsPersalinan.getText(), Tpenolong.getText(), Tpenyulit.getText(),
