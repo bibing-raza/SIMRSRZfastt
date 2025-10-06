@@ -14357,13 +14357,14 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private void cetakAsesmenAwalKebidanan() {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
-            psLaprm = koneksi.prepareStatement("SELECT ak1.*, ak2.*, pg1.nama nmBidan, pg2.nama nmDokter, pg3.nama nmBidanDp, p.nm_pasien, "
+            psLaprm = koneksi.prepareStatement("SELECT ak1.*, ak2.*, ig.*, pg1.nama nmBidan, pg2.nama nmDokter, pg3.nama nmBidanDp, p.nm_pasien, "
                     + "p.no_rkm_medis, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', ',kb.nm_kab) almtPasien, "
                     + "concat(rp.umurdaftar,' ',rp.sttsumur) umurPasien, p.pekerjaan, p.agama FROM asesmen_awal_kebidanan1 ak1 "
                     + "inner join reg_periksa rp on rp.no_rawat=ak1.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "inner join kelurahan kl on kl.kd_kel=p.kd_kel inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
-                    + "left join asesmen_awal_kebidanan2 ak2 on ak1.no_rawat=ak2.no_rawat left join pegawai pg1 on pg1.nik=ak2.nip_bidan "
-                    + "left join pegawai pg2 on pg2.nik=ak2.nip_dokter left join pegawai pg3 on pg3.nik=ak2.nip_bidan_dp where ak1.no_rawat='" + TNoRw.getText() + "'");
+                    + "left join asesmen_awal_kebidanan2 ak2 on ak1.no_rawat=ak2.no_rawat left join inspeksi_ginekologi_awal_kebidanan ig on ig.no_rawat=ak1.no_rawat "
+                    + "left join pegawai pg1 on pg1.nik=ak2.nip_bidan left join pegawai pg2 on pg2.nik=ak2.nip_dokter "
+                    + "left join pegawai pg3 on pg3.nik=ak2.nip_bidan_dp where ak1.no_rawat='" + TNoRw.getText() + "'");
             try {
                 rsLaprm = psLaprm.executeQuery();
                 while (rsLaprm.next()) {
@@ -15105,6 +15106,306 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                     param.put("nyeriTekan", rsLaprm.getString("nyeri_tekan"));
                     param.put("vtNyeri", rsLaprm.getString("vt_nyeri_goyang"));
+
+                    //inspeksi ginekologi
+                    if (Sequel.cariInteger("select count(-1) from inspeksi_ginekologi_awal_kebidanan where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                        if (rsLaprm.getString("vulva_normal").equals("ya")) {
+                            param.put("vulNormal", "Normal, ");
+                        } else {
+                            param.put("vulNormal", "");
+                        }
+
+                        if (rsLaprm.getString("vulva_hiperemis").equals("ya")) {
+                            param.put("vulHiper", "Hiperemis, ");
+                        } else {
+                            param.put("vulHiper", "");
+                        }
+
+                        if (rsLaprm.getString("vulva_edema").equals("ya")) {
+                            param.put("vulEdema", "Edema, ");
+                        } else {
+                            param.put("vulEdema", "");
+                        }
+
+                        if (rsLaprm.getString("vulva_ada_lesi").equals("ya")) {
+                            param.put("vulAda", "Ada lesi/ulkus, ");
+                        } else {
+                            param.put("vulAda", "");
+                        }
+
+                        if (rsLaprm.getString("vulva_masa").equals("ya")) {
+                            param.put("vulMasa", "Massa");
+                        } else {
+                            param.put("vulMasa", "");
+                        }
+
+                        if (rsLaprm.getString("labia_simetris").equals("ya")) {
+                            param.put("labSimetris", "Simetris, ");
+                        } else {
+                            param.put("labSimetris", "");
+                        }
+
+                        if (rsLaprm.getString("labia_tdk_simetris").equals("ya")) {
+                            param.put("labTdkSimetris", "Tidak Simetris, ");
+                        } else {
+                            param.put("labTdkSimetris", "");
+                        }
+
+                        if (rsLaprm.getString("labia_ada_luka").equals("ya")) {
+                            param.put("labAdaLuka", "Ada Luka, ");
+                        } else {
+                            param.put("labAdaLuka", "");
+                        }
+
+                        if (rsLaprm.getString("labia_ada_benjolan").equals("ya")) {
+                            param.put("labAdaBenjol", "Ada Benjolan");
+                        } else {
+                            param.put("labAdaBenjol", "");
+                        }
+
+                        if (rsLaprm.getString("klitoris_normal").equals("ya")) {
+                            param.put("kliNormal", "Normal, ");
+                        } else {
+                            param.put("kliNormal", "");
+                        }
+
+                        if (rsLaprm.getString("klitoris_hipertrofi").equals("ya")) {
+                            param.put("kliHiper", "Hipertrofi, ");
+                        } else {
+                            param.put("kliHiper", "");
+                        }
+
+                        if (rsLaprm.getString("klitoris_lainya").equals("ya")) {
+                            if (!rsLaprm.getString("ket_klitoris_lain").equals("")) {
+                                param.put("kliLain", "Lainnya : " + rsLaprm.getString("ket_klitoris_lain"));
+                            } else {
+                                param.put("kliLain", "Lainnya : ...........");
+                            }
+                        } else {
+                            param.put("kliLain", "");
+                        }
+
+                        if (rsLaprm.getString("perineum_utuh").equals("ya")) {
+                            param.put("perUtuh", "Utuh, ");
+                        } else {
+                            param.put("perUtuh", "");
+                        }
+
+                        if (rsLaprm.getString("perineum_ada_luka").equals("ya")) {
+                            param.put("perAda", "Ada Luka, ");
+                        } else {
+                            param.put("perAda", "");
+                        }
+
+                        if (rsLaprm.getString("perineum_bekas").equals("ya")) {
+                            param.put("perBekas", "Bekas Episiotomi, ");
+                        } else {
+                            param.put("perBekas", "");
+                        }
+
+                        if (rsLaprm.getString("perineum_fistula").equals("ya")) {
+                            param.put("perFis", "Fistula");
+                        } else {
+                            param.put("perFis", "");
+                        }
+
+                        if (rsLaprm.getString("introitus_normal").equals("ya")) {
+                            param.put("intNormal", "Normal, ");
+                        } else {
+                            param.put("intNormal", "");
+                        }
+
+                        if (rsLaprm.getString("introitus_ada_sekret").equals("ya")) {
+                            param.put("intAdaS", "Ada Sekret, ");
+                        } else {
+                            param.put("intAdaS", "");
+                        }
+
+                        if (rsLaprm.getString("introitus_ada_perdarahan").equals("ya")) {
+                            param.put("intAdaP", "Ada Perdarahan, ");
+                        } else {
+                            param.put("intAdaP", "");
+                        }
+
+                        if (rsLaprm.getString("introitus_ada_robekan").equals("ya")) {
+                            param.put("intAdaR", "Ada Robekan");
+                        } else {
+                            param.put("intAdaR", "");
+                        }
+
+                        if (rsLaprm.getString("sekret_tdk_ada").equals("ya")) {
+                            param.put("sekTdkAda", "Tidak Ada, ");
+                        } else {
+                            param.put("sekTdkAda", "");
+                        }
+
+                        if (rsLaprm.getString("sekret_jernih").equals("ya")) {
+                            param.put("sekJernih", "Jernih, ");
+                        } else {
+                            param.put("sekJernih", "");
+                        }
+
+                        if (rsLaprm.getString("sekret_putih").equals("ya")) {
+                            param.put("sekPutih", "Putih Kental, ");
+                        } else {
+                            param.put("sekPutih", "");
+                        }
+
+                        if (rsLaprm.getString("sekret_kuning").equals("ya")) {
+                            param.put("sekKuning", "Kuning Kehijauan, ");
+                        } else {
+                            param.put("sekKuning", "");
+                        }
+
+                        if (rsLaprm.getString("sekret_berbau").equals("ya")) {
+                            param.put("sekBerbau", "Berbau, ");
+                        } else {
+                            param.put("sekBerbau", "");
+                        }
+
+                        param.put("jmlSekret", "Jumlah : " + rsLaprm.getString("jumlah_sekret"));
+
+                        if (rsLaprm.getString("dinding_normal").equals("ya")) {
+                            param.put("dinNormal", "Normal, ");
+                        } else {
+                            param.put("dinNormal", "");
+                        }
+
+                        if (rsLaprm.getString("dinding_hiperemis").equals("ya")) {
+                            param.put("dinHiper", "Hiperemis, ");
+                        } else {
+                            param.put("dinHiper", "");
+                        }
+
+                        if (rsLaprm.getString("dinding_atrofi").equals("ya")) {
+                            param.put("dinAtro", "Atrofi, ");
+                        } else {
+                            param.put("dinAtro", "");
+                        }
+
+                        if (rsLaprm.getString("dinding_ada_masa").equals("ya")) {
+                            param.put("dinAdaM", "Ada Massa, ");
+                        } else {
+                            param.put("dinAdaM", "");
+                        }
+
+                        if (rsLaprm.getString("dinding_ada_sekret").equals("ya")) {
+                            param.put("dinAdaS", "Ada Sekret");
+                        } else {
+                            param.put("dinAdaS", "");
+                        }
+
+                        if (rsLaprm.getString("serviks_bentuk_normal").equals("ya")) {
+                            param.put("serbenNormal", "Normal, ");
+                        } else {
+                            param.put("serbenNormal", "");
+                        }
+
+                        if (rsLaprm.getString("serviks_bentuk_erosi").equals("ya")) {
+                            param.put("serbenErosi", "Erosi, ");
+                        } else {
+                            param.put("serbenErosi", "");
+                        }
+
+                        if (rsLaprm.getString("serviks_bentuk_polip").equals("ya")) {
+                            param.put("serbenPolip", "Polip, ");
+                        } else {
+                            param.put("serbenPolip", "");
+                        }
+
+                        if (rsLaprm.getString("serviks_bentuk_ektropion").equals("ya")) {
+                            param.put("serbenEktro", "Ektropion");
+                        } else {
+                            param.put("serbenEktro", "");
+                        }
+
+                        if (rsLaprm.getString("serviks_warna_normal").equals("ya")) {
+                            param.put("serwarNormal", "Normal, ");
+                        } else {
+                            param.put("serwarNormal", "");
+                        }
+
+                        if (rsLaprm.getString("serviks_warna_hiperemis").equals("ya")) {
+                            param.put("serwarHiper", "Hiperemis, ");
+                        } else {
+                            param.put("serwarHiper", "");
+                        }
+
+                        if (rsLaprm.getString("serviks_warna_pucat").equals("ya")) {
+                            param.put("serwarPucat", "Pucat, ");
+                        } else {
+                            param.put("serwarPucat", "");
+                        }
+
+                        if (rsLaprm.getString("serviks_permu_halus").equals("ya")) {
+                            param.put("serperHalus", "Halus, ");
+                        } else {
+                            param.put("serperHalus", "");
+                        }
+
+                        if (rsLaprm.getString("serviks_permu_granulasi").equals("ya")) {
+                            param.put("serperGran", "Granulasi, ");
+                        } else {
+                            param.put("serperGran", "");
+                        }
+
+                        if (rsLaprm.getString("serviks_permu_ulserasi").equals("ya")) {
+                            param.put("serperUl", "Ulserasi");
+                        } else {
+                            param.put("serperUl", "");
+                        }
+
+                        param.put("sekServik", rsLaprm.getString("sekret_serviks"));
+                        param.put("sekServikAda", rsLaprm.getString("sekret_serviks_ada"));
+                        param.put("temuan", rsLaprm.getString("temuan_tambahan"));
+                    } else {
+                        param.put("vulNormal", "");
+                        param.put("vulHiper", "");
+                        param.put("vulEdema", "");
+                        param.put("vulAda", "");
+                        param.put("vulMasa", "");
+                        param.put("labSimetris", "");
+                        param.put("labTdkSimetris", "");
+                        param.put("labAdaLuka", "");
+                        param.put("labAdaBenjol", "");
+                        param.put("kliNormal", "");
+                        param.put("kliHiper", "");
+                        param.put("kliLain", "");
+                        param.put("perUtuh", "");
+                        param.put("perAda", "");
+                        param.put("perBekas", "");
+                        param.put("perFis", "");
+                        param.put("intNormal", "");
+                        param.put("intAdaS", "");
+                        param.put("intAdaP", "");
+                        param.put("intAdaR", "");
+                        param.put("sekTdkAda", "");
+                        param.put("sekJernih", "");
+                        param.put("sekPutih", "");
+                        param.put("sekKuning", "");
+                        param.put("sekBerbau", "");
+                        param.put("dinNormal", "");
+                        param.put("dinHiper", "");
+                        param.put("dinAtro", "");
+                        param.put("dinAdaM", "");
+                        param.put("dinAdaS", "");
+                        param.put("serbenNormal", "");
+                        param.put("serbenErosi", "");
+                        param.put("serbenPolip", "");
+                        param.put("serbenEktro", "");
+                        param.put("serwarNormal", "");
+                        param.put("serwarHiper", "");
+                        param.put("serwarPucat", "");
+                        param.put("serperHalus", "");
+                        param.put("serperGran", "");
+                        param.put("serperUl", "");
+                        param.put("kliLain", "");
+                        param.put("jmlSekret", "");
+                        param.put("sekServik", "");
+                        param.put("sekServikAda", "");
+                        param.put("temuan", "");
+                    }
+                    //-----------
 
                     if (rsLaprm.getString("tfu").equals("")) {
                         param.put("tfu", "...... Cm");

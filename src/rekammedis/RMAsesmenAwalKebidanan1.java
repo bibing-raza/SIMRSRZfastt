@@ -44,8 +44,8 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps1, ps2, ps3, psLaprm;
-    private ResultSet rs, rs1, rs2, rs3, rsPrev, rsLaprm;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, psLaprm;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rsPrev, rsLaprm;
     private int i = 0, x = 0, skor = 0, pilihan = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
@@ -5858,13 +5858,14 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         if (tbAsesmen.getSelectedRow() > -1 || Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan1 where no_rawat='" + TNoRw.getText() + "'") > 0) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             try {
-                psLaprm = koneksi.prepareStatement("SELECT ak1.*, ak2.*, pg1.nama nmBidan, pg2.nama nmDokter, pg3.nama nmBidanDp, p.nm_pasien, "
+                psLaprm = koneksi.prepareStatement("SELECT ak1.*, ak2.*, ig.*, pg1.nama nmBidan, pg2.nama nmDokter, pg3.nama nmBidanDp, p.nm_pasien, "
                         + "p.no_rkm_medis, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', ',kb.nm_kab) almtPasien, "
                         + "concat(rp.umurdaftar,' ',rp.sttsumur) umurPasien, p.pekerjaan, p.agama FROM asesmen_awal_kebidanan1 ak1 "
                         + "inner join reg_periksa rp on rp.no_rawat=ak1.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join kelurahan kl on kl.kd_kel=p.kd_kel inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
-                        + "left join asesmen_awal_kebidanan2 ak2 on ak1.no_rawat=ak2.no_rawat left join pegawai pg1 on pg1.nik=ak2.nip_bidan "
-                        + "left join pegawai pg2 on pg2.nik=ak2.nip_dokter left join pegawai pg3 on pg3.nik=ak2.nip_bidan_dp where ak1.no_rawat='" + TNoRw.getText() + "'");
+                        + "left join asesmen_awal_kebidanan2 ak2 on ak1.no_rawat=ak2.no_rawat left join inspeksi_ginekologi_awal_kebidanan ig on ig.no_rawat=ak1.no_rawat "
+                        + "left join pegawai pg1 on pg1.nik=ak2.nip_bidan left join pegawai pg2 on pg2.nik=ak2.nip_dokter "
+                        + "left join pegawai pg3 on pg3.nik=ak2.nip_bidan_dp where ak1.no_rawat='" + TNoRw.getText() + "'");
                 try {
                     rsLaprm = psLaprm.executeQuery();
                     while (rsLaprm.next()) {
@@ -6606,6 +6607,306 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 
                         param.put("nyeriTekan", rsLaprm.getString("nyeri_tekan"));
                         param.put("vtNyeri", rsLaprm.getString("vt_nyeri_goyang"));
+                        
+                        //inspeksi ginekologi
+                        if (Sequel.cariInteger("select count(-1) from inspeksi_ginekologi_awal_kebidanan where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                            if (rsLaprm.getString("vulva_normal").equals("ya")) {
+                                param.put("vulNormal", "Normal, ");
+                            } else {
+                                param.put("vulNormal", "");
+                            }
+
+                            if (rsLaprm.getString("vulva_hiperemis").equals("ya")) {
+                                param.put("vulHiper", "Hiperemis, ");
+                            } else {
+                                param.put("vulHiper", "");
+                            }
+
+                            if (rsLaprm.getString("vulva_edema").equals("ya")) {
+                                param.put("vulEdema", "Edema, ");
+                            } else {
+                                param.put("vulEdema", "");
+                            }
+
+                            if (rsLaprm.getString("vulva_ada_lesi").equals("ya")) {
+                                param.put("vulAda", "Ada lesi/ulkus, ");
+                            } else {
+                                param.put("vulAda", "");
+                            }
+
+                            if (rsLaprm.getString("vulva_masa").equals("ya")) {
+                                param.put("vulMasa", "Massa");
+                            } else {
+                                param.put("vulMasa", "");
+                            }
+
+                            if (rsLaprm.getString("labia_simetris").equals("ya")) {
+                                param.put("labSimetris", "Simetris, ");
+                            } else {
+                                param.put("labSimetris", "");
+                            }
+
+                            if (rsLaprm.getString("labia_tdk_simetris").equals("ya")) {
+                                param.put("labTdkSimetris", "Tidak Simetris, ");
+                            } else {
+                                param.put("labTdkSimetris", "");
+                            }
+
+                            if (rsLaprm.getString("labia_ada_luka").equals("ya")) {
+                                param.put("labAdaLuka", "Ada Luka, ");
+                            } else {
+                                param.put("labAdaLuka", "");
+                            }
+
+                            if (rsLaprm.getString("labia_ada_benjolan").equals("ya")) {
+                                param.put("labAdaBenjol", "Ada Benjolan");
+                            } else {
+                                param.put("labAdaBenjol", "");
+                            }
+
+                            if (rsLaprm.getString("klitoris_normal").equals("ya")) {
+                                param.put("kliNormal", "Normal, ");
+                            } else {
+                                param.put("kliNormal", "");
+                            }
+
+                            if (rsLaprm.getString("klitoris_hipertrofi").equals("ya")) {
+                                param.put("kliHiper", "Hipertrofi, ");
+                            } else {
+                                param.put("kliHiper", "");
+                            }
+
+                            if (rsLaprm.getString("klitoris_lainya").equals("ya")) {
+                                if (!rsLaprm.getString("ket_klitoris_lain").equals("")) {
+                                    param.put("kliLain", "Lainnya : " + rsLaprm.getString("ket_klitoris_lain"));
+                                } else {
+                                    param.put("kliLain", "Lainnya : ...........");
+                                }
+                            } else {
+                                param.put("kliLain", "");
+                            }
+
+                            if (rsLaprm.getString("perineum_utuh").equals("ya")) {
+                                param.put("perUtuh", "Utuh, ");
+                            } else {
+                                param.put("perUtuh", "");
+                            }
+
+                            if (rsLaprm.getString("perineum_ada_luka").equals("ya")) {
+                                param.put("perAda", "Ada Luka, ");
+                            } else {
+                                param.put("perAda", "");
+                            }
+
+                            if (rsLaprm.getString("perineum_bekas").equals("ya")) {
+                                param.put("perBekas", "Bekas Episiotomi, ");
+                            } else {
+                                param.put("perBekas", "");
+                            }
+
+                            if (rsLaprm.getString("perineum_fistula").equals("ya")) {
+                                param.put("perFis", "Fistula");
+                            } else {
+                                param.put("perFis", "");
+                            }
+
+                            if (rsLaprm.getString("introitus_normal").equals("ya")) {
+                                param.put("intNormal", "Normal, ");
+                            } else {
+                                param.put("intNormal", "");
+                            }
+
+                            if (rsLaprm.getString("introitus_ada_sekret").equals("ya")) {
+                                param.put("intAdaS", "Ada Sekret, ");
+                            } else {
+                                param.put("intAdaS", "");
+                            }
+
+                            if (rsLaprm.getString("introitus_ada_perdarahan").equals("ya")) {
+                                param.put("intAdaP", "Ada Perdarahan, ");
+                            } else {
+                                param.put("intAdaP", "");
+                            }
+
+                            if (rsLaprm.getString("introitus_ada_robekan").equals("ya")) {
+                                param.put("intAdaR", "Ada Robekan");
+                            } else {
+                                param.put("intAdaR", "");
+                            }
+
+                            if (rsLaprm.getString("sekret_tdk_ada").equals("ya")) {
+                                param.put("sekTdkAda", "Tidak Ada, ");
+                            } else {
+                                param.put("sekTdkAda", "");
+                            }
+
+                            if (rsLaprm.getString("sekret_jernih").equals("ya")) {
+                                param.put("sekJernih", "Jernih, ");
+                            } else {
+                                param.put("sekJernih", "");
+                            }
+
+                            if (rsLaprm.getString("sekret_putih").equals("ya")) {
+                                param.put("sekPutih", "Putih Kental, ");
+                            } else {
+                                param.put("sekPutih", "");
+                            }
+
+                            if (rsLaprm.getString("sekret_kuning").equals("ya")) {
+                                param.put("sekKuning", "Kuning Kehijauan, ");
+                            } else {
+                                param.put("sekKuning", "");
+                            }
+
+                            if (rsLaprm.getString("sekret_berbau").equals("ya")) {
+                                param.put("sekBerbau", "Berbau, ");
+                            } else {
+                                param.put("sekBerbau", "");
+                            }
+
+                            param.put("jmlSekret", "Jumlah : " + rsLaprm.getString("jumlah_sekret"));
+
+                            if (rsLaprm.getString("dinding_normal").equals("ya")) {
+                                param.put("dinNormal", "Normal, ");
+                            } else {
+                                param.put("dinNormal", "");
+                            }
+
+                            if (rsLaprm.getString("dinding_hiperemis").equals("ya")) {
+                                param.put("dinHiper", "Hiperemis, ");
+                            } else {
+                                param.put("dinHiper", "");
+                            }
+
+                            if (rsLaprm.getString("dinding_atrofi").equals("ya")) {
+                                param.put("dinAtro", "Atrofi, ");
+                            } else {
+                                param.put("dinAtro", "");
+                            }
+
+                            if (rsLaprm.getString("dinding_ada_masa").equals("ya")) {
+                                param.put("dinAdaM", "Ada Massa, ");
+                            } else {
+                                param.put("dinAdaM", "");
+                            }
+
+                            if (rsLaprm.getString("dinding_ada_sekret").equals("ya")) {
+                                param.put("dinAdaS", "Ada Sekret");
+                            } else {
+                                param.put("dinAdaS", "");
+                            }
+
+                            if (rsLaprm.getString("serviks_bentuk_normal").equals("ya")) {
+                                param.put("serbenNormal", "Normal, ");
+                            } else {
+                                param.put("serbenNormal", "");
+                            }
+
+                            if (rsLaprm.getString("serviks_bentuk_erosi").equals("ya")) {
+                                param.put("serbenErosi", "Erosi, ");
+                            } else {
+                                param.put("serbenErosi", "");
+                            }
+
+                            if (rsLaprm.getString("serviks_bentuk_polip").equals("ya")) {
+                                param.put("serbenPolip", "Polip, ");
+                            } else {
+                                param.put("serbenPolip", "");
+                            }
+
+                            if (rsLaprm.getString("serviks_bentuk_ektropion").equals("ya")) {
+                                param.put("serbenEktro", "Ektropion");
+                            } else {
+                                param.put("serbenEktro", "");
+                            }
+
+                            if (rsLaprm.getString("serviks_warna_normal").equals("ya")) {
+                                param.put("serwarNormal", "Normal, ");
+                            } else {
+                                param.put("serwarNormal", "");
+                            }
+
+                            if (rsLaprm.getString("serviks_warna_hiperemis").equals("ya")) {
+                                param.put("serwarHiper", "Hiperemis, ");
+                            } else {
+                                param.put("serwarHiper", "");
+                            }
+
+                            if (rsLaprm.getString("serviks_warna_pucat").equals("ya")) {
+                                param.put("serwarPucat", "Pucat, ");
+                            } else {
+                                param.put("serwarPucat", "");
+                            }
+
+                            if (rsLaprm.getString("serviks_permu_halus").equals("ya")) {
+                                param.put("serperHalus", "Halus, ");
+                            } else {
+                                param.put("serperHalus", "");
+                            }
+
+                            if (rsLaprm.getString("serviks_permu_granulasi").equals("ya")) {
+                                param.put("serperGran", "Granulasi, ");
+                            } else {
+                                param.put("serperGran", "");
+                            }
+
+                            if (rsLaprm.getString("serviks_permu_ulserasi").equals("ya")) {
+                                param.put("serperUl", "Ulserasi");
+                            } else {
+                                param.put("serperUl", "");
+                            }
+
+                            param.put("sekServik", rsLaprm.getString("sekret_serviks"));
+                            param.put("sekServikAda", rsLaprm.getString("sekret_serviks_ada"));
+                            param.put("temuan", rsLaprm.getString("temuan_tambahan"));
+                        } else {
+                            param.put("vulNormal", "");
+                            param.put("vulHiper", "");
+                            param.put("vulEdema", "");
+                            param.put("vulAda", "");
+                            param.put("vulMasa", "");
+                            param.put("labSimetris", "");
+                            param.put("labTdkSimetris", "");
+                            param.put("labAdaLuka", "");
+                            param.put("labAdaBenjol", "");
+                            param.put("kliNormal", "");
+                            param.put("kliHiper", "");
+                            param.put("kliLain", "");
+                            param.put("perUtuh", "");
+                            param.put("perAda", "");
+                            param.put("perBekas", "");
+                            param.put("perFis", "");
+                            param.put("intNormal", "");
+                            param.put("intAdaS", "");
+                            param.put("intAdaP", "");
+                            param.put("intAdaR", "");
+                            param.put("sekTdkAda", "");
+                            param.put("sekJernih", "");
+                            param.put("sekPutih", "");
+                            param.put("sekKuning", "");
+                            param.put("sekBerbau", "");
+                            param.put("dinNormal", "");
+                            param.put("dinHiper", "");
+                            param.put("dinAtro", "");
+                            param.put("dinAdaM", "");
+                            param.put("dinAdaS", "");
+                            param.put("serbenNormal", "");
+                            param.put("serbenErosi", "");
+                            param.put("serbenPolip", "");
+                            param.put("serbenEktro", "");
+                            param.put("serwarNormal", "");
+                            param.put("serwarHiper", "");
+                            param.put("serwarPucat", "");
+                            param.put("serperHalus", "");
+                            param.put("serperGran", "");
+                            param.put("serperUl", "");
+                            param.put("kliLain", "");
+                            param.put("jmlSekret", "");
+                            param.put("sekServik", "");
+                            param.put("sekServikAda", "");
+                            param.put("temuan", "");
+                        }
+                        //-----------
 
                         if (rsLaprm.getString("tfu").equals("")) {
                             param.put("tfu", "...... Cm");
@@ -10237,9 +10538,12 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getcppt());        
         BtnHapus.setEnabled(akses.getcppt());        
         BtnEdit.setEnabled(akses.getcppt());
+        BtnInspeksi.setEnabled(akses.getcppt());
+        
 //        BtnSimpan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
 //        BtnHapus.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());        
 //        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
+//        BtnInspeksi.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
     }
 
     private void hapus() {
@@ -12469,6 +12773,333 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                 + "<td valign='top' colspan='1'>VT Nyeri Goyang</td>"
                                 + "<td valign='top' colspan='1'>: " + rsPrev.getString("vt_nyeri_goyang") + "</td>"
                                 + "</tr>");
+                        
+                        //inspeksi pemeriksaan ginekologi
+                        if (Sequel.cariInteger("select count(-1) from inspeksi_ginekologi_awal_kebidanan where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td valign='top' colspan='8' bgcolor='#f8fdf3' align='center'><b>Inspeksi Pemeriksaan Ginekologi (Bagian Yang Diperiksa)</b></td>"
+                                    + "</tr>");
+
+                            try {
+                                ps4 = koneksi.prepareStatement("select * from inspeksi_ginekologi_awal_kebidanan where no_rawat='" + TNoRw.getText() + "'");
+                                try {
+                                    rs4 = ps4.executeQuery();
+                                    while (rs4.next()) {
+                                        String vulvaNormal = "", vulvaHiperemis = "", vulvaEdema = "", vulvaAdaLesi = "", vulvaMasa = "", labiaSimetris = "", labiaTdkSimetris = "",
+                                                labiaAdaLuka = "", labiaAdaBenjolan = "", klitorisNormal = "", klitorisHipertrofi = "", klitorisLainya = "", temuanTambahan = "",
+                                                perineumUtuh = "", perineumAdaLuka = "", perineumBekas = "", perineumFistula = "", introitusNormal = "", introitusAdaSekret = "",
+                                                introitusAdaPerdarahan = "", introitusAdaRobekan = "", sekretTdkAda = "", sekretJernih = "", sekretPutih = "", sekretKuning = "",
+                                                sekretBerbau = "", dindingNormal = "", dindingHiperemis = "", dindingAtrofi = "", dindingAdaMasa = "", dindingAdaSekret = "",
+                                                serviksBentukNormal = "", serviksBentukErosi = "", serviksBentukPolip = "", serviksBentukEktropion = "", serviksWarnaNormal = "",
+                                                serviksWarnaHiperemis = "", serviksWarnaPucat = "", serviksPermuHalus = "", serviksPermuGranulasi = "", serviksPermuUlserasi = "";
+
+                                        if (rs4.getString("vulva_normal").equals("ya")) {
+                                            vulvaNormal = "Normal, ";
+                                        } else {
+                                            vulvaNormal = "";
+                                        }
+
+                                        if (rs4.getString("vulva_hiperemis").equals("ya")) {
+                                            vulvaHiperemis = "Hiperemis, ";
+                                        } else {
+                                            vulvaHiperemis = "";
+                                        }
+
+                                        if (rs4.getString("vulva_edema").equals("ya")) {
+                                            vulvaEdema = "Edema, ";
+                                        } else {
+                                            vulvaEdema = "";
+                                        }
+
+                                        if (rs4.getString("vulva_ada_lesi").equals("ya")) {
+                                            vulvaAdaLesi = "Ada lesi/ulkus, ";
+                                        } else {
+                                            vulvaAdaLesi = "";
+                                        }
+
+                                        if (rs4.getString("vulva_masa").equals("ya")) {
+                                            vulvaMasa = "Massa";
+                                        } else {
+                                            vulvaMasa = "";
+                                        }
+
+                                        if (rs4.getString("sekret_tdk_ada").equals("ya")) {
+                                            sekretTdkAda = "Tidak Ada, ";
+                                        } else {
+                                            sekretTdkAda = "";
+                                        }
+
+                                        if (rs4.getString("sekret_jernih").equals("ya")) {
+                                            sekretJernih = "Jernih, ";
+                                        } else {
+                                            sekretJernih = "";
+                                        }
+
+                                        if (rs4.getString("sekret_putih").equals("ya")) {
+                                            sekretPutih = "Putih Kental, ";
+                                        } else {
+                                            sekretPutih = "";
+                                        }
+
+                                        if (rs4.getString("sekret_kuning").equals("ya")) {
+                                            sekretKuning = "Kuning Kehijauan, ";
+                                        } else {
+                                            sekretKuning = "";
+                                        }
+
+                                        if (rs4.getString("sekret_berbau").equals("ya")) {
+                                            sekretBerbau = "Berbau, ";
+                                        } else {
+                                            sekretBerbau = "";
+                                        }
+
+                                        htmlContent.append(
+                                                "<tr class='isi'>"
+                                                + "<td valign='top' colspan='1'>Vulva</td>"
+                                                + "<td valign='top' colspan='3'>: " + vulvaNormal + vulvaHiperemis + vulvaEdema + vulvaAdaLesi + vulvaMasa + "</td>"
+                                                + "<td valign='top' colspan='1'>Sekret Vaginal</td>"
+                                                + "<td valign='top' colspan='3'>: " + sekretTdkAda + sekretJernih + sekretPutih + sekretKuning + sekretBerbau + " Jumlah : " + rs4.getString("jumlah_sekret") + "</td>"
+                                                + "</tr>");
+
+                                        if (rs4.getString("labia_simetris").equals("ya")) {
+                                            labiaSimetris = "Simetris, ";
+                                        } else {
+                                            labiaSimetris = "";
+                                        }
+
+                                        if (rs4.getString("labia_tdk_simetris").equals("ya")) {
+                                            labiaTdkSimetris = "Tidak Simetris, ";
+                                        } else {
+                                            labiaTdkSimetris = "";
+                                        }
+
+                                        if (rs4.getString("labia_ada_luka").equals("ya")) {
+                                            labiaAdaLuka = "Ada Luka, ";
+                                        } else {
+                                            labiaAdaLuka = "";
+                                        }
+
+                                        if (rs4.getString("labia_ada_benjolan").equals("ya")) {
+                                            labiaAdaBenjolan = "Ada Benjolan";
+                                        } else {
+                                            labiaAdaBenjolan = "";
+                                        }
+
+                                        if (rs4.getString("dinding_normal").equals("ya")) {
+                                            dindingNormal = "Normal, ";
+                                        } else {
+                                            dindingNormal = "";
+                                        }
+
+                                        if (rs4.getString("dinding_hiperemis").equals("ya")) {
+                                            dindingHiperemis = "Hiperemis, ";
+                                        } else {
+                                            dindingHiperemis = "";
+                                        }
+
+                                        if (rs4.getString("dinding_atrofi").equals("ya")) {
+                                            dindingAtrofi = "Atrofi, ";
+                                        } else {
+                                            dindingAtrofi = "";
+                                        }
+
+                                        if (rs4.getString("dinding_ada_masa").equals("ya")) {
+                                            dindingAdaMasa = "Ada Massa, ";
+                                        } else {
+                                            dindingAdaMasa = "";
+                                        }
+
+                                        if (rs4.getString("dinding_ada_sekret").equals("ya")) {
+                                            dindingAdaSekret = "Ada Sekret";
+                                        } else {
+                                            dindingAdaSekret = "";
+                                        }
+
+                                        htmlContent.append(
+                                                "<tr class='isi'>"
+                                                + "<td valign='top' colspan='1'>Labia Majora/Minora</td>"
+                                                + "<td valign='top' colspan='3'>: " + labiaSimetris + labiaTdkSimetris + labiaAdaLuka + labiaAdaBenjolan + "</td>"
+                                                + "<td valign='top' colspan='1'>Dinding Vagina</td>"
+                                                + "<td valign='top' colspan='3'>: " + dindingNormal + dindingHiperemis + dindingAtrofi + dindingAdaMasa + dindingAdaSekret + "</td>"
+                                                + "</tr>");
+
+                                        if (rs4.getString("klitoris_normal").equals("ya")) {
+                                            klitorisNormal = "Normal, ";
+                                        } else {
+                                            klitorisNormal = "";
+                                        }
+
+                                        if (rs4.getString("klitoris_hipertrofi").equals("ya")) {
+                                            klitorisHipertrofi = "Hipertrofi, ";
+                                        } else {
+                                            klitorisHipertrofi = "";
+                                        }
+
+                                        if (rs4.getString("klitoris_lainya").equals("ya")) {
+                                            if (!rs4.getString("ket_klitoris_lain").equals("")) {
+                                                klitorisLainya = "Lainnya : " + rs4.getString("ket_klitoris_lain");
+                                            } else {
+                                                klitorisLainya = "Lainnya : ...........";
+                                            }
+                                        } else {
+                                            klitorisLainya = "";
+                                        }
+
+                                        if (rs4.getString("serviks_bentuk_normal").equals("ya")) {
+                                            serviksBentukNormal = "Normal, ";
+                                        } else {
+                                            serviksBentukNormal = "";
+                                        }
+
+                                        if (rs4.getString("serviks_bentuk_erosi").equals("ya")) {
+                                            serviksBentukErosi = "Erosi, ";
+                                        } else {
+                                            serviksBentukErosi = "";
+                                        }
+
+                                        if (rs4.getString("serviks_bentuk_polip").equals("ya")) {
+                                            serviksBentukPolip = "Polip, ";
+                                        } else {
+                                            serviksBentukPolip = "";
+                                        }
+
+                                        if (rs4.getString("serviks_bentuk_ektropion").equals("ya")) {
+                                            serviksBentukEktropion = "Ektropion";
+                                        } else {
+                                            serviksBentukEktropion = "";
+                                        }
+
+                                        if (rs4.getString("serviks_warna_normal").equals("ya")) {
+                                            serviksWarnaNormal = "Normal, ";
+                                        } else {
+                                            serviksWarnaNormal = "";
+                                        }
+
+                                        if (rs4.getString("serviks_warna_hiperemis").equals("ya")) {
+                                            serviksWarnaHiperemis = "Hiperemis, ";
+                                        } else {
+                                            serviksWarnaHiperemis = "";
+                                        }
+
+                                        if (rs4.getString("serviks_warna_pucat").equals("ya")) {
+                                            serviksWarnaPucat = "Pucat";
+                                        } else {
+                                            serviksWarnaPucat = "";
+                                        }
+
+                                        if (rs4.getString("serviks_permu_halus").equals("ya")) {
+                                            serviksPermuHalus = "Halus, ";
+                                        } else {
+                                            serviksPermuHalus = "";
+                                        }
+
+                                        if (rs4.getString("serviks_permu_granulasi").equals("ya")) {
+                                            serviksPermuGranulasi = "Granulasi, ";
+                                        } else {
+                                            serviksPermuGranulasi = "";
+                                        }
+
+                                        if (rs4.getString("serviks_permu_ulserasi").equals("ya")) {
+                                            serviksPermuUlserasi = "Ulserasi";
+                                        } else {
+                                            serviksPermuUlserasi = "";
+                                        }
+
+                                        htmlContent.append(
+                                                "<tr class='isi'>"
+                                                + "<td valign='top' colspan='1'>Klitoris</td>"
+                                                + "<td valign='top' colspan='3'>: " + klitorisNormal + klitorisHipertrofi + klitorisLainya + "</td>"
+                                                + "<td valign='top' colspan='1'>Serviks Uteri</td>"
+                                                + "<td valign='top' colspan='3'>: - Bentuk : " + serviksBentukNormal + serviksBentukErosi + serviksBentukPolip + serviksBentukEktropion
+                                                + "<br>&nbsp;&nbsp;- Warna : " + serviksWarnaNormal + serviksWarnaHiperemis + serviksWarnaPucat + ""
+                                                + "<br>&nbsp;&nbsp;- Permukaan : " + serviksPermuHalus + serviksPermuGranulasi + serviksPermuUlserasi + "</td>"
+                                                + "</tr>");
+
+                                        if (rs4.getString("perineum_utuh").equals("ya")) {
+                                            perineumUtuh = "Utuh, ";
+                                        } else {
+                                            perineumUtuh = "";
+                                        }
+
+                                        if (rs4.getString("perineum_ada_luka").equals("ya")) {
+                                            perineumAdaLuka = "Ada Luka, ";
+                                        } else {
+                                            perineumAdaLuka = "";
+                                        }
+
+                                        if (rs4.getString("perineum_bekas").equals("ya")) {
+                                            perineumBekas = "Bekas Episiotomi, ";
+                                        } else {
+                                            perineumBekas = "";
+                                        }
+
+                                        if (rs4.getString("perineum_fistula").equals("ya")) {
+                                            perineumFistula = "Fistula";
+                                        } else {
+                                            perineumFistula = "";
+                                        }
+
+                                        htmlContent.append(
+                                                "<tr class='isi'>"
+                                                + "<td valign='top' colspan='1'>Perineum</td>"
+                                                + "<td valign='top' colspan='3'>: " + perineumUtuh + perineumAdaLuka + perineumBekas + perineumFistula + "</td>"
+                                                + "<td valign='top' colspan='1'>Sekret Serviks</td>"
+                                                + "<td valign='top' colspan='3'>: " + rs4.getString("sekret_serviks") + " : " + rs4.getString("sekret_serviks_ada") + "</td>"
+                                                + "</tr>");
+
+                                        if (rs4.getString("introitus_normal").equals("ya")) {
+                                            introitusNormal = "Normal, ";
+                                        } else {
+                                            introitusNormal = "";
+                                        }
+
+                                        if (rs4.getString("introitus_ada_sekret").equals("ya")) {
+                                            introitusAdaSekret = "Ada Sekret, ";
+                                        } else {
+                                            introitusAdaSekret = "";
+                                        }
+
+                                        if (rs4.getString("introitus_ada_perdarahan").equals("ya")) {
+                                            introitusAdaPerdarahan = "Ada Perdarahan, ";
+                                        } else {
+                                            introitusAdaPerdarahan = "";
+                                        }
+
+                                        if (rs4.getString("introitus_ada_robekan").equals("ya")) {
+                                            introitusAdaRobekan = "Ada Robekan";
+                                        } else {
+                                            introitusAdaRobekan = "";
+                                        }
+
+                                        if (rs4.getString("temuan_tambahan").equals("")) {
+                                            temuanTambahan = rs4.getString("temuan_tambahan");
+                                        } else {
+                                            temuanTambahan = "-";
+                                        }
+
+                                        htmlContent.append(
+                                                "<tr class='isi'>"
+                                                + "<td valign='top' colspan='1'>Introitus Vagina</td>"
+                                                + "<td valign='top' colspan='3'>: " + introitusNormal + introitusAdaSekret + introitusAdaPerdarahan + introitusAdaRobekan + "</td>"
+                                                + "<td valign='top' colspan='1'>Temuan Tambahan</td>"
+                                                + "<td valign='top' colspan='3'>: " + temuanTambahan + "</td>"
+                                                + "</tr>");
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Notifikasi : " + e);
+                                } finally {
+                                    if (rs4 != null) {
+                                        rs4.close();
+                                    }
+                                    if (ps4 != null) {
+                                        ps4.close();
+                                    }
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Notifikasi : " + e);
+                            }
+                        }
 
                         htmlContent.append(
                                 "<tr class='isi'>"

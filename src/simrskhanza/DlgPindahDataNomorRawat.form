@@ -138,7 +138,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="30-07-2025"/>
+                        <StringItem index="0" value="06-10-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -166,7 +166,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="30-07-2025"/>
+                        <StringItem index="0" value="06-10-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -549,7 +549,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Semua Rekam Medis IGD"/>
+                    <Property name="text" type="java.lang.String" value="Semua Rekam Medis IGD/Ponek"/>
                     <Property name="borderPainted" type="boolean" value="true"/>
                     <Property name="borderPaintedFlat" type="boolean" value="true"/>
                     <Property name="horizontalAlignment" type="int" value="2"/>
@@ -561,7 +561,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="380" y="122" width="160" height="23"/>
+                      <AbsoluteConstraints x="380" y="122" width="190" height="23"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -585,7 +585,7 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="68">
+                      <StringArray count="69">
                         <StringItem index="0" value=" "/>
                         <StringItem index="1" value="FARMASI"/>
                         <StringItem index="2" value="RADIOLOGI"/>
@@ -654,6 +654,7 @@
                         <StringItem index="65" value="TRIASE PONEK"/>
                         <StringItem index="66" value="MONITORING EWS OBSGYN"/>
                         <StringItem index="67" value="PERUBAHAN DPJP RANAP"/>
+                        <StringItem index="68" value="ASESMEN AWAL KEBIDANAN"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbJnsTran" noResource="true"/>

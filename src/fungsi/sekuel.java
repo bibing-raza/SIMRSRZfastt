@@ -1135,10 +1135,12 @@ public final class sekuel {
     public int cekRekamMedisIGD(String norawat) {
         angka = 0;
         int rmigd1 = 0, rmigd2 = 0, rmigd3 = 0, rmigd4 = 0, rmigd5 = 0, rmigd6 = 0, rmigd7 = 0, rmigd8 = 0, rmigd9 = 0, rmigd10 = 0, rmigd11 = 0,
-                rmigd12 = 0, rmigd13 = 0, rmigd14 = 0, rmigd15 = 0, rmigd16 = 0, rmigd17 = 0, rmigd18 = 0, rmigd19 = 0, rmigd20 = 0, rmigd21 = 0;
+                rmigd12 = 0, rmigd13 = 0, rmigd14 = 0, rmigd15 = 0, rmigd16 = 0, rmigd17 = 0, rmigd18 = 0, rmigd19 = 0, rmigd20 = 0, rmigd21 = 0,
+                rmigd22 = 0, rmigd23 = 0, rmigd24 = 0, rmigd25 = 0;
         
         String tbl1 = "", tbl2 = "", tbl3 = "", tbl4 = "", tbl5 = "", tbl6 = "", tbl7 = "", tbl8 = "", tbl9 = "", tbl10 = "", tbl11 = "", tbl12 = "", 
-                tbl13 = "", tbl14 = "", tbl15 = "", tbl16 = "", tbl17 = "", tbl18 = "", tbl19 = "", tbl20 = "", tbl21 = "";
+                tbl13 = "", tbl14 = "", tbl15 = "", tbl16 = "", tbl17 = "", tbl18 = "", tbl19 = "", tbl20 = "", tbl21 = "", tbl22 = "", tbl23 = "",
+                tbl24 = "", tbl25 = "";
         
         rmigd1 = cariInteger("select count(-1) from triase_igd where no_rawat='" + norawat + "'");
         rmigd2 = cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + norawat + "'");
@@ -1160,7 +1162,11 @@ public final class sekuel {
         rmigd18 = cariInteger("select count(-1) from detail_lembar_observasi where no_rawat='" + norawat + "' and ruang_rawat like '%igd%'");
         rmigd19 = cariInteger("select count(-1) from asesmen_pra_sedasi where no_rawat='" + norawat + "' and ruang_rawat like '%igd%'");
         rmigd20 = cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + norawat + "'");
-        rmigd21 = cariInteger("select count(-1) from triase_ponek where no_rawat='" + norawat + "'");
+        rmigd21 = cariInteger("select count(-1) from triase_ponek where no_rawat='" + norawat + "'");        
+        rmigd22 = cariInteger("select count(-1) from asesmen_awal_kebidanan1 where no_rawat='" + norawat + "'");
+        rmigd23 = cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + norawat + "'");
+        rmigd24 = cariInteger("select count(-1) from inspeksi_ginekologi_awal_kebidanan where no_rawat='" + norawat + "'");
+        rmigd25 = cariInteger("select count(-1) from riwayat_kehamilan_asesmen_awal_kebidanan where no_rawat='" + norawat + "'");
         
         if (rmigd1 > 0) {
             tbl1 = "triase_igd\n";
@@ -1286,15 +1292,39 @@ public final class sekuel {
             tbl21 = "triase_ponek\n";
         } else {
             tbl21 = "";
+        }        
+        
+        if (rmigd22 > 0) {
+            tbl22 = "asesmen_awal_kebidanan1\n";
+        } else {
+            tbl22 = "";
+        }
+        
+        if (rmigd23 > 0) {
+            tbl23 = "asesmen_awal_kebidanan2\n";
+        } else {
+            tbl23 = "";
+        }
+        
+        if (rmigd24 > 0) {
+            tbl24 = "inspeksi_ginekologi_awal_kebidanan\n";
+        } else {
+            tbl24 = "";
+        }
+        
+        if (rmigd25 > 0) {
+            tbl25 = "riwayat_kehamilan_asesmen_awal_kebidanan\n";
+        } else {
+            tbl25 = "";
         }
 
         angka = rmigd1 + rmigd2 + rmigd3 + rmigd4 + rmigd5 + rmigd6 + rmigd7 + rmigd8 + rmigd9 + rmigd10 + rmigd11 + rmigd12 + rmigd13 + rmigd14 + rmigd15 
-                + rmigd16 + rmigd17 + rmigd18 + rmigd19 + rmigd20 + rmigd21;
+                + rmigd16 + rmigd17 + rmigd18 + rmigd19 + rmigd20 + rmigd21 + rmigd22 + rmigd23 + rmigd24 + rmigd25;
         
         if (angka > 0) {
             System.out.println("\nPesan  : no. rawat " + norawat + " utk. data e-RM nya masih ada tersimpan ditabel berikut ini :\n"
                     + tbl1 + tbl2 + tbl3 + tbl4 + tbl5 + tbl6 + tbl7 + tbl8 + tbl9 + tbl10 + tbl11 + tbl12 + tbl13 + tbl14 + tbl15 + tbl16 + tbl17 + tbl18
-                    + tbl19 + tbl20 + tbl21
+                    + tbl19 + tbl20 + tbl21 + tbl22 + tbl23 + tbl24 + tbl25
             );
         }
         
