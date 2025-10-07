@@ -5573,6 +5573,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 cmbAsesmen.setSelectedIndex(0);
                 TTerapiPengobatan.setText("");
                 TDiagUtama.setText("");
+                TDiagSekunder.setText("");
                 TAlasanDirawat.setText("");
                 TRingkasanRiwayat.setText("");
                 TPemeriksaanFisik.setText("");
@@ -8006,23 +8007,35 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                         TTerapiPengobatan.setText(TTerapiPengobatan.getText() + "\n\n" + rs1.getString("rencana_kerja"));
                     }
                     
+//                    if (TDiagUtama.getText().equals("")) {
+//                        TDiagUtama.setText(rs1.getString("diag1") + "\n"
+//                                + rs1.getString("diag2") + "\n"
+//                                + rs1.getString("diag3") + "\n"
+//                                + rs1.getString("diag4") + "\n"
+//                                + rs1.getString("diag5") + "\n"
+//                                + rs1.getString("diag6") + "\n"
+//                                + rs1.getString("diag7"));
+//                    } else {
+//                        TDiagUtama.setText(TDiagUtama.getText() + "\n\n" 
+//                                + rs1.getString("diag1") + "\n"
+//                                + rs1.getString("diag2") + "\n"
+//                                + rs1.getString("diag3") + "\n"
+//                                + rs1.getString("diag4") + "\n"
+//                                + rs1.getString("diag5") + "\n"
+//                                + rs1.getString("diag6") + "\n"
+//                                + rs1.getString("diag7"));
+//                    }
+                    
                     if (TDiagUtama.getText().equals("")) {
-                        TDiagUtama.setText(rs1.getString("diag1") + "\n"
-                                + rs1.getString("diag2") + "\n"
-                                + rs1.getString("diag3") + "\n"
-                                + rs1.getString("diag4") + "\n"
-                                + rs1.getString("diag5") + "\n"
-                                + rs1.getString("diag6") + "\n"
-                                + rs1.getString("diag7"));
+                        TDiagUtama.setText(rs1.getString("diagnosa_primer"));
                     } else {
-                        TDiagUtama.setText(TDiagUtama.getText() + "\n\n" 
-                                + rs1.getString("diag1") + "\n"
-                                + rs1.getString("diag2") + "\n"
-                                + rs1.getString("diag3") + "\n"
-                                + rs1.getString("diag4") + "\n"
-                                + rs1.getString("diag5") + "\n"
-                                + rs1.getString("diag6") + "\n"
-                                + rs1.getString("diag7"));
+                        TDiagUtama.setText(TDiagUtama.getText() + "\n\n" + rs1.getString("diagnosa_primer"));
+                    }
+                    
+                    if (TDiagSekunder.getText().equals("")) {
+                        TDiagSekunder.setText(rs1.getString("diagnosa_sekunder"));
+                    } else {
+                        TDiagSekunder.setText(TDiagSekunder.getText() + "\n\n" + rs1.getString("diagnosa_sekunder"));
                     }
                     
                     if (TAlasanDirawat.getText().equals("")) {
