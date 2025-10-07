@@ -2872,9 +2872,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
                 if (tbTriase.getValueAt(tbTriase.getSelectedRow(), 88).toString().equals(akses.getkode())) {
                     hapus();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya bisa gihapus oleh "
-                            + Sequel.cariIsi("select nama from pegawai where nik='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 88).toString() + "'")
-                            + " karena beliau yg. menyimpan datanya..!!");
+                    JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh " + nm_petugas.getText() + " karena beliau yg. menyimpan datanya..!!");
                 }
             }
         } else {
@@ -2897,9 +2895,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
                     if (tbTriase.getValueAt(tbTriase.getSelectedRow(), 88).toString().equals(akses.getkode())) {
                         ganti();
                     } else {
-                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh "
-                                + Sequel.cariIsi("select nama from pegawai where nik='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 88).toString() + "'")
-                                + " karena beliau yg. menyimpan datanya..!!");
+                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh " + nm_petugas.getText() + " karena beliau yg. menyimpan datanya..!!");
                     }
                 }
             } else {
