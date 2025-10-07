@@ -158,8 +158,7 @@ public final class ApotekBPJSRiwayatPelayananResep extends javax.swing.JDialog {
         }
         
         try {
-            prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            kodeppk=prop.getProperty("KODEPPKAPOTEKBPJS");
+            kodeppk = koneksiDB.KODEPPKAPOTEKBPJS();
         } catch (Exception ex) {
             kodeppk="";
         }              
@@ -537,8 +536,7 @@ public final class ApotekBPJSRiwayatPelayananResep extends javax.swing.JDialog {
             System.out.println(URL);
             root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.GET, requestEntity, String.class).getBody());
             nameNode = root.path("metaData");
-            if (nameNode.path("code").asText().equals("200")) {
-                Valid.tabelKosong(tabModeobat);
+            if (nameNode.path("code").asText().equals("200")) {                
                 response = mapper.readTree(api.Decrypt(root.path("response").asText(), utc));
                 tabModeobat.addRow(new Object[]{
                     response.path("list").path("nokartu").asText(),
@@ -574,6 +572,7 @@ public final class ApotekBPJSRiwayatPelayananResep extends javax.swing.JDialog {
      private void getData() {
         if (tbResep.getSelectedRow() != -1) {
             try {
+                Valid.tabelKosong(tabModeobat);
                 tampilobat(tbResep.getValueAt(tbResep.getSelectedRow(), 3).toString(), 
                         Valid.SetTgl(TanggalAwal.getSelectedItem().toString()), 
                         Valid.SetTgl(TanggalAkhir.getSelectedItem().toString()));

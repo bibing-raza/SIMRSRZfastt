@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -59,44 +60,51 @@ public final class ApotekBPJSMonitoringKlaim extends javax.swing.JDialog {
     public ApotekBPJSMonitoringKlaim(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+//data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         this.setLocation(10,2);
         setSize(628,674);
 
-        tabMode=new DefaultTableModel(null,new String[]{
-                "No.SEP Apotek","No.SEP Asal","Nomor Kartu","Nama Peserta","No.Resep","Jenis Obat","Tgl.Pelayanan","Biaya Pengajuan","Biaya Disetujui"
+        tabMode = new DefaultTableModel(null, new String[]{
+                "No. SEP Apotek","No. SEP Asal","No. Kartu","Nama Peserta","No. Resep","Jenis Obat","Tgl. Pelayanan","Biaya Pengajuan","Biaya Disetujui"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
-        tbKamar.setModel(tabMode);
 
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
-        tbKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
-        tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbMonitoring.setModel(tabMode);
+        tbMonitoring.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbMonitoring.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0; i < 9; i++) {
-            TableColumn column = tbKamar.getColumnModel().getColumn(i);
-            if(i==0){
-                column.setPreferredWidth(110);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
+            TableColumn column = tbMonitoring.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(130);
+            } else if (i == 1) {
+                column.setPreferredWidth(130);
+            } else if (i == 2) {
                 column.setPreferredWidth(90);
-            }else if(i==3){
-                column.setPreferredWidth(150);
-            }else if(i==4){
+            } else if (i == 3) {
+                column.setPreferredWidth(250);
+            } else if (i == 4) {
                 column.setPreferredWidth(90);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(120);
-            }else if(i==6){
-                column.setPreferredWidth(76);
-            }else if(i==7){
+            } else if (i == 6) {
+                column.setPreferredWidth(90);
+            } else if (i == 7) {
                 column.setPreferredWidth(110);
-            }else if(i==8){
+            } else if (i == 8) {
                 column.setPreferredWidth(110);
             }
         }
-        tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
+        tbMonitoring.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbMonitoring.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbMonitoring.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbMonitoring.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbMonitoring.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbMonitoring.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
         
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         
@@ -124,11 +132,10 @@ public final class ApotekBPJSMonitoringKlaim extends javax.swing.JDialog {
         } 
         
         try {
-            link=koneksiDB.URLAPIAPOTEKBPJS();
+            link = koneksiDB.URLAPIAPOTEKBPJS();
         } catch (Exception e) {
-            System.out.println("E : "+e);
-        }
-           
+            System.out.println("E : " + e);
+        }           
         Valid.LoadTahun(Tahun);
     }
     
@@ -145,7 +152,7 @@ public final class ApotekBPJSMonitoringKlaim extends javax.swing.JDialog {
 
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
-        tbKamar = new widget.Table();
+        tbMonitoring = new widget.Table();
         panelGlass6 = new widget.panelisi();
         jLabel16 = new widget.Label();
         TCari = new widget.TextBox();
@@ -179,9 +186,9 @@ public final class ApotekBPJSMonitoringKlaim extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbKamar.setAutoCreateRowSorter(true);
-        tbKamar.setName("tbKamar"); // NOI18N
-        Scroll.setViewportView(tbKamar);
+        tbMonitoring.setAutoCreateRowSorter(true);
+        tbMonitoring.setName("tbMonitoring"); // NOI18N
+        Scroll.setViewportView(tbMonitoring);
 
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
 
@@ -207,7 +214,6 @@ public final class ApotekBPJSMonitoringKlaim extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('6');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+6");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -265,7 +271,6 @@ public final class ApotekBPJSMonitoringKlaim extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -408,7 +413,7 @@ public final class ApotekBPJSMonitoringKlaim extends javax.swing.JDialog {
     private widget.Label label15;
     private widget.panelisi panelGlass6;
     private widget.panelisi panelisi1;
-    private widget.Table tbKamar;
+    private widget.Table tbMonitoring;
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
@@ -431,28 +436,38 @@ public final class ApotekBPJSMonitoringKlaim extends javax.swing.JDialog {
             if (nameNode.path("code").asText().equals("200")) {
                 Valid.tabelKosong(tabMode);
                 response = mapper.readTree(api.Decrypt(root.path("response").asText(), utc));
-                LCountPengajuan.setText(Valid.SetAngka(response.path("rekap").path("totalbiayapengajuan").asDouble()));
-                LCountDisetujui.setText(Valid.SetAngka(response.path("rekap").path("totalbiayasetuju").asDouble()));
-                LCount.setText(response.path("rekap").path("jumlahdata").asText());
-                if (response.path("rekap").path("listsep").isArray()) {
+                LCountPengajuan.setText(Valid.SetAngka(response.path("totalbiayapengajuan").asDouble()));
+                LCountDisetujui.setText(Valid.SetAngka(response.path("totalbiayasetuju").asDouble()));
+                LCount.setText(response.path("jumlahdata").asText());
+                if (response.path("listsep").isArray()) {
                     if (TCari.getText().trim().equals("")) {
-                        for (JsonNode list : response.path("rekap").path("listsep")) {
+                        for (JsonNode list : response.path("listsep")) {
                             tabMode.addRow(new Object[]{
-                                list.path("nosepapotek").asText(), list.path("nosepaasal").asText(), list.path("nokartu").asText(),
-                                list.path("namapeserta").asText(), list.path("noresep").asText(), list.path("jnsobat").asText(),
-                                list.path("tglpelayanan").asText(), Valid.SetAngka(list.path("biayapengajuan").asDouble()),
+                                list.path("nosepapotek").asText(), 
+                                list.path("nosepaasal").asText(), 
+                                list.path("nokapst").asText(),
+                                list.path("nmpst").asText(), 
+                                list.path("noresep").asText(), 
+                                list.path("nmjnsobat").asText(),
+                                list.path("tglpelayanan").asText(), 
+                                Valid.SetAngka(list.path("biayapengajuan").asDouble()),
                                 Valid.SetAngka(list.path("biayasetuju").asDouble())
                             });
                         }
                     } else {
-                        for (JsonNode list : response.path("rekap").path("listsep")) {
+                        for (JsonNode list : response.path("listsep")) {
                             if (list.path("nosepapotek").asText().contains(TCari.getText()) || list.path("nosepaasal").asText().contains(TCari.getText())
-                                    || list.path("nokartu").asText().contains(TCari.getText()) || list.path("namapeserta").asText().contains(TCari.getText())
+                                    || list.path("nokapst").asText().contains(TCari.getText()) || list.path("nmpst").asText().contains(TCari.getText())
                                     || list.path("tglpelayanan").asText().contains(TCari.getText())) {
                                 tabMode.addRow(new Object[]{
-                                    list.path("nosepapotek").asText(), list.path("nosepaasal").asText(), list.path("nokartu").asText(),
-                                    list.path("namapeserta").asText(), list.path("noresep").asText(), list.path("jnsobat").asText(),
-                                    list.path("tglpelayanan").asText(), Valid.SetAngka(list.path("biayapengajuan").asDouble()),
+                                    list.path("nosepapotek").asText(),
+                                    list.path("nosepaasal").asText(),
+                                    list.path("nokapst").asText(),
+                                    list.path("nmpst").asText(),
+                                    list.path("noresep").asText(),
+                                    list.path("nmjnsobat").asText(),
+                                    list.path("tglpelayanan").asText(),
+                                    Valid.SetAngka(list.path("biayapengajuan").asDouble()),
                                     Valid.SetAngka(list.path("biayasetuju").asDouble())
                                 });
                             }
@@ -471,6 +486,6 @@ public final class ApotekBPJSMonitoringKlaim extends javax.swing.JDialog {
     }
 
     public JTable getTable(){
-        return tbKamar;
+        return tbMonitoring;
     }
 }

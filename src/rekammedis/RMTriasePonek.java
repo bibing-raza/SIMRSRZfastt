@@ -2869,10 +2869,12 @@ public final class RMTriasePonek extends javax.swing.JDialog {
             if (akses.getadmin() == true) {
                 hapus();
             } else {
-                if (tbTriase.getValueAt(tbTriase.getSelectedRow(), 67).toString().equals(akses.getkode())) {
+                if (tbTriase.getValueAt(tbTriase.getSelectedRow(), 88).toString().equals(akses.getkode())) {
                     hapus();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh Petugas Triase yang bersangkutan..!!");
+                    JOptionPane.showMessageDialog(null, "Hanya bisa gihapus oleh "
+                            + Sequel.cariIsi("select nama from pegawai where nik='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 88).toString() + "'")
+                            + " karena beliau yg. menyimpan datanya..!!");
                 }
             }
         } else {
@@ -2892,10 +2894,12 @@ public final class RMTriasePonek extends javax.swing.JDialog {
                 if (akses.getadmin() == true) {
                     ganti();
                 } else {
-                    if (tbTriase.getValueAt(tbTriase.getSelectedRow(), 67).toString().equals(akses.getkode())) {
+                    if (tbTriase.getValueAt(tbTriase.getSelectedRow(), 88).toString().equals(akses.getkode())) {
                         ganti();
                     } else {
-                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh Petugas Triase yang bersangkutan..!!");
+                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh "
+                                + Sequel.cariIsi("select nama from pegawai where nik='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 88).toString() + "'")
+                                + " karena beliau yg. menyimpan datanya..!!");
                     }
                 }
             } else {

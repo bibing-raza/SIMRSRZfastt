@@ -1002,7 +1002,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                     }
 
                                     if (Sequel.cariInteger("select count(-1) from bridging_apotek_bpjs_obat where no_sep='" + response.path("noSep_Kunjungan").asText() + "'") > 0) {
-                                        JOptionPane.showMessageDialog(null, "Obat berhasil disimpan & dikirim. . .");
+                                        JOptionPane.showMessageDialog(null, "Obat berhasil disimpan & dikirim (" + Iterasi.getSelectedItem().toString() + "),..!!");
                                     }
                                     ppHapusContengActionPerformed(null);
                                 } else {
@@ -1073,7 +1073,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                         }
                                     }
                                     if (Sequel.cariInteger("select count(-1) from bridging_apotek_bpjs_obat where no_sep='" + response.path("noSep_Kunjungan").asText() + "'") > 0) {
-                                        JOptionPane.showMessageDialog(null, "Obat racikan berhasil disimpan & dikirim. . .");
+                                        JOptionPane.showMessageDialog(null, "Obat racikan berhasil disimpan & dikirim (" + Iterasi.getSelectedItem().toString() + "),..!!");
                                     }
                                     ppHapusConteng1ActionPerformed(null);
                                 } else {
@@ -1197,7 +1197,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                         }
                                     }
                                     if (Sequel.cariInteger("select count(-1) from bridging_apotek_bpjs_obat where no_sep='" + response.path("noSep_Kunjungan").asText() + "'") > 0) {
-                                        JOptionPane.showMessageDialog(null, "Obat berhasil disimpan & dikirim. . .");
+                                        JOptionPane.showMessageDialog(null, "Obat berhasil disimpan & dikirim (" + Iterasi.getSelectedItem().toString() + "),..!!");
                                     }
                                     ppHapusContengActionPerformed(null);
                                 } else {
@@ -1269,7 +1269,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                         }
                                     }
                                     if (Sequel.cariInteger("select count(-1) from bridging_apotek_bpjs_obat where no_sep='" + response.path("noSep_Kunjungan").asText() + "'") > 0) {
-                                        JOptionPane.showMessageDialog(null, "Obat racikan berhasil disimpan & dikirim. . .");
+                                        JOptionPane.showMessageDialog(null, "Obat racikan berhasil disimpan & dikirim (" + Iterasi.getSelectedItem().toString() + "),..!!");
                                     }
                                     ppHapusConteng1ActionPerformed(null);
                                 } else {
@@ -1390,7 +1390,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                         }
                                     }
                                     if (Sequel.cariInteger("select count(-1) from bridging_apotek_bpjs_obat where no_sep='" + response.path("noSep_Kunjungan").asText() + "'") > 0) {
-                                        JOptionPane.showMessageDialog(null, "Obat berhasil disimpan & dikirim. . .");
+                                        JOptionPane.showMessageDialog(null, "Obat berhasil disimpan & dikirim (" + Iterasi.getSelectedItem().toString() + "),..!!");
                                     }
                                     ppHapusContengActionPerformed(null);
                                 } else {
@@ -1461,7 +1461,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                         }
                                     }
                                     if (Sequel.cariInteger("select count(-1) from bridging_apotek_bpjs_obat where no_sep='" + response.path("noSep_Kunjungan").asText() + "'") > 0) {
-                                        JOptionPane.showMessageDialog(null, "Obat racikan berhasil disimpan & dikirim. . .");
+                                        JOptionPane.showMessageDialog(null, "Obat racikan berhasil disimpan & dikirim (" + Iterasi.getSelectedItem().toString() + "),..!!");
                                     }
                                     ppHapusConteng1ActionPerformed(null);
                                 } else {
