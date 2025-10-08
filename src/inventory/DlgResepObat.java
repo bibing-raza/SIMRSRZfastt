@@ -52,8 +52,8 @@ public final class DlgResepObat extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private final Properties prop = new Properties();
-    private PreparedStatement ps, ps2, ps3;
-    private ResultSet rs, rs2, rs3;
+    private PreparedStatement ps, ps2, ps3, ps4;
+    private ResultSet rs, rs2, rs3, rs4;
     public DlgCariDokter dokter = new DlgCariDokter(null, false);
     private ApotekBPJSKirimObat dlgobtApotekBPJS=new ApotekBPJSKirimObat(null,false);
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -1392,6 +1392,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 ganti.setLocationRelativeTo(internalFrame1);
                 ganti.setData(TNoRw.getText(), kodeobat, tglrsp, jamrsp, "transaksi_rs");
                 ganti.setVisible(true);
+                ganti.toFront();
+                ganti.requestFocus();
 
                 tampilObat();
                 for (i = 0; i < tbItemObat.getRowCount(); i++) {
@@ -1518,24 +1520,61 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     JOptionPane.showMessageDialog(null, "Silahkan klik dulu pada nomor resepnya untuk Kirim data obat ke Apotek BPJS...!!!!");
                     tampil();
                 } else {
+                    String cekbpjs = "", cekiter = "", cekSEP = "kosong";
+                    cekbpjs = Sequel.cariIsi("SELECT ifnull(bs.no_sep,'-') FROM reg_periksa rp left join bridging_sep bs on bs.no_rawat=rp.no_rawat "
+                            + "and bs.jnspelayanan='2' left join iter_obat_bpjs iob on iob.no_rawat=rp.no_rawat where rp.no_rawat='" + TNoRw.getText() + "'");                    
+                    cekiter = Sequel.cariIsi("SELECT ifnull(iob.no_sep,'-') FROM reg_periksa rp left join bridging_sep bs on bs.no_rawat=rp.no_rawat "
+                            + "and bs.jnspelayanan='2' left join iter_obat_bpjs iob on iob.no_rawat=rp.no_rawat where rp.no_rawat='" + TNoRw.getText() + "'");
+                    
+                    if (!cekbpjs.equals("-")) {
+                        cekSEP = cekbpjs;
+                    } else {
+                        if (!cekiter.equals("-")) {
+                            cekSEP = cekiter;
+                        }
+                    }
+                    
                     if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRw.getText() + "' and kd_pj='B01'") == 0) {
                         JOptionPane.showMessageDialog(null, "Hanya untuk pasien BPJS...!!!!");
                         tampil();
-                    } else if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") == 0) {
-                        JOptionPane.showMessageDialog(null, "Hanya untuk pasien BPJS yang rawat jalan...!!!!");
+                    } else if (cekSEP.equals("kosong")) {
+                        JOptionPane.showMessageDialog(null, "Maaf, SEP BPJS pasien rawat jalan tidak ditemukan...!!!!");
                         tampil();
                     } else {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                        String normk = "";
-                        normk = Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + TNoRw.getText() + "'");
-
-                        dlgobtApotekBPJS.setNoRm(TNoRw.getText(), normk, Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + normk + "'"),
-                                Valid.SetTgl(DTPBeri.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-                                NoResep.getText().substring(5, 10), NoResep.getText());
-                        dlgobtApotekBPJS.tampil(NoResep.getText());
-                        dlgobtApotekBPJS.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                        dlgobtApotekBPJS.setLocationRelativeTo(internalFrame1);
-                        dlgobtApotekBPJS.setVisible(true);
+                        try {
+                            ps4 = koneksi.prepareStatement("SELECT bs.*, p.nm_pasien from bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
+                                    +"inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where bs.no_sep = ? and bs.jnspelayanan='2'");
+                            try {
+                                ps4.setString(1, cekSEP);
+                                rs4 = ps4.executeQuery();
+                                while (rs4.next()) {
+                                    dlgobtApotekBPJS.setNoRm(TNoRw.getText(), rs4.getString("nomr"), rs4.getString("nm_pasien"),
+                                            Valid.SetTgl(DTPBeri.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                                            NoResep.getText().substring(5, 10), NoResep.getText());
+                                    dlgobtApotekBPJS.dataPeserta(rs4.getString("no_sep"), rs4.getString("dpjpLayan"),
+                                            rs4.getString("nmdpjpLayan"), rs4.getString("no_kartu"), rs4.getString("kdpolitujuan"),
+                                            rs4.getString("nmpolitujuan"));
+                                    dlgobtApotekBPJS.tampil(NoResep.getText());
+                                    dlgobtApotekBPJS.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                                    dlgobtApotekBPJS.setLocationRelativeTo(internalFrame1);
+                                    dlgobtApotekBPJS.setVisible(true);
+                                    dlgobtApotekBPJS.toFront();
+                                    dlgobtApotekBPJS.requestFocus();
+                                }
+                            } catch (Exception e) {
+                                System.out.println("Notif : " + e);
+                            } finally {
+                                if (rs4 != null) {
+                                    rs4.close();
+                                }
+                                if (ps4 != null) {
+                                    ps4.close();
+                                }
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Notifikasi : " + e);
+                        }
                         this.setCursor(Cursor.getDefaultCursor());
                     }
                 }

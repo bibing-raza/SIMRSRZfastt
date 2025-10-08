@@ -1693,9 +1693,10 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 while (rs2.next()) {
                     //non racikan
                     psobat = koneksi.prepareStatement("select m.kode_brng_apotek_bpjs, db.nama_brng, dpo.jml, "
-                            + "CONCAT_WS(', ', at.aturan1, at.aturan2, at.aturan3, at.waktu1, at.waktu2, at.keterangan) aturanPakai "
+                            + "IF(REPLACE(TRIM(CONCAT_WS(',', NULLIF(at.aturan1, '-'), NULLIF(at.aturan2, '-'), NULLIF(at.aturan3, '-'), NULLIF(at.waktu1, '-'), NULLIF(at.waktu2, '-'), NULLIF(at.keterangan, '-'))), ',', '') = '','-', "
+                            + "CONCAT_WS(',', NULLIF(at.aturan1, '-'), NULLIF(at.aturan2, '-'), NULLIF(at.aturan3, '-'), NULLIF(at.waktu1, '-'), NULLIF(at.waktu2, '-'), NULLIF(at.keterangan, '-'))) aturanPakai "
                             + "from detail_pemberian_obat dpo inner join maping_obat_apotek_bpjs m on dpo.kode_brng=m.kode_brng inner join databarang db on dpo.kode_brng=db.kode_brng "
-                            + "left join aturan_pakai at on at.no_rawat=dpo.no_rawat and at.tgl_perawatan=dpo.tgl_perawatan and at.jam=dpo.jam where "
+                            + "left join aturan_pakai at on at.no_rawat=dpo.no_rawat and at.kode_brng=dpo.kode_brng and at.tgl_perawatan=dpo.tgl_perawatan and at.jam=dpo.jam where "
                             + "dpo.tgl_perawatan=? and dpo.jam=? and dpo.no_rawat=? and db.kode_brng not in ('B000001938','B000002727','B000002610','B000002706','B000002722') "
                             + "group by db.kode_brng, dpo.tgl_perawatan, dpo.jam, dpo.no_rawat order by db.kode_brng");
                     try {
@@ -1706,28 +1707,30 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         while (rsobat.next()) {
                             if (rsobat.getString("jml").equals("15")) {
                                 tabModeobat.addRow(new Object[]{false, rsobat.getString("jml"), rsobat.getString("kode_brng_apotek_bpjs"),
-                                    rsobat.getString("nama_brng"), 1, 0.5, 30, rsobat.getString("jml"), rsobat.getString("aturanPakai").replaceAll(", , , , ", "-")});
-                            } else if (rsobat.getString("jml").equals("1") || rsobat.getString("jml").equals("2") || rsobat.getString("jml").equals("3") || rsobat.getString("jml").equals("4") || rsobat.getString("jml").equals("5") || rsobat.getString("jml").equals("6") || rsobat.getString("jml").equals("7")) {
+                                    rsobat.getString("nama_brng"), 1, 0.5, 30, rsobat.getString("jml"), rsobat.getString("aturanPakai")});
+                            } else if (rsobat.getString("jml").equals("1") || rsobat.getString("jml").equals("2") || rsobat.getString("jml").equals("3")
+                                    || rsobat.getString("jml").equals("4") || rsobat.getString("jml").equals("5") || rsobat.getString("jml").equals("6")
+                                    || rsobat.getString("jml").equals("7")) {
                                 tabModeobat.addRow(new Object[]{false, rsobat.getString("jml"), rsobat.getString("kode_brng_apotek_bpjs"),
-                                    rsobat.getString("nama_brng"), 1, 1, rsobat.getString("jml"), rsobat.getString("jml"), rsobat.getString("aturanPakai").replaceAll(", , , , ", "-")});
+                                    rsobat.getString("nama_brng"), 1, 1, rsobat.getString("jml"), rsobat.getString("jml"), rsobat.getString("aturanPakai")});
                             } else if (rsobat.getString("jml").equals("23")) {
                                 tabModeobat.addRow(new Object[]{false, rsobat.getString("jml"), rsobat.getString("kode_brng_apotek_bpjs"),
-                                    rsobat.getString("nama_brng"), 1, 1, 23, rsobat.getString("jml"), rsobat.getString("aturanPakai").replaceAll(", , , , ", "-")});
+                                    rsobat.getString("nama_brng"), 1, 1, 23, rsobat.getString("jml"), rsobat.getString("aturanPakai")});
                             } else if (rsobat.getString("jml").equals("45")) {
                                 tabModeobat.addRow(new Object[]{false, rsobat.getString("jml"), rsobat.getString("kode_brng_apotek_bpjs"),
-                                    rsobat.getString("nama_brng"), 1, 1.5, 30, rsobat.getString("jml"), rsobat.getString("aturanPakai").replaceAll(", , , , ", "-")});
+                                    rsobat.getString("nama_brng"), 1, 1.5, 30, rsobat.getString("jml"), rsobat.getString("aturanPakai")});
                             } else if (rsobat.getString("jml").equals("60")) {
                                 tabModeobat.addRow(new Object[]{false, rsobat.getString("jml"), rsobat.getString("kode_brng_apotek_bpjs"),
-                                    rsobat.getString("nama_brng"), 2, 1, 30, rsobat.getString("jml"), rsobat.getString("aturanPakai").replaceAll(", , , , ", "-")});
+                                    rsobat.getString("nama_brng"), 2, 1, 30, rsobat.getString("jml"), rsobat.getString("aturanPakai")});
                             } else if (rsobat.getString("jml").equals("90")) {
                                 tabModeobat.addRow(new Object[]{false, rsobat.getString("jml"), rsobat.getString("kode_brng_apotek_bpjs"),
-                                    rsobat.getString("nama_brng"), 3, 1, 30, rsobat.getString("jml"), rsobat.getString("aturanPakai").replaceAll(", , , , ", "-")});
+                                    rsobat.getString("nama_brng"), 3, 1, 30, rsobat.getString("jml"), rsobat.getString("aturanPakai")});
                             } else if (rsobat.getString("jml").equals("120")) {
                                 tabModeobat.addRow(new Object[]{false, rsobat.getString("jml"), rsobat.getString("kode_brng_apotek_bpjs"),
-                                    rsobat.getString("nama_brng"), 4, 1, 30, rsobat.getString("jml"), rsobat.getString("aturanPakai").replaceAll(", , , , ", "-")});
+                                    rsobat.getString("nama_brng"), 4, 1, 30, rsobat.getString("jml"), rsobat.getString("aturanPakai")});
                             } else {
                                 tabModeobat.addRow(new Object[]{false, rsobat.getString("jml"), rsobat.getString("kode_brng_apotek_bpjs"),
-                                    rsobat.getString("nama_brng"), 1, 1, 30, rsobat.getString("jml"), rsobat.getString("aturanPakai").replaceAll(", , , , ", "-")});
+                                    rsobat.getString("nama_brng"), 1, 1, 30, rsobat.getString("jml"), rsobat.getString("aturanPakai")});
                             }
                         }
                     } catch (Exception e) {
@@ -1748,8 +1751,10 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
                     //racikan
                     psracikan = koneksi.prepareStatement("select dpo.no_rawat, dpo.kode_brng, db.nama_brng, dpo.jml, db.kapasitas, dpo.tgl_perawatan, dpo.jam, "
-                            + "CONCAT_WS(', ', at.aturan1, at.aturan2, at.aturan3, at.waktu1, at.waktu2) aturanPakai, at.keterangan from detail_pemberian_obat dpo "
-                            + "inner join databarang db on db.kode_brng=dpo.kode_brng left join aturan_pakai at on at.no_rawat=dpo.no_rawat and at.tgl_perawatan=dpo.tgl_perawatan and at.jam=dpo.jam where "
+                            + "IF(REPLACE(TRIM(CONCAT_WS(',', NULLIF(at.aturan1, '-'), NULLIF(at.aturan2, '-'), NULLIF(at.aturan3, '-'), NULLIF(at.waktu1, '-'), NULLIF(at.waktu2, '-'), NULLIF(at.keterangan, '-'))), ',', '') = '','-', "
+                            + "CONCAT_WS(',', NULLIF(at.aturan1, '-'), NULLIF(at.aturan2, '-'), NULLIF(at.aturan3, '-'), NULLIF(at.waktu1, '-'), NULLIF(at.waktu2, '-'), NULLIF(at.keterangan, '-'))) aturanPakai, "
+                            + "at.keterangan from detail_pemberian_obat dpo inner join databarang db on db.kode_brng=dpo.kode_brng "
+                            + "left join aturan_pakai at on at.no_rawat=dpo.no_rawat and at.kode_brng=dpo.kode_brng and at.tgl_perawatan=dpo.tgl_perawatan and at.jam=dpo.jam where "
                             + "dpo.tgl_perawatan=? and dpo.jam=? and dpo.no_rawat=? and db.kode_brng IN ('B000001938','B000002727','B000002610','B000002706','B000002722') "
                             + "group by dpo.kode_brng, dpo.jml, db.kapasitas, dpo.tgl_perawatan, dpo.jam, dpo.no_rawat order by db.kode_brng");
                     try {
@@ -1760,7 +1765,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         while (rsracikan.next()) {
                             tabModeObatRacikan.addRow(new String[]{
                                 rsracikan.getString("no_rawat"), rsracikan.getString("kode_brng"), rsracikan.getString("nama_brng"),
-                                rsracikan.getString("jml"), rsracikan.getString("aturanPakai").replaceAll(", , , , ", "-"), rsracikan.getString("keterangan")
+                                rsracikan.getString("jml"), rsracikan.getString("aturanPakai"), rsracikan.getString("keterangan")
                             });
                         }
 
@@ -1889,10 +1894,6 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         return tbNonRacikan;
     }
     
-    public Button getButton(){
-        return BtnSimpan;
-    }
-    
     public void setNoRm(String norwt, String norm, String nama, String tanggal, String jam, String Resep, String Nresep) {      
         aktifpcare = "no";
         TNoRw.setText(norwt);
@@ -1907,33 +1908,6 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         KdPj.setText(Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?", norwt));
         kenaikan = Sequel.cariIsiAngka("select (hargajual/100) from set_harga_obat_ralan where kd_pj=?", KdPj.getText());
         TResep.setText(Resep);
-        
-        try {
-            ps2 = koneksi.prepareStatement("SELECT * from bridging_sep where no_rawat = ? and jnspelayanan='2'");
-            try {
-                ps2.setString(1, norwt);
-                rs2 = ps2.executeQuery();
-                while (rs2.next()) {
-                    NoSEP.setText(rs2.getString("no_sep"));
-                    KdDPJP.setText(rs2.getString("dpjpLayan"));
-                    NmDPJP.setText(rs2.getString("nmdpjpLayan"));
-                    NoKartu.setText(rs2.getString("no_kartu"));
-                    KdPoli.setText(rs2.getString("kdpolitujuan"));
-                    NmPoli.setText(rs2.getString("nmpolitujuan"));
-                }
-            } catch (Exception e) {
-                System.out.println("Notif : " + e);
-            } finally {
-                if (rs2 != null) {
-                    rs2.close();
-                }
-                if (ps2 != null) {
-                    ps2.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        }
 
         cekViaBPJSKartu.tampil(NoKartu.getText(), Sequel.cariIsi("select tglsep from bridging_sep where no_sep='" + NoSEP.getText() + "' and jnspelayanan='2'"));
         TInfoPRB.setText(cekViaBPJSKartu.informasiprolanisPRB);
@@ -1947,6 +1921,15 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         } else if (TInfoIterasi.getText().equals("Iter 2 Kali")) {
             Iterasi.setSelectedIndex(2);
         }
+    }
+    
+    public void dataPeserta(String no_sep, String dpjpLayan, String nmdpjpLayan, String no_kartu, String kdpolitujuan, String nmpolitujuan) {
+        NoSEP.setText(no_sep);
+        KdDPJP.setText(dpjpLayan);
+        NmDPJP.setText(nmdpjpLayan);
+        NoKartu.setText(no_kartu);
+        KdPoli.setText(kdpolitujuan);
+        NmPoli.setText(nmpolitujuan);
     }
     
     private void jam(){
