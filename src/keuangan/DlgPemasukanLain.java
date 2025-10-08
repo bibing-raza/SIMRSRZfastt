@@ -4701,7 +4701,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
             psTem = koneksi.prepareStatement("SELECT DATE_FORMAT(pemasukan_lain.tanggal,'%d-%m-%Y') tanggal, pemasukan_lain.keterangan, "
                     + "format(pemasukan_lain.besar,0) besar, pemasukan_lain.nip, petugas.nama, pemasukan_lain.no_transaksi, pemasukan_lain.jam_penerimaan, "
-                    + "kategori_pemasukan_lain.nama_kategori,IF (pemasukan_lain.telah_terima_dari IS NULL,'-',pemasukan_lain.telah_terima_dari) pasienya "
+                    + "kategori_pemasukan_lain.nama_kategori, IF(pemasukan_lain.telah_terima_dari IS NULL,'-',pemasukan_lain.telah_terima_dari) pasienya "
                     + "FROM pemasukan_lain INNER JOIN petugas INNER JOIN kategori_pemasukan_lain ON pemasukan_lain.nip = petugas.nip "
                     + "AND pemasukan_lain.kode_kategori = kategori_pemasukan_lain.kode_kategori "
                     + "WHERE pemasukan_lain.no_transaksi = '" + noTransaksi.getText() + "'");
@@ -4719,7 +4719,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             + rsTem.getString("no_transaksi") + "','"
                             + rsTem.getString("jam_penerimaan") + "','"
                             + rsTem.getString("nama_kategori") + "','"
-                            + rsTem.getString("pasienya") + "','','','','','','','',''", "Kwitansi Pemasukan Lain-lain");
+                            + rsTem.getString("pasienya").replaceAll("'", "") + "','','','','','','','',''", "Kwitansi Pemasukan Lain-lain");
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);

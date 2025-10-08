@@ -194,6 +194,10 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         MnSummaryMutasiPerAllUnitExcel = new javax.swing.JMenuItem();
         MnSummaryMutasiGlobalUnit = new javax.swing.JMenuItem();
         MnSummaryMutasiGlobalUnitExcel = new javax.swing.JMenuItem();
+        jMnLaporanSemua = new javax.swing.JMenu();
+        MnSemuaMutasiPerUnitExcel = new javax.swing.JMenuItem();
+        MnSemuaMutasiPerAllUnitExcel = new javax.swing.JMenuItem();
+        MnSemuaMutasiGlobalUnitExcel = new javax.swing.JMenuItem();
         panelisi4 = new widget.panelisi();
         label32 = new widget.Label();
         Tanggal = new widget.Tanggal();
@@ -233,14 +237,14 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         BtnKeluar = new widget.Button();
 
         Popup.setName("Popup"); // NOI18N
-        Popup.setPreferredSize(new java.awt.Dimension(156, 55));
+        Popup.setPreferredSize(new java.awt.Dimension(200, 85));
 
         ppHapus.setBackground(new java.awt.Color(242, 242, 242));
         ppHapus.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         ppHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         ppHapus.setText("Hapus");
         ppHapus.setName("ppHapus"); // NOI18N
-        ppHapus.setPreferredSize(new java.awt.Dimension(150, 30));
+        ppHapus.setPreferredSize(new java.awt.Dimension(150, 26));
         ppHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnHapusActionPerformed(evt);
@@ -252,12 +256,13 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         jMnLaporan.setText("Laporan Rekap");
         jMnLaporan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jMnLaporan.setName("jMnLaporan"); // NOI18N
+        jMnLaporan.setPreferredSize(new java.awt.Dimension(150, 26));
 
         MnSummaryMutasiPerUnit.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSummaryMutasiPerUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnSummaryMutasiPerUnit.setText("Summary Mutasi Per Unit Farmasi");
         MnSummaryMutasiPerUnit.setName("MnSummaryMutasiPerUnit"); // NOI18N
-        MnSummaryMutasiPerUnit.setPreferredSize(new java.awt.Dimension(280, 27));
+        MnSummaryMutasiPerUnit.setPreferredSize(new java.awt.Dimension(280, 26));
         MnSummaryMutasiPerUnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSummaryMutasiPerUnitActionPerformed(evt);
@@ -272,7 +277,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         MnSummaryMutasiPerUnitExcel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnSummaryMutasiPerUnitExcel.setIconTextGap(5);
         MnSummaryMutasiPerUnitExcel.setName("MnSummaryMutasiPerUnitExcel"); // NOI18N
-        MnSummaryMutasiPerUnitExcel.setPreferredSize(new java.awt.Dimension(280, 27));
+        MnSummaryMutasiPerUnitExcel.setPreferredSize(new java.awt.Dimension(280, 26));
         MnSummaryMutasiPerUnitExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSummaryMutasiPerUnitExcelActionPerformed(evt);
@@ -284,7 +289,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         MnSummaryMutasiPerAllUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnSummaryMutasiPerAllUnit.setText("Summary Mutasi Semua Unit Farmasi");
         MnSummaryMutasiPerAllUnit.setName("MnSummaryMutasiPerAllUnit"); // NOI18N
-        MnSummaryMutasiPerAllUnit.setPreferredSize(new java.awt.Dimension(280, 27));
+        MnSummaryMutasiPerAllUnit.setPreferredSize(new java.awt.Dimension(280, 26));
         MnSummaryMutasiPerAllUnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSummaryMutasiPerAllUnitActionPerformed(evt);
@@ -299,7 +304,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         MnSummaryMutasiPerAllUnitExcel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnSummaryMutasiPerAllUnitExcel.setIconTextGap(5);
         MnSummaryMutasiPerAllUnitExcel.setName("MnSummaryMutasiPerAllUnitExcel"); // NOI18N
-        MnSummaryMutasiPerAllUnitExcel.setPreferredSize(new java.awt.Dimension(280, 27));
+        MnSummaryMutasiPerAllUnitExcel.setPreferredSize(new java.awt.Dimension(280, 26));
         MnSummaryMutasiPerAllUnitExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSummaryMutasiPerAllUnitExcelActionPerformed(evt);
@@ -311,7 +316,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         MnSummaryMutasiGlobalUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnSummaryMutasiGlobalUnit.setText("Global Summary Mutasi Unit Farmasi");
         MnSummaryMutasiGlobalUnit.setName("MnSummaryMutasiGlobalUnit"); // NOI18N
-        MnSummaryMutasiGlobalUnit.setPreferredSize(new java.awt.Dimension(280, 27));
+        MnSummaryMutasiGlobalUnit.setPreferredSize(new java.awt.Dimension(280, 26));
         MnSummaryMutasiGlobalUnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSummaryMutasiGlobalUnitActionPerformed(evt);
@@ -323,7 +328,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         MnSummaryMutasiGlobalUnitExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
         MnSummaryMutasiGlobalUnitExcel.setText("Global Summary Mutasi Unit Farmasi (Ms. Excell)");
         MnSummaryMutasiGlobalUnitExcel.setName("MnSummaryMutasiGlobalUnitExcel"); // NOI18N
-        MnSummaryMutasiGlobalUnitExcel.setPreferredSize(new java.awt.Dimension(280, 27));
+        MnSummaryMutasiGlobalUnitExcel.setPreferredSize(new java.awt.Dimension(280, 26));
         MnSummaryMutasiGlobalUnitExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSummaryMutasiGlobalUnitExcelActionPerformed(evt);
@@ -332,6 +337,56 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         jMnLaporan.add(MnSummaryMutasiGlobalUnitExcel);
 
         Popup.add(jMnLaporan);
+
+        jMnLaporanSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
+        jMnLaporanSemua.setText("Laporan Rekap Keseluruhan");
+        jMnLaporanSemua.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jMnLaporanSemua.setName("jMnLaporanSemua"); // NOI18N
+        jMnLaporanSemua.setPreferredSize(new java.awt.Dimension(150, 26));
+
+        MnSemuaMutasiPerUnitExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSemuaMutasiPerUnitExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnSemuaMutasiPerUnitExcel.setText("Semua Mutasi Per Unit Farmasi (Ms. Excel)");
+        MnSemuaMutasiPerUnitExcel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnSemuaMutasiPerUnitExcel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSemuaMutasiPerUnitExcel.setIconTextGap(5);
+        MnSemuaMutasiPerUnitExcel.setName("MnSemuaMutasiPerUnitExcel"); // NOI18N
+        MnSemuaMutasiPerUnitExcel.setPreferredSize(new java.awt.Dimension(280, 26));
+        MnSemuaMutasiPerUnitExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnSemuaMutasiPerUnitExcelActionPerformed(evt);
+            }
+        });
+        jMnLaporanSemua.add(MnSemuaMutasiPerUnitExcel);
+
+        MnSemuaMutasiPerAllUnitExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSemuaMutasiPerAllUnitExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnSemuaMutasiPerAllUnitExcel.setText("Semua Mutasi Semua Unit Farmasi (Ms. Excel)");
+        MnSemuaMutasiPerAllUnitExcel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnSemuaMutasiPerAllUnitExcel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSemuaMutasiPerAllUnitExcel.setIconTextGap(5);
+        MnSemuaMutasiPerAllUnitExcel.setName("MnSemuaMutasiPerAllUnitExcel"); // NOI18N
+        MnSemuaMutasiPerAllUnitExcel.setPreferredSize(new java.awt.Dimension(280, 26));
+        MnSemuaMutasiPerAllUnitExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnSemuaMutasiPerAllUnitExcelActionPerformed(evt);
+            }
+        });
+        jMnLaporanSemua.add(MnSemuaMutasiPerAllUnitExcel);
+
+        MnSemuaMutasiGlobalUnitExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSemuaMutasiGlobalUnitExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnSemuaMutasiGlobalUnitExcel.setText("Global Semua Mutasi Unit Farmasi (Ms. Excell)");
+        MnSemuaMutasiGlobalUnitExcel.setName("MnSemuaMutasiGlobalUnitExcel"); // NOI18N
+        MnSemuaMutasiGlobalUnitExcel.setPreferredSize(new java.awt.Dimension(280, 26));
+        MnSemuaMutasiGlobalUnitExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnSemuaMutasiGlobalUnitExcelActionPerformed(evt);
+            }
+        });
+        jMnLaporanSemua.add(MnSemuaMutasiGlobalUnitExcel);
+
+        Popup.add(jMnLaporanSemua);
 
         panelisi4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         panelisi4.setName("panelisi4"); // NOI18N
@@ -519,7 +574,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         panelisi3.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-10-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -534,7 +589,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         panelisi3.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-10-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1007,6 +1062,55 @@ private void BtnCetakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnSummaryMutasiPerAllUnitExcelActionPerformed
 
+    private void MnSemuaMutasiPerUnitExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSemuaMutasiPerUnitExcelActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        dialog_simpan = Valid.openDialog();        
+        Valid.MyReportToExcel("SELECT db.nama_brng 'Nama Obat/Alkes', SUM(m.jml) 'Total Jumlah', db.h_beli 'Harga Beli', SUM(m.jml * db.h_beli) 'Total Nominal', "
+                + "GROUP_CONCAT(DISTINCT b1.nm_bangsal ORDER BY b1.nm_bangsal SEPARATOR ', ') AS 'Dikirim Oleh', "
+                + "GROUP_CONCAT(DISTINCT b2.nm_bangsal ORDER BY b2.nm_bangsal SEPARATOR ', ') AS 'Tujuan/Penerima', "
+                + "GROUP_CONCAT(DISTINCT UPPER(m.keterangan) ORDER BY UPPER(m.keterangan) SEPARATOR ', ') 'Keterangan', "
+                + "concat('" + DTPCari1.getSelectedItem() + "',' s.d ','" + DTPCari2.getSelectedItem() + "') 'Tgl. Periode' FROM mutasibarang m "
+                + "INNER JOIN databarang db ON m.kode_brng = db.kode_brng INNER JOIN bangsal b1 ON b1.kd_bangsal = m.kd_bangsaldari "
+                + "INNER JOIN bangsal b2 ON b2.kd_bangsal = m.kd_bangsalke WHERE "
+                + "m.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and b2.nm_bangsal like '%" + TCari.getText().trim() + "%' GROUP BY db.kode_brng order by db.nama_brng", dialog_simpan);
+        
+        JOptionPane.showMessageDialog(null, "Data Semua Mutasi Per Unit Farmasi berhasil diexport menjadi file excel,..!!!");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnSemuaMutasiPerUnitExcelActionPerformed
+
+    private void MnSemuaMutasiPerAllUnitExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSemuaMutasiPerAllUnitExcelActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        dialog_simpan = Valid.openDialog();        
+        Valid.MyReportToExcel("SELECT db.nama_brng 'Nama Obat/Alkes', SUM(m.jml) 'Total Jumlah', db.h_beli 'Harga Beli', SUM(m.jml * db.h_beli) 'Total Nominal', "
+                + "GROUP_CONCAT(DISTINCT b1.nm_bangsal ORDER BY b1.nm_bangsal SEPARATOR ', ') AS 'Dikirim Oleh', "
+                + "GROUP_CONCAT(DISTINCT b2.nm_bangsal ORDER BY b2.nm_bangsal SEPARATOR ', ') AS 'Tujuan/Penerima', "
+                + "GROUP_CONCAT(DISTINCT UPPER(m.keterangan) ORDER BY UPPER(m.keterangan) SEPARATOR ', ') 'Keterangan', "
+                + "concat('" + DTPCari1.getSelectedItem() + "',' s.d ','" + DTPCari2.getSelectedItem() + "') 'Tgl. Periode' FROM mutasibarang m "
+                + "INNER JOIN databarang db ON m.kode_brng = db.kode_brng INNER JOIN bangsal b1 ON b1.kd_bangsal = m.kd_bangsaldari "
+                + "INNER JOIN bangsal b2 ON b2.kd_bangsal = m.kd_bangsalke WHERE "
+                + "m.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "GROUP BY db.kode_brng order by db.nama_brng", dialog_simpan);
+        
+        JOptionPane.showMessageDialog(null, "Data Semua Mutasi Semua Unit Farmasi berhasil diexport menjadi file excel,..!!!");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnSemuaMutasiPerAllUnitExcelActionPerformed
+
+    private void MnSemuaMutasiGlobalUnitExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSemuaMutasiGlobalUnitExcelActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        dialog_simpan = Valid.openDialog();
+        Valid.MyReportToExcel("select GROUP_CONCAT(DISTINCT b1.nm_bangsal ORDER BY b1.nm_bangsal SEPARATOR ', ') 'Dari', "
+                + "GROUP_CONCAT(DISTINCT b2.nm_bangsal ORDER BY b2.nm_bangsal SEPARATOR ', ') 'Ke', "
+                + "db.nama_brng 'Nama Barang', sum(m.jml) 'Jumlah', db.h_beli as 'Harga', sum(m.jml)*db.ralan as 'Total' from mutasibarang m "
+                + "inner join databarang db on m.kode_brng=db.kode_brng INNER JOIN bangsal b1 ON b1.kd_bangsal = m.kd_bangsaldari "
+                + "INNER JOIN bangsal b2 ON b2.kd_bangsal = m.kd_bangsalke where "
+                + "m.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "GROUP BY db.kode_brng order by db.nama_brng", dialog_simpan);
+        
+        JOptionPane.showMessageDialog(null, "Data berhasil diexport menjadi file excel,..!!!");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnSemuaMutasiGlobalUnitExcelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1033,6 +1137,9 @@ private void BtnCetakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Tanggal DTPCari2;
     private widget.TextBox Keterangan;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnSemuaMutasiGlobalUnitExcel;
+    private javax.swing.JMenuItem MnSemuaMutasiPerAllUnitExcel;
+    private javax.swing.JMenuItem MnSemuaMutasiPerUnitExcel;
     private javax.swing.JMenuItem MnSummaryMutasiGlobalUnit;
     private javax.swing.JMenuItem MnSummaryMutasiGlobalUnitExcel;
     private javax.swing.JMenuItem MnSummaryMutasiPerAllUnit;
@@ -1049,6 +1156,7 @@ private void BtnCetakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Label jLabel19;
     private widget.Label jLabel21;
     private javax.swing.JMenu jMnLaporan;
+    private javax.swing.JMenu jMnLaporanSemua;
     private javax.swing.JPanel jPanel1;
     private widget.TextBox jumlah;
     private widget.TextBox kdbarang;
