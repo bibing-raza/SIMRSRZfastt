@@ -6007,7 +6007,7 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             kamarinap.setLocationRelativeTo(internalFrame1);
             kamarinap.emptTeks();
             kamarinap.isCek();
-            kamarinap.setNoRm(TNoRw.getText());
+            kamarinap.setNoRm(TNoRw.getText(), kdpoli.getText());
             kamarinap.tampil();
             kamarinap.setVisible(true);
             kamarinap.cekKetMati();

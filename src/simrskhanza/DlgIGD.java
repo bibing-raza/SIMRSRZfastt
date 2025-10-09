@@ -4642,7 +4642,7 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             dlgki.setLocationRelativeTo(internalFrame1);
             dlgki.emptTeks();
             dlgki.isCek();
-            dlgki.setNoRm(TNoRw.getText());
+            dlgki.setNoRm(TNoRw.getText(), "IGDK");
             dlgki.tampil();
             dlgki.setVisible(true);
             dlgki.cekKetMati();

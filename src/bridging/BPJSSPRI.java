@@ -1015,6 +1015,10 @@ public class BPJSSPRI extends javax.swing.JDialog {
                         Valid.SetTgl(TglRencanaInap.getSelectedItem() + ""), KdDokter.getText(), 
                         NmDokter.getText(), KdPoli.getText(), NmPoli.getText(), Diagnosa.getText(), kdICD10
                     }) == true) {
+                        if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + NoRawat.getText() + "'") == 0) {
+                            Sequel.menyimpan("dpjp_ranap", "'" + NoRawat.getText() + "','" + KdDokter.getText() + "'");
+                        }
+                        
                         emptTeks();
                         tampil();
                     }
@@ -1240,7 +1244,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                                 "tgl_rencana=?,kd_dokter_bpjs=?,nm_dokter_bpjs=?,kd_poli_bpjs=?,nm_poli_bpjs=?,diagnosa=?,kd_penyakit=?", 8, new String[]{
                                     Valid.SetTgl(TglRencanaInap.getSelectedItem() + ""), KdDokter.getText(), NmDokter.getText(), KdPoli.getText(),
                                     NmPoli.getText(), Diagnosa.getText(), NoSurat.getText(), kdICD10
-                        }) == true) {
+                                }) == true) {
+                            if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + NoRawat.getText() + "'") == 0) {
+                                Sequel.menyimpan("dpjp_ranap", "'" + NoRawat.getText() + "','" + KdDokter.getText() + "'");
+                            } else {
+                                Sequel.mengedit("dpjp_ranap", "no_rawat='" + NoRawat.getText() + "'", "kd_dokter='" + KdDokter.getText() + "'");
+                            }
                             emptTeks();
                             tampil();
                         }
@@ -1799,6 +1808,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
             if (nameNode.path("code").asText().equals("200")) {
                 Sequel.meghapus("bridging_surat_pri_bpjs", "no_surat", NoSurat.getText());
+                Sequel.meghapus("dpjp_ranap", "no_rawat", NoRawat.getText());
                 tampil();
                 emptTeks();
             } else {
