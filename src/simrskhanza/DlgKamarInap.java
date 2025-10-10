@@ -13762,7 +13762,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 sb.append("concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,',',kb.nm_kab) alamat, pj.png_jawab, ki.kd_kamar, ");
                 sb.append("b.nm_bangsal, ki.trf_kamar, ki.diagnosa_awal, ki.diagnosa_akhir, ki.tgl_masuk, ki.jam_masuk, IF (ki.tgl_keluar ='0000-00-00','',ki.tgl_keluar) tgl_keluar, ");
                 sb.append("IF (ki.jam_keluar = '00:00:00','',ki.jam_keluar) jam_keluar, ki.ttl_biaya, ki.stts_pulang, ki.lama, ");
-                sb.append("d.nm_dokter, r.kd_pj,kl.nm_kel,kc.nm_kec,kb.nm_kab,k.kelas,p.no_tlp, d1.nm_dokter dokter2, d1.kd_dokter ");
+                sb.append("d.nm_dokter, r.kd_pj,kl.nm_kel,kc.nm_kec,kb.nm_kab,k.kelas,p.no_tlp, d1.nm_dokter dokter2, dr.kd_dokter ");
                 sb.append("FROM kamar_inap ki INNER JOIN reg_periksa r ON ki.no_rawat = r.no_rawat ");
                 sb.append("INNER JOIN pasien p ON p.no_rkm_medis = r.no_rkm_medis ");
                 sb.append("INNER JOIN dokter d ON d.kd_dokter = r.kd_dokter ");
