@@ -8388,15 +8388,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }//GEN-LAST:event_MnRincianObatActionPerformed
 
     private void MnDPJPRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDPJPRanapActionPerformed
-        for (i = 0; i < tbKamIn.getRowCount(); i++) {
-            if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + tbKamIn.getValueAt(i, 0) + "'") > 0) {
-                dpjpOK = Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + akses.getkode() + "'");
-                tampilDPJP();
-            } else {
-                dpjpOK = "";
-                tampilDPJP();
-            }
-        }
+        tampilDPJP();        
     }//GEN-LAST:event_MnDPJPRanapActionPerformed
 
     private void MnSEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSEPActionPerformed
@@ -13734,9 +13726,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             }
         }
 
-        dpjpOK = Sequel.cariIsi("select ifnull(kd_dokter,'') from dokter where kd_dokter='" + akses.getkode() + "'");
+        dpjpOK = Sequel.cariIsi("select ifnull(kd_dokter,'') from dokter where kd_dokter='" + akses.getkode() + "' and (nm_dokter like '%dr.%' or nm_dokter like '%drg.%')");
         key = kmr + " ";
-//        if (!TCari.getText().equals("")) {
         key = kmr + "and a.kd_dokter like '%" + dpjpOK + "%' and a.no_rawat like '%" + TCari.getText().trim() + "%' or "
                 + kmr + "and a.kd_dokter like '%" + dpjpOK + "%' and a.no_rkm_medis like '%" + TCari.getText().trim() + "%' or "
                 + kmr + "and a.kd_dokter like '%" + dpjpOK + "%' and a.nm_pasien like '%" + TCari.getText().trim() + "%' or "
@@ -13753,7 +13744,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 + kmr + "and a.kd_dokter like '%" + dpjpOK + "%' and a.png_jawab like '%" + TCari.getText().trim() + "%' or "
                 + kmr + "and a.kd_dokter like '%" + dpjpOK + "%' and IF (b.no_rawat = a.no_rawat OR c.no_rawat = a.no_rawat or d.no_rawat = a.no_rawat, 'SUDAH', IF (a.kd_pj <> 'b01' AND a.kd_pj not in ('d01','d04'),'NON SEP','BELUM')) like '%" + TCari.getText().trim() + "%' or "
                 + kmr + "and a.kd_dokter like '%" + dpjpOK + "%' and a.ttl_biaya like '%" + TCari.getText().trim() + "%' ";
-//        }
 
         cekResepAda = 0;
         cekdpjp = 0;
