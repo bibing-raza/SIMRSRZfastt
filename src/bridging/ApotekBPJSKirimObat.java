@@ -63,7 +63,7 @@ public final class ApotekBPJSKirimObat extends javax.swing.JDialog {
     private PreparedStatement psobat, psracikan, ps2, psobatracikan;
     private ResultSet rsobat, rsracikan, rs2, rscariobat, rsobatracikan;
     private double x = 0, y = 0, kenaikan = 0;
-    private int i = 0, z = 0, row = 0, jml = 0;
+    private int i = 0, z = 0, row = 0, jml = 0, jmlSepIter = 0;
     private String no_apotek = "", utc = "", pesan = "", link = koneksiDB.URLAPIAPOTEKBPJS(), kodeppkapotek = koneksiDB.KODEPPKAPOTEKBPJS(), 
             requestJson = "", URL = "", otorisasi, sql = "", aktifpcare = "no", kodedokter = "", namadokter = "", noresep = "", kandungan = "";
     private WarnaTable2 warna=new WarnaTable2();
@@ -405,7 +405,6 @@ public final class ApotekBPJSKirimObat extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -432,7 +431,6 @@ public final class ApotekBPJSKirimObat extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -451,7 +449,6 @@ public final class ApotekBPJSKirimObat extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('5');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+5");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -485,7 +482,7 @@ public final class ApotekBPJSKirimObat extends javax.swing.JDialog {
         Jam.setBounds(825, 130, 80, 24);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-10-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -574,7 +571,7 @@ public final class ApotekBPJSKirimObat extends javax.swing.JDialog {
         LblNoRawat.setBounds(95, 10, 130, 23);
 
         TtglResep.setEditable(false);
-        TtglResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2025" }));
+        TtglResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-10-2025" }));
         TtglResep.setDisplayFormat("dd-MM-yyyy");
         TtglResep.setName("TtglResep"); // NOI18N
         TtglResep.setOpaque(false);
@@ -724,7 +721,7 @@ public final class ApotekBPJSKirimObat extends javax.swing.JDialog {
         JnsObat.setBounds(335, 70, 165, 23);
 
         Iterasi.setForeground(new java.awt.Color(0, 0, 0));
-        Iterasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0. Tanpa Iterasi", "1. Dengan Iterasi", "2. Dengan Iterasi" }));
+        Iterasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0. Tanpa Iterasi", "1. Dengan Iterasi", "2. Dengan Iterasi", "Iterasi Selesai" }));
         Iterasi.setName("Iterasi"); // NOI18N
         FormInput.add(Iterasi);
         Iterasi.setBounds(730, 100, 120, 23);
@@ -1894,7 +1891,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         return tbNonRacikan;
     }
     
-    public void setNoRm(String norwt, String norm, String nama, String tanggal, String jam, String Resep, String Nresep) {      
+    public void setNoRm(String norwt, String norm, String nama, String tanggal, String jam, String Resep, String Nresep, String nosep) {      
         aktifpcare = "no";
         TNoRw.setText(norwt);
         LblNoRawat.setText(norwt);
@@ -1911,15 +1908,20 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
         cekViaBPJSKartu.tampil(NoKartu.getText(), Sequel.cariIsi("select tglsep from bridging_sep where no_sep='" + NoSEP.getText() + "' and jnspelayanan='2'"));
         TInfoPRB.setText(cekViaBPJSKartu.informasiprolanisPRB);
-        TInfoIterasi.setText(Sequel.cariIsi("select CASE WHEN kunjungan = 1 THEN '-' WHEN kunjungan = 2 THEN 'Iter 1 Kali' WHEN kunjungan = 3 THEN 'Iter 2 Kali' "
-                + "ELSE CONCAT('Iter ', kunjungan - 1, ' Kali') END ket_kunjungan from iter_obat_bpjs where no_rawat='" + norwt + "'"));
         
-        if (TInfoIterasi.getText().equals("-")) {
+        jmlSepIter = Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_sep='" + nosep + "'");
+        if (jmlSepIter <=1) {
+            TInfoIterasi.setText("-");
             Iterasi.setSelectedIndex(0);
-        } else if (TInfoIterasi.getText().equals("Iter 1 Kali")) {
+        } else if (jmlSepIter == 2) {
+            TInfoIterasi.setText("Iter 1 Kali");
             Iterasi.setSelectedIndex(1);
-        } else if (TInfoIterasi.getText().equals("Iter 2 Kali")) {
+        } else if (jmlSepIter == 3) {
+            TInfoIterasi.setText("Iter 2 Kali");
             Iterasi.setSelectedIndex(2);
+        } else {
+            TInfoIterasi.setText("Selesai");
+            Iterasi.setSelectedIndex(3);
         }
     }
     

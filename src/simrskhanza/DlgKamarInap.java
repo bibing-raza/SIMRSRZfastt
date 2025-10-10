@@ -13726,7 +13726,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             }
         }
 
-        dpjpOK = Sequel.cariIsi("select ifnull(kd_dokter,'') from dokter where kd_dokter='" + akses.getkode() + "' and (nm_dokter like '%dr.%' or nm_dokter like '%drg.%')");
+        dpjpOK = Sequel.cariIsi("select ifnull(d.kd_dokter,'') from dokter d inner join spesialis s on s.kd_sps=d.kd_sps where "
+                + "d.kd_dokter='" + akses.getkode() + "' and s.kd_sps not in ('-','S0021')");
         key = kmr + " ";
         key = kmr + "and a.kd_dokter like '%" + dpjpOK + "%' and a.no_rawat like '%" + TCari.getText().trim() + "%' or "
                 + kmr + "and a.kd_dokter like '%" + dpjpOK + "%' and a.no_rkm_medis like '%" + TCari.getText().trim() + "%' or "

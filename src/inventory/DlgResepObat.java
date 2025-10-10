@@ -1551,7 +1551,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                                 while (rs4.next()) {
                                     dlgobtApotekBPJS.setNoRm(TNoRw.getText(), rs4.getString("nomr"), rs4.getString("nm_pasien"),
                                             Valid.SetTgl(DTPBeri.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-                                            NoResep.getText().substring(5, 10), NoResep.getText());
+                                            NoResep.getText().substring(5, 10), NoResep.getText(), rs4.getString("no_sep"));
                                     dlgobtApotekBPJS.dataPeserta(rs4.getString("no_sep"), rs4.getString("dpjpLayan"),
                                             rs4.getString("nmdpjpLayan"), rs4.getString("no_kartu"), rs4.getString("kdpolitujuan"),
                                             rs4.getString("nmpolitujuan"));
