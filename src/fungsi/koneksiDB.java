@@ -525,4 +525,14 @@ public final class koneksiDB {
         }
         return var;
     }
+    
+    public static String DATARANAPSESUAIDPJP() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var = prop.getProperty("DATARANAPSESUAIDPJP");
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
 }

@@ -13726,8 +13726,31 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             }
         }
 
-        dpjpOK = Sequel.cariIsi("select ifnull(d.kd_dokter,'') from dokter d inner join spesialis s on s.kd_sps=d.kd_sps where "
-                + "d.kd_dokter='" + akses.getkode() + "' and s.kd_sps not in ('-','S0021')");
+        try {
+            if (koneksiDB.DATARANAPSESUAIDPJP().equals("Ya")) {
+                dpjpOK = Sequel.cariIsi("select ifnull(d.kd_dokter,'') from dokter d inner join spesialis s on s.kd_sps=d.kd_sps where "
+                        + "d.kd_dokter='" + akses.getkode() + "' and s.kd_sps not in ('-','S0021','S0001','S0004','S0008','S0017','S0018','S0019','S0023','S0028','S0029')");
+                /*
+                - : -
+                S0021 = umum
+                S0001 = fisioterapi
+                S0004 = radiologi
+                S0008 = anestesi
+                S0017 = gizi
+                S0018 = gigi
+                S0019 = patologi klinik
+                S0023 = psikologi
+                S0028 = gigi endodontis
+                S0029 = gigi periodonti                
+                */
+            } else {
+                dpjpOK = "";
+            }
+        } catch (Exception e) {
+            System.out.println("E : " + e);
+            dpjpOK = "";
+        }
+        
         key = kmr + " ";
         key = kmr + "and a.kd_dokter like '%" + dpjpOK + "%' and a.no_rawat like '%" + TCari.getText().trim() + "%' or "
                 + kmr + "and a.kd_dokter like '%" + dpjpOK + "%' and a.no_rkm_medis like '%" + TCari.getText().trim() + "%' or "

@@ -89,6 +89,7 @@
 	<entry key="FOLDERPRINTQRRAD">/home/bibing/Documents/QRRad/QRRad.jpg</entry>
 	<entry key="FOLDERQRITER">/home/bibing/Documents/QRkodeIter/</entry>
 	<entry key="FOLDERPRINTQRITER">/home/bibing/Documents/QRkodeIter/QRkodeIter.jpg</entry>
+        <entry key="DATARANAPSESUAIDPJP">Tidak</entry>
 
         <entry key="URLAPIAPOTEKBPJS">https://apijkn-dev.bpjs-kesehatan.go.id/apotek-rest-dev</entry>
         <entry key="CONSIDAPIAPOTEKBPJS">enkripsi consid</entry>
