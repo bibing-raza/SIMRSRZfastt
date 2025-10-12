@@ -261,6 +261,8 @@ import inventory.DlgSatuan;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import kepegawaian.DlgCariPetugas;
@@ -397,6 +399,7 @@ import tranfusidarah.UTDStokDarah;
 import simrskhanza.DlgInputPonek;
 import simrskhanza.DlgPenanggungJawab;
 import java.net.InetAddress;
+import java.util.Calendar;
 import kepegawaian.DlgDepartemen;
 import keuangan.DlgJaminanTransaksi;
 import keuangan.DlgPengembalianJaminan;
@@ -424,11 +427,12 @@ public class frmUtama extends javax.swing.JFrame {
     private final sekuel Sequel = new sekuel();
     private final validasi Valid = new validasi();
     private static frmUtama myInstance;
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private PreparedStatement ps, ps1;
+    private ResultSet rs, rs1;
     private final Properties prop = new Properties();
     private int jmlmenu = 0, grid = 0, tinggi = 0, i = 0;
-    private String coder_nik = "", pilihpage = "", judulform = "", host = "", cek = "", cekApt = "", versi = "", ipKomputer = "", nipLogin = "";
+    private String coder_nik = "", pilihpage = "", judulform = "", host = "", cek = "", cekApt = "", versi = "", ipKomputer = "", nipLogin = "",
+            jamnya = "", menitnya = "", detiknya = "";
     private final DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
     private final DlgKamarInap kamarinap = new DlgKamarInap(null, false);
     private final DlgIGD igd = new DlgIGD(this, false);  
@@ -501,6 +505,7 @@ public class frmUtama extends javax.swing.JFrame {
         otomatisRefreshNotifRad();
         akses.tRefreshNotifRad.start();  
         tampilIpAddress();
+        jam();
     }
 
     public static frmUtama getInstance() {
@@ -963,6 +968,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
         btnDataPenyerahanDarah = new widget.ButtonBig();
+        pukulJam = new javax.swing.JLabel();
         internalFrame1 = new widget.InternalFrame();
         BtnMenu = new widget.ButtonBig();
         btnGantiPassword = new widget.ButtonBig();
@@ -988,6 +994,8 @@ public class frmUtama extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         lblTgl = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        lblJam = new javax.swing.JLabel();
         jSeparator8 = new javax.swing.JSeparator();
         lblIPaddress = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
@@ -6567,7 +6575,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30/09/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/10/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6607,6 +6615,12 @@ public class frmUtama extends javax.swing.JFrame {
                 btnDataPenyerahanDarahActionPerformed(evt);
             }
         });
+
+        pukulJam.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        pukulJam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pukulJam.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pukulJam.setName("pukulJam"); // NOI18N
+        pukulJam.setPreferredSize(new java.awt.Dimension(110, 23));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("::[ SIM RSUD Ratu Zalecha ]::");
@@ -6970,6 +6984,22 @@ public class frmUtama extends javax.swing.JFrame {
         lblTgl.setName("lblTgl"); // NOI18N
         lblTgl.setPreferredSize(new java.awt.Dimension(95, 23));
         internalFrame4.add(lblTgl);
+
+        jSeparator3.setBackground(new java.awt.Color(170, 190, 145));
+        jSeparator3.setForeground(new java.awt.Color(170, 190, 145));
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator3.setName("jSeparator3"); // NOI18N
+        jSeparator3.setOpaque(true);
+        jSeparator3.setPreferredSize(new java.awt.Dimension(1, 20));
+        internalFrame4.add(jSeparator3);
+
+        lblJam.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        lblJam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJam.setText("Jam");
+        lblJam.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblJam.setName("lblJam"); // NOI18N
+        lblJam.setPreferredSize(new java.awt.Dimension(110, 23));
+        internalFrame4.add(lblJam);
 
         jSeparator8.setBackground(new java.awt.Color(170, 190, 145));
         jSeparator8.setForeground(new java.awt.Color(170, 190, 145));
@@ -13364,6 +13394,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private javax.swing.JMenu jMenu4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
@@ -13375,6 +13406,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.Label label35;
     private widget.Label label36;
     private javax.swing.JLabel lblIPaddress;
+    private javax.swing.JLabel lblJam;
     private javax.swing.JLabel lblStts;
     private javax.swing.JLabel lblTgl;
     private javax.swing.JLabel lblUser;
@@ -13383,6 +13415,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private usu.widget.glass.PanelGlass panelJudul;
     private widget.InternalFrame panelMenu;
     private widget.panelisi panelisi2;
+    private javax.swing.JLabel pukulJam;
     private widget.ScrollPane scrollPane1;
     private widget.ScrollPane scrollPane2;
     private widget.Tanggal tanggal;
@@ -20610,5 +20643,112 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             System.out.println("Gagal mendapatkan alamat IP host: " + e.getMessage());
         }
     }
+    
+    private void autoRestartKomputer() {
+        try {
+            System.out.println("Menjalankan perintah restart...");
 
+            String os = System.getProperty("os.name").toLowerCase();
+            Process process;
+
+            if (os.contains("win")) {
+                process = Runtime.getRuntime().exec("cmd /c shutdown -r -t 0");
+            } else if (os.contains("linux") || os.contains("unix")) {
+                process = new ProcessBuilder("reboot").start();
+            } else if (os.contains("mac")) {
+                process = new ProcessBuilder("shutdown", "-r", "now").start();
+            } else {
+                JOptionPane.showMessageDialog(null, "Sistem operasi tidak dikenali: " + os);
+                return;
+            }
+
+            // Baca output error jika ada
+            BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            String line;
+            while ((line = errorReader.readLine()) != null) {
+                System.out.println("Error restart: " + line);
+            }
+
+            process.waitFor();
+            System.out.println("Perintah restart telah dijalankan. Komputer akan segera restart.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Terjadi kesalahan dalam proses restart: " + e.getMessage());
+        }
+    }
+    
+    private void cekKomputer() {
+        String setTgl = "";
+        setTgl = Sequel.cariIsi("select date(now())");
+        
+        try {
+            ps1 = koneksi.prepareStatement("select * from setting");
+            try {
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    //restart
+                    if (rs1.getString("auto_restart").equals("ya")) {
+                        if (rs1.getString("ip_addres_tertentu").equals("ya")) {
+                            if (rs1.getString("ip_eksekusi").equals(ipKomputer)) {
+                                if (rs1.getString("periode_restart").equals("Setiap Hari")) {
+                                    if (rs1.getString("jam_restart").equals(pukulJam.getText())) {
+                                        autoRestartKomputer();
+                                    }
+                                } else if (rs1.getString("periode_restart").equals("Tanggal") || rs1.getString("periode_restart").equals("-")) {
+                                    if (rs1.getString("tgl_restart").equals(setTgl) && rs1.getString("jam_restart").equals(pukulJam.getText())) {
+                                        autoRestartKomputer();
+                                    }
+                                }
+                            } else {
+                                System.out.println("IP address komputer tujuan restart salah..!!!");
+                            }
+                        } else {
+                            if (rs1.getString("periode_restart").equals("Setiap Hari")) {
+                                if (rs1.getString("jam_restart").equals(pukulJam.getText())) {
+                                    autoRestartKomputer();
+                                }
+                            } else if (rs1.getString("periode_restart").equals("Tanggal") || rs1.getString("periode_restart").equals("-")) {
+                                if (rs1.getString("tgl_restart").equals(setTgl) && rs1.getString("jam_restart").equals(pukulJam.getText())) {
+                                    autoRestartKomputer();
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void jam() {
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Calendar kalender = Calendar.getInstance();
+                int jam = kalender.get(Calendar.HOUR_OF_DAY);
+                int menit = kalender.get(Calendar.MINUTE);
+                int detik = kalender.get(Calendar.SECOND);
+
+                jamnya = String.format("%02d", jam);
+                menitnya = String.format("%02d", menit);
+                detiknya = String.format("%02d", detik);
+                
+                lblJam.setText("Pukul : " + jamnya + ":" + menitnya + ":" + detiknya + " Wita");
+                pukulJam.setText(jamnya + ":" + menitnya + ":" + detiknya);
+                cekKomputer();
+            }
+        });
+        timer.start();
+    }
 }

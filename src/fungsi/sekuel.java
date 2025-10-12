@@ -602,9 +602,9 @@ public final class sekuel {
     }
 
     public void menyimpan2logo(String table, String value, String sama, JTextField AlmGb,
-            JTextField AlmPhoto, JTextField AlmPhoto1, JTextField AlmPhoto2, JTextField AlmPhoto3) {
+            JTextField AlmPhoto, JTextField AlmPhoto1, JTextField AlmPhoto2, JTextField AlmPhoto3, String setKomputer) {
         try {
-            ps = connect.prepareStatement("insert into " + table + " values(" + value + ",?,?,?,?)");
+            ps = connect.prepareStatement("insert into " + table + " values(" + value + ",?,?,?,?," + setKomputer + ")");
             try {
                 ps.setBinaryStream(1, new FileInputStream(AlmGb.getText()), new File(AlmGb.getText()).length());
                 ps.setBinaryStream(2, new FileInputStream(AlmPhoto.getText()), new File(AlmPhoto.getText()).length());
