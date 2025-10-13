@@ -262,7 +262,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import kepegawaian.DlgCariPetugas;
@@ -399,6 +402,7 @@ import tranfusidarah.UTDStokDarah;
 import simrskhanza.DlgInputPonek;
 import simrskhanza.DlgPenanggungJawab;
 import java.net.InetAddress;
+import java.net.URL;
 import java.util.Calendar;
 import kepegawaian.DlgDepartemen;
 import keuangan.DlgJaminanTransaksi;
@@ -417,6 +421,8 @@ import rekammedis.RMStatusKakiDiabetes;
 import rekammedis.RMTriasePediatrik;
 import rekammedis.RMTriasePonek;
 import setting.DlgHistoriLoginUser;
+import java.io.*;
+import java.util.Properties;
 
 /**
  *
@@ -426,6 +432,7 @@ public class frmUtama extends javax.swing.JFrame {
     private final Connection koneksi = koneksiDB.condb();
     private final sekuel Sequel = new sekuel();
     private final validasi Valid = new validasi();
+    private File configFile;
     private static frmUtama myInstance;
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
@@ -437,6 +444,61 @@ public class frmUtama extends javax.swing.JFrame {
     private final DlgKamarInap kamarinap = new DlgKamarInap(null, false);
     private final DlgIGD igd = new DlgIGD(this, false);  
     private BackgroundMusic music;
+    
+//    public class KonfigurasiApp {
+//        public KonfigurasiApp() {
+//            // Tentukan lokasi config tergantung OS
+//            String os = System.getProperty("os.name").toLowerCase();
+//            String appName = "SIMRS";
+//            String basePath;
+//
+//            if (os.contains("win")) {
+//                basePath = System.getenv("APPDATA") + File.separator + appName;
+//            } else if (os.contains("mac")) {
+//                basePath = System.getProperty("user.home") + "/Library/Application Support/" + appName;
+//            } else {
+//                basePath = System.getProperty("user.home") + "/.config/" + appName;
+//            }
+//
+//            // Pastikan foldernya ada
+//            File dir = new File(basePath);
+//            if (!dir.exists()) {
+//                dir.mkdirs();
+//            }
+//
+//            // Tentukan file config
+//            configFile = new File(dir, "config.properties");
+//
+//            // Jika file belum ada, buat baru
+//            if (!configFile.exists()) {
+//                try {
+//                    configFile.createNewFile();
+//                    Properties props = new Properties();
+//                    props.setProperty("versi_text", "-");
+//                    try (FileOutputStream out = new FileOutputStream(configFile)) {
+//                        props.store(out, "File konfigurasi awal");
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//
+//        // Baca versi
+//        public String bacaVersi() {
+//            Properties props = new Properties();
+//            try (FileInputStream in = new FileInputStream(configFile)) {
+//                props.load(in);
+//                return props.getProperty("versi_text", "-");
+//            } catch (IOException e) {
+//                return "-";
+//            }
+//        }
+//
+//        public File getConfigFile() {
+//            return configFile;
+//        }
+//    }
     
     /**
      * Creates new form frmUtama
@@ -504,8 +566,9 @@ public class frmUtama extends javax.swing.JFrame {
         akses.tRefreshNotifLab.start();
         otomatisRefreshNotifRad();
         akses.tRefreshNotifRad.start();  
-        tampilIpAddress();
+        tampilIpAddress();        
         jam();
+        this.configFile = null;
     }
 
     public static frmUtama getInstance() {
@@ -994,12 +1057,11 @@ public class frmUtama extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         lblTgl = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        lblJam = new javax.swing.JLabel();
         jSeparator8 = new javax.swing.JSeparator();
         lblIPaddress = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         footer_lbl_update = new javax.swing.JLabel();
+        Tversi = new javax.swing.JLabel();
         PanelUtama = new javax.swing.JPanel();
         scrollPane1 = new widget.ScrollPane();
         PanelWall = new usu.widget.glass.PanelGlass();
@@ -6575,7 +6637,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/10/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13/10/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6641,6 +6703,9 @@ public class frmUtama extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -6985,22 +7050,6 @@ public class frmUtama extends javax.swing.JFrame {
         lblTgl.setPreferredSize(new java.awt.Dimension(95, 23));
         internalFrame4.add(lblTgl);
 
-        jSeparator3.setBackground(new java.awt.Color(170, 190, 145));
-        jSeparator3.setForeground(new java.awt.Color(170, 190, 145));
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator3.setName("jSeparator3"); // NOI18N
-        jSeparator3.setOpaque(true);
-        jSeparator3.setPreferredSize(new java.awt.Dimension(1, 20));
-        internalFrame4.add(jSeparator3);
-
-        lblJam.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        lblJam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblJam.setText("Jam");
-        lblJam.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblJam.setName("lblJam"); // NOI18N
-        lblJam.setPreferredSize(new java.awt.Dimension(110, 23));
-        internalFrame4.add(lblJam);
-
         jSeparator8.setBackground(new java.awt.Color(170, 190, 145));
         jSeparator8.setForeground(new java.awt.Color(170, 190, 145));
         jSeparator8.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -7028,12 +7077,21 @@ public class frmUtama extends javax.swing.JFrame {
         footer_lbl_update.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         footer_lbl_update.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         footer_lbl_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/file-edit-16x16.png"))); // NOI18N
-        footer_lbl_update.setText("-");
+        footer_lbl_update.setText(" Didesain & dibuat oleh Khanza.Soft Media - Vs.");
         footer_lbl_update.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         footer_lbl_update.setIconTextGap(3);
         footer_lbl_update.setName("footer_lbl_update"); // NOI18N
-        footer_lbl_update.setPreferredSize(new java.awt.Dimension(540, 23));
+        footer_lbl_update.setPreferredSize(new java.awt.Dimension(255, 23));
         internalFrame4.add(footer_lbl_update);
+
+        Tversi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        Tversi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Tversi.setText("Unlimited");
+        Tversi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Tversi.setIconTextGap(3);
+        Tversi.setName("Tversi"); // NOI18N
+        Tversi.setPreferredSize(new java.awt.Dimension(95, 23));
+        internalFrame4.add(Tversi);
 
         getContentPane().add(internalFrame4, java.awt.BorderLayout.PAGE_END);
 
@@ -7352,6 +7410,12 @@ public class frmUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnCancelActionPerformed
 
     private void BtnLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogActionPerformed
+//        if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1"))) {
+//            JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terakhir...!!!!");
+//        } else {
+//            Tversi.setText(Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1"));
+//        }
+
         FlayMenu.setVisible(false);
         akses.setpenjualan_obatfalse();
         akses.setpenjualan_obatfalse();
@@ -7375,8 +7439,8 @@ public class frmUtama extends javax.swing.JFrame {
                 lblUser.setText("Log Out");
                 kdUser.setText("");
                 ket_update.setText("");
-                lbl_update.setText("Modified by. UNIT SIMRS RAZA - Vs. " + Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1") + " [Activated]");
-                footer_lbl_update.setText(" Didesain & dibuat oleh Khanza.Soft Media - vs. " + Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1") + "");
+                lbl_update.setText("Modified by. UNIT SIMRS RAZA - Vs. " + Tversi.getText() + " [Activated]");
+                footer_lbl_update.setText(footer_lbl_update.getText() + " " + Tversi.getText());
                 BtnMenu.setEnabled(false);
                 isTutup();
                 break;
@@ -7484,8 +7548,14 @@ public class frmUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnLoginActionPerformed
 
     private void BtnToolKamnapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolKamnapActionPerformed
+//        if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1"))) {
+//            JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terakhir...!!!!");
+//        } else {
+//            Tversi.setText(Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1"));
+//        }
+        
         isTutup();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         kamarinap.isCek();
         kamarinap.emptTeks();
         kamarinap.setCariKosong();
@@ -9697,6 +9767,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         setToolbar();
+//        KonfigurasiApp config = new KonfigurasiApp();
+//        Tversi.setText(config.bacaVersi());
     }//GEN-LAST:event_formWindowOpened
 
     private void btnRincianPiutangPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRincianPiutangPasienActionPerformed
@@ -12910,6 +12982,10 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnBPJSDataTerkirimApotekActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+//        simpanVersi(Tversi.getText());
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -12961,6 +13037,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.TextBox Passbaru1;
     private widget.ScrollPane Scroll21;
     private widget.TextBox TCari;
+    public javax.swing.JLabel Tversi;
     private javax.swing.JDialog WindowInput;
     private widget.ButtonBig btnAdmin;
     private widget.ButtonBig btnAkunPiutang;
@@ -13373,7 +13450,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ComboBox cmbMenu;
     private widget.TextBox edAdmin;
     private widget.PasswordBox edPwd;
-    public javax.swing.JLabel footer_lbl_update;
+    private javax.swing.JLabel footer_lbl_update;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
@@ -13394,7 +13471,6 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private javax.swing.JMenu jMenu4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
@@ -13406,11 +13482,10 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.Label label35;
     private widget.Label label36;
     private javax.swing.JLabel lblIPaddress;
-    private javax.swing.JLabel lblJam;
     private javax.swing.JLabel lblStts;
     private javax.swing.JLabel lblTgl;
     private javax.swing.JLabel lblUser;
-    public javax.swing.JLabel lbl_update;
+    private javax.swing.JLabel lbl_update;
     private usu.widget.glass.PanelGlass panelGlass1;
     private usu.widget.glass.PanelGlass panelJudul;
     private widget.InternalFrame panelMenu;
@@ -20732,7 +20807,9 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }
     
     private void jam() {
-        Timer timer = new Timer(1000, new ActionListener() {
+//        Timer timer = new Timer(1000, new ActionListener() {
+        //interval per 5 menit
+        Timer timer = new Timer(300000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Calendar kalender = Calendar.getInstance();
@@ -20744,11 +20821,33 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 menitnya = String.format("%02d", menit);
                 detiknya = String.format("%02d", detik);
                 
-                lblJam.setText("Pukul : " + jamnya + ":" + menitnya + ":" + detiknya + " Wita");
                 pukulJam.setText(jamnya + ":" + menitnya + ":" + detiknya);
                 cekKomputer();
             }
         });
         timer.start();
     }
+    
+//    public void simpanVersi(String versi) {
+//        Properties props = new Properties();
+//
+//        // Muat dulu file lama agar data lain tidak hilang
+//        if (configFile.exists()) {
+//            try (FileInputStream in = new FileInputStream(configFile)) {
+//                props.load(in);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        // Ubah atau tambahkan versi_text
+//        props.setProperty("versi_text", versi);
+//
+//        // Simpan kembali ke file
+//        try (FileOutputStream out = new FileOutputStream(configFile)) {
+//            props.store(out, "Konfigurasi Aplikasi");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

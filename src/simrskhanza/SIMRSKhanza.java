@@ -26,8 +26,6 @@ public class SIMRSKhanza {
            utama.isWall();
            //utama.setIconImage(new javax.swing.ImageIcon( getClass(). getResource("/picture/home.PNG")).getImage());
            utama.setVisible(true);
-           utama.lbl_update.setText("Modified by. UNIT SIMRS RAZA - Vs. " + Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1") + " [Activated]");
-           utama.footer_lbl_update.setText(" Didesain & dibuat oleh Khanza.Soft Media - vs. " + Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1") + "");
        });
 
 //        DlgKiosK utama =new DlgKiosK(null, true);

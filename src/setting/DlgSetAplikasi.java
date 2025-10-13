@@ -39,6 +39,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -1550,6 +1551,10 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         } else {
             Sequel.menyimpan("history_update", "'" + versi.getText() + "','" + Valid.SetTgl(tglUpdate.getSelectedItem() + "") + "',"
                     + "'" + ket_update.getText() + "','0','" + Sequel.cariIsi("select time(now())") + "'");
+            
+//            frmUtama utama=frmUtama.getInstance();
+//            utama.Tversi.setText(versi.getText());
+            
             tampilUpdate();
             emptUpdate();
         }
@@ -1589,6 +1594,9 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         } else {
             Sequel.mengedit("history_update", "kode='" + kd_update + "'", "versi_update='" + versi.getText() + "', keterangan='" + ket_update.getText() + "', "
                     + "tgl_update='" + Valid.SetTgl(tglUpdate.getSelectedItem() + "") + "',jam_update='" + Sequel.cariIsi("select time(now()) jam") + "' ");
+            
+//            frmUtama utama=frmUtama.getInstance();
+//            utama.Tversi.setText(versi.getText());            
             tampilUpdate();
             emptUpdate();
         }
