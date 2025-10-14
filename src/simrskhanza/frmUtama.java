@@ -20819,60 +20819,30 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         sttsFileSIMRS = "";
         try {
             // Dapatkan folder tempat aplikasi dijalankan
-            if (Sequel.cariFolderVersi().contains("bibing")) {
-                String currentDir = System.getProperty("user.dir");
-                File file = new File(currentDir, "SIMRSKhanzaS.jar");
+            String currentDir = System.getProperty("user.dir");
+            File file = new File(currentDir, "SIMRSKhanza.jar");
 
 //            if (!file.exists()) {
 //                System.out.println("File tidak ditemukan di folder aplikasi: " + file.getAbsolutePath());
 //                return;
 //            }
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH");
-                String waktu = sdf.format(new Date(file.lastModified()));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH");
+            String waktu = sdf.format(new Date(file.lastModified()));
 //                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-                SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");                
-                String waktu1 = sdf1.format(new Date(file.lastModified()));
-                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-                String hari = sdf2.format(new Date(file.lastModified()));
+            SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String waktu1 = sdf1.format(new Date(file.lastModified()));
+            SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+            String hari = sdf2.format(new Date(file.lastModified()));
 
-                if (Sequel.cariIsi("select concat(tgl_update,' ',time_format(jam_update,'%H')) FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1").equals(waktu)) {
-                    sttsFileSIMRS = "file simrs update";
-                } else {
-                    sttsFileSIMRS = "file belum update";
-                }
-                System.out.println("File ditemukan di : " + file.getAbsolutePath());
-                System.out.println("📅Terakhir update SIMRS pada hari : " + Sequel.hariINDONESIA("SELECT date_format('" + hari + "','%W')") + ", Tgl. " + waktu1 + " Wita");
-                
+            if (Sequel.cariIsi("select concat(tgl_update,' ',time_format(jam_update,'%H')) FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1").equals(waktu)) {
+                sttsFileSIMRS = "file simrs update";
             } else {
-                String currentDir = System.getProperty("user.dir");
-                File file = new File(currentDir, "SIMRSKhanza.jar");
-                
-//            if (!file.exists()) {
-//                System.out.println("File tidak ditemukan di folder aplikasi: " + file.getAbsolutePath());
-//                return;
-//            }
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH");
-                String waktu = sdf.format(new Date(file.lastModified()));
-//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-                SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");                
-                String waktu1 = sdf1.format(new Date(file.lastModified()));
-                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-                String hari = sdf2.format(new Date(file.lastModified()));
-
-                if (Sequel.cariIsi("select concat(tgl_update,' ',time_format(jam_update,'%H')) FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1").equals(waktu)) {
-                    sttsFileSIMRS = "file simrs update";
-                } else {
-                    sttsFileSIMRS = "file belum update";
-                }
-                System.out.println("File ditemukan di : " + file.getAbsolutePath());
-                System.out.println("📅Terakhir update SIMRS pada hari : " + Sequel.hariINDONESIA("SELECT date_format('" + hari + "','%W')") + ", Tgl. " + waktu1 + " Wita");
+                sttsFileSIMRS = "file belum update";
             }
+            System.out.println("File ditemukan di : " + file.getAbsolutePath());
+            System.out.println("📅Terakhir update SIMRS pada hari : " + Sequel.hariINDONESIA("SELECT date_format('" + hari + "','%W')") + ", Tgl. " + waktu1 + " Wita");
         } catch (Exception e) {
             e.printStackTrace();
         }
