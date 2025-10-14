@@ -545,4 +545,14 @@ public final class koneksiDB {
         }
         return var;
     }
+    
+    public static String SIMRSDEVELOPMENT() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var = prop.getProperty("SIMRSDEVELOPMENT");
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
 }

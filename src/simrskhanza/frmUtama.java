@@ -500,8 +500,18 @@ public class frmUtama extends javax.swing.JFrame {
                 }
             });
         }
+       
+        try {
+            if (koneksiDB.SIMRSDEVELOPMENT().equals("Ya")) {
+                cekUpdateFileOtomatisDev();
+            } else {
+                cekUpdateFileOtomatis();
+            }
+        } catch (Exception e) {
+            System.out.println("E : " + e);
+            cekUpdateFileOtomatis();
+        }
         
-        cekUpdateFileOtomatis();
         cekApotek();
         cekNotifApotek();
         cekNotifLab();
@@ -7487,6 +7497,7 @@ public class frmUtama extends javax.swing.JFrame {
                             + "'" + nipLogin + "','" + Sequel.cariIsi("select now()") + "'", "Update versi SIMRS");
                     Valid.bikinFileTxt(versi, Sequel.cariFolderVersi(), "conf_versi.txt");
                     Tversi.setText(versi);
+                    lbl_update.setText("Modified by. UNIT SIMRS RAZA - Vs. " + versi + " [Activated]");
                 }
                 
                 Sequel.queryu("delete from history_aplikasi where date(waktu_update) < DATE_FORMAT(date_sub(now(), interval 30 day),'%Y-%m-%d')");
@@ -20826,6 +20837,41 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 //                System.out.println("File tidak ditemukan di folder aplikasi: " + file.getAbsolutePath());
 //                return;
 //            }
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH");
+            String waktu = sdf.format(new Date(file.lastModified()));
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+            SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String waktu1 = sdf1.format(new Date(file.lastModified()));
+            SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+            String hari = sdf2.format(new Date(file.lastModified()));
+
+            if (Sequel.cariIsi("select concat(tgl_update,' ',time_format(jam_update,'%H')) FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1").equals(waktu)) {
+                sttsFileSIMRS = "file simrs update";
+            } else {
+                sttsFileSIMRS = "file belum update";
+            }
+            System.out.println("File ditemukan di : " + file.getAbsolutePath() + "\n"
+                    + "Terakhir update SIMRS pada hari : " + Sequel.hariINDONESIA("SELECT date_format('" + hari + "','%W')") + ", Tgl. " + waktu1 + " Wita");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void cekUpdateFileOtomatisDev() {
+        sttsFileSIMRS = "";
+        try {
+            // Dapatkan folder tempat aplikasi dijalankan
+            String currentDir = System.getProperty("user.dir");
+            File file = new File(currentDir, "SIMRSKhanzaS.jar");
+
+//            if (!file.exists()) {
+//                System.out.println("File tidak ditemukan di folder aplikasi: " + file.getAbsolutePath());
+//                return;
+//            }
+
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH");
             String waktu = sdf.format(new Date(file.lastModified()));
 //                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -20841,8 +20887,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             } else {
                 sttsFileSIMRS = "file belum update";
             }
-            System.out.println("File ditemukan di : " + file.getAbsolutePath());
-            System.out.println("📅Terakhir update SIMRS pada hari : " + Sequel.hariINDONESIA("SELECT date_format('" + hari + "','%W')") + ", Tgl. " + waktu1 + " Wita");
+            System.out.println("File ditemukan di : " + file.getAbsolutePath() + "\n"
+                    + "Terakhir update SIMRS pada hari : " + Sequel.hariINDONESIA("SELECT date_format('" + hari + "','%W')") + ", Tgl. " + waktu1 + " Wita");
         } catch (Exception e) {
             e.printStackTrace();
         }
