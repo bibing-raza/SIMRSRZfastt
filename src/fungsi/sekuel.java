@@ -2923,6 +2923,19 @@ public final class sekuel {
 
         return dicari;
     }
+    
+    public String cariFolderVersi() {
+        dicari = "";
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            dicari = prop.getProperty("LOKASIFILEVERSI").toString();
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+
+        return dicari;
+    }
 
     public String cariFolderPrint() {
         dicari = "";

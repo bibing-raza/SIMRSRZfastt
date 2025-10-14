@@ -721,7 +721,7 @@ public final class ApotekBPJSKirimObat extends javax.swing.JDialog {
         JnsObat.setBounds(335, 70, 165, 23);
 
         Iterasi.setForeground(new java.awt.Color(0, 0, 0));
-        Iterasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0. Tanpa Iterasi", "1. Dengan Iterasi", "2. Dengan Iterasi", "Iterasi Selesai" }));
+        Iterasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0. Tanpa Iterasi", "1. Dengan Iterasi" }));
         Iterasi.setName("Iterasi"); // NOI18N
         FormInput.add(Iterasi);
         Iterasi.setBounds(730, 100, 120, 23);
@@ -1910,18 +1910,12 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         TInfoPRB.setText(cekViaBPJSKartu.informasiprolanisPRB);
         
         jmlSepIter = Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_sep='" + nosep + "'");
-        if (jmlSepIter <=1) {
-            TInfoIterasi.setText("-");
-            Iterasi.setSelectedIndex(0);
-        } else if (jmlSepIter == 2) {
+        if (jmlSepIter > 0) {
             TInfoIterasi.setText("Iter 1 Kali");
             Iterasi.setSelectedIndex(1);
-        } else if (jmlSepIter == 3) {
-            TInfoIterasi.setText("Iter 2 Kali");
-            Iterasi.setSelectedIndex(2);
         } else {
-            TInfoIterasi.setText("Selesai");
-            Iterasi.setSelectedIndex(3);
+            TInfoIterasi.setText("-");
+            Iterasi.setSelectedIndex(0);
         }
     }
     

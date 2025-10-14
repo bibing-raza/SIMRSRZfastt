@@ -535,4 +535,14 @@ public final class koneksiDB {
         }
         return var;
     }
+    
+    public static String LOKASIFILEVERSI() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var = prop.getProperty("LOKASIFILEVERSI");
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
 }

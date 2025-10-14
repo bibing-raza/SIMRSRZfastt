@@ -69,7 +69,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
 
         Object[] row = {"Nama RS", "Alamat RS", "Kota", "Propinsi", "Aktifkan?", "Wallpaper", "KontaK", "Email", "Logo RS Warna", "Kode PPK BPJS",
             "Kode PPK Inhealth", "Logo RS Hitam Putih", "Logo Kabupaten", "Logo RS Warna Miring",
-            "Auto Restart", "Periode Restart", "Tgl. Restart", "Jam Restart", "IP Address Tujuan", "IP Eksekusi"
+            "Auto Restart", "Periode Restart", "Tgl. Restart", "IP Address Tujuan", "IP Eksekusi"
         };
         tabMode = new DefaultTableModel(null, row) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -79,7 +79,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         tbAdmin.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbAdmin.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 19; i++) {
             TableColumn column = tbAdmin.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(150);
@@ -233,10 +233,6 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         cmbPeriode = new widget.ComboBox();
         label49 = new widget.Label();
         TtglRestart = new widget.Tanggal();
-        label50 = new widget.Label();
-        cmbJam = new widget.ComboBox();
-        cmbMnt = new widget.ComboBox();
-        cmbDtk = new widget.ComboBox();
         label54 = new widget.Label();
         chkAddress = new widget.CekBox();
         label55 = new widget.Label();
@@ -273,6 +269,10 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         versi = new widget.TextBox();
         jLabel23 = new widget.Label();
         tglUpdate = new widget.Tanggal();
+        jLabel25 = new widget.Label();
+        cmbJam = new widget.ComboBox();
+        cmbMnt = new widget.ComboBox();
+        cmbDtk = new widget.ComboBox();
         BtnSimpan1 = new widget.Button();
         BtnBaru1 = new widget.Button();
         BtnHapus1 = new widget.Button();
@@ -742,8 +742,13 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         label48.setBounds(1140, 38, 100, 23);
 
         cmbPeriode.setForeground(new java.awt.Color(0, 0, 0));
-        cmbPeriode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Tanggal", "Setiap Hari" }));
+        cmbPeriode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tanggal", "Setiap Hari" }));
         cmbPeriode.setName("cmbPeriode"); // NOI18N
+        cmbPeriode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPeriodeActionPerformed(evt);
+            }
+        });
         panelGlass1.add(cmbPeriode);
         cmbPeriode.setBounds(1245, 38, 85, 23);
 
@@ -754,7 +759,8 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         panelGlass1.add(label49);
         label49.setBounds(1140, 66, 100, 23);
 
-        TtglRestart.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-10-2025" }));
+        TtglRestart.setEditable(false);
+        TtglRestart.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-10-2025" }));
         TtglRestart.setDisplayFormat("dd-MM-yyyy");
         TtglRestart.setName("TtglRestart"); // NOI18N
         TtglRestart.setOpaque(false);
@@ -762,52 +768,12 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         panelGlass1.add(TtglRestart);
         TtglRestart.setBounds(1245, 66, 90, 23);
 
-        label50.setForeground(new java.awt.Color(0, 0, 0));
-        label50.setText("Jam Restart :");
-        label50.setName("label50"); // NOI18N
-        label50.setPreferredSize(new java.awt.Dimension(35, 23));
-        panelGlass1.add(label50);
-        label50.setBounds(1140, 94, 100, 23);
-
-        cmbJam.setForeground(new java.awt.Color(0, 0, 0));
-        cmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        cmbJam.setName("cmbJam"); // NOI18N
-        cmbJam.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbJamMouseReleased(evt);
-            }
-        });
-        panelGlass1.add(cmbJam);
-        cmbJam.setBounds(1245, 94, 45, 23);
-
-        cmbMnt.setForeground(new java.awt.Color(0, 0, 0));
-        cmbMnt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        cmbMnt.setName("cmbMnt"); // NOI18N
-        cmbMnt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbMntMouseReleased(evt);
-            }
-        });
-        panelGlass1.add(cmbMnt);
-        cmbMnt.setBounds(1295, 94, 45, 23);
-
-        cmbDtk.setForeground(new java.awt.Color(0, 0, 0));
-        cmbDtk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        cmbDtk.setName("cmbDtk"); // NOI18N
-        cmbDtk.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbDtkMouseReleased(evt);
-            }
-        });
-        panelGlass1.add(cmbDtk);
-        cmbDtk.setBounds(1345, 94, 45, 23);
-
         label54.setForeground(new java.awt.Color(0, 0, 0));
         label54.setText("Set IP Address :");
         label54.setName("label54"); // NOI18N
         label54.setPreferredSize(new java.awt.Dimension(35, 23));
         panelGlass1.add(label54);
-        label54.setBounds(1130, 122, 110, 23);
+        label54.setBounds(1130, 94, 110, 23);
 
         chkAddress.setBackground(new java.awt.Color(255, 255, 250));
         chkAddress.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -826,19 +792,19 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             }
         });
         panelGlass1.add(chkAddress);
-        chkAddress.setBounds(1245, 122, 80, 23);
+        chkAddress.setBounds(1245, 94, 80, 23);
 
         label55.setForeground(new java.awt.Color(0, 0, 0));
         label55.setText("IP Address Tujuan :");
         label55.setName("label55"); // NOI18N
         label55.setPreferredSize(new java.awt.Dimension(35, 23));
         panelGlass1.add(label55);
-        label55.setBounds(1130, 150, 110, 23);
+        label55.setBounds(1130, 122, 110, 23);
 
         Tipaddress.setForeground(new java.awt.Color(0, 0, 0));
         Tipaddress.setName("Tipaddress"); // NOI18N
         panelGlass1.add(Tipaddress);
-        Tipaddress.setBounds(1245, 150, 110, 23);
+        Tipaddress.setBounds(1245, 122, 110, 23);
 
         BtnSimpanPowerOff.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpanPowerOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clock.png"))); // NOI18N
@@ -854,7 +820,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             }
         });
         panelGlass1.add(BtnSimpanPowerOff);
-        BtnSimpanPowerOff.setBounds(1140, 180, 200, 30);
+        BtnSimpanPowerOff.setBounds(1140, 160, 200, 30);
 
         BtnSimpanPowerOff1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpanPowerOff1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
@@ -870,7 +836,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             }
         });
         panelGlass1.add(BtnSimpanPowerOff1);
-        BtnSimpanPowerOff1.setBounds(1140, 220, 220, 30);
+        BtnSimpanPowerOff1.setBounds(1140, 200, 220, 30);
 
         internalFrame1.add(panelGlass1, java.awt.BorderLayout.PAGE_START);
 
@@ -1153,13 +1119,13 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         panelisi5.add(versi);
 
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel23.setText("Tgl. Update :");
+        jLabel23.setText("Tgl. :");
         jLabel23.setName("jLabel23"); // NOI18N
-        jLabel23.setPreferredSize(new java.awt.Dimension(75, 24));
+        jLabel23.setPreferredSize(new java.awt.Dimension(40, 24));
         panelisi5.add(jLabel23);
 
         tglUpdate.setEditable(false);
-        tglUpdate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-10-2025" }));
+        tglUpdate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-10-2025" }));
         tglUpdate.setDisplayFormat("dd-MM-yyyy");
         tglUpdate.setName("tglUpdate"); // NOI18N
         tglUpdate.setOpaque(false);
@@ -1169,6 +1135,45 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             }
         });
         panelisi5.add(tglUpdate);
+
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setText("Jam :");
+        jLabel25.setName("jLabel25"); // NOI18N
+        jLabel25.setPreferredSize(new java.awt.Dimension(40, 24));
+        panelisi5.add(jLabel25);
+
+        cmbJam.setForeground(new java.awt.Color(0, 0, 0));
+        cmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cmbJam.setName("cmbJam"); // NOI18N
+        cmbJam.setPreferredSize(new java.awt.Dimension(45, 24));
+        cmbJam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbJamMouseReleased(evt);
+            }
+        });
+        panelisi5.add(cmbJam);
+
+        cmbMnt.setForeground(new java.awt.Color(0, 0, 0));
+        cmbMnt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbMnt.setName("cmbMnt"); // NOI18N
+        cmbMnt.setPreferredSize(new java.awt.Dimension(45, 24));
+        cmbMnt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbMntMouseReleased(evt);
+            }
+        });
+        panelisi5.add(cmbMnt);
+
+        cmbDtk.setForeground(new java.awt.Color(0, 0, 0));
+        cmbDtk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbDtk.setName("cmbDtk"); // NOI18N
+        cmbDtk.setPreferredSize(new java.awt.Dimension(45, 24));
+        cmbDtk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbDtkMouseReleased(evt);
+            }
+        });
+        panelisi5.add(cmbDtk);
 
         BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
@@ -1337,8 +1342,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
                     + "','" + Propinsi.getText() + "','" + Kontak.getText() + "','" + Email.getText()
                     + "','" + YesNo.getSelectedItem() + "','" + kdPPK.getText() + "','" + kdPPK1.getText() + "'", "Setting",
                     EGb, ELogo, ELogo1, ELogo2, ELogo3, "'" + cekrestart + "','" + cmbPeriode.getSelectedItem().toString() + "',"
-                    + "'" + Valid.SetTgl(TtglRestart.getSelectedItem() + "") + "','" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
-                    + "'" + cekip + "','" + Tipaddress.getText() + "'");
+                    + "'" + Valid.SetTgl(TtglRestart.getSelectedItem() + "") + "','" + cekip + "','" + Tipaddress.getText() + "'");
             tampil();
         } else if (tabMode.getRowCount() > 0) {
             JOptionPane.showMessageDialog(null, "Maaf, Hanya diijinkan satu Set Aplikasi...!!!!");
@@ -1480,8 +1484,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
                     + "','" + Propinsi.getText() + "','" + Kontak.getText() + "','" + Email.getText()
                     + "','" + YesNo.getSelectedItem() + "','" + kdPPK.getText() + "','" + kdPPK1.getText() + "'", "Setting",
                     EGb, ELogo, ELogo1, ELogo2, ELogo3, "'" + cekrestart + "','" + cmbPeriode.getSelectedItem().toString() + "',"
-                    + "'" + Valid.SetTgl(TtglRestart.getSelectedItem() + "") + "','" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
-                    + "'" + cekip + "','" + Tipaddress.getText() + "'");
+                    + "'" + Valid.SetTgl(TtglRestart.getSelectedItem() + "") + "','" + cekip + "','" + Tipaddress.getText() + "'");
             emptTeks();
             tampil();
         }
@@ -1550,11 +1553,10 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             ket_update.requestFocus();
         } else {
             Sequel.menyimpan("history_update", "'" + versi.getText() + "','" + Valid.SetTgl(tglUpdate.getSelectedItem() + "") + "',"
-                    + "'" + ket_update.getText() + "','0','" + Sequel.cariIsi("select time(now())") + "'");
+                    + "'" + ket_update.getText() + "','0','" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "'");
             
-//            frmUtama utama=frmUtama.getInstance();
-//            utama.Tversi.setText(versi.getText());
-            
+            frmUtama utama=frmUtama.getInstance();
+            utama.Tversi.setText(versi.getText());            
             tampilUpdate();
             emptUpdate();
         }
@@ -1593,10 +1595,11 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             ket_update.requestFocus();
         } else {
             Sequel.mengedit("history_update", "kode='" + kd_update + "'", "versi_update='" + versi.getText() + "', keterangan='" + ket_update.getText() + "', "
-                    + "tgl_update='" + Valid.SetTgl(tglUpdate.getSelectedItem() + "") + "',jam_update='" + Sequel.cariIsi("select time(now()) jam") + "' ");
+                    + "tgl_update='" + Valid.SetTgl(tglUpdate.getSelectedItem() + "") + "',"
+                    + "jam_update='" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "' ");
             
-//            frmUtama utama=frmUtama.getInstance();
-//            utama.Tversi.setText(versi.getText());            
+            frmUtama utama=frmUtama.getInstance();
+            utama.Tversi.setText(versi.getText());            
             tampilUpdate();
             emptUpdate();
         }
@@ -1702,37 +1705,15 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCariKeyPressed
 
     private void chkRestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkRestartActionPerformed
-        cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
-        cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
-        cmbDtk.setSelectedIndex(0);
         TtglRestart.setDate(new Date());
-
         if (chkRestart.isSelected() == true) {
             cmbPeriode.setEnabled(true);
             TtglRestart.setEnabled(true);
-            cmbJam.setEnabled(true);
-            cmbMnt.setEnabled(true);
-            cmbDtk.setEnabled(true);
         } else {
             cmbPeriode.setEnabled(false);
             TtglRestart.setEnabled(false);
-            cmbJam.setEnabled(false);
-            cmbMnt.setEnabled(false);
-            cmbDtk.setEnabled(false);
         }
     }//GEN-LAST:event_chkRestartActionPerformed
-
-    private void cmbJamMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJamMouseReleased
-        AutoCompleteDecorator.decorate(cmbJam);
-    }//GEN-LAST:event_cmbJamMouseReleased
-
-    private void cmbMntMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMntMouseReleased
-        AutoCompleteDecorator.decorate(cmbMnt);
-    }//GEN-LAST:event_cmbMntMouseReleased
-
-    private void cmbDtkMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtkMouseReleased
-        AutoCompleteDecorator.decorate(cmbDtk);
-    }//GEN-LAST:event_cmbDtkMouseReleased
 
     private void chkAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAddressActionPerformed
         Tipaddress.setText("");
@@ -1767,7 +1748,6 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
                     Sequel.mengedit("setting", "nama_instansi='" + tbAdmin.getValueAt(tbAdmin.getSelectedRow(), 0).toString() + "'",
                             "auto_restart='" + cekrestart + "', periode_restart='" + cmbPeriode.getSelectedItem().toString() + "', "
                             + "tgl_restart='" + Valid.SetTgl(TtglRestart.getSelectedItem() + "") + "', "
-                            + "jam_restart='" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "', "
                             + "ip_addres_tertentu='" + cekip + "', ip_eksekusi='" + Tipaddress.getText() + "'");
                     
                     emptTeks();
@@ -1786,12 +1766,11 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
 
     private void BtnSimpanPowerOff1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanPowerOff1ActionPerformed
         if (tbAdmin.getSelectedRow() > -1) {
-            String tglSet = "", jamSet = "";
+            String tglSet = "";
             tglSet = Sequel.cariIsi("select date(now())");
-            jamSet = Sequel.cariIsi("select time(now())");
             
             Sequel.mengedit("setting", "nama_instansi='" + tbAdmin.getValueAt(tbAdmin.getSelectedRow(), 0).toString() + "'",
-                    "auto_restart='tidak', tgl_restart='" + tglSet + "', jam_restart='" + jamSet + "', ip_addres_tertentu='tidak', ip_eksekusi=''");
+                    "auto_restart='tidak', tgl_restart='" + tglSet + "', ip_addres_tertentu='tidak', ip_eksekusi=''");
 
             emptTeks();
             tampil();
@@ -1801,6 +1780,27 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             tbAdmin.requestFocus();
         }
     }//GEN-LAST:event_BtnSimpanPowerOff1ActionPerformed
+
+    private void cmbPeriodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPeriodeActionPerformed
+        TtglRestart.setDate(new Date());
+        if (cmbPeriode.getSelectedIndex() == 0) {
+            TtglRestart.setEnabled(true);
+        } else {
+            TtglRestart.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbPeriodeActionPerformed
+
+    private void cmbJamMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJamMouseReleased
+        AutoCompleteDecorator.decorate(cmbJam);
+    }//GEN-LAST:event_cmbJamMouseReleased
+
+    private void cmbMntMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMntMouseReleased
+        AutoCompleteDecorator.decorate(cmbMnt);
+    }//GEN-LAST:event_cmbMntMouseReleased
+
+    private void cmbDtkMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtkMouseReleased
+        AutoCompleteDecorator.decorate(cmbDtk);
+    }//GEN-LAST:event_cmbDtkMouseReleased
 
     /**
     * @param args the command line arguments
@@ -1873,6 +1873,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame3;
     private widget.Label jLabel23;
     private widget.Label jLabel24;
+    private widget.Label jLabel25;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.TextBox kdPPK;
@@ -1895,7 +1896,6 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     private widget.Label label47;
     private widget.Label label48;
     private widget.Label label49;
-    private widget.Label label50;
     private widget.Label label54;
     private widget.Label label55;
     private widget.panelGlass panelGlass1;
@@ -1920,7 +1920,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     private void tampil() {
         String sql = "select nama_instansi, alamat_instansi, kabupaten, propinsi, aktifkan, wallpaper,kontak,"
                 + "email,logo,kode_ppk,kode_ppkinhealth, logo_hitam_putih, logo_kabupaten, logo_rs_warna_miring1, auto_restart, periode_restart, "
-                + "tgl_restart, jam_restart, ip_addres_tertentu, ip_eksekusi from setting";
+                + "tgl_restart, ip_addres_tertentu, ip_eksekusi from setting";
         prosesCari(sql);
     }
 
@@ -1948,8 +1948,7 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
                     rs.getString(16),
                     rs.getString(17),
                     rs.getString(18),
-                    rs.getString(19),
-                    rs.getString(20)
+                    rs.getString(19)
                 };
                 tabMode.addRow(data);
             }
@@ -1976,27 +1975,22 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
             cekrestart = tbAdmin.getValueAt(tbAdmin.getSelectedRow(), 14).toString();
             cmbPeriode.setSelectedItem(tbAdmin.getValueAt(tbAdmin.getSelectedRow(), 15).toString());
             Valid.SetTgl(TtglRestart, tbAdmin.getValueAt(tbAdmin.getSelectedRow(), 16).toString());
-            cmbJam.setSelectedItem(tbAdmin.getValueAt(tbAdmin.getSelectedRow(), 17).toString().substring(0, 2));
-            cmbMnt.setSelectedItem(tbAdmin.getValueAt(tbAdmin.getSelectedRow(), 17).toString().substring(3, 5));
-            cmbDtk.setSelectedItem(tbAdmin.getValueAt(tbAdmin.getSelectedRow(), 17).toString().substring(6, 8));
             
-            cekip = tbAdmin.getValueAt(tbAdmin.getSelectedRow(), 18).toString();
-            Tipaddress.setText(tbAdmin.getValueAt(tbAdmin.getSelectedRow(), 19).toString());
+            cekip = tbAdmin.getValueAt(tbAdmin.getSelectedRow(), 17).toString();
+            Tipaddress.setText(tbAdmin.getValueAt(tbAdmin.getSelectedRow(), 18).toString());
             
             if (cekrestart.equals("ya")) {
                 chkRestart.setSelected(true);
                 cmbPeriode.setEnabled(true);
-                TtglRestart.setEnabled(true);
-                cmbJam.setEnabled(true);
-                cmbMnt.setEnabled(true);
-                cmbDtk.setEnabled(true);
+                if (cmbPeriode.getSelectedIndex() == 0) {
+                    TtglRestart.setEnabled(true);
+                } else {
+                    TtglRestart.setEnabled(false);
+                }                
             } else {
                 chkRestart.setSelected(false);
                 cmbPeriode.setEnabled(false);
                 TtglRestart.setEnabled(false);
-                cmbJam.setEnabled(false);
-                cmbMnt.setEnabled(false);
-                cmbDtk.setEnabled(false);
             }
             
             if (cekip.equals("ya")) {
@@ -2076,27 +2070,19 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         chkRestart.setSelected(false);
         cmbPeriode.setSelectedIndex(0);
         TtglRestart.setDate(new Date());
-        cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
-        cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
-        cmbDtk.setSelectedIndex(0);
         cmbPeriode.setEnabled(false);
         TtglRestart.setEnabled(false);
-        cmbJam.setEnabled(false);
-        cmbMnt.setEnabled(false);
-        cmbDtk.setEnabled(false);
 
         chkAddress.setSelected(false);
         Tipaddress.setText("");
         Tipaddress.setEnabled(false);
-    }
-    
+    }    
     
     private String gambar(String id) {
         return folder + File.separator + id.trim() + ".jpg";
     }
 
     private String folder;
-
     public class Painter extends Canvas {
 
         Image image;
@@ -2205,13 +2191,16 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
     }
     
     private void getdataUpdate() {
-        kd_update= "";
-        
-        if (tbUpdate.getSelectedRow() != -1) {            
+        kd_update = "";
+
+        if (tbUpdate.getSelectedRow() != -1) {
             Valid.SetTgl(tglUpdate, tbUpdate.getValueAt(tbUpdate.getSelectedRow(), 0).toString());
             versi.setText(tbUpdate.getValueAt(tbUpdate.getSelectedRow(), 2).toString());
             ket_update.setText(tbUpdate.getValueAt(tbUpdate.getSelectedRow(), 3).toString());
-            kd_update = tbUpdate.getValueAt(tbUpdate.getSelectedRow(), 4).toString();            
+            kd_update = tbUpdate.getValueAt(tbUpdate.getSelectedRow(), 4).toString();
+            cmbJam.setSelectedItem(tbUpdate.getValueAt(tbUpdate.getSelectedRow(), 1).toString().substring(0, 2));
+            cmbMnt.setSelectedItem(tbUpdate.getValueAt(tbUpdate.getSelectedRow(), 1).toString().substring(3, 5));
+            cmbDtk.setSelectedItem(tbUpdate.getValueAt(tbUpdate.getSelectedRow(), 1).toString().substring(6, 8));
             ket_update.requestFocus();
         }
     }
@@ -2221,5 +2210,8 @@ public class DlgSetAplikasi extends javax.swing.JDialog {
         versi.setText("");
         ket_update.setText("");
         tglUpdate.setDate(new Date());
+        cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+        cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+        cmbDtk.setSelectedIndex(0);
     }
 }

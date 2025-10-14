@@ -262,8 +262,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import javax.swing.Timer;
@@ -402,7 +400,6 @@ import tranfusidarah.UTDStokDarah;
 import simrskhanza.DlgInputPonek;
 import simrskhanza.DlgPenanggungJawab;
 import java.net.InetAddress;
-import java.net.URL;
 import java.util.Calendar;
 import kepegawaian.DlgDepartemen;
 import keuangan.DlgJaminanTransaksi;
@@ -421,8 +418,13 @@ import rekammedis.RMStatusKakiDiabetes;
 import rekammedis.RMTriasePediatrik;
 import rekammedis.RMTriasePonek;
 import setting.DlgHistoriLoginUser;
-import java.io.*;
-import java.util.Properties;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -432,73 +434,17 @@ public class frmUtama extends javax.swing.JFrame {
     private final Connection koneksi = koneksiDB.condb();
     private final sekuel Sequel = new sekuel();
     private final validasi Valid = new validasi();
-    private File configFile;
     private static frmUtama myInstance;
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
     private final Properties prop = new Properties();
     private int jmlmenu = 0, grid = 0, tinggi = 0, i = 0;
-    private String coder_nik = "", pilihpage = "", judulform = "", host = "", cek = "", cekApt = "", versi = "", ipKomputer = "", nipLogin = "",
-            jamnya = "", menitnya = "", detiknya = "";
+    private String coder_nik = "", pilihpage = "", judulform = "", host = "", cek = "", cekApt = "", ipKomputer = "", nipLogin = "",
+            jamnya = "", menitnya = "", detiknya = "", sttsFileSIMRS = "";
     private final DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
     private final DlgKamarInap kamarinap = new DlgKamarInap(null, false);
     private final DlgIGD igd = new DlgIGD(this, false);  
     private BackgroundMusic music;
-    
-//    public class KonfigurasiApp {
-//        public KonfigurasiApp() {
-//            // Tentukan lokasi config tergantung OS
-//            String os = System.getProperty("os.name").toLowerCase();
-//            String appName = "SIMRS";
-//            String basePath;
-//
-//            if (os.contains("win")) {
-//                basePath = System.getenv("APPDATA") + File.separator + appName;
-//            } else if (os.contains("mac")) {
-//                basePath = System.getProperty("user.home") + "/Library/Application Support/" + appName;
-//            } else {
-//                basePath = System.getProperty("user.home") + "/.config/" + appName;
-//            }
-//
-//            // Pastikan foldernya ada
-//            File dir = new File(basePath);
-//            if (!dir.exists()) {
-//                dir.mkdirs();
-//            }
-//
-//            // Tentukan file config
-//            configFile = new File(dir, "config.properties");
-//
-//            // Jika file belum ada, buat baru
-//            if (!configFile.exists()) {
-//                try {
-//                    configFile.createNewFile();
-//                    Properties props = new Properties();
-//                    props.setProperty("versi_text", "-");
-//                    try (FileOutputStream out = new FileOutputStream(configFile)) {
-//                        props.store(out, "File konfigurasi awal");
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//
-//        // Baca versi
-//        public String bacaVersi() {
-//            Properties props = new Properties();
-//            try (FileInputStream in = new FileInputStream(configFile)) {
-//                props.load(in);
-//                return props.getProperty("versi_text", "-");
-//            } catch (IOException e) {
-//                return "-";
-//            }
-//        }
-//
-//        public File getConfigFile() {
-//            return configFile;
-//        }
-//    }
     
     /**
      * Creates new form frmUtama
@@ -555,6 +501,7 @@ public class frmUtama extends javax.swing.JFrame {
             });
         }
         
+        cekUpdateFileOtomatis();
         cekApotek();
         cekNotifApotek();
         cekNotifLab();
@@ -567,15 +514,13 @@ public class frmUtama extends javax.swing.JFrame {
         otomatisRefreshNotifRad();
         akses.tRefreshNotifRad.start();  
         tampilIpAddress();        
-        jam();
-        this.configFile = null;
+        jam();        
     }
 
     public static frmUtama getInstance() {
         if (myInstance == null) {
             myInstance = new frmUtama();
         }
-
         return myInstance;        
     }
 
@@ -6637,7 +6582,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13/10/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14/10/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6703,9 +6648,6 @@ public class frmUtama extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
-            }
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
             }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -7081,7 +7023,7 @@ public class frmUtama extends javax.swing.JFrame {
         footer_lbl_update.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         footer_lbl_update.setIconTextGap(3);
         footer_lbl_update.setName("footer_lbl_update"); // NOI18N
-        footer_lbl_update.setPreferredSize(new java.awt.Dimension(255, 23));
+        footer_lbl_update.setPreferredSize(new java.awt.Dimension(250, 23));
         internalFrame4.add(footer_lbl_update);
 
         Tversi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -7390,8 +7332,9 @@ public class frmUtama extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         DlgHome.dispose();
-        System.exit(0);
+        System.exit(0);        
     }//GEN-LAST:event_formWindowClosed
 
     private void BtnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseActionPerformed
@@ -7410,11 +7353,10 @@ public class frmUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnCancelActionPerformed
 
     private void BtnLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogActionPerformed
-//        if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1"))) {
-//            JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terakhir...!!!!");
-//        } else {
-//            Tversi.setText(Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1"));
-//        }
+        if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1"))) {
+            JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terbaru ("
+                    + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...!!!!");
+        }
 
         FlayMenu.setVisible(false);
         akses.setpenjualan_obatfalse();
@@ -7440,7 +7382,7 @@ public class frmUtama extends javax.swing.JFrame {
                 kdUser.setText("");
                 ket_update.setText("");
                 lbl_update.setText("Modified by. UNIT SIMRS RAZA - Vs. " + Tversi.getText() + " [Activated]");
-                footer_lbl_update.setText(footer_lbl_update.getText() + " " + Tversi.getText());
+                footer_lbl_update.setText(" Didesain & dibuat oleh Khanza.Soft Media - Vs.");
                 BtnMenu.setEnabled(false);
                 isTutup();
                 break;
@@ -7539,8 +7481,16 @@ public class frmUtama extends javax.swing.JFrame {
                     nipLogin = akses.getkode();
                 }
                 
-                Sequel.menyimpanIgnore("history_aplikasi", "'" + ipKomputer + "','" + versi + "','SIMRS','" + nipLogin + "','" + Sequel.cariIsi("select now()") + "'", "Update versi SIMRS");
+                if (sttsFileSIMRS.equals("file simrs update")) {
+                    String versi = Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1");
+                    Sequel.menyimpanIgnore("history_aplikasi", "'" + ipKomputer + "','" + versi + "','SIMRS',"
+                            + "'" + nipLogin + "','" + Sequel.cariIsi("select now()") + "'", "Update versi SIMRS");
+                    Valid.bikinFileTxt(versi, Sequel.cariFolderVersi(), "conf_versi.txt");
+                    Tversi.setText(versi);
+                }
+                
                 Sequel.queryu("delete from history_aplikasi where date(waktu_update) < DATE_FORMAT(date_sub(now(), interval 30 day),'%Y-%m-%d')");
+                Sequel.queryu("delete from history_update where tgl_update < DATE_FORMAT(date_sub(now(), interval 30 day),'%Y-%m-%d')");
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }
@@ -7548,12 +7498,12 @@ public class frmUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnLoginActionPerformed
 
     private void BtnToolKamnapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolKamnapActionPerformed
-//        if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1"))) {
-//            JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terakhir...!!!!");
-//        } else {
-//            Tversi.setText(Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1"));
-//        }
+        if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1"))) {
+            JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terbaru ("
+                    + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...!!!!");
+        }
         
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         kamarinap.isCek();
@@ -7579,6 +7529,7 @@ private void edPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edP
 
 private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuActionPerformed
     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+    Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
     isTutup();
 //    DlgHome.setSize(PanelUtama.getWidth() - 45, PanelUtama.getHeight() - 45);
     DlgHome.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -7600,6 +7551,7 @@ private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
 private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolKasirActionPerformed
     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+    Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
     isTutup();
     akses.tRefreshAntrian.start();
     kasirralan.isCek();
@@ -7614,6 +7566,7 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
 private void BtnToolRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolRegActionPerformed
     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+    Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
     isTutup();    
     DlgReg reg = new DlgReg(null, false);
     reg.emptTeks();
@@ -8724,6 +8677,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }//GEN-LAST:event_btnSetupTarifActionPerformed
 
     private void btnToolLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToolLabActionPerformed
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         isTutup();
         FlayMenu.removeAll();
         FlayMenu.add(btnPermintaanLab);
@@ -8735,6 +8689,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void MnTarifKamarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTarifKamarActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         DlgHome.dispose();
         InformasiKamar belum = new InformasiKamar(this, true);
         belum.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -8745,6 +8700,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void MnPasienRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPasienRanapActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         DlgHome.dispose();
         InformasiKamarInap informasikamar = new InformasiKamarInap(this, false);
         informasikamar.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -8755,6 +8711,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void MnJadwalDokterRalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnJadwalDokterRalanActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         DlgHome.dispose();
         InformasiJadwal belum = new InformasiJadwal(this, true);
         belum.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -8765,6 +8722,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void MnTarifRalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTarifRalanActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         DlgHome.dispose();
         InformasiTarifRalan belum = new InformasiTarifRalan(this, true);
         belum.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -8775,6 +8733,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void MnTarifLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTarifLabActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         DlgHome.dispose();
         InformasiTarifLab belum = new InformasiTarifLab(this, true);
         belum.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -8785,6 +8744,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void MnTarifOperasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTarifOperasiActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         DlgHome.dispose();
         InformasiTarifOperasi belum = new InformasiTarifOperasi(this, true);
         belum.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -8795,6 +8755,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void MnTarifRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTarifRanapActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         DlgHome.dispose();
         InformasiTarifRanap belum = new InformasiTarifRanap(this, true);
         belum.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -8888,6 +8849,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void MnTarifRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTarifRadActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         DlgHome.dispose();
         InformasiTarifRadiologi belum = new InformasiTarifRadiologi(this, false);
         belum.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -8910,6 +8872,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }//GEN-LAST:event_btnPeriksaRadiologiActionPerformed
 
     private void btnToolIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToolIGDActionPerformed
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         btnIGDActionPerformed(evt);
     }//GEN-LAST:event_btnToolIGDActionPerformed
 
@@ -8984,6 +8947,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }//GEN-LAST:event_btnIGDActionPerformed
 
     private void btnToolRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToolRadActionPerformed
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         isTutup();
         FlayMenu.removeAll();
         FlayMenu.add(btnPermintaanRadiologi);
@@ -9160,6 +9124,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }//GEN-LAST:event_btnRl38ActionPerformed
 
     private void btnBridgingEklaimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBridgingEklaimActionPerformed
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         isTutup();
         FlayMenu.removeAll();
         FlayMenu.add(btnBridgingEklaimINACBG);
@@ -9208,6 +9173,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void MnPenggunaanKamarRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPenggunaanKamarRanapActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         DlgHome.dispose();
         InformasiAnalisaKamin analisakamin = new InformasiAnalisaKamin(this, false);
         analisakamin.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -9543,6 +9509,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }//GEN-LAST:event_formComponentMoved
 
     private void BtnToolJualObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolJualObatActionPerformed
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         isTutup();
         FlayMenu.removeAll();
         FlayMenu.add(btnInputPenjualan);
@@ -9767,8 +9734,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         setToolbar();
-//        KonfigurasiApp config = new KonfigurasiApp();
-//        Tversi.setText(config.bacaVersi());
+        cekVersi();
+        lbl_update.setText("Modified by. UNIT SIMRS RAZA - Vs. " + Tversi.getText() + " [Activated]");
     }//GEN-LAST:event_formWindowOpened
 
     private void btnRincianPiutangPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRincianPiutangPasienActionPerformed
@@ -10693,6 +10660,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void MnTarifINACBGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTarifINACBGActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         DlgHome.dispose();
         InformasiTarifINACBG belum = new InformasiTarifINACBG(this, true);
         belum.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -10704,6 +10672,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private void MnTelusurKunjunganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTelusurKunjunganActionPerformed
         if (akses.getkode().equals("Admin Utama") || (akses.gettelusurpasien())) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
             DlgHome.dispose();
             InformasiTelusurKunjunganPasien telusur = new InformasiTelusurKunjunganPasien(this, true);
             telusur.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -11847,6 +11816,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }//GEN-LAST:event_btnDashboardeResepRanapActionPerformed
 
     private void BtnDasboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDasboardActionPerformed
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         isTutup();
         FlayMenu.removeAll();
         FlayMenu.add(btnDashboardeResepRalan);
@@ -11959,12 +11929,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }//GEN-LAST:event_jMenu4MenuSelected
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
         isTutup();
         DlgHome.dispose();
         DlgAbout About = new DlgAbout(this, true);
         About.setSize(PanelWall.getWidth(), PanelWall.getHeight());
         About.setLocationRelativeTo(PanelWall);
-        About.setVisible(true);
+        About.setVisible(true);        
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void btnMasterResikoDecubitusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterResikoDecubitusActionPerformed
@@ -12981,10 +12952,6 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         form.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnBPJSDataTerkirimApotekActionPerformed
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-//        simpanVersi(Tversi.getText());
-    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -20705,14 +20672,12 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }
     
     private void tampilIpAddress() {
-        versi = "";
         ipKomputer = "";
         String ipAddresKomputer = "";
         try {
             InetAddress ip = InetAddress.getLocalHost();
             ipAddresKomputer = ip.getHostAddress();
             lblIPaddress.setText("IP Address : " + ipAddresKomputer);
-            versi = Sequel.cariIsi("select versi_update from history_update order by kode desc limit 1");
             ipKomputer = ipAddresKomputer;
         } catch (Exception e) {            
             System.out.println("Gagal mendapatkan alamat IP host: " + e.getMessage());
@@ -20755,23 +20720,25 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     
     private void cekKomputer() {
         String setTgl = "";
+        int nilaiJam = 0;
         setTgl = Sequel.cariIsi("select date(now())");
+        nilaiJam = Sequel.cariInteger("select time(now()) >='00:05:00'");
         
         try {
             ps1 = koneksi.prepareStatement("select * from setting");
             try {
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
-                    //restart
-                    if (rs1.getString("auto_restart").equals("ya")) {
+                    //eksekusi restart
+                    if (rs1.getString("auto_restart").equals("ya") && sttsFileSIMRS.equals("file belum update")) {
                         if (rs1.getString("ip_addres_tertentu").equals("ya")) {
                             if (rs1.getString("ip_eksekusi").equals(ipKomputer)) {
                                 if (rs1.getString("periode_restart").equals("Setiap Hari")) {
-                                    if (rs1.getString("jam_restart").equals(pukulJam.getText())) {
+                                    if (nilaiJam > 0) {
                                         autoRestartKomputer();
                                     }
-                                } else if (rs1.getString("periode_restart").equals("Tanggal") || rs1.getString("periode_restart").equals("-")) {
-                                    if (rs1.getString("tgl_restart").equals(setTgl) && rs1.getString("jam_restart").equals(pukulJam.getText())) {
+                                } else if (rs1.getString("periode_restart").equals("Tanggal")) {
+                                    if (rs1.getString("tgl_restart").equals(setTgl) && nilaiJam > 0) {
                                         autoRestartKomputer();
                                     }
                                 }
@@ -20780,11 +20747,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                             }
                         } else {
                             if (rs1.getString("periode_restart").equals("Setiap Hari")) {
-                                if (rs1.getString("jam_restart").equals(pukulJam.getText())) {
+                                if (nilaiJam > 0) {
                                     autoRestartKomputer();
                                 }
-                            } else if (rs1.getString("periode_restart").equals("Tanggal") || rs1.getString("periode_restart").equals("-")) {
-                                if (rs1.getString("tgl_restart").equals(setTgl) && rs1.getString("jam_restart").equals(pukulJam.getText())) {
+                            } else if (rs1.getString("periode_restart").equals("Tanggal")) {
+                                if (rs1.getString("tgl_restart").equals(setTgl) && nilaiJam > 0) {
                                     autoRestartKomputer();
                                 }
                             }
@@ -20828,26 +20795,86 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         timer.start();
     }
     
-//    public void simpanVersi(String versi) {
-//        Properties props = new Properties();
-//
-//        // Muat dulu file lama agar data lain tidak hilang
-//        if (configFile.exists()) {
-//            try (FileInputStream in = new FileInputStream(configFile)) {
-//                props.load(in);
-//            } catch (IOException e) {
-//                e.printStackTrace();
+    private void cekVersi() {
+        String filePath = Sequel.cariFolderVersi() + "conf_versi.txt";
+        StringBuilder content = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line);
+            }
+
+            // Tampilkan isi file ke JTextField
+            Tversi.setText(content.toString());
+
+            System.out.println("Versi berhasil dibaca dari file : " + filePath);
+        } catch (IOException e) {
+            System.err.println("Gagal membaca file versi : " + e.getMessage());
+            Tversi.setText("-"); // kosongkan jika gagal
+        }
+    }
+    
+    private void cekUpdateFileOtomatis() {
+        sttsFileSIMRS = "";
+        try {
+            // Dapatkan folder tempat aplikasi dijalankan
+            if (Sequel.cariFolderVersi().contains("bibing")) {
+                String currentDir = System.getProperty("user.dir");
+                File file = new File(currentDir, "SIMRSKhanzaS.jar");
+
+//            if (!file.exists()) {
+//                System.out.println("File tidak ditemukan di folder aplikasi: " + file.getAbsolutePath());
+//                return;
 //            }
-//        }
-//
-//        // Ubah atau tambahkan versi_text
-//        props.setProperty("versi_text", versi);
-//
-//        // Simpan kembali ke file
-//        try (FileOutputStream out = new FileOutputStream(configFile)) {
-//            props.store(out, "Konfigurasi Aplikasi");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH");
+                String waktu = sdf.format(new Date(file.lastModified()));
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+                SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");                
+                String waktu1 = sdf1.format(new Date(file.lastModified()));
+                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                String hari = sdf2.format(new Date(file.lastModified()));
+
+                if (Sequel.cariIsi("select concat(tgl_update,' ',time_format(jam_update,'%H')) FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1").equals(waktu)) {
+                    sttsFileSIMRS = "file simrs update";
+                } else {
+                    sttsFileSIMRS = "file belum update";
+                }
+                System.out.println("File ditemukan di : " + file.getAbsolutePath());
+                System.out.println("📅Terakhir update SIMRS pada hari : " + Sequel.hariINDONESIA("SELECT date_format('" + hari + "','%W')") + ", Tgl. " + waktu1 + " Wita");
+                
+            } else {
+                String currentDir = System.getProperty("user.dir");
+                File file = new File(currentDir, "SIMRSKhanza.jar");
+                
+//            if (!file.exists()) {
+//                System.out.println("File tidak ditemukan di folder aplikasi: " + file.getAbsolutePath());
+//                return;
+//            }
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH");
+                String waktu = sdf.format(new Date(file.lastModified()));
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+                SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");                
+                String waktu1 = sdf1.format(new Date(file.lastModified()));
+                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                String hari = sdf2.format(new Date(file.lastModified()));
+
+                if (Sequel.cariIsi("select concat(tgl_update,' ',time_format(jam_update,'%H')) FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1").equals(waktu)) {
+                    sttsFileSIMRS = "file simrs update";
+                } else {
+                    sttsFileSIMRS = "file belum update";
+                }
+                System.out.println("File ditemukan di : " + file.getAbsolutePath());
+                System.out.println("📅Terakhir update SIMRS pada hari : " + Sequel.hariINDONESIA("SELECT date_format('" + hari + "','%W')") + ", Tgl. " + waktu1 + " Wita");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

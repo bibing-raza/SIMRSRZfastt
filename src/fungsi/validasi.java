@@ -18,9 +18,11 @@ import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetAddress;
@@ -1636,6 +1638,36 @@ public final class validasi {
             }
 
         } catch (WriterException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void bikinFileTxt(String teks, String folder, String fileName) {
+        try {
+            // Pastikan folder diakhiri dengan slash/backslash yang sesuai OS
+            String separator = File.separator;
+            if (!folder.endsWith(separator)) {
+                folder = folder + separator;
+            }
+
+            // Pastikan folder ada
+            Files.createDirectories(Paths.get(folder));
+
+            // Buat file path lengkap
+            String filePath = folder + fileName;
+
+            // Buat objek file
+            File file = new File(filePath);
+
+            // Tulis teks ke file (replace jika sudah ada)
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, false))) {
+                writer.write(teks);
+            }
+
+            System.out.println("File berhasil dibuat/diupdate di: " + file.getAbsolutePath());
+
+        } catch (IOException e) {
+            System.err.println("Gagal membuat file: " + e.getMessage());
             e.printStackTrace();
         }
     }
