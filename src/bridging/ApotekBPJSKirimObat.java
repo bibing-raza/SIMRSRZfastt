@@ -892,6 +892,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
                     if (!nameNode.path("code").asText().equals("200")) {
                         JOptionPane.showMessageDialog(null, "ERROR : " + nameNode.path("message").asText());
+                        System.out.println("Pesan WS : " + nameNode.path("message").asText());
                         if (TabResep.getSelectedIndex() == 0) {
                             ppHapusContengActionPerformed(null);
                         } else {
@@ -901,7 +902,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
                     if (nameNode.path("code").asText().equals("200")) {
                         response = mapper.readTree(api.Decrypt(root.path("response").asText(), utc));
-                        System.out.println("Response : " + response);
+                        System.out.println("Response : " + response + "\n\nPesan WS : " + nameNode.path("message").asText());
                         if (Sequel.cariInteger("SELECT COUNT(-1) FROM iter_obat_bpjs WHERE no_sep='" + NoSEP.getText() + "' ") > 1) {
                             pesan = "Iter 2";
                         } else if (Sequel.cariInteger("SELECT COUNT(-1) FROM iter_obat_bpjs WHERE no_sep='" + NoSEP.getText() + "' ") == 1) {
@@ -976,7 +977,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                                             "0",
                                                             no_apotek
                                                         }) == true) {
-                                                            System.out.println("Obat " + tbNonRacikan.getValueAt(i, 3).toString() + " Berhasil disimpan");
+                                                            System.out.println("Obat " + tbNonRacikan.getValueAt(i, 3).toString() + " Berhasil disimpan\n\nPesan WS : " + nameNode.path("message").asText());
 //                                                            JOptionPane.showMessageDialog(null, "Obat " + tbNonRacikan.getValueAt(i, 3).toString() + " Berhasil disimpan");
                                                         }
                                                     } else {
@@ -1050,7 +1051,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                                         "1",
                                                         no_apotek
                                                     }) == true) {
-                                                        System.out.println("Obat " + tbDetailObatRacikan.getValueAt(i, 4).toString() + " Berhasil disimpan");
+                                                        System.out.println("Obat " + tbDetailObatRacikan.getValueAt(i, 4).toString() + " Berhasil disimpan\n\nPesan WS : " + nameNode.path("message").asText());
 //                                                        JOptionPane.showMessageDialog(null, "Obat racikan" + tbDetailObatRacikan.getValueAt(i, 4).toString() + " Berhasil disimpan");
                                                     }
                                                 } else {
@@ -1106,7 +1107,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
                     if (nameNode.path("code").asText().equals("200")) {
                         response = mapper.readTree(api.Decrypt(root.path("response").asText(), utc));
-                        System.out.println("Response : " + response);
+                        System.out.println("Response : " + response + "\n\nPesan WS : " + nameNode.path("message").asText());
                         if (Sequel.menyimpantf2("bridging_apotek_bpjs", "?,?,?,?,?,?,?,?,?,?,?,?,?", "data", 13,
                                 new String[]{
                                     response.path("noSep_Kunjungan").asText(),
@@ -1171,7 +1172,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                                             "0",
                                                             no_apotek
                                                         }) == true) {
-                                                            System.out.println("Obat " + tbNonRacikan.getValueAt(i, 3).toString() + " Berhasil disimpan");
+                                                            System.out.println("Obat " + tbNonRacikan.getValueAt(i, 3).toString() + " Berhasil disimpan\n\nPesan WS : " + nameNode.path("message").asText());
 //                                                            JOptionPane.showMessageDialog(null, "Obat " + tbNonRacikan.getValueAt(i, 3).toString() + " Berhasil disimpan");
                                                         }
                                                     } else {
@@ -1246,7 +1247,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                                         "1",
                                                         no_apotek
                                                     }) == true) {
-                                                        System.out.println("Obat " + tbDetailObatRacikan.getValueAt(i, 4).toString() + " Berhasil disimpan");
+                                                        System.out.println("Obat " + tbDetailObatRacikan.getValueAt(i, 4).toString() + " Berhasil disimpan\n\nPesan WS : " + nameNode.path("message").asText());
 //                                                        JOptionPane.showMessageDialog(null, "Obat racikan" + tbDetailObatRacikan.getValueAt(i, 4).toString() + " Berhasil disimpan");
                                                     }
                                                 } else {
@@ -1292,7 +1293,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                             + "\"KdDokter\": \"" + KdDPJP.getText() + "\","
                             + "\"iterasi\":\"" + Iterasi.getSelectedItem().toString().substring(0, 1) + "\""
                             + "}  ";
-                    System.out.println("Resep : " + requestJson);
+                    System.out.println("Resep : " + requestJson + "\n\nPesan WS : " + nameNode.path("message").asText());
                     requestEntity = new HttpEntity(requestJson, headers);
                     root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody());
                     nameNode = root.path("metaData");
@@ -1364,7 +1365,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                                             "0",
                                                             no_apotek
                                                         }) == true) {
-                                                            System.out.println("Obat " + tbNonRacikan.getValueAt(i, 3).toString() + " Berhasil disimpan");
+                                                            System.out.println("Obat " + tbNonRacikan.getValueAt(i, 3).toString() + " Berhasil disimpan\n\nPesan WS : " + nameNode.path("message").asText());
 //                                                            JOptionPane.showMessageDialog(null, "Obat " + tbNonRacikan.getValueAt(i, 3).toString() + " Berhasil disimpan");
                                                         }
                                                     } else {
@@ -1438,7 +1439,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                                                         "1",
                                                         no_apotek
                                                     }) == true) {
-                                                        System.out.println("Obat " + tbDetailObatRacikan.getValueAt(i, 4).toString() + " Berhasil disimpan");
+                                                        System.out.println("Obat " + tbDetailObatRacikan.getValueAt(i, 4).toString() + " Berhasil disimpan\n\nPesan WS : " + nameNode.path("message").asText());
 //                                                        JOptionPane.showMessageDialog(null, "Obat racikan" + tbDetailObatRacikan.getValueAt(i, 4).toString() + " Berhasil disimpan");
                                                     }
                                                 } else {
