@@ -536,10 +536,20 @@ public final class koneksiDB {
         return var;
     }
     
-    public static String LOKASIFILEVERSI() {
+    public static String LOKASIFILEVERSIWINDOWS() {
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            var = prop.getProperty("LOKASIFILEVERSI");
+            var = prop.getProperty("LOKASIFILEVERSIWINDOWS");
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
+    
+    public static String LOKASIFILEVERSILINUXMAC() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var = prop.getProperty("LOKASIFILEVERSILINUXMAC");
         } catch (Exception e) {
             var = "";
         }

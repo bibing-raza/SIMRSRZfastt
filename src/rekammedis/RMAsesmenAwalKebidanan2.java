@@ -56,7 +56,8 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             ya = "", pendengaran = "", penglihatan = "", kognitif = "", fisik = "", budaya = "", emosi = "", bahasa = "", lainHambatan = "",
             diagnosa = "", tindakanKeperawatan = "", lainKebutuhanEdukasi = "", obatObatan = "", rehabilitasi = "", diet = "", manajemenNyeri = "",
             pasien = "", keluargaPasien = "", tidakDapat = "", identifikasi1 = "", identifikasi2 = "", identifikasi3 = "", identifikasi4 = "",
-            identifikasi5 = "", identifikasi6 = "", identifikasi7 = "", identifikasi8 = "", identifikasi9 = "", identifikasi10 = "", noRawat = "", stsrwt = "";
+            identifikasi5 = "", identifikasi6 = "", identifikasi7 = "", identifikasi8 = "", identifikasi9 = "", identifikasi10 = "", noRawat = "", 
+            stsrwt = "", mpp = "", dp = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -650,22 +651,12 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         BtnDokter = new widget.Button();
         jLabel134 = new widget.Label();
         label21 = new widget.Label();
-        chkIdentifikai1 = new widget.CekBox();
-        chkIdentifikai6 = new widget.CekBox();
-        chkIdentifikai2 = new widget.CekBox();
         chkIdentifikai7 = new widget.CekBox();
         chkIdentifikai3 = new widget.CekBox();
-        chkIdentifikai8 = new widget.CekBox();
         chkIdentifikai4 = new widget.CekBox();
         chkIdentifikai9 = new widget.CekBox();
-        chkIdentifikai5 = new widget.CekBox();
-        chkIdentifikai10 = new widget.CekBox();
         label22 = new widget.Label();
         Tmemerlukan = new widget.TextBox();
-        label23 = new widget.Label();
-        cmbMPP = new widget.ComboBox();
-        label24 = new widget.Label();
-        cmbDP = new widget.ComboBox();
         label25 = new widget.Label();
         TnmKeluargaPasien = new widget.TextBox();
         label26 = new widget.Label();
@@ -713,6 +704,14 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         jLabel106 = new widget.Label();
         TJmlSkor = new widget.TextBox();
         kesimpulanResJatuh = new widget.TextArea();
+        chkIdentifikai1 = new widget.RadioButton();
+        chkIdentifikai2 = new widget.RadioButton();
+        chkIdentifikai5 = new widget.RadioButton();
+        chkIdentifikai6 = new widget.RadioButton();
+        chkIdentifikai8 = new widget.RadioButton();
+        chkIdentifikai10 = new widget.RadioButton();
+        chkMPP = new widget.CekBox();
+        chkDP = new widget.RadioButton();
         panelTombol = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
@@ -865,7 +864,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         jLabel70.setBounds(110, 301, 210, 23);
 
         cmbProvo.setForeground(new java.awt.Color(0, 0, 0));
-        cmbProvo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Cahaya", "Gelap", "Gerakan", "Berbaring", "Lainnya" }));
+        cmbProvo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Cahaya", "Gelap", "Gerakan", "Berbaring", "Melahirkan", "Lainnya" }));
         cmbProvo.setName("cmbProvo"); // NOI18N
         cmbProvo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -873,7 +872,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(cmbProvo);
-        cmbProvo.setBounds(325, 301, 80, 23);
+        cmbProvo.setBounds(325, 301, 85, 23);
 
         Tprovo.setBackground(new java.awt.Color(245, 250, 240));
         Tprovo.setForeground(new java.awt.Color(0, 0, 0));
@@ -884,7 +883,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         PanelInput.add(Tprovo);
-        Tprovo.setBounds(410, 301, 515, 23);
+        Tprovo.setBounds(415, 301, 510, 23);
 
         jLabel71.setForeground(new java.awt.Color(0, 0, 0));
         jLabel71.setText("Quality");
@@ -1890,7 +1889,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         label19.setBounds(0, 1365, 120, 23);
 
         TtglEdukasi.setEditable(false);
-        TtglEdukasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-08-2025" }));
+        TtglEdukasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-10-2025" }));
         TtglEdukasi.setDisplayFormat("dd-MM-yyyy");
         TtglEdukasi.setName("TtglEdukasi"); // NOI18N
         TtglEdukasi.setOpaque(false);
@@ -1979,48 +1978,6 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         PanelInput.add(label21);
         label21.setBounds(0, 1421, 220, 23);
 
-        chkIdentifikai1.setBackground(new java.awt.Color(255, 255, 250));
-        chkIdentifikai1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkIdentifikai1.setForeground(new java.awt.Color(0, 0, 0));
-        chkIdentifikai1.setText("Pasien dengan keterbatasan kognitif, ketergantungan ADL tinggi.");
-        chkIdentifikai1.setBorderPainted(true);
-        chkIdentifikai1.setBorderPaintedFlat(true);
-        chkIdentifikai1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkIdentifikai1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkIdentifikai1.setName("chkIdentifikai1"); // NOI18N
-        chkIdentifikai1.setOpaque(false);
-        chkIdentifikai1.setPreferredSize(new java.awt.Dimension(175, 23));
-        PanelInput.add(chkIdentifikai1);
-        chkIdentifikai1.setBounds(228, 1421, 350, 23);
-
-        chkIdentifikai6.setBackground(new java.awt.Color(255, 255, 250));
-        chkIdentifikai6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkIdentifikai6.setForeground(new java.awt.Color(0, 0, 0));
-        chkIdentifikai6.setText("Sering masuk IGD, readmisi RS");
-        chkIdentifikai6.setBorderPainted(true);
-        chkIdentifikai6.setBorderPaintedFlat(true);
-        chkIdentifikai6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkIdentifikai6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkIdentifikai6.setName("chkIdentifikai6"); // NOI18N
-        chkIdentifikai6.setOpaque(false);
-        chkIdentifikai6.setPreferredSize(new java.awt.Dimension(175, 23));
-        PanelInput.add(chkIdentifikai6);
-        chkIdentifikai6.setBounds(640, 1421, 180, 23);
-
-        chkIdentifikai2.setBackground(new java.awt.Color(255, 255, 250));
-        chkIdentifikai2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkIdentifikai2.setForeground(new java.awt.Color(0, 0, 0));
-        chkIdentifikai2.setText("Wanita usia rentan (Ibu hamil, Ibu menyusui, Lansia)");
-        chkIdentifikai2.setBorderPainted(true);
-        chkIdentifikai2.setBorderPaintedFlat(true);
-        chkIdentifikai2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkIdentifikai2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkIdentifikai2.setName("chkIdentifikai2"); // NOI18N
-        chkIdentifikai2.setOpaque(false);
-        chkIdentifikai2.setPreferredSize(new java.awt.Dimension(175, 23));
-        PanelInput.add(chkIdentifikai2);
-        chkIdentifikai2.setBounds(228, 1449, 280, 23);
-
         chkIdentifikai7.setBackground(new java.awt.Color(255, 255, 250));
         chkIdentifikai7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         chkIdentifikai7.setForeground(new java.awt.Color(0, 0, 0));
@@ -2048,20 +2005,6 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkIdentifikai3.setPreferredSize(new java.awt.Dimension(175, 23));
         PanelInput.add(chkIdentifikai3);
         chkIdentifikai3.setBounds(228, 1477, 350, 23);
-
-        chkIdentifikai8.setBackground(new java.awt.Color(255, 255, 250));
-        chkIdentifikai8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkIdentifikai8.setForeground(new java.awt.Color(0, 0, 0));
-        chkIdentifikai8.setText("Pasien tanpa keluarga / terlantar, tinggal sendiri");
-        chkIdentifikai8.setBorderPainted(true);
-        chkIdentifikai8.setBorderPaintedFlat(true);
-        chkIdentifikai8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkIdentifikai8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkIdentifikai8.setName("chkIdentifikai8"); // NOI18N
-        chkIdentifikai8.setOpaque(false);
-        chkIdentifikai8.setPreferredSize(new java.awt.Dimension(175, 23));
-        PanelInput.add(chkIdentifikai8);
-        chkIdentifikai8.setBounds(640, 1477, 260, 23);
 
         chkIdentifikai4.setBackground(new java.awt.Color(255, 255, 250));
         chkIdentifikai4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2091,34 +2034,6 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         PanelInput.add(chkIdentifikai9);
         chkIdentifikai9.setBounds(640, 1505, 240, 23);
 
-        chkIdentifikai5.setBackground(new java.awt.Color(255, 255, 250));
-        chkIdentifikai5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkIdentifikai5.setForeground(new java.awt.Color(0, 0, 0));
-        chkIdentifikai5.setText("Pasien dengan penyakit kronis, katastropik (Penyakit Degenerative) terminal");
-        chkIdentifikai5.setBorderPainted(true);
-        chkIdentifikai5.setBorderPaintedFlat(true);
-        chkIdentifikai5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkIdentifikai5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkIdentifikai5.setName("chkIdentifikai5"); // NOI18N
-        chkIdentifikai5.setOpaque(false);
-        chkIdentifikai5.setPreferredSize(new java.awt.Dimension(175, 23));
-        PanelInput.add(chkIdentifikai5);
-        chkIdentifikai5.setBounds(228, 1533, 400, 23);
-
-        chkIdentifikai10.setBackground(new java.awt.Color(255, 255, 250));
-        chkIdentifikai10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkIdentifikai10.setForeground(new java.awt.Color(0, 0, 0));
-        chkIdentifikai10.setText("Kasus yang membutuhkan kontinuitas pelayanan, rencana pemulangan penting / beresiko");
-        chkIdentifikai10.setBorderPainted(true);
-        chkIdentifikai10.setBorderPaintedFlat(true);
-        chkIdentifikai10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkIdentifikai10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkIdentifikai10.setName("chkIdentifikai10"); // NOI18N
-        chkIdentifikai10.setOpaque(false);
-        chkIdentifikai10.setPreferredSize(new java.awt.Dimension(175, 23));
-        PanelInput.add(chkIdentifikai10);
-        chkIdentifikai10.setBounds(640, 1533, 460, 23);
-
         label22.setForeground(new java.awt.Color(0, 0, 0));
         label22.setText("Memerlukan :");
         label22.setName("label22"); // NOI18N
@@ -2135,32 +2050,6 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         });
         PanelInput.add(Tmemerlukan);
         Tmemerlukan.setBounds(228, 1561, 685, 23);
-
-        label23.setForeground(new java.awt.Color(0, 0, 0));
-        label23.setText("Manajer Pelayanan Pasien :");
-        label23.setName("label23"); // NOI18N
-        label23.setPreferredSize(new java.awt.Dimension(60, 23));
-        PanelInput.add(label23);
-        label23.setBounds(0, 1589, 220, 23);
-
-        cmbMPP.setForeground(new java.awt.Color(0, 0, 0));
-        cmbMPP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ya", "Tidak" }));
-        cmbMPP.setName("cmbMPP"); // NOI18N
-        PanelInput.add(cmbMPP);
-        cmbMPP.setBounds(228, 1589, 60, 23);
-
-        label24.setForeground(new java.awt.Color(0, 0, 0));
-        label24.setText("Discharge Planning :");
-        label24.setName("label24"); // NOI18N
-        label24.setPreferredSize(new java.awt.Dimension(60, 23));
-        PanelInput.add(label24);
-        label24.setBounds(290, 1589, 120, 23);
-
-        cmbDP.setForeground(new java.awt.Color(0, 0, 0));
-        cmbDP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ya", "Tidak" }));
-        cmbDP.setName("cmbDP"); // NOI18N
-        PanelInput.add(cmbDP);
-        cmbDP.setBounds(420, 1589, 60, 23);
 
         label25.setForeground(new java.awt.Color(0, 0, 0));
         label25.setText("Nama Pasien / Keluarga Pasien :");
@@ -2241,16 +2130,16 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         label27.setName("label27"); // NOI18N
         label27.setPreferredSize(new java.awt.Dimension(60, 23));
         PanelInput.add(label27);
-        label27.setBounds(480, 1589, 60, 23);
+        label27.setBounds(580, 1589, 60, 23);
 
         TtglDp.setEditable(false);
-        TtglDp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-08-2025" }));
+        TtglDp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-10-2025" }));
         TtglDp.setDisplayFormat("dd-MM-yyyy");
         TtglDp.setName("TtglDp"); // NOI18N
         TtglDp.setOpaque(false);
         TtglDp.setPreferredSize(new java.awt.Dimension(90, 23));
         PanelInput.add(TtglDp);
-        TtglDp.setBounds(545, 1589, 90, 23);
+        TtglDp.setBounds(645, 1589, 90, 23);
 
         jLabel369.setForeground(new java.awt.Color(0, 0, 0));
         jLabel369.setText("Pasien : ");
@@ -2543,6 +2432,90 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         kesimpulanResJatuh.setName("kesimpulanResJatuh"); // NOI18N
         PanelInput.add(kesimpulanResJatuh);
         kesimpulanResJatuh.setBounds(430, 721, 350, 50);
+
+        chkIdentifikai1.setBackground(new java.awt.Color(242, 242, 242));
+        chkIdentifikai1.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
+        chkIdentifikai1.setText("Pasien dengan keterbatasan kognitif, ketergantungan ADL tinggi.");
+        chkIdentifikai1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkIdentifikai1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkIdentifikai1.setName("chkIdentifikai1"); // NOI18N
+        chkIdentifikai1.setPreferredSize(new java.awt.Dimension(95, 23));
+        PanelInput.add(chkIdentifikai1);
+        chkIdentifikai1.setBounds(228, 1421, 350, 23);
+
+        chkIdentifikai2.setBackground(new java.awt.Color(242, 242, 242));
+        chkIdentifikai2.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
+        chkIdentifikai2.setText("Wanita usia rentan (Ibu hamil, Ibu menyusui, Lansia)");
+        chkIdentifikai2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkIdentifikai2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkIdentifikai2.setName("chkIdentifikai2"); // NOI18N
+        chkIdentifikai2.setPreferredSize(new java.awt.Dimension(95, 23));
+        PanelInput.add(chkIdentifikai2);
+        chkIdentifikai2.setBounds(228, 1449, 280, 23);
+
+        chkIdentifikai5.setBackground(new java.awt.Color(242, 242, 242));
+        chkIdentifikai5.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
+        chkIdentifikai5.setText("Pasien dengan penyakit kronis, katastropik (Penyakit Degenerative) terminal");
+        chkIdentifikai5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkIdentifikai5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkIdentifikai5.setName("chkIdentifikai5"); // NOI18N
+        chkIdentifikai5.setPreferredSize(new java.awt.Dimension(95, 23));
+        PanelInput.add(chkIdentifikai5);
+        chkIdentifikai5.setBounds(228, 1533, 400, 23);
+
+        chkIdentifikai6.setBackground(new java.awt.Color(242, 242, 242));
+        chkIdentifikai6.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
+        chkIdentifikai6.setText("Sering masuk IGD, readmisi RS");
+        chkIdentifikai6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkIdentifikai6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkIdentifikai6.setName("chkIdentifikai6"); // NOI18N
+        chkIdentifikai6.setPreferredSize(new java.awt.Dimension(95, 23));
+        PanelInput.add(chkIdentifikai6);
+        chkIdentifikai6.setBounds(640, 1421, 180, 23);
+
+        chkIdentifikai8.setBackground(new java.awt.Color(242, 242, 242));
+        chkIdentifikai8.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
+        chkIdentifikai8.setText("Pasien tanpa keluarga / terlantar, tinggal sendiri");
+        chkIdentifikai8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkIdentifikai8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkIdentifikai8.setName("chkIdentifikai8"); // NOI18N
+        chkIdentifikai8.setPreferredSize(new java.awt.Dimension(95, 23));
+        PanelInput.add(chkIdentifikai8);
+        chkIdentifikai8.setBounds(640, 1477, 260, 23);
+
+        chkIdentifikai10.setBackground(new java.awt.Color(242, 242, 242));
+        chkIdentifikai10.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
+        chkIdentifikai10.setText("Kasus yang membutuhkan kontinuitas pelayanan, rencana pemulangan penting / beresiko");
+        chkIdentifikai10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkIdentifikai10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkIdentifikai10.setName("chkIdentifikai10"); // NOI18N
+        chkIdentifikai10.setPreferredSize(new java.awt.Dimension(95, 23));
+        PanelInput.add(chkIdentifikai10);
+        chkIdentifikai10.setBounds(640, 1533, 460, 23);
+
+        chkMPP.setBackground(new java.awt.Color(242, 242, 242));
+        chkMPP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkMPP.setForeground(new java.awt.Color(0, 0, 0));
+        chkMPP.setText("Manajer Pelayanan Pasien");
+        chkMPP.setBorderPainted(true);
+        chkMPP.setBorderPaintedFlat(true);
+        chkMPP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkMPP.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkMPP.setName("chkMPP"); // NOI18N
+        chkMPP.setOpaque(false);
+        chkMPP.setPreferredSize(new java.awt.Dimension(175, 23));
+        PanelInput.add(chkMPP);
+        chkMPP.setBounds(228, 1589, 160, 23);
+
+        chkDP.setBackground(new java.awt.Color(242, 242, 242));
+        chkDP.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
+        chkDP.setText("Discharge Planning");
+        chkDP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkDP.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkDP.setName("chkDP"); // NOI18N
+        chkDP.setPreferredSize(new java.awt.Dimension(95, 23));
+        PanelInput.add(chkDP);
+        chkDP.setBounds(400, 1589, 120, 23);
 
         scrollInput.setViewportView(PanelInput);
 
@@ -2852,7 +2825,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
 
     private void cmbProvoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProvoActionPerformed
         Tprovo.setText("");
-        if (cmbProvo.getSelectedIndex() == 5) {
+        if (cmbProvo.getSelectedIndex() == 6) {
             Tprovo.setEnabled(true);
             Tprovo.requestFocus();
         } else {
@@ -3203,7 +3176,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
 
     private void TmemerlukanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TmemerlukanKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            cmbMPP.requestFocus();
+            chkMPP.requestFocus();
         }
     }//GEN-LAST:event_TmemerlukanKeyPressed
 
@@ -3273,10 +3246,10 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                         TlainKebutuhan.getText(), obatObatan, rehabilitasi, diet, manajemenNyeri, pasien, keluargaPasien, TnmKlgPasien.getText(), tidakDapat, TtidakDapat.getText(),
                         Valid.SetTgl(TtglEdukasi.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                         nipDokter, identifikasi1, identifikasi2, identifikasi3, identifikasi4, identifikasi5, identifikasi6, identifikasi7, identifikasi8, identifikasi9,
-                        identifikasi10, Tmemerlukan.getText(), cmbMPP.getSelectedItem().toString(), cmbDP.getSelectedItem().toString(), Valid.SetTgl(TtglDp.getSelectedItem() + ""),
-                        TnmKeluargaPasien.getText(), nipBidan2, stsrwt, Sequel.cariIsi("select now()"), cmbResJatuh.getSelectedItem().toString(), cmbKondisi.getSelectedItem().toString(),
-                        cmbResAlatBantu.getSelectedItem().toString(), cmbTerapiIV.getSelectedItem().toString(), cmbGaya.getSelectedItem().toString(), cmbSttsMental.getSelectedItem().toString(),
-                        TJmlSkor.getText(), kesimpulanResJatuh.getText()
+                        identifikasi10, Tmemerlukan.getText(), mpp, dp, Valid.SetTgl(TtglDp.getSelectedItem() + ""), TnmKeluargaPasien.getText(), nipBidan2, stsrwt,
+                        Sequel.cariIsi("select now()"), cmbResJatuh.getSelectedItem().toString(), cmbKondisi.getSelectedItem().toString(), cmbResAlatBantu.getSelectedItem().toString(),
+                        cmbTerapiIV.getSelectedItem().toString(), cmbGaya.getSelectedItem().toString(), cmbSttsMental.getSelectedItem().toString(), TJmlSkor.getText(),
+                        kesimpulanResJatuh.getText()
                     }) == true) {
 
                 TabRawat.setSelectedIndex(1);
@@ -5276,6 +5249,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     public widget.CekBox chkAhliGz;
     public widget.CekBox chkBahasa;
     public widget.CekBox chkBudaya;
+    private widget.RadioButton chkDP;
     public widget.CekBox chkDiagnosa;
     public widget.CekBox chkDietNutrisi;
     public widget.CekBox chkDokter;
@@ -5283,20 +5257,21 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     public widget.CekBox chkFarmasis;
     public widget.CekBox chkFisik;
     public widget.CekBox chkGelang;
-    public widget.CekBox chkIdentifikai1;
-    public widget.CekBox chkIdentifikai10;
-    public widget.CekBox chkIdentifikai2;
+    private widget.RadioButton chkIdentifikai1;
+    private widget.RadioButton chkIdentifikai10;
+    private widget.RadioButton chkIdentifikai2;
     public widget.CekBox chkIdentifikai3;
     public widget.CekBox chkIdentifikai4;
-    public widget.CekBox chkIdentifikai5;
-    public widget.CekBox chkIdentifikai6;
+    private widget.RadioButton chkIdentifikai5;
+    private widget.RadioButton chkIdentifikai6;
     public widget.CekBox chkIdentifikai7;
-    public widget.CekBox chkIdentifikai8;
+    private widget.RadioButton chkIdentifikai8;
     public widget.CekBox chkIdentifikai9;
     public widget.CekBox chkKlgPasien;
     public widget.CekBox chkKognitif;
     public widget.CekBox chkLainHambatan;
     public widget.CekBox chkLainKebutuhan;
+    public widget.CekBox chkMPP;
     public widget.CekBox chkManajemenNyeri;
     public widget.CekBox chkObatTerapi;
     public widget.CekBox chkPasien;
@@ -5315,7 +5290,6 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     public widget.CekBox chkYaTerdapat;
     private widget.ComboBox cmbAdl;
     private widget.ComboBox cmbBahasa;
-    private widget.ComboBox cmbDP;
     private widget.ComboBox cmbDibutuhkan;
     private widget.ComboBox cmbDtk;
     private widget.ComboBox cmbGaya;
@@ -5325,7 +5299,6 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     private widget.ComboBox cmbJenis;
     private widget.ComboBox cmbKondisi;
     private widget.ComboBox cmbLama;
-    private widget.ComboBox cmbMPP;
     private widget.ComboBox cmbMnt;
     private widget.ComboBox cmbNyeri;
     private widget.ComboBox cmbProvo;
@@ -5413,8 +5386,6 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     private widget.Label label20;
     private widget.Label label21;
     private widget.Label label22;
-    private widget.Label label23;
-    private widget.Label label24;
     private widget.Label label25;
     private widget.Label label26;
     private widget.Label label27;
@@ -5573,8 +5544,8 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         chkIdentifikai9.setSelected(false);
         chkIdentifikai10.setSelected(false);
         Tmemerlukan.setText("");
-        cmbMPP.setSelectedIndex(0);
-        cmbDP.setSelectedIndex(0);
+        chkMPP.setSelected(false);
+        chkDP.setSelected(false);
         TtglDp.setDate(new Date());
         TnmKeluargaPasien.setText("");
         nipBidan2 = "-";
@@ -5990,6 +5961,18 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         } else {
             identifikasi10 = "tidak";
         }
+        
+        if (chkMPP.isSelected() == true) {
+            mpp = "Ya";
+        } else {
+            mpp = "Tidak";
+        }
+        
+        if (chkDP.isSelected() == true) {
+            dp = "Ya";
+        } else {
+            dp = "Tidak";
+        }
     }
     
     private void dataCek() {
@@ -5999,7 +5982,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             Tlokasi.setEnabled(false);
         }
         
-        if (cmbProvo.getSelectedIndex() == 5) {
+        if (cmbProvo.getSelectedIndex() == 6) {
             Tprovo.setEnabled(true);
         } else {
             Tprovo.setEnabled(false);
@@ -6323,6 +6306,18 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         } else {
             chkIdentifikai10.setSelected(false);
         }
+        
+        if (mpp.equals("Ya")) {
+            chkMPP.setSelected(true);
+        } else {
+            chkMPP.setSelected(false);
+        }
+        
+        if (dp.equals("Ya")) {
+            chkDP.setSelected(true);
+        } else {
+            chkDP.setSelected(false);
+        }
     }
     
     public void Tutup() {
@@ -6373,6 +6368,8 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         identifikasi10 = "";
         noRawat = "";
         stsrwt = "";
+        mpp = "";
+        dp = "";
     }
     
     public void setData(String norwt, String stsRawat) {
@@ -6430,10 +6427,10 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                     TlainKebutuhan.getText(), obatObatan, rehabilitasi, diet, manajemenNyeri, pasien, keluargaPasien, TnmKlgPasien.getText(), tidakDapat, TtidakDapat.getText(),
                     Valid.SetTgl(TtglEdukasi.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                     nipDokter, identifikasi1, identifikasi2, identifikasi3, identifikasi4, identifikasi5, identifikasi6, identifikasi7, identifikasi8, identifikasi9,
-                    identifikasi10, Tmemerlukan.getText(), cmbMPP.getSelectedItem().toString(), cmbDP.getSelectedItem().toString(), Valid.SetTgl(TtglDp.getSelectedItem() + ""),
-                    TnmKeluargaPasien.getText(), nipBidan2, cmbResJatuh.getSelectedItem().toString(), cmbKondisi.getSelectedItem().toString(),
-                    cmbResAlatBantu.getSelectedItem().toString(), cmbTerapiIV.getSelectedItem().toString(), cmbGaya.getSelectedItem().toString(), cmbSttsMental.getSelectedItem().toString(),
-                    TJmlSkor.getText(), kesimpulanResJatuh.getText(), tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
+                    identifikasi10, Tmemerlukan.getText(), mpp, dp, Valid.SetTgl(TtglDp.getSelectedItem() + ""), TnmKeluargaPasien.getText(), nipBidan2, 
+                    cmbResJatuh.getSelectedItem().toString(), cmbKondisi.getSelectedItem().toString(), cmbResAlatBantu.getSelectedItem().toString(), cmbTerapiIV.getSelectedItem().toString(), 
+                    cmbGaya.getSelectedItem().toString(), cmbSttsMental.getSelectedItem().toString(), TJmlSkor.getText(), kesimpulanResJatuh.getText(), 
+                    tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                 }) == true) {
 
             TabRawat.setSelectedIndex(1);
@@ -6528,8 +6525,8 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             identifikasi9 = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 87).toString();
             identifikasi10 = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 88).toString();
             Tmemerlukan.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 89).toString());
-            cmbMPP.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 90).toString());
-            cmbDP.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 91).toString());
+            mpp = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 90).toString();
+            dp = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 91).toString();
             Valid.SetTgl(TtglDp, tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 92).toString());
             TnmKeluargaPasien.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 93).toString());
             nipBidan2 = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 94).toString();

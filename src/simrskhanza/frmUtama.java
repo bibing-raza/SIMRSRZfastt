@@ -423,6 +423,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -20793,22 +20796,45 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }
     
     private void cekVersi() {
-        String filePath = Sequel.cariFolderVersi() + "conf_versi.txt";
-        StringBuilder content = new StringBuilder();
+        //cek jenis os dulu
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            String filePath = Sequel.cariFolderVersi() + "conf_versi.txt";
+            StringBuilder content = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    content.append(line);
+                }
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                content.append(line);
+                // Tampilkan isi file ke JTextField
+                Tversi.setText(content.toString());
+
+                System.out.println("Versi berhasil dibaca dari file : " + filePath);
+            } catch (IOException e) {
+                System.err.println("Gagal membaca file versi : " + e.getMessage());
+                Tversi.setText("-"); // kosongkan jika gagal
             }
 
-            // Tampilkan isi file ke JTextField
-            Tversi.setText(content.toString());
+        } else if (os.contains("linux") || os.contains("unix") || os.contains("mac")) {
+            String filePath = Sequel.cariFolderVersi() + "/conf_versi.txt";
+            StringBuilder content = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    content.append(line);
+                }
 
-            System.out.println("Versi berhasil dibaca dari file : " + filePath);
-        } catch (IOException e) {
-            System.err.println("Gagal membaca file versi : " + e.getMessage());
-            Tversi.setText("-"); // kosongkan jika gagal
+                // Tampilkan isi file ke JTextField
+                Tversi.setText(content.toString());
+
+                System.out.println("Versi berhasil dibaca dari file : " + filePath);
+            } catch (IOException e) {
+                System.err.println("Gagal membaca file versi : " + e.getMessage());
+                Tversi.setText("-"); // kosongkan jika gagal
+            }
+        } else {
+            System.out.println("Sistem operasi tidak dikenali: " + os);
         }
     }
     

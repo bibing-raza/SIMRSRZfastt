@@ -46,6 +46,9 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.net.InetAddress;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Statement;
 //import org.apache.poi.hssf.record.formula.functions.Len;
 //import org.apache.poi.hssf.record.formula.functions.Mid;
@@ -2928,8 +2931,18 @@ public final class sekuel {
         dicari = "";
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            dicari = prop.getProperty("LOKASIFILEVERSI").toString();
-
+            //cek jenis os dulu
+            String os = System.getProperty("os.name").toLowerCase();
+            
+            if (os.contains("win")) {
+                dicari = prop.getProperty("LOKASIFILEVERSIWINDOWS").toString();
+            } else if (os.contains("linux") || os.contains("unix") || os.contains("mac")) {
+                String home = System.getProperty("user.home");
+                Path path = Paths.get(home, prop.getProperty("LOKASIFILEVERSILINUXMAC").toString());
+                dicari = Files.createDirectories(path).toString();
+            } else {
+                System.out.println("Sistem operasi tidak dikenali: " + os);                
+            }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
