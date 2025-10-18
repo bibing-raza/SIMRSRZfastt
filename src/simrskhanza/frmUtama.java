@@ -6593,7 +6593,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15/10/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18/10/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7358,43 +7358,121 @@ public class frmUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnCancelActionPerformed
 
     private void BtnLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLogActionPerformed
-        if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1"))) {
-            JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terbaru ("
-                    + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...!!!!");
-        }
+        try {
+            if (koneksiDB.SIMRSDEVELOPMENT().equals("Ya")) {
+                FlayMenu.setVisible(false);
+                akses.setpenjualan_obatfalse();
+                akses.setpenjualan_obatfalse();
+                akses.setutd_penyerahan_darahfalse();
+                akses.setresep_dokterfalse();
 
-        FlayMenu.setVisible(false);
-        akses.setpenjualan_obatfalse();
-        akses.setpenjualan_obatfalse();
-        akses.setutd_penyerahan_darahfalse();
-        akses.setresep_dokterfalse();
+                switch (BtnLog.getText().trim()) {
+                    case "Log Out":
+                        BtnToolReg.setEnabled(false);
+                        BtnToolKamnap.setEnabled(false);
+                        BtnToolKasir.setEnabled(false);
+                        btnToolLab.setEnabled(false);
+                        btnToolRad.setEnabled(false);
+                        btnToolIGD.setEnabled(false);
+                        btnGantiPassword.setEnabled(false);
+                        btnBridgingEklaim.setEnabled(false);
+                        edAdmin.setText("");
+                        edPwd.setText("");
+                        BtnLog.setText("Log In");
+                        lblStts.setText("Status Admin : ");
+                        lblUser.setText("Log Out");
+                        kdUser.setText("");
+                        ket_update.setText("");
+                        lbl_update.setText("Modified by. UNIT SIMRS RAZA - Vs. " + Tversi.getText() + " [Activated]");
+                        footer_lbl_update.setText(" Didesain & dibuat oleh Khanza.Soft Media - Vs.");
+                        BtnMenu.setEnabled(false);
+                        isTutup();
+                        break;
+                    case "Log In":
+                        DlgLogin.setVisible(true);
+                        edAdmin.requestFocus();
+                        break;
+                }
+            } else {
+                if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1"))) {
+                    JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terbaru ("
+                            + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...!!!!");
+                }
 
-        switch (BtnLog.getText().trim()) {
-            case "Log Out":
-                BtnToolReg.setEnabled(false);
-                BtnToolKamnap.setEnabled(false);
-                BtnToolKasir.setEnabled(false);
-                btnToolLab.setEnabled(false);
-                btnToolRad.setEnabled(false);
-                btnToolIGD.setEnabled(false);
-                btnGantiPassword.setEnabled(false);
-                btnBridgingEklaim.setEnabled(false);
-                edAdmin.setText("");
-                edPwd.setText("");
-                BtnLog.setText("Log In");
-                lblStts.setText("Status Admin : ");
-                lblUser.setText("Log Out");
-                kdUser.setText("");
-                ket_update.setText("");
-                lbl_update.setText("Modified by. UNIT SIMRS RAZA - Vs. " + Tversi.getText() + " [Activated]");
-                footer_lbl_update.setText(" Didesain & dibuat oleh Khanza.Soft Media - Vs.");
-                BtnMenu.setEnabled(false);
-                isTutup();
-                break;
-            case "Log In":
-                DlgLogin.setVisible(true);
-                edAdmin.requestFocus();
-                break;
+                FlayMenu.setVisible(false);
+                akses.setpenjualan_obatfalse();
+                akses.setpenjualan_obatfalse();
+                akses.setutd_penyerahan_darahfalse();
+                akses.setresep_dokterfalse();
+
+                switch (BtnLog.getText().trim()) {
+                    case "Log Out":
+                        BtnToolReg.setEnabled(false);
+                        BtnToolKamnap.setEnabled(false);
+                        BtnToolKasir.setEnabled(false);
+                        btnToolLab.setEnabled(false);
+                        btnToolRad.setEnabled(false);
+                        btnToolIGD.setEnabled(false);
+                        btnGantiPassword.setEnabled(false);
+                        btnBridgingEklaim.setEnabled(false);
+                        edAdmin.setText("");
+                        edPwd.setText("");
+                        BtnLog.setText("Log In");
+                        lblStts.setText("Status Admin : ");
+                        lblUser.setText("Log Out");
+                        kdUser.setText("");
+                        ket_update.setText("");
+                        lbl_update.setText("Modified by. UNIT SIMRS RAZA - Vs. " + Tversi.getText() + " [Activated]");
+                        footer_lbl_update.setText(" Didesain & dibuat oleh Khanza.Soft Media - Vs.");
+                        BtnMenu.setEnabled(false);
+                        isTutup();
+                        break;
+                    case "Log In":
+                        DlgLogin.setVisible(true);
+                        edAdmin.requestFocus();
+                        break;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("E : " + e);
+            if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1"))) {
+                JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terbaru ("
+                        + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...!!!!");
+            }
+
+            FlayMenu.setVisible(false);
+            akses.setpenjualan_obatfalse();
+            akses.setpenjualan_obatfalse();
+            akses.setutd_penyerahan_darahfalse();
+            akses.setresep_dokterfalse();
+
+            switch (BtnLog.getText().trim()) {
+                case "Log Out":
+                    BtnToolReg.setEnabled(false);
+                    BtnToolKamnap.setEnabled(false);
+                    BtnToolKasir.setEnabled(false);
+                    btnToolLab.setEnabled(false);
+                    btnToolRad.setEnabled(false);
+                    btnToolIGD.setEnabled(false);
+                    btnGantiPassword.setEnabled(false);
+                    btnBridgingEklaim.setEnabled(false);
+                    edAdmin.setText("");
+                    edPwd.setText("");
+                    BtnLog.setText("Log In");
+                    lblStts.setText("Status Admin : ");
+                    lblUser.setText("Log Out");
+                    kdUser.setText("");
+                    ket_update.setText("");
+                    lbl_update.setText("Modified by. UNIT SIMRS RAZA - Vs. " + Tversi.getText() + " [Activated]");
+                    footer_lbl_update.setText(" Didesain & dibuat oleh Khanza.Soft Media - Vs.");
+                    BtnMenu.setEnabled(false);
+                    isTutup();
+                    break;
+                case "Log In":
+                    DlgLogin.setVisible(true);
+                    edAdmin.requestFocus();
+                    break;
+            }
         }
     }//GEN-LAST:event_BtnLogActionPerformed
 
@@ -7494,10 +7572,22 @@ public class frmUtama extends javax.swing.JFrame {
                     Tversi.setText(versi);
                     lbl_update.setText("Modified by. UNIT SIMRS RAZA - Vs. " + versi + " [Activated]");
                 } else {
-                    if (Sequel.cariInteger("select count(-1) from setting where auto_restart='ya'") > 0) {
-                        int x = JOptionPane.showConfirmDialog(rootPane, "Aplikasi SIMRS belum update dengan versi terbaru, bolehkah komputernya direstart dulu..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                        if (x == JOptionPane.YES_OPTION) {
-                            cekKomputer();
+                    try {
+                        if (!koneksiDB.SIMRSDEVELOPMENT().equals("Ya")) {
+                            if (Sequel.cariInteger("select count(-1) from setting where auto_restart='ya'") > 0) {
+                                int x = JOptionPane.showConfirmDialog(rootPane, "Aplikasi SIMRS belum update dengan versi terbaru, bolehkah komputernya direstart dulu..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                                if (x == JOptionPane.YES_OPTION) {
+                                    cekKomputer();
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        System.out.println("E : " + e);
+                        if (Sequel.cariInteger("select count(-1) from setting where auto_restart='ya'") > 0) {
+                            int x = JOptionPane.showConfirmDialog(rootPane, "Aplikasi SIMRS belum update dengan versi terbaru, bolehkah komputernya direstart dulu..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                            if (x == JOptionPane.YES_OPTION) {
+                                cekKomputer();
+                            }
                         }
                     }
                 }
@@ -7511,23 +7601,59 @@ public class frmUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnLoginActionPerformed
 
     private void BtnToolKamnapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolKamnapActionPerformed
-        if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1"))) {
-            JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terbaru ("
-                    + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...!!!!");
+        try {
+            if (koneksiDB.SIMRSDEVELOPMENT().equals("Ya")) {
+                Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
+                isTutup();
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                kamarinap.isCek();
+                kamarinap.emptTeks();
+                kamarinap.setCariKosong();
+                kamarinap.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+                kamarinap.setLocationRelativeTo(PanelUtama);
+                kamarinap.setVisible(true);
+                kamarinap.UserValid();
+                DlgHome.dispose();
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1"))) {
+                    JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terbaru ("
+                            + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...!!!!");
+                }
+
+                Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
+                isTutup();
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                kamarinap.isCek();
+                kamarinap.emptTeks();
+                kamarinap.setCariKosong();
+                kamarinap.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+                kamarinap.setLocationRelativeTo(PanelUtama);
+                kamarinap.setVisible(true);
+                kamarinap.UserValid();
+                DlgHome.dispose();
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        } catch (Exception e) {
+            System.out.println("E : " + e);
+            if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1"))) {
+                JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terbaru ("
+                        + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...!!!!");
+            }
+
+            Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
+            isTutup();
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            kamarinap.isCek();
+            kamarinap.emptTeks();
+            kamarinap.setCariKosong();
+            kamarinap.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+            kamarinap.setLocationRelativeTo(PanelUtama);
+            kamarinap.setVisible(true);
+            kamarinap.UserValid();
+            DlgHome.dispose();
+            this.setCursor(Cursor.getDefaultCursor());
         }
-        
-        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
-        isTutup();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        kamarinap.isCek();
-        kamarinap.emptTeks();
-        kamarinap.setCariKosong();
-        kamarinap.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
-        kamarinap.setLocationRelativeTo(PanelUtama);
-        kamarinap.setVisible(true);
-        kamarinap.UserValid();
-        DlgHome.dispose();
-        this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnToolKamnapActionPerformed
 
 private void edPwdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edPwdKeyPressed
@@ -20794,7 +20920,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             System.out.println("Notifikasi : " + e);
         }
     }
-    
+
     private void cekVersi() {
         //cek jenis os dulu
         String os = System.getProperty("os.name").toLowerCase();

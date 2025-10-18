@@ -3680,8 +3680,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                 WindowCopyTindakan.setVisible(true);
                 
                 chkSayaCopy.setSelected(false);
-                nipCopy = "";
-                TnmPetugasCopy.setText("");                
+                nipCopy = akses.getkode();
+                TnmPetugasCopy.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipCopy + "'"));
             }
         }
     }//GEN-LAST:event_MnCopyTindakanActionPerformed
@@ -4265,8 +4265,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
             ChkTglCTK.setSelected(false);
             TtglCTK.setEnabled(false);
             chkSayaCopy1.setSelected(false);
-            nipCopy1 = "";
-            TnmPetugasCopy1.setText("");
+            nipCopy1 = akses.getkode();
+            TnmPetugasCopy1.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipCopy1 + "'"));
             TCari2.setText("");
             TCari2.requestFocus();
             tampilPasienLain();            
