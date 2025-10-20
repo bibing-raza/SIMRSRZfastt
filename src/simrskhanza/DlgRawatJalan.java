@@ -84,17 +84,17 @@ import rekammedis.RMTindakanKedokteran;
 public final class DlgRawatJalan extends javax.swing.JDialog {
 
     private final DefaultTableModel tabMode2, tabModeDrPr, tabModePemeriksaanDr,
-            tabModeResepObat, tabModePemeriksaanPr, tabModeLab1, tabModeLab2,
+            tabModeResepObat, tabModePemeriksaanPr, tabModeLab1, tabModeLab2, tabModeRiwKunjungan,
             tabModeRad1, tabModeRad2, tabModeFarmasi, tabModeKunjungan, tabModeResep1, tabModeResep2,
             tabModeRujukan, tabModeTglBeriObat, tabModeRiwItemObat, tabModeKonsul;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps3, ps4, ps5, ps6, ps7, ps15, ps16, psFar, psLab1, psLab2, psRad1, psRad2, psparu, psRiwKunj, psIter,
+    private PreparedStatement ps3, ps4, ps5, ps6, ps7, ps15, ps16, ps17, psFar, psLab1, psLab2, psRad1, psRad2, psparu, psRiwKunj, psIter,
             psPet, psR1, psR2, psru1, psTglBO, psRiwIO, psrestor, pskonsul, psCtkKonsul, psRDO, psRDU, psRDD, psRDM;
     private ResultSet rs, rs2, rs3, rs4, rsDiag, rsDiag1, rsObat, rs6, rs7, rs8, rs9, rs10, rs11, rs12, rsLab1, rskonsul, rsCtkKonsul,
             rsLab2, rsRad1, rsRad2, rsLIS1, rsLIS2, rsLIS3, rsLISMaster, rsparu, rsFar, rsRiwKunj, rsPet, rsR1, rsR2, rsru1, rsIter,
-            rs13, rs14, rs15, rs16, rsTglBO, rsRiwIO, rsrad, rshslRad, rsprmrj, rsrestor, rsRiwRujukan, rsTHT, rsDiabet, rsRDO, rsRDU, 
+            rs13, rs14, rs15, rs16, rs17, rsTglBO, rsRiwIO, rsrad, rshslRad, rsprmrj, rsrestor, rsRiwRujukan, rsTHT, rsDiabet, rsRDO, rsRDU, 
             rsRDD, rsRDM;
     private int i = 0, n = 0, pilih_prmrj = 0, x = 0, k = 0, cekSuratTindakan = 0, lis1 = 0, lis2 = 0, lisM = 0, cekPilihanRehab = 0,
             ceksensusparu = 0, z = 0, cekRujukInternal = 0, x1 = 0, cekDataPetugas = 0, j = 0, cekPemeriksaan = 0;    
@@ -995,6 +995,31 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         }
         tbKonsul.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabModeRiwKunjungan = new DefaultTableModel(null, new String[]{
+            "No. Rawat", "Poliklinik", "Tgl. Kunjungan", "Nama Dokter"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        tbKunjunganPX.setModel(tabModeRiwKunjungan);
+        tbKunjunganPX.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbKunjunganPX.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 4; i++) {
+            TableColumn column = tbKunjunganPX.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(115);
+            } else if (i == 1) {
+                column.setPreferredWidth(350);
+            } else if (i == 2) {
+                column.setPreferredWidth(90);
+            } else if (i == 3) {
+                column.setPreferredWidth(350);
+            }
+        }
+        tbKunjunganPX.setDefaultRenderer(Object.class, new WarnaTable());
 
         TNoRw.setDocument(new batasInput((byte) 17).getKata(TNoRw));
         TKdPrw.setDocument(new batasInput((byte) 15).getKata(TKdPrw));
@@ -1764,6 +1789,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Scroll27 = new widget.ScrollPane();
         LoadHTML2 = new widget.editorpane();
         internalFrame10 = new widget.InternalFrame();
+        Scroll17 = new widget.ScrollPane();
+        tbKunjunganPX = new widget.Table();
         Scroll25 = new widget.ScrollPane();
         LoadHTML1 = new widget.editorpane();
         internalFrame16 = new widget.InternalFrame();
@@ -3218,7 +3245,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3232,7 +3259,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3425,7 +3452,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -3658,7 +3685,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3672,7 +3699,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5520,11 +5547,23 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         TabRawat.addTab("7.", internalFrame11);
 
-        internalFrame10.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "8. Penilaian Awal Keperawatan/Assesmen", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame10.setName("internalFrame10"); // NOI18N
         internalFrame10.setLayout(new java.awt.BorderLayout(1, 1));
 
+        Scroll17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Riwayat Data Kunjungan ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        Scroll17.setComponentPopupMenu(jPopupMenu1);
+        Scroll17.setName("Scroll17"); // NOI18N
+        Scroll17.setOpaque(true);
+        Scroll17.setPreferredSize(new java.awt.Dimension(452, 150));
+
+        tbKunjunganPX.setToolTipText("Silahkan klik untuk memilih data");
+        tbKunjunganPX.setName("tbKunjunganPX"); // NOI18N
+        Scroll17.setViewportView(tbKunjunganPX);
+
+        internalFrame10.add(Scroll17, java.awt.BorderLayout.PAGE_START);
+
+        Scroll25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Penilaian Awal Keperawatan Pasien ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         Scroll25.setComponentPopupMenu(jPopupMenu1);
         Scroll25.setName("Scroll25"); // NOI18N
         Scroll25.setOpaque(true);
@@ -6075,7 +6114,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         ChkKonsul.setBounds(113, 115, 102, 23);
 
         TtglKonsulUlang.setEditable(false);
-        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
+        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2025" }));
         TtglKonsulUlang.setDisplayFormat("dd-MM-yyyy");
         TtglKonsulUlang.setName("TtglKonsulUlang"); // NOI18N
         TtglKonsulUlang.setOpaque(false);
@@ -6240,7 +6279,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -7304,6 +7343,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             kdpoli.setText("");
             TPoli.setText("");
             TCari.setText(TNoRM.getText());
+            tampilRiwKunjungan();
             tampilAssesmen();
         } else if (TabRawat.getSelectedIndex() == 8) {
             kdpoli.setText("");
@@ -7609,6 +7649,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             kdpoli.setText("");
             TPoli.setText("");
             TCari.setText(TNoRM.getText());
+            tampilRiwKunjungan();
             tampilAssesmen();
         } else if (TabRawat.getSelectedIndex() == 8) {
             ChkLihat.setEnabled(false);
@@ -10217,6 +10258,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             kdpoli.setText("");
             TPoli.setText("");
             TCari.setText(TNoRM.getText());
+            tampilRiwKunjungan();
             tampilAssesmen();
         }
     }//GEN-LAST:event_BtnPenilaianKeperawatanActionPerformed
@@ -11374,6 +11416,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.ScrollPane Scroll14;
     private widget.ScrollPane Scroll15;
     private widget.ScrollPane Scroll16;
+    private widget.ScrollPane Scroll17;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll21;
     private widget.ScrollPane Scroll22;
@@ -11694,6 +11737,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Table tbItemRad;
     private widget.Table tbItemResep;
     private widget.Table tbKonsul;
+    private widget.Table tbKunjunganPX;
     private widget.Table tbObat;
     private widget.Table tbPemberianResep;
     private widget.Table tbPemeriksaanDr;
@@ -22123,6 +22167,37 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     psIter.close();
                 }
             }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilRiwKunjungan() {
+        Valid.tabelKosong(tabModeRiwKunjungan);
+        try {
+            ps17 = koneksi.prepareStatement("SELECT rp.no_rawat, p.nm_poli, DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y') tglKunj, d.nm_dokter FROM reg_periksa rp "
+                    + "inner join poliklinik p on p.kd_poli=rp.kd_poli inner join dokter d on d.kd_dokter=rp.kd_dokter where "
+                    + "rp.no_rkm_medis='" + TNoRM.getText() + "' order by rp.tgl_registrasi desc");
+            try {
+                rs17 = ps17.executeQuery();
+                while (rs17.next()) {
+                    tabModeRiwKunjungan.addRow(new String[]{
+                        rs17.getString("no_rawat"),
+                        rs17.getString("nm_poli"),
+                        rs17.getString("tglKunj"),
+                        rs17.getString("nm_dokter")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs17 != null) {
+                    rs17.close();
+                }
+                if (ps17 != null) {
+                    ps17.close();
+                }
+            }            
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
