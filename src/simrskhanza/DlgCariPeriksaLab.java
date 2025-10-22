@@ -682,6 +682,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         TkodeFile = new widget.TextBox();
         TnmPemeriksaan = new widget.TextBox();
         TtglUpload = new widget.TextBox();
+        BtnKode = new widget.Button();
         Scroll2 = new widget.ScrollPane();
         tbHasil = new widget.Table();
         jPanel4 = new javax.swing.JPanel();
@@ -1949,6 +1950,21 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         TtglUpload.setName("TtglUpload"); // NOI18N
         internalFrame9.add(TtglUpload);
         TtglUpload.setBounds(956, 94, 250, 23);
+
+        BtnKode.setForeground(new java.awt.Color(0, 0, 0));
+        BtnKode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnKode.setMnemonic('T');
+        BtnKode.setText("Ambil Kode File");
+        BtnKode.setToolTipText("Alt+T");
+        BtnKode.setName("BtnKode"); // NOI18N
+        BtnKode.setPreferredSize(new java.awt.Dimension(80, 26));
+        BtnKode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKodeActionPerformed(evt);
+            }
+        });
+        internalFrame9.add(BtnKode);
+        BtnKode.setBounds(1140, 33, 130, 26);
 
         internalFrame8.add(internalFrame9, java.awt.BorderLayout.PAGE_START);
 
@@ -5012,7 +5028,8 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setform("DlgCariPeriksaLab");
             RMDokumenPenunjangMedis form = new RMDokumenPenunjangMedis(null, false);
-            form.setData(NoRawat.getText(), TnoRm.getText(), Tpasien.getText());
+            form.setData(NoRawat.getText(), Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + NoRawat.getText() + "'"), 
+                    Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + NoRawat.getText() + "'") + "'"));
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
@@ -5064,6 +5081,17 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
         }
     }//GEN-LAST:event_tbHasilMouseClicked
 
+    private void BtnKodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKodeActionPerformed
+        TkodeFile.setText("");
+        TkodeFile.setText(akses.getPasteData());
+        TnmPemeriksaan.setText(Sequel.cariIsi("select rj.nama_pemeriksaan from rme_file_upload rf "
+                + "inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan where "
+                + "rf.id_file='" + TkodeFile.getText() + "'"));
+        TtglUpload.setText(Sequel.cariIsi("select date_format(rf.tgl_upload,'%d-%m-%Y, Pukul : %H:%i Wita') from rme_file_upload rf "
+                + "inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan where "
+                + "rf.id_file='" + TkodeFile.getText() + "'"));
+    }//GEN-LAST:event_BtnKodeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5094,6 +5122,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.Button BtnHapus1;
     private widget.Button BtnKeluar;
     private widget.Button BtnKirim;
+    private widget.Button BtnKode;
     private widget.Button BtnPrint;
     private widget.Button BtnPrint1;
     private widget.Button BtnSimpan;

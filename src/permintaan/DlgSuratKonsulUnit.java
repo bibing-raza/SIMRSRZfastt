@@ -401,7 +401,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -415,7 +415,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -559,7 +559,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         BtnDokterMinta.setBounds(670, 260, 28, 23);
 
         TtglMinta.setEditable(false);
-        TtglMinta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        TtglMinta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
         TtglMinta.setDisplayFormat("dd-MM-yyyy");
         TtglMinta.setName("TtglMinta"); // NOI18N
         TtglMinta.setOpaque(false);
@@ -645,14 +645,24 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         cmbUnitKe.setForeground(new java.awt.Color(0, 0, 0));
         cmbUnitKe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Anestesi", "VCT", "NICU", "Bayi Ruang Nifas" }));
         cmbUnitKe.setName("cmbUnitKe"); // NOI18N
+        cmbUnitKe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbUnitKeMouseReleased(evt);
+            }
+        });
         panelGlass7.add(cmbUnitKe);
-        cmbUnitKe.setBounds(422, 38, 200, 23);
+        cmbUnitKe.setBounds(422, 38, 260, 23);
 
         cmbUnitDari.setForeground(new java.awt.Color(0, 0, 0));
         cmbUnitDari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Anestesi", "VCT", "NICU", "Bayi Ruang Nifas" }));
         cmbUnitDari.setName("cmbUnitDari"); // NOI18N
+        cmbUnitDari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbUnitDariMouseReleased(evt);
+            }
+        });
         panelGlass7.add(cmbUnitDari);
-        cmbUnitDari.setBounds(125, 38, 190, 23);
+        cmbUnitDari.setBounds(125, 38, 230, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -824,9 +834,9 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
         Sequel.cariIsiComboDB("SELECT if(nm_sps='Saraf','Neurologi',nm_sps) spes from spesialis WHERE kd_sps not in ('-','S0021') and "
-                + "(nm_sps not like '%patologi%' and nm_sps not like '%radiologi%' and nm_sps not like '%anaste%') ORDER BY nm_sps", cmbUnitDari);
+                + "(nm_sps not like '%radiologi%' and nm_sps not like '%anaste%') ORDER BY nm_sps", cmbUnitDari);
         Sequel.cariIsiComboDB("SELECT if(nm_sps='Saraf','Neurologi',nm_sps) spes from spesialis WHERE kd_sps not in ('-','S0021') and "
-                + "(nm_sps not like '%patologi%' and nm_sps not like '%radiologi%' and nm_sps not like '%anaste%')ORDER BY nm_sps", cmbUnitKe);
+                + "(nm_sps not like '%radiologi%' and nm_sps not like '%anaste%')ORDER BY nm_sps", cmbUnitKe);
     }//GEN-LAST:event_formWindowOpened
 
     private void tbKonsulKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbKonsulKeyReleased
@@ -956,6 +966,14 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
             Valid.pindah(evt, BtnHapus, BtnAll);
         }
     }//GEN-LAST:event_BtnPrintKeyPressed
+
+    private void cmbUnitDariMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbUnitDariMouseReleased
+        AutoCompleteDecorator.decorate(cmbUnitDari);
+    }//GEN-LAST:event_cmbUnitDariMouseReleased
+
+    private void cmbUnitKeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbUnitKeMouseReleased
+        AutoCompleteDecorator.decorate(cmbUnitKe);
+    }//GEN-LAST:event_cmbUnitKeMouseReleased
 
     /**
     * @param args the command line arguments

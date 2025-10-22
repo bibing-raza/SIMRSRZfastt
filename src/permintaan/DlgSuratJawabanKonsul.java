@@ -409,7 +409,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -423,7 +423,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -570,7 +570,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         BtnDokter.setBounds(670, 260, 28, 23);
 
         TtglJawab.setEditable(false);
-        TtglJawab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        TtglJawab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
         TtglJawab.setDisplayFormat("dd-MM-yyyy");
         TtglJawab.setName("TtglJawab"); // NOI18N
         TtglJawab.setOpaque(false);
@@ -716,8 +716,13 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         cmbUnitKe.setForeground(new java.awt.Color(0, 0, 0));
         cmbUnitKe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Anestesi", "VCT", "NICU", "Bayi Ruang Nifas" }));
         cmbUnitKe.setName("cmbUnitKe"); // NOI18N
+        cmbUnitKe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbUnitKeMouseReleased(evt);
+            }
+        });
         panelGlass7.add(cmbUnitKe);
-        cmbUnitKe.setBounds(390, 38, 200, 23);
+        cmbUnitKe.setBounds(390, 38, 280, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -950,6 +955,10 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
             BtnPrintActionPerformed(null);
         }
     }//GEN-LAST:event_BtnPrintKeyPressed
+
+    private void cmbUnitKeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbUnitKeMouseReleased
+        AutoCompleteDecorator.decorate(cmbUnitKe);
+    }//GEN-LAST:event_cmbUnitKeMouseReleased
 
     /**
     * @param args the command line arguments
@@ -1184,8 +1193,8 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
     }
     
     public void isiCombo() {
-        Sequel.cariIsiComboDB("SELECT nm_sps from spesialis WHERE kd_sps not in ('-','S0021') and "
-                + "(nm_sps not like '%patologi%' and nm_sps not like '%radiologi%' and nm_sps not like '%anaste%')ORDER BY nm_sps", cmbUnitKe);
+        Sequel.cariIsiComboDB("SELECT if(nm_sps='Saraf','Neurologi',nm_sps) from spesialis WHERE kd_sps not in ('-','S0021') and "
+                + "(nm_sps not like '%radiologi%' and nm_sps not like '%anaste%') ORDER BY nm_sps", cmbUnitKe);
     }
 
     private void isPasien() {
