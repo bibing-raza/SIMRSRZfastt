@@ -66,7 +66,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             Jasa_Medik_Petugas_Laborat_Ralan = 0, so_Laborat_Ralan = 0, Persediaan_Laborat_Rawat_Jalan = 0, Jasa_Medik_Dokter_Radiologi_Ralan = 0,
             Jasa_Medik_Petugas_Radiologi_Ralan = 0, Kso_Radiologi_Ralan = 0, Persediaan_Radiologi_Rawat_Jalan = 0, Obat_Rawat_Jalan = 0, ttlRalan_Dokter_Param = 0,
             Jasa_Medik_Dokter_Operasi_Ralan = 0, Jasa_Medik_Paramedis_Operasi_Ralan = 0, Obat_Operasi_Ralan = 0, Kso_Laborat_Ralan = 0, ralanparamedis = 0;
-    private String[] kode, nama, ciripny, keterangan, kategori, cirium, kode2, panjang, pendek,
+    private String[] kode, nama, ciripny, keterangan, kategori, cirium, kode2, panjang, pendek, ket,
             kode1, nama1, ciripny1, keterangan1, kategori1, cirium1;
     private boolean[] pilih, pilih2, pilih3;
     private String tglklaim = "", drdpjp = "", poli = "", crBayar = "", cekKlaim = "", jlhTindakan = "", noRWTerakhir = "", nmPoli = "", centangdokterralan = "",
@@ -537,12 +537,12 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(50);
             } else if (i == 2) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(530);
             } else if (i == 3) {
-                column.setPreferredWidth(315);
-            } else if (i == 4) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 4) {
+                column.setPreferredWidth(95);
             } else if (i == 5) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -584,12 +584,12 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(50);
             } else if (i == 2) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(530);
             } else if (i == 3) {
-                column.setPreferredWidth(315);
-            } else if (i == 4) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 4) {
+                column.setPreferredWidth(95);
             } else if (i == 5) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -601,7 +601,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         tbDiagnosa1.setDefaultRenderer(Object.class, new WarnaTable());
 
         tabModeProsedur = new DefaultTableModel(null, new Object[]{
-            "P", "Kode", "Deskripsi Panjang", "Deskripsi Pendek"}) {
+            "P", "Kode", "Deskripsi Panjang", "Deskripsi Pendek", "Keterangan"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 boolean a = false;
@@ -611,7 +611,8 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
                 return a;
             }
             Class[] types = new Class[]{
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -624,16 +625,19 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         tbProsedur.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbProsedur.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < 5; i++) {
             TableColumn column = tbProsedur.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(20);
             } else if (i == 1) {
                 column.setPreferredWidth(50);
             } else if (i == 2) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(420);
             } else if (i == 3) {
-                column.setPreferredWidth(200);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 4) {
+                column.setPreferredWidth(95);
             }
         }
         tbProsedur.setDefaultRenderer(Object.class, new WarnaTable());
@@ -2960,12 +2964,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
         
         if (tbProsedur.getRowCount() > 0 && a > 0 && c > 0 && d == 0) {
-            tabModeProsedur.addRow(new Object[]{false, "87.49", "Other chest x-ray", "Chest x-ray NEC"});
-            tabModeProsedur.addRow(new Object[]{false, "90.59", "Microscopic examination of blood, other microscopic examination", "Micro exam-blood NEC"});
+            tabModeProsedur.addRow(new Object[]{false, "87.49", "Other chest x-ray", "Chest x-ray NEC", "iDRG"});
+            tabModeProsedur.addRow(new Object[]{false, "90.59", "Microscopic examination of blood, other microscopic examination", "Micro exam-blood NEC", "iDRG"});
         } else if (tbProsedur.getRowCount() > 0 && b > 0) {
             Valid.tabelKosong(tabModeProsedur);
-            tabModeProsedur.addRow(new Object[]{false, "87.49", "Other chest x-ray", "Chest x-ray NEC"});
-            tabModeProsedur.addRow(new Object[]{false, "90.59", "Microscopic examination of blood, other microscopic examination", "Micro exam-blood NEC"});
+            tabModeProsedur.addRow(new Object[]{false, "87.49", "Other chest x-ray", "Chest x-ray NEC", "iDRG"});
+            tabModeProsedur.addRow(new Object[]{false, "90.59", "Microscopic examination of blood, other microscopic examination", "Micro exam-blood NEC", "iDRG"});
         } else if (tbProsedur.getRowCount() > 0 && a > 0 && b > 0) {
             Prosedur.requestFocus();
         }
@@ -3552,6 +3556,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             panjang = new String[jml];
             pendek = null;
             pendek = new String[jml];
+            ket = null;
+            ket = new String[jml];
 
             index = 0;
             for (i = 0; i < tbProsedur.getRowCount(); i++) {
@@ -3560,13 +3566,14 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     kode2[index] = tbProsedur.getValueAt(i, 1).toString();
                     panjang[index] = tbProsedur.getValueAt(i, 2).toString();
                     pendek[index] = tbProsedur.getValueAt(i, 3).toString();
+                    ket[index] = tbProsedur.getValueAt(i, 4).toString();
                     index++;
                 }
             }
 
             Valid.tabelKosong(tabModeProsedur);
             for (i = 0; i < jml; i++) {
-                tabModeProsedur.addRow(new Object[]{pilih[i], kode2[i], panjang[i], pendek[i]});
+                tabModeProsedur.addRow(new Object[]{pilih[i], kode2[i], panjang[i], pendek[i], ket[i]});
             }
 
             psprosedur = koneksi.prepareStatement("select * from icd9 where kode like ? or "
@@ -3578,7 +3585,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 rs = psprosedur.executeQuery();
                 while (rs.next()) {
                     tabModeProsedur.addRow(new Object[]{
-                        false, rs.getString(1), rs.getString(2), rs.getString(3)});
+                        false, 
+                        rs.getString(1), 
+                        rs.getString(2), 
+                        rs.getString(3),
+                        rs.getString(4)
+                    });
                 }
             } catch (Exception ex) {
                 System.out.println(ex);
