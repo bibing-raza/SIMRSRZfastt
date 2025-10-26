@@ -1798,7 +1798,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         jLabel42.setBounds(265, 122, 80, 23);
 
         TtglHasil.setEditable(false);
-        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-10-2025" }));
+        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2025" }));
         TtglHasil.setDisplayFormat("dd-MM-yyyy");
         TtglHasil.setName("TtglHasil"); // NOI18N
         TtglHasil.setOpaque(false);
@@ -2083,11 +2083,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         BtnPrint1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnPrint1ActionPerformed(evt);
-            }
-        });
-        BtnPrint1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnPrint1KeyPressed(evt);
             }
         });
         panelGlass9.add(BtnPrint1);
@@ -2573,7 +2568,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi1.add(jLabel25);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-10-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -4837,12 +4832,44 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     }//GEN-LAST:event_btnFaskesActionPerformed
 
     private void BtnPrint1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnPrint1ActionPerformed
+        if (tbHasil.getSelectedRow() > -1) {
+            String nipdokterpa = Sequel.cariIsi("select nip_dokter_pa from hasil_patologi_anatomi where waktu_simpan='" + tbHasil.getValueAt(tbHasil.getSelectedRow(), 20).toString() + "'");
+            
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            
+            param.put("noPA", TnoPa.getText());
+            param.put("norm", TnoRm.getText());
+            param.put("nmpasien", Tpasien.getText());
+            param.put("tgllahir", TtglLahir.getText());
+            param.put("jenkel", Tjenkel.getText());
+            param.put("drPengirim", TdokterPengirim.getText());
+            param.put("unit", Tunit.getText());
+            param.put("tglperiksa", Ttglperiksa.getText());
+            param.put("tglhasil", Valid.SetTglINDONESIA(Valid.SetTgl(TtglHasil.getSelectedItem() + "")));
+            param.put("lokasi", Tlokasi.getText());
+            param.put("makros", Tmakros.getText() + "\n");
+            param.put("mikros", Tmikros.getText() + "\n");
+            param.put("kesimpulan", Tkesimpulan.getText() + "\n");
+            param.put("anjuran", Tanjuran.getText());
+            param.put("sip", Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + nipdokterpa + "'"));
+            param.put("nmDokterpa", Sequel.cariIsi("select nama from pegawai where nik='" + nipdokterpa + "'"));
 
-    private void BtnPrint1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrint1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnPrint1KeyPressed
+            Valid.MyReport("rptPeriksaPatologiAnatomi.jasper", "report", "::[ Lembar Hasil Pemeriksaan Patologi Anatomi ]::", "SELECT now() tgl", param);
+            emptTeksPatologi();
+            tampilHasil();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel..!!");
+            tampilHasil();
+            tbHasil.requestFocus();
+        }
+    }//GEN-LAST:event_BtnPrint1ActionPerformed
 
     private void BtnCloseIn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn5ActionPerformed
         WindowHasilPA.dispose();
