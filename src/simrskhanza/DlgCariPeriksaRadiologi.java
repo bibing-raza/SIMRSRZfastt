@@ -57,7 +57,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             Utang_Jasa_Medik_Dokter_Radiologi_Ranap = "", Beban_Jasa_Medik_Petugas_Radiologi_Ranap = "", dialog_simpan = "",
             Utang_Jasa_Medik_Petugas_Radiologi_Ranap = "", Beban_Kso_Radiologi_Ranap = "", Utang_Kso_Radiologi_Ranap = "",
             HPP_Persediaan_Radiologi_Rawat_Inap = "", Persediaan_BHP_Radiologi_Rawat_Inap = "", cekDataRad = "", khususIgd = "",
-            dokterBaca = "";
+            dokterBaca = "", cekJamSelesai = "", cekDurasi = "";
 
     /**
      * Creates new form DlgProgramStudi
@@ -5453,14 +5453,33 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     rs.getString("nm_dokter"), rs.getString("kd_dokter"), rs.getString("status_lanjut"), rs.getString("dokter_perujuk"), rs.getString("nip")
                 });
                 tabMode.addRow(new Object[]{"Cara Bayar", ": " + rs.getString("png_jawab") + " (" + rs.getString("cekBayar") + ")",
-                    "Kode Periksa", "Nama Pemeriksaan", "Biaya Pemeriksaan", "", ""});
+                    "Kode Periksa", "Nama Pemeriksaan", "Biaya Pemeriksaan", "Jam Selesai", "Durasi Pelayanan", "", "", "", ""});
                 ps2.setString(1, rs.getString("no_rawat"));
                 ps2.setString(2, rs.getString("tgl_periksa"));
                 ps2.setString(3, rs.getString("jam"));
                 rs2 = ps2.executeQuery();
                 while (rs2.next()) {
                     ttl = ttl + rs2.getDouble("biaya");
-                    tabMode.addRow(new Object[]{"", "", rs2.getString("kd_jenis_prw"), rs2.getString("nm_perawatan"), Valid.SetAngka(rs2.getDouble("biaya")), "", ""});
+                    cekJamSelesai = Sequel.cariIsi("select ifnull(time_format(hr.waktu_simpan,'%H:%i:%s'),'-') from periksa_radiologi pr "
+                            + "inner join hasil_radiologi hr on hr.no_rawat=pr.no_rawat where "
+                            + "hr.no_rawat='" + rs.getString("no_rawat") + "' and hr.tgl_periksa='" + rs.getString("tgl_periksa") + "' and hr.jam='" + rs.getString("jam") + "' "
+                            + "and hr.kd_jenis_prw='" + rs2.getString("kd_jenis_prw") + "'");
+
+                    cekDurasi = Sequel.cariIsi("select ifnull(CASE WHEN time(hr.waktu_simpan) < pr.jam THEN "
+                            + "CASE WHEN TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan) + INTERVAL 1 DAY) < 3600 "
+                            + "THEN CONCAT(FLOOR(TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan) + INTERVAL 1 DAY) / 60), ' Menit') "
+                            + "ELSE CONCAT(FLOOR(TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan) + INTERVAL 1 DAY) / 3600), ' Jam ', "
+                            + "FLOOR((TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan) + INTERVAL 1 DAY) % 3600) / 60), ' Menit') END "
+                            + "ELSE CASE WHEN TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan)) < 3600 "
+                            + "THEN CONCAT(FLOOR(TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan)) / 60), ' Menit') "
+                            + "ELSE CONCAT(FLOOR(TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan)) / 3600), ' Jam ', "
+                            + "FLOOR((TIMESTAMPDIFF(SECOND, pr.jam, time(hr.waktu_simpan)) % 3600) / 60), ' Menit') END END,'-') from periksa_radiologi pr "
+                            + "inner join hasil_radiologi hr on hr.no_rawat=pr.no_rawat where "
+                            + "hr.no_rawat='" + rs.getString("no_rawat") + "' and hr.tgl_periksa='" + rs.getString("tgl_periksa") + "' and hr.jam='" + rs.getString("jam") + "' "
+                            + "and hr.kd_jenis_prw='" + rs2.getString("kd_jenis_prw") + "'");
+                    
+                    tabMode.addRow(new Object[]{"", "", rs2.getString("kd_jenis_prw"), rs2.getString("nm_perawatan"), Valid.SetAngka(rs2.getDouble("biaya")), 
+                        cekJamSelesai, cekDurasi, "", "", "", ""});
                 }
                 tabMode.addRow(new Object[]{"", "", "Kode BHP", "Nama BHP", "Satuan", "Jumlah", ""});
                 ps3.setString(1, rs.getString("no_rawat"));
@@ -5468,11 +5487,11 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                 ps3.setString(3, rs.getString("jam"));
                 rs3 = ps3.executeQuery();
                 while (rs3.next()) {
-                    tabMode.addRow(new Object[]{"", "", rs3.getString("kode_brng"), rs3.getString("nama_brng"), rs3.getString("kode_sat"), rs3.getString("jumlah"), ""});
+                    tabMode.addRow(new Object[]{"", "", rs3.getString("kode_brng"), rs3.getString("nama_brng"), rs3.getString("kode_sat"), rs3.getString("jumlah"), "", "", "", "", ""});
                 }
             }
             if (ttl > 0) {
-                tabMode.addRow(new Object[]{">>", "Total : " + Valid.SetAngka(ttl), "", "", "", "", ""});
+                tabMode.addRow(new Object[]{">>", "Total : " + Valid.SetAngka(ttl), "", "", "", "", "", "", "", "", ""});
             }
             jumlahNoRawat();
         } catch (Exception ex) {
@@ -5939,7 +5958,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                 sb1.append("select pr.no_rawat, rp.no_rkm_medis, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur) as umur_thn, pt.nama, pr.tgl_periksa, pr.jam, ");
                 sb1.append("pr.dokter_perujuk, pr.kd_dokter, d.nm_dokter, rp.status_lanjut, pr.nip, pj.png_jawab, rp.kd_pj, pl.nm_poli, '-' nmBangsal, ");
                 sb1.append("CASE WHEN rp.kd_pj='U01' THEN IF(COUNT(bl.no_rawat) > 0, 'Sudah Lunas', 'Belum Bayar') ");
-                sb1.append("ELSE IF(COUNT(pp.no_rawat) > 0, 'Piutang', 'Transaksi Belum Selesai') END cekBayar ");
+                sb1.append("ELSE IF(COUNT(pp.no_rawat) > 0, 'Piutang', 'Transaksi Belum Selesai') END cekBayar ");                
                 sb1.append("from periksa_radiologi pr inner join reg_periksa rp on rp.no_rawat=pr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
                 sb1.append("inner join petugas pt on pt.nip=pr.nip inner join dokter d on d.kd_dokter=pr.kd_dokter inner join penjab pj on pj.kd_pj=rp.kd_pj ");
                 sb1.append("inner join jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw inner join poliklinik pl on pl.kd_poli=rp.kd_poli ");
@@ -5952,7 +5971,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                 sb1.append("select pr.no_rawat, rp.no_rkm_medis, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur) as umur_thn, pt.nama, pr.tgl_periksa, pr.jam, ");
                 sb1.append("pr.dokter_perujuk, pr.kd_dokter, d.nm_dokter, rp.status_lanjut, pr.nip, pj.png_jawab, rp.kd_pj, pl.nm_poli, ifnull(b.nm_bangsal,'-') nmBangsal, ");
                 sb1.append("CASE WHEN rp.kd_pj='U01' THEN IF(COUNT(bl.no_rawat) > 0, 'Sudah Lunas', 'Belum Bayar') ");
-                sb1.append("ELSE IF(COUNT(pp.no_rawat) > 0, 'Piutang', 'Transaksi Belum Selesai') END cekBayar ");
+                sb1.append("ELSE IF(COUNT(pp.no_rawat) > 0, 'Piutang', 'Transaksi Belum Selesai') END cekBayar ");                
                 sb1.append("from periksa_radiologi pr inner join reg_periksa rp on rp.no_rawat=pr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
                 sb1.append("inner join petugas pt on pt.nip=pr.nip inner join dokter d on d.kd_dokter=pr.kd_dokter inner join penjab pj on pj.kd_pj=rp.kd_pj ");
                 sb1.append("inner join jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw inner join poliklinik pl on pl.kd_poli=rp.kd_poli ");
@@ -5965,9 +5984,9 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
             }
       
             StringBuilder sb2 = new StringBuilder();
-            sb2.append("select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,periksa_radiologi.biaya from periksa_radiologi inner join jns_perawatan_radiologi ");
-            sb2.append("on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw where periksa_radiologi.no_rawat like ? and periksa_radiologi.tgl_periksa like ? ");
-            sb2.append("and periksa_radiologi.jam like ?");
+            sb2.append("select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,periksa_radiologi.biaya ");
+            sb2.append("from periksa_radiologi inner join jns_perawatan_radiologi on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw where ");
+            sb2.append("periksa_radiologi.no_rawat like ? and periksa_radiologi.tgl_periksa like ? and periksa_radiologi.jam like ?");
             ps2 = koneksi.prepareStatement(sb2.toString());
 
             StringBuilder sb3 = new StringBuilder();

@@ -92,7 +92,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private String anemis = "", ikterik = "", pupil = "", dia_kanan = "", dia_kiri = "", udem_palpe = "", tonsil = "", faring = "", satur = "",
             lidah = "", bibir = "", jvp = "", limfe = "", kuduk = "", thorak = "", cor = "", reguler = "", ireguler = "", lain1 = "", nafas = "",
             ronci = "", whezing = "", disten = "", meteo = "", peris = "", asites = "", nyeri = "", hepar = "", lien = "", extrem = "", udem = "",
-            lain2 = "", dataKonfirmasi = "", dokterkode = "", host_port = "", requestJson12 = "", stringbalik = "",
+            lain2 = "", dataKonfirmasi = "", host_port = "", requestJson12 = "", stringbalik = "",
             poinA = "", keadaan_umum = "", kesadaran = "", gcs = "", tensi = "", suhu = "", nadi = "", kualitas = "", napas = "", poinB = "", bb = "",
             bbpersen = "", bbpbpersen = "", pb = "", pbpersen = "", lla = "", lk = "", turgor = "", sianosis = "", perdarahan_kulit = "", ikterus = "",
             kalimat_ikterus = "", hematoma = "", sklerema = "", kutis = "", marmorata = "", lainya_kulit = "", poinC = "", bentuk = "", rambut = "",
@@ -5220,7 +5220,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             WindowTTE.setLocationRelativeTo(internalFrame1);
             WindowTTE.setVisible(true);
             kddokter.setText(Sequel.cariIsi("select no_ktp from pegawai where nik = '" + akses.getkode() + "'"));
-            TDokter.setText(Sequel.cariIsi("select nama from petugas where user_id = '" + akses.getkode() + "'"));
+            TDokter.setText(Sequel.cariIsi("select nama from pegawai where nik = '" + akses.getkode() + "'"));
         } else {
             JOptionPane.showMessageDialog(null, "Untuk saat ini belum bisa difungsikan, masih menunggu sosialisasi dari manajemen..!!");
         }
@@ -5232,7 +5232,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             if (Sequel.cariInteger("select count(-1) from rme_file_upload where no_rawat = '" + TNoRW.getText() + "' and jenis_pemeriksaan = 'RSM1' and stts_data = '1'") > 0) {
                 JOptionPane.showMessageDialog(null, "Dokumen sudah diverifikasi,...!!!");
             } else {
-                if (dokterkode.equals(akses.getkode())) {
+                if (tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 35).toString().equals(akses.getkode())) {
                     diagnosa = "";
                     tindakan = "";
 
@@ -5350,7 +5350,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     emptTeks();
                     WindowTTE.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Maaf, Akun User Login dan data DPJP berbeda");
+                    JOptionPane.showMessageDialog(null, "Maaf, DPJP pada ringkasan pulang/resum medis pasien ini berbeda dengan yang login..!");
                 }
             }
         } else {
