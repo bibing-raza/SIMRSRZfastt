@@ -612,7 +612,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('6');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+6");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -676,7 +675,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnConteng.setForeground(new java.awt.Color(0, 0, 0));
         BtnConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnConteng.setMnemonic('G');
         BtnConteng.setText("Conteng Semua");
         BtnConteng.setToolTipText("Alt+G");
         BtnConteng.setName("BtnConteng"); // NOI18N
@@ -690,7 +688,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnHapus.setMnemonic('M');
         BtnHapus.setText("Hapus Conteng");
         BtnHapus.setToolTipText("Alt+M");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -704,7 +701,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCopy.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopy.setMnemonic('U');
         BtnCopy.setText("Copy Hasil");
         BtnCopy.setToolTipText("Alt+U");
         BtnCopy.setName("BtnCopy"); // NOI18N
@@ -718,7 +714,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnPrinLab.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrinLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        BtnPrinLab.setMnemonic('P');
         BtnPrinLab.setText("Print Hasil Lab.");
         BtnPrinLab.setToolTipText("Alt+P");
         BtnPrinLab.setName("BtnPrinLab"); // NOI18N
@@ -732,7 +727,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -763,7 +757,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         FormInput1.setPreferredSize(new java.awt.Dimension(190, 250));
         FormInput1.setLayout(new java.awt.BorderLayout());
 
-        Scroll6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Pemeriksaan Patologi Anatomi :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Pemeriksaan Patologi Anatomi :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
 
@@ -817,7 +811,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari2.setMnemonic('6');
         BtnCari2.setText("Tampilkan Data");
         BtnCari2.setToolTipText("Alt+6");
         BtnCari2.setName("BtnCari2"); // NOI18N
@@ -862,7 +855,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar2.setMnemonic('K');
         BtnKeluar2.setText("Keluar");
         BtnKeluar2.setToolTipText("Alt+K");
         BtnKeluar2.setName("BtnKeluar2"); // NOI18N
@@ -908,7 +900,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCopy1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopy1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopy1.setMnemonic('U');
         BtnCopy1.setText("Copy Hasil");
         BtnCopy1.setToolTipText("Alt+U");
         BtnCopy1.setName("BtnCopy1"); // NOI18N
@@ -934,7 +925,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnPrinRadiologi.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrinRadiologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        BtnPrinRadiologi.setMnemonic('P');
         BtnPrinRadiologi.setText("Print Expertise");
         BtnPrinRadiologi.setToolTipText("Alt+P");
         BtnPrinRadiologi.setName("BtnPrinRadiologi"); // NOI18N
@@ -948,7 +938,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -1042,7 +1031,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('6');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+6");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -2136,13 +2124,15 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='middle' colspan='5' rowspan='5' align='center'><br><img src='" + gambar + "' width='500' alt='Patologi Anatomi'></td>"
-                                + "<td valign='top' colspan='3' align='center'><br><br><br><br><br><br>Pemeriksa,<br><br><br><br><br><br><br><br><b>"
-                                + rsPrev.getString("drPengirim") + "</b><br>SIP : " + Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + rsPrev.getString("nip_perujuk") + "'") + "</td>"
+                                + "<td valign='top' colspan='3' align='center'><br><br><br>Pemeriksa,<br><br><br><br><br><br><br><br><b>"
+                                + rsPrev.getString("drPengirim") + "</b><br>SIP : " + Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + rsPrev.getString("nip_perujuk") + "'") + "</td>"                                
                                 + "</tr>");
                     }
                     htmlContent.append(
                             "</tbody>"
                             + "</table>");
+                    
+                    htmlContent.append("<tr><td><br></td></tr>");
                 }
 
                 LoadHTML1.setText(
