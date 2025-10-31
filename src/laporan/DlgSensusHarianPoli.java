@@ -1257,7 +1257,7 @@ public final class DlgSensusHarianPoli extends javax.swing.JDialog {
                                     "SELECT DISTINCT r.no_rkm_medis, p.nm_pasien, p.alamat, p.jk, concat(r.umurdaftar,' ',r.sttsumur) AS umur, "
                                     + "r.stts_daftar, pj.png_jawab, r.no_rawat, IF(r.status_lanjut = 'Ranap','R. Inap','R. Jalan') status_lanjut "
                                     + "FROM reg_periksa r INNER JOIN pasien p ON p.no_rkm_medis = r.no_rkm_medis "
-                                    + "INNER JOIN penjab pj ON pj.kd_pj = r.kd_pj INNER JOIN diagnosa_pasien dp ON dp.no_rawat = r.no_rawat where "
+                                    + "INNER JOIN penjab pj ON pj.kd_pj = r.kd_pj where "
                                     + "r.tgl_registrasi=? and r.kd_poli='HDL' and r.status_lanjut = 'Ralan' and pj.png_jawab like ? and r.no_rkm_medis like ? or "
                                     + "r.tgl_registrasi=? and r.kd_poli='HDL' and r.status_lanjut = 'Ralan' and pj.png_jawab like ? and p.nm_pasien like ? or "
                                     + "r.tgl_registrasi=? and r.kd_poli='HDL' and r.status_lanjut = 'Ralan' and pj.png_jawab like ? and p.alamat like ? or "
@@ -1316,10 +1316,9 @@ public final class DlgSensusHarianPoli extends javax.swing.JDialog {
                                     dirujukke = Sequel.cariIsi("select rujuk_ke from rujuk where no_rawat=?", rsreg.getString("no_rawat"));
                                     rujukandari = Sequel.cariIsi("select perujuk from rujuk_masuk where no_rawat=?", rsreg.getString("no_rawat"));
                                     alamatrujukandari = Sequel.cariIsi("select alamat from rujuk_masuk where no_rawat=?", rsreg.getString("no_rawat"));
-                                    namapeyakit = Sequel.cariIsi("select if(diagnosa_pasien.status='ralan',penyakit.nm_penyakit,'-') nm_penyakit from diagnosa_pasien "
-                                            + "inner join penyakit on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit where "
-                                            + "diagnosa_pasien.prioritas='1' and diagnosa_pasien.no_rawat=?", rsreg.getString("no_rawat"));
-                                    kodepenyakit = Sequel.cariIsi("select if(status='ralan',kd_penyakit,'-') kd_penyakit from diagnosa_pasien where "
+                                    namapeyakit = Sequel.cariIsi("select ifnull(if(d.status='ralan',p.nm_penyakit,'-'),'-') nm_penyakit from diagnosa_pasien d "
+                                            + "inner join penyakit p on d.kd_penyakit=p.kd_penyakit where d.prioritas='1' and d.no_rawat=?", rsreg.getString("no_rawat"));
+                                    kodepenyakit = Sequel.cariIsi("select ifnull(if(status='ralan',kd_penyakit,'-'),'-') kd_penyakit from diagnosa_pasien where "
                                             + "prioritas='1' and no_rawat=?", rsreg.getString("no_rawat"));
                                     if (rsreg.getString("stts_daftar").equals("Baru")) {
                                         baru = "V";

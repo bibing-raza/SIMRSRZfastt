@@ -2115,7 +2115,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                                         .replace("\r\n", "<br>").replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace("  ", "&nbsp;&nbsp;") + "<br></td>"
                                 + "</tr>");
                         
-                        String gambar = "", ipGambar = "";                        
+                        String gambar = "", ipGambar = "";
                         try {
                             //cek atau ping ip addres
                             ipGambar = "192.168.0.230";
@@ -2123,10 +2123,11 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
                             //ping sukses timeout 100 ms (0.1 detik)
                             if (inet.isReachable(100)) {
-                                gambar = "http://192.168.0.230:7183/img-rme/skala_nyeri.png";
+                                gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
+//                                gambar = "http://192.168.0.230:7183/rme/view.php?id=202406111206483fef2f alt='Preview'";
                             //ping gagal
                             } else {
-                                gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/contoh_patologi_anatomi.png";
+                                gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
                             }
                         } catch (Exception e) {
                             System.out.println("Notif : " + e);
@@ -2134,7 +2135,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
                         htmlContent.append(
                                 "<tr class='isi'>"
-                                + "<td valign='middle' colspan='5' rowspan='5' align='center'><br><img src='" + gambar + "' width='500' alt='Skala Nyeri'></td>"
+                                + "<td valign='middle' colspan='5' rowspan='5' align='center'><br><img src='" + gambar + "' width='500' alt='Patologi Anatomi'></td>"
                                 + "<td valign='top' colspan='3' align='center'><br><br><br><br><br><br>Pemeriksa,<br><br><br><br><br><br><br><br><b>"
                                 + rsPrev.getString("drPengirim") + "</b><br>SIP : " + Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + rsPrev.getString("nip_perujuk") + "'") + "</td>"
                                 + "</tr>");
