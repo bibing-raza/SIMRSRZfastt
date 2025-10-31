@@ -2123,14 +2123,14 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
                             //ping sukses timeout 100 ms (0.1 detik)
                             if (inet.isReachable(100)) {
-                                gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
-//                                gambar = "http://192.168.0.230:7183/rme/view.php?id=202406111206483fef2f alt='Preview'";
+                                gambar = "http://192.168.0.230:7183/rme/download.php?id=202406111206483fef2f";
                             //ping gagal
                             } else {
                                 gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
                             }
                         } catch (Exception e) {
                             System.out.println("Notif : " + e);
+                            gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
                         }
 
                         htmlContent.append(
