@@ -2,6 +2,7 @@ package bridging;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fungsi.akses;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import java.awt.Component;
@@ -33,12 +34,14 @@ import org.springframework.web.client.RestTemplate;
  */
 public class ApiEKLAIM_inacbg {
     private Connection koneksi = koneksiDB.condb();
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private PreparedStatement ps, ps1;
+    private ResultSet rs, rs1;
     private String URL = "", requestJsonA = "", requestJsonB = "", requestJson1 = "", requestJson2 = "", requestJson3 = "",
             requestJson4 = "", requestJson5 = "", requestJson6 = "", requestJson7 = "", requestJson8 = "", 
-            requestJson9 = "", requestJson10 = "", requestJson11 = "", requestJson12 = "", requestJson13 = "", 
-            requestJson14 = "", stringbalik = "", requestJson15 = "", requestJson16 = "", requestJson17 = "", notifBalik1 = "", notifBalik2 = "";
+            requestJson9 = "", requestJson10 = "", requestJson11 = "", requestJson12 = "", requestJson13 = "",
+            requestJson14 = "", stringbalik = "", requestJson15 = "", requestJson16 = "", requestJson17 = "", requestJson18 = "", requestJson19 = "",
+            requestJson20 = "", requestJson21 = "", requestJson22 = "", requestJson23 = "", requestJson24 = "", requestJson25 = "",
+            notifBalik1 = "", notifBalik2 = "";
     private static String pesanNotif = "";
     private HttpHeaders headers;
     private HttpEntity requestEntity;
@@ -194,6 +197,321 @@ public class ApiEKLAIM_inacbg {
             if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
                 JOptionPane.showMessageDialog(null, erornya);
             }
+        }
+        return x;
+    }
+    
+    public boolean simpanSetKlaim(String noSep, String noKartu, String tglMsk, String tglPulang, String jnsRawt, String klsRwt, String adlSub, String adlKro,
+            String icuIndi, String icuLos, String venti, String classInd, String classClass, String classLos, String addPaymen, String birthWe, String dischargeStts,
+            String diagnosa, String prosedur, Double pnb, Double pb, Double kon, String ta, Double kep, String pen, Double rad, Double lab, String pd, Double reh,
+            Double kam, Double ri, Double obat, String okr, String oke, String alkes, String bmhp, String sa, String pj, String kj, String petiJen, String plastikErat,
+            String dj, String mj, String dmj, String covidStatus, String noKT, String episod, String ccInd, String rsDarurat, String coInside, String labAL,
+            String labPro, String labCRP, String labKul, String labDim, String labPT, String labAPTT, String labWP, String labAnti, String labAnaGas, String labAlbu,
+            String radTho, String tarifPE, String nmDokter, String payorI, String payorC, String cob, String codNik, String konvalesen, String naat, String isoman,
+            String bayi_baru_lhr, String prosedur_inadrg, String diagnosa_inadrg, String caraMsk, String classPayor, String sistol, String diastol, String nilaiVenti,
+            String tglIntub, String tglEkstub, String dialiser, String Kantng_darah, String mnt1APP, String mnt1PUL, String mnt1GRI, String mnt1ACT, String mnt1RES,
+            String mnt5APP, String mnt5PUL, String mnt5GRI, String mnt5ACT, String mnt5RES, String usiaHamil, String gravida, String partus, String abortus,
+            String onset, String cekdeliveri, String Json) {
+        
+        headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Content-Type", "application/json;charset=UTF-8");
+        
+        //--------------------------------------------------------------------------------------------------------
+        requestJsonA = "";
+        requestJsonB = "";
+        if (cekdeliveri.equals("tabel_kosong")) {
+            requestJsonA = "\"\"";
+            requestJsonB = "";
+
+        } else if (cekdeliveri.equals("ada_datanya")) {
+            requestJsonA = "[";
+            requestJsonB = Json;
+        }
+        
+        //--------------------------------------------------------------------------------------------------------
+        try {
+            requestJson2 = "{"
+                    + "	\"metadata\": {"
+                    + "		\"method\": \"set_claim_data\","
+                    + "		\"nomor_sep\": \"" + noSep + "\""
+                    + "	},"
+                    + "	\"data\": {"
+                    + "		\"nomor_sep\": \"" + noSep + "\","
+                    + "		\"nomor_kartu\": \"" + noKartu + "\","
+                    + "		\"tgl_masuk\": \"" + tglMsk + "\","
+                    + "		\"tgl_pulang\": \"" + tglPulang + "\","
+                    + "		\"cara_masuk\": \"" + caraMsk + "\","
+                    + "		\"jenis_rawat\": \"" + jnsRawt + "\","
+                    + "		\"kelas_rawat\": \"" + klsRwt + "\","
+                    + "		\"adl_sub_acute\": \"" + adlSub + "\","
+                    + "		\"adl_chronic\": \"" + adlKro + "\","
+                    + "		\"icu_indikator\": \"" + icuIndi + "\","
+                    + "		\"icu_los\": \"" + icuLos + "\","
+                    + "		\"ventilator_hour\": \"" + venti + "\","
+                    + "		\"ventilator\": {"
+                    + "			\"use_ind\": \"" + nilaiVenti + "\","
+                    + "			\"start_dttm\": \"" + tglIntub + "\","
+                    + "			\"stop_dttm\": \"" + tglEkstub + "\""
+                    + "		},"
+                    + "		\"upgrade_class_ind\": \"" + classInd + "\","
+                    + "		\"upgrade_class_class\": \"" + classClass + "\","
+                    + "		\"upgrade_class_los\": \"" + classLos + "\","
+                    + "		\"upgrade_class_payor\": \"" + classPayor + "\","
+                    + "		\"add_payment_pct\": \"" + addPaymen + "\","
+                    + "		\"birth_weight\": \"" + birthWe + "\","
+                    + "		\"sistole\": \"" + sistol + "\","
+                    + "		\"diastole\": \"" + diastol + "\","
+                    + "		\"discharge_status\": \"" + dischargeStts + "\","
+                    + "		\"diagnosa\": \"" + diagnosa + "\","
+                    + "		\"procedure\": \"" + prosedur + "\","
+                    + "		\"diagnosa_inagrouper\": \"" + diagnosa_inadrg + "\","
+                    + "		\"procedure_inagrouper\": \"" + prosedur_inadrg + "\","
+                    + "		\"tarif_rs\": {"
+                    + "			\"prosedur_non_bedah\": \"" + pnb + "\","
+                    + "			\"prosedur_bedah\": \"" + pb + "\","
+                    + "			\"konsultasi\": \"" + kon + "\","
+                    + "			\"tenaga_ahli\": \"" + ta + "\","
+                    + "			\"keperawatan\": \"" + kep + "\","
+                    + "			\"penunjang\": \"" + pen + "\","
+                    + "			\"radiologi\": \"" + rad + "\","
+                    + "			\"laboratorium\": \"" + lab + "\","
+                    + "			\"pelayanan_darah\": \"" + pd + "\","
+                    + "			\"rehabilitasi\": \"" + reh + "\","
+                    + "			\"kamar\": \"" + kam + "\","
+                    + "			\"rawat_intensif\": \"" + ri + "\","
+                    + "			\"obat\": \"" + obat + "\","
+                    + "			\"obat_kronis\": \"" + okr + "\","
+                    + "			\"obat_kemoterapi\": \"" + oke + "\","
+                    + "			\"alkes\": \"" + alkes + "\","
+                    + "			\"bmhp\": \"" + bmhp + "\","
+                    + "			\"sewa_alat\": \"" + sa + "\""
+                    + "		},"
+                    + "		\"pemulasaraan_jenazah\": \"" + pj + "\","
+                    + "		\"kantong_jenazah\": \"" + kj + "\","
+                    + "		\"peti_jenazah\": \"" + petiJen + "\","
+                    + "		\"plastik_erat\": \"" + plastikErat + "\","
+                    + "		\"desinfektan_jenazah\": \"" + dj + "\","
+                    + "		\"mobil_jenazah\": \"" + mj + "\","
+                    + "		\"desinfektan_mobil_jenazah\": \"" + dmj + "\","
+                    + "		\"covid19_status_cd\": \"" + covidStatus + "\","
+                    + "		\"nomor_kartu_t\": \"" + noKT + "\","
+                    + "		\"episodes\": \"" + episod + "\","
+                    + "		\"covid19_cc_ind\": \"" + ccInd + "\","
+                    + "		\"covid19_rs_darurat_ind\": \"" + rsDarurat + "\","
+                    + "		\"covid19_co_insidense_ind\": \"" + coInside + "\","
+                    + "		\"covid19_penunjang_pengurang\": {"
+                    + "			\"lab_asam_laktat\": \"" + labAL + "\","
+                    + "			\"lab_procalcitonin\": \"" + labPro + "\","
+                    + "			\"lab_crp\": \"" + labCRP + "\","
+                    + "			\"lab_kultur\": \"" + labKul + "\","
+                    + "			\"lab_d_dimer\": \"" + labDim + "\","
+                    + "			\"lab_pt\": \"" + labPT + "\","
+                    + "			\"lab_aptt\": \"" + labAPTT + "\","
+                    + "			\"lab_waktu_pendarahan\": \"" + labWP + "\","
+                    + "			\"lab_anti_hiv\": \"" + labAnti + "\","
+                    + "			\"lab_analisa_gas\": \"" + labAnaGas + "\","
+                    + "			\"lab_albumin\": \"" + labAlbu + "\","
+                    + "			\"rad_thorax_ap_pa\": \"" + radTho + "\""
+                    + "		},"
+                    + "		\"terapi_konvalesen\": \"" + konvalesen + "\","
+                    + "		\"akses_naat\": \"" + naat + "\","
+                    + "		\"isoman_ind\": \"" + isoman + "\","
+                    + "		\"bayi_lahir_status_cd\": \"" + bayi_baru_lhr + "\","
+                    + "		\"dializer_single_use\": \"" + dialiser + "\","
+                    + "		\"kantong_darah\": \"" + Kantng_darah + "\","
+                    + "		\"apgar\": {"
+                    + "			\"menit_1\": {"
+                    + "				\"appearance\": \"" + mnt1APP + "\","
+                    + "				\"pulse\": \"" + mnt1PUL + "\","
+                    + "				\"grimace\": \"" + mnt1GRI + "\","
+                    + "				\"activity\": \"" + mnt1ACT + "\","
+                    + "				\"respiration\": \"" + mnt1RES + "\""
+                    + "			},"
+                    + "			\"menit_5\": {"
+                    + "				\"appearance\": \"" + mnt5APP + "\","
+                    + "				\"pulse\": \"" + mnt5PUL + "\","
+                    + "				\"grimace\": \"" + mnt5GRI + "\","
+                    + "				\"activity\": \"" + mnt5ACT + "\","
+                    + "				\"respiration\": \"" + mnt5RES + "\""
+                    + "			}"
+                    + "		},"
+                    + "		\"persalinan\": {"
+                    + "			\"usia_kehamilan\": \"" + usiaHamil + "\","
+                    + "			\"gravida\": \"" + gravida + "\","
+                    + "			\"partus\": \"" + partus + "\","
+                    + "			\"abortus\": \"" + abortus + "\","
+                    + "			\"onset_kontraksi\": \"" + onset + "\","
+                    + "			\"delivery\": " + requestJsonA + ""
+                    + requestJsonB
+                    + "		},"
+                    + "		\"tarif_poli_eks\": \"" + tarifPE + "\","
+                    + "		\"nama_dokter\": \"" + nmDokter + "\","
+                    + "		\"kode_tarif\": \"BP\","
+                    + "		\"payor_id\": \"" + payorI + "\","
+                    + "		\"payor_cd\": \"" + payorC + "\","
+                    + "		\"cob_cd\": \"" + cob + "\","
+                    + "		\"coder_nik\": \"" + codNik + "\""
+                    + "	}"
+                    + "}";
+            
+            System.out.println("JSON : " + requestJson2);
+            requestEntity = new HttpEntity(requestJson2, headers);
+            stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+            System.out.println("Output : " + stringbalik);
+            root = mapper.readTree(stringbalik);
+            
+            if (root.path("metadata").path("code").asText().equals("200")) {
+//                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                System.out.println(root.path("metadata").path("message").asText());
+                akses.setCopyData("sukses");
+                x = true;
+            } else {
+                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                akses.setCopyData("gagal");
+                x = false;
+            }
+        } catch (Exception ex) {
+            System.out.println("Notifikasi : " + ex);
+            akses.setCopyData("gagal");
+            if (ex.toString().contains("UnknownHostException") || ex.toString().contains("false")) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+        return x;
+    }
+
+    public boolean grouperKlaim(String nosep) {
+        try {
+            ps1 = koneksi.prepareStatement("SELECT bs.diagnosa_inagrouper, bs.procedure_inagrouper FROM eklaim_set_claim bs WHERE bs.no_sep='" + nosep + "'");
+            try {
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    headers = new HttpHeaders();
+                    headers.setContentType(MediaType.APPLICATION_JSON);
+                    headers.add("Content-Type", "application/json;charset=UTF-8");
+                    try {
+                        //idrg_diagnosa_set
+                        requestJson18 = "{"
+                                + "    \"metadata\": {"
+                                + "        \"method\": \"idrg_diagnosa_set\","
+                                + "        \"nomor_sep\": \"" + nosep + "\""
+                                + "    },"
+                                + "    \"data\": {"
+                                + "        \"diagnosa\": \"" + rs1.getString("diagnosa_inagrouper") + "\""
+                                + "    }"
+                                + "}";
+                        
+                        System.out.println("JSON : " + requestJson18);
+                        requestEntity = new HttpEntity(requestJson18, headers);
+                        stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+                        System.out.println("Output : " + stringbalik);
+                        root = mapper.readTree(stringbalik);
+
+                        if (root.path("metadata").path("code").asText().equals("200")) {
+                            System.out.println("Notif idrg_diagnosa_set : " + root.path("metadata").path("message").asText());
+                            //idrg_procedure_set
+                            try {
+                                headers = new HttpHeaders();
+                                headers.setContentType(MediaType.APPLICATION_JSON);
+                                headers.add("Content-Type", "application/json;charset=UTF-8");
+                                requestJson19 = "{"
+                                        + "    \"metadata\": {"
+                                        + "        \"method\": \"idrg_procedure_set\","
+                                        + "        \"nomor_sep\": \"" + nosep + "\""
+                                        + "    },"
+                                        + "    \"data\": {"
+                                        + "        \"procedure\": \"" + rs1.getString("procedure_inagrouper") + "\""
+                                        + "    }"
+                                        + "}";
+
+                                System.out.println("JSON : " + requestJson19);
+                                requestEntity = new HttpEntity(requestJson19, headers);
+                                stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+                                System.out.println("Output : " + stringbalik);
+                                root = mapper.readTree(stringbalik);
+
+                                if (root.path("metadata").path("code").asText().equals("200")) {
+                                    System.out.println("Notif idrg_procedure_set : " + root.path("metadata").path("message").asText());
+                                    //grouper_idrg
+                                    try {
+                                        headers = new HttpHeaders();
+                                        headers.setContentType(MediaType.APPLICATION_JSON);
+                                        headers.add("Content-Type", "application/json;charset=UTF-8");
+                                        requestJson20 = "{"
+                                                + "    \"metadata\": {"
+                                                + "        \"method\": \"grouper_idrg\","
+                                                + "        \"stage\": \"1\","
+                                                + "        \"grouper\": \"idrg\""
+                                                + "    },"
+                                                + "    \"data\": {"
+                                                + "        \"nomor_sep\": \"" + nosep + "\""
+                                                + "    }"
+                                                + "}";
+
+                                        System.out.println("JSON : " + requestJson20);
+                                        requestEntity = new HttpEntity(requestJson20, headers);
+                                        stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+                                        System.out.println("Output : " + stringbalik);
+                                        root = mapper.readTree(stringbalik);
+                                        
+                                        if (root.path("metadata").path("code").asText().equals("200")) {
+                                            System.out.println("Notif grouper_idrg : " + root.path("metadata").path("message").asText());
+                                        } else {
+                                            System.out.println("Notif grouper_idrg : " + root.path("metadata").path("message").asText());
+                                        }
+                                    } catch (Exception erornya) {
+                                        System.out.println("Notifikasi : " + erornya);
+                                        if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+                                            JOptionPane.showMessageDialog(null, erornya);
+                                        }
+                                    }
+                                } else {
+                                    System.out.println("Notif idrg_procedure_set : " + root.path("metadata").path("message").asText());
+                                }
+
+                            } catch (Exception erornya) {
+                                System.out.println("Notifikasi : " + erornya);
+                                if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+                                    JOptionPane.showMessageDialog(null, erornya);
+                                }
+                            }
+                            
+                            if (root.path("metadata").path("code").asText().equals("200")) {
+//                                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                                System.out.println(root.path("metadata").path("message").asText());
+                                akses.setCopyData("sukses");
+                                x = true;
+                            } else {
+                                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                                akses.setCopyData("gagal");
+                                x = false;
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                            System.out.println("Notif idrg_diagnosa_set : " + root.path("metadata").path("message").asText());
+                            akses.setCopyData("gagal");
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Notifikasi : " + ex);
+                        akses.setCopyData("gagal");
+                        if (ex.toString().contains("UnknownHostException") || ex.toString().contains("false")) {
+                            JOptionPane.showMessageDialog(null, ex);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
         return x;
     }
@@ -437,33 +755,34 @@ public class ApiEKLAIM_inacbg {
 
             if (root.path("metadata").path("code").asText().equals("200")) {
                 JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                akses.setCopyData("sukses");
             } else {
                 JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                akses.setCopyData("gagal");
             }
         } catch (Exception erornya) {
             System.out.println("Notifikasi : " + erornya);
+            akses.setCopyData("gagal");
             if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
                 JOptionPane.showMessageDialog(null, erornya);
             }
         }
     }
 
-    public void mempinal(String nosep_pengajuan, String nikKoder) {
+    public void grouperFinal(String nosep_pengajuan) {
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             headers.add("Content-Type", "application/json;charset=UTF-8");
-            requestJson5
-                    = "{"
-                    + "\"metadata\": {"
-                    + "\"method\": \"claim_final\""
-                    + "},"
-                    + "\"data\": {"
-                    + "\"nomor_sep\": \"" + nosep_pengajuan + "\","
-                    + "\"coder_nik\": \"" + nikKoder + "\""
-                    + "}"
+            requestJson5 = "{"
+                    + "    \"metadata\": {"
+                    + "        \"method\": \"idrg_grouper_final\""
+                    + "    },"
+                    + "    \"data\": {"
+                    + "        \"nomor_sep\": \"" + nosep_pengajuan + "\""
+                    + "    }"
                     + "}";
-
+            
             System.out.println("JSON : " + requestJson5);
             requestEntity = new HttpEntity(requestJson5, headers);
             stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
@@ -471,7 +790,123 @@ public class ApiEKLAIM_inacbg {
             root = mapper.readTree(stringbalik);
 
             if (root.path("metadata").path("code").asText().equals("200")) {
+//                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                System.out.println(root.path("metadata").path("message").asText());
+                akses.setCopyData("sukses");
+            } else {
                 JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                akses.setCopyData("gagal");
+            }
+        } catch (Exception erornya) {
+            System.out.println("Notifikasi : " + erornya);
+            akses.setCopyData("gagal");
+            if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+                JOptionPane.showMessageDialog(null, erornya);
+            }
+        }
+    }
+    
+    public void inacbgImport(String nosep_pengajuan, String notif) {
+        try {
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("Content-Type", "application/json;charset=UTF-8");
+            requestJson21 = "{"
+                    + "	\"metadata\": {"
+                    + "		\"method\": \"idrg_to_inacbg_import\""
+                    + "	},"
+                    + "	\"data\": {"
+                    + "		\"nomor_sep\": \"" + nosep_pengajuan + "\""
+                    + "	}"
+                    + "}";
+            
+            System.out.println("JSON : " + requestJson21);
+            requestEntity = new HttpEntity(requestJson21, headers);
+            stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+            System.out.println("Output : " + stringbalik);
+            root = mapper.readTree(stringbalik);
+
+            if (notif.equals("notif diterminal")) {
+                if (root.path("metadata").path("code").asText().equals("200")) {
+                    System.out.println(root.path("metadata").path("message").asText());
+                } else {
+                    System.out.println(root.path("metadata").path("message").asText());
+                }
+            } else if (notif.equals("tampil terbuka")) {
+                if (root.path("metadata").path("code").asText().equals("200")) {
+                    JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                } else {
+                    JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                }
+            }
+        } catch (Exception erornya) {
+            System.out.println("Notifikasi : " + erornya);
+            if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+                JOptionPane.showMessageDialog(null, erornya);
+            }
+        }
+    }
+    
+    public void inacbgFinal(String nosep_pengajuan) {
+        try {
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("Content-Type", "application/json;charset=UTF-8");
+            requestJson22 = "{"
+                    + "	\"metadata\": {"
+                    + "		\"method\": \"inacbg_grouper_final\""
+                    + "	},"
+                    + "	\"data\": {"
+                    + "		\"nomor_sep\": \"" + nosep_pengajuan + "\""
+                    + "	}"
+                    + "}";
+
+            System.out.println("JSON : " + requestJson22);
+            requestEntity = new HttpEntity(requestJson22, headers);
+            stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+            System.out.println("Output : " + stringbalik);
+            root = mapper.readTree(stringbalik);
+
+            if (root.path("metadata").path("code").asText().equals("200")) {
+//                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                System.out.println(root.path("metadata").path("message").asText());
+                akses.setCopyData("sukses");
+            } else {
+                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                akses.setCopyData("gagal");
+            }
+        } catch (Exception erornya) {
+            System.out.println("Notifikasi : " + erornya);
+            akses.setCopyData("gagal");
+            if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+                JOptionPane.showMessageDialog(null, erornya);
+            }
+        }
+    }
+    
+    public void inacbgEdit(String nosep_pengajuan) {
+        try {
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("Content-Type", "application/json;charset=UTF-8");
+            requestJson23 = "{"
+                    + "	\"metadata\": {"
+                    + "		\"method\": \"inacbg_grouper_reedit\""
+                    + "	},"
+                    + "	\"data\": {"
+                    + "		\"nomor_sep\": \"" + nosep_pengajuan + "\""
+                    + "	}"
+                    + "}";
+
+            System.out.println("JSON : " + requestJson23);
+            requestEntity = new HttpEntity(requestJson23, headers);
+            stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+            System.out.println("Output : " + stringbalik);
+            root = mapper.readTree(stringbalik);
+
+            if (root.path("metadata").path("code").asText().equals("200")) {
+//                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                System.out.println(root.path("metadata").path("message").asText());
             } else {
                 JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
             }
@@ -482,20 +917,58 @@ public class ApiEKLAIM_inacbg {
             }
         }
     }
-
-    public void mengedit(String nosep_pengajuan) {
+    
+    public void inacbgGrouper(String nosep_pengajuan) {
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             headers.add("Content-Type", "application/json;charset=UTF-8");
-            requestJson6
-                    = "{"
-                    + "\"metadata\": {"
-                    + "\"method\": \"reedit_claim\""
-                    + "},"
-                    + "\"data\": {"
-                    + "\"nomor_sep\": \"" + nosep_pengajuan + "\""
-                    + "}"
+            requestJson25 = "{"
+                    + "    \"metadata\": {"
+                    + "        \"method\": \"grouper_inacbg\","
+                    + "        \"stage\": \"1\","
+                    + "        \"grouper\": \"inacbg\""
+                    + "    },"
+                    + "    \"data\": {"
+                    + "        \"nomor_sep\": \"" + nosep_pengajuan + "\""
+                    + "    }"
+                    + "}";
+
+            System.out.println("JSON : " + requestJson25);
+            requestEntity = new HttpEntity(requestJson25, headers);
+            stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+            System.out.println("Output : " + stringbalik);
+            root = mapper.readTree(stringbalik);
+
+            if (root.path("metadata").path("code").asText().equals("200")) {
+//                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                System.out.println(root.path("metadata").path("message").asText());
+                akses.setCopyData("sukses");
+            } else {
+                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                akses.setCopyData("gagal");
+            }
+        } catch (Exception erornya) {
+            System.out.println("Notifikasi : " + erornya);
+            akses.setCopyData("gagal");
+            if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+                JOptionPane.showMessageDialog(null, erornya);
+            }
+        }
+    }
+
+    public void editGrouper(String nosep_pengajuan) {
+        try {
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("Content-Type", "application/json;charset=UTF-8");
+            requestJson6 = "{"
+                    + "	\"metadata\": {"
+                    + "		\"method\": \"idrg_grouper_reedit\""
+                    + "	},"
+                    + "	\"data\": {"
+                    + "		\"nomor_sep\": \"" + nosep_pengajuan + "\""
+                    + "	}"
                     + "}";
 
             System.out.println("JSON : " + requestJson6);
@@ -505,12 +978,16 @@ public class ApiEKLAIM_inacbg {
             root = mapper.readTree(stringbalik);
 
             if (root.path("metadata").path("code").asText().equals("200")) {
-                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+//                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                System.out.println(root.path("metadata").path("message").asText());
+                akses.setCopyData("sukses");
             } else {
                 JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                akses.setCopyData("gagal");
             }
         } catch (Exception erornya) {
             System.out.println("Notifikasi : " + erornya);
+            akses.setCopyData("gagal");
             if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
                 JOptionPane.showMessageDialog(null, erornya);
             }
@@ -655,6 +1132,82 @@ public class ApiEKLAIM_inacbg {
             }
         } catch (Exception erornya) {
             System.out.println("Notifikasi : " + erornya);
+            if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+                JOptionPane.showMessageDialog(null, erornya);
+            }
+        }
+    }
+    
+    public void mempinal(String nosep_pengajuan, String nikKoder) {
+        try {
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("Content-Type", "application/json;charset=UTF-8");
+            requestJson5
+                    = "{"
+                    + "\"metadata\": {"
+                    + "\"method\": \"claim_final\""
+                    + "},"
+                    + "\"data\": {"
+                    + "\"nomor_sep\": \"" + nosep_pengajuan + "\","
+                    + "\"coder_nik\": \"" + nikKoder + "\""
+                    + "}"
+                    + "}";
+
+            System.out.println("JSON : " + requestJson5);
+            requestEntity = new HttpEntity(requestJson5, headers);
+            stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+            System.out.println("Output : " + stringbalik);
+            root = mapper.readTree(stringbalik);
+
+            if (root.path("metadata").path("code").asText().equals("200")) {
+//                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                System.out.println(root.path("metadata").path("message").asText());
+                akses.setCopyData("sukses");
+            } else {
+                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                akses.setCopyData("gagal");
+            }
+        } catch (Exception erornya) {
+            System.out.println("Notifikasi : " + erornya);
+            akses.setCopyData("gagal");
+            if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+                JOptionPane.showMessageDialog(null, erornya);
+            }
+        }
+    }
+    
+    public void mengedit(String nosep_pengajuan) {
+        try {
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("Content-Type", "application/json;charset=UTF-8");
+            requestJson6
+                    = "{"
+                    + "\"metadata\": {"
+                    + "\"method\": \"reedit_claim\""
+                    + "},"
+                    + "\"data\": {"
+                    + "\"nomor_sep\": \"" + nosep_pengajuan + "\""
+                    + "}"
+                    + "}";
+
+            System.out.println("JSON : " + requestJson6);
+            requestEntity = new HttpEntity(requestJson6, headers);
+            stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+            System.out.println("Output : " + stringbalik);
+            root = mapper.readTree(stringbalik);
+
+            if (root.path("metadata").path("code").asText().equals("200")) {
+                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                akses.setCopyData("sukses");
+            } else {
+                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                akses.setCopyData("gagal");
+            }
+        } catch (Exception erornya) {
+            System.out.println("Notifikasi : " + erornya);
+            akses.setCopyData("gagal");
             if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
                 JOptionPane.showMessageDialog(null, erornya);
             }
@@ -834,6 +1387,43 @@ public class ApiEKLAIM_inacbg {
                 JOptionPane.showMessageDialog(null, erornya);
             }
         }
+    }
+    
+    public boolean filePdfPrint(String noPengajuan) {
+        try {
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("Content-Type", "application/json;charset=UTF-8");
+            requestJson24 = "{"
+                    + "	\"metadata\": {"
+                    + "		\"method\": \"claim_print\""
+                    + "	},"
+                    + "	\"data\": {"
+                    + "		\"nomor_sep\": \"" + noPengajuan + "\""
+                    + "	}"
+                    + "}";
+
+            System.out.println("JSON : " + requestJson24);
+            requestEntity = new HttpEntity(requestJson24, headers);
+            stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+//            System.out.println("Output : " + stringbalik);
+            root = mapper.readTree(stringbalik);
+
+            if (root.path("metadata").path("code").asText().equals("200")) {
+                System.out.println("Data File : " + root.path("data").asText());
+                akses.setCopyData(root.path("data").asText());
+                x = true;
+            } else {
+                akses.setCopyData("");
+                x = false;
+            }
+        } catch (Exception erornya) {
+            System.out.println("Notifikasi : " + erornya);
+            if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+                JOptionPane.showMessageDialog(null, erornya);
+            }
+        }
+        return x;
     }
 
     public void mengambilData(String norawt, String nosep_pengajuan, String tglSEP) {

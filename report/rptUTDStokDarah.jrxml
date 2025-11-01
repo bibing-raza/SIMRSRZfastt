@@ -98,7 +98,7 @@ on utd_stok_darah.kode_komponen=utd_komponen_darah.kode]]>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{alamatrs}+", "+$P{kotars}+", "+$P{propinsirs}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="65" y="52" width="424" height="23"/>
+				<reportElement x="0" y="52" width="555" height="23"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="false"/>
 				</textElement>
@@ -111,7 +111,7 @@ on utd_stok_darah.kode_komponen=utd_komponen_darah.kode]]>
 				</graphicElement>
 			</line>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="0" y="2" width="48" height="45"/>
+				<reportElement x="140" y="2" width="38" height="45"/>
 				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>

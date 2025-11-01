@@ -3367,15 +3367,13 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         if (cekSEP.equals("")) {
             if (mbak_eka.ngirimJKN(noRawat.getText()) == true) {
                 if (cekKlaim == 0) {
-                    if (akses.getkode().equals("Admin Utama")) {
+                    if (akses.getadmin() == true) {
                         ajukan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                         ajukan.setLocationRelativeTo(internalFrame1);
                         ajukan.setKlaim(noRawat.getText(), nosep_klaim.getText(), jnsKlaim, "3", "-", tglSep);
                         ajukan.tarifRS(noRawat.getText());
                         ajukan.TabRawat.setEnabled(true);
                         ajukan.TabRawat.setSelectedIndex(0);
-                        ajukan.TabDiagnosa1.setSelectedIndex(0);
-                        ajukan.TabProsedur1.setSelectedIndex(0);
                         ajukan.emptTeksLAINNYA();
                         ajukan.setVisible(true);
                         if (Chktgl.isSelected() == true) {
@@ -3391,8 +3389,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                         ajukan.TabRawat.setEnabledAt(1, false);
                         ajukan.TabRawat.setEnabledAt(0, true);
                         ajukan.TabRawat.setSelectedIndex(0);
-                        ajukan.TabDiagnosa1.setSelectedIndex(0);
-                        ajukan.TabProsedur1.setSelectedIndex(0);
                         ajukan.emptTeksLAINNYA();
                         ajukan.setVisible(true);
                         if (Chktgl.isSelected() == true) {
@@ -3402,15 +3398,13 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                         }
                     }
                 } else if (cekKlaim > 0) {
-                    if (akses.getkode().equals("Admin Utama")) {
+                    if (akses.getadmin() == true) {
                         ajukan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                         ajukan.setLocationRelativeTo(internalFrame1);
                         ajukan.setKlaimAda(noRawat.getText(), nosep_klaim.getText(), jnsKlaim, "3", "-", tglSep);
                         ajukan.tarifRS(noRawat.getText());
                         ajukan.TabRawat.setEnabled(true);
                         ajukan.TabRawat.setSelectedIndex(0);
-                        ajukan.TabDiagnosa1.setSelectedIndex(0);
-                        ajukan.TabProsedur1.setSelectedIndex(0);
                         ajukan.emptTeksLAINNYA();
                         ajukan.setVisible(true);
                         if (Chktgl.isSelected() == true) {
@@ -3426,8 +3420,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                         ajukan.TabRawat.setEnabledAt(1, false);
                         ajukan.TabRawat.setEnabledAt(0, true);
                         ajukan.TabRawat.setSelectedIndex(0);
-                        ajukan.TabDiagnosa1.setSelectedIndex(0);
-                        ajukan.TabProsedur1.setSelectedIndex(0);
                         ajukan.emptTeksLAINNYA();
                         ajukan.setVisible(true);
                         if (Chktgl.isSelected() == true) {
@@ -3440,15 +3432,13 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
             }
         } else {
             if (cekKlaim == 0) {
-                if (akses.getkode().equals("Admin Utama")) {
+                if (akses.getadmin() == true) {
                     ajukan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     ajukan.setLocationRelativeTo(internalFrame1);
                     ajukan.setKlaim(noRawat.getText(), nosep_klaim.getText(), jnsKlaim, "3", "-", tglSep);
                     ajukan.tarifRS(noRawat.getText());
                     ajukan.TabRawat.setEnabled(true);
                     ajukan.TabRawat.setSelectedIndex(0);
-                    ajukan.TabDiagnosa1.setSelectedIndex(0);
-                    ajukan.TabProsedur1.setSelectedIndex(0);
                     ajukan.emptTeksLAINNYA();
                     ajukan.setVisible(true);
                     if (Chktgl.isSelected() == true) {
@@ -3464,8 +3454,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                     ajukan.TabRawat.setEnabledAt(1, false);
                     ajukan.TabRawat.setEnabledAt(0, true);
                     ajukan.TabRawat.setSelectedIndex(0);
-                    ajukan.TabDiagnosa1.setSelectedIndex(0);
-                    ajukan.TabProsedur1.setSelectedIndex(0);
                     ajukan.emptTeksLAINNYA();
                     ajukan.setVisible(true);
                     if (Chktgl.isSelected() == true) {
@@ -3475,15 +3463,13 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                     }
                 }
             } else if (cekKlaim > 0) {
-                if (akses.getkode().equals("Admin Utama")) {
+                if (akses.getadmin() == true) {
                     ajukan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     ajukan.setLocationRelativeTo(internalFrame1);
                     ajukan.setKlaimAda(noRawat.getText(), nosep_klaim.getText(), jnsKlaim, "3", "-", tglSep);
                     ajukan.tarifRS(noRawat.getText());
                     ajukan.TabRawat.setEnabled(true);
                     ajukan.TabRawat.setSelectedIndex(0);
-                    ajukan.TabDiagnosa1.setSelectedIndex(0);
-                    ajukan.TabProsedur1.setSelectedIndex(0);
                     ajukan.emptTeksLAINNYA();
                     ajukan.setVisible(true);
                     if (Chktgl.isSelected() == true) {
@@ -3499,8 +3485,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                     ajukan.TabRawat.setEnabledAt(1, false);
                     ajukan.TabRawat.setEnabledAt(0, true);
                     ajukan.TabRawat.setSelectedIndex(0);
-                    ajukan.TabDiagnosa1.setSelectedIndex(0);
-                    ajukan.TabProsedur1.setSelectedIndex(0);
                     ajukan.emptTeksLAINNYA();
                     ajukan.setVisible(true);
                     if (Chktgl.isSelected() == true) {
@@ -3698,15 +3682,13 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         cekKlaim = Sequel.cariInteger("select count(-1) from eklaim_set_claim where no_sep='" + nosep_klaim.getText() + "' and date(tgl_masuk)='" + tglSep + "'");
 
         if (cekKlaim == 0) {
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 ajukan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 ajukan.setLocationRelativeTo(internalFrame1);
                 ajukan.setKlaim(noRawat.getText(), nosep_klaim.getText(), jnsKlaim, "3", "-", tglSep);
                 ajukan.tarifRS(noRawat.getText());
                 ajukan.TabRawat.setEnabled(true);
                 ajukan.TabRawat.setSelectedIndex(0);
-                ajukan.TabDiagnosa1.setSelectedIndex(0);
-                ajukan.TabProsedur1.setSelectedIndex(0);
                 ajukan.emptTeksLAINNYA();
                 ajukan.setVisible(true);
             } else {
@@ -3716,22 +3698,18 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                 ajukan.tarifRS(noRawat.getText());
                 ajukan.TabRawat.setEnabledAt(1, false);
                 ajukan.TabRawat.setEnabledAt(0, true);
-                ajukan.TabRawat.setSelectedIndex(0);
-                ajukan.TabDiagnosa1.setSelectedIndex(0);
-                ajukan.TabProsedur1.setSelectedIndex(0);
+                ajukan.TabRawat.setSelectedIndex(0);                
                 ajukan.emptTeksLAINNYA();
                 ajukan.setVisible(true);
             }
         } else if (cekKlaim > 0) {
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 ajukan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 ajukan.setLocationRelativeTo(internalFrame1);
                 ajukan.setKlaimAda(noRawat.getText(), nosep_klaim.getText(), jnsKlaim, "3", "-", tglSep);
                 ajukan.tarifRS(noRawat.getText());
                 ajukan.TabRawat.setEnabled(true);
-                ajukan.TabRawat.setSelectedIndex(0);
-                ajukan.TabDiagnosa1.setSelectedIndex(0);
-                ajukan.TabProsedur1.setSelectedIndex(0);
+                ajukan.TabRawat.setSelectedIndex(0);                
                 ajukan.emptTeksLAINNYA();
                 ajukan.setVisible(true);
             } else {
@@ -3741,9 +3719,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                 ajukan.tarifRS(noRawat.getText());
                 ajukan.TabRawat.setEnabledAt(1, false);
                 ajukan.TabRawat.setEnabledAt(0, true);
-                ajukan.TabRawat.setSelectedIndex(0);
-                ajukan.TabDiagnosa1.setSelectedIndex(0);
-                ajukan.TabProsedur1.setSelectedIndex(0);
+                ajukan.TabRawat.setSelectedIndex(0);                
                 ajukan.emptTeksLAINNYA();
                 ajukan.setVisible(true);
             }
@@ -3755,7 +3731,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         cekKlaim = Sequel.cariInteger("select count(-1) from eklaim_set_claim where no_sep='" + nosep_klaim.getText() + "'");
 
         if (cekKlaim == 0) {
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 ajukan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 ajukan.setLocationRelativeTo(internalFrame1);
                 if (kd_payor.equals("73")) {
@@ -3786,7 +3762,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                 ajukan.setVisible(true);
             }
         } else if (cekKlaim > 0) {
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 ajukan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 ajukan.setLocationRelativeTo(internalFrame1);
                 if (kd_payor.equals("73")) {

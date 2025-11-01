@@ -55,7 +55,7 @@ on utd_penunjang_rusak.kode_brng=ipsrsbarang.kode_brng and utd_penunjang_rusak.n
 	<title>
 		<band height="84">
 			<staticText>
-				<reportElement x="94" y="52" width="366" height="23"/>
+				<reportElement x="0" y="52" width="555" height="23"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="false"/>
 				</textElement>
@@ -96,7 +96,7 @@ on utd_penunjang_rusak.kode_brng=ipsrsbarang.kode_brng and utd_penunjang_rusak.n
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{kontakrs}]]></textFieldExpression>
 			</textField>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="0" y="2" width="48" height="45"/>
+				<reportElement x="150" y="2" width="38" height="45"/>
 				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
