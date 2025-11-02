@@ -10141,6 +10141,8 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 tampilHG1();
                 tampilHG2();
                 tampilRespon();
+                tampilDiagInacbg();
+                tampilProsInacbg();
                 if (tabMode3.getRowCount() == 0) {
                     BtnGruperStage.setEnabled(false);
                 } else {
