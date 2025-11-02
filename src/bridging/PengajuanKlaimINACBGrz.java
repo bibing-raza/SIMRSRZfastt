@@ -4834,7 +4834,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 if (akses.getPasteData().equals("sukses")) {
                     BtnRefres.setEnabled(false);
                     BtnSimpanSet.setEnabled(false);
-                    BtnGroperEditIdrg.setEnabled(true);
 
                     BtnKirimOnline.setEnabled(false);
                     BtnEditKlaim.setEnabled(false);
@@ -4907,7 +4906,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                     if (akses.getPasteData().equals("sukses")) {
                         BtnRefres.setEnabled(false);
                         BtnSimpanSet.setEnabled(false);
-                        BtnGroperEditIdrg.setEnabled(false);
 
                         BtnKirimOnline.setEnabled(true);
                         BtnEditKlaim.setEnabled(true);
@@ -5061,7 +5059,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 if (akses.getPasteData().equals("sukses")) {
                     BtnRefres.setEnabled(false);
                     BtnSimpanSet.setEnabled(false);
-                    BtnGroperEditIdrg.setEnabled(true);
 
                     BtnKirimOnline.setEnabled(false);
                     BtnEditKlaim.setEnabled(false);
@@ -5074,7 +5071,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 } else {
                     BtnRefres.setEnabled(true);
                     BtnSimpanSet.setEnabled(true);
-                    BtnGroperEditIdrg.setEnabled(false);
 
                     BtnKirimOnline.setEnabled(false);
                     BtnEditKlaim.setEnabled(false);
@@ -5792,12 +5788,11 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 if (akses.getPasteData().equals("sukses")) {
                     BtnRefres.setEnabled(false);
                     BtnSimpanSet.setEnabled(false);
-                    BtnGroperEditIdrg.setEnabled(false);
 
                     BtnKirimOnline.setEnabled(false);
                     BtnEditKlaim.setEnabled(false);
-                    BtnHapusKlaim.setEnabled(true);
-                    BtnFinal.setEnabled(false);
+                    BtnHapusKlaim.setEnabled(false);
+                    BtnFinal.setEnabled(true);
 
                     BtnGruperStage.setEnabled(false);
                     BtnGruperStage1.setEnabled(false);
@@ -5828,7 +5823,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             if (akses.getPasteData().equals("sukses")) {
                 BtnRefres.setEnabled(true);
                 BtnSimpanSet.setEnabled(true);
-                BtnGroperEditIdrg.setEnabled(false);
 
                 BtnKirimOnline.setEnabled(false);
                 BtnEditKlaim.setEnabled(false);
@@ -5886,7 +5880,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private void jLabel61MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel61MouseClicked
         BtnRefres.setEnabled(false);
         BtnSimpanSet.setEnabled(false);
-        BtnGroperEditIdrg.setEnabled(false);
 
         BtnKirimOnline.setEnabled(true);
         BtnEditKlaim.setEnabled(true);
@@ -5901,7 +5894,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private void jLabel62MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel62MouseClicked
         BtnRefres.setEnabled(false);
         BtnSimpanSet.setEnabled(false);
-        BtnGroperEditIdrg.setEnabled(true);
 
         BtnKirimOnline.setEnabled(false);
         BtnEditKlaim.setEnabled(false);
@@ -6871,7 +6863,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         if (Sequel.cariIsi("select klaim_final from eklaim_new_claim where no_sep='" + nosep + "'").equals("Final")) {
             BtnRefres.setEnabled(false);
             BtnSimpanSet.setEnabled(false);
-            BtnGroperEditIdrg.setEnabled(false);
 
             BtnKirimOnline.setEnabled(true);
             BtnEditKlaim.setEnabled(true);
@@ -6891,7 +6882,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         } else {
             BtnRefres.setEnabled(true);
             BtnSimpanSet.setEnabled(true);
-            BtnGroperEditIdrg.setEnabled(false);
 
             BtnKirimOnline.setEnabled(false);
             BtnEditKlaim.setEnabled(false);
@@ -8220,7 +8210,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         if (Sequel.cariInteger("select count(-1) from eklaim_new_claim where no_sep='" + noSEP.getText() + "' and klaim_final='Final'") > 0) {
             BtnRefres.setEnabled(false);
             BtnSimpanSet.setEnabled(false);
-            BtnGroperEditIdrg.setEnabled(false);
 
             BtnKirimOnline.setEnabled(true);
             BtnEditKlaim.setEnabled(true);
@@ -8233,7 +8222,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         } else {
             BtnRefres.setEnabled(true);
             BtnSimpanSet.setEnabled(true);
-            BtnGroperEditIdrg.setEnabled(false);
 
             BtnKirimOnline.setEnabled(false);
             BtnEditKlaim.setEnabled(false);
