@@ -482,11 +482,8 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         ppAmbilDataKlaim = new javax.swing.JMenuItem();
         ppKirimOnlineKolektif = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
-        TabData = new javax.swing.JTabbedPane();
         Scroll = new widget.ScrollPane();
         tbINACBG = new widget.Table();
-        scroll1 = new widget.ScrollPane();
-        TlogProses = new widget.TextArea();
         panelGlass9 = new widget.panelisi();
         jLabel6 = new widget.Label();
         nosep_klaim = new widget.TextBox();
@@ -539,7 +536,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass8.add(jLabel15);
 
         tgl1.setEditable(false);
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2025" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2025" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -559,7 +556,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass8.add(jLabel17);
 
         tgl2.setEditable(false);
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2025" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2025" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -731,7 +728,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         tgl3.setEditable(false);
-        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2025" }));
+        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2025" }));
         tgl3.setDisplayFormat("dd-MM-yyyy");
         tgl3.setName("tgl3"); // NOI18N
         tgl3.setOpaque(false);
@@ -746,7 +743,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass12.add(jLabel20);
 
         tgl4.setEditable(false);
-        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2025" }));
+        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2025" }));
         tgl4.setDisplayFormat("dd-MM-yyyy");
         tgl4.setName("tgl4"); // NOI18N
         tgl4.setOpaque(false);
@@ -917,7 +914,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass14.add(jLabel24);
 
         tgl5.setEditable(false);
-        tgl5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2025" }));
+        tgl5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2025" }));
         tgl5.setDisplayFormat("dd-MM-yyyy");
         tgl5.setName("tgl5"); // NOI18N
         tgl5.setOpaque(false);
@@ -932,7 +929,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass14.add(jLabel25);
 
         tgl6.setEditable(false);
-        tgl6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2025" }));
+        tgl6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2025" }));
         tgl6.setDisplayFormat("dd-MM-yyyy");
         tgl6.setName("tgl6"); // NOI18N
         tgl6.setOpaque(false);
@@ -1084,7 +1081,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass16.add(jLabel30);
 
         tgl7.setEditable(false);
-        tgl7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2025" }));
+        tgl7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2025" }));
         tgl7.setDisplayFormat("dd-MM-yyyy");
         tgl7.setName("tgl7"); // NOI18N
         tgl7.setOpaque(false);
@@ -1099,7 +1096,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass16.add(jLabel31);
 
         tgl8.setEditable(false);
-        tgl8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2025" }));
+        tgl8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2025" }));
         tgl8.setDisplayFormat("dd-MM-yyyy");
         tgl8.setName("tgl8"); // NOI18N
         tgl8.setOpaque(false);
@@ -1316,7 +1313,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         jLabel37.setBounds(0, 56, 100, 23);
 
         TtglA.setEditable(false);
-        TtglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2025" }));
+        TtglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2025" }));
         TtglA.setDisplayFormat("dd-MM-yyyy");
         TtglA.setName("TtglA"); // NOI18N
         TtglA.setOpaque(false);
@@ -1332,7 +1329,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         jLabel38.setBounds(200, 56, 30, 23);
 
         TtglB.setEditable(false);
-        TtglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2025" }));
+        TtglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2025" }));
         TtglB.setDisplayFormat("dd-MM-yyyy");
         TtglB.setName("TtglB"); // NOI18N
         TtglB.setOpaque(false);
@@ -1469,22 +1466,11 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
-        TabData.setBackground(new java.awt.Color(255, 255, 254));
-        TabData.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        TabData.setName("TabData"); // NOI18N
-        TabData.setPreferredSize(new java.awt.Dimension(270, 106));
-        TabData.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TabDataMouseClicked(evt);
-            }
-        });
-
         Scroll.setComponentPopupMenu(Popup1);
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
         tbINACBG.setAutoCreateRowSorter(true);
-        tbINACBG.setToolTipText("");
         tbINACBG.setComponentPopupMenu(Popup1);
         tbINACBG.setName("tbINACBG"); // NOI18N
         tbINACBG.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1499,22 +1485,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         });
         Scroll.setViewportView(tbINACBG);
 
-        TabData.addTab(".: Data Klaim INACBG", Scroll);
-
-        scroll1.setName("scroll1"); // NOI18N
-        scroll1.setOpaque(true);
-
-        TlogProses.setEditable(false);
-        TlogProses.setColumns(20);
-        TlogProses.setRows(5);
-        TlogProses.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        TlogProses.setName("TlogProses"); // NOI18N
-        TlogProses.setPreferredSize(new java.awt.Dimension(230, 100000));
-        scroll1.setViewportView(TlogProses);
-
-        TabData.addTab(".: Log Proses e-Klaim", scroll1);
-
-        internalFrame1.add(TabData, java.awt.BorderLayout.CENTER);
+        internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
 
         panelGlass9.setName("panelGlass9"); // NOI18N
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 44));
@@ -1630,7 +1601,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass10.add(Chktgl);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -1645,7 +1616,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass10.add(jLabel18);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -2117,24 +2088,16 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Data pasien berdasarkan No. SEP/No. Klaim belum dipilih/diconteng,...!!");
                 tbINACBG.requestFocus();
             } else {
-                TlogProses.setText("");
-                TabData.setSelectedIndex(1);
                 try {
                     for (i = 0; i < tbINACBG.getRowCount(); i++) {
                         if (tbINACBG.getValueAt(i, 0).toString().equals("true")) {
                             mbak_eka.mengambilData(tbINACBG.getValueAt(i, 1).toString(),
                                     tbINACBG.getValueAt(i, 3).toString(),
                                     tbINACBG.getValueAt(i, 23).toString());
-                            
-                            if (TlogProses.getText().equals("")) {
-                                TlogProses.setText(ApiEKLAIM_inacbg.getPesan() + "\n");
-                            } else {
-                                TlogProses.setText(TlogProses.getText() + "\n\n" + ApiEKLAIM_inacbg.getPesan());
-                            }
                         }                        
                     }
 
-                    TlogProses.setText(TlogProses.getText() + "\n\n-- PROSES SELESAI --\n\n");
+                    BtnCari1ActionPerformed(null);
                 } catch (Exception e) {
                     System.out.println("Notifikasi : " + e);
                 }
@@ -2456,29 +2419,20 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                 jnsTgl = "2";
             }
             
-            TlogProses.setText("");
-            TabData.setSelectedIndex(1);
             try {
-                mbak_eka.mengirimOnlineKolektif(Valid.SetTgl(TtglA.getSelectedItem() + ""), Valid.SetTgl(TtglB.getSelectedItem() + ""), jnsrwt, jnsTgl);
-                if (TlogProses.getText().equals("")) {
-                    TlogProses.setText(ApiEKLAIM_inacbg.getPesan() + "\n");
+                if (mbak_eka.mengirimOnlineKolektif(Valid.SetTgl(TtglA.getSelectedItem() + ""), Valid.SetTgl(TtglB.getSelectedItem() + ""), jnsrwt, jnsTgl) == true) {
+                    JOptionPane.showMessageDialog(null, "Proses mengirim klaim yang diajukan selesai..!");                    
                 } else {
-                    TlogProses.setText(TlogProses.getText() + "\n\n" + ApiEKLAIM_inacbg.getPesan());
+                    JOptionPane.showMessageDialog(null, "Proses mengirim klaim yang diajukan tidak berhasil..!");
                 }
-
-                TlogProses.setText(TlogProses.getText() + "\n\n-- PROSES SELESAI --\n\n");
+                
                 WindowKirimKolektif.dispose();
+                BtnCari1ActionPerformed(null);
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }            
         } 
     }//GEN-LAST:event_BtnKirimActionPerformed
-
-    private void TabDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabDataMouseClicked
-        if (TabData.getSelectedIndex() == 0) {
-            BtnCari1ActionPerformed(null);
-        }
-    }//GEN-LAST:event_TabDataMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2535,8 +2489,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
     private widget.TextBox TCari3;
     private widget.TextBox TCari4;
     private widget.TextBox TCarinorm;
-    private javax.swing.JTabbedPane TabData;
-    private widget.TextArea TlogProses;
     private widget.Tanggal TtglA;
     private widget.Tanggal TtglB;
     private javax.swing.JDialog WindowGagalSEP;
@@ -2617,7 +2569,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
     private javax.swing.JMenuItem ppHapusConteng;
     private javax.swing.JMenuItem ppKirimOnlineKolektif;
     private javax.swing.JMenuItem ppPengajuanKlaim;
-    private widget.ScrollPane scroll1;
     private widget.Table tbINACBG;
     private widget.Table tbIbuBayi;
     private widget.Table tbKunjungan;

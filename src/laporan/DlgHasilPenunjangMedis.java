@@ -463,6 +463,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         LoadHTML1 = new widget.editorpane();
         jPanel4 = new javax.swing.JPanel();
         panelGlass15 = new widget.panelisi();
+        BtnPrinLab1 = new widget.Button();
         BtnKeluar2 = new widget.Button();
         internalFrame21 = new widget.InternalFrame();
         Scroll2 = new widget.ScrollPane();
@@ -852,6 +853,20 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         panelGlass15.setName("panelGlass15"); // NOI18N
         panelGlass15.setPreferredSize(new java.awt.Dimension(55, 55));
         panelGlass15.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 9));
+
+        BtnPrinLab1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrinLab1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        BtnPrinLab1.setMnemonic('P');
+        BtnPrinLab1.setText("Print Hasil Lab. PA");
+        BtnPrinLab1.setToolTipText("Alt+P");
+        BtnPrinLab1.setName("BtnPrinLab1"); // NOI18N
+        BtnPrinLab1.setPreferredSize(new java.awt.Dimension(160, 30));
+        BtnPrinLab1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPrinLab1ActionPerformed(evt);
+            }
+        });
+        panelGlass15.add(BtnPrinLab1);
 
         BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -1538,6 +1553,68 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnCari2KeyPressed
 
+    private void BtnPrinLab1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrinLab1ActionPerformed
+        if (tbPA.getSelectedRow() > -1) {
+            String nipdokterpa = Sequel.cariIsi("select nip_dokter_pa from hasil_patologi_anatomi where waktu_simpan='" + tbPA.getValueAt(tbPA.getSelectedRow(), 20).toString() + "'");
+            
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            
+            param.put("noPA", tbPA.getValueAt(tbPA.getSelectedRow(), 1).toString());
+            param.put("norm", tbPA.getValueAt(tbPA.getSelectedRow(), 2).toString());
+            param.put("nmpasien", tbPA.getValueAt(tbPA.getSelectedRow(), 3).toString());
+            param.put("tgllahir", Valid.SetTglINDONESIA(tbPA.getValueAt(tbPA.getSelectedRow(), 18).toString() + ""));
+            param.put("jenkel", tbPA.getValueAt(tbPA.getSelectedRow(), 4).toString());
+            param.put("drPengirim", tbPA.getValueAt(tbPA.getSelectedRow(), 6).toString());
+            param.put("unit", tbPA.getValueAt(tbPA.getSelectedRow(), 7).toString());
+            param.put("tglperiksa", Valid.SetTglINDONESIA(tbPA.getValueAt(tbPA.getSelectedRow(), 17).toString() + ""));
+            param.put("tglhasil", Valid.SetTglINDONESIA(tbPA.getValueAt(tbPA.getSelectedRow(), 19).toString() + ""));
+            param.put("lokasi", tbPA.getValueAt(tbPA.getSelectedRow(), 10).toString() + "\n");
+            param.put("makros", tbPA.getValueAt(tbPA.getSelectedRow(), 11).toString() + "\n");
+            param.put("mikros", tbPA.getValueAt(tbPA.getSelectedRow(), 12).toString() + "\n");
+            param.put("kesimpulan", tbPA.getValueAt(tbPA.getSelectedRow(), 13).toString() + "\n");
+            param.put("anjuran", tbPA.getValueAt(tbPA.getSelectedRow(), 14).toString() + "\n");
+            param.put("sip", Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + nipdokterpa + "'"));
+            param.put("nmDokterpa", Sequel.cariIsi("select nama from pegawai where nik='" + nipdokterpa + "'"));
+
+            try {
+                String gambarnya = "", ipGambarnya = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambarnya = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambarnya);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        gambarnya = "http://192.168.0.230:7183/rme/download.php?id=" + tbPA.getValueAt(tbPA.getSelectedRow(), 15).toString();                                                
+                        //ping gagal
+                    } else {
+                        gambarnya = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                    gambarnya = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
+                }
+                
+                param.put("gambarPA", gambarnya);
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            }
+
+            Valid.MyReport("rptPeriksaPatologiAnatomi.jasper", "report", "::[ Lembar Hasil Pemeriksaan Patologi Anatomi ]::", "SELECT now() tgl", param);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel..!!");
+            BtnCari2ActionPerformed(null);
+            tbPA.requestFocus();
+        }
+    }//GEN-LAST:event_BtnPrinLab1ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1566,6 +1643,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     private widget.Button BtnKeluar1;
     private widget.Button BtnKeluar2;
     private widget.Button BtnPrinLab;
+    private widget.Button BtnPrinLab1;
     private widget.Button BtnPrinRadiologi;
     private widget.PanelBiasa FormInput;
     private widget.PanelBiasa FormInput1;
@@ -2111,7 +2189,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
                             //ping sukses timeout 100 ms (0.1 detik)
                             if (inet.isReachable(100)) {
-                                gambar = "http://192.168.0.230:7183/rme/download.php?id=202406111206483fef2f";
+                                gambar = "http://192.168.0.230:7183/rme/download.php?id=" + rsPrev.getString("kd_gambar");
                             //ping gagal
                             } else {
                                 gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
@@ -2125,7 +2203,8 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                                 "<tr class='isi'>"
                                 + "<td valign='middle' colspan='5' rowspan='5' align='center'><br><img src='" + gambar + "' width='500' alt='Patologi Anatomi'></td>"
                                 + "<td valign='top' colspan='3' align='center'><br><br><br>Pemeriksa,<br><br><br><br><br><br><br><br><b>"
-                                + rsPrev.getString("drPengirim") + "</b><br>SIP : " + Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + rsPrev.getString("nip_perujuk") + "'") + "</td>"                                
+                                + Sequel.cariIsi("select nama from pegawai where nik='" + rsPrev.getString("nip_dokter_pa") + "'") + "</b><br>SIP : "
+                                + Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + rsPrev.getString("nip_dokter_pa") + "'") + "</td>"
                                 + "</tr>");
                     }
                     htmlContent.append(

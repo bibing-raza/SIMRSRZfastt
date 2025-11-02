@@ -27,6 +27,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.Timer;
@@ -690,7 +691,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         TkodeFile = new widget.TextBox();
         TnmPemeriksaan = new widget.TextBox();
         TtglUpload = new widget.TextBox();
-        BtnKode = new widget.Button();
         Scroll5 = new widget.ScrollPane();
         LoadHTML1 = new widget.editorpane();
         Scroll2 = new widget.ScrollPane();
@@ -1808,7 +1808,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         jLabel42.setBounds(265, 122, 80, 23);
 
         TtglHasil.setEditable(false);
-        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-10-2025" }));
+        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-10-2025" }));
         TtglHasil.setDisplayFormat("dd-MM-yyyy");
         TtglHasil.setName("TtglHasil"); // NOI18N
         TtglHasil.setOpaque(false);
@@ -1960,21 +1960,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         TtglUpload.setName("TtglUpload"); // NOI18N
         internalFrame9.add(TtglUpload);
         TtglUpload.setBounds(956, 94, 250, 23);
-
-        BtnKode.setForeground(new java.awt.Color(0, 0, 0));
-        BtnKode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnKode.setMnemonic('T');
-        BtnKode.setText("Ambil Kode File");
-        BtnKode.setToolTipText("Alt+T");
-        BtnKode.setName("BtnKode"); // NOI18N
-        BtnKode.setPreferredSize(new java.awt.Dimension(80, 26));
-        BtnKode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKodeActionPerformed(evt);
-            }
-        });
-        internalFrame9.add(BtnKode);
-        BtnKode.setBounds(1140, 33, 130, 26);
 
         Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Preview Hasil Pemeriksaan :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         Scroll5.setName("Scroll5"); // NOI18N
@@ -2590,7 +2575,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi1.add(jLabel25);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-10-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-10-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -4883,6 +4868,30 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             param.put("sip", Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + nipdokterpa + "'"));
             param.put("nmDokterpa", Sequel.cariIsi("select nama from pegawai where nik='" + nipdokterpa + "'"));
 
+            try {
+                String gambarnya = "", ipGambarnya = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambarnya = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambarnya);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        gambarnya = "http://192.168.0.230:7183/rme/download.php?id=" + TkodeFile.getText();                                                
+                        //ping gagal
+                    } else {
+                        gambarnya = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                    gambarnya = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
+                }
+                
+                param.put("gambarPA", gambarnya);
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            }
+
             Valid.MyReport("rptPeriksaPatologiAnatomi.jasper", "report", "::[ Lembar Hasil Pemeriksaan Patologi Anatomi ]::", "SELECT now() tgl", param);
             emptTeksPatologi();
             tampilHasil();
@@ -4973,6 +4982,9 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                 if (Sequel.queryu2tf("delete from hasil_patologi_anatomi where waktu_simpan=?", 1, new String[]{
                     tbHasil.getValueAt(tbHasil.getSelectedRow(), 20).toString()
                 }) == true) {
+                    Sequel.mengedit("rme_file_upload", "id_file=?", "stts_data=?", 2, new String[]{
+                        "0", tbHasil.getValueAt(tbHasil.getSelectedRow(), 15).toString()
+                    });                    
                     emptTeksPatologi();
                     tampilHasil();
                 } else {
@@ -5130,17 +5142,6 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
         }
     }//GEN-LAST:event_tbHasilMouseClicked
 
-    private void BtnKodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKodeActionPerformed
-        TkodeFile.setText("");
-        TkodeFile.setText(akses.getPasteData());
-        TnmPemeriksaan.setText(Sequel.cariIsi("select rj.nama_pemeriksaan from rme_file_upload rf "
-                + "inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan where "
-                + "rf.id_file='" + TkodeFile.getText() + "'"));
-        TtglUpload.setText(Sequel.cariIsi("select date_format(rf.tgl_upload,'%d-%m-%Y, Pukul : %H:%i Wita') from rme_file_upload rf "
-                + "inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan where "
-                + "rf.id_file='" + TkodeFile.getText() + "'"));
-    }//GEN-LAST:event_BtnKodeActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -5171,7 +5172,6 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.Button BtnHapus1;
     private widget.Button BtnKeluar;
     private widget.Button BtnKirim;
-    private widget.Button BtnKode;
     private widget.Button BtnPrint;
     private widget.Button BtnPrint1;
     private widget.Button BtnSimpan;
@@ -5951,7 +5951,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
 
                 //ping sukses timeout 100 ms (0.1 detik)
                 if (inet.isReachable(100)) {
-                    gambar = "http://192.168.0.230:7183/rme/download.php?id=202406111206483fef2f";
+                    gambar = "http://192.168.0.230:7183/rme/download.php?id=" + TkodeFile.getText();
                     //ping gagal
                 } else {
                     gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";

@@ -239,7 +239,6 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -297,7 +296,6 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
 
         BtnHapusFile.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapusFile.setMnemonic('D');
         BtnHapusFile.setText("Setuju Dihapus");
         BtnHapusFile.setToolTipText("Alt+D");
         BtnHapusFile.setName("BtnHapusFile"); // NOI18N
@@ -311,7 +309,6 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -432,7 +429,6 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
 
         BtnUpload.setForeground(new java.awt.Color(0, 0, 0));
         BtnUpload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
-        BtnUpload.setMnemonic('U');
         BtnUpload.setText("Upload Dokumen");
         BtnUpload.setToolTipText("Alt+U");
         BtnUpload.setName("BtnUpload"); // NOI18N
@@ -446,7 +442,6 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -460,7 +455,6 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('1');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+1");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -479,7 +473,6 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N

@@ -42,7 +42,6 @@ public class ApiEKLAIM_inacbg {
             requestJson14 = "", stringbalik = "", requestJson15 = "", requestJson16 = "", requestJson17 = "", requestJson18 = "", requestJson19 = "",
             requestJson20 = "", requestJson21 = "", requestJson22 = "", requestJson23 = "", requestJson24 = "", requestJson25 = "",
             notifBalik1 = "", notifBalik2 = "";
-    private static String pesanNotif = "";
     private HttpHeaders headers;
     private HttpEntity requestEntity;
     private JsonNode root;
@@ -362,6 +361,7 @@ public class ApiEKLAIM_inacbg {
             root = mapper.readTree(stringbalik);
             
             if (root.path("metadata").path("code").asText().equals("200")) {
+                grouperIdrg(noSep);                
 //                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
                 System.out.println(root.path("metadata").path("message").asText());
                 akses.setCopyData("sukses");
@@ -380,8 +380,8 @@ public class ApiEKLAIM_inacbg {
         }
         return x;
     }
-
-    public boolean grouperKlaim(String nosep) {
+    
+    private void grouperIdrg(String nosep) {
         try {
             ps1 = koneksi.prepareStatement("SELECT bs.diagnosa_inagrouper, bs.procedure_inagrouper FROM eklaim_set_claim bs WHERE bs.no_sep='" + nosep + "'");
             try {
@@ -401,7 +401,7 @@ public class ApiEKLAIM_inacbg {
                                 + "        \"diagnosa\": \"" + rs1.getString("diagnosa_inagrouper") + "\""
                                 + "    }"
                                 + "}";
-                        
+
                         System.out.println("JSON : " + requestJson18);
                         requestEntity = new HttpEntity(requestJson18, headers);
                         stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
@@ -454,10 +454,11 @@ public class ApiEKLAIM_inacbg {
                                         stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
                                         System.out.println("Output : " + stringbalik);
                                         root = mapper.readTree(stringbalik);
-                                        
+
                                         if (root.path("metadata").path("code").asText().equals("200")) {
                                             System.out.println("Notif grouper_idrg : " + root.path("metadata").path("message").asText());
                                         } else {
+                                            JOptionPane.showMessageDialog(null, "Notif grouper_idrg : " + root.path("metadata").path("message").asText());
                                             System.out.println("Notif grouper_idrg : " + root.path("metadata").path("message").asText());
                                         }
                                     } catch (Exception erornya) {
@@ -467,6 +468,7 @@ public class ApiEKLAIM_inacbg {
                                         }
                                     }
                                 } else {
+                                    JOptionPane.showMessageDialog(null, "Notif idrg_procedure_set : " + root.path("metadata").path("message").asText());
                                     System.out.println("Notif idrg_procedure_set : " + root.path("metadata").path("message").asText());
                                 }
 
@@ -478,7 +480,7 @@ public class ApiEKLAIM_inacbg {
                             }
                             
                             if (root.path("metadata").path("code").asText().equals("200")) {
-//                                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                                grouperFinalIdrg(nosep);
                                 System.out.println(root.path("metadata").path("message").asText());
                                 akses.setCopyData("sukses");
                                 x = true;
@@ -513,8 +515,142 @@ public class ApiEKLAIM_inacbg {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
-        return x;
     }
+
+//    public boolean grouperKlaim(String nosep) {
+//        try {
+//            ps1 = koneksi.prepareStatement("SELECT bs.diagnosa_inagrouper, bs.procedure_inagrouper FROM eklaim_set_claim bs WHERE bs.no_sep='" + nosep + "'");
+//            try {
+//                rs1 = ps1.executeQuery();
+//                while (rs1.next()) {
+//                    headers = new HttpHeaders();
+//                    headers.setContentType(MediaType.APPLICATION_JSON);
+//                    headers.add("Content-Type", "application/json;charset=UTF-8");
+//                    try {
+//                        //idrg_diagnosa_set
+//                        requestJson18 = "{"
+//                                + "    \"metadata\": {"
+//                                + "        \"method\": \"idrg_diagnosa_set\","
+//                                + "        \"nomor_sep\": \"" + nosep + "\""
+//                                + "    },"
+//                                + "    \"data\": {"
+//                                + "        \"diagnosa\": \"" + rs1.getString("diagnosa_inagrouper") + "\""
+//                                + "    }"
+//                                + "}";
+//                        
+//                        System.out.println("JSON : " + requestJson18);
+//                        requestEntity = new HttpEntity(requestJson18, headers);
+//                        stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+//                        System.out.println("Output : " + stringbalik);
+//                        root = mapper.readTree(stringbalik);
+//
+//                        if (root.path("metadata").path("code").asText().equals("200")) {
+//                            System.out.println("Notif idrg_diagnosa_set : " + root.path("metadata").path("message").asText());
+//                            //idrg_procedure_set
+//                            try {
+//                                headers = new HttpHeaders();
+//                                headers.setContentType(MediaType.APPLICATION_JSON);
+//                                headers.add("Content-Type", "application/json;charset=UTF-8");
+//                                requestJson19 = "{"
+//                                        + "    \"metadata\": {"
+//                                        + "        \"method\": \"idrg_procedure_set\","
+//                                        + "        \"nomor_sep\": \"" + nosep + "\""
+//                                        + "    },"
+//                                        + "    \"data\": {"
+//                                        + "        \"procedure\": \"" + rs1.getString("procedure_inagrouper") + "\""
+//                                        + "    }"
+//                                        + "}";
+//
+//                                System.out.println("JSON : " + requestJson19);
+//                                requestEntity = new HttpEntity(requestJson19, headers);
+//                                stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+//                                System.out.println("Output : " + stringbalik);
+//                                root = mapper.readTree(stringbalik);
+//
+//                                if (root.path("metadata").path("code").asText().equals("200")) {
+//                                    System.out.println("Notif idrg_procedure_set : " + root.path("metadata").path("message").asText());
+//                                    //grouper_idrg
+//                                    try {
+//                                        headers = new HttpHeaders();
+//                                        headers.setContentType(MediaType.APPLICATION_JSON);
+//                                        headers.add("Content-Type", "application/json;charset=UTF-8");
+//                                        requestJson20 = "{"
+//                                                + "    \"metadata\": {"
+//                                                + "        \"method\": \"grouper_idrg\","
+//                                                + "        \"stage\": \"1\","
+//                                                + "        \"grouper\": \"idrg\""
+//                                                + "    },"
+//                                                + "    \"data\": {"
+//                                                + "        \"nomor_sep\": \"" + nosep + "\""
+//                                                + "    }"
+//                                                + "}";
+//
+//                                        System.out.println("JSON : " + requestJson20);
+//                                        requestEntity = new HttpEntity(requestJson20, headers);
+//                                        stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+//                                        System.out.println("Output : " + stringbalik);
+//                                        root = mapper.readTree(stringbalik);
+//                                        
+//                                        if (root.path("metadata").path("code").asText().equals("200")) {
+//                                            System.out.println("Notif grouper_idrg : " + root.path("metadata").path("message").asText());
+//                                        } else {
+//                                            System.out.println("Notif grouper_idrg : " + root.path("metadata").path("message").asText());
+//                                        }
+//                                    } catch (Exception erornya) {
+//                                        System.out.println("Notifikasi : " + erornya);
+//                                        if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+//                                            JOptionPane.showMessageDialog(null, erornya);
+//                                        }
+//                                    }
+//                                } else {
+//                                    System.out.println("Notif idrg_procedure_set : " + root.path("metadata").path("message").asText());
+//                                }
+//
+//                            } catch (Exception erornya) {
+//                                System.out.println("Notifikasi : " + erornya);
+//                                if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+//                                    JOptionPane.showMessageDialog(null, erornya);
+//                                }
+//                            }
+//                            
+//                            if (root.path("metadata").path("code").asText().equals("200")) {
+////                                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+//                                System.out.println(root.path("metadata").path("message").asText());
+//                                akses.setCopyData("sukses");
+//                                x = true;
+//                            } else {
+//                                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+//                                akses.setCopyData("gagal");
+//                                x = false;
+//                            }
+//                        } else {
+//                            JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+//                            System.out.println("Notif idrg_diagnosa_set : " + root.path("metadata").path("message").asText());
+//                            akses.setCopyData("gagal");
+//                        }
+//                    } catch (Exception ex) {
+//                        System.out.println("Notifikasi : " + ex);
+//                        akses.setCopyData("gagal");
+//                        if (ex.toString().contains("UnknownHostException") || ex.toString().contains("false")) {
+//                            JOptionPane.showMessageDialog(null, ex);
+//                        }
+//                    }
+//                }
+//            } catch (Exception e) {
+//                System.out.println("Notifikasi : " + e);
+//            } finally {
+//                if (rs1 != null) {
+//                    rs1.close();
+//                }
+//                if (ps1 != null) {
+//                    ps1.close();
+//                }
+//            }
+//        } catch (Exception e) {
+//            System.out.println("Notifikasi : " + e);
+//        }
+//        return x;
+//    }
 
     public boolean menggrouper(String noSep, String noKartu, String tglMsk, String tglPulang, String jnsRawt, String klsRwt, String adlSub, String adlKro,
             String icuIndi, String icuLos, String venti, String classInd, String classClass, String classLos, String addPaymen, String birthWe, String dischargeStts,
@@ -769,7 +905,7 @@ public class ApiEKLAIM_inacbg {
         }
     }
 
-    public void grouperFinal(String nosep_pengajuan) {
+    private void grouperFinalIdrg(String nosep) {
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -779,7 +915,7 @@ public class ApiEKLAIM_inacbg {
                     + "        \"method\": \"idrg_grouper_final\""
                     + "    },"
                     + "    \"data\": {"
-                    + "        \"nomor_sep\": \"" + nosep_pengajuan + "\""
+                    + "        \"nomor_sep\": \"" + nosep + "\""
                     + "    }"
                     + "}";
             
@@ -790,6 +926,7 @@ public class ApiEKLAIM_inacbg {
             root = mapper.readTree(stringbalik);
 
             if (root.path("metadata").path("code").asText().equals("200")) {
+                inacbgImport(nosep);
 //                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
                 System.out.println(root.path("metadata").path("message").asText());
                 akses.setCopyData("sukses");
@@ -806,7 +943,7 @@ public class ApiEKLAIM_inacbg {
         }
     }
     
-    public void inacbgImport(String nosep_pengajuan, String notif) {
+    public void inacbgImport(String nosep_pengajuan) {
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -826,19 +963,12 @@ public class ApiEKLAIM_inacbg {
             System.out.println("Output : " + stringbalik);
             root = mapper.readTree(stringbalik);
 
-            if (notif.equals("notif diterminal")) {
-                if (root.path("metadata").path("code").asText().equals("200")) {
-                    System.out.println(root.path("metadata").path("message").asText());
-                } else {
-                    System.out.println(root.path("metadata").path("message").asText());
-                }
-            } else if (notif.equals("tampil terbuka")) {
-                if (root.path("metadata").path("code").asText().equals("200")) {
-                    JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
-                } else {
-                    JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
-                }
-            }
+            if (root.path("metadata").path("code").asText().equals("200")) {
+                inacbgGrouper(nosep_pengajuan);
+                System.out.println(root.path("metadata").path("message").asText());
+            } else {
+                System.out.println(root.path("metadata").path("message").asText());
+            }            
         } catch (Exception erornya) {
             System.out.println("Notifikasi : " + erornya);
             if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
@@ -847,7 +977,7 @@ public class ApiEKLAIM_inacbg {
         }
     }
     
-    public void inacbgFinal(String nosep_pengajuan) {
+    private void inacbgFinal(String nosep) {
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -857,7 +987,7 @@ public class ApiEKLAIM_inacbg {
                     + "		\"method\": \"inacbg_grouper_final\""
                     + "	},"
                     + "	\"data\": {"
-                    + "		\"nomor_sep\": \"" + nosep_pengajuan + "\""
+                    + "		\"nomor_sep\": \"" + nosep + "\""
                     + "	}"
                     + "}";
 
@@ -918,7 +1048,7 @@ public class ApiEKLAIM_inacbg {
         }
     }
     
-    public void inacbgGrouper(String nosep_pengajuan) {
+    private void inacbgGrouper(String nosep) {
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -930,7 +1060,7 @@ public class ApiEKLAIM_inacbg {
                     + "        \"grouper\": \"inacbg\""
                     + "    },"
                     + "    \"data\": {"
-                    + "        \"nomor_sep\": \"" + nosep_pengajuan + "\""
+                    + "        \"nomor_sep\": \"" + nosep + "\""
                     + "    }"
                     + "}";
 
@@ -941,6 +1071,7 @@ public class ApiEKLAIM_inacbg {
             root = mapper.readTree(stringbalik);
 
             if (root.path("metadata").path("code").asText().equals("200")) {
+                inacbgFinal(nosep);
 //                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
                 System.out.println(root.path("metadata").path("message").asText());
                 akses.setCopyData("sukses");
@@ -1214,7 +1345,7 @@ public class ApiEKLAIM_inacbg {
         }
     }
     
-    public void mengirimOnlineKolektif(String tglA, String tglB, String jnsRawat, String jnsData) {
+    public boolean mengirimOnlineKolektif(String tglA, String tglB, String jnsRawat, String jnsData) {
     notifBalik1 = "";
     notifBalik2 = "";
         try {
@@ -1244,24 +1375,21 @@ public class ApiEKLAIM_inacbg {
             if (root.path("metadata").path("code").asText().equals("200")) {
                 JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
                 notifBalik2 = root.path("metadata").path("message").asText();
+                x = true;
             } else {
                 JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
                 notifBalik2 = root.path("metadata").path("message").asText();
+                x = false;
             }
         } catch (Exception erornya) {
             System.out.println("Notifikasi : " + erornya);
             if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
                 JOptionPane.showMessageDialog(null, erornya);
             }
-        }        
-        
-        ApiEKLAIM_inacbg.pesanNotif = notifBalik1 + "\n" + notifBalik2;
+        }
+        return x;
     }
     
-    public static String getPesan() {
-        return ApiEKLAIM_inacbg.pesanNotif;
-    }
-
     public boolean ngecekDiagnosa(String kodeICD) {
         try {
             headers = new HttpHeaders();
@@ -1466,8 +1594,6 @@ public class ApiEKLAIM_inacbg {
                 JOptionPane.showMessageDialog(null, erornya);
             }
         }
-        
-        ApiEKLAIM_inacbg.pesanNotif = notifBalik1 + "\n" + notifBalik2;
     }
 
     public void menghapusFileUpload(String nosep_pengajuan, String kodeFile) {

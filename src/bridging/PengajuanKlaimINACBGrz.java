@@ -1026,10 +1026,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         Scroll12 = new widget.ScrollPane();
         tbPersalinan = new widget.Table();
         BtnSimpanSet = new widget.Button();
-        BtnGroperIdrg = new widget.Button();
-        BtnGroperFinalIdrg = new widget.Button();
         BtnGroperEditIdrg = new widget.Button();
-        BtnImport = new widget.Button();
         internalFrame5 = new widget.InternalFrame();
         Scroll8 = new widget.ScrollPane();
         tbDiagnosaPasien = new widget.Table();
@@ -1040,10 +1037,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         tbDiagInacbg = new widget.Table();
         ScrollHasil8 = new widget.ScrollPane();
         tbProsInacbg = new widget.Table();
-        BtnGroperFinalInacbg = new widget.Button();
-        BtnGroperEditInacbg = new widget.Button();
         BtnCetakKlaim = new widget.Button();
-        BtnGroperInacbg = new widget.Button();
         gambarFinal = new usu.widget.glass.PanelGlass();
         internalFrame3 = new widget.InternalFrame();
         scrollInput1 = new widget.ScrollPane();
@@ -2887,9 +2881,8 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnSimpanSet.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpanSet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Save.png"))); // NOI18N
-        BtnSimpanSet.setText("1.) Simpan");
+        BtnSimpanSet.setText("Simpan > Grouper iDRG > Import > Grouper INACBG");
         BtnSimpanSet.setGlassColor(new java.awt.Color(255, 153, 0));
-        BtnSimpanSet.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         BtnSimpanSet.setName("BtnSimpanSet"); // NOI18N
         BtnSimpanSet.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnSimpanSet.addActionListener(new java.awt.event.ActionListener() {
@@ -2898,41 +2891,11 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnSimpanSet);
-        BtnSimpanSet.setBounds(960, 450, 120, 30);
-
-        BtnGroperIdrg.setForeground(new java.awt.Color(0, 0, 0));
-        BtnGroperIdrg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/SeratusRibu.png"))); // NOI18N
-        BtnGroperIdrg.setText("2.) Grouper iDRG");
-        BtnGroperIdrg.setGlassColor(new java.awt.Color(255, 153, 0));
-        BtnGroperIdrg.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        BtnGroperIdrg.setName("BtnGroperIdrg"); // NOI18N
-        BtnGroperIdrg.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnGroperIdrg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGroperIdrgActionPerformed(evt);
-            }
-        });
-        FormInput.add(BtnGroperIdrg);
-        BtnGroperIdrg.setBounds(760, 490, 150, 30);
-
-        BtnGroperFinalIdrg.setForeground(new java.awt.Color(0, 0, 0));
-        BtnGroperFinalIdrg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnGroperFinalIdrg.setText("3.) Grouper Final iDRG");
-        BtnGroperFinalIdrg.setGlassColor(new java.awt.Color(255, 153, 0));
-        BtnGroperFinalIdrg.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        BtnGroperFinalIdrg.setName("BtnGroperFinalIdrg"); // NOI18N
-        BtnGroperFinalIdrg.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnGroperFinalIdrg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGroperFinalIdrgActionPerformed(evt);
-            }
-        });
-        FormInput.add(BtnGroperFinalIdrg);
-        BtnGroperFinalIdrg.setBounds(920, 490, 170, 30);
+        BtnSimpanSet.setBounds(760, 490, 360, 30);
 
         BtnGroperEditIdrg.setForeground(new java.awt.Color(0, 0, 0));
         BtnGroperEditIdrg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnGroperEditIdrg.setText("Edit Grouper iDRG");
+        BtnGroperEditIdrg.setText("Edit Grouper");
         BtnGroperEditIdrg.setGlassColor(new java.awt.Color(255, 153, 0));
         BtnGroperEditIdrg.setName("BtnGroperEditIdrg"); // NOI18N
         BtnGroperEditIdrg.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -2942,22 +2905,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnGroperEditIdrg);
-        BtnGroperEditIdrg.setBounds(1100, 490, 150, 30);
-
-        BtnImport.setForeground(new java.awt.Color(0, 0, 0));
-        BtnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
-        BtnImport.setText("4.) Import Coding");
-        BtnImport.setGlassColor(new java.awt.Color(255, 153, 0));
-        BtnImport.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        BtnImport.setName("BtnImport"); // NOI18N
-        BtnImport.setPreferredSize(new java.awt.Dimension(140, 30));
-        BtnImport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnImportActionPerformed(evt);
-            }
-        });
-        FormInput.add(BtnImport);
-        BtnImport.setBounds(475, 717, 140, 30);
+        BtnGroperEditIdrg.setBounds(1130, 490, 120, 30);
 
         internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Diagnosa iDRG]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         internalFrame5.setName("internalFrame5"); // NOI18N
@@ -3004,7 +2952,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         ScrollHasil7.setViewportView(tbDiagInacbg);
 
         FormInput.add(ScrollHasil7);
-        ScrollHasil7.setBounds(630, 755, 630, 150);
+        ScrollHasil7.setBounds(630, 725, 630, 180);
 
         ScrollHasil8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Prosedur/Tindakan INACBG ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         ScrollHasil8.setName("ScrollHasil8"); // NOI18N
@@ -3016,35 +2964,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         FormInput.add(ScrollHasil8);
         ScrollHasil8.setBounds(630, 910, 630, 180);
-
-        BtnGroperFinalInacbg.setForeground(new java.awt.Color(0, 0, 0));
-        BtnGroperFinalInacbg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnGroperFinalInacbg.setText("6.) Grouper Final INACBG");
-        BtnGroperFinalInacbg.setGlassColor(new java.awt.Color(153, 255, 0));
-        BtnGroperFinalInacbg.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        BtnGroperFinalInacbg.setName("BtnGroperFinalInacbg"); // NOI18N
-        BtnGroperFinalInacbg.setPreferredSize(new java.awt.Dimension(140, 30));
-        BtnGroperFinalInacbg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGroperFinalInacbgActionPerformed(evt);
-            }
-        });
-        FormInput.add(BtnGroperFinalInacbg);
-        BtnGroperFinalInacbg.setBounds(795, 717, 180, 30);
-
-        BtnGroperEditInacbg.setForeground(new java.awt.Color(0, 0, 0));
-        BtnGroperEditInacbg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnGroperEditInacbg.setText("Edit Grouper INACBG");
-        BtnGroperEditInacbg.setGlassColor(new java.awt.Color(153, 255, 0));
-        BtnGroperEditInacbg.setName("BtnGroperEditInacbg"); // NOI18N
-        BtnGroperEditInacbg.setPreferredSize(new java.awt.Dimension(140, 30));
-        BtnGroperEditInacbg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGroperEditInacbgActionPerformed(evt);
-            }
-        });
-        FormInput.add(BtnGroperEditInacbg);
-        BtnGroperEditInacbg.setBounds(985, 717, 170, 30);
 
         BtnCetakKlaim.setForeground(new java.awt.Color(0, 0, 0));
         BtnCetakKlaim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Pdf_download.png"))); // NOI18N
@@ -3059,21 +2978,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         });
         FormInput.add(BtnCetakKlaim);
         BtnCetakKlaim.setBounds(865, 1225, 180, 30);
-
-        BtnGroperInacbg.setForeground(new java.awt.Color(0, 0, 0));
-        BtnGroperInacbg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnGroperInacbg.setText("5.) Grouper INACBG");
-        BtnGroperInacbg.setGlassColor(new java.awt.Color(153, 255, 0));
-        BtnGroperInacbg.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        BtnGroperInacbg.setName("BtnGroperInacbg"); // NOI18N
-        BtnGroperInacbg.setPreferredSize(new java.awt.Dimension(140, 30));
-        BtnGroperInacbg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGroperInacbgActionPerformed(evt);
-            }
-        });
-        FormInput.add(BtnGroperInacbg);
-        BtnGroperInacbg.setBounds(630, 717, 155, 30);
 
         gambarFinal.setBackground(new java.awt.Color(29, 29, 29));
         gambarFinal.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/klaim_final.png"))); // NOI18N
@@ -4848,7 +4752,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         if (kodePayor.equals("3")) {
             if (tabMode11.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(null, "Hasil grouper belum ada, lakukan proses simpan & grouper klaim dulu,...!!");
-                BtnGroperIdrg.requestFocus();
             } else {
                 if (Sequel.cariInteger("select count(-1) from setting_bridging where kd_bridging='1' and status_aktif='Ya'") == 1) {
                     kankerRanap = Sequel.cariInteger("select count(-1) from diagnosa_pasien dp inner join penyakit p on p.kd_penyakit=dp.kd_penyakit "
@@ -4931,13 +4834,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 if (akses.getPasteData().equals("sukses")) {
                     BtnRefres.setEnabled(false);
                     BtnSimpanSet.setEnabled(false);
-                    BtnGroperIdrg.setEnabled(false);
-                    BtnGroperFinalIdrg.setEnabled(false);
                     BtnGroperEditIdrg.setEnabled(true);
-                    BtnImport.setEnabled(true);
-                    BtnGroperInacbg.setEnabled(true);
-                    BtnGroperFinalInacbg.setEnabled(false);
-                    BtnGroperEditInacbg.setEnabled(true);
 
                     BtnKirimOnline.setEnabled(false);
                     BtnEditKlaim.setEnabled(false);
@@ -4970,7 +4867,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         if (kodePayor.equals("3")) {
             if (tabMode11.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(null, "Hasil grouper belum ada, lakukan proses simpan & grouper klaim dulu,...!!");
-                BtnGroperIdrg.requestFocus();
             } else {
                 mbak_eka.menghapus(noSEP.getText(), nikPetugas.getText());
                 dispose();
@@ -5011,13 +4907,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                     if (akses.getPasteData().equals("sukses")) {
                         BtnRefres.setEnabled(false);
                         BtnSimpanSet.setEnabled(false);
-                        BtnGroperIdrg.setEnabled(false);
-                        BtnGroperFinalIdrg.setEnabled(false);
                         BtnGroperEditIdrg.setEnabled(false);
-                        BtnImport.setEnabled(false);
-                        BtnGroperInacbg.setEnabled(false);
-                        BtnGroperFinalInacbg.setEnabled(false);
-                        BtnGroperEditInacbg.setEnabled(false);
 
                         BtnKirimOnline.setEnabled(true);
                         BtnEditKlaim.setEnabled(true);
@@ -5171,13 +5061,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 if (akses.getPasteData().equals("sukses")) {
                     BtnRefres.setEnabled(false);
                     BtnSimpanSet.setEnabled(false);
-                    BtnGroperIdrg.setEnabled(false);
-                    BtnGroperFinalIdrg.setEnabled(false);
                     BtnGroperEditIdrg.setEnabled(true);
-                    BtnImport.setEnabled(true);
-                    BtnGroperInacbg.setEnabled(false);
-                    BtnGroperFinalInacbg.setEnabled(true);
-                    BtnGroperEditInacbg.setEnabled(false);
 
                     BtnKirimOnline.setEnabled(false);
                     BtnEditKlaim.setEnabled(false);
@@ -5190,13 +5074,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 } else {
                     BtnRefres.setEnabled(true);
                     BtnSimpanSet.setEnabled(true);
-                    BtnGroperIdrg.setEnabled(false);
-                    BtnGroperFinalIdrg.setEnabled(false);
                     BtnGroperEditIdrg.setEnabled(false);
-                    BtnImport.setEnabled(false);
-                    BtnGroperInacbg.setEnabled(false);
-                    BtnGroperFinalInacbg.setEnabled(false);
-                    BtnGroperEditInacbg.setEnabled(false);
 
                     BtnKirimOnline.setEnabled(false);
                     BtnEditKlaim.setEnabled(false);
@@ -5914,13 +5792,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 if (akses.getPasteData().equals("sukses")) {
                     BtnRefres.setEnabled(false);
                     BtnSimpanSet.setEnabled(false);
-                    BtnGroperIdrg.setEnabled(true);
-                    BtnGroperFinalIdrg.setEnabled(true);
                     BtnGroperEditIdrg.setEnabled(false);
-                    BtnImport.setEnabled(false);
-                    BtnGroperInacbg.setEnabled(false);
-                    BtnGroperFinalInacbg.setEnabled(false);
-                    BtnGroperEditInacbg.setEnabled(false);
 
                     BtnKirimOnline.setEnabled(false);
                     BtnEditKlaim.setEnabled(false);
@@ -5935,90 +5807,10 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnSimpanSetActionPerformed
 
-    private void BtnGroperIdrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGroperIdrgActionPerformed
-        if (norawat.equals("") || noSEP.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Pilih dulu salah satu No. SEP...!!!!");
-        } else if (wktMasuk.getText().trim().equals("") || dpjp.getText().trim().equals("")) {
-            setKlaim(norawat, noSEP.getText(), "JKN", "3","-", tglSEP.getText());
-        } else if (cmbcrPulang.getSelectedItem().equals("-")) {
-            JOptionPane.showMessageDialog(null, "Pilihlah cara pulang pasien dengan benar...!!!!");
-        } else {
-            if (tabMode13.getRowCount() == 0) {
-                JOptionPane.showMessageDialog(null, "Diagnosa iDRG ICD-10 masih kosong...!!!!");
-            } else {
-                akses.setCopyData("");
-                tampilDiagnosa();
-                tampilProsedur();
-                groupingKlaim();
-            }
-        }
-    }//GEN-LAST:event_BtnGroperIdrgActionPerformed
-
-    private void BtnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnImportActionPerformed
-        //kalau kode payor 3 adalah JKN
-        if (tabMode11.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Hasil grouper belum ada, lakukan proses simpan & grouper klaim dulu,...!!");
-            BtnGroperIdrg.requestFocus();
-        } else {
-            mbak_eka.inacbgImport(noSEP.getText(), "tampil terbuka");
-            labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-            labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
-                    + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
-            tampilHG1();
-            tampilHG2();
-            tampilDiagInacbg();
-            tampilProsInacbg();
-        }
-    }//GEN-LAST:event_BtnImportActionPerformed
-
-    private void BtnGroperFinalIdrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGroperFinalIdrgActionPerformed
-        //kalau kode payor 3 adalah JKN        
-        if (tabMode11.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Lakukan proses simpan & grouper klaim dulu,...!!");
-            BtnGroperIdrg.requestFocus();
-        } else {
-            i = JOptionPane.showConfirmDialog(null, "Apakah proses final klaim akan tetap dilanjutkan..??!!", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-            if (i == JOptionPane.YES_OPTION) {
-                akses.setCopyData("");
-                tampilDiagnosa();
-                tampilProsedur();
-                mbak_eka.grouperFinal(noSEP.getText());
-                labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-                labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
-                        + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
-                tampilRespon();
-//                    tampilHG1();
-//                    tampilHG2();
-
-                if (akses.getPasteData().equals("sukses")) {
-                    BtnRefres.setEnabled(false);
-                    BtnSimpanSet.setEnabled(false);
-                    BtnGroperIdrg.setEnabled(false);
-                    BtnGroperFinalIdrg.setEnabled(false);
-                    BtnGroperEditIdrg.setEnabled(true);
-                    BtnImport.setEnabled(true);
-                    BtnGroperInacbg.setEnabled(true);
-                    BtnGroperFinalInacbg.setEnabled(false);
-                    BtnGroperEditInacbg.setEnabled(false);
-
-                    BtnKirimOnline.setEnabled(false);
-                    BtnEditKlaim.setEnabled(false);
-                    BtnHapusKlaim.setEnabled(false);
-                    BtnFinal.setEnabled(false);
-
-                    BtnGruperStage.setEnabled(false);
-                    BtnGruperStage1.setEnabled(false);
-                    BtnCetakKlaim.setEnabled(false);
-                }
-            }
-        }
-    }//GEN-LAST:event_BtnGroperFinalIdrgActionPerformed
-
     private void BtnGroperEditIdrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGroperEditIdrgActionPerformed
         //kalau kode payor 3 adalah JKN
         if (tabMode11.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Hasil grouper belum ada, lakukan proses simpan & grouper klaim dulu,...!!");
-            BtnGroperIdrg.requestFocus();
         } else {
             akses.setCopyData("");
             tampilDiagnosa();
@@ -6036,13 +5828,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             if (akses.getPasteData().equals("sukses")) {
                 BtnRefres.setEnabled(true);
                 BtnSimpanSet.setEnabled(true);
-                BtnGroperIdrg.setEnabled(true);
-                BtnGroperFinalIdrg.setEnabled(true);
                 BtnGroperEditIdrg.setEnabled(false);
-                BtnImport.setEnabled(false);
-                BtnGroperInacbg.setEnabled(true);
-                BtnGroperFinalInacbg.setEnabled(false);
-                BtnGroperEditInacbg.setEnabled(false);
 
                 BtnKirimOnline.setEnabled(false);
                 BtnEditKlaim.setEnabled(false);
@@ -6097,112 +5883,10 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnCetakKlaimActionPerformed
 
-    private void BtnGroperFinalInacbgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGroperFinalInacbgActionPerformed
-        //kalau kode payor 3 adalah JKN        
-        if (tabMode11.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Hasil grouper belum ada, lakukan proses simpan & grouper klaim dulu,...!!");
-            BtnGroperIdrg.requestFocus();
-        } else {
-            akses.setCopyData("");
-            tampilDiagInacbg();
-            tampilProsInacbg();
-            mbak_eka.inacbgFinal(noSEP.getText());
-            labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-            labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
-                    + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
-            tampilHG1();
-            tampilHG2();
-            
-            if (akses.getPasteData().equals("sukses")) {
-                BtnRefres.setEnabled(false);
-                BtnSimpanSet.setEnabled(false);
-                BtnGroperIdrg.setEnabled(false);
-                BtnGroperFinalIdrg.setEnabled(false);
-                BtnGroperEditIdrg.setEnabled(true);
-                BtnImport.setEnabled(false);
-                BtnGroperInacbg.setEnabled(false);
-                BtnGroperFinalInacbg.setEnabled(false);
-                BtnGroperEditInacbg.setEnabled(true);
-
-                BtnKirimOnline.setEnabled(false);
-                BtnEditKlaim.setEnabled(false);
-                BtnHapusKlaim.setEnabled(false);
-                BtnFinal.setEnabled(true);
-
-                BtnGruperStage.setEnabled(false);
-                BtnGruperStage1.setEnabled(false);
-                BtnCetakKlaim.setEnabled(false);
-            }
-        }
-    }//GEN-LAST:event_BtnGroperFinalInacbgActionPerformed
-
-    private void BtnGroperEditInacbgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGroperEditInacbgActionPerformed
-        //kalau kode payor 3 adalah JKN        
-        if (tabMode11.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Hasil grouper belum ada, lakukan proses simpan & grouper klaim dulu,...!!");
-            BtnGroperIdrg.requestFocus();
-        } else {
-            tampilDiagInacbg();
-            tampilProsInacbg();
-            mbak_eka.inacbgEdit(noSEP.getText());
-            labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-            labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
-                    + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
-            tampilRespon();
-            tampilHG1();
-            tampilHG2();            
-        }
-    }//GEN-LAST:event_BtnGroperEditInacbgActionPerformed
-
-    private void BtnGroperInacbgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGroperInacbgActionPerformed
-        //kalau kode payor 3 adalah JKN        
-        if (tabMode11.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Hasil grouper belum ada, lakukan proses simpan & grouper klaim dulu,...!!");
-            BtnGroperIdrg.requestFocus();
-        } else {
-            akses.setCopyData("");
-            tampilDiagInacbg();
-            tampilProsInacbg();
-            mbak_eka.inacbgGrouper(noSEP.getText());
-            labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-            labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
-                    + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
-            tampilHG1();
-            tampilHG2();
-            
-            if (akses.getPasteData().equals("sukses")) {
-                BtnRefres.setEnabled(false);
-                BtnSimpanSet.setEnabled(false);
-                BtnGroperIdrg.setEnabled(false);
-                BtnGroperFinalIdrg.setEnabled(false);
-                BtnGroperEditIdrg.setEnabled(true);
-                BtnImport.setEnabled(true);
-                BtnGroperInacbg.setEnabled(true);
-                BtnGroperFinalInacbg.setEnabled(true);
-                BtnGroperEditInacbg.setEnabled(false);
-
-                BtnKirimOnline.setEnabled(false);
-                BtnEditKlaim.setEnabled(false);
-                BtnHapusKlaim.setEnabled(false);
-                BtnFinal.setEnabled(false);
-
-                BtnGruperStage.setEnabled(true);
-                BtnGruperStage1.setEnabled(false);
-                BtnCetakKlaim.setEnabled(false);
-            }
-        }
-    }//GEN-LAST:event_BtnGroperInacbgActionPerformed
-
     private void jLabel61MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel61MouseClicked
         BtnRefres.setEnabled(false);
         BtnSimpanSet.setEnabled(false);
-        BtnGroperIdrg.setEnabled(false);
-        BtnGroperFinalIdrg.setEnabled(false);
         BtnGroperEditIdrg.setEnabled(false);
-        BtnImport.setEnabled(false);
-        BtnGroperInacbg.setEnabled(false);
-        BtnGroperFinalInacbg.setEnabled(false);
-        BtnGroperEditInacbg.setEnabled(false);
 
         BtnKirimOnline.setEnabled(true);
         BtnEditKlaim.setEnabled(true);
@@ -6217,13 +5901,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private void jLabel62MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel62MouseClicked
         BtnRefres.setEnabled(false);
         BtnSimpanSet.setEnabled(false);
-        BtnGroperIdrg.setEnabled(false);
-        BtnGroperFinalIdrg.setEnabled(false);
         BtnGroperEditIdrg.setEnabled(true);
-        BtnImport.setEnabled(false);
-        BtnGroperInacbg.setEnabled(false);
-        BtnGroperFinalInacbg.setEnabled(false);
-        BtnGroperEditInacbg.setEnabled(true);
 
         BtnKirimOnline.setEnabled(false);
         BtnEditKlaim.setEnabled(false);
@@ -6262,16 +5940,10 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private widget.Button BtnEditKlaim;
     private widget.Button BtnFinal;
     private widget.Button BtnGroperEditIdrg;
-    private widget.Button BtnGroperEditInacbg;
-    private widget.Button BtnGroperFinalIdrg;
-    private widget.Button BtnGroperFinalInacbg;
-    private widget.Button BtnGroperIdrg;
-    private widget.Button BtnGroperInacbg;
     private widget.Button BtnGruper2;
     private widget.Button BtnGruperStage;
     private widget.Button BtnGruperStage1;
     private widget.Button BtnHapusKlaim;
-    private widget.Button BtnImport;
     private widget.Button BtnKeluar;
     private widget.Button BtnKirimOnline;
     private widget.Button BtnRefres;
@@ -7199,13 +6871,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         if (Sequel.cariIsi("select klaim_final from eklaim_new_claim where no_sep='" + nosep + "'").equals("Final")) {
             BtnRefres.setEnabled(false);
             BtnSimpanSet.setEnabled(false);
-            BtnGroperIdrg.setEnabled(false);
-            BtnGroperFinalIdrg.setEnabled(false);
             BtnGroperEditIdrg.setEnabled(false);
-            BtnImport.setEnabled(false);
-            BtnGroperInacbg.setEnabled(false);
-            BtnGroperFinalInacbg.setEnabled(false);
-            BtnGroperEditInacbg.setEnabled(false);
 
             BtnKirimOnline.setEnabled(true);
             BtnEditKlaim.setEnabled(true);
@@ -7217,7 +6883,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             BtnCetakKlaim.setEnabled(true);
 
             if (tabMode11.getRowCount() > 0) {
-                mbak_eka.inacbgImport(noSEP.getText(), "notif diterminal");
+                mbak_eka.inacbgImport(noSEP.getText());
                 labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + nosep + "'"));
                 labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
                         + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + nosep + "'"));
@@ -7225,13 +6891,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         } else {
             BtnRefres.setEnabled(true);
             BtnSimpanSet.setEnabled(true);
-            BtnGroperIdrg.setEnabled(false);
-            BtnGroperFinalIdrg.setEnabled(false);
             BtnGroperEditIdrg.setEnabled(false);
-            BtnImport.setEnabled(false);
-            BtnGroperInacbg.setEnabled(false);
-            BtnGroperFinalInacbg.setEnabled(false);
-            BtnGroperEditInacbg.setEnabled(false);
 
             BtnKirimOnline.setEnabled(false);
             BtnEditKlaim.setEnabled(false);
@@ -7933,7 +7593,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     }
 
     public void isCek() {
-        BtnGroperIdrg.setEnabled(akses.getpengajuan_klaim_raza());
         BtnGruper2.setEnabled(akses.getpengajuan_klaim_raza());
         BtnKirimOnline.setEnabled(akses.getpengajuan_klaim_raza());
         BtnEditKlaim.setEnabled(akses.getpengajuan_klaim_raza());
@@ -8561,13 +8220,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         if (Sequel.cariInteger("select count(-1) from eklaim_new_claim where no_sep='" + noSEP.getText() + "' and klaim_final='Final'") > 0) {
             BtnRefres.setEnabled(false);
             BtnSimpanSet.setEnabled(false);
-            BtnGroperIdrg.setEnabled(false);
-            BtnGroperFinalIdrg.setEnabled(false);
             BtnGroperEditIdrg.setEnabled(false);
-            BtnImport.setEnabled(false);
-            BtnGroperInacbg.setEnabled(false);
-            BtnGroperFinalInacbg.setEnabled(false);
-            BtnGroperEditInacbg.setEnabled(false);
 
             BtnKirimOnline.setEnabled(true);
             BtnEditKlaim.setEnabled(true);
@@ -8580,13 +8233,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         } else {
             BtnRefres.setEnabled(true);
             BtnSimpanSet.setEnabled(true);
-            BtnGroperIdrg.setEnabled(false);
-            BtnGroperFinalIdrg.setEnabled(false);
             BtnGroperEditIdrg.setEnabled(false);
-            BtnImport.setEnabled(false);
-            BtnGroperInacbg.setEnabled(false);
-            BtnGroperFinalInacbg.setEnabled(false);
-            BtnGroperEditInacbg.setEnabled(false);
 
             BtnKirimOnline.setEnabled(false);
             BtnEditKlaim.setEnabled(false);
@@ -10442,50 +10089,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         hitungOBAT();
         hitungPB();
         hitungTOTAL();
-    }
-    
-    private void groupingKlaim() {
-        if (mbak_eka.grouperKlaim(noSEP.getText()) == true) {
-            labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-            labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
-                    + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
-            tampilHG1();
-            tampilHG2();
-            tampilRespon();
-            
-            if (akses.getPasteData().equals("sukses")) {
-                BtnRefres.setEnabled(false);
-                BtnSimpanSet.setEnabled(false);
-                BtnGroperIdrg.setEnabled(true);
-                BtnGroperFinalIdrg.setEnabled(true);
-                BtnGroperEditIdrg.setEnabled(false);
-                BtnImport.setEnabled(false);
-                BtnGroperInacbg.setEnabled(false);
-                BtnGroperFinalInacbg.setEnabled(false);
-                BtnGroperEditInacbg.setEnabled(false);
-
-                BtnKirimOnline.setEnabled(false);
-                BtnEditKlaim.setEnabled(false);
-                BtnHapusKlaim.setEnabled(false);
-                BtnFinal.setEnabled(false);
-
-                BtnGruperStage.setEnabled(false);
-                BtnGruperStage1.setEnabled(false);
-                BtnCetakKlaim.setEnabled(false);
-            }
-        } else {
-            labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-            labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
-                    + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
-            tampilHG1();
-            tampilHG2();
-            tampilRespon();
-            if (tabMode3.getRowCount() == 0) {
-                BtnGruperStage.setEnabled(false);
-            } else {
-                BtnGruperStage.setEnabled(true);
-            }
-        }
     }
     
     private void simpanKlaim() {
