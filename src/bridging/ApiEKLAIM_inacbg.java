@@ -383,7 +383,8 @@ public class ApiEKLAIM_inacbg {
     
     private void grouperIdrg(String nosep) {
         try {
-            ps1 = koneksi.prepareStatement("SELECT bs.diagnosa_inagrouper, bs.procedure_inagrouper FROM eklaim_set_claim bs WHERE bs.no_sep='" + nosep + "'");
+            ps1 = koneksi.prepareStatement("SELECT if(bs.diagnosa_inagrouper='','#',bs.diagnosa_inagrouper) diagnosa_inagrouper, "
+                    + "if(bs.procedure_inagrouper='','#',bs.procedure_inagrouper) procedure_inagrouper FROM eklaim_set_claim bs WHERE bs.no_sep='" + nosep + "'");
             try {
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
@@ -874,7 +875,7 @@ public class ApiEKLAIM_inacbg {
             requestJson4
                     = "{"
                     + "\"metadata\": {"
-                    + "\"method\": \"grouper\","
+                    + "\"method\": \"grouper_inacbg\","
                     + "\"stage\": \"2\""
                     + "},"
                     + "\"data\": {"
@@ -977,7 +978,7 @@ public class ApiEKLAIM_inacbg {
         }
     }
     
-    private void inacbgFinal(String nosep) {
+    public void inacbgFinal(String nosep) {
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -1071,7 +1072,6 @@ public class ApiEKLAIM_inacbg {
             root = mapper.readTree(stringbalik);
 
             if (root.path("metadata").path("code").asText().equals("200")) {
-                inacbgFinal(nosep);
 //                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
                 System.out.println(root.path("metadata").path("message").asText());
                 akses.setCopyData("sukses");
@@ -1330,7 +1330,7 @@ public class ApiEKLAIM_inacbg {
             root = mapper.readTree(stringbalik);
 
             if (root.path("metadata").path("code").asText().equals("200")) {
-                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                System.out.println(root.path("metadata").path("message").asText());
                 akses.setCopyData("sukses");
             } else {
                 JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
