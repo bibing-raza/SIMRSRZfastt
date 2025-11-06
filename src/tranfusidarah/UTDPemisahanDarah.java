@@ -38,12 +38,10 @@ public class UTDPemisahanDarah extends javax.swing.JDialog {
     private String[] kodebarang,namabarang,jumlah,satuan,stokasal,hbeli,total;
     private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
     private String aktifkan="",
-            sqlpscekmedis="select utd_penggunaan_medis_pemisahan_komponen.kode_brng,databarang.nama_brng,utd_penggunaan_medis_pemisahan_komponen.jml,utd_penggunaan_medis_pemisahan_komponen.harga,"+
-                            "utd_penggunaan_medis_pemisahan_komponen.total,databarang.kode_sat from utd_penggunaan_medis_pemisahan_komponen inner join databarang "+
-                            "on utd_penggunaan_medis_pemisahan_komponen.kode_brng=databarang.kode_brng where utd_penggunaan_medis_pemisahan_komponen.no_donor=?",
-            sqlpsceknonmedis="select utd_penggunaan_penunjang_pemisahan_komponen.kode_brng,ipsrsbarang.nama_brng,utd_penggunaan_penunjang_pemisahan_komponen.jml,utd_penggunaan_penunjang_pemisahan_komponen.harga,"+
-                            "utd_penggunaan_penunjang_pemisahan_komponen.total,ipsrsbarang.kode_sat from utd_penggunaan_penunjang_pemisahan_komponen inner join ipsrsbarang "+
-                            "on utd_penggunaan_penunjang_pemisahan_komponen.kode_brng=ipsrsbarang.kode_brng where utd_penggunaan_penunjang_pemisahan_komponen.no_donor=?";
+            sqlpscekmedis = "select up.kode_brng,db.nama_brng,up.jml,up.harga,up.total,db.kode_sat from utd_penggunaan_medis_pemisahan_komponen up "
+            + "inner join databarang db on up.kode_brng=db.kode_brng where up.no_donor=?",
+            sqlpsceknonmedis = "select up.kode_brng, ib.nama_brng, up.jml, up.harga, up.total, ib.kode_sat from utd_penggunaan_penunjang_pemisahan_komponen up "
+            + "inner join ipsrsbarang ib on up.kode_brng=ib.kode_brng where up.no_donor=?";
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -52,7 +50,7 @@ public class UTDPemisahanDarah extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        tabModeMedis=new DefaultTableModel(null,new Object[]{"Jml","Kode Barang","Nama Barang","Harga","Subtotal","Satuan","Stok"}){
+        tabModeMedis = new DefaultTableModel(null, new Object[]{"Jml", "Kode Barang", "Nama Barang", "Harga", "Subtotal", "Satuan", "Stok"}) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
                 if (colIndex==0) {
@@ -67,27 +65,27 @@ public class UTDPemisahanDarah extends javax.swing.JDialog {
 
         for (i = 0; i < 7; i++) {
             TableColumn column = tbMedis.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(35);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(80);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(200);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(50);
-            }else if(i==6){
+            } else if (i == 6) {
                 column.setPreferredWidth(40);
             }
         }
+        
         tbMedis.setDefaultRenderer(Object.class, new WarnaTable());
-        //non medis
-        tabModeNonMedis=new DefaultTableModel(null,new Object[]{"Jml","Kode Barang","Nama Barang","Harga","Subtotal","Satuan","Stok"}){
+        tabModeNonMedis = new DefaultTableModel(null, new Object[]{"Jml", "Kode Barang", "Nama Barang", "Harga", "Subtotal", "Satuan", "Stok"}) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
                 if (colIndex==0) {
@@ -102,29 +100,28 @@ public class UTDPemisahanDarah extends javax.swing.JDialog {
 
         for (i = 0; i < 7; i++) {
             TableColumn column = tbNonMedis.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(35);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(80);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(200);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(50);
-            }else if(i==6){
+            } else if (i == 6) {
                 column.setPreferredWidth(40);
             }
         }
         tbNonMedis.setDefaultRenderer(Object.class, new WarnaTable());
 
-        Object[] row={
-            "Nomor","Nama Pendonor","Tgl.Donor","Dinas","J.K.",
-            "Umur","Alamat","G.D.","Resus","Tensi","No.Bag","No.Telp"
+        Object[] row = {"Nomor", "Nama Pendonor", "Tgl. Donor", "Dinas", "J.K.",
+            "Umur", "Alamat", "G.D.", "Resus", "Tensi", "No. Bag", "No.Telp"
         };
         tabMode=new DefaultTableModel(null,row){
             @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}            
@@ -136,30 +133,30 @@ public class UTDPemisahanDarah extends javax.swing.JDialog {
 
         for (i = 0; i < 12; i++) {
             TableColumn column = tbPemisahan.getColumnModel().getColumn(i);
-            if(i==0){
-                column.setPreferredWidth(90);
-            }else if(i==1){
-                column.setPreferredWidth(150);
-            }else if(i==2){
+            if (i == 0) {
+                column.setPreferredWidth(120);
+            } else if (i == 1) {
+                column.setPreferredWidth(250);
+            } else if (i == 2) {
                 column.setPreferredWidth(70);
-            }else if(i==3){
-                column.setPreferredWidth(37);
-            }else if(i==4){
+            } else if (i == 3) {
+                column.setPreferredWidth(50);
+            } else if (i == 4) {
                 column.setPreferredWidth(27);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(35);
-            }else if(i==6){
+            } else if (i == 6) {
                 column.setPreferredWidth(340);
-            }else if(i==7){
-                column.setPreferredWidth(27);
-            }else if(i==8){
-                column.setPreferredWidth(40);
-            }else if(i==9){
-                column.setPreferredWidth(42);
-            }else if(i==10){
-                column.setPreferredWidth(42);
-            }else if(i==11){
-                column.setPreferredWidth(70);
+            } else if (i == 7) {
+                column.setPreferredWidth(50);
+            } else if (i == 8) {
+                column.setPreferredWidth(50);
+            } else if (i == 9) {
+                column.setPreferredWidth(75);
+            } else if (i == 10) {
+                column.setPreferredWidth(60);
+            } else if (i == 11) {
+                column.setPreferredWidth(100);
             }
         }
         tbPemisahan.setDefaultRenderer(Object.class, new WarnaTable());

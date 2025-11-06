@@ -6593,7 +6593,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18/10/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/11/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -15561,7 +15561,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
 
-            if (akses.getutd_penyerahan_darah() == true) {
+            if (akses.getpemasukan_lain() == true) {
                 Panelmenu.add(btnUTDPenyerahanDarah);
                 jmlmenu++;
             }
@@ -17603,7 +17603,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu++;
         }
 
-        if (akses.getutd_penyerahan_darah() == true) {
+        if (akses.getpemasukan_lain() == true) {
             Panelmenu.add(btnUTDPenyerahanDarah);
             jmlmenu++;
         }
@@ -20359,7 +20359,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         }
 
-        if (akses.getutd_penyerahan_darah() == true) {
+        if (akses.getpemasukan_lain() == true) {
             if (btnUTDPenyerahanDarah.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnUTDPenyerahanDarah);
                 jmlmenu++;

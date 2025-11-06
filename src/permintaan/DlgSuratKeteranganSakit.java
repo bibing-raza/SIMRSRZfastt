@@ -946,13 +946,13 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
 
                 if (statusRawat.equals("ranap") || Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRW.getText() + "' and status_lanjut='Ranap'") > 0) {
                     param.put("kalimat", "Yang bersangkutan diatas adalah BENAR dalam keadaan SAKIT, dan dirawat diruang perawatan inap");
-                    //belum pulang ranap
-                    if (Sequel.cariInteger("select count(-1) from kamar_inap where no_rawat='" + TNoRW.getText() + "' and stts_pulang in ('-','Pindah Kamar')") > 0) {
-                        param.put("tglizin", "sejak tanggal " + Valid.SetTglINDONESIA(Sequel.cariIsi("select sejak_tgl from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'")) + ".");
-                        //sudah dipulangkan
-                    } else {
+                    //sudah dipulangkan
+                    if (Sequel.cariInteger("select count(-1) from kamar_inap where no_rawat='" + TNoRW.getText() + "' and stts_pulang not in ('-','Pindah Kamar')") == 1) {
                         param.put("tglizin", "sejak tanggal " + Sequel.cariIsi("select date_format(sejak_tgl,'%d/%m/%Y') from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'")
                                 + " sampai dengan tanggal " + Sequel.cariIsi("select date_format(sampai_tgl,'%d/%m/%Y') from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'") + ".");
+                        //belum pulang ranap
+                    } else {
+                        param.put("tglizin", "sejak tanggal " + Valid.SetTglINDONESIA(Sequel.cariIsi("select sejak_tgl from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'")) + ".");
                     }
                 } else if (statusRawat.equals("ralan") || Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRW.getText() + "' and status_lanjut='Ralan'") > 0) {
                     param.put("kalimat", "Yang bersangkutan diatas adalah BENAR dalam keadaan SAKIT, dan menjalani perawatan dipoliklinik");
