@@ -1026,7 +1026,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         BtnHapus = new widget.Button();
         BtnPrint = new widget.Button();
         BtnKlaim = new widget.Button();
-        BtnResume = new widget.Button();
         BtnAll = new widget.Button();
         jLabel10 = new widget.Label();
         LCount = new widget.Label();
@@ -1043,6 +1042,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
+        BtnResume = new widget.Button();
         PanelInput = new javax.swing.JPanel();
         TabData = new javax.swing.JTabbedPane();
         FormInput = new widget.PanelBiasa();
@@ -1186,7 +1186,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         nmpoli.setHighlighter(null);
         nmpoli.setName("nmpoli"); // NOI18N
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025 14:38:46" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-10-2025 13:50:50" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1231,7 +1231,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -1254,7 +1253,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
-        BtnBatal.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnBatal.setPreferredSize(new java.awt.Dimension(80, 30));
         BtnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBatalActionPerformed(evt);
@@ -1269,7 +1268,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1288,7 +1286,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('P');
         BtnPrint.setText("Formulir Klaim Pasien");
         BtnPrint.setToolTipText("Alt+P");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -1307,7 +1304,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnKlaim.setForeground(new java.awt.Color(0, 0, 0));
         BtnKlaim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnKlaim.setMnemonic('P');
         BtnKlaim.setText("Pengajuan Klaim JKN");
         BtnKlaim.setToolTipText("Alt+P");
         BtnKlaim.setGlassColor(new java.awt.Color(255, 204, 0));
@@ -1325,23 +1321,8 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnKlaim);
 
-        BtnResume.setForeground(new java.awt.Color(0, 0, 0));
-        BtnResume.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientFile.png"))); // NOI18N
-        BtnResume.setMnemonic('R');
-        BtnResume.setText("Rngksn. Pulang / Resume");
-        BtnResume.setToolTipText("Alt+R");
-        BtnResume.setName("BtnResume"); // NOI18N
-        BtnResume.setPreferredSize(new java.awt.Dimension(200, 30));
-        BtnResume.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnResumeActionPerformed(evt);
-            }
-        });
-        panelGlass8.add(BtnResume);
-
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -1361,19 +1342,18 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Record :");
         jLabel10.setName("jLabel10"); // NOI18N
-        jLabel10.setPreferredSize(new java.awt.Dimension(90, 23));
+        jLabel10.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass8.add(jLabel10);
 
         LCount.setForeground(new java.awt.Color(0, 0, 0));
         LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LCount.setText("0");
         LCount.setName("LCount"); // NOI18N
-        LCount.setPreferredSize(new java.awt.Dimension(110, 23));
+        LCount.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass8.add(LCount);
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1394,7 +1374,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         panelGlass9.setName("panelGlass9"); // NOI18N
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 44));
-        panelGlass9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 10));
+        panelGlass9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 8));
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Tgl. Rawat :");
@@ -1403,7 +1383,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-10-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1417,7 +1397,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-10-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1442,7 +1422,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnSeek4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnSeek4.setMnemonic('5');
         BtnSeek4.setToolTipText("Alt+5");
         BtnSeek4.setName("BtnSeek4"); // NOI18N
         BtnSeek4.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1488,7 +1467,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+6");
         BtnCari.setName("BtnCari"); // NOI18N
-        BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari.setPreferredSize(new java.awt.Dimension(130, 28));
         BtnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCariActionPerformed(evt);
@@ -1500,6 +1479,20 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             }
         });
         panelGlass9.add(BtnCari);
+
+        BtnResume.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResume.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientFile.png"))); // NOI18N
+        BtnResume.setMnemonic('R');
+        BtnResume.setText("Rngksn. Pulang / Resume");
+        BtnResume.setToolTipText("Alt+R");
+        BtnResume.setName("BtnResume"); // NOI18N
+        BtnResume.setPreferredSize(new java.awt.Dimension(200, 28));
+        BtnResume.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResumeActionPerformed(evt);
+            }
+        });
+        panelGlass9.add(BtnResume);
 
         jPanel3.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
 
@@ -1589,7 +1582,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnCariPenyakit.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariPenyakit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCariPenyakit.setMnemonic('1');
         BtnCariPenyakit.setToolTipText("Alt+1");
         BtnCariPenyakit.setName("BtnCariPenyakit"); // NOI18N
         BtnCariPenyakit.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1603,7 +1595,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         btnTambahPenyakit.setForeground(new java.awt.Color(0, 0, 0));
         btnTambahPenyakit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        btnTambahPenyakit.setMnemonic('2');
         btnTambahPenyakit.setToolTipText("Alt+2");
         btnTambahPenyakit.setEnabled(false);
         btnTambahPenyakit.setName("btnTambahPenyakit"); // NOI18N
@@ -1617,7 +1608,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         btnTambahProsedur.setForeground(new java.awt.Color(0, 0, 0));
         btnTambahProsedur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        btnTambahProsedur.setMnemonic('2');
         btnTambahProsedur.setToolTipText("Alt+2");
         btnTambahProsedur.setEnabled(false);
         btnTambahProsedur.setName("btnTambahProsedur"); // NOI18N
@@ -1631,7 +1621,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnCariProsedur.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariProsedur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCariProsedur.setMnemonic('1');
         BtnCariProsedur.setToolTipText("Alt+1");
         BtnCariProsedur.setName("BtnCariProsedur"); // NOI18N
         BtnCariProsedur.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1715,7 +1704,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnCariPenyakit1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariPenyakit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCariPenyakit1.setMnemonic('1');
         BtnCariPenyakit1.setToolTipText("Alt+1");
         BtnCariPenyakit1.setName("BtnCariPenyakit1"); // NOI18N
         BtnCariPenyakit1.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1729,7 +1717,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         btnTambahPenyakit1.setForeground(new java.awt.Color(0, 0, 0));
         btnTambahPenyakit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        btnTambahPenyakit1.setMnemonic('2');
         btnTambahPenyakit1.setToolTipText("Alt+2");
         btnTambahPenyakit1.setEnabled(false);
         btnTambahPenyakit1.setName("btnTambahPenyakit1"); // NOI18N
@@ -1775,7 +1762,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnTindakanRanap.setForeground(new java.awt.Color(0, 0, 0));
         BtnTindakanRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/36.png"))); // NOI18N
-        BtnTindakanRanap.setMnemonic('1');
         BtnTindakanRanap.setText("Paket Tind. Rawat Inap");
         BtnTindakanRanap.setToolTipText("Alt+1");
         BtnTindakanRanap.setName("BtnTindakanRanap"); // NOI18N
@@ -1834,7 +1820,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('6');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+6");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -1986,7 +1971,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setMnemonic('I');
         ChkInput.setText(".: Input Data");
         ChkInput.setToolTipText("Alt+I");
         ChkInput.setBorderPainted(true);

@@ -588,6 +588,8 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         MnPendapatanRalan = new javax.swing.JMenuItem();
         MnPendapatanRanap = new javax.swing.JMenuItem();
         MnPendapatanSemuaRawat = new javax.swing.JMenuItem();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        MnHapusGambar = new javax.swing.JMenuItem();
         WindowDataLIS = new javax.swing.JDialog();
         internalFrame7 = new widget.InternalFrame();
         internalFrame6 = new widget.InternalFrame();
@@ -1257,6 +1259,20 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         jPopupMenu1.add(jMnLapPendapatan);
 
+        jPopupMenu2.setName("jPopupMenu2"); // NOI18N
+
+        MnHapusGambar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusGambar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusGambar.setText("Hapus Gambar");
+        MnHapusGambar.setName("MnHapusGambar"); // NOI18N
+        MnHapusGambar.setPreferredSize(new java.awt.Dimension(130, 28));
+        MnHapusGambar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusGambarActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnHapusGambar);
+
         WindowDataLIS.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowDataLIS.setName("WindowDataLIS"); // NOI18N
         WindowDataLIS.setUndecorated(true);
@@ -1808,7 +1824,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         jLabel42.setBounds(265, 122, 80, 23);
 
         TtglHasil.setEditable(false);
-        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-10-2025" }));
+        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         TtglHasil.setDisplayFormat("dd-MM-yyyy");
         TtglHasil.setName("TtglHasil"); // NOI18N
         TtglHasil.setOpaque(false);
@@ -1980,6 +1996,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         Scroll2.setPreferredSize(new java.awt.Dimension(452, 502));
 
         tbHasil.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbHasil.setComponentPopupMenu(jPopupMenu2);
         tbHasil.setName("tbHasil"); // NOI18N
         tbHasil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2575,7 +2592,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi1.add(jLabel25);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-10-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -4984,7 +5001,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                 }) == true) {
                     Sequel.mengedit("rme_file_upload", "id_file=?", "stts_data=?", 2, new String[]{
                         "0", tbHasil.getValueAt(tbHasil.getSelectedRow(), 15).toString()
-                    });                    
+                    });
                     emptTeksPatologi();
                     tampilHasil();
                 } else {
@@ -5142,6 +5159,28 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
         }
     }//GEN-LAST:event_tbHasilMouseClicked
 
+    private void MnHapusGambarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusGambarActionPerformed
+        if (tbHasil.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin gambar hasil pemeriksaan patologi anatomi mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                Sequel.mengedit("hasil_patologi_anatomi", "waktu_simpan=?", "kd_gambar=?", 2, new String[]{
+                    "", tbHasil.getValueAt(tbHasil.getSelectedRow(), 20).toString()});
+                
+                Sequel.mengedit("rme_file_upload", "id_file=?", "stts_data=?", 2, new String[]{
+                    "0", tbHasil.getValueAt(tbHasil.getSelectedRow(), 15).toString()});
+                emptTeksPatologi();
+                tampilHasil();
+            } else {
+                emptTeksPatologi();
+                tampilHasil();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih/klik dulu datanya pada tabel..!!");
+            emptTeksPatologi();
+            tampilHasil();
+        }
+    }//GEN-LAST:event_MnHapusGambarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5192,6 +5231,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private javax.swing.JMenuItem MnCetakHasilLab9;
     private javax.swing.JMenuItem MnCetakNota;
     private javax.swing.JMenuItem MnDokumenJangMed;
+    private javax.swing.JMenuItem MnHapusGambar;
     private javax.swing.JMenuItem MnHasilPatologiAnatomi;
     private javax.swing.JMenuItem MnInapDetailPerCaraBayar;
     private javax.swing.JMenuItem MnInapDetailSemuaCaraBayar;
@@ -5328,6 +5368,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private widget.TextBox kdmem;
     private widget.TextBox kdpnj;
     private widget.TextBox kdpoli;
@@ -5951,7 +5992,11 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
 
                 //ping sukses timeout 100 ms (0.1 detik)
                 if (inet.isReachable(100)) {
-                    gambar = "http://192.168.0.230:7183/rme/download.php?id=" + TkodeFile.getText();
+                    if (TkodeFile.getText().equals("")) {
+                        gambar = "http://192.168.0.230:7183/img-rme/gambar_tidak_ditemukan.jpg";
+                    } else {
+                        gambar = "http://192.168.0.230:7183/rme/download.php?id=" + TkodeFile.getText();
+                    }
                     //ping gagal
                 } else {
                     gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";

@@ -6012,6 +6012,11 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                         Valid.SetTgl(TtglRencana2.getSelectedItem() + ""), cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nip, 
                         Sequel.cariIsi("select now()"), cekTglLahir, Tspo.getText(), nipVerifikator, Tminggu.getText()
                     }) == true) {
+                
+                if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                        && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                    Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + Tbbl.getText() + "'");
+                }
 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Perinatologi", "Simpan");
                 TabRawat.setSelectedIndex(1);
@@ -8919,6 +8924,11 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                     cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nip, cekTglLahir, Tspo.getText(), nipVerifikator, Tminggu.getText(),
                     tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                 }) == true) {
+            
+            if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                    && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + Tbbl.getText() + "'");
+            }
 
             Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Perinatologi", "Ganti");
             TabRawat.setSelectedIndex(1);

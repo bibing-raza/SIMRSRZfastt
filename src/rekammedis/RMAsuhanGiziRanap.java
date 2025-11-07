@@ -4512,6 +4512,11 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                             TNoRw.getText(), tbDiagnosa.getValueAt(i, 1).toString(), TrgRawat.getText()});
                     }
                 }
+
+                if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                        && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                    Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + Tbb.getText() + "'");
+                }
                 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Asuhan Gizi Rawat Inap", "Simpan");
                 simpanSttsGiziDewasa();
@@ -7166,6 +7171,11 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     Sequel.menyimpan2("detail_diagnosa_asuhan_gizi", "?,?,?", 3, new String[]{
                         TNoRw.getText(), tbDiagnosa.getValueAt(i, 1).toString(), TrgRawat.getText()});
                 }
+            }
+            
+            if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                    && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + Tbb.getText() + "'");
             }
 
             Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Asuhan Gizi Rawat Inap", "Ganti");

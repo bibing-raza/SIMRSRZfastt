@@ -2794,6 +2794,11 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                     skor99, skor22, skor92, skor3_sadar, skor3_35, skor3_92, skortotal, Tcttn_khusus.getText(), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                     resus, nonresus, klinik, doa, nip, tgl_kejadian_tggl, tgl_kejadian_kll, Tvas.getText(), bb.getText(), tb.getText(), Sequel.cariIsi("select now()")
                 }) == true) {
+                    
+                    if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                            && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                        Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + bb.getText() + "'");
+                    }
 
                     Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase IGD", "Simpan");
                     TCari.setText(TNoRw.getText());
@@ -4736,6 +4741,11 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                     resus, nonresus, klinik, doa, nip, tgl_kejadian_tggl, tgl_kejadian_kll, Tvas.getText(), bb.getText(), tb.getText(),
                     tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString()
                 }) == true) {
+            
+            if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                    && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + bb.getText() + "'");
+            }
 
             Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase IGD", "Ganti");
             TCari.setText(TNoRw.getText());

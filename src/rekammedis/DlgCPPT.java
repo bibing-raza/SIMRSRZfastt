@@ -21600,7 +21600,11 @@ public class DlgCPPT extends javax.swing.JDialog {
 
                             //ping sukses timeout 100 ms (0.1 detik)
                             if (inet.isReachable(100)) {
-                                gambar = "http://192.168.0.230:7183/rme/download.php?id=" + rs12.getString("kd_gambar");
+                                if (rs12.getString("kd_gambar").equals("")) {
+                                    gambar = "http://192.168.0.230:7183/img-rme/gambar_tidak_ditemukan.jpg";
+                                } else {
+                                    gambar = "http://192.168.0.230:7183/rme/download.php?id=" + rs12.getString("kd_gambar");
+                                }
                             //ping gagal
                             } else {
                                 gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";

@@ -8695,9 +8695,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("IGDK")) {
-            JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien yg. terdaftar di IGD saja...!!!");
-            tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -8801,9 +8798,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("IGDK")) {
-            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD saja...!!!");
-            tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -8828,9 +8822,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             TCari.requestFocus();
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
-            tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("IGDK")) {
-            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD saja...!!!");
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
@@ -8932,10 +8923,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
-            tampilkasir();
-            tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("PON")) {
-            JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien yg. dirawat di ruang ponek saja...!!!");
             tampilkasir();
             tbKasirRalan.requestFocus();
         } else if (Sequel.cariIsi("select jk from pasien where no_rkm_medis='" + NoRM.getText() + "'").equals("L")) {
@@ -9091,9 +9078,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             TCari.requestFocus();
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
-            tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("IGDK")) {
-            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD saja...!!!");
             tbKasirRalan.requestFocus();
         } else if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='Ralan'") == 0) {
             JOptionPane.showMessageDialog(null, "Data pemberian obat rawat jalan/IGD utk. pasien ini belum tersimpan...!!!");
@@ -9282,9 +9266,23 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
-                if (kdpoli.getText().equals("IGDK") || kdpoli.getText().equals("KJH")) {
-                    if (akses.getadmin() == true || akses.getpic_igd() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
-                            + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
+                if (akses.getadmin() == true || akses.getpic_igd() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
+                        + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    RMLembarObservasi obs = new RMLembarObservasi(null, false);
+                    akses.setform("DlgKasirRalan");
+                    obs.emptTeks();
+                    obs.isCek();
+                    obs.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
+                    obs.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    obs.setLocationRelativeTo(internalFrame1);
+                    obs.setAlwaysOnTop(false);
+                    obs.setVisible(true);
+                    this.setCursor(Cursor.getDefaultCursor());
+                } else {
+                    if ((Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + TNoRw.getText() + "'") == 0)
+                            || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)
+                            || (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1)) {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         RMLembarObservasi obs = new RMLembarObservasi(null, false);
                         akses.setform("DlgKasirRalan");
@@ -9297,28 +9295,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         obs.setVisible(true);
                         this.setCursor(Cursor.getDefaultCursor());
                     } else {
-                        if ((Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + TNoRw.getText() + "'") == 0)
-                                || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)
-                                || (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1)) {
-                            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                            RMLembarObservasi obs = new RMLembarObservasi(null, false);
-                            akses.setform("DlgKasirRalan");
-                            obs.emptTeks();
-                            obs.isCek();
-                            obs.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
-                            obs.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            obs.setLocationRelativeTo(internalFrame1);
-                            obs.setAlwaysOnTop(false);
-                            obs.setVisible(true);
-                            this.setCursor(Cursor.getDefaultCursor());
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
-                            tbKasirRalan.requestFocus();
-                        }
+                        JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
+                        tbKasirRalan.requestFocus();
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD / Kamar Jenazah saja...!!!");
-                    tbKasirRalan.requestFocus();
                 }
             }
         }
@@ -10000,9 +9979,22 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
-                if (kdpoli.getText().equals("IGDK") || kdpoli.getText().equals("KJH")) {
-                    if (akses.getadmin() == true || akses.getpic_igd() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
-                            + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
+                if (akses.getadmin() == true || akses.getpic_igd() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
+                        + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    akses.setform("DlgKasirRalan");
+                    RMTriasePediatrik form = new RMTriasePediatrik(null, false);
+                    form.isCek();
+                    form.emptTeks();
+                    form.setNoRm(TNoRw.getText());
+                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    form.setLocationRelativeTo(internalFrame1);
+                    form.setVisible(true);
+                    this.setCursor(Cursor.getDefaultCursor());
+                } else {
+                    if ((Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat = '" + TNoRw.getText() + "'") == 0)
+                            || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)
+                            || (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(waktu_simpan,Interval 24 DAY_HOUR)") == 1)) {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         akses.setform("DlgKasirRalan");
                         RMTriasePediatrik form = new RMTriasePediatrik(null, false);
@@ -10014,27 +10006,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         form.setVisible(true);
                         this.setCursor(Cursor.getDefaultCursor());
                     } else {
-                        if ((Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat = '" + TNoRw.getText() + "'") == 0)
-                                || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)
-                                || (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(waktu_simpan,Interval 24 DAY_HOUR)") == 1)) {
-                            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                            akses.setform("DlgKasirRalan");
-                            RMTriasePediatrik form = new RMTriasePediatrik(null, false);
-                            form.isCek();
-                            form.emptTeks();
-                            form.setNoRm(TNoRw.getText());
-                            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            form.setLocationRelativeTo(internalFrame1);
-                            form.setVisible(true);
-                            this.setCursor(Cursor.getDefaultCursor());
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
-                            tbKasirRalan.requestFocus();
-                        }
+                        JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
+                        tbKasirRalan.requestFocus();
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD / Kamar Jenazah saja...!!!");
-                    tbKasirRalan.requestFocus();
                 }
             }
         }
@@ -10080,9 +10054,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             TCari.requestFocus();
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
-            tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("PON")) {
-            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di Ponek saja...!!!");
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
@@ -10543,9 +10514,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("PON")) {
-            JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien yg. terdaftar diPonek saja...!!!");
-            tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -10586,9 +10554,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("PON")) {
-            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di Ponek saja...!!!");
-            tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -10613,9 +10578,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             TCari.requestFocus();
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
-            tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("PON")) {
-            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di Ponek saja...!!!");
             tbKasirRalan.requestFocus();
         } else if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='Ralan'") == 0) {
             JOptionPane.showMessageDialog(null, "Data pemberian obat diruang Ponek utk. pasien ini belum tersimpan...!!!");

@@ -2801,6 +2801,11 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
                             Tcatatan.getText(), Valid.SetTgl(TtglKeputusan.getSelectedItem() + ""), cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(),
                             cmbKeputusan.getSelectedItem().toString(), nip, Sequel.cariIsi("select now()"), Tsuhu.getText(), Tbb.getText(), cmbBB.getSelectedItem().toString()
                         }) == true) {
+                    
+                    if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                            && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                        Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + Tbb.getText() + "'");
+                    }
 
                     Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase Pediatrik", "Simpan");
                     TCari.setText(TNoRw.getText());
@@ -4490,6 +4495,11 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
                     cmbKeputusan.getSelectedItem().toString(), nip, Tsuhu.getText(), Tbb.getText(), cmbBB.getSelectedItem().toString(),
                     tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString()
                 }) == true) {
+            
+            if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                    && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + Tbb.getText() + "'");
+            }
 
             Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase Pediatrik", "Ganti");
             TCari.setText(TNoRw.getText());

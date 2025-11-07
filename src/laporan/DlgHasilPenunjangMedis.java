@@ -1592,7 +1592,11 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
                     //ping sukses timeout 100 ms (0.1 detik)
                     if (inet.isReachable(100)) {
-                        gambarnya = "http://192.168.0.230:7183/rme/download.php?id=" + tbPA.getValueAt(tbPA.getSelectedRow(), 15).toString();                                                
+                        if (tbPA.getValueAt(tbPA.getSelectedRow(), 15).toString().equals("")) {
+                            gambarnya = "http://192.168.0.230:7183/img-rme/gambar_tidak_ditemukan.jpg";
+                        } else {
+                            gambarnya = "http://192.168.0.230:7183/rme/download.php?id=" + tbPA.getValueAt(tbPA.getSelectedRow(), 15).toString();
+                        }
                         //ping gagal
                     } else {
                         gambarnya = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
@@ -2189,7 +2193,11 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
                             //ping sukses timeout 100 ms (0.1 detik)
                             if (inet.isReachable(100)) {
-                                gambar = "http://192.168.0.230:7183/rme/download.php?id=" + rsPrev.getString("kd_gambar");
+                                if (rsPrev.getString("kd_gambar").equals("")) {
+                                    gambar = "http://192.168.0.230:7183/img-rme/gambar_tidak_ditemukan.jpg";
+                                } else {
+                                    gambar = "http://192.168.0.230:7183/rme/download.php?id=" + rsPrev.getString("kd_gambar");
+                                }
                             //ping gagal
                             } else {
                                 gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";

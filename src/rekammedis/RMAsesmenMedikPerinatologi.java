@@ -4383,6 +4383,11 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
                             TdiagnosaKerja.getText(), TdiagnosaBanding.getText(), Tpengobatan.getText(), Tdiet.getText(), Trencana.getText(), Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""),
                             cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), Tnip.getText(), Sequel.cariIsi("select now()")
                         }) == true) {
+                    
+                    if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                            && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                        Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + Tbbl.getText() + "'");
+                    }
 
                     Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Medik Perinatologi", "Simpan");
                     TCari.setText(TNoRw.getText());
@@ -7294,6 +7299,11 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
                         Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                         Tnip.getText(), tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                     }) == true) {
+             
+                if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                        && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                    Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + Tbbl.getText() + "'");
+                }
 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Medik Perinatologi", "Ganti");
                 TCari.setText(TNoRw.getText());

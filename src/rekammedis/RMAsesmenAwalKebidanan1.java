@@ -5752,6 +5752,11 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                 + "'" + tbRiwayat.getValueAt(i, 10).toString() + "'", "Data Riwayat Kehamilan");
                     }
                 }
+             
+                if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                        && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                    Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + TbbTerakhir.getText() + "'");
+                }
 
                 TCari.setText(TNoRw.getText());
                 emptTeks();
@@ -10650,6 +10655,11 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
+            }
+            
+            if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                    && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + TbbTerakhir.getText() + "'");
             }
 
             TCari.setText(TNoRw.getText());

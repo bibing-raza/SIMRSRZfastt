@@ -7955,6 +7955,11 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                                             + "rincian_tindakan='" + TRincianTindakan1.getText() + "',terapi='" + TTerapi1.getText() + "',spo2='" + Tspo21.getText() + "',"
                                             + "kesadaran='" + Tkesadaran.getText() + "', lingkar_perut='" + TlingkarPerut.getText() + "'");
 
+                                    if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                                            && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                                        Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + TBerat1.getText() + "'");
+                                    }
+
                                     Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "tinggi_badan='" + TTinggi1.getText() + "'");
                                     tampilPemeriksaanPetugas();
                                     BtnBatalActionPerformed(evt);
@@ -17978,6 +17983,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             });
 
             Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "tinggi_badan='" + TTinggi1.getText() + "'");
+
+            if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                    && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + TBerat1.getText() + "'");
+            }
+            
             tampilPemeriksaanPetugas();
         } else {
             JOptionPane.showMessageDialog(null, "Data Pemeriksaan Kurang Lengkap...!!");

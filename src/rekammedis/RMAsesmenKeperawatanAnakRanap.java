@@ -4569,6 +4569,11 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
                     }
                 }
 
+                if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                        && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                    Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + TbbMasuk.getText() + "'");
+                }
+
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Anak", "Simpan");
                 emptTeks();
                 TCari.setText(TNoRw.getText());                
@@ -6966,6 +6971,11 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
                     Sequel.menyimpan2("penilaian_awal_keperawatan_anak_ranap_resiko", "?,?", 2, new String[]{
                         TNoRw.getText(), tbFaktorResiko.getValueAt(i, 1).toString()});
                 }
+            }
+            
+            if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'") > 0
+                    && Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'").equals("")) {
+                Sequel.mengedit("periksa_radiologi", "no_rawat='" + TNoRw.getText() + "'", "berat_badan='" + TbbMasuk.getText() + "'");
             }
 
             Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Anak", "Ganti");
