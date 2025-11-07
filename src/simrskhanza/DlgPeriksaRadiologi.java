@@ -223,6 +223,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         TNoRw.setDocument(new batasInput((byte) 17).getKata(TNoRw));
         KdPtg.setDocument(new batasInput((byte) 20).getKata(KdPtg));
         KodePerujuk.setDocument(new batasInput((byte) 20).getKata(KodePerujuk));
+        Tbb.setDocument(new batasInput((byte) 10).getKata(Tbb));
         
         if (koneksiDB.cariCepat().equals("aktif")) {
             TCariPeriksa.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
@@ -260,6 +261,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
                 }
             });
         }
+        
         ChkJln.setSelected(true);
         jam();
 
@@ -482,6 +484,8 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         btnDokter = new widget.Button();
         jLabel15 = new widget.Label();
         btnDokterPj = new widget.Button();
+        jLabel17 = new widget.Label();
+        Tbb = new widget.TextBox();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         panelisi5 = new widget.panelisi();
@@ -611,7 +615,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
 
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setOpaque(false);
-        FormInput.setPreferredSize(new java.awt.Dimension(560, 130));
+        FormInput.setPreferredSize(new java.awt.Dimension(560, 186));
         FormInput.setLayout(new java.awt.BorderLayout(1, 1));
 
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
@@ -644,46 +648,46 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         jLabel3.setText("No. Rawat : ");
         jLabel3.setName("jLabel3"); // NOI18N
         PanelInput.add(jLabel3);
-        jLabel3.setBounds(0, 12, 92, 23);
+        jLabel3.setBounds(0, 12, 112, 23);
 
         TNoRw.setEditable(false);
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
         TNoRw.setHighlighter(null);
         TNoRw.setName("TNoRw"); // NOI18N
         PanelInput.add(TNoRw);
-        TNoRw.setBounds(95, 12, 148, 23);
+        TNoRw.setBounds(115, 12, 148, 23);
 
         TNoRM.setEditable(false);
         TNoRM.setForeground(new java.awt.Color(0, 0, 0));
         TNoRM.setHighlighter(null);
         TNoRM.setName("TNoRM"); // NOI18N
         PanelInput.add(TNoRM);
-        TNoRM.setBounds(245, 12, 80, 23);
+        TNoRM.setBounds(265, 12, 80, 23);
 
         TPasien.setEditable(false);
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
         TPasien.setHighlighter(null);
         TPasien.setName("TPasien"); // NOI18N
         PanelInput.add(TPasien);
-        TPasien.setBounds(328, 12, 445, 23);
+        TPasien.setBounds(348, 12, 360, 23);
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Dokter Rad. : ");
         jLabel7.setName("jLabel7"); // NOI18N
         PanelInput.add(jLabel7);
-        jLabel7.setBounds(0, 42, 92, 23);
+        jLabel7.setBounds(0, 40, 112, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Dokter Perujuk : ");
         jLabel9.setName("jLabel9"); // NOI18N
         PanelInput.add(jLabel9);
-        jLabel9.setBounds(0, 72, 92, 23);
+        jLabel9.setBounds(0, 68, 112, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Petugas :");
+        jLabel12.setText("Petugas : ");
         jLabel12.setName("jLabel12"); // NOI18N
         PanelInput.add(jLabel12);
-        jLabel12.setBounds(392, 42, 70, 23);
+        jLabel12.setBounds(0, 96, 112, 23);
 
         KdPtg.setEditable(false);
         KdPtg.setForeground(new java.awt.Color(0, 0, 0));
@@ -694,7 +698,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         PanelInput.add(KdPtg);
-        KdPtg.setBounds(464, 42, 80, 23);
+        KdPtg.setBounds(115, 96, 180, 23);
 
         btnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -707,16 +711,16 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         PanelInput.add(btnPetugas);
-        btnPetugas.setBounds(744, 42, 28, 23);
+        btnPetugas.setBounds(675, 96, 28, 23);
 
         NmPtg.setEditable(false);
         NmPtg.setForeground(new java.awt.Color(0, 0, 0));
         NmPtg.setName("NmPtg"); // NOI18N
         PanelInput.add(NmPtg);
-        NmPtg.setBounds(546, 42, 195, 23);
+        NmPtg.setBounds(298, 96, 375, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2025" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2025" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -726,25 +730,25 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         PanelInput.add(Tanggal);
-        Tanggal.setBounds(464, 72, 90, 23);
+        Tanggal.setBounds(115, 124, 90, 23);
 
         CmbJam.setForeground(new java.awt.Color(0, 0, 0));
         CmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         CmbJam.setName("CmbJam"); // NOI18N
         PanelInput.add(CmbJam);
-        CmbJam.setBounds(614, 72, 42, 23);
+        CmbJam.setBounds(265, 124, 45, 23);
 
         CmbMenit.setForeground(new java.awt.Color(0, 0, 0));
         CmbMenit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         CmbMenit.setName("CmbMenit"); // NOI18N
         PanelInput.add(CmbMenit);
-        CmbMenit.setBounds(659, 72, 42, 23);
+        CmbMenit.setBounds(315, 124, 45, 23);
 
         CmbDetik.setForeground(new java.awt.Color(0, 0, 0));
         CmbDetik.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         CmbDetik.setName("CmbDetik"); // NOI18N
         PanelInput.add(CmbDetik);
-        CmbDetik.setBounds(704, 72, 42, 23);
+        CmbDetik.setBounds(366, 124, 45, 23);
 
         ChkJln.setBackground(new java.awt.Color(235, 255, 235));
         ChkJln.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(195, 215, 195)));
@@ -762,26 +766,26 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         PanelInput.add(ChkJln);
-        ChkJln.setBounds(749, 72, 23, 23);
+        ChkJln.setBounds(417, 124, 23, 23);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Jam :");
         jLabel16.setName("jLabel16"); // NOI18N
         PanelInput.add(jLabel16);
-        jLabel16.setBounds(533, 72, 78, 23);
+        jLabel16.setBounds(206, 124, 50, 23);
 
         NmDokterPj.setEditable(false);
         NmDokterPj.setForeground(new java.awt.Color(0, 0, 0));
         NmDokterPj.setHighlighter(null);
         NmDokterPj.setName("NmDokterPj"); // NOI18N
         PanelInput.add(NmDokterPj);
-        NmDokterPj.setBounds(177, 42, 180, 23);
+        NmDokterPj.setBounds(298, 40, 375, 23);
 
         KodePj.setEditable(false);
         KodePj.setForeground(new java.awt.Color(0, 0, 0));
         KodePj.setName("KodePj"); // NOI18N
         PanelInput.add(KodePj);
-        KodePj.setBounds(95, 42, 80, 23);
+        KodePj.setBounds(115, 40, 180, 23);
 
         KodePerujuk.setEditable(false);
         KodePerujuk.setForeground(new java.awt.Color(0, 0, 0));
@@ -792,14 +796,14 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         PanelInput.add(KodePerujuk);
-        KodePerujuk.setBounds(95, 72, 80, 23);
+        KodePerujuk.setBounds(115, 68, 180, 23);
 
         NmPerujuk.setEditable(false);
         NmPerujuk.setForeground(new java.awt.Color(0, 0, 0));
         NmPerujuk.setHighlighter(null);
         NmPerujuk.setName("NmPerujuk"); // NOI18N
         PanelInput.add(NmPerujuk);
-        NmPerujuk.setBounds(177, 72, 180, 23);
+        NmPerujuk.setBounds(298, 68, 375, 23);
 
         btnDokter.setForeground(new java.awt.Color(0, 0, 0));
         btnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -812,13 +816,13 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         PanelInput.add(btnDokter);
-        btnDokter.setBounds(359, 72, 28, 23);
+        btnDokter.setBounds(675, 68, 28, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Tgl. Periksa :");
+        jLabel15.setText("Tgl. Periksa : ");
         jLabel15.setName("jLabel15"); // NOI18N
         PanelInput.add(jLabel15);
-        jLabel15.setBounds(375, 72, 87, 23);
+        jLabel15.setBounds(0, 124, 112, 23);
 
         btnDokterPj.setForeground(new java.awt.Color(0, 0, 0));
         btnDokterPj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -831,7 +835,18 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         PanelInput.add(btnDokterPj);
-        btnDokterPj.setBounds(359, 42, 28, 23);
+        btnDokterPj.setBounds(675, 40, 28, 23);
+
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("Berat Badan :");
+        jLabel17.setName("jLabel17"); // NOI18N
+        PanelInput.add(jLabel17);
+        jLabel17.setBounds(444, 124, 90, 23);
+
+        Tbb.setForeground(new java.awt.Color(0, 0, 0));
+        Tbb.setName("Tbb"); // NOI18N
+        PanelInput.add(Tbb);
+        Tbb.setBounds(538, 124, 90, 23);
 
         FormInput.add(PanelInput, java.awt.BorderLayout.CENTER);
 
@@ -1581,6 +1596,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
     private widget.Tanggal Tanggal;
+    private widget.TextBox Tbb;
     private widget.Button btnCariBhp;
     private widget.Button btnCariPeriksa;
     private widget.Button btnDokter;
@@ -1592,6 +1608,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private widget.Label jLabel12;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
+    private widget.Label jLabel17;
     private widget.Label jLabel3;
     private widget.Label jLabel7;
     private widget.Label jLabel9;
@@ -1986,7 +2003,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private void isForm() {
         if (ChkInput.isSelected() == true) {
             ChkInput.setVisible(false);
-            FormInput.setPreferredSize(new Dimension(WIDTH, 130));
+            FormInput.setPreferredSize(new Dimension(WIDTH, 186));
             PanelInput.setVisible(true);
             ChkInput.setVisible(true);
         } else if (ChkInput.isSelected() == false) {
@@ -2075,12 +2092,12 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 
                 for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
                     if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
-                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 18, new String[]{
+                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 19, new String[]{
                             TNoRw.getText(), KdPtg.getText(), tbPemeriksaan.getValueAt(i, 1).toString(), tglperiksa, jamperiksa, KodePerujuk.getText(),
                             tbPemeriksaan.getValueAt(i, 4).toString(), tbPemeriksaan.getValueAt(i, 5).toString(), tbPemeriksaan.getValueAt(i, 6).toString(),
                             tbPemeriksaan.getValueAt(i, 7).toString(), tbPemeriksaan.getValueAt(i, 8).toString(), tbPemeriksaan.getValueAt(i, 9).toString(),
                             tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
-                            KodePj.getText(), status, "Belum", "-"
+                            KodePj.getText(), status, "Belum", "-", Tbb.getText()
                         }) == true) {
                             ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
                             ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
@@ -2159,12 +2176,12 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 
                 for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
                     if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
-                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 18, new String[]{
+                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 19, new String[]{
                             TNoRw.getText(), KdPtg.getText(), tbPemeriksaan.getValueAt(i, 1).toString(), tglperiksa, jamperiksa, KodePerujuk.getText(),
                             tbPemeriksaan.getValueAt(i, 4).toString(), tbPemeriksaan.getValueAt(i, 5).toString(), tbPemeriksaan.getValueAt(i, 6).toString(),
                             tbPemeriksaan.getValueAt(i, 7).toString(), tbPemeriksaan.getValueAt(i, 8).toString(), tbPemeriksaan.getValueAt(i, 9).toString(),
                             tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
-                            KodePj.getText(), status, "Belum", "-"
+                            KodePj.getText(), status, "Belum", "-", Tbb.getText()
                         }) == true) {
                             ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
                             ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
