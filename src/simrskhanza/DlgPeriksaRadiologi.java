@@ -652,24 +652,21 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
 
         TNoRw.setEditable(false);
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRw.setHighlighter(null);
         TNoRw.setName("TNoRw"); // NOI18N
         PanelInput.add(TNoRw);
-        TNoRw.setBounds(115, 12, 148, 23);
+        TNoRw.setBounds(115, 12, 130, 23);
 
         TNoRM.setEditable(false);
         TNoRM.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRM.setHighlighter(null);
         TNoRM.setName("TNoRM"); // NOI18N
         PanelInput.add(TNoRM);
-        TNoRM.setBounds(265, 12, 80, 23);
+        TNoRM.setBounds(248, 12, 70, 23);
 
         TPasien.setEditable(false);
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
-        TPasien.setHighlighter(null);
         TPasien.setName("TPasien"); // NOI18N
         PanelInput.add(TPasien);
-        TPasien.setBounds(348, 12, 360, 23);
+        TPasien.setBounds(322, 12, 360, 23);
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Dokter Rad. : ");
@@ -698,7 +695,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         PanelInput.add(KdPtg);
-        KdPtg.setBounds(115, 96, 180, 23);
+        KdPtg.setBounds(115, 96, 130, 23);
 
         btnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -711,16 +708,16 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         PanelInput.add(btnPetugas);
-        btnPetugas.setBounds(675, 96, 28, 23);
+        btnPetugas.setBounds(625, 96, 28, 23);
 
         NmPtg.setEditable(false);
         NmPtg.setForeground(new java.awt.Color(0, 0, 0));
         NmPtg.setName("NmPtg"); // NOI18N
         PanelInput.add(NmPtg);
-        NmPtg.setBounds(298, 96, 375, 23);
+        NmPtg.setBounds(248, 96, 375, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2025" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-11-2025" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -776,16 +773,15 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
 
         NmDokterPj.setEditable(false);
         NmDokterPj.setForeground(new java.awt.Color(0, 0, 0));
-        NmDokterPj.setHighlighter(null);
         NmDokterPj.setName("NmDokterPj"); // NOI18N
         PanelInput.add(NmDokterPj);
-        NmDokterPj.setBounds(298, 40, 375, 23);
+        NmDokterPj.setBounds(248, 40, 375, 23);
 
         KodePj.setEditable(false);
         KodePj.setForeground(new java.awt.Color(0, 0, 0));
         KodePj.setName("KodePj"); // NOI18N
         PanelInput.add(KodePj);
-        KodePj.setBounds(115, 40, 180, 23);
+        KodePj.setBounds(115, 40, 130, 23);
 
         KodePerujuk.setEditable(false);
         KodePerujuk.setForeground(new java.awt.Color(0, 0, 0));
@@ -796,14 +792,13 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         PanelInput.add(KodePerujuk);
-        KodePerujuk.setBounds(115, 68, 180, 23);
+        KodePerujuk.setBounds(115, 68, 130, 23);
 
         NmPerujuk.setEditable(false);
         NmPerujuk.setForeground(new java.awt.Color(0, 0, 0));
-        NmPerujuk.setHighlighter(null);
         NmPerujuk.setName("NmPerujuk"); // NOI18N
         PanelInput.add(NmPerujuk);
-        NmPerujuk.setBounds(298, 68, 375, 23);
+        NmPerujuk.setBounds(248, 68, 375, 23);
 
         btnDokter.setForeground(new java.awt.Color(0, 0, 0));
         btnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -816,7 +811,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         PanelInput.add(btnDokter);
-        btnDokter.setBounds(675, 68, 28, 23);
+        btnDokter.setBounds(625, 68, 28, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Tgl. Periksa : ");
@@ -835,7 +830,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
             }
         });
         PanelInput.add(btnDokterPj);
-        btnDokterPj.setBounds(675, 40, 28, 23);
+        btnDokterPj.setBounds(625, 40, 28, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Berat Badan :");
@@ -846,7 +841,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         Tbb.setForeground(new java.awt.Color(0, 0, 0));
         Tbb.setName("Tbb"); // NOI18N
         PanelInput.add(Tbb);
-        Tbb.setBounds(538, 124, 90, 23);
+        Tbb.setBounds(538, 124, 85, 23);
 
         FormInput.add(PanelInput, java.awt.BorderLayout.CENTER);
 
