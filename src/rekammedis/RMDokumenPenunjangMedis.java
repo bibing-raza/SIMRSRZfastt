@@ -744,13 +744,13 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
                     rs = koneksi.prepareStatement("SELECT rf.id_file, rf.no_rawat, rf.nama_file_ori, date_format(rf.tgl_upload,'%d/%m/%Y') tglUpload, "
                             + "time_format(rf.tgl_upload,'%H:%i') jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.jenis_pemeriksaan kode, "
                             + "rf.petugas nip from rme_file_upload rf inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan "
-                            + "left join pegawai pg on pg.nik=rf.petugas where rf.nomr='" + TNoRM.getText() + "' and rf.stts_data='1' "
+                            + "left join petugas pg on pg.user_id=rf.petugas where rf.nomr='" + TNoRM.getText() + "' and rf.stts_data='1' "
                             + "order by rf.tgl_upload desc").executeQuery();
                 } else {
                     rs = koneksi.prepareStatement("SELECT rf.id_file, rf.no_rawat, rf.nama_file_ori, date_format(rf.tgl_upload,'%d/%m/%Y') tglUpload, "
                             + "time_format(rf.tgl_upload,'%H:%i') jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.jenis_pemeriksaan kode, "
                             + "rf.petugas nip from rme_file_upload rf inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan "
-                            + "left join pegawai pg on pg.nik=rf.petugas where rf.no_rawat='" + TNoRW.getText() + "' and rf.stts_data='1' "
+                            + "left join petugas pg on pg.user_id=rf.petugas where rf.no_rawat='" + TNoRW.getText() + "' and rf.stts_data='1' "
                             + "order by rf.tgl_upload desc").executeQuery();
                 }
 
@@ -824,7 +824,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
             if (ChkDokumen1.isSelected() == true) {
                 psA = koneksi.prepareStatement("SELECT rf.id_file, rf.nama_file_ori, date_format(rf.tgl_upload,'%d/%m/%Y') tglUpload, "
                         + "time(rf.tgl_upload) jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.petugas nip from rme_file_upload rf "
-                        + "inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan left join pegawai pg on pg.nik=rf.petugas where "
+                        + "inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan left join petugas pg on pg.user_id=rf.petugas where "
                         + "rf.nomr='" + TNoRM.getText() + "' and rf.stts_data='1' and rj.nama_pemeriksaan like ? or "
                         + "rf.nomr='" + TNoRM.getText() + "' and rf.stts_data='1' and ifnull(pg.nama,'-') like ? or "
                         + "rf.nomr='" + TNoRM.getText() + "' and rf.stts_data='1' and rf.petugas like ? "
@@ -832,7 +832,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
             } else {
                 psA = koneksi.prepareStatement("SELECT rf.id_file, rf.nama_file_ori, date_format(rf.tgl_upload,'%d/%m/%Y') tglUpload, "
                         + "time(rf.tgl_upload) jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.petugas nip from rme_file_upload rf "
-                        + "inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan left join pegawai pg on pg.nik=rf.petugas where "
+                        + "inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan left join petugas pg on pg.user_id=rf.petugas where "
                         + "rf.no_rawat='" + TNoRW.getText() + "' and rf.stts_data='1' and rj.nama_pemeriksaan like ? or "
                         + "rf.no_rawat='" + TNoRW.getText() + "' and rf.stts_data='1' and ifnull(pg.nama,'-') like ? or "
                         + "rf.no_rawat='" + TNoRW.getText() + "' and rf.stts_data='1' and rf.petugas like ? "
