@@ -86,7 +86,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             } else if (i == 3) {
                 column.setPreferredWidth(100);
             } else if (i == 4) {
-                column.setPreferredWidth(450);
+                column.setPreferredWidth(540);
             } else if (i == 5) {
                 column.setPreferredWidth(48);
             } else if (i == 6) {
@@ -3037,7 +3037,8 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             ps3 = koneksi.prepareStatement("SELECT m1.kd_numdemon, m1.nm_numdemon, m1.jenis_numdemon FROM master_numdemon_indikator_nasional_mutu m1 "
                     + "inner join master_indikator_nasional_mutu m2 on m1.kd_indikator=m2.kd_indikator WHERE "
                     + "m2.gedung='" + cmbGedung.getSelectedItem().toString() + "' and m2.kd_indikator='" + kdIndikator + "' "
-                    + "and m1.status_data='aktif' ORDER BY m1.no_urut");
+                    + "and m1.status_data='aktif' ORDER BY m1.no_urut, CASE WHEN LOWER(m1.jenis_numdemon) = 'numerator' THEN 1 "
+                    + "WHEN LOWER(m1.jenis_numdemon) = 'denominator' THEN 2 ELSE 3 END");
             try {
                 rs3 = ps3.executeQuery();
                 while (rs3.next()) {
