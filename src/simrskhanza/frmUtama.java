@@ -428,6 +428,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import tranfusidarah.UTDPenyerahanDarahPasienDirawat;
 
 /**
  *
@@ -984,6 +985,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnBPJSPencarianSEPApotek = new widget.ButtonBig();
         btnBPJSMonitoringKlaimApotek = new widget.ButtonBig();
         btnBPJSDataTerkirimApotek = new widget.ButtonBig();
+        btnUTDPenyerahanDarahDirawat = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6585,6 +6587,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnBPJSDataTerkirimApotek);
 
+        btnUTDPenyerahanDarahDirawat.setForeground(new java.awt.Color(0, 0, 0));
+        btnUTDPenyerahanDarahDirawat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/health.png"))); // NOI18N
+        btnUTDPenyerahanDarahDirawat.setText("Penyerahan Darah Dirawat");
+        btnUTDPenyerahanDarahDirawat.setIconTextGap(0);
+        btnUTDPenyerahanDarahDirawat.setName("btnUTDPenyerahanDarahDirawat"); // NOI18N
+        btnUTDPenyerahanDarahDirawat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnUTDPenyerahanDarahDirawat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUTDPenyerahanDarahDirawatActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnUTDPenyerahanDarahDirawat);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6593,7 +6608,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/11/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/11/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13102,6 +13117,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnBPJSDataTerkirimApotekActionPerformed
 
+    private void btnUTDPenyerahanDarahDirawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUTDPenyerahanDarahDirawatActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        UTDPenyerahanDarahPasienDirawat form = new UTDPenyerahanDarahPasienDirawat(this, false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnUTDPenyerahanDarahDirawatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13556,6 +13584,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnUTDPemisahanDarah;
     private widget.ButtonBig btnUTDPenunjangRusak;
     private widget.ButtonBig btnUTDPenyerahanDarah;
+    private widget.ButtonBig btnUTDPenyerahanDarahDirawat;
     private widget.ButtonBig btnUTDStokDarah;
     private widget.ButtonBig btnUser;
     private widget.ButtonBig btnakun_bayar;
@@ -15563,6 +15592,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
             if (akses.getpemasukan_lain() == true) {
                 Panelmenu.add(btnUTDPenyerahanDarah);
+                jmlmenu++;
+            }
+            
+            if (akses.getutd_stok_darah() == true) {
+                Panelmenu.add(btnUTDPenyerahanDarahDirawat);
                 jmlmenu++;
             }
         } else if (cmbMenu.getSelectedIndex() == 13) {
@@ -17605,6 +17639,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getpemasukan_lain() == true) {
             Panelmenu.add(btnUTDPenyerahanDarah);
+            jmlmenu++;
+        }
+        
+        if (akses.getutd_stok_darah() == true) {
+            Panelmenu.add(btnUTDPenyerahanDarahDirawat);
             jmlmenu++;
         }
 
@@ -20362,6 +20401,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getpemasukan_lain() == true) {
             if (btnUTDPenyerahanDarah.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnUTDPenyerahanDarah);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getutd_stok_darah() == true) {
+            if (btnUTDPenyerahanDarahDirawat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnUTDPenyerahanDarahDirawat);
                 jmlmenu++;
             }
         }
