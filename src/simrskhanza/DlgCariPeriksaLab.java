@@ -5075,6 +5075,8 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                     WindowHasilPA.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     WindowHasilPA.setLocationRelativeTo(internalFrame1);
                     WindowHasilPA.setVisible(true);
+                    WindowHasilPA.toFront();
+                    WindowHasilPA.requestFocus();
 
                     TnoRw.setText(nRawat.getText());
                     TnoRm.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + TnoRw.getText() + "'"));

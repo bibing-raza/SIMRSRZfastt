@@ -24,6 +24,7 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
@@ -56,11 +57,14 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
     public UTDPenyerahanDarah(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         warna.kolom=0;
         
         Object[] row={
-            "P", "No.Kantung", "Komponen", "G.D.", "Rhesus", "Aftap", "Kadaluarsa",
+            "P", "No. Kantung", "Komponen", "G.D.", "Rhesus", "Aftap", "Kadaluarsa",
             "Asal Darah", "Status", "Jasa Sarana", "Paket BHP",
             "KSO", "Manajemen", "Biaya", "biaya_format"};
         tabMode=new DefaultTableModel(null,row){
@@ -92,11 +96,11 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
         for (i = 0; i < 15; i++) {
             TableColumn column = tbDarah.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(22);
+                column.setPreferredWidth(35);
             } else if (i == 1) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(110);
             } else if (i == 2) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(400);
             } else if (i == 3) {
                 column.setPreferredWidth(35);
             } else if (i == 4) {
@@ -106,13 +110,18 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(75);
             } else if ((i == 7) || (i == 13)) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(110);
             } else if ((i == 8) || (i == 9) || (i == 10) || (i == 11) || (i == 12) || (i == 13) || (i == 14)) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
         }
         tbDarah.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbDarah.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbDarah.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbDarah.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbDarah.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
 
         tabModeMedis=new DefaultTableModel(null,new Object[]{"Jml","Kode Barang","Nama Barang","Harga","Subtotal","Satuan","Stok"}){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
@@ -274,14 +283,9 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
         internalFrame1 = new widget.InternalFrame();
         jPanel1 = new javax.swing.JPanel();
         panelisi1 = new widget.panelisi();
-        jLabel17 = new widget.Label();
-        CmbCariGd = new widget.ComboBox();
-        jLabel13 = new widget.Label();
-        CmbCariResus = new widget.ComboBox();
         label9 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari1 = new widget.Button();
-        BtnTambah = new widget.Button();
         label22 = new widget.Label();
         BtnNota = new widget.Button();
         BtnSimpan = new widget.Button();
@@ -405,50 +409,6 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
         panelisi1.setPreferredSize(new java.awt.Dimension(100, 56));
         panelisi1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setText("G.D.:");
-        jLabel17.setName("jLabel17"); // NOI18N
-        jLabel17.setPreferredSize(new java.awt.Dimension(33, 23));
-        panelisi1.add(jLabel17);
-
-        CmbCariGd.setForeground(new java.awt.Color(0, 0, 0));
-        CmbCariGd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A", "AB", "B", "O" }));
-        CmbCariGd.setName("CmbCariGd"); // NOI18N
-        CmbCariGd.setPreferredSize(new java.awt.Dimension(50, 23));
-        CmbCariGd.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                CmbCariGdItemStateChanged(evt);
-            }
-        });
-        CmbCariGd.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                CmbCariGdKeyPressed(evt);
-            }
-        });
-        panelisi1.add(CmbCariGd);
-
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("Resus :");
-        jLabel13.setName("jLabel13"); // NOI18N
-        jLabel13.setPreferredSize(new java.awt.Dimension(45, 23));
-        panelisi1.add(jLabel13);
-
-        CmbCariResus.setForeground(new java.awt.Color(0, 0, 0));
-        CmbCariResus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "(-)", "(+)" }));
-        CmbCariResus.setName("CmbCariResus"); // NOI18N
-        CmbCariResus.setPreferredSize(new java.awt.Dimension(50, 23));
-        CmbCariResus.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                CmbCariResusItemStateChanged(evt);
-            }
-        });
-        CmbCariResus.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                CmbCariResusKeyPressed(evt);
-            }
-        });
-        panelisi1.add(CmbCariResus);
-
         label9.setForeground(new java.awt.Color(0, 0, 0));
         label9.setText("Key Word :");
         label9.setName("label9"); // NOI18N
@@ -467,6 +427,7 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -482,19 +443,6 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
             }
         });
         panelisi1.add(BtnCari1);
-
-        BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
-        BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambah.setText("Tambah Data");
-        BtnTambah.setToolTipText("Alt+3");
-        BtnTambah.setName("BtnTambah"); // NOI18N
-        BtnTambah.setPreferredSize(new java.awt.Dimension(120, 23));
-        BtnTambah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTambahActionPerformed(evt);
-            }
-        });
-        panelisi1.add(BtnTambah);
 
         label22.setForeground(new java.awt.Color(0, 0, 0));
         label22.setName("label22"); // NOI18N
@@ -522,6 +470,7 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -540,6 +489,7 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnCari.setMnemonic('E');
         BtnCari.setText("Cari");
         BtnCari.setToolTipText("Alt+E");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -558,6 +508,7 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -699,6 +650,7 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
 
         BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari2.setMnemonic('1');
         BtnCari2.setToolTipText("Alt+1");
         BtnCari2.setName("BtnCari2"); // NOI18N
         BtnCari2.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -711,6 +663,7 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
 
         BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll1.setMnemonic('2');
         BtnAll1.setToolTipText("Alt+2");
         BtnAll1.setName("BtnAll1"); // NOI18N
         BtnAll1.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -775,6 +728,7 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
 
         BtnCari3.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari3.setMnemonic('1');
         BtnCari3.setToolTipText("Alt+1");
         BtnCari3.setName("BtnCari3"); // NOI18N
         BtnCari3.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -787,6 +741,7 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
 
         BtnAll2.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll2.setMnemonic('2');
         BtnAll2.setToolTipText("Alt+2");
         BtnAll2.setName("BtnAll2"); // NOI18N
         BtnAll2.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -928,6 +883,7 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
 
         btnPtgCross.setForeground(new java.awt.Color(0, 0, 0));
         btnPtgCross.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPtgCross.setMnemonic('1');
         btnPtgCross.setToolTipText("Alt+1");
         btnPtgCross.setName("btnPtgCross"); // NOI18N
         btnPtgCross.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -941,6 +897,7 @@ public class UTDPenyerahanDarah extends javax.swing.JDialog {
 
         btnPtgPJ.setForeground(new java.awt.Color(0, 0, 0));
         btnPtgPJ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPtgPJ.setMnemonic('2');
         btnPtgPJ.setToolTipText("Alt+2");
         btnPtgPJ.setName("btnPtgPJ"); // NOI18N
         btnPtgPJ.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1444,18 +1401,6 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         tampilNonMedis();
     }//GEN-LAST:event_formWindowOpened
 
-    private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        UTDStokDarah barang = new UTDStokDarah(null, false);
-        barang.emptTeks();
-        barang.isCek();
-        barang.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-        barang.setLocationRelativeTo(internalFrame1);
-        barang.setAlwaysOnTop(false);
-        barang.setVisible(true);
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_BtnTambahActionPerformed
-
     private void ppStokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppStokActionPerformed
         for (i = 0; i < tbDarah.getRowCount(); i++) {
             try {
@@ -1592,22 +1537,6 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         }
     }//GEN-LAST:event_formWindowActivated
 
-    private void CmbCariResusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CmbCariResusItemStateChanged
-        tampil();
-    }//GEN-LAST:event_CmbCariResusItemStateChanged
-
-    private void CmbCariResusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CmbCariResusKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbCariResusKeyPressed
-
-    private void CmbCariGdItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CmbCariGdItemStateChanged
-        tampil();
-    }//GEN-LAST:event_CmbCariGdItemStateChanged
-
-    private void CmbCariGdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CmbCariGdKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbCariGdKeyPressed
-
     private void nmpengambilKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nmpengambilKeyPressed
         Valid.pindah(evt, kdptgpj, alamatpengambil);
     }//GEN-LAST:event_nmpengambilKeyPressed
@@ -1644,10 +1573,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private widget.Button BtnKeluar;
     private widget.Button BtnNota;
     private widget.Button BtnSimpan;
-    private widget.Button BtnTambah;
     private widget.ComboBox CmbAkun;
-    private widget.ComboBox CmbCariGd;
-    private widget.ComboBox CmbCariResus;
     private widget.TextBox Kd2;
     private widget.Label LKembali;
     private widget.Label LTotal;
@@ -1667,8 +1593,6 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private widget.Label jLabel10;
     private widget.Label jLabel11;
     private widget.Label jLabel12;
-    private widget.Label jLabel13;
-    private widget.Label jLabel17;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1782,22 +1706,19 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             }
 
             psdarah = koneksi.prepareStatement("select us.no_kantong,uk.nama darah, us.golongan_darah,us.resus, us.tanggal_aftap,us.tanggal_kadaluarsa, "
-                    + "us.asal_darah,us.status, uk.jasa_sarana,uk.paket_bhp, uk.kso,uk.manajemen, uk.total, format(uk.total,0) totalFormat from utd_komponen_darah uk "
-                    + "inner join utd_stok_darah us on us.kode_komponen=uk.kode where "
-                    + "us.status='Ada' and us.golongan_darah=? and us.resus=? and us.no_kantong like ? or "
-                    + "us.status='Ada' and us.golongan_darah=? and us.resus=? and uk.nama like ? or "
-                    + "us.status='Ada' and us.golongan_darah=? and us.resus=? and us.asal_darah like ? "
-                    + "order by us.tanggal_kadaluarsa");
+                    + "us.asal_darah,us.status, uk.jasa_sarana,uk.paket_bhp, uk.kso,uk.manajemen, uk.total, format(uk.total,0) totalFormat "
+                    + "from utd_komponen_darah uk inner join utd_stok_darah us on us.kode_komponen=uk.kode where "
+                    + "us.status='Ada' and us.no_kantong like ? or "
+                    + "us.status='Ada' and uk.nama like ? or "
+                    + "us.status='Ada' and us.golongan_darah like ? or "
+                    + "us.status='Ada' and us.resus like ? or "
+                    + "us.status='Ada' and us.asal_darah like ? order by us.tanggal_kadaluarsa");
             try {
-                psdarah.setString(1, CmbCariGd.getSelectedItem().toString());
-                psdarah.setString(2, CmbCariResus.getSelectedItem().toString());
+                psdarah.setString(1, "%" + TCari.getText().trim() + "%");
+                psdarah.setString(2, "%" + TCari.getText().trim() + "%");
                 psdarah.setString(3, "%" + TCari.getText().trim() + "%");
-                psdarah.setString(4, CmbCariGd.getSelectedItem().toString());
-                psdarah.setString(5, CmbCariResus.getSelectedItem().toString());
-                psdarah.setString(6, "%" + TCari.getText().trim() + "%");
-                psdarah.setString(7, CmbCariGd.getSelectedItem().toString());
-                psdarah.setString(8, CmbCariResus.getSelectedItem().toString());
-                psdarah.setString(9, "%" + TCari.getText().trim() + "%");
+                psdarah.setString(4, "%" + TCari.getText().trim() + "%");
+                psdarah.setString(5, "%" + TCari.getText().trim() + "%");
                 rsdarah = psdarah.executeQuery();
                 while (rsdarah.next()) {
                     tabMode.addRow(new Object[]{
@@ -2048,7 +1969,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         TCari.requestFocus();
         BtnSimpan.setEnabled(akses.getpemasukan_lain());
         BtnNota.setEnabled(akses.getpemasukan_lain());
-        BtnTambah.setEnabled(akses.getutd_stok_darah());
+
         if (akses.getjml2() >= 1) {
             kdptgpj.setEditable(false);
             btnPtgPJ.setEnabled(false);
@@ -2069,6 +1990,5 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         LTotal.setText("0");
         BesarPPN.setText("0");
         LKembali.setText("0");
-    }
- 
+    } 
 }

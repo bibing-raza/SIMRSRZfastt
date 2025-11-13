@@ -1264,7 +1264,7 @@ public class frmUtama extends javax.swing.JFrame {
         panelisi2.add(label35);
 
         cmbMenu.setForeground(new java.awt.Color(0, 0, 0));
-        cmbMenu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[A] Registrasi, Tagihan Ranap & Ralan, Pelayanan & Billing Pasien", "[B] Input Data Rekam Medis Elektronik Pasien", "[C] Manajemen & Kepegawaian Rumah Sakit", "[D] Transaksi Inventory Obat, BHP Medis, Alat Kesehatan Pasien", "[E] Transaksi Inventory Barang Non Medis dan Penunjang ( Lab & RO )", "[F] Aset & Inventaris Barang Rumah Sakit", "[G] Surat Menyurat", "[H] Manajemen Keuangan Rumah Sakit", "[I] Olah Data Penyakit, Laporan DKK, Laporal RL & Laporan Internal Rumah Sakit", "[J] Tarif Pelayanan & Keuangan Rumah Sakit", "[K] Bridging SEP, Aplicare, PCare, INACBG, Kemenkes & Pihak Ke 3", "[L] Olah Data Pasien", "[M] Unit Pelayanan Tranfusi Darah", "[N] Analisa, Dashboard & Info Grafik", "[O] Pengaturan Program Aplikasi HMS" }));
+        cmbMenu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "[A] Registrasi, Tagihan Ranap & Ralan, Pelayanan & Billing Pasien", "[B] Input Data Rekam Medis Elektronik Pasien", "[C] Manajemen & Kepegawaian Rumah Sakit", "[D] Transaksi Inventory Obat, BHP Medis, Alat Kesehatan Pasien", "[E] Transaksi Inventory Barang Non Medis dan Penunjang ( Lab & RO )", "[F] Aset & Inventaris Barang Rumah Sakit", "[G] Surat Menyurat", "[H] Manajemen Keuangan Rumah Sakit", "[I] Olah Data Penyakit, Laporan DKK, Laporal RL & Laporan Internal Rumah Sakit", "[J] Tarif Pelayanan & Keuangan Rumah Sakit", "[K] Bridging SEP, Aplicare, PCare, INACBG, Kemenkes & Pihak Ke 3", "[L] Olah Data Pasien", "[M] Unit Pengelola Darah (UPD)", "[N] Analisa, Dashboard & Info Grafik", "[O] Pengaturan Program Aplikasi HMS" }));
         cmbMenu.setName("cmbMenu"); // NOI18N
         cmbMenu.setPreferredSize(new java.awt.Dimension(470, 23));
         cmbMenu.addItemListener(new java.awt.event.ItemListener() {
@@ -6589,7 +6589,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         btnUTDPenyerahanDarahDirawat.setForeground(new java.awt.Color(0, 0, 0));
         btnUTDPenyerahanDarahDirawat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/health.png"))); // NOI18N
-        btnUTDPenyerahanDarahDirawat.setText("Penyerahan Darah Dirawat");
+        btnUTDPenyerahanDarahDirawat.setText("Penyerahan Darah Pasien Dirawat");
         btnUTDPenyerahanDarahDirawat.setIconTextGap(0);
         btnUTDPenyerahanDarahDirawat.setName("btnUTDPenyerahanDarahDirawat"); // NOI18N
         btnUTDPenyerahanDarahDirawat.setPreferredSize(new java.awt.Dimension(200, 90));
@@ -6608,7 +6608,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/11/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13/11/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -8835,9 +8835,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         isTutup();
         FlayMenu.removeAll();
         FlayMenu.add(btnPermintaanLab);
-        FlayMenu.add(btnLaboratorium);
+        FlayMenu.add(btnLaboratorium);        
+        FlayMenu.add(btnUTDDonorDarah);
+        FlayMenu.add(btnUTDCekalDarah);
+        FlayMenu.add(btnUTDPemisahanDarah);
+        FlayMenu.add(btnUTDStokDarah);        
+        FlayMenu.add(btnUTDPenyerahanDarahDirawat);
+        
         btnPermintaanLab.setEnabled(akses.getperiksa_lab());
-        btnLaboratorium.setEnabled(akses.getperiksa_lab());
+        btnLaboratorium.setEnabled(akses.getperiksa_lab());        
+        btnUTDDonorDarah.setEnabled(akses.getutd_donor());
+        btnUTDCekalDarah.setEnabled(akses.getutd_cekal_darah());
+        btnUTDPemisahanDarah.setEnabled(akses.getutd_pemisahan_darah());
+        btnUTDStokDarah.setEnabled(akses.getutd_stok_darah());        
+        btnUTDPenyerahanDarahDirawat.setEnabled(akses.getutd_stok_darah());
         FlayMenu.setVisible(true);
     }//GEN-LAST:event_btnToolLabActionPerformed
 
@@ -9283,8 +9294,10 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         FlayMenu.removeAll();
         FlayMenu.add(btnBridgingEklaimINACBG);
         FlayMenu.add(btnINACBGjknBelumDiklaim);
+        FlayMenu.add(btnKendaliMutuKendaliBiayaINACBG);
         btnBridgingEklaimINACBG.setEnabled(akses.getinacbg_klaim_raza());
         btnINACBGjknBelumDiklaim.setEnabled(akses.getjkn_belum_diproses_klaim());
+        btnINACBGjknBelumDiklaim.setEnabled(akses.getkendali_mutu_kendali_biaya_inacbg());
         FlayMenu.setVisible(true);
     }//GEN-LAST:event_btnBridgingEklaimActionPerformed
 
@@ -9669,10 +9682,12 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         FlayMenu.add(btnInputPenjualan);
         FlayMenu.add(btnDataPenjualan);
         FlayMenu.add(btnDataPenyerahanDarah);
+        FlayMenu.add(btnUTDPenyerahanDarah);
         FlayMenu.add(btnDaftarPermintaanResep);
         btnInputPenjualan.setEnabled(akses.getpenjualan_obat());
         btnDataPenjualan.setEnabled(akses.getpenjualan_obat());
         btnDataPenyerahanDarah.setEnabled(akses.getutd_penyerahan_darah());
+        btnUTDPenyerahanDarah.setEnabled(akses.getpemasukan_lain());
         btnDaftarPermintaanResep.setEnabled(akses.getresep_dokter());
         FlayMenu.setVisible(true);
     }//GEN-LAST:event_BtnToolJualObatActionPerformed

@@ -262,8 +262,6 @@ public class UTDPenyerahanDarahPasienDirawat extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Popup = new javax.swing.JPopupMenu();
-        ppCetak = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel2 = new javax.swing.JPanel();
         panelisi2 = new widget.panelisi();
@@ -308,24 +306,6 @@ public class UTDPenyerahanDarahPasienDirawat extends javax.swing.JDialog {
         jLabel16 = new widget.Label();
         TpengambilDrh = new widget.TextBox();
 
-        Popup.setName("Popup"); // NOI18N
-
-        ppCetak.setBackground(new java.awt.Color(242, 242, 242));
-        ppCetak.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        ppCetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        ppCetak.setText("Cetak Bukti Penyerahan");
-        ppCetak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ppCetak.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ppCetak.setIconTextGap(8);
-        ppCetak.setName("ppCetak"); // NOI18N
-        ppCetak.setPreferredSize(new java.awt.Dimension(230, 25));
-        ppCetak.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPrintActionPerformed(evt);
-            }
-        });
-        Popup.add(ppCetak);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -356,7 +336,7 @@ public class UTDPenyerahanDarahPasienDirawat extends javax.swing.JDialog {
         panelisi2.add(jLabel8);
 
         Ttgl1.setEditable(false);
-        Ttgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2025" }));
+        Ttgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025" }));
         Ttgl1.setDisplayFormat("dd-MM-yyyy");
         Ttgl1.setName("Ttgl1"); // NOI18N
         Ttgl1.setOpaque(false);
@@ -371,7 +351,7 @@ public class UTDPenyerahanDarahPasienDirawat extends javax.swing.JDialog {
         panelisi2.add(jLabel21);
 
         Ttgl2.setEditable(false);
-        Ttgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2025" }));
+        Ttgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025" }));
         Ttgl2.setDisplayFormat("dd-MM-yyyy");
         Ttgl2.setName("Ttgl2"); // NOI18N
         Ttgl2.setOpaque(false);
@@ -531,7 +511,6 @@ public class UTDPenyerahanDarahPasienDirawat extends javax.swing.JDialog {
 
         internalFrame1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
-        scrollPane1.setComponentPopupMenu(Popup);
         scrollPane1.setName("scrollPane1"); // NOI18N
         scrollPane1.setOpaque(true);
 
@@ -547,7 +526,6 @@ public class UTDPenyerahanDarahPasienDirawat extends javax.swing.JDialog {
 
             }
         ));
-        tbPenyerahan.setComponentPopupMenu(Popup);
         tbPenyerahan.setName("tbPenyerahan"); // NOI18N
         tbPenyerahan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -599,7 +577,7 @@ public class UTDPenyerahanDarahPasienDirawat extends javax.swing.JDialog {
         jLabel12.setBounds(0, 38, 110, 23);
 
         TtglPesan.setEditable(false);
-        TtglPesan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2025" }));
+        TtglPesan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025" }));
         TtglPesan.setDisplayFormat("dd-MM-yyyy");
         TtglPesan.setName("TtglPesan"); // NOI18N
         TtglPesan.setOpaque(false);
@@ -884,37 +862,6 @@ public class UTDPenyerahanDarahPasienDirawat extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_BtnHapusKeyPressed
 
-    private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
-        if (tabMode2.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-            BtnBatal.requestFocus();
-        } else {
-            if (tbPenyerahan.getSelectedRow() > -1) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                Map<String, Object> param = new HashMap<>();
-                param.put("namars", akses.getnamars());
-                param.put("alamatrs", akses.getalamatrs());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("propinsirs", akses.getpropinsirs());
-                param.put("kontakrs", akses.getkontakrs());
-                param.put("emailrs", akses.getemailrs());
-                param.put("logo", Sequel.cariGambar("select logo from setting"));
-//            Valid.MyReport("rptKomponenDarah.jasper", "report", "::[ Data Komponen Darah ]::",
-//                    "select * from utd_komponen_darah where kode like '%" + TCari.getText().trim() + "%' or nama like '%" + TCari.getText().trim() + "%' order by nama", param);
-//            
-//            emptTeks();
-//            tampil();
-                this.setCursor(Cursor.getDefaultCursor());
-            } else {
-                JOptionPane.showMessageDialog(null, "Silahkan klik/pilih dulu salah satu datanya pada tabel..!!!!");
-                emptTeks();
-                tampil();
-                tampilStok();
-                tbPenyerahan.requestFocus();
-            }
-        }
-}//GEN-LAST:event_BtnPrintActionPerformed
-
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
         TCari.setText("");
         tampil();
@@ -1102,7 +1049,6 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private widget.Button BtnSimpan;
     private widget.Label LCount;
     private javax.swing.JPanel PanelInput;
-    private javax.swing.JPopupMenu Popup;
     private widget.TextBox TCari;
     private widget.TextBox TCariDarah;
     private widget.TextBox TNoRM;
@@ -1132,7 +1078,6 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private widget.Label label9;
     private widget.panelisi panelisi1;
     private widget.panelisi panelisi2;
-    private javax.swing.JMenuItem ppCetak;
     private widget.ScrollPane scrollPane1;
     private widget.ScrollPane scrollPane2;
     private widget.Table tbDarah;
@@ -1278,7 +1223,6 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     public void isCek() {
         BtnSimpan.setEnabled(akses.getutd_stok_darah());
         BtnHapus.setEnabled(akses.getutd_stok_darah());
-        ppCetak.setEnabled(akses.getutd_stok_darah());
     }
     
     public void setData(String norw, String norm, String nmpasien, String unit, String stts) {

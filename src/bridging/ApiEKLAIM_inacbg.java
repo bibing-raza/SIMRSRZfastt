@@ -978,7 +978,7 @@ public class ApiEKLAIM_inacbg {
         }
     }
     
-    public void inacbgFinal(String nosep) {
+    public boolean inacbgFinal(String nosep) {
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -1002,9 +1002,11 @@ public class ApiEKLAIM_inacbg {
 //                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
                 System.out.println(root.path("metadata").path("message").asText());
                 akses.setCopyData("sukses");
+                x = true;
             } else {
                 JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
                 akses.setCopyData("gagal");
+                x = false;
             }
         } catch (Exception erornya) {
             System.out.println("Notifikasi : " + erornya);
@@ -1013,6 +1015,7 @@ public class ApiEKLAIM_inacbg {
                 JOptionPane.showMessageDialog(null, erornya);
             }
         }
+        return x;
     }
     
     public void inacbgEdit(String nosep_pengajuan) {
