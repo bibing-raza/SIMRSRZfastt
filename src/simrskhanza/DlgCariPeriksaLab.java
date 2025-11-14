@@ -685,7 +685,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         scrollPane13 = new widget.ScrollPane();
         Tkesimpulan = new widget.TextArea();
         jLabel46 = new widget.Label();
-        Tanjuran = new widget.TextBox();
         jLabel47 = new widget.Label();
         jLabel48 = new widget.Label();
         jLabel49 = new widget.Label();
@@ -695,6 +694,8 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         TtglUpload = new widget.TextBox();
         Scroll5 = new widget.ScrollPane();
         LoadHTML1 = new widget.editorpane();
+        scrollPane14 = new widget.ScrollPane();
+        Tanjuran = new widget.TextArea();
         Scroll2 = new widget.ScrollPane();
         tbHasil = new widget.Table();
         jPanel4 = new javax.swing.JPanel();
@@ -1717,7 +1718,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         internalFrame8.setLayout(new java.awt.BorderLayout());
 
         internalFrame9.setName("internalFrame9"); // NOI18N
-        internalFrame9.setPreferredSize(new java.awt.Dimension(0, 455));
+        internalFrame9.setPreferredSize(new java.awt.Dimension(0, 510));
         internalFrame9.setWarnaBawah(new java.awt.Color(240, 245, 235));
         internalFrame9.setLayout(null);
 
@@ -1824,7 +1825,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         jLabel42.setBounds(265, 122, 80, 23);
 
         TtglHasil.setEditable(false);
-        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-11-2025" }));
+        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025" }));
         TtglHasil.setDisplayFormat("dd-MM-yyyy");
         TtglHasil.setName("TtglHasil"); // NOI18N
         TtglHasil.setOpaque(false);
@@ -1924,11 +1925,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         internalFrame9.add(jLabel46);
         jLabel46.setBounds(0, 338, 130, 23);
 
-        Tanjuran.setForeground(new java.awt.Color(0, 0, 0));
-        Tanjuran.setName("Tanjuran"); // NOI18N
-        internalFrame9.add(Tanjuran);
-        Tanjuran.setBounds(135, 418, 630, 23);
-
         jLabel47.setForeground(new java.awt.Color(0, 0, 0));
         jLabel47.setText("Anjuran :");
         jLabel47.setName("jLabel47"); // NOI18N
@@ -1982,6 +1978,19 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         internalFrame9.add(Scroll5);
         Scroll5.setBounds(790, 94, 670, 348);
+
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        scrollPane14.setName("scrollPane14"); // NOI18N
+
+        Tanjuran.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Tanjuran.setColumns(20);
+        Tanjuran.setRows(5);
+        Tanjuran.setName("Tanjuran"); // NOI18N
+        Tanjuran.setPreferredSize(new java.awt.Dimension(162, 2000));
+        scrollPane14.setViewportView(Tanjuran);
+
+        internalFrame9.add(scrollPane14);
+        scrollPane14.setBounds(135, 418, 630, 75);
 
         internalFrame8.add(internalFrame9, java.awt.BorderLayout.PAGE_START);
 
@@ -2586,7 +2595,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi1.add(jLabel25);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-11-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -5265,7 +5274,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.TextBox TPasien;
     private widget.TextBox TPoli;
     private widget.TextBox TalamatPerujuk;
-    private widget.TextBox Tanjuran;
+    private widget.TextArea Tanjuran;
     private widget.TextBox Tdiagnosa;
     private widget.TextBox TdokterPengirim;
     private widget.Tanggal Tgl1;
@@ -5399,6 +5408,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.ScrollPane scrollPane11;
     private widget.ScrollPane scrollPane12;
     private widget.ScrollPane scrollPane13;
+    private widget.ScrollPane scrollPane14;
     private widget.Table tbDataLIS;
     private widget.Table tbHasil;
     private widget.Table tbLab;

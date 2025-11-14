@@ -6608,7 +6608,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13/11/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14/11/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -9297,7 +9297,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         FlayMenu.add(btnKendaliMutuKendaliBiayaINACBG);
         btnBridgingEklaimINACBG.setEnabled(akses.getinacbg_klaim_raza());
         btnINACBGjknBelumDiklaim.setEnabled(akses.getjkn_belum_diproses_klaim());
-        btnINACBGjknBelumDiklaim.setEnabled(akses.getkendali_mutu_kendali_biaya_inacbg());
+        btnKendaliMutuKendaliBiayaINACBG.setEnabled(akses.getkendali_mutu_kendali_biaya_inacbg());
         FlayMenu.setVisible(true);
     }//GEN-LAST:event_btnBridgingEklaimActionPerformed
 
