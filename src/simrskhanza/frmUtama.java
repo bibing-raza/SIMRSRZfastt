@@ -243,6 +243,7 @@ import grafikanalisa.GrafikStatusRegPerTahun;
 import grafikanalisa.GrafikStatusRegPerTahun2;
 import grafikanalisa.GrafikStatusRegPerTanggal;
 import grafikanalisa.GrafikStatusRegPerTanggal2;
+import informasi.InformasiTarifStokDarah;
 import inventory.DlgAturanPakai;
 import inventory.DlgBarang;
 import inventory.DlgCariJenis;
@@ -1040,6 +1041,7 @@ public class frmUtama extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         MnTarifLab = new javax.swing.JMenuItem();
         MnTarifRad = new javax.swing.JMenuItem();
+        MnTarifUpd = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         MnTarifRalan = new javax.swing.JMenuItem();
         MnTarifRanap = new javax.swing.JMenuItem();
@@ -6608,7 +6610,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14/11/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15/11/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7250,6 +7252,18 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         jMenu2.add(MnTarifRad);
+
+        MnTarifUpd.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTarifUpd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
+        MnTarifUpd.setText("Tarif & Stok Darah (UPD)");
+        MnTarifUpd.setName("MnTarifUpd"); // NOI18N
+        MnTarifUpd.setPreferredSize(new java.awt.Dimension(170, 35));
+        MnTarifUpd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTarifUpdActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MnTarifUpd);
 
         MenuBar.add(jMenu2);
 
@@ -13145,6 +13159,17 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnUTDPenyerahanDarahDirawatActionPerformed
 
+    private void MnTarifUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTarifUpdActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
+        DlgHome.dispose();
+        InformasiTarifStokDarah belum = new InformasiTarifStokDarah(this, true);
+        belum.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        belum.setLocationRelativeTo(PanelUtama);
+        belum.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnTarifUpdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13187,6 +13212,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private javax.swing.JMenuItem MnTarifRad;
     private javax.swing.JMenuItem MnTarifRalan;
     private javax.swing.JMenuItem MnTarifRanap;
+    private javax.swing.JMenuItem MnTarifUpd;
     private javax.swing.JMenuItem MnTelusurKunjungan;
     private javax.swing.JPanel PanelUtama;
     private usu.widget.glass.PanelGlass PanelWall;

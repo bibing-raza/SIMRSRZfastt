@@ -10826,7 +10826,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } else {
             if (Sequel.cariInteger("select count(-1) from skor_apgar_downe_cap_jari_perinatologi where no_rawat='" + TNoRw.getText() + "'") > 0) {
-                JOptionPane.showMessageDialog(null, "Data yang sudah diinput tetap tersimpan, utk. lembar cetaknya masih proses dikerjakan...!!!");
+                cetakSkorApgar();
             } else {
                 JOptionPane.showMessageDialog(null, "Data Skor Apgar, Downe & Cap Jari tidak ditemukan...!!!");
                 tampilkasir();
@@ -14615,7 +14615,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     param.put("namars", akses.getnamars());
                     param.put("logo", Sequel.cariGambar("select logo from setting"));
                     param.put("norm", rsLaprm.getString("no_rkm_medis"));
-                    param.put("nmpasien", rsLaprm.getString("no_rkm_medis"));
+                    param.put("nmpasien", rsLaprm.getString("nm_pasien"));
                     param.put("tgllahir", rsLaprm.getString("tglLahir"));
              
                     if (rsLaprm.getString("sumber_data").equals("Lainnya")) {
@@ -15533,22 +15533,10 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                     //hitung nilai skor
                     int aSkor = 0, bSkor = 0, hasilNilaiSkor = 0;
-                    String TnilaiNeo = "", TnilaiFisik = "", TnilaiSkor = "", Tminggu = "", TkesimpulanSkor = "";
+                    String TnilaiSkor = "", Tminggu = "", TkesimpulanSkor = "";
 
-                    if (TnilaiNeo.equals("")) {
-                        TnilaiNeo = "0";
-                    } else {
-                        TnilaiNeo = Valid.SetAngka2(hasilNilaiNeo);
-                    }
-
-                    if (TnilaiFisik.equals("")) {
-                        TnilaiFisik = "0";
-                    } else {
-                        TnilaiFisik = Valid.SetAngka2(hasilNilaiFis);
-                    }
-
-                    aSkor = Integer.parseInt(TnilaiNeo);
-                    bSkor = Integer.parseInt(TnilaiFisik);
+                    aSkor = hasilNilaiNeo;
+                    bSkor = hasilNilaiFis;
                     hasilNilaiSkor = aSkor + bSkor;
                     TnilaiSkor = Valid.SetAngka2(hasilNilaiSkor);
                     
@@ -15601,8 +15589,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         Tminggu = "";
                     }
 
-                    param.put("nilaiNeo", TnilaiNeo);
-                    param.put("nilaiFisik", TnilaiFisik);
+                    param.put("nilaiNeo", Valid.SetAngka2(hasilNilaiNeo));
+                    param.put("nilaiFisik", Valid.SetAngka2(hasilNilaiFis));
                     param.put("nilaiSkor", TnilaiSkor);
                     
                     if (Tminggu.equals("")) {
@@ -15737,6 +15725,607 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     psLaprm.close();
                 }
             }            
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void cetakSkorApgar() {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            psLaprm = koneksi.prepareStatement("SELECT sa.*, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, time_format(sa.jam,'%H:%i') jam, pg.nama nmPerawat "
+                    + "FROM skor_apgar_downe_cap_jari_perinatologi sa inner join reg_periksa rp on rp.no_rawat=sa.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai pg on pg.nik=sa.nip_perawat where sa.no_rawat='" + TNoRw.getText() + "'");
+            try {
+                rsLaprm = psLaprm.executeQuery();
+                while (rsLaprm.next()) {
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
+                    param.put("norm", rsLaprm.getString("no_rkm_medis"));
+                    param.put("nmpasien", rsLaprm.getString("nm_pasien"));
+                    param.put("tgllahir", rsLaprm.getString("tglLahir"));
+
+                    //hitung apgar 1
+                    int aApg1 = 0, bApg1 = 0, cApg1 = 0, dApg1 = 0, eApg1 = 0, hasilNilaiApg1 = 0;
+                    String TnilaiFrek1 = "", TnilaiUsaha1 = "", TnilaiTonus1 = "", TnilaiReflex1 = "", TnilaiWarna1 = "";
+
+                    //frekuensi jantung
+                    if (rsLaprm.getString("apgar_frekuensi1").equals("-") || rsLaprm.getString("apgar_frekuensi1").equals("Tidak ada")) {
+                        aApg1 = 0;
+                    } else if (rsLaprm.getString("apgar_frekuensi1").equals("< 100")) {
+                        aApg1 = 1;
+                    } else if (rsLaprm.getString("apgar_frekuensi1").equals("> 100")) {
+                        aApg1 = 2;
+                    }
+
+                    //usaha nafas
+                    if (rsLaprm.getString("apgar_usaha1").equals("-") || rsLaprm.getString("apgar_usaha1").equals("Tidak ada")) {
+                        bApg1 = 0;
+                    } else if (rsLaprm.getString("apgar_usaha1").equals("Lambat tak teratur")) {
+                        bApg1 = 1;
+                    } else if (rsLaprm.getString("apgar_usaha1").equals("Menangis kuat")) {
+                        bApg1 = 2;
+                    }
+
+                    //tonus otot
+                    if (rsLaprm.getString("apgar_tonus1").equals("-") || rsLaprm.getString("apgar_tonus1").equals("Lumpuh")) {
+                        cApg1 = 0;
+                    } else if (rsLaprm.getString("apgar_tonus1").equals("Ext fleksi sedikit")) {
+                        cApg1 = 1;
+                    } else if (rsLaprm.getString("apgar_tonus1").equals("Gerakan aktif")) {
+                        cApg1 = 2;
+                    }
+
+                    //reflex
+                    if (rsLaprm.getString("apgar_reflex1").equals("-") || rsLaprm.getString("apgar_reflex1").equals("Tidak ada respon")) {
+                        dApg1 = 0;
+                    } else if (rsLaprm.getString("apgar_reflex1").equals("Pergerakan sedikit")) {
+                        dApg1 = 1;
+                    } else if (rsLaprm.getString("apgar_reflex1").equals("Menangis")) {
+                        dApg1 = 2;
+                    }
+
+                    //warna
+                    if (rsLaprm.getString("apgar_warna1").equals("-") || rsLaprm.getString("apgar_warna1").equals("Biru pucat")) {
+                        eApg1 = 0;
+                    } else if (rsLaprm.getString("apgar_warna1").equals("Tubuh kemerahan tangan & kaki biru")) {
+                        eApg1 = 1;
+                    } else if (rsLaprm.getString("apgar_warna1").equals("Kemerahan")) {
+                        eApg1 = 2;
+                    }
+
+                    //proses hitung
+                    if (rsLaprm.getString("apgar_frekuensi1").equals("-")) {
+                        TnilaiFrek1 = "";
+                    } else {
+                        TnilaiFrek1 = Valid.SetAngka2(aApg1);
+                    }
+
+                    if (rsLaprm.getString("apgar_usaha1").equals("-")) {
+                        TnilaiUsaha1 = "";
+                    } else {
+                        TnilaiUsaha1 = Valid.SetAngka2(bApg1);
+                    }
+
+                    if (rsLaprm.getString("apgar_tonus1").equals("-")) {
+                        TnilaiTonus1 = "";
+                    } else {
+                        TnilaiTonus1 = Valid.SetAngka2(cApg1);
+                    }
+
+                    if (rsLaprm.getString("apgar_reflex1").equals("-")) {
+                        TnilaiReflex1 = "";
+                    } else {
+                        TnilaiReflex1 = Valid.SetAngka2(dApg1);
+                    }
+
+                    if (rsLaprm.getString("apgar_warna1").equals("-")) {
+                        TnilaiWarna1 = "";
+                    } else {
+                        TnilaiWarna1 = Valid.SetAngka2(eApg1);
+                    }
+
+                    hasilNilaiApg1 = aApg1 + bApg1 + cApg1 + dApg1 + eApg1;
+
+                    //tanda 1
+                    param.put("frek1", TnilaiFrek1);
+                    param.put("usaha1", TnilaiUsaha1);
+                    param.put("tonus1", TnilaiTonus1);
+                    param.put("reflex1", TnilaiReflex1);
+                    param.put("warna1", TnilaiWarna1);
+                    param.put("jmlTanda1", Valid.SetAngka2(hasilNilaiApg1));
+                    
+                    //hitung apgar 5
+                    int aApg5 = 0, bApg5 = 0, cApg5 = 0, dApg5 = 0, eApg5 = 0, hasilNilaiApg5 = 0;
+                    String TnilaiFrek5 = "", TnilaiUsaha5 = "", TnilaiTonus5 = "", TnilaiReflex5 = "", TnilaiWarna5 = "";
+
+                    //frekuensi jantung
+                    if (rsLaprm.getString("apgar_frekuensi5").equals("-") || rsLaprm.getString("apgar_frekuensi5").equals("Tidak ada")) {
+                        aApg5 = 0;
+                    } else if (rsLaprm.getString("apgar_frekuensi5").equals("< 100")) {
+                        aApg5 = 1;
+                    } else if (rsLaprm.getString("apgar_frekuensi5").equals("> 100")) {
+                        aApg5 = 2;
+                    }
+
+                    //usaha nafas
+                    if (rsLaprm.getString("apgar_usaha5").equals("-") || rsLaprm.getString("apgar_usaha5").equals("Tidak ada")) {
+                        bApg5 = 0;
+                    } else if (rsLaprm.getString("apgar_usaha5").equals("Lambat tak teratur")) {
+                        bApg5 = 1;
+                    } else if (rsLaprm.getString("apgar_usaha5").equals("Menangis kuat")) {
+                        bApg5 = 2;
+                    }
+
+                    //tonus otot
+                    if (rsLaprm.getString("apgar_tonus5").equals("-") || rsLaprm.getString("apgar_tonus5").equals("Lumpuh")) {
+                        cApg5 = 0;
+                    } else if (rsLaprm.getString("apgar_tonus5").equals("Ext fleksi sedikit")) {
+                        cApg5 = 1;
+                    } else if (rsLaprm.getString("apgar_tonus5").equals("Gerakan aktif")) {
+                        cApg5 = 2;
+                    }
+
+                    //reflex
+                    if (rsLaprm.getString("apgar_reflex5").equals("-") || rsLaprm.getString("apgar_reflex5").equals("Tidak ada respon")) {
+                        dApg5 = 0;
+                    } else if (rsLaprm.getString("apgar_reflex5").equals("Pergerakan sedikit")) {
+                        dApg5 = 1;
+                    } else if (rsLaprm.getString("apgar_reflex5").equals("Menangis")) {
+                        dApg5 = 2;
+                    }
+
+                    //warna
+                    if (rsLaprm.getString("apgar_warna5").equals("-") || rsLaprm.getString("apgar_warna5").equals("Biru pucat")) {
+                        eApg5 = 0;
+                    } else if (rsLaprm.getString("apgar_warna5").equals("Tubuh kemerahan tangan & kaki biru")) {
+                        eApg5 = 1;
+                    } else if (rsLaprm.getString("apgar_warna5").equals("Kemerahan")) {
+                        eApg5 = 2;
+                    }
+
+                    //proses hitung
+                    if (rsLaprm.getString("apgar_frekuensi5").equals("-")) {
+                        TnilaiFrek5 = "";
+                    } else {
+                        TnilaiFrek5 = Valid.SetAngka2(aApg5);
+                    }
+
+                    if (rsLaprm.getString("apgar_usaha5").equals("-")) {
+                        TnilaiUsaha5 = "";
+                    } else {
+                        TnilaiUsaha5 = Valid.SetAngka2(bApg5);
+                    }
+
+                    if (rsLaprm.getString("apgar_tonus5").equals("-")) {
+                        TnilaiTonus5 = "";
+                    } else {
+                        TnilaiTonus5 = Valid.SetAngka2(cApg5);
+                    }
+
+                    if (rsLaprm.getString("apgar_reflex5").equals("-")) {
+                        TnilaiReflex5 = "";
+                    } else {
+                        TnilaiReflex5 = Valid.SetAngka2(dApg5);
+                    }
+
+                    if (rsLaprm.getString("apgar_warna5").equals("-")) {
+                        TnilaiWarna5 = "";
+                    } else {
+                        TnilaiWarna5 = Valid.SetAngka2(eApg5);
+                    }
+
+                    hasilNilaiApg5 = aApg5 + bApg5 + cApg5 + dApg5 + eApg5;
+                    
+                    //tanda 5
+                    param.put("frek5", TnilaiFrek5);
+                    param.put("usaha5", TnilaiUsaha5);
+                    param.put("tonus5", TnilaiTonus5);
+                    param.put("reflex5", TnilaiReflex5);
+                    param.put("warna5", TnilaiWarna5);
+                    param.put("jmlTanda5", Valid.SetAngka2(hasilNilaiApg5));
+                    
+                    //hitung apgar 10
+                    int aApg10 = 0, bApg10 = 0, cApg10 = 0, dApg10 = 0, eApg10 = 0, hasilNilaiApg10 = 0;
+                    String TnilaiFrek10 = "", TnilaiUsaha10 = "", TnilaiTonus10 = "", TnilaiReflex10 = "", TnilaiWarna10 = "";
+
+                    //frekuensi jantung
+                    if (rsLaprm.getString("apgar_frekuensi10").equals("-") || rsLaprm.getString("apgar_frekuensi10").equals("Tidak ada")) {
+                        aApg10 = 0;
+                    } else if (rsLaprm.getString("apgar_frekuensi10").equals("< 100")) {
+                        aApg10 = 1;
+                    } else if (rsLaprm.getString("apgar_frekuensi10").equals("> 100")) {
+                        aApg10 = 2;
+                    }
+
+                    //usaha nafas
+                    if (rsLaprm.getString("apgar_usaha10").equals("-") || rsLaprm.getString("apgar_usaha10").equals("Tidak ada")) {
+                        bApg10 = 0;
+                    } else if (rsLaprm.getString("apgar_usaha10").equals("Lambat tak teratur")) {
+                        bApg10 = 1;
+                    } else if (rsLaprm.getString("apgar_usaha10").equals("Menangis kuat")) {
+                        bApg10 = 2;
+                    }
+
+                    //tonus otot
+                    if (rsLaprm.getString("apgar_tonus10").equals("-") || rsLaprm.getString("apgar_tonus10").equals("Lumpuh")) {
+                        cApg10 = 0;
+                    } else if (rsLaprm.getString("apgar_tonus10").equals("Ext fleksi sedikit")) {
+                        cApg10 = 1;
+                    } else if (rsLaprm.getString("apgar_tonus10").equals("Gerakan aktif")) {
+                        cApg10 = 2;
+                    }
+
+                    //reflex
+                    if (rsLaprm.getString("apgar_reflex10").equals("-") || rsLaprm.getString("apgar_reflex10").equals("Tidak ada respon")) {
+                        dApg10 = 0;
+                    } else if (rsLaprm.getString("apgar_reflex10").equals("Pergerakan sedikit")) {
+                        dApg10 = 1;
+                    } else if (rsLaprm.getString("apgar_reflex10").equals("Menangis")) {
+                        dApg10 = 2;
+                    }
+
+                    //warna
+                    if (rsLaprm.getString("apgar_warna10").equals("-") || rsLaprm.getString("apgar_warna10").equals("Biru pucat")) {
+                        eApg10 = 0;
+                    } else if (rsLaprm.getString("apgar_warna10").equals("Tubuh kemerahan tangan & kaki biru")) {
+                        eApg10 = 1;
+                    } else if (rsLaprm.getString("apgar_warna10").equals("Kemerahan")) {
+                        eApg10 = 2;
+                    }
+
+                    //proses hitung
+                    if (rsLaprm.getString("apgar_frekuensi10").equals("-")) {
+                        TnilaiFrek10 = "";
+                    } else {
+                        TnilaiFrek10 = Valid.SetAngka2(aApg10);
+                    }
+
+                    if (rsLaprm.getString("apgar_usaha10").equals("-")) {
+                        TnilaiUsaha10 = "";
+                    } else {
+                        TnilaiUsaha10 = Valid.SetAngka2(bApg10);
+                    }
+
+                    if (rsLaprm.getString("apgar_tonus10").equals("-")) {
+                        TnilaiTonus10 = "";
+                    } else {
+                        TnilaiTonus10 = Valid.SetAngka2(cApg10);
+                    }
+
+                    if (rsLaprm.getString("apgar_reflex10").equals("-")) {
+                        TnilaiReflex10 = "";
+                    } else {
+                        TnilaiReflex10 = Valid.SetAngka2(dApg10);
+                    }
+
+                    if (rsLaprm.getString("apgar_warna10").equals("-")) {
+                        TnilaiWarna10 = "";
+                    } else {
+                        TnilaiWarna10 = Valid.SetAngka2(eApg10);
+                    }
+
+                    hasilNilaiApg10 = aApg10 + bApg10 + cApg10 + dApg10 + eApg10;
+                    
+                    //tanda 10
+                    param.put("frek10", TnilaiFrek10);
+                    param.put("usaha10", TnilaiUsaha10);
+                    param.put("tonus10", TnilaiTonus10);
+                    param.put("reflex10", TnilaiReflex10);
+                    param.put("warna10", TnilaiWarna10);
+                    param.put("jmlTanda10", Valid.SetAngka2(hasilNilaiApg10));
+
+                    //menit ke
+                    if (rsLaprm.getString("nilai_downeA").equals("")) {
+                        param.put("menitA", "");
+                    } else {
+                        param.put("menitA", rsLaprm.getString("nilai_downeA") + " '");
+                    }
+
+                    if (rsLaprm.getString("nilai_downeB").equals("")) {
+                        param.put("menitB", "");
+                    } else {
+                        param.put("menitB", rsLaprm.getString("nilai_downeB") + " '");
+                    }
+
+                    if (rsLaprm.getString("nilai_downeC").equals("")) {
+                        param.put("menitC", "");
+                    } else {
+                        param.put("menitC", rsLaprm.getString("nilai_downeC") + " '");
+                    }
+                    
+                    //hitung downeA
+                    int aDowA = 0, bDowA = 0, cDowA = 0, dDowA = 0, eDowA = 0, hasilNilaiDowA = 0;
+                    String TnilaiFrekA = "", TnilaiRetraksiA = "", TnilaiSianoA = "", TnilaiAirA = "", TnilaiMerintihA = "";
+
+                    //frekuensi nafas
+                    if (rsLaprm.getString("downe_frekuensi_nilaiA").equals("-") || rsLaprm.getString("downe_frekuensi_nilaiA").equals("< 60 x/menit")) {
+                        aDowA = 0;
+                    } else if (rsLaprm.getString("downe_frekuensi_nilaiA").equals("60 - 80 x/menit")) {
+                        aDowA = 1;
+                    } else if (rsLaprm.getString("downe_frekuensi_nilaiA").equals("> 80 x/menit")) {
+                        aDowA = 2;
+                    }
+
+                    //retraksi
+                    if (rsLaprm.getString("downe_retraksi_nilaiA").equals("-") || rsLaprm.getString("downe_retraksi_nilaiA").equals("Retraksi (-)")) {
+                        bDowA = 0;
+                    } else if (rsLaprm.getString("downe_retraksi_nilaiA").equals("Retraksi ringan")) {
+                        bDowA = 1;
+                    } else if (rsLaprm.getString("downe_retraksi_nilaiA").equals("Retraksi berat")) {
+                        bDowA = 2;
+                    }
+
+                    //sianosis
+                    if (rsLaprm.getString("downe_sianosis_nilaiA").equals("-") || rsLaprm.getString("downe_sianosis_nilaiA").equals("Sianosis (-)")) {
+                        cDowA = 0;
+                    } else if (rsLaprm.getString("downe_sianosis_nilaiA").equals("Sianosis hilang dengan oksigen")) {
+                        cDowA = 1;
+                    } else if (rsLaprm.getString("downe_sianosis_nilaiA").equals("Sianosis menetap dengan oksigen")) {
+                        cDowA = 2;
+                    }
+
+                    //air entry
+                    if (rsLaprm.getString("downe_air_nilaiA").equals("-") || rsLaprm.getString("downe_air_nilaiA").equals("Udara masuk")) {
+                        dDowA = 0;
+                    } else if (rsLaprm.getString("downe_air_nilaiA").equals("Penurunan ringan udara masuk")) {
+                        dDowA = 1;
+                    } else if (rsLaprm.getString("downe_air_nilaiA").equals("Tidak ada udara masuk")) {
+                        dDowA = 2;
+                    }
+
+                    //merintih
+                    if (rsLaprm.getString("downe_merintih_nilaiA").equals("-") || rsLaprm.getString("downe_merintih_nilaiA").equals("Tidak merintih")) {
+                        eDowA = 0;
+                    } else if (rsLaprm.getString("downe_merintih_nilaiA").equals("Dapat didengar dengan stetoskop")) {
+                        eDowA = 1;
+                    } else if (rsLaprm.getString("downe_merintih_nilaiA").equals("Dapat didengar tanpa alat bantu")) {
+                        eDowA = 2;
+                    }
+
+                    //proses hitung
+                    if (rsLaprm.getString("downe_frekuensi_nilaiA").equals("-")) {
+                        TnilaiFrekA = "";
+                    } else {
+                        TnilaiFrekA = Valid.SetAngka2(aDowA);
+                    }
+
+                    if (rsLaprm.getString("downe_retraksi_nilaiA").equals("-")) {
+                        TnilaiRetraksiA = "";
+                    } else {
+                        TnilaiRetraksiA = Valid.SetAngka2(bDowA);
+                    }
+
+                    if (rsLaprm.getString("downe_sianosis_nilaiA").equals("-")) {
+                        TnilaiSianoA = "";
+                    } else {
+                        TnilaiSianoA = Valid.SetAngka2(cDowA);
+                    }
+
+                    if (rsLaprm.getString("downe_air_nilaiA").equals("-")) {
+                        TnilaiAirA = "";
+                    } else {
+                        TnilaiAirA = Valid.SetAngka2(dDowA);
+                    }
+
+                    if (rsLaprm.getString("downe_merintih_nilaiA").equals("-")) {
+                        TnilaiMerintihA = "";
+                    } else {
+                        TnilaiMerintihA = Valid.SetAngka2(eDowA);
+                    }
+
+                    hasilNilaiDowA = aDowA + bDowA + cDowA + dDowA + eDowA;
+                    
+                    //pemeriksaan ke 1
+                    param.put("frekNafasA", TnilaiFrekA);
+                    param.put("retraksiA", TnilaiRetraksiA);
+                    param.put("sianosisA", TnilaiSianoA);
+                    param.put("airA", TnilaiAirA);
+                    param.put("merintihA", TnilaiMerintihA);
+                    param.put("jmlPemeriksaanA", Valid.SetAngka2(hasilNilaiDowA));
+
+                    //hitung downeB
+                    int aDowB = 0, bDowB = 0, cDowB = 0, dDowB = 0, eDowB = 0, hasilNilaiDowB = 0;
+                    String TnilaiFrekB = "", TnilaiRetraksiB = "", TnilaiSianoB = "", TnilaiAirB = "", TnilaiMerintihB = "";
+
+                    //frekuensi nafas
+                    if (rsLaprm.getString("downe_frekuensi_nilaiB").equals("-") || rsLaprm.getString("downe_frekuensi_nilaiB").equals("< 60 x/menit")) {
+                        aDowB = 0;
+                    } else if (rsLaprm.getString("downe_frekuensi_nilaiB").equals("60 - 80 x/menit")) {
+                        aDowB = 1;
+                    } else if (rsLaprm.getString("downe_frekuensi_nilaiB").equals("> 80 x/menit")) {
+                        aDowB = 2;
+                    }
+
+                    //retraksi
+                    if (rsLaprm.getString("downe_retraksi_nilaiB").equals("-") || rsLaprm.getString("downe_retraksi_nilaiB").equals("Retraksi (-)")) {
+                        bDowB = 0;
+                    } else if (rsLaprm.getString("downe_retraksi_nilaiB").equals("Retraksi ringan")) {
+                        bDowB = 1;
+                    } else if (rsLaprm.getString("downe_retraksi_nilaiB").equals("Retraksi berat")) {
+                        bDowB = 2;
+                    }
+
+                    //sianosis
+                    if (rsLaprm.getString("downe_sianosis_nilaiB").equals("-") || rsLaprm.getString("downe_sianosis_nilaiB").equals("Sianosis (-)")) {
+                        cDowB = 0;
+                    } else if (rsLaprm.getString("downe_sianosis_nilaiB").equals("Sianosis hilang dengan oksigen")) {
+                        cDowB = 1;
+                    } else if (rsLaprm.getString("downe_sianosis_nilaiB").equals("Sianosis menetap dengan oksigen")) {
+                        cDowB = 2;
+                    }
+
+                    //air entry
+                    if (rsLaprm.getString("downe_air_nilaiB").equals("-") || rsLaprm.getString("downe_air_nilaiB").equals("Udara masuk")) {
+                        dDowB = 0;
+                    } else if (rsLaprm.getString("downe_air_nilaiB").equals("Penurunan ringan udara masuk")) {
+                        dDowB = 1;
+                    } else if (rsLaprm.getString("downe_air_nilaiB").equals("Tidak ada udara masuk")) {
+                        dDowB = 2;
+                    }
+
+                    //merintih
+                    if (rsLaprm.getString("downe_merintih_nilaiB").equals("-") || rsLaprm.getString("downe_merintih_nilaiB").equals("Tidak merintih")) {
+                        eDowB = 0;
+                    } else if (rsLaprm.getString("downe_merintih_nilaiB").equals("Dapat didengar dengan stetoskop")) {
+                        eDowB = 1;
+                    } else if (rsLaprm.getString("downe_merintih_nilaiB").equals("Dapat didengar tanpa alat bantu")) {
+                        eDowB = 2;
+                    }
+
+                    //proses hitung
+                    if (rsLaprm.getString("downe_frekuensi_nilaiB").equals("-")) {
+                        TnilaiFrekB = "";
+                    } else {
+                        TnilaiFrekB = Valid.SetAngka2(aDowB);
+                    }
+
+                    if (rsLaprm.getString("downe_retraksi_nilaiB").equals("-")) {
+                        TnilaiRetraksiB = "";
+                    } else {
+                        TnilaiRetraksiB = Valid.SetAngka2(bDowB);
+                    }
+
+                    if (rsLaprm.getString("downe_sianosis_nilaiB").equals("-")) {
+                        TnilaiSianoB = "";
+                    } else {
+                        TnilaiSianoB = Valid.SetAngka2(cDowB);
+                    }
+
+                    if (rsLaprm.getString("downe_air_nilaiB").equals("-")) {
+                        TnilaiAirB = "";
+                    } else {
+                        TnilaiAirB = Valid.SetAngka2(dDowB);
+                    }
+
+                    if (rsLaprm.getString("downe_merintih_nilaiB").equals("-")) {
+                        TnilaiMerintihB = "";
+                    } else {
+                        TnilaiMerintihB = Valid.SetAngka2(eDowB);
+                    }
+
+                    hasilNilaiDowB = aDowB + bDowB + cDowB + dDowB + eDowB;
+                    
+                    //pemeriksaan ke 2
+                    param.put("frekNafasB", TnilaiFrekB);
+                    param.put("retraksiB", TnilaiRetraksiB);
+                    param.put("sianosisB", TnilaiSianoB);
+                    param.put("airB", TnilaiAirB);
+                    param.put("merintihB", TnilaiMerintihB);
+                    param.put("jmlPemeriksaanB", Valid.SetAngka2(hasilNilaiDowB));
+
+                    //hitung downeC
+                    int aDowC = 0, bDowC = 0, cDowC = 0, dDowC = 0, eDowC = 0, hasilNilaiDowC = 0;
+                    String TnilaiFrekC = "", TnilaiRetraksiC = "", TnilaiSianoC = "", TnilaiAirC = "", TnilaiMerintihC = "";
+
+                    //frekuensi nafas
+                    if (rsLaprm.getString("downe_frekuensi_nilaiC").equals("-") || rsLaprm.getString("downe_frekuensi_nilaiC").equals("< 60 x/menit")) {
+                        aDowC = 0;
+                    } else if (rsLaprm.getString("downe_frekuensi_nilaiC").equals("60 - 80 x/menit")) {
+                        aDowC = 1;
+                    } else if (rsLaprm.getString("downe_frekuensi_nilaiC").equals("> 80 x/menit")) {
+                        aDowC = 2;
+                    }
+
+                    //retraksi
+                    if (rsLaprm.getString("downe_retraksi_nilaiC").equals("-") || rsLaprm.getString("downe_retraksi_nilaiC").equals("Retraksi (-)")) {
+                        bDowC = 0;
+                    } else if (rsLaprm.getString("downe_retraksi_nilaiC").equals("Retraksi ringan")) {
+                        bDowC = 1;
+                    } else if (rsLaprm.getString("downe_retraksi_nilaiC").equals("Retraksi berat")) {
+                        bDowC = 2;
+                    }
+
+                    //sianosis
+                    if (rsLaprm.getString("downe_sianosis_nilaiC").equals("-") || rsLaprm.getString("downe_sianosis_nilaiC").equals("Sianosis (-)")) {
+                        cDowC = 0;
+                    } else if (rsLaprm.getString("downe_sianosis_nilaiC").equals("Sianosis hilang dengan oksigen")) {
+                        cDowC = 1;
+                    } else if (rsLaprm.getString("downe_sianosis_nilaiC").equals("Sianosis menetap dengan oksigen")) {
+                        cDowC = 2;
+                    }
+
+                    //air entry
+                    if (rsLaprm.getString("downe_air_nilaiC").equals("-") || rsLaprm.getString("downe_air_nilaiC").equals("Udara masuk")) {
+                        dDowC = 0;
+                    } else if (rsLaprm.getString("downe_air_nilaiC").equals("Penurunan ringan udara masuk")) {
+                        dDowC = 1;
+                    } else if (rsLaprm.getString("downe_air_nilaiC").equals("Tidak ada udara masuk")) {
+                        dDowC = 2;
+                    }
+
+                    //merintih
+                    if (rsLaprm.getString("downe_merintih_nilaiC").equals("-") || rsLaprm.getString("downe_merintih_nilaiC").equals("Tidak merintih")) {
+                        eDowC = 0;
+                    } else if (rsLaprm.getString("downe_merintih_nilaiC").equals("Dapat didengar dengan stetoskop")) {
+                        eDowC = 1;
+                    } else if (rsLaprm.getString("downe_merintih_nilaiC").equals("Dapat didengar tanpa alat bantu")) {
+                        eDowC = 2;
+                    }
+
+                    //proses hitung
+                    if (rsLaprm.getString("downe_frekuensi_nilaiC").equals("-")) {
+                        TnilaiFrekC = "";
+                    } else {
+                        TnilaiFrekC = Valid.SetAngka2(aDowC);
+                    }
+
+                    if (rsLaprm.getString("downe_retraksi_nilaiC").equals("-")) {
+                        TnilaiRetraksiC = "";
+                    } else {
+                        TnilaiRetraksiC = Valid.SetAngka2(bDowC);
+                    }
+
+                    if (rsLaprm.getString("downe_sianosis_nilaiC").equals("-")) {
+                        TnilaiSianoC = "";
+                    } else {
+                        TnilaiSianoC = Valid.SetAngka2(cDowC);
+                    }
+
+                    if (rsLaprm.getString("downe_air_nilaiC").equals("-")) {
+                        TnilaiAirC = "";
+                    } else {
+                        TnilaiAirC = Valid.SetAngka2(dDowC);
+                    }
+
+                    if (rsLaprm.getString("downe_merintih_nilaiC").equals("-")) {
+                        TnilaiMerintihC = "";
+                    } else {
+                        TnilaiMerintihC = Valid.SetAngka2(eDowC);
+                    }
+
+                    hasilNilaiDowC = aDowC + bDowC + cDowC + dDowC + eDowC;
+                    
+                    //pemeriksaan ke 3
+                    param.put("frekNafasC", TnilaiFrekC);
+                    param.put("retraksiC", TnilaiRetraksiC);
+                    param.put("sianosisC", TnilaiSianoC);
+                    param.put("airC", TnilaiAirC);
+                    param.put("merintihC", TnilaiMerintihC);
+                    param.put("jmlPemeriksaanC", Valid.SetAngka2(hasilNilaiDowC));
+
+                    param.put("evaluasi", rsLaprm.getString("evaluasi_downe"));
+                    param.put("tanggal", Valid.SetTglINDONESIA(rsLaprm.getString("tanggal")));
+                    param.put("jam", rsLaprm.getString("jam") + " Wita");
+                    param.put("petugas", rsLaprm.getString("nmPerawat"));
+
+                    Valid.MyReport("rptSkorApgarDowneCapJari.jasper", "report", "::[ Skor Apgar, Downe, Cap Jari Ibu & Bayi ]::",
+                            "SELECT now() tanggal", param);
+                    
+                    tampilkasir();
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsLaprm != null) {
+                    rsLaprm.close();
+                }
+                if (psLaprm != null) {
+                    psLaprm.close();
+                }
+            }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }

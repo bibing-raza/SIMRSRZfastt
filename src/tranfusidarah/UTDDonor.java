@@ -608,7 +608,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari2.setMnemonic('1');
         BtnCari2.setToolTipText("Alt+1");
         BtnCari2.setName("BtnCari2"); // NOI18N
         BtnCari2.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -626,7 +625,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll1.setMnemonic('2');
         BtnAll1.setToolTipText("Alt+2");
         BtnAll1.setName("BtnAll1"); // NOI18N
         BtnAll1.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -696,7 +694,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnCari3.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari3.setMnemonic('1');
         BtnCari3.setToolTipText("Alt+1");
         BtnCari3.setName("BtnCari3"); // NOI18N
         BtnCari3.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -714,7 +711,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnAll2.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll2.setMnemonic('2');
         BtnAll2.setToolTipText("Alt+2");
         BtnAll2.setName("BtnAll2"); // NOI18N
         BtnAll2.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1037,7 +1033,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         btnPetugasAftap.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugasAftap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPetugasAftap.setMnemonic('1');
         btnPetugasAftap.setToolTipText("Alt+1");
         btnPetugasAftap.setName("btnPetugasAftap"); // NOI18N
         btnPetugasAftap.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1152,7 +1147,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         btnPetugasUSaring.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugasUSaring.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPetugasUSaring.setMnemonic('1');
         btnPetugasUSaring.setToolTipText("Alt+1");
         btnPetugasUSaring.setName("btnPetugasUSaring"); // NOI18N
         btnPetugasUSaring.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1191,7 +1185,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -1210,7 +1203,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -1229,7 +1221,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1248,7 +1239,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -1270,6 +1260,7 @@ public final class UTDDonor extends javax.swing.JDialog {
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
+        BtnPrint.setEnabled(false);
         BtnPrint.setName("BtnPrint"); // NOI18N
         BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnPrint.addActionListener(new java.awt.event.ActionListener() {
@@ -1286,7 +1277,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1384,7 +1374,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+2");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -1403,7 +1392,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -1422,7 +1410,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnPrint1.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint1.setMnemonic('T');
         BtnPrint1.setText("Cetak");
         BtnPrint1.setToolTipText("Alt+T");
         BtnPrint1.setName("BtnPrint1"); // NOI18N
@@ -1449,7 +1436,6 @@ public final class UTDDonor extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
