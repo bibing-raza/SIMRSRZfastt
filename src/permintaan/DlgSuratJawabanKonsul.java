@@ -304,7 +304,6 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -323,7 +322,6 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -342,7 +340,6 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -361,7 +358,6 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -380,7 +376,6 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -409,7 +404,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-10-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -423,7 +418,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-10-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -448,7 +443,6 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('1');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+1");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -470,7 +464,6 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('2');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+2");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -557,7 +550,6 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         Tnmdokter.setBounds(125, 260, 540, 23);
 
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokter.setMnemonic('2');
         BtnDokter.setToolTipText("Alt+2");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -570,7 +562,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         BtnDokter.setBounds(670, 260, 28, 23);
 
         TtglJawab.setEditable(false);
-        TtglJawab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-05-2025" }));
+        TtglJawab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-10-2025" }));
         TtglJawab.setDisplayFormat("dd-MM-yyyy");
         TtglJawab.setName("TtglJawab"); // NOI18N
         TtglJawab.setOpaque(false);
@@ -714,7 +706,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel16.setBounds(340, 38, 50, 23);
 
         cmbUnitKe.setForeground(new java.awt.Color(0, 0, 0));
-        cmbUnitKe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Anestesi", "VCT", "NICU", "Bayi Ruang Nifas" }));
+        cmbUnitKe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Anestesi", "VCT", "NICU", "Bayi Ruang Nifas", "PICU" }));
         cmbUnitKe.setName("cmbUnitKe"); // NOI18N
         cmbUnitKe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {

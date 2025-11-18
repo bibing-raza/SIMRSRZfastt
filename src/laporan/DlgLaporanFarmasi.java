@@ -47,7 +47,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
     private DlgCariPoli poli = new DlgCariPoli(null, false);
     private DlgPasien pasien = new DlgPasien(null, false);
     private DlgCariBangsal bangsal = new DlgCariBangsal(null, false);
-    private String tgl1 = "", tgl2 = "", sql = "", depo1 = "", depo2 = "", norm = "";
+    private String tgl1 = "", tgl2 = "", sql = "", depo1 = "", depo2 = "", norm = "", dialog_simpan = "";
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -320,6 +320,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         jMenuPerDokter = new javax.swing.JMenuItem();
         jMenuObatKhususPerTgl = new javax.swing.JMenuItem();
         jMenuObatKhusus = new javax.swing.JMenuItem();
+        jMenuRekapResepObatKronis = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -850,6 +851,18 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
 
         Popup1.add(jMenuLapPemakaian);
 
+        jMenuRekapResepObatKronis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jMenuRekapResepObatKronis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        jMenuRekapResepObatKronis.setText("Rekap Resep Obat Kronis BPJS");
+        jMenuRekapResepObatKronis.setName("jMenuRekapResepObatKronis"); // NOI18N
+        jMenuRekapResepObatKronis.setPreferredSize(new java.awt.Dimension(220, 25));
+        jMenuRekapResepObatKronis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuRekapResepObatKronisActionPerformed(evt);
+            }
+        });
+        Popup1.add(jMenuRekapResepObatKronis);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -859,7 +872,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Laporan Farmasi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Laporan Farmasi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -1074,7 +1087,6 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
 
         kdpnj.setEditable(false);
         kdpnj.setForeground(new java.awt.Color(0, 0, 0));
-        kdpnj.setCaretColor(new java.awt.Color(0, 0, 0));
         kdpnj.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         kdpnj.setEnabled(false);
         kdpnj.setHighlighter(null);
@@ -1089,7 +1101,6 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
 
         nmpnj.setEditable(false);
         nmpnj.setForeground(new java.awt.Color(0, 0, 0));
-        nmpnj.setCaretColor(new java.awt.Color(0, 0, 0));
         nmpnj.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         nmpnj.setEnabled(false);
         nmpnj.setName("nmpnj"); // NOI18N
@@ -1117,7 +1128,6 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
 
         KdGudang.setEditable(false);
         KdGudang.setForeground(new java.awt.Color(0, 0, 0));
-        KdGudang.setCaretColor(new java.awt.Color(0, 0, 0));
         KdGudang.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         KdGudang.setEnabled(false);
         KdGudang.setName("KdGudang"); // NOI18N
@@ -1132,7 +1142,6 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
 
         NmGudang.setEditable(false);
         NmGudang.setForeground(new java.awt.Color(0, 0, 0));
-        NmGudang.setCaretColor(new java.awt.Color(0, 0, 0));
         NmGudang.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         NmGudang.setEnabled(false);
         NmGudang.setName("NmGudang"); // NOI18N
@@ -1163,7 +1172,6 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
 
         kdpoli.setEditable(false);
         kdpoli.setForeground(new java.awt.Color(0, 0, 0));
-        kdpoli.setCaretColor(new java.awt.Color(0, 0, 0));
         kdpoli.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         kdpoli.setEnabled(false);
         kdpoli.setHighlighter(null);
@@ -1179,7 +1187,6 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
 
         TPoli.setEditable(false);
         TPoli.setForeground(new java.awt.Color(0, 0, 0));
-        TPoli.setCaretColor(new java.awt.Color(0, 0, 0));
         TPoli.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         TPoli.setEnabled(false);
         TPoli.setName("TPoli"); // NOI18N
@@ -1198,7 +1205,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnUnit);
-        BtnUnit.setBounds(444, 70, 30, 26);
+        BtnUnit.setBounds(444, 70, 30, 22);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Tanggal Laporan :");
@@ -1209,7 +1216,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         jLabel14.setBounds(0, 100, 120, 23);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-03-2020" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-11-2025" }));
         DTPCari1.setToolTipText("");
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
@@ -1228,7 +1235,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         jLabel19.setBounds(229, 100, 25, 23);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-03-2020" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-11-2025" }));
         DTPCari2.setToolTipText("");
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
@@ -4839,6 +4846,22 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_jMnRekapPemakaianObatKhusus1PxActionPerformed
 
+    private void jMenuRekapResepObatKronisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRekapResepObatKronisActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        dialog_simpan = Valid.openDialog();
+        Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', pl.nm_poli 'Poliklinik', d.nm_dokter 'Nama Dokter', "
+                + "date_format(dp.tgl_perawatan,'%d-%m-%Y') 'Tgl. Resep', time_format(dp.jam,'%H:%i:%s') 'Jam Resep', bs.no_sep 'No. SEP', db.nama_brng 'Nama Obat', "
+                + "dp.jml 'Jml.', dp.biaya_obat 'Harga', dp.tuslah 'Tuslah', (dp.jml*dp.biaya_obat)+dp.tuslah 'Sub. Total' "
+                + "FROM detail_pemberian_obat dp INNER JOIN databarang db ON dp.kode_brng = db.kode_brng "
+                + "INNER JOIN bridging_sep bs on bs.no_rawat=dp.no_rawat inner join reg_periksa rp on rp.no_rawat=dp.no_rawat "
+                + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join poliklinik pl on pl.kd_poli=rp.kd_poli inner join dokter d on d.kd_dokter=rp.kd_dokter WHERE "
+                + "dp.tgl_perawatan between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and bs.jnspelayanan='2' and bs.sep_resep_obat_kronis='ya' order by dp.no_rawat", dialog_simpan);
+        
+        JOptionPane.showMessageDialog(null, "Data rekap resep obat kronis pasien BPJS berhasil diexport menjadi file excel,..!!!");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_jMenuRekapResepObatKronisActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4893,6 +4916,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem jMenuObatKhusus;
     private javax.swing.JMenuItem jMenuObatKhususPerTgl;
     private javax.swing.JMenuItem jMenuPerDokter;
+    private javax.swing.JMenuItem jMenuRekapResepObatKronis;
     private javax.swing.JMenuItem jMnRekapDetailResepPasienPerCB;
     private javax.swing.JMenuItem jMnRekapDetailResepPasienSemuaCB;
     private javax.swing.JMenuItem jMnRekapDetailTotalPerPasienInap;
