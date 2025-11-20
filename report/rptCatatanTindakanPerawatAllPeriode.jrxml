@@ -147,7 +147,7 @@ inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where ct.sift='sore' ORDER
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CATATAN TINDAKAN KEPERAWATAN]]></text>
+				<text><![CDATA[CATATAN TINDAKAN KEPERAWATAN / KEBIDANAN]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="72" width="519" height="1">

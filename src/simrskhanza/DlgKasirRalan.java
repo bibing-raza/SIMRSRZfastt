@@ -6143,7 +6143,7 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             kamarinap.emptTeks();
             kamarinap.isCek();
             kamarinap.setNoRm(TNoRw.getText(), kdpoli.getText());
-            kamarinap.tampil();
+            kamarinap.tampil("a.nm_bangsal, a.tgl_masuk, a.jam_masuk", "tidak");
             kamarinap.setVisible(true);
             kamarinap.cekKetMati();
             kamarinap.UserValid();

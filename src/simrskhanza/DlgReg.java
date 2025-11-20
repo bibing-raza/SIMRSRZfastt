@@ -7868,7 +7868,7 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             dlgki.emptTeks();
             dlgki.isCek();
             dlgki.setNoRm(TNoRw.getText(), kdpoli.getText());
-            dlgki.tampil();
+            dlgki.tampil("a.nm_bangsal, a.tgl_masuk, a.jam_masuk", "tidak");
             dlgki.setVisible(true);
             dlgki.cekKetMati();
             dlgki.UserValid();
