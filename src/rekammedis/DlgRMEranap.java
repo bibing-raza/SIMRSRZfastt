@@ -500,7 +500,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnCTK.setForeground(new java.awt.Color(0, 0, 0));
         BtnCTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
-        BtnCTK.setText("Cttn. Tindakan Keperwtn/Kebidnan");
+        BtnCTK.setText("Cttn. Tindkan Keperwtn/Kebidnan");
         BtnCTK.setIconTextGap(0);
         BtnCTK.setName("BtnCTK"); // NOI18N
         BtnCTK.setPreferredSize(new java.awt.Dimension(200, 90));
