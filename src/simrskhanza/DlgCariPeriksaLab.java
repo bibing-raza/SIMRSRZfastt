@@ -149,7 +149,8 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         tabMode2 = new DefaultTableModel(null, new String[]{
             "No. Rawat", "No. PA", "No. RM", "Nama Pasien", "Jns. Kelamin", "Tgl. Lahir", "Dokter Pengirim", "Rg. Rawat/Poli/Inst.",
             "Tgl. Periksa", "Tgl. Hasil", "Lokasi/Organ", "Makroskopik", "Mikroskopik", "Kesimpulan", "Anjuran",
-            "kd_gambar", "nip_perujuk", "tgl_periksa", "tgl_lahir", "tgl_hasil", "waktu_simpan"}) {
+            "kd_gambar", "nip_perujuk", "tgl_periksa", "tgl_lahir", "tgl_hasil", "waktu_simpan",
+            "italic_makroskopik", "italic_mikroskopik", "italic_kesimpulan", "italic_anjuran"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -159,7 +160,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         tbHasil.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbHasil.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 21; i++) {
+        for (int i = 0; i < 25; i++) {
             TableColumn column = tbHasil.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(115);
@@ -207,6 +208,18 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 20) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 21) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 22) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 23) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 24) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -696,6 +709,14 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         LoadHTML1 = new widget.editorpane();
         scrollPane14 = new widget.ScrollPane();
         Tanjuran = new widget.TextArea();
+        jLabel51 = new widget.Label();
+        TitalicMakros = new widget.TextBox();
+        jLabel52 = new widget.Label();
+        TitalicMikros = new widget.TextBox();
+        jLabel53 = new widget.Label();
+        TitalicKesimpulan = new widget.TextBox();
+        jLabel54 = new widget.Label();
+        TitalicAnjuran = new widget.TextBox();
         Scroll2 = new widget.ScrollPane();
         tbHasil = new widget.Table();
         jPanel4 = new javax.swing.JPanel();
@@ -1718,7 +1739,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         internalFrame8.setLayout(new java.awt.BorderLayout());
 
         internalFrame9.setName("internalFrame9"); // NOI18N
-        internalFrame9.setPreferredSize(new java.awt.Dimension(0, 510));
+        internalFrame9.setPreferredSize(new java.awt.Dimension(0, 594));
         internalFrame9.setWarnaBawah(new java.awt.Color(240, 245, 235));
         internalFrame9.setLayout(null);
 
@@ -1825,7 +1846,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         jLabel42.setBounds(265, 122, 80, 23);
 
         TtglHasil.setEditable(false);
-        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025" }));
+        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2025" }));
         TtglHasil.setDisplayFormat("dd-MM-yyyy");
         TtglHasil.setName("TtglHasil"); // NOI18N
         TtglHasil.setOpaque(false);
@@ -1893,13 +1914,13 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         scrollPane12.setViewportView(Tmikros);
 
         internalFrame9.add(scrollPane12);
-        scrollPane12.setBounds(135, 258, 630, 75);
+        scrollPane12.setBounds(135, 286, 630, 75);
 
         jLabel45.setForeground(new java.awt.Color(0, 0, 0));
         jLabel45.setText("Mikroskopik :");
         jLabel45.setName("jLabel45"); // NOI18N
         internalFrame9.add(jLabel45);
-        jLabel45.setBounds(0, 258, 130, 23);
+        jLabel45.setBounds(0, 286, 130, 23);
 
         scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
@@ -1917,19 +1938,19 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         scrollPane13.setViewportView(Tkesimpulan);
 
         internalFrame9.add(scrollPane13);
-        scrollPane13.setBounds(135, 338, 630, 75);
+        scrollPane13.setBounds(135, 394, 630, 75);
 
         jLabel46.setForeground(new java.awt.Color(0, 0, 0));
         jLabel46.setText("Kesimpulan :");
         jLabel46.setName("jLabel46"); // NOI18N
         internalFrame9.add(jLabel46);
-        jLabel46.setBounds(0, 338, 130, 23);
+        jLabel46.setBounds(0, 394, 130, 23);
 
         jLabel47.setForeground(new java.awt.Color(0, 0, 0));
         jLabel47.setText("Anjuran :");
         jLabel47.setName("jLabel47"); // NOI18N
         internalFrame9.add(jLabel47);
-        jLabel47.setBounds(0, 418, 130, 23);
+        jLabel47.setBounds(0, 502, 130, 23);
 
         jLabel48.setForeground(new java.awt.Color(0, 0, 0));
         jLabel48.setText("Kode File :");
@@ -1987,10 +2008,82 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         Tanjuran.setRows(5);
         Tanjuran.setName("Tanjuran"); // NOI18N
         Tanjuran.setPreferredSize(new java.awt.Dimension(162, 2000));
+        Tanjuran.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TanjuranKeyPressed(evt);
+            }
+        });
         scrollPane14.setViewportView(Tanjuran);
 
         internalFrame9.add(scrollPane14);
-        scrollPane14.setBounds(135, 418, 630, 75);
+        scrollPane14.setBounds(135, 502, 630, 75);
+
+        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel51.setText("Text Italic Makroskopik :");
+        jLabel51.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel51.setName("jLabel51"); // NOI18N
+        internalFrame9.add(jLabel51);
+        jLabel51.setBounds(0, 258, 130, 23);
+
+        TitalicMakros.setForeground(new java.awt.Color(0, 0, 0));
+        TitalicMakros.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        TitalicMakros.setName("TitalicMakros"); // NOI18N
+        TitalicMakros.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TitalicMakrosKeyPressed(evt);
+            }
+        });
+        internalFrame9.add(TitalicMakros);
+        TitalicMakros.setBounds(135, 258, 630, 23);
+
+        jLabel52.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel52.setText("Text Italic Mikroskopik :");
+        jLabel52.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel52.setName("jLabel52"); // NOI18N
+        internalFrame9.add(jLabel52);
+        jLabel52.setBounds(0, 366, 130, 23);
+
+        TitalicMikros.setForeground(new java.awt.Color(0, 0, 0));
+        TitalicMikros.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        TitalicMikros.setName("TitalicMikros"); // NOI18N
+        TitalicMikros.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TitalicMikrosKeyPressed(evt);
+            }
+        });
+        internalFrame9.add(TitalicMikros);
+        TitalicMikros.setBounds(135, 366, 630, 23);
+
+        jLabel53.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel53.setText("Text Italic Kesimpulan :");
+        jLabel53.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel53.setName("jLabel53"); // NOI18N
+        internalFrame9.add(jLabel53);
+        jLabel53.setBounds(0, 474, 130, 23);
+
+        TitalicKesimpulan.setForeground(new java.awt.Color(0, 0, 0));
+        TitalicKesimpulan.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        TitalicKesimpulan.setName("TitalicKesimpulan"); // NOI18N
+        TitalicKesimpulan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TitalicKesimpulanKeyPressed(evt);
+            }
+        });
+        internalFrame9.add(TitalicKesimpulan);
+        TitalicKesimpulan.setBounds(135, 474, 630, 23);
+
+        jLabel54.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel54.setText("Text Italic Anjuran :");
+        jLabel54.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel54.setName("jLabel54"); // NOI18N
+        internalFrame9.add(jLabel54);
+        jLabel54.setBounds(770, 502, 110, 23);
+
+        TitalicAnjuran.setForeground(new java.awt.Color(0, 0, 0));
+        TitalicAnjuran.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        TitalicAnjuran.setName("TitalicAnjuran"); // NOI18N
+        internalFrame9.add(TitalicAnjuran);
+        TitalicAnjuran.setBounds(887, 502, 570, 23);
 
         internalFrame8.add(internalFrame9, java.awt.BorderLayout.PAGE_START);
 
@@ -2595,7 +2688,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi1.add(jLabel25);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -4881,10 +4974,14 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             param.put("tglperiksa", Ttglperiksa.getText());
             param.put("tglhasil", Valid.SetTglINDONESIA(Valid.SetTgl(TtglHasil.getSelectedItem() + "")));
             param.put("lokasi", Tlokasi.getText() + "\n");
-            param.put("makros", Tmakros.getText() + "\n");
-            param.put("mikros", Tmikros.getText() + "\n");
-            param.put("kesimpulan", Tkesimpulan.getText() + "\n");
-            param.put("anjuran", Tanjuran.getText() + "\n");
+            param.put("makros", Tmakros.getText());
+            param.put("italicmakros", TitalicMakros.getText());
+            param.put("mikros", Tmikros.getText());
+            param.put("italicmikros", TitalicMikros.getText());
+            param.put("kesimpulan", Tkesimpulan.getText());
+            param.put("italickesimpulan", TitalicKesimpulan.getText());
+            param.put("anjuran", Tanjuran.getText());
+            param.put("italicanjuran", TitalicAnjuran.getText());
             param.put("sip", Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + nipdokterpa + "'"));
             param.put("nmDokterpa", Sequel.cariIsi("select nama from pegawai where nik='" + nipdokterpa + "'"));
 
@@ -4936,19 +5033,19 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
 
     private void TmakrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TmakrosKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-            Tmikros.requestFocus();
+            TitalicMakros.requestFocus();
         }
     }//GEN-LAST:event_TmakrosKeyPressed
 
     private void TmikrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TmikrosKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-            Tkesimpulan.requestFocus();
+            TitalicMikros.requestFocus();
         }
     }//GEN-LAST:event_TmikrosKeyPressed
 
     private void TkesimpulanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TkesimpulanKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-            Tanjuran.requestFocus();
+            TitalicKesimpulan.requestFocus();
         }
     }//GEN-LAST:event_TkesimpulanKeyPressed
 
@@ -4970,9 +5067,10 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                 user = akses.getkode();
             }
             
-            if (Sequel.menyimpantf("hasil_patologi_anatomi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Hasil pemeriksaan patologi anatomi", 14, new String[]{
+            if (Sequel.menyimpantf("hasil_patologi_anatomi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Hasil pemeriksaan patologi anatomi", 18, new String[]{
                 TnoRw.getText(), TnoPa.getText(), Valid.SetTgl(TtglHasil.getSelectedItem() + ""), Tlokasi.getText(), Tmakros.getText(), Tmikros.getText(),
-                Tkesimpulan.getText(), Tanjuran.getText(), user, TkodeFile.getText(), nipperujukHsl, Tunit.getText(), tglperiksaHsl, Sequel.cariIsi("select now()")
+                Tkesimpulan.getText(), Tanjuran.getText(), user, TkodeFile.getText(), nipperujukHsl, Tunit.getText(), tglperiksaHsl, Sequel.cariIsi("select now()"),
+                TitalicMakros.getText(), TitalicMikros.getText(), TitalicKesimpulan.getText(), TitalicAnjuran.getText()
             }) == true) {
                 emptTeksPatologi();
                 tampilHasil();
@@ -5047,9 +5145,11 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                 }
 
                 if (Sequel.mengedittf("hasil_patologi_anatomi", "waktu_simpan=?", "no_pa=?, tgl_hasil=?, lokasi_organ=?, makroskopik=?, mikroskopik=?, "
-                        + "kesimpulan=?, anjuran=?, nip_dokter_pa=?, kd_gambar=?, nip_perujuk=?, nm_unit=?, tgl_periksa=?", 13, new String[]{
+                        + "kesimpulan=?, anjuran=?, nip_dokter_pa=?, kd_gambar=?, nip_perujuk=?, nm_unit=?, tgl_periksa=?, italic_makroskopik=?, "
+                        + "italic_mikroskopik=?, italic_kesimpulan=?, italic_anjuran=?", 17, new String[]{
                             TnoPa.getText(), Valid.SetTgl(TtglHasil.getSelectedItem() + ""), Tlokasi.getText(), Tmakros.getText(), Tmikros.getText(),
                             Tkesimpulan.getText(), Tanjuran.getText(), user, TkodeFile.getText(), nipperujukHsl, Tunit.getText(), tglperiksaHsl,
+                            TitalicMakros.getText(), TitalicMikros.getText(), TitalicKesimpulan.getText(), TitalicAnjuran.getText(),
                             tbHasil.getValueAt(tbHasil.getSelectedRow(), 20).toString()
                         }) == true) {
                     emptTeksPatologi();
@@ -5189,6 +5289,30 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
         }
     }//GEN-LAST:event_MnHapusGambarActionPerformed
 
+    private void TitalicMakrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TitalicMakrosKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Tmikros.requestFocus();
+        }
+    }//GEN-LAST:event_TitalicMakrosKeyPressed
+
+    private void TitalicMikrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TitalicMikrosKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Tkesimpulan.requestFocus();
+        }
+    }//GEN-LAST:event_TitalicMikrosKeyPressed
+
+    private void TitalicKesimpulanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TitalicKesimpulanKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Tanjuran.requestFocus();
+        }
+    }//GEN-LAST:event_TitalicKesimpulanKeyPressed
+
+    private void TanjuranKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TanjuranKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            TitalicAnjuran.requestFocus();
+        }
+    }//GEN-LAST:event_TanjuranKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -5279,6 +5403,10 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.TextBox TdokterPengirim;
     private widget.Tanggal Tgl1;
     private widget.Tanggal Tgl2;
+    private widget.TextBox TitalicAnjuran;
+    private widget.TextBox TitalicKesimpulan;
+    private widget.TextBox TitalicMakros;
+    private widget.TextBox TitalicMikros;
     private widget.TextBox TjamPeriksa;
     private widget.TextBox Tjenkel;
     private widget.TextBox TkdDokter;
@@ -5365,6 +5493,10 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.Label jLabel48;
     private widget.Label jLabel49;
     private widget.Label jLabel50;
+    private widget.Label jLabel51;
+    private widget.Label jLabel52;
+    private widget.Label jLabel53;
+    private widget.Label jLabel54;
     private widget.Label jLabel7;
     private javax.swing.JMenu jMnCetakHasilLab;
     private javax.swing.JMenu jMnLapInap;
@@ -5905,6 +6037,11 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
         TtglUpload.setText("");
         TnoPa.setText("");
         LoadHTML1.setText("");
+        
+        TitalicMakros.setText("");
+        TitalicMikros.setText("");
+        TitalicKesimpulan.setText("");
+        TitalicAnjuran.setText("");
     }
     
     private void tampilHasil() {
@@ -5939,7 +6076,11 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                         rs6.getString("tgl_periksa"),
                         rs6.getString("tgl_lahir"),
                         rs6.getString("tgl_hasil"),
-                        rs6.getString("waktu_simpan")
+                        rs6.getString("waktu_simpan"),                        
+                        rs6.getString("italic_makroskopik"),
+                        rs6.getString("italic_mikroskopik"),
+                        rs6.getString("italic_kesimpulan"),
+                        rs6.getString("italic_anjuran")
                     });
                 }
             } catch (Exception e) {
@@ -5984,7 +6125,11 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             TtglUpload.setText(Sequel.cariIsi("select date_format(rf.tgl_upload,'%d-%m-%Y, Pukul : %H:%i Wita') from rme_file_upload rf "
                     + "inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan where "
                     + "rf.id_file='" + TkodeFile.getText() + "'"));
-            tglperiksaHsl = tbHasil.getValueAt(tbHasil.getSelectedRow(), 17).toString();
+            tglperiksaHsl = tbHasil.getValueAt(tbHasil.getSelectedRow(), 17).toString();            
+            TitalicMakros.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 21).toString());
+            TitalicMikros.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 22).toString());
+            TitalicKesimpulan.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 23).toString());
+            TitalicAnjuran.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 24).toString());
             tampilGambar();
         }
     }

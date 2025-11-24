@@ -15,6 +15,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -41,11 +42,15 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
     public INACBGjknBelumDiklaim(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
 
         this.setLocation(10, 10);
         setSize(459, 539);
 
-        Object[] row = {"No. SEP", "No. Rawat", "No. RM", "Nama Pasien", "Nama Unit", "Tgl. Reg./Msk.", "Tgl. Klr./Plg.", "status_rwt", "tglsep"};
+        Object[] row = {"No. SEP", "No. Rawat", "No. RM", "Nama Pasien", "Nama Unit", "Tgl. Reg./Msk.", "Tgl. Klr./Plg.", 
+            "status_rwt", "tglsep", "SOAP Dokter", "SOAP Perawat/Bidan"};
         tabMode = new DefaultTableModel(null, row) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -57,7 +62,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
         tbData.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbData.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 11; i++) {
             TableColumn column = tbData.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
@@ -74,16 +79,27 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(85);
             } else if (i == 7) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 8) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 9) {
+                column.setPreferredWidth(85);
+            } else if (i == 10) {
+                column.setPreferredWidth(130);
             }
         }
 
         tbData.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbData.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbData.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbData.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbData.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbData.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+        tbData.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
+        tbData.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         if (koneksiDB.cariCepat().equals("aktif")) {
@@ -169,7 +185,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Daftar Pasien JKN Yang Belum Selesai Proses Klaim INACBG ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Daftar Pasien JKN Yang Belum Selesai Proses Klaim INACBG ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -180,6 +196,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
         tbData.setToolTipText("Silahkan klik untuk memilih data yang akan diproses klaim");
         tbData.setComponentPopupMenu(Popup1);
         tbData.setName("tbData"); // NOI18N
+        tbData.getTableHeader().setReorderingAllowed(false);
         tbData.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDataMouseClicked(evt);
@@ -216,7 +233,6 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('1');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+1");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -238,7 +254,6 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('2');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+2");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -270,7 +285,6 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('4');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+4");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -295,7 +309,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
         panelGlass10.add(jLabel8);
 
         tgl1.setEditable(false);
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2021" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2025" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -310,7 +324,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
         panelGlass10.add(jLabel21);
 
         tgl2.setEditable(false);
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2021" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2025" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -473,10 +487,12 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
             if (cmbJnsRawat.getSelectedIndex() == 0) {
                 ps = koneksi.prepareStatement("SELECT bs.no_sep, bs.no_rawat, ps.no_rkm_medis, ps.nm_pasien, IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) unit, "
                         + "DATE_FORMAT(rp.tgl_registrasi, '%d-%m-%Y') tglRegMsk, IF (rp.status_lanjut = 'Ralan', DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y'), DATE_FORMAT(ki.tgl_keluar, '%d-%m-%Y')) tglPlg, "
-                        + "rp.status_lanjut, bs.tglsep FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
+                        + "rp.status_lanjut, bs.tglsep, if(pr1.no_rawat is null,'Belum Ada','Sudah Ada') soapDokter, if(pr2.no_rawat is null,'Belum Ada','Sudah Ada') soapNakes "
+                        + "FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
                         + "INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli INNER JOIN pasien ps ON ps.no_rkm_medis = rp.no_rkm_medis "
                         + "LEFT JOIN kamar_inap ki ON ki.no_rawat=bs.no_rawat LEFT JOIN kamar k ON k.kd_kamar=ki.kd_kamar "
-                        + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_new_claim enc ON enc.no_sep = bs.no_sep WHERE "
+                        + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_new_claim enc ON enc.no_sep = bs.no_sep "
+                        + "left join pemeriksaan_ralan pr1 on pr1.no_rawat=rp.no_rawat left join pemeriksaan_ralan_petugas pr2 on pr2.no_rawat=rp.no_rawat WHERE "
                         + "enc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND bs.no_sep LIKE ? OR "
                         + "enc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND bs.no_rawat LIKE ? OR "
                         + "enc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND ps.no_rkm_medis LIKE ? OR "
@@ -486,10 +502,12 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
             } else if (cmbJnsRawat.getSelectedIndex() == 1) {
                 ps = koneksi.prepareStatement("SELECT bs.no_sep, bs.no_rawat, ps.no_rkm_medis, ps.nm_pasien, IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) unit, "
                         + "DATE_FORMAT(rp.tgl_registrasi, '%d-%m-%Y') tglRegMsk, IF (rp.status_lanjut = 'Ralan', DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y'), DATE_FORMAT(ki.tgl_keluar, '%d-%m-%Y')) tglPlg, "
-                        + "rp.status_lanjut, bs.tglsep FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
+                        + "rp.status_lanjut, bs.tglsep, if(pr1.no_rawat is null,'Belum Ada','Sudah Ada') soapDokter, if(pr2.no_rawat is null,'Belum Ada','Sudah Ada') soapNakes "
+                        + "FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
                         + "INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli INNER JOIN pasien ps ON ps.no_rkm_medis = rp.no_rkm_medis "
                         + "LEFT JOIN kamar_inap ki ON ki.no_rawat=bs.no_rawat LEFT JOIN kamar k ON k.kd_kamar=ki.kd_kamar "
-                        + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_new_claim enc ON enc.no_sep = bs.no_sep WHERE "
+                        + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_new_claim enc ON enc.no_sep = bs.no_sep "
+                        + "left join pemeriksaan_ralan pr1 on pr1.no_rawat=rp.no_rawat left join pemeriksaan_ralan_petugas pr2 on pr2.no_rawat=rp.no_rawat WHERE "
                         + "enc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND bs.no_sep LIKE ? OR "
                         + "enc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND bs.no_rawat LIKE ? OR "
                         + "enc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND ps.no_rkm_medis LIKE ? OR "
@@ -499,7 +517,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
             } else if (cmbJnsRawat.getSelectedIndex() == 2) {
                 ps = koneksi.prepareStatement("SELECT bs.no_sep, bs.no_rawat, ps.no_rkm_medis, ps.nm_pasien, IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) unit, "
                         + "DATE_FORMAT(rp.tgl_registrasi, '%d-%m-%Y') tglRegMsk, IF (rp.status_lanjut = 'Ralan', DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y'), DATE_FORMAT(ki.tgl_keluar, '%d-%m-%Y')) tglPlg, "
-                        + "rp.status_lanjut, bs.tglsep FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
+                        + "rp.status_lanjut, bs.tglsep, '-' soapDokter, '-' soapNakes FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
                         + "INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli INNER JOIN pasien ps ON ps.no_rkm_medis = rp.no_rkm_medis "
                         + "LEFT JOIN kamar_inap ki ON ki.no_rawat=bs.no_rawat LEFT JOIN kamar k ON k.kd_kamar=ki.kd_kamar "
                         + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_new_claim enc ON enc.no_sep = bs.no_sep WHERE "
@@ -543,7 +561,9 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
                         rs.getString("tglRegMsk"),
                         rs.getString("tglPlg"),
                         rs.getString("status_lanjut"),
-                        rs.getString("tglsep")
+                        rs.getString("tglsep"),
+                        rs.getString("soapDokter"),
+                        rs.getString("soapNakes")
                     });
                 }
             } catch (Exception e) {

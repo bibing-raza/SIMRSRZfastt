@@ -27,6 +27,10 @@
 	<parameter name="sip" class="java.lang.String"/>
 	<parameter name="nmDokterpa" class="java.lang.String"/>
 	<parameter name="gambarPA" class="java.lang.String"/>
+	<parameter name="italicmakros" class="java.lang.String"/>
+	<parameter name="italicmikros" class="java.lang.String"/>
+	<parameter name="italickesimpulan" class="java.lang.String"/>
+	<parameter name="italicanjuran" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT now() tgl]]>
 	</queryString>
@@ -265,10 +269,10 @@
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="71" y="0" width="467" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="html">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{makros}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{makros} + " <i>" + $P{italicmakros} + "</i><br/>"]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="13">
@@ -288,10 +292,10 @@
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="71" y="0" width="467" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="html">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{mikros}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{mikros}+" <i>"+$P{italicmikros}+ "</i><br/>"]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="13">
@@ -311,10 +315,10 @@
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="71" y="0" width="467" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="html">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kesimpulan}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{kesimpulan}+" <i>"+$P{italickesimpulan}+ "</i><br/>"]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="13">
@@ -334,10 +338,10 @@
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="71" y="0" width="467" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="html">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{anjuran}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{anjuran}+" <i>"+$P{italicanjuran}+ "</i><br/>"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -187,7 +187,8 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         tabMode4 = new DefaultTableModel(null, new String[]{
             "No. Rawat", "No. PA", "No. RM", "Nama Pasien", "Jns. Kelamin", "Tgl. Lahir", "Dokter Pengirim", "Rg. Rawat/Poli/Inst.",
             "Tgl. Periksa", "Tgl. Hasil", "lokasi", "makroskopik", "mikroskopik", "kesimpulan", "anjuran",
-            "kd_gambar", "nip_perujuk", "tgl_periksa", "tgl_lahir", "tgl_hasil", "waktu_simpan"}) {
+            "kd_gambar", "nip_perujuk", "tgl_periksa", "tgl_lahir", "tgl_hasil", "waktu_simpan",
+            "italic_makroskopik", "italic_mikroskopik", "italic_kesimpulan", "italic_anjuran"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -198,7 +199,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         tbPA.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPA.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
-        for (int i = 0; i < 21; i++) {
+        for (int i = 0; i < 25; i++) {
             TableColumn column = tbPA.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(115);
@@ -251,6 +252,18 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 20) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 21) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 22) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 23) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 24) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -1575,11 +1588,15 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             param.put("unit", tbPA.getValueAt(tbPA.getSelectedRow(), 7).toString());
             param.put("tglperiksa", Valid.SetTglINDONESIA(tbPA.getValueAt(tbPA.getSelectedRow(), 17).toString() + ""));
             param.put("tglhasil", Valid.SetTglINDONESIA(tbPA.getValueAt(tbPA.getSelectedRow(), 19).toString() + ""));
-            param.put("lokasi", tbPA.getValueAt(tbPA.getSelectedRow(), 10).toString() + "\n");
-            param.put("makros", tbPA.getValueAt(tbPA.getSelectedRow(), 11).toString() + "\n");
-            param.put("mikros", tbPA.getValueAt(tbPA.getSelectedRow(), 12).toString() + "\n");
-            param.put("kesimpulan", tbPA.getValueAt(tbPA.getSelectedRow(), 13).toString() + "\n");
-            param.put("anjuran", tbPA.getValueAt(tbPA.getSelectedRow(), 14).toString() + "\n");
+            param.put("lokasi", tbPA.getValueAt(tbPA.getSelectedRow(), 10).toString() + "\n");            
+            param.put("makros", tbPA.getValueAt(tbPA.getSelectedRow(), 11).toString());
+            param.put("italicmakros", tbPA.getValueAt(tbPA.getSelectedRow(), 21).toString());
+            param.put("mikros", tbPA.getValueAt(tbPA.getSelectedRow(), 12).toString());
+            param.put("italicmikros", tbPA.getValueAt(tbPA.getSelectedRow(), 22).toString());
+            param.put("kesimpulan", tbPA.getValueAt(tbPA.getSelectedRow(), 13).toString());
+            param.put("italickesimpulan", tbPA.getValueAt(tbPA.getSelectedRow(), 23).toString());
+            param.put("anjuran", tbPA.getValueAt(tbPA.getSelectedRow(), 14).toString());
+            param.put("italicanjuran", tbPA.getValueAt(tbPA.getSelectedRow(), 24).toString());            
             param.put("sip", Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + nipdokterpa + "'"));
             param.put("nmDokterpa", Sequel.cariIsi("select nama from pegawai where nik='" + nipdokterpa + "'"));
 
@@ -1927,7 +1944,11 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                         rs7.getString("tgl_periksa"),
                         rs7.getString("tgl_lahir"),
                         rs7.getString("tgl_hasil"),
-                        rs7.getString("waktu_simpan")
+                        rs7.getString("waktu_simpan"),                        
+                        rs7.getString("italic_makroskopik"),
+                        rs7.getString("italic_mikroskopik"),
+                        rs7.getString("italic_kesimpulan"),
+                        rs7.getString("italic_anjuran")
                     });
                 }
             } catch (Exception e) {
@@ -2161,28 +2182,32 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                                 "<tr class='isi'>"
                                 + "<td valign='top' colspan='1' align='left'>Makroskopik</td>"
                                 + "<td valign='top' colspan='7' align='left'>: " + rsPrev.getString("makroskopik")
-                                        .replace("\r\n", "<br>").replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace("  ", "&nbsp;&nbsp;") + "<br></td>"
+                                        .replace("\r\n", "<br>").replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace("  ", "&nbsp;&nbsp;")
+                                + " <i>" + rsPrev.getString("italic_makroskopik") + "</i><br></td>"
                                 + "</tr>");
                         
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='top' colspan='1' align='left'>Mikroskopik</td>"
                                 + "<td valign='top' colspan='7' align='left'>: " + rsPrev.getString("mikroskopik")
-                                        .replace("\r\n", "<br>").replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace("  ", "&nbsp;&nbsp;") + "<br></td>"
+                                        .replace("\r\n", "<br>").replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace("  ", "&nbsp;&nbsp;")
+                                + " <i>" + rsPrev.getString("italic_mikroskopik") + "</i><br></td>"
                                 + "</tr>");
                         
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='top' colspan='1' align='left'>Kesimpulan</td>"
                                 + "<td valign='top' colspan='7' align='left'>: " + rsPrev.getString("kesimpulan")
-                                        .replace("\r\n", "<br>").replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace("  ", "&nbsp;&nbsp;") + "<br></td>"
+                                        .replace("\r\n", "<br>").replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace("  ", "&nbsp;&nbsp;")
+                                + " <i>" + rsPrev.getString("italic_kesimpulan") + "</i><br></td>"
                                 + "</tr>");
                         
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='top' colspan='1' align='left'>Anjuran</td>"
                                 + "<td valign='top' colspan='7' align='left'>: " + rsPrev.getString("anjuran")
-                                        .replace("\r\n", "<br>").replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace("  ", "&nbsp;&nbsp;") + "<br></td>"
+                                        .replace("\r\n", "<br>").replace("\n", "<br>").replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace("  ", "&nbsp;&nbsp;")
+                                + " <i>" + rsPrev.getString("italic_anjuran") + "</i><br></td>"
                                 + "</tr>");
                         
                         String gambar = "", ipGambar = "";
