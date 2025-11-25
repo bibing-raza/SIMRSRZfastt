@@ -6610,7 +6610,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15/11/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25/11/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11281,6 +11281,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         DlgDashboardEresep eResep = new DlgDashboardEresep(this, false);
         eResep.emptTeks();
         eResep.tampil();
+        eResep.tampilResepAntibiotik();
         eResep.isCek();
         eResep.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
         eResep.setLocationRelativeTo(PanelUtama);
@@ -20788,26 +20789,37 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                     //jika apotek sentral ranap
                     if (akses.getkdbangsal().equals("APT02")) {
                         if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and jenis_resep='CITO' and "
-                                + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                                + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0
+                                || Sequel.cariInteger("select count(-1) from catatan_resep_ranap_antibiotik where status='belum' and jenis_resep='CITO' and "
+                                        + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
                             notifAlarmResepRanapCito();
                         } else if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and "
-                                + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                                + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0
+                                || Sequel.cariInteger("select count(-1) from catatan_resep_ranap_antibiotik where status='belum' and "
+                                        + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
                             notifAlarmResepRanap();
                         }
 
-                    //jika apotek igd
+                        //jika apotek igd
                     } else if (akses.getkdbangsal().equals("APT01")) {
                         if (Sequel.cariInteger("select count(-1) from catatan_resep c inner join reg_periksa r on r.no_rawat=c.no_rawat where "
                                 + "r.status_lanjut='Ralan' and c.status='belum' and r.kd_poli='igdk' and "
-                                + "c.tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                                + "c.tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0
+                                || Sequel.cariInteger("select count(-1) from catatan_resep_antibiotik c inner join reg_periksa r on r.no_rawat=c.no_rawat where "
+                                        + "r.status_lanjut='Ralan' and c.status='belum' and r.kd_poli='igdk' and "
+                                        + "c.tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
                             notifAlarmIGD();
-                        } 
-                        
+                        }
+
                         if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and jenis_resep='CITO' and "
-                                + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                                + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0
+                                || Sequel.cariInteger("select count(-1) from catatan_resep_ranap_antibiotik where status='belum' and jenis_resep='CITO' and "
+                                        + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
                             notifAlarmResepRanapCito();
                         } else if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and "
-                                + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                                + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0
+                                || Sequel.cariInteger("select count(-1) from catatan_resep_ranap_antibiotik where status='belum' and "
+                                        + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
                             notifAlarmResepRanap();
                         }
                     }

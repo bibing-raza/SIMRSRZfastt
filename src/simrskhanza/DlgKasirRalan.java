@@ -10861,19 +10861,15 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             JOptionPane.showMessageDialog(null, "Maaf, Pasien belum dipilih...!!!");
             TNoRw.requestFocus();
         } else {
-            if (akses.getadmin() == true) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                akses.setform("DlgKasirRalan");
-                DlgCatatanResepAntibiotik form = new DlgCatatanResepAntibiotik(null, false);
-                form.isCek();
-                form.setData(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
-                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
-                this.setCursor(Cursor.getDefaultCursor());
-            } else {
-                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...");
-            }
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgKasirRalan");
+            DlgCatatanResepAntibiotik form = new DlgCatatanResepAntibiotik(null, false);
+            form.isCek();
+            form.setData(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnCatatanResepAntibiotikActionPerformed
 
