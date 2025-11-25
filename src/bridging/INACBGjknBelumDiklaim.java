@@ -168,7 +168,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
         MnPengajuanKlaim.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnPengajuanKlaim.setIconTextGap(8);
         MnPengajuanKlaim.setName("MnPengajuanKlaim"); // NOI18N
-        MnPengajuanKlaim.setPreferredSize(new java.awt.Dimension(180, 25));
+        MnPengajuanKlaim.setPreferredSize(new java.awt.Dimension(210, 25));
         MnPengajuanKlaim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnPengajuanKlaimBtnPrintActionPerformed(evt);
@@ -309,7 +309,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
         panelGlass10.add(jLabel8);
 
         tgl1.setEditable(false);
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2025" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-11-2025" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -324,7 +324,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
         panelGlass10.add(jLabel21);
 
         tgl2.setEditable(false);
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2025" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-11-2025" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -491,13 +491,13 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
                         + "FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
                         + "INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli INNER JOIN pasien ps ON ps.no_rkm_medis = rp.no_rkm_medis "
                         + "LEFT JOIN kamar_inap ki ON ki.no_rawat=bs.no_rawat LEFT JOIN kamar k ON k.kd_kamar=ki.kd_kamar "
-                        + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_new_claim enc ON enc.no_sep = bs.no_sep "
+                        + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_set_claim esc ON esc.no_sep = bs.no_sep "
                         + "left join pemeriksaan_ralan pr1 on pr1.no_rawat=rp.no_rawat left join pemeriksaan_ralan_petugas pr2 on pr2.no_rawat=rp.no_rawat WHERE "
-                        + "enc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND bs.no_sep LIKE ? OR "
-                        + "enc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND bs.no_rawat LIKE ? OR "
-                        + "enc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND ps.no_rkm_medis LIKE ? OR "
-                        + "enc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND ps.nm_pasien LIKE ? OR "
-                        + "enc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) LIKE ? "
+                        + "esc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND bs.no_sep LIKE ? OR "
+                        + "esc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND bs.no_rawat LIKE ? OR "
+                        + "esc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND ps.no_rkm_medis LIKE ? OR "
+                        + "esc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND ps.nm_pasien LIKE ? OR "
+                        + "esc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) LIKE ? "
                         + "ORDER BY IF (rp.status_lanjut = 'Ralan', CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ', b.nm_bangsal))");
             } else if (cmbJnsRawat.getSelectedIndex() == 1) {
                 ps = koneksi.prepareStatement("SELECT bs.no_sep, bs.no_rawat, ps.no_rkm_medis, ps.nm_pasien, IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) unit, "
@@ -506,13 +506,13 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
                         + "FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
                         + "INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli INNER JOIN pasien ps ON ps.no_rkm_medis = rp.no_rkm_medis "
                         + "LEFT JOIN kamar_inap ki ON ki.no_rawat=bs.no_rawat LEFT JOIN kamar k ON k.kd_kamar=ki.kd_kamar "
-                        + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_new_claim enc ON enc.no_sep = bs.no_sep "
+                        + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_set_claim esc ON esc.no_sep = bs.no_sep "
                         + "left join pemeriksaan_ralan pr1 on pr1.no_rawat=rp.no_rawat left join pemeriksaan_ralan_petugas pr2 on pr2.no_rawat=rp.no_rawat WHERE "
-                        + "enc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND bs.no_sep LIKE ? OR "
-                        + "enc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND bs.no_rawat LIKE ? OR "
-                        + "enc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND ps.no_rkm_medis LIKE ? OR "
-                        + "enc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND ps.nm_pasien LIKE ? OR "
-                        + "enc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) LIKE ? "
+                        + "esc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND bs.no_sep LIKE ? OR "
+                        + "esc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND bs.no_rawat LIKE ? OR "
+                        + "esc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND ps.no_rkm_medis LIKE ? OR "
+                        + "esc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND ps.nm_pasien LIKE ? OR "
+                        + "esc.no_sep IS NULL AND rp.status_lanjut = 'Ralan' AND bs.tglsep BETWEEN ? AND ? AND IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) LIKE ? "
                         + "ORDER BY IF (rp.status_lanjut = 'Ralan', CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ', b.nm_bangsal))");
             } else if (cmbJnsRawat.getSelectedIndex() == 2) {
                 ps = koneksi.prepareStatement("SELECT bs.no_sep, bs.no_rawat, ps.no_rkm_medis, ps.nm_pasien, IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) unit, "
@@ -520,16 +520,16 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
                         + "rp.status_lanjut, bs.tglsep, '-' soapDokter, '-' soapNakes FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
                         + "INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli INNER JOIN pasien ps ON ps.no_rkm_medis = rp.no_rkm_medis "
                         + "LEFT JOIN kamar_inap ki ON ki.no_rawat=bs.no_rawat LEFT JOIN kamar k ON k.kd_kamar=ki.kd_kamar "
-                        + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_new_claim enc ON enc.no_sep = bs.no_sep WHERE "
-                        + "ki.stts_pulang NOT IN ('-','Pindah Kamar') AND ki.tgl_keluar<>'0000-00-00' AND enc.no_sep IS NULL AND "
+                        + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_set_claim esc ON esc.no_sep = bs.no_sep WHERE "
+                        + "ki.stts_pulang NOT IN ('-','Pindah Kamar') AND ki.tgl_keluar<>'0000-00-00' AND esc.no_sep IS NULL AND "
                         + "rp.status_lanjut = 'Ranap' AND bs.tglsep BETWEEN ? AND ? AND bs.no_sep LIKE ? OR "
-                        + "ki.stts_pulang NOT IN ('-','Pindah Kamar') AND ki.tgl_keluar<>'0000-00-00' AND enc.no_sep IS NULL AND "
+                        + "ki.stts_pulang NOT IN ('-','Pindah Kamar') AND ki.tgl_keluar<>'0000-00-00' AND esc.no_sep IS NULL AND "
                         + "rp.status_lanjut = 'Ranap' AND bs.tglsep BETWEEN ? AND ? AND bs.no_rawat LIKE ? OR "
-                        + "ki.stts_pulang NOT IN ('-','Pindah Kamar') AND ki.tgl_keluar<>'0000-00-00' AND enc.no_sep IS NULL AND "
+                        + "ki.stts_pulang NOT IN ('-','Pindah Kamar') AND ki.tgl_keluar<>'0000-00-00' AND esc.no_sep IS NULL AND "
                         + "rp.status_lanjut = 'Ranap' AND bs.tglsep BETWEEN ? AND ? AND ps.no_rkm_medis LIKE ? OR "
-                        + "ki.stts_pulang NOT IN ('-','Pindah Kamar') AND ki.tgl_keluar<>'0000-00-00' AND enc.no_sep IS NULL AND "
+                        + "ki.stts_pulang NOT IN ('-','Pindah Kamar') AND ki.tgl_keluar<>'0000-00-00' AND esc.no_sep IS NULL AND "
                         + "rp.status_lanjut = 'Ranap' AND bs.tglsep BETWEEN ? AND ? AND ps.nm_pasien LIKE ? OR "
-                        + "ki.stts_pulang NOT IN ('-','Pindah Kamar') AND ki.tgl_keluar<>'0000-00-00' AND enc.no_sep IS NULL AND "
+                        + "ki.stts_pulang NOT IN ('-','Pindah Kamar') AND ki.tgl_keluar<>'0000-00-00' AND esc.no_sep IS NULL AND "
                         + "rp.status_lanjut = 'Ranap' AND bs.tglsep BETWEEN ? AND ? AND IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) LIKE ? "
                         + "ORDER BY IF (rp.status_lanjut = 'Ralan', CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ', b.nm_bangsal))");
             }             

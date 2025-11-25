@@ -1589,13 +1589,13 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             param.put("tglperiksa", Valid.SetTglINDONESIA(tbPA.getValueAt(tbPA.getSelectedRow(), 17).toString() + ""));
             param.put("tglhasil", Valid.SetTglINDONESIA(tbPA.getValueAt(tbPA.getSelectedRow(), 19).toString() + ""));
             param.put("lokasi", tbPA.getValueAt(tbPA.getSelectedRow(), 10).toString() + "\n");            
-            param.put("makros", tbPA.getValueAt(tbPA.getSelectedRow(), 11).toString());
+            param.put("makros", tbPA.getValueAt(tbPA.getSelectedRow(), 11).toString().replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
             param.put("italicmakros", tbPA.getValueAt(tbPA.getSelectedRow(), 21).toString());
-            param.put("mikros", tbPA.getValueAt(tbPA.getSelectedRow(), 12).toString());
+            param.put("mikros", tbPA.getValueAt(tbPA.getSelectedRow(), 12).toString().replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
             param.put("italicmikros", tbPA.getValueAt(tbPA.getSelectedRow(), 22).toString());
-            param.put("kesimpulan", tbPA.getValueAt(tbPA.getSelectedRow(), 13).toString());
+            param.put("kesimpulan", tbPA.getValueAt(tbPA.getSelectedRow(), 13).toString().replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
             param.put("italickesimpulan", tbPA.getValueAt(tbPA.getSelectedRow(), 23).toString());
-            param.put("anjuran", tbPA.getValueAt(tbPA.getSelectedRow(), 14).toString());
+            param.put("anjuran", tbPA.getValueAt(tbPA.getSelectedRow(), 14).toString().replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
             param.put("italicanjuran", tbPA.getValueAt(tbPA.getSelectedRow(), 24).toString());            
             param.put("sip", Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + nipdokterpa + "'"));
             param.put("nmDokterpa", Sequel.cariIsi("select nama from pegawai where nik='" + nipdokterpa + "'"));
