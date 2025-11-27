@@ -17,7 +17,7 @@
 	<parameter name="dokterPeresep" class="java.lang.String"/>
 	<parameter name="resep" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl from catatan_resep_ranap]]>
+		<![CDATA[SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, nama_obat obatnya from catatan_resep_ranap]]>
 	</queryString>
 	<field name="noId" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -40,9 +40,16 @@
 	<field name="kd_dokter" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="jenis_resep" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="resep_untuk" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="tgl" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="obatnya" class="java.lang.String"/>
 	<title>
 		<band height="114" splitType="Stretch">
 			<textField>
@@ -205,7 +212,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_obat}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{obatnya}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="2" y="12" width="263" height="1"/>

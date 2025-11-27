@@ -6610,7 +6610,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25/11/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27/11/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12001,6 +12001,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         DlgDashboardEresepRanap eResep = new DlgDashboardEresepRanap(this, false);
         eResep.emptTeks();
         eResep.tampilAwal();
+        eResep.tampilAwalAntibiotik();
         eResep.isCek();
         eResep.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
         eResep.setLocationRelativeTo(PanelUtama);

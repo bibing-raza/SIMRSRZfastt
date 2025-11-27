@@ -163,7 +163,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(45);
             } else if (i == 2) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(150);
             } else if (i == 3) {
                 column.setPreferredWidth(400);
             } else if (i == 4) {
@@ -333,7 +333,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         for (i = 0; i < 9; i++) {
             TableColumn column = tbResepBiasa.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(20);
+                column.setPreferredWidth(30);
             } else if (i == 1) {
                 column.setPreferredWidth(105);
             } else if (i == 2) {
@@ -384,7 +384,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         for (i = 0; i < 10; i++) {
             TableColumn column = tbResepAnti.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(20);
+                column.setPreferredWidth(30);
             } else if (i == 1) {
                 column.setPreferredWidth(105);
             } else if (i == 2) {
@@ -861,7 +861,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         jLabel8.setBounds(4, 10, 55, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-11-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-11-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -930,7 +930,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         TNoRw.setEditable(false);
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRw.setHighlighter(null);
         TNoRw.setName("TNoRw"); // NOI18N
         FormInput1.add(TNoRw);
         TNoRw.setBounds(78, 57, 130, 23);
@@ -995,6 +994,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         Scroll3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
 
         tbResepBiasa.setName("tbResepBiasa"); // NOI18N
         tbResepBiasa.getTableHeader().setReorderingAllowed(false);
@@ -1004,6 +1004,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         Scroll5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Scroll5.setName("Scroll5"); // NOI18N
+        Scroll5.setOpaque(true);
 
         tbResepAnti.setName("tbResepAnti"); // NOI18N
         tbResepAnti.getTableHeader().setReorderingAllowed(false);
@@ -1015,6 +1016,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         Scroll4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Kode Resep Obat Iter ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll4.setName("Scroll4"); // NOI18N
+        Scroll4.setOpaque(true);
         Scroll4.setPreferredSize(new java.awt.Dimension(660, 422));
 
         tbResepIter.setAutoCreateRowSorter(true);

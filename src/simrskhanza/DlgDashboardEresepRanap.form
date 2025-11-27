@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.2" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JPopupMenu" name="jPopupMenu">
       <Properties>
@@ -240,9 +240,6 @@
         <Property name="rows" type="int" value="5"/>
         <Property name="name" type="java.lang.String" value="TdataQRresep" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TdataQRresepKeyPressed"/>
-      </Events>
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -352,7 +349,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="26-05-2025"/>
+                        <StringItem index="0" value="27-11-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -380,7 +377,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="26-05-2025"/>
+                        <StringItem index="0" value="27-11-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -441,9 +438,6 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
-                    <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="null"/>
-                    </Property>
                     <Property name="name" type="java.lang.String" value="kdpnj" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[60, 23]"/>
@@ -559,6 +553,36 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
+                </Component>
+                <Component class="widget.Label" name="jLabel25">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Tampilkan Resep :"/>
+                    <Property name="name" type="java.lang.String" value="jLabel25" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[110, 23]"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="widget.ComboBox" name="cmbResep">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="Semua"/>
+                        <StringItem index="1" value="Biasa"/>
+                        <StringItem index="2" value="Antibiotik"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="cmbResep" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[80, 23]"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="widget.Label" name="jLabel13">
                   <Properties>
@@ -686,16 +710,16 @@
                 </Property>
               </Properties>
 
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout">
-                <Property name="horizontalGap" type="int" value="1"/>
-                <Property name="verticalGap" type="int" value="1"/>
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                <Property name="columns" type="int" value="0"/>
+                <Property name="rows" type="int" value="2"/>
               </Layout>
               <SubComponents>
                 <Container class="widget.ScrollPane" name="Scroll">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title=".: Daftar Pasien Yang Telah Diresepkan ">
+                        <TitledBorder title=".: Daftar Pasien Yang Telah Diresepkan Biasa ">
                           <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
                         </TitledBorder>
                       </Border>
@@ -703,26 +727,58 @@
                     <Property name="name" type="java.lang.String" value="Scroll" noResource="true"/>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
-                      <BorderConstraints direction="Center"/>
-                    </Constraint>
-                  </Constraints>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
                     <Component class="widget.Table" name="tbPasien">
                       <Properties>
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
-                        <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                           <ComponentRef name="jPopupMenu"/>
                         </Property>
                         <Property name="name" type="java.lang.String" value="tbPasien" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPasienMouseClicked"/>
                         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbPasienKeyPressed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="widget.ScrollPane" name="Scroll2">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title=".: Daftar Pasien Yang Telah Diresepkan Antibiotik ">
+                          <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                        </TitledBorder>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="Scroll2" noResource="true"/>
+                    <Property name="opaque" type="boolean" value="true"/>
+                  </Properties>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="widget.Table" name="tbPasien1">
+                      <Properties>
+                        <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+                        <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="jPopupMenu"/>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="tbPasien1" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPasien1MouseClicked"/>
+                        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPasien1MousePressed"/>
+                        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPasien1MouseReleased"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbPasien1KeyPressed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -770,11 +826,13 @@
                   <SubComponents>
                     <Component class="widget.Table" name="tbdaftarResep">
                       <Properties>
-                        <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
                           <ComponentRef name="jPopupMenu1"/>
                         </Property>
                         <Property name="name" type="java.lang.String" value="tbdaftarResep" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                     </Component>
                   </SubComponents>
