@@ -141,7 +141,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             namapoli = "", norw_dipilih = "", kddokter_dipilih = "", TPngJwb = "", TAlmt = "", THbngn = "", TBiaya = "", TStatus = "", sttsumur1 = "",
             kdsuku = "", kdbahasa = "", skorAsesIGD = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", TotSkorGZD = "", TotSkorGZA = "",
             faktorresikoigd = "", TotSkorRJ = "", kesimpulanResikoJatuh = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "", pilihMenu = "",
-            konfirmasi_terapi = "", aksesRM = "", dataKonfir = "", triaseIGD = "", triasePediatrik = "", triasePonek = "", dialog_simpan = "";
+            konfirmasi_terapi = "", dataKonfir = "", dialog_simpan = "";
     private String bangsal = Sequel.cariIsi("select kd_bangsal from set_lokasi limit 1"), nonota = "", URUTNOREG = "",
             sqlpsotomatis2 = "insert into rawat_jl_dr values (?,?,?,?,?,?,?,?,?,?,?)",
             sqlpsotomatis2petugas = "insert into rawat_jl_pr values (?,?,?,?,?,?,?,?,?,?,?)",
@@ -11281,19 +11281,43 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
     public void tampilkasir() {
         StringBuilder sb = new StringBuilder();
-        aksesRM = "";
-        triaseIGD = "";
-        triasePediatrik = "";
-        triasePonek = "";
         Valid.tabelKosong(tabModekasir);
         try {
-            sb.append("SELECT rp.no_rawat, rp.kd_dokter, d.nm_dokter, rp.no_rkm_medis, concat(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),', ',if(p.jk='L','Laki-laki','Perempuan'),')') nm_pasien, ");
-            sb.append("rp.stts, if(pl.kd_poli='IGDK',CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),if(rp.status_lanjut='Ralan',if(rp.kir_kesehatan='Ya',concat(pl.nm_poli,' (KIR)'),pl.nm_poli),CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) nm_poli, ");
-            sb.append("pj.png_jawab, rp.stts_daftar, IF(br.no_rawat = rp.no_rawat,'Online','-') reg_onlen, rp.tgl_registrasi, rp.jam_reg, rp.no_reg, IFNULL(enc.klaim_final, '-') stts_klaim, p.no_tlp, ");
-            sb.append("CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format, rp.kd_poli ");
-            sb.append("FROM reg_periksa rp INNER JOIN dokter d ON rp.kd_dokter = d.kd_dokter INNER JOIN pasien p ON rp.no_rkm_medis =p.no_rkm_medis ");
-            sb.append("INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj INNER JOIN kelurahan kl ON kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec=p.kd_kec ");
-            sb.append("INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab LEFT JOIN booking_registrasi br ON br.no_rawat = rp.no_rawat LEFT JOIN eklaim_new_claim enc ON enc.no_rawat = rp.no_rawat and enc.jnspelayanan='2' WHERE ");
+            sb.append("SELECT rp.no_rawat, rp.kd_dokter, d.nm_dokter, rp.no_rkm_medis, ");
+            sb.append("CONCAT(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),', ',IF(p.jk='L','Laki-laki','Perempuan'),')') nm_pasien, ");
+            sb.append("rp.stts, IF(pl.kd_poli='IGDK',CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),IF(rp.status_lanjut='Ralan',IF(rp.kir_kesehatan='Ya', CONCAT(pl.nm_poli,' (KIR)'), pl.nm_poli), ");
+            sb.append("CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) nm_poli, pj.png_jawab, rp.stts_daftar, IF(br.no_rawat IS NOT NULL,'Online','-') reg_onlen, ");
+            sb.append("rp.tgl_registrasi, rp.jam_reg, rp.no_reg, IFNULL(enc.klaim_final, '-') stts_klaim, p.no_tlp, CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, ");
+            sb.append("DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format, rp.kd_poli, ");
+            sb.append("CASE WHEN rp.kd_poli NOT LIKE '%IGDK%' THEN '' WHEN rp.kd_poli LIKE '%IGDK%' and (pam.no_rawat IS NOT NULL OR ts.no_rawat IS NOT NULL OR ra.no_rawat IS NOT NULL) THEN '(Open)' ");
+            sb.append("ELSE '(Locked)' END aksesRM, ");
+            sb.append("CASE WHEN ti.no_rawat IS NOT NULL THEN CASE WHEN ti.triase_resusitasi='ya' THEN 'Merah' WHEN ti.triase_non_resusitasi='ya' THEN 'Kuning' WHEN ti.triase_klinik='ya' THEN 'Hijau' ");
+            sb.append("WHEN ti.triase_doa='ya' THEN 'Hitam' ELSE '-' END ELSE '-' END triaseIGD, ");
+            sb.append("CASE WHEN tp.no_rawat IS NOT NULL THEN CASE WHEN tp.kesimpulan_level1='ya' THEN 'Merah (Level 1)' WHEN tp.kesimpulan_level2='ya' THEN 'Merah (Level 2)' ");
+            sb.append("WHEN tp.kesimpulan_level3='ya' THEN 'Kuning (Level 3)' WHEN tp.kesimpulan_level4='ya' THEN 'Kuning (Level 4)' WHEN tp.kesimpulan_level5='ya' THEN 'Hijau' ELSE '-' END ");
+            sb.append("ELSE '-' END triasePediatrik, ");
+            sb.append("CASE WHEN tpk.no_rawat IS NOT NULL THEN CASE WHEN tpk.triase_resusitasi='ya' THEN 'Merah' WHEN tpk.triase_non_resusitasi='ya' THEN 'Kuning' WHEN tpk.triase_klinik='ya' THEN 'Hijau' ");
+            sb.append("WHEN tpk.triase_doa='ya' THEN 'Hitam' ELSE '-' END ELSE '-' END triasePonek, ");
+            sb.append("CASE WHEN rp.kd_poli = '008' AND pk.no_rkm_medis IS NOT NULL AND rp.tgl_registrasi = DATE(NOW()) AND ap.no_rawat IS NULL THEN 'ok' ELSE '-' END cekKemoterapi, ");
+            sb.append("ifnull(pam.no_rawat,'') cekAwalMedisIGD, ifnull(pr.no_rawat,'') cekPemeriksaanRalan, if(ap.no_rawat is not null,'1','0') cekAntrianPrio FROM reg_periksa rp ");
+            sb.append("JOIN dokter d ON rp.kd_dokter = d.kd_dokter ");
+            sb.append("JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis ");
+            sb.append("JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli ");
+            sb.append("JOIN penjab pj ON rp.kd_pj = pj.kd_pj ");
+            sb.append("JOIN kelurahan kl ON kl.kd_kel = p.kd_kel ");
+            sb.append("JOIN kecamatan kc ON kc.kd_kec = p.kd_kec ");
+            sb.append("JOIN kabupaten kb ON kb.kd_kab = p.kd_kab ");
+            sb.append("LEFT JOIN booking_registrasi br ON br.no_rawat = rp.no_rawat ");
+            sb.append("LEFT JOIN eklaim_new_claim enc ON enc.no_rawat = rp.no_rawat AND enc.jnspelayanan = '2' ");            
+            sb.append("LEFT JOIN transfer_serah_terima_pasien_igd ts ON ts.no_rawat = rp.no_rawat AND ts.kd_kamar_msk = 'igdk' AND NOW() <= DATE_ADD(ts.tgl_jam_pindah, INTERVAL 24 DAY_HOUR) ");
+            sb.append("LEFT JOIN penilaian_awal_medis_igd pam ON pam.no_rawat = rp.no_rawat AND NOW() <= DATE_ADD(pam.tanggal, INTERVAL 24 DAY_HOUR) ");
+            sb.append("LEFT JOIN riwayat_akses_rekam_medis ra ON ra.no_rawat = rp.no_rawat AND ra.status_akses = 'terbuka' AND ra.dokumen_rme = 'ralan' ");
+            sb.append("LEFT JOIN triase_igd ti ON ti.no_rawat = rp.no_rawat ");
+            sb.append("left join triase_pediatrik tp on tp.no_rawat=rp.no_rawat ");
+            sb.append("left join triase_ponek tpk on tpk.no_rawat=rp.no_rawat ");
+            sb.append("left join protokol_kemoterapi pk on pk.no_rkm_medis=rp.no_rkm_medis ");
+            sb.append("left join antrian_prioritas ap on ap.no_rawat=rp.no_rawat ");
+            sb.append("left join pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat where ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.tgl_registrasi like ? or ");
@@ -11309,6 +11333,29 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and if(pl.kd_poli='IGDK',");
             sb.append("CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),if(rp.status_lanjut='Ralan',if(rp.kir_kesehatan='Ya',concat(pl.nm_poli,' (KIR)'),pl.nm_poli),CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) like ? ");
             sb.append("order by rp.tgl_registrasi desc, rp.jam_reg desc");
+            
+//            sb.append("SELECT rp.no_rawat, rp.kd_dokter, d.nm_dokter, rp.no_rkm_medis, concat(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),', ',if(p.jk='L','Laki-laki','Perempuan'),')') nm_pasien, ");
+//            sb.append("rp.stts, if(pl.kd_poli='IGDK',CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),if(rp.status_lanjut='Ralan',if(rp.kir_kesehatan='Ya',concat(pl.nm_poli,' (KIR)'),pl.nm_poli),CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) nm_poli, ");
+//            sb.append("pj.png_jawab, rp.stts_daftar, IF(br.no_rawat = rp.no_rawat,'Online','-') reg_onlen, rp.tgl_registrasi, rp.jam_reg, rp.no_reg, IFNULL(enc.klaim_final, '-') stts_klaim, p.no_tlp, ");
+//            sb.append("CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format, rp.kd_poli ");
+//            sb.append("FROM reg_periksa rp INNER JOIN dokter d ON rp.kd_dokter = d.kd_dokter INNER JOIN pasien p ON rp.no_rkm_medis =p.no_rkm_medis ");
+//            sb.append("INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj INNER JOIN kelurahan kl ON kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec=p.kd_kec ");
+//            sb.append("INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab LEFT JOIN booking_registrasi br ON br.no_rawat = rp.no_rawat LEFT JOIN eklaim_new_claim enc ON enc.no_rawat = rp.no_rawat and enc.jnspelayanan='2' WHERE ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.tgl_registrasi like ? or ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.kd_dokter like ? or ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and d.nm_dokter like ? or ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rkm_medis like ? or ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and pl.nm_poli like ? or ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and pj.png_jawab like ? or ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) like ? or ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and IF(br.no_rawat=rp.no_rawat,'Online','-') like ? or ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and IFNULL(enc.klaim_final,'-') like ? or ");
+//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and if(pl.kd_poli='IGDK',");
+//            sb.append("CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),if(rp.status_lanjut='Ralan',if(rp.kir_kesehatan='Ya',concat(pl.nm_poli,' (KIR)'),pl.nm_poli),CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) like ? ");
+//            sb.append("order by rp.tgl_registrasi desc, rp.jam_reg desc");
             pskasir = koneksi.prepareStatement(sb.toString());
             
             try {
@@ -11392,83 +11439,88 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 pskasir.setString(78, "%" + TCari.getText().trim() + "%");
                 rskasir = pskasir.executeQuery();
                 while (rskasir.next()) {
-                    //cek e-RM pasien igd
-                    if (rskasir.getString("nm_poli").contains("IGD") == true) {
-                        if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + rskasir.getString("no_rawat") + "'") == 0
-                                || Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + rskasir.getString("no_rawat") + "' and kd_kamar_msk='igdk' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1
-                                || Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + rskasir.getString("no_rawat") + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1 
-                                || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where no_rawat='" + rskasir.getString("no_rawat") + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
-                            aksesRM = "(Open)";
-                        } else {
-                            aksesRM = "(Locked)";
-                        }
-                    } else {
-                        aksesRM = "";
-                    }
-             
                     //cek pasien kemoterapi
-                    if (rskasir.getString("kd_poli").equals("008")) {
-                        if (Sequel.cariInteger("select count(-1) from protokol_kemoterapi where no_rkm_medis='" + rskasir.getString("no_rkm_medis") + "'") > 0) {
-                            if (Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + rskasir.getString("no_rawat") + "'").equals(Sequel.cariIsi("select date(now())"))) {
-                                if (Sequel.cariInteger("select count(-1) from antrian_prioritas where no_rawat='" + rskasir.getString("no_rawat") + "'") == 0) {
-                                    Sequel.menyimpanIgnore("antrian_prioritas", "'" + rskasir.getString("no_rawat") + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
-                                }
-                            }
-                        }
+                    if (rskasir.getString("cekKemoterapi").equals("ok")) {
+                        Sequel.menyimpanIgnore("antrian_prioritas", "'" + rskasir.getString("no_rawat") + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
                     }
                     
-                    //cek triase IGD
-                    if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "'") > 0) {
-                        if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_resusitasi='ya'") > 0) {
-                            triaseIGD = "Merah";
-                        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_non_resusitasi='ya'") > 0) {
-                            triaseIGD = "Kuning";
-                        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_klinik='ya'") > 0) {
-                            triaseIGD = "Hijau";
-                        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_doa='ya'") > 0) {
-                            triaseIGD = "Hitam";
-                        } else {
-                            triaseIGD = "-";
-                        }
-                    } else {
-                        triaseIGD = "-";
-                    }
-                    
-                    //cek triase pediatrik
-                    if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "'") > 0) {
-                        if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level1='ya'") > 0) {
-                            triasePediatrik = "Merah (Level 1)";
-                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level2='ya'") > 0) {
-                            triasePediatrik = "Merah (Level 2)";
-                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level3='ya'") > 0) {
-                            triasePediatrik = "Kuning (Level 3)";
-                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level4='ya'") > 0) {
-                            triasePediatrik = "Kuning (Level 4)";
-                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level5='ya'") > 0) {
-                            triasePediatrik = "Hijau";
-                        } else {
-                            triasePediatrik = "-";
-                        }
-                    } else {
-                        triasePediatrik = "-";
-                    }
-                    
-                    //cek triase ponek
-                    if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "'") > 0) {
-                        if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_resusitasi='ya'") > 0) {
-                            triasePonek = "Merah";
-                        } else if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_non_resusitasi='ya'") > 0) {
-                            triasePonek = "Kuning";
-                        } else if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_klinik='ya'") > 0) {
-                            triasePonek = "Hijau";
-                        } else if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_doa='ya'") > 0) {
-                            triasePonek = "Hitam";
-                        } else {
-                            triasePonek = "-";
-                        }
-                    } else {
-                        triasePonek = "-";
-                    }
+//                    //cek e-RM pasien igd
+//                    if (rskasir.getString("nm_poli").contains("IGD") == true) {
+//                        if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + rskasir.getString("no_rawat") + "'") == 0
+//                                || Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + rskasir.getString("no_rawat") + "' and kd_kamar_msk='igdk' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1
+//                                || Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + rskasir.getString("no_rawat") + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1 
+//                                || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where no_rawat='" + rskasir.getString("no_rawat") + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
+//                            aksesRM = "(Open)";
+//                        } else {
+//                            aksesRM = "(Locked)";
+//                        }
+//                    } else {
+//                        aksesRM = "";
+//                    }
+//             
+//                    //cek pasien kemoterapi
+//                    if (rskasir.getString("kd_poli").equals("008")) {
+//                        if (Sequel.cariInteger("select count(-1) from protokol_kemoterapi where no_rkm_medis='" + rskasir.getString("no_rkm_medis") + "'") > 0) {
+//                            if (Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + rskasir.getString("no_rawat") + "'").equals(Sequel.cariIsi("select date(now())"))) {
+//                                if (Sequel.cariInteger("select count(-1) from antrian_prioritas where no_rawat='" + rskasir.getString("no_rawat") + "'") == 0) {
+//                                    Sequel.menyimpanIgnore("antrian_prioritas", "'" + rskasir.getString("no_rawat") + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
+//                                }
+//                            }
+//                        }
+//                    }
+//                    
+//                    //cek triase IGD
+//                    if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "'") > 0) {
+//                        if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_resusitasi='ya'") > 0) {
+//                            triaseIGD = "Merah";
+//                        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_non_resusitasi='ya'") > 0) {
+//                            triaseIGD = "Kuning";
+//                        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_klinik='ya'") > 0) {
+//                            triaseIGD = "Hijau";
+//                        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_doa='ya'") > 0) {
+//                            triaseIGD = "Hitam";
+//                        } else {
+//                            triaseIGD = "-";
+//                        }
+//                    } else {
+//                        triaseIGD = "-";
+//                    }
+//                    
+//                    //cek triase pediatrik
+//                    if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "'") > 0) {
+//                        if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level1='ya'") > 0) {
+//                            triasePediatrik = "Merah (Level 1)";
+//                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level2='ya'") > 0) {
+//                            triasePediatrik = "Merah (Level 2)";
+//                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level3='ya'") > 0) {
+//                            triasePediatrik = "Kuning (Level 3)";
+//                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level4='ya'") > 0) {
+//                            triasePediatrik = "Kuning (Level 4)";
+//                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level5='ya'") > 0) {
+//                            triasePediatrik = "Hijau";
+//                        } else {
+//                            triasePediatrik = "-";
+//                        }
+//                    } else {
+//                        triasePediatrik = "-";
+//                    }
+//                    
+//                    //cek triase ponek
+//                    if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "'") > 0) {
+//                        if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_resusitasi='ya'") > 0) {
+//                            triasePonek = "Merah";
+//                        } else if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_non_resusitasi='ya'") > 0) {
+//                            triasePonek = "Kuning";
+//                        } else if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_klinik='ya'") > 0) {
+//                            triasePonek = "Hijau";
+//                        } else if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_doa='ya'") > 0) {
+//                            triasePonek = "Hitam";
+//                        } else {
+//                            triasePonek = "-";
+//                        }
+//                    } else {
+//                        triasePonek = "-";
+//                    }
                     
                     tabModekasir.addRow(new String[]{
                         rskasir.getString("no_rawat"),
@@ -11484,17 +11536,17 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         rskasir.getString("tgl_reg_format"),
                         rskasir.getString("jam_reg"),
                         rskasir.getString("no_reg"),
-                        rskasir.getString("stts_klaim") + " " + aksesRM,
+                        rskasir.getString("stts_klaim") + " " + rskasir.getString("aksesRM"),
                         rskasir.getString("no_tlp"),
                         rskasir.getString("almt_pasien"),
-                        Sequel.cariIsi("select ifnull(no_rawat,'') from penilaian_awal_medis_igd where no_rawat='" + rskasir.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select ifnull(no_rawat,'') from pemeriksaan_ralan where no_rawat='" + rskasir.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select count(-1) from antrian_prioritas where no_rawat='" + rskasir.getString("no_rawat") + "'"),
+                        rskasir.getString("cekAwalMedisIGD"),
+                        rskasir.getString("cekPemeriksaanRalan"),
+                        rskasir.getString("cekAntrianPrio"),
                         rskasir.getString("tgl_registrasi"),
                         rskasir.getString("kd_poli"),
-                        triaseIGD,
-                        triasePediatrik,
-                        triasePonek
+                        rskasir.getString("triaseIGD"),
+                        rskasir.getString("triasePediatrik"),
+                        rskasir.getString("triasePonek")
                     });
                 }
             } catch (Exception e) {
@@ -11520,7 +11572,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             sb.append("SELECT rp.no_rawat, rp.kd_dokter, d.nm_dokter, rp.no_rkm_medis, concat(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),', ',if(p.jk='L','Laki-laki','Perempuan'),')') nm_pasien, ");
             sb.append("rp.stts, if(pl.kd_poli='IGDK',CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),if(rp.status_lanjut='Ralan',if(rp.kir_kesehatan='Ya',concat(pl.nm_poli,' (KIR)'),pl.nm_poli),CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) nm_poli, ");
             sb.append("rp.stts_daftar, IF(br.no_rawat = rp.no_rawat,'Online','-') reg_onlen, rp.tgl_registrasi, rp.jam_reg, rp.no_reg, IFNULL(enc.klaim_final, '-') stts_klaim, p.no_tlp, ");
-            sb.append("CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format, rp.kd_poli ");
+            sb.append("CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format, rp.kd_poli, pj.png_jawab ");
             sb.append("FROM reg_periksa rp INNER JOIN dokter d ON rp.kd_dokter = d.kd_dokter INNER JOIN pasien p ON rp.no_rkm_medis =p.no_rkm_medis ");
             sb.append("INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj INNER JOIN kelurahan kl ON kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec=p.kd_kec ");
             sb.append("INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab LEFT JOIN booking_registrasi br ON br.no_rawat = rp.no_rawat LEFT JOIN eklaim_new_claim enc ON enc.no_rawat = rp.no_rawat and enc.jnspelayanan='2' WHERE ");

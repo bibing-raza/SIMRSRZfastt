@@ -2560,7 +2560,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         try {
             if (ChkTgl.isSelected() == true) {
                 if (cmbStatus.getSelectedIndex() == 3) {
-                    sb3.append("SELECT c.no_rawat, c.nama_obat, c.status, c.noId, c.keterangan, ");
+                    sb3.append("SELECT c.no_rawat, c.nama_obat, c.status, c.noId, concat('Hari ke ',c.hari_ke,' : ',c.keterangan) keterangan, ");
                     sb3.append("date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter, c.jenis_resep, c.resep_untuk ");
                     sb3.append("FROM catatan_resep_ranap_antibiotik c inner join dokter d on d.kd_dokter=c.kd_dokter ");
                     sb3.append("WHERE c.tgl_perawatan between '" + Valid.SetTgl(DTPTgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPTgl2.getSelectedItem() + "") + "' ");
@@ -2568,7 +2568,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                     ps2 = koneksi.prepareStatement(sb3.toString());
                     
                 } else {
-                    sb3.append("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, c.keterangan, ");
+                    sb3.append("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, concat('Hari ke ',c.hari_ke,' : ',c.keterangan) keterangan, ");
                     sb3.append("date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter, c.jenis_resep, c.resep_untuk ");
                     sb3.append("FROM catatan_resep_ranap_antibiotik c inner join dokter d on d.kd_dokter=c.kd_dokter ");
                     sb3.append("where c.tgl_perawatan between '" + Valid.SetTgl(DTPTgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPTgl2.getSelectedItem() + "") + "' ");
@@ -2578,7 +2578,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 }
             } else {
                 if (cmbStatus.getSelectedIndex() == 3) {
-                    sb3.append("SELECT c.no_rawat, c.nama_obat, c.status, c.noId, c.keterangan, ");
+                    sb3.append("SELECT c.no_rawat, c.nama_obat, c.status, c.noId, concat('Hari ke ',c.hari_ke,' : ',c.keterangan) keterangan, ");
                     sb3.append("date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter, c.jenis_resep, c.resep_untuk ");
                     sb3.append("FROM catatan_resep_ranap_antibiotik c inner join dokter d on d.kd_dokter=c.kd_dokter ");
                     sb3.append("WHERE c.no_rawat LIKE '%" + TNoRw.getText().trim() + "%' ");
@@ -2586,7 +2586,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                     ps2 = koneksi.prepareStatement(sb3.toString());
                     
                 } else {
-                    sb3.append("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, c.keterangan, ");
+                    sb3.append("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, concat('Hari ke ',c.hari_ke,' : ',c.keterangan) keterangan, ");
                     sb3.append("date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter, c.jenis_resep, c.resep_untuk ");
                     sb3.append("FROM catatan_resep_ranap_antibiotik c inner join dokter d on d.kd_dokter=c.kd_dokter ");
                     sb3.append("where c.no_rawat like '%" + TNoRw.getText().trim() + "%' ");
@@ -2710,7 +2710,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         StringBuilder sb4 = new StringBuilder();
         try {
             if (cmbStatus1.getSelectedIndex() == 3) {
-                sb4.append("SELECT c.no_rawat, c.nama_obat, c.status, c.noId, c.keterangan, ");
+                sb4.append("SELECT c.no_rawat, c.nama_obat, c.status, c.noId, concat('Hari ke ',c.hari_ke,' : ',c.keterangan) keterangan, ");
                 sb4.append("date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter ");
                 sb4.append("FROM catatan_resep_antibiotik c inner join dokter d on d.kd_dokter=c.kd_dokter ");
                 sb4.append("WHERE c.no_rawat LIKE '%" + TNoRw.getText().trim() + "%' ");
@@ -2718,7 +2718,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 ps3 = koneksi.prepareStatement(sb4.toString());
                 
             } else {
-                sb4.append("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, c.keterangan, ");
+                sb4.append("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, concat('Hari ke ',c.hari_ke,' : ',c.keterangan) keterangan, ");
                 sb4.append("date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter ");
                 sb4.append("FROM catatan_resep_antibiotik c inner join dokter d on d.kd_dokter=c.kd_dokter ");
                 sb4.append("where c.no_rawat like '%" + TNoRw.getText().trim() + "%' ");
@@ -3076,7 +3076,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                             + "where noId in (" + idObat + ") order by noId desc limit 1"));
 
                     Valid.MyReport("rptCatatanResep.jasper", "report", "::[ Cetak e-Resep ]::",
-                            "SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, concat(nama_obat,' (ket. ',keterangan,')') obatnya "
+                            "SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, "
+                            + "if(hari_ke not in ('1','6','12','18','24','30'),nama_obat,concat(nama_obat,' (ket. ',keterangan,')')) obatnya "
                             + "from catatan_resep_ranap_antibiotik where noId in (" + idObat + ") order by status, noId desc", param);
 
                 } else if (cmbKertas.getSelectedIndex() == 1) {
@@ -3095,7 +3096,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                             + "where noId in (" + idObat + ") order by noId desc limit 1"));
 
                     Valid.MyReport("rptStrukResepRanap.jasper", "report", "::[ Struk Resep Dokter Rawat Inap Kertas Thermal ]::",
-                            " SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, concat(nama_obat,' (ket. ',keterangan,')') obatnya "
+                            " SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, "
+                            + "if(hari_ke not in ('1','6','12','18','24','30'),nama_obat,concat(nama_obat,' (ket. ',keterangan,')')) obatnya "
                             + "from catatan_resep_ranap_antibiotik where noId in (" + idObat + ") order by status, noId desc", param);
                 }
             }
@@ -3266,7 +3268,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 
                     Valid.MyReport("rptCatatanResepRalan.jasper", "report", "::[ Cetak e-Resep ]::",
                             "SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
-                            + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, concat(cr.nama_obat,' (ket. ',cr.keterangan,')') nama_obat, "
+                            + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, if(cr.hari_ke not in ('1','6','12','18','24','30'),cr.nama_obat,concat(cr.nama_obat,' (ket. ',cr.keterangan,')')) nama_obat, "
                             + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep_antibiotik cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
@@ -3280,7 +3282,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 
                     Valid.MyReport("rptStrukResepRalan.jasper", "report", "::[ Struk Resep Dokter Poliklinik/Unit Rawat Jalan Kertas Thermal ]::",
                             " SELECT pl.nm_poli, concat(date_format(cr.tgl_perawatan,'%d-%m-%Y'),'" + resepIter + "') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
-                            + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, concat(cr.nama_obat,' (ket. ',cr.keterangan,')') nama_obat, "
+                            + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, if(cr.hari_ke not in ('1','6','12','18','24','30'),cr.nama_obat,concat(cr.nama_obat,' (ket. ',cr.keterangan,')')) nama_obat, "
                             + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep_antibiotik cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "

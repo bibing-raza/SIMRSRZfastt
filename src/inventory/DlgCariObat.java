@@ -2826,14 +2826,16 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         try {
             if (cmbStatus.getSelectedIndex() == 3) {
                 sb.append("select c.no_rawat, c.nama_obat, c.status, c.noId, date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, ");
-                sb.append("c.jam_perawatan, d.nm_dokter, if(prb.saran is null,'TIDAK','YA') programPrb, c.keterangan from catatan_resep_antibiotik c ");
+                sb.append("c.jam_perawatan, d.nm_dokter, if(prb.saran is null,'TIDAK','YA') programPrb, ");
+                sb.append("concat('Hari ke ',c.hari_ke,' : ',c.keterangan) keterangan from catatan_resep_antibiotik c ");
                 sb.append("inner join dokter d on d.kd_dokter=c.kd_dokter left join bridging_srb_bpjs prb on prb.no_srb=c.no_rawat and prb.keterangan=c.noID where ");
                 sb.append("c.no_rawat like '%" + TNoRw.getText().trim() + "%' order by c.status, c.noId");
                 ps2 = koneksi.prepareStatement(sb.toString());
 
             } else {
                 sb.append("select c.no_rawat, c.nama_obat, c.status, c.noId, date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, ");
-                sb.append("c.jam_perawatan, d.nm_dokter, if(prb.saran is null,'TIDAK','YA') programPrb, c.keterangan from catatan_resep_antibiotik c ");
+                sb.append("c.jam_perawatan, d.nm_dokter, if(prb.saran is null,'TIDAK','YA') programPrb, ");
+                sb.append("concat('Hari ke ',c.hari_ke,' : ',c.keterangan) keterangan from catatan_resep_antibiotik c ");
                 sb.append("inner join dokter d on d.kd_dokter=c.kd_dokter left join bridging_srb_bpjs prb on prb.no_srb=c.no_rawat and prb.keterangan=c.noID where ");
                 sb.append("c.no_rawat like '%" + TNoRw.getText().trim() + "%' and c.status like '%" + cmbStatus.getSelectedItem().toString() + "%' ");
                 sb.append("order by c.status, c.noId");
@@ -3225,7 +3227,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 
                     Valid.MyReport("rptCatatanResepRalan.jasper", "report", "::[ Cetak e-Resep ]::",
                             "SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
-                            + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, concat(cr.nama_obat,' (ket. ',cr.keterangan,')') nama_obat, "
+                            + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, if(cr.hari_ke not in ('1','6','12','18','24','30'),cr.nama_obat,concat(cr.nama_obat,' (ket. ',cr.keterangan,')')) nama_obat, "
                             + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep_antibiotik cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
@@ -3239,7 +3241,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 
                     Valid.MyReport("rptStrukResepRalan.jasper", "report", "::[ Struk Resep Dokter Poliklinik/Unit Rawat Jalan Kertas Thermal ]::",
                             " SELECT pl.nm_poli, concat(date_format(cr.tgl_perawatan,'%d-%m-%Y'),'" + resepIter + "') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
-                            + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, concat(cr.nama_obat,' (ket. ',cr.keterangan,')') nama_obat, "
+                            + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, if(cr.hari_ke not in ('1','6','12','18','24','30'),cr.nama_obat,concat(cr.nama_obat,' (ket. ',cr.keterangan,')')) nama_obat, "
                             + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep_antibiotik cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "

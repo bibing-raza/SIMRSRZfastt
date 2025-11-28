@@ -2239,7 +2239,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         jabatan = "";
         try {            
             sb.append("select u.*, AES_DECRYPT(u.id_user,'nur') idUser, AES_DECRYPT(u.password,'windi') pwd, ");
-            sb.append("pt1.nama nmPetugas1, jb1.nm_jbtn jbtn1, pt2.nama nmPetugas2, jb2.nm_jbtn jbtn2 from user u ");
+            sb.append("pt1.nama nmPetugas1, jb1.nm_jbtn jbtn1, pt2.nama nmPetugas2, jb2.nm_jbtn jbtn2, ");
+            sb.append("if(pt1.nip is not null,'ok','-') cekNip, if(pt2.user_id is not null,'ok','-') cekID from user u ");
             sb.append("left join petugas pt1 on pt1.nip=AES_DECRYPT(u.id_user,'nur') ");
             sb.append("left join jabatan jb1 on jb1.kd_jbtn=pt1.kd_jbtn ");
             sb.append("left join petugas pt2 on pt2.user_id=AES_DECRYPT(u.id_user,'nur') ");
@@ -2260,14 +2261,15 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                 ps.setString(6, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    if (Sequel.cariInteger("select count(-1) from petugas where nip='" + rs.getString("idUser") + "'") > 0) {
-                        user = Sequel.cariIsi("select nama from petugas where nip='" + rs.getString("idUser") + "'");
-                        jabatan = Sequel.cariIsi("select nm_jbtn from jabatan where kd_jbtn='" + Sequel.cariIsi("select kd_jbtn from petugas where nip='" + rs.getString("idUser") + "'") + "'");
-                    } 
-                    
-                    if (Sequel.cariInteger("select count(-1) from petugas where user_id='" + rs.getString("idUser") + "'") > 0) {
-                        user = Sequel.cariIsi("select nama from petugas where user_id='" + rs.getString("idUser") + "'");
-                        jabatan = Sequel.cariIsi("select nm_jbtn from jabatan where kd_jbtn='" + Sequel.cariIsi("select kd_jbtn from petugas where user_id='" + rs.getString("idUser") + "'") + "'");
+                    if (rs.getString("cekNip").equals("ok")) {
+                        user = rs.getString("nmPetugas1");
+                        jabatan = rs.getString("jbtn1");
+                    } else if (rs.getString("cekID").equals("ok")) {
+                        user = rs.getString("nmPetugas2");
+                        jabatan = rs.getString("jbtn2");
+                    } else {
+                        user = "";
+                        jabatan = "";
                     }
                     
                     try {

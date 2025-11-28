@@ -144,9 +144,9 @@ public final class DlgReg extends javax.swing.JDialog {
     private String nosisrute = "", URUTNOREG = "", alamatperujuk = "-", URL = "", utc = "", noka = "", wktPanggil = "", wktAmbilNomor = "", panggilanFix = "",
             aktifjadwal = "", IPPRINTERTRACER = "", umur = "0", sttsumur = "Th", cekSEPboking = "", diagnosa_ok = "", noPangAkhir = "", noRwNew = "",
             tglDaftar = "", tglnoRW = "", sttsumur1 = "", validasiregistrasi = Sequel.cariIsi("select wajib_closing_kasir from set_validasi_registrasi"),
-            noakhirbpjs = "", noakhirumum = "", noakhirkhusus = "", noakhirranap = "", cekAntrianKhusus = "", link = "", nik = "", nokartu = "", noSEP = "",
+            noakhirbpjs = "", noakhirumum = "", noakhirkhusus = "", noakhirranap = "", cekAntrianKhusus = "", link = "", nik = "", nokartu = "",
             poliIter = "", tglKelamaan = "", kodeITER = "", noSEPITER = "", noKARTUITER = "", noRMITER = "", noRAWATITER = "", tglEXPRUJUKANITER = "", 
-            poliKEITER = "", ketLanjutIter = "";
+            poliKEITER = "", ketLanjutIter = "", noSEP = "";
     private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private Date tglSekarang = new Date();
@@ -12170,31 +12170,57 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     public void tampil() {
         StringBuilder sb = new StringBuilder();
         Valid.tabelKosong(tabMode);
-        String petugasSIPO = "";
-        cekAntrianKhusus = "";
         try {
-            sb.append("select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg, reg_periksa.kir_kesehatan, ");
-            sb.append("reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,poliklinik.nm_poli,");
-            sb.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,pasien.no_tlp,reg_periksa.stts,");
-            sb.append("if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) nm_petugas ");
-            sb.append("from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab on reg_periksa.kd_dokter=dokter.kd_dokter and ");
-            sb.append("reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and reg_periksa.kd_poli=poliklinik.kd_poli ");
-            sb.append("left join pegawai pg on pg.nik = reg_periksa.nip_petugas where ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_reg like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rawat like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.tgl_registrasi like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.kd_dokter like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and dokter.nm_dokter like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rkm_medis like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.stts_daftar like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and pasien.nm_pasien like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and poliklinik.nm_poli like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.p_jawab like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.almt_pj like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.hubunganpj like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and penjab.png_jawab like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and ");
-            sb.append("if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) like ? order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg desc");
+            sb.append("select rp.no_reg,rp.no_rawat,rp.tgl_registrasi,rp.jam_reg, rp.kir_kesehatan, rp.kd_dokter,d.nm_dokter,rp.no_rkm_medis,p.nm_pasien,p.jk, ");
+            sb.append("concat(rp.umurdaftar,' ',rp.sttsumur)as umur,pl.nm_poli, rp.p_jawab,rp.almt_pj,rp.hubunganpj,rp.biaya_reg,rp.stts_daftar,pj.png_jawab, ");
+            sb.append("p.no_tlp,rp.stts, if(rp.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) nm_petugas, if(kb.no_rawat is not null,concat(kb.user,' (SIPO)'),'-') petugasSIPO, ");
+            sb.append("if(ap.no_rawat is not null,'YA','TIDAK') cekAntrianKhusus, if(bs.no_rawat is null,'-',bs.no_sep) noSEP from reg_periksa rp ");
+            sb.append("inner join dokter d on d.kd_dokter=rp.kd_dokter ");
+            sb.append("inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+            sb.append("inner join poliklinik pl on pl.kd_poli=rp.kd_poli ");
+            sb.append("inner join penjab pj on pj.kd_pj=rp.kd_pj ");
+            sb.append("left join pegawai pg on pg.nik = rp.nip_petugas ");
+            sb.append("left join kelengkapan_booking_sep_bpjs kb on kb.no_rawat=rp.no_rawat ");
+            sb.append("left join antrian_prioritas ap on ap.no_rawat=rp.no_rawat ");
+            sb.append("left join bridging_sep bs on bs.no_rawat=rp.no_rawat where ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.tgl_registrasi like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.kd_dokter like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and d.nm_dokter like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.no_rkm_medis like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.stts_daftar like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and pl.nm_poli like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.p_jawab like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.almt_pj like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.hubunganpj like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and pj.png_jawab like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and ");
+            sb.append("if(rp.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) like ? order by rp.tgl_registrasi,rp.jam_reg desc");
+
+//            sb.append("select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg, reg_periksa.kir_kesehatan, ");
+//            sb.append("reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,poliklinik.nm_poli,");
+//            sb.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,pasien.no_tlp,reg_periksa.stts,");
+//            sb.append("if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) nm_petugas ");
+//            sb.append("from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab on reg_periksa.kd_dokter=dokter.kd_dokter and ");
+//            sb.append("reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and reg_periksa.kd_poli=poliklinik.kd_poli ");
+//            sb.append("left join pegawai pg on pg.nik = reg_periksa.nip_petugas where ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_reg like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rawat like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.tgl_registrasi like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.kd_dokter like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and dokter.nm_dokter like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rkm_medis like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.stts_daftar like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and pasien.nm_pasien like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and poliklinik.nm_poli like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.p_jawab like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.almt_pj like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.hubunganpj like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and penjab.png_jawab like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and ");
+//            sb.append("if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) like ? order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg desc");
             ps = koneksi.prepareStatement(sb.toString());
             
             try {
@@ -12270,22 +12296,26 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 ps.setString(70, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    if (Sequel.cariIsi("select ifnull(user,'-') from kelengkapan_booking_sep_bpjs where no_rawat='" + rs.getString("no_rawat") + "'").equals("-")) {
-                        petugasSIPO = "-";
-                    } else if (Sequel.cariInteger("select count(*) from kelengkapan_booking_sep_bpjs where no_rawat='" + rs.getString("no_rawat") + "'") > 0) {
-                        petugasSIPO = Sequel.cariIsi("select user from kelengkapan_booking_sep_bpjs where no_rawat='" + rs.getString("no_rawat") + "'") + " (SIPO)";
-                    }
+//                    if (Sequel.cariIsi("select ifnull(user,'-') from kelengkapan_booking_sep_bpjs where no_rawat='" + rs.getString("no_rawat") + "'").equals("-")) {
+//                        petugasSIPO = "-";
+//                    } else if (Sequel.cariInteger("select count(*) from kelengkapan_booking_sep_bpjs where no_rawat='" + rs.getString("no_rawat") + "'") > 0) {
+//                        petugasSIPO = Sequel.cariIsi("select user from kelengkapan_booking_sep_bpjs where no_rawat='" + rs.getString("no_rawat") + "'") + " (SIPO)";
+//                    }
+//                    
+//                    if (Sequel.cariInteger("select count(-1) from antrian_prioritas where no_rawat='" + rs.getString("no_rawat") + "'") > 0) {
+//                        cekAntrianKhusus = "YA";
+//                    } else {
+//                        cekAntrianKhusus = "TIDAK";
+//                    }
+//                    
+//                    //cek sep bpjs
+//                    if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + rs.getString("no_rawat") + "'") == 0) {
+//                        noSEP = "-";
+//                    } else {
+//                        cekSEPpasien(rs.getString("no_rawat"));
+//                    }
                     
-                    if (Sequel.cariInteger("select count(-1) from antrian_prioritas where no_rawat='" + rs.getString("no_rawat") + "'") > 0) {
-                        cekAntrianKhusus = "YA";
-                    } else {
-                        cekAntrianKhusus = "TIDAK";
-                    }
-                    
-                    //cek sep bpjs
-                    if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + rs.getString("no_rawat") + "'") == 0) {
-                        noSEP = "-";
-                    } else {
+                    if (!rs.getString("noSEP").equals("-")) {
                         cekSEPpasien(rs.getString("no_rawat"));
                     }
                     
@@ -12303,7 +12333,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                         rs.getString("umur"),
                         rs.getString("nm_poli"),
                         rs.getString("png_jawab"),
-                        noSEP,
+                        rs.getString("noSEP"),
                         rs.getString("p_jawab"),
                         rs.getString("almt_pj"),
                         rs.getString("hubunganpj"),
@@ -12311,8 +12341,8 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                         rs.getString("stts_daftar"),
                         rs.getString("no_tlp"),
                         rs.getString("stts"),
-                        rs.getString("nm_petugas").replaceAll("-", petugasSIPO),
-                        cekAntrianKhusus,
+                        rs.getString("nm_petugas").replaceAll("-", rs.getString("petugasSIPO")),
+                        rs.getString("cekAntrianKhusus"),
                         rs.getString("kir_kesehatan")
                     });
                 }
@@ -13801,29 +13831,55 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     public void tampilAwal() {
         StringBuilder sb = new StringBuilder();
         Valid.tabelKosong(tabMode);
-        cekAntrianKhusus = "";
         try {
-            sb.append("select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg, reg_periksa.kir_kesehatan, ");
-            sb.append("reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,poliklinik.nm_poli,");
-            sb.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,pasien.no_tlp,reg_periksa.stts,");
-            sb.append("if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(reg_periksa.nip_petugas,'-')) nm_petugas ");
-            sb.append("from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab on reg_periksa.kd_dokter=dokter.kd_dokter and ");
-            sb.append("reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and reg_periksa.kd_poli=poliklinik.kd_poli where ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_reg like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rawat like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.tgl_registrasi like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.kd_dokter like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and dokter.nm_dokter like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rkm_medis like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.stts_daftar like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and pasien.nm_pasien like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and poliklinik.nm_poli like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.p_jawab like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.almt_pj like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.hubunganpj like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and penjab.png_jawab like ? or ");
-            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and ");
-            sb.append("if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(reg_periksa.nip_petugas,'-')) like ? order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg desc");
+            sb.append("select rp.no_reg,rp.no_rawat,rp.tgl_registrasi,rp.jam_reg, rp.kir_kesehatan, ");
+            sb.append("rp.kd_dokter,d.nm_dokter,rp.no_rkm_medis,p.nm_pasien,p.jk,concat(rp.umurdaftar,' ',rp.sttsumur)as umur,pl.nm_poli, ");
+            sb.append("rp.p_jawab,rp.almt_pj,rp.hubunganpj,rp.biaya_reg,rp.stts_daftar,pj.png_jawab,p.no_tlp,rp.stts, ");
+            sb.append("if(rp.nip_petugas='Admin Utama','Admin Utama',ifnull(rp.nip_petugas,'-')) nm_petugas, if(ap.no_rawat is not null,'YA','TIDAK') cekAntrianKhusus, ");
+            sb.append("if(bs.no_rawat is null,'-',bs.no_sep) noSEP from reg_periksa rp ");
+            sb.append("inner join dokter d on d.kd_dokter=rp.kd_dokter ");
+            sb.append("inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+            sb.append("inner join poliklinik pl on pl.kd_poli=rp.kd_poli ");
+            sb.append("inner join penjab pj on pj.kd_pj=rp.kd_pj ");
+            sb.append("left join antrian_prioritas ap on ap.no_rawat=rp.no_rawat ");
+            sb.append("left join bridging_sep bs on bs.no_rawat=rp.no_rawat where ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.tgl_registrasi like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.kd_dokter like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and d.nm_dokter like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.no_rkm_medis like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.stts_daftar like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and pl.nm_poli like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.p_jawab like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.almt_pj like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and rp.hubunganpj like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and pj.png_jawab like ? or ");
+            sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and ");
+            sb.append("if(rp.nip_petugas='Admin Utama','Admin Utama',ifnull(rp.nip_petugas,'-')) like ? order by rp.tgl_registrasi,rp.jam_reg desc");
+            
+//            sb.append("select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg, reg_periksa.kir_kesehatan, ");
+//            sb.append("reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,poliklinik.nm_poli,");
+//            sb.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,pasien.no_tlp,reg_periksa.stts,");
+//            sb.append("if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(reg_periksa.nip_petugas,'-')) nm_petugas ");
+//            sb.append("from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab on reg_periksa.kd_dokter=dokter.kd_dokter and ");
+//            sb.append("reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and reg_periksa.kd_poli=poliklinik.kd_poli where ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_reg like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rawat like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.tgl_registrasi like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.kd_dokter like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and dokter.nm_dokter like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rkm_medis like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.stts_daftar like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and pasien.nm_pasien like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and poliklinik.nm_poli like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.p_jawab like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.almt_pj like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.hubunganpj like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and penjab.png_jawab like ? or ");
+//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and ");
+//            sb.append("if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(reg_periksa.nip_petugas,'-')) like ? order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg desc");
             ps = koneksi.prepareStatement(sb.toString());
             
             try {
@@ -13899,16 +13955,20 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 ps.setString(70, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    if (Sequel.cariInteger("select count(-1) from antrian_prioritas where no_rawat='" + rs.getString("no_rawat") + "'") > 0) {
-                        cekAntrianKhusus = "YA";
-                    } else {
-                        cekAntrianKhusus = "TIDAK";
-                    }
+//                    if (Sequel.cariInteger("select count(-1) from antrian_prioritas where no_rawat='" + rs.getString("no_rawat") + "'") > 0) {
+//                        cekAntrianKhusus = "YA";
+//                    } else {
+//                        cekAntrianKhusus = "TIDAK";
+//                    }
+//
+//                    //cek sep bpjs
+//                    if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + rs.getString("no_rawat") + "'") == 0) {
+//                        noSEP = "-";
+//                    } else {
+//                        cekSEPpasien(rs.getString("no_rawat"));
+//                    }
 
-                    //cek sep bpjs
-                    if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + rs.getString("no_rawat") + "'") == 0) {
-                        noSEP = "-";
-                    } else {
+                    if (!rs.getString("noSEP").equals("-")) {
                         cekSEPpasien(rs.getString("no_rawat"));
                     }
                     
@@ -13926,7 +13986,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                         rs.getString("umur"),
                         rs.getString("nm_poli"),
                         rs.getString("png_jawab"),
-                        noSEP,
+                        rs.getString("noSEP"),
                         rs.getString("p_jawab"),
                         rs.getString("almt_pj"),
                         rs.getString("hubunganpj"),
@@ -13935,7 +13995,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                         rs.getString("no_tlp"),
                         rs.getString("stts"),
                         rs.getString("nm_petugas").replaceAll("-", "Petugas SIPO"),
-                        cekAntrianKhusus,
+                        rs.getString("cekAntrianKhusus"),
                         rs.getString("kir_kesehatan")
                     });
                 }
