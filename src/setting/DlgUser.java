@@ -961,6 +961,7 @@ public class DlgUser extends javax.swing.JDialog {
         tbUser.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbUser.setComponentPopupMenu(jPopupMenu1);
         tbUser.setName("tbUser"); // NOI18N
+        tbUser.getTableHeader().setReorderingAllowed(false);
         tbUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbUserMouseClicked(evt);
@@ -1162,6 +1163,7 @@ public class DlgUser extends javax.swing.JDialog {
 
         tbUser1.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbUser1.setName("tbUser1"); // NOI18N
+        tbUser1.getTableHeader().setReorderingAllowed(false);
         tbUser1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbUser1MouseClicked(evt);
@@ -1959,9 +1961,9 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnCariActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, TCari, BtnAll);
         }
     }//GEN-LAST:event_BtnCariKeyPressed

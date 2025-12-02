@@ -1846,17 +1846,17 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         } else if (cmbHari.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih dulu utk. resep hari keberapanya dg. benar...");
             cmbHari.requestFocus();
-        } else if ((cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("12")
-                || cmbHari.getSelectedItem().equals("18") || cmbHari.getSelectedItem().equals("24") || cmbHari.getSelectedItem().equals("30")) && Tket.getText().equals("")) {
+        } else if ((cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("11")
+                || cmbHari.getSelectedItem().equals("16") || cmbHari.getSelectedItem().equals("21") || cmbHari.getSelectedItem().equals("26")) && Tket.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, untuk resep hari ke " + cmbHari.getSelectedItem().toString() + " kalimat keterangan harus diisi dulu...");
             Tket.requestFocus();
-        } else if ((cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("12")
-                || cmbHari.getSelectedItem().equals("18") || cmbHari.getSelectedItem().equals("24") || cmbHari.getSelectedItem().equals("30")) && Tket.getText().length() <= 5) {
+        } else if ((cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("11")
+                || cmbHari.getSelectedItem().equals("16") || cmbHari.getSelectedItem().equals("21") || cmbHari.getSelectedItem().equals("26")) && Tket.getText().length() <= 5) {
             JOptionPane.showMessageDialog(null, "Maaf, kalimat keterangan minimal diisi 6 digit...");
             Tket.requestFocus();
         } else {
-            if (cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("12")
-                    || cmbHari.getSelectedItem().equals("18") || cmbHari.getSelectedItem().equals("24") || cmbHari.getSelectedItem().equals("30")) {
+            if (cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("11")
+                    || cmbHari.getSelectedItem().equals("16") || cmbHari.getSelectedItem().equals("21") || cmbHari.getSelectedItem().equals("26")) {
                 Tket.setText(Tket.getText());
             } else {
                 Tket.setText("");
@@ -2180,22 +2180,22 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         } else if (cmbHari.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih dulu utk. resep hari keberapanya dg. benar...");
             cmbHari.requestFocus();
-        } else if ((cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("12")
-                || cmbHari.getSelectedItem().equals("18") || cmbHari.getSelectedItem().equals("24") || cmbHari.getSelectedItem().equals("30")) && Tket.getText().equals("")) {
+        } else if ((cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("11")
+                || cmbHari.getSelectedItem().equals("16") || cmbHari.getSelectedItem().equals("21") || cmbHari.getSelectedItem().equals("26")) && Tket.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, untuk resep hari ke " + cmbHari.getSelectedItem().toString() + " kalimat keterangan harus diisi dulu...");
             Tket.requestFocus();
-        } else if ((cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("12")
-                || cmbHari.getSelectedItem().equals("18") || cmbHari.getSelectedItem().equals("24") || cmbHari.getSelectedItem().equals("30")) && Tket.getText().length() <= 5) {
+        } else if ((cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("11")
+                || cmbHari.getSelectedItem().equals("16") || cmbHari.getSelectedItem().equals("21") || cmbHari.getSelectedItem().equals("26")) && Tket.getText().length() <= 5) {
             JOptionPane.showMessageDialog(null, "Maaf, kalimat keterangan minimal diisi 6 digit...");
             Tket.requestFocus();
-        }  else {
-            if (cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("12")
-                    || cmbHari.getSelectedItem().equals("18") || cmbHari.getSelectedItem().equals("24") || cmbHari.getSelectedItem().equals("30")) {
+        } else {
+            if (cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("11")
+                    || cmbHari.getSelectedItem().equals("16") || cmbHari.getSelectedItem().equals("21") || cmbHari.getSelectedItem().equals("26")) {
                 Tket.setText(Tket.getText());
             } else {
                 Tket.setText("");
             }
-            
+
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
                 if (tbResepObat.getSelectedRow() > -1) {
                     if (tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 5).toString().equals("SUDAH")
@@ -2341,9 +2341,9 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                             param.put("nosep", Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' order by tglsep desc limit 1"));
                         }
 
-                        Valid.MyReport("rptResepRalan.jasper", "report", "::[ Resep Dokter Poliklinik/Unit Rawat Jalan ]::",
+                        Valid.MyReport("rptResepRalanAntibiotik.jasper", "report", "::[ Resep Dokter Poliklinik/Unit Rawat Jalan ]::",
                                 " select c.no_rawat, pl.nm_poli, d.nm_dokter, CONCAT(if(iob.no_rawat is null,'','(RESEP ITER) '),'Martapura, ',DATE_FORMAT(c.tgl_perawatan,'%d/%m/%Y')) tgl_resep, "
-                                + "if(c.hari_ke not in ('1','6','12','18','24','30'),c.nama_obat,concat(c.nama_obat,' (ket. ',c.keterangan,')')) nama_obat, "
+                                + "if(c.hari_ke not in ('1','6','11','16','21','26'),concat(c.nama_obat,' (Hari ke ',c.hari_ke,')'),concat(c.nama_obat,' (ket. ',c.keterangan,', Hari ke ',c.hari_ke,')')) nama_obat, "
                                 + "r.no_rkm_medis, p.nm_pasien, CONCAT(r.umurdaftar,' ',r.sttsumur) umur, "
                                 + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, d.no_ijn_praktek no_sip, ifnull(p.no_tlp,'-') noHP from catatan_resep_antibiotik c "
                                 + "inner join reg_periksa r on r.no_rawat = c.no_rawat inner join dokter d on d.kd_dokter = c.kd_dokter "
@@ -2377,9 +2377,9 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                         param.put("ruangan", Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
                                 + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' "
                                 + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1") + " (Resep : " + jenisResep + " - " + resepPulang + ")");
-                        Valid.MyReport("rptResepRanap.jasper", "report", "::[ Resep Dokter Rawat Inap ]::",
+                        Valid.MyReport("rptResepRanapAntibiotik.jasper", "report", "::[ Resep Dokter Rawat Inap ]::",
                                 "SELECT c.no_rawat, d.nm_dokter, CONCAT('Martapura, ',DATE_FORMAT(c.tgl_perawatan, '%d/%m/%Y')) tgl_resep, "
-                                + "if(c.hari_ke not in ('1','6','12','18','24','30'),c.nama_obat,concat(c.nama_obat,' (ket. ',c.keterangan,')')) nama_obat, "
+                                + "if(c.hari_ke not in ('1','6','11','16','21','26'),concat(c.nama_obat,' (Hari ke ',c.hari_ke,')'),concat(c.nama_obat,' (ket. ',c.keterangan,', Hari ke ',c.hari_ke,')')) nama_obat, "
                                 + "r.no_rkm_medis, p.nm_pasien, CONCAT(r.umurdaftar,' ',r.sttsumur) umur, "
                                 + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, d.no_ijn_praktek no_sip, ifnull(p.no_tlp, '-') noHP "
                                 + "FROM catatan_resep_ranap_antibiotik c INNER JOIN reg_periksa r ON r.no_rawat = c.no_rawat "
@@ -2918,8 +2918,8 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbHariMouseReleased
 
     private void cmbHariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHariActionPerformed
-        if (cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("12")
-                || cmbHari.getSelectedItem().equals("18") || cmbHari.getSelectedItem().equals("24") || cmbHari.getSelectedItem().equals("30")) {
+        if (cmbHari.getSelectedItem().equals("1") || cmbHari.getSelectedItem().equals("6") || cmbHari.getSelectedItem().equals("11")
+                || cmbHari.getSelectedItem().equals("16") || cmbHari.getSelectedItem().equals("21") || cmbHari.getSelectedItem().equals("26")) {
             Tket.setEnabled(true);
             Tket.requestFocus();
         } else {

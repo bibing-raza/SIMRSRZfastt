@@ -4050,7 +4050,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         btnCariDokter.setForeground(new java.awt.Color(0, 0, 0));
         btnCariDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        btnCariDokter.setMnemonic('7');
         btnCariDokter.setToolTipText("ALt+7");
         btnCariDokter.setName("btnCariDokter"); // NOI18N
         btnCariDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -4084,7 +4083,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan1.setMnemonic('S');
         BtnSimpan1.setText("Simpan");
         BtnSimpan1.setToolTipText("Alt+S");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
@@ -4098,7 +4096,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -4126,7 +4123,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn4.setMnemonic('U');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+U");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -4140,7 +4136,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSimpan4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan4.setMnemonic('S');
         BtnSimpan4.setText("Simpan");
         BtnSimpan4.setToolTipText("Alt+S");
         BtnSimpan4.setName("BtnSimpan4"); // NOI18N
@@ -4178,7 +4173,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         btnCariPoli.setForeground(new java.awt.Color(0, 0, 0));
         btnCariPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        btnCariPoli.setMnemonic('7');
         btnCariPoli.setToolTipText("ALt+7");
         btnCariPoli.setName("btnCariPoli"); // NOI18N
         btnCariPoli.addActionListener(new java.awt.event.ActionListener() {
@@ -4203,7 +4197,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn5.setMnemonic('U');
         BtnCloseIn5.setText("Tutup");
         BtnCloseIn5.setToolTipText("Alt+U");
         BtnCloseIn5.setName("BtnCloseIn5"); // NOI18N
@@ -4217,7 +4210,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSimpan5.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan5.setMnemonic('S');
         BtnSimpan5.setText("Simpan");
         BtnSimpan5.setToolTipText("Alt+S");
         BtnSimpan5.setName("BtnSimpan5"); // NOI18N
@@ -4250,7 +4242,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         btnBayar.setForeground(new java.awt.Color(0, 0, 0));
         btnBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        btnBayar.setMnemonic('7');
         btnBayar.setToolTipText("ALt+7");
         btnBayar.setName("btnBayar"); // NOI18N
         btnBayar.addActionListener(new java.awt.event.ActionListener() {
@@ -4275,7 +4266,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn6.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn6.setMnemonic('U');
         BtnCloseIn6.setText("Tutup");
         BtnCloseIn6.setToolTipText("Alt+U");
         BtnCloseIn6.setName("BtnCloseIn6"); // NOI18N
@@ -4289,7 +4279,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSimpan6.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/file-edit-16x16.png"))); // NOI18N
-        BtnSimpan6.setMnemonic('R');
         BtnSimpan6.setText("Registrasikan Pasien");
         BtnSimpan6.setToolTipText("Alt+R");
         BtnSimpan6.setName("BtnSimpan6"); // NOI18N
@@ -4401,7 +4390,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnDokter.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokter.setMnemonic('X');
         BtnDokter.setToolTipText("Alt+X");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -4430,7 +4418,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2025" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4510,7 +4498,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('2');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+2");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -4530,7 +4517,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -4550,7 +4536,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll1.setMnemonic('M');
         BtnAll1.setText("Semua Data");
         BtnAll1.setToolTipText("Alt+M");
         BtnAll1.setName("BtnAll1"); // NOI18N
@@ -4785,7 +4770,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn7.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn7.setMnemonic('U');
         BtnCloseIn7.setText("Tutup");
         BtnCloseIn7.setToolTipText("Alt+U");
         BtnCloseIn7.setName("BtnCloseIn7"); // NOI18N
@@ -4799,7 +4783,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnLewati.setForeground(new java.awt.Color(0, 0, 0));
         BtnLewati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kanan.png"))); // NOI18N
-        BtnLewati.setMnemonic('L');
         BtnLewati.setText("Lewati");
         BtnLewati.setToolTipText("Alt+L");
         BtnLewati.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -4861,7 +4844,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnRM.setForeground(new java.awt.Color(0, 0, 0));
         BtnRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-edit24.png"))); // NOI18N
-        BtnRM.setMnemonic('R');
         BtnRM.setText("Isi Rekam Medis");
         BtnRM.setToolTipText("Alt+R");
         BtnRM.setName("BtnRM"); // NOI18N
@@ -4887,7 +4869,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn3.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn3.setMnemonic('U');
         BtnCloseIn3.setText("Tutup");
         BtnCloseIn3.setToolTipText("Alt+U");
         BtnCloseIn3.setName("BtnCloseIn3"); // NOI18N
@@ -4960,7 +4941,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnPrint2.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint2.setMnemonic('T');
         BtnPrint2.setText("Print SEP");
         BtnPrint2.setToolTipText("Alt+T");
         BtnPrint2.setName("BtnPrint2"); // NOI18N
@@ -4992,7 +4972,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCloseIn8.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn8.setMnemonic('U');
         BtnCloseIn8.setText("Tutup");
         BtnCloseIn8.setToolTipText("Alt+U");
         BtnCloseIn8.setName("BtnCloseIn8"); // NOI18N
@@ -5006,7 +4985,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSimpan7.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan7.setMnemonic('S');
         BtnSimpan7.setText("Simpan");
         BtnSimpan7.setToolTipText("Alt+S");
         BtnSimpan7.setName("BtnSimpan7"); // NOI18N
@@ -5046,7 +5024,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSimpanRujuk.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpanRujuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanRujuk.setMnemonic('S');
         BtnSimpanRujuk.setText("Simpan");
         BtnSimpanRujuk.setToolTipText("Alt+S");
         BtnSimpanRujuk.setName("BtnSimpanRujuk"); // NOI18N
@@ -5061,7 +5038,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnKeluar5.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar5.setMnemonic('K');
         BtnKeluar5.setText("Keluar");
         BtnKeluar5.setToolTipText("Alt+K");
         BtnKeluar5.setName("BtnKeluar5"); // NOI18N
@@ -5094,7 +5070,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnDokterRujuk.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokterRujuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokterRujuk.setMnemonic('3');
         BtnDokterRujuk.setToolTipText("ALt+3");
         BtnDokterRujuk.setName("BtnDokterRujuk"); // NOI18N
         BtnDokterRujuk.addActionListener(new java.awt.event.ActionListener() {
@@ -5296,7 +5271,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -5320,7 +5295,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -5365,7 +5340,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('D');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+D");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -5384,7 +5358,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -5416,7 +5389,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -5453,7 +5425,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSeek3.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnSeek3.setMnemonic('4');
         BtnSeek3.setToolTipText("ALt+4");
         BtnSeek3.setName("BtnSeek3"); // NOI18N
         BtnSeek3.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -5483,7 +5454,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnSeek4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnSeek4.setMnemonic('5');
         BtnSeek4.setToolTipText("ALt+5");
         BtnSeek4.setName("BtnSeek4"); // NOI18N
         BtnSeek4.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -5540,7 +5510,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5559,7 +5529,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5601,7 +5571,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnPxBooking.setForeground(new java.awt.Color(0, 0, 0));
         BtnPxBooking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/barralan.png"))); // NOI18N
-        BtnPxBooking.setMnemonic('B');
         BtnPxBooking.setText("Pasien Booking");
         BtnPxBooking.setToolTipText("Alt+B");
         BtnPxBooking.setName("BtnPxBooking"); // NOI18N
@@ -5741,6 +5710,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         tbKasirTransaksi.setToolTipText("");
         tbKasirTransaksi.setComponentPopupMenu(jPopupMenu2);
         tbKasirTransaksi.setName("tbKasirTransaksi"); // NOI18N
+        tbKasirTransaksi.getTableHeader().setReorderingAllowed(false);
         tbKasirTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbKasirTransaksiMouseClicked(evt);
@@ -11283,7 +11253,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         StringBuilder sb = new StringBuilder();
         Valid.tabelKosong(tabModekasir);
         try {
-            sb.append("SELECT rp.no_rawat, rp.kd_dokter, d.nm_dokter, rp.no_rkm_medis, ");
+            sb.append("SELECT DISTINCT rp.no_rawat, rp.kd_dokter, d.nm_dokter, rp.no_rkm_medis, ");
             sb.append("CONCAT(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),', ',IF(p.jk='L','Laki-laki','Perempuan'),')') nm_pasien, ");
             sb.append("rp.stts, IF(pl.kd_poli='IGDK',CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),IF(rp.status_lanjut='Ralan',IF(rp.kir_kesehatan='Ya', CONCAT(pl.nm_poli,' (KIR)'), pl.nm_poli), ");
             sb.append("CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) nm_poli, pj.png_jawab, rp.stts_daftar, IF(br.no_rawat IS NOT NULL,'Online','-') reg_onlen, ");
@@ -11333,29 +11303,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and if(pl.kd_poli='IGDK',");
             sb.append("CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),if(rp.status_lanjut='Ralan',if(rp.kir_kesehatan='Ya',concat(pl.nm_poli,' (KIR)'),pl.nm_poli),CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) like ? ");
             sb.append("order by rp.tgl_registrasi desc, rp.jam_reg desc");
-            
-//            sb.append("SELECT rp.no_rawat, rp.kd_dokter, d.nm_dokter, rp.no_rkm_medis, concat(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),', ',if(p.jk='L','Laki-laki','Perempuan'),')') nm_pasien, ");
-//            sb.append("rp.stts, if(pl.kd_poli='IGDK',CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),if(rp.status_lanjut='Ralan',if(rp.kir_kesehatan='Ya',concat(pl.nm_poli,' (KIR)'),pl.nm_poli),CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) nm_poli, ");
-//            sb.append("pj.png_jawab, rp.stts_daftar, IF(br.no_rawat = rp.no_rawat,'Online','-') reg_onlen, rp.tgl_registrasi, rp.jam_reg, rp.no_reg, IFNULL(enc.klaim_final, '-') stts_klaim, p.no_tlp, ");
-//            sb.append("CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format, rp.kd_poli ");
-//            sb.append("FROM reg_periksa rp INNER JOIN dokter d ON rp.kd_dokter = d.kd_dokter INNER JOIN pasien p ON rp.no_rkm_medis =p.no_rkm_medis ");
-//            sb.append("INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj INNER JOIN kelurahan kl ON kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec=p.kd_kec ");
-//            sb.append("INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab LEFT JOIN booking_registrasi br ON br.no_rawat = rp.no_rawat LEFT JOIN eklaim_new_claim enc ON enc.no_rawat = rp.no_rawat and enc.jnspelayanan='2' WHERE ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.tgl_registrasi like ? or ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.kd_dokter like ? or ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and d.nm_dokter like ? or ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rkm_medis like ? or ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and pl.nm_poli like ? or ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and pj.png_jawab like ? or ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) like ? or ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and IF(br.no_rawat=rp.no_rawat,'Online','-') like ? or ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and IFNULL(enc.klaim_final,'-') like ? or ");
-//            sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and if(pl.kd_poli='IGDK',");
-//            sb.append("CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),if(rp.status_lanjut='Ralan',if(rp.kir_kesehatan='Ya',concat(pl.nm_poli,' (KIR)'),pl.nm_poli),CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'))) like ? ");
-//            sb.append("order by rp.tgl_registrasi desc, rp.jam_reg desc");
             pskasir = koneksi.prepareStatement(sb.toString());
             
             try {
@@ -11443,84 +11390,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     if (rskasir.getString("cekKemoterapi").equals("ok")) {
                         Sequel.menyimpanIgnore("antrian_prioritas", "'" + rskasir.getString("no_rawat") + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
                     }
-                    
-//                    //cek e-RM pasien igd
-//                    if (rskasir.getString("nm_poli").contains("IGD") == true) {
-//                        if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + rskasir.getString("no_rawat") + "'") == 0
-//                                || Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + rskasir.getString("no_rawat") + "' and kd_kamar_msk='igdk' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1
-//                                || Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + rskasir.getString("no_rawat") + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1 
-//                                || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where no_rawat='" + rskasir.getString("no_rawat") + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
-//                            aksesRM = "(Open)";
-//                        } else {
-//                            aksesRM = "(Locked)";
-//                        }
-//                    } else {
-//                        aksesRM = "";
-//                    }
-//             
-//                    //cek pasien kemoterapi
-//                    if (rskasir.getString("kd_poli").equals("008")) {
-//                        if (Sequel.cariInteger("select count(-1) from protokol_kemoterapi where no_rkm_medis='" + rskasir.getString("no_rkm_medis") + "'") > 0) {
-//                            if (Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + rskasir.getString("no_rawat") + "'").equals(Sequel.cariIsi("select date(now())"))) {
-//                                if (Sequel.cariInteger("select count(-1) from antrian_prioritas where no_rawat='" + rskasir.getString("no_rawat") + "'") == 0) {
-//                                    Sequel.menyimpanIgnore("antrian_prioritas", "'" + rskasir.getString("no_rawat") + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
-//                                }
-//                            }
-//                        }
-//                    }
-//                    
-//                    //cek triase IGD
-//                    if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "'") > 0) {
-//                        if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_resusitasi='ya'") > 0) {
-//                            triaseIGD = "Merah";
-//                        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_non_resusitasi='ya'") > 0) {
-//                            triaseIGD = "Kuning";
-//                        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_klinik='ya'") > 0) {
-//                            triaseIGD = "Hijau";
-//                        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_doa='ya'") > 0) {
-//                            triaseIGD = "Hitam";
-//                        } else {
-//                            triaseIGD = "-";
-//                        }
-//                    } else {
-//                        triaseIGD = "-";
-//                    }
-//                    
-//                    //cek triase pediatrik
-//                    if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "'") > 0) {
-//                        if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level1='ya'") > 0) {
-//                            triasePediatrik = "Merah (Level 1)";
-//                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level2='ya'") > 0) {
-//                            triasePediatrik = "Merah (Level 2)";
-//                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level3='ya'") > 0) {
-//                            triasePediatrik = "Kuning (Level 3)";
-//                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level4='ya'") > 0) {
-//                            triasePediatrik = "Kuning (Level 4)";
-//                        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rskasir.getString("no_rawat") + "' and kesimpulan_level5='ya'") > 0) {
-//                            triasePediatrik = "Hijau";
-//                        } else {
-//                            triasePediatrik = "-";
-//                        }
-//                    } else {
-//                        triasePediatrik = "-";
-//                    }
-//                    
-//                    //cek triase ponek
-//                    if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "'") > 0) {
-//                        if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_resusitasi='ya'") > 0) {
-//                            triasePonek = "Merah";
-//                        } else if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_non_resusitasi='ya'") > 0) {
-//                            triasePonek = "Kuning";
-//                        } else if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_klinik='ya'") > 0) {
-//                            triasePonek = "Hijau";
-//                        } else if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + rskasir.getString("no_rawat") + "' and triase_doa='ya'") > 0) {
-//                            triasePonek = "Hitam";
-//                        } else {
-//                            triasePonek = "-";
-//                        }
-//                    } else {
-//                        triasePonek = "-";
-//                    }
                     
                     tabModekasir.addRow(new String[]{
                         rskasir.getString("no_rawat"),

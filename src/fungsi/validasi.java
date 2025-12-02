@@ -10,15 +10,18 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -93,6 +96,7 @@ import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import static org.primefaces.component.dnd.DraggableBase.PropertyKeys.opacity;
 import widget.ComboBox;
 import widget.TextArea;
 
@@ -102,7 +106,7 @@ import widget.TextArea;
  */
 public final class validasi {
     private int a, j, i, result = 0,cekPrint=0;
-    private String s, s1, auto, host = "", host_port = "", PEMBULATANHARGAOBAT = "";
+    private String s, s1, auto, host = "", host_port = "", PEMBULATANHARGAOBAT = "", kalimatQR = "";
     private final Connection connect = koneksiDB.condb();
     private final sekuel sek = new sekuel();
     private final java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
@@ -425,6 +429,21 @@ public final class validasi {
         }
 
         return auto;
+    }
+
+    public String kalimatQRcode(String jns_dokumen, String nm_dokumen, String nm_petugas, String tanggal, String pukul) {
+        kalimatQR = "";
+        try {
+            kalimatQR = "Jenis Dokumen : " + jns_dokumen + "\n"
+                    + "Nama Dokumen : " + nm_dokumen + "\n"
+                    + "Di TTE oleh : " + nm_petugas + "\n"
+                    + "Tanggal : " + tanggal + "\n"
+                    + "Pukul : " + pukul + " Wita";            
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+
+        return kalimatQR;
     }
 
     public String autoNomer3(String sql, String strAwal, Integer pnj) {
@@ -1587,6 +1606,109 @@ public final class validasi {
             System.out.println(e);
         }
     }
+    
+    public void cetakQrTte(String txt, String folder, String fileName, String sqlLogo) {
+    try {
+        byte[] logoBytes = null;
+        try {
+            ps = connect.prepareStatement(sqlLogo);
+            try {
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    logoBytes = rs.getBytes(1);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        
+        String filePath = folder + fileName;
+
+        // ==============================
+        // DETEKSI OTOMATIS FILETYPE
+        // ==============================
+        String fileType = "png"; // default
+        if (fileName.contains(".")) {
+            fileType = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
+        }
+
+        int size = 250;
+        File outputFile = new File(filePath);
+
+        // Setup QR
+        Map<EncodeHintType, Object> hintMap = new EnumMap<>(EncodeHintType.class);
+        hintMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+        hintMap.put(EncodeHintType.MARGIN, 1);
+        hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(txt, BarcodeFormat.QR_CODE, size, size, hintMap);
+        int width = bitMatrix.getWidth();
+
+        BufferedImage qrImage = new BufferedImage(width, width, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = qrImage.createGraphics();
+
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, width, width);
+        g.setColor(Color.BLACK);
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < width; y++) {
+                if (bitMatrix.get(x, y)) {
+                    g.fillRect(x, y, 1, 1);
+                }
+            }
+        }
+
+        // ==================================
+        // LOGO DARI PATH DATABASE
+        // ==================================        
+        
+        if (logoBytes != null && logoBytes.length > 0) {
+            try {
+                BufferedImage logo = ImageIO.read(new ByteArrayInputStream(logoBytes));            
+
+                // Agar lebih mirip WhatsApp (22–25%) = 0.23
+                int logoWidth = (int) (width * 0.23);
+                int logoHeight = (int) (width * 0.23);
+
+                Image scaledLogo = logo.getScaledInstance(logoWidth, logoHeight, Image.SCALE_SMOOTH);
+
+                int centerX = (width - logoWidth) / 2;
+                int centerY = (width - logoHeight) / 2;
+
+                // border putih seperti WhatsApp
+//                int border = 6;
+//                g.setColor(Color.WHITE);
+//                g.fillRoundRect(centerX - border, centerY - border,
+//                        logoWidth + border*2, logoHeight + border*2, 15, 15);
+//                g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+                g.drawImage(scaledLogo, centerX, centerY, null);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        g.dispose();
+
+        // Simpan ke JPG / PNG sesuai ekstensi
+        ImageIO.write(qrImage, fileType, outputFile);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
     public void cetakQr(String txt, String folder, String fileName) {
         String myCodeText = txt;

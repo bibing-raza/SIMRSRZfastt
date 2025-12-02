@@ -1005,7 +1005,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                             + "where noId in (" + idObat + ") order by noId desc limit 1"));
                     Valid.MyReport("rptStrukResepRanap.jasper", "report", "::[ Struk Resep Dokter Rawat Inap Kertas Thermal ]::",
                             " SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, "
-                            + "if(hari_ke not in ('1','6','12','18','24','30'),nama_obat,concat(nama_obat,' (ket. ',keterangan,')')) obatnya "
+                            + "if(hari_ke not in ('1','6','11','16','21','26'),concat(nama_obat,' (Hari ke ',hari_ke,')'),concat(nama_obat,' (ket. ',keterangan,', Hari ke ',hari_ke,')')) obatnya "
                             + "from catatan_resep_ranap_antibiotik where noId in (" + idObat + ") order by status, noId desc", param);
                 }
                 
@@ -1184,9 +1184,9 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                             + "INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab WHERE "
                             + "c.no_rawat = '" + norawat + "' AND c.noId IN (" + idObat + ") ORDER BY c.noId", param);
                 } else if (tbPasien1.getSelectedRow() > -1) {
-                    Valid.MyReport("rptResepRanap.jasper", "report", "::[ Resep Dokter Rawat Inap ]::",
+                    Valid.MyReport("rptResepRanapAntibiotik.jasper", "report", "::[ Resep Dokter Rawat Inap ]::",
                             "SELECT c.no_rawat, d.nm_dokter, CONCAT('Martapura, ',DATE_FORMAT(c.tgl_perawatan, '%d/%m/%Y')) tgl_resep, "
-                            + "if(c.hari_ke not in ('1','6','12','18','24','30'),c.nama_obat,concat(c.nama_obat,' (ket. ',c.keterangan,')')) nama_obat, "
+                            + "if(c.hari_ke not in ('1','6','11','16','21','26'),concat(c.nama_obat,' (Hari ke ',c.hari_ke,')'),concat(c.nama_obat,' (ket. ',c.keterangan,', Hari ke ',c.hari_ke,')')) nama_obat, "
                             + "r.no_rkm_medis, p.nm_pasien, CONCAT(r.umurdaftar,' ',r.sttsumur) umur, "
                             + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, d.no_ijn_praktek no_sip, ifnull(p.no_tlp, '-') noHP "
                             + "FROM catatan_resep_ranap_antibiotik c INNER JOIN reg_periksa r ON r.no_rawat = c.no_rawat "
@@ -1352,7 +1352,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                             + "where noId in (" + idObat + ") order by noId desc limit 1"));
                     Valid.MyReport("rptCatatanResep.jasper", "report", "::[ Cetak e-Resep ]::",
                             "SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl, "
-                            + "if(hari_ke not in ('1','6','12','18','24','30'),nama_obat,concat(nama_obat,' (ket. ',keterangan,')')) obatnya "
+                            + "if(hari_ke not in ('1','6','11','16','21','26'),concat(nama_obat,' (Hari ke ',hari_ke,')'),concat(nama_obat,' (ket. ',keterangan,', Hari ke ',hari_ke,')')) obatnya "
                             + "from catatan_resep_ranap_antibiotik where noId in (" + idObat + ") order by status, noId desc", param);
                 }
                 
@@ -1988,7 +1988,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                 sb.append("ORDER BY cr.status, cr.noId desc, cr.tgl_perawatan DESC, cr.jam_perawatan DESC");
             } else if (tbPasien1.getSelectedRow() > -1) {
                 sb.append("SELECT cr.noId, cr.no_rawat, DATE_FORMAT(cr.tgl_perawatan,'%d-%m-%Y') tgl, cr.jam_perawatan, ");
-                sb.append("if(cr.hari_ke not in ('1','6','12','18','24','30'),cr.nama_obat,concat(cr.nama_obat,' (ket. ',cr.keterangan,')')) nama_obat, ");
+                sb.append("if(cr.hari_ke not in ('1','6','11','16','21','26'),concat(cr.nama_obat,' (Hari ke ',cr.hari_ke,')'),concat(cr.nama_obat,' (ket. ',cr.keterangan,', Hari ke ',cr.hari_ke,')')) nama_obat, ");
                 sb.append("cr.status, d.nm_dokter, cr.jenis_resep, cr.resep_untuk FROM catatan_resep_ranap_antibiotik cr ");
                 sb.append("INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat inner join dokter d on d.kd_dokter=cr.kd_dokter WHERE ");
                 sb.append("cr.no_rawat='" + norawat + "' ORDER BY cr.status, cr.noId desc, cr.tgl_perawatan DESC, cr.jam_perawatan DESC");

@@ -4029,7 +4029,7 @@ public final class DlgReg extends javax.swing.JDialog {
         panelBiasa2.setLayout(null);
 
         TglSakit1.setEditable(false);
-        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
+        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         TglSakit1.setDisplayFormat("dd-MM-yyyy");
         TglSakit1.setName("TglSakit1"); // NOI18N
         TglSakit1.setOpaque(false);
@@ -4080,7 +4080,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel32.setBounds(176, 10, 20, 23);
 
         TglSakit2.setEditable(false);
-        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
+        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         TglSakit2.setDisplayFormat("dd-MM-yyyy");
         TglSakit2.setName("TglSakit2"); // NOI18N
         TglSakit2.setOpaque(false);
@@ -4341,7 +4341,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel26.setBounds(0, 20, 110, 23);
 
         TglSurat.setEditable(false);
-        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
+        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         TglSurat.setDisplayFormat("dd-MM-yyyy");
         TglSurat.setName("TglSurat"); // NOI18N
         TglSurat.setOpaque(false);
@@ -4470,7 +4470,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel28.setBounds(0, 20, 110, 23);
 
         TglSurat1.setEditable(false);
-        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
+        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         TglSurat1.setDisplayFormat("dd-MM-yyyy");
         TglSurat1.setName("TglSurat1"); // NOI18N
         TglSurat1.setOpaque(false);
@@ -4558,7 +4558,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel29.setBounds(0, 25, 110, 23);
 
         TglReg.setEditable(false);
-        TglReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
+        TglReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         TglReg.setDisplayFormat("dd-MM-yyyy");
         TglReg.setName("TglReg"); // NOI18N
         TglReg.setOpaque(false);
@@ -4821,7 +4821,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel39.setBounds(0, 20, 70, 23);
 
         Ttgl_lahir.setEditable(false);
-        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
+        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         Ttgl_lahir.setDisplayFormat("dd-MM-yyyy");
         Ttgl_lahir.setName("Ttgl_lahir"); // NOI18N
         Ttgl_lahir.setOpaque(false);
@@ -5052,7 +5052,7 @@ public final class DlgReg extends javax.swing.JDialog {
         panelBiasa6.add(jLabel79);
 
         tglCari1.setEditable(false);
-        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
+        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         tglCari1.setDisplayFormat("dd-MM-yyyy");
         tglCari1.setName("tglCari1"); // NOI18N
         tglCari1.setOpaque(false);
@@ -5067,7 +5067,7 @@ public final class DlgReg extends javax.swing.JDialog {
         panelBiasa6.add(jLabel80);
 
         tglCari2.setEditable(false);
-        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
+        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         tglCari2.setDisplayFormat("dd-MM-yyyy");
         tglCari2.setName("tglCari2"); // NOI18N
         tglCari2.setOpaque(false);
@@ -5740,6 +5740,7 @@ public final class DlgReg extends javax.swing.JDialog {
         tbregistrasiRalan.setToolTipText("Klik data di table, kemudian klik kanan untuk memilih menu yang diinginkan");
         tbregistrasiRalan.setComponentPopupMenu(jPopupMenu1);
         tbregistrasiRalan.setName("tbregistrasiRalan"); // NOI18N
+        tbregistrasiRalan.getTableHeader().setReorderingAllowed(false);
         tbregistrasiRalan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbregistrasiRalanMouseClicked(evt);
@@ -5831,7 +5832,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass7.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5845,7 +5846,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass7.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6716,6 +6717,7 @@ public final class DlgReg extends javax.swing.JDialog {
         Scroll5.setOpaque(true);
 
         tbKuota.setName("tbKuota"); // NOI18N
+        tbKuota.getTableHeader().setReorderingAllowed(false);
         tbKuota.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbKuotaMouseClicked(evt);
@@ -7021,8 +7023,8 @@ public final class DlgReg extends javax.swing.JDialog {
         });
 
         tbrestorAntrian.setAutoCreateRowSorter(true);
-        tbrestorAntrian.setToolTipText("");
         tbrestorAntrian.setName("tbrestorAntrian"); // NOI18N
+        tbrestorAntrian.getTableHeader().setReorderingAllowed(false);
         tbrestorAntrian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbrestorAntrianMouseClicked(evt);
@@ -7047,7 +7049,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel59.setPreferredSize(new java.awt.Dimension(75, 23));
         panelGlass11.add(jLabel59);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -7061,7 +7063,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel60.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass11.add(jLabel60);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-08-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -7148,6 +7150,7 @@ public final class DlgReg extends javax.swing.JDialog {
 
         tbregSemua.setComponentPopupMenu(jPopupMenu1);
         tbregSemua.setName("tbregSemua"); // NOI18N
+        tbregSemua.getTableHeader().setReorderingAllowed(false);
         Scroll3.setViewportView(tbregSemua);
 
         panelGlass16.add(Scroll3, java.awt.BorderLayout.CENTER);
@@ -7159,6 +7162,7 @@ public final class DlgReg extends javax.swing.JDialog {
 
         tbregSipo.setComponentPopupMenu(jPopupMenu1);
         tbregSipo.setName("tbregSipo"); // NOI18N
+        tbregSipo.getTableHeader().setReorderingAllowed(false);
         Scroll4.setViewportView(tbregSipo);
 
         panelGlass16.add(Scroll4, java.awt.BorderLayout.EAST);
@@ -12198,29 +12202,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and pj.png_jawab like ? or ");
             sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and ");
             sb.append("if(rp.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) like ? order by rp.tgl_registrasi,rp.jam_reg desc");
-
-//            sb.append("select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg, reg_periksa.kir_kesehatan, ");
-//            sb.append("reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,poliklinik.nm_poli,");
-//            sb.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,pasien.no_tlp,reg_periksa.stts,");
-//            sb.append("if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) nm_petugas ");
-//            sb.append("from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab on reg_periksa.kd_dokter=dokter.kd_dokter and ");
-//            sb.append("reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and reg_periksa.kd_poli=poliklinik.kd_poli ");
-//            sb.append("left join pegawai pg on pg.nik = reg_periksa.nip_petugas where ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_reg like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rawat like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.tgl_registrasi like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.kd_dokter like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and dokter.nm_dokter like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rkm_medis like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.stts_daftar like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and pasien.nm_pasien like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and poliklinik.nm_poli like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.p_jawab like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.almt_pj like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.hubunganpj like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and penjab.png_jawab like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and ");
-//            sb.append("if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) like ? order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg desc");
             ps = koneksi.prepareStatement(sb.toString());
             
             try {
@@ -12295,26 +12276,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 ps.setString(69, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
                 ps.setString(70, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
-                while (rs.next()) {
-//                    if (Sequel.cariIsi("select ifnull(user,'-') from kelengkapan_booking_sep_bpjs where no_rawat='" + rs.getString("no_rawat") + "'").equals("-")) {
-//                        petugasSIPO = "-";
-//                    } else if (Sequel.cariInteger("select count(*) from kelengkapan_booking_sep_bpjs where no_rawat='" + rs.getString("no_rawat") + "'") > 0) {
-//                        petugasSIPO = Sequel.cariIsi("select user from kelengkapan_booking_sep_bpjs where no_rawat='" + rs.getString("no_rawat") + "'") + " (SIPO)";
-//                    }
-//                    
-//                    if (Sequel.cariInteger("select count(-1) from antrian_prioritas where no_rawat='" + rs.getString("no_rawat") + "'") > 0) {
-//                        cekAntrianKhusus = "YA";
-//                    } else {
-//                        cekAntrianKhusus = "TIDAK";
-//                    }
-//                    
-//                    //cek sep bpjs
-//                    if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + rs.getString("no_rawat") + "'") == 0) {
-//                        noSEP = "-";
-//                    } else {
-//                        cekSEPpasien(rs.getString("no_rawat"));
-//                    }
-                    
+                while (rs.next()) {                    
                     if (!rs.getString("noSEP").equals("-")) {
                         cekSEPpasien(rs.getString("no_rawat"));
                     }
@@ -13858,28 +13820,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and pj.png_jawab like ? or ");
             sb.append("pl.kd_poli<>'IGDK' and pl.nm_poli like ? and d.nm_dokter like ? and rp.tgl_registrasi between ? and ? and ");
             sb.append("if(rp.nip_petugas='Admin Utama','Admin Utama',ifnull(rp.nip_petugas,'-')) like ? order by rp.tgl_registrasi,rp.jam_reg desc");
-            
-//            sb.append("select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg, reg_periksa.kir_kesehatan, ");
-//            sb.append("reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,poliklinik.nm_poli,");
-//            sb.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,pasien.no_tlp,reg_periksa.stts,");
-//            sb.append("if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(reg_periksa.nip_petugas,'-')) nm_petugas ");
-//            sb.append("from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab on reg_periksa.kd_dokter=dokter.kd_dokter and ");
-//            sb.append("reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and reg_periksa.kd_poli=poliklinik.kd_poli where ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_reg like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rawat like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.tgl_registrasi like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.kd_dokter like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and dokter.nm_dokter like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rkm_medis like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.stts_daftar like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and pasien.nm_pasien like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and poliklinik.nm_poli like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.p_jawab like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.almt_pj like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.hubunganpj like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and penjab.png_jawab like ? or ");
-//            sb.append(" poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and ");
-//            sb.append("if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(reg_periksa.nip_petugas,'-')) like ? order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg desc");
             ps = koneksi.prepareStatement(sb.toString());
             
             try {
@@ -13955,19 +13895,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 ps.setString(70, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-//                    if (Sequel.cariInteger("select count(-1) from antrian_prioritas where no_rawat='" + rs.getString("no_rawat") + "'") > 0) {
-//                        cekAntrianKhusus = "YA";
-//                    } else {
-//                        cekAntrianKhusus = "TIDAK";
-//                    }
-//
-//                    //cek sep bpjs
-//                    if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + rs.getString("no_rawat") + "'") == 0) {
-//                        noSEP = "-";
-//                    } else {
-//                        cekSEPpasien(rs.getString("no_rawat"));
-//                    }
-
                     if (!rs.getString("noSEP").equals("-")) {
                         cekSEPpasien(rs.getString("no_rawat"));
                     }

@@ -3548,11 +3548,11 @@ public final class sekuel {
         return bool;
     }
 
-    public String cariFolderRad() {
+    public String cariFolderTte() {
         dicari = "";
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            dicari = prop.getProperty("FOLDERQRRAD").toString();
+            dicari = prop.getProperty("FOLDERQRTTE").toString();
 
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
@@ -3574,11 +3574,11 @@ public final class sekuel {
         return dicari;
     }
     
-    public String cariFolderPrintRad() {
+    public String cariFolderPrintTte() {
         dicari = "";
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            dicari = prop.getProperty("FOLDERPRINTQRRAD").toString();
+            dicari = prop.getProperty("FOLDERPRINTQRTTE").toString();
 
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);

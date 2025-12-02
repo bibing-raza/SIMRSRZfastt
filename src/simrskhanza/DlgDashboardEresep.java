@@ -1071,7 +1071,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 } else if (tbPasien1.getSelectedRow() != -1) {
                     Valid.MyReport("rptStrukResepRalan.jasper", "report", "::[ Struk Resep Dokter Poliklinik/Unit Rawat Jalan Kertas Thermal ]::",
                             " SELECT pl.nm_poli, concat(date_format(cr.tgl_perawatan,'%d-%m-%Y'),'" + resepIter + "') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
-                            + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, if(cr.hari_ke not in ('1','6','12','18','24','30'),cr.nama_obat,concat(cr.nama_obat,' (ket. ',cr.keterangan,')')) nama_obat, "
+                            + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, if(cr.hari_ke not in ('1','6','11','16','21','26'),concat(cr.nama_obat,' (Hari ke ',cr.hari_ke,')'),concat(cr.nama_obat,' (ket. ',cr.keterangan,', Hari ke ',cr.hari_ke,')')) nama_obat, "
                             + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep_antibiotik cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
@@ -1206,9 +1206,9 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                             + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab left join iter_obat_bpjs iob on iob.no_rawat=c.no_rawat where "
                             + "c.no_rawat ='" + norawat + "' AND c.noId in (" + idObat + ") ORDER BY c.tgl_perawatan DESC, c.jam_perawatan DESC", param);
                 } else if (tbPasien1.getSelectedRow() != -1) {
-                    Valid.MyReport("rptResepRalan.jasper", "report", "::[ Resep Dokter Poliklinik/Unit Rawat Jalan Kertas HVS/A5 ]::",
+                    Valid.MyReport("rptResepRalanAntibiotik.jasper", "report", "::[ Resep Dokter Poliklinik/Unit Rawat Jalan Kertas HVS/A5 ]::",
                             " select c.no_rawat, pl.nm_poli, d.nm_dokter, CONCAT(if(iob.no_rawat is null,'','(RESEP ITER) '),'Martapura, ',DATE_FORMAT(c.tgl_perawatan,'%d/%m/%Y')) tgl_resep, "
-                            + "if(c.hari_ke not in ('1','6','12','18','24','30'),c.nama_obat,concat(c.nama_obat,' (ket. ',c.keterangan,')')) nama_obat, "
+                            + "if(c.hari_ke not in ('1','6','11','16','21','26'),concat(c.nama_obat,' (Hari ke ',c.hari_ke,')'),concat(c.nama_obat,' (ket. ',c.keterangan,', Hari ke ',c.hari_ke,')')) nama_obat, "
                             + "r.no_rkm_medis, p.nm_pasien, CONCAT(r.umurdaftar,' ',r.sttsumur) umur, "
                             + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, d.no_ijn_praktek no_sip, ifnull(p.no_tlp,'-') noHP from catatan_resep_antibiotik c "
                             + "inner join reg_periksa r on r.no_rawat = c.no_rawat inner join dokter d on d.kd_dokter = c.kd_dokter "
@@ -1422,7 +1422,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 } else if (tbPasien1.getSelectedRow() != -1) {
                     Valid.MyReport("rptCatatanResepRalan.jasper", "report", "::[ Cetak e-Resep ]::",
                             "SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
-                            + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, if(cr.hari_ke not in ('1','6','12','18','24','30'),cr.nama_obat,concat(cr.nama_obat,' (ket. ',cr.keterangan,')')) nama_obat, "
+                            + "p.nm_pasien, ifnull(p.no_tlp,'-') no_hp, if(cr.hari_ke not in ('1','6','11','16','21','26'),concat(cr.nama_obat,' (Hari ke ',cr.hari_ke,')'),concat(cr.nama_obat,' (ket. ',cr.keterangan,', Hari ke ',cr.hari_ke,')')) nama_obat, "
                             + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir "
                             + "FROM catatan_resep_antibiotik cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
                             + "INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
@@ -1796,7 +1796,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
             StringBuilder sb = new StringBuilder();
             try {
                 sb.append("SELECT cr.noId, cr.no_rawat, DATE_FORMAT(cr.tgl_perawatan,'%d-%m-%Y') tgl, cr.jam_perawatan, ");
-                sb.append("if(cr.hari_ke not in ('1','6','12','18','24','30'),cr.nama_obat,concat(cr.nama_obat,' (ket. ',cr.keterangan,')')) nama_obat, ");
+                sb.append("if(cr.hari_ke not in ('1','6','11','16','21','26'),concat(cr.nama_obat,' (Hari ke ',cr.hari_ke,')'),concat(cr.nama_obat,' (ket. ',cr.keterangan,', Hari ke ',cr.hari_ke,')')) nama_obat, ");
                 sb.append("cr.status FROM catatan_resep_antibiotik cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat WHERE cr.no_rawat='" + norawat + "' ");
                 sb.append("ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC");
                 ps1 = koneksi.prepareStatement(sb.toString());

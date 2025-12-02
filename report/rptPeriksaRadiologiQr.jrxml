@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="594" pageHeight="842" columnWidth="545" leftMargin="32" rightMargin="17" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.5026296018031553"/>
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="114"/>
 	<parameter name="kamar" class="java.lang.String"/>
 	<parameter name="namakamar" class="java.lang.String"/>
 	<parameter name="namars" class="java.lang.String"/>
@@ -17,6 +17,8 @@
 	<parameter name="tglSurat" class="java.lang.String"/>
 	<parameter name="lokasi" class="java.io.InputStream"/>
 	<parameter name="dokterBaca" class="java.lang.String"/>
+	<parameter name="judulPembaca" class="java.lang.String"/>
+	<parameter name="kalimatTte" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT p.no_rkm_medis, p.nm_pasien, concat(IF(p.jk='L','Laki-laki','Perempuan'),' / ',rp.umurdaftar,' ',rp.sttsumur,'.') jk_umur, p.alamat, pr.no_rawat,
 jpr.nm_perawatan, hr.diag_klinis_radiologi, d1.nm_dokter dr_pengirim, hr.jam,
@@ -389,6 +391,23 @@ WHERE hr.no_rawat='2021/03/24/000233' and hr.tgl_periksa='2021-03-25' and hr.jam
 	<columnFooter>
 		<band splitType="Stretch"/>
 	</columnFooter>
+	<pageFooter>
+		<band height="34">
+			<line>
+				<reportElement x="0" y="0" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="1" width="520" height="15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{kalimatTte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
 	<summary>
 		<band height="135">
 			<staticText>
@@ -429,13 +448,13 @@ WHERE hr.no_rawat='2021/03/24/000233' and hr.tgl_periksa='2021-03-25' and hr.jam
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{dokterBaca}]]></textFieldExpression>
 			</textField>
-			<staticText>
+			<textField>
 				<reportElement x="0" y="10" width="230" height="13"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Hasil pemeriksaan Radiologi telah dibaca oleh dokter : ]]></text>
-			</staticText>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{judulPembaca}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
