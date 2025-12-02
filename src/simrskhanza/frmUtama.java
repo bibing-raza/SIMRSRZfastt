@@ -6610,7 +6610,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27/11/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02/12/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7425,7 +7425,7 @@ public class frmUtama extends javax.swing.JFrame {
             } else {
                 if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1"))) {
                     JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terbaru ("
-                            + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...!!!!");
+                            + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...");
                 }
 
                 FlayMenu.setVisible(false);
@@ -7466,7 +7466,7 @@ public class frmUtama extends javax.swing.JFrame {
             System.out.println("E : " + e);
             if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1"))) {
                 JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terbaru ("
-                        + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...!!!!");
+                        + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...");
             }
 
             FlayMenu.setVisible(false);
@@ -7647,7 +7647,7 @@ public class frmUtama extends javax.swing.JFrame {
             } else {
                 if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1"))) {
                     JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terbaru ("
-                            + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...!!!!");
+                            + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...");
                 }
 
                 Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
@@ -7667,7 +7667,7 @@ public class frmUtama extends javax.swing.JFrame {
             System.out.println("E : " + e);
             if (!Tversi.getText().equals(Sequel.cariIsi("select versi_update FROM history_update ORDER BY tgl_update desc, jam_update desc limit 1"))) {
                 JOptionPane.showMessageDialog(null, "Versi SIMRS dikomputer ini belum update dengan versi terbaru ("
-                        + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...!!!!");
+                        + Sequel.cariIsi("select versi_update from history_update ORDER BY tgl_update desc, jam_update desc limit 1") + ") ...");
             }
 
             Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");

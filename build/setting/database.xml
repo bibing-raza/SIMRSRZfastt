@@ -85,8 +85,10 @@
     <entry key="KODEPOSSATUSEHAT">70611</entry>
 	<entry key="HOSTport">enkripsi ip addres server & portnya</entry>
 	<entry key="FOLDERPDF">lokasi file pdf setelah dibubuhi tte</entry>
-	<entry key="FOLDERQRTTE">/home/bibing/Documents/QRTte/</entry>
-	<entry key="FOLDERPRINTQRTTE">/home/bibing/Documents/QRTte/QRTte.jpg</entry>
+	<entry key="FOLDERQRTTEWIN">C://QRTte</entry>
+	<entry key="FOLDERPRINTQRTTEWIN">C://QRTte/QRTte.jpg</entry>
+        <entry key="FOLDERQRTTELINUXMAC">/Documents/QRTte/</entry>
+	<entry key="FOLDERPRINTQRTTELINUXMAC">QRTte.jpg</entry>
 	<entry key="FOLDERQRITER">/home/bibing/Documents/QRkodeIter/</entry>
 	<entry key="FOLDERPRINTQRITER">/home/bibing/Documents/QRkodeIter/QRkodeIter.jpg</entry>
         <entry key="DATARANAPSESUAIDPJP">Tidak</entry>

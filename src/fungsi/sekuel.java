@@ -71,7 +71,7 @@ public final class sekuel {
     private static int angka3 = 0;
     private double angka2 = 0;
     private String dicari = "", output = "", inputan = "", bulan = "", hari = "", romawi = "", ipAddresKomputer = "", user = "", 
-            umur = "", sttsumur = "", umurOK = "";
+            umur = "", sttsumur = "", umurOK = "", foldernya = "";
     private static String dicari2 = "", output2 = "", inputan2 = "";
     private char enkrip;
     private static char enkrip2;
@@ -3550,16 +3550,39 @@ public final class sekuel {
 
     public String cariFolderTte() {
         dicari = "";
+        foldernya = "";
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
             //cek jenis os dulu
             String os = System.getProperty("os.name").toLowerCase();
 
             if (os.contains("win")) {
-                dicari = prop.getProperty("FOLDERQRTTE").toString();
+                foldernya = "C:\\QRTte"; // tentukan nama folder
+                File folder = new File(foldernya);
+                if (!folder.exists()) {     // cek apakah folder sudah ada
+                    if (folder.mkdirs()) {  // bikin folder jika belum ada
+                        System.out.println("Folder diwindows berhasil dibikin karena belum ada : " + foldernya);
+                    } else {
+                        System.out.println("Gagal membuat folder!");
+                    }
+                } else {
+                    System.out.println("Folder diwindows sudah ada, tidak perlu membuat folder C:\\QRTte.");
+                }
+
+                dicari = prop.getProperty("FOLDERQRTTEWIN").toString();
             } else if (os.contains("linux") || os.contains("unix") || os.contains("mac")) {
-                String home = System.getProperty("user.home");
-                Path path = Paths.get(home, prop.getProperty("FOLDERQRTTE").toString());
+                String userHome = System.getProperty("user.home");
+                foldernya = prop.getProperty("FOLDERQRTTELINUXMAC");
+                Path path = Paths.get(userHome, foldernya);
+
+                if (Files.notExists(path)) {  // lebih jelas daripada !exists
+                    // bikin folder
+                    Files.createDirectories(path);
+                    System.out.println("Folder dilinux/mac berhasil dibikin karena belum ada : " + path);
+                } else {
+                    System.out.println("Folder dilinux/mac sudah ada : " + path);
+                }
+
                 dicari = Files.createDirectories(path).toString();
             } else {
                 System.out.println("Sistem operasi tidak dikenali: " + os);
@@ -3587,23 +3610,22 @@ public final class sekuel {
     
     public String cariFolderPrintTte() {
         dicari = "";
+        foldernya = "";
         try {
-            String folderPath = "C:\\contohFolderBaru"; // tentukan nama folder
-            File folder = new File(folderPath);
-
-            if (!folder.exists()) {     // cek apakah folder sudah ada
-                if (folder.mkdirs()) {  // buat folder jika belum ada
-                    System.out.println("Folder berhasil dibuat: " + folderPath);
-                } else {
-                    System.out.println("Gagal membuat folder!");
-                }
-            } else {
-                System.out.println("Folder sudah ada, tidak perlu membuat.");
-            }
-            
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            dicari = prop.getProperty("FOLDERPRINTQRTTE").toString();
-
+            String os = System.getProperty("os.name").toLowerCase();
+            
+            if (os.contains("win")) {
+                dicari = prop.getProperty("FOLDERPRINTQRTTEWIN").toString();
+            } else if (os.contains("linux") || os.contains("unix") || os.contains("mac")) {
+                String userHome = System.getProperty("user.home");
+                foldernya = prop.getProperty("FOLDERQRTTELINUXMAC");
+                Path path = Paths.get(userHome, foldernya);
+                Files.createDirectories(path);
+                dicari = path.toString() + File.separator + prop.getProperty("FOLDERPRINTQRTTELINUXMAC").toString();
+            } else {
+                System.out.println("Sistem operasi tidak dikenali: " + os);
+            }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }

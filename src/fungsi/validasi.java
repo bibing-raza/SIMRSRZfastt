@@ -1632,7 +1632,7 @@ public final class validasi {
             System.out.println("Notifikasi : " + e);
         }
         
-        String filePath = folder + fileName;
+        String filePath = folder + File.separator + fileName;
 
         // ==============================
         // DETEKSI OTOMATIS FILETYPE
