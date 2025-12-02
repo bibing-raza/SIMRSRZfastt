@@ -3552,7 +3552,18 @@ public final class sekuel {
         dicari = "";
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            dicari = prop.getProperty("FOLDERQRTTE").toString();
+            //cek jenis os dulu
+            String os = System.getProperty("os.name").toLowerCase();
+
+            if (os.contains("win")) {
+                dicari = prop.getProperty("FOLDERQRTTE").toString();
+            } else if (os.contains("linux") || os.contains("unix") || os.contains("mac")) {
+                String home = System.getProperty("user.home");
+                Path path = Paths.get(home, prop.getProperty("FOLDERQRTTE").toString());
+                dicari = Files.createDirectories(path).toString();
+            } else {
+                System.out.println("Sistem operasi tidak dikenali: " + os);
+            }            
 
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
@@ -3577,6 +3588,19 @@ public final class sekuel {
     public String cariFolderPrintTte() {
         dicari = "";
         try {
+            String folderPath = "C:\\contohFolderBaru"; // tentukan nama folder
+            File folder = new File(folderPath);
+
+            if (!folder.exists()) {     // cek apakah folder sudah ada
+                if (folder.mkdirs()) {  // buat folder jika belum ada
+                    System.out.println("Folder berhasil dibuat: " + folderPath);
+                } else {
+                    System.out.println("Gagal membuat folder!");
+                }
+            } else {
+                System.out.println("Folder sudah ada, tidak perlu membuat.");
+            }
+            
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
             dicari = prop.getProperty("FOLDERPRINTQRTTE").toString();
 
