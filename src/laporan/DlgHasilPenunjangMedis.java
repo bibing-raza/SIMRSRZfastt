@@ -49,7 +49,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     private int i = 0, x = 0, cekRujukan = 0;
     private String norawat = "", noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", dokterBaca = "",
             drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "", nmpas = "", nomorrm = "", hasilDipilih = "",
-            kdItem = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", kamar = "", kodeRujukan = "";
+            kdItem = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", kamar = "", kodeRujukan = "", isi = "";
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -188,7 +188,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             "No. Rawat", "No. PA", "No. RM", "Nama Pasien", "Jns. Kelamin", "Tgl. Lahir", "Dokter Pengirim", "Rg. Rawat/Poli/Inst.",
             "Tgl. Periksa", "Tgl. Hasil", "lokasi", "makroskopik", "mikroskopik", "kesimpulan", "anjuran",
             "kd_gambar", "nip_perujuk", "tgl_periksa", "tgl_lahir", "tgl_hasil", "waktu_simpan",
-            "italic_makroskopik", "italic_mikroskopik", "italic_kesimpulan", "italic_anjuran"}) {
+            "italic_makroskopik", "italic_mikroskopik", "italic_kesimpulan", "italic_anjuran", "nmDokterPA"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -199,7 +199,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         tbPA.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPA.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 26; i++) {
             TableColumn column = tbPA.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(115);
@@ -264,6 +264,9 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 24) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 25) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -479,6 +482,8 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         LoadHTML1 = new widget.editorpane();
         jPanel4 = new javax.swing.JPanel();
         panelGlass15 = new widget.panelisi();
+        jLabel11 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrinLab1 = new widget.Button();
         BtnKeluar2 = new widget.Button();
         internalFrame21 = new widget.InternalFrame();
@@ -629,6 +634,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('6');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+6");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -692,6 +698,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnConteng.setForeground(new java.awt.Color(0, 0, 0));
         BtnConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnConteng.setMnemonic('G');
         BtnConteng.setText("Conteng Semua");
         BtnConteng.setToolTipText("Alt+G");
         BtnConteng.setName("BtnConteng"); // NOI18N
@@ -705,6 +712,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnHapus.setMnemonic('M');
         BtnHapus.setText("Hapus Conteng");
         BtnHapus.setToolTipText("Alt+M");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -718,6 +726,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCopy.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnCopy.setMnemonic('U');
         BtnCopy.setText("Copy Hasil");
         BtnCopy.setToolTipText("Alt+U");
         BtnCopy.setName("BtnCopy"); // NOI18N
@@ -731,6 +740,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnPrinLab.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrinLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        BtnPrinLab.setMnemonic('P');
         BtnPrinLab.setText("Print Hasil Lab.");
         BtnPrinLab.setToolTipText("Alt+P");
         BtnPrinLab.setName("BtnPrinLab"); // NOI18N
@@ -744,6 +754,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -828,6 +839,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari2.setMnemonic('6');
         BtnCari2.setText("Tampilkan Data");
         BtnCari2.setToolTipText("Alt+6");
         BtnCari2.setName("BtnCari2"); // NOI18N
@@ -870,6 +882,18 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         panelGlass15.setPreferredSize(new java.awt.Dimension(55, 55));
         panelGlass15.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 9));
 
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Cetak Dalam Bentuk :");
+        jLabel11.setName("jLabel11"); // NOI18N
+        jLabel11.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass15.add(jLabel11);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass15.add(cmbPilihCetak);
+
         BtnPrinLab1.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrinLab1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
         BtnPrinLab1.setMnemonic('P');
@@ -886,6 +910,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar2.setMnemonic('K');
         BtnKeluar2.setText("Keluar");
         BtnKeluar2.setToolTipText("Alt+K");
         BtnKeluar2.setName("BtnKeluar2"); // NOI18N
@@ -931,6 +956,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCopy1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopy1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnCopy1.setMnemonic('U');
         BtnCopy1.setText("Copy Hasil");
         BtnCopy1.setToolTipText("Alt+U");
         BtnCopy1.setName("BtnCopy1"); // NOI18N
@@ -956,6 +982,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnPrinRadiologi.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrinRadiologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        BtnPrinRadiologi.setMnemonic('P');
         BtnPrinRadiologi.setText("Print Expertise");
         BtnPrinRadiologi.setToolTipText("Alt+P");
         BtnPrinRadiologi.setName("BtnPrinRadiologi"); // NOI18N
@@ -969,6 +996,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -1062,6 +1090,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('6');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+6");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -1281,153 +1310,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TabPemeriksaanMouseClicked
 
-    private void BtnPrinRadiologiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrinRadiologiActionPerformed
-        if (tabMode2.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-            BtnKeluar1.requestFocus();
-        } else if (norawat.equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data yang mau dibaca expertisenya...!!!!");
-        } else if (kdItem.equals("") || tglhasil.equals("") || jamhasil.equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan anda pilih salah satu dulu item pemeriksaan yang akan diprint pada tabel...!!!!");
-        } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            if (cmbCetak.getSelectedIndex() == 0) {
-                if (Sequel.cariInteger("select count(-1) from hasil_radiologi where no_rawat='" + norawat + "' and "
-                        + "tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") == 0) {
-                    JOptionPane.showMessageDialog(null, "Maaf, untuk hasil expertise pemeriksaan radiologi " + nmpemeriksaan + " belum tersimpan...!!!!");
-                } else {
-                    Map<String, Object> param = new HashMap<>();
-                    param.put("namars", akses.getnamars());
-                    param.put("alamatrs", akses.getalamatrs());
-                    param.put("kotars", akses.getkabupatenrs());
-                    param.put("propinsirs", akses.getpropinsirs());
-                    param.put("kontakrs", akses.getkontakrs());
-                    param.put("emailrs", akses.getemailrs());
-                    param.put("logo", Sequel.cariGambar("select logo from setting"));
-                    param.put("tglSurat", "Martapura, " + Sequel.cariIsi("select date_format(now(),'%d')") + " " + Sequel.bulanINDONESIA("select MONTH(now())") + " " + Sequel.cariIsi("select year(now())"));
-                    param.put("tglperiksa", Sequel.cariIsi("select date_format(tgl_periksa,'%d') from hasil_radiologi where "
-                            + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") + " "
-                            + Sequel.bulanINDONESIA("select month(tgl_periksa) from hasil_radiologi where "
-                                    + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") + " "
-                            + Sequel.cariIsi("select year(tgl_periksa) from hasil_radiologi where "
-                                    + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'"));
-
-                    if (Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + norawat + "'").equals("Ralan")) {
-                        param.put("kamar", "Poliklinik/Inst.");
-                        param.put("namakamar", Sequel.cariIsi("select nm_poli from poliklinik pl inner join reg_periksa rp on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + norawat + "'"));
-                    } else {
-                        kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat='" + norawat + "' order by tgl_masuk desc limit 1");
-                        param.put("kamar", "Ruang Rawat");
-                        param.put("namakamar", Sequel.cariIsi("select nm_bangsal from bangsal b inner join kamar k on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kamar + "'"));
-                    }
-
-                    cekRujukan = Sequel.cariInteger("select count(-1) from rujuk_masuk where no_rawat='" + norawat + "'");
-                    if (cekRujukan == 0) {
-                        param.put("namaFaskes", "-");
-                    } else {
-                        if (kodeRujukan.equals("784")) {
-                            param.put("namaFaskes", "-");
-                        } else {
-                            param.put("namaFaskes", Sequel.cariIsi("select concat('(',UPPER(tipe_faskes),') ',nama_rujukan) from master_nama_rujukan where kd_rujukan='" + kodeRujukan + "'"));
-                        }
-                    }
-                    
-                    if (tbPembacaRad.getRowCount() == 0) {
-                        param.put("judulPembaca", "");
-                        param.put("dokterBaca", "");
-                    } else {
-                        param.put("judulPembaca", "Hasil pemeriksaan Radiologi telah dibaca oleh dokter : ");
-                        param.put("dokterBaca", dokterBaca);
-                    }
-
-                    Valid.MyReport("rptPeriksaRadiologi.jasper", "report", "::[ Lembar Hasil Pemeriksaan Radiologi ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, concat(IF(p.jk='L','Laki-laki','Perempuan'),' / ',rp.umurdaftar,' ',rp.sttsumur,'.') jk_umur, p.alamat, pr.no_rawat, "
-                            + "jpr.nm_perawatan, hr.diag_klinis_radiologi, d1.nm_dokter dr_pengirim, hr.jam, hr.hasil, d2.nm_dokter dr_rad FROM periksa_radiologi pr "
-                            + "INNER JOIN reg_periksa rp on rp.no_rawat=pr.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw "
-                            + "INNER JOIN dokter d1 on d1.kd_dokter=pr.dokter_perujuk INNER JOIN dokter d2 on d2.kd_dokter=pr.kd_dokter "
-                            + "LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.tgl_periksa=pr.tgl_periksa and hr.jam=pr.jam and hr.kd_jenis_prw=pr.kd_jenis_prw "
-                            + "WHERE hr.no_rawat='" + norawat + "' and hr.tgl_periksa='" + tglhasil + "' and hr.jam='" + jamhasil + "' and hr.kd_jenis_prw='" + kdItem + "'", param);
-                }
-
-            } else if (cmbCetak.getSelectedIndex() == 1) {
-                String isi;
-                if (Sequel.cariInteger("select count(-1) from hasil_radiologi where no_rawat='" + norawat + "' and "
-                        + "tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") == 0) {
-                    JOptionPane.showMessageDialog(null, "Maaf, untuk hasil expertise pemeriksaan radiologi " + nmpemeriksaan + " belum tersimpan...!!!!");
-                } else {
-                    Map<String, Object> param = new HashMap<>();
-                    param.put("namars", akses.getnamars());
-                    param.put("alamatrs", akses.getalamatrs());
-                    param.put("kotars", akses.getkabupatenrs());
-                    param.put("propinsirs", akses.getpropinsirs());
-                    param.put("kontakrs", akses.getkontakrs());
-                    param.put("emailrs", akses.getemailrs());
-                    param.put("logo", Sequel.cariGambar("select logo from setting"));
-                    param.put("tglSurat", "Martapura, " + Sequel.cariIsi("select date_format(now(),'%d')") + " " + Sequel.bulanINDONESIA("select MONTH(now())") + " " + Sequel.cariIsi("select year(now())"));
-                    param.put("tglperiksa", Sequel.cariIsi("select date_format(tgl_periksa,'%d') from hasil_radiologi where "
-                            + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") + " "
-                            + Sequel.bulanINDONESIA("select month(tgl_periksa) from hasil_radiologi where "
-                                    + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") + " "
-                            + Sequel.cariIsi("select year(tgl_periksa) from hasil_radiologi where "
-                                    + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'"));
-
-                    if (Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + norawat + "'").equals("Ralan")) {
-                        param.put("kamar", "Poliklinik/Inst.");
-                        param.put("namakamar", Sequel.cariIsi("select nm_poli from poliklinik pl inner join reg_periksa rp on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + norawat + "'"));
-                    } else {
-                        kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat='" + norawat + "' order by tgl_masuk desc limit 1");
-                        param.put("kamar", "Ruang Rawat");
-                        param.put("namakamar", Sequel.cariIsi("select nm_bangsal from bangsal b inner join kamar k on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kamar + "'"));
-                    }
-
-                    cekRujukan = Sequel.cariInteger("select count(-1) from rujuk_masuk where no_rawat='" + norawat + "'");
-                    if (cekRujukan == 0) {
-                        param.put("namaFaskes", "-");
-                    } else {
-                        if (kodeRujukan.equals("784")) {
-                            param.put("namaFaskes", "-");
-                        } else {
-                            param.put("namaFaskes", Sequel.cariIsi("select concat('(',UPPER(tipe_faskes),') ',nama_rujukan) from master_nama_rujukan where kd_rujukan='" + kodeRujukan + "'"));
-                        }
-                    }
-                    
-                    if (tbPembacaRad.getRowCount() == 0) {
-                        param.put("judulPembaca", "");
-                        param.put("dokterBaca", "");
-                    } else {
-                        param.put("judulPembaca", "Hasil pemeriksaan Radiologi telah dibaca oleh dokter : ");
-                        param.put("dokterBaca", dokterBaca);
-                    }
-
-                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
-                                    "Hasil Pemeriksaan Radiologi (Expertise)", tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 10).toString(),
-                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from hasil_radiologi where "
-                                            + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'"),
-                                    Sequel.cariIsi("select time(waktu_simpan) from hasil_radiologi where "
-                                            + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'")) + "') from kalimat_tte where kode='006'");
-
-                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
-                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
-                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Radiologi", Sequel.cariFolderPrintTte());
-                    param.put("lokasi", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
-                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='006'"));
-
-                    Valid.MyReport("rptPeriksaRadiologiQr.jasper", "report", "::[ Lembar Hasil Pemeriksaan Radiologi ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, concat(IF(p.jk='L','Laki-laki','Perempuan'),' / ',rp.umurdaftar,' ',rp.sttsumur,'.') jk_umur, p.alamat, pr.no_rawat, "
-                            + "jpr.nm_perawatan, hr.diag_klinis_radiologi, d1.nm_dokter dr_pengirim, hr.jam, hr.hasil, d2.nm_dokter dr_rad FROM periksa_radiologi pr "
-                            + "INNER JOIN reg_periksa rp on rp.no_rawat=pr.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw "
-                            + "INNER JOIN dokter d1 on d1.kd_dokter=pr.dokter_perujuk INNER JOIN dokter d2 on d2.kd_dokter=pr.kd_dokter "
-                            + "LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.tgl_periksa=pr.tgl_periksa and hr.jam=pr.jam and hr.kd_jenis_prw=pr.kd_jenis_prw "
-                            + "WHERE hr.no_rawat='" + norawat + "' and hr.tgl_periksa='" + tglhasil + "' and hr.jam='" + jamhasil + "' and hr.kd_jenis_prw='" + kdItem + "'", param);
-                }
-            }
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }//GEN-LAST:event_BtnPrinRadiologiActionPerformed
-
     private void BtnKeluar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar1ActionPerformed
         dispose();
     }//GEN-LAST:event_BtnKeluar1ActionPerformed
@@ -1576,7 +1458,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     private void BtnPrinLab1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrinLab1ActionPerformed
         if (tbPA.getSelectedRow() > -1) {
             String nipdokterpa = Sequel.cariIsi("select nip_dokter_pa from hasil_patologi_anatomi where waktu_simpan='" + tbPA.getValueAt(tbPA.getSelectedRow(), 20).toString() + "'");
-            
+
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("alamatrs", akses.getalamatrs());
@@ -1585,7 +1467,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             param.put("kontakrs", akses.getkontakrs());
             param.put("emailrs", akses.getemailrs());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
-            
+
             param.put("noPA", tbPA.getValueAt(tbPA.getSelectedRow(), 1).toString());
             param.put("norm", tbPA.getValueAt(tbPA.getSelectedRow(), 2).toString());
             param.put("nmpasien", tbPA.getValueAt(tbPA.getSelectedRow(), 3).toString());
@@ -1595,7 +1477,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             param.put("unit", tbPA.getValueAt(tbPA.getSelectedRow(), 7).toString());
             param.put("tglperiksa", Valid.SetTglINDONESIA(tbPA.getValueAt(tbPA.getSelectedRow(), 17).toString() + ""));
             param.put("tglhasil", Valid.SetTglINDONESIA(tbPA.getValueAt(tbPA.getSelectedRow(), 19).toString() + ""));
-            param.put("lokasi", tbPA.getValueAt(tbPA.getSelectedRow(), 10).toString() + "\n");            
+            param.put("lokasi", tbPA.getValueAt(tbPA.getSelectedRow(), 10).toString() + "\n");
             param.put("makros", tbPA.getValueAt(tbPA.getSelectedRow(), 11).toString().replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
             param.put("italicmakros", tbPA.getValueAt(tbPA.getSelectedRow(), 21).toString());
             param.put("mikros", tbPA.getValueAt(tbPA.getSelectedRow(), 12).toString().replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
@@ -1603,7 +1485,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             param.put("kesimpulan", tbPA.getValueAt(tbPA.getSelectedRow(), 13).toString().replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
             param.put("italickesimpulan", tbPA.getValueAt(tbPA.getSelectedRow(), 23).toString());
             param.put("anjuran", tbPA.getValueAt(tbPA.getSelectedRow(), 14).toString().replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
-            param.put("italicanjuran", tbPA.getValueAt(tbPA.getSelectedRow(), 24).toString());            
+            param.put("italicanjuran", tbPA.getValueAt(tbPA.getSelectedRow(), 24).toString());
             param.put("sip", Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + nipdokterpa + "'"));
             param.put("nmDokterpa", Sequel.cariIsi("select nama from pegawai where nik='" + nipdokterpa + "'"));
 
@@ -1629,19 +1511,184 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                     System.out.println("Notif : " + e);
                     gambarnya = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
                 }
-                
+
                 param.put("gambarPA", gambarnya);
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }
 
-            Valid.MyReport("rptPeriksaPatologiAnatomi.jasper", "report", "::[ Lembar Hasil Pemeriksaan Patologi Anatomi ]::", "SELECT now() tgl", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                isi = "";
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
+                                "Hasil Pemeriksaan Lab. (Patologi Anatomi)", tbPA.getValueAt(tbPA.getSelectedRow(), 25).toString(),
+                                Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from hasil_patologi_anatomi where "
+                                        + "waktu_simpan='" + tbPA.getValueAt(tbPA.getSelectedRow(), 20).toString() + "'"),
+                                Sequel.cariIsi("select time(waktu_simpan) from hasil_patologi_anatomi where "
+                                        + "waktu_simpan='" + tbPA.getValueAt(tbPA.getSelectedRow(), 20).toString() + "'")) + "') from kalimat_tte where kode='006'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Lab. Patologi Anatomi", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='006'"));
+                Valid.MyReport("rptPeriksaPatologiAnatomiQr.jasper", "report", "::[ Lembar Hasil Pemeriksaan Patologi Anatomi ]::", "SELECT now() tgl", param);
+            } else {
+                Valid.MyReport("rptPeriksaPatologiAnatomi.jasper", "report", "::[ Lembar Hasil Pemeriksaan Patologi Anatomi ]::", "SELECT now() tgl", param);
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel..!!");
             BtnCari2ActionPerformed(null);
             tbPA.requestFocus();
         }
     }//GEN-LAST:event_BtnPrinLab1ActionPerformed
+
+    private void BtnPrinRadiologiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrinRadiologiActionPerformed
+        if (tabMode2.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+            BtnKeluar1.requestFocus();
+        } else if (norawat.equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data yang mau dibaca expertisenya...!!!!");
+        } else if (kdItem.equals("") || tglhasil.equals("") || jamhasil.equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih salah satu dulu item pemeriksaan yang akan diprint pada tabel...!!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            if (cmbCetak.getSelectedIndex() == 0) {
+                if (Sequel.cariInteger("select count(-1) from hasil_radiologi where no_rawat='" + norawat + "' and "
+                        + "tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Maaf, untuk hasil expertise pemeriksaan radiologi " + nmpemeriksaan + " belum tersimpan...!!!!");
+                } else {
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("alamatrs", akses.getalamatrs());
+                    param.put("kotars", akses.getkabupatenrs());
+                    param.put("propinsirs", akses.getpropinsirs());
+                    param.put("kontakrs", akses.getkontakrs());
+                    param.put("emailrs", akses.getemailrs());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
+                    param.put("tglSurat", "Martapura, " + Sequel.cariIsi("select date_format(now(),'%d')") + " " + Sequel.bulanINDONESIA("select MONTH(now())") + " " + Sequel.cariIsi("select year(now())"));
+                    param.put("tglperiksa", Sequel.cariIsi("select date_format(tgl_periksa,'%d') from hasil_radiologi where "
+                            + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") + " "
+                            + Sequel.bulanINDONESIA("select month(tgl_periksa) from hasil_radiologi where "
+                                    + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") + " "
+                            + Sequel.cariIsi("select year(tgl_periksa) from hasil_radiologi where "
+                                    + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'"));
+
+                    if (Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + norawat + "'").equals("Ralan")) {
+                        param.put("kamar", "Poliklinik/Inst.");
+                        param.put("namakamar", Sequel.cariIsi("select nm_poli from poliklinik pl inner join reg_periksa rp on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + norawat + "'"));
+                    } else {
+                        kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat='" + norawat + "' order by tgl_masuk desc limit 1");
+                        param.put("kamar", "Ruang Rawat");
+                        param.put("namakamar", Sequel.cariIsi("select nm_bangsal from bangsal b inner join kamar k on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kamar + "'"));
+                    }
+
+                    cekRujukan = Sequel.cariInteger("select count(-1) from rujuk_masuk where no_rawat='" + norawat + "'");
+                    if (cekRujukan == 0) {
+                        param.put("namaFaskes", "-");
+                    } else {
+                        if (kodeRujukan.equals("784")) {
+                            param.put("namaFaskes", "-");
+                        } else {
+                            param.put("namaFaskes", Sequel.cariIsi("select concat('(',UPPER(tipe_faskes),') ',nama_rujukan) from master_nama_rujukan where kd_rujukan='" + kodeRujukan + "'"));
+                        }
+                    }
+
+                    if (tbPembacaRad.getRowCount() == 0) {
+                        param.put("judulPembaca", "");
+                        param.put("dokterBaca", "");
+                    } else {
+                        param.put("judulPembaca", "Hasil pemeriksaan Radiologi telah dibaca oleh dokter : ");
+                        param.put("dokterBaca", dokterBaca);
+                    }
+
+                    Valid.MyReport("rptPeriksaRadiologi.jasper", "report", "::[ Lembar Hasil Pemeriksaan Radiologi ]::",
+                            "SELECT p.no_rkm_medis, p.nm_pasien, concat(IF(p.jk='L','Laki-laki','Perempuan'),' / ',rp.umurdaftar,' ',rp.sttsumur,'.') jk_umur, p.alamat, pr.no_rawat, "
+                            + "jpr.nm_perawatan, hr.diag_klinis_radiologi, d1.nm_dokter dr_pengirim, hr.jam, hr.hasil, d2.nm_dokter dr_rad FROM periksa_radiologi pr "
+                            + "INNER JOIN reg_periksa rp on rp.no_rawat=pr.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw "
+                            + "INNER JOIN dokter d1 on d1.kd_dokter=pr.dokter_perujuk INNER JOIN dokter d2 on d2.kd_dokter=pr.kd_dokter "
+                            + "LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.tgl_periksa=pr.tgl_periksa and hr.jam=pr.jam and hr.kd_jenis_prw=pr.kd_jenis_prw "
+                            + "WHERE hr.no_rawat='" + norawat + "' and hr.tgl_periksa='" + tglhasil + "' and hr.jam='" + jamhasil + "' and hr.kd_jenis_prw='" + kdItem + "'", param);
+                }
+
+            } else if (cmbCetak.getSelectedIndex() == 1) {
+                isi = "";
+                if (Sequel.cariInteger("select count(-1) from hasil_radiologi where no_rawat='" + norawat + "' and "
+                        + "tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Maaf, untuk hasil expertise pemeriksaan radiologi " + nmpemeriksaan + " belum tersimpan...!!!!");
+                } else {
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("alamatrs", akses.getalamatrs());
+                    param.put("kotars", akses.getkabupatenrs());
+                    param.put("propinsirs", akses.getpropinsirs());
+                    param.put("kontakrs", akses.getkontakrs());
+                    param.put("emailrs", akses.getemailrs());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
+                    param.put("tglSurat", "Martapura, " + Sequel.cariIsi("select date_format(now(),'%d')") + " " + Sequel.bulanINDONESIA("select MONTH(now())") + " " + Sequel.cariIsi("select year(now())"));
+                    param.put("tglperiksa", Sequel.cariIsi("select date_format(tgl_periksa,'%d') from hasil_radiologi where "
+                            + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") + " "
+                            + Sequel.bulanINDONESIA("select month(tgl_periksa) from hasil_radiologi where "
+                                    + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") + " "
+                            + Sequel.cariIsi("select year(tgl_periksa) from hasil_radiologi where "
+                                    + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'"));
+
+                    if (Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + norawat + "'").equals("Ralan")) {
+                        param.put("kamar", "Poliklinik/Inst.");
+                        param.put("namakamar", Sequel.cariIsi("select nm_poli from poliklinik pl inner join reg_periksa rp on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + norawat + "'"));
+                    } else {
+                        kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat='" + norawat + "' order by tgl_masuk desc limit 1");
+                        param.put("kamar", "Ruang Rawat");
+                        param.put("namakamar", Sequel.cariIsi("select nm_bangsal from bangsal b inner join kamar k on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kamar + "'"));
+                    }
+
+                    cekRujukan = Sequel.cariInteger("select count(-1) from rujuk_masuk where no_rawat='" + norawat + "'");
+                    if (cekRujukan == 0) {
+                        param.put("namaFaskes", "-");
+                    } else {
+                        if (kodeRujukan.equals("784")) {
+                            param.put("namaFaskes", "-");
+                        } else {
+                            param.put("namaFaskes", Sequel.cariIsi("select concat('(',UPPER(tipe_faskes),') ',nama_rujukan) from master_nama_rujukan where kd_rujukan='" + kodeRujukan + "'"));
+                        }
+                    }
+
+                    if (tbPembacaRad.getRowCount() == 0) {
+                        param.put("judulPembaca", "");
+                        param.put("dokterBaca", "");
+                    } else {
+                        param.put("judulPembaca", "Hasil pemeriksaan Radiologi telah dibaca oleh dokter : ");
+                        param.put("dokterBaca", dokterBaca);
+                    }
+
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
+                                    "Hasil Pemeriksaan Radiologi (Expertise)", tbRadiologi.getValueAt(tbRadiologi.getSelectedRow(), 10).toString(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from hasil_radiologi where "
+                                            + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from hasil_radiologi where "
+                                            + "no_rawat='" + norawat + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'")) + "') from kalimat_tte where kode='006'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Radiologi", Sequel.cariFolderPrintTte());
+                    param.put("lokasi", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='006'"));
+
+                    Valid.MyReport("rptPeriksaRadiologiQr.jasper", "report", "::[ Lembar Hasil Pemeriksaan Radiologi ]::",
+                            "SELECT p.no_rkm_medis, p.nm_pasien, concat(IF(p.jk='L','Laki-laki','Perempuan'),' / ',rp.umurdaftar,' ',rp.sttsumur,'.') jk_umur, p.alamat, pr.no_rawat, "
+                            + "jpr.nm_perawatan, hr.diag_klinis_radiologi, d1.nm_dokter dr_pengirim, hr.jam, hr.hasil, d2.nm_dokter dr_rad FROM periksa_radiologi pr "
+                            + "INNER JOIN reg_periksa rp on rp.no_rawat=pr.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw "
+                            + "INNER JOIN dokter d1 on d1.kd_dokter=pr.dokter_perujuk INNER JOIN dokter d2 on d2.kd_dokter=pr.kd_dokter "
+                            + "LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.tgl_periksa=pr.tgl_periksa and hr.jam=pr.jam and hr.kd_jenis_prw=pr.kd_jenis_prw "
+                            + "WHERE hr.no_rawat='" + norawat + "' and hr.tgl_periksa='" + tglhasil + "' and hr.jam='" + jamhasil + "' and hr.kd_jenis_prw='" + kdItem + "'", param);
+                }
+            }
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnPrinRadiologiActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1700,11 +1747,13 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     private widget.ComboBox cmbHlm;
     private widget.ComboBox cmbHlm1;
     private widget.ComboBox cmbHlm2;
+    private widget.ComboBox cmbPilihCetak;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame20;
     private widget.InternalFrame internalFrame21;
     private widget.InternalFrame internalFrame22;
     private widget.Label jLabel10;
+    private widget.Label jLabel11;
     private widget.Label jLabel12;
     private widget.Label jLabel13;
     private widget.Label jLabel6;
@@ -1897,9 +1946,9 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode4);
         try {
             ps7 = koneksi.prepareStatement("SELECT hpa.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
-                    + "p2.nama drPengirim, date_format(hpa.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(hpa.tgl_hasil,'%d-%m-%Y') tglHasil, "
+                    + "p2.nama drPengirim, date_format(hpa.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(hpa.tgl_hasil,'%d-%m-%Y') tglHasil, p3.nama nmDokterPA, "
                     + "p.tgl_lahir FROM hasil_patologi_anatomi hpa inner join reg_periksa rp on rp.no_rawat=hpa.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "inner join pegawai p2 on p2.nik=hpa.nip_perujuk where "
+                    + "inner join pegawai p2 on p2.nik=hpa.nip_perujuk inner join pegawai p3 on p3.nik=hpa.nip_dokter_pa where "
                     + "rp.no_rkm_medis like ? and hpa.no_rawat like ? or "
                     + "rp.no_rkm_medis like ? and hpa.no_pa like ? or "
                     + "rp.no_rkm_medis like ? and hpa.lokasi_organ like ? or "
@@ -1955,7 +2004,8 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                         rs7.getString("italic_makroskopik"),
                         rs7.getString("italic_mikroskopik"),
                         rs7.getString("italic_kesimpulan"),
-                        rs7.getString("italic_anjuran")
+                        rs7.getString("italic_anjuran"),
+                        rs7.getString("nmDokterPA")
                     });
                 }
             } catch (Exception e) {

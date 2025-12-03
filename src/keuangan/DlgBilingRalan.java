@@ -2149,7 +2149,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         PopupPiutang.add(ppBersihkan1);
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -2236,7 +2236,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(50, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2025 07:38:36" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025 11:29:37" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2288,9 +2288,9 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbBilling.setToolTipText("");
         tbBilling.setComponentPopupMenu(jPopupMenu1);
         tbBilling.setName("tbBilling"); // NOI18N
+        tbBilling.getTableHeader().setReorderingAllowed(false);
         tbBilling.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbBillingMouseClicked(evt);
@@ -2507,9 +2507,9 @@ public class DlgBilingRalan extends javax.swing.JDialog {
 
             }
         ));
-        tbAkunBayar.setToolTipText("");
         tbAkunBayar.setComponentPopupMenu(PopupBayar);
         tbAkunBayar.setName("tbAkunBayar"); // NOI18N
+        tbAkunBayar.getTableHeader().setReorderingAllowed(false);
         tbAkunBayar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 tbAkunBayarPropertyChange(evt);
@@ -2547,9 +2547,9 @@ public class DlgBilingRalan extends javax.swing.JDialog {
 
             }
         ));
-        tbAkunPiutang.setToolTipText("");
         tbAkunPiutang.setComponentPopupMenu(PopupPiutang);
         tbAkunPiutang.setName("tbAkunPiutang"); // NOI18N
+        tbAkunPiutang.getTableHeader().setReorderingAllowed(false);
         tbAkunPiutang.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 tbAkunPiutangPropertyChange(evt);
@@ -2826,7 +2826,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelGlass8.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -6396,7 +6396,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 });
             }
 
-            psakunpiutang = koneksi.prepareStatement("select * from akun_piutang where nama_bayar like ? order by nama_bayar");
+            psakunpiutang = koneksi.prepareStatement("select * from akun_piutang where status='Aktif' and nama_bayar like ? order by nama_bayar");
             try {
                 psakunpiutang.setString(1, "%" + TCari1.getText() + "%");
                 rsakunpiutang = psakunpiutang.executeQuery();
