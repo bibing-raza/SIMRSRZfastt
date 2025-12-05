@@ -935,14 +935,13 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     }
 
     private void getData() {
-        int row = tbAkun.getSelectedRow();
-        if (row != -1) {
-            nama.setText(tabMode.getValueAt(row, 1).toString());
-            kdrek.setText(tabMode.getValueAt(row, 2).toString());
-            nmrek.setText(tabMode.getValueAt(row, 3).toString());
-            nmpnj.setText(tabMode.getValueAt(row, 4).toString());
-            kdpnj.setText(tabMode.getValueAt(row, 5).toString());
-            cmbStatus.setSelectedItem(tabMode.getValueAt(row, 6).toString());
+        if (tbAkun.getSelectedRow() != -1) {
+            nama.setText(tbAkun.getValueAt(tbAkun.getSelectedRow(), 1).toString());
+            kdrek.setText(tbAkun.getValueAt(tbAkun.getSelectedRow(), 2).toString());
+            nmrek.setText(tbAkun.getValueAt(tbAkun.getSelectedRow(), 3).toString());
+            nmpnj.setText(tbAkun.getValueAt(tbAkun.getSelectedRow(), 4).toString());
+            kdpnj.setText(tbAkun.getValueAt(tbAkun.getSelectedRow(), 5).toString());
+            cmbStatus.setSelectedItem(tbAkun.getValueAt(tbAkun.getSelectedRow(), 6).toString());
         }
     }
 }

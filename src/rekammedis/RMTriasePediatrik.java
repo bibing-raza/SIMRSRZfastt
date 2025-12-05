@@ -662,6 +662,8 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel76 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnNotepad = new widget.Button();
@@ -823,7 +825,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         jLabel11.setBounds(210, 66, 160, 23);
 
         TtglTiba.setEditable(false);
-        TtglTiba.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-03-2025" }));
+        TtglTiba.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025" }));
         TtglTiba.setDisplayFormat("dd-MM-yyyy");
         TtglTiba.setName("TtglTiba"); // NOI18N
         TtglTiba.setOpaque(false);
@@ -2376,7 +2378,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         jLabel72.setBounds(136, 1298, 60, 23);
 
         TtglKeputusan.setEditable(false);
-        TtglKeputusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-03-2025" }));
+        TtglKeputusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025" }));
         TtglKeputusan.setDisplayFormat("dd-MM-yyyy");
         TtglKeputusan.setName("TtglKeputusan"); // NOI18N
         TtglKeputusan.setOpaque(false);
@@ -2444,7 +2446,6 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         TnmPetugas.setBounds(136, 1326, 450, 23);
 
         BtnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPetugas.setMnemonic('2');
         BtnPetugas.setToolTipText("Alt+2");
         BtnPetugas.setName("BtnPetugas"); // NOI18N
         BtnPetugas.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -2526,6 +2527,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         tbTriase.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbTriase.setComponentPopupMenu(jPopupMenu1);
         tbTriase.setName("tbTriase"); // NOI18N
+        tbTriase.getTableHeader().setReorderingAllowed(false);
         tbTriase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTriaseMouseClicked(evt);
@@ -2551,7 +2553,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-03-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2566,7 +2568,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-03-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2591,7 +2593,6 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('3');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+3");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -2633,7 +2634,6 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -2647,7 +2647,6 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -2666,7 +2665,6 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -2680,7 +2678,6 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -2697,9 +2694,20 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnEdit);
 
+        jLabel76.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel76.setText("Cetak Dalam Bentuk :");
+        jLabel76.setName("jLabel76"); // NOI18N
+        jLabel76.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel76);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -2718,7 +2726,6 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -2737,7 +2744,6 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
 
         BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnNotepad.setMnemonic('N');
         BtnNotepad.setText("Notepad");
         BtnNotepad.setToolTipText("Alt+N");
         BtnNotepad.setName("BtnNotepad"); // NOI18N
@@ -2751,7 +2757,6 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -3276,9 +3281,33 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
             param.put("jamKeputusan", cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + " Wita");
             param.put("keputusan", cmbKeputusan.getSelectedItem().toString());
             param.put("nmPetugas", TnmPetugas.getText());
-            
-            Valid.MyReport("rptTriasePediatrikIGD.jasper", "report", "::[ Laporan Data Triase Pediatrik IGD ]::",
-                    "SELECT now() tanggal", param);
+
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (TnmPetugas.getText().equals("") || TnmPetugas.getText().equals("-") || TnmPetugas.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama petugas triase harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Triase Pediatrik", TnmPetugas.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from triase_pediatrik where "
+                                            + "no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from triase_pediatrik where "
+                                            + "no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'")) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Triase Pediatrik", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    Valid.MyReport("rptTriasePediatrikIGDQr.jasper", "report", "::[ Laporan Data Triase Pediatrik IGD ]::",
+                        "SELECT now() tanggal", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                Valid.MyReport("rptTriasePediatrikIGD.jasper", "report", "::[ Laporan Data Triase Pediatrik IGD ]::",
+                        "SELECT now() tanggal", param);
+            }
             
             BtnBatalActionPerformed(null);
             TabRawat.setSelectedIndex(1);
@@ -3712,6 +3741,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
     private widget.ComboBox cmbMnt1;
     private widget.ComboBox cmbMnt2;
     private widget.ComboBox cmbPenampilan;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbRujukan;
     private widget.ComboBox cmbSirkulasi;
     private widget.ComboBox cmbSumLevel3;
@@ -3792,6 +3822,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
     private widget.Label jLabel73;
     private widget.Label jLabel74;
     private widget.Label jLabel75;
+    private widget.Label jLabel76;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPopupMenu jPopupMenu1;
@@ -4094,9 +4125,9 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         BtnHapus.setEnabled(akses.getdata_triase_igd());
         BtnPrint.setEnabled(akses.getdata_triase_igd());
         BtnEdit.setEnabled(akses.getdata_triase_igd());
+        BtnPetugas.setEnabled(akses.getpic_igd());
         
-        if (akses.getjml2() >= 1) {
-            BtnPetugas.setEnabled(false);
+        if (akses.getjml2() >= 1) {            
             nip = akses.getkode();            
             Sequel.cariIsi("select nama from pegawai where nik=?", TnmPetugas, nip);
             if (TnmPetugas.getText().equals("")) {

@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -2015,7 +2016,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel51.setBounds(0, 25, 130, 23);
 
         tanggalPeriksa.setEditable(false);
-        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2025" }));
+        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025" }));
         tanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         tanggalPeriksa.setName("tanggalPeriksa"); // NOI18N
         tanggalPeriksa.setOpaque(false);
@@ -3008,7 +3009,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         panelisi1.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -3476,7 +3477,8 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     param.put("kontakrs", akses.getkontakrs());
                     param.put("emailrs", akses.getemailrs());
                     param.put("logo", Sequel.cariGambar("select logo from setting"));
-                    param.put("tglSurat", "Martapura, " + Sequel.cariIsi("select date_format(now(),'%d')") + " " + Sequel.bulanINDONESIA("select MONTH(now())") + " " + Sequel.cariIsi("select year(now())"));
+                    param.put("tglSurat", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select date(waktu_simpan) from hasil_radiologi where "
+                            + "no_rawat='" + Kd2.getText() + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'")));
                     param.put("tglperiksa", Sequel.cariIsi("select date_format(tgl_periksa,'%d') from hasil_radiologi where "
                             + "no_rawat='" + Kd2.getText() + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") + " "
                             + Sequel.bulanINDONESIA("select month(tgl_periksa) from hasil_radiologi where "
@@ -3539,7 +3541,8 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     param.put("kontakrs", akses.getkontakrs());
                     param.put("emailrs", akses.getemailrs());
                     param.put("logo", Sequel.cariGambar("select logo from setting"));
-                    param.put("tglSurat", "Martapura, " + Sequel.cariIsi("select date_format(now(),'%d')") + " " + Sequel.bulanINDONESIA("select MONTH(now())") + " " + Sequel.cariIsi("select year(now())"));
+                    param.put("tglSurat", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select date(waktu_simpan) from hasil_radiologi where "
+                            + "no_rawat='" + Kd2.getText() + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'")));
                     param.put("tglperiksa", Sequel.cariIsi("select date_format(tgl_periksa,'%d') from hasil_radiologi where "
                             + "no_rawat='" + Kd2.getText() + "' and tgl_periksa='" + tglhasil + "' and jam='" + jamhasil + "' and kd_jenis_prw='" + kdItem + "'") + " "
                             + Sequel.bulanINDONESIA("select month(tgl_periksa) from hasil_radiologi where "
@@ -3599,6 +3602,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                             + "INNER JOIN dokter d1 on d1.kd_dokter=pr.dokter_perujuk INNER JOIN dokter d2 on d2.kd_dokter=pr.kd_dokter "
                             + "LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.tgl_periksa=pr.tgl_periksa and hr.jam=pr.jam and hr.kd_jenis_prw=pr.kd_jenis_prw "
                             + "WHERE hr.no_rawat='" + Kd2.getText() + "' and hr.tgl_periksa='" + tglhasil + "' and hr.jam='" + jamhasil + "' and hr.kd_jenis_prw='" + kdItem + "'", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 }
             }            
         }

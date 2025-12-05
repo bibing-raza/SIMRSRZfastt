@@ -824,15 +824,19 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnDataTriasePediatrik = new javax.swing.JMenu();
         MnInputDataTriasePedia = new javax.swing.JMenuItem();
         MnLihatDataTriasePedia = new javax.swing.JMenuItem();
+        MnLihatDataTriasePediaQr = new javax.swing.JMenuItem();
         MnAssesmenMedikIGD = new javax.swing.JMenu();
         MnInputDataAssesmenMedikIGD = new javax.swing.JMenuItem();
         MnLihatDataAssesmenMedikIGD = new javax.swing.JMenuItem();
+        MnLihatDataAssesmenMedikIGDQr = new javax.swing.JMenuItem();
         MnAssesmenKeperawatanIGD = new javax.swing.JMenu();
         MnInputDataAssesmenKeperawatanIGD = new javax.swing.JMenuItem();
         MnLihatDataAssesmenKeperawatanIGD = new javax.swing.JMenuItem();
+        MnLihatDataAssesmenKeperawatanIGDQr = new javax.swing.JMenuItem();
         MnTransferSerahTerimaIGD = new javax.swing.JMenu();
         MnInputDataTransferSerahTerimaIGD = new javax.swing.JMenuItem();
         MnLihatDataTransferSerahTerimaIGD = new javax.swing.JMenuItem();
+        MnLihatDataTransferSerahTerimaIGDQr = new javax.swing.JMenuItem();
         MnTransferTindakan = new javax.swing.JMenuItem();
         MnPemberianObatIGD = new javax.swing.JMenuItem();
         MnPetugasPemberianObatIGD = new javax.swing.JMenuItem();
@@ -2525,7 +2529,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnInputDataTriasePedia.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnInputDataTriasePedia.setIconTextGap(5);
         MnInputDataTriasePedia.setName("MnInputDataTriasePedia"); // NOI18N
-        MnInputDataTriasePedia.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnInputDataTriasePedia.setPreferredSize(new java.awt.Dimension(170, 26));
         MnInputDataTriasePedia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInputDataTriasePediaActionPerformed(evt);
@@ -2537,18 +2541,35 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnLihatDataTriasePedia.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLihatDataTriasePedia.setForeground(new java.awt.Color(50, 50, 50));
         MnLihatDataTriasePedia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnLihatDataTriasePedia.setText("Lihat Data");
+        MnLihatDataTriasePedia.setText("Lihat Data (TTD Basah)");
         MnLihatDataTriasePedia.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnLihatDataTriasePedia.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnLihatDataTriasePedia.setIconTextGap(5);
         MnLihatDataTriasePedia.setName("MnLihatDataTriasePedia"); // NOI18N
-        MnLihatDataTriasePedia.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnLihatDataTriasePedia.setPreferredSize(new java.awt.Dimension(170, 26));
         MnLihatDataTriasePedia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnLihatDataTriasePediaActionPerformed(evt);
             }
         });
         MnDataTriasePediatrik.add(MnLihatDataTriasePedia);
+
+        MnLihatDataTriasePediaQr.setBackground(new java.awt.Color(255, 255, 254));
+        MnLihatDataTriasePediaQr.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLihatDataTriasePediaQr.setForeground(new java.awt.Color(50, 50, 50));
+        MnLihatDataTriasePediaQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLihatDataTriasePediaQr.setText("Lihat Data (TTE QRCode)");
+        MnLihatDataTriasePediaQr.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLihatDataTriasePediaQr.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLihatDataTriasePediaQr.setIconTextGap(5);
+        MnLihatDataTriasePediaQr.setName("MnLihatDataTriasePediaQr"); // NOI18N
+        MnLihatDataTriasePediaQr.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnLihatDataTriasePediaQr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLihatDataTriasePediaQrActionPerformed(evt);
+            }
+        });
+        MnDataTriasePediatrik.add(MnLihatDataTriasePediaQr);
 
         MnRMGawatDarurat.add(MnDataTriasePediatrik);
 
@@ -2572,7 +2593,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnInputDataAssesmenMedikIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnInputDataAssesmenMedikIGD.setIconTextGap(5);
         MnInputDataAssesmenMedikIGD.setName("MnInputDataAssesmenMedikIGD"); // NOI18N
-        MnInputDataAssesmenMedikIGD.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnInputDataAssesmenMedikIGD.setPreferredSize(new java.awt.Dimension(170, 26));
         MnInputDataAssesmenMedikIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInputDataAssesmenMedikIGDActionPerformed(evt);
@@ -2584,18 +2605,35 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnLihatDataAssesmenMedikIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLihatDataAssesmenMedikIGD.setForeground(new java.awt.Color(50, 50, 50));
         MnLihatDataAssesmenMedikIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnLihatDataAssesmenMedikIGD.setText("Lihat Data");
+        MnLihatDataAssesmenMedikIGD.setText("Lihat Data (TTD Basah)");
         MnLihatDataAssesmenMedikIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnLihatDataAssesmenMedikIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnLihatDataAssesmenMedikIGD.setIconTextGap(5);
         MnLihatDataAssesmenMedikIGD.setName("MnLihatDataAssesmenMedikIGD"); // NOI18N
-        MnLihatDataAssesmenMedikIGD.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnLihatDataAssesmenMedikIGD.setPreferredSize(new java.awt.Dimension(170, 26));
         MnLihatDataAssesmenMedikIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnLihatDataAssesmenMedikIGDActionPerformed(evt);
             }
         });
         MnAssesmenMedikIGD.add(MnLihatDataAssesmenMedikIGD);
+
+        MnLihatDataAssesmenMedikIGDQr.setBackground(new java.awt.Color(255, 255, 254));
+        MnLihatDataAssesmenMedikIGDQr.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLihatDataAssesmenMedikIGDQr.setForeground(new java.awt.Color(50, 50, 50));
+        MnLihatDataAssesmenMedikIGDQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLihatDataAssesmenMedikIGDQr.setText("Lihat Data (TTE QRCode)");
+        MnLihatDataAssesmenMedikIGDQr.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLihatDataAssesmenMedikIGDQr.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLihatDataAssesmenMedikIGDQr.setIconTextGap(5);
+        MnLihatDataAssesmenMedikIGDQr.setName("MnLihatDataAssesmenMedikIGDQr"); // NOI18N
+        MnLihatDataAssesmenMedikIGDQr.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnLihatDataAssesmenMedikIGDQr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLihatDataAssesmenMedikIGDQrActionPerformed(evt);
+            }
+        });
+        MnAssesmenMedikIGD.add(MnLihatDataAssesmenMedikIGDQr);
 
         MnRMGawatDarurat.add(MnAssesmenMedikIGD);
 
@@ -2619,7 +2657,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnInputDataAssesmenKeperawatanIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnInputDataAssesmenKeperawatanIGD.setIconTextGap(5);
         MnInputDataAssesmenKeperawatanIGD.setName("MnInputDataAssesmenKeperawatanIGD"); // NOI18N
-        MnInputDataAssesmenKeperawatanIGD.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnInputDataAssesmenKeperawatanIGD.setPreferredSize(new java.awt.Dimension(170, 26));
         MnInputDataAssesmenKeperawatanIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInputDataAssesmenKeperawatanIGDActionPerformed(evt);
@@ -2631,18 +2669,35 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnLihatDataAssesmenKeperawatanIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLihatDataAssesmenKeperawatanIGD.setForeground(new java.awt.Color(50, 50, 50));
         MnLihatDataAssesmenKeperawatanIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnLihatDataAssesmenKeperawatanIGD.setText("Lihat Data");
+        MnLihatDataAssesmenKeperawatanIGD.setText("Lihat Data (TTD Basah)");
         MnLihatDataAssesmenKeperawatanIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnLihatDataAssesmenKeperawatanIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnLihatDataAssesmenKeperawatanIGD.setIconTextGap(5);
         MnLihatDataAssesmenKeperawatanIGD.setName("MnLihatDataAssesmenKeperawatanIGD"); // NOI18N
-        MnLihatDataAssesmenKeperawatanIGD.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnLihatDataAssesmenKeperawatanIGD.setPreferredSize(new java.awt.Dimension(170, 26));
         MnLihatDataAssesmenKeperawatanIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnLihatDataAssesmenKeperawatanIGDActionPerformed(evt);
             }
         });
         MnAssesmenKeperawatanIGD.add(MnLihatDataAssesmenKeperawatanIGD);
+
+        MnLihatDataAssesmenKeperawatanIGDQr.setBackground(new java.awt.Color(255, 255, 254));
+        MnLihatDataAssesmenKeperawatanIGDQr.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLihatDataAssesmenKeperawatanIGDQr.setForeground(new java.awt.Color(50, 50, 50));
+        MnLihatDataAssesmenKeperawatanIGDQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLihatDataAssesmenKeperawatanIGDQr.setText("Lihat Data (TTE QRCode)");
+        MnLihatDataAssesmenKeperawatanIGDQr.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLihatDataAssesmenKeperawatanIGDQr.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLihatDataAssesmenKeperawatanIGDQr.setIconTextGap(5);
+        MnLihatDataAssesmenKeperawatanIGDQr.setName("MnLihatDataAssesmenKeperawatanIGDQr"); // NOI18N
+        MnLihatDataAssesmenKeperawatanIGDQr.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnLihatDataAssesmenKeperawatanIGDQr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLihatDataAssesmenKeperawatanIGDQrActionPerformed(evt);
+            }
+        });
+        MnAssesmenKeperawatanIGD.add(MnLihatDataAssesmenKeperawatanIGDQr);
 
         MnRMGawatDarurat.add(MnAssesmenKeperawatanIGD);
 
@@ -2666,7 +2721,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnInputDataTransferSerahTerimaIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnInputDataTransferSerahTerimaIGD.setIconTextGap(5);
         MnInputDataTransferSerahTerimaIGD.setName("MnInputDataTransferSerahTerimaIGD"); // NOI18N
-        MnInputDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnInputDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(170, 26));
         MnInputDataTransferSerahTerimaIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInputDataTransferSerahTerimaIGDActionPerformed(evt);
@@ -2678,18 +2733,35 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnLihatDataTransferSerahTerimaIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLihatDataTransferSerahTerimaIGD.setForeground(new java.awt.Color(50, 50, 50));
         MnLihatDataTransferSerahTerimaIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnLihatDataTransferSerahTerimaIGD.setText("Lihat Data");
+        MnLihatDataTransferSerahTerimaIGD.setText("Lihat Data (TTD Basah)");
         MnLihatDataTransferSerahTerimaIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnLihatDataTransferSerahTerimaIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnLihatDataTransferSerahTerimaIGD.setIconTextGap(5);
         MnLihatDataTransferSerahTerimaIGD.setName("MnLihatDataTransferSerahTerimaIGD"); // NOI18N
-        MnLihatDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnLihatDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(170, 26));
         MnLihatDataTransferSerahTerimaIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnLihatDataTransferSerahTerimaIGDActionPerformed(evt);
             }
         });
         MnTransferSerahTerimaIGD.add(MnLihatDataTransferSerahTerimaIGD);
+
+        MnLihatDataTransferSerahTerimaIGDQr.setBackground(new java.awt.Color(255, 255, 254));
+        MnLihatDataTransferSerahTerimaIGDQr.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLihatDataTransferSerahTerimaIGDQr.setForeground(new java.awt.Color(50, 50, 50));
+        MnLihatDataTransferSerahTerimaIGDQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLihatDataTransferSerahTerimaIGDQr.setText("Lihat Data (TTE QRCode)");
+        MnLihatDataTransferSerahTerimaIGDQr.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLihatDataTransferSerahTerimaIGDQr.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLihatDataTransferSerahTerimaIGDQr.setIconTextGap(5);
+        MnLihatDataTransferSerahTerimaIGDQr.setName("MnLihatDataTransferSerahTerimaIGDQr"); // NOI18N
+        MnLihatDataTransferSerahTerimaIGDQr.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnLihatDataTransferSerahTerimaIGDQr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLihatDataTransferSerahTerimaIGDQrActionPerformed(evt);
+            }
+        });
+        MnTransferSerahTerimaIGD.add(MnLihatDataTransferSerahTerimaIGDQr);
 
         MnRMGawatDarurat.add(MnTransferSerahTerimaIGD);
 
@@ -4448,7 +4520,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-12-2025" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -5314,7 +5386,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-12-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -5338,7 +5410,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-12-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -5558,7 +5630,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-12-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5577,7 +5649,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-12-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -8760,7 +8832,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
         } else {
+            tte = "";
             if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                tte = "tidak";
                 cetakAsesMedikIGD();
             } else {
                 JOptionPane.showMessageDialog(null, "Data asesmen medik IGD tidak ditemukan...!!!");
@@ -8821,7 +8895,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
         } else {
+            tte = "";
             if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_igdrz where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                tte = "tidak";
                 cetakAsesKepIGD();
             } else {
                 JOptionPane.showMessageDialog(null, "Data asesmen keperawatan IGD tidak ditemukan...!!!");
@@ -8860,7 +8936,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
         } else {
+            tte = "";
             if (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "' and status='Ralan'") > 0) {
+                tte = "tidak";
                 cetakTransferSerahTerimaIGD();
             } else {
                 JOptionPane.showMessageDialog(null, "Data transfer & serah terima pasien rawat jalan/IGD tidak ditemukan...!!!");
@@ -10162,7 +10240,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
         } else {
+            tte = "";
             if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                tte = "tidak";
                 cetakDataTriasePediatrik();
             } else {
                 JOptionPane.showMessageDialog(null, "Data triase pediatrik IGD tidak ditemukan...!!!");
@@ -10912,6 +10992,78 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnLihatDataTriaseIGDQrActionPerformed
 
+    private void MnLihatDataTriasePediaQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataTriasePediaQrActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            tte = "";
+            if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                tte = "ya";
+                cetakDataTriasePediatrik();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data triase pediatrik IGD tidak ditemukan...!!!");
+                tbKasirRalan.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnLihatDataTriasePediaQrActionPerformed
+
+    private void MnLihatDataAssesmenMedikIGDQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataAssesmenMedikIGDQrActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            tte = "";
+            if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                tte = "ya";
+                cetakAsesMedikIGD();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data asesmen medik IGD tidak ditemukan...!!!");
+                tbKasirRalan.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnLihatDataAssesmenMedikIGDQrActionPerformed
+
+    private void MnLihatDataAssesmenKeperawatanIGDQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataAssesmenKeperawatanIGDQrActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            tte = "";
+            if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_igdrz where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                tte = "ya";
+                cetakAsesKepIGD();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data asesmen keperawatan IGD tidak ditemukan...!!!");
+                tbKasirRalan.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnLihatDataAssesmenKeperawatanIGDQrActionPerformed
+
+    private void MnLihatDataTransferSerahTerimaIGDQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataTransferSerahTerimaIGDQrActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            tte = "";
+            if (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "' and status='Ralan'") > 0) {
+                tte = "ya";
+                cetakTransferSerahTerimaIGD();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data transfer & serah terima pasien rawat jalan/IGD tidak ditemukan...!!!");
+                tbKasirRalan.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnLihatDataTransferSerahTerimaIGDQrActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -11044,16 +11196,20 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnLembarStatusPasien;
     private javax.swing.JMenuItem MnLihatDataAsesmenMedikObstetri;
     private javax.swing.JMenuItem MnLihatDataAssesmenKeperawatanIGD;
+    private javax.swing.JMenuItem MnLihatDataAssesmenKeperawatanIGDQr;
     private javax.swing.JMenuItem MnLihatDataAssesmenMedikIGD;
+    private javax.swing.JMenuItem MnLihatDataAssesmenMedikIGDQr;
     private javax.swing.JMenuItem MnLihatDataCPPT;
     private javax.swing.JMenuItem MnLihatDataCPPTvk;
     private javax.swing.JMenuItem MnLihatDataPeri;
     private javax.swing.JMenuItem MnLihatDataScorePeri;
     private javax.swing.JMenuItem MnLihatDataTransferSerahTerimaIGD;
+    private javax.swing.JMenuItem MnLihatDataTransferSerahTerimaIGDQr;
     private javax.swing.JMenuItem MnLihatDataTransferSerahTerimaPonek;
     private javax.swing.JMenuItem MnLihatDataTriaseIGD;
     private javax.swing.JMenuItem MnLihatDataTriaseIGDQr;
     private javax.swing.JMenuItem MnLihatDataTriasePedia;
+    private javax.swing.JMenuItem MnLihatDataTriasePediaQr;
     private javax.swing.JMenuItem MnLihatDataTriasePonek;
     private javax.swing.JMenuItem MnLihatSEP;
     private javax.swing.JMenuItem MnNoResep;
@@ -12889,7 +13045,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         try {
             psLaprm = koneksi.prepareStatement("SELECT tp.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
                     + "pj.png_jawab, TIME_FORMAT(tp.jam_tiba,'%H:%i Wita') jamTiba, pg.nama nmPetugas, p.tgl_lahir, TIME_FORMAT(tp.jam_kasus,'%H:%i Wita') jamDOA, "
-                    + "TIME_FORMAT(tp.jam_keputusan,'%H:%i Wita') jamKeputusan FROM triase_pediatrik tp "
+                    + "TIME_FORMAT(tp.jam_keputusan,'%H:%i Wita') jamKeputusan, date_format(tp.waktu_simpan,'%d/%m/%Y') tgl, time(tp.waktu_simpan) jam FROM triase_pediatrik tp "
                     + "inner join reg_periksa rp on rp.no_rawat=tp.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "inner join pegawai pg on pg.nik=tp.nip_petugas inner join penjab pj on pj.kd_pj=rp.kd_pj where tp.no_rawat='" + TNoRw.getText() + "'");
             try {
@@ -13280,8 +13436,29 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     param.put("keputusan", rsLaprm.getString("keputusan"));
                     param.put("nmPetugas", rsLaprm.getString("nmPetugas"));
 
-                    Valid.MyReport("rptTriasePediatrikIGD.jasper", "report", "::[ Laporan Data Triase Pediatrik IGD ]::",
-                            "SELECT now() tanggal", param);
+                    if (tte.equals("ya")) {
+                        isi = "";
+                        if (rsLaprm.getString("nmPetugas").equals("") || rsLaprm.getString("nmPetugas").equals("-") || rsLaprm.getString("nmPetugas").equals("--")) {
+                            JOptionPane.showMessageDialog(rootPane, "Nama petugas triase harus diisi dulu,..");
+                        } else {
+                            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                            "Triase Pediatrik", rsLaprm.getString("nmPetugas"),
+                                            rsLaprm.getString("tgl"), rsLaprm.getString("jam")) + "') from kalimat_tte where kode='001'");
+
+                            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Triase Pediatrik", Sequel.cariFolderPrintTte());
+                            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                            Valid.MyReport("rptTriasePediatrikIGDQr.jasper", "report", "::[ Laporan Data Triase Pediatrik IGD ]::",
+                                    "SELECT now() tanggal", param);
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        }
+                    } else if (tte.equals("tidak")) {
+                        Valid.MyReport("rptTriasePediatrikIGD.jasper", "report", "::[ Laporan Data Triase Pediatrik IGD ]::",
+                                "SELECT now() tanggal", param);
+                    }
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -13486,7 +13663,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private void cetakDataTriase() {
         totskorTriase = 0;
         try {
-            psLaprm = koneksi.prepareStatement("select t.*, pg.nama nmpetugas, date_format(t.waktu_simpan,'%d/%m/%Y') tgl, time(waktu_simpan) jam from triase_igd t "
+            psLaprm = koneksi.prepareStatement("select t.*, pg.nama nmpetugas, date_format(t.waktu_simpan,'%d/%m/%Y') tgl, time(t.waktu_simpan) jam from triase_igd t "
                     + "inner join pegawai pg on pg.nik=t.nip_petugas where t.no_rawat='" + TNoRw.getText() + "'");
             try {
                 rsLaprm = psLaprm.executeQuery();
@@ -13602,7 +13779,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                             Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
                             Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
-                            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode Triase IGD", Sequel.cariFolderPrintTte());
+                            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Triase IGD", Sequel.cariFolderPrintTte());
                             param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
                             param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
                             Valid.MyReport("rptTriaseIGDQr.jasper", "report", "::[ Laporan Data Triase IGD ]::",
@@ -13618,6 +13795,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                                     + "if(ti.luka_bakar='ya','V','') luka, if(ti.trauma_listrik='ya','V','') trauma_listrik, if(ti.trauma_zat_kimia='ya','V','') trauma_zat, if(ti.trauma_lain='ya','V','') trauma_lain, "
                                     + "ti.bb, ti.tb from triase_igd ti inner join reg_periksa rp on rp.no_rawat=ti.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                                     + "INNER JOIN pegawai pg on nik=ti.nip_petugas where ti.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                         }
                     } else if (tte.equals("tidak")) {
                         Valid.MyReport("rptTriaseIGD.jasper", "report", "::[ Laporan Data Triase IGD ]::",
@@ -13653,7 +13831,11 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private void cetakAsesMedikIGD() {
         skorAsesIGD = "";
         try {
-            psLaprm = koneksi.prepareStatement("select *, date_format(tgl_keluar_igd,'%H:%i:%s') jamklr from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'");
+            psLaprm = koneksi.prepareStatement("select pa.*, date_format(pa.tgl_keluar_igd,'%H:%i:%s') jamklr, pg1.nama nmPemberi, "
+                    + "pg2.nama nmDokter, pg3.nama nmPerawat, pg4.nama nmDpjp from penilaian_awal_medis_igd pa "
+                    + "inner join pegawai pg1 on pg1.nik=pa.nip_pemberi_edukasi inner join pegawai pg2 on pg2.nik=pa.nip_dokter "
+                    + "inner join pegawai pg3 on pg3.nik=pa.nip_perawat inner join pegawai pg4 on pg4.nik=pa.nip_dpjp "
+                    + "where pa.no_rawat='" + TNoRw.getText() + "'");
             try {
                 rsLaprm = psLaprm.executeQuery();
                 while (rsLaprm.next()) {
@@ -13686,54 +13868,173 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         param.put("jam_keluar", "-");
                     }
 
-                    Valid.MyReport("rptCetakPenilaianAwalMedisIGD.jasper", "report", "::[ Laporan Penilaian Awal Medis IGD hal. 1 ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, "
-                            + "date_format(pa.tanggal,'Tanggal : %d-%m-%Y    Pukul : %H:%i') mulai_penanganan, if(pa.cervival='ya','V','') cer, "
-                            + "if(pa.rjp='ya','V','') rjp, if(pa.defribilasi='ya','V','') def, if(pa.intubasi='ya','V','') intu, if(pa.vtp='ya','V','') vtp, if(pa.dekompresi='ya','V','') dek, "
-                            + "if(pa.balut='ya','V','') bal, if(pa.kateter='ya','V','') kat, if(pa.ngt='ya','V','') ngt, if(pa.infus='ya','V','') infs, if(pa.obat='ya','V','') obt, pa.ket_obat, "
-                            + "if(pa.tidak_ada='ya','V','') tdk, if(pa.gangguan_jalan_nafas='ya','V','') ggnfs, if(pa.paten='ya','V','') pat, if(pa.obstruksi_partial='ya','V','') obsp, if(pa.data_obstruksi_partial='','-',pa.data_obstruksi_partial) data_obsp, "
-                            + "if(pa.obstruksi_total='ya','V','') obst, if(pa.trauma_jalan_nafas='ya','V','') trauma_jln_nfs, pa.trauma, if(pa.resiko_aspirasi='ya','V','') res, pa.aspirasi, "
-                            + "if(pa.benda_asing='ya','V','') ben, pa.ket_benda_asing, pa.kesimpulan_jalan_nafas, pa.pernafasan, pa.data_pernafasan, pa.gerakan_dada, pa.tipe_pernafasan, "
-                            + "pa.kesimpulan_pernafasan, pa.nadi_1, pa.kulit_mukosa, pa.akral_1, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
-                            + "pa.skor_apgar, pa.gcs_e, pa.pupil, pa.diameter_kanan, pa.reflek_cahaya, pa.meningeal_sign, pa.literasi, if(pa.deformitas='ya','V','') defo, if(pa.contusio='ya','V','') con, "
-                            + "if(pa.penetrasi='ya','V','') pen, if(pa.tenderness='ya','V','') ten, if(pa.swelling='ya','V','') swe, if(pa.ekskoriasi='ya','V','') eks, if(pa.abrasi='ya','V','') abr, "
-                            + "if(pa.burn='ya','V','') bur, if(pa.laserasi='ya','V','') las, if(pa.tidak_tampak_jelas='ya','V','') tdk_tmpk, pa.frekuensi_nafas, pa.retraksi, pa.sianosis, pa.air_entry, "
-                            + "pa.merintih, pa.Alergi, if(pa.hipertensi='ya','V','') hip, if(pa.diabetes='ya','V','') dm, if(pa.jantung='ya','V','') jan, pa.riwayat_penyakit_lain, "
-                            + "if(pa.merokok='ya','V','') mer, pa.kebiasaan_lain, pa.anamnesis, pa.pemeriksaan_fisik, pa.konjungtiva, pa.sklera, pa.bibir_lidah, pa.mukosa, pa.deviasi, pa.jvp, "
-                            + "pa.lnn, pa.tiroid, pa.survei_jantung, pa.survei_paru, pa.survei_abdomen, pa.survei_punggung, pa.survei_ekstremitas, pa.laboratorium, pa.x_ray, "
-                            + "pa.ecg, pa.ct_scan, pa.usg, pa.lainnya_penunjang, pa.diag_medis_sementara, pa.icd_10, pa.rencana_instruksi, pa.ket_rencana_instruksi, pa.telah_diberikan_informasi_edukasi, "
-                            + "pa.rencana_asuhan_diharapkan, pg1.nama pemberi_edukasi, pa.penerima_edukasi, pg2.nama nm_dokter, date_format(pa.tgl_keluar_igd,'%d-%m-%Y') tglkeluar, "
-                            + "date_format(pa.tgl_keluar_igd,'%H:%i') jamkeluar, pa.opname_diruang, pa.indikasi_msk, pa.dipulangkan_kontrol_ke, pa.dirujuk_ke, pa.alasan_dirujuk, pa.penyebab, "
-                            + "pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, pa.gcs_v, pa.gcs_m, pa.diameter_kiri, pa.nadi_2, pa.akral_2 "
-                            + "from penilaian_awal_medis_igd pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
-                            + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg1 on pg1.nik=pa.nip_pemberi_edukasi "
-                            + "left join pegawai pg2 on pg2.nik=pa.nip_dokter left join pegawai pg3 on pg3.nik=pa.nip_perawat "
-                            + "left join pegawai pg4 on pg4.nik=pa.nip_dpjp where pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+                    if (tte.equals("ya")) {
+                        String isiDpjp = "", isiPerawat = "", isiPetugas = "", isiDokter = "", tgl = "", jam = "";
+                        tgl = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from penilaian_awal_medis_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'");
+                        jam = Sequel.cariIsi("select time(waktu_simpan) from penilaian_awal_medis_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'");
 
-                    Valid.MyReport("rptCetakPenilaianAwalMedisIGD1.jasper", "report", "::[ Laporan Penilaian Awal Medis IGD hal. 2 ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, "
-                            + "date_format(pa.tanggal,'Tanggal : %d-%m-%Y    Pukul : %H:%i') mulai_penanganan, if(pa.cervival='ya','V','') cer, "
-                            + "if(pa.rjp='ya','V','') rjp, if(pa.defribilasi='ya','V','') def, if(pa.intubasi='ya','V','') intu, if(pa.vtp='ya','V','') vtp, if(pa.dekompresi='ya','V','') dek, "
-                            + "if(pa.balut='ya','V','') bal, if(pa.kateter='ya','V','') kat, if(pa.ngt='ya','V','') ngt, if(pa.infus='ya','V','') infs, if(pa.obat='ya','V','') obt, pa.ket_obat, "
-                            + "if(pa.tidak_ada='ya','V','') tdk, if(pa.gangguan_jalan_nafas='ya','V','') ggnfs, if(pa.paten='ya','V','') pat, if(pa.obstruksi_partial='ya','V','') obsp, if(pa.data_obstruksi_partial='','-',pa.data_obstruksi_partial) data_obsp, "
-                            + "if(pa.obstruksi_total='ya','V','') obst, if(pa.trauma_jalan_nafas='ya','V','') trauma_jln_nfs, pa.trauma, if(pa.resiko_aspirasi='ya','V','') res, pa.aspirasi, "
-                            + "if(pa.benda_asing='ya','V','') ben, pa.ket_benda_asing, pa.kesimpulan_jalan_nafas, pa.pernafasan, pa.data_pernafasan, pa.gerakan_dada, pa.tipe_pernafasan, "
-                            + "pa.kesimpulan_pernafasan, pa.nadi_1, pa.kulit_mukosa, pa.akral_1, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
-                            + "pa.skor_apgar, pa.gcs_e, pa.pupil, pa.diameter_kanan, pa.reflek_cahaya, pa.meningeal_sign, pa.literasi, if(pa.deformitas='ya','V','') defo, if(pa.contusio='ya','V','') con, "
-                            + "if(pa.penetrasi='ya','V','') pen, if(pa.tenderness='ya','V','') ten, if(pa.swelling='ya','V','') swe, if(pa.ekskoriasi='ya','V','') eks, if(pa.abrasi='ya','V','') abr, "
-                            + "if(pa.burn='ya','V','') bur, if(pa.laserasi='ya','V','') las, if(pa.tidak_tampak_jelas='ya','V','') tdk_tmpk, pa.frekuensi_nafas, pa.retraksi, pa.sianosis, pa.air_entry, "
-                            + "pa.merintih, pa.Alergi, if(pa.hipertensi='ya','V','') hip, if(pa.diabetes='ya','V','') dm, if(pa.jantung='ya','V','') jan, pa.riwayat_penyakit_lain, "
-                            + "if(pa.merokok='ya','V','') mer, pa.kebiasaan_lain, pa.anamnesis, pa.pemeriksaan_fisik, pa.konjungtiva, pa.sklera, pa.bibir_lidah, pa.mukosa, pa.deviasi, pa.jvp, "
-                            + "pa.lnn, pa.tiroid, pa.survei_jantung, pa.survei_paru, pa.survei_abdomen, pa.survei_punggung, pa.survei_ekstremitas, pa.laboratorium, pa.x_ray, "
-                            + "pa.ecg, pa.ct_scan, pa.usg, pa.lainnya_penunjang, pa.diag_medis_sementara, pa.icd_10, pa.rencana_instruksi, pa.ket_rencana_instruksi, pa.telah_diberikan_informasi_edukasi, "
-                            + "pa.rencana_asuhan_diharapkan, ifnull(pg1.nama,'-') pemberi_edukasi, pa.penerima_edukasi, ifnull(pg2.nama,'-') nm_dokter, date_format(pa.tgl_keluar_igd,'%d-%m-%Y') tglkeluar, "
-                            + "date_format(pa.tgl_keluar_igd,'%H:%i') jamkeluar, pa.opname_diruang, pa.indikasi_msk, pa.dipulangkan_kontrol_ke, pa.dirujuk_ke, pa.alasan_dirujuk, pa.penyebab, "
-                            + "pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, ifnull(pa.ket_gambar,'-') ket_gambar, pa.gcs_v, pa.gcs_m, pa.diameter_kiri, "
-                            + "SUBSTRING_INDEX( pa.ket_rencana_instruksi, '\n', 5 ) renc1, SUBSTRING_INDEX( pa.ket_rencana_instruksi, SUBSTRING_INDEX( pa.ket_rencana_instruksi, '\n', 5 ),- 1 ) renc2 "
-                            + "from penilaian_awal_medis_igd pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
-                            + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg1 on pg1.nik=pa.nip_pemberi_edukasi "
-                            + "left join pegawai pg2 on pg2.nik=pa.nip_dokter left join pegawai pg3 on pg3.nik=pa.nip_perawat "
-                            + "left join pegawai pg4 on pg4.nik=pa.nip_dpjp where pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+                        if (rsLaprm.getString("nmDpjp").equals("") || rsLaprm.getString("nmDpjp").equals("-") || rsLaprm.getString("nmDpjp").equals("--")) {
+                            JOptionPane.showMessageDialog(rootPane, "Nama DPJP asesmen medik gawat darurat harus diisi dulu,..");
+                        } else if (rsLaprm.getString("nmPemberi").equals("") || rsLaprm.getString("nmPemberi").equals("-") || rsLaprm.getString("nmPemberi").equals("--")) {
+                            JOptionPane.showMessageDialog(rootPane, "Nama pemberi edukasi/informasi asesmen medik gawat darurat harus diisi dulu,..");
+                        } else if (rsLaprm.getString("nmDokter").equals("") || rsLaprm.getString("nmDokter").equals("-") || rsLaprm.getString("nmDokter").equals("--")) {
+                            JOptionPane.showMessageDialog(rootPane, "Nama dokter pemberi edukasi/informasi asesmen medik gawat darurat harus diisi dulu,..");
+                        } else {
+                            isiDpjp = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                            "Assesmen Medik Gawat Darurat", rsLaprm.getString("nmDpjp") + " (DPJP)", tgl, jam) + "') from kalimat_tte where kode='001'");                            
+                            isiPetugas = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                            "Assesmen Medik Gawat Darurat", rsLaprm.getString("nmPemberi") + " (Petugas Pemberi Edukasi)", tgl, jam) + "') from kalimat_tte where kode='001'");
+                            isiDokter = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                            "Assesmen Medik Gawat Darurat", rsLaprm.getString("nmDokter") + " (Dokter Pemberi Edukasi)", tgl, jam) + "') from kalimat_tte where kode='001'");
+
+                            if (rsLaprm.getString("nmPerawat").equals("") || rsLaprm.getString("nmPerawat").equals("-") || rsLaprm.getString("nmPerawat").equals("--")) {
+                                Valid.cetakQrTte("", "", "", "");
+                                param.put("lokasiQrPerawat", "");
+                            } else {
+                                isiPerawat = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                                "Assesmen Medik Gawat Darurat", rsLaprm.getString("nmPerawat") + " (Perawat)", tgl, jam) + "') from kalimat_tte where kode='001'");
+                                Valid.cetakQrTte(isiPerawat, Sequel.cariFolderTte(), "QRTtePerawat.jpg", "select logo from setting");
+                                param.put("lokasiQrPerawat", Sequel.cariFolderTte() + File.separator + "QRTtePerawat.jpg");
+                            }
+
+                            Valid.cetakQrTte(isiDpjp, Sequel.cariFolderTte(), "QRTteDpjp.jpg", "select logo from setting");
+                            param.put("lokasiQrDpjp", Sequel.cariFolderTte() + File.separator + "QRTteDpjp.jpg");                            
+                            Valid.cetakQrTte(isiPetugas, Sequel.cariFolderTte(), "QRTtePetugas.jpg", "select logo from setting");
+                            param.put("lokasiQrPetugas", Sequel.cariFolderTte() + File.separator + "QRTtePetugas.jpg");
+                            Valid.cetakQrTte(isiDokter, Sequel.cariFolderTte(), "QRTteDokter.jpg", "select logo from setting");
+                            param.put("lokasiQrDokter", Sequel.cariFolderTte() + File.separator + "QRTteDokter.jpg");
+                            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                            Valid.MyReport("rptCetakPenilaianAwalMedisIGDQr.jasper", "report", "::[ Laporan Penilaian Awal Medis IGD hal. 1 ]::",
+                                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, "
+                                    + "date_format(pa.tanggal,'Tanggal : %d-%m-%Y    Pukul : %H:%i') mulai_penanganan, if(pa.cervival='ya','V','') cer, "
+                                    + "if(pa.rjp='ya','V','') rjp, if(pa.defribilasi='ya','V','') def, if(pa.intubasi='ya','V','') intu, if(pa.vtp='ya','V','') vtp, if(pa.dekompresi='ya','V','') dek, "
+                                    + "if(pa.balut='ya','V','') bal, if(pa.kateter='ya','V','') kat, if(pa.ngt='ya','V','') ngt, if(pa.infus='ya','V','') infs, if(pa.obat='ya','V','') obt, pa.ket_obat, "
+                                    + "if(pa.tidak_ada='ya','V','') tdk, if(pa.gangguan_jalan_nafas='ya','V','') ggnfs, if(pa.paten='ya','V','') pat, if(pa.obstruksi_partial='ya','V','') obsp, if(pa.data_obstruksi_partial='','-',pa.data_obstruksi_partial) data_obsp, "
+                                    + "if(pa.obstruksi_total='ya','V','') obst, if(pa.trauma_jalan_nafas='ya','V','') trauma_jln_nfs, pa.trauma, if(pa.resiko_aspirasi='ya','V','') res, pa.aspirasi, "
+                                    + "if(pa.benda_asing='ya','V','') ben, pa.ket_benda_asing, pa.kesimpulan_jalan_nafas, pa.pernafasan, pa.data_pernafasan, pa.gerakan_dada, pa.tipe_pernafasan, "
+                                    + "pa.kesimpulan_pernafasan, pa.nadi_1, pa.kulit_mukosa, pa.akral_1, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
+                                    + "pa.skor_apgar, pa.gcs_e, pa.pupil, pa.diameter_kanan, pa.reflek_cahaya, pa.meningeal_sign, pa.literasi, if(pa.deformitas='ya','V','') defo, if(pa.contusio='ya','V','') con, "
+                                    + "if(pa.penetrasi='ya','V','') pen, if(pa.tenderness='ya','V','') ten, if(pa.swelling='ya','V','') swe, if(pa.ekskoriasi='ya','V','') eks, if(pa.abrasi='ya','V','') abr, "
+                                    + "if(pa.burn='ya','V','') bur, if(pa.laserasi='ya','V','') las, if(pa.tidak_tampak_jelas='ya','V','') tdk_tmpk, pa.frekuensi_nafas, pa.retraksi, pa.sianosis, pa.air_entry, "
+                                    + "pa.merintih, pa.Alergi, if(pa.hipertensi='ya','V','') hip, if(pa.diabetes='ya','V','') dm, if(pa.jantung='ya','V','') jan, pa.riwayat_penyakit_lain, "
+                                    + "if(pa.merokok='ya','V','') mer, pa.kebiasaan_lain, pa.anamnesis, pa.pemeriksaan_fisik, pa.konjungtiva, pa.sklera, pa.bibir_lidah, pa.mukosa, pa.deviasi, pa.jvp, "
+                                    + "pa.lnn, pa.tiroid, pa.survei_jantung, pa.survei_paru, pa.survei_abdomen, pa.survei_punggung, pa.survei_ekstremitas, pa.laboratorium, pa.x_ray, "
+                                    + "pa.ecg, pa.ct_scan, pa.usg, pa.lainnya_penunjang, pa.diag_medis_sementara, pa.icd_10, pa.rencana_instruksi, pa.ket_rencana_instruksi, pa.telah_diberikan_informasi_edukasi, "
+                                    + "pa.rencana_asuhan_diharapkan, pg1.nama pemberi_edukasi, pa.penerima_edukasi, pg2.nama nm_dokter, date_format(pa.tgl_keluar_igd,'%d-%m-%Y') tglkeluar, "
+                                    + "date_format(pa.tgl_keluar_igd,'%H:%i') jamkeluar, pa.opname_diruang, pa.indikasi_msk, pa.dipulangkan_kontrol_ke, pa.dirujuk_ke, pa.alasan_dirujuk, pa.penyebab, "
+                                    + "pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, pa.gcs_v, pa.gcs_m, pa.diameter_kiri, pa.nadi_2, pa.akral_2 "
+                                    + "from penilaian_awal_medis_igd pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
+                                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg1 on pg1.nik=pa.nip_pemberi_edukasi "
+                                    + "left join pegawai pg2 on pg2.nik=pa.nip_dokter left join pegawai pg3 on pg3.nik=pa.nip_perawat "
+                                    + "left join pegawai pg4 on pg4.nik=pa.nip_dpjp where pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+
+                            Valid.MyReport("rptCetakPenilaianAwalMedisIGD1Qr.jasper", "report", "::[ Laporan Penilaian Awal Medis IGD hal. 2 ]::",
+                                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, "
+                                    + "date_format(pa.tanggal,'Tanggal : %d-%m-%Y    Pukul : %H:%i') mulai_penanganan, if(pa.cervival='ya','V','') cer, "
+                                    + "if(pa.rjp='ya','V','') rjp, if(pa.defribilasi='ya','V','') def, if(pa.intubasi='ya','V','') intu, if(pa.vtp='ya','V','') vtp, if(pa.dekompresi='ya','V','') dek, "
+                                    + "if(pa.balut='ya','V','') bal, if(pa.kateter='ya','V','') kat, if(pa.ngt='ya','V','') ngt, if(pa.infus='ya','V','') infs, if(pa.obat='ya','V','') obt, pa.ket_obat, "
+                                    + "if(pa.tidak_ada='ya','V','') tdk, if(pa.gangguan_jalan_nafas='ya','V','') ggnfs, if(pa.paten='ya','V','') pat, if(pa.obstruksi_partial='ya','V','') obsp, if(pa.data_obstruksi_partial='','-',pa.data_obstruksi_partial) data_obsp, "
+                                    + "if(pa.obstruksi_total='ya','V','') obst, if(pa.trauma_jalan_nafas='ya','V','') trauma_jln_nfs, pa.trauma, if(pa.resiko_aspirasi='ya','V','') res, pa.aspirasi, "
+                                    + "if(pa.benda_asing='ya','V','') ben, pa.ket_benda_asing, pa.kesimpulan_jalan_nafas, pa.pernafasan, pa.data_pernafasan, pa.gerakan_dada, pa.tipe_pernafasan, "
+                                    + "pa.kesimpulan_pernafasan, pa.nadi_1, pa.kulit_mukosa, pa.akral_1, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
+                                    + "pa.skor_apgar, pa.gcs_e, pa.pupil, pa.diameter_kanan, pa.reflek_cahaya, pa.meningeal_sign, pa.literasi, if(pa.deformitas='ya','V','') defo, if(pa.contusio='ya','V','') con, "
+                                    + "if(pa.penetrasi='ya','V','') pen, if(pa.tenderness='ya','V','') ten, if(pa.swelling='ya','V','') swe, if(pa.ekskoriasi='ya','V','') eks, if(pa.abrasi='ya','V','') abr, "
+                                    + "if(pa.burn='ya','V','') bur, if(pa.laserasi='ya','V','') las, if(pa.tidak_tampak_jelas='ya','V','') tdk_tmpk, pa.frekuensi_nafas, pa.retraksi, pa.sianosis, pa.air_entry, "
+                                    + "pa.merintih, pa.Alergi, if(pa.hipertensi='ya','V','') hip, if(pa.diabetes='ya','V','') dm, if(pa.jantung='ya','V','') jan, pa.riwayat_penyakit_lain, "
+                                    + "if(pa.merokok='ya','V','') mer, pa.kebiasaan_lain, pa.anamnesis, pa.pemeriksaan_fisik, pa.konjungtiva, pa.sklera, pa.bibir_lidah, pa.mukosa, pa.deviasi, pa.jvp, "
+                                    + "pa.lnn, pa.tiroid, pa.survei_jantung, pa.survei_paru, pa.survei_abdomen, pa.survei_punggung, pa.survei_ekstremitas, pa.laboratorium, pa.x_ray, "
+                                    + "pa.ecg, pa.ct_scan, pa.usg, pa.lainnya_penunjang, pa.diag_medis_sementara, pa.icd_10, pa.rencana_instruksi, pa.ket_rencana_instruksi, pa.telah_diberikan_informasi_edukasi, "
+                                    + "pa.rencana_asuhan_diharapkan, ifnull(pg1.nama,'-') pemberi_edukasi, pa.penerima_edukasi, ifnull(pg2.nama,'-') nm_dokter, date_format(pa.tgl_keluar_igd,'%d-%m-%Y') tglkeluar, "
+                                    + "date_format(pa.tgl_keluar_igd,'%H:%i') jamkeluar, pa.opname_diruang, pa.indikasi_msk, pa.dipulangkan_kontrol_ke, pa.dirujuk_ke, pa.alasan_dirujuk, pa.penyebab, "
+                                    + "pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, ifnull(pa.ket_gambar,'-') ket_gambar, pa.gcs_v, pa.gcs_m, pa.diameter_kiri, "
+                                    + "SUBSTRING_INDEX( pa.ket_rencana_instruksi, '\n', 5 ) renc1, SUBSTRING_INDEX( pa.ket_rencana_instruksi, SUBSTRING_INDEX( pa.ket_rencana_instruksi, '\n', 5 ),- 1 ) renc2 "
+                                    + "from penilaian_awal_medis_igd pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
+                                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg1 on pg1.nik=pa.nip_pemberi_edukasi "
+                                    + "left join pegawai pg2 on pg2.nik=pa.nip_dokter left join pegawai pg3 on pg3.nik=pa.nip_perawat "
+                                    + "left join pegawai pg4 on pg4.nik=pa.nip_dpjp where pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+
+                            Valid.MyReport("rptCetakPenilaianAwalMedisIGD2Qr.jasper", "report", "::[ Laporan Penilaian Awal Medis IGD hal. 2 ]::",
+                                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, "
+                                    + "date_format(pa.tanggal,'Tanggal : %d-%m-%Y    Pukul : %H:%i') mulai_penanganan, if(pa.cervival='ya','V','') cer, "
+                                    + "if(pa.rjp='ya','V','') rjp, if(pa.defribilasi='ya','V','') def, if(pa.intubasi='ya','V','') intu, if(pa.vtp='ya','V','') vtp, if(pa.dekompresi='ya','V','') dek, "
+                                    + "if(pa.balut='ya','V','') bal, if(pa.kateter='ya','V','') kat, if(pa.ngt='ya','V','') ngt, if(pa.infus='ya','V','') infs, if(pa.obat='ya','V','') obt, pa.ket_obat, "
+                                    + "if(pa.tidak_ada='ya','V','') tdk, if(pa.gangguan_jalan_nafas='ya','V','') ggnfs, if(pa.paten='ya','V','') pat, if(pa.obstruksi_partial='ya','V','') obsp, if(pa.data_obstruksi_partial='','-',pa.data_obstruksi_partial) data_obsp, "
+                                    + "if(pa.obstruksi_total='ya','V','') obst, if(pa.trauma_jalan_nafas='ya','V','') trauma_jln_nfs, pa.trauma, if(pa.resiko_aspirasi='ya','V','') res, pa.aspirasi, "
+                                    + "if(pa.benda_asing='ya','V','') ben, pa.ket_benda_asing, pa.kesimpulan_jalan_nafas, pa.pernafasan, pa.data_pernafasan, pa.gerakan_dada, pa.tipe_pernafasan, "
+                                    + "pa.kesimpulan_pernafasan, pa.nadi_1, pa.kulit_mukosa, pa.akral_1, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
+                                    + "pa.skor_apgar, pa.gcs_e, pa.pupil, pa.diameter_kanan, pa.reflek_cahaya, pa.meningeal_sign, pa.literasi, if(pa.deformitas='ya','V','') defo, if(pa.contusio='ya','V','') con, "
+                                    + "if(pa.penetrasi='ya','V','') pen, if(pa.tenderness='ya','V','') ten, if(pa.swelling='ya','V','') swe, if(pa.ekskoriasi='ya','V','') eks, if(pa.abrasi='ya','V','') abr, "
+                                    + "if(pa.burn='ya','V','') bur, if(pa.laserasi='ya','V','') las, if(pa.tidak_tampak_jelas='ya','V','') tdk_tmpk, pa.frekuensi_nafas, pa.retraksi, pa.sianosis, pa.air_entry, "
+                                    + "pa.merintih, pa.Alergi, if(pa.hipertensi='ya','V','') hip, if(pa.diabetes='ya','V','') dm, if(pa.jantung='ya','V','') jan, pa.riwayat_penyakit_lain, "
+                                    + "if(pa.merokok='ya','V','') mer, pa.kebiasaan_lain, pa.anamnesis, pa.pemeriksaan_fisik, pa.konjungtiva, pa.sklera, pa.bibir_lidah, pa.mukosa, pa.deviasi, pa.jvp, "
+                                    + "pa.lnn, pa.tiroid, pa.survei_jantung, pa.survei_paru, pa.survei_abdomen, pa.survei_punggung, pa.survei_ekstremitas, pa.laboratorium, pa.x_ray, "
+                                    + "pa.ecg, pa.ct_scan, pa.usg, pa.lainnya_penunjang, pa.diag_medis_sementara, pa.icd_10, pa.rencana_instruksi, pa.ket_rencana_instruksi, pa.telah_diberikan_informasi_edukasi, "
+                                    + "pa.rencana_asuhan_diharapkan, ifnull(pg1.nama,'-') pemberi_edukasi, pa.penerima_edukasi, ifnull(pg2.nama,'-') nm_dokter, date_format(pa.tgl_keluar_igd,'%d-%m-%Y') tglkeluar, "
+                                    + "date_format(pa.tgl_keluar_igd,'%H:%i') jamkeluar, pa.opname_diruang, pa.indikasi_msk, pa.dipulangkan_kontrol_ke, pa.dirujuk_ke, pa.alasan_dirujuk, pa.penyebab, "
+                                    + "pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, ifnull(pa.ket_gambar,'-') ket_gambar, pa.gcs_v, pa.gcs_m, pa.diameter_kiri, "
+                                    + "SUBSTRING_INDEX( pa.ket_rencana_instruksi, '\n', 5 ) renc1, SUBSTRING_INDEX( pa.ket_rencana_instruksi, SUBSTRING_INDEX( pa.ket_rencana_instruksi, '\n', 5 ),- 1 ) renc2 "
+                                    + "from penilaian_awal_medis_igd pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
+                                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg1 on pg1.nik=pa.nip_pemberi_edukasi "
+                                    + "left join pegawai pg2 on pg2.nik=pa.nip_dokter left join pegawai pg3 on pg3.nik=pa.nip_perawat "
+                                    + "left join pegawai pg4 on pg4.nik=pa.nip_dpjp where pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        }
+
+                    } else if (tte.equals("tidak")) {
+                        Valid.MyReport("rptCetakPenilaianAwalMedisIGD.jasper", "report", "::[ Laporan Penilaian Awal Medis IGD hal. 1 ]::",
+                                "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, "
+                                + "date_format(pa.tanggal,'Tanggal : %d-%m-%Y    Pukul : %H:%i') mulai_penanganan, if(pa.cervival='ya','V','') cer, "
+                                + "if(pa.rjp='ya','V','') rjp, if(pa.defribilasi='ya','V','') def, if(pa.intubasi='ya','V','') intu, if(pa.vtp='ya','V','') vtp, if(pa.dekompresi='ya','V','') dek, "
+                                + "if(pa.balut='ya','V','') bal, if(pa.kateter='ya','V','') kat, if(pa.ngt='ya','V','') ngt, if(pa.infus='ya','V','') infs, if(pa.obat='ya','V','') obt, pa.ket_obat, "
+                                + "if(pa.tidak_ada='ya','V','') tdk, if(pa.gangguan_jalan_nafas='ya','V','') ggnfs, if(pa.paten='ya','V','') pat, if(pa.obstruksi_partial='ya','V','') obsp, if(pa.data_obstruksi_partial='','-',pa.data_obstruksi_partial) data_obsp, "
+                                + "if(pa.obstruksi_total='ya','V','') obst, if(pa.trauma_jalan_nafas='ya','V','') trauma_jln_nfs, pa.trauma, if(pa.resiko_aspirasi='ya','V','') res, pa.aspirasi, "
+                                + "if(pa.benda_asing='ya','V','') ben, pa.ket_benda_asing, pa.kesimpulan_jalan_nafas, pa.pernafasan, pa.data_pernafasan, pa.gerakan_dada, pa.tipe_pernafasan, "
+                                + "pa.kesimpulan_pernafasan, pa.nadi_1, pa.kulit_mukosa, pa.akral_1, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
+                                + "pa.skor_apgar, pa.gcs_e, pa.pupil, pa.diameter_kanan, pa.reflek_cahaya, pa.meningeal_sign, pa.literasi, if(pa.deformitas='ya','V','') defo, if(pa.contusio='ya','V','') con, "
+                                + "if(pa.penetrasi='ya','V','') pen, if(pa.tenderness='ya','V','') ten, if(pa.swelling='ya','V','') swe, if(pa.ekskoriasi='ya','V','') eks, if(pa.abrasi='ya','V','') abr, "
+                                + "if(pa.burn='ya','V','') bur, if(pa.laserasi='ya','V','') las, if(pa.tidak_tampak_jelas='ya','V','') tdk_tmpk, pa.frekuensi_nafas, pa.retraksi, pa.sianosis, pa.air_entry, "
+                                + "pa.merintih, pa.Alergi, if(pa.hipertensi='ya','V','') hip, if(pa.diabetes='ya','V','') dm, if(pa.jantung='ya','V','') jan, pa.riwayat_penyakit_lain, "
+                                + "if(pa.merokok='ya','V','') mer, pa.kebiasaan_lain, pa.anamnesis, pa.pemeriksaan_fisik, pa.konjungtiva, pa.sklera, pa.bibir_lidah, pa.mukosa, pa.deviasi, pa.jvp, "
+                                + "pa.lnn, pa.tiroid, pa.survei_jantung, pa.survei_paru, pa.survei_abdomen, pa.survei_punggung, pa.survei_ekstremitas, pa.laboratorium, pa.x_ray, "
+                                + "pa.ecg, pa.ct_scan, pa.usg, pa.lainnya_penunjang, pa.diag_medis_sementara, pa.icd_10, pa.rencana_instruksi, pa.ket_rencana_instruksi, pa.telah_diberikan_informasi_edukasi, "
+                                + "pa.rencana_asuhan_diharapkan, pg1.nama pemberi_edukasi, pa.penerima_edukasi, pg2.nama nm_dokter, date_format(pa.tgl_keluar_igd,'%d-%m-%Y') tglkeluar, "
+                                + "date_format(pa.tgl_keluar_igd,'%H:%i') jamkeluar, pa.opname_diruang, pa.indikasi_msk, pa.dipulangkan_kontrol_ke, pa.dirujuk_ke, pa.alasan_dirujuk, pa.penyebab, "
+                                + "pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, pa.gcs_v, pa.gcs_m, pa.diameter_kiri, pa.nadi_2, pa.akral_2 "
+                                + "from penilaian_awal_medis_igd pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
+                                + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg1 on pg1.nik=pa.nip_pemberi_edukasi "
+                                + "left join pegawai pg2 on pg2.nik=pa.nip_dokter left join pegawai pg3 on pg3.nik=pa.nip_perawat "
+                                + "left join pegawai pg4 on pg4.nik=pa.nip_dpjp where pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+
+                        Valid.MyReport("rptCetakPenilaianAwalMedisIGD1.jasper", "report", "::[ Laporan Penilaian Awal Medis IGD hal. 2 ]::",
+                                "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, "
+                                + "date_format(pa.tanggal,'Tanggal : %d-%m-%Y    Pukul : %H:%i') mulai_penanganan, if(pa.cervival='ya','V','') cer, "
+                                + "if(pa.rjp='ya','V','') rjp, if(pa.defribilasi='ya','V','') def, if(pa.intubasi='ya','V','') intu, if(pa.vtp='ya','V','') vtp, if(pa.dekompresi='ya','V','') dek, "
+                                + "if(pa.balut='ya','V','') bal, if(pa.kateter='ya','V','') kat, if(pa.ngt='ya','V','') ngt, if(pa.infus='ya','V','') infs, if(pa.obat='ya','V','') obt, pa.ket_obat, "
+                                + "if(pa.tidak_ada='ya','V','') tdk, if(pa.gangguan_jalan_nafas='ya','V','') ggnfs, if(pa.paten='ya','V','') pat, if(pa.obstruksi_partial='ya','V','') obsp, if(pa.data_obstruksi_partial='','-',pa.data_obstruksi_partial) data_obsp, "
+                                + "if(pa.obstruksi_total='ya','V','') obst, if(pa.trauma_jalan_nafas='ya','V','') trauma_jln_nfs, pa.trauma, if(pa.resiko_aspirasi='ya','V','') res, pa.aspirasi, "
+                                + "if(pa.benda_asing='ya','V','') ben, pa.ket_benda_asing, pa.kesimpulan_jalan_nafas, pa.pernafasan, pa.data_pernafasan, pa.gerakan_dada, pa.tipe_pernafasan, "
+                                + "pa.kesimpulan_pernafasan, pa.nadi_1, pa.kulit_mukosa, pa.akral_1, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
+                                + "pa.skor_apgar, pa.gcs_e, pa.pupil, pa.diameter_kanan, pa.reflek_cahaya, pa.meningeal_sign, pa.literasi, if(pa.deformitas='ya','V','') defo, if(pa.contusio='ya','V','') con, "
+                                + "if(pa.penetrasi='ya','V','') pen, if(pa.tenderness='ya','V','') ten, if(pa.swelling='ya','V','') swe, if(pa.ekskoriasi='ya','V','') eks, if(pa.abrasi='ya','V','') abr, "
+                                + "if(pa.burn='ya','V','') bur, if(pa.laserasi='ya','V','') las, if(pa.tidak_tampak_jelas='ya','V','') tdk_tmpk, pa.frekuensi_nafas, pa.retraksi, pa.sianosis, pa.air_entry, "
+                                + "pa.merintih, pa.Alergi, if(pa.hipertensi='ya','V','') hip, if(pa.diabetes='ya','V','') dm, if(pa.jantung='ya','V','') jan, pa.riwayat_penyakit_lain, "
+                                + "if(pa.merokok='ya','V','') mer, pa.kebiasaan_lain, pa.anamnesis, pa.pemeriksaan_fisik, pa.konjungtiva, pa.sklera, pa.bibir_lidah, pa.mukosa, pa.deviasi, pa.jvp, "
+                                + "pa.lnn, pa.tiroid, pa.survei_jantung, pa.survei_paru, pa.survei_abdomen, pa.survei_punggung, pa.survei_ekstremitas, pa.laboratorium, pa.x_ray, "
+                                + "pa.ecg, pa.ct_scan, pa.usg, pa.lainnya_penunjang, pa.diag_medis_sementara, pa.icd_10, pa.rencana_instruksi, pa.ket_rencana_instruksi, pa.telah_diberikan_informasi_edukasi, "
+                                + "pa.rencana_asuhan_diharapkan, ifnull(pg1.nama,'-') pemberi_edukasi, pa.penerima_edukasi, ifnull(pg2.nama,'-') nm_dokter, date_format(pa.tgl_keluar_igd,'%d-%m-%Y') tglkeluar, "
+                                + "date_format(pa.tgl_keluar_igd,'%H:%i') jamkeluar, pa.opname_diruang, pa.indikasi_msk, pa.dipulangkan_kontrol_ke, pa.dirujuk_ke, pa.alasan_dirujuk, pa.penyebab, "
+                                + "pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, ifnull(pa.ket_gambar,'-') ket_gambar, pa.gcs_v, pa.gcs_m, pa.diameter_kiri, "
+                                + "SUBSTRING_INDEX( pa.ket_rencana_instruksi, '\n', 5 ) renc1, SUBSTRING_INDEX( pa.ket_rencana_instruksi, SUBSTRING_INDEX( pa.ket_rencana_instruksi, '\n', 5 ),- 1 ) renc2 "
+                                + "from penilaian_awal_medis_igd pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
+                                + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg1 on pg1.nik=pa.nip_pemberi_edukasi "
+                                + "left join pegawai pg2 on pg2.nik=pa.nip_dokter left join pegawai pg3 on pg3.nik=pa.nip_perawat "
+                                + "left join pegawai pg4 on pg4.nik=pa.nip_dpjp where pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+                    }
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -13752,7 +14053,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
     private void cetakAsesKepIGD() {
         try {
-            psLaprm = koneksi.prepareStatement("select * from penilaian_awal_keperawatan_igdrz where no_rawat='" + TNoRw.getText() + "'");
+            psLaprm = koneksi.prepareStatement("select pa.*, date_format(pa.waktu_simpan,'%d/%m/%Y') tgl, time(pa.waktu_simpan) jam, "
+                    + "pg1.nama nmDpjp, pg2.nama nmPerawat from penilaian_awal_keperawatan_igdrz pa "
+                    + "inner join pegawai pg1 on pg1.nik=pa.nip_dpjp inner join pegawai pg2 on pg2.nik=pa.nip_perawat where pa.no_rawat='" + TNoRw.getText() + "'");
             try {
                 rsLaprm = psLaprm.executeQuery();
                 while (rsLaprm.next()) {
@@ -14036,33 +14339,86 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         param.put("TotSkorResikoJatuh", "Total Skor : (" + TotSkorRJ + ")");
                         param.put("KesResikoJatuh", "Kesimpulan Skor Resiko Jatuh :\n" + kesimpulanResikoJatuh);
                     }
+                   
+                    if (tte.equals("ya")) {
+                        String isiDpjp = "", isiPerawat = "";
+                        if (rsLaprm.getString("nmDpjp").equals("") || rsLaprm.getString("nmDpjp").equals("-") || rsLaprm.getString("nmDpjp").equals("--")) {
+                            JOptionPane.showMessageDialog(rootPane, "Nama DPJP asesmen keperawatan gawat darurat harus diisi dulu,..");
+                        } else if (rsLaprm.getString("nmPerawat").equals("") || rsLaprm.getString("nmPerawat").equals("-") || rsLaprm.getString("nmPerawat").equals("--")) {
+                            JOptionPane.showMessageDialog(rootPane, "Nama perawat asesmen keperawatan gawat darurat harus diisi dulu,..");
+                        } else {
+                            isiDpjp = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                            "Assesmen Keperawatan Gawat Darurat", rsLaprm.getString("nmDpjp") + " (DPJP)",
+                                            rsLaprm.getString("tgl"), rsLaprm.getString("jam")) + "') from kalimat_tte where kode='001'");
+                            isiPerawat = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                            "Assesmen Keperawatan Gawat Darurat", rsLaprm.getString("nmPerawat") + " (Perawat)",
+                                            rsLaprm.getString("tgl"), rsLaprm.getString("jam")) + "') from kalimat_tte where kode='001'");
 
-                    Valid.MyReport("rptCetakPenilaianAwalKeperawatanIGD1.jasper", "report", "::[ Laporan Penilaian Awal Keperawatan IGD hal. 2 ]::",
-                            "SELECT if(pa.nyeri='Ya',concat(pa.nyeri,', Lokasi : ',pa.ya_nyeri_lokasi),pa.nyeri) nyeri, pa.jenis_nyeri, "
-                            + "if(pa.provocation='Lainnya',concat(pa.provocation,', ',pa.provocation_lain),pa.provocation) provokes, if(pa.quality='Lainnya',concat(pa.quality,', ',pa.quality_lain),pa.quality) quality, "
-                            + "pa.radiation radiasi, pa.severity severity_nyeri, concat(pa.time,', Lama : ',pa.time_lama) time_nyeri, pa.skala_nyeri, pa.diagnosa_keperawatan, pa.tindakan_keperawatan, pa.evaluasi_keperawatan, "
-                            + "if(pa.identifikasi1='ya','V','') iden1, if(pa.identifikasi2='ya','V','') iden2, if(pa.identifikasi3='ya','V','') iden3, if(pa.identifikasi4='ya','V','') iden4, if(pa.identifikasi5='ya','V','') iden5, "
-                            + "if(pa.identifikasi6='ya','V','') iden6, if(pa.identifikasi7='ya','V','') iden7, if(pa.identifikasi8='ya','V','') iden8, if(pa.identifikasi9='ya','V','') iden9, if(pa.identifikasi10='ya','V','') iden10, "
-                            + "if(pa.manajer_pelayanan='ya','V','') mpp, if(pa.discharge_planing='ya','V','') dp, concat('Tanggal, ',date_format(pa.tgl_verifikasi,'%d-%m-%Y'),'   Jam ',TIME_FORMAT(pa.tgl_verifikasi,'%H:%i:%S')) tglverif, "
-                            + "pg1.nama dr_dpjp, pg2.nama perawat from penilaian_awal_keperawatan_igdrz pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "inner join pegawai pg1 on pg1.nik=pa.nip_dpjp inner join pegawai pg2 on pg2.nik=pa.nip_perawat where "
-                            + "pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+                            Valid.cetakQrTte(isiDpjp, Sequel.cariFolderTte(), "QRTteDpjp.jpg", "select logo from setting");
+                            param.put("lokasiQrDpjp", Sequel.cariFolderTte() + File.separator + "QRTteDpjp.jpg");
+                            Valid.cetakQrTte(isiPerawat, Sequel.cariFolderTte(), "QRTtePerawat.jpg", "select logo from setting");
+                            param.put("lokasiQrPerawat", Sequel.cariFolderTte() + File.separator + "QRTtePerawat.jpg");
+                            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
 
-                    Valid.MyReport("rptCetakPenilaianAwalKeperawatanIGD.jasper", "report", "::[ Laporan Penilaian Awal Keperawatan IGD hal. 1 ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, concat('Tanggal : ', date_format(pa.tanggal,'%d-%m-%Y'),', Pukul : ',time_format(pa.tanggal,'%H:%i-%S')) tgl, "
-                            + "pa.keluhan_utama, pa.td tensi, pa.nadi, pa.nafas, pa.suhu, pa.bb, pa.tb, pa.asesmen_psikologis psikologis, if(pa.masalah_perilaku='Ada',concat(pa.masalah_perilaku,', Sebutkan : ',pa.sebutkan_perilaku),pa.masalah_perilaku) perilaku, "
-                            + "p.stts_nikah, pa.hubungan_pasien hubungan, if(pa.tempat_tinggal='Lainnya',concat(pa.tempat_tinggal,', ',pa.lainya_tempt_tgl),pa.tempat_tinggal) tmpttgl, p.pekerjaan, "
-                            + "pa.alat_bantu, if(pa.cacat_tubuh='Ada',concat(pa.cacat_tubuh,', ',pa.ada_cacat_tubuh),pa.cacat_tubuh) cacat, "
-                            + "pa.riwayat_alergi, if(pa.alergi_obat='ya','V','') aler_obat, if(pa.alergi_obat='ya',pa.reaksi_alergi_obat,'') reak_obat, if(pa.alergi_makanan='ya','V','') aler_mak, "
-                            + "if(pa.alergi_makanan='ya',pa.reaksi_alergi_makanan,'') reak_mak, if(pa.alergi_lainnya='ya','V','') aler_lain, if(pa.alergi_lainnya='ya',pa.reaksi_alergi_lainnya,'') reak_lain, "
-                            + "if(pa.pin_kancing='ya','V','') pin, pa.alergi_diberitahukan, if(pa.nyeri='Ya',concat(pa.nyeri,', Lokasi : ',pa.ya_nyeri_lokasi),pa.nyeri) nyeri, pa.jenis_nyeri, "
-                            + "if(pa.provocation='Lainnya',concat(pa.provocation,', ',pa.provocation_lain),pa.provocation) provokes, if(pa.quality='Lainnya',concat(pa.quality,', ',pa.quality_lain),pa.quality) quality, "
-                            + "pa.radiation radiasi, pa.severity severity_nyeri, concat(pa.time,', Lama : ',pa.time_lama) time_nyeri, pa.diagnosa_keperawatan, pa.tindakan_keperawatan, pa.evaluasi_keperawatan, if(pa.identifikasi1='ya','V','') iden1, "
-                            + "if(pa.identifikasi2='ya','V','') iden2, if(pa.identifikasi3='ya','V','') iden3, if(pa.identifikasi4='ya','V','') iden4, if(pa.identifikasi5='ya','V','') iden5, if(pa.identifikasi6='ya','V','') iden6, "
-                            + "if(pa.identifikasi7='ya','V','') iden7, if(pa.identifikasi8='ya','V','') iden8, if(pa.identifikasi9='ya','V','') iden9, if(pa.identifikasi10='ya','V','') iden10, "
-                            + "if(pa.manajer_pelayanan='ya','V','') mpp, if(pa.discharge_planing='ya','V','') dp from penilaian_awal_keperawatan_igdrz pa "
-                            + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                            + "pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+                            Valid.MyReport("rptCetakPenilaianAwalKeperawatanIGD1Qr.jasper", "report", "::[ Laporan Penilaian Awal Keperawatan IGD hal. 2 ]::",
+                                    "SELECT if(pa.nyeri='Ya',concat(pa.nyeri,', Lokasi : ',pa.ya_nyeri_lokasi),pa.nyeri) nyeri, pa.jenis_nyeri, "
+                                    + "if(pa.provocation='Lainnya',concat(pa.provocation,', ',pa.provocation_lain),pa.provocation) provokes, if(pa.quality='Lainnya',concat(pa.quality,', ',pa.quality_lain),pa.quality) quality, "
+                                    + "pa.radiation radiasi, pa.severity severity_nyeri, concat(pa.time,', Lama : ',pa.time_lama) time_nyeri, pa.skala_nyeri, pa.diagnosa_keperawatan, pa.tindakan_keperawatan, pa.evaluasi_keperawatan, "
+                                    + "if(pa.identifikasi1='ya','V','') iden1, if(pa.identifikasi2='ya','V','') iden2, if(pa.identifikasi3='ya','V','') iden3, if(pa.identifikasi4='ya','V','') iden4, if(pa.identifikasi5='ya','V','') iden5, "
+                                    + "if(pa.identifikasi6='ya','V','') iden6, if(pa.identifikasi7='ya','V','') iden7, if(pa.identifikasi8='ya','V','') iden8, if(pa.identifikasi9='ya','V','') iden9, if(pa.identifikasi10='ya','V','') iden10, "
+                                    + "if(pa.manajer_pelayanan='ya','V','') mpp, if(pa.discharge_planing='ya','V','') dp, concat('Tanggal, ',date_format(pa.tgl_verifikasi,'%d-%m-%Y'),'   Jam ',TIME_FORMAT(pa.tgl_verifikasi,'%H:%i:%S')) tglverif, "
+                                    + "pg1.nama dr_dpjp, pg2.nama perawat from penilaian_awal_keperawatan_igdrz pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                                    + "inner join pegawai pg1 on pg1.nik=pa.nip_dpjp inner join pegawai pg2 on pg2.nik=pa.nip_perawat where "
+                                    + "pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+
+                            Valid.MyReport("rptCetakPenilaianAwalKeperawatanIGDQr.jasper", "report", "::[ Laporan Penilaian Awal Keperawatan IGD hal. 1 ]::",
+                                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, concat('Tanggal : ', date_format(pa.tanggal,'%d-%m-%Y'),', Pukul : ',time_format(pa.tanggal,'%H:%i-%S')) tgl, "
+                                    + "pa.keluhan_utama, pa.td tensi, pa.nadi, pa.nafas, pa.suhu, pa.bb, pa.tb, pa.asesmen_psikologis psikologis, if(pa.masalah_perilaku='Ada',concat(pa.masalah_perilaku,', Sebutkan : ',pa.sebutkan_perilaku),pa.masalah_perilaku) perilaku, "
+                                    + "p.stts_nikah, pa.hubungan_pasien hubungan, if(pa.tempat_tinggal='Lainnya',concat(pa.tempat_tinggal,', ',pa.lainya_tempt_tgl),pa.tempat_tinggal) tmpttgl, p.pekerjaan, "
+                                    + "pa.alat_bantu, if(pa.cacat_tubuh='Ada',concat(pa.cacat_tubuh,', ',pa.ada_cacat_tubuh),pa.cacat_tubuh) cacat, "
+                                    + "pa.riwayat_alergi, if(pa.alergi_obat='ya','V','') aler_obat, if(pa.alergi_obat='ya',pa.reaksi_alergi_obat,'') reak_obat, if(pa.alergi_makanan='ya','V','') aler_mak, "
+                                    + "if(pa.alergi_makanan='ya',pa.reaksi_alergi_makanan,'') reak_mak, if(pa.alergi_lainnya='ya','V','') aler_lain, if(pa.alergi_lainnya='ya',pa.reaksi_alergi_lainnya,'') reak_lain, "
+                                    + "if(pa.pin_kancing='ya','V','') pin, pa.alergi_diberitahukan, if(pa.nyeri='Ya',concat(pa.nyeri,', Lokasi : ',pa.ya_nyeri_lokasi),pa.nyeri) nyeri, pa.jenis_nyeri, "
+                                    + "if(pa.provocation='Lainnya',concat(pa.provocation,', ',pa.provocation_lain),pa.provocation) provokes, if(pa.quality='Lainnya',concat(pa.quality,', ',pa.quality_lain),pa.quality) quality, "
+                                    + "pa.radiation radiasi, pa.severity severity_nyeri, concat(pa.time,', Lama : ',pa.time_lama) time_nyeri, pa.diagnosa_keperawatan, pa.tindakan_keperawatan, pa.evaluasi_keperawatan, if(pa.identifikasi1='ya','V','') iden1, "
+                                    + "if(pa.identifikasi2='ya','V','') iden2, if(pa.identifikasi3='ya','V','') iden3, if(pa.identifikasi4='ya','V','') iden4, if(pa.identifikasi5='ya','V','') iden5, if(pa.identifikasi6='ya','V','') iden6, "
+                                    + "if(pa.identifikasi7='ya','V','') iden7, if(pa.identifikasi8='ya','V','') iden8, if(pa.identifikasi9='ya','V','') iden9, if(pa.identifikasi10='ya','V','') iden10, "
+                                    + "if(pa.manajer_pelayanan='ya','V','') mpp, if(pa.discharge_planing='ya','V','') dp from penilaian_awal_keperawatan_igdrz pa "
+                                    + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+                                    + "pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        }
+                        
+                    } else if (tte.equals("tidak")) {
+                        Valid.MyReport("rptCetakPenilaianAwalKeperawatanIGD1.jasper", "report", "::[ Laporan Penilaian Awal Keperawatan IGD hal. 2 ]::",
+                                "SELECT if(pa.nyeri='Ya',concat(pa.nyeri,', Lokasi : ',pa.ya_nyeri_lokasi),pa.nyeri) nyeri, pa.jenis_nyeri, "
+                                + "if(pa.provocation='Lainnya',concat(pa.provocation,', ',pa.provocation_lain),pa.provocation) provokes, if(pa.quality='Lainnya',concat(pa.quality,', ',pa.quality_lain),pa.quality) quality, "
+                                + "pa.radiation radiasi, pa.severity severity_nyeri, concat(pa.time,', Lama : ',pa.time_lama) time_nyeri, pa.skala_nyeri, pa.diagnosa_keperawatan, pa.tindakan_keperawatan, pa.evaluasi_keperawatan, "
+                                + "if(pa.identifikasi1='ya','V','') iden1, if(pa.identifikasi2='ya','V','') iden2, if(pa.identifikasi3='ya','V','') iden3, if(pa.identifikasi4='ya','V','') iden4, if(pa.identifikasi5='ya','V','') iden5, "
+                                + "if(pa.identifikasi6='ya','V','') iden6, if(pa.identifikasi7='ya','V','') iden7, if(pa.identifikasi8='ya','V','') iden8, if(pa.identifikasi9='ya','V','') iden9, if(pa.identifikasi10='ya','V','') iden10, "
+                                + "if(pa.manajer_pelayanan='ya','V','') mpp, if(pa.discharge_planing='ya','V','') dp, concat('Tanggal, ',date_format(pa.tgl_verifikasi,'%d-%m-%Y'),'   Jam ',TIME_FORMAT(pa.tgl_verifikasi,'%H:%i:%S')) tglverif, "
+                                + "pg1.nama dr_dpjp, pg2.nama perawat from penilaian_awal_keperawatan_igdrz pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                                + "inner join pegawai pg1 on pg1.nik=pa.nip_dpjp inner join pegawai pg2 on pg2.nik=pa.nip_perawat where "
+                                + "pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+
+                        Valid.MyReport("rptCetakPenilaianAwalKeperawatanIGD.jasper", "report", "::[ Laporan Penilaian Awal Keperawatan IGD hal. 1 ]::",
+                                "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, concat('Tanggal : ', date_format(pa.tanggal,'%d-%m-%Y'),', Pukul : ',time_format(pa.tanggal,'%H:%i-%S')) tgl, "
+                                + "pa.keluhan_utama, pa.td tensi, pa.nadi, pa.nafas, pa.suhu, pa.bb, pa.tb, pa.asesmen_psikologis psikologis, if(pa.masalah_perilaku='Ada',concat(pa.masalah_perilaku,', Sebutkan : ',pa.sebutkan_perilaku),pa.masalah_perilaku) perilaku, "
+                                + "p.stts_nikah, pa.hubungan_pasien hubungan, if(pa.tempat_tinggal='Lainnya',concat(pa.tempat_tinggal,', ',pa.lainya_tempt_tgl),pa.tempat_tinggal) tmpttgl, p.pekerjaan, "
+                                + "pa.alat_bantu, if(pa.cacat_tubuh='Ada',concat(pa.cacat_tubuh,', ',pa.ada_cacat_tubuh),pa.cacat_tubuh) cacat, "
+                                + "pa.riwayat_alergi, if(pa.alergi_obat='ya','V','') aler_obat, if(pa.alergi_obat='ya',pa.reaksi_alergi_obat,'') reak_obat, if(pa.alergi_makanan='ya','V','') aler_mak, "
+                                + "if(pa.alergi_makanan='ya',pa.reaksi_alergi_makanan,'') reak_mak, if(pa.alergi_lainnya='ya','V','') aler_lain, if(pa.alergi_lainnya='ya',pa.reaksi_alergi_lainnya,'') reak_lain, "
+                                + "if(pa.pin_kancing='ya','V','') pin, pa.alergi_diberitahukan, if(pa.nyeri='Ya',concat(pa.nyeri,', Lokasi : ',pa.ya_nyeri_lokasi),pa.nyeri) nyeri, pa.jenis_nyeri, "
+                                + "if(pa.provocation='Lainnya',concat(pa.provocation,', ',pa.provocation_lain),pa.provocation) provokes, if(pa.quality='Lainnya',concat(pa.quality,', ',pa.quality_lain),pa.quality) quality, "
+                                + "pa.radiation radiasi, pa.severity severity_nyeri, concat(pa.time,', Lama : ',pa.time_lama) time_nyeri, pa.diagnosa_keperawatan, pa.tindakan_keperawatan, pa.evaluasi_keperawatan, if(pa.identifikasi1='ya','V','') iden1, "
+                                + "if(pa.identifikasi2='ya','V','') iden2, if(pa.identifikasi3='ya','V','') iden3, if(pa.identifikasi4='ya','V','') iden4, if(pa.identifikasi5='ya','V','') iden5, if(pa.identifikasi6='ya','V','') iden6, "
+                                + "if(pa.identifikasi7='ya','V','') iden7, if(pa.identifikasi8='ya','V','') iden8, if(pa.identifikasi9='ya','V','') iden9, if(pa.identifikasi10='ya','V','') iden10, "
+                                + "if(pa.manajer_pelayanan='ya','V','') mpp, if(pa.discharge_planing='ya','V','') dp from penilaian_awal_keperawatan_igdrz pa "
+                                + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+                                + "pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+                    }
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -14081,10 +14437,13 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
     private void cetakTransferSerahTerimaIGD() {
         try {
-            psLaprm = koneksi.prepareStatement("select *, date_format(tgl_masuk,'%d-%m-%Y') tglmsk, date_format(tgl_jam_pindah,'%d-%m-%Y / %H:%i') jampindah, "
-                    + "date_format(tgl_infus,'%d-%m-%Y') tglinfus, date_format(tgl_kateter,'%d-%m-%Y') tglkateter, date_format(tgl_ngt,'%d-%m-%Y') tglngt, "
-                    + "date_format(tgl_oksigen,'%d-%m-%Y') tgloksigen, date_format(tgl_drain,'%d-%m-%Y') tgldrain, date_format(tgl_alat_lain,'%d-%m-%Y') tglalat "
-                    + "from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "' and status='Ralan' order by waktu_simpan desc limit 1");
+            psLaprm = koneksi.prepareStatement("select ts.*, date_format(ts.tgl_masuk,'%d-%m-%Y') tglmsk, date_format(ts.tgl_jam_pindah,'%d-%m-%Y / %H:%i') jampindah, "
+                    + "date_format(ts.tgl_infus,'%d-%m-%Y') tglinfus, date_format(ts.tgl_kateter,'%d-%m-%Y') tglkateter, date_format(ts.tgl_ngt,'%d-%m-%Y') tglngt, "
+                    + "date_format(ts.tgl_oksigen,'%d-%m-%Y') tgloksigen, date_format(ts.tgl_drain,'%d-%m-%Y') tgldrain, date_format(ts.tgl_alat_lain,'%d-%m-%Y') tglalat, "
+                    + "date_format(ts.waktu_simpan,'%d/%m/%Y') tgl, time(ts.waktu_simpan) jam, pg1.nama nmDokter, pg2.nama nmMenyerahkan, pg3.nama nmMenerima "
+                    + "from transfer_serah_terima_pasien_igd ts inner join pegawai pg1 on pg1.nik=ts.nip_dokter_setuju "
+                    + "inner join pegawai pg2 on pg2.nik=ts.nip_menyerahkan inner join pegawai pg3 on pg3.nik=ts.nip_menerima where "
+                    + "ts.no_rawat='" + TNoRw.getText() + "' and ts.status='Ralan' order by ts.waktu_simpan desc limit 1");
             try {
                 rsLaprm = psLaprm.executeQuery();
                 while (rsLaprm.next()) {
@@ -14285,26 +14644,90 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         param.put("tgllainalat", "-");
                     }
 
-                    if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
-                            + "no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ralan'") == 0) {
-                        Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Jalan/IGD/Ponek ]::",
-                                "SELECT date(now())", param);
-                    } else {
-                        Valid.MyReport("rptTransferPasienIGDobat.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD/Ponek (Lampiran Obat) ]::",
-                                "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
-                                + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
-                                + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
-                                + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
-                                + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
-                                + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
-                                + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
-                                + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
-                                + "no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Sequel.cariIsi("SELECT p.nm_poli FROM reg_periksa r "
-                                + "inner join poliklinik p on p.kd_poli=r.kd_poli WHERE r.no_rawat='" + rsLaprm.getString("no_rawat") + "'") + "' and status='Ralan' "
-                                + "ORDER BY waktu_simpan desc", param);
+                    if (tte.equals("ya")) {
+                        String isiDokter = "", isiMenyerahkan = "", isiMenerima = "";
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                        
+                        if (rsLaprm.getString("nmMenyerahkan").equals("") || rsLaprm.getString("nmMenyerahkan").equals("-") || rsLaprm.getString("nmMenyerahkan").equals("--")) {
+                            Valid.cetakQrTte("", "", "", "");
+                            param.put("lokasiQrPetugas1", "");
+                        } else {
+                            isiMenyerahkan = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                            "Transfer & Serah Terima Pasien", rsLaprm.getString("nmMenyerahkan") + " (Yang Menyerahkan)",
+                                            rsLaprm.getString("tgl"), rsLaprm.getString("jam")) + "') from kalimat_tte where kode='001'");
+                            Valid.cetakQrTte(isiMenyerahkan, Sequel.cariFolderTte(), "QRTtePetugas1.jpg", "select logo from setting");
+                            param.put("lokasiQrPetugas1", Sequel.cariFolderTte() + File.separator + "QRTtePetugas1.jpg");
+                        }
 
-                        Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien (IGD/Ponek) ]::",
-                                "select date(now()) tanggal", param);
+                        if (rsLaprm.getString("nmMenerima").equals("") || rsLaprm.getString("nmMenerima").equals("-") || rsLaprm.getString("nmMenerima").equals("--")) {
+                            Valid.cetakQrTte("", "", "", "");
+                            param.put("lokasiQrPetugas2", "");
+                        } else {
+                            isiMenerima = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                            "Transfer & Serah Terima Pasien", rsLaprm.getString("nmMenerima") + " (Yang Menerima)",
+                                            rsLaprm.getString("tgl"), rsLaprm.getString("jam")) + "') from kalimat_tte where kode='001'");
+                            Valid.cetakQrTte(isiMenerima, Sequel.cariFolderTte(), "QRTtePetugas2.jpg", "select logo from setting");
+                            param.put("lokasiQrPetugas2", Sequel.cariFolderTte() + File.separator + "QRTtePetugas2.jpg");
+                        }
+
+                        if (rsLaprm.getString("nmDokter").equals("") || rsLaprm.getString("nmDokter").equals("-") || rsLaprm.getString("nmDokter").equals("--")) {
+                            JOptionPane.showMessageDialog(rootPane, "Nama dokter menyetujui transfer & serah terima pasien harus diisi dulu,..");
+                        } else {
+                            isiDokter = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                            "Transfer & Serah Terima Pasien", rsLaprm.getString("nmDokter") + " (Dokter Menyetujui)",
+                                            rsLaprm.getString("tgl"), rsLaprm.getString("jam")) + "') from kalimat_tte where kode='001'");
+                            Valid.cetakQrTte(isiDokter, Sequel.cariFolderTte(), "QRTteDokter.jpg", "select logo from setting");
+                            param.put("lokasiQrDokter", Sequel.cariFolderTte() + File.separator + "QRTteDokter.jpg");
+
+                            if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
+                                    + "no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ralan'") == 0) {
+                                Valid.MyReport("rptTransferPasienIGDnonResepQr.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Jalan/IGD/Ponek ]::",
+                                        "SELECT date(now())", param);
+                            } else {
+                                Valid.MyReport("rptTransferPasienIGDobatQr.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD/Ponek (Lampiran Obat) ]::",
+                                        "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
+                                        + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
+                                        + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
+                                        + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
+                                        + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
+                                        + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
+                                        + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
+                                        + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
+                                        + "no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Sequel.cariIsi("SELECT p.nm_poli FROM reg_periksa r "
+                                        + "inner join poliklinik p on p.kd_poli=r.kd_poli WHERE r.no_rawat='" + rsLaprm.getString("no_rawat") + "'") + "' and status='Ralan' "
+                                        + "ORDER BY waktu_simpan desc", param);
+
+                                Valid.MyReport("rptTransferPasienIGDQr.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien (IGD/Ponek) ]::",
+                                        "select date(now()) tanggal", param);
+                            }
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        }
+
+                    } else if (tte.equals("tidak")) {
+                        if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
+                                + "no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ralan'") == 0) {
+                            Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Jalan/IGD/Ponek ]::",
+                                    "SELECT date(now())", param);
+                        } else {
+                            Valid.MyReport("rptTransferPasienIGDobat.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD/Ponek (Lampiran Obat) ]::",
+                                    "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
+                                    + "no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Sequel.cariIsi("SELECT p.nm_poli FROM reg_periksa r "
+                                    + "inner join poliklinik p on p.kd_poli=r.kd_poli WHERE r.no_rawat='" + rsLaprm.getString("no_rawat") + "'") + "' and status='Ralan' "
+                                    + "ORDER BY waktu_simpan desc", param);
+
+                            Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien (IGD/Ponek) ]::",
+                                    "select date(now()) tanggal", param);
+                        }
                     }
                 }
             } catch (Exception e) {

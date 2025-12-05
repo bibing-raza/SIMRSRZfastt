@@ -732,11 +732,11 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         for (int i = 0; i < 3; i++) {
             TableColumn column = tbInadrg.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(120);
             } else if (i == 1) {
                 column.setPreferredWidth(60);
             } else if (i == 2) {
-                column.setPreferredWidth(420);
+                column.setPreferredWidth(365);
             }
         }
         tbInadrg.setDefaultRenderer(Object.class, new WarnaTable());
@@ -1330,6 +1330,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnKirimOnline.setForeground(new java.awt.Color(0, 0, 0));
         BtnKirimOnline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnKirimOnline.setMnemonic('K');
         BtnKirimOnline.setText("Kirim Klaim Online");
         BtnKirimOnline.setToolTipText("Alt+K");
         BtnKirimOnline.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -1344,6 +1345,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnEditKlaim.setForeground(new java.awt.Color(0, 0, 0));
         BtnEditKlaim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-edit24.png"))); // NOI18N
+        BtnEditKlaim.setMnemonic('E');
         BtnEditKlaim.setText("Edit Ulang Klaim");
         BtnEditKlaim.setToolTipText("Alt+E");
         BtnEditKlaim.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -1358,6 +1360,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnHapusKlaim.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusKlaim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-remove24.png"))); // NOI18N
+        BtnHapusKlaim.setMnemonic('H');
         BtnHapusKlaim.setText("Hapus Klaim");
         BtnHapusKlaim.setToolTipText("Alt+H");
         BtnHapusKlaim.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -1372,6 +1375,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnFinal.setForeground(new java.awt.Color(0, 0, 0));
         BtnFinal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Export.png"))); // NOI18N
+        BtnFinal.setMnemonic('F');
         BtnFinal.setText("Final Klaim");
         BtnFinal.setToolTipText("Alt+F");
         BtnFinal.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -1722,6 +1726,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         ScrollHasil1.setOpaque(true);
 
         tbHasil1.setName("tbHasil1"); // NOI18N
+        tbHasil1.getTableHeader().setReorderingAllowed(false);
         ScrollHasil1.setViewportView(tbHasil1);
 
         FormInput.add(ScrollHasil1);
@@ -1731,6 +1736,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         ScrollHasil2.setOpaque(true);
 
         tbHasil2.setName("tbHasil2"); // NOI18N
+        tbHasil2.getTableHeader().setReorderingAllowed(false);
         ScrollHasil2.setViewportView(tbHasil2);
 
         FormInput.add(ScrollHasil2);
@@ -1955,6 +1961,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         ScrollHasil5.setOpaque(true);
 
         tbInadrg.setName("tbInadrg"); // NOI18N
+        tbInadrg.getTableHeader().setReorderingAllowed(false);
         ScrollHasil5.setViewportView(tbInadrg);
 
         FormInput.add(ScrollHasil5);
@@ -2814,6 +2821,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnBaru.setForeground(new java.awt.Color(0, 0, 0));
         BtnBaru.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaru.setMnemonic('B');
         BtnBaru.setText("Baru");
         BtnBaru.setToolTipText("Alt+B");
         BtnBaru.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -2829,6 +2837,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnTambah.setMnemonic('T');
         BtnTambah.setText("Tambahkan Data");
         BtnTambah.setToolTipText("Alt+T");
         BtnTambah.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -2906,6 +2915,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         tbDiagnosaPasien.setToolTipText("Silahkan klik kanan untuk memperbaiki datanya");
         tbDiagnosaPasien.setComponentPopupMenu(Popup1);
         tbDiagnosaPasien.setName("tbDiagnosaPasien"); // NOI18N
+        tbDiagnosaPasien.getTableHeader().setReorderingAllowed(false);
         Scroll8.setViewportView(tbDiagnosaPasien);
 
         internalFrame5.add(Scroll8, java.awt.BorderLayout.CENTER);
@@ -2924,6 +2934,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         tbTindakanPasien.setToolTipText("Silahkan klik kanan untuk memperbaiki datanya");
         tbTindakanPasien.setComponentPopupMenu(Popup1);
         tbTindakanPasien.setName("tbTindakanPasien"); // NOI18N
+        tbTindakanPasien.getTableHeader().setReorderingAllowed(false);
         Scroll10.setViewportView(tbTindakanPasien);
 
         internalFrame9.add(Scroll10, java.awt.BorderLayout.CENTER);
@@ -2937,6 +2948,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         tbDiagInacbg.setName("tbDiagInacbg"); // NOI18N
         tbDiagInacbg.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tbDiagInacbg.getTableHeader().setReorderingAllowed(false);
         ScrollHasil7.setViewportView(tbDiagInacbg);
 
         FormInput.add(ScrollHasil7);
@@ -2948,6 +2960,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         tbProsInacbg.setName("tbProsInacbg"); // NOI18N
         tbProsInacbg.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tbProsInacbg.getTableHeader().setReorderingAllowed(false);
         ScrollHasil8.setViewportView(tbProsInacbg);
 
         FormInput.add(ScrollHasil8);
@@ -3287,6 +3300,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnGruper2.setForeground(new java.awt.Color(0, 0, 0));
         BtnGruper2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/SeratusRibu.png"))); // NOI18N
+        BtnGruper2.setMnemonic('G');
         BtnGruper2.setText("Simpan & Grouper");
         BtnGruper2.setToolTipText("Alt+G");
         BtnGruper2.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -3316,8 +3330,8 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         ScrollHasil3.setName("ScrollHasil3"); // NOI18N
         ScrollHasil3.setOpaque(true);
 
-        tbHasil3.setToolTipText("");
         tbHasil3.setName("tbHasil3"); // NOI18N
+        tbHasil3.getTableHeader().setReorderingAllowed(false);
         ScrollHasil3.setViewportView(tbHasil3);
 
         FormInput2.add(ScrollHasil3);
@@ -3326,8 +3340,8 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         ScrollHasil4.setName("ScrollHasil4"); // NOI18N
         ScrollHasil4.setOpaque(true);
 
-        tbHasil4.setToolTipText("");
         tbHasil4.setName("tbHasil4"); // NOI18N
+        tbHasil4.getTableHeader().setReorderingAllowed(false);
         ScrollHasil4.setViewportView(tbHasil4);
 
         FormInput2.add(ScrollHasil4);
@@ -3574,6 +3588,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnGruperStage1.setForeground(new java.awt.Color(0, 0, 0));
         BtnGruperStage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/SeratusRibu.png"))); // NOI18N
+        BtnGruperStage1.setMnemonic('G');
         BtnGruperStage1.setText("Grouper Stage 2");
         BtnGruperStage1.setToolTipText("Alt+G");
         BtnGruperStage1.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -3589,6 +3604,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnRefres1.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        BtnRefres1.setMnemonic('R');
         BtnRefres1.setText("Refresh Diagn. & Pros.");
         BtnRefres1.setToolTipText("Alt+R");
         BtnRefres1.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -3733,6 +3749,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnAddEpisod.setForeground(new java.awt.Color(0, 0, 0));
         BtnAddEpisod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnAddEpisod.setMnemonic('S');
         BtnAddEpisod.setToolTipText("Alt+S");
         BtnAddEpisod.setGlassColor(new java.awt.Color(0, 153, 153));
         BtnAddEpisod.setName("BtnAddEpisod"); // NOI18N
@@ -3752,6 +3769,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnDelEpisod.setForeground(new java.awt.Color(0, 0, 0));
         BtnDelEpisod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnDelEpisod.setMnemonic('H');
         BtnDelEpisod.setToolTipText("Alt+H");
         BtnDelEpisod.setGlassColor(new java.awt.Color(0, 153, 153));
         BtnDelEpisod.setName("BtnDelEpisod"); // NOI18N
@@ -4097,9 +4115,9 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         Scroll5.setName("Scroll5"); // NOI18N
         Scroll5.setOpaque(true);
 
-        tbUnggah.setToolTipText("");
         tbUnggah.setComponentPopupMenu(Popup1);
         tbUnggah.setName("tbUnggah"); // NOI18N
+        tbUnggah.getTableHeader().setReorderingAllowed(false);
         tbUnggah.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbUnggahMouseClicked(evt);
@@ -4117,6 +4135,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnAddUnggah.setForeground(new java.awt.Color(0, 0, 0));
         BtnAddUnggah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAddUnggah.setMnemonic('F');
         BtnAddUnggah.setText("Cari File");
         BtnAddUnggah.setToolTipText("Alt+F");
         BtnAddUnggah.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -4133,6 +4152,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnDelUnggah.setForeground(new java.awt.Color(0, 0, 0));
         BtnDelUnggah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnDelUnggah.setMnemonic('Y');
         BtnDelUnggah.setText("Hapus Filenya");
         BtnDelUnggah.setToolTipText("Alt+Y");
         BtnDelUnggah.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -4149,6 +4169,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnUploadFile.setForeground(new java.awt.Color(0, 0, 0));
         BtnUploadFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/upload24.png"))); // NOI18N
+        BtnUploadFile.setMnemonic('U');
         BtnUploadFile.setText("Upload File");
         BtnUploadFile.setToolTipText("Alt+U");
         BtnUploadFile.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -4365,9 +4386,9 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
 
-        tbUnggahPilihan.setToolTipText("");
         tbUnggahPilihan.setComponentPopupMenu(Popup1);
         tbUnggahPilihan.setName("tbUnggahPilihan"); // NOI18N
+        tbUnggahPilihan.getTableHeader().setReorderingAllowed(false);
         Scroll6.setViewportView(tbUnggahPilihan);
 
         FormInput2.add(Scroll6);
@@ -4375,6 +4396,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnDelUnggahPilihan.setForeground(new java.awt.Color(0, 0, 0));
         BtnDelUnggahPilihan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnDelUnggahPilihan.setMnemonic('H');
         BtnDelUnggahPilihan.setText("Hapus File");
         BtnDelUnggahPilihan.setToolTipText("Alt+H");
         BtnDelUnggahPilihan.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -4391,6 +4413,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         BtnUnggahDipilih.setForeground(new java.awt.Color(0, 0, 0));
         BtnUnggahDipilih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnUnggahDipilih.setMnemonic('D');
         BtnUnggahDipilih.setText("File Dipilih");
         BtnUnggahDipilih.setToolTipText("Alt+D");
         BtnUnggahDipilih.setGlassColor(new java.awt.Color(0, 153, 153));
@@ -4422,8 +4445,8 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         ScrollHasil6.setName("ScrollHasil6"); // NOI18N
         ScrollHasil6.setOpaque(true);
 
-        tbRespon2.setToolTipText("");
         tbRespon2.setName("tbRespon2"); // NOI18N
+        tbRespon2.getTableHeader().setReorderingAllowed(false);
         ScrollHasil6.setViewportView(tbRespon2);
 
         FormInput2.add(ScrollHasil6);
@@ -4465,6 +4488,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         tbDiagnosaPasie3.setToolTipText("Silahkan klik kanan untuk memperbaiki datanya");
         tbDiagnosaPasie3.setComponentPopupMenu(Popup1);
         tbDiagnosaPasie3.setName("tbDiagnosaPasie3"); // NOI18N
+        tbDiagnosaPasie3.getTableHeader().setReorderingAllowed(false);
         Scroll.setViewportView(tbDiagnosaPasie3);
 
         internalFrame6.add(Scroll, java.awt.BorderLayout.CENTER);
@@ -4513,6 +4537,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         tbTindakanPasien3.setToolTipText("Silahkan klik kanan untuk memperbaiki datanya");
         tbTindakanPasien3.setComponentPopupMenu(Popup1);
         tbTindakanPasien3.setName("tbTindakanPasien3"); // NOI18N
+        tbTindakanPasien3.getTableHeader().setReorderingAllowed(false);
         Scroll1.setViewportView(tbTindakanPasien3);
 
         internalFrame10.add(Scroll1, java.awt.BorderLayout.CENTER);
@@ -4531,6 +4556,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         tbTindakanPasien4.setToolTipText("Silahkan klik kanan untuk memperbaiki datanya");
         tbTindakanPasien4.setComponentPopupMenu(Popup1);
         tbTindakanPasien4.setName("tbTindakanPasien4"); // NOI18N
+        tbTindakanPasien4.getTableHeader().setReorderingAllowed(false);
         Scroll11.setViewportView(tbTindakanPasien4);
 
         internalFrame11.add(Scroll11, java.awt.BorderLayout.CENTER);
@@ -9907,10 +9933,24 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         if (kodePayor.equals("3")) {
             Valid.tabelKosong(tabMode11);
             try {
+                String nbrFormat = "";
+                nbrFormat = Sequel.cariIsi("SELECT FORMAT(CAST(IF(nbr REGEXP '^[0-9]+$', nbr, 0) AS UNSIGNED), 0) FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'");
+                
                 StringBuilder sb1 = new StringBuilder();
                 sb1.append("SELECT 'MDC' komponen, mdc_number kode, mdc_description deskripsi FROM eklaim_response_inagrouper ");
                 sb1.append("WHERE no_sep='" + noSEP.getText() + "' UNION ALL ");
                 sb1.append("SELECT 'DRG', drg_code, drg_description FROM eklaim_response_inagrouper ");
+                sb1.append("WHERE no_sep='" + noSEP.getText() + "' UNION ALL ");                
+                sb1.append("SELECT 'Cost Weight ** )', '', cost_weight FROM eklaim_response_inagrouper ");
+                sb1.append("WHERE no_sep='" + noSEP.getText() + "' UNION ALL ");                
+                sb1.append("SELECT 'Sub Acute Weight', '', sub_acute_weight FROM eklaim_response_inagrouper ");
+                sb1.append("WHERE no_sep='" + noSEP.getText() + "' UNION ALL ");                
+                sb1.append("SELECT 'Chronic Weight', '', chronic_weight FROM eklaim_response_inagrouper ");
+                sb1.append("WHERE no_sep='" + noSEP.getText() + "' UNION ALL ");
+                sb1.append("SELECT 'Total Cost Weight', '', total_cost_weight FROM eklaim_response_inagrouper ");
+                sb1.append("WHERE no_sep='" + noSEP.getText() + "' UNION ALL ");                
+                sb1.append("SELECT 'NBR ** )', '', '" + nbrFormat + "' UNION ALL ");
+                sb1.append("SELECT 'Status CD', '', status_cd FROM eklaim_response_inagrouper ");
                 sb1.append("WHERE no_sep='" + noSEP.getText() + "' UNION ALL ");
                 sb1.append("SELECT 'Status', '', concat(sttus_final,' ',pesan_final) deskripsi FROM eklaim_response_inagrouper ");
                 sb1.append("WHERE no_sep='" + noSEP.getText() + "'");

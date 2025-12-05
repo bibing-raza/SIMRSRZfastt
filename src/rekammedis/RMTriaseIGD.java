@@ -690,7 +690,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         internalFrame5.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame5.setLayout(new java.awt.BorderLayout());
 
-        panelisi4.setBackground(new java.awt.Color(255, 150, 255));
         panelisi4.setName("panelisi4"); // NOI18N
         panelisi4.setPreferredSize(new java.awt.Dimension(100, 44));
         panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
@@ -714,6 +713,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -732,6 +732,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnCopas.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnCopas.setMnemonic('U');
         BtnCopas.setText("Copy & Paste");
         BtnCopas.setToolTipText("Alt+U");
         BtnCopas.setName("BtnCopas"); // NOI18N
@@ -745,6 +746,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -756,7 +758,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         });
         panelisi4.add(BtnCloseIn1);
 
-        internalFrame5.add(panelisi4, java.awt.BorderLayout.CENTER);
+        internalFrame5.add(panelisi4, java.awt.BorderLayout.PAGE_END);
 
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setOpaque(false);
@@ -790,7 +792,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         jPanel1.add(Scroll3);
 
-        internalFrame5.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        internalFrame5.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         WindowTemplate.getContentPane().add(internalFrame5, java.awt.BorderLayout.CENTER);
 
@@ -865,7 +867,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_kunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025 09:46:56" }));
+        tgl_kunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025 22:34:33" }));
         tgl_kunjungan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_kunjungan.setName("tgl_kunjungan"); // NOI18N
         tgl_kunjungan.setOpaque(false);
@@ -917,6 +919,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         btnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPetugas.setMnemonic('1');
         btnPetugas.setToolTipText("Alt+1");
         btnPetugas.setName("btnPetugas"); // NOI18N
         btnPetugas.addActionListener(new java.awt.event.ActionListener() {
@@ -1099,7 +1102,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(tmpt_kejadian_tunggal);
         tmpt_kejadian_tunggal.setBounds(223, 240, 310, 23);
 
-        tgl_kejadian_tunggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025 09:46:56" }));
+        tgl_kejadian_tunggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025 22:34:34" }));
         tgl_kejadian_tunggal.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_kejadian_tunggal.setName("tgl_kejadian_tunggal"); // NOI18N
         tgl_kejadian_tunggal.setOpaque(false);
@@ -1164,7 +1167,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(tmpt_kejadian);
         tmpt_kejadian.setBounds(538, 270, 228, 23);
 
-        tgl_kejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025 09:46:56" }));
+        tgl_kejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025 22:34:34" }));
         tgl_kejadian.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_kejadian.setName("tgl_kejadian"); // NOI18N
         tgl_kejadian.setOpaque(false);
@@ -2304,6 +2307,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnJatuh.setForeground(new java.awt.Color(0, 0, 0));
         BtnJatuh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnJatuh.setMnemonic('2');
         BtnJatuh.setText("Template");
         BtnJatuh.setToolTipText("Alt+2");
         BtnJatuh.setName("BtnJatuh"); // NOI18N
@@ -2318,6 +2322,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnLuka.setForeground(new java.awt.Color(0, 0, 0));
         BtnLuka.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnLuka.setMnemonic('2');
         BtnLuka.setText("Template");
         BtnLuka.setToolTipText("Alt+2");
         BtnLuka.setName("BtnLuka"); // NOI18N
@@ -2332,6 +2337,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnListrik.setForeground(new java.awt.Color(0, 0, 0));
         BtnListrik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnListrik.setMnemonic('2');
         BtnListrik.setText("Template");
         BtnListrik.setToolTipText("Alt+2");
         BtnListrik.setName("BtnListrik"); // NOI18N
@@ -2346,6 +2352,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnKimia.setForeground(new java.awt.Color(0, 0, 0));
         BtnKimia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnKimia.setMnemonic('2');
         BtnKimia.setText("Template");
         BtnKimia.setToolTipText("Alt+2");
         BtnKimia.setName("BtnKimia"); // NOI18N
@@ -2360,6 +2367,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnLainya.setForeground(new java.awt.Color(0, 0, 0));
         BtnLainya.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnLainya.setMnemonic('2');
         BtnLainya.setText("Template");
         BtnLainya.setToolTipText("Alt+2");
         BtnLainya.setName("BtnLainya"); // NOI18N
@@ -2374,6 +2382,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnKeluhan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluhan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnKeluhan.setMnemonic('2');
         BtnKeluhan.setText("Template");
         BtnKeluhan.setToolTipText("Alt+2");
         BtnKeluhan.setName("BtnKeluhan"); // NOI18N
@@ -2388,6 +2397,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnCatatan.setForeground(new java.awt.Color(0, 0, 0));
         BtnCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnCatatan.setMnemonic('2');
         BtnCatatan.setText("Template");
         BtnCatatan.setToolTipText("Alt+2");
         BtnCatatan.setName("BtnCatatan"); // NOI18N
@@ -2512,6 +2522,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         tbTriase.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbTriase.setComponentPopupMenu(jPopupMenu1);
         tbTriase.setName("tbTriase"); // NOI18N
+        tbTriase.getTableHeader().setReorderingAllowed(false);
         tbTriase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTriaseMouseClicked(evt);
@@ -2537,7 +2548,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2552,7 +2563,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2577,6 +2588,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('3');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+3");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -2618,6 +2630,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -2631,6 +2644,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -2649,6 +2663,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -2662,6 +2677,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -2692,6 +2708,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -2710,6 +2727,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -2728,6 +2746,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnNotepad.setMnemonic('N');
         BtnNotepad.setText("Notepad");
         BtnNotepad.setToolTipText("Alt+N");
         BtnNotepad.setName("BtnNotepad"); // NOI18N
@@ -2741,6 +2760,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -3002,7 +3022,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
                     Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
                     Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
-                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode Triase IGD", Sequel.cariFolderPrintTte());
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Triase IGD", Sequel.cariFolderPrintTte());
                     param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
                     param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
                     Valid.MyReport("rptTriaseIGDQr.jasper", "report", "::[ Laporan Data Triase IGD ]::",
@@ -3018,6 +3038,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                             + "if(ti.luka_bakar='ya','V','') luka, if(ti.trauma_listrik='ya','V','') trauma_listrik, if(ti.trauma_zat_kimia='ya','V','') trauma_zat, if(ti.trauma_lain='ya','V','') trauma_lain, "
                             + "ti.bb, ti.tb from triase_igd ti inner join reg_periksa rp on rp.no_rawat=ti.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                             + "INNER JOIN pegawai pg on nik=ti.nip_petugas where ti.no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 }
                 
             } else {
@@ -4348,9 +4369,9 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         BtnHapus.setEnabled(akses.getdata_triase_igd());
         BtnPrint.setEnabled(akses.getdata_triase_igd());
         BtnEdit.setEnabled(akses.getdata_triase_igd());
+        btnPetugas.setEnabled(akses.getpic_igd());
         
         if (akses.getjml2() >= 1) {            
-            btnPetugas.setEnabled(false);
             nip = akses.getkode();            
             Sequel.cariIsi("select nama from pegawai where nik=?", nm_petugas, nip);
             if (nm_petugas.getText().equals("")) {

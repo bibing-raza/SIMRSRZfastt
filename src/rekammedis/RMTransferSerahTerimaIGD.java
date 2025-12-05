@@ -745,6 +745,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel64 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnNotepad = new widget.Button();
@@ -792,7 +794,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         internalFrame6.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame6.setLayout(new java.awt.BorderLayout());
 
-        panelisi5.setBackground(new java.awt.Color(255, 150, 255));
         panelisi5.setName("panelisi5"); // NOI18N
         panelisi5.setPreferredSize(new java.awt.Dimension(100, 44));
         panelisi5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
@@ -861,7 +862,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         });
         panelisi5.add(BtnCloseIn1);
 
-        internalFrame6.add(panelisi5, java.awt.BorderLayout.CENTER);
+        internalFrame6.add(panelisi5, java.awt.BorderLayout.PAGE_END);
 
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
@@ -874,6 +875,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
         tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
         tbTemplate.setName("tbTemplate"); // NOI18N
+        tbTemplate.getTableHeader().setReorderingAllowed(false);
         tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTemplateMouseClicked(evt);
@@ -895,7 +897,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
         jPanel3.add(Scroll3);
 
-        internalFrame6.add(jPanel3, java.awt.BorderLayout.PAGE_START);
+        internalFrame6.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         WindowTemplate.getContentPane().add(internalFrame6, java.awt.BorderLayout.CENTER);
 
@@ -2396,6 +2398,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         tbTransfer.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbTransfer.setComponentPopupMenu(jPopupMenu2);
         tbTransfer.setName("tbTransfer"); // NOI18N
+        tbTransfer.getTableHeader().setReorderingAllowed(false);
         tbTransfer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTransferMouseClicked(evt);
@@ -2564,6 +2567,18 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnEdit);
+
+        jLabel64.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel64.setText("Cetak Dalam Bentuk :");
+        jLabel64.setName("jLabel64"); // NOI18N
+        jLabel64.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel64);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
@@ -3517,6 +3532,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.ComboBox cmbKesadaran;
     private widget.ComboBox cmbKriteria;
     private widget.ComboBox cmbMnt;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbResiko;
     private widget.TextBox gcse;
     private widget.TextBox gcsm;
@@ -3578,6 +3594,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Label jLabel61;
     private widget.Label jLabel62;
     private widget.Label jLabel63;
+    private widget.Label jLabel64;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
@@ -4426,44 +4443,127 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 param.put("nmalatlain", "-");
                 param.put("tgllainalat", "-");
             }
-
-            if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='" + statusOK + "'") == 0
-                    || Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='" + statusOK + "' "
-                            + "and nm_unit='" + Tnm_kamar.getText() + "'") == 0) {
-                Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien ]::",
-                        "SELECT date(now())", param);
-            } else {
-                if (statusOK.equals("Ralan")) {
-                    Valid.MyReport("rptTransferPasienIGDobat.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD (Lampiran Obat) ]::",
-                            "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
-                            + "no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' and status='" + statusOK + "' "
-                            + "ORDER BY waktu_simpan desc", param);
-                    
-                    Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien (IGD) ]::",
-                            "select date(now()) tanggal", param);
+            
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isiDokter = "", isiMenyerahkan = "", isiMenerima = "", tgl = "", jam = "";
+                tgl = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_serah_terima_pasien_igd where "
+                        + "waktu_simpan='" + wktSimpan + "'");
+                jam = Sequel.cariIsi("select time(waktu_simpan) from transfer_serah_terima_pasien_igd where "
+                        + "waktu_simpan='" + wktSimpan + "'");
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                
+                if (Tnm_petugas1.getText().equals("") || Tnm_petugas1.getText().equals("-") || Tnm_petugas1.getText().equals("--")) {
+                    Valid.cetakQrTte("", "", "", "");
+                    param.put("lokasiQrPetugas1", "");
                 } else {
-                    Valid.MyReport("rptTransferPasienIGDobat.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap (Lampiran Obat) ]::",
-                            "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
-                            + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
-                            + "no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' and status='" + statusOK + "' and "
-                            + "tgl_pemberian='" + Sequel.cariIsi("SELECT MAX(tgl_pemberian) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and "
-                                    + "status='" + statusOK + "' and nm_unit='" + Tnm_kamar.getText() + "'") + "' ORDER BY waktu_simpan desc", param);
-                    
-                    Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap ]::",
-                            "select date(now()) tanggal", param);
+                    isiMenyerahkan = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Transfer & Serah Terima Pasien", Tnm_petugas1.getText() + " (Yang Menyerahkan)", tgl, jam) + "') from kalimat_tte where kode='001'");
+                    Valid.cetakQrTte(isiMenyerahkan, Sequel.cariFolderTte(), "QRTtePetugas1.jpg", "select logo from setting");
+                    param.put("lokasiQrPetugas1", Sequel.cariFolderTte() + File.separator + "QRTtePetugas1.jpg");
+                }
+                
+                if (Tnm_petugas2.getText().equals("") || Tnm_petugas2.getText().equals("-") || Tnm_petugas2.getText().equals("--")) {
+                    Valid.cetakQrTte("", "", "", "");
+                    param.put("lokasiQrPetugas2", "");
+                } else {
+                    isiMenerima = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Transfer & Serah Terima Pasien", Tnm_petugas2.getText() + " (Yang Menerima)", tgl, jam) + "') from kalimat_tte where kode='001'");
+                    Valid.cetakQrTte(isiMenerima, Sequel.cariFolderTte(), "QRTtePetugas2.jpg", "select logo from setting");
+                    param.put("lokasiQrPetugas2", Sequel.cariFolderTte() + File.separator + "QRTtePetugas2.jpg");
+                }
+
+                if (Tnm_dokter.getText().equals("") || Tnm_dokter.getText().equals("-") || Tnm_dokter.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama dokter menyetujui transfer & serah terima pasien harus diisi dulu,..");
+                } else {
+                    isiDokter = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Transfer & Serah Terima Pasien", Tnm_dokter.getText() + " (Dokter Menyetujui)", tgl, jam) + "') from kalimat_tte where kode='001'");                    
+                    Valid.cetakQrTte(isiDokter, Sequel.cariFolderTte(), "QRTteDokter.jpg", "select logo from setting");
+                    param.put("lokasiQrDokter", Sequel.cariFolderTte() + File.separator + "QRTteDokter.jpg");
+
+                    if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='" + statusOK + "'") == 0
+                            || Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='" + statusOK + "' "
+                                    + "and nm_unit='" + Tnm_kamar.getText() + "'") == 0) {
+                        Valid.MyReport("rptTransferPasienIGDnonResepQr.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien ]::",
+                                "SELECT date(now())", param);
+                    } else {
+                        if (statusOK.equals("Ralan")) {
+                            Valid.MyReport("rptTransferPasienIGDobatQr.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD (Lampiran Obat) ]::",
+                                    "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
+                                    + "no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' and status='" + statusOK + "' "
+                                    + "ORDER BY waktu_simpan desc", param);
+
+                            Valid.MyReport("rptTransferPasienIGDQr.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien (IGD) ]::",
+                                    "select date(now()) tanggal", param);
+                        } else {
+                            Valid.MyReport("rptTransferPasienIGDobatQr.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap (Lampiran Obat) ]::",
+                                    "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
+                                    + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
+                                    + "no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' and status='" + statusOK + "' and "
+                                    + "tgl_pemberian='" + Sequel.cariIsi("SELECT MAX(tgl_pemberian) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and "
+                                            + "status='" + statusOK + "' and nm_unit='" + Tnm_kamar.getText() + "'") + "' ORDER BY waktu_simpan desc", param);
+                            
+                            Valid.MyReport("rptTransferPasienIGDQr.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien (IGD) ]::",
+                                    "select date(now()) tanggal", param);
+                        }
+                    }
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+
+            } else {
+                if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='" + statusOK + "'") == 0
+                        || Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='" + statusOK + "' "
+                                + "and nm_unit='" + Tnm_kamar.getText() + "'") == 0) {
+                    Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien ]::",
+                            "SELECT date(now())", param);
+                } else {
+                    if (statusOK.equals("Ralan")) {
+                        Valid.MyReport("rptTransferPasienIGDobat.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD (Lampiran Obat) ]::",
+                                "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
+                                + "no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' and status='" + statusOK + "' "
+                                + "ORDER BY waktu_simpan desc", param);
+
+                        Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien (IGD) ]::",
+                                "select date(now()) tanggal", param);
+                    } else {
+                        Valid.MyReport("rptTransferPasienIGDobat.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap (Lampiran Obat) ]::",
+                                "SELECT *, concat(if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')),'',"
+                                + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i'))) jamBeri FROM pemberian_obat WHERE "
+                                + "no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' and status='" + statusOK + "' and "
+                                + "tgl_pemberian='" + Sequel.cariIsi("SELECT MAX(tgl_pemberian) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and "
+                                        + "status='" + statusOK + "' and nm_unit='" + Tnm_kamar.getText() + "'") + "' ORDER BY waktu_simpan desc", param);
+
+                        Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap ]::",
+                                "select date(now()) tanggal", param);
+                    }
                 }
             }
 

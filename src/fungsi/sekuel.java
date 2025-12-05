@@ -50,6 +50,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Statement;
+import javax.imageio.ImageIO;
 //import org.apache.poi.hssf.record.formula.functions.Len;
 //import org.apache.poi.hssf.record.formula.functions.Mid;
 import uz.ncipro.calendar.JDateTimePicker;
@@ -2129,7 +2130,7 @@ public final class sekuel {
 
         return inputStream;
     }
-
+    
     public String cariIsi(String sql, String data) {
         dicari = "";
         try {
@@ -3547,6 +3548,28 @@ public final class sekuel {
         }
         return bool;
     }
+    
+    public void hapusIisiFolder(String foldernya) {
+        String folderPath = foldernya;
+
+        File folder = new File(folderPath);
+
+        if (folder.exists() && folder.isDirectory()) {
+            File[] files = folder.listFiles();
+
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile()) {
+                        file.delete();
+                        System.out.println("Deleted file : " + file.getName());
+                    }
+                }
+                System.out.println("Semua file berhasil dihapus!");
+            }
+        } else {
+            System.out.println("Folder tidak ditemukan!");
+        }
+    }
 
     public String cariFolderTte() {
         dicari = "";
@@ -3613,7 +3636,7 @@ public final class sekuel {
         foldernya = "";
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            String os = System.getProperty("os.name").toLowerCase();
+            String os = System.getProperty("os.name").toLowerCase();            
             
             if (os.contains("win")) {
                 dicari = prop.getProperty("FOLDERPRINTQRTTEWIN").toString();
