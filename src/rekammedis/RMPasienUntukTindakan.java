@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -603,6 +604,8 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel12 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -737,7 +740,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         PanelInput.add(jLabel65);
         jLabel65.setBounds(0, 66, 110, 23);
 
-        TtglTindakanBelum.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2024" }));
+        TtglTindakanBelum.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         TtglTindakanBelum.setDisplayFormat("dd-MM-yyyy");
         TtglTindakanBelum.setName("TtglTindakanBelum"); // NOI18N
         TtglTindakanBelum.setOpaque(false);
@@ -1155,7 +1158,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         TnmPetugasTerimaBelum.setBounds(195, 445, 500, 23);
 
         BtnPetugas1Belum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPetugas1Belum.setMnemonic('2');
         BtnPetugas1Belum.setToolTipText("Alt+2");
         BtnPetugas1Belum.setName("BtnPetugas1Belum"); // NOI18N
         BtnPetugas1Belum.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1168,7 +1170,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         BtnPetugas1Belum.setBounds(700, 417, 28, 23);
 
         BtnPetugas2Belum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPetugas2Belum.setMnemonic('2');
         BtnPetugas2Belum.setToolTipText("Alt+2");
         BtnPetugas2Belum.setName("BtnPetugas2Belum"); // NOI18N
         BtnPetugas2Belum.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1706,7 +1707,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         TnmPetugasTerimaSudah.setBounds(195, 445, 500, 23);
 
         BtnPetugas1Sudah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPetugas1Sudah.setMnemonic('2');
         BtnPetugas1Sudah.setToolTipText("Alt+2");
         BtnPetugas1Sudah.setName("BtnPetugas1Sudah"); // NOI18N
         BtnPetugas1Sudah.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1719,7 +1719,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         BtnPetugas1Sudah.setBounds(700, 417, 28, 23);
 
         BtnPetugas2Sudah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPetugas2Sudah.setMnemonic('2');
         BtnPetugas2Sudah.setToolTipText("Alt+2");
         BtnPetugas2Sudah.setName("BtnPetugas2Sudah"); // NOI18N
         BtnPetugas2Sudah.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1899,7 +1898,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -1918,7 +1916,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -1937,7 +1934,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1951,7 +1947,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -1968,9 +1963,20 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Cetak Dalam Bentuk :");
+        jLabel12.setName("jLabel12"); // NOI18N
+        jLabel12.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel12);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -1989,7 +1995,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -2008,7 +2013,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -2049,7 +2053,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -2741,6 +2744,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
     private widget.ComboBox cmbKategoriSudah;
     private widget.ComboBox cmbPaparanBelum;
     private widget.ComboBox cmbPaparanSudah;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbResikoBelum;
     private widget.ComboBox cmbResikoSudah;
     private widget.ComboBox cmbRiwAlergiBelum;
@@ -2751,6 +2755,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame21;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
+    private widget.Label jLabel12;
     private widget.Label jLabel27;
     private widget.Label jLabel28;
     private widget.Label jLabel29;
@@ -4050,8 +4055,185 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         param.put("petugasSerahsdh", TnmPetugasSerahSudah.getText());
         param.put("petugasTerimablm", TnmPetugasTerimaBelum.getText());
         param.put("petugasTerimasdh", TnmPetugasTerimaSudah.getText());
-        Valid.MyReport("rptTransferTindakan.jasper", "report", "::[ Lembar Transfer Pasien Untuk Tindakan ]::",
-                "SELECT now() tanggal", param);
+        
+        if (cmbPilihCetak.getSelectedIndex() == 0) {
+            String isiMenyerahkanBlm = "", isiMenerimaBlm = "", isiMenyerahkanSdh = "", isiMenerimaSdh = "",
+                    tglBelum = "", jamBelum = "", tglSudah = "", jamSudah = "";
+            
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+            if (TabTransfer.getSelectedIndex() == 0) {
+                //transfer sebelum
+                tglBelum = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_sebelum_tindakan where "
+                        + "waktu_simpan='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 47).toString() + "'");
+                jamBelum = Sequel.cariIsi("select time(waktu_simpan) from transfer_sebelum_tindakan where "
+                        + "waktu_simpan='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 47).toString() + "'");
+
+                if (TnmPetugasSerahBelum.getText().equals("") || TnmPetugasSerahBelum.getText().equals("-") || TnmPetugasSerahBelum.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menyerahkan transfer sebelum tindakan harus diisi dulu,..");
+                } else if (TnmPetugasTerimaBelum.getText().equals("") || TnmPetugasTerimaBelum.getText().equals("-") || TnmPetugasTerimaBelum.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menerima transfer sebelum tindakan harus diisi dulu,..");
+                } else {
+                    isiMenyerahkanBlm = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Transfer Pasien Sebelum Tindakan", TnmPetugasSerahBelum.getText() + " (Petugas Menyerahkan)", tglBelum, jamBelum) + "') from kalimat_tte where kode='001'");
+                    isiMenerimaBlm = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Transfer Pasien Sebelum Tindakan", TnmPetugasTerimaBelum.getText() + " (Petugas Menerima)", tglBelum, jamBelum) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isiMenyerahkanBlm, Sequel.cariFolderTte(), "QRTteSerahBelum.jpg", "select logo from setting");
+                    param.put("lokasiQrSerahBlm", Sequel.cariFolderTte() + File.separator + "QRTteSerahBelum.jpg");
+                    Valid.cetakQrTte(isiMenerimaBlm, Sequel.cariFolderTte(), "QRTteTerimaBelum.jpg", "select logo from setting");
+                    param.put("lokasiQrTerimaBlm", Sequel.cariFolderTte() + File.separator + "QRTteTerimaBelum.jpg");
+                }
+                
+                //cek nip PR/PP/D
+                if (nipSerahBlm.contains("PR") == true || nipSerahBlm.contains("PP") == true || nipSerahBlm.contains("D") == true) {
+                    Valid.cetakQrTte("", "", "", "");
+                    param.put("lokasiQrSerahBlm", "");
+                } else if (nipTerimaBlm.contains("PR") == true || nipTerimaBlm.contains("PP") == true || nipTerimaBlm.contains("D") == true) {
+                    Valid.cetakQrTte("", "", "", "");
+                    param.put("lokasiQrTerimaBlm", "");
+                }
+
+                if (Sequel.cariInteger("select count(-1) from transfer_sesudah_tindakan where "
+                        + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "'") > 0) {
+                    tglSudah = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_sesudah_tindakan where "
+                            + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "'");
+                    jamSudah = Sequel.cariIsi("select time(waktu_simpan) from transfer_sesudah_tindakan where "
+                            + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "'");
+
+                    if (Sequel.cariInteger("select count(-1) from transfer_sesudah_tindakan where "
+                            + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "' and nip_menyerahkan in ('','-','--')") > 0) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menyerahkan transfer sesudah tindakan harus diisi dulu,..");
+                    } else if (Sequel.cariInteger("select count(-1) from transfer_sesudah_tindakan where "
+                            + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "' and nip_menerima in ('','-','--')") > 0) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menerima transfer sesudah tindakan harus diisi dulu,..");
+                    } else {
+                        isiMenyerahkanSdh = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Transfer Pasien Sesudah Tindakan", TnmPetugasSerahSudah.getText() + " (Petugas Menyerahkan)", tglSudah, jamSudah) + "') from kalimat_tte where kode='001'");
+                        isiMenerimaSdh = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Transfer Pasien Sesudah Tindakan", TnmPetugasTerimaSudah.getText() + " (Petugas Menerima)", tglSudah, jamSudah) + "') from kalimat_tte where kode='001'");
+
+                        Valid.cetakQrTte(isiMenyerahkanSdh, Sequel.cariFolderTte(), "QRTteSerahSudah.jpg", "select logo from setting");
+                        param.put("lokasiQrSerahSdh", Sequel.cariFolderTte() + File.separator + "QRTteSerahSudah.jpg");
+                        Valid.cetakQrTte(isiMenerimaSdh, Sequel.cariFolderTte(), "QRTteTerimaSudah.jpg", "select logo from setting");
+                        param.put("lokasiQrTerimaSdh", Sequel.cariFolderTte() + File.separator + "QRTteTerimaSudah.jpg");
+                    }
+
+                    if (Sequel.cariInteger("select count(-1) from transfer_sesudah_tindakan where "
+                            + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "' "
+                            + "and (nip_menyerahkan like '%PR%' or nip_menyerahkan like '%PP%' or nip_menyerahkan like '%D%')") > 0) {
+                        Valid.cetakQrTte("", "", "", "");
+                        param.put("lokasiQrSerahSdh", "");
+                    } else if (Sequel.cariInteger("select count(-1) from transfer_sesudah_tindakan where "
+                            + "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "' "
+                            + "and (nip_menerima like '%PR%' or nip_menerima like '%PP%' or nip_menerima like '%D%')") > 0) {
+                        Valid.cetakQrTte("", "", "", "");
+                        param.put("lokasiQrTerimaSdh", "");
+                    }
+                } else {
+                    tglSudah = "";
+                    jamSudah = "";
+                    Valid.cetakQrTte("", "", "", "");
+                    param.put("lokasiQrSerahSdh", "");
+                    Valid.cetakQrTte("", "", "", "");
+                    param.put("lokasiQrTerimaSdh", "");
+                }
+                
+                Valid.MyReport("rptTransferTindakanQr.jasper", "report", "::[ Lembar Transfer Pasien Untuk Tindakan ]::",
+                        "SELECT now() tanggal", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                
+            } else {
+                //transfer sebelum
+                tglBelum = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_sebelum_tindakan where "
+                        + "kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "'");
+                jamBelum = Sequel.cariIsi("select time(waktu_simpan) from transfer_sebelum_tindakan where "
+                        + "kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "'");
+                
+                if (Sequel.cariInteger("select count(-1) from transfer_sebelum_tindakan where "
+                        + "kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "' and nip_menyerahkan in ('','-','--')") > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menyerahkan transfer sebelum tindakan harus diisi dulu,..");
+                } else if (Sequel.cariInteger("select count(-1) from transfer_sebelum_tindakan where "
+                        + "kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "' and nip_menerima in ('','-','--')") > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menerima transfer sebelum tindakan harus diisi dulu,..");
+                } else {
+                    isiMenyerahkanBlm = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Transfer Pasien Sebelum Tindakan", Sequel.cariIsi("select pg.nama from transfer_sebelum_tindakan t "
+                                            + "inner join pegawai pg on pg.nik=t.nip_menyerahkan where "
+                                            + "t.kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "'") + " (Petugas Menyerahkan)",
+                                    tglBelum, jamBelum) + "') from kalimat_tte where kode='001'");
+                    isiMenerimaBlm = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Transfer Pasien Sebelum Tindakan", Sequel.cariIsi("select pg.nama from transfer_sebelum_tindakan t "
+                                            + "inner join pegawai pg on pg.nik=t.nip_menerima where "
+                                            + "t.kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "'") + " (Petugas Menerima)",
+                                    tglBelum, jamBelum) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isiMenyerahkanBlm, Sequel.cariFolderTte(), "QRTteSerahBelum.jpg", "select logo from setting");
+                    param.put("lokasiQrSerahBlm", Sequel.cariFolderTte() + File.separator + "QRTteSerahBelum.jpg");
+                    Valid.cetakQrTte(isiMenerimaBlm, Sequel.cariFolderTte(), "QRTteTerimaBelum.jpg", "select logo from setting");
+                    param.put("lokasiQrTerimaBlm", Sequel.cariFolderTte() + File.separator + "QRTteTerimaBelum.jpg");
+                }
+
+                //cek nip PR/PP/D
+                if (Sequel.cariInteger("select count(-1) from transfer_sebelum_tindakan where "
+                        + "kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "' "
+                        + "and (nip_menyerahkan like '%PR%' or nip_menyerahkan like '%PP%' or nip_menyerahkan like '%D%')") > 0) {
+                    Valid.cetakQrTte("", "", "", "");
+                    param.put("lokasiQrSerahBlm", "");
+                } else if (Sequel.cariInteger("select count(-1) from transfer_sebelum_tindakan where "
+                        + "kode_transfer='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 1).toString() + "' "
+                        + "and (nip_menerima like '%PR%' or nip_menerima like '%PP%' or nip_menerima like '%D%')") > 0) {
+                    Valid.cetakQrTte("", "", "", "");
+                    param.put("lokasiQrTerimaBlm", "");
+                }
+                
+                //transfer sesudah
+                tglSudah = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from transfer_sesudah_tindakan where "
+                        + "waktu_simpan='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 47).toString() + "'");
+                jamSudah = Sequel.cariIsi("select time(waktu_simpan) from transfer_sesudah_tindakan where "
+                        + "waktu_simpan='" + tbTransferSudah.getValueAt(tbTransferSudah.getSelectedRow(), 47).toString() + "'");
+
+                if (TnmPetugasSerahSudah.getText().equals("") || TnmPetugasSerahSudah.getText().equals("-") || TnmPetugasSerahSudah.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menyerahkan transfer sesudah tindakan harus diisi dulu,..");
+                } else if (TnmPetugasTerimaSudah.getText().equals("") || TnmPetugasTerimaSudah.getText().equals("-") || TnmPetugasTerimaSudah.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama petugas yang menerima transfer sesudah tindakan harus diisi dulu,..");
+                } else {
+                    isiMenyerahkanSdh = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Transfer Pasien Sesudah Tindakan", TnmPetugasSerahSudah.getText() + " (Petugas Menyerahkan)", tglSudah, jamSudah) + "') from kalimat_tte where kode='001'");
+                    isiMenerimaSdh = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Transfer Pasien Sesudah Tindakan", TnmPetugasTerimaSudah.getText() + " (Petugas Menerima)", tglSudah, jamSudah) + "') from kalimat_tte where kode='001'");
+                    
+                    Valid.cetakQrTte(isiMenyerahkanSdh, Sequel.cariFolderTte(), "QRTteSerahSudah.jpg", "select logo from setting");
+                    param.put("lokasiQrSerahSdh", Sequel.cariFolderTte() + File.separator + "QRTteSerahSudah.jpg");
+                    Valid.cetakQrTte(isiMenerimaSdh, Sequel.cariFolderTte(), "QRTteTerimaSudah.jpg", "select logo from setting");
+                    param.put("lokasiQrTerimaSdh", Sequel.cariFolderTte() + File.separator + "QRTteTerimaSudah.jpg");
+                }
+                
+                if (nipSerahSdh.contains("PR") == true || nipSerahSdh.contains("PP") == true || nipSerahSdh.contains("D") == true) {
+                    Valid.cetakQrTte("", "", "", "");
+                    param.put("lokasiQrSerahSdh", "");
+                } else if (nipTerimaSdh.contains("PR") == true || nipTerimaSdh.contains("PP") == true || nipTerimaSdh.contains("D") == true) {
+                    Valid.cetakQrTte("", "", "", "");
+                    param.put("lokasiQrTerimaSdh", "");
+                }
+                
+                Valid.MyReport("rptTransferTindakanQr.jasper", "report", "::[ Lembar Transfer Pasien Untuk Tindakan ]::",
+                        "SELECT now() tanggal", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        
+        } else {
+            Valid.MyReport("rptTransferTindakan.jasper", "report", "::[ Lembar Transfer Pasien Untuk Tindakan ]::",
+                    "SELECT now() tanggal", param);
+        }
 
         if (TabTransfer.getSelectedIndex() == 0) {
             emptTeksSebelum();
