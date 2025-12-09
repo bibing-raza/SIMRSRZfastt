@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -435,6 +436,8 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         BtnGanti = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
+        jLabel71 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         panelGlass10 = new widget.panelisi();
         jLabel19 = new widget.Label();
         DTPCari1 = new widget.Tanggal();
@@ -812,6 +815,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
 
         tbObsPasien.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbObsPasien.setName("tbObsPasien"); // NOI18N
+        tbObsPasien.getTableHeader().setReorderingAllowed(false);
         tbObsPasien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbObsPasienMouseClicked(evt);
@@ -942,6 +946,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
 
         tbTanggalObs.setToolTipText("Silahkan klik/pilih salah satu tanggal observasinya");
         tbTanggalObs.setName("tbTanggalObs"); // NOI18N
+        tbTanggalObs.getTableHeader().setReorderingAllowed(false);
         Scroll3.setViewportView(tbTanggalObs);
 
         internalFrame7.add(Scroll3, java.awt.BorderLayout.CENTER);
@@ -1114,6 +1119,18 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnKeluar);
 
+        jLabel71.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel71.setText("Cetak Dalam Bentuk :");
+        jLabel71.setName("jLabel71"); // NOI18N
+        jLabel71.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel71);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         jPanel3.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
         panelGlass10.setName("panelGlass10"); // NOI18N
@@ -1126,7 +1143,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1140,7 +1157,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1237,7 +1254,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 66, 110, 23);
 
-        tglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
+        tglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
         tglObservasi.setDisplayFormat("dd-MM-yyyy");
         tglObservasi.setName("tglObservasi"); // NOI18N
         tglObservasi.setOpaque(false);
@@ -1483,6 +1500,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         tbObservasi.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki atau dihapus");
         tbObservasi.setComponentPopupMenu(jPopupMenu1);
         tbObservasi.setName("tbObservasi"); // NOI18N
+        tbObservasi.getTableHeader().setReorderingAllowed(false);
         tbObservasi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbObservasiMouseClicked(evt);
@@ -1504,6 +1522,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         tbDetailObs.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki atau dihapus");
         tbDetailObs.setComponentPopupMenu(jPopupMenu2);
         tbDetailObs.setName("tbDetailObs"); // NOI18N
+        tbDetailObs.getTableHeader().setReorderingAllowed(false);
         Scroll2.setViewportView(tbDetailObs);
 
         internalFrame2.add(Scroll2);
@@ -1925,6 +1944,8 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
             if (tbObservasi.getSelectedRow() > -1) {
+                String isiPerawat = "", isiDokter = "", tgl = "", jam = "";
+                
                 if (Sequel.cariInteger("select count(-1) from detail_lembar_observasi where no_rawat='" + TNoRw.getText() + "'") > 0) {
                     Map<String, Object> param = new HashMap<>();
                     param.put("namars", akses.getnamars());
@@ -1966,10 +1987,45 @@ public class RMLembarObservasi extends javax.swing.JDialog {
                         param.put("diagnosa", Tdiagnosis.getText());
                         param.put("perawat", TnmPerawat.getText());
                         param.put("dokter", TnmDokter.getText());
-                        Valid.MyReport("rptLembarObservasi.jasper", "report", "::[ Lembar Observasi Pasien ]::",
-                                "SELECT d.*, time_format(d.jam,'%H:%i') jamnya, d.ruang_rawat ruangan FROM detail_lembar_observasi d "
-                                + "INNER JOIN lembar_observasi lo on lo.no_rawat=d.no_rawat and lo.waktu_simpan=d.waktu_simpan_lembar_obs where "
-                                + "d.waktu_simpan_lembar_obs='" + wktSimpanObs + "' order by d.jam", param);
+
+                        if (cmbPilihCetak.getSelectedIndex() == 0) {
+                            tgl = Sequel.cariIsi("select date_format(waktu_simpan_lembar_obs,'%d/%m/%Y') from detail_lembar_observasi where "
+                                    + "waktu_simpan_lembar_obs='" + wktSimpanObs + "' order by convert(waktu_simpan_lembar_obs,DATETIME) desc limit 1");
+                            jam = Sequel.cariIsi("select time_format(waktu_simpan_lembar_obs,'%H:%i:%s') from detail_lembar_observasi where "
+                                    + "waktu_simpan_lembar_obs='" + wktSimpanObs + "' order by convert(waktu_simpan_lembar_obs,DATETIME) desc limit 1");
+
+                            if (TnmPerawat.getText().equals("") || TnmPerawat.getText().equals("-") || TnmPerawat.getText().equals("--")
+                                    || nipPerawat.contains("PR") == true || nipPerawat.contains("PP") == true) {
+                                JOptionPane.showMessageDialog(rootPane, "Nama perawat harus diisi dulu dengan benar,..");
+                            } else if (TnmDokter.getText().equals("") || TnmDokter.getText().equals("-") || TnmDokter.getText().equals("--")) {
+                                JOptionPane.showMessageDialog(rootPane, "Nama dokter harus diisi dulu dengan benar,..");
+                            } else {
+                                isiPerawat = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                                "Lembar Observasi", TnmPerawat.getText() + " (Perawat)", tgl, jam) + "') from kalimat_tte where kode='001'");
+                                isiDokter = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                                "Lembar Observasi", TnmDokter.getText() + " (Dokter)", tgl, jam) + "') from kalimat_tte where kode='001'");
+
+                                Valid.cetakQrTte(isiPerawat, Sequel.cariFolderTte(), "QRTtePerawat.jpg", "select logo from setting");
+                                param.put("lokasiQrPerawat", Sequel.cariFolderTte() + File.separator + "QRTtePerawat.jpg");
+                                Valid.cetakQrTte(isiDokter, Sequel.cariFolderTte(), "QRTteDokter.jpg", "select logo from setting");
+                                param.put("lokasiQrDokter", Sequel.cariFolderTte() + File.separator + "QRTteDokter.jpg");
+                                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                                Valid.MyReport("rptLembarObservasiQr.jasper", "report", "::[ Lembar Observasi Pasien ]::",
+                                        "SELECT d.*, time_format(d.jam,'%H:%i') jamnya, d.ruang_rawat ruangan FROM detail_lembar_observasi d "
+                                        + "INNER JOIN lembar_observasi lo on lo.no_rawat=d.no_rawat and lo.waktu_simpan=d.waktu_simpan_lembar_obs where "
+                                        + "d.waktu_simpan_lembar_obs='" + wktSimpanObs + "' order by d.jam", param);
+                                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                            }
+                        
+                        } else {
+                            Valid.MyReport("rptLembarObservasi.jasper", "report", "::[ Lembar Observasi Pasien ]::",
+                                    "SELECT d.*, time_format(d.jam,'%H:%i') jamnya, d.ruang_rawat ruangan FROM detail_lembar_observasi d "
+                                    + "INNER JOIN lembar_observasi lo on lo.no_rawat=d.no_rawat and lo.waktu_simpan=d.waktu_simpan_lembar_obs where "
+                                    + "d.waktu_simpan_lembar_obs='" + wktSimpanObs + "' order by d.jam", param);
+                        }
                     }
 
                     TCari.setText(TNoRw.getText());
@@ -2154,6 +2210,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     private widget.ComboBox cmbMnt;
     private widget.ComboBox cmbMnt1;
     private widget.ComboBox cmbObservasi;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbPrioritas;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
@@ -2188,6 +2245,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     private widget.Label jLabel69;
     private widget.Label jLabel7;
     private widget.Label jLabel70;
+    private widget.Label jLabel71;
     private widget.Label jLabel8;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;

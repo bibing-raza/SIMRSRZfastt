@@ -13891,7 +13891,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                                             "Assesmen Medik Gawat Darurat", rsLaprm.getString("nmDokter") + " (Dokter Pemberi Edukasi)", tgl, jam) + "') from kalimat_tte where kode='001'");
 
                             if (rsLaprm.getString("nmPerawat").equals("") || rsLaprm.getString("nmPerawat").equals("-") || rsLaprm.getString("nmPerawat").equals("--")) {
-                                Valid.cetakQrTte("", "", "", "");
                                 param.put("lokasiQrPerawat", "");
                             } else {
                                 isiPerawat = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
@@ -14649,7 +14648,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
                         
                         if (rsLaprm.getString("nmMenyerahkan").equals("") || rsLaprm.getString("nmMenyerahkan").equals("-") || rsLaprm.getString("nmMenyerahkan").equals("--")) {
-                            Valid.cetakQrTte("", "", "", "");
                             param.put("lokasiQrPetugas1", "");
                         } else {
                             isiMenyerahkan = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
@@ -14661,7 +14659,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         }
 
                         if (rsLaprm.getString("nmMenerima").equals("") || rsLaprm.getString("nmMenerima").equals("-") || rsLaprm.getString("nmMenerima").equals("--")) {
-                            Valid.cetakQrTte("", "", "", "");
                             param.put("lokasiQrPetugas2", "");
                         } else {
                             isiMenerima = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"

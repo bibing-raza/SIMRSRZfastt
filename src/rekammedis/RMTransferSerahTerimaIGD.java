@@ -4453,7 +4453,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
                 
                 if (Tnm_petugas1.getText().equals("") || Tnm_petugas1.getText().equals("-") || Tnm_petugas1.getText().equals("--")) {
-                    Valid.cetakQrTte("", "", "", "");
                     param.put("lokasiQrPetugas1", "");
                 } else {
                     isiMenyerahkan = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
@@ -4464,7 +4463,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 }
                 
                 if (Tnm_petugas2.getText().equals("") || Tnm_petugas2.getText().equals("-") || Tnm_petugas2.getText().equals("--")) {
-                    Valid.cetakQrTte("", "", "", "");
                     param.put("lokasiQrPetugas2", "");
                 } else {
                     isiMenerima = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"

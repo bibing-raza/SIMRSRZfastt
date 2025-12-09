@@ -1232,6 +1232,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
         tbFarmasi.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
         tbFarmasi.setName("tbFarmasi"); // NOI18N
+        tbFarmasi.getTableHeader().setReorderingAllowed(false);
         tbFarmasi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbFarmasiMouseClicked(evt);
@@ -1396,9 +1397,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         Scroll8.setName("Scroll8"); // NOI18N
         Scroll8.setOpaque(true);
 
-        tbData.setToolTipText("");
         tbData.setComponentPopupMenu(jPopupCopyData);
         tbData.setName("tbData"); // NOI18N
+        tbData.getTableHeader().setReorderingAllowed(false);
         Scroll8.setViewportView(tbData);
 
         internalFrame11.add(Scroll8, java.awt.BorderLayout.CENTER);
@@ -1423,7 +1424,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         });
         panelisi14.add(ChkTglBeri);
 
-        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2025" }));
+        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
         TtglBeri.setDisplayFormat("dd-MM-yyyy");
         TtglBeri.setName("TtglBeri"); // NOI18N
         TtglBeri.setOpaque(false);
@@ -2320,6 +2321,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
         tbResep.setToolTipText("klik salah satu data yang mau jadwalkan pemberiannya");
         tbResep.setName("tbResep"); // NOI18N
+        tbResep.getTableHeader().setReorderingAllowed(false);
         tbResep.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbResepMouseClicked(evt);
@@ -2563,7 +2565,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2577,7 +2579,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2666,6 +2668,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         tbObat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbObat.setComponentPopupMenu(jPopupMenu);
         tbObat.setName("tbObat"); // NOI18N
+        tbObat.getTableHeader().setReorderingAllowed(false);
         tbObat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbObatMouseClicked(evt);
@@ -2691,6 +2694,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         tbDouble.setToolTipText("klik salah satu data yang mau diperbaiki/diganti/dihapus");
         tbDouble.setComponentPopupMenu(jPopupMenu1);
         tbDouble.setName("tbDouble"); // NOI18N
+        tbDouble.getTableHeader().setReorderingAllowed(false);
         tbDouble.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDoubleMouseClicked(evt);
@@ -2742,6 +2746,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
         tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
         tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.getTableHeader().setReorderingAllowed(false);
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCPPTMouseClicked(evt);

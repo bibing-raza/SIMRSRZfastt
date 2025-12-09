@@ -4159,7 +4159,6 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                                     "Assesmen Medik Gawat Darurat", nmdokter.getText() + " (Dokter Pemberi Edukasi)", tgl, jam) + "') from kalimat_tte where kode='001'");
                     
                     if (NmPerawat.getText().equals("") || NmPerawat.getText().equals("-") || NmPerawat.getText().equals("--")) {
-                        Valid.cetakQrTte("", "", "", "");
                         param.put("lokasiQrPerawat", "");
                     } else {
                         isiPerawat = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"

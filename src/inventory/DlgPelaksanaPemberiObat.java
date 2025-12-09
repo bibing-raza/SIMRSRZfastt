@@ -501,6 +501,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
 
         tbPelaksana.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPelaksana.setName("tbPelaksana"); // NOI18N
+        tbPelaksana.getTableHeader().setReorderingAllowed(false);
         tbPelaksana.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPelaksanaMouseClicked(evt);
@@ -653,7 +654,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -667,7 +668,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1246,8 +1247,8 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
 
-        tbObat.setToolTipText("");
         tbObat.setName("tbObat"); // NOI18N
+        tbObat.getTableHeader().setReorderingAllowed(false);
         Scroll1.setViewportView(tbObat);
 
         panelGlass11.add(Scroll1, java.awt.BorderLayout.CENTER);
