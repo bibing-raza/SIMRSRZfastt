@@ -2622,10 +2622,9 @@ public final class validasi {
 
             if (fileReport.exists() && fileReport.isFile()) {
                 reportPath = fileReport.getAbsolutePath();
-                System.out.println("Report ditemukan di: " + reportPath);
+                System.out.println("Report ditemukan di : " + reportPath);
             } else {
-                JOptionPane.showMessageDialog(null,
-                        "File report tidak ditemukan:\n" + fileReport.getAbsolutePath());
+                System.out.println("File report tidak ditemukan : " + fileReport.getAbsolutePath());
                 return;
             }
 
@@ -2656,11 +2655,10 @@ public final class validasi {
             exporter.setConfiguration(config);
             exporter.exportReport();
 
-            System.out.println("PDF berhasil dibuat: " + outputPath);
-            JOptionPane.showMessageDialog(null, "PDF berhasil dibuat:\n" + outputPath);
+            System.out.println("PDF berhasil dibuat : " + outputPath);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error membuat PDF:\n" + e.getMessage());
+            System.out.println("Error membuat PDF :\n" + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
