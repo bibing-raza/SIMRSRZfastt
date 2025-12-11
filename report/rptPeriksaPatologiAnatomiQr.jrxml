@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="594" pageHeight="842" columnWidth="545" leftMargin="32" rightMargin="17" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="594" pageHeight="842" columnWidth="545" leftMargin="32" rightMargin="17" topMargin="20" bottomMargin="20" uuid="4b35568c-ba18-4980-b60a-f5fdd1d14b9c">
 	<property name="ireport.zoom" value="1.8181818181818181"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="47"/>
+	<property name="ireport.y" value="103"/>
 	<parameter name="noPA" class="java.lang.String"/>
 	<parameter name="norm" class="java.lang.String"/>
 	<parameter name="namars" class="java.lang.String"/>
@@ -42,185 +42,209 @@
 	<title>
 		<band height="173" splitType="Stretch">
 			<textField>
-				<reportElement x="2" y="14" width="520" height="16" forecolor="#000000" backcolor="#00FF00"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="2" y="14" width="520" height="16" forecolor="#000000" backcolor="#00FF00" uuid="e353ef04-0d0a-47d4-9f30-01a9c67b6562"/>
+				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="12" isBold="false" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{namars}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{namars}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="2" y="42" width="520" height="12"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="2" y="42" width="520" height="12" uuid="fa9bbd27-82c4-466a-86b7-804d362180a7"/>
+				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["e-Mail : "+$P{emailrs}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["e-Mail : "+$P{emailrs}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="2" y="30" width="520" height="12"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="2" y="30" width="520" height="12" uuid="1aa56e9c-8b0f-4f4c-8aec-e6befdb3601b"/>
+				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Alamat : "+$P{alamatrs}+", "+$P{kotars}+", "+$P{propinsirs}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Alamat : "+$P{alamatrs}+", "+$P{kotars}+", "+$P{propinsirs}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="148" width="523" height="15"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="0" y="148" width="523" height="15" uuid="9a15c01d-4479-4211-8afb-9ac417c7ac6e"/>
+				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="11" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[HASIL PEMERIKSAAN PATOLOGI ANATOMI]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="105" width="60" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="105" width="60" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="aae7758d-f4d4-453f-8afe-774afa329904"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Tgl. Lahir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="66" width="60" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="66" width="60" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="9c0b7258-526a-4c2d-b249-e4409ef87b6e"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[No. PA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="79" width="60" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="79" width="60" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="75d70a40-d73e-41a8-8b0d-64f61e9753dc"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[No. RM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="92" width="60" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="92" width="60" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="dfe2a3ce-6a3f-4d66-b936-08c45e74a64b"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Nama Pasien]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="118" width="60" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="118" width="60" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="928c23ad-4a94-40a6-839c-b36a5da1dda0"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Jenis Kelamin]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="95" y="15" width="35" height="41"/>
-				<imageExpression class="java.lang.String"><![CDATA[$P{logo}]]></imageExpression>
+				<reportElement x="95" y="15" width="35" height="41" uuid="fffe2322-7512-4f99-8278-72f1328a51cb"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<line>
-				<reportElement x="0" y="59" width="522" height="1"/>
+				<reportElement x="0" y="59" width="522" height="1" uuid="fb0a90b3-e2e4-4c3d-895a-8f73bb6cc49c"/>
 				<graphicElement>
 					<pen lineWidth="2.25" lineStyle="Double"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="59" y="66" width="176" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement x="59" y="66" width="176" height="13" uuid="72b89326-ff03-4619-9c26-ec90c78c1af6"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{noPA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{noPA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="59" y="79" width="176" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement x="59" y="79" width="176" height="13" uuid="d9ef0e87-cd8b-4303-bf4d-8cd55c35f794"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{norm}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{norm}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="59" y="92" width="203" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement x="59" y="92" width="203" height="13" uuid="4f5807c1-be2e-4d98-99a1-b540ec840009"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{nmpasien}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{nmpasien}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="59" y="105" width="176" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement x="59" y="105" width="176" height="13" uuid="52dba6b3-c836-42b0-913d-5e48007500b6"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{tgllahir}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{tgllahir}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="59" y="118" width="176" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement x="59" y="118" width="176" height="13" uuid="6e1fd582-72fa-4757-9d02-58ef45fadcb0"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{jenkel}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{jenkel}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="267" y="118" width="69" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="267" y="118" width="69" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="014fe9b8-3bb0-472d-aa29-e5f06682044b"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Tgl. Hasil]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="267" y="79" width="69" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="267" y="79" width="69" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="23aa645c-8a7a-42e3-b6f4-41b4e32f38c4"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Ruang/Poli]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="267" y="92" width="69" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="267" y="92" width="69" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="5152da83-d52a-48ff-9a6d-193f0c37bac3"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Rumah Sakit]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="267" y="105" width="69" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="267" y="105" width="69" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="640ec468-70a8-4934-8df8-5f97d1f6c0eb"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Tgl. Periksa]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="267" y="66" width="69" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="267" y="66" width="69" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="88dea5d5-8f07-4c21-8c0f-0eb59247fee2"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Dokter Pengirim]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="335" y="79" width="203" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement x="335" y="79" width="203" height="13" uuid="4b8e7831-3355-45ed-9100-32cc8f060e2d"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{unit}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{unit}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="335" y="66" width="203" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement x="335" y="66" width="203" height="13" uuid="1a4f0f4f-a7c3-4c1b-92be-76b7cb9ab84d"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{drPengirim}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{drPengirim}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="335" y="92" width="203" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement x="335" y="92" width="203" height="13" uuid="c47f96f3-bbd9-43f4-9122-cee2c80e4623"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{namars}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{namars}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="336" y="118" width="202" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement x="336" y="118" width="202" height="13" uuid="1858d375-26db-4cff-b4eb-926141ad1d2c"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{tglhasil}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{tglhasil}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="336" y="105" width="202" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement x="336" y="105" width="202" height="13" uuid="bc8aeb6a-b7fd-45b0-8728-08d6ed536eb2"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{tglperiksa}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{tglperiksa}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="138" width="522" height="1"/>
+				<reportElement x="0" y="138" width="522" height="1" uuid="94b74f00-bc3c-4715-a40f-d9a5ce0635e8"/>
 				<graphicElement>
 					<pen lineWidth="2.25" lineStyle="Double"/>
 				</graphicElement>
@@ -230,117 +254,132 @@
 	<detail>
 		<band height="13" splitType="Stretch">
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="65" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="65" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="651b7c53-87b4-4f9d-b83b-39969d415ea5"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Lokasi / Organ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="64" y="0" width="7" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="64" y="0" width="7" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="805cff2c-36b6-41e4-9e35-9c75af102877"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="71" y="0" width="467" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement x="71" y="0" width="467" height="13" uuid="b7a18e17-0918-49ef-be1b-916693c9bac6"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{lokasi}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{lokasi}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="13">
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="65" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="65" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="f8ff88fd-a749-4899-aec2-6ac6a5b2e6ae"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Makroskopik]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="64" y="0" width="7" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="64" y="0" width="7" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="5e600fcb-a5d5-4ec3-ae15-2bce3d2e08a5"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="71" y="0" width="467" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single" markup="html">
+				<reportElement x="71" y="0" width="467" height="13" uuid="589aa013-8669-404d-9449-f117201811b0"/>
+				<textElement verticalAlignment="Top" markup="html">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{makros} + " <i>" + $P{italicmakros} + "</i><br/>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{makros} + " <i>" + $P{italicmakros} + "</i><br/>"]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="13">
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="65" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="65" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="8dbdadf8-8814-46b4-8697-58fca9d345c7"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Mikroskopik]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="64" y="0" width="7" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="64" y="0" width="7" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="6092d315-70f6-4d3f-a910-b4a0f0189433"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="71" y="0" width="467" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single" markup="html">
+				<reportElement x="71" y="0" width="467" height="13" uuid="fd9b79c6-063a-48bb-b69f-251971408518"/>
+				<textElement verticalAlignment="Top" markup="html">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{mikros}+" <i>"+$P{italicmikros}+ "</i><br/>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{mikros}+" <i>"+$P{italicmikros}+ "</i><br/>"]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="13">
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="65" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="65" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="a90ca384-9b6a-4f9b-b652-169b8d5ff0f3"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Kesimpulan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="64" y="0" width="7" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="64" y="0" width="7" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="23c34221-4787-4c85-9a50-e35f491f050e"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="71" y="0" width="467" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single" markup="html">
+				<reportElement x="71" y="0" width="467" height="13" uuid="7afb86f3-8c3a-4095-b2f1-5eeb80df8a2c"/>
+				<textElement verticalAlignment="Top" markup="html">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kesimpulan}+" <i>"+$P{italickesimpulan}+ "</i><br/>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{kesimpulan}+" <i>"+$P{italickesimpulan}+ "</i><br/>"]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="13">
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="65" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="65" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="87fc0732-d75f-4825-b334-e753a4092f98"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Anjuran]]></text>
 			</staticText>
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="64" y="0" width="7" height="13" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="64" y="0" width="7" height="13" forecolor="#000000" backcolor="#F0F0DC" uuid="8b99c6c1-7fd5-4850-a73e-b5a2843ac15a"/>
+				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="71" y="0" width="467" height="13"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single" markup="html">
+				<reportElement x="71" y="0" width="467" height="13" uuid="c870d0cb-bb5d-41ef-a6d3-001014164cdd"/>
+				<textElement verticalAlignment="Top" markup="html">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{anjuran}+" <i>"+$P{italicanjuran}+ "</i><br/>"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{anjuran}+" <i>"+$P{italicanjuran}+ "</i><br/>"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -348,55 +387,59 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="34">
+		<band height="30">
 			<line>
-				<reportElement x="0" y="0" width="522" height="1"/>
+				<reportElement x="0" y="0" width="522" height="1" uuid="a4904425-0be2-4067-a011-f80ad2dd55ad"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="1" width="522" height="15"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="0" y="1" width="522" height="15" uuid="ed28cea0-7300-4bbc-9193-183315de7f5c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kalimatTte}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{kalimatTte}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
 	<summary>
 		<band height="194">
 			<staticText>
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="296" y="13" width="227" height="12" forecolor="#000000" backcolor="#F0F0DC"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="296" y="13" width="227" height="12" forecolor="#000000" backcolor="#F0F0DC" uuid="90a2c614-9e97-4f04-914a-87e20ec4b6fa"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Tahoma" size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Pemeriksa]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="296" y="107" width="227" height="13"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="296" y="107" width="227" height="13" uuid="7587ce0b-2d7b-4389-be56-4e65fb8c5185"/>
+				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{nmDokterpa}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{nmDokterpa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="296" y="118" width="227" height="13"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="296" y="118" width="227" height="13" uuid="12591c14-6c26-44cf-8db2-aa14e133fa93"/>
+				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["SIP . "+$P{sip}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["SIP . "+$P{sip}]]></textFieldExpression>
 			</textField>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="12" y="13" width="276" height="162"/>
-				<imageExpression class="java.net.URL"><![CDATA[$P{gambarPA}]]></imageExpression>
+				<reportElement x="12" y="13" width="276" height="162" uuid="54cacd71-47f1-4cf4-a736-fe38034909dd"/>
+				<imageExpression><![CDATA[$P{gambarPA}]]></imageExpression>
 			</image>
 			<rectangle>
-				<reportElement mode="Transparent" x="9" y="10" width="282" height="168"/>
+				<reportElement mode="Transparent" x="9" y="10" width="282" height="168" uuid="5f0a3d5e-af2f-42da-a237-4dd8f88bad01"/>
 			</rectangle>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="371" y="27" width="80" height="76"/>
-				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQr}]]></imageExpression>
+				<reportElement x="371" y="27" width="80" height="76" uuid="da44e74b-b45c-4ed2-bc18-fdd022fa6bec"/>
+				<imageExpression><![CDATA[$P{lokasiQr}]]></imageExpression>
 			</image>
 		</band>
 	</summary>

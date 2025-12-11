@@ -565,4 +565,24 @@ public final class koneksiDB {
         }
         return var;
     }
+    
+    public static String URLWHATSAPPTEXT(){
+        try{
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var=prop.getProperty("URLWHATSAPPTEXT");
+        }catch(Exception e){
+            var=""; 
+        }
+        return var;
+    }
+    
+    public static String URLWHATSAPPFILE(){
+        try{
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var=prop.getProperty("URLWHATSAPPFILE");
+        }catch(Exception e){
+            var=""; 
+        }
+        return var;
+    }
 }

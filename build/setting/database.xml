@@ -95,6 +95,8 @@
 	<entry key="LOKASIFILEVERSIWINDOWS">C://versiSIMRS/</entry>
         <entry key="LOKASIFILEVERSILINUXMAC">versiSIMRS/</entry>
         <entry key="SIMRSDEVELOPMENT">Tidak</entry>
+		<entry key="URLWHATSAPPTEXT">http://192.168.0.230:7183/ws-kirim-wa/kirim-teks.php</entry>
+        <entry key="URLWHATSAPPFILE">http://192.168.0.230:7183/ws-kirim-wa/kirim-file.php</entry>
 
         <entry key="URLAPIAPOTEKBPJS">https://apijkn-dev.bpjs-kesehatan.go.id/apotek-rest-dev</entry>
         <entry key="CONSIDAPIAPOTEKBPJS">enkripsi consid</entry>

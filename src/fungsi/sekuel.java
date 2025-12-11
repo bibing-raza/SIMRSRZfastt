@@ -50,6 +50,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Statement;
+import java.util.Base64;
 import javax.imageio.ImageIO;
 //import org.apache.poi.hssf.record.formula.functions.Len;
 //import org.apache.poi.hssf.record.formula.functions.Mid;
@@ -3667,5 +3668,29 @@ public final class sekuel {
         }
 
         return dicari;
+    }
+    
+    public static String convertPdfToBase64(String filePath) {
+        File pdfFile = new File(filePath);
+        FileInputStream fis = null;
+        byte[] bytes = null;
+        try {
+            fis = new FileInputStream(pdfFile);
+            bytes = new byte[(int) pdfFile.length()];
+            fis.read(bytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null; // Handle error appropriately
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return Base64.getEncoder().encodeToString(bytes);
     }
 }
