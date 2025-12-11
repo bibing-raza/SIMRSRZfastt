@@ -1524,7 +1524,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak Hasil Periksa Lab.");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -1543,7 +1542,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn4.setMnemonic('U');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+U");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -1729,7 +1727,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         btnFaskes.setForeground(new java.awt.Color(0, 0, 0));
         btnFaskes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnFaskes.setMnemonic('4');
         btnFaskes.setToolTipText("ALt+4");
         btnFaskes.setName("btnFaskes"); // NOI18N
         btnFaskes.addActionListener(new java.awt.event.ActionListener() {
@@ -1793,7 +1790,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnKirim.setForeground(new java.awt.Color(0, 0, 0));
         BtnKirim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
-        BtnKirim.setMnemonic('S');
         BtnKirim.setText("Kirim Data Ke LIS");
         BtnKirim.setToolTipText("Alt+S");
         BtnKirim.setName("BtnKirim"); // NOI18N
@@ -1807,7 +1803,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -2214,7 +2209,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -2233,7 +2227,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -2252,7 +2245,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnHapus1.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus1.setMnemonic('H');
         BtnHapus1.setText("Hapus");
         BtnHapus1.setToolTipText("Alt+H");
         BtnHapus1.setName("BtnHapus1"); // NOI18N
@@ -2271,7 +2263,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -2302,7 +2293,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnPrint1.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint1.setMnemonic('T');
         BtnPrint1.setText("Cetak");
         BtnPrint1.setToolTipText("Alt+T");
         BtnPrint1.setName("BtnPrint1"); // NOI18N
@@ -2316,7 +2306,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnDokumen.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-search24.png"))); // NOI18N
-        BtnDokumen.setMnemonic('T');
         BtnDokumen.setText("Dokumen Penunjang Medis");
         BtnDokumen.setToolTipText("Alt+T");
         BtnDokumen.setName("BtnDokumen"); // NOI18N
@@ -2335,7 +2324,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnCloseIn5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn5.setMnemonic('U');
         BtnCloseIn5.setText("Tutup");
         BtnCloseIn5.setToolTipText("Alt+U");
         BtnCloseIn5.setName("BtnCloseIn5"); // NOI18N
@@ -2381,7 +2369,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         btnPerujuk.setForeground(new java.awt.Color(0, 0, 0));
         btnPerujuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        btnPerujuk.setMnemonic('7');
         btnPerujuk.setToolTipText("ALt+7");
         btnPerujuk.setName("btnPerujuk"); // NOI18N
         btnPerujuk.addActionListener(new java.awt.event.ActionListener() {
@@ -2406,7 +2393,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan1.setMnemonic('S');
         BtnSimpan1.setText("Simpan");
         BtnSimpan1.setToolTipText("Alt+S");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
@@ -2420,7 +2406,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnCloseIn2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn2.setMnemonic('U');
         BtnCloseIn2.setText("Tutup");
         BtnCloseIn2.setToolTipText("Alt+U");
         BtnCloseIn2.setName("BtnCloseIn2"); // NOI18N
@@ -2575,7 +2560,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         btnPasien.setForeground(new java.awt.Color(0, 0, 0));
         btnPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPasien.setMnemonic('1');
         btnPasien.setToolTipText("Alt+1");
         btnPasien.setName("btnPasien"); // NOI18N
         btnPasien.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -2589,7 +2573,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         btnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPetugas.setMnemonic('2');
         btnPetugas.setToolTipText("Alt+2");
         btnPetugas.setName("btnPetugas"); // NOI18N
         btnPetugas.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -2639,7 +2622,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         btnPenjab.setForeground(new java.awt.Color(0, 0, 0));
         btnPenjab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPenjab.setMnemonic('2');
         btnPenjab.setToolTipText("ALt+2");
         btnPenjab.setName("btnPenjab"); // NOI18N
         btnPenjab.addActionListener(new java.awt.event.ActionListener() {
@@ -2684,7 +2666,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnUnit.setForeground(new java.awt.Color(0, 0, 0));
         BtnUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnUnit.setMnemonic('4');
         BtnUnit.setToolTipText("ALt+4");
         BtnUnit.setName("BtnUnit"); // NOI18N
         BtnUnit.addActionListener(new java.awt.event.ActionListener() {
@@ -2697,7 +2678,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnBersih.setForeground(new java.awt.Color(0, 0, 0));
         BtnBersih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnBersih.setMnemonic('R');
         BtnBersih.setText("Refresh");
         BtnBersih.setToolTipText("Alt+R");
         BtnBersih.setName("BtnBersih"); // NOI18N
@@ -2785,7 +2765,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('5');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+5");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -2817,7 +2796,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -2836,7 +2814,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -2855,7 +2832,6 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N

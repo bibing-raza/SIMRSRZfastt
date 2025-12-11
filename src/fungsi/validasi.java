@@ -2606,67 +2606,73 @@ public final class validasi {
         return a;
     }
     
-    public void MyReportToPDF(String reportName, String reportDirName, String judul, String qry, Map parameters, String lokasiFile, String nmFile) {
+    public void MyReportToPDF(String reportName, String reportDirName, String judul, String qry,
+            Map<String, Object> parameters, String lokasiFile, String nmFile) {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        Properties systemProp = System.getProperties();
-
-        // Ambil current dir
-        String currentDir = systemProp.getProperty("user.dir");
-
-        File dir = new File(currentDir);
-
-        File fileRpt;
-        String fullPath = "";
-        if (dir.isDirectory()) {
-            String[] isiDir = dir.list();
-            for (String iDir : isiDir) {
-                fileRpt = new File(currentDir + File.separatorChar + iDir + File.separatorChar + reportDirName + File.separatorChar + reportName);
-                if (fileRpt.isFile()) { // Cek apakah file RptMaster.jasper ada
-                    fullPath = fileRpt.toString();
-                    System.out.println("Found Report File at : " + fullPath);
-                } // end if
-            } // end for i
-        } // end if
+        String reportPath = null;
 
         try {
+            // Ambil direktori aplikasi (working directory)
+            String baseDir = new File(".").getCanonicalPath();
+
+            // Lokasi folder report → baseDir/reportDirName/reportName
+            File fileReport = new File(baseDir + File.separator + reportDirName + File.separator + reportName);
+
+            if (fileReport.exists() && fileReport.isFile()) {
+                reportPath = fileReport.getAbsolutePath();
+                System.out.println("Report ditemukan di: " + reportPath);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "File report tidak ditemukan:\n" + fileReport.getAbsolutePath());
+                return;
+            }
+
+            // Eksekusi Query
             ps = connect.prepareStatement(qry);
+            rs = ps.executeQuery();
+            JRResultSetDataSource rsData = new JRResultSetDataSource(rs);
+
+            // Isi laporan
+            JasperPrint jp = JasperFillManager.fillReport(reportPath, parameters, rsData);
+
+            // Penamaan file PDF
+            String pdfName = nmFile + ".pdf";
+            String outputPath = lokasiFile + File.separator + pdfName;
+
+            // Pastikan folder output ada
+            File outputDir = new File(lokasiFile);
+            if (!outputDir.exists()) {
+                outputDir.mkdirs();
+            }
+
+            // Export PDF
+            JRPdfExporter exporter = new JRPdfExporter();
+            exporter.setExporterInput(new SimpleExporterInput(jp));
+            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(outputPath));
+
+            SimplePdfExporterConfiguration config = new SimplePdfExporterConfiguration();
+            exporter.setConfiguration(config);
+            exporter.exportReport();
+
+            System.out.println("PDF berhasil dibuat: " + outputPath);
+            JOptionPane.showMessageDialog(null, "PDF berhasil dibuat:\n" + outputPath);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error membuat PDF:\n" + e.getMessage());
+            e.printStackTrace();
+        } finally {
             try {
-                String namafile = fullPath; // Gunakan fullPath yang sudah ditemukan
-                rs = ps.executeQuery();
-                JRResultSetDataSource rsdt = new JRResultSetDataSource(rs);
-
-                JasperPrint jasperPrint = JasperFillManager.fillReport(namafile, parameters, rsdt);
-
-                // Buat nama file PDF
-                String pdfFileName = nmFile + ".pdf";
-
-                // Gabungkan lokasiFile dengan nama file PDF
-                String fullOutputPath = lokasiFile + File.separator + pdfFileName;
-
-                // Ekspor ke PDF
-                JRPdfExporter exporter = new JRPdfExporter();
-                exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-                exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(new FileOutputStream(new File(fullOutputPath))));
-                SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
-                exporter.setConfiguration(configuration);
-                exporter.exportReport();
-
-                System.out.println("Laporan PDF berhasil disimpan : " + fullOutputPath);
-            } catch (Exception rptexcpt) {
-                System.out.println("Report Can't view because : " + rptexcpt);
-                JOptionPane.showMessageDialog(null, "Report Can't view because : " + rptexcpt);
-            } finally {
                 if (rs != null) {
                     rs.close();
                 }
                 if (ps != null) {
                     ps.close();
                 }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (Exception e) {
-            System.out.println(e);
         }
     }
 }
