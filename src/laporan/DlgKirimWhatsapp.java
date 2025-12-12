@@ -186,7 +186,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                 String base64String = sekuel.convertPdfToBase64(filePath);
          
                 if (base64String != null) {
-                    System.out.println("Data Base64 dari file PDF :\n" + base64String);
                     if (wa.ngirimFile(TnoWa.getText(), TnmFile.getText(), base64String) == true) {
                         Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                         dispose();
@@ -253,7 +252,7 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
     private void dataKirim() {
         if (nmDokumen.equals("hasil patologi anatomi")) {
             try {
-                ps = koneksi.prepareStatement("select hp.*, p.no_rkm_medis, p.nm_pasien, p.tgl_lahir, p.jk, pg1.nama drPengirim, "
+                ps = koneksi.prepareStatement("select hp.*, p.no_rkm_medis, p.nm_pasien, p.tgl_lahir, p.jk, pg1.nama drPengirim, p.no_tlp, "
                         + "ifnull(d.no_ijn_praktek,'-') nosip, pg2.nama drPatologi, date_format(hp.waktu_simpan,'%d/%m/%Y') tgl, time(hp.waktu_simpan) jam "
                         + "from hasil_patologi_anatomi hp inner join reg_periksa rp on rp.no_rawat=hp.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg1 on pg1.nik=hp.nip_perujuk "
@@ -336,7 +335,7 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                                 param, Sequel.cariFolderTte(), nmFile);
                         
                         TPesan.setText("Hasil Pemeriksaan Lab. Patologi Anatomi " + akses.getnamars());
-                        TnoWa.setText("");
+                        TnoWa.setText(rs.getString("no_tlp"));
                         TnmFile.setText(nmFile);
                         TnoWa.requestFocus();
                     }

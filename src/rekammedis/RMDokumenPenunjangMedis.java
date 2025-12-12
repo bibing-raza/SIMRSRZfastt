@@ -72,7 +72,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        String[] row = {"id_file", "Nama Pemeriksaan", "Tgl. Upload", "Jam", "Nama File", "Petugas Yang Upload", "nip_petugas"                
+        String[] row = {"id_file", "Nama Pemeriksaan", "Tgl. Upload", "Jam", "Nama File", "Petugas Yang Upload", "nip_petugas"
         };
         
         tabMode = new DefaultTableModel(null, row) {
@@ -823,7 +823,8 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         try {
             if (ChkDokumen1.isSelected() == true) {
                 psA = koneksi.prepareStatement("SELECT rf.id_file, rf.nama_file_ori, date_format(rf.tgl_upload,'%d/%m/%Y') tglUpload, "
-                        + "time(rf.tgl_upload) jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.petugas nip from rme_file_upload rf "
+                        + "time(rf.tgl_upload) jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, "
+                        + "if(rf.petugas like '%D00%','" + akses.getkode() + "',rf.petugas) nip from rme_file_upload rf "
                         + "inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan left join petugas pg on pg.user_id=rf.petugas where "
                         + "rf.nomr='" + TNoRM.getText() + "' and rf.stts_data='1' and rj.nama_pemeriksaan like ? or "
                         + "rf.nomr='" + TNoRM.getText() + "' and rf.stts_data='1' and ifnull(pg.nama,'-') like ? or "
@@ -831,7 +832,8 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
                         + "order by rf.tgl_upload desc");
             } else {
                 psA = koneksi.prepareStatement("SELECT rf.id_file, rf.nama_file_ori, date_format(rf.tgl_upload,'%d/%m/%Y') tglUpload, "
-                        + "time(rf.tgl_upload) jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.petugas nip from rme_file_upload rf "
+                        + "time(rf.tgl_upload) jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, "
+                        + "if(rf.petugas like '%D00%','" + akses.getkode() + "',rf.petugas) nip from rme_file_upload rf "
                         + "inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan left join petugas pg on pg.user_id=rf.petugas where "
                         + "rf.no_rawat='" + TNoRW.getText() + "' and rf.stts_data='1' and rj.nama_pemeriksaan like ? or "
                         + "rf.no_rawat='" + TNoRW.getText() + "' and rf.stts_data='1' and ifnull(pg.nama,'-') like ? or "
