@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -446,6 +447,8 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel73 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -1771,7 +1774,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         jLabel47.setBounds(0, 322, 110, 23);
 
         Ttgl.setEditable(false);
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2025" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1869,6 +1872,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
 
         tbSkor.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbSkor.setName("tbSkor"); // NOI18N
+        tbSkor.getTableHeader().setReorderingAllowed(false);
         tbSkor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbSkorMouseClicked(evt);
@@ -1965,6 +1969,18 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        jLabel73.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel73.setText("Cetak Dalam Bentuk :");
+        jLabel73.setName("jLabel73"); // NOI18N
+        jLabel73.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel73);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -2034,7 +2050,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         jLabel49.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass10.add(jLabel49);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2048,7 +2064,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         jLabel50.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel50);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2506,8 +2522,33 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
             param.put("jam", cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + " Wita");
             param.put("petugas", TnmPerawat.getText());
 
-            Valid.MyReport("rptSkorApgarDowneCapJari.jasper", "report", "::[ Skor Apgar, Downe, Cap Jari Ibu & Bayi ]::",
-                "SELECT now() tanggal", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (TnmPerawat.getText().equals("") || TnmPerawat.getText().equals("-") || TnmPerawat.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Untuk tanda tangan elektronik, nama perawat harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Skor Apgar, Skor Downe, Cap Jari Ibu Dan Bayi", TnmPerawat.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from skor_apgar_downe_cap_jari_perinatologi where "
+                                            + "no_rawat='" + tbSkor.getValueAt(tbSkor.getSelectedRow(), 0).toString() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from skor_apgar_downe_cap_jari_perinatologi where "
+                                            + "no_rawat='" + tbSkor.getValueAt(tbSkor.getSelectedRow(), 0).toString() + "'")) + "') from kalimat_tte where kode='001'");
+                    
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Skor Apgar, Skor Downe, Cap Jari Ibu Dan Bayi", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    
+                    Valid.MyReport("rptSkorApgarDowneCapJariQr.jasper", "report", "::[ Skor Apgar, Downe, Cap Jari Ibu & Bayi ]::",
+                            "SELECT now() tanggal", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }                
+            } else {
+                Valid.MyReport("rptSkorApgarDowneCapJari.jasper", "report", "::[ Skor Apgar, Downe, Cap Jari Ibu & Bayi ]::",
+                        "SELECT now() tanggal", param);
+            }
 
             tampil();
             emptTeks();
@@ -2624,6 +2665,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
     private widget.ComboBox cmbMerintihB;
     private widget.ComboBox cmbMerintihC;
     private widget.ComboBox cmbMnt;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbReflex1;
     private widget.ComboBox cmbReflex10;
     private widget.ComboBox cmbReflex5;
@@ -2729,6 +2771,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
     private widget.Label jLabel56;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
+    private widget.Label jLabel73;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private widget.Label jLabel96;

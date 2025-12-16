@@ -1270,6 +1270,8 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel176 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnNotepad = new widget.Button();
@@ -1377,7 +1379,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         TrgRawat.setBounds(114, 38, 608, 23);
 
         TtglRencana2.setEditable(false);
-        TtglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        TtglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         TtglRencana2.setDisplayFormat("dd-MM-yyyy");
         TtglRencana2.setName("TtglRencana2"); // NOI18N
         TtglRencana2.setOpaque(false);
@@ -1431,7 +1433,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel95.setBounds(0, 2727, 125, 23);
 
         TtglRencana1.setEditable(false);
-        TtglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        TtglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         TtglRencana1.setDisplayFormat("dd-MM-yyyy");
         TtglRencana1.setName("TtglRencana1"); // NOI18N
         TtglRencana1.setOpaque(false);
@@ -2281,7 +2283,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(TdiagnosaIbu);
         TdiagnosaIbu.setBounds(114, 654, 610, 23);
 
-        TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         TtglLahir.setDisplayFormat("dd-MM-yyyy");
         TtglLahir.setName("TtglLahir"); // NOI18N
         TtglLahir.setOpaque(false);
@@ -5730,6 +5732,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         tbAsesmen.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbAsesmen.setComponentPopupMenu(jPopupMenu1);
         tbAsesmen.setName("tbAsesmen"); // NOI18N
+        tbAsesmen.getTableHeader().setReorderingAllowed(false);
         tbAsesmen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbAsesmenMouseClicked(evt);
@@ -5754,7 +5757,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5768,7 +5771,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5898,6 +5901,18 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             }
         });
         panelGlass8.add(BtnEdit);
+
+        jLabel176.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel176.setText("Cetak Dalam Bentuk :");
+        jLabel176.setName("jLabel176"); // NOI18N
+        jLabel176.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel176);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -6731,11 +6746,60 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             param.put("jamRen2", cmbJam2.getSelectedItem().toString() + ":" + cmbMnt2.getSelectedItem().toString() + " Wita");            
             param.put("petugas", TnmPerawat.getText());
             param.put("verifikator", TnmVerifikator.getText());
-            
-            Valid.MyReport("rptAsesmenKeperawatanPerinatologi2.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 2 ]::",
-                    "SELECT now() tanggal", param);
-            Valid.MyReport("rptAsesmenKeperawatanPerinatologi1.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 1 ]::",
-                    "SELECT now() tanggal", param);            
+
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                if ((nip.equals("") || nip.equals("-") || nip.equals("--"))
+                        && (nipVerifikator.equals("") || nipVerifikator.equals("-") || nipVerifikator.equals("--"))) {
+                    Valid.MyReport("rptAsesmenKeperawatanPerinatologi2.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 2 ]::",
+                            "SELECT now() tanggal", param);
+                    Valid.MyReport("rptAsesmenKeperawatanPerinatologi1.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 1 ]::",
+                            "SELECT now() tanggal", param);
+                } else {
+                    String isiPerawat = "", isiVerifikator = "", tgl = "", jam = "";
+                    tgl = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from asesmen_keperawatan_perinatologi where "
+                            + "no_rawat='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "'");
+                    jam = Sequel.cariIsi("select time(waktu_simpan) from asesmen_keperawatan_perinatologi where "
+                            + "no_rawat='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "'");
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                    //perawat
+                    if (nip.equals("") || nip.equals("-") || nip.equals("--")) {
+                        param.put("lokasiQrPerawat", "");
+                    } else {
+                        isiPerawat = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Assesmen Keperawatan Perinatologi", TnmPerawat.getText() + " (Perawat)", tgl, jam) + "') from kalimat_tte where kode='001'");
+
+                        Valid.cetakQrTte(isiPerawat, Sequel.cariFolderTte(), "QRTtePerawat.jpg", "select logo from setting");
+                        param.put("lokasiQrPerawat", Sequel.cariFolderTte() + File.separator + "QRTtePerawat.jpg");
+                    }
+
+                    //verifikator
+                    if (nipVerifikator.equals("") || nipVerifikator.equals("-") || nipVerifikator.equals("--")) {
+                        param.put("lokasiQrVerifikator", "");
+                    } else {
+                        isiVerifikator = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Assesmen Keperawatan Perinatologi", TnmVerifikator.getText() + " (Verifikator)", tgl, jam) + "') from kalimat_tte where kode='001'");
+
+                        Valid.cetakQrTte(isiVerifikator, Sequel.cariFolderTte(), "QRTteVerifikator.jpg", "select logo from setting");
+                        param.put("lokasiQrVerifikator", Sequel.cariFolderTte() + File.separator + "QRTteVerifikator.jpg");
+                    }
+
+                    Valid.MyReport("rptAsesmenKeperawatanPerinatologi3Qr.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 3 ]::",
+                            "SELECT now() tanggal", param);
+                    Valid.MyReport("rptAsesmenKeperawatanPerinatologi2Qr.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 2 ]::",
+                            "SELECT now() tanggal", param);
+                    Valid.MyReport("rptAsesmenKeperawatanPerinatologi1Qr.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 1 ]::",
+                            "SELECT now() tanggal", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                Valid.MyReport("rptAsesmenKeperawatanPerinatologi2.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 2 ]::",
+                        "SELECT now() tanggal", param);
+                Valid.MyReport("rptAsesmenKeperawatanPerinatologi1.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 1 ]::",
+                        "SELECT now() tanggal", param);
+            }
             
             TabRawat.setSelectedIndex(1);
             tampil();
@@ -7912,6 +7976,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.ComboBox cmbNyeri;
     private widget.ComboBox cmbPendidikan;
     private widget.ComboBox cmbPenerimaan;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbRequires;
     private widget.ComboBox cmbRiwAlergi;
     private widget.ComboBox cmbRiwPenyakitIbu;
@@ -8008,6 +8073,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.Label jLabel173;
     private widget.Label jLabel174;
     private widget.Label jLabel175;
+    private widget.Label jLabel176;
     private widget.Label jLabel18;
     private widget.Label jLabel19;
     private widget.Label jLabel20;

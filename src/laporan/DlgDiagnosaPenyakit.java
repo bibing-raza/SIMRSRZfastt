@@ -1312,7 +1312,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         nmpoli.setHighlighter(null);
         nmpoli.setName("nmpoli"); // NOI18N
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025 08:03:14" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2025 16:12:21" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1515,7 +1515,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1529,7 +1529,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1693,6 +1693,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll1.setOpaque(true);
 
         tbDiagnosa.setName("tbDiagnosa"); // NOI18N
+        tbDiagnosa.getTableHeader().setReorderingAllowed(false);
         tbDiagnosa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tbDiagnosaKeyPressed(evt);
@@ -1790,6 +1791,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll2.setOpaque(true);
 
         tbProsedur.setName("tbProsedur"); // NOI18N
+        tbProsedur.getTableHeader().setReorderingAllowed(false);
         tbProsedur.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tbProsedurKeyPressed(evt);
@@ -1829,6 +1831,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll4.setOpaque(true);
 
         tbDiagnosa1.setName("tbDiagnosa1"); // NOI18N
+        tbDiagnosa1.getTableHeader().setReorderingAllowed(false);
         tbDiagnosa1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tbDiagnosa1KeyPressed(evt);
@@ -1999,6 +2002,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll14.setName("Scroll14"); // NOI18N
 
         tbBilling.setName("tbBilling"); // NOI18N
+        tbBilling.getTableHeader().setReorderingAllowed(false);
         Scroll14.setViewportView(tbBilling);
 
         internalFrame10.add(Scroll14, java.awt.BorderLayout.CENTER);
@@ -2127,6 +2131,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         tbPA.setAutoCreateRowSorter(true);
         tbPA.setToolTipText("Silahkan klik salah satu datanya untuk membaca hasil pemeriksaan patologi anatomi");
         tbPA.setName("tbPA"); // NOI18N
+        tbPA.getTableHeader().setReorderingAllowed(false);
         tbPA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPAMouseClicked(evt);
@@ -2261,6 +2266,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         tbDiagnosaPasien.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDiagnosaPasien.setComponentPopupMenu(jPopupMenu2);
         tbDiagnosaPasien.setName("tbDiagnosaPasien"); // NOI18N
+        tbDiagnosaPasien.getTableHeader().setReorderingAllowed(false);
         tbDiagnosaPasien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDiagnosaPasienMouseClicked(evt);
@@ -2280,6 +2286,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         tbDiagnosaPasien1.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDiagnosaPasien1.setName("tbDiagnosaPasien1"); // NOI18N
+        tbDiagnosaPasien1.getTableHeader().setReorderingAllowed(false);
         tbDiagnosaPasien1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDiagnosaPasien1MouseClicked(evt);
@@ -2312,6 +2319,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         tbTindakanPasien.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbTindakanPasien.setComponentPopupMenu(jPopupMenu2);
         tbTindakanPasien.setName("tbTindakanPasien"); // NOI18N
+        tbTindakanPasien.getTableHeader().setReorderingAllowed(false);
         tbTindakanPasien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTindakanPasienMouseClicked(evt);
@@ -2332,6 +2340,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         tbTindakanPasien1.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbTindakanPasien1.setComponentPopupMenu(jPopupMenu1);
         tbTindakanPasien1.setName("tbTindakanPasien1"); // NOI18N
+        tbTindakanPasien1.getTableHeader().setReorderingAllowed(false);
         tbTindakanPasien1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTindakanPasien1MouseClicked(evt);
@@ -8090,9 +8099,11 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             StringBuilder htmlContent = new StringBuilder();
             try {
                 rsPA = koneksi.prepareStatement("SELECT hpa.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
-                        + "p2.nama drPengirim, date_format(hpa.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(hpa.tgl_hasil,'%d-%m-%Y') tglHasil, p.tgl_lahir "
+                        + "p2.nama drPengirim, date_format(hpa.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(hpa.tgl_hasil,'%d-%m-%Y') tglHasil, p.tgl_lahir, "
+                        + "p1.nama drPatologi, date_format(hpa.waktu_simpan,'%d/%m/%Y') tgl, time(hpa.waktu_simpan) jam "
                         + "FROM hasil_patologi_anatomi hpa inner join reg_periksa rp on rp.no_rawat=hpa.no_rawat "
-                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai p2 on p2.nik=hpa.nip_perujuk where "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai p2 on p2.nik=hpa.nip_perujuk "
+                        + "inner join pegawai p1 on p1.nik=hpa.nip_dokter_pa where "
                         + "hpa.waktu_simpan='" + wktsimpan + "' order by hpa.waktu_simpan desc").executeQuery();
                 if (rsPA.next()) {
                     rsPA.beforeFirst();
@@ -8141,7 +8152,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                                 + " <i>" + rsPA.getString("italic_anjuran") + "</i><br></td>"
                                 + "</tr>");
                         
-                        String gambar = "", ipGambar = "";
+                        String gambar = "", ipGambar = "", isi = "";
                         try {
                             //cek atau ping ip addres
                             ipGambar = "192.168.0.230";
@@ -8163,11 +8174,17 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
                         }
 
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
+                                        "Hasil Pemeriksaan Lab. (Patologi Anatomi)", rsPA.getString("drPatologi"),
+                                        rsPA.getString("tgl"), rsPA.getString("jam")) + "') from kalimat_tte where kode='006'");
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='middle' colspan='5' rowspan='5' align='center'><br><img src='" + gambar + "' width='500' alt='Patologi Anatomi'></td>"
-                                + "<td valign='top' colspan='3' align='center'><br><br><br>Pemeriksa,<br><br><br><br><br><br><br><br><b>"
-                                + Sequel.cariIsi("select nama from pegawai where nik='" + rsPA.getString("nip_dokter_pa") + "'") + "</b><br>SIP : "
+                                + "<td valign='top' colspan='3' align='center'><br><br><br>Pemeriksa,<br><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTte.jpg" + "' width='150' alt='TTE Dokter Patologi Anatomi'><br>"
+                                + rsPA.getString("drPatologi") + "</b><br>SIP : "
                                 + Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + rsPA.getString("nip_dokter_pa") + "'") + "</td>"
                                 + "</tr>");
                     }

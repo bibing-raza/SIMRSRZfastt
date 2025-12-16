@@ -700,6 +700,8 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel73 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnNotepad = new widget.Button();
@@ -771,7 +773,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -790,7 +791,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnCopas.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopas.setMnemonic('U');
         BtnCopas.setText("Copy & Paste");
         BtnCopas.setToolTipText("Alt+U");
         BtnCopas.setName("BtnCopas"); // NOI18N
@@ -804,7 +804,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -932,7 +931,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         jLabel68.setBounds(136, 38, 60, 23);
 
         Ttgl.setEditable(false);
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1164,7 +1163,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         btnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPetugas.setMnemonic('1');
         btnPetugas.setToolTipText("Alt+1");
         btnPetugas.setName("btnPetugas"); // NOI18N
         btnPetugas.addActionListener(new java.awt.event.ActionListener() {
@@ -1233,7 +1231,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         Chktgl_kll_tunggal.setBounds(535, 262, 90, 23);
 
         tgl_kejadian_tunggal.setEditable(false);
-        tgl_kejadian_tunggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        tgl_kejadian_tunggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         tgl_kejadian_tunggal.setDisplayFormat("dd-MM-yyyy");
         tgl_kejadian_tunggal.setName("tgl_kejadian_tunggal"); // NOI18N
         tgl_kejadian_tunggal.setOpaque(false);
@@ -1358,7 +1356,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         Chktgl_kll.setBounds(535, 318, 90, 23);
 
         tgl_kejadian.setEditable(false);
-        tgl_kejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        tgl_kejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         tgl_kejadian.setDisplayFormat("dd-MM-yyyy");
         tgl_kejadian.setName("tgl_kejadian"); // NOI18N
         tgl_kejadian.setOpaque(false);
@@ -1590,7 +1588,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnKeluhan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluhan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnKeluhan.setMnemonic('2');
         BtnKeluhan.setText("Template");
         BtnKeluhan.setToolTipText("Alt+2");
         BtnKeluhan.setName("BtnKeluhan"); // NOI18N
@@ -2530,7 +2527,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnCatatan.setForeground(new java.awt.Color(0, 0, 0));
         BtnCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnCatatan.setMnemonic('2');
         BtnCatatan.setText("Template");
         BtnCatatan.setToolTipText("Alt+2");
         BtnCatatan.setName("BtnCatatan"); // NOI18N
@@ -2591,7 +2587,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2606,7 +2602,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2631,7 +2627,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('3');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+3");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -2673,7 +2668,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -2687,7 +2681,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -2706,7 +2699,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -2720,7 +2712,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -2737,9 +2728,20 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnEdit);
 
+        jLabel73.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel73.setText("Cetak Dalam Bentuk :");
+        jLabel73.setName("jLabel73"); // NOI18N
+        jLabel73.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel73);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -2758,7 +2760,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -2777,7 +2778,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnNotepad.setMnemonic('N');
         BtnNotepad.setText("Notepad");
         BtnNotepad.setToolTipText("Alt+N");
         BtnNotepad.setName("BtnNotepad"); // NOI18N
@@ -2791,7 +2791,6 @@ public final class RMTriasePonek extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -3057,41 +3056,99 @@ public final class RMTriasePonek extends javax.swing.JDialog {
                 param.put("total01", "");
             }
 
-            Valid.MyReport("rptTriasePonek.jasper", "report", "::[ Laporan Data Triase Ponek ]::",
-                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllahir, concat('Tanggal : ',date_format(tp.tanggal,'%d-%m-%Y'),'        Pukul : ',time_format(tp.pukul,'%H:%i'),' Wita') kontak_awal, "
-                    + "tp.cara_masuk, if(tp.sudah_terpasang='','-',tp.sudah_terpasang) sudah_terpasang, concat('Nama : ', tp.nm_pengantar, '    No. Telp : ', tp.telp_pengantar) iden_pengntar, "
-                    + "tp.kasus, if(tp.icd_10='','-',tp.icd_10) icd_10, if(tp.keluhan_utama='','-',tp.keluhan_utama) keluhan_utama, pg.nama petgas, concat('KESADARAN : ', tp.kesadaran) kesadaran, "
-                    + "if(tp.td='','-',tp.td) td, if(tp.nadi='','-',tp.nadi) nadi, if(tp.napas='','-',tp.napas) napas, if(tp.temperatur='','-',tp.temperatur) temperatur, if(tp.saturasi='','-',tp.saturasi) saturasi, "
-                    + "if(tp.nyeri='','-',tp.nyeri) nyeri, if(tp.bb='','-',tp.bb) bb, if(tp.tb='','-',tp.tb) tb, if(tp.catatan='','-',tp.catatan) catatan, if(tp.keputusan='','-',tp.keputusan) keputusan, "
-                    + "time_format(tp.pukul_keputusan,'%H:%i Wita') pukul_keputusan, "
-                    + "IF(tp.skor0_sadar_penuh = 'ya', 'V', '') skor0_sadar, "
-                    + "IF(tp.skor0_100 = 'ya', 'V', '') skor0_100, "
-                    + "IF(tp.skor0_101 = 'ya', 'V', '') skor0_101, "
-                    + "IF(tp.skor0_19 = 'ya', 'V', '') skor0_19, "
-                    + "IF(tp.skor0_35_3 = 'ya', 'V', '') skor0_35, "
-                    + "IF(tp.skor0_96_100 = 'ya', 'V', '') skor0_96, "
-                    + "IF(tp.skor1_102 = 'ya', 'V', '') skor1_102, "
-                    + "IF(tp.skor1_20_21 = 'ya', 'V', '') skor1_20, "
-                    + "IF(tp.skor1_94_95 = 'ya', 'V', '') skor1_94, "
-                    + "IF(tp.skor2_99 = 'ya', 'V', '') skor2_99, "
-                    + "IF(tp.skor2_22 = 'ya', 'V', '') skor2_22, "
-                    + "IF(tp.skor2_92_93 = 'ya', 'V', '') skor2_92, "
-                    + "IF(tp.skor3_selain = 'ya', 'V', '') skor3_selain, "
-                    + "IF(tp.skor3_35_3 = 'ya', 'V', '') skor3_35, "
-                    + "IF(tp.skor3_92 = 'ya', 'V', '') skor3_92, "
-                    + "IF(tp.triase_resusitasi = 'ya', 'V', '') resus, "
-                    + "IF(tp.triase_non_resusitasi = 'ya', 'V', '') nonresus, "
-                    + "IF(tp.triase_klinik = 'ya', 'V', '') klinik, "
-                    + "IF(tp.triase_doa = 'ya', 'V', '') doa, "
-                    + "IF(tp.kll_tunggal = 'ya', 'V', '') kll_tunggal, "
-                    + "IF(tp.kll_versus = 'ya', 'V', '') kll_versus, "
-                    + "IF(tp.jatuh = 'ya', 'V', '') jatuh, "
-                    + "IF(tp.luka_bakar = 'ya', 'V', '') luka, "
-                    + "IF(tp.trauma_listrik = 'ya', 'V', '') trauma_listrik, "
-                    + "IF(tp.trauma_zat_kimia = 'ya', 'V', '') trauma_zat, "
-                    + "IF(tp.trauma_lain = 'ya', 'V', '') trauma_lain "
-                    + "FROM triase_ponek tp INNER JOIN reg_periksa rp ON rp.no_rawat = tp.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                    + "INNER JOIN pegawai pg ON nik = tp.nip_petugas where tp.no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (nm_petugas.getText().equals("") || nm_petugas.getText().equals("-") || nm_petugas.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama petugas triase harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Triase Ponek", nm_petugas.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from triase_ponek where "
+                                            + "no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from triase_ponek where "
+                                            + "no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'")) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Triase Ponek", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    Valid.MyReport("rptTriasePonekQr.jasper", "report", "::[ Laporan Data Triase Ponek ]::",
+                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllahir, concat('Tanggal : ',date_format(tp.tanggal,'%d-%m-%Y'),'        Pukul : ',time_format(tp.pukul,'%H:%i'),' Wita') kontak_awal, "
+                            + "tp.cara_masuk, if(tp.sudah_terpasang='','-',tp.sudah_terpasang) sudah_terpasang, concat('Nama : ', tp.nm_pengantar, '    No. Telp : ', tp.telp_pengantar) iden_pengntar, "
+                            + "tp.kasus, if(tp.icd_10='','-',tp.icd_10) icd_10, if(tp.keluhan_utama='','-',tp.keluhan_utama) keluhan_utama, pg.nama petgas, concat('KESADARAN : ', tp.kesadaran) kesadaran, "
+                            + "if(tp.td='','-',tp.td) td, if(tp.nadi='','-',tp.nadi) nadi, if(tp.napas='','-',tp.napas) napas, if(tp.temperatur='','-',tp.temperatur) temperatur, if(tp.saturasi='','-',tp.saturasi) saturasi, "
+                            + "if(tp.nyeri='','-',tp.nyeri) nyeri, if(tp.bb='','-',tp.bb) bb, if(tp.tb='','-',tp.tb) tb, if(tp.catatan='','-',tp.catatan) catatan, if(tp.keputusan='','-',tp.keputusan) keputusan, "
+                            + "time_format(tp.pukul_keputusan,'%H:%i Wita') pukul_keputusan, "
+                            + "IF(tp.skor0_sadar_penuh = 'ya', 'V', '') skor0_sadar, "
+                            + "IF(tp.skor0_100 = 'ya', 'V', '') skor0_100, "
+                            + "IF(tp.skor0_101 = 'ya', 'V', '') skor0_101, "
+                            + "IF(tp.skor0_19 = 'ya', 'V', '') skor0_19, "
+                            + "IF(tp.skor0_35_3 = 'ya', 'V', '') skor0_35, "
+                            + "IF(tp.skor0_96_100 = 'ya', 'V', '') skor0_96, "
+                            + "IF(tp.skor1_102 = 'ya', 'V', '') skor1_102, "
+                            + "IF(tp.skor1_20_21 = 'ya', 'V', '') skor1_20, "
+                            + "IF(tp.skor1_94_95 = 'ya', 'V', '') skor1_94, "
+                            + "IF(tp.skor2_99 = 'ya', 'V', '') skor2_99, "
+                            + "IF(tp.skor2_22 = 'ya', 'V', '') skor2_22, "
+                            + "IF(tp.skor2_92_93 = 'ya', 'V', '') skor2_92, "
+                            + "IF(tp.skor3_selain = 'ya', 'V', '') skor3_selain, "
+                            + "IF(tp.skor3_35_3 = 'ya', 'V', '') skor3_35, "
+                            + "IF(tp.skor3_92 = 'ya', 'V', '') skor3_92, "
+                            + "IF(tp.triase_resusitasi = 'ya', 'V', '') resus, "
+                            + "IF(tp.triase_non_resusitasi = 'ya', 'V', '') nonresus, "
+                            + "IF(tp.triase_klinik = 'ya', 'V', '') klinik, "
+                            + "IF(tp.triase_doa = 'ya', 'V', '') doa, "
+                            + "IF(tp.kll_tunggal = 'ya', 'V', '') kll_tunggal, "
+                            + "IF(tp.kll_versus = 'ya', 'V', '') kll_versus, "
+                            + "IF(tp.jatuh = 'ya', 'V', '') jatuh, "
+                            + "IF(tp.luka_bakar = 'ya', 'V', '') luka, "
+                            + "IF(tp.trauma_listrik = 'ya', 'V', '') trauma_listrik, "
+                            + "IF(tp.trauma_zat_kimia = 'ya', 'V', '') trauma_zat, "
+                            + "IF(tp.trauma_lain = 'ya', 'V', '') trauma_lain "
+                            + "FROM triase_ponek tp INNER JOIN reg_periksa rp ON rp.no_rawat = tp.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN pegawai pg ON nik = tp.nip_petugas where tp.no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+
+            } else {
+                Valid.MyReport("rptTriasePonek.jasper", "report", "::[ Laporan Data Triase Ponek ]::",
+                        "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllahir, concat('Tanggal : ',date_format(tp.tanggal,'%d-%m-%Y'),'        Pukul : ',time_format(tp.pukul,'%H:%i'),' Wita') kontak_awal, "
+                        + "tp.cara_masuk, if(tp.sudah_terpasang='','-',tp.sudah_terpasang) sudah_terpasang, concat('Nama : ', tp.nm_pengantar, '    No. Telp : ', tp.telp_pengantar) iden_pengntar, "
+                        + "tp.kasus, if(tp.icd_10='','-',tp.icd_10) icd_10, if(tp.keluhan_utama='','-',tp.keluhan_utama) keluhan_utama, pg.nama petgas, concat('KESADARAN : ', tp.kesadaran) kesadaran, "
+                        + "if(tp.td='','-',tp.td) td, if(tp.nadi='','-',tp.nadi) nadi, if(tp.napas='','-',tp.napas) napas, if(tp.temperatur='','-',tp.temperatur) temperatur, if(tp.saturasi='','-',tp.saturasi) saturasi, "
+                        + "if(tp.nyeri='','-',tp.nyeri) nyeri, if(tp.bb='','-',tp.bb) bb, if(tp.tb='','-',tp.tb) tb, if(tp.catatan='','-',tp.catatan) catatan, if(tp.keputusan='','-',tp.keputusan) keputusan, "
+                        + "time_format(tp.pukul_keputusan,'%H:%i Wita') pukul_keputusan, "
+                        + "IF(tp.skor0_sadar_penuh = 'ya', 'V', '') skor0_sadar, "
+                        + "IF(tp.skor0_100 = 'ya', 'V', '') skor0_100, "
+                        + "IF(tp.skor0_101 = 'ya', 'V', '') skor0_101, "
+                        + "IF(tp.skor0_19 = 'ya', 'V', '') skor0_19, "
+                        + "IF(tp.skor0_35_3 = 'ya', 'V', '') skor0_35, "
+                        + "IF(tp.skor0_96_100 = 'ya', 'V', '') skor0_96, "
+                        + "IF(tp.skor1_102 = 'ya', 'V', '') skor1_102, "
+                        + "IF(tp.skor1_20_21 = 'ya', 'V', '') skor1_20, "
+                        + "IF(tp.skor1_94_95 = 'ya', 'V', '') skor1_94, "
+                        + "IF(tp.skor2_99 = 'ya', 'V', '') skor2_99, "
+                        + "IF(tp.skor2_22 = 'ya', 'V', '') skor2_22, "
+                        + "IF(tp.skor2_92_93 = 'ya', 'V', '') skor2_92, "
+                        + "IF(tp.skor3_selain = 'ya', 'V', '') skor3_selain, "
+                        + "IF(tp.skor3_35_3 = 'ya', 'V', '') skor3_35, "
+                        + "IF(tp.skor3_92 = 'ya', 'V', '') skor3_92, "
+                        + "IF(tp.triase_resusitasi = 'ya', 'V', '') resus, "
+                        + "IF(tp.triase_non_resusitasi = 'ya', 'V', '') nonresus, "
+                        + "IF(tp.triase_klinik = 'ya', 'V', '') klinik, "
+                        + "IF(tp.triase_doa = 'ya', 'V', '') doa, "
+                        + "IF(tp.kll_tunggal = 'ya', 'V', '') kll_tunggal, "
+                        + "IF(tp.kll_versus = 'ya', 'V', '') kll_versus, "
+                        + "IF(tp.jatuh = 'ya', 'V', '') jatuh, "
+                        + "IF(tp.luka_bakar = 'ya', 'V', '') luka, "
+                        + "IF(tp.trauma_listrik = 'ya', 'V', '') trauma_listrik, "
+                        + "IF(tp.trauma_zat_kimia = 'ya', 'V', '') trauma_zat, "
+                        + "IF(tp.trauma_lain = 'ya', 'V', '') trauma_lain "
+                        + "FROM triase_ponek tp INNER JOIN reg_periksa rp ON rp.no_rawat = tp.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "INNER JOIN pegawai pg ON nik = tp.nip_petugas where tp.no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'", param);
+            }
             
             BtnBatalActionPerformed(null);
             TabRawat.setSelectedIndex(1);
@@ -3974,6 +4031,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
     private widget.ComboBox cmbMnt1;
     private widget.ComboBox cmbMnt2;
     private widget.ComboBox cmbMnt3;
+    private widget.ComboBox cmbPilihCetak;
     private widget.TextBox dijemput_oleh;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame4;
@@ -4044,6 +4102,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
     private widget.Label jLabel70;
     private widget.Label jLabel71;
     private widget.Label jLabel72;
+    private widget.Label jLabel73;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel1;

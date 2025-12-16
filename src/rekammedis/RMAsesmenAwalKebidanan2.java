@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.net.InetAddress;
 import java.sql.Connection;
@@ -717,6 +718,8 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel63 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
         internalFrame21 = new widget.InternalFrame();
@@ -727,6 +730,8 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         LCount = new widget.Label();
         BtnCari = new widget.Button();
         BtnHapus1 = new widget.Button();
+        jLabel66 = new widget.Label();
+        cmbPilihCetak1 = new widget.ComboBox();
         BtnPrint1 = new widget.Button();
         BtnKeluar1 = new widget.Button();
         internalFrame4 = new widget.InternalFrame();
@@ -1889,7 +1894,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         label19.setBounds(0, 1365, 120, 23);
 
         TtglEdukasi.setEditable(false);
-        TtglEdukasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-10-2025" }));
+        TtglEdukasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-12-2025" }));
         TtglEdukasi.setDisplayFormat("dd-MM-yyyy");
         TtglEdukasi.setName("TtglEdukasi"); // NOI18N
         TtglEdukasi.setOpaque(false);
@@ -2133,7 +2138,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         label27.setBounds(580, 1589, 60, 23);
 
         TtglDp.setEditable(false);
-        TtglDp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-10-2025" }));
+        TtglDp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-12-2025" }));
         TtglDp.setDisplayFormat("dd-MM-yyyy");
         TtglDp.setName("TtglDp"); // NOI18N
         TtglDp.setOpaque(false);
@@ -2601,6 +2606,18 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         });
         panelTombol.add(BtnEdit);
 
+        jLabel63.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel63.setText("Cetak Dalam Bentuk :");
+        jLabel63.setName("jLabel63"); // NOI18N
+        jLabel63.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelTombol.add(jLabel63);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelTombol.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -2654,6 +2671,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         tbAsesmen.setAutoCreateRowSorter(true);
         tbAsesmen.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbAsesmen.setName("tbAsesmen"); // NOI18N
+        tbAsesmen.getTableHeader().setReorderingAllowed(false);
         tbAsesmen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbAsesmenMouseClicked(evt);
@@ -2717,6 +2735,18 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             }
         });
         panelGlass9.add(BtnHapus1);
+
+        jLabel66.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel66.setText("Cetak Dalam Bentuk :");
+        jLabel66.setName("jLabel66"); // NOI18N
+        jLabel66.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass9.add(jLabel66);
+
+        cmbPilihCetak1.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak1.setName("cmbPilihCetak1"); // NOI18N
+        cmbPilihCetak1.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass9.add(cmbPilihCetak1);
 
         BtnPrint1.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -3346,11 +3376,13 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
         } else if (tabMode.getRowCount() != 0 || tbAsesmen.getSelectedRow() > -1
                 || Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan1 where no_rawat='" + noRawat + "'") > 0) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             try {
                 psLaprm = koneksi.prepareStatement("SELECT ak1.*, ak2.*, ig.*, pg1.nama nmBidan, pg2.nama nmDokter, pg3.nama nmBidanDp, p.nm_pasien, "
                         + "p.no_rkm_medis, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', ',kb.nm_kab) almtPasien, "
-                        + "concat(rp.umurdaftar,' ',rp.sttsumur) umurPasien, p.pekerjaan, p.agama FROM asesmen_awal_kebidanan1 ak1 "
-                        + "inner join reg_periksa rp on rp.no_rawat=ak1.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "concat(rp.umurdaftar,' ',rp.sttsumur) umurPasien, p.pekerjaan, p.agama, date_format(ak1.waktu_simpan,'%d/%m/%Y') tglak1, time(ak1.waktu_simpan) jamak1, "
+                        + "if(ak2.no_rawat is not null,date_format(ak2.waktu_simpan,'%d/%m/%Y'),'-') tglak2, if(ak2.no_rawat is not null,time(ak2.waktu_simpan),'') jamak2 "
+                        + "FROM asesmen_awal_kebidanan1 ak1 inner join reg_periksa rp on rp.no_rawat=ak1.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join kelurahan kl on kl.kd_kel=p.kd_kel inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
                         + "left join asesmen_awal_kebidanan2 ak2 on ak1.no_rawat=ak2.no_rawat left join inspeksi_ginekologi_awal_kebidanan ig on ig.no_rawat=ak1.no_rawat "
                         + "left join pegawai pg1 on pg1.nik=ak2.nip_bidan left join pegawai pg2 on pg2.nik=ak2.nip_dokter "
@@ -4501,26 +4533,76 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                             param.put("planing", rsLaprm.getString("planing"));
                         }
 
-                        Valid.MyReport("rptAsesmenAwalKebidanan1.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 1 ]::",
-                                "select date(now()) tgl", param);
+                        if ((TabRawat.getSelectedIndex() == 0 && cmbPilihCetak.getSelectedIndex() == 0)
+                                || TabRawat.getSelectedIndex() == 1 && cmbPilihCetak1.getSelectedIndex() == 0) {
+                            if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + noRawat + "'") > 0
+                                    && (rsLaprm.getString("nip_bidan_dp").equals("") || rsLaprm.getString("nip_bidan_dp").equals("-") || rsLaprm.getString("nip_bidan_dp").equals("--"))) {
+                                Valid.MyReport("rptAsesmenAwalKebidanan1.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 1 ]::",
+                                        "select date(now()) tgl", param);
 
-                        Valid.MyReport("rptAsesmenAwalKebidanan2.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 2 ]::",
-                                "SELECT COALESCE(no_rawat, '-') AS no_rawat, "
-                                + "COALESCE(tahun_partus, '-') AS tahun_partus, "
-                                + "COALESCE(tempat_partus, '-') AS tempat_partus, "
-                                + "COALESCE(umur_hamil, '-') AS umur_hamil, "
-                                + "COALESCE(jns_persalinan, '-') AS jns_persalinan, "
-                                + "COALESCE(penolong_persalinan, '-') AS penolong_persalinan, "
-                                + "COALESCE(penyulit, '-') AS penyulit, "
-                                + "COALESCE(jk, '-') AS jk, "
-                                + "COALESCE(bb, '-') AS bb, "
-                                + "COALESCE(keadaan_anak_skrng, '-') AS keadaan_anak_skrng, "
-                                + "COALESCE(waktu_simpan, '-') AS waktu_simpan "
-                                + "FROM (SELECT * FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE no_rawat = '" + noRawat + "' "
-                                + "UNION ALL "
-                                + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL from dual "
-                                + "WHERE NOT EXISTS (SELECT 1 FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE "
-                                + "no_rawat = '" + noRawat + "')) AS x ORDER BY x.waktu_simpan IS NULL, x.waktu_simpan", param);
+                                Valid.MyReport("rptAsesmenAwalKebidanan2.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 2 ]::",
+                                        "SELECT COALESCE(no_rawat, '-') AS no_rawat, "
+                                        + "COALESCE(tahun_partus, '-') AS tahun_partus, "
+                                        + "COALESCE(tempat_partus, '-') AS tempat_partus, "
+                                        + "COALESCE(umur_hamil, '-') AS umur_hamil, "
+                                        + "COALESCE(jns_persalinan, '-') AS jns_persalinan, "
+                                        + "COALESCE(penolong_persalinan, '-') AS penolong_persalinan, "
+                                        + "COALESCE(penyulit, '-') AS penyulit, "
+                                        + "COALESCE(jk, '-') AS jk, "
+                                        + "COALESCE(bb, '-') AS bb, "
+                                        + "COALESCE(keadaan_anak_skrng, '-') AS keadaan_anak_skrng, "
+                                        + "COALESCE(waktu_simpan, '-') AS waktu_simpan "
+                                        + "FROM (SELECT * FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE no_rawat = '" + noRawat + "' "
+                                        + "UNION ALL "
+                                        + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL from dual "
+                                        + "WHERE NOT EXISTS (SELECT 1 FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE "
+                                        + "no_rawat = '" + noRawat + "')) AS x ORDER BY x.waktu_simpan IS NULL, x.waktu_simpan", param);
+                            } else {
+                                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                                Valid.MyReport("rptAsesmenAwalKebidanan1Qr.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 1 ]::",
+                                        "select date(now()) tgl", param);
+
+                                Valid.MyReport("rptAsesmenAwalKebidanan2Qr.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 2 ]::",
+                                        "SELECT COALESCE(no_rawat, '-') AS no_rawat, "
+                                        + "COALESCE(tahun_partus, '-') AS tahun_partus, "
+                                        + "COALESCE(tempat_partus, '-') AS tempat_partus, "
+                                        + "COALESCE(umur_hamil, '-') AS umur_hamil, "
+                                        + "COALESCE(jns_persalinan, '-') AS jns_persalinan, "
+                                        + "COALESCE(penolong_persalinan, '-') AS penolong_persalinan, "
+                                        + "COALESCE(penyulit, '-') AS penyulit, "
+                                        + "COALESCE(jk, '-') AS jk, "
+                                        + "COALESCE(bb, '-') AS bb, "
+                                        + "COALESCE(keadaan_anak_skrng, '-') AS keadaan_anak_skrng, "
+                                        + "COALESCE(waktu_simpan, '-') AS waktu_simpan "
+                                        + "FROM (SELECT * FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE no_rawat = '" + noRawat + "' "
+                                        + "UNION ALL "
+                                        + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL from dual "
+                                        + "WHERE NOT EXISTS (SELECT 1 FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE "
+                                        + "no_rawat = '" + noRawat + "')) AS x ORDER BY x.waktu_simpan IS NULL, x.waktu_simpan", param);
+                            }
+
+                        } else {
+                            Valid.MyReport("rptAsesmenAwalKebidanan1.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 1 ]::",
+                                    "select date(now()) tgl", param);
+
+                            Valid.MyReport("rptAsesmenAwalKebidanan2.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 2 ]::",
+                                    "SELECT COALESCE(no_rawat, '-') AS no_rawat, "
+                                    + "COALESCE(tahun_partus, '-') AS tahun_partus, "
+                                    + "COALESCE(tempat_partus, '-') AS tempat_partus, "
+                                    + "COALESCE(umur_hamil, '-') AS umur_hamil, "
+                                    + "COALESCE(jns_persalinan, '-') AS jns_persalinan, "
+                                    + "COALESCE(penolong_persalinan, '-') AS penolong_persalinan, "
+                                    + "COALESCE(penyulit, '-') AS penyulit, "
+                                    + "COALESCE(jk, '-') AS jk, "
+                                    + "COALESCE(bb, '-') AS bb, "
+                                    + "COALESCE(keadaan_anak_skrng, '-') AS keadaan_anak_skrng, "
+                                    + "COALESCE(waktu_simpan, '-') AS waktu_simpan "
+                                    + "FROM (SELECT * FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE no_rawat = '" + noRawat + "' "
+                                    + "UNION ALL "
+                                    + "SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL from dual "
+                                    + "WHERE NOT EXISTS (SELECT 1 FROM riwayat_kehamilan_asesmen_awal_kebidanan WHERE "
+                                    + "no_rawat = '" + noRawat + "')) AS x ORDER BY x.waktu_simpan IS NULL, x.waktu_simpan", param);
+                        }
 
                         //halaman 2
                         if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + noRawat + "'") > 0) {
@@ -4792,7 +4874,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
 
                             param.put("adl", rsLaprm.getString("adl"));
                             param.put("fungRiwJat", rsLaprm.getString("riwayat_jatuh"));
-                            param.put("fungNmBidan", Sequel.cariIsi("select nama from pegawai where nik='" + rsLaprm.getString("nip_bidan") + "'"));
+                            param.put("fungNmBidan", rsLaprm.getString("nmBidan"));
                             param.put("fungNip", rsLaprm.getString("nip_bidan"));
 
                             if (rsLaprm.getString("cek_ya").equals("ya")) {
@@ -5035,11 +5117,75 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                             param.put("namaBidanDp", Sequel.cariIsi("select nama from pegawai where nik='" + rsLaprm.getString("nip_bidan_dp") + "'"));
                             param.put("nipBidanDp", rsLaprm.getString("nip_bidan_dp"));
 
-                            Valid.MyReport("rptAsesmenAwalKebidanan3.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 3 ]::",
-                                    "select date(now()) tgl", param);
+                            if ((TabRawat.getSelectedIndex() == 0 && cmbPilihCetak.getSelectedIndex() == 0)
+                                    || TabRawat.getSelectedIndex() == 1 && cmbPilihCetak1.getSelectedIndex() == 0) {
+                                if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan2 where no_rawat='" + noRawat + "'") > 0
+                                        && (rsLaprm.getString("nip_bidan_dp").equals("") || rsLaprm.getString("nip_bidan_dp").equals("-") || rsLaprm.getString("nip_bidan_dp").equals("--"))) {
+                                    Valid.MyReport("rptAsesmenAwalKebidanan3.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 3 ]::",
+                                            "select date(now()) tgl", param);
 
-                            Valid.MyReport("rptAsesmenAwalKebidanan4.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 4 ]::",
-                                    "select date(now()) tgl", param);
+                                    Valid.MyReport("rptAsesmenAwalKebidanan4.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 4 ]::",
+                                            "select date(now()) tgl", param);
+                                } else {
+                                    String isiBidan = "", isiDokter = "", isiBidanAk2 = "";
+                                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                                    //bidan pertama
+                                    if (rsLaprm.getString("nip_bidan").equals("") || rsLaprm.getString("nip_bidan").equals("-") || rsLaprm.getString("nip_bidan").equals("--")) {
+                                        param.put("lokasiQr", "");
+                                    } else {
+                                        isiBidan = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                                        "Asesmen Awal Kebidanan", rsLaprm.getString("nmBidan") + " (Bidan)",
+                                                        rsLaprm.getString("tglak2"), rsLaprm.getString("jamak2")) + "') from kalimat_tte where kode='001'");
+
+                                        Valid.cetakQrTte(isiBidan, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Asesmen Awal Kebidanan", Sequel.cariFolderPrintTte());
+                                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                                    }
+
+                                    Valid.MyReport("rptAsesmenAwalKebidanan3Qr.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 3 ]::",
+                                            "select date(now()) tgl", param);
+
+                                    //dokter pemberi edukasi
+                                    if (rsLaprm.getString("nip_dokter").equals("") || rsLaprm.getString("nip_dokter").equals("-")
+                                            || rsLaprm.getString("nip_dokter").equals("--") || rsLaprm.getString("nip_dokter").contains("D0")) {
+                                        param.put("lokasiQrDokter", "");
+                                    } else {
+                                        isiDokter = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                                        "Asesmen Awal Kebidanan", rsLaprm.getString("nmDokter") + " (Pemberi Edukasi)",
+                                                        rsLaprm.getString("tglak2"), rsLaprm.getString("jamak2")) + "') from kalimat_tte where kode='001'");
+
+                                        Valid.cetakQrTte(isiDokter, Sequel.cariFolderTte(), "QRTteDokter.jpg", "select logo from setting");
+                                        param.put("lokasiQrDokter", Sequel.cariFolderTte() + File.separator + "QRTteDokter.jpg");
+                                    }
+
+                                    //bidan kedua
+                                    if (rsLaprm.getString("nip_bidan_dp").equals("") || rsLaprm.getString("nip_bidan_dp").equals("-") || rsLaprm.getString("nip_bidan_dp").equals("--")) {
+                                        JOptionPane.showMessageDialog(rootPane, "Nama bidan asesmen awal kebidanan harus diisi dulu,..");
+                                    } else {
+                                        isiBidanAk2 = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                                        "Asesmen Awal Kebidanan", rsLaprm.getString("nmBidanDp") + " (Bidan)",
+                                                        rsLaprm.getString("tglak2"), rsLaprm.getString("jamak2")) + "') from kalimat_tte where kode='001'");
+
+                                        Valid.cetakQrTte(isiBidanAk2, Sequel.cariFolderTte(), "QRTteBidanDp.jpg", "select logo from setting");
+                                        param.put("lokasiQrBidan", Sequel.cariFolderTte() + File.separator + "QRTteBidanDp.jpg");
+
+                                        Valid.MyReport("rptAsesmenAwalKebidanan4Qr.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 4 ]::",
+                                                "select date(now()) tgl", param);
+                                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                                    }
+                                }
+                            } else {
+                                Valid.MyReport("rptAsesmenAwalKebidanan3.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 3 ]::",
+                                        "select date(now()) tgl", param);
+
+                                Valid.MyReport("rptAsesmenAwalKebidanan4.jasper", "report", "::[ Asesmen Awal Kebidanan hal. 4 ]::",
+                                        "select date(now()) tgl", param);
+                            }
                         }
 
                         emptTeks();
@@ -5073,6 +5219,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
+        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -5301,6 +5448,8 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     private widget.ComboBox cmbLama;
     private widget.ComboBox cmbMnt;
     private widget.ComboBox cmbNyeri;
+    private widget.ComboBox cmbPilihCetak;
+    private widget.ComboBox cmbPilihCetak1;
     private widget.ComboBox cmbProvo;
     private widget.ComboBox cmbQuality;
     private widget.ComboBox cmbRadia;
@@ -5341,8 +5490,10 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
     private widget.Label jLabel371;
     private widget.Label jLabel372;
     private widget.Label jLabel373;
+    private widget.Label jLabel63;
     private widget.Label jLabel64;
     private widget.Label jLabel65;
+    private widget.Label jLabel66;
     private widget.Label jLabel68;
     private widget.Label jLabel7;
     private widget.Label jLabel70;
@@ -6581,10 +6732,11 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
             try {
                 rsPrev = koneksi.prepareStatement("SELECT ak1.*, ak2.*, pg1.nama nmBidan, pg2.nama nmDokter, pg3.nama nmBidanDp, concat(p.nm_pasien,' (No. RM : ',p.no_rkm_medis,')') nm_pasien, "
                         + "concat(rp.umurdaftar,' ',rp.sttsumur,' (Tgl. Lahir : ',date_format(p.tgl_lahir,'%d-%m-%Y'),')') umurPasien, p.pekerjaan, p.agama, "
-                        + "concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', Kab. ',kb.nm_kab) almtPasien, time_format(ak1.jam_asesmen,'%H:%i') jamAses "
-                        + "FROM asesmen_awal_kebidanan1 ak1 inner join reg_periksa rp on rp.no_rawat=ak1.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "inner join kelurahan kl on kl.kd_kel=p.kd_kel inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
-                        + "left join asesmen_awal_kebidanan2 ak2 on ak1.no_rawat=ak2.no_rawat left join pegawai pg1 on pg1.nik=ak2.nip_bidan "
+                        + "date_format(ak1.waktu_simpan,'%d/%m/%Y') tglak1, time(ak1.waktu_simpan) jamak1, if(ak2.no_rawat is not null,date_format(ak2.waktu_simpan,'%d/%m/%Y'),'-') tglak2, "
+                        + "if(ak2.no_rawat is not null,time(ak2.waktu_simpan),'') jamak2, concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', Kab. ',kb.nm_kab) almtPasien, "
+                        + "time_format(ak1.jam_asesmen,'%H:%i') jamAses FROM asesmen_awal_kebidanan1 ak1 inner join reg_periksa rp on rp.no_rawat=ak1.no_rawat "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel inner join kecamatan kc on kc.kd_kec=p.kd_kec "
+                        + "inner join kabupaten kb on kb.kd_kab=p.kd_kab left join asesmen_awal_kebidanan2 ak2 on ak1.no_rawat=ak2.no_rawat left join pegawai pg1 on pg1.nik=ak2.nip_bidan "
                         + "left join pegawai pg2 on pg2.nik=ak2.nip_dokter left join pegawai pg3 on pg3.nik=ak2.nip_bidan_dp where ak1.no_rawat='" + noRawat + "'").executeQuery();
                 if (rsPrev.next()) {
                     htmlContent.append(
@@ -8552,12 +8704,33 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                                     + "<td valign='top' colspan='1' align='left'>3. Cacat Tubuh</td>"
                                     + "<td valign='top' colspan='7' align='left'>: " + rsPrev.getString("cacat_tubuh") + "</td>"
                                     + "</tr>");
-                            
-                            htmlContent.append(
-                                    "<tr class='isi'>"
-                                    + "<td valign='top' colspan='1' align='left'><b>Nama Bidan</b></td>"
-                                    + "<td valign='top' colspan='7' align='left'>: " + Sequel.cariIsi("select nama from pegawai where nik='" + rsPrev.getString("nip_bidan") + "'") + "</td>"
-                                    + "</tr>");
+
+                            String isiBidanPrev = "", QrcodebidanPrev = "";
+                            isiBidanPrev = "";
+
+                            //bidan pertama
+                            if (rsPrev.getString("nip_bidan").equals("") || rsPrev.getString("nip_bidan").equals("-") || rsPrev.getString("nip_bidan").equals("--")) {
+                                QrcodebidanPrev = "";
+                                htmlContent.append(
+                                        "<tr class='isi'>"
+                                        + "<td valign='top' colspan='1' align='left'><b>Nama Bidan</b></td>"
+                                        + "<td valign='top' colspan='7' align='left'>: " + rsPrev.getString("nmBidan") + "</td>"
+                                        + "</tr>");
+                            } else {
+                                isiBidanPrev = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                                "Asesmen Awal Kebidanan", rsPrev.getString("nmBidan") + " (Bidan)",
+                                                rsPrev.getString("tglak2"), rsPrev.getString("jamak2")) + "') from kalimat_tte where kode='001'");
+
+                                Valid.cetakQrTte(isiBidanPrev, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+
+                                htmlContent.append(
+                                        "<tr class='isi'>"
+                                        + "<td valign='top' colspan='1' align='left'><b>Nama Bidan</b></td>"
+                                        + "<td valign='top' colspan='7' align='left'>:<br>"
+                                        + "<img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTte.jpg" + "' width='150' alt='TTE Bidan'><br>" + rsPrev.getString("nmBidan") + "</td>"
+                                        + "</tr>");
+                            }
                             
                             htmlContent.append(
                                     "<tr class='isi'>"
@@ -8744,14 +8917,34 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                                     "<tr class='isi'>"
                                     + "<td valign='top' colspan='8' align='left'>" + prevEpasPas + prevEpasKlgPas + prevEpasTidak + "</td>"
                                     + "</tr>");
-                            
-                            htmlContent.append(
-                                    "<tr class='isi'>"
-                                    + "<td valign='top' colspan='1' align='left'>Tanggal & Jam</td>"
-                                    + "<td valign='top' colspan='2' align='left'>: " + Valid.SetTglINDONESIA(rsPrev.getString("tgl_edukasi")) + ", Jam : " + rsPrev.getString("jam_edukasi").substring(0, 5) + " Wita</td>"
-                                    + "<td valign='top' colspan='1' align='left'>Nama Dokter</td>"
-                                    + "<td valign='top' colspan='4' align='left'>: " + Sequel.cariIsi("select nama from pegawai where nik='" + rsPrev.getString("nip_dokter") + "'") + "</td>"
-                                    + "</tr>");
+
+                            String isiDokterPrev = "", Qrcodedokter = "";
+                            //dokter pemberi edukasi
+                            if (rsPrev.getString("nip_dokter").equals("") || rsPrev.getString("nip_dokter").equals("-")
+                                    || rsPrev.getString("nip_dokter").equals("--") || rsPrev.getString("nip_dokter").contains("D0")) {
+                                Qrcodedokter = "";
+                                htmlContent.append(
+                                        "<tr class='isi'>"
+                                        + "<td valign='top' colspan='1' align='left'>Tanggal & Jam</td>"
+                                        + "<td valign='top' colspan='2' align='left'>: " + Valid.SetTglINDONESIA(rsPrev.getString("tgl_edukasi")) + ", Jam : " + rsPrev.getString("jam_edukasi").substring(0, 5) + " Wita</td>"
+                                        + "<td valign='top' colspan='1' align='left'>Nama Dokter</td>"
+                                        + "<td valign='top' colspan='4' align='left'>: " + rsPrev.getString("nmDokter") + "</td>"
+                                        + "</tr>");
+                            } else {
+                                isiDokterPrev = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                                "Asesmen Awal Kebidanan", rsPrev.getString("nmDokter") + " (Pemberi Edukasi)",
+                                                rsPrev.getString("tglak2"), rsPrev.getString("jamak2")) + "') from kalimat_tte where kode='001'");
+
+                                Valid.cetakQrTte(isiDokterPrev, Sequel.cariFolderTte(), "QRTteDokter.jpg", "select logo from setting");
+                                htmlContent.append(
+                                        "<tr class='isi'>"
+                                        + "<td valign='top' colspan='1' align='left'>Tanggal & Jam</td>"
+                                        + "<td valign='top' colspan='2' align='left'>: " + Valid.SetTglINDONESIA(rsPrev.getString("tgl_edukasi")) + ", Jam : " + rsPrev.getString("jam_edukasi").substring(0, 5) + " Wita</td>"
+                                        + "<td valign='top' colspan='1' align='left'>Nama Dokter</td>"
+                                        + "<td valign='top' colspan='4' align='left'>:<br><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTteDokter.jpg" + "' width='150' alt='TTE Dokter'><br>" + rsPrev.getString("nmDokter") + "</td>"
+                                        + "</tr>");
+                            }
                             
                             htmlContent.append(
                                     "<tr class='isi'>"
@@ -8851,13 +9044,31 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                                     + "<td valign='top' colspan='1' align='left'>Nama Pasien / Keluarga Pasien</td>"
                                     + "<td valign='top' colspan='2' align='left'>: " + rsPrev.getString("nm_keluarga_pasien") + "</td>"
                                     + "</tr>");
-                            
-                            htmlContent.append(
-                                    "<tr class='isi'>"
-                                    + "<td valign='top' colspan='5'></td>"
-                                    + "<td valign='top' colspan='1' align='left'>Nama Bidan</td>"
-                                    + "<td valign='top' colspan='2' align='left'>: " + Sequel.cariIsi("select nama from pegawai where nik='" + rsPrev.getString("nip_bidan_dp") + "'") + "</td>"
-                                    + "</tr>");
+
+                            String isiBidanDpPrev = "", Qrcodebidandp = "";
+                            //bidan kedua
+                            if (rsPrev.getString("nip_bidan_dp").equals("") || rsPrev.getString("nip_bidan_dp").equals("-") || rsPrev.getString("nip_bidan_dp").equals("--")) {
+                                Qrcodebidandp = "";
+                                htmlContent.append(
+                                        "<tr class='isi'>"
+                                        + "<td valign='top' colspan='5'></td>"
+                                        + "<td valign='top' colspan='1' align='left'>Nama Bidan</td>"
+                                        + "<td valign='top' colspan='2' align='left'>: " + rsPrev.getString("nmBidanDp") + "</td>"
+                                        + "</tr>");
+                            } else {
+                                isiBidanDpPrev = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                                "Asesmen Awal Kebidanan", rsPrev.getString("nmBidanDp") + " (Bidan)",
+                                                rsPrev.getString("tglak2"), rsPrev.getString("jamak2")) + "') from kalimat_tte where kode='001'");
+
+                                Valid.cetakQrTte(isiBidanDpPrev, Sequel.cariFolderTte(), "QRTteBidanDp.jpg", "select logo from setting");
+                                htmlContent.append(
+                                        "<tr class='isi'>"
+                                        + "<td valign='top' colspan='5'></td>"
+                                        + "<td valign='top' colspan='1' align='left'>Nama Bidan</td>"
+                                        + "<td valign='top' colspan='2' align='left'>:<br><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTteBidanDp.jpg" + "' width='150' alt='TTE Bidan'><br>" + rsPrev.getString("nmBidanDp") + "<br></td>"
+                                        + "</tr>");
+                            }
                         }
                     }
                     

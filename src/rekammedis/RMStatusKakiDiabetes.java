@@ -1232,6 +1232,8 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel147 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnNotepad = new widget.Button();
@@ -1548,7 +1550,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel18.setBounds(495, 150, 70, 23);
 
         TtglMasuk.setEditable(false);
-        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2025" }));
+        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         TtglMasuk.setDisplayFormat("dd-MM-yyyy");
         TtglMasuk.setName("TtglMasuk"); // NOI18N
         TtglMasuk.setOpaque(false);
@@ -1743,6 +1745,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         tbRiwPengobatan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRiwPengobatan.setComponentPopupMenu(jPopupMenu1);
         tbRiwPengobatan.setName("tbRiwPengobatan"); // NOI18N
+        tbRiwPengobatan.getTableHeader().setReorderingAllowed(false);
         tbRiwPengobatan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRiwPengobatanMouseClicked(evt);
@@ -2284,6 +2287,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         tbRiwLuka.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRiwLuka.setComponentPopupMenu(jPopupMenu1);
         tbRiwLuka.setName("tbRiwLuka"); // NOI18N
+        tbRiwLuka.getTableHeader().setReorderingAllowed(false);
         tbRiwLuka.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRiwLukaMouseClicked(evt);
@@ -2896,6 +2900,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         tbDeformitas.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDeformitas.setComponentPopupMenu(jPopupMenu1);
         tbDeformitas.setName("tbDeformitas"); // NOI18N
+        tbDeformitas.getTableHeader().setReorderingAllowed(false);
         tbDeformitas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDeformitasMouseClicked(evt);
@@ -3987,7 +3992,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         chkTglRonsen.setBounds(152, 3210, 80, 23);
 
         TtglRonsen.setEditable(false);
-        TtglRonsen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2025" }));
+        TtglRonsen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         TtglRonsen.setDisplayFormat("dd-MM-yyyy");
         TtglRonsen.setName("TtglRonsen"); // NOI18N
         TtglRonsen.setOpaque(false);
@@ -4107,6 +4112,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         tbMikro.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbMikro.setComponentPopupMenu(jPopupMenu1);
         tbMikro.setName("tbMikro"); // NOI18N
+        tbMikro.getTableHeader().setReorderingAllowed(false);
         tbMikro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbMikroMouseClicked(evt);
@@ -4409,7 +4415,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel141.setBounds(0, 3730, 150, 23);
 
         TtglSimpan.setEditable(false);
-        TtglSimpan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2025" }));
+        TtglSimpan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         TtglSimpan.setDisplayFormat("dd-MM-yyyy");
         TtglSimpan.setName("TtglSimpan"); // NOI18N
         TtglSimpan.setOpaque(false);
@@ -4485,6 +4491,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         tbPasien.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPasien.setComponentPopupMenu(jPopupMenu1);
         tbPasien.setName("tbPasien"); // NOI18N
+        tbPasien.getTableHeader().setReorderingAllowed(false);
         tbPasien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPasienMouseClicked(evt);
@@ -4509,7 +4516,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4523,7 +4530,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4653,6 +4660,18 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnEdit);
+
+        jLabel147.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel147.setText("Cetak Dalam Bentuk :");
+        jLabel147.setName("jLabel147"); // NOI18N
+        jLabel147.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel147);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -5495,12 +5514,64 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             param.put("perawat", TnmPerawat.getText());
             param.put("dokter", TnmDokter.getText());
             
-            Valid.MyReport("rptStatusKakiDiabetes3.jasper", "report", "::[ Status Kaki Diabetes Hal. 3 ]::",
-                    "SELECT now() tanggal", param);
-            Valid.MyReport("rptStatusKakiDiabetes2.jasper", "report", "::[ Status Kaki Diabetes Hal. 2 ]::",
-                    "SELECT now() tanggal", param);
-            Valid.MyReport("rptStatusKakiDiabetes1.jasper", "report", "::[ Status Kaki Diabetes Hal. 1 ]::",
-                    "SELECT now() tanggal", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                if ((nip.equals("") || nip.equals("-") || nip.equals("--"))
+                        && (nipDokter.equals("") || nipDokter.equals("-") || nipDokter.equals("--"))) {
+                    Valid.MyReport("rptStatusKakiDiabetes3.jasper", "report", "::[ Status Kaki Diabetes Hal. 3 ]::",
+                            "SELECT now() tanggal", param);
+                    Valid.MyReport("rptStatusKakiDiabetes2.jasper", "report", "::[ Status Kaki Diabetes Hal. 2 ]::",
+                            "SELECT now() tanggal", param);
+                    Valid.MyReport("rptStatusKakiDiabetes1.jasper", "report", "::[ Status Kaki Diabetes Hal. 1 ]::",
+                            "SELECT now() tanggal", param);
+                } else {
+                    String isiDokter = "", isiPerawat = "", tgl = "", jam = "";
+                    tgl = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from data_dasar_kaki_diabetes where "
+                            + "no_rawat='" + tbPasien.getValueAt(tbPasien.getSelectedRow(), 0).toString() + "'");
+                    jam = Sequel.cariIsi("select time(waktu_simpan) from data_dasar_kaki_diabetes where "
+                            + "no_rawat='" + tbPasien.getValueAt(tbPasien.getSelectedRow(), 0).toString() + "'");
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                    //perawat
+                    if (nip.equals("") || nip.equals("-") || nip.equals("--")) {
+                        param.put("lokasiQrPerawat", "");
+                    } else {
+                        isiPerawat = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Status Kaki Diabetes", TnmPerawat.getText() + " (Perawat)", tgl, jam) + "') from kalimat_tte where kode='001'");
+
+                        Valid.cetakQrTte(isiPerawat, Sequel.cariFolderTte(), "QRTtePerawat.jpg", "select logo from setting");
+                        param.put("lokasiQrPerawat", Sequel.cariFolderTte() + File.separator + "QRTtePerawat.jpg");
+                    }
+
+                    //dokter
+                    if (nipDokter.equals("") || nipDokter.equals("-") || nipDokter.equals("--")) {
+                        param.put("lokasiQrDokter", "");
+                    } else {
+                        isiPerawat = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Status Kaki Diabetes", TnmDokter.getText() + " (Dokter Pemeriksa)", tgl, jam) + "') from kalimat_tte where kode='001'");
+
+                        Valid.cetakQrTte(isiPerawat, Sequel.cariFolderTte(), "QRTteDokter.jpg", "select logo from setting");
+                        param.put("lokasiQrDokter", Sequel.cariFolderTte() + File.separator + "QRTteDokter.jpg");
+                    }
+
+                    Valid.MyReport("rptStatusKakiDiabetes3Qr.jasper", "report", "::[ Status Kaki Diabetes Hal. 3 ]::",
+                            "SELECT now() tanggal", param);
+                    Valid.MyReport("rptStatusKakiDiabetes2Qr.jasper", "report", "::[ Status Kaki Diabetes Hal. 2 ]::",
+                            "SELECT now() tanggal", param);
+                    Valid.MyReport("rptStatusKakiDiabetes1Qr.jasper", "report", "::[ Status Kaki Diabetes Hal. 1 ]::",
+                            "SELECT now() tanggal", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            
+            } else {
+                Valid.MyReport("rptStatusKakiDiabetes3.jasper", "report", "::[ Status Kaki Diabetes Hal. 3 ]::",
+                        "SELECT now() tanggal", param);
+                Valid.MyReport("rptStatusKakiDiabetes2.jasper", "report", "::[ Status Kaki Diabetes Hal. 2 ]::",
+                        "SELECT now() tanggal", param);
+                Valid.MyReport("rptStatusKakiDiabetes1.jasper", "report", "::[ Status Kaki Diabetes Hal. 1 ]::",
+                        "SELECT now() tanggal", param);
+            }            
             
             BtnKeluarActionPerformed(null);
 //            TabRawat.setSelectedIndex(1);
@@ -6813,6 +6884,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private widget.ComboBox cmbMonoKiri;
     private widget.ComboBox cmbObat;
     private widget.ComboBox cmbOsteo;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbRefKanan;
     private widget.ComboBox cmbRefKiri;
     private widget.ComboBox cmbRiwAmputasiKanan;
@@ -6883,6 +6955,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
     private widget.Label jLabel144;
     private widget.Label jLabel145;
     private widget.Label jLabel146;
+    private widget.Label jLabel147;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;

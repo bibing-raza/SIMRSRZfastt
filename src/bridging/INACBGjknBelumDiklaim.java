@@ -50,7 +50,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
         setSize(459, 539);
 
         Object[] row = {"No. SEP", "No. Rawat", "No. RM", "Nama Pasien", "Nama Unit", "Tgl. Reg./Msk.", "Tgl. Klr./Plg.", 
-            "status_rwt", "tglsep", "SOAP Dokter", "SOAP Perawat/Bidan"};
+            "status_rwt", "tglsep", "SOAP Dokter", "SOAP Perawat/Bidan", "Resume Medis"};
         tabMode = new DefaultTableModel(null, row) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -62,7 +62,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
         tbData.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbData.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 12; i++) {
             TableColumn column = tbData.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
@@ -88,6 +88,8 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
                 column.setPreferredWidth(85);
             } else if (i == 10) {
                 column.setPreferredWidth(130);
+            } else if (i == 11) {
+                column.setPreferredWidth(90);
             }
         }
 
@@ -100,6 +102,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
         tbData.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
         tbData.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
         tbData.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
+        tbData.getColumnModel().getColumn(11).setCellRenderer(centerRenderer);
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         if (koneksiDB.cariCepat().equals("aktif")) {
@@ -487,12 +490,14 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
             if (cmbJnsRawat.getSelectedIndex() == 0) {
                 ps = koneksi.prepareStatement("SELECT bs.no_sep, bs.no_rawat, ps.no_rkm_medis, ps.nm_pasien, IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) unit, "
                         + "DATE_FORMAT(rp.tgl_registrasi, '%d-%m-%Y') tglRegMsk, IF (rp.status_lanjut = 'Ralan', DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y'), DATE_FORMAT(ki.tgl_keluar, '%d-%m-%Y')) tglPlg, "
-                        + "rp.status_lanjut, bs.tglsep, if(pr1.no_rawat is null,'Belum Ada','Sudah Ada') soapDokter, if(pr2.no_rawat is null,'Belum Ada','Sudah Ada') soapNakes "
+                        + "rp.status_lanjut, bs.tglsep, if(pr1.no_rawat is null,'Belum Ada','Sudah Ada') soapDokter, "
+                        + "if(pr2.no_rawat is null,'Belum Ada','Sudah Ada') soapNakes, if(rp.status_lanjut='ralan','-',if(rpr.no_rawat is not null,'Ada','Belum Ada')) resum "
                         + "FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
                         + "INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli INNER JOIN pasien ps ON ps.no_rkm_medis = rp.no_rkm_medis "
                         + "LEFT JOIN kamar_inap ki ON ki.no_rawat=bs.no_rawat LEFT JOIN kamar k ON k.kd_kamar=ki.kd_kamar "
                         + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_set_claim esc ON esc.no_sep = bs.no_sep "
-                        + "left join pemeriksaan_ralan pr1 on pr1.no_rawat=rp.no_rawat left join pemeriksaan_ralan_petugas pr2 on pr2.no_rawat=rp.no_rawat WHERE "
+                        + "left join pemeriksaan_ralan pr1 on pr1.no_rawat=rp.no_rawat left join pemeriksaan_ralan_petugas pr2 on pr2.no_rawat=rp.no_rawat "
+                        + "LEFT JOIN ringkasan_pulang_ranap rpr on rpr.no_rawat=bs.no_rawat WHERE "
                         + "esc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND bs.no_sep LIKE ? OR "
                         + "esc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND bs.no_rawat LIKE ? OR "
                         + "esc.no_sep IS NULL AND bs.tglsep BETWEEN ? AND ? AND ps.no_rkm_medis LIKE ? OR "
@@ -502,7 +507,7 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
             } else if (cmbJnsRawat.getSelectedIndex() == 1) {
                 ps = koneksi.prepareStatement("SELECT bs.no_sep, bs.no_rawat, ps.no_rkm_medis, ps.nm_pasien, IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) unit, "
                         + "DATE_FORMAT(rp.tgl_registrasi, '%d-%m-%Y') tglRegMsk, IF (rp.status_lanjut = 'Ralan', DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y'), DATE_FORMAT(ki.tgl_keluar, '%d-%m-%Y')) tglPlg, "
-                        + "rp.status_lanjut, bs.tglsep, if(pr1.no_rawat is null,'Belum Ada','Sudah Ada') soapDokter, if(pr2.no_rawat is null,'Belum Ada','Sudah Ada') soapNakes "
+                        + "rp.status_lanjut, bs.tglsep, if(pr1.no_rawat is null,'Belum Ada','Sudah Ada') soapDokter, if(pr2.no_rawat is null,'Belum Ada','Sudah Ada') soapNakes, '-' resum "
                         + "FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
                         + "INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli INNER JOIN pasien ps ON ps.no_rkm_medis = rp.no_rkm_medis "
                         + "LEFT JOIN kamar_inap ki ON ki.no_rawat=bs.no_rawat LEFT JOIN kamar k ON k.kd_kamar=ki.kd_kamar "
@@ -517,10 +522,12 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
             } else if (cmbJnsRawat.getSelectedIndex() == 2) {
                 ps = koneksi.prepareStatement("SELECT bs.no_sep, bs.no_rawat, ps.no_rkm_medis, ps.nm_pasien, IF (rp.status_lanjut = 'Ralan',CONCAT('Inst./Poli ', p.nm_poli), CONCAT('Rg. ',b.nm_bangsal)) unit, "
                         + "DATE_FORMAT(rp.tgl_registrasi, '%d-%m-%Y') tglRegMsk, IF (rp.status_lanjut = 'Ralan', DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y'), DATE_FORMAT(ki.tgl_keluar, '%d-%m-%Y')) tglPlg, "
-                        + "rp.status_lanjut, bs.tglsep, '-' soapDokter, '-' soapNakes FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
+                        + "rp.status_lanjut, bs.tglsep, '-' soapDokter, '-' soapNakes, if(rpr.no_rawat is not null,'Ada','Belum Ada') resum "
+                        + "FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
                         + "INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli INNER JOIN pasien ps ON ps.no_rkm_medis = rp.no_rkm_medis "
                         + "LEFT JOIN kamar_inap ki ON ki.no_rawat=bs.no_rawat LEFT JOIN kamar k ON k.kd_kamar=ki.kd_kamar "
-                        + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_set_claim esc ON esc.no_sep = bs.no_sep WHERE "
+                        + "LEFT JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal LEFT JOIN eklaim_set_claim esc ON esc.no_sep = bs.no_sep "
+                        + "LEFT JOIN ringkasan_pulang_ranap rpr on rpr.no_rawat=bs.no_rawat WHERE "
                         + "ki.stts_pulang NOT IN ('-','Pindah Kamar') AND ki.tgl_keluar<>'0000-00-00' AND esc.no_sep IS NULL AND "
                         + "rp.status_lanjut = 'Ranap' AND bs.tglsep BETWEEN ? AND ? AND bs.no_sep LIKE ? OR "
                         + "ki.stts_pulang NOT IN ('-','Pindah Kamar') AND ki.tgl_keluar<>'0000-00-00' AND esc.no_sep IS NULL AND "
@@ -563,7 +570,8 @@ public class INACBGjknBelumDiklaim extends javax.swing.JDialog {
                         rs.getString("status_lanjut"),
                         rs.getString("tglsep"),
                         rs.getString("soapDokter"),
-                        rs.getString("soapNakes")
+                        rs.getString("soapNakes"),
+                        rs.getString("resum")
                     });
                 }
             } catch (Exception e) {

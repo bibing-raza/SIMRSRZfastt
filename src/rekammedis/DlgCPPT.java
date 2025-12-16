@@ -27,6 +27,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.net.InetAddress;
 import java.sql.Connection;
@@ -2937,6 +2938,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbTemplate.setAutoCreateRowSorter(true);
         tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
         tbTemplate.setName("tbTemplate"); // NOI18N
+        tbTemplate.getTableHeader().setReorderingAllowed(false);
         tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTemplateMouseClicked(evt);
@@ -3078,7 +3080,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbSiftPetugas.setBounds(287, 10, 65, 23);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -3094,7 +3096,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 38, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -3340,6 +3342,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbDiet.setAutoCreateRowSorter(true);
         tbDiet.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/diperbaiki");
         tbDiet.setName("tbDiet"); // NOI18N
+        tbDiet.getTableHeader().setReorderingAllowed(false);
         tbDiet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDietMouseClicked(evt);
@@ -3530,7 +3533,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel29.setBounds(0, 40, 80, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -3643,10 +3646,10 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelGlass7.add(jLabel51);
         jLabel51.setBounds(0, 10, 110, 23);
 
-        internalFrame9.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
+        internalFrame9.add(panelGlass7, java.awt.BorderLayout.CENTER);
 
         panelGlass11.setName("panelGlass11"); // NOI18N
-        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 150));
+        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 48));
         panelGlass11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 9, 5));
 
         BtnSimpan2.setForeground(new java.awt.Color(0, 0, 0));
@@ -3696,7 +3699,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass11.add(BtnCloseIn3);
 
-        internalFrame9.add(panelGlass11, java.awt.BorderLayout.CENTER);
+        internalFrame9.add(panelGlass11, java.awt.BorderLayout.PAGE_END);
 
         WindowDataDiet.getContentPane().add(internalFrame9, java.awt.BorderLayout.CENTER);
 
@@ -3728,7 +3731,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3742,7 +3745,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3887,6 +3890,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbSampah.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/direstore");
         tbSampah.setComponentPopupMenu(jPopupMenu11);
         tbSampah.setName("tbSampah"); // NOI18N
+        tbSampah.getTableHeader().setReorderingAllowed(false);
         Scroll6.setViewportView(tbSampah);
 
         TabHistory.addTab(".: Riwayat CPPT Terhapus", Scroll6);
@@ -3898,6 +3902,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbRiwayat.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/direstore");
         tbRiwayat.setComponentPopupMenu(jPopupMenu10);
         tbRiwayat.setName("tbRiwayat"); // NOI18N
+        tbRiwayat.getTableHeader().setReorderingAllowed(false);
         Scroll7.setViewportView(tbRiwayat);
 
         TabHistory.addTab(".: Riwayat CPPT Diganti", Scroll7);
@@ -3921,6 +3926,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 
         tbMonev.setToolTipText("Silahkan pilih salah satu data yang mau dicopas");
         tbMonev.setName("tbMonev"); // NOI18N
+        tbMonev.getTableHeader().setReorderingAllowed(false);
         Scroll9.setViewportView(tbMonev);
 
         internalFrame25.add(Scroll9, java.awt.BorderLayout.CENTER);
@@ -3935,7 +3941,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel43.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass12.add(jLabel43);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -3949,7 +3955,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel44.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass12.add(jLabel44);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -4156,6 +4162,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 
         tbHapus.setToolTipText("Silahkan pilih salah satu data yang mau dihapus");
         tbHapus.setName("tbHapus"); // NOI18N
+        tbHapus.getTableHeader().setReorderingAllowed(false);
         Scroll16.setViewportView(tbHapus);
 
         internalFrame32.add(Scroll16, java.awt.BorderLayout.CENTER);
@@ -4450,7 +4457,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame7.add(jLabel8);
         jLabel8.setBounds(0, 38, 180, 23);
 
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -5214,7 +5221,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel35.setBounds(0, 8, 120, 23);
 
         tglLapor.setEditable(false);
-        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         tglLapor.setDisplayFormat("dd-MM-yyyy");
         tglLapor.setName("tglLapor"); // NOI18N
         tglLapor.setOpaque(false);
@@ -5268,7 +5275,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel38.setBounds(0, 36, 120, 23);
 
         tglVerifikasi.setEditable(false);
-        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         tglVerifikasi.setDisplayFormat("dd-MM-yyyy");
         tglVerifikasi.setName("tglVerifikasi"); // NOI18N
         tglVerifikasi.setOpaque(false);
@@ -5507,6 +5514,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbKonfirmasi.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbKonfirmasi.setComponentPopupMenu(jPopupMenu1);
         tbKonfirmasi.setName("tbKonfirmasi"); // NOI18N
+        tbKonfirmasi.getTableHeader().setReorderingAllowed(false);
         tbKonfirmasi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbKonfirmasiMouseClicked(evt);
@@ -5696,6 +5704,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbCPPT.setComponentPopupMenu(jPopupMenu1);
         tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.getTableHeader().setReorderingAllowed(false);
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCPPTMouseClicked(evt);
@@ -5727,7 +5736,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5741,7 +5750,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6151,6 +6160,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbLIS.setAutoCreateRowSorter(true);
         tbLIS.setToolTipText("Silahkan klik salah satu datanya untuk melihat hasil pemeriksaannya");
         tbLIS.setName("tbLIS"); // NOI18N
+        tbLIS.getTableHeader().setReorderingAllowed(false);
         tbLIS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbLISMouseClicked(evt);
@@ -6170,6 +6180,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         Scroll20.setOpaque(true);
 
         tbPembacaLIS.setName("tbPembacaLIS"); // NOI18N
+        tbPembacaLIS.getTableHeader().setReorderingAllowed(false);
         Scroll20.setViewportView(tbPembacaLIS);
 
         panelGlass31.add(Scroll20);
@@ -6241,6 +6252,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 
         tbHasil.setToolTipText("Silahkan conteng item hasil pemeriksaan yang akan di copy");
         tbHasil.setName("tbHasil"); // NOI18N
+        tbHasil.getTableHeader().setReorderingAllowed(false);
         tbHasil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbHasilMouseClicked(evt);
@@ -6257,6 +6269,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbHasilCopy.setToolTipText("Silahkan klik kanan utk. menghapus pemeriksaan lab. yg. sdh. dipilih");
         tbHasilCopy.setComponentPopupMenu(jPopupMenu7);
         tbHasilCopy.setName("tbHasilCopy"); // NOI18N
+        tbHasilCopy.getTableHeader().setReorderingAllowed(false);
         Scroll13.setViewportView(tbHasilCopy);
 
         panelGlass15.add(Scroll13);
@@ -6416,6 +6429,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbRadiologi.setAutoCreateRowSorter(true);
         tbRadiologi.setToolTipText("Silahkan klik salah satu datanya untuk membaca hasil ekspertisenya");
         tbRadiologi.setName("tbRadiologi"); // NOI18N
+        tbRadiologi.getTableHeader().setReorderingAllowed(false);
         tbRadiologi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRadiologiMouseClicked(evt);
@@ -6435,6 +6449,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         Scroll21.setOpaque(true);
 
         tbPembacaRad.setName("tbPembacaRad"); // NOI18N
+        tbPembacaRad.getTableHeader().setReorderingAllowed(false);
         Scroll21.setViewportView(tbPembacaRad);
 
         panelGlass32.add(Scroll21);
@@ -6922,7 +6937,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass26.add(ChkTanggal);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -6936,7 +6951,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel59.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass26.add(jLabel59);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-10-2025" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -7223,6 +7238,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbPA.setAutoCreateRowSorter(true);
         tbPA.setToolTipText("Silahkan klik salah satu datanya untuk membaca hasil pemeriksaan patologi anatomi");
         tbPA.setName("tbPA"); // NOI18N
+        tbPA.getTableHeader().setReorderingAllowed(false);
         tbPA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPAMouseClicked(evt);
@@ -21562,9 +21578,11 @@ public class DlgCPPT extends javax.swing.JDialog {
             StringBuilder htmlContent = new StringBuilder();
             try {
                 rs12 = koneksi.prepareStatement("SELECT hpa.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
-                        + "p2.nama drPengirim, date_format(hpa.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(hpa.tgl_hasil,'%d-%m-%Y') tglHasil, p.tgl_lahir "
+                        + "p2.nama drPengirim, date_format(hpa.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(hpa.tgl_hasil,'%d-%m-%Y') tglHasil, p.tgl_lahir, "
+                        + "p1.nama drPatologi, date_format(hpa.waktu_simpan,'%d/%m/%Y') tgl, time(hpa.waktu_simpan) jam "
                         + "FROM hasil_patologi_anatomi hpa inner join reg_periksa rp on rp.no_rawat=hpa.no_rawat "
-                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai p2 on p2.nik=hpa.nip_perujuk where "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai p2 on p2.nik=hpa.nip_perujuk "
+                        + "inner join pegawai p1 on p1.nik=hpa.nip_dokter_pa where "
                         + "hpa.waktu_simpan='" + wktsimpan + "' order by hpa.waktu_simpan desc").executeQuery();
                 if (rs12.next()) {
                     rs12.beforeFirst();
@@ -21613,7 +21631,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                                 + " <i>" + rs12.getString("italic_anjuran") + "</i><br></td>"
                                 + "</tr>");
                         
-                        String gambar = "", ipGambar = "";
+                        String gambar = "", ipGambar = "", isi = "";
                         try {
                             //cek atau ping ip addres
                             ipGambar = "192.168.0.230";
@@ -21635,11 +21653,17 @@ public class DlgCPPT extends javax.swing.JDialog {
                             gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
                         }
 
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
+                                        "Hasil Pemeriksaan Lab. (Patologi Anatomi)", rs12.getString("drPatologi"),
+                                        rs12.getString("tgl"), rs12.getString("jam")) + "') from kalimat_tte where kode='006'");
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='middle' colspan='5' rowspan='5' align='center'><br><img src='" + gambar + "' width='500' alt='Patologi Anatomi'></td>"
-                                + "<td valign='top' colspan='3' align='center'><br><br><br>Pemeriksa,<br><br><br><br><br><br><br><br><b>"
-                                + Sequel.cariIsi("select nama from pegawai where nik='" + rs12.getString("nip_dokter_pa") + "'") + "</b><br>SIP : "
+                                + "<td valign='top' colspan='3' align='center'><br><br><br>Pemeriksa,<br><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTte.jpg" + "' width='150' alt='TTE Dokter Patologi Anatomi'><br>"
+                                + rs12.getString("drPatologi") + "</b><br>SIP : "
                                 + Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + rs12.getString("nip_dokter_pa") + "'") + "</td>"
                                 + "</tr>");
                     }

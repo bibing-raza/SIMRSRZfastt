@@ -1704,6 +1704,9 @@
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="toolTipText" type="java.lang.String" value="Silahkan klik salah satu data yang akan dipakai"/>
                         <Property name="name" type="java.lang.String" value="tbTemplate" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbTemplateMouseClicked"/>
@@ -1990,7 +1993,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="24-11-2025"/>
+                        <StringItem index="0" value="16-12-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2026,7 +2029,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="24-11-2025"/>
+                        <StringItem index="0" value="16-12-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2565,6 +2568,9 @@
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="toolTipText" type="java.lang.String" value="Silahkan pilih salah satu data yang mau dihapus/diperbaiki"/>
                     <Property name="name" type="java.lang.String" value="tbDiet" noResource="true"/>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbDietMouseClicked"/>
@@ -2877,7 +2883,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="24-11-2025"/>
+                            <StringItem index="0" value="16-12-2025"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2947,7 +2953,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
-                  <BorderConstraints direction="First"/>
+                  <BorderConstraints direction="Center"/>
                 </Constraint>
               </Constraints>
 
@@ -3136,12 +3142,12 @@
               <Properties>
                 <Property name="name" type="java.lang.String" value="panelGlass11" noResource="true"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[44, 150]"/>
+                  <Dimension value="[44, 48]"/>
                 </Property>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
-                  <BorderConstraints direction="Center"/>
+                  <BorderConstraints direction="Last"/>
                 </Constraint>
               </Constraints>
 
@@ -3316,7 +3322,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="24-11-2025"/>
+                            <StringItem index="0" value="16-12-2025"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3344,7 +3350,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="24-11-2025"/>
+                            <StringItem index="0" value="16-12-2025"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3586,6 +3592,9 @@
                           <ComponentRef name="jPopupMenu11"/>
                         </Property>
                         <Property name="name" type="java.lang.String" value="tbSampah" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -3613,6 +3622,9 @@
                           <ComponentRef name="jPopupMenu10"/>
                         </Property>
                         <Property name="name" type="java.lang.String" value="tbRiwayat" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -3677,6 +3689,9 @@
                   <Properties>
                     <Property name="toolTipText" type="java.lang.String" value="Silahkan pilih salah satu data yang mau dicopas"/>
                     <Property name="name" type="java.lang.String" value="tbMonev" noResource="true"/>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -3715,7 +3730,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="24-11-2025"/>
+                        <StringItem index="0" value="16-12-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3743,7 +3758,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="24-11-2025"/>
+                        <StringItem index="0" value="16-12-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -4127,6 +4142,9 @@
                   <Properties>
                     <Property name="toolTipText" type="java.lang.String" value="Silahkan pilih salah satu data yang mau dihapus"/>
                     <Property name="name" type="java.lang.String" value="tbHapus" noResource="true"/>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -4899,7 +4917,7 @@
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
-                                    <StringItem index="0" value="24-11-2025"/>
+                                    <StringItem index="0" value="16-12-2025"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -6788,7 +6806,7 @@
                                                     <Property name="editable" type="boolean" value="false"/>
                                                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                                       <StringArray count="1">
-                                                        <StringItem index="0" value="24-11-2025"/>
+                                                        <StringItem index="0" value="16-12-2025"/>
                                                       </StringArray>
                                                     </Property>
                                                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7041,7 +7059,7 @@
                                                     <Property name="editable" type="boolean" value="false"/>
                                                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                                       <StringArray count="1">
-                                                        <StringItem index="0" value="24-11-2025"/>
+                                                        <StringItem index="0" value="16-12-2025"/>
                                                       </StringArray>
                                                     </Property>
                                                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7622,7 +7640,7 @@
                                                 </Property>
                                                 <Property name="name" type="java.lang.String" value="tbKonfirmasi" noResource="true"/>
                                                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                                                 </Property>
                                               </Properties>
                                               <Events>
@@ -7902,7 +7920,7 @@
                         </Property>
                         <Property name="name" type="java.lang.String" value="tbCPPT" noResource="true"/>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -7962,7 +7980,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="24-11-2025"/>
+                                <StringItem index="0" value="16-12-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -7990,7 +8008,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="24-11-2025"/>
+                                <StringItem index="0" value="16-12-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -8769,6 +8787,9 @@
                                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                 <Property name="toolTipText" type="java.lang.String" value="Silahkan klik salah satu datanya untuk melihat hasil pemeriksaannya"/>
                                 <Property name="name" type="java.lang.String" value="tbLIS" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbLISMouseClicked"/>
@@ -8795,6 +8816,9 @@
                             <Component class="widget.Table" name="tbPembacaLIS">
                               <Properties>
                                 <Property name="name" type="java.lang.String" value="tbPembacaLIS" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -8944,6 +8968,9 @@
                           <Properties>
                             <Property name="toolTipText" type="java.lang.String" value="Silahkan conteng item hasil pemeriksaan yang akan di copy"/>
                             <Property name="name" type="java.lang.String" value="tbHasil" noResource="true"/>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbHasilMouseClicked"/>
@@ -8973,6 +9000,9 @@
                               <ComponentRef name="jPopupMenu7"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="tbHasilCopy" noResource="true"/>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                            </Property>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -9251,6 +9281,9 @@
                                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                 <Property name="toolTipText" type="java.lang.String" value="Silahkan klik salah satu datanya untuk membaca hasil ekspertisenya"/>
                                 <Property name="name" type="java.lang.String" value="tbRadiologi" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbRadiologiMouseClicked"/>
@@ -9277,6 +9310,9 @@
                             <Component class="widget.Table" name="tbPembacaRad">
                               <Properties>
                                 <Property name="name" type="java.lang.String" value="tbPembacaRad" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -10230,7 +10266,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="24-11-2025"/>
+                                <StringItem index="0" value="16-12-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -10258,7 +10294,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="24-11-2025"/>
+                                <StringItem index="0" value="16-12-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -10771,6 +10807,9 @@
                                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                 <Property name="toolTipText" type="java.lang.String" value="Silahkan klik salah satu datanya untuk membaca hasil pemeriksaan patologi anatomi"/>
                                 <Property name="name" type="java.lang.String" value="tbPA" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPAMouseClicked"/>

@@ -945,6 +945,9 @@
                   <Properties>
                     <Property name="toolTipText" type="java.lang.String" value="Silahkan klik pilih salah satu data pasiennya"/>
                     <Property name="name" type="java.lang.String" value="tbPasien" noResource="true"/>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPasienMouseClicked"/>
@@ -1646,6 +1649,9 @@
                   <Properties>
                     <Property name="toolTipText" type="java.lang.String" value="Silahkan pilih salah satu data yang mau dihapus"/>
                     <Property name="name" type="java.lang.String" value="tbHapus" noResource="true"/>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -1875,7 +1881,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="24-11-2025"/>
+                            <StringItem index="0" value="16-12-2025"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -1903,7 +1909,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="24-11-2025"/>
+                            <StringItem index="0" value="16-12-2025"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2095,6 +2101,9 @@
                   <Properties>
                     <Property name="toolTipText" type="java.lang.String" value="Silahkan pilih salah satu data yang mau dihapus/direstore"/>
                     <Property name="name" type="java.lang.String" value="tbRiwayat" noResource="true"/>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -2103,6 +2112,26 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="widget.Button" name="BtnTTE">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/picture/clear24.png"/>
+        </Property>
+        <Property name="mnemonic" type="int" value="84"/>
+        <Property name="text" type="java.lang.String" value="Bubuhkan TTE"/>
+        <Property name="toolTipText" type="java.lang.String" value="Alt+T"/>
+        <Property name="name" type="java.lang.String" value="BtnTTE" noResource="true"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[140, 30]"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnTTEActionPerformed"/>
+      </Events>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
@@ -3371,7 +3400,7 @@
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="24-11-2025"/>
+                                <StringItem index="0" value="16-12-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -4104,6 +4133,9 @@
                               <Properties>
                                 <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang dibaca cpptnya"/>
                                 <Property name="name" type="java.lang.String" value="tbCPPT" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbCPPTMouseClicked"/>
@@ -4316,6 +4348,35 @@
                         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="BtnGantiKeyPressed"/>
                       </Events>
                     </Component>
+                    <Component class="widget.Label" name="jLabel80">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Cetak Dalam Bentuk :"/>
+                        <Property name="name" type="java.lang.String" value="jLabel80" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[120, 23]"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="widget.ComboBox" name="cmbPilihCetak">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="2">
+                            <StringItem index="0" value="TTE (QR Code)"/>
+                            <StringItem index="1" value="TTD Basah"/>
+                          </StringArray>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="cmbPilihCetak" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[105, 23]"/>
+                        </Property>
+                      </Properties>
+                    </Component>
                     <Component class="widget.Button" name="BtnPrint">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -4398,26 +4459,6 @@
                         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="BtnKeluarKeyPressed"/>
                       </Events>
                     </Component>
-                    <Component class="widget.Button" name="BtnTTE">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/picture/clear24.png"/>
-                        </Property>
-                        <Property name="mnemonic" type="int" value="84"/>
-                        <Property name="text" type="java.lang.String" value="Bubuhkan TTE"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Alt+T"/>
-                        <Property name="name" type="java.lang.String" value="BtnTTE" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[140, 30]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnTTEActionPerformed"/>
-                      </Events>
-                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
@@ -4465,6 +4506,9 @@
                           <ComponentRef name="jPopupMenu1"/>
                         </Property>
                         <Property name="name" type="java.lang.String" value="tbRingkasan" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbRingkasanMouseClicked"/>
@@ -4551,7 +4595,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Alt+M"/>
                         <Property name="name" type="java.lang.String" value="BtnAll" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[100, 30]"/>
+                          <Dimension value="[80, 30]"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -4597,12 +4641,41 @@
                         <Property name="toolTipText" type="java.lang.String" value="Alt+H"/>
                         <Property name="name" type="java.lang.String" value="BtnHapus1" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[100, 30]"/>
+                          <Dimension value="[80, 30]"/>
                         </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnHapus1ActionPerformed"/>
                       </Events>
+                    </Component>
+                    <Component class="widget.Label" name="jLabel81">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Cetak Dalam Bentuk :"/>
+                        <Property name="name" type="java.lang.String" value="jLabel81" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[120, 23]"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="widget.ComboBox" name="cmbPilihCetak1">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="2">
+                            <StringItem index="0" value="TTE (QR Code)"/>
+                            <StringItem index="1" value="TTD Basah"/>
+                          </StringArray>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="cmbPilihCetak1" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[105, 23]"/>
+                        </Property>
+                      </Properties>
                     </Component>
                     <Component class="widget.Button" name="BtnPrint1">
                       <Properties>
@@ -4617,7 +4690,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Alt+T"/>
                         <Property name="name" type="java.lang.String" value="BtnPrint1" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[100, 30]"/>
+                          <Dimension value="[80, 30]"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -4664,26 +4737,6 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerifActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="widget.Button" name="BtnTTE1">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/picture/clear24.png"/>
-                        </Property>
-                        <Property name="mnemonic" type="int" value="84"/>
-                        <Property name="text" type="java.lang.String" value="Bubuhkan TTE"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Alt+T"/>
-                        <Property name="name" type="java.lang.String" value="BtnTTE1" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[140, 30]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnTTE1ActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="widget.Button" name="BtnKeluar1">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -4697,7 +4750,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Alt+K"/>
                         <Property name="name" type="java.lang.String" value="BtnKeluar1" noResource="true"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[100, 30]"/>
+                          <Dimension value="[80, 30]"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -4785,6 +4838,9 @@
                                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                 <Property name="toolTipText" type="java.lang.String" value="Silahkan klik salah satu datanya untuk melihat hasil pemeriksaannya"/>
                                 <Property name="name" type="java.lang.String" value="tbLIS" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbLISMouseClicked"/>
@@ -4811,6 +4867,9 @@
                             <Component class="widget.Table" name="tbPembacaLIS">
                               <Properties>
                                 <Property name="name" type="java.lang.String" value="tbPembacaLIS" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -4960,6 +5019,9 @@
                           <Properties>
                             <Property name="toolTipText" type="java.lang.String" value="Silahkan conteng item hasil pemeriksaan yang akan di copy"/>
                             <Property name="name" type="java.lang.String" value="tbHasil" noResource="true"/>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbHasilMouseClicked"/>
@@ -4989,6 +5051,9 @@
                               <ComponentRef name="jPopupMenu2"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="tbHasilCopy" noResource="true"/>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                            </Property>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -5187,6 +5252,9 @@
                                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                 <Property name="toolTipText" type="java.lang.String" value="Silahkan klik salah satu datanya untuk membaca hasil ekspertisenya"/>
                                 <Property name="name" type="java.lang.String" value="tbRadiologi" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbRadiologiMouseClicked"/>
@@ -5213,6 +5281,9 @@
                             <Component class="widget.Table" name="tbPembacaRad">
                               <Properties>
                                 <Property name="name" type="java.lang.String" value="tbPembacaRad" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -6004,7 +6075,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="24-11-2025"/>
+                                <StringItem index="0" value="16-12-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -6032,7 +6103,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="24-11-2025"/>
+                                <StringItem index="0" value="16-12-2025"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -6385,6 +6456,9 @@
                                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                                 <Property name="toolTipText" type="java.lang.String" value="Silahkan klik salah satu datanya untuk membaca hasil pemeriksaan patologi anatomi"/>
                                 <Property name="name" type="java.lang.String" value="tbPA" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPAMouseClicked"/>
