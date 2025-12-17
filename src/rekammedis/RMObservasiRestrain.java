@@ -386,7 +386,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         panelGlass10.add(TNoRM);
         TNoRM.setBounds(293, 10, 70, 23);
 
-        TtglLokasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2024" }));
+        TtglLokasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         TtglLokasi.setDisplayFormat("dd-MM-yyyy");
         TtglLokasi.setName("TtglLokasi"); // NOI18N
         TtglLokasi.setOpaque(false);
@@ -515,7 +515,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         panelGlass10.add(jLabel17);
         jLabel17.setBounds(2, 150, 160, 23);
 
-        TtglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2024" }));
+        TtglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         TtglObservasi.setDisplayFormat("dd-MM-yyyy");
         TtglObservasi.setName("TtglObservasi"); // NOI18N
         TtglObservasi.setOpaque(false);
@@ -679,6 +679,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         tbObservasi.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbObservasi.setComponentPopupMenu(jPopupMenu1);
         tbObservasi.setName("tbObservasi"); // NOI18N
+        tbObservasi.getTableHeader().setReorderingAllowed(false);
         tbObservasi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbObservasiMouseClicked(evt);
@@ -847,7 +848,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -861,7 +862,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -974,6 +975,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
 
         tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
         tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.getTableHeader().setReorderingAllowed(false);
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCPPTMouseClicked(evt);

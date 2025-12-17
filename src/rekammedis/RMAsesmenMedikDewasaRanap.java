@@ -792,6 +792,8 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel63 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnNotepad = new widget.Button();
@@ -1136,9 +1138,8 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         internalFrame4.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame4.setLayout(new java.awt.BorderLayout());
 
-        panelisi4.setBackground(new java.awt.Color(255, 150, 255));
         panelisi4.setName("panelisi4"); // NOI18N
-        panelisi4.setPreferredSize(new java.awt.Dimension(100, 44));
+        panelisi4.setPreferredSize(new java.awt.Dimension(100, 48));
         panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -1205,7 +1206,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         });
         panelisi4.add(BtnCloseIn1);
 
-        internalFrame4.add(panelisi4, java.awt.BorderLayout.CENTER);
+        internalFrame4.add(panelisi4, java.awt.BorderLayout.PAGE_END);
 
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setOpaque(false);
@@ -1218,6 +1219,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
 
         tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
         tbTemplate.setName("tbTemplate"); // NOI18N
+        tbTemplate.getTableHeader().setReorderingAllowed(false);
         tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTemplateMouseClicked(evt);
@@ -1239,7 +1241,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
 
         jPanel1.add(Scroll3);
 
-        internalFrame4.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        internalFrame4.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         WindowTemplate.getContentPane().add(internalFrame4, java.awt.BorderLayout.CENTER);
 
@@ -1271,7 +1273,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1285,7 +1287,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1404,6 +1406,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
 
         tbRiwayat.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/direstore");
         tbRiwayat.setName("tbRiwayat"); // NOI18N
+        tbRiwayat.getTableHeader().setReorderingAllowed(false);
         Scroll6.setViewportView(tbRiwayat);
 
         internalFrame13.add(Scroll6, java.awt.BorderLayout.CENTER);
@@ -1503,6 +1506,18 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnEdit);
+
+        jLabel63.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel63.setText("Cetak Dalam Bentuk :");
+        jLabel63.setName("jLabel63"); // NOI18N
+        jLabel63.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel63);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -1672,7 +1687,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 30, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025 13:17:26" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025 10:23:43" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -1975,7 +1990,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label12);
         label12.setBounds(625, 360, 100, 23);
 
-        TglAnamnesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025 13:17:26" }));
+        TglAnamnesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025 10:23:43" }));
         TglAnamnesa.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAnamnesa.setName("TglAnamnesa"); // NOI18N
         TglAnamnesa.setOpaque(false);
@@ -2006,6 +2021,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label20);
         label20.setBounds(0, 420, 170, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
 
         Triw_penyakit_sekarang.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2333,6 +2349,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(Tket_lain2);
         Tket_lain2.setBounds(394, 667, 460, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
 
         Triw_alergi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3290,6 +3307,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label77);
         label77.setBounds(0, 1508, 210, 23);
 
+        scrollPane15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane15.setComponentPopupMenu(jPopupMenu1);
         scrollPane15.setName("scrollPane15"); // NOI18N
 
@@ -3326,6 +3344,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label83);
         label83.setBounds(0, 1925, 190, 23);
 
+        scrollPane16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane16.setName("scrollPane16"); // NOI18N
 
         Trencana_kerja.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3351,6 +3370,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label84);
         label84.setBounds(0, 2260, 230, 23);
 
+        scrollPane17.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane17.setName("scrollPane17"); // NOI18N
 
         Trencana_pulang.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3376,6 +3396,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label85);
         label85.setBounds(0, 2368, 132, 23);
 
+        scrollPane18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane18.setName("scrollPane18"); // NOI18N
 
         Tcatatan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3400,7 +3421,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label86);
         label86.setBounds(625, 2475, 100, 23);
 
-        TglDpjp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025 13:17:26" }));
+        TglDpjp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025 10:23:43" }));
         TglDpjp.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglDpjp.setName("TglDpjp"); // NOI18N
         TglDpjp.setOpaque(false);
@@ -3677,6 +3698,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
 
         tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
         tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.getTableHeader().setReorderingAllowed(false);
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCPPTMouseClicked(evt);
@@ -3774,7 +3796,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3789,7 +3811,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3955,39 +3977,95 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             param.put("rencana_plg", Trencana_pulang.getText());
             param.put("catatan", Tcatatan.getText());
 
-            Valid.MyReport("rptCetakAsesmenMedikDewasaRanap.jasper", "report", "::[ Laporan Asesmen Medik Dewasa hal. 1 ]::",
-                    "select p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tglLhr, "
-                    + "concat('Tanggal : ',date_format(am.tgl_asesmen,'%d-%m-%Y'),'   Jam : ',date_format(am.tgl_asesmen,'%H:%i')) tglAsesmen, "
-                    + "IF (am.rujukan = 'ya', 'V', '') rujukan_ya, IF (am.rujukan = 'tidak', 'V', '') rujukan_tdk, am.ket_rs, am.ket_puskes, am.ket_praktek, am.ket_lainya, am.diagnosa_rujukan, "
-                    + "if(am.datang_sendiri='ya','V','') dtg_sndri, if(am.diantar='ya','V','') diantar, am.ket_diantar, p1.nama nm_dr_meriksa, "
-                    + "p2.nama nm_super, date_format(am.tgl_anamnese,'%d-%m-%Y') tglAnam, date_format(am.tgl_anamnese,'%H:%i') jamAnam, am.keluhan_utama, "
-                    + "am.riw_penyakit_sekarang, if(am.hipertensi_1='ya','V','') hiper1, if(am.dm_1='ya','V','') dm1, if(am.pjk='ya','V','') pjk, "
-                    + "if(am.asma_1='ya','V','') asma1, if(am.stroke='ya','V','') strok, if(am.liver='ya','V','') liver, if(am.ginjal='ya','V','') ginjal, "
-                    + "if(am.tb_paru='ya','V','') tbParu, if(am.lain_lain_1='ya','V','') lain1, am.ket_lain_1, if(am.pernah_dirawat='','Pernah Dirawat : -',if(am.pernah_dirawat='Ya',concat('Pernah Dirawat : Ya, Kapan ',am.ket_kapan,' Dimana ',am.ket_dimana,' Diagnosis ',am.diagnosis),concat('Pernah Dirawat : Tidak'))) prnh_dirawat, "
-                    + "if(am.hipertensi_2='ya','V','') hiper2, if(am.dm_2='ya','V','') dm2, if(am.jantung='ya','V','') jantung, "
-                    + "if(am.asma_2='ya','V','') asma2, if(am.lain_lain_2='ya','V','') lain2, am.lain_lain_2, am.ket_lain_2, am.riw_alergi, "
-                    + "if(am.nyeri='ya','V','') nyeri, if(am.nyeri = 'ya',concat('Ya, Lokasi : ',am.ket_lokasi,' Intensitas : ',am.ket_intensitas),'Tidak') nilai_nyeri, "
-                    + "am.skor, am.jenis, am.keadaan_umum, am.gizi, am.gcs_e, am.gcs_m, am.gcs_v, IF(am.tindakan_resus = 'ya','Ya','Tidak') tndk_resus, am.bb, "
-                    + "am.tb, am.td, am.nadi, am.respirasi, am.suhu_axila, am.suhu_rektal, am.mata_anemis, am.ikterik, if(am.pupil='','-',if(am.pupil='Anisokor','Anisokor',concat('Isokor, Diameter ',am.diameter_kanan,' mm / ',am.diameter_kiri,' mm'))) pupil, "
-                    + "am.udem_palpebra, am.tonsil, am.faring, am.lidah, am.bibir, am.jvp, if(am.kelenjar_limfe='Ada',concat('Ada, ',am.ket_ada_kelenjar),am.kelenjar_limfe) kel_limfe, am.kaku_kuduk, am.saturasi "
-                    + "from asesmen_medik_dewasa_ranap am inner join reg_periksa rp on rp.no_rawat=am.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "inner join pegawai p1 on p1.nik=am.nip_dokter_memeriksa inner join pegawai p2 on p2.nik=am.nip_supervisor where "
-                    + "am.no_rawat='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString() + "'", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (kddpjp.getText().equals("") || kddpjp.getText().equals("-") || kddpjp.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, nama DPJP harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Assesmen Medik Dewasa Rawat Inap", nmdpjp.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from asesmen_medik_dewasa_ranap where "
+                                            + "no_rawat='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from asesmen_medik_dewasa_ranap where "
+                                            + "no_rawat='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString() + "'")) + "') from kalimat_tte where kode='001'");
 
-            Valid.MyReport("rptCetakAsesmenMedikDewasaRanap1.jasper", "report", "::[ Laporan Asesmen Medik Dewasa hal. 2 ]::",
-                    "SELECT if(a.thoraks='','-',if(a.thoraks='Asimetris',concat('Asimetris : ',a.ket_asimetris),a.thoraks)) toraks, "
-                    + "a.cor_s1s2, if(a.reguler='ya','V','') reguler, if(a.ireguler='ya','V','') ireguler, "
-                    + "if(a.ireguler='ya',concat('Ireguler, Murmur : ',a.murmur),'Ireguler, Murmur : -') murmur, "
-                    + "a.lain_lain, a.suara_nafas, if(a.ronchi='','-',if(a.ronchi='Ada',concat('Ada : ',a.ket_ronchi),a.ronchi)) ronci, "
-                    + "if(a.wheezing='','-',if(a.wheezing='Ada',concat('Ada, ',a.ket_wheezing),a.wheezing)) whezing, "
-                    + "if(a.distended='','-',a.distended) disten, if(a.meteorismus='','-',a.meteorismus) meteo, "
-                    + "if(a.peristaltik='','-',a.peristaltik) peris, if(a.asites='','-',a.asites) asites, "
-                    + "if(a.nyeri_tekan='','-',if(a.nyeri_tekan='Ada',concat('Ada, Lokasi : ',a.lokasi),a.nyeri_tekan)) nyeri, "
-                    + "concat(a.hepar,', Lien : ',a.lien) hepar, if(a.extremitas='','-',a.extremitas) ekstrem, "
-                    + "if(a.udem='','-',if(a.udem='Ada',concat('Ada, ',a.ket_udem),a.udem)) udem, a.pemeriksaan_fisik_lain, "
-                    + "a.diagnosis1, a.diagnosis2, a.diagnosis3, a.diagnosis4, date_format(a.tgl_dpjp,'%d-%m-%Y %H:%i') tgljam, "
-                    + "p.nama dpjp, a.diagnosis5, a.diagnosis6, a.diagnosis7, a.diagnosa_primer, a.diagnosa_sekunder from asesmen_medik_dewasa_ranap a inner join pegawai p on p.nik=a.nip_dpjp where "
-                    + "a.no_rawat='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString() + "'", param);
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Assesmen Medik Dewasa", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                    Valid.MyReport("rptCetakAsesmenMedikDewasaRanapQr.jasper", "report", "::[ Laporan Asesmen Medik Dewasa hal. 1 ]::",
+                            "select p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tglLhr, "
+                            + "concat('Tanggal : ',date_format(am.tgl_asesmen,'%d-%m-%Y'),'   Jam : ',date_format(am.tgl_asesmen,'%H:%i')) tglAsesmen, "
+                            + "IF (am.rujukan = 'ya', 'V', '') rujukan_ya, IF (am.rujukan = 'tidak', 'V', '') rujukan_tdk, am.ket_rs, am.ket_puskes, am.ket_praktek, am.ket_lainya, am.diagnosa_rujukan, "
+                            + "if(am.datang_sendiri='ya','V','') dtg_sndri, if(am.diantar='ya','V','') diantar, am.ket_diantar, p1.nama nm_dr_meriksa, "
+                            + "p2.nama nm_super, date_format(am.tgl_anamnese,'%d-%m-%Y') tglAnam, date_format(am.tgl_anamnese,'%H:%i') jamAnam, am.keluhan_utama, "
+                            + "am.riw_penyakit_sekarang, if(am.hipertensi_1='ya','V','') hiper1, if(am.dm_1='ya','V','') dm1, if(am.pjk='ya','V','') pjk, "
+                            + "if(am.asma_1='ya','V','') asma1, if(am.stroke='ya','V','') strok, if(am.liver='ya','V','') liver, if(am.ginjal='ya','V','') ginjal, "
+                            + "if(am.tb_paru='ya','V','') tbParu, if(am.lain_lain_1='ya','V','') lain1, am.ket_lain_1, if(am.pernah_dirawat='','Pernah Dirawat : -',if(am.pernah_dirawat='Ya',concat('Pernah Dirawat : Ya, Kapan ',am.ket_kapan,' Dimana ',am.ket_dimana,' Diagnosis ',am.diagnosis),concat('Pernah Dirawat : Tidak'))) prnh_dirawat, "
+                            + "if(am.hipertensi_2='ya','V','') hiper2, if(am.dm_2='ya','V','') dm2, if(am.jantung='ya','V','') jantung, "
+                            + "if(am.asma_2='ya','V','') asma2, if(am.lain_lain_2='ya','V','') lain2, am.lain_lain_2, am.ket_lain_2, am.riw_alergi, "
+                            + "if(am.nyeri='ya','V','') nyeri, if(am.nyeri = 'ya',concat('Ya, Lokasi : ',am.ket_lokasi,' Intensitas : ',am.ket_intensitas),'Tidak') nilai_nyeri, "
+                            + "am.skor, am.jenis, am.keadaan_umum, am.gizi, am.gcs_e, am.gcs_m, am.gcs_v, IF(am.tindakan_resus = 'ya','Ya','Tidak') tndk_resus, am.bb, "
+                            + "am.tb, am.td, am.nadi, am.respirasi, am.suhu_axila, am.suhu_rektal, am.mata_anemis, am.ikterik, if(am.pupil='','-',if(am.pupil='Anisokor','Anisokor',concat('Isokor, Diameter ',am.diameter_kanan,' mm / ',am.diameter_kiri,' mm'))) pupil, "
+                            + "am.udem_palpebra, am.tonsil, am.faring, am.lidah, am.bibir, am.jvp, if(am.kelenjar_limfe='Ada',concat('Ada, ',am.ket_ada_kelenjar),am.kelenjar_limfe) kel_limfe, am.kaku_kuduk, am.saturasi "
+                            + "from asesmen_medik_dewasa_ranap am inner join reg_periksa rp on rp.no_rawat=am.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "inner join pegawai p1 on p1.nik=am.nip_dokter_memeriksa inner join pegawai p2 on p2.nik=am.nip_supervisor where "
+                            + "am.no_rawat='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString() + "'", param);
+
+                    Valid.MyReport("rptCetakAsesmenMedikDewasaRanap1Qr.jasper", "report", "::[ Laporan Asesmen Medik Dewasa hal. 2 ]::",
+                            "SELECT if(a.thoraks='','-',if(a.thoraks='Asimetris',concat('Asimetris : ',a.ket_asimetris),a.thoraks)) toraks, "
+                            + "a.cor_s1s2, if(a.reguler='ya','V','') reguler, if(a.ireguler='ya','V','') ireguler, "
+                            + "if(a.ireguler='ya',concat('Ireguler, Murmur : ',a.murmur),'Ireguler, Murmur : -') murmur, "
+                            + "a.lain_lain, a.suara_nafas, if(a.ronchi='','-',if(a.ronchi='Ada',concat('Ada : ',a.ket_ronchi),a.ronchi)) ronci, "
+                            + "if(a.wheezing='','-',if(a.wheezing='Ada',concat('Ada, ',a.ket_wheezing),a.wheezing)) whezing, "
+                            + "if(a.distended='','-',a.distended) disten, if(a.meteorismus='','-',a.meteorismus) meteo, "
+                            + "if(a.peristaltik='','-',a.peristaltik) peris, if(a.asites='','-',a.asites) asites, "
+                            + "if(a.nyeri_tekan='','-',if(a.nyeri_tekan='Ada',concat('Ada, Lokasi : ',a.lokasi),a.nyeri_tekan)) nyeri, "
+                            + "concat(a.hepar,', Lien : ',a.lien) hepar, if(a.extremitas='','-',a.extremitas) ekstrem, "
+                            + "if(a.udem='','-',if(a.udem='Ada',concat('Ada, ',a.ket_udem),a.udem)) udem, a.pemeriksaan_fisik_lain, "
+                            + "a.diagnosis1, a.diagnosis2, a.diagnosis3, a.diagnosis4, date_format(a.tgl_dpjp,'%d-%m-%Y %H:%i') tgljam, "
+                            + "p.nama dpjp, a.diagnosis5, a.diagnosis6, a.diagnosis7, a.diagnosa_primer, a.diagnosa_sekunder from asesmen_medik_dewasa_ranap a inner join pegawai p on p.nik=a.nip_dpjp where "
+                            + "a.no_rawat='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString() + "'", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                Valid.MyReport("rptCetakAsesmenMedikDewasaRanap.jasper", "report", "::[ Laporan Asesmen Medik Dewasa hal. 1 ]::",
+                        "select p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tglLhr, "
+                        + "concat('Tanggal : ',date_format(am.tgl_asesmen,'%d-%m-%Y'),'   Jam : ',date_format(am.tgl_asesmen,'%H:%i')) tglAsesmen, "
+                        + "IF (am.rujukan = 'ya', 'V', '') rujukan_ya, IF (am.rujukan = 'tidak', 'V', '') rujukan_tdk, am.ket_rs, am.ket_puskes, am.ket_praktek, am.ket_lainya, am.diagnosa_rujukan, "
+                        + "if(am.datang_sendiri='ya','V','') dtg_sndri, if(am.diantar='ya','V','') diantar, am.ket_diantar, p1.nama nm_dr_meriksa, "
+                        + "p2.nama nm_super, date_format(am.tgl_anamnese,'%d-%m-%Y') tglAnam, date_format(am.tgl_anamnese,'%H:%i') jamAnam, am.keluhan_utama, "
+                        + "am.riw_penyakit_sekarang, if(am.hipertensi_1='ya','V','') hiper1, if(am.dm_1='ya','V','') dm1, if(am.pjk='ya','V','') pjk, "
+                        + "if(am.asma_1='ya','V','') asma1, if(am.stroke='ya','V','') strok, if(am.liver='ya','V','') liver, if(am.ginjal='ya','V','') ginjal, "
+                        + "if(am.tb_paru='ya','V','') tbParu, if(am.lain_lain_1='ya','V','') lain1, am.ket_lain_1, if(am.pernah_dirawat='','Pernah Dirawat : -',if(am.pernah_dirawat='Ya',concat('Pernah Dirawat : Ya, Kapan ',am.ket_kapan,' Dimana ',am.ket_dimana,' Diagnosis ',am.diagnosis),concat('Pernah Dirawat : Tidak'))) prnh_dirawat, "
+                        + "if(am.hipertensi_2='ya','V','') hiper2, if(am.dm_2='ya','V','') dm2, if(am.jantung='ya','V','') jantung, "
+                        + "if(am.asma_2='ya','V','') asma2, if(am.lain_lain_2='ya','V','') lain2, am.lain_lain_2, am.ket_lain_2, am.riw_alergi, "
+                        + "if(am.nyeri='ya','V','') nyeri, if(am.nyeri = 'ya',concat('Ya, Lokasi : ',am.ket_lokasi,' Intensitas : ',am.ket_intensitas),'Tidak') nilai_nyeri, "
+                        + "am.skor, am.jenis, am.keadaan_umum, am.gizi, am.gcs_e, am.gcs_m, am.gcs_v, IF(am.tindakan_resus = 'ya','Ya','Tidak') tndk_resus, am.bb, "
+                        + "am.tb, am.td, am.nadi, am.respirasi, am.suhu_axila, am.suhu_rektal, am.mata_anemis, am.ikterik, if(am.pupil='','-',if(am.pupil='Anisokor','Anisokor',concat('Isokor, Diameter ',am.diameter_kanan,' mm / ',am.diameter_kiri,' mm'))) pupil, "
+                        + "am.udem_palpebra, am.tonsil, am.faring, am.lidah, am.bibir, am.jvp, if(am.kelenjar_limfe='Ada',concat('Ada, ',am.ket_ada_kelenjar),am.kelenjar_limfe) kel_limfe, am.kaku_kuduk, am.saturasi "
+                        + "from asesmen_medik_dewasa_ranap am inner join reg_periksa rp on rp.no_rawat=am.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join pegawai p1 on p1.nik=am.nip_dokter_memeriksa inner join pegawai p2 on p2.nik=am.nip_supervisor where "
+                        + "am.no_rawat='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString() + "'", param);
+
+                Valid.MyReport("rptCetakAsesmenMedikDewasaRanap1.jasper", "report", "::[ Laporan Asesmen Medik Dewasa hal. 2 ]::",
+                        "SELECT if(a.thoraks='','-',if(a.thoraks='Asimetris',concat('Asimetris : ',a.ket_asimetris),a.thoraks)) toraks, "
+                        + "a.cor_s1s2, if(a.reguler='ya','V','') reguler, if(a.ireguler='ya','V','') ireguler, "
+                        + "if(a.ireguler='ya',concat('Ireguler, Murmur : ',a.murmur),'Ireguler, Murmur : -') murmur, "
+                        + "a.lain_lain, a.suara_nafas, if(a.ronchi='','-',if(a.ronchi='Ada',concat('Ada : ',a.ket_ronchi),a.ronchi)) ronci, "
+                        + "if(a.wheezing='','-',if(a.wheezing='Ada',concat('Ada, ',a.ket_wheezing),a.wheezing)) whezing, "
+                        + "if(a.distended='','-',a.distended) disten, if(a.meteorismus='','-',a.meteorismus) meteo, "
+                        + "if(a.peristaltik='','-',a.peristaltik) peris, if(a.asites='','-',a.asites) asites, "
+                        + "if(a.nyeri_tekan='','-',if(a.nyeri_tekan='Ada',concat('Ada, Lokasi : ',a.lokasi),a.nyeri_tekan)) nyeri, "
+                        + "concat(a.hepar,', Lien : ',a.lien) hepar, if(a.extremitas='','-',a.extremitas) ekstrem, "
+                        + "if(a.udem='','-',if(a.udem='Ada',concat('Ada, ',a.ket_udem),a.udem)) udem, a.pemeriksaan_fisik_lain, "
+                        + "a.diagnosis1, a.diagnosis2, a.diagnosis3, a.diagnosis4, date_format(a.tgl_dpjp,'%d-%m-%Y %H:%i') tgljam, "
+                        + "p.nama dpjp, a.diagnosis5, a.diagnosis6, a.diagnosis7, a.diagnosa_primer, a.diagnosa_sekunder from asesmen_medik_dewasa_ranap a inner join pegawai p on p.nik=a.nip_dpjp where "
+                        + "a.no_rawat='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString() + "'", param);
+            }
             
             emptTeks();            
             TabRawat.setSelectedIndex(1);
@@ -5039,6 +5117,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
     private widget.ComboBox cmbNyeri;
     private widget.ComboBox cmbPeris;
     private widget.ComboBox cmbPernah;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbPupil;
     private widget.ComboBox cmbRonchi;
     private widget.ComboBox cmbThoraks;
@@ -5073,6 +5152,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
     private widget.Label jLabel33;
     private widget.Label jLabel47;
     private widget.Label jLabel6;
+    private widget.Label jLabel63;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
@@ -5679,8 +5759,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         BtnPrint.setEnabled(akses.getasesmen_medik_dewasa_ranap());
         MnRiwayatData.setEnabled(akses.getadmin());
         
-        if (akses.getjml2() >= 1) {            
-            BtnDpjp.setEnabled(false);            
+        if (akses.getjml2() >= 1) {
             kddpjp.setText(akses.getkode());              
             Sequel.cariIsi("select nama from petugas where nip=?", nmdpjp, kddpjp.getText());
             if (nmdpjp.getText().equals("")) {
