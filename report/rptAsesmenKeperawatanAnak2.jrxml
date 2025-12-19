@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="521" leftMargin="56" rightMargin="18" topMargin="18" bottomMargin="18">
 	<property name="ireport.zoom" value="1.8181818181818532"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="313"/>
+	<property name="ireport.y" value="315"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<parameter name="resikoJatuh" class="java.lang.String"/>
 	<parameter name="KesResikoJatuh" class="java.lang.String"/>
@@ -310,7 +310,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{IsitindakanRJ}+"\n"]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="36">
+		<band height="38">
 			<line>
 				<reportElement x="0" y="23" width="520" height="1"/>
 				<graphicElement>
@@ -353,6 +353,12 @@
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{kalimatSkrining}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="37" width="521" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
 		</band>
 	</detail>
 	<summary>

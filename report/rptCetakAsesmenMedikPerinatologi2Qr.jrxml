@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="521" leftMargin="56" rightMargin="18" topMargin="18" bottomMargin="18" uuid="c0560a5c-6c68-476d-8ca5-b3d67ba4dd6f">
+	<property name="ireport.zoom" value="1.8181818181818545"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sik_test"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<parameter name="pemeriksaan" class="java.lang.String"/>
+	<parameter name="diagnosaKerja" class="java.lang.String"/>
+	<parameter name="diagnosaBanding" class="java.lang.String"/>
+	<parameter name="pengobatan" class="java.lang.String"/>
+	<parameter name="diet" class="java.lang.String"/>
+	<parameter name="rencana" class="java.lang.String"/>
+	<parameter name="tanggal" class="java.lang.String"/>
+	<parameter name="dokter" class="java.lang.String"/>
+	<parameter name="kalimatTte" class="java.lang.String"/>
+	<parameter name="lokasiQr" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[SELECT now() tanggal]]>
+	</queryString>
+	<field name="tanggal" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="1">
+			<line>
+				<reportElement x="0" y="0" width="520" height="1" uuid="c72ec466-fb1c-4af8-810f-16f61fcafcfd"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="12">
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="12" uuid="55c944b9-32f5-4ec0-89f2-08efa2b220d2"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="12" uuid="6e6fcd24-4653-4ec7-b192-e4d8adaf4743"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="3" y="0" width="513" height="11" uuid="c3ae08fa-aabb-4a5e-b212-1c196bdccad5"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["4. PEMERIKSAAN PENUNJANG PRE RAWAT INAP\n    "+$P{pemeriksaan}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="12">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="3" y="0" width="513" height="11" uuid="794f7d0a-ab47-43d8-9172-eb17525460be"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["5. DIAGNOSA KERJA\n    "+$P{diagnosaKerja}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="12" uuid="45344f42-594b-4a0d-a7f9-838c44743a6c"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="12" uuid="09bef2a1-40ad-48f5-af43-9c0782c40db5"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+		</band>
+		<band height="12">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="3" y="0" width="513" height="11" uuid="e602e902-7488-4bc5-b412-16e1d05c8b99"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["6. DIAGNOSA BANDING\n    "+$P{diagnosaBanding}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="12" uuid="b5c9b450-8ce9-4e0a-86e4-8115570285e4"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="12" uuid="f5e26ad6-3809-459b-bd21-f65a9c0fd7a7"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+		</band>
+		<band height="12">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="3" y="0" width="513" height="11" uuid="672c992f-518d-4cc9-877e-b729780898b3"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["7. PENGOBATAN\n    "+$P{pengobatan}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="12" uuid="de226f3f-4a28-481e-bcd5-2c5bf49c71b0"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="12" uuid="38e650dd-c15a-4e9d-a6be-3e85d4e911d2"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+		</band>
+		<band height="12">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="3" y="0" width="513" height="11" uuid="712c1bed-8dae-4049-9666-131c2c157bc7"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["8. DIET\n    "+$P{diet}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="12" uuid="76a39a2c-2b59-4c6a-b73d-653ee959e0ee"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="12" uuid="dc01195a-abd6-4a25-9485-6c9cb22e79c4"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+		</band>
+		<band height="12">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="3" y="0" width="513" height="11" uuid="0c0e9146-810c-45df-9241-2c6a5a531087"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["9. RENCANA\n    "+$P{rencana}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="12" uuid="e35fc795-abd9-4197-bc1b-572ef42a1907"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="12" uuid="6672f868-5e94-431d-86a3-4d8c9976dc8e"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="1" width="519" height="15" uuid="5f67685e-60a1-4469-a5b5-3029b5708ccf"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kalimatTte}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="519" height="1" uuid="e4d84264-807a-48a6-ba8e-3f559415215e"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="137">
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="131" uuid="2170707d-0026-4eb4-b2b3-c647e81c4750"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="131" uuid="400c566d-0d63-4566-83cf-715951c1789a"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="131" width="520" height="1" uuid="7f11652a-0e56-4d12-9966-e807285ff2de"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="231" y="12" width="280" height="12" uuid="370e5fb4-e40f-4f5f-a41b-4081a54220a1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tanggal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="231" y="23" width="280" height="11" uuid="b0d99f76-add7-4019-9156-e390e1f92ac8">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dokter Yang Memeriksa]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="231" y="109" width="280" height="11" uuid="e57dc83e-24de-485b-866f-95b922ee57cb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dokter}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="331" y="34" width="80" height="76" uuid="8c7540a7-0e22-41fb-9de7-72e0d8262f67"/>
+				<imageExpression><![CDATA[$P{lokasiQr}]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>

@@ -832,6 +832,8 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel106 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnResep = new widget.Button();
@@ -1189,7 +1191,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1203,7 +1205,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1323,6 +1325,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         tbRiwayat.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/direstore");
         tbRiwayat.setComponentPopupMenu(jPopupMenu2);
         tbRiwayat.setName("tbRiwayat"); // NOI18N
+        tbRiwayat.getTableHeader().setReorderingAllowed(false);
         Scroll6.setViewportView(tbRiwayat);
 
         internalFrame13.add(Scroll6, java.awt.BorderLayout.CENTER);
@@ -1422,6 +1425,18 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnEdit);
+
+        jLabel106.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel106.setText("Cetak Dalam Bentuk :");
+        jLabel106.setName("jLabel106"); // NOI18N
+        jLabel106.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel106);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -1583,7 +1598,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         jLabel12.setBounds(0, 38, 110, 23);
 
         TtglAsesmen.setEditable(false);
-        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
+        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         TtglAsesmen.setDisplayFormat("dd-MM-yyyy");
         TtglAsesmen.setName("TtglAsesmen"); // NOI18N
         TtglAsesmen.setOpaque(false);
@@ -1662,6 +1677,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(jLabel64);
         jLabel64.setBounds(0, 94, 150, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
 
         Tkeluhan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1692,6 +1708,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(jLabel66);
         jLabel66.setBounds(0, 208, 170, 23);
 
+        scrollPane15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane15.setName("scrollPane15"); // NOI18N
 
         TriwPenyakitDahulu.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3979,6 +3996,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(jLabel100);
         jLabel100.setBounds(0, 1330, 290, 23);
 
+        scrollPane16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane16.setName("scrollPane16"); // NOI18N
 
         Tpemerikaaan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -4003,6 +4021,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(jLabel101);
         jLabel101.setBounds(0, 1594, 160, 23);
 
+        scrollPane17.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane17.setName("scrollPane17"); // NOI18N
 
         TdiagnosaKerja.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -4020,6 +4039,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(scrollPane17);
         scrollPane17.setBounds(165, 1594, 565, 80);
 
+        scrollPane18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane18.setName("scrollPane18"); // NOI18N
 
         TdiagnosaBanding.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -4044,6 +4064,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(jLabel102);
         jLabel102.setBounds(0, 1680, 160, 23);
 
+        scrollPane19.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane19.setName("scrollPane19"); // NOI18N
 
         Tpengobatan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -4068,6 +4089,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(jLabel103);
         jLabel103.setBounds(0, 1765, 160, 23);
 
+        scrollPane20.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane20.setName("scrollPane20"); // NOI18N
 
         Tdiet.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -4092,6 +4114,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(jLabel104);
         jLabel104.setBounds(0, 1850, 160, 23);
 
+        scrollPane21.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane21.setName("scrollPane21"); // NOI18N
 
         Trencana.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -4180,6 +4203,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
 
         tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
         tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.getTableHeader().setReorderingAllowed(false);
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCPPTMouseClicked(evt);
@@ -4275,7 +4299,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4290,7 +4314,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5220,10 +5244,38 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
                     + ", Jam : " + cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + " Wita");
             param.put("dokter", "(" + TnmDokter.getText() + ")");
 
-            Valid.MyReport("rptCetakAsesmenMedikPerinatologi2.jasper", "report", "::[ Laporan Asesmen Medik Perinatologi hal. 2 ]::",
-                    "SELECT now() tanggal", param);
-            Valid.MyReport("rptCetakAsesmenMedikPerinatologi1.jasper", "report", "::[ Laporan Asesmen Medik Perinatologi hal. 1 ]::",
-                    "SELECT now() tanggal", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (Tnip.getText().equals("") || Tnip.getText().equals("-") || Tnip.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, dokter memeriksa harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Assesmen Medik Perinatologi", TnmDokter.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from asesmen_medik_perinatologi where "
+                                            + "no_rawat='" + TNoRw.getText() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from asesmen_medik_perinatologi where "
+                                            + "no_rawat='" + TNoRw.getText() + "'")) + "') from kalimat_tte where kode='001'");
+                    
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Assesmen Medik Perinatologi", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    
+                    Valid.MyReport("rptCetakAsesmenMedikPerinatologi2Qr.jasper", "report", "::[ Laporan Asesmen Medik Perinatologi hal. 2 ]::",
+                            "SELECT now() tanggal", param);
+                    Valid.MyReport("rptCetakAsesmenMedikPerinatologi1Qr.jasper", "report", "::[ Laporan Asesmen Medik Perinatologi hal. 1 ]::",
+                            "SELECT now() tanggal", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            
+            } else {
+                Valid.MyReport("rptCetakAsesmenMedikPerinatologi2.jasper", "report", "::[ Laporan Asesmen Medik Perinatologi hal. 2 ]::",
+                        "SELECT now() tanggal", param);
+                Valid.MyReport("rptCetakAsesmenMedikPerinatologi1.jasper", "report", "::[ Laporan Asesmen Medik Perinatologi hal. 1 ]::",
+                        "SELECT now() tanggal", param);
+            }
             
             emptTeks();            
             TabRawat.setSelectedIndex(1);
@@ -6317,6 +6369,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     private widget.ComboBox cmbJam;
     private widget.ComboBox cmbKondisi;
     private widget.ComboBox cmbMnt;
+    private widget.ComboBox cmbPilihCetak;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame13;
     private widget.InternalFrame internalFrame17;
@@ -6331,6 +6384,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     private widget.Label jLabel103;
     private widget.Label jLabel104;
     private widget.Label jLabel105;
+    private widget.Label jLabel106;
     private widget.Label jLabel12;
     private widget.Label jLabel13;
     private widget.Label jLabel14;

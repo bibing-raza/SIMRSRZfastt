@@ -1379,7 +1379,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         TrgRawat.setBounds(114, 38, 608, 23);
 
         TtglRencana2.setEditable(false);
-        TtglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
+        TtglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2025" }));
         TtglRencana2.setDisplayFormat("dd-MM-yyyy");
         TtglRencana2.setName("TtglRencana2"); // NOI18N
         TtglRencana2.setOpaque(false);
@@ -1433,7 +1433,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel95.setBounds(0, 2727, 125, 23);
 
         TtglRencana1.setEditable(false);
-        TtglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
+        TtglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2025" }));
         TtglRencana1.setDisplayFormat("dd-MM-yyyy");
         TtglRencana1.setName("TtglRencana1"); // NOI18N
         TtglRencana1.setOpaque(false);
@@ -1495,7 +1495,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         TnmPerawat.setBounds(128, 2755, 430, 23);
 
         BtnPerawat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPerawat.setMnemonic('2');
         BtnPerawat.setToolTipText("Alt+2");
         BtnPerawat.setName("BtnPerawat"); // NOI18N
         BtnPerawat.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -2283,7 +2282,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(TdiagnosaIbu);
         TdiagnosaIbu.setBounds(114, 654, 610, 23);
 
-        TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
+        TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2025" }));
         TtglLahir.setDisplayFormat("dd-MM-yyyy");
         TtglLahir.setName("TtglLahir"); // NOI18N
         TtglLahir.setOpaque(false);
@@ -5314,6 +5313,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(jLabel144);
         jLabel144.setBounds(545, 2505, 170, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
 
         TmasalahLain.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -5395,7 +5395,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         TnmVerifikator.setBounds(128, 2811, 430, 23);
 
         BtnVerifikator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnVerifikator.setMnemonic('2');
         BtnVerifikator.setToolTipText("Alt+2");
         BtnVerifikator.setName("BtnVerifikator"); // NOI18N
         BtnVerifikator.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -5757,7 +5756,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5771,7 +5770,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5796,7 +5795,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('3');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+3");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -5838,7 +5836,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -5852,7 +5849,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -5871,7 +5867,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -5885,7 +5880,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -5916,7 +5910,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -5935,7 +5928,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -5954,7 +5946,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
         BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnNotepad.setMnemonic('N');
         BtnNotepad.setText("Notepad");
         BtnNotepad.setToolTipText("Alt+N");
         BtnNotepad.setName("BtnNotepad"); // NOI18N
@@ -5968,7 +5959,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N

@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="521" leftMargin="56" rightMargin="18" topMargin="18" bottomMargin="18">
+	<property name="ireport.zoom" value="2.000000000000039"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
+	<parameter name="resikoJatuh" class="java.lang.String"/>
+	<parameter name="KesResikoJatuh" class="java.lang.String"/>
+	<parameter name="JudultindakanRJ" class="java.lang.String"/>
+	<parameter name="IsitindakanRJ" class="java.lang.String"/>
+	<parameter name="obat" class="java.lang.String"/>
+	<parameter name="rawatluka" class="java.lang.String"/>
+	<parameter name="manajemenLain" class="java.lang.String"/>
+	<parameter name="manajNyeri" class="java.lang.String"/>
+	<parameter name="diet" class="java.lang.String"/>
+	<parameter name="fisio" class="java.lang.String"/>
+	<parameter name="rehabLain" class="java.lang.String"/>
+	<parameter name="hipertermi" class="java.lang.String"/>
+	<parameter name="nyeri" class="java.lang.String"/>
+	<parameter name="resiko" class="java.lang.String"/>
+	<parameter name="kelebihan" class="java.lang.String"/>
+	<parameter name="bersihkan" class="java.lang.String"/>
+	<parameter name="polaNafas" class="java.lang.String"/>
+	<parameter name="gangguan" class="java.lang.String"/>
+	<parameter name="cemas" class="java.lang.String"/>
+	<parameter name="ketidakseimbangan" class="java.lang.String"/>
+	<parameter name="perubahan" class="java.lang.String"/>
+	<parameter name="penurunan" class="java.lang.String"/>
+	<parameter name="kerusakan" class="java.lang.String"/>
+	<parameter name="intol" class="java.lang.String"/>
+	<parameter name="kurang" class="java.lang.String"/>
+	<parameter name="masalahLain" class="java.lang.String"/>
+	<parameter name="tglAsesmen" class="java.lang.String"/>
+	<parameter name="jamAsesmen" class="java.lang.String"/>
+	<parameter name="perawat" class="java.lang.String"/>
+	<parameter name="skala" class="java.lang.String"/>
+	<parameter name="onset" class="java.lang.String"/>
+	<parameter name="provo" class="java.lang.String"/>
+	<parameter name="quality" class="java.lang.String"/>
+	<parameter name="radiation" class="java.lang.String"/>
+	<parameter name="sever" class="java.lang.String"/>
+	<parameter name="time" class="java.lang.String"/>
+	<parameter name="relief" class="java.lang.String"/>
+	<parameter name="asso" class="java.lang.String"/>
+	<parameter name="kalimatSkrining" class="java.lang.String"/>
+	<parameter name="kalimatTte" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT now() tanggal]]>
+	</queryString>
+	<field name="tanggal" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="216">
+			<line>
+				<reportElement x="0" y="12" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="216"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="216"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="1" width="520" height="11">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASESMEN NYERI]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="10" y="15" width="288" height="107"/>
+				<imageExpression class="java.lang.String"><![CDATA["setting/skala_nyeri.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="304" y="16" width="188" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Skala Nyeri : "+$P{skala}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="63" y="137" width="454" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": Faktor yang memperburuk rasa nyeri "+$P{provo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="203" width="60" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Associated Sign]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="148" width="60" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Quality]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="63" y="159" width="454" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": Nyeri menjalar ke bagian tubuh yang lain "+$P{radiation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="63" y="148" width="454" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": Rasa nyeri seperti "+$P{quality}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="159" width="60" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Radiation]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="63" y="126" width="454" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": Nyeri atau ketidaknyamanan saat muncul "+$P{onset}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="63" y="203" width="454" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": Efek dari nyeri "+$P{asso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="137" width="60" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Provocation]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="63" y="192" width="454" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": Yang membuat nyeri berkurang "+$P{relief}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="63" y="170" width="454" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": Tingkat keparahan nyeri "+$P{sever}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="181" width="60" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="170" width="60" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Severity]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="63" y="181" width="454" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": Nyeri berlangsung "+$P{time}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="126" width="60" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Onset]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="192" width="60" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Relief]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="25">
+			<line>
+				<reportElement x="0" y="12" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="25"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="25"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="1" width="520" height="11">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASESMEN RESIKO JATUH HUMPTY DUMPTY]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="3" y="14" width="516" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{resikoJatuh}+"\n"+$P{KesResikoJatuh}+"\n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="35">
+			<line>
+				<reportElement x="0" y="22" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="35"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="35"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="2" width="520" height="21"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{JudultindakanRJ}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="3" y="24" width="516" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{IsitindakanRJ}+"\n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="38">
+			<line>
+				<reportElement x="0" y="23" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="38"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="38"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="2" width="520" height="21">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SKRINNING GIZI ANAK
+(Berdasarkan Modifikasi From STRONGKids)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="3" y="25" width="516" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{kalimatSkrining}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="37" width="522" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="1" width="519" height="15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{kalimatTte}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="519" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

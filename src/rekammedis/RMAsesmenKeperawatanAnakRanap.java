@@ -1148,6 +1148,8 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel147 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnNotepad = new widget.Button();
@@ -1254,7 +1256,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         FormInput.add(Truangan);
         Truangan.setBounds(136, 38, 420, 23);
 
-        TtglMsk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025" }));
+        TtglMsk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         TtglMsk.setDisplayFormat("dd-MM-yyyy");
         TtglMsk.setName("TtglMsk"); // NOI18N
         TtglMsk.setOpaque(false);
@@ -1508,6 +1510,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         FormInput.add(jLabel16);
         jLabel16.setBounds(0, 262, 163, 23);
 
+        scrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane3.setName("scrollPane3"); // NOI18N
 
         TriwPenyktSkg.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1997,6 +2000,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         FormInput.add(jLabel54);
         jLabel54.setBounds(650, 536, 80, 23);
 
+        scrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane4.setName("scrollPane4"); // NOI18N
 
         Tkesimpulan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2173,6 +2177,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         PanelWall.setBackground(new java.awt.Color(29, 29, 29));
         PanelWall.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/skala_nyeri.png"))); // NOI18N
         PanelWall.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         PanelWall.setPreferredSize(new java.awt.Dimension(200, 200));
         PanelWall.setRound(false);
         PanelWall.setWarna(new java.awt.Color(110, 110, 110));
@@ -2910,6 +2915,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         FormInput.add(jLabel94);
         jLabel94.setBounds(578, 2461, 150, 23);
 
+        scrollPane5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane5.setName("scrollPane5"); // NOI18N
 
         TmasalahLain.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2933,7 +2939,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         FormInput.add(jLabel95);
         jLabel95.setBounds(0, 2573, 100, 23);
 
-        TtglAses.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025" }));
+        TtglAses.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         TtglAses.setDisplayFormat("dd-MM-yyyy");
         TtglAses.setName("TtglAses"); // NOI18N
         TtglAses.setOpaque(false);
@@ -4281,6 +4287,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         tbAsesmen.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbAsesmen.setComponentPopupMenu(jPopupMenu1);
         tbAsesmen.setName("tbAsesmen"); // NOI18N
+        tbAsesmen.getTableHeader().setReorderingAllowed(false);
         tbAsesmen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbAsesmenMouseClicked(evt);
@@ -4305,7 +4312,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4319,7 +4326,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4449,6 +4456,18 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnEdit);
+
+        jLabel147.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel147.setText("Cetak Dalam Bentuk :");
+        jLabel147.setName("jLabel147"); // NOI18N
+        jLabel147.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel147);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -5118,10 +5137,39 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
             param.put("jamAsesmen", cmbJam1.getSelectedItem().toString() + ":" + cmbMnt1.getSelectedItem().toString() + " WITA");
             param.put("perawat", "(" + TnmPerawat.getText() + ")");
             
-            Valid.MyReport("rptAsesmenKeperawatanAnak1.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 1 ]::",
-                    "SELECT now() tanggal", param);
-            Valid.MyReport("rptAsesmenKeperawatanAnak2.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 2 ]::",
-                    "SELECT now() tanggal", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (nip.equals("") || nip.equals("-") || nip.equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, nama perawat harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Assesmen Keperawatan Anak", TnmPerawat.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from penilaian_awal_keperawatan_anak_ranap where "
+                                            + "no_rawat='" + TNoRw.getText() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from penilaian_awal_keperawatan_anak_ranap where "
+                                            + "no_rawat='" + TNoRw.getText() + "'")) + "') from kalimat_tte where kode='001'");
+                    
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Assesmen Keperawatan Anak", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    
+                    Valid.MyReport("rptAsesmenKeperawatanAnak1.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 1 ]::",
+                            "SELECT now() tanggal", param);
+                    Valid.MyReport("rptAsesmenKeperawatanAnak2Qr.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 2 ]::",
+                            "SELECT now() tanggal", param);
+                    Valid.MyReport("rptAsesmenKeperawatanAnak3Qr.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 2 ]::",
+                            "SELECT now() tanggal", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                Valid.MyReport("rptAsesmenKeperawatanAnak1.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 1 ]::",
+                        "SELECT now() tanggal", param);
+                Valid.MyReport("rptAsesmenKeperawatanAnak2.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 2 ]::",
+                        "SELECT now() tanggal", param);
+            }
             
             TabRawat.setSelectedIndex(1);
             tampilFaktorResiko();
@@ -6033,6 +6081,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
     private widget.ComboBox cmbPendengaran;
     private widget.ComboBox cmbPenglihatan;
     private widget.ComboBox cmbPernafasan;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbPola;
     private widget.ComboBox cmbProvo;
     private widget.ComboBox cmbQuality;
@@ -6102,6 +6151,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
     private widget.Label jLabel144;
     private widget.Label jLabel145;
     private widget.Label jLabel146;
+    private widget.Label jLabel147;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel164;

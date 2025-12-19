@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="2.0000000000000058"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="875"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -132,7 +132,7 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
-		<band height="804">
+		<band height="769">
 			<staticText>
 				<reportElement x="3" y="390" width="60" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -271,7 +271,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="294" y="12" width="1" height="43"/>
+				<reportElement x="294" y="12" width="1" height="43"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -285,13 +285,13 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="12" width="1" height="753"/>
+				<reportElement x="0" y="12" width="1" height="753"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="519" y="12" width="1" height="753"/>
+				<reportElement x="519" y="12" width="1" height="753"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1507,43 +1507,43 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="76" y="544" width="1" height="91"/>
+				<reportElement x="76" y="544" width="1" height="91"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="425" y="544" width="1" height="91"/>
+				<reportElement x="425" y="544" width="1" height="91"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="164" y="556" width="1" height="26"/>
+				<reportElement x="164" y="556" width="1" height="26"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="251" y="556" width="1" height="26"/>
+				<reportElement x="251" y="556" width="1" height="26"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="338" y="556" width="1" height="26"/>
+				<reportElement x="338" y="556" width="1" height="26"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="193" y="595" width="1" height="26"/>
+				<reportElement x="193" y="595" width="1" height="26"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="309" y="595" width="1" height="26"/>
+				<reportElement x="309" y="595" width="1" height="26"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1987,43 +1987,43 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="79" y="660" width="1" height="91"/>
+				<reportElement x="79" y="660" width="1" height="91"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="216" y="660" width="1" height="91"/>
+				<reportElement x="216" y="660" width="1" height="91"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="344" y="660" width="1" height="91"/>
+				<reportElement x="344" y="660" width="1" height="91"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="471" y="660" width="1" height="91"/>
+				<reportElement x="471" y="660" width="1" height="91"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="130" y="648" width="1" height="103"/>
+				<reportElement x="130" y="648" width="1" height="103"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="260" y="648" width="1" height="103"/>
+				<reportElement x="260" y="648" width="1" height="103"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="389" y="648" width="1" height="103"/>
+				<reportElement x="389" y="648" width="1" height="103"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>

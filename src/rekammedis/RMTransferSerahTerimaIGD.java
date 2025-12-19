@@ -1161,6 +1161,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel16);
         jLabel16.setBounds(0, 297, 130, 23);
 
+        scrollPane9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane9.setName("scrollPane9"); // NOI18N
 
         Talasan_ranap.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1184,6 +1185,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel17);
         jLabel17.setBounds(395, 297, 90, 23);
 
+        scrollPane10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane10.setName("scrollPane10"); // NOI18N
 
         Triw_penyakit_skg.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1201,6 +1203,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(scrollPane10);
         scrollPane10.setBounds(490, 297, 270, 100);
 
+        scrollPane11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane11.setName("scrollPane11"); // NOI18N
 
         Triw_penyakit_dulu.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1230,6 +1233,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel22);
         jLabel22.setBounds(395, 404, 90, 23);
 
+        scrollPane12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane12.setName("scrollPane12"); // NOI18N
 
         Triw_alergi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1795,6 +1799,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel57);
         jLabel57.setBounds(0, 1021, 130, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
 
         Trekomendasi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2083,6 +2088,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(ChkInfus);
         ChkInfus.setBounds(0, 931, 130, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
 
         Tdiagnosis.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2247,6 +2253,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(ChkIGD);
         ChkIGD.setBounds(580, 207, 50, 23);
 
+        scrollPane15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane15.setName("scrollPane15"); // NOI18N
 
         TDiagnosa.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2423,7 +2430,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2437,7 +2444,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

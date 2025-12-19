@@ -602,6 +602,7 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         tbObat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbObat.setComponentPopupMenu(jPopupMenu1);
         tbObat.setName("tbObat"); // NOI18N
+        tbObat.getTableHeader().setReorderingAllowed(false);
         tbObat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbObatMouseClicked(evt);
@@ -647,7 +648,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
 
         btnBarang.setForeground(new java.awt.Color(0, 0, 0));
         btnBarang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnBarang.setMnemonic('4');
         btnBarang.setToolTipText("Alt+4");
         btnBarang.setName("btnBarang"); // NOI18N
         btnBarang.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -679,7 +679,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
 
         btnSatuan.setForeground(new java.awt.Color(0, 0, 0));
         btnSatuan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnSatuan.setMnemonic('3');
         btnSatuan.setToolTipText("Alt+3");
         btnSatuan.setName("btnSatuan"); // NOI18N
         btnSatuan.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -726,7 +725,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('5');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+5");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -758,7 +756,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -777,7 +774,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -796,7 +792,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -908,7 +903,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
 
         btnPasien.setForeground(new java.awt.Color(0, 0, 0));
         btnPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPasien.setMnemonic('1');
         btnPasien.setToolTipText("Alt+1");
         btnPasien.setName("btnPasien"); // NOI18N
         btnPasien.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -922,7 +916,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
 
         btnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPetugas.setMnemonic('2');
         btnPetugas.setToolTipText("Alt+2");
         btnPetugas.setName("btnPetugas"); // NOI18N
         btnPetugas.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1627,21 +1620,21 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             param.put("propinsirs", akses.getpropinsirs());
             param.put("logo", Sequel.cariGambar("select logo_hitam_putih from setting"));
             param.put("jns_label", "");
-//            Valid.MyReport("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Minum ]::",
-//                    "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
-//                    + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
-//                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
-//                    + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
-//                    + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
-//                    + "ap.no_nota='" + no_nota + "' and ap.kode_brng='" + kd_obat + "'", param);
-
-            Valid.AutoPrintMulti("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Minum ]::",
+            Valid.MyReport("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Minum ]::",
                     "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
                     + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
                     + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
                     + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
                     + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
-                    + "ap.no_nota='" + no_nota + "' and ap.kode_brng='" + kd_obat + "'", param, nmPrinter1);
+                    + "ap.no_nota='" + no_nota + "' and ap.kode_brng='" + kd_obat + "'", param);
+
+//            Valid.AutoPrintMulti("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Minum ]::",
+//                    "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
+//                    + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
+//                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
+//                    + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
+//                    + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
+//                    + "ap.no_nota='" + no_nota + "' and ap.kode_brng='" + kd_obat + "'", param, nmPrinter1);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_ppLabelObatMinumActionPerformed
@@ -1665,21 +1658,21 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             param.put("propinsirs", akses.getpropinsirs());
             param.put("logo", Sequel.cariGambar("select logo_hitam_putih from setting"));
             param.put("jns_label", "OBAT LUAR");
-//            Valid.MyReport("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Luar ]::",
-//                    "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
-//                    + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
-//                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
-//                    + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
-//                    + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
-//                    + "ap.no_nota = '" + no_nota + "' AND ap.kode_brng = '" + kd_obat + "'", param);
-
-            Valid.AutoPrintMulti("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Luar ]::",
+            Valid.MyReport("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Luar ]::",
                     "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
                     + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
                     + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
                     + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
                     + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
-                    + "ap.no_nota = '" + no_nota + "' AND ap.kode_brng = '" + kd_obat + "'", param, nmPrinter2);
+                    + "ap.no_nota = '" + no_nota + "' AND ap.kode_brng = '" + kd_obat + "'", param);
+
+//            Valid.AutoPrintMulti("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Luar ]::",
+//                    "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
+//                    + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
+//                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
+//                    + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
+//                    + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
+//                    + "ap.no_nota = '" + no_nota + "' AND ap.kode_brng = '" + kd_obat + "'", param, nmPrinter2);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_ppLabelObatLuarActionPerformed

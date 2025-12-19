@@ -33,6 +33,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.net.InetAddress;
 import java.sql.Connection;
@@ -6468,7 +6469,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
 
-        tbLIS.setAutoCreateRowSorter(true);
         tbLIS.setComponentPopupMenu(jPopupMenu1);
         tbLIS.setName("tbLIS"); // NOI18N
         tbLIS.getTableHeader().setReorderingAllowed(false);
@@ -6992,7 +6992,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Scroll57.setName("Scroll57"); // NOI18N
         Scroll57.setOpaque(true);
 
-        tbPA.setAutoCreateRowSorter(true);
         tbPA.setToolTipText("Silahkan klik salah satu datanya untuk membaca hasil pemeriksaan patologi anatomi");
         tbPA.setComponentPopupMenu(jPopupMenu1);
         tbPA.setName("tbPA"); // NOI18N
@@ -23679,9 +23678,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             StringBuilder htmlContent = new StringBuilder();
             try {
                 rs1 = koneksi.prepareStatement("SELECT hpa.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
-                        + "p2.nama drPengirim, date_format(hpa.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(hpa.tgl_hasil,'%d-%m-%Y') tglHasil, p.tgl_lahir "
+                        + "p2.nama drPengirim, date_format(hpa.tgl_periksa,'%d-%m-%Y') tglPeriksa, date_format(hpa.tgl_hasil,'%d-%m-%Y') tglHasil, p.tgl_lahir, "
+                        + "p1.nama drPatologi, date_format(hpa.waktu_simpan,'%d/%m/%Y') tgl, time(hpa.waktu_simpan) jam "
                         + "FROM hasil_patologi_anatomi hpa inner join reg_periksa rp on rp.no_rawat=hpa.no_rawat "
-                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai p2 on p2.nik=hpa.nip_perujuk where "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai p2 on p2.nik=hpa.nip_perujuk "
+                        + "inner join pegawai p1 on p1.nik=hpa.nip_dokter_pa where "
                         + "hpa.waktu_simpan='" + wktsimpan + "' order by hpa.waktu_simpan desc").executeQuery();
                 if (rs1.next()) {
                     rs1.beforeFirst();
@@ -23730,7 +23731,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 + " <i>" + rs1.getString("italic_anjuran") + "</i><br></td>"
                                 + "</tr>");
                         
-                        String gambar = "", ipGambar = "";
+                        String gambar = "", ipGambar = "", isi = "";
                         try {
                             //cek atau ping ip addres
                             ipGambar = "192.168.0.230";
@@ -23752,11 +23753,17 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
                         }
 
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
+                                        "Hasil Pemeriksaan Lab. (Patologi Anatomi)", rs1.getString("drPatologi"),
+                                        rs1.getString("tgl"), rs1.getString("jam")) + "') from kalimat_tte where kode='006'");
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='middle' colspan='5' rowspan='5' align='center'><br><img src='" + gambar + "' width='500' alt='Patologi Anatomi'></td>"
-                                + "<td valign='top' colspan='3' align='center'><br><br><br>Pemeriksa,<br><br><br><br><br><br><br><br><b>"
-                                + Sequel.cariIsi("select nama from pegawai where nik='" + rs1.getString("nip_dokter_pa") + "'") + "</b><br>SIP : "
+                                + "<td valign='top' colspan='3' align='center'><br><br><br>Pemeriksa,<br><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTte.jpg" + "' width='150' alt='TTE Dokter Patologi Anatomi'><br>"
+                                + rs1.getString("drPatologi") + "</b><br>SIP : "
                                 + Sequel.cariIsi("select no_ijn_praktek from dokter where kd_dokter='" + rs1.getString("nip_dokter_pa") + "'") + "</td>"
                                 + "</tr>");
                     }

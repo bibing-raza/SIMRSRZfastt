@@ -474,7 +474,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        ppBersihkan.setBackground(new java.awt.Color(255, 255, 255));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         ppBersihkan.setText("Bersihkan Jumlah");
@@ -490,7 +489,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
         });
         Popup.add(ppBersihkan);
 
-        ppStok.setBackground(new java.awt.Color(255, 255, 255));
         ppStok.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppStok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppStok.setText("Tampilkan Semua Stok");
@@ -506,7 +504,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
         });
         Popup.add(ppStok);
 
-        ppLabelBiru.setBackground(new java.awt.Color(255, 255, 255));
         ppLabelBiru.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppLabelBiru.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         ppLabelBiru.setText("Label Aturan Pakai (BIRU)");
@@ -522,7 +519,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
         });
         Popup.add(ppLabelBiru);
 
-        ppLabelPutih.setBackground(new java.awt.Color(255, 255, 255));
         ppLabelPutih.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppLabelPutih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         ppLabelPutih.setText("Label Aturan Pakai (PUTIH)");
@@ -538,7 +534,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
         });
         Popup.add(ppLabelPutih);
 
-        ppCetakNota.setBackground(new java.awt.Color(255, 255, 255));
         ppCetakNota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppCetakNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppCetakNota.setText("Cetak Nota Format Lama");
@@ -596,6 +591,7 @@ public class DlgPenjualan extends javax.swing.JDialog {
         tbFamasi.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbFamasi.setComponentPopupMenu(Popup);
         tbFamasi.setName("tbFamasi"); // NOI18N
+        tbFamasi.getTableHeader().setReorderingAllowed(false);
         tbFamasi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbFamasiMouseClicked(evt);
@@ -621,7 +617,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
         BtnBaru.setForeground(new java.awt.Color(0, 0, 0));
         BtnBaru.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBaru.setMnemonic('B');
         BtnBaru.setText("Baru");
         BtnBaru.setToolTipText("Alt+B");
         BtnBaru.setName("BtnBaru"); // NOI18N
@@ -640,7 +635,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -675,7 +669,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -694,7 +687,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
         BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambah.setMnemonic('3');
         BtnTambah.setToolTipText("Alt+3");
         BtnTambah.setName("BtnTambah"); // NOI18N
         BtnTambah.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -712,7 +704,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnCari.setMnemonic('E');
         BtnCari.setText("Cari");
         BtnCari.setToolTipText("Alt+E");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -731,7 +722,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -801,7 +791,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
         CmbAkun.setForeground(new java.awt.Color(0, 0, 0));
         CmbAkun.setName("CmbAkun"); // NOI18N
-        CmbAkun.setOpaque(false);
         CmbAkun.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CmbAkunMouseClicked(evt);
@@ -946,7 +935,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
         BtnMem.setForeground(new java.awt.Color(0, 0, 0));
         BtnMem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnMem.setMnemonic('1');
         BtnMem.setToolTipText("Alt+1");
         BtnMem.setName("BtnMem"); // NOI18N
         BtnMem.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -960,7 +948,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
         BtnPtg.setForeground(new java.awt.Color(0, 0, 0));
         BtnPtg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPtg.setMnemonic('2');
         BtnPtg.setToolTipText("Alt+2");
         BtnPtg.setName("BtnPtg"); // NOI18N
         BtnPtg.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1064,7 +1051,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
         BtnGudang.setForeground(new java.awt.Color(0, 0, 0));
         BtnGudang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnGudang.setMnemonic('2');
         BtnGudang.setToolTipText("Alt+2");
         BtnGudang.setName("BtnGudang"); // NOI18N
         BtnGudang.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1102,7 +1088,6 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
         BtnDokter.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokter.setMnemonic('3');
         BtnDokter.setToolTipText("ALt+3");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.addActionListener(new java.awt.event.ActionListener() {
