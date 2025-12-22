@@ -440,6 +440,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
 
         tbPEWS.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPEWS.setName("tbPEWS"); // NOI18N
+        tbPEWS.getTableHeader().setReorderingAllowed(false);
         tbPEWS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPEWSMouseClicked(evt);
@@ -1027,8 +1028,8 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
 
-        tbData.setToolTipText("");
         tbData.setName("tbData"); // NOI18N
+        tbData.getTableHeader().setReorderingAllowed(false);
         tbData.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDataMouseClicked(evt);
@@ -1081,6 +1082,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
 
         tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
         tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.getTableHeader().setReorderingAllowed(false);
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCPPTMouseClicked(evt);

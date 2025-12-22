@@ -3245,288 +3245,16 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         if (p2 < 0) {
             JOptionPane.showMessageDialog(null, "Tanggal lahir pasien SALAH, cek tanggal lahirnya lagi...!!!");
             DTPLahir.requestFocus();
+        } else if (TKtp.getText().equals("null")) {
+            JOptionPane.showMessageDialog(null, "Jika No.KTP/SIM terisi null, isilah dengan 0..!!");
+        } else if (TKtp.getText().contains(".")) {
+            JOptionPane.showMessageDialog(null, "Data NIK tidak boleh terisi karakter titik..!!");
+        } else if (TKtp.getText().equals("0")) {
+            simpanData();
+        } else if (Sequel.cariInteger("select count(-1) from pasien where no_ktp='" + TKtp.getText() + "' and no_rkm_medis<>'" + TNo.getText() + "'") > 0) {
+            JOptionPane.showMessageDialog(null, "Data NIK pasien sudah pernah tersimpan pada no. RM pasien lain..!!");
         } else {
-            cekValid();
-            if (((!TNoPeserta.getText().equals("0")) && (!TNoPeserta.getText().equals("-"))) || ((!TKtp.getText().equals("0")) && (!TKtp.getText().equals("-")))) {
-                if (cekPeserta > 0 || cekKTP > 0) {
-                    JOptionPane.showMessageDialog(null, "Pasien sudah terdaftar. Cari berdasarkan No. KTP / No. Kartu BPJS");
-                } else {
-                    Sequel.AutoComitFalse();
-
-                    if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
-                        TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
-                        Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(), Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), 
-                        Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(), 
-                        DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
-                        TTlp.getText(), TUmurTh.getText() + " Th " + TUmurBl.getText() + " Bl " + TUmurHr.getText() + " Hr", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
-                        Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
-                        Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
-                        Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
-                        PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
-                        Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
-                        Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
-                        Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
-                    }) == true) {
-                        if (akses.getform().equals("DlgReg")) {
-                            TCari.setText(TNo.getText());
-                        }
-                        tampil();
-                        if (ChkRM.isSelected() == true) {
-                            Sequel.queryu2("delete from set_no_rkm_medis");
-                            Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
-                        }
-                        emptTeks();
-                    } else {
-                        autoNomor();
-                        if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
-                            TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
-                            Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
-                            Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
-                            DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
-                            TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
-                            Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
-                            Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
-                            Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
-                            PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
-                            Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
-                            Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
-                            Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
-                        }) == true) {
-                            if (akses.getform().equals("DlgReg")) {
-                                TCari.setText(TNo.getText());
-                            }
-                            tampil();
-                            if (ChkRM.isSelected() == true) {
-                                Sequel.queryu2("delete from set_no_rkm_medis");
-                                Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
-                            }
-                            emptTeks();
-                        } else {
-                            autoNomor();
-                            if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
-                                TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
-                                Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
-                                Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
-                                DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
-                                TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
-                                Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
-                                Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
-                                Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
-                                PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
-                                Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
-                                Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
-                                Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
-                            }) == true) {
-                                if (akses.getform().equals("DlgReg")) {
-                                    TCari.setText(TNo.getText());
-                                }
-                                tampil();
-                                if (ChkRM.isSelected() == true) {
-                                    Sequel.queryu2("delete from set_no_rkm_medis");
-                                    Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
-                                }
-                                emptTeks();
-                            } else {
-                                autoNomor();
-                                if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
-                                    TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
-                                    Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
-                                    Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
-                                    DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
-                                    TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
-                                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
-                                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
-                                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
-                                    PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
-                                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
-                                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
-                                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
-                                }) == true) {
-                                    if (akses.getform().equals("DlgReg")) {
-                                        TCari.setText(TNo.getText());
-                                    }
-                                    tampil();
-                                    if (ChkRM.isSelected() == true) {
-                                        Sequel.queryu2("delete from set_no_rkm_medis");
-                                        Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
-                                    }
-                                    emptTeks();
-                                } else {
-                                    autoNomor();
-                                    if (Sequel.menyimpantf("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
-                                        TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
-                                        Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
-                                        Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
-                                        DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
-                                        TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
-                                        Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
-                                        Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
-                                        Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
-                                        PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
-                                        Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
-                                        Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
-                                        Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
-                                    }) == true) {
-                                        if (akses.getform().equals("DlgReg")) {
-                                            TCari.setText(TNo.getText());
-                                        }
-                                        tampil();
-                                        if (ChkRM.isSelected() == true) {
-                                            Sequel.queryu2("delete from set_no_rkm_medis");
-                                            Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
-                                        }
-                                        emptTeks();
-                                    } else {
-                                        TNm.requestFocus();
-                                        autoNomor();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    Sequel.menyimpan("history_user", "Now(),'-','" + akses.getkode() + "','" + keterangan + "','Simpan'");
-                    Sequel.AutoComitTrue();
-
-                }
-
-            } else {
-                Sequel.AutoComitFalse();
-
-                if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
-                    TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
-                    Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
-                    Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
-                    DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
-                    TTlp.getText(), TUmurTh.getText() + " Th " + TUmurBl.getText() + " Bl " + TUmurHr.getText() + " Hr", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
-                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
-                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
-                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
-                    PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
-                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
-                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
-                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
-                }) == true) {
-                    if (akses.getform().equals("DlgReg")) {
-                        TCari.setText(TNo.getText());
-                    }
-                    tampil();
-                    if (ChkRM.isSelected() == true) {
-                        Sequel.queryu2("delete from set_no_rkm_medis");
-                        Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
-                    }
-                    emptTeks();
-                } else {
-                    autoNomor();
-                    if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
-                        TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
-                        Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
-                        Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
-                        DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
-                        TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
-                        Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
-                        Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
-                        Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
-                        PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
-                        Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
-                        Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
-                        Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
-                    }) == true) {
-                        if (akses.getform().equals("DlgReg")) {
-                            TCari.setText(TNo.getText());
-                        }
-                        tampil();
-                        if (ChkRM.isSelected() == true) {
-                            Sequel.queryu2("delete from set_no_rkm_medis");
-                            Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
-                        }
-                        emptTeks();
-                    } else {
-                        autoNomor();
-                        if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
-                            TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
-                            Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
-                            Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
-                            DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
-                            TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
-                            Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
-                            Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
-                            Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
-                            PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
-                            Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
-                            Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
-                            Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
-                        }) == true) {
-                            if (akses.getform().equals("DlgReg")) {
-                                TCari.setText(TNo.getText());
-                            }
-                            tampil();
-                            if (ChkRM.isSelected() == true) {
-                                Sequel.queryu2("delete from set_no_rkm_medis");
-                                Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
-                            }
-                            emptTeks();
-                        } else {
-                            autoNomor();
-                            if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
-                                TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
-                                Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
-                                Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
-                                DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
-                                TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
-                                Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
-                                Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
-                                Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
-                                PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
-                                Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
-                                Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
-                                Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
-                            }) == true) {
-                                if (akses.getform().equals("DlgReg")) {
-                                    TCari.setText(TNo.getText());
-                                }
-                                tampil();
-                                if (ChkRM.isSelected() == true) {
-                                    Sequel.queryu2("delete from set_no_rkm_medis");
-                                    Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
-                                }
-                                emptTeks();
-                            } else {
-                                autoNomor();
-                                if (Sequel.menyimpantf("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
-                                    TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
-                                    Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
-                                    Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
-                                    DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
-                                    TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
-                                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
-                                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
-                                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
-                                    PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
-                                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
-                                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
-                                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
-                                }) == true) {
-                                    if (akses.getform().equals("DlgReg")) {
-                                        TCari.setText(TNo.getText());
-                                    }
-                                    tampil();
-                                    if (ChkRM.isSelected() == true) {
-                                        Sequel.queryu2("delete from set_no_rkm_medis");
-                                        Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
-                                    }
-                                    emptTeks();
-                                } else {
-                                    TNm.requestFocus();
-                                    autoNomor();
-                                }
-                            }
-                        }
-                    }
-                }
-                Sequel.menyimpan("history_user", "Now(),'-','" + akses.getkode() + "','" + keterangan + "','Simpan'");
-                Sequel.AutoComitTrue();
-
-            }
+            simpanData();
         }
     }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -3641,7 +3369,6 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         Valid.textKosong(umurPjawab, "umur suami");
         umurPjawab.requestFocus();
     } else {
-
         lahir = DTPLahir.getDate();
         birthday = lahir.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         p = Period.between(birthday, today);
@@ -3650,34 +3377,16 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         if (p2 < 0) {
             JOptionPane.showMessageDialog(null, "Tanggal lahir pasien SALAH, cek tanggal lahirnya lagi...!!!");
             DTPLahir.requestFocus();
+        } else if (TKtp.getText().equals("null")) {
+            JOptionPane.showMessageDialog(null, "Jika No.KTP/SIM terisi null, isilah dengan 0..!!");
+        } else if (TKtp.getText().contains(".")) {
+            JOptionPane.showMessageDialog(null, "Data NIK tidak boleh terisi karakter titik..!!");
+        } else if (TKtp.getText().equals("0")) {
+            gantiData();
+        } else if (Sequel.cariInteger("select count(-1) from pasien where no_ktp='" + TKtp.getText() + "' and no_rkm_medis<>'" + TNo.getText() + "'") > 0) {
+            JOptionPane.showMessageDialog(null, "Data NIK pasien sudah pernah tersimpan pada no. RM pasien lain..!!");
         } else {
-            Sequel.AutoComitFalse();
-            Valid.editTable(tabMode, "pasien", "no_rkm_medis", "?", "no_rkm_medis=?,nm_pasien=?,no_ktp=?,jk=?,tmp_lahir=?,"
-                    + "tgl_lahir=?,alamat=?,gol_darah=?,pekerjaan=?,stts_nikah=?,agama=?,tgl_daftar=?,no_tlp=?,umur=?"
-                    + ",pnd=?,keluarga=?,namakeluarga=?,kd_pj=?,no_peserta=?,kd_kel=?,kd_kec=?,kd_kab=?,nm_ibu=?,pekerjaanpj=?,"
-                    + "alamatpj=?,kelurahanpj=?,kecamatanpj=?,kabupatenpj=?,tinggi_badan=?,suku_bangsa=?,bahasa_pasien=?,"
-                    + "alamat_domisili_pasien=?,kd_kel_domisili_pasien=?,kd_kec_domisili_pasien=?,kd_kab_domisili_pasien=?,umur_pj=?,no_tlp_pj=?", 38,
-                    new String[]{TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
-                        Valid.SetTgl(DTPLahir.getSelectedItem() + ""),
-                        Alamat.getText(), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
-                        DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
-                        TTlp.getText(), TUmurTh.getText() + " Th " + TUmurBl.getText() + " Bl " + TUmurHr.getText() + " Hr", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
-                        Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText()),
-                        Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText()),
-                        Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText()),
-                        NmIbu.getText(), PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(),
-                        KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText(), 
-                        Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText()),
-                        Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText()),
-                        Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText()), 
-                        umurPjawab.getText(), notlpPJ.getText(), Kd2.getText()});
-            
-            Sequel.mengedit("bridging_sep", "nomr='" + TNo.getText() + "'", "tanggal_lahir='" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "'");
-            Sequel.AutoComitTrue();
-            if (tabMode.getRowCount() != 0) {
-                tampil();
-            }
-            emptTeks();
+            gantiData();
         }
     }
 }//GEN-LAST:event_BtnEditActionPerformed
@@ -6526,5 +6235,319 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
         }
         this.TNoPeserta.setText(NoKartuJKN);
         this.TKtp.setText(NIK);
+    }
+
+    private void simpanData() {
+        cekValid();
+        if (((!TNoPeserta.getText().equals("0")) && (!TNoPeserta.getText().equals("-"))) || ((!TKtp.getText().equals("0")) && (!TKtp.getText().equals("-")))) {
+            if (cekPeserta > 0 || cekKTP > 0) {
+                JOptionPane.showMessageDialog(null, "Pasien sudah terdaftar. Cari berdasarkan No. KTP / No. Kartu BPJS");
+            } else {
+                Sequel.AutoComitFalse();
+
+                if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
+                    TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
+                    Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(), Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(),
+                    Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
+                    DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
+                    TTlp.getText(), TUmurTh.getText() + " Th " + TUmurBl.getText() + " Bl " + TUmurHr.getText() + " Hr", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
+                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
+                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
+                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
+                    PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
+                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
+                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
+                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
+                }) == true) {
+                    if (akses.getform().equals("DlgReg")) {
+                        TCari.setText(TNo.getText());
+                    }
+                    tampil();
+                    if (ChkRM.isSelected() == true) {
+                        Sequel.queryu2("delete from set_no_rkm_medis");
+                        Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
+                    }
+                    emptTeks();
+                } else {
+                    autoNomor();
+                    if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
+                        TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
+                        Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
+                        Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
+                        DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
+                        TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
+                        Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
+                        Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
+                        Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
+                        PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
+                        Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
+                        Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
+                        Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
+                    }) == true) {
+                        if (akses.getform().equals("DlgReg")) {
+                            TCari.setText(TNo.getText());
+                        }
+                        tampil();
+                        if (ChkRM.isSelected() == true) {
+                            Sequel.queryu2("delete from set_no_rkm_medis");
+                            Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
+                        }
+                        emptTeks();
+                    } else {
+                        autoNomor();
+                        if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
+                            TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
+                            Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
+                            Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
+                            DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
+                            TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
+                            Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
+                            Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
+                            Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
+                            PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
+                            Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
+                            Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
+                            Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
+                        }) == true) {
+                            if (akses.getform().equals("DlgReg")) {
+                                TCari.setText(TNo.getText());
+                            }
+                            tampil();
+                            if (ChkRM.isSelected() == true) {
+                                Sequel.queryu2("delete from set_no_rkm_medis");
+                                Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
+                            }
+                            emptTeks();
+                        } else {
+                            autoNomor();
+                            if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
+                                TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
+                                Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
+                                Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
+                                DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
+                                TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
+                                Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
+                                Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
+                                Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
+                                PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
+                                Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
+                                Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
+                                Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
+                            }) == true) {
+                                if (akses.getform().equals("DlgReg")) {
+                                    TCari.setText(TNo.getText());
+                                }
+                                tampil();
+                                if (ChkRM.isSelected() == true) {
+                                    Sequel.queryu2("delete from set_no_rkm_medis");
+                                    Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
+                                }
+                                emptTeks();
+                            } else {
+                                autoNomor();
+                                if (Sequel.menyimpantf("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
+                                    TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
+                                    Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
+                                    Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
+                                    DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
+                                    TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
+                                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
+                                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
+                                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
+                                    PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
+                                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
+                                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
+                                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
+                                }) == true) {
+                                    if (akses.getform().equals("DlgReg")) {
+                                        TCari.setText(TNo.getText());
+                                    }
+                                    tampil();
+                                    if (ChkRM.isSelected() == true) {
+                                        Sequel.queryu2("delete from set_no_rkm_medis");
+                                        Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
+                                    }
+                                    emptTeks();
+                                } else {
+                                    TNm.requestFocus();
+                                    autoNomor();
+                                }
+                            }
+                        }
+                    }
+                }
+                Sequel.menyimpan("history_user", "Now(),'-','" + akses.getkode() + "','" + keterangan + "','Simpan'");
+                Sequel.AutoComitTrue();
+
+            }
+
+        } else {
+            Sequel.AutoComitFalse();
+
+            if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
+                TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
+                Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
+                Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
+                DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
+                TTlp.getText(), TUmurTh.getText() + " Th " + TUmurBl.getText() + " Bl " + TUmurHr.getText() + " Hr", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
+                Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
+                Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
+                Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
+                PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
+                Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
+                Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
+                Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
+            }) == true) {
+                if (akses.getform().equals("DlgReg")) {
+                    TCari.setText(TNo.getText());
+                }
+                tampil();
+                if (ChkRM.isSelected() == true) {
+                    Sequel.queryu2("delete from set_no_rkm_medis");
+                    Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
+                }
+                emptTeks();
+            } else {
+                autoNomor();
+                if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
+                    TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
+                    Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
+                    Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
+                    DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
+                    TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
+                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
+                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
+                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
+                    PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
+                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
+                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
+                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
+                }) == true) {
+                    if (akses.getform().equals("DlgReg")) {
+                        TCari.setText(TNo.getText());
+                    }
+                    tampil();
+                    if (ChkRM.isSelected() == true) {
+                        Sequel.queryu2("delete from set_no_rkm_medis");
+                        Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
+                    }
+                    emptTeks();
+                } else {
+                    autoNomor();
+                    if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
+                        TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
+                        Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
+                        Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
+                        DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
+                        TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
+                        Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
+                        Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
+                        Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
+                        PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
+                        Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
+                        Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
+                        Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
+                    }) == true) {
+                        if (akses.getform().equals("DlgReg")) {
+                            TCari.setText(TNo.getText());
+                        }
+                        tampil();
+                        if (ChkRM.isSelected() == true) {
+                            Sequel.queryu2("delete from set_no_rkm_medis");
+                            Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
+                        }
+                        emptTeks();
+                    } else {
+                        autoNomor();
+                        if (Sequel.menyimpantf2("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
+                            TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
+                            Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
+                            Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
+                            DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
+                            TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
+                            Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
+                            Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
+                            Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
+                            PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
+                            Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
+                            Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
+                            Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
+                        }) == true) {
+                            if (akses.getform().equals("DlgReg")) {
+                                TCari.setText(TNo.getText());
+                            }
+                            tampil();
+                            if (ChkRM.isSelected() == true) {
+                                Sequel.queryu2("delete from set_no_rkm_medis");
+                                Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
+                            }
+                            emptTeks();
+                        } else {
+                            autoNomor();
+                            if (Sequel.menyimpantf("pasien", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rekam Medis Pasien", 37, new String[]{
+                                TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
+                                Valid.SetTgl(DTPLahir.getSelectedItem() + ""), NmIbu.getText(),
+                                Alamat.getText().replaceAll("ALAMAT", ""), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
+                                DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
+                                TTlp.getText(), TUmurTh.getText() + " Th", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
+                                Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText().replaceAll("KELURAHAN", "-")),
+                                Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText().replaceAll("KECAMATAN", "-")),
+                                Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText().replaceAll("KABUPATEN", "-")),
+                                PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(), KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText().replaceAll("ALAMAT", ""),
+                                Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText().replaceAll("KELURAHAN", "-")),
+                                Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText().replaceAll("KECAMATAN", "-")),
+                                Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText().replaceAll("KABUPATEN", "-")), umurPjawab.getText(), notlpPJ.getText()
+                            }) == true) {
+                                if (akses.getform().equals("DlgReg")) {
+                                    TCari.setText(TNo.getText());
+                                }
+                                tampil();
+                                if (ChkRM.isSelected() == true) {
+                                    Sequel.queryu2("delete from set_no_rkm_medis");
+                                    Sequel.queryu2("insert into set_no_rkm_medis values(?)", 1, new String[]{TNo.getText()});
+                                }
+                                emptTeks();
+                            } else {
+                                TNm.requestFocus();
+                                autoNomor();
+                            }
+                        }
+                    }
+                }
+            }
+            Sequel.menyimpan("history_user", "Now(),'-','" + akses.getkode() + "','" + keterangan + "','Simpan'");
+            Sequel.AutoComitTrue();
+
+        }
+    }
+    
+    private void gantiData() {
+        Sequel.AutoComitFalse();
+        Valid.editTable(tabMode, "pasien", "no_rkm_medis", "?", "no_rkm_medis=?,nm_pasien=?,no_ktp=?,jk=?,tmp_lahir=?,"
+                + "tgl_lahir=?,alamat=?,gol_darah=?,pekerjaan=?,stts_nikah=?,agama=?,tgl_daftar=?,no_tlp=?,umur=?"
+                + ",pnd=?,keluarga=?,namakeluarga=?,kd_pj=?,no_peserta=?,kd_kel=?,kd_kec=?,kd_kab=?,nm_ibu=?,pekerjaanpj=?,"
+                + "alamatpj=?,kelurahanpj=?,kecamatanpj=?,kabupatenpj=?,tinggi_badan=?,suku_bangsa=?,bahasa_pasien=?,"
+                + "alamat_domisili_pasien=?,kd_kel_domisili_pasien=?,kd_kec_domisili_pasien=?,kd_kab_domisili_pasien=?,umur_pj=?,no_tlp_pj=?", 38,
+                new String[]{TNo.getText(), TNm.getText(), TKtp.getText(), CmbJk.getSelectedItem().toString().substring(0, 1), TTmp.getText(),
+                    Valid.SetTgl(DTPLahir.getSelectedItem() + ""),
+                    Alamat.getText(), CMbGd.getSelectedItem().toString(), Pekerjaan.getText(), CmbStts.getSelectedItem().toString(), cmbAgama.getSelectedItem().toString(),
+                    DTPDaftar.getSelectedItem().toString().substring(6, 10) + "-" + DTPDaftar.getSelectedItem().toString().substring(3, 5) + "-" + DTPDaftar.getSelectedItem().toString().substring(0, 2),
+                    TTlp.getText(), TUmurTh.getText() + " Th " + TUmurBl.getText() + " Bl " + TUmurHr.getText() + " Hr", CMbPnd.getSelectedItem().toString(), cmbPngJawab.getSelectedItem().toString(), Saudara.getText(), Kdpnj.getText(), TNoPeserta.getText(),
+                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", Kelurahan.getText()),
+                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", Kecamatan.getText()),
+                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", Kabupaten.getText()),
+                    NmIbu.getText(), PekerjaanPj.getText(), AlamatPj.getText(), KelurahanPj.getText(), KecamatanPj.getText(),
+                    KabupatenPj.getText(), "0", kdsuku.getText(), kdbahasa.getText(), AlamatDomisili.getText(),
+                    Sequel.cariIsi("select kelurahan.kd_kel from kelurahan where kelurahan.nm_kel=?", KelurahanDom.getText()),
+                    Sequel.cariIsi("select kecamatan.kd_kec from kecamatan where kecamatan.nm_kec=?", KecamatanDom.getText()),
+                    Sequel.cariIsi("select kabupaten.kd_kab from kabupaten where kabupaten.nm_kab=?", KabupatenDom.getText()),
+                    umurPjawab.getText(), notlpPJ.getText(), Kd2.getText()});
+
+        Sequel.mengedit("bridging_sep", "nomr='" + TNo.getText() + "'", "tanggal_lahir='" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "'");
+        Sequel.AutoComitTrue();
+        if (tabMode.getRowCount() != 0) {
+            tampil();
+        }
+        emptTeks();
     }
 }

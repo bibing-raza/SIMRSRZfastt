@@ -354,6 +354,8 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel63 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -481,7 +483,6 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -495,7 +496,6 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -514,7 +514,6 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -528,7 +527,6 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -545,9 +543,20 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnEdit);
 
+        jLabel63.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel63.setText("Cetak Dalam Bentuk :");
+        jLabel63.setName("jLabel63"); // NOI18N
+        jLabel63.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel63);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -566,7 +575,6 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -585,7 +593,6 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -631,7 +638,6 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         ScrollTriase1.setPreferredSize(new java.awt.Dimension(102, 557));
 
         FormInput.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Input Pengamatan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        FormInput.setToolTipText("");
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(870, 1020));
         FormInput.setLayout(null);
@@ -676,7 +682,6 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
 
         BtnPerawat.setForeground(new java.awt.Color(0, 0, 0));
         BtnPerawat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPerawat.setMnemonic('4');
         BtnPerawat.setToolTipText("ALt+4");
         BtnPerawat.setName("BtnPerawat"); // NOI18N
         BtnPerawat.addActionListener(new java.awt.event.ActionListener() {
@@ -1471,6 +1476,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         FormInput.add(jLabel24);
         jLabel24.setBounds(0, 857, 130, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
 
         Tcatatan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1495,7 +1501,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         jLabel25.setBounds(0, 954, 130, 23);
 
         Ttgl.setEditable(false);
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-02-2025" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1592,6 +1598,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
 
         tbPengamatan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPengamatan.setName("tbPengamatan"); // NOI18N
+        tbPengamatan.getTableHeader().setReorderingAllowed(false);
         tbPengamatan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPengamatanMouseClicked(evt);
@@ -1617,7 +1624,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1632,7 +1639,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1657,7 +1664,6 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('3');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+3");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -2090,9 +2096,34 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
             param.put("tanggal", Valid.SetTglINDONESIA(Valid.SetTgl(Ttgl.getSelectedItem() + "")));
             param.put("jam", cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + " Wita");
             param.put("petugas", TnmPerawat.getText());
-            
-            Valid.MyReport("rptBantuanPengamatanMenyusui.jasper", "report", "::[ Lembaran Bantuan Pengamatan Menyusui ]::",
-                    "SELECT now() tanggal", param);
+
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (nip.equals("") || nip.equals("-") || nip.equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama perawat harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Lembaran Bantuan Pengamatan Menyusui", TnmPerawat.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from pengamatan_menyusui_perinatologi where "
+                                            + "waktu_simpan='" + tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 63).toString() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from pengamatan_menyusui_perinatologi where "
+                                            + "waktu_simpan='" + tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 63).toString() + "'")) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Lembaran Pengamatan Menyusui", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                    Valid.MyReport("rptBantuanPengamatanMenyusuiQr.jasper", "report", "::[ Lembaran Bantuan Pengamatan Menyusui ]::",
+                            "SELECT now() tanggal", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                Valid.MyReport("rptBantuanPengamatanMenyusui.jasper", "report", "::[ Lembaran Bantuan Pengamatan Menyusui ]::",
+                        "SELECT now() tanggal", param);
+            }
 
             this.setCursor(Cursor.getDefaultCursor());
             TCari.setText(TNoRw.getText());
@@ -2317,6 +2348,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
     private widget.ComboBox cmbImd;
     private widget.ComboBox cmbJam;
     private widget.ComboBox cmbMnt;
+    private widget.ComboBox cmbPilihCetak;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame4;
     private widget.Label jLabel10;
@@ -2339,6 +2371,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
     private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel60;
+    private widget.Label jLabel63;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
@@ -3238,7 +3271,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
     
     private void ganti() {
         cekData();
-        if (Sequel.mengedittf("pengamatan_menyusui_perinatologi", "no_rawat=?", "imd=?, lama_imd=?, alasan=?, asi_eksklusif=?, ibu_sehat=?, ibu_rileks=?, "
+        if (Sequel.mengedittf("pengamatan_menyusui_perinatologi", "waktu_simpan=?", "imd=?, lama_imd=?, alasan=?, asi_eksklusif=?, ibu_sehat=?, ibu_rileks=?, "
                 + "ibu_terlihat=?, ibu_sakit=?, ibu_tegang=?, ibu_tidak=?, bayi_sehat=?, bayi_tenang=?, bayi_lapar=?, bayi_mengantuk=?, bayi_gelisah=?, bayi_mencari=?, "
                 + "payudara_sehat=?, payudara_nyaman=?, payudara_ditopang=?, payudara_puting_keluar=?, payudara_merah=?, payudara_nyeri=?, payudara_aerola=?, "
                 + "payudara_puting_datar=?, posisi_kepala=?, posisi_dipegang=?, posisi_seluruh=?, posisi_hidung_berhadapan=?, posisi_leher=?, posisi_tak_dipegang=?, "
@@ -3253,7 +3286,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
                     pelekatanMenempel, pelekatanLebih, pelekatanTakTerbuka, pelekatanTerputarKedalam, pelekatanTidakMenempel, mengisapLambat, mengisapPipiMembulat,
                     mengisapMelepaskanSelesai, mengisapReflex, mengisapDangkal, mengisapPipiTertarik, mengisapMelepaskanPayudara, mengisapOksitosin, TlamaWkt.getText(),
                     Tcatatan.getText(), Valid.SetTgl(Ttgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), nip,
-                    tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 0).toString()
+                    tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 63).toString()
                 }) == true) {
 
             Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Lembaran Bantuan Pengamatan Menyusui", "Ganti");
@@ -3266,8 +3299,8 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
     private void hapus() {
         x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (x == JOptionPane.YES_OPTION) {
-            if (Sequel.queryu2tf("delete from pengamatan_menyusui_perinatologi where no_rawat=?", 1, new String[]{
-                tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 0).toString()
+            if (Sequel.queryu2tf("delete from pengamatan_menyusui_perinatologi where waktu_simpan=?", 1, new String[]{
+                tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 63).toString()
             }) == true) {
                 tampil();
                 emptTeks();

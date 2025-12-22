@@ -1371,6 +1371,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         FormInput.add(jLabel67);
         jLabel67.setBounds(0, 206, 110, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
 
         Tdiagnosis.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));

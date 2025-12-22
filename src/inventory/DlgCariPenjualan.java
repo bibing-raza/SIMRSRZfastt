@@ -1620,21 +1620,21 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             param.put("propinsirs", akses.getpropinsirs());
             param.put("logo", Sequel.cariGambar("select logo_hitam_putih from setting"));
             param.put("jns_label", "");
-            Valid.MyReport("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Minum ]::",
-                    "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
-                    + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
-                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
-                    + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
-                    + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
-                    + "ap.no_nota='" + no_nota + "' and ap.kode_brng='" + kd_obat + "'", param);
-
-//            Valid.AutoPrintMulti("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Minum ]::",
+//            Valid.MyReport("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Minum ]::",
 //                    "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
 //                    + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
 //                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
 //                    + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
 //                    + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
-//                    + "ap.no_nota='" + no_nota + "' and ap.kode_brng='" + kd_obat + "'", param, nmPrinter1);
+//                    + "ap.no_nota='" + no_nota + "' and ap.kode_brng='" + kd_obat + "'", param);
+
+            Valid.AutoPrintMulti("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Minum ]::",
+                    "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
+                    + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
+                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
+                    + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
+                    + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
+                    + "ap.no_nota='" + no_nota + "' and ap.kode_brng='" + kd_obat + "'", param, nmPrinter1);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_ppLabelObatMinumActionPerformed
@@ -1658,27 +1658,26 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             param.put("propinsirs", akses.getpropinsirs());
             param.put("logo", Sequel.cariGambar("select logo_hitam_putih from setting"));
             param.put("jns_label", "OBAT LUAR");
-            Valid.MyReport("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Luar ]::",
-                    "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
-                    + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
-                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
-                    + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
-                    + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
-                    + "ap.no_nota = '" + no_nota + "' AND ap.kode_brng = '" + kd_obat + "'", param);
-
-//            Valid.AutoPrintMulti("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Luar ]::",
+//            Valid.MyReport("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Luar ]::",
 //                    "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
 //                    + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
 //                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
 //                    + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
 //                    + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
-//                    + "ap.no_nota = '" + no_nota + "' AND ap.kode_brng = '" + kd_obat + "'", param, nmPrinter2);
+//                    + "ap.no_nota = '" + no_nota + "' AND ap.kode_brng = '" + kd_obat + "'", param);
+
+            Valid.AutoPrintMulti("rptAturanPakaiBebas.jasper", "report", "::[ Labeling Obat Luar ]::",
+                    "select ap.no_nota, ap.kode_brng, concat(ifnull(pj.no_rkm_medis,''),' - ',pj.nm_pasien) pasien, "
+                    + "date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, "
+                    + "ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, ap.jam "
+                    + "FROM aturan_pakai_jual_bebas ap INNER JOIN databarang d ON d.kode_brng = ap.kode_brng "
+                    + "INNER JOIN penjualan pj ON pj.nota_jual = ap.no_nota where "
+                    + "ap.no_nota = '" + no_nota + "' AND ap.kode_brng = '" + kd_obat + "'", param, nmPrinter2);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_ppLabelObatLuarActionPerformed
 
     private void MnRekapTotalPerPasienExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapTotalPerPasienExcelActionPerformed
-        // TODO add your handling code here:
         dialog_simpan = "";
         dialog_simpan = Valid.openDialog();
         if (!dialog_simpan.equals("the user cancelled the operation")) {

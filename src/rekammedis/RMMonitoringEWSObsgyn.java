@@ -453,7 +453,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         internalFrame10.add(BtnCetak);
         BtnCetak.setBounds(320, 23, 90, 26);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-07-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -468,7 +468,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         internalFrame10.add(jLabel49);
         jLabel49.setBounds(185, 25, 30, 23);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-07-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -504,6 +504,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         tbEWS.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbEWS.setComponentPopupMenu(jPopupMenu1);
         tbEWS.setName("tbEWS"); // NOI18N
+        tbEWS.getTableHeader().setReorderingAllowed(false);
         tbEWS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbEWSMouseClicked(evt);
@@ -653,7 +654,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel30);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -667,7 +668,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         jLabel32.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel32);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -828,7 +829,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
         panelGlass7.add(jLabel9);
         jLabel9.setBounds(260, 66, 40, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-07-2025" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1352,6 +1353,7 @@ public class RMMonitoringEWSObsgyn extends javax.swing.JDialog {
 
         tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
         tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.getTableHeader().setReorderingAllowed(false);
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCPPTMouseClicked(evt);

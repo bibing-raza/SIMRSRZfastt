@@ -680,6 +680,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput1.add(jLabel15);
         jLabel15.setBounds(0, 94, 190, 23);
 
+        scrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane3.setName("scrollPane3"); // NOI18N
 
         TcatatanIgd.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -697,6 +698,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput1.add(scrollPane3);
         scrollPane3.setBounds(194, 94, 530, 120);
 
+        scrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane4.setName("scrollPane4"); // NOI18N
 
         TcatatanRanap.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -726,6 +728,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput1.add(jLabel17);
         jLabel17.setBounds(740, 10, 110, 23);
 
+        scrollPane5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane5.setName("scrollPane5"); // NOI18N
 
         Tketidaksesuaian.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -743,6 +746,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput1.add(scrollPane5);
         scrollPane5.setBounds(855, 10, 530, 120);
 
+        scrollPane6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane6.setName("scrollPane6"); // NOI18N
 
         Tsaran.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -766,6 +770,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput1.add(jLabel18);
         jLabel18.setBounds(740, 135, 110, 23);
 
+        scrollPane7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane7.setName("scrollPane7"); // NOI18N
 
         Tkeputusan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -850,7 +855,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel22.setBounds(260, 66, 120, 23);
 
         TtglRekon.setEditable(false);
-        TtglRekon.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        TtglRekon.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-02-2025" }));
         TtglRekon.setDisplayFormat("dd-MM-yyyy");
         TtglRekon.setName("TtglRekon"); // NOI18N
         TtglRekon.setOpaque(false);
@@ -897,6 +902,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
         tbRekon.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRekon.setName("tbRekon"); // NOI18N
+        tbRekon.getTableHeader().setReorderingAllowed(false);
         tbRekon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRekonMouseClicked(evt);
@@ -921,7 +927,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel65.setPreferredSize(new java.awt.Dimension(95, 23));
         panelGlass10.add(jLabel65);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -935,7 +941,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel70.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel70);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1078,6 +1084,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         Scroll1.setOpaque(true);
 
         tbObatRiwayat.setName("tbObatRiwayat"); // NOI18N
+        tbObatRiwayat.getTableHeader().setReorderingAllowed(false);
         Scroll1.setViewportView(tbObatRiwayat);
 
         PanelInput1.add(Scroll1, java.awt.BorderLayout.CENTER);
@@ -1092,7 +1099,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel66.setPreferredSize(new java.awt.Dimension(95, 23));
         panelGlass11.add(jLabel66);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-02-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1106,7 +1113,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel71.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass11.add(jLabel71);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-02-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1215,7 +1222,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel5.setBounds(0, 38, 135, 23);
 
         TtglResep.setEditable(false);
-        TtglResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        TtglResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-02-2025" }));
         TtglResep.setDisplayFormat("dd-MM-yyyy");
         TtglResep.setName("TtglResep"); // NOI18N
         TtglResep.setOpaque(false);
@@ -1320,6 +1327,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
         tbRekonIgd.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbRekonIgd.setName("tbRekonIgd"); // NOI18N
+        tbRekonIgd.getTableHeader().setReorderingAllowed(false);
         tbRekonIgd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRekonIgdMouseClicked(evt);
@@ -1341,6 +1349,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
         tbRiwayatObatIgd.setToolTipText("Silahkan klik untuk memilih data yang akan direkonsiliasi");
         tbRiwayatObatIgd.setName("tbRiwayatObatIgd"); // NOI18N
+        tbRiwayatObatIgd.getTableHeader().setReorderingAllowed(false);
         tbRiwayatObatIgd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRiwayatObatIgdMouseClicked(evt);
@@ -1401,7 +1410,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel29.setBounds(0, 66, 135, 23);
 
         TtglResep1.setEditable(false);
-        TtglResep1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        TtglResep1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-02-2025" }));
         TtglResep1.setDisplayFormat("dd-MM-yyyy");
         TtglResep1.setName("TtglResep1"); // NOI18N
         TtglResep1.setOpaque(false);
@@ -1532,6 +1541,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
         tbRekonRanap.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbRekonRanap.setName("tbRekonRanap"); // NOI18N
+        tbRekonRanap.getTableHeader().setReorderingAllowed(false);
         tbRekonRanap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRekonRanapMouseClicked(evt);
@@ -1557,6 +1567,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
         tbRiwayatObatRanap.setToolTipText("Silahkan klik untuk memilih data yang akan direkonsiliasi");
         tbRiwayatObatRanap.setName("tbRiwayatObatRanap"); // NOI18N
+        tbRiwayatObatRanap.getTableHeader().setReorderingAllowed(false);
         tbRiwayatObatRanap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRiwayatObatRanapMouseClicked(evt);

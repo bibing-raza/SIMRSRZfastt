@@ -128,6 +128,7 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -445,6 +446,7 @@ public final class DlgGantiAturanPakai extends javax.swing.JDialog {
         tglresep.setText(tgl);
         jamresep.setText(jam);
         transaksi = jns_transaksi;
+        BtnGanti.setMnemonic(java.awt.event.KeyEvent.VK_S);
         isAturanPakai();
     }
 
