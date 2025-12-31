@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -341,6 +342,8 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel73 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnResep = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -447,6 +450,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
 
         tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
         tbTemplate.setName("tbTemplate"); // NOI18N
+        tbTemplate.getTableHeader().setReorderingAllowed(false);
         tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTemplateMouseClicked(evt);
@@ -566,6 +570,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
         FormInput.add(BtnDpjp);
         BtnDpjp.setBounds(700, 598, 28, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
 
         Tterapi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -695,7 +700,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(202, 150, 150, 23);
 
-        TtglPulang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2024" }));
+        TtglPulang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-12-2025" }));
         TtglPulang.setDisplayFormat("dd-MM-yyyy");
         TtglPulang.setName("TtglPulang"); // NOI18N
         TtglPulang.setOpaque(false);
@@ -766,7 +771,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
         FormInput.add(jLabel20);
         jLabel20.setBounds(386, 234, 40, 23);
 
-        TtglKontrol1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2024" }));
+        TtglKontrol1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-12-2025" }));
         TtglKontrol1.setDisplayFormat("dd-MM-yyyy");
         TtglKontrol1.setName("TtglKontrol1"); // NOI18N
         TtglKontrol1.setOpaque(false);
@@ -862,7 +867,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
         FormInput.add(jLabel22);
         jLabel22.setBounds(386, 290, 40, 23);
 
-        TtglKontrol2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2024" }));
+        TtglKontrol2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-12-2025" }));
         TtglKontrol2.setDisplayFormat("dd-MM-yyyy");
         TtglKontrol2.setName("TtglKontrol2"); // NOI18N
         TtglKontrol2.setOpaque(false);
@@ -936,6 +941,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
         FormInput.add(jLabel71);
         jLabel71.setBounds(0, 346, 180, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
 
         Tcatatan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -981,7 +987,8 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
         FormInput.add(jLabel88);
         jLabel88.setBounds(543, 626, 120, 23);
 
-        TtglTTd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2024" }));
+        TtglTTd.setEditable(false);
+        TtglTTd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-12-2025" }));
         TtglTTd.setDisplayFormat("dd-MM-yyyy");
         TtglTTd.setName("TtglTTd"); // NOI18N
         TtglTTd.setOpaque(false);
@@ -1113,6 +1120,18 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        jLabel73.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel73.setText("Cetak Dalam Bentuk :");
+        jLabel73.setName("jLabel73"); // NOI18N
+        jLabel73.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel73);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -1179,6 +1198,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
 
         tbPerencanaan.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki/dihapus");
         tbPerencanaan.setName("tbPerencanaan"); // NOI18N
+        tbPerencanaan.getTableHeader().setReorderingAllowed(false);
         tbPerencanaan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPerencanaanMouseClicked(evt);
@@ -1503,8 +1523,33 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
             param.put("dpjp", "(" + TnmDpjp.getText() + ")");
             param.put("keluargaPasien", "(" + TnmKeluarga.getText() + ")");
 
-            Valid.MyReport("rptPerencanaanPulang.jasper", "report", "::[ Lembar Perencanaan Pulang (Discharge Planning) ]::",
-                "SELECT now() tanggal", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (TnipDpjp.getText().equals("") || TnipDpjp.getText().equals("-") || TnipDpjp.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, nama DPJP utama harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Perencanaan Pulang (Discharge Planning)", TnmDpjp.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from perencanaan_pulang_ranap where "
+                                            + "no_rawat='" + TNoRw.getText() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from perencanaan_pulang_ranap where "
+                                            + "no_rawat='" + TNoRw.getText() + "'")) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Perencanaan Pulang", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    
+                    Valid.MyReport("rptPerencanaanPulangQr.jasper", "report", "::[ Lembar Perencanaan Pulang (Discharge Planning) ]::",
+                            "SELECT now() tanggal", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                Valid.MyReport("rptPerencanaanPulang.jasper", "report", "::[ Lembar Perencanaan Pulang (Discharge Planning) ]::",
+                        "SELECT now() tanggal", param);
+            }
 
             tampil();
             emptTeks();
@@ -1824,6 +1869,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
     private widget.ComboBox cmbJam2;
     private widget.ComboBox cmbMnt1;
     private widget.ComboBox cmbMnt2;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbPulang;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame5;
@@ -1851,6 +1897,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
     private widget.Label jLabel70;
     private widget.Label jLabel71;
     private widget.Label jLabel72;
+    private widget.Label jLabel73;
     private widget.Label jLabel86;
     private widget.Label jLabel87;
     private widget.Label jLabel88;

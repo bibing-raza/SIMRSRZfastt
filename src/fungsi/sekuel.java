@@ -3002,6 +3002,24 @@ public final class sekuel {
             System.out.println("Notifikasi : " + e);
         }
     }
+    
+    public void menyimpanQrTte(String table, String value, String sama, String AlmGb) {
+        try {
+            ps = connect.prepareStatement("insert into " + table + " values(" + value + ",?)");
+            try {
+                ps.setBinaryStream(1, new FileInputStream(AlmGb), new File(AlmGb).length());
+                ps.executeUpdate();
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
 
     public void insertClosingStok() {
         cekData = cariInteger("select count(-1) from stok_bulanan where periode = DATE_FORMAT(now(),'%Y-%m')");

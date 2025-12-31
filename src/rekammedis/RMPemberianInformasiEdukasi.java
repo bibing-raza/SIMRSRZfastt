@@ -759,6 +759,8 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel63 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -1506,7 +1508,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel168.setBounds(0, 738, 300, 23);
 
         TtglPemberian.setEditable(false);
-        TtglPemberian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2025" }));
+        TtglPemberian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2025" }));
         TtglPemberian.setDisplayFormat("dd-MM-yyyy");
         TtglPemberian.setName("TtglPemberian"); // NOI18N
         TtglPemberian.setOpaque(false);
@@ -1569,6 +1571,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         tbPemberian.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPemberian.setName("tbPemberian"); // NOI18N
+        tbPemberian.getTableHeader().setReorderingAllowed(false);
         tbPemberian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPemberianMouseClicked(evt);
@@ -1593,7 +1596,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel20.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass10.add(jLabel20);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1607,7 +1610,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1723,7 +1726,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel12.setBounds(0, 66, 110, 23);
 
         TtglPenilaian.setEditable(false);
-        TtglPenilaian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2025" }));
+        TtglPenilaian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2025" }));
         TtglPenilaian.setDisplayFormat("dd-MM-yyyy");
         TtglPenilaian.setName("TtglPenilaian"); // NOI18N
         TtglPenilaian.setOpaque(false);
@@ -2313,6 +2316,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         FormInput1.add(chkKonsulGiziRalan);
         chkKonsulGiziRalan.setBounds(450, 790, 160, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
 
         TpndNutrisionisLain.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2385,6 +2389,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         FormInput1.add(chkInfoKejadian);
         chkInfoKejadian.setBounds(350, 926, 230, 23);
 
+        scrollPane15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane15.setName("scrollPane15"); // NOI18N
 
         TpndAdmisiLain.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2415,6 +2420,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         FormInput1.add(jLabel30);
         jLabel30.setBounds(165, 1062, 270, 23);
 
+        scrollPane16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane16.setName("scrollPane16"); // NOI18N
 
         TpndLainyaLain.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2496,6 +2502,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         FormInput1.add(TnmPenerima);
         TnmPenerima.setBounds(165, 1198, 440, 23);
 
+        scrollPane17.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane17.setName("scrollPane17"); // NOI18N
 
         TpndPerawatLain.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2648,6 +2655,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         tbPenilaian.setAutoCreateRowSorter(true);
         tbPenilaian.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPenilaian.setName("tbPenilaian"); // NOI18N
+        tbPenilaian.getTableHeader().setReorderingAllowed(false);
         tbPenilaian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPenilaianMouseClicked(evt);
@@ -2791,6 +2799,18 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnEdit);
+
+        jLabel63.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel63.setText("Cetak Dalam Bentuk :");
+        jLabel63.setName("jLabel63"); // NOI18N
+        jLabel63.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel63);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -3151,10 +3171,12 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
                 //data penilaian informasi edukasi
                 Sequel.AutoComitFalse();
-                Sequel.queryu("delete from temporary3");
+                Sequel.queryu("delete from temporaryTTE");
                 try {
-                    ps3 = koneksi.prepareStatement("select *, date_format(tanggal,'%d/%m/%Y') tggl, time_format(jam,'%H:%i') jamm, "
-                            + "date_format(tanggal,'%W') harii from penilaian_informasi_edukasi where no_rawat='" + TNoRw.getText() + "' order by tanggal, jam");
+                    ps3 = koneksi.prepareStatement("select pi.*, date_format(pi.tanggal,'%d/%m/%Y') tggl, time_format(pi.jam,'%H:%i') jamm, "
+                            + "date_format(pi.tanggal,'%W') harii, date_format(pi.waktu_simpan,'%d/%m/%Y') tglSimpan, time(pi.waktu_simpan) jamSimpan, "
+                            + "pg.nama nmPetugas, date_format(pi.waktu_simpan,'%Y-%m-%d %H:%i:%s') wktSimpan from penilaian_informasi_edukasi pi "
+                            + "inner join pegawai pg on pg.nik=pi.nip_petugas where pi.no_rawat='" + TNoRw.getText() + "' order by pi.tanggal, jam");
                     try {
                         rs3 = ps3.executeQuery();
                         while (rs3.next()) {
@@ -3525,19 +3547,20 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                                 evaluasi = rs3.getString("evaluasi_respon");
                             }
 
-                            Sequel.menyimpanIgnore("temporary3",
-                                    "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita" + "','"
-                                    + penerimaPND + "','"
-                                    + metodeNilai + "','"
-                                    + profesi + "','"
-                                    + isiPenKesOK + "','"
-                                    + tingkatPemahanan + "','"
-                                    + evaluasi + "','"
-                                    + Sequel.cariIsi("select nama from pegawai where nik='" + rs3.getString("nip_petugas") + "'") + "','"
-                                    + rs3.getString("nm_penerima_edukasi") + "','"
-                                    + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
-                                    + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
-                                    + "'','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Pemberian Informasi & Edukasi");
+                            String isi = "";
+                            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                            "Pemberian Informasi Dan Edukasi", rs3.getString("nmPetugas"),
+                                            rs3.getString("tglSimpan"), rs3.getString("jamSimpan")) + "') from kalimat_tte where kode='001'");
+
+                            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                            Sequel.menyimpanQrTte("temporaryTTE",
+                                    "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita" + "',"
+                                    + "'" + penerimaPND + "','" + metodeNilai + "','" + profesi + "','" + isiPenKesOK + "','" + tingkatPemahanan + "',"
+                                    + "'" + evaluasi + "','" + rs3.getString("nmPetugas") + "','" + rs3.getString("nm_penerima_edukasi") + "','" + rs3.getString("wktSimpan") + "'",
+                                    "file QRCode TTE Pemberian Informasi Dan Edukasi", Sequel.cariFolderPrintTte());
                         }
                     } catch (Exception e) {
                         System.out.println("Notifikasi : " + e);
@@ -3558,8 +3581,14 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                     Valid.MyReport("rptPemberianInformasiEdukasiKosong.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
                             "SELECT date(now()) tanggal", param);
                 } else {
-                    Valid.MyReport("rptPemberianInformasiEdukasi.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
-                            "SELECT * FROM temporary3", param);
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptPemberianInformasiEdukasiQr.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
+                                "SELECT * FROM temporaryTTE", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptPemberianInformasiEdukasi.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
+                                "SELECT * FROM temporaryTTE", param);
+                    }
                 }
 
                 BtnBatalActionPerformed(null);
@@ -4189,6 +4218,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
     private widget.ComboBox cmbNilaiPasien;
     private widget.ComboBox cmbPenggunaanHerbal;
     private widget.ComboBox cmbPerlu;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbProfesi;
     private widget.ComboBox cmbPuasa;
     private widget.ComboBox cmbTidakMemakan;
@@ -4246,6 +4276,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
     private widget.Label jLabel4;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
+    private widget.Label jLabel63;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
@@ -5082,6 +5113,9 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
     private void simpanPenilaianEdukasi() {
         if (TNoRw1.getText().trim().equals("")) {
             Valid.textKosong(TNoRw1, "Pasien");
+        } else if (nipPengedukasi.equals("") || nipPengedukasi.equals("-") || nipPengedukasi.equals("--")) {
+            JOptionPane.showMessageDialog(rootPane, "Maaf, nama pemberi edukasi harus diisi/dipilih salah satu dengan benar..!");
+            BtnPtgsPengedukasi.requestFocus();
         } else {
             cekDataPenilaian();
             if (Sequel.menyimpantf("penilaian_informasi_edukasi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 60, new String[]{
@@ -5135,29 +5169,34 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
     
     private void gantiPenilaianEdukasi() {
         if (tbPenilaian.getSelectedRow() > -1) {
-            cekDataPenilaian();
-            if (Sequel.mengedittf("penilaian_informasi_edukasi", "waktu_simpan=?", "tanggal=?, jam=?, penerima_pendidikan=?, metode=?, profesi=?, "
-                    + "profesi_lainya=?, tingkat_pemahaman=?, evaluasi_respon=?, diagnosis=?, kondisi_pasien=?, tindakan=?, tata_cara=?, manfaat=?, nama_orang=?, "
-                    + "kemungkinan_alternative=?, prognosis=?, kemungkinan_tdk_terduga=?, kemungkinan_bila=?, pendidikan_kesehatan=?, ket_pendidikan=?, hasil_asuhan=?, "
-                    + "penanganan=?, perawatan_luka=?, alat_alat=?, informasi_pasien=?, keamanan_penggunaan=?, prosedur_tindakan=?, farmakologi_obat=?, farmakologi_injeksi=?, "
-                    + "farmakologi_sedasi=?, perawatan_latihan=?, distraksi=?, pengalihan_perhatian=?, cara_cuci=?, etika_batuk=?, cara_buang=?, tempat_toileting=?, "
-                    + "lainya_perawat_bidan=?, ket_lainya_perawat_bidan=?, diet=?, konsul_gizi_ranap=?, konsul_gizi_ralan=?, ket_lainya_nutrisionis=?, hak_dan=?, "
-                    + "jam_konsultasi=?, informasi_kejadian=?, ket_lainya_admisi=?, edukasi_lain_lanjutan=?, nip_petugas=?, nm_penerima_edukasi=?, audio=?, demonstrasi=?, "
-                    + "lisan=?, tulisan=?, visual=?, pasien=?, keluarga=?, lainPenerimaPnd=?", 59, new String[]{
-                        Valid.SetTgl(TtglPenilaian.getSelectedItem() + ""), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
-                        "-", "-", cmbProfesi.getSelectedItem().toString(), Tprofesi.getText(), cmbTingkat.getSelectedItem().toString(),
-                        cmbEvaluasi.getSelectedItem().toString(), diagnosis, kondisiPasien, tindakan, tataCara, manfaat, namaOrang, kemungkinanAlternative, prognosis,
-                        kemungkinanTdkTerduga, kemungkinanBila, pendidikanKesehatan, TpendidikanKes.getText(), hasilAsuhan, penanganan, perawatanLuka, alatAlat, informasiPasien,
-                        keamananPenggunaan, prosedurTindakan, farmakologiObat, farmakologiInjeksi, farmakologiSedasi, perawatanLatihan, distraksi, pengalihanPerhatian, caraCuci,
-                        etikaBatuk, caraBuang, tempatToileting, lainyaPerawatBidan, TpndPerawatLain.getText(), diet, konsulGiziRanap, konsulGiziRalan, TpndNutrisionisLain.getText(),
-                        hakDan, jamKonsultasi, informasiKejadian, TpndAdmisiLain.getText(), TpndLainyaLain.getText(), nipPengedukasi, TnmPenerima.getText(), audio, demonstrasi,
-                        lisan, tulisan, visual, pasien, keluarga, lainPenerimaPnd,
-                        tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 55).toString()
-                    }) == true) {
+            if (nipPengedukasi.equals("") || nipPengedukasi.equals("-") || nipPengedukasi.equals("--")) {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, nama pemberi edukasi harus diisi/dipilih salah satu dengan benar..!");
+                BtnPtgsPengedukasi.requestFocus();
+            } else {
+                cekDataPenilaian();
+                if (Sequel.mengedittf("penilaian_informasi_edukasi", "waktu_simpan=?", "tanggal=?, jam=?, penerima_pendidikan=?, metode=?, profesi=?, "
+                        + "profesi_lainya=?, tingkat_pemahaman=?, evaluasi_respon=?, diagnosis=?, kondisi_pasien=?, tindakan=?, tata_cara=?, manfaat=?, nama_orang=?, "
+                        + "kemungkinan_alternative=?, prognosis=?, kemungkinan_tdk_terduga=?, kemungkinan_bila=?, pendidikan_kesehatan=?, ket_pendidikan=?, hasil_asuhan=?, "
+                        + "penanganan=?, perawatan_luka=?, alat_alat=?, informasi_pasien=?, keamanan_penggunaan=?, prosedur_tindakan=?, farmakologi_obat=?, farmakologi_injeksi=?, "
+                        + "farmakologi_sedasi=?, perawatan_latihan=?, distraksi=?, pengalihan_perhatian=?, cara_cuci=?, etika_batuk=?, cara_buang=?, tempat_toileting=?, "
+                        + "lainya_perawat_bidan=?, ket_lainya_perawat_bidan=?, diet=?, konsul_gizi_ranap=?, konsul_gizi_ralan=?, ket_lainya_nutrisionis=?, hak_dan=?, "
+                        + "jam_konsultasi=?, informasi_kejadian=?, ket_lainya_admisi=?, edukasi_lain_lanjutan=?, nip_petugas=?, nm_penerima_edukasi=?, audio=?, demonstrasi=?, "
+                        + "lisan=?, tulisan=?, visual=?, pasien=?, keluarga=?, lainPenerimaPnd=?", 59, new String[]{
+                            Valid.SetTgl(TtglPenilaian.getSelectedItem() + ""), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
+                            "-", "-", cmbProfesi.getSelectedItem().toString(), Tprofesi.getText(), cmbTingkat.getSelectedItem().toString(),
+                            cmbEvaluasi.getSelectedItem().toString(), diagnosis, kondisiPasien, tindakan, tataCara, manfaat, namaOrang, kemungkinanAlternative, prognosis,
+                            kemungkinanTdkTerduga, kemungkinanBila, pendidikanKesehatan, TpendidikanKes.getText(), hasilAsuhan, penanganan, perawatanLuka, alatAlat, informasiPasien,
+                            keamananPenggunaan, prosedurTindakan, farmakologiObat, farmakologiInjeksi, farmakologiSedasi, perawatanLatihan, distraksi, pengalihanPerhatian, caraCuci,
+                            etikaBatuk, caraBuang, tempatToileting, lainyaPerawatBidan, TpndPerawatLain.getText(), diet, konsulGiziRanap, konsulGiziRalan, TpndNutrisionisLain.getText(),
+                            hakDan, jamKonsultasi, informasiKejadian, TpndAdmisiLain.getText(), TpndLainyaLain.getText(), nipPengedukasi, TnmPenerima.getText(), audio, demonstrasi,
+                            lisan, tulisan, visual, pasien, keluarga, lainPenerimaPnd,
+                            tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 55).toString()
+                        }) == true) {
 
-                Sequel.SimpanHistoriRekamMedis(TNoRw1.getText(), "Penilaian Pemberian Pendidikan Kesehatan", "Ganti");
-                tampilPenilaian();
-                emptTeksPenilaian();
+                    Sequel.SimpanHistoriRekamMedis(TNoRw1.getText(), "Penilaian Pemberian Pendidikan Kesehatan", "Ganti");
+                    tampilPenilaian();
+                    emptTeksPenilaian();
+                }
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");

@@ -129,7 +129,7 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
         TnmFile.setForeground(new java.awt.Color(0, 0, 0));
         TnmFile.setName("TnmFile"); // NOI18N
         FormInput.add(TnmFile);
-        TnmFile.setBounds(135, 66, 430, 23);
+        TnmFile.setBounds(135, 66, 360, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -320,7 +320,7 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                         }
 
                         String isi = "", nmFile = "";
-                        nmFile = rs.getString("no_rawat").replaceAll("/", "") + rs.getString("tgl_hasil").replaceAll("-", "");
+                        nmFile = rs.getString("no_pa").replaceAll("-", "");
                         isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                                 + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
                                         "Hasil Pemeriksaan Lab. (Patologi Anatomi)", rs.getString("drPatologi"),
