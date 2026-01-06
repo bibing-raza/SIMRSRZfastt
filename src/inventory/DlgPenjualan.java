@@ -378,6 +378,7 @@ public class DlgPenjualan extends javax.swing.JDialog {
         });
 
         TCari.requestFocus();
+        BtnSimpan.setMnemonic(java.awt.event.KeyEvent.VK_S);
 
         Valid.loadCombo(CmbAkun, "nama_bayar", "akun_bayar");
         try {

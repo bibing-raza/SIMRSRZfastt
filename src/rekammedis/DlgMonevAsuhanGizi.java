@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -209,6 +210,8 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel63 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -305,7 +308,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         jLabel27.setBounds(453, 66, 79, 23);
 
         tglMonev.setEditable(false);
-        tglMonev.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-08-2024" }));
+        tglMonev.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
         tglMonev.setDisplayFormat("dd-MM-yyyy");
         tglMonev.setName("tglMonev"); // NOI18N
         tglMonev.setOpaque(false);
@@ -313,6 +316,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         FormInput.add(tglMonev);
         tglMonev.setBounds(533, 66, 95, 23);
 
+        Scroll10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll10.setName("Scroll10"); // NOI18N
         Scroll10.setOpaque(true);
 
@@ -336,6 +340,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(0, 154, 175, 23);
 
+        Scroll11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll11.setName("Scroll11"); // NOI18N
         Scroll11.setOpaque(true);
 
@@ -359,6 +364,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         FormInput.add(jLabel19);
         jLabel19.setBounds(0, 214, 175, 23);
 
+        Scroll12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll12.setName("Scroll12"); // NOI18N
         Scroll12.setOpaque(true);
 
@@ -462,6 +468,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         ));
         tbMonev.setToolTipText("Silahkan klik untuk memilih data yang akan diedit atau dihapus");
         tbMonev.setName("tbMonev"); // NOI18N
+        tbMonev.getTableHeader().setReorderingAllowed(false);
         tbMonev.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbMonevMouseClicked(evt);
@@ -561,6 +568,18 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        jLabel63.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel63.setText("Cetak Dalam Bentuk :");
+        jLabel63.setName("jLabel63"); // NOI18N
+        jLabel63.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel63);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -630,7 +649,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass10.add(jLabel28);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-08-2024" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -644,7 +663,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass10.add(jLabel29);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-08-2024" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -715,6 +734,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
 
         tbPersen.setToolTipText("");
         tbPersen.setName("tbPersen"); // NOI18N
+        tbPersen.getTableHeader().setReorderingAllowed(false);
         Scroll2.setViewportView(tbPersen);
 
         FormPersen.add(Scroll2, java.awt.BorderLayout.CENTER);
@@ -1020,11 +1040,39 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
             param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
             param.put("tglasuhan", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_asuhan from asuhan_gizi_ranap where no_rawat='" + TNoRW.getText() + "'")));
             
-            Valid.MyReport("rptMonevAsuhanGizi.jasper", "report", "::[ Laporan Monitoring Dan Evaluasi Asuhan Gizi Pasien ]::",
-                    "SELECT * from monev_asuhan_gizi where no_rawat='" + TNoRW.getText() + "' order by tgl_monev", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (nip.equals("") || nip.equals("-") || nip.equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama petugas ahli gizi harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Monitoring dan Evaluasi Asuhan Gizi Rawat Inap", TnmPetugas.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from monev_asuhan_gizi where "
+                                            + "waktu_simpan='" + tbMonev.getValueAt(tbMonev.getSelectedRow(), 11).toString() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from monev_asuhan_gizi where "
+                                            + "waktu_simpan='" + tbMonev.getValueAt(tbMonev.getSelectedRow(), 11).toString() + "'")) + "') from kalimat_tte where kode='001'");
+                    
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Monitoring dan Evaluasi Asuhan Gizi", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    param.put("nmAhliGz", TnmPetugas.getText());
+                    
+                    Valid.MyReport("rptMonevAsuhanGiziQr.jasper", "report", "::[ Laporan Monitoring Dan Evaluasi Asuhan Gizi Pasien ]::",
+                            "SELECT * from monev_asuhan_gizi where no_rawat='" + TNoRW.getText() + "' order by tgl_monev", param);                    
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    emptTeks();
+                    tampil();
+                }            
+            } else {
+                Valid.MyReport("rptMonevAsuhanGizi.jasper", "report", "::[ Laporan Monitoring Dan Evaluasi Asuhan Gizi Pasien ]::",
+                        "SELECT * from monev_asuhan_gizi where no_rawat='" + TNoRW.getText() + "' order by tgl_monev", param);
 
-            emptTeks();
-            tampil();
+                emptTeks();
+                tampil();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
             tbMonev.requestFocus();
@@ -1193,6 +1241,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
     private widget.TextBox TtglAsuhan;
     private widget.CekBox chkSaya;
     private widget.ComboBox cmbBulan;
+    private widget.ComboBox cmbPilihCetak;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel17;
     private widget.Label jLabel18;
@@ -1207,6 +1256,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
     private widget.Label jLabel31;
     private widget.Label jLabel35;
     private widget.Label jLabel6;
+    private widget.Label jLabel63;
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel3;
     private widget.panelisi panelGlass10;

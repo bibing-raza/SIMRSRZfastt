@@ -800,6 +800,24 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuRekapResepObatKronisActionPerformed"/>
           </Events>
         </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuRekapPemakaianObat">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="0"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/picture/export-excel.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Rekap Pemakaian Obat Semua Depo"/>
+            <Property name="name" type="java.lang.String" value="jMenuRekapPemakaianObat" noResource="true"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[220, 25]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuRekapPemakaianObatActionPerformed"/>
+          </Events>
+        </MenuItem>
       </SubComponents>
     </Container>
   </NonVisualComponents>
@@ -881,6 +899,9 @@
                   <ComponentRef name="Popup1"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="tbObat" noResource="true"/>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbObatMouseClicked"/>
@@ -1472,10 +1493,9 @@
                 </Component>
                 <Component class="widget.Tanggal" name="DTPCari1">
                   <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="18-11-2025"/>
+                        <StringItem index="0" value="05-01-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -1488,7 +1508,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="127" y="100" width="-1" height="-1"/>
+                      <AbsoluteConstraints x="127" y="100" width="90" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -1507,16 +1527,15 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="229" y="100" width="25" height="-1"/>
+                      <AbsoluteConstraints x="217" y="100" width="30" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="widget.Tanggal" name="DTPCari2">
                   <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="18-11-2025"/>
+                        <StringItem index="0" value="05-01-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -1529,7 +1548,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="257" y="100" width="-1" height="-1"/>
+                      <AbsoluteConstraints x="247" y="100" width="90" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>

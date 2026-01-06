@@ -999,6 +999,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
 
         tbSkrining.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbSkrining.setName("tbSkrining"); // NOI18N
+        tbSkrining.getTableHeader().setReorderingAllowed(false);
         tbSkrining.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbSkriningMouseClicked(evt);
@@ -1250,6 +1251,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         Scroll1.setOpaque(true);
 
         tbPersenDewasa.setName("tbPersenDewasa"); // NOI18N
+        tbPersenDewasa.getTableHeader().setReorderingAllowed(false);
         Scroll1.setViewportView(tbPersenDewasa);
 
         FormPersenDewasa.add(Scroll1, java.awt.BorderLayout.CENTER);
@@ -1357,6 +1359,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         Scroll2.setOpaque(true);
 
         tbPersenBalita.setName("tbPersenBalita"); // NOI18N
+        tbPersenBalita.getTableHeader().setReorderingAllowed(false);
         Scroll2.setViewportView(tbPersenBalita);
 
         panelGlass15.add(Scroll2);
@@ -1366,6 +1369,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         Scroll4.setOpaque(true);
 
         tbPersenAnak.setName("tbPersenAnak"); // NOI18N
+        tbPersenAnak.getTableHeader().setReorderingAllowed(false);
         Scroll4.setViewportView(tbPersenAnak);
 
         panelGlass15.add(Scroll4);
@@ -1498,6 +1502,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
 
         tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
         tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.getTableHeader().setReorderingAllowed(false);
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCPPTMouseClicked(evt);

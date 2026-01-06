@@ -321,6 +321,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         jMenuObatKhususPerTgl = new javax.swing.JMenuItem();
         jMenuObatKhusus = new javax.swing.JMenuItem();
         jMenuRekapResepObatKronis = new javax.swing.JMenuItem();
+        jMenuRekapPemakaianObat = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -863,6 +864,18 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         });
         Popup1.add(jMenuRekapResepObatKronis);
 
+        jMenuRekapPemakaianObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jMenuRekapPemakaianObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        jMenuRekapPemakaianObat.setText("Rekap Pemakaian Obat Semua Depo");
+        jMenuRekapPemakaianObat.setName("jMenuRekapPemakaianObat"); // NOI18N
+        jMenuRekapPemakaianObat.setPreferredSize(new java.awt.Dimension(220, 25));
+        jMenuRekapPemakaianObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuRekapPemakaianObatActionPerformed(evt);
+            }
+        });
+        Popup1.add(jMenuRekapPemakaianObat);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -884,6 +897,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         tbObat.setToolTipText("Silahkan klik untuk memilih data yang ataupun dihapus");
         tbObat.setComponentPopupMenu(Popup1);
         tbObat.setName("tbObat"); // NOI18N
+        tbObat.getTableHeader().setReorderingAllowed(false);
         tbObat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbObatMouseClicked(evt);
@@ -1215,15 +1229,14 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         FormInput.add(jLabel14);
         jLabel14.setBounds(0, 100, 120, 23);
 
-        DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-11-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2026" }));
         DTPCari1.setToolTipText("");
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
         DTPCari1.setPreferredSize(new java.awt.Dimension(100, 23));
         FormInput.add(DTPCari1);
-        DTPCari1.setBounds(127, 100, 100, 23);
+        DTPCari1.setBounds(127, 100, 90, 23);
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1232,17 +1245,16 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         jLabel19.setName("jLabel19"); // NOI18N
         jLabel19.setPreferredSize(new java.awt.Dimension(18, 23));
         FormInput.add(jLabel19);
-        jLabel19.setBounds(229, 100, 25, 23);
+        jLabel19.setBounds(217, 100, 30, 23);
 
-        DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-11-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2026" }));
         DTPCari2.setToolTipText("");
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
         DTPCari2.setPreferredSize(new java.awt.Dimension(100, 23));
         FormInput.add(DTPCari2);
-        DTPCari2.setBounds(257, 100, 100, 23);
+        DTPCari2.setBounds(247, 100, 90, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -4862,6 +4874,45 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_jMenuRekapResepObatKronisActionPerformed
 
+    private void jMenuRekapPemakaianObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRekapPemakaianObatActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        dialog_simpan = Valid.openDialog();
+        Valid.MyReportToExcel("SELECT nama_brng 'Nama Obat', kode_sat 'Satuan', h_beli 'Harga Satuan', SUM(jumlah) 'Jumlah' "
+                + "FROM ( "
+                + "    SELECT db.kode_brng, db.nama_brng, db.kode_sat, db.h_beli, dpo.jml AS jumlah "
+                + "    FROM resep_obat ro "
+                + "    INNER JOIN detail_pemberian_obat dpo ON dpo.no_rawat = ro.no_rawat "
+                + "       AND dpo.tgl_perawatan = ro.tgl_perawatan "
+                + "       AND dpo.jam = ro.jam "
+                + "    INNER JOIN databarang db ON dpo.kode_brng = db.kode_brng "
+                + "    INNER JOIN riwayat_obat_pasien rop ON rop.no_rawat = dpo.no_rawat "
+                + "    INNER JOIN bangsal b ON b.kd_bangsal = rop.kd_bangsal "
+                + "    WHERE ro.tgl_perawatan BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "    UNION ALL "
+                + "    SELECT db.kode_brng, db.nama_brng, db.kode_sat, db.h_beli, dj.jumlah AS jumlah "
+                + "    FROM penjualan pj "
+                + "    INNER JOIN detailjual dj ON pj.nota_jual = dj.nota_jual "
+                + "    INNER JOIN databarang db ON dj.kode_brng = db.kode_brng "
+                + "    INNER JOIN bangsal b ON b.kd_bangsal = pj.kd_bangsal "
+                + "    WHERE pj.tgl_jual BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "    UNION ALL "
+                + "    SELECT db.kode_brng, db.nama_brng, db.kode_sat, db.h_beli, mb.jml AS jumlah "
+                + "    FROM mutasibarang mb "
+                + "    INNER JOIN databarang db on db.kode_brng=mb.kode_brng "
+                + "    INNER JOIN bangsal b ON b.kd_bangsal = mb.kd_bangsaldari "
+                + "    WHERE mb.tanggal BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and mb.kd_bangsaldari='apt04' "
+                + "    UNION ALL "
+                + "    SELECT db.kode_brng, db.nama_brng, db.kode_sat, db.h_beli, up.jml AS jumlah "
+                + "    FROM utd_pengambilan_medis up "
+                + "    INNER JOIN databarang db on db.kode_brng=up.kode_brng "
+                + "    INNER JOIN bangsal b ON b.kd_bangsal = up.kd_bangsal_dr "
+                + "    WHERE up.tanggal BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and up.kd_bangsal_dr='apt04' "
+                + ") x GROUP BY kode_brng, nama_brng, kode_sat ORDER BY nama_brng", dialog_simpan);
+        
+        JOptionPane.showMessageDialog(null, "Data rekap pemakaian obat semua depo & gudang berhasil diexport menjadi file excel,..!!!");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_jMenuRekapPemakaianObatActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4916,6 +4967,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem jMenuObatKhusus;
     private javax.swing.JMenuItem jMenuObatKhususPerTgl;
     private javax.swing.JMenuItem jMenuPerDokter;
+    private javax.swing.JMenuItem jMenuRekapPemakaianObat;
     private javax.swing.JMenuItem jMenuRekapResepObatKronis;
     private javax.swing.JMenuItem jMnRekapDetailResepPasienPerCB;
     private javax.swing.JMenuItem jMnRekapDetailResepPasienSemuaCB;

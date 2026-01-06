@@ -1149,6 +1149,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel69 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnNotepad = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -1471,7 +1473,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1485,7 +1487,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1611,6 +1613,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         tbRiwayat.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/direstore");
         tbRiwayat.setComponentPopupMenu(jPopupMenu3);
         tbRiwayat.setName("tbRiwayat"); // NOI18N
+        tbRiwayat.getTableHeader().setReorderingAllowed(false);
         tbRiwayat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRiwayatMouseClicked(evt);
@@ -1632,6 +1635,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
         tbRiwayatDiagnosa.setToolTipText("");
         tbRiwayatDiagnosa.setName("tbRiwayatDiagnosa"); // NOI18N
+        tbRiwayatDiagnosa.getTableHeader().setReorderingAllowed(false);
         Scroll7.setViewportView(tbRiwayatDiagnosa);
 
         internalFrame20.add(Scroll7, java.awt.BorderLayout.PAGE_END);
@@ -1696,7 +1700,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame5.add(jLabel18);
         jLabel18.setBounds(0, 58, 118, 23);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -1712,7 +1716,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame5.add(jLabel23);
         jLabel23.setBounds(207, 58, 30, 23);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -1778,7 +1782,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame7.add(jLabel27);
         jLabel27.setBounds(0, 58, 118, 23);
 
-        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         tgl3.setDisplayFormat("dd-MM-yyyy");
         tgl3.setName("tgl3"); // NOI18N
         tgl3.setOpaque(false);
@@ -1794,7 +1798,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame7.add(jLabel28);
         jLabel28.setBounds(207, 58, 30, 23);
 
-        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         tgl4.setDisplayFormat("dd-MM-yyyy");
         tgl4.setName("tgl4"); // NOI18N
         tgl4.setOpaque(false);
@@ -1953,7 +1957,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         tglAsuhan.setDisplayFormat("dd-MM-yyyy");
         tglAsuhan.setName("tglAsuhan"); // NOI18N
         tglAsuhan.setOpaque(false);
@@ -2192,6 +2196,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         FormInput.add(jLabel70);
         jLabel70.setBounds(0, 292, 110, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
 
         Tbiokimia.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2479,6 +2484,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         FormInput.add(jLabel77);
         jLabel77.setBounds(0, 624, 150, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
 
         TriwPenyakit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2510,6 +2516,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         tbDiagnosa.setToolTipText("");
         tbDiagnosa.setComponentPopupMenu(jPopupMenu2);
         tbDiagnosa.setName("tbDiagnosa"); // NOI18N
+        tbDiagnosa.getTableHeader().setReorderingAllowed(false);
         Scroll5.setViewportView(tbDiagnosa);
 
         FormInput.add(Scroll5);
@@ -2594,6 +2601,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         FormInput.add(jLabel80);
         jLabel80.setBounds(0, 870, 150, 23);
 
+        scrollPane15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane15.setName("scrollPane15"); // NOI18N
 
         Tberkaitan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2611,6 +2619,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         FormInput.add(scrollPane15);
         scrollPane15.setBounds(155, 870, 580, 60);
 
+        scrollPane16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane16.setName("scrollPane16"); // NOI18N
 
         Tditandai.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3434,6 +3443,18 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnEdit);
 
+        jLabel69.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel69.setText("Cetak Dalam Bentuk :");
+        jLabel69.setName("jLabel69"); // NOI18N
+        jLabel69.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel69);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -3521,6 +3542,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
         tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
         tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.getTableHeader().setReorderingAllowed(false);
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCPPTMouseClicked(evt);
@@ -3591,6 +3613,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         tbAsuhan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbAsuhan.setComponentPopupMenu(jPopupMenu1);
         tbAsuhan.setName("tbAsuhan"); // NOI18N
+        tbAsuhan.getTableHeader().setReorderingAllowed(false);
         tbAsuhan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbAsuhanMouseClicked(evt);
@@ -3616,7 +3639,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3631,7 +3654,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3735,6 +3758,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         tbStatusGZ.setToolTipText("");
         tbStatusGZ.setComponentPopupMenu(jPopupMenu4);
         tbStatusGZ.setName("tbStatusGZ"); // NOI18N
+        tbStatusGZ.getTableHeader().setReorderingAllowed(false);
         Scroll1.setViewportView(tbStatusGZ);
 
         internalFrame4.add(Scroll1, java.awt.BorderLayout.CENTER);
@@ -3749,7 +3773,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel20.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass10.add(jLabel20);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -3763,7 +3787,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel22);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -3867,6 +3891,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         tbStatusGZ1.setToolTipText("");
         tbStatusGZ1.setComponentPopupMenu(jPopupMenu5);
         tbStatusGZ1.setName("tbStatusGZ1"); // NOI18N
+        tbStatusGZ1.getTableHeader().setReorderingAllowed(false);
         Scroll2.setViewportView(tbStatusGZ1);
 
         internalFrame6.add(Scroll2, java.awt.BorderLayout.CENTER);
@@ -3881,7 +3906,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel24.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass11.add(jLabel24);
 
-        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari7.setDisplayFormat("dd-MM-yyyy");
         DTPCari7.setName("DTPCari7"); // NOI18N
         DTPCari7.setOpaque(false);
@@ -3895,7 +3920,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass11.add(jLabel25);
 
-        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari8.setDisplayFormat("dd-MM-yyyy");
         DTPCari8.setName("DTPCari8"); // NOI18N
         DTPCari8.setOpaque(false);
@@ -4008,6 +4033,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
         tbPersentase.setComponentPopupMenu(jPopupMenu5);
         tbPersentase.setName("tbPersentase"); // NOI18N
+        tbPersentase.getTableHeader().setReorderingAllowed(false);
         Scroll3.setViewportView(tbPersentase);
 
         panelGlass18.add(Scroll3);
@@ -4021,6 +4047,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
         tbPersentase1.setComponentPopupMenu(jPopupMenu5);
         tbPersentase1.setName("tbPersentase1"); // NOI18N
+        tbPersentase1.getTableHeader().setReorderingAllowed(false);
         Scroll13.setViewportView(tbPersentase1);
 
         panelGlass18.add(Scroll13);
@@ -4140,6 +4167,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         tbBuruk.setToolTipText("");
         tbBuruk.setComponentPopupMenu(jPopupMenu6);
         tbBuruk.setName("tbBuruk"); // NOI18N
+        tbBuruk.getTableHeader().setReorderingAllowed(false);
         Scroll8.setViewportView(tbBuruk);
 
         internalFrame9.add(Scroll8, java.awt.BorderLayout.CENTER);
@@ -4154,7 +4182,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel109.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass13.add(jLabel109);
 
-        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari9.setDisplayFormat("dd-MM-yyyy");
         DTPCari9.setName("DTPCari9"); // NOI18N
         DTPCari9.setOpaque(false);
@@ -4168,7 +4196,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel110.setPreferredSize(new java.awt.Dimension(20, 23));
         panelGlass13.add(jLabel110);
 
-        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari10.setDisplayFormat("dd-MM-yyyy");
         DTPCari10.setName("DTPCari10"); // NOI18N
         DTPCari10.setOpaque(false);
@@ -4288,6 +4316,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
         tbBalita.setToolTipText("");
         tbBalita.setName("tbBalita"); // NOI18N
+        tbBalita.getTableHeader().setReorderingAllowed(false);
         Scroll9.setViewportView(tbBalita);
 
         panelGlass16.add(Scroll9, java.awt.BorderLayout.CENTER);
@@ -4303,6 +4332,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
         tbRekapBBU.setToolTipText("");
         tbRekapBBU.setName("tbRekapBBU"); // NOI18N
+        tbRekapBBU.getTableHeader().setReorderingAllowed(false);
         Scroll10.setViewportView(tbRekapBBU);
 
         panelGlass17.add(Scroll10);
@@ -4314,6 +4344,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
         tbRekapPBU.setToolTipText("");
         tbRekapPBU.setName("tbRekapPBU"); // NOI18N
+        tbRekapPBU.getTableHeader().setReorderingAllowed(false);
         Scroll11.setViewportView(tbRekapPBU);
 
         panelGlass17.add(Scroll11);
@@ -4325,6 +4356,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
         tbRekapBBPB.setToolTipText("");
         tbRekapBBPB.setName("tbRekapBBPB"); // NOI18N
+        tbRekapBBPB.getTableHeader().setReorderingAllowed(false);
         Scroll12.setViewportView(tbRekapBBPB);
 
         panelGlass17.add(Scroll12);
@@ -4343,7 +4375,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel111.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass15.add(jLabel111);
 
-        DTPCari11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        DTPCari11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari11.setDisplayFormat("dd-MM-yyyy");
         DTPCari11.setName("DTPCari11"); // NOI18N
         DTPCari11.setOpaque(false);
@@ -4362,7 +4394,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel112.setPreferredSize(new java.awt.Dimension(20, 23));
         panelGlass15.add(jLabel112);
 
-        DTPCari12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-10-2025" }));
+        DTPCari12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari12.setDisplayFormat("dd-MM-yyyy");
         DTPCari12.setName("DTPCari12"); // NOI18N
         DTPCari12.setOpaque(false);
@@ -4886,18 +4918,52 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             param.put("rencanaMonev", rencanamonev);
             param.put("petugas", TnmPetugas.getText());
 
-            Valid.MyReport("rptCetakAsuhanGiziRanap.jasper", "report", "::[ Asuhan Gizi Pasien Rawat Inap ]::",
-                    "SELECT now() tanggal", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (Tnip.getText().equals("") || Tnip.getText().equals("-") || Tnip.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama ahli gizi harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Asuhan Gizi Rawat Inap", TnmPetugas.getText(),
+                                    Sequel.cariIsi("select date_format(tgl_asuhan,'%d/%m/%Y') from asuhan_gizi_ranap where "
+                                            + "no_rawat='" + TNoRw.getText() + "' and ruang_rawat='" + TrgRawat.getText() + "'"),
+                                    Sequel.cariIsi("select time(now()) from asuhan_gizi_ranap where "
+                                            + "no_rawat='" + TNoRw.getText() + "'  and ruang_rawat='" + TrgRawat.getText() + "'")) + "') from kalimat_tte where kode='001'");
 
-            emptTeks();    
-            TabRawat.setSelectedIndex(1);
-            tampil();
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Asuhan Gizi Rawat Inap", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    
+                    Valid.MyReport("rptCetakAsuhanGiziRanapQr.jasper", "report", "::[ Asuhan Gizi Pasien Rawat Inap ]::",
+                            "SELECT now() tanggal", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    emptTeks();
+                    TabRawat.setSelectedIndex(1);
+                    tampil();
 
-            for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
-                tbDiagnosa.setValueAt(Boolean.FALSE, i, 0);
+                    for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
+                        tbDiagnosa.setValueAt(Boolean.FALSE, i, 0);
+                    }
+                    TCariDiagnosa.setText("");
+                    tampilDiagnosa();
+                }
+            } else {
+                Valid.MyReport("rptCetakAsuhanGiziRanap.jasper", "report", "::[ Asuhan Gizi Pasien Rawat Inap ]::",
+                        "SELECT now() tanggal", param);
+                
+                emptTeks();
+                TabRawat.setSelectedIndex(1);
+                tampil();
+
+                for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
+                    tbDiagnosa.setValueAt(Boolean.FALSE, i, 0);
+                }
+                TCariDiagnosa.setText("");
+                tampilDiagnosa();
             }
-            TCariDiagnosa.setText("");
-            tampilDiagnosa();
         } else {
             JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
             tbAsuhan.requestFocus();
@@ -6510,6 +6576,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private widget.ComboBox cmbMetode;
     private widget.ComboBox cmbPbu;
     private widget.ComboBox cmbPilihAsuhan;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbProtein;
     private widget.ComboBox cmbRute;
     private widget.ComboBox cmbSttsGizi;
@@ -6580,6 +6647,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private widget.Label jLabel66;
     private widget.Label jLabel67;
     private widget.Label jLabel68;
+    private widget.Label jLabel69;
     private widget.Label jLabel7;
     private widget.Label jLabel70;
     private widget.Label jLabel71;

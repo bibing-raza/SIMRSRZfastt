@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -428,6 +429,8 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel63 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -527,7 +530,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        tglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-06-2024" }));
+        tglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
         tglAsesmen.setDisplayFormat("dd-MM-yyyy");
         tglAsesmen.setName("tglAsesmen"); // NOI18N
         tglAsesmen.setOpaque(false);
@@ -810,6 +813,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         FormInput.add(label112);
         label112.setBounds(747, 142, 20, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
 
         Tbiokimia.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1160,6 +1164,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         FormInput.add(Tpantangan);
         Tpantangan.setBounds(230, 586, 505, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
 
         Tcatatan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1471,6 +1476,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ));
         tbAsesmenGZUlang.setToolTipText("Silahkan klik untuk memilih data yang akan diedit atau dihapus");
         tbAsesmenGZUlang.setName("tbAsesmenGZUlang"); // NOI18N
+        tbAsesmenGZUlang.getTableHeader().setReorderingAllowed(false);
         tbAsesmenGZUlang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbAsesmenGZUlangMouseClicked(evt);
@@ -1495,7 +1501,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass10.add(jLabel28);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1509,7 +1515,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass10.add(jLabel29);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1648,6 +1654,18 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnGanti);
+
+        jLabel63.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel63.setText("Cetak Dalam Bentuk :");
+        jLabel63.setName("jLabel63"); // NOI18N
+        jLabel63.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel63);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -2209,11 +2227,38 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             param.put("catatan", Tcatatan.getText() + "\n");
             param.put("petugas", TnmPetugas.getText());
 
-            Valid.MyReport("rptCetakAsesmenUlangGiziRanap.jasper", "report", "::[ Asesmen Ulang Gizi Rawat Inap ]::",
-                "SELECT now() tanggal", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (Tnip.getText().equals("") || Tnip.getText().equals("-") || Tnip.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama ahli gizi harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Assesmen Ulang Gizi Rawat Inap", TnmPetugas.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from assesmen_gizi_ulang where "
+                                            + "waktu_simpan='" + tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 44).toString() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from assesmen_gizi_ulang where "
+                                            + "waktu_simpan='" + tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 44).toString() + "'")) + "') from kalimat_tte where kode='001'");
 
-            emptTeks();
-            tampil();
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Assesmen Ulang Gizi", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    
+                    Valid.MyReport("rptCetakAsesmenUlangGiziRanapQr.jasper", "report", "::[ Asesmen Ulang Gizi Rawat Inap ]::",
+                            "SELECT now() tanggal", param);
+                    emptTeks();
+                    tampil();
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                Valid.MyReport("rptCetakAsesmenUlangGiziRanap.jasper", "report", "::[ Asesmen Ulang Gizi Rawat Inap ]::",
+                        "SELECT now() tanggal", param);
+
+                emptTeks();
+                tampil();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
             tbAsesmenGZUlang.requestFocus();
@@ -2419,6 +2464,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     private widget.ComboBox cmbHasilRecal;
     private widget.ComboBox cmbKlasifikasiIMT;
     private widget.ComboBox cmbPbu;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbSttsGizi;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
@@ -2434,6 +2480,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     private widget.Label jLabel29;
     private widget.Label jLabel34;
     private widget.Label jLabel6;
+    private widget.Label jLabel63;
     private widget.Label jLabel65;
     private widget.Label jLabel66;
     private widget.Label jLabel67;

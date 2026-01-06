@@ -24,6 +24,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -213,6 +214,8 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel63 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass9 = new widget.panelisi();
@@ -276,6 +279,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         tbKonsul.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbKonsul.setName("tbKonsul"); // NOI18N
+        tbKonsul.getTableHeader().setReorderingAllowed(false);
         tbKonsul.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbKonsulMouseClicked(evt);
@@ -304,6 +308,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -322,6 +327,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -340,6 +346,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -356,8 +363,21 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnEdit);
 
+        jLabel63.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel63.setText("Cetak Dalam Bentuk :");
+        jLabel63.setName("jLabel63"); // NOI18N
+        jLabel63.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel63);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -376,6 +396,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -404,7 +425,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-10-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-11-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -418,7 +439,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-10-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-11-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -443,6 +464,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('1');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+1");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -464,6 +486,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('2');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+2");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -550,6 +573,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         Tnmdokter.setBounds(125, 260, 540, 23);
 
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnDokter.setMnemonic('2');
         BtnDokter.setToolTipText("Alt+2");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -562,13 +586,14 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         BtnDokter.setBounds(670, 260, 28, 23);
 
         TtglJawab.setEditable(false);
-        TtglJawab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-10-2025" }));
+        TtglJawab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-11-2025" }));
         TtglJawab.setDisplayFormat("dd-MM-yyyy");
         TtglJawab.setName("TtglJawab"); // NOI18N
         TtglJawab.setOpaque(false);
         panelGlass7.add(TtglJawab);
         TtglJawab.setBounds(125, 232, 100, 23);
 
+        Scroll7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
 
@@ -651,6 +676,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(700, 10, 120, 23);
 
+        Scroll8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll8.setName("Scroll8"); // NOI18N
 
         TPermintaan.setEditable(false);
@@ -909,31 +935,96 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
                     Map<String, Object> param = new HashMap<>();
                     param.put("namars", akses.getnamars());
                     param.put("logo", Sequel.cariGambar("select logo from setting"));
-                    
-                    if (sttsJawab.equals("BELUM")) {
-                        Valid.MyReport("rptSuratKonsulRanapKosong.jasper", "report", "::[ Cetak Surat Konsul Antar Unit Rawat Inap ]::",
-                                "select *, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, date_format(sk.tgl_minta,'%d-%m-%Y') tglminta, "
-                                + "time_format(sk.jam_minta,'%H:%i Wita') jamminta, sk.permintaan_konsul, d1.nm_dokter drMinta, sk.jawaban_konsul, "
-                                + "if(sk.status_dijawab='Belum','TANGGAL : -, JAM : -',concat('TANGGAL : ',date_format(sk.tgl_jawab,'%d-%m-%Y'),', JAM : ',time_format(sk.jam_jawab,'%H:%i'),' Wita')) tgljawab, "
-                                + "if(sk.status_dijawab='Belum','( ............................................ )',concat('(',d2.nm_dokter,')')) drJawab from surat_konsul_unit_ranap sk "
-                                + "inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                                + "inner join dokter d1 on d1.kd_dokter=sk.nip_dokter_minta inner join dokter d2 on d2.kd_dokter=sk.nip_dokter_jawab "
-                                + "where sk.waktu_simpan='" + wktSimpan + "'", param);
-                    } else {
-                        Valid.MyReport("rptSuratKonsulRanap.jasper", "report", "::[ Cetak Surat Konsul Antar Unit Rawat Inap ]::",
-                                "select *, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, date_format(sk.tgl_minta,'%d-%m-%Y') tglminta, "
-                                + "time_format(sk.jam_minta,'%H:%i Wita') jamminta, sk.permintaan_konsul, d1.nm_dokter drMinta, sk.jawaban_konsul, "
-                                + "if(sk.status_dijawab='Belum','TANGGAL : -, JAM : -',concat('TANGGAL : ',date_format(sk.tgl_jawab,'%d-%m-%Y'),', JAM : ',time_format(sk.jam_jawab,'%H:%i'),' Wita')) tgljawab, "
-                                + "if(sk.status_dijawab='Belum','( ............................................ )',concat('(',d2.nm_dokter,')')) drJawab from surat_konsul_unit_ranap sk "
-                                + "inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                                + "inner join dokter d1 on d1.kd_dokter=sk.nip_dokter_minta inner join dokter d2 on d2.kd_dokter=sk.nip_dokter_jawab "
-                                + "where sk.waktu_simpan='" + wktSimpan + "'", param);
-                    }
+                  
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                            JOptionPane.showMessageDialog(rootPane, "Maaf, nama dokter yang menjawab harus diisi dulu,..");
+                        } else {
+                            Sequel.queryu("delete from temporaryTTE");
+                            String isiMinta = "", isiJawab = "", nmDokterJawab = "", tglJawab = "", jwbn = "";
+                            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                            
+                            isiMinta = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                            "Surat Konsul Antar Unit Rawat Inap", TnmDokterMinta.getText() + " (PERMINTAAN)",
+                                            Sequel.cariIsi("select date_format(tgl_minta,'%d/%m/%Y') from surat_konsul_unit_ranap where "
+                                                    + "waktu_simpan='" + wktSimpan + "'"),
+                                            Sequel.cariIsi("select jam_minta from surat_konsul_unit_ranap where "
+                                                    + "waktu_simpan='" + wktSimpan + "'")) + "') from kalimat_tte where kode='001'");
+                            Valid.cetakQrTte(isiMinta, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
 
-                    TCari.setText(TNoRW.getText());
-                    tbKonsul.requestFocus();
-                    emptTeks();
-                    tampil();
+                            Sequel.menyimpanQrTte("temporaryTTE",
+                                    "'" + TNoRM.getText() + "',"
+                                    + "'" + TPasien.getText() + "',"
+                                    + "'" + Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + "',"
+                                    + "'" + "DARI UNIT : " + TunitDari.getText() + ", KE UNIT : " + cmbUnitKe.getSelectedItem() + "',"
+                                    + "'" + "TANGAL : " + Sequel.cariIsi("select date_format(tgl_minta,'%d-%m-%Y') from surat_konsul_unit_ranap where waktu_simpan='" + wktSimpan + "'")
+                                    + ", JAM : " + Sequel.cariIsi("select time_format(jam_minta,'%H:%i Wita') from surat_konsul_unit_ranap where waktu_simpan='" + wktSimpan + "'") + "',"
+                                    + "'" + TPermintaan.getText() + "\n',"
+                                    + "'" + "(" + TnmDokterMinta.getText() + ")\n" + "',"
+                                    + "'','',''", "file QRCode TTE Surat Konsul Antar Unit Rawat Inap", Sequel.cariFolderPrintTte());
+                            
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                            
+                            if (tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 20).toString().equals("-")) {
+                                nmDokterJawab = " ................................ ";
+                                tglJawab = "TANGGAL :                              , JAM :                  ";
+                                jwbn = "";
+                                param.put("lokasiQr", "");
+                            } else {
+                                nmDokterJawab = Tnmdokter.getText();
+                                tglJawab = Sequel.cariIsi("select if(status_dijawab='Belum','TANGGAL : -, JAM : -',concat('TANGGAL : ',date_format(tgl_jawab,'%d-%m-%Y'),', JAM : ',time_format(jam_jawab,'%H:%i'),' Wita')) "
+                                        + "from surat_konsul_unit_ranap where waktu_simpan='" + wktSimpan + "'");
+                                jwbn = TJawaban.getText();
+                                
+                                isiJawab = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                                "Surat Konsul Antar Unit Rawat Inap", nmDokterJawab + " (JAWABAN)",
+                                                Sequel.cariIsi("select if(status_dijawab='Belum','',date_format(tgl_jawab,'%d/%m/%Y')) from surat_konsul_unit_ranap where "
+                                                        + "waktu_simpan='" + wktSimpan + "'"),
+                                                Sequel.cariIsi("select if(status_dijawab='Belum','',jam_jawab) from surat_konsul_unit_ranap where "
+                                                        + "waktu_simpan='" + wktSimpan + "'")) + "') from kalimat_tte where kode='001'");
+                                
+                                Valid.cetakQrTte(isiJawab, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat Konsul Antar Unit Rawat Inap", Sequel.cariFolderPrintTte());
+                                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                            }
+                            
+                            Sequel.queryu("update temporaryTTE set temp8='" + jwbn + "\n', temp9='" + nmDokterJawab + "', temp10='" + tglJawab + "'");
+                            Valid.MyReport("rptSuratKonsulRanapQr.jasper", "report", "::[ Cetak Surat Konsul Antar Unit Rawat Inap ]::",
+                                    "SELECT * from temporaryTTE", param);
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                            TCari.setText(TNoRW.getText());
+                            tbKonsul.requestFocus();
+                            emptTeks();
+                            tampil();
+                        }
+                    } else {
+                        if (sttsJawab.equals("BELUM")) {
+                            Valid.MyReport("rptSuratKonsulRanapKosong.jasper", "report", "::[ Cetak Surat Konsul Antar Unit Rawat Inap ]::",
+                                    "select *, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, date_format(sk.tgl_minta,'%d-%m-%Y') tglminta, "
+                                    + "time_format(sk.jam_minta,'%H:%i Wita') jamminta, sk.permintaan_konsul, d1.nm_dokter drMinta, sk.jawaban_konsul, "
+                                    + "if(sk.status_dijawab='Belum','TANGGAL : -, JAM : -',concat('TANGGAL : ',date_format(sk.tgl_jawab,'%d-%m-%Y'),', JAM : ',time_format(sk.jam_jawab,'%H:%i'),' Wita')) tgljawab, "
+                                    + "if(sk.status_dijawab='Belum','( ............................................ )',concat('(',d2.nm_dokter,')')) drJawab from surat_konsul_unit_ranap sk "
+                                    + "inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                                    + "inner join dokter d1 on d1.kd_dokter=sk.nip_dokter_minta inner join dokter d2 on d2.kd_dokter=sk.nip_dokter_jawab "
+                                    + "where sk.waktu_simpan='" + wktSimpan + "'", param);
+                        } else {
+                            Valid.MyReport("rptSuratKonsulRanap.jasper", "report", "::[ Cetak Surat Konsul Antar Unit Rawat Inap ]::",
+                                    "select *, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, date_format(sk.tgl_minta,'%d-%m-%Y') tglminta, "
+                                    + "time_format(sk.jam_minta,'%H:%i Wita') jamminta, sk.permintaan_konsul, d1.nm_dokter drMinta, sk.jawaban_konsul, "
+                                    + "if(sk.status_dijawab='Belum','TANGGAL : -, JAM : -',concat('TANGGAL : ',date_format(sk.tgl_jawab,'%d-%m-%Y'),', JAM : ',time_format(sk.jam_jawab,'%H:%i'),' Wita')) tgljawab, "
+                                    + "if(sk.status_dijawab='Belum','( ............................................ )',concat('(',d2.nm_dokter,')')) drJawab from surat_konsul_unit_ranap sk "
+                                    + "inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                                    + "inner join dokter d1 on d1.kd_dokter=sk.nip_dokter_minta inner join dokter d2 on d2.kd_dokter=sk.nip_dokter_jawab "
+                                    + "where sk.waktu_simpan='" + wktSimpan + "'", param);
+                        }
+                        TCari.setText(TNoRW.getText());
+                        tbKonsul.requestFocus();
+                        emptTeks();
+                        tampil();
+                    }
                     this.setCursor(Cursor.getDefaultCursor());
                 }
             } else {
@@ -998,6 +1089,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
     private widget.ComboBox cmbDtk;
     private widget.ComboBox cmbJam;
     private widget.ComboBox cmbMnt;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbUnitKe;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel10;
@@ -1012,6 +1104,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
     private widget.Label jLabel3;
     private widget.Label jLabel4;
     private widget.Label jLabel6;
+    private widget.Label jLabel63;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel9;

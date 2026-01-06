@@ -919,6 +919,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         tbHapus.setToolTipText("Silahkan klik/pilih salah satu data pada tabel utk. dihapus");
         tbHapus.setName("tbHapus"); // NOI18N
+        tbHapus.getTableHeader().setReorderingAllowed(false);
         Scroll3.setViewportView(tbHapus);
 
         internalFrame6.add(Scroll3, java.awt.BorderLayout.CENTER);
@@ -1040,7 +1041,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         internalFrame9.add(jLabel36);
         jLabel36.setBounds(0, 94, 150, 23);
 
-        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2025" }));
+        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2026" }));
         TtglCatat1.setDisplayFormat("dd-MM-yyyy");
         TtglCatat1.setName("TtglCatat1"); // NOI18N
         TtglCatat1.setOpaque(false);
@@ -1090,6 +1091,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         tbGanti.setToolTipText("Silahkan klik/pilih salah satu data pada tabel utk. diganti");
         tbGanti.setName("tbGanti"); // NOI18N
+        tbGanti.getTableHeader().setReorderingAllowed(false);
         tbGanti.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbGantiMouseClicked(evt);
@@ -1431,7 +1433,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         jLabel8.setBounds(0, 154, 120, 23);
 
         TtglCatat.setEditable(false);
-        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2025" }));
+        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2026" }));
         TtglCatat.setDisplayFormat("dd-MM-yyyy");
         TtglCatat.setName("TtglCatat"); // NOI18N
         TtglCatat.setOpaque(false);
@@ -1462,6 +1464,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         tbNumdenom.setToolTipText("Silahkan klik untuk memilih data");
         tbNumdenom.setComponentPopupMenu(jPopupMenu1);
         tbNumdenom.setName("tbNumdenom"); // NOI18N
+        tbNumdenom.getTableHeader().setReorderingAllowed(false);
         Scroll1.setViewportView(tbNumdenom);
 
         PanelInput.add(Scroll1);
@@ -1501,6 +1504,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         tbIndikator.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbIndikator.setComponentPopupMenu(jPopupMenu1);
         tbIndikator.setName("tbIndikator"); // NOI18N
+        tbIndikator.getTableHeader().setReorderingAllowed(false);
         tbIndikator.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbIndikatorMouseClicked(evt);
@@ -1524,6 +1528,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         tbPrioritas.setComponentPopupMenu(jPopupMenu2);
         tbPrioritas.setName("tbPrioritas"); // NOI18N
+        tbPrioritas.getTableHeader().setReorderingAllowed(false);
         Scroll2.setViewportView(tbPrioritas);
 
         panelGlass9.add(Scroll2);
@@ -1534,6 +1539,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         tbTotPrioritas.setComponentPopupMenu(jPopupMenu2);
         tbTotPrioritas.setName("tbTotPrioritas"); // NOI18N
+        tbTotPrioritas.getTableHeader().setReorderingAllowed(false);
         Scroll6.setViewportView(tbTotPrioritas);
 
         panelGlass9.add(Scroll6);
@@ -1549,6 +1555,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         tbNasional.setComponentPopupMenu(jPopupMenu3);
         tbNasional.setName("tbNasional"); // NOI18N
+        tbNasional.getTableHeader().setReorderingAllowed(false);
         Scroll5.setViewportView(tbNasional);
 
         panelGlass11.add(Scroll5);
@@ -1559,6 +1566,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         tbTotNasional.setComponentPopupMenu(jPopupMenu3);
         tbTotNasional.setName("tbTotNasional"); // NOI18N
+        tbTotNasional.getTableHeader().setReorderingAllowed(false);
         Scroll7.setViewportView(tbTotNasional);
 
         panelGlass11.add(Scroll7);
@@ -2573,7 +2581,8 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
             sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' ");
             sb.append("and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "' " + sttsData + " and m.tujuan_aktivasi='Input Data' ");
-            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
+            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung ");
+            sb.append("order by m.no_urut, mn.no_urut, CASE WHEN LOWER(mn.jenis_numdemon) = 'numerator' THEN 1 WHEN LOWER(mn.jenis_numdemon) = 'denominator' THEN 2 ELSE 3 END");
             ps = koneksi.prepareStatement(sb.toString());            
             try {
                 rs = ps.executeQuery();
@@ -3126,7 +3135,8 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
             sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
             sb.append("and m.jenis_indikator='Mutu Prioritas RS' " + sttsData + " and m.tujuan_aktivasi='Input Data' ");
-            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
+            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung ");
+            sb.append("order by m.no_urut, mn.no_urut, CASE WHEN LOWER(mn.jenis_numdemon) = 'numerator' THEN 1 WHEN LOWER(mn.jenis_numdemon) = 'denominator' THEN 2 ELSE 3 END");
             ps4 = koneksi.prepareStatement(sb.toString());
             try {
                 rs4 = ps4.executeQuery();
@@ -3510,7 +3520,8 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
             sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
             sb.append("and m.jenis_indikator='Mutu Nasional' " + sttsData + " and m.tujuan_aktivasi='Input Data' ");
-            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by inm.gedung, m.no_urut, mn.no_urut");
+            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung ");
+            sb.append("order by inm.gedung, m.no_urut, mn.no_urut, CASE WHEN LOWER(mn.jenis_numdemon) = 'numerator' THEN 1 WHEN LOWER(mn.jenis_numdemon) = 'denominator' THEN 2 ELSE 3 END");
             ps5 = koneksi.prepareStatement(sb.toString());
             try {
                 rs5 = ps5.executeQuery();

@@ -890,6 +890,7 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbIndikator.setName("tbIndikator"); // NOI18N
+        tbIndikator.getTableHeader().setReorderingAllowed(false);
         Scroll.setViewportView(tbIndikator);
 
         TabMutu.addTab("Indikator Mutu Pelayanan", Scroll);
@@ -903,6 +904,7 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
 
         tbPrioritas.setComponentPopupMenu(jPopupMenu1);
         tbPrioritas.setName("tbPrioritas"); // NOI18N
+        tbPrioritas.getTableHeader().setReorderingAllowed(false);
         Scroll2.setViewportView(tbPrioritas);
 
         panelGlass9.add(Scroll2);
@@ -913,6 +915,7 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
 
         tbTotPrioritas.setComponentPopupMenu(jPopupMenu1);
         tbTotPrioritas.setName("tbTotPrioritas"); // NOI18N
+        tbTotPrioritas.getTableHeader().setReorderingAllowed(false);
         Scroll6.setViewportView(tbTotPrioritas);
 
         panelGlass9.add(Scroll6);
@@ -928,6 +931,7 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
 
         tbNasional.setComponentPopupMenu(jPopupMenu2);
         tbNasional.setName("tbNasional"); // NOI18N
+        tbNasional.getTableHeader().setReorderingAllowed(false);
         Scroll5.setViewportView(tbNasional);
 
         panelGlass11.add(Scroll5);
@@ -938,6 +942,7 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
 
         tbTotNasional.setComponentPopupMenu(jPopupMenu2);
         tbTotNasional.setName("tbTotNasional"); // NOI18N
+        tbTotNasional.getTableHeader().setReorderingAllowed(false);
         Scroll7.setViewportView(tbTotNasional);
 
         panelGlass11.add(Scroll7);
@@ -1585,7 +1590,8 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
             sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' ");
             sb.append("and inm.gedung='" + cmbGedung.getSelectedItem().toString() + "' " + sttsData + " ");
             sb.append("and m.tujuan_aktivasi='" + cmbJnsData.getSelectedItem().toString() + "' ");
-            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
+            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung ");
+            sb.append("order by m.no_urut, mn.no_urut, CASE WHEN LOWER(mn.jenis_numdemon) = 'numerator' THEN 1 WHEN LOWER(mn.jenis_numdemon) = 'denominator' THEN 2 ELSE 3 END");
             ps = koneksi.prepareStatement(sb.toString());
             try {
                 rs = ps.executeQuery();
@@ -2005,7 +2011,8 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
             sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
             sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
             sb.append("and m.jenis_indikator='Mutu Prioritas RS' " + sttsData + " and m.tujuan_aktivasi='" + cmbJnsData.getSelectedItem().toString() + "' ");
-            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut, mn.no_urut");
+            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung ");
+            sb.append("order by m.no_urut, mn.no_urut, CASE WHEN LOWER(mn.jenis_numdemon) = 'numerator' THEN 1 WHEN LOWER(mn.jenis_numdemon) = 'denominator' THEN 2 ELSE 3 END");
             ps1 = koneksi.prepareStatement(sb.toString());
             try {
                 rs1 = ps1.executeQuery();
@@ -2391,7 +2398,8 @@ public class DlgLaporanIndikatorMutu extends javax.swing.JDialog {
             sb.append("inner join master_numdemon_indikator_nasional_mutu mn on mn.kd_numdemon=inm.kd_numdemon where ");
             sb.append("MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' " + pakaiGedung + " ");
             sb.append("and m.jenis_indikator='Mutu Nasional' " + sttsData + " and m.tujuan_aktivasi='" + cmbJnsData.getSelectedItem().toString() + "' ");
-            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by inm.gedung, m.no_urut, mn.no_urut");
+            sb.append("GROUP BY inm.kd_indikator, mn.kd_numdemon, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung ");
+            sb.append("order by inm.gedung, m.no_urut, mn.no_urut, CASE WHEN LOWER(mn.jenis_numdemon) = 'numerator' THEN 1 WHEN LOWER(mn.jenis_numdemon) = 'denominator' THEN 2 ELSE 3 END");
             ps2 = koneksi.prepareStatement(sb.toString());
             try {
                 rs2 = ps2.executeQuery();

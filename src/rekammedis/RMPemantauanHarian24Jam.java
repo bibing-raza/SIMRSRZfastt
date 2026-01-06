@@ -681,6 +681,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
 
         tbObat.setToolTipText("Silahkan klik untuk memilih data yang akan disimpan");
         tbObat.setName("tbObat"); // NOI18N
+        tbObat.getTableHeader().setReorderingAllowed(false);
         tbObat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbObatMouseClicked(evt);
@@ -760,7 +761,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(99, 23));
         internalFrame13.add(jLabel23);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-03-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-06-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -774,7 +775,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame13.add(jLabel25);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-03-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-06-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1044,7 +1045,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(0, 38, 110, 23);
 
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-03-2025" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-06-2025" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);
@@ -1847,6 +1848,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
 
         tbParental.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbParental.setName("tbParental"); // NOI18N
+        tbParental.getTableHeader().setReorderingAllowed(false);
         tbParental.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbParentalMouseClicked(evt);
@@ -1869,6 +1871,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         tbPantau.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPantau.setComponentPopupMenu(jPopupMenu1);
         tbPantau.setName("tbPantau"); // NOI18N
+        tbPantau.getTableHeader().setReorderingAllowed(false);
         tbPantau.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPantauMouseClicked(evt);
@@ -1893,6 +1896,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
 
         tbTotal.setToolTipText("");
         tbTotal.setName("tbTotal"); // NOI18N
+        tbTotal.getTableHeader().setReorderingAllowed(false);
         Scroll3.setViewportView(tbTotal);
 
         panelGlass11.add(Scroll3, java.awt.BorderLayout.PAGE_END);
@@ -2053,7 +2057,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel28);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-03-2025" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-06-2025" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -2067,7 +2071,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel29);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-03-2025" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-06-2025" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -2161,6 +2165,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
 
         tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
         tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.getTableHeader().setReorderingAllowed(false);
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCPPTMouseClicked(evt);

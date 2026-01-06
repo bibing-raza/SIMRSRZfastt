@@ -496,6 +496,8 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel79 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -644,6 +646,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
         tbTemplate.setName("tbTemplate"); // NOI18N
+        tbTemplate.getTableHeader().setReorderingAllowed(false);
         tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTemplateMouseClicked(evt);
@@ -824,6 +827,18 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnEdit);
+
+        jLabel79.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel79.setText("Cetak Dalam Bentuk :");
+        jLabel79.setName("jLabel79"); // NOI18N
+        jLabel79.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel79);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -1157,7 +1172,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel58.setBounds(0, 328, 130, 23);
 
         TglBeriTindakan.setEditable(false);
-        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2025" }));
         TglBeriTindakan.setDisplayFormat("dd-MM-yyyy");
         TglBeriTindakan.setName("TglBeriTindakan"); // NOI18N
         TglBeriTindakan.setOpaque(false);
@@ -1292,6 +1307,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(jLabel62);
         jLabel62.setBounds(0, 455, 130, 23);
 
+        scrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane3.setName("scrollPane3"); // NOI18N
 
         TDiagKerja.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1309,6 +1325,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(scrollPane3);
         scrollPane3.setBounds(136, 440, 630, 80);
 
+        scrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane4.setName("scrollPane4"); // NOI18N
 
         TDasarDiag.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1332,6 +1349,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(jLabel63);
         jLabel63.setBounds(0, 526, 130, 23);
 
+        scrollPane5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane5.setName("scrollPane5"); // NOI18N
 
         Ttindakan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1355,6 +1373,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(jLabel64);
         jLabel64.setBounds(0, 612, 130, 23);
 
+        scrollPane6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane6.setName("scrollPane6"); // NOI18N
 
         Tindikasi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1378,6 +1397,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(jLabel65);
         jLabel65.setBounds(0, 698, 130, 23);
 
+        scrollPane7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane7.setName("scrollPane7"); // NOI18N
 
         Ttatacara.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1401,6 +1421,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(jLabel66);
         jLabel66.setBounds(0, 784, 130, 23);
 
+        scrollPane8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane8.setName("scrollPane8"); // NOI18N
 
         Ttujuan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1430,6 +1451,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(jLabel68);
         jLabel68.setBounds(0, 956, 130, 23);
 
+        scrollPane9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane9.setName("scrollPane9"); // NOI18N
 
         Tresiko.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1453,6 +1475,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(jLabel69);
         jLabel69.setBounds(0, 1042, 130, 23);
 
+        scrollPane10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane10.setName("scrollPane10"); // NOI18N
 
         Tkomplikasi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1476,6 +1499,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(jLabel70);
         jLabel70.setBounds(0, 1128, 130, 23);
 
+        scrollPane11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane11.setName("scrollPane11"); // NOI18N
 
         Tprognosis.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1499,6 +1523,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(jLabel71);
         jLabel71.setBounds(0, 1214, 130, 23);
 
+        scrollPane12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane12.setName("scrollPane12"); // NOI18N
 
         Talternatif.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1522,6 +1547,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(jLabel72);
         jLabel72.setBounds(0, 1300, 130, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
 
         Tlain.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1541,7 +1567,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel73.setBounds(0, 216, 130, 23);
 
         TglSetuju.setEditable(false);
-        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2025" }));
         TglSetuju.setDisplayFormat("dd-MM-yyyy");
         TglSetuju.setName("TglSetuju"); // NOI18N
         TglSetuju.setOpaque(false);
@@ -1609,7 +1635,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel75.setBounds(0, 244, 130, 23);
 
         TglTolak.setEditable(false);
-        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2025" }));
         TglTolak.setDisplayFormat("dd-MM-yyyy");
         TglTolak.setName("TglTolak"); // NOI18N
         TglTolak.setOpaque(false);
@@ -1918,6 +1944,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         tbTindakan.setAutoCreateRowSorter(true);
         tbTindakan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbTindakan.setName("tbTindakan"); // NOI18N
+        tbTindakan.getTableHeader().setReorderingAllowed(false);
         tbTindakan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTindakanMouseClicked(evt);
@@ -1943,7 +1970,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1958,7 +1985,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2172,19 +2199,49 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                         + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
                         + "WHERE s.waktu_simpan='" + wktSimpan + "' and s.jns_surat='" + cmbTindakan.getSelectedItem() + "'", param);
             }
-            
-            Valid.MyReport("rptBeriInfoTindakan.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
-                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
-                    + "s.penerima_info, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, "
-                    + "s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, s.isi_info_alternatif, s.isi_info_lainlain, "
-                    + "time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo FROM surat_tindakan_kedokteran s INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat "
-                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana "
-                    + "INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info where s.waktu_simpan='" + wktSimpan + "'", param);
 
-            this.setCursor(Cursor.getDefaultCursor());
-            TCari.setText(TNoRw.getText());
-            tampil();
-            BtnBatalActionPerformed(null);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (nip_pemberi.getText().equals("") || nip_pemberi.getText().equals("-") || nip_pemberi.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama pemberi informasi harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Pemberian Informasi Tindakan", nmpemberi.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from surat_tindakan_kedokteran where "
+                                            + "waktu_simpan='" + wktSimpan + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from surat_tindakan_kedokteran where "
+                                            + "waktu_simpan='" + wktSimpan + "'")) + "') from kalimat_tte where kode='001'");
+                    
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Pemberian Informasi Tindakan", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                    Valid.MyReport("rptBeriInfoTindakanQr.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
+                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
+                            + "s.penerima_info, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, "
+                            + "s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, s.isi_info_alternatif, s.isi_info_lainlain, "
+                            + "time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo FROM surat_tindakan_kedokteran s INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat "
+                            + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana "
+                            + "INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info where s.waktu_simpan='" + wktSimpan + "'", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                Valid.MyReport("rptBeriInfoTindakan.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
+                        "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
+                        + "s.penerima_info, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, "
+                        + "s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, s.isi_info_alternatif, s.isi_info_lainlain, "
+                        + "time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo FROM surat_tindakan_kedokteran s INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana "
+                        + "INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info where s.waktu_simpan='" + wktSimpan + "'", param);
+                
+                TCari.setText(TNoRw.getText());
+                tampil();
+                BtnBatalActionPerformed(null);
+            }
+            this.setCursor(Cursor.getDefaultCursor());           
         }
 }//GEN-LAST:event_BtnPrintActionPerformed
 
@@ -3110,6 +3167,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private widget.CekBox chkSamaNama;
     private widget.CekBox chkSamaPelaksana;
     public widget.ComboBox cmbKategori;
+    private widget.ComboBox cmbPilihCetak;
     public widget.ComboBox cmbTindakan;
     private widget.ComboBox hubungan;
     private widget.InternalFrame internalFrame1;
@@ -3154,6 +3212,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private widget.Label jLabel76;
     private widget.Label jLabel77;
     private widget.Label jLabel78;
+    private widget.Label jLabel79;
     private javax.swing.JPanel jPanel1;
     private widget.ComboBox jkPJ;
     public widget.TextBox kddokter_pelaksana;
