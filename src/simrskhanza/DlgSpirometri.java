@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,7 +42,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
     private int i = 0, x = 0;
-    private String kodedok = "";
+    private String kodedok = "", tte = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -172,7 +173,9 @@ public class DlgSpirometri extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnCetakHasil = new javax.swing.JMenuItem();
+        MnCetakHasil = new javax.swing.JMenu();
+        MnTTD = new javax.swing.JMenuItem();
+        MnTTE = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -253,19 +256,46 @@ public class DlgSpirometri extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnCetakHasil.setBackground(new java.awt.Color(255, 255, 254));
-        MnCetakHasil.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCetakHasil.setText("Cetak Hasil Pemeriksaan");
+        MnCetakHasil.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakHasil.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnCetakHasil.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCetakHasil.setIconTextGap(5);
         MnCetakHasil.setName("MnCetakHasil"); // NOI18N
+        MnCetakHasil.setOpaque(true);
         MnCetakHasil.setPreferredSize(new java.awt.Dimension(190, 26));
-        MnCetakHasil.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTD.setText("TTD Basah");
+        MnTTD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTD.setIconTextGap(5);
+        MnTTD.setName("MnTTD"); // NOI18N
+        MnTTD.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCetakHasilActionPerformed(evt);
+                MnTTDActionPerformed(evt);
             }
         });
+        MnCetakHasil.add(MnTTD);
+
+        MnTTE.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTE.setText("TTE (QRCode)");
+        MnTTE.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTE.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTE.setIconTextGap(5);
+        MnTTE.setName("MnTTE"); // NOI18N
+        MnTTE.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEActionPerformed(evt);
+            }
+        });
+        MnCetakHasil.add(MnTTE);
+
         jPopupMenu1.add(MnCetakHasil);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -411,7 +441,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel29);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -425,7 +455,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel30);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -620,6 +650,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         FormInput.add(jLabel14);
         jLabel14.setBounds(0, 94, 140, 23);
 
+        scrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane2.setName("scrollPane2"); // NOI18N
 
         Tkeluhan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -869,7 +900,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel26.setBounds(700, 178, 100, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2023" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -894,6 +925,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         FormInput.add(jLabel27);
         jLabel27.setBounds(0, 226, 140, 23);
 
+        scrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane3.setName("scrollPane3"); // NOI18N
 
         Tkesimpulan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -944,6 +976,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         tbSpirometri.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbSpirometri.setComponentPopupMenu(jPopupMenu1);
         tbSpirometri.setName("tbSpirometri"); // NOI18N
+        tbSpirometri.getTableHeader().setReorderingAllowed(false);
         tbSpirometri.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbSpirometriMouseClicked(evt);
@@ -1230,7 +1263,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         tampil();
     }//GEN-LAST:event_formWindowOpened
 
-    private void MnCetakHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakHasilActionPerformed
+    private void MnTTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDActionPerformed
         if (tabMode.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
             TCari.requestFocus();
@@ -1240,80 +1273,27 @@ public class DlgSpirometri extends javax.swing.JDialog {
         } else if (Sequel.cariInteger("select count(-1) from spirometri where no_rawat='" + TNoRw.getText() + "'") == 0) {
             JOptionPane.showMessageDialog(null, "Data hasil pemeriksaan spirometri pasien An. " + TPasien.getText() + " belum tersimpan...!!!!");
         } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
-
-            try {
-                ps1 = koneksi.prepareStatement("select s.tmpt_pemeriksaan, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jk, "
-                        + "concat(rp.umurdaftar,' ',rp.sttsumur) usia, concat(if(s.tb='','-',s.tb),' Cm.') tb, concat(if(s.bb='','-',s.bb),' Kg.') bb, s.keluhan, "
-                        + "s.kebiasaan_merokok, s.riwayat_asma, s.pengukuran_vc, s.pengukuran_fvc, s.pengukuran_fev1, s.pengukuran_fev1_fvc, "
-                        + "s.prediksi_vc, s.prediksi_fvc, s.prediksi_fev1, s.prediksi_fev1_fvc, s.persen_vc, s.persen_fvc, s.persen_fev1, "
-                        + "s.persen_fev1_fvc, s.kesimpulan, pg.nama nmdokter, s.tgl_periksa, s.tgl_habis_berlaku from spirometri s "
-                        + "inner join reg_periksa rp on rp.no_rawat=s.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "inner join pegawai pg on pg.nik=s.kd_dokter where s.no_rawat='" + TNoRw.getText() + "'");
-                try {
-                    rs1 = ps1.executeQuery();
-                    if (rs1.next()) {
-                        param.put("tmpt_periksa", rs1.getString("tmpt_pemeriksaan"));
-                        param.put("norm", rs1.getString("no_rkm_medis"));
-                        param.put("nmpasien", rs1.getString("nm_pasien"));
-                        param.put("jenkel", rs1.getString("jk"));
-                        param.put("usia", rs1.getString("usia"));
-                        param.put("tb", rs1.getString("tb"));
-                        param.put("bb", rs1.getString("bb"));
-                        
-                        param.put("keluhan", rs1.getString("keluhan"));
-                        param.put("kebiasaan_merokok", rs1.getString("kebiasaan_merokok"));
-                        param.put("riwayat_asma", rs1.getString("riwayat_asma"));
-                        
-                        param.put("ukur_vc", rs1.getString("pengukuran_vc"));
-                        param.put("ukur_fvc", rs1.getString("pengukuran_fvc"));
-                        param.put("ukur_fev1", rs1.getString("pengukuran_fev1"));
-                        param.put("ukur_fev1fvc", rs1.getString("pengukuran_fev1_fvc"));
-                        
-                        param.put("pred_vc", rs1.getString("prediksi_vc"));
-                        param.put("pred_fvc", rs1.getString("prediksi_fvc"));
-                        param.put("pred_fev1", rs1.getString("prediksi_fev1"));
-                        param.put("pred_fev1fvc", rs1.getString("prediksi_fev1_fvc"));
-                        
-                        param.put("persen_vc", rs1.getString("persen_vc"));
-                        param.put("persen_fvc", rs1.getString("persen_fvc"));
-                        param.put("persen_fev1", rs1.getString("persen_fev1"));
-                        param.put("persen_fev1fvc", rs1.getString("persen_fev1_fvc"));
-                        
-                        param.put("kesimpulan", rs1.getString("kesimpulan")+"\n\n");
-                        param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(rs1.getString("tgl_periksa")));
-                        param.put("tglberlaku", Valid.SetTglINDONESIA(rs1.getString("tgl_habis_berlaku")));
-                        param.put("nmdokter", rs1.getString("nmdokter"));
-                    }
-                } catch (Exception e) {
-                    System.out.println("Notif : " + e);
-                } finally {
-                    if (rs1 != null) {
-                        rs1.close();
-                    }
-                    if (ps1 != null) {
-                        ps1.close();
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println("Notif : " + e);
-            }
-
-            Valid.MyReport("rptSpirometri.jasper", "report", "::[ Laporan Hasil Pemeriksaan Spirometri ]::",
-                    "select date(now())", param);
-            tampil();
-            emptTeks();
-            this.setCursor(Cursor.getDefaultCursor());
+            tte = "";
+            tte = "tidak";
+            cetak();
         }
-    }//GEN-LAST:event_MnCetakHasilActionPerformed
+    }//GEN-LAST:event_MnTTDActionPerformed
+
+    private void MnTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan klik salah satu datanya pada tabel...!!!!");
+            tbSpirometri.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from spirometri where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data hasil pemeriksaan spirometri pasien An. " + TPasien.getText() + " belum tersimpan...!!!!");
+        } else {
+            tte = "";
+            tte = "ya";
+            cetak();
+        }
+    }//GEN-LAST:event_MnTTEActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1344,7 +1324,9 @@ public class DlgSpirometri extends javax.swing.JDialog {
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormInput;
     private widget.Label LCount;
-    private javax.swing.JMenuItem MnCetakHasil;
+    private javax.swing.JMenu MnCetakHasil;
+    private javax.swing.JMenuItem MnTTD;
+    private javax.swing.JMenuItem MnTTE;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;
@@ -1656,5 +1638,107 @@ public class DlgSpirometri extends javax.swing.JDialog {
         Ttb.requestFocus();
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select ifnull(tgl_periksa,date(now())) from spirometri where no_rawat='" + norw + "'"));
         TtglBerlaku.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select DATE_ADD('" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "',interval 181 day)")) + "");
+    }
+    
+    private void cetak() {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+
+        try {
+            ps1 = koneksi.prepareStatement("select s.tmpt_pemeriksaan, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jk, "
+                    + "concat(rp.umurdaftar,' ',rp.sttsumur) usia, concat(if(s.tb='','-',s.tb),' Cm.') tb, concat(if(s.bb='','-',s.bb),' Kg.') bb, s.keluhan, "
+                    + "s.kebiasaan_merokok, s.riwayat_asma, s.pengukuran_vc, s.pengukuran_fvc, s.pengukuran_fev1, s.pengukuran_fev1_fvc, "
+                    + "s.prediksi_vc, s.prediksi_fvc, s.prediksi_fev1, s.prediksi_fev1_fvc, s.persen_vc, s.persen_fvc, s.persen_fev1, "
+                    + "s.persen_fev1_fvc, s.kesimpulan, pg.nama nmdokter, s.tgl_periksa, s.tgl_habis_berlaku, s.kd_dokter, "
+                    + "date_format(tgl_periksa,'%d/%m/%Y') tgl, rp.jam_reg from spirometri s "
+                    + "inner join reg_periksa rp on rp.no_rawat=s.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai pg on pg.nik=s.kd_dokter where s.no_rawat='" + TNoRw.getText() + "'");
+            try {
+                rs1 = ps1.executeQuery();
+                if (rs1.next()) {
+                    param.put("tmpt_periksa", rs1.getString("tmpt_pemeriksaan"));
+                    param.put("norm", rs1.getString("no_rkm_medis"));
+                    param.put("nmpasien", rs1.getString("nm_pasien"));
+                    param.put("jenkel", rs1.getString("jk"));
+                    param.put("usia", rs1.getString("usia"));
+                    param.put("tb", rs1.getString("tb"));
+                    param.put("bb", rs1.getString("bb"));
+
+                    param.put("keluhan", rs1.getString("keluhan"));
+                    param.put("kebiasaan_merokok", rs1.getString("kebiasaan_merokok"));
+                    param.put("riwayat_asma", rs1.getString("riwayat_asma"));
+
+                    param.put("ukur_vc", rs1.getString("pengukuran_vc"));
+                    param.put("ukur_fvc", rs1.getString("pengukuran_fvc"));
+                    param.put("ukur_fev1", rs1.getString("pengukuran_fev1"));
+                    param.put("ukur_fev1fvc", rs1.getString("pengukuran_fev1_fvc"));
+
+                    param.put("pred_vc", rs1.getString("prediksi_vc"));
+                    param.put("pred_fvc", rs1.getString("prediksi_fvc"));
+                    param.put("pred_fev1", rs1.getString("prediksi_fev1"));
+                    param.put("pred_fev1fvc", rs1.getString("prediksi_fev1_fvc"));
+
+                    param.put("persen_vc", rs1.getString("persen_vc"));
+                    param.put("persen_fvc", rs1.getString("persen_fvc"));
+                    param.put("persen_fev1", rs1.getString("persen_fev1"));
+                    param.put("persen_fev1fvc", rs1.getString("persen_fev1_fvc"));
+
+                    param.put("kesimpulan", rs1.getString("kesimpulan") + "\n\n");
+                    param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(rs1.getString("tgl_periksa")));
+                    param.put("tglberlaku", Valid.SetTglINDONESIA(rs1.getString("tgl_habis_berlaku")));
+                    param.put("nmdokter", rs1.getString("nmdokter"));
+                }
+
+                if (tte.equals("tidak")) {
+                    Valid.MyReport("rptSpirometri.jasper", "report", "::[ Laporan Hasil Pemeriksaan Spirometri ]::",
+                            "select date(now())", param);
+
+                    tampil();
+                    emptTeks();
+                } else if (tte.equals("ya")) {
+                    String isi = "";
+                    if (rs1.getString("kd_dokter").equals("") || rs1.getString("kd_dokter").equals("-") || rs1.getString("kd_dokter").equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama dokter yang mengetahui harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Hasil Pemeriksaan Spirometri", rs1.getString("nmdokter"),
+                                        rs1.getString("tgl"), rs1.getString("jam_reg")) + "') from kalimat_tte where kode='001'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Hasil Pemeriksaan", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                        Valid.MyReport("rptSpirometriQr.jasper", "report", "::[ Laporan Hasil Pemeriksaan Spirometri ]::",
+                                "select date(now())", param);
+
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        tampil();
+                        emptTeks();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : " + e);
+        }
+        this.setCursor(Cursor.getDefaultCursor());
     }
 }

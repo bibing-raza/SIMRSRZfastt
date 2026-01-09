@@ -22,6 +22,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -59,7 +60,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
     private PreparedStatement ps, ps3;
     private ResultSet rs;
     private int x = 0;
-    private String sql = " pasien_mati.no_rkm_medis=pasien.no_rkm_medis  ", umur = "0", nipDokter = "",
+    private String sql = " pasien_mati.no_rkm_medis=pasien.no_rkm_medis  ", umur = "0", nipDokter = "", tte = "", isi = "",
             sttsumur = "Th", a, b, noSurat = "", regBulan = "", thmati = "", blmati = "", noRwNew = "", URUTNOREG = "", aktifjadwal = "";
     private String now = dateformat.format(date), timeIn = timeFormat.format(date);
     private double cek = 0, pasienIGD = 0;
@@ -409,8 +410,12 @@ public class DlgPasienMati extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnCetakSuratMati = new javax.swing.JMenuItem();
-        MnFormulirKematian = new javax.swing.JMenuItem();
+        MnCetakSuratMati = new javax.swing.JMenu();
+        MnTTDsm = new javax.swing.JMenuItem();
+        MnTTEsm = new javax.swing.JMenuItem();
+        MnFormulirKematian = new javax.swing.JMenu();
+        MnTTDfk = new javax.swing.JMenuItem();
+        MnTTEfk = new javax.swing.JMenuItem();
         MnTindakan = new javax.swing.JMenuItem();
         MnNomorSurat = new javax.swing.JMenuItem();
         MnRegistrasikan = new javax.swing.JMenuItem();
@@ -488,28 +493,88 @@ public class DlgPasienMati extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnCetakSuratMati.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakSuratMati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCetakSuratMati.setText("Surat Kematian");
+        MnCetakSuratMati.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakSuratMati.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCetakSuratMati.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCetakSuratMati.setIconTextGap(5);
         MnCetakSuratMati.setName("MnCetakSuratMati"); // NOI18N
+        MnCetakSuratMati.setOpaque(true);
         MnCetakSuratMati.setPreferredSize(new java.awt.Dimension(250, 28));
-        MnCetakSuratMati.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTDsm.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDsm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTDsm.setText("TTD Basah");
+        MnTTDsm.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDsm.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDsm.setIconTextGap(5);
+        MnTTDsm.setName("MnTTDsm"); // NOI18N
+        MnTTDsm.setPreferredSize(new java.awt.Dimension(120, 25));
+        MnTTDsm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCetakSuratMatiActionPerformed(evt);
+                MnTTDsmActionPerformed(evt);
             }
         });
+        MnCetakSuratMati.add(MnTTDsm);
+
+        MnTTEsm.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEsm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTEsm.setText("TTE (QRCode)");
+        MnTTEsm.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEsm.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEsm.setIconTextGap(5);
+        MnTTEsm.setName("MnTTEsm"); // NOI18N
+        MnTTEsm.setPreferredSize(new java.awt.Dimension(120, 25));
+        MnTTEsm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEsmActionPerformed(evt);
+            }
+        });
+        MnCetakSuratMati.add(MnTTEsm);
+
         jPopupMenu1.add(MnCetakSuratMati);
 
-        MnFormulirKematian.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnFormulirKematian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnFormulirKematian.setText("Formulir Keterangan Penyebab Kematian");
+        MnFormulirKematian.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnFormulirKematian.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnFormulirKematian.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnFormulirKematian.setIconTextGap(5);
         MnFormulirKematian.setName("MnFormulirKematian"); // NOI18N
+        MnFormulirKematian.setOpaque(true);
         MnFormulirKematian.setPreferredSize(new java.awt.Dimension(250, 28));
-        MnFormulirKematian.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTDfk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDfk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTDfk.setText("TTD Basah");
+        MnTTDfk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDfk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDfk.setIconTextGap(5);
+        MnTTDfk.setName("MnTTDfk"); // NOI18N
+        MnTTDfk.setPreferredSize(new java.awt.Dimension(120, 25));
+        MnTTDfk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnFormulirKematianActionPerformed(evt);
+                MnTTDfkActionPerformed(evt);
             }
         });
+        MnFormulirKematian.add(MnTTDfk);
+
+        MnTTEfk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEfk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTEfk.setText("TTE (QRCode)");
+        MnTTEfk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEfk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEfk.setIconTextGap(5);
+        MnTTEfk.setName("MnTTEfk"); // NOI18N
+        MnTTEfk.setPreferredSize(new java.awt.Dimension(120, 25));
+        MnTTEfk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEfkActionPerformed(evt);
+            }
+        });
+        MnFormulirKematian.add(MnTTEfk);
+
         jPopupMenu1.add(MnFormulirKematian);
 
         MnTindakan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -604,6 +669,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
         tbMati.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbMati.setComponentPopupMenu(jPopupMenu1);
         tbMati.setName("tbMati"); // NOI18N
+        tbMati.getTableHeader().setReorderingAllowed(false);
         tbMati.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbMatiMouseClicked(evt);
@@ -838,7 +904,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
         TPasien.setBounds(203, 40, 390, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1024,7 +1090,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
         jLabel16.setBounds(650, 10, 80, 23);
 
         Tgl1.setEditable(false);
-        Tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2025" }));
+        Tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
         Tgl1.setDisplayFormat("dd-MM-yyyy");
         Tgl1.setName("Tgl1"); // NOI18N
         Tgl1.setOpaque(false);
@@ -1044,7 +1110,7 @@ public class DlgPasienMati extends javax.swing.JDialog {
         jLabel17.setBounds(827, 10, 30, 23);
 
         Tgl2.setEditable(false);
-        Tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2025" }));
+        Tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
         Tgl2.setDisplayFormat("dd-MM-yyyy");
         Tgl2.setName("Tgl2"); // NOI18N
         Tgl2.setOpaque(false);
@@ -1606,57 +1672,6 @@ public class DlgPasienMati extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_tbMatiKeyPressed
 
-private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakSuratMatiActionPerformed
-    if (TPasien.getText().trim().equals("")) {
-        JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
-    } else {
-        if (tbMati.getSelectedRow() > -1) {
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("tgl_surat", Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
-            param.put("tgl_lahir", Sequel.cariIsi("select tmp_lahir from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + ", "
-                    + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_lahir from pasien where no_rkm_medis='" + TNoRM.getText() + "'")));
-            
-            if (nipDokter.equals("-")) {
-                param.put("nmdokter", "");
-                param.put("nipdokter", "");
-            } else {
-                param.put("nmdokter", Tdokter.getText());
-                param.put("nipdokter", "NIP/NR. " + nipDokter);
-            }
-            
-            Valid.MyReport("rptSuratKematian.jasper", "report", "::[ Surat Keterangan Kematian ]::",
-                    " SELECT pasien_mati.tanggal, pasien_mati.jam, pasien_mati.no_rkm_medis, "
-                    + " pasien.nm_pasien, TIMESTAMPDIFF(Year,pasien.tgl_lahir,CURDATE()) as umur_thn, "
-                    + " TIMESTAMPDIFF(MONTH,pasien.tgl_lahir,CURDATE()) % 12 as umur_bln, "
-                    + " FLOOR( TIMESTAMPDIFF( DAY, pasien.tgl_lahir, CURDATE() ) % 30.4375 ) as umur_hari, "
-                    + " pasien.alamat, pasien.no_ktp, "
-                    + " pasien.no_tlp, if(jk = 'L','Laki-laki','Perempuan') AS Kelamin, "
-                    + " pasien.gol_darah, pasien.stts_nikah, pasien.agama, pasien_mati.keterangan, "
-                    + " kelurahan.nm_kel, kecamatan.nm_kec, kabupaten.nm_kab, "
-                    + " ifnull(pasien_mati.no_surat,'.....') nosurat, ifnull(pasien_mati.reg_bulan,'.....') noregbulan "
-                    + " FROM pasien_mati, pasien "
-                    + " INNER JOIN kabupaten ON kabupaten.kd_kab = pasien.kd_kab "
-                    + " INNER JOIN kecamatan ON kecamatan.kd_kec = pasien.kd_kec "
-                    + " INNER JOIN kelurahan ON kelurahan.kd_kel = pasien.kd_kel "
-                    + " WHERE pasien_mati.no_rkm_medis = pasien.no_rkm_medis "
-                    + " and pasien_mati.no_rkm_medis='" + TNoRM.getText() + "' ", param);
-
-            tampil();
-            emptTeks();
-        } else {
-            JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
-            tbMati.requestFocus();
-        }
-    }
-}//GEN-LAST:event_MnCetakSuratMatiActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
     }//GEN-LAST:event_formWindowOpened
@@ -1711,58 +1726,6 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
     private void tmptmeninggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tmptmeninggalKeyPressed
         Valid.pindah(evt, cmbDtk, TNoRM);
     }//GEN-LAST:event_tmptmeninggalKeyPressed
-
-    private void MnFormulirKematianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnFormulirKematianActionPerformed
-        if (TPasien.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
-        } else {
-            if (tbMati.getSelectedRow() > -1) {
-                Map<String, Object> param = new HashMap<>();
-                param.put("namars", akses.getnamars());
-                param.put("alamatrs", akses.getalamatrs());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("propinsirs", akses.getpropinsirs());
-                param.put("kontakrs", akses.getkontakrs());
-                param.put("emailrs", akses.getemailrs());
-                param.put("logo", Sequel.cariGambar("select logo from setting"));
-                param.put("tgl_surat", Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
-                
-                if (nipDokter.equals("-")) {
-                    param.put("nmdokter", "");
-                    param.put("nipdokter", "");
-                } else {
-                    param.put("nmdokter", Tdokter.getText());
-                    param.put("nipdokter", "NIP/NR. " + nipDokter);
-                }
-
-                Valid.MyReport("rptFormulirKematianRM.jasper", "report", "::[ Surat Kematian Untuk KELUARGA PASIEN ]::",
-                        " SELECT pasien_mati.tanggal, pasien_mati.jam, pasien_mati.no_rkm_medis, "
-                        + " pasien.nm_pasien, TIMESTAMPDIFF(Year,pasien.tgl_lahir,CURDATE()) as umur_thn, "
-                        + " TIMESTAMPDIFF(MONTH,pasien.tgl_lahir,CURDATE()) % 12 as umur_bln, "
-                        + " FLOOR( TIMESTAMPDIFF( DAY, pasien.tgl_lahir, CURDATE() ) % 30.4375 ) as umur_hari, "
-                        + " pasien.alamat, pasien.no_ktp, pasien.no_tlp, "
-                        + " if(jk = 'L','Laki-laki','Perempuan') AS Kelamin, pasien.tmp_lahir, "
-                        + " DATE_FORMAT(pasien.tgl_lahir,'%d') AS tgl_lahir, "
-                        + " DATE_FORMAT(pasien.tgl_lahir,'%m') AS bln_lahir, "
-                        + " DATE_FORMAT(pasien.tgl_lahir,'%Y') AS thn_lahir, "
-                        + " pasien.gol_darah, pasien.stts_nikah, pasien.agama, pasien_mati.keterangan, "
-                        + " kelurahan.nm_kel, kecamatan.nm_kec, kabupaten.nm_kab, "
-                        + " ifnull(pasien_mati.no_surat,'.....') nosurat, ifnull(pasien_mati.reg_bulan,'.....') noregbulan "
-                        + " FROM pasien_mati, pasien "
-                        + " INNER JOIN kabupaten ON kabupaten.kd_kab = pasien.kd_kab "
-                        + " INNER JOIN kecamatan ON kecamatan.kd_kec = pasien.kd_kec "
-                        + " INNER JOIN kelurahan ON kelurahan.kd_kel = pasien.kd_kel "
-                        + " WHERE pasien_mati.no_rkm_medis = pasien.no_rkm_medis "
-                        + " and pasien_mati.no_rkm_medis='" + TNoRM.getText() + "' ", param);
-
-                tampil();
-                emptTeks();
-            } else {
-                JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
-                tbMati.requestFocus();
-            }
-        }
-    }//GEN-LAST:event_MnFormulirKematianActionPerformed
 
     private void Tgl1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tgl1KeyPressed
         // TODO add your handling code here:
@@ -1991,6 +1954,46 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
         }
     }//GEN-LAST:event_MnRegistrasikanActionPerformed
 
+    private void MnTTDsmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDsmActionPerformed
+        if (TPasien.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
+        } else {
+            tte = "";
+            tte = "tidak";
+            cetakMnCetakSuratMati();
+        }
+    }//GEN-LAST:event_MnTTDsmActionPerformed
+
+    private void MnTTEsmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEsmActionPerformed
+        if (TPasien.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
+        } else {
+            tte = "";
+            tte = "ya";
+            cetakMnCetakSuratMati();
+        }
+    }//GEN-LAST:event_MnTTEsmActionPerformed
+
+    private void MnTTDfkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDfkActionPerformed
+        if (TPasien.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
+        } else {
+            tte = "";
+            tte = "tidak";
+            cetakMnFormulirKematian();
+        }
+    }//GEN-LAST:event_MnTTDfkActionPerformed
+
+    private void MnTTEfkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEfkActionPerformed
+        if (TPasien.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
+        } else {
+            tte = "";
+            tte = "ya";
+            cetakMnFormulirKematian();
+        }
+    }//GEN-LAST:event_MnTTEfkActionPerformed
+
     private void TNoRegKeyPressed(java.awt.event.KeyEvent evt) {
         // TODO add your handling code here:
     }
@@ -2027,10 +2030,14 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
     private widget.Tanggal DTPTgl;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnAngkutJenazah;
-    private javax.swing.JMenuItem MnCetakSuratMati;
-    private javax.swing.JMenuItem MnFormulirKematian;
+    private javax.swing.JMenu MnCetakSuratMati;
+    private javax.swing.JMenu MnFormulirKematian;
     private javax.swing.JMenuItem MnNomorSurat;
     private javax.swing.JMenuItem MnRegistrasikan;
+    private javax.swing.JMenuItem MnTTDfk;
+    private javax.swing.JMenuItem MnTTDsm;
+    private javax.swing.JMenuItem MnTTEfk;
+    private javax.swing.JMenuItem MnTTEsm;
     private javax.swing.JMenuItem MnTindakan;
     private widget.ScrollPane Scroll;
     private widget.TextBox StatusReg;
@@ -2460,5 +2467,175 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
         JOptionPane.showMessageDialog(null, "Penomoran surat kematian berhasil tersimpan....");
         tampil();
         emptTeks();
+    }
+    
+    private void cetakMnCetakSuratMati() {
+        if (tbMati.getSelectedRow() > -1) {
+            isi = "";
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("tgl_surat", Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
+            param.put("tgl_lahir", Sequel.cariIsi("select tmp_lahir from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + ", "
+                    + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_lahir from pasien where no_rkm_medis='" + TNoRM.getText() + "'")));
+
+            if (nipDokter.equals("-")) {
+                param.put("nmdokter", "");
+                param.put("nipdokter", "");
+            } else {
+                param.put("nmdokter", Tdokter.getText());
+                param.put("nipdokter", "NIP/NR. " + nipDokter);
+            }
+
+            if (tte.equals("tidak")) {
+                Valid.MyReport("rptSuratKematian.jasper", "report", "::[ Surat Keterangan Kematian ]::",
+                        " SELECT pasien_mati.tanggal, pasien_mati.jam, pasien_mati.no_rkm_medis, "
+                        + " pasien.nm_pasien, TIMESTAMPDIFF(Year,pasien.tgl_lahir,CURDATE()) as umur_thn, "
+                        + " TIMESTAMPDIFF(MONTH,pasien.tgl_lahir,CURDATE()) % 12 as umur_bln, "
+                        + " FLOOR( TIMESTAMPDIFF( DAY, pasien.tgl_lahir, CURDATE() ) % 30.4375 ) as umur_hari, "
+                        + " pasien.alamat, pasien.no_ktp, "
+                        + " pasien.no_tlp, if(jk = 'L','Laki-laki','Perempuan') AS Kelamin, "
+                        + " pasien.gol_darah, pasien.stts_nikah, pasien.agama, pasien_mati.keterangan, "
+                        + " kelurahan.nm_kel, kecamatan.nm_kec, kabupaten.nm_kab, "
+                        + " ifnull(pasien_mati.no_surat,'.....') nosurat, ifnull(pasien_mati.reg_bulan,'.....') noregbulan "
+                        + " FROM pasien_mati, pasien "
+                        + " INNER JOIN kabupaten ON kabupaten.kd_kab = pasien.kd_kab "
+                        + " INNER JOIN kecamatan ON kecamatan.kd_kec = pasien.kd_kec "
+                        + " INNER JOIN kelurahan ON kelurahan.kd_kel = pasien.kd_kel "
+                        + " WHERE pasien_mati.no_rkm_medis = pasien.no_rkm_medis "
+                        + " and pasien_mati.no_rkm_medis='" + TNoRM.getText() + "' ", param);
+
+                tampil();
+                emptTeks();
+            } else if (tte.equals("ya")) {
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                "Surat Keterangan Kematian", Tdokter.getText(),
+                                Sequel.cariIsi("select date_format(now(),'%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='002'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                Valid.MyReport("rptSuratKematianQr.jasper", "report", "::[ Surat Keterangan Kematian ]::",
+                        " SELECT pasien_mati.tanggal, pasien_mati.jam, pasien_mati.no_rkm_medis, "
+                        + " pasien.nm_pasien, TIMESTAMPDIFF(Year,pasien.tgl_lahir,CURDATE()) as umur_thn, "
+                        + " TIMESTAMPDIFF(MONTH,pasien.tgl_lahir,CURDATE()) % 12 as umur_bln, "
+                        + " FLOOR( TIMESTAMPDIFF( DAY, pasien.tgl_lahir, CURDATE() ) % 30.4375 ) as umur_hari, "
+                        + " pasien.alamat, pasien.no_ktp, "
+                        + " pasien.no_tlp, if(jk = 'L','Laki-laki','Perempuan') AS Kelamin, "
+                        + " pasien.gol_darah, pasien.stts_nikah, pasien.agama, pasien_mati.keterangan, "
+                        + " kelurahan.nm_kel, kecamatan.nm_kec, kabupaten.nm_kab, "
+                        + " ifnull(pasien_mati.no_surat,'.....') nosurat, ifnull(pasien_mati.reg_bulan,'.....') noregbulan "
+                        + " FROM pasien_mati, pasien "
+                        + " INNER JOIN kabupaten ON kabupaten.kd_kab = pasien.kd_kab "
+                        + " INNER JOIN kecamatan ON kecamatan.kd_kec = pasien.kd_kec "
+                        + " INNER JOIN kelurahan ON kelurahan.kd_kel = pasien.kd_kel "
+                        + " WHERE pasien_mati.no_rkm_medis = pasien.no_rkm_medis "
+                        + " and pasien_mati.no_rkm_medis='" + TNoRM.getText() + "' ", param);
+
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
+            tbMati.requestFocus();
+        }
+    }
+
+    private void cetakMnFormulirKematian() {
+        if (tbMati.getSelectedRow() > -1) {
+            isi = "";
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("tgl_surat", Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
+
+            if (nipDokter.equals("-")) {
+                param.put("nmdokter", "");
+                param.put("nipdokter", "");
+            } else {
+                param.put("nmdokter", Tdokter.getText());
+                param.put("nipdokter", "NIP/NR. " + nipDokter);
+            }
+
+            if (tte.equals("tidak")) {
+                Valid.MyReport("rptFormulirKematianRM.jasper", "report", "::[ Surat Kematian Untuk KELUARGA PASIEN ]::",
+                        " SELECT pasien_mati.tanggal, pasien_mati.jam, pasien_mati.no_rkm_medis, "
+                        + " pasien.nm_pasien, TIMESTAMPDIFF(Year,pasien.tgl_lahir,CURDATE()) as umur_thn, "
+                        + " TIMESTAMPDIFF(MONTH,pasien.tgl_lahir,CURDATE()) % 12 as umur_bln, "
+                        + " FLOOR( TIMESTAMPDIFF( DAY, pasien.tgl_lahir, CURDATE() ) % 30.4375 ) as umur_hari, "
+                        + " pasien.alamat, pasien.no_ktp, pasien.no_tlp, "
+                        + " if(jk = 'L','Laki-laki','Perempuan') AS Kelamin, pasien.tmp_lahir, "
+                        + " DATE_FORMAT(pasien.tgl_lahir,'%d') AS tgl_lahir, "
+                        + " DATE_FORMAT(pasien.tgl_lahir,'%m') AS bln_lahir, "
+                        + " DATE_FORMAT(pasien.tgl_lahir,'%Y') AS thn_lahir, "
+                        + " pasien.gol_darah, pasien.stts_nikah, pasien.agama, pasien_mati.keterangan, "
+                        + " kelurahan.nm_kel, kecamatan.nm_kec, kabupaten.nm_kab, "
+                        + " ifnull(pasien_mati.no_surat,'.....') nosurat, ifnull(pasien_mati.reg_bulan,'.....') noregbulan "
+                        + " FROM pasien_mati, pasien "
+                        + " INNER JOIN kabupaten ON kabupaten.kd_kab = pasien.kd_kab "
+                        + " INNER JOIN kecamatan ON kecamatan.kd_kec = pasien.kd_kec "
+                        + " INNER JOIN kelurahan ON kelurahan.kd_kel = pasien.kd_kel "
+                        + " WHERE pasien_mati.no_rkm_medis = pasien.no_rkm_medis "
+                        + " and pasien_mati.no_rkm_medis='" + TNoRM.getText() + "' ", param);
+
+                tampil();
+                emptTeks();
+            } else if (tte.equals("ya")) {
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='005'"),
+                                "Formulir Keterangan Penyebab Kematian", Tdokter.getText(),
+                                Sequel.cariIsi("select date_format(now(),'%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='005'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Formulir", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='005'"));
+
+                Valid.MyReport("rptFormulirKematianRMQr.jasper", "report", "::[ Surat Kematian Untuk KELUARGA PASIEN ]::",
+                        " SELECT pasien_mati.tanggal, pasien_mati.jam, pasien_mati.no_rkm_medis, "
+                        + " pasien.nm_pasien, TIMESTAMPDIFF(Year,pasien.tgl_lahir,CURDATE()) as umur_thn, "
+                        + " TIMESTAMPDIFF(MONTH,pasien.tgl_lahir,CURDATE()) % 12 as umur_bln, "
+                        + " FLOOR( TIMESTAMPDIFF( DAY, pasien.tgl_lahir, CURDATE() ) % 30.4375 ) as umur_hari, "
+                        + " pasien.alamat, pasien.no_ktp, pasien.no_tlp, "
+                        + " if(jk = 'L','Laki-laki','Perempuan') AS Kelamin, pasien.tmp_lahir, "
+                        + " DATE_FORMAT(pasien.tgl_lahir,'%d') AS tgl_lahir, "
+                        + " DATE_FORMAT(pasien.tgl_lahir,'%m') AS bln_lahir, "
+                        + " DATE_FORMAT(pasien.tgl_lahir,'%Y') AS thn_lahir, "
+                        + " pasien.gol_darah, pasien.stts_nikah, pasien.agama, pasien_mati.keterangan, "
+                        + " kelurahan.nm_kel, kecamatan.nm_kec, kabupaten.nm_kab, "
+                        + " ifnull(pasien_mati.no_surat,'.....') nosurat, ifnull(pasien_mati.reg_bulan,'.....') noregbulan "
+                        + " FROM pasien_mati, pasien "
+                        + " INNER JOIN kabupaten ON kabupaten.kd_kab = pasien.kd_kab "
+                        + " INNER JOIN kecamatan ON kecamatan.kd_kec = pasien.kd_kec "
+                        + " INNER JOIN kelurahan ON kelurahan.kd_kel = pasien.kd_kel "
+                        + " WHERE pasien_mati.no_rkm_medis = pasien.no_rkm_medis "
+                        + " and pasien_mati.no_rkm_medis='" + TNoRM.getText() + "' ", param);
+
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
+            tbMati.requestFocus();
+        }
     }
 }

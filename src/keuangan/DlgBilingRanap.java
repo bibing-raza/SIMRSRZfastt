@@ -40,6 +40,7 @@ import simrskhanza.DlgCariPeriksaLab;
 import simrskhanza.DlgCariPeriksaRadiologi;
 import simrskhanza.DlgDeposit;
 import inventory.DlgPemberianObat;
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -82,9 +83,9 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             rskamarin, rsbiayasekali, rsbiayaharian, rsreseppulang, rstambahanbiaya, rspotonganbiaya, rssep,
             rsralandokter, rsralandrpr, rsranapdokter, rsoperasi, rsralanperawat, rsranapperawat, rsperiksalab, rskategori,
             rsperiksarad, rsanak, rstamkur, rsrekening, rsservice, rsakunbayar, rsakunpiutang, rscaridpjp;
-    private String biaya = "", tambahan = "", totals = "", norawatbayi = "", centangdokterranap = "", kd_pj = "", jamplgRS1 = "",
+    private String biaya = "", tambahan = "", totals = "", norawatbayi = "", centangdokterranap = "", kd_pj = "", jamplgRS1 = "", caraByr = "",
             rinciandokterranap = "", rincianoperasi = "", hariawal = "", notaranap = "", tampilkan_administrasi_di_billingranap = "",
-            Tindakan_Ranap = "", Laborat_Ranap = "", Radiologi_Ranap = "", Obat_Ranap = "", Registrasi_Ranap = "", kodePJ = "", 
+            Tindakan_Ranap = "", Laborat_Ranap = "", Radiologi_Ranap = "", Obat_Ranap = "", Registrasi_Ranap = "", kodePJ = "", isi = "",
             Tambahan_Ranap = "", Potongan_Ranap = "", Retur_Obat_Ranap = "", Resep_Pulang_Ranap = "", Kamar_Inap = "", Operasi_Ranap = "",
             Harian_Ranap = "", Uang_Muka_Ranap = "", Piutang_Pasien_Ranap = "", tampilkan_ppnobat_ranap = "", tglmskRS = "", tglklrRS1 = "",
             Service_Ranap = "", status = "", diagnosa_ok = "", cekdokter = "", kdkamar = "", data_pasien = "", tglklrRS2 = "", jamplgRS2 = "",
@@ -848,6 +849,8 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         lbl_jns_byr = new widget.Label();
         panelGlass2 = new widget.panelisi();
         BtnSimpan = new widget.Button();
+        jLabel65 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnNota = new widget.Button();
         BtnView = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -1489,7 +1492,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCloseIn.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn.setMnemonic('3');
         BtnCloseIn.setText("Tutup");
         BtnCloseIn.setToolTipText("Alt+3");
         BtnCloseIn.setName("BtnCloseIn"); // NOI18N
@@ -1508,7 +1510,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan2.setMnemonic('1');
         BtnSimpan2.setText("Simpan");
         BtnSimpan2.setToolTipText("Alt+1");
         BtnSimpan2.setName("BtnSimpan2"); // NOI18N
@@ -1527,7 +1528,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnBatal1.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnBatal1.setMnemonic('2');
         BtnBatal1.setText("Hapus");
         BtnBatal1.setToolTipText("Alt+2");
         BtnBatal1.setName("BtnBatal1"); // NOI18N
@@ -1598,7 +1598,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
-        BtnTambah.setMnemonic('T');
         BtnTambah.setText("Tambah");
         BtnTambah.setToolTipText("Alt+T");
         BtnTambah.setName("BtnTambah"); // NOI18N
@@ -1612,7 +1611,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan3.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan3.setMnemonic('S');
         BtnSimpan3.setText("Simpan");
         BtnSimpan3.setToolTipText("Alt+S");
         BtnSimpan3.setName("BtnSimpan3"); // NOI18N
@@ -1626,7 +1624,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1640,7 +1637,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -1708,7 +1704,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnTambahPotongan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambahPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
-        BtnTambahPotongan.setMnemonic('T');
         BtnTambahPotongan.setText("Tambah");
         BtnTambahPotongan.setToolTipText("Alt+T");
         BtnTambahPotongan.setName("BtnTambahPotongan"); // NOI18N
@@ -1722,7 +1717,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpanPotongan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpanPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanPotongan.setMnemonic('S');
         BtnSimpanPotongan.setText("Simpan");
         BtnSimpanPotongan.setToolTipText("Alt+S");
         BtnSimpanPotongan.setName("BtnSimpanPotongan"); // NOI18N
@@ -1736,7 +1730,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnHapusPotongan.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapusPotongan.setMnemonic('H');
         BtnHapusPotongan.setText("Hapus");
         BtnHapusPotongan.setToolTipText("Alt+H");
         BtnHapusPotongan.setName("BtnHapusPotongan"); // NOI18N
@@ -1750,7 +1743,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnKeluarPotongan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluarPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluarPotongan.setMnemonic('K');
         BtnKeluarPotongan.setText("Keluar");
         BtnKeluarPotongan.setToolTipText("Alt+K");
         BtnKeluarPotongan.setName("BtnKeluarPotongan"); // NOI18N
@@ -1823,7 +1815,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpanUbahLama.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpanUbahLama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanUbahLama.setMnemonic('S');
         BtnSimpanUbahLama.setText("Simpan");
         BtnSimpanUbahLama.setToolTipText("Alt+S");
         BtnSimpanUbahLama.setName("BtnSimpanUbahLama"); // NOI18N
@@ -1837,7 +1828,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnKeluarUbahLama.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluarUbahLama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluarUbahLama.setMnemonic('K');
         BtnKeluarUbahLama.setText("Keluar");
         BtnKeluarUbahLama.setToolTipText("Alt+K");
         BtnKeluarUbahLama.setName("BtnKeluarUbahLama"); // NOI18N
@@ -1865,7 +1855,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn4.setMnemonic('P');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+P");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -1879,7 +1868,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan4.setMnemonic('S');
         BtnSimpan4.setText("Simpan");
         BtnSimpan4.setToolTipText("Alt+S");
         BtnSimpan4.setName("BtnSimpan4"); // NOI18N
@@ -1916,7 +1904,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         btnPenjab.setForeground(new java.awt.Color(0, 0, 0));
         btnPenjab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPenjab.setMnemonic('7');
         btnPenjab.setToolTipText("ALt+7");
         btnPenjab.setName("btnPenjab"); // NOI18N
         btnPenjab.addActionListener(new java.awt.event.ActionListener() {
@@ -1941,7 +1928,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCloseIn5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn5.setMnemonic('P');
         BtnCloseIn5.setText("Tutup");
         BtnCloseIn5.setToolTipText("Alt+P");
         BtnCloseIn5.setName("BtnCloseIn5"); // NOI18N
@@ -1955,7 +1941,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan5.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan5.setMnemonic('S');
         BtnSimpan5.setText("Simpan");
         BtnSimpan5.setToolTipText("Alt+S");
         BtnSimpan5.setName("BtnSimpan5"); // NOI18N
@@ -2265,7 +2250,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan6.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan6.setMnemonic('S');
         BtnSimpan6.setText("Simpan");
         BtnSimpan6.setToolTipText("Alt+S");
         BtnSimpan6.setName("BtnSimpan6"); // NOI18N
@@ -2279,7 +2263,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnHapusKode.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusKode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapusKode.setMnemonic('H');
         BtnHapusKode.setText("Hapus Kode INACBG");
         BtnHapusKode.setToolTipText("Alt+H");
         BtnHapusKode.setName("BtnHapusKode"); // NOI18N
@@ -2298,7 +2281,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnGantikode.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantikode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGantikode.setMnemonic('S');
         BtnGantikode.setText("Ganti");
         BtnGantikode.setToolTipText("Alt+S");
         BtnGantikode.setName("BtnGantikode"); // NOI18N
@@ -2312,7 +2294,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCloseIn6.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn6.setMnemonic('U');
         BtnCloseIn6.setText("Tutup");
         BtnCloseIn6.setToolTipText("Alt+U");
         BtnCloseIn6.setName("BtnCloseIn6"); // NOI18N
@@ -2459,7 +2440,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('R');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+R");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -2510,7 +2490,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -2528,9 +2507,20 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         });
         panelGlass2.add(BtnSimpan);
 
+        jLabel65.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel65.setText("Cetak Dalam Bentuk :");
+        jLabel65.setName("jLabel65"); // NOI18N
+        jLabel65.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass2.add(jLabel65);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTD Basah", "TTE (QR Code)" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass2.add(cmbPilihCetak);
+
         BtnNota.setForeground(new java.awt.Color(0, 0, 0));
         BtnNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Agenda-1-16x16.png"))); // NOI18N
-        BtnNota.setMnemonic('B');
         BtnNota.setText(" Nota");
         BtnNota.setToolTipText("Alt+B");
         BtnNota.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -2550,7 +2540,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnView.setForeground(new java.awt.Color(0, 0, 0));
         BtnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnView.setMnemonic('L');
         BtnView.setText("Lihat");
         BtnView.setToolTipText("Alt+L");
         BtnView.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -2570,7 +2559,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -2824,7 +2812,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCariBayar.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCariBayar.setMnemonic('3');
         BtnCariBayar.setToolTipText("Alt+3");
         BtnCariBayar.setName("BtnCariBayar"); // NOI18N
         BtnCariBayar.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -2854,7 +2841,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         btnCariPiutang.setForeground(new java.awt.Color(0, 0, 0));
         btnCariPiutang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        btnCariPiutang.setMnemonic('3');
         btnCariPiutang.setToolTipText("Alt+3");
         btnCariPiutang.setName("btnCariPiutang"); // NOI18N
         btnCariPiutang.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -5154,6 +5140,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.CekBox chkRalan;
     private widget.CekBox chkRanap;
     private widget.ComboBox cmbPenjamin;
+    private widget.ComboBox cmbPilihCetak;
     private widget.TextBox deskripsiKD;
     private widget.TextBox hakkelas;
     private widget.TextBox hasilLM;
@@ -5199,6 +5186,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Label jLabel62;
     private widget.Label jLabel63;
     private widget.Label jLabel64;
+    private widget.Label jLabel65;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
@@ -5282,6 +5270,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     TNoRM.setText(rscarirm.getString(1));
                     lbl_jns_byr.setText(" Cara Bayar : " + rscarirm.getString("png_jawab"));
                     kodePJ = rscarirm.getString("kd_pj");
+                    caraByr = rscarirm.getString("png_jawab");
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -7710,6 +7699,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }
 
     private void cetakNotaAJA() {
+        isi = "";
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("alamatrs", akses.getalamatrs());
@@ -7718,31 +7708,80 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         param.put("kontakrs", akses.getkontakrs());
         param.put("emailrs", akses.getemailrs());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
-        param.put("cara_byr", Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + TNoRw.getText() + "'"));
+        param.put("cara_byr", caraByr);
         param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(tglNota.getSelectedItem() + "")));
 
-        if (akses.getkode().equals("Admin Utama") || BtnSimpan.isEnabled() == false) {
+        if (akses.getadmin() == true || BtnSimpan.isEnabled() == false) {
             param.put("petugas_ksr", "( ................... )");
         } else if (akses.getbilling_ranap()) {
             param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
         }
-        Valid.MyReport("rptNotaRanap.jasper", "report", "::[ Nota Pembayaran - LUNAS (Rawat Inap) ]::",
-                " SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
-                + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota') no_nota, "
-                + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar') bangsal, "
-                + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan') tgl_rawat, "
-                + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien') pasien, "
-                + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien, "
-                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan') tot_tagihan, "
-                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn') ppn, "
-                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan+ppn') tagihan_ppn, "
-                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit') deposit, "
-                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='bayar') bayar, "
-                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='kembali') kembali "
-                + "FROM temporary_bayar_ranap WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN+PPN','PPN','DEPOSIT','BAYAR','Kembali','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien') ", param);
+
+        if (cmbPilihCetak.getSelectedIndex() == 0) {
+            Valid.MyReport("rptNotaRanap.jasper", "report", "::[ Nota Pembayaran - LUNAS (Rawat Inap) ]::",
+                    " SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota') no_nota, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar') bangsal, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan') tgl_rawat, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien') pasien, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan') tot_tagihan, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn') ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan+ppn') tagihan_ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit') deposit, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='bayar') bayar, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='kembali') kembali "
+                    + "FROM temporary_bayar_ranap WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN+PPN','PPN','DEPOSIT','BAYAR','Kembali','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien') ", param);
+        } else {
+            if (akses.getadmin() == true) {
+                Valid.MyReport("rptNotaRanap.jasper", "report", "::[ Nota Pembayaran - LUNAS (Rawat Inap) ]::",
+                        " SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota') no_nota, "
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar') bangsal, "
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan') tgl_rawat, "
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien') pasien, "
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien, "
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan') tot_tagihan, "
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn') ppn, "
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan+ppn') tagihan_ppn, "
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit') deposit, "
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='bayar') bayar, "
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='kembali') kembali "
+                        + "FROM temporary_bayar_ranap WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN+PPN','PPN','DEPOSIT','BAYAR','Kembali','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien') ", param);
+            } else {
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Nota Pembayaran (" + caraByr + ")", Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'"),
+                                Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Nota Pembayaran", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+                Valid.MyReport("rptNotaRanapQr.jasper", "report", "::[ Nota Pembayaran - LUNAS (Rawat Inap) ]::",
+                        " SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota') no_nota, "
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar') bangsal, "
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan') tgl_rawat, "
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien') pasien, "
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien, "
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan') tot_tagihan, "
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn') ppn, "
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan+ppn') tagihan_ppn, "
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit') deposit, "
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='bayar') bayar, "
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='kembali') kembali "
+                        + "FROM temporary_bayar_ranap WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN+PPN','PPN','DEPOSIT','BAYAR','Kembali','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien') ", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        }
     }
 
     private void cetakNotaPiutangAJA() {
+        isi = "";
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("alamatrs", akses.getalamatrs());
@@ -7751,31 +7790,80 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         param.put("kontakrs", akses.getkontakrs());
         param.put("emailrs", akses.getemailrs());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
-        param.put("cara_byr", Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + TNoRw.getText() + "'"));
+        param.put("cara_byr", caraByr);
         param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(tglNota.getSelectedItem() + "")));
 
-        if (akses.getkode().equals("Admin Utama") || BtnSimpan.isEnabled() == false) {
+        if (akses.getadmin() == true || BtnSimpan.isEnabled() == false) {
             param.put("petugas_ksr", "( ................... )");
         } else if (akses.getbilling_ranap()) {
             param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
         }
-        Valid.MyReport("rptNotaRanapPiutang.jasper", "report", "::[ Nota Pembayaran - PIUTANG (Rawat Inap) ]::",
-                " SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
-                + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota') no_nota,"
-                + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar') bangsal,"
-                + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan') tgl_rawat,"
-                + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien') pasien,"
-                + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien,"
-                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan') tot_tagihan,"
-                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn') ppn,"
-                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan + ppn') tagihan_ppn,"
-                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit') deposit,"
-                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='uang muka') uang_muka,"
-                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='sisa piutang') sisa_piutang FROM temporary_bayar_ranap "
-                + "WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN + PPN','PPN','DEPOSIT','UANG MUKA','SISA PIUTANG','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien') ", param);
+        
+        if (cmbPilihCetak.getSelectedIndex() == 0) {
+            Valid.MyReport("rptNotaRanapPiutang.jasper", "report", "::[ Nota Pembayaran - PIUTANG (Rawat Inap) ]::",
+                    " SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota') no_nota,"
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar') bangsal,"
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan') tgl_rawat,"
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien') pasien,"
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien,"
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan') tot_tagihan,"
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn') ppn,"
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan + ppn') tagihan_ppn,"
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit') deposit,"
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='uang muka') uang_muka,"
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='sisa piutang') sisa_piutang FROM temporary_bayar_ranap "
+                    + "WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN + PPN','PPN','DEPOSIT','UANG MUKA','SISA PIUTANG','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien') ", param);
+        } else {
+            if (akses.getadmin() == true) {
+                Valid.MyReport("rptNotaRanapPiutang.jasper", "report", "::[ Nota Pembayaran - PIUTANG (Rawat Inap) ]::",
+                        " SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota') no_nota,"
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar') bangsal,"
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan') tgl_rawat,"
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien') pasien,"
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien,"
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan') tot_tagihan,"
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn') ppn,"
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan + ppn') tagihan_ppn,"
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit') deposit,"
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='uang muka') uang_muka,"
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='sisa piutang') sisa_piutang FROM temporary_bayar_ranap "
+                        + "WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN + PPN','PPN','DEPOSIT','UANG MUKA','SISA PIUTANG','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien') ", param);
+            } else {
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Nota Pembayaran (" + caraByr + ")", Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'"),
+                                Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Nota Pembayaran", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+                Valid.MyReport("rptNotaRanapPiutangQr.jasper", "report", "::[ Nota Pembayaran - PIUTANG (Rawat Inap) ]::",
+                        " SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota') no_nota,"
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar') bangsal,"
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan') tgl_rawat,"
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien') pasien,"
+                        + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien,"
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan') tot_tagihan,"
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn') ppn,"
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan + ppn') tagihan_ppn,"
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit') deposit,"
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='uang muka') uang_muka,"
+                        + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='sisa piutang') sisa_piutang FROM temporary_bayar_ranap "
+                        + "WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN + PPN','PPN','DEPOSIT','UANG MUKA','SISA PIUTANG','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien') ", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        }
     }
 
     private void cetakKwitansiLUNAS() {
+        isi = "";
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("alamatrs", akses.getalamatrs());
@@ -7800,11 +7888,36 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         } else if (akses.getbilling_ranap()) {
             param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
         }
-        Valid.MyReport("rptKwitansiRanap.jasper", "report", "::[ Kwitansi Pembayaran - LUNAS (Rawat Inap) ]::",
-                " SELECT * FROM temporary_bayar_ranap ", param);
+
+        if (cmbPilihCetak.getSelectedIndex() == 0) {
+            Valid.MyReport("rptKwitansiRanap.jasper", "report", "::[ Kwitansi Pembayaran - LUNAS (Rawat Inap) ]::",
+                    " SELECT * FROM temporary_bayar_ranap ", param);
+        } else {
+            if (akses.getadmin() == true) {
+                Valid.MyReport("rptKwitansiRanap.jasper", "report", "::[ Kwitansi Pembayaran - LUNAS (Rawat Inap) ]::",
+                        " SELECT * FROM temporary_bayar_ranap ", param);
+            } else {
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Kuitansi", Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'"),
+                                Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+                
+                Valid.MyReport("rptKwitansiRanapQr.jasper", "report", "::[ Kwitansi Pembayaran - LUNAS (Rawat Inap) ]::",
+                        " SELECT * FROM temporary_bayar_ranap ", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        }
     }
 
     private void cetakKwitansiPIUTANG() {
+        isi = "";
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("alamatrs", akses.getalamatrs());
@@ -7827,8 +7940,32 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         } else if (akses.getbilling_ranap()) {
             param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
         }
-        Valid.MyReport("rptKwitansiRanap.jasper", "report", "::[ Kwitansi Pembayaran - PIUTANG (Rawat Inap) ]::",
-                " SELECT * FROM temporary_bayar_ranap ", param);
+        
+        if (cmbPilihCetak.getSelectedIndex() == 0) {
+            Valid.MyReport("rptKwitansiRanap.jasper", "report", "::[ Kwitansi Pembayaran - PIUTANG (Rawat Inap) ]::",
+                    " SELECT * FROM temporary_bayar_ranap ", param);
+        } else {
+            if (akses.getadmin() == true) {
+                Valid.MyReport("rptKwitansiRanap.jasper", "report", "::[ Kwitansi Pembayaran - PIUTANG (Rawat Inap) ]::",
+                        " SELECT * FROM temporary_bayar_ranap ", param);
+            } else {
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Kuitansi", Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'"),
+                                Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+                Valid.MyReport("rptKwitansiRanapQr.jasper", "report", "::[ Kwitansi Pembayaran - PIUTANG (Rawat Inap) ]::",
+                        " SELECT * FROM temporary_bayar_ranap ", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        }
     }
 
     public void cekSEP() {

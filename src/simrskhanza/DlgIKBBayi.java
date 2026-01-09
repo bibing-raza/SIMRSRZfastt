@@ -19,6 +19,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,7 +59,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
     private Date tgl = new Date();
     private DlgCariPegawai pegawai = new DlgCariPegawai(null, false);
     private String pengurutan = "", bulan = "", tahun = "", awalantahun = "", awalanbulan = "", posisitahun = "",
-            norwtIbu = "", bln = "", thn = "";
+            norwtIbu = "", bln = "", thn = "", tte = "", isi = "";
     private int berat = 0, x = 0, a1 = 0, a5 = 0;
 
     /**
@@ -471,7 +472,9 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         MnKartu = new javax.swing.JMenuItem();
         MnInformasiBayi = new javax.swing.JMenuItem();
         MnSKLblanko = new javax.swing.JMenuItem();
-        MnSKL = new javax.swing.JMenuItem();
+        MnSKL = new javax.swing.JMenu();
+        MnTTD = new javax.swing.JMenuItem();
+        MnTTE = new javax.swing.JMenuItem();
         Kd2 = new widget.TextBox();
         WindowPasienIbuBersalin = new javax.swing.JDialog();
         internalFrame5 = new widget.InternalFrame();
@@ -976,17 +979,46 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         Popup.add(MnSKLblanko);
 
-        MnSKL.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSKL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSKL.setText("Surat Kelahiran");
+        MnSKL.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSKL.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnSKL.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnSKL.setIconTextGap(5);
         MnSKL.setName("MnSKL"); // NOI18N
+        MnSKL.setOpaque(true);
         MnSKL.setPreferredSize(new java.awt.Dimension(190, 25));
-        MnSKL.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTD.setText("TTD Basah");
+        MnTTD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTD.setIconTextGap(5);
+        MnTTD.setName("MnTTD"); // NOI18N
+        MnTTD.setPreferredSize(new java.awt.Dimension(120, 25));
+        MnTTD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnSKLActionPerformed(evt);
+                MnTTDActionPerformed(evt);
             }
         });
+        MnSKL.add(MnTTD);
+
+        MnTTE.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTE.setText("TTE (QRCode)");
+        MnTTE.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTE.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTE.setIconTextGap(5);
+        MnTTE.setName("MnTTE"); // NOI18N
+        MnTTE.setPreferredSize(new java.awt.Dimension(120, 25));
+        MnTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEActionPerformed(evt);
+            }
+        });
+        MnSKL.add(MnTTE);
+
         Popup.add(MnSKL);
 
         Kd2.setName("Kd2"); // NOI18N
@@ -1018,7 +1050,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         panelGlass8.add(jLabel15);
 
         tgl1.setEditable(false);
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2024" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -1038,7 +1070,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         panelGlass8.add(jLabel17);
 
         tgl2.setEditable(false);
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2024" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -1174,8 +1206,8 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
 
-        tbPasienBersalin.setToolTipText("");
         tbPasienBersalin.setName("tbPasienBersalin"); // NOI18N
+        tbPasienBersalin.getTableHeader().setReorderingAllowed(false);
         tbPasienBersalin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPasienBersalinMouseClicked(evt);
@@ -1204,8 +1236,8 @@ public class DlgIKBBayi extends javax.swing.JDialog {
 
             }
         ));
-        tbPonek.setToolTipText("");
         tbPonek.setName("tbPonek"); // NOI18N
+        tbPonek.getTableHeader().setReorderingAllowed(false);
         tbPonek.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPonekMouseClicked(evt);
@@ -1374,10 +1406,10 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         internalFrame7.add(cmbMnt5Res);
         cmbMnt5Res.setBounds(252, 64, 40, 23);
 
-        internalFrame6.add(internalFrame7, java.awt.BorderLayout.PAGE_START);
+        internalFrame6.add(internalFrame7, java.awt.BorderLayout.CENTER);
 
         internalFrame8.setName("internalFrame8"); // NOI18N
-        internalFrame8.setPreferredSize(new java.awt.Dimension(0, 58));
+        internalFrame8.setPreferredSize(new java.awt.Dimension(0, 48));
         internalFrame8.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 9, 9));
 
@@ -1427,7 +1459,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         internalFrame8.add(BtnCloseIn5);
 
-        internalFrame6.add(internalFrame8, java.awt.BorderLayout.CENTER);
+        internalFrame6.add(internalFrame8, java.awt.BorderLayout.PAGE_END);
 
         WindowApgar.getContentPane().add(internalFrame6, java.awt.BorderLayout.CENTER);
 
@@ -1735,6 +1767,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         tbBayi.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbBayi.setComponentPopupMenu(Popup);
         tbBayi.setName("tbBayi"); // NOI18N
+        tbBayi.getTableHeader().setReorderingAllowed(false);
         tbBayi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbBayiMouseClicked(evt);
@@ -3521,92 +3554,6 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         pegawai.setVisible(true);
     }//GEN-LAST:event_BtnPenolongActionPerformed
 
-    private void MnSKLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSKLActionPerformed
-        if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-            BtnBatal.requestFocus();
-        } else if (NoRm.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data bayinya pada tabel...!!!!");
-            tbBayi.requestFocus();
-        } else if (tabMode.getRowCount() != 0) {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            x = JOptionPane.showConfirmDialog(rootPane, "Apakah nama bayi yang ada akan ditampilkan pada surat kelahiran..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-            if (x == JOptionPane.YES_OPTION) {
-                Map<String, Object> param = new HashMap<>();
-                param.put("namars", akses.getnamars());
-                param.put("alamatrs", akses.getalamatrs());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("propinsirs", akses.getpropinsirs());
-                param.put("kontakrs", akses.getkontakrs());
-                param.put("emailrs", akses.getemailrs());
-                param.put("logo", Sequel.cariGambar("select logo from setting"));
-                param.put("nmbayi", NmBayi.getText());
-                param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d') from pasien where no_rkm_medis='" + NoRm.getText() + "'") + " "
-                        + Sequel.bulanINDONESIA("select date_format(tgl_lahir,'%m') from pasien where no_rkm_medis='" + NoRm.getText() + "'") + " "
-                        + Sequel.cariIsi("select date_format(tgl_lahir,'%Y') from pasien where no_rkm_medis='" + NoRm.getText() + "'"));
-                param.put("harilahir", Sequel.hariINDONESIA("select date_format(tgl_lahir,'%W') from pasien where no_rkm_medis='" + NoRm.getText() + "'"));
-                param.put("nmibu", Nmibu.getText());
-                param.put("umuribu", UmurIbu.getText());
-                param.put("nmayah", NmAyah.getText());
-                param.put("umurayah", UmurAyah.getText());
-                param.put("penolong", NmPenolong.getText());
-                param.put("nippejabat", Sequel.cariIsi("select ifnull(nip_kabid_yanmed,'-') from admin"));
-                param.put("nmpejabat", Sequel.cariIsi("select ifnull(nama,'-') from admin a inner join pegawai p on p.nik=a.nip_kabid_yanmed"));
-                param.put("nik_ibu", Sequel.cariIsi("select ifnull(no_ktp,'0') from pasien where no_rkm_medis='" + NoRmIbu.getText() + "'"));
-                if (jns_penolong.getSelectedIndex() == 1) {
-                    param.put("jnspenolong", "Dokter / Bidan yang menolong");
-                } else if (jns_penolong.getSelectedIndex() == 2) {
-                    param.put("jnspenolong", "Bidan yang menolong");
-                } else if (jns_penolong.getSelectedIndex() == 3) {
-                    param.put("jnspenolong", "Dokter yang menolong");
-                }
-
-                Valid.MyReport("rptSKL3.jasper", "report", "::[ Surat Kelahiran Bayi ]::",
-                        "select if(p.jk='L','Laki-laki','Perempuan') jk, concat(format(CONVERT(pb.berat_badan_benar,DOUBLE),0),' gram') bb, "
-                        + "pb.panjang_badan pb, TIME_FORMAT(pb.jam_lahir,'%H:%i') jamlahir, concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',nm_kab) almt, "
-                        + "p.agama, pb.anakke, pb.no_skl from pasien_bayi pb INNER JOIN pasien p on p.no_rkm_medis=pb.no_rkm_medis "
-                        + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
-                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where pb.no_rkm_medis='" + NoRm.getText() + "'", param);
-            } else {
-                Map<String, Object> param = new HashMap<>();
-                param.put("namars", akses.getnamars());
-                param.put("alamatrs", akses.getalamatrs());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("propinsirs", akses.getpropinsirs());
-                param.put("kontakrs", akses.getkontakrs());
-                param.put("emailrs", akses.getemailrs());
-                param.put("logo", Sequel.cariGambar("select logo from setting"));
-                param.put("nmbayi", "_________________________________");
-                param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d') from pasien where no_rkm_medis='" + NoRm.getText() + "'") + " "
-                        + Sequel.bulanINDONESIA("select date_format(tgl_lahir,'%m') from pasien where no_rkm_medis='" + NoRm.getText() + "'") + " "
-                        + Sequel.cariIsi("select date_format(tgl_lahir,'%Y') from pasien where no_rkm_medis='" + NoRm.getText() + "'"));
-                param.put("harilahir", Sequel.hariINDONESIA("select date_format(tgl_lahir,'%W') from pasien where no_rkm_medis='" + NoRm.getText() + "'"));
-                param.put("nmibu", Nmibu.getText());
-                param.put("umuribu", UmurIbu.getText());
-                param.put("nmayah", NmAyah.getText());
-                param.put("umurayah", UmurAyah.getText());
-                param.put("penolong", NmPenolong.getText());
-                param.put("nippejabat", Sequel.cariIsi("select ifnull(nip_kabid_yanmed,'-') from admin"));
-                param.put("nmpejabat", Sequel.cariIsi("select ifnull(nama,'-') from admin a inner join pegawai p on p.nik=a.nip_kabid_yanmed"));
-                param.put("nik_ibu", Sequel.cariIsi("select ifnull(no_ktp,'0') from pasien where no_rkm_medis='" + NoRmIbu.getText() + "'"));
-                if (jns_penolong.getSelectedIndex() == 1) {
-                    param.put("jnspenolong", "Dokter / Bidan yang menolong");
-                } else if (jns_penolong.getSelectedIndex() == 2) {
-                    param.put("jnspenolong", "Bidan yang menolong");
-                } else if (jns_penolong.getSelectedIndex() == 3) {
-                    param.put("jnspenolong", "Dokter yang menolong");
-                }
-                Valid.MyReport("rptSKL3.jasper", "report", "::[ Surat Kelahiran Bayi ]::",
-                        "select if(p.jk='L','Laki-laki','Perempuan') jk, concat(format(CONVERT(pb.berat_badan_benar,DOUBLE),0),' gram') bb, "
-                        + "pb.panjang_badan pb, TIME_FORMAT(pb.jam_lahir,'%H:%i') jamlahir, concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',nm_kab) almt, "
-                        + "p.agama, pb.anakke, pb.no_skl from pasien_bayi pb INNER JOIN pasien p on p.no_rkm_medis=pb.no_rkm_medis "
-                        + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
-                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where pb.no_rkm_medis='" + NoRm.getText() + "'", param);
-            }
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }//GEN-LAST:event_MnSKLActionPerformed
-
     private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasienActionPerformed
         akses.setform("DlgIKBBayi");
         member.emptTeks();
@@ -3985,6 +3932,34 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnBatal1KeyPressed
 
+    private void MnTTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+            BtnBatal.requestFocus();
+        } else if (NoRm.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data bayinya pada tabel...!!!!");
+            tbBayi.requestFocus();
+        } else if (tabMode.getRowCount() != 0) {
+            tte = "";
+            tte = "tidak";
+            cetakSuratKelahiran();
+        }
+    }//GEN-LAST:event_MnTTDActionPerformed
+
+    private void MnTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+            BtnBatal.requestFocus();
+        } else if (NoRm.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data bayinya pada tabel...!!!!");
+            tbBayi.requestFocus();
+        } else if (tabMode.getRowCount() != 0) {
+            tte = "";
+            tte = "ya";
+            cetakSuratKelahiran();
+        }
+    }//GEN-LAST:event_MnTTEActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4038,8 +4013,10 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private widget.TextBox LingkarPerut;
     private javax.swing.JMenuItem MnInformasiBayi;
     private javax.swing.JMenuItem MnKartu;
-    private javax.swing.JMenuItem MnSKL;
+    private javax.swing.JMenu MnSKL;
     private javax.swing.JMenuItem MnSKLblanko;
+    private javax.swing.JMenuItem MnTTD;
+    private javax.swing.JMenuItem MnTTE;
     private widget.TextBox NmAyah;
     private widget.TextBox NmBayi;
     private widget.TextBox NmPenolong;
@@ -5039,5 +5016,125 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             tampil();
         }
         emptTeks();
+    }
+    
+    private void cetakSuratKelahiran() {        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        isi = "";
+        x = JOptionPane.showConfirmDialog(rootPane, "Apakah nama bayi yang ada akan ditampilkan pada surat kelahiran..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("nmbayi", NmBayi.getText());
+            param.put("tgllahir", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_lahir from pasien where no_rkm_medis='" + NoRm.getText() + "'")));
+            param.put("harilahir", Sequel.hariINDONESIA("select date_format(tgl_lahir,'%W') from pasien where no_rkm_medis='" + NoRm.getText() + "'"));
+            param.put("nmibu", Nmibu.getText());
+            param.put("umuribu", UmurIbu.getText());
+            param.put("nmayah", NmAyah.getText());
+            param.put("umurayah", UmurAyah.getText());
+            param.put("penolong", NmPenolong.getText());
+            param.put("nippejabat", Sequel.cariIsi("select ifnull(nip_kabid_yanmed,'-') from admin"));
+            param.put("nmpejabat", Sequel.cariIsi("select ifnull(nama,'-') from admin a inner join pegawai p on p.nik=a.nip_kabid_yanmed"));
+            param.put("nik_ibu", Sequel.cariIsi("select ifnull(no_ktp,'0') from pasien where no_rkm_medis='" + NoRmIbu.getText() + "'"));
+            if (jns_penolong.getSelectedIndex() == 1) {
+                param.put("jnspenolong", "Dokter / Bidan yang menolong");
+            } else if (jns_penolong.getSelectedIndex() == 2) {
+                param.put("jnspenolong", "Bidan yang menolong");
+            } else if (jns_penolong.getSelectedIndex() == 3) {
+                param.put("jnspenolong", "Dokter yang menolong");
+            }
+
+            if (tte.equals("tidak")) {
+                Valid.MyReport("rptSKL3.jasper", "report", "::[ Surat Kelahiran Bayi ]::",
+                        "select if(p.jk='L','Laki-laki','Perempuan') jk, concat(format(CONVERT(pb.berat_badan_benar,DOUBLE),0),' gram') bb, "
+                        + "pb.panjang_badan pb, TIME_FORMAT(pb.jam_lahir,'%H:%i') jamlahir, concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',nm_kab) almt, "
+                        + "p.agama, pb.anakke, pb.no_skl from pasien_bayi pb INNER JOIN pasien p on p.no_rkm_medis=pb.no_rkm_medis "
+                        + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where pb.no_rkm_medis='" + NoRm.getText() + "'", param);
+            } else if (tte.equals("ya")) {
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                "Surat Kelahiran", Sequel.cariIsi("select ifnull(nama,'-') from admin a inner join pegawai p on p.nik=a.nip_kabid_yanmed"),
+                                Sequel.cariIsi("select date_format(tgl_lahir,'%d/%m/%Y') from pasien where no_rkm_medis='" + NoRm.getText() + "'"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='002'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                Valid.MyReport("rptSKL3Qr.jasper", "report", "::[ Surat Kelahiran Bayi ]::",
+                        "select if(p.jk='L','Laki-laki','Perempuan') jk, concat(format(CONVERT(pb.berat_badan_benar,DOUBLE),0),' gram') bb, "
+                        + "pb.panjang_badan pb, TIME_FORMAT(pb.jam_lahir,'%H:%i') jamlahir, concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',nm_kab) almt, "
+                        + "p.agama, pb.anakke, pb.no_skl from pasien_bayi pb INNER JOIN pasien p on p.no_rkm_medis=pb.no_rkm_medis "
+                        + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where pb.no_rkm_medis='" + NoRm.getText() + "'", param);                
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        } else {
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("nmbayi", "_________________________________");
+            param.put("tgllahir", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_lahir from pasien where no_rkm_medis='" + NoRm.getText() + "'")));
+            param.put("harilahir", Sequel.hariINDONESIA("select date_format(tgl_lahir,'%W') from pasien where no_rkm_medis='" + NoRm.getText() + "'"));
+            param.put("nmibu", Nmibu.getText());
+            param.put("umuribu", UmurIbu.getText());
+            param.put("nmayah", NmAyah.getText());
+            param.put("umurayah", UmurAyah.getText());
+            param.put("penolong", NmPenolong.getText());
+            param.put("nippejabat", Sequel.cariIsi("select ifnull(nip_kabid_yanmed,'-') from admin"));
+            param.put("nmpejabat", Sequel.cariIsi("select ifnull(nama,'-') from admin a inner join pegawai p on p.nik=a.nip_kabid_yanmed"));
+            param.put("nik_ibu", Sequel.cariIsi("select ifnull(no_ktp,'0') from pasien where no_rkm_medis='" + NoRmIbu.getText() + "'"));
+            if (jns_penolong.getSelectedIndex() == 1) {
+                param.put("jnspenolong", "Dokter / Bidan yang menolong");
+            } else if (jns_penolong.getSelectedIndex() == 2) {
+                param.put("jnspenolong", "Bidan yang menolong");
+            } else if (jns_penolong.getSelectedIndex() == 3) {
+                param.put("jnspenolong", "Dokter yang menolong");
+            }
+            
+            if (tte.equals("tidak")) {
+                Valid.MyReport("rptSKL3.jasper", "report", "::[ Surat Kelahiran Bayi ]::",
+                        "select if(p.jk='L','Laki-laki','Perempuan') jk, concat(format(CONVERT(pb.berat_badan_benar,DOUBLE),0),' gram') bb, "
+                        + "pb.panjang_badan pb, TIME_FORMAT(pb.jam_lahir,'%H:%i') jamlahir, concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',nm_kab) almt, "
+                        + "p.agama, pb.anakke, pb.no_skl from pasien_bayi pb INNER JOIN pasien p on p.no_rkm_medis=pb.no_rkm_medis "
+                        + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where pb.no_rkm_medis='" + NoRm.getText() + "'", param);
+            } else if (tte.equals("ya")) {
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                "Surat Kelahiran", Sequel.cariIsi("select ifnull(nama,'-') from admin a inner join pegawai p on p.nik=a.nip_kabid_yanmed"),
+                                Sequel.cariIsi("select date_format(tgl_lahir,'%d/%m/%Y') from pasien where no_rkm_medis='" + NoRm.getText() + "'"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='002'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+                
+                Valid.MyReport("rptSKL3Qr.jasper", "report", "::[ Surat Kelahiran Bayi ]::",
+                        "select if(p.jk='L','Laki-laki','Perempuan') jk, concat(format(CONVERT(pb.berat_badan_benar,DOUBLE),0),' gram') bb, "
+                        + "pb.panjang_badan pb, TIME_FORMAT(pb.jam_lahir,'%H:%i') jamlahir, concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',nm_kab) almt, "
+                        + "p.agama, pb.anakke, pb.no_skl from pasien_bayi pb INNER JOIN pasien p on p.no_rkm_medis=pb.no_rkm_medis "
+                        + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where pb.no_rkm_medis='" + NoRm.getText() + "'", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        }
+        this.setCursor(Cursor.getDefaultCursor());
     }
 }

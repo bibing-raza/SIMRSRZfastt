@@ -21,6 +21,7 @@ import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,7 +50,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private ResultSet rs, rs1, rsNoLis, rs11, rs22, rs33;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgMasterNomorDokumen dokumen = new DlgMasterNomorDokumen(null, false);
-    private String nosurat = "", thc = "", bzo = "", met = "", mop = "", coc = "",
+    private String nosurat = "", thc = "", bzo = "", met = "", mop = "", coc = "", tte = "",
             amp = "", opi = "", tglsurat = "", kddokter = "", noLIS = "", cekLIS = "", ketLIS = "",
             tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "", sttsnomor = "", cekNarkoba = "";
     private int x = 0, n = 0;
@@ -413,8 +414,12 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnCetakSurat = new javax.swing.JMenuItem();
-        MnCetakSuratKepolisian = new javax.swing.JMenuItem();
+        MnCetakSurat1 = new javax.swing.JMenu();
+        MnTTDcs = new javax.swing.JMenuItem();
+        MnTTEcs = new javax.swing.JMenuItem();
+        MnCetakSuratKepolisian1 = new javax.swing.JMenu();
+        MnTTDcsk = new javax.swing.JMenuItem();
+        MnTTEcsk = new javax.swing.JMenuItem();
         Scroll5 = new widget.ScrollPane();
         tbHasilTes = new widget.Table();
         Tnomor = new widget.TextBox();
@@ -516,33 +521,89 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnCetakSurat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCetakSurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCetakSurat.setText("Cetak Surat Keterangan NAPZA/Narkoba");
-        MnCetakSurat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnCetakSurat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnCetakSurat.setName("MnCetakSurat"); // NOI18N
-        MnCetakSurat.setPreferredSize(new java.awt.Dimension(300, 26));
-        MnCetakSurat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCetakSuratActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnCetakSurat);
+        MnCetakSurat1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCetakSurat1.setText("Cetak Surat Keterangan NAPZA/Narkoba");
+        MnCetakSurat1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakSurat1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCetakSurat1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCetakSurat1.setIconTextGap(5);
+        MnCetakSurat1.setName("MnCetakSurat1"); // NOI18N
+        MnCetakSurat1.setOpaque(true);
+        MnCetakSurat1.setPreferredSize(new java.awt.Dimension(300, 26));
 
-        MnCetakSuratKepolisian.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCetakSuratKepolisian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCetakSuratKepolisian.setText("Cetak Surat Keterangan NAPZA/Narkoba (Kepolisian)");
-        MnCetakSuratKepolisian.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnCetakSuratKepolisian.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnCetakSuratKepolisian.setName("MnCetakSuratKepolisian"); // NOI18N
-        MnCetakSuratKepolisian.setPreferredSize(new java.awt.Dimension(300, 26));
-        MnCetakSuratKepolisian.addActionListener(new java.awt.event.ActionListener() {
+        MnTTDcs.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDcs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTDcs.setText("TTD Basah");
+        MnTTDcs.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDcs.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDcs.setIconTextGap(5);
+        MnTTDcs.setName("MnTTDcs"); // NOI18N
+        MnTTDcs.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDcs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCetakSuratKepolisianActionPerformed(evt);
+                MnTTDcsActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(MnCetakSuratKepolisian);
+        MnCetakSurat1.add(MnTTDcs);
+
+        MnTTEcs.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEcs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTEcs.setText("TTE (QRCode)");
+        MnTTEcs.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEcs.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEcs.setIconTextGap(5);
+        MnTTEcs.setName("MnTTEcs"); // NOI18N
+        MnTTEcs.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEcs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEcsActionPerformed(evt);
+            }
+        });
+        MnCetakSurat1.add(MnTTEcs);
+
+        jPopupMenu1.add(MnCetakSurat1);
+
+        MnCetakSuratKepolisian1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCetakSuratKepolisian1.setText("Cetak Surat Keterangan NAPZA/Narkoba (Kepolisian)");
+        MnCetakSuratKepolisian1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakSuratKepolisian1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCetakSuratKepolisian1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCetakSuratKepolisian1.setIconTextGap(5);
+        MnCetakSuratKepolisian1.setName("MnCetakSuratKepolisian1"); // NOI18N
+        MnCetakSuratKepolisian1.setOpaque(true);
+        MnCetakSuratKepolisian1.setPreferredSize(new java.awt.Dimension(300, 26));
+
+        MnTTDcsk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDcsk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTDcsk.setText("TTD Basah");
+        MnTTDcsk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDcsk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDcsk.setIconTextGap(5);
+        MnTTDcsk.setName("MnTTDcsk"); // NOI18N
+        MnTTDcsk.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDcsk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTDcskActionPerformed(evt);
+            }
+        });
+        MnCetakSuratKepolisian1.add(MnTTDcsk);
+
+        MnTTEcsk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEcsk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTEcsk.setText("TTE (QRCode)");
+        MnTTEcsk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEcsk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEcsk.setIconTextGap(5);
+        MnTTEcsk.setName("MnTTEcsk"); // NOI18N
+        MnTTEcsk.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEcsk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEcskActionPerformed(evt);
+            }
+        });
+        MnCetakSuratKepolisian1.add(MnTTEcsk);
+
+        jPopupMenu1.add(MnCetakSuratKepolisian1);
 
         Scroll5.setName("Scroll5"); // NOI18N
         Scroll5.setOpaque(true);
@@ -574,6 +635,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         tbSurat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbSurat.setComponentPopupMenu(jPopupMenu1);
         tbSurat.setName("tbSurat"); // NOI18N
+        tbSurat.getTableHeader().setReorderingAllowed(false);
         tbSurat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbSuratMouseClicked(evt);
@@ -602,7 +664,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -621,7 +682,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -640,7 +700,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -659,7 +718,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -678,7 +736,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -707,7 +764,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-03-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -721,7 +778,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-03-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -746,7 +803,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('1');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+1");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -768,7 +824,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('2');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+2");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -919,7 +974,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         jLabel14.setBounds(1064, 290, 70, 23);
 
         Ttgl_surat.setEditable(false);
-        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-03-2025" }));
+        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
         Ttgl_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_surat.setName("Ttgl_surat"); // NOI18N
         Ttgl_surat.setOpaque(false);
@@ -939,7 +994,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         Tnmdokter.setBounds(135, 295, 540, 23);
 
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokter.setMnemonic('2');
         BtnDokter.setToolTipText("Alt+2");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -990,7 +1044,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         TnoSuratDari.setBounds(135, 206, 360, 23);
 
         TtglSuratDari.setEditable(false);
-        TtglSuratDari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-03-2025" }));
+        TtglSuratDari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
         TtglSuratDari.setDisplayFormat("dd-MM-yyyy");
         TtglSuratDari.setName("TtglSuratDari"); // NOI18N
         TtglSuratDari.setOpaque(false);
@@ -1003,6 +1057,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         panelGlass7.add(jLabel18);
         jLabel18.setBounds(0, 234, 135, 23);
 
+        Scroll7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
 
@@ -1283,7 +1338,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         TnoDokumen.setBounds(135, 38, 131, 23);
 
         BtnDokumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokumen.setMnemonic('2');
         BtnDokumen.setToolTipText("Alt+2");
         BtnDokumen.setName("BtnDokumen"); // NOI18N
         BtnDokumen.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1430,6 +1484,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
         tbLIS.setToolTipText("Silahkan klik untuk memilih data yang akan dibaca hasil lab. nya");
         tbLIS.setName("tbLIS"); // NOI18N
+        tbLIS.getTableHeader().setReorderingAllowed(false);
         tbLIS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbLISMouseClicked(evt);
@@ -1478,7 +1533,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('6');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+6");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -1505,6 +1559,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
         tbHasil.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
         tbHasil.setName("tbHasil"); // NOI18N
+        tbHasil.getTableHeader().setReorderingAllowed(false);
         tbHasil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbHasilMouseClicked(evt);
@@ -1817,81 +1872,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private void Ttmpt_tinggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ttmpt_tinggalKeyPressed
         Valid.pindah(evt, TPekerjaan, TPermintaanDari);
     }//GEN-LAST:event_Ttmpt_tinggalKeyPressed
-
-    private void MnCetakSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakSuratActionPerformed
-        if (TNoRW.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
-            tbSurat.requestFocus();
-        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data surat keterangan NAPZA pasien yg. bernama " + TPasien.getText() + "    \n"
-                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
-        } else {
-            cekNarkoba = "";
-
-            if (tbSurat.getSelectedRow() > -1) {
-                Map<String, Object> param = new HashMap<>();
-                param.put("namars", akses.getnamars());
-                param.put("alamatrs", akses.getalamatrs());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("propinsirs", akses.getpropinsirs());
-                param.put("kontakrs", akses.getkontakrs());
-                param.put("emailrs", akses.getemailrs());
-                param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
-
-                param.put("nosurat", "NOMOR : " + TnoDokumen.getText() + " / " + TNoSurat.getText());
-                param.put("nama", TPasien.getText());
-                param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText());
-                param.put("jk", Tjk.getText());
-                param.put("pekerjaan", TPekerjaan.getText());
-                param.put("tempattinggal", Ttmpt_tinggal.getText());
-                param.put("permintaandari", TPermintaanDari.getText());
-                param.put("kesimpulan", cmbKesHasil.getSelectedItem().toString());
-                param.put("keperluan", Tkeperluan.getText());
-                param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
-                        + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_napza where "
-                                + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
-                param.put("nmdokter", Tnmdokter.getText());
-                param.put("nipdokter", kddokter);
-
-                if (tglsurat.equals("ya")) {
-                    param.put("nosurattgl", TnoSuratDari.getText() + " tanggal "
-                            + TtglSuratDari.getSelectedItem().toString().substring(0, 2) + " "
-                            + Sequel.bulanINDONESIA("select date_format(tgl_surat_dari,'%m') from surat_keterangan_napza where "
-                                    + "no_rawat='" + TNoRW.getText() + "'") + " " + TtglSuratDari.getSelectedItem().toString().substring(6, 10));
-                } else {
-                    param.put("nosurattgl", TnoSuratDari.getText());
-                }
-
-                for (n = 0; n < tbHasilTes.getRowCount(); n++) {
-                    cekNarkoba = cekNarkoba + String.valueOf(n + 1) + ". "
-                            + tbHasilTes.getValueAt(n, 0).toString() + " "
-                            + tbHasilTes.getValueAt(n, 1).toString() + " "
-                            + tbHasilTes.getValueAt(n, 2).toString() + "\n";
-                }
-
-                param.put("hasil_tes", cekNarkoba);
-
-                if (Sequel.cariInteger("SELECT count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "' and thc='ya' and bzo='ya' "
-                        + "and met='ya' and mop='ya' and coc='ya' and amp='ya' and opi='ya'") == 0
-                        || Sequel.cariInteger("SELECT count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "' and (thc='ya' or bzo='ya' "
-                                + "or met='ya' or mop='ya' or coc='ya' or amp='ya' or opi='ya')") == 0) {
-                    Valid.MyReport("rptSuratNarkoba.jasper", "report", "::[ Surat Keterangan Narkoba ]::",
-                            "SELECT now() tgl", param);
-                } else {
-                    Valid.MyReport("rptSuratNapza.jasper", "report", "::[ Surat Keterangan NAPZA ]::",
-                            "SELECT now() tgl", param);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
-                tbSurat.requestFocus();
-            }
-
-            TCari.setText(TNoRW.getText());
-            tbSurat.requestFocus();
-            emptTeks();
-            tampil();
-        }
-    }//GEN-LAST:event_MnCetakSuratActionPerformed
 
     private void TkeperluanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TkeperluanKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
@@ -2239,7 +2219,35 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         Valid.pindah(evt, Tpenyidik, TnoSuratDari);
     }//GEN-LAST:event_TnrpKeyPressed
 
-    private void MnCetakSuratKepolisianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakSuratKepolisianActionPerformed
+    private void MnTTDcsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDcsActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data surat keterangan NAPZA pasien yg. bernama " + TPasien.getText() + "    \n"
+                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
+        } else {
+            tte = "";
+            tte = "tidak";
+            cetakMnCetakSurat();
+        }
+    }//GEN-LAST:event_MnTTDcsActionPerformed
+
+    private void MnTTEcsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEcsActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data surat keterangan NAPZA pasien yg. bernama " + TPasien.getText() + "    \n"
+                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
+        } else {
+            tte = "";
+            tte = "ya";
+            cetakMnCetakSurat();
+        }
+    }//GEN-LAST:event_MnTTEcsActionPerformed
+
+    private void MnTTDcskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDcskActionPerformed
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
             tbSurat.requestFocus();
@@ -2250,64 +2258,28 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Data pemeriksaan narkoba pasien ini bukan dari permintaan kepolisian...!!!!");
             tbSurat.requestFocus();
         } else {
-            cekNarkoba = "";
-
-            if (tbSurat.getSelectedRow() > -1) {
-                Map<String, Object> param = new HashMap<>();
-                param.put("namars", akses.getnamars());
-                param.put("alamatrs", akses.getalamatrs());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("propinsirs", akses.getpropinsirs());
-                param.put("kontakrs", akses.getkontakrs());
-                param.put("emailrs", akses.getemailrs());
-                param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
-
-                param.put("nosurat", "NOMOR : " + TnoDokumen.getText() + " / " + TNoSurat.getText());
-                param.put("nama", TPasien.getText());
-                param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText() + " (" + Sequel.cariIsi("select concat(umurdaftar,' tahun') from reg_periksa where no_rawat='" + TNoRW.getText() + "'") + ")");
-                param.put("jk", Tjk.getText());
-                param.put("pekerjaan", TPekerjaan.getText());
-                param.put("tempattinggal", Ttmpt_tinggal.getText());
-                param.put("permintaandari", TPermintaanDari.getText());
-                param.put("kesimpulan", cmbKesHasil.getSelectedItem().toString());
-                param.put("keperluan", Tkeperluan.getText() + "\n\n");
-                param.put("penyidik", Tpenyidik.getText());
-                param.put("nrp", Tnrp.getText());
-                param.put("indikasi", cmbIndikasi.getSelectedItem().toString());
-                param.put("nosuratdari", TnoSuratDari.getText());
-                param.put("tglsuratdari", Valid.SetTglINDONESIA(tbSurat.getValueAt(tbSurat.getSelectedRow(), 32).toString()));
-                param.put("nik", Sequel.cariIsi("select no_ktp from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
-                param.put("agama", Sequel.cariIsi("select agama from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
-                param.put("suku", Sequel.cariIsi("select s.nama_suku_bangsa from pasien p inner join suku_bangsa s on s.id=p.suku_bangsa "
-                        + "where p.no_rkm_medis='" + TNoRM.getText() + "'"));
-                param.put("pendidikan", Sequel.cariIsi("select pnd from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));                
-                param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
-                        + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_napza where "
-                                + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
-                param.put("nmdokter", Tnmdokter.getText());
-                param.put("nipdokter", kddokter);
-
-                for (n = 0; n < tbHasilTes.getRowCount(); n++) {
-                    cekNarkoba = cekNarkoba + "* "
-                            + tbHasilTes.getValueAt(n, 0).toString() + " "
-                            + tbHasilTes.getValueAt(n, 1).toString() + " "
-                            + tbHasilTes.getValueAt(n, 2).toString() + "\n";
-                }
-
-                param.put("hasil_tes", "Catatan :\n" + cekNarkoba);
-                Valid.MyReport("rptSuratNarkobaKepolisian.jasper", "report", "::[ Surat Keterangan Narkoba (Kepolisian) ]::",
-                        "SELECT now() tgl", param);
-            } else {
-                JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
-                tbSurat.requestFocus();
-            }
-
-            TCari.setText(TNoRW.getText());
-            tbSurat.requestFocus();
-            emptTeks();
-            tampil();
+            tte = "";
+            tte = "tidak";
+            cetakMnCetakSuratKepolisian();
         }
-    }//GEN-LAST:event_MnCetakSuratKepolisianActionPerformed
+    }//GEN-LAST:event_MnTTDcskActionPerformed
+
+    private void MnTTEcskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEcskActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data surat keterangan NAPZA pasien yg. bernama " + TPasien.getText() + "    \n"
+                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
+        } else if (!tbSurat.getValueAt(tbSurat.getSelectedRow(), 37).toString().equals("Kepolisian")) {
+            JOptionPane.showMessageDialog(null, "Data pemeriksaan narkoba pasien ini bukan dari permintaan kepolisian...!!!!");
+            tbSurat.requestFocus();
+        } else {
+            tte = "";
+            tte = "ya";
+            cetakMnCetakSuratKepolisian();
+        }
+    }//GEN-LAST:event_MnTTEcskActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2350,8 +2322,12 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormMenu;
     private widget.Label LCount;
-    private javax.swing.JMenuItem MnCetakSurat;
-    private javax.swing.JMenuItem MnCetakSuratKepolisian;
+    private javax.swing.JMenu MnCetakSurat1;
+    private javax.swing.JMenu MnCetakSuratKepolisian1;
+    private javax.swing.JMenuItem MnTTDcs;
+    private javax.swing.JMenuItem MnTTDcsk;
+    private javax.swing.JMenuItem MnTTEcs;
+    private javax.swing.JMenuItem MnTTEcsk;
     private widget.PanelBiasa PanelAccor;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll3;
@@ -3088,6 +3064,197 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         } else {
             ChkOPI.setSelected(false);
             cmbOPI.setEnabled(false);
+        }
+    }
+    
+    private void cetakMnCetakSurat() {
+        cekNarkoba = "";
+        String isi = "";
+
+        if (tbSurat.getSelectedRow() > -1) {
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
+
+            param.put("nosurat", "NOMOR : " + TnoDokumen.getText() + " / " + TNoSurat.getText());
+            param.put("nama", TPasien.getText());
+            param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText());
+            param.put("jk", Tjk.getText());
+            param.put("pekerjaan", TPekerjaan.getText());
+            param.put("tempattinggal", Ttmpt_tinggal.getText());
+            param.put("permintaandari", TPermintaanDari.getText());
+            param.put("kesimpulan", cmbKesHasil.getSelectedItem().toString());
+            param.put("keperluan", Tkeperluan.getText());
+            param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
+                    + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_napza where "
+                            + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
+            param.put("nmdokter", Tnmdokter.getText());
+            param.put("nipdokter", kddokter);
+
+            if (tglsurat.equals("ya")) {
+                param.put("nosurattgl", TnoSuratDari.getText() + " tanggal "
+                        + TtglSuratDari.getSelectedItem().toString().substring(0, 2) + " "
+                        + Sequel.bulanINDONESIA("select date_format(tgl_surat_dari,'%m') from surat_keterangan_napza where "
+                                + "no_rawat='" + TNoRW.getText() + "'") + " " + TtglSuratDari.getSelectedItem().toString().substring(6, 10));
+            } else {
+                param.put("nosurattgl", TnoSuratDari.getText());
+            }
+
+            for (n = 0; n < tbHasilTes.getRowCount(); n++) {
+                cekNarkoba = cekNarkoba + String.valueOf(n + 1) + ". "
+                        + tbHasilTes.getValueAt(n, 0).toString() + " "
+                        + tbHasilTes.getValueAt(n, 1).toString() + " "
+                        + tbHasilTes.getValueAt(n, 2).toString() + "\n";
+            }
+
+            param.put("hasil_tes", cekNarkoba);
+
+            if (tte.equals("tidak")) {
+                if (Sequel.cariInteger("SELECT count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "' and thc='ya' and bzo='ya' "
+                        + "and met='ya' and mop='ya' and coc='ya' and amp='ya' and opi='ya'") == 0
+                        || Sequel.cariInteger("SELECT count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "' and (thc='ya' or bzo='ya' "
+                                + "or met='ya' or mop='ya' or coc='ya' or amp='ya' or opi='ya')") == 0) {
+                    Valid.MyReport("rptSuratNarkoba.jasper", "report", "::[ Surat Keterangan Narkoba ]::",
+                            "SELECT now() tgl", param);
+                } else {
+                    Valid.MyReport("rptSuratNapza.jasper", "report", "::[ Surat Keterangan NAPZA ]::",
+                            "SELECT now() tgl", param);
+                }
+                
+                TCari.setText(TNoRW.getText());
+                tbSurat.requestFocus();
+                emptTeks();
+                tampil();
+            } else if (tte.equals("ya")) {
+                if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                    "Surat Keterangan NAPZA/Narkoba", Tnmdokter.getText(),
+                                    Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_napza where "
+                                            + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                    Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+                    
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+                    
+                    if (Sequel.cariInteger("SELECT count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "' and thc='ya' and bzo='ya' "
+                            + "and met='ya' and mop='ya' and coc='ya' and amp='ya' and opi='ya'") == 0
+                            || Sequel.cariInteger("SELECT count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "' and (thc='ya' or bzo='ya' "
+                                    + "or met='ya' or mop='ya' or coc='ya' or amp='ya' or opi='ya')") == 0) {
+                        Valid.MyReport("rptSuratNarkobaQr.jasper", "report", "::[ Surat Keterangan Narkoba ]::",
+                                "SELECT now() tgl", param);
+                    } else {
+                        Valid.MyReport("rptSuratNapzaQr.jasper", "report", "::[ Surat Keterangan NAPZA ]::",
+                                "SELECT now() tgl", param);
+                    }
+                    
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    TCari.setText(TNoRW.getText());
+                    tbSurat.requestFocus();
+                    emptTeks();
+                    tampil();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        }
+    }
+
+    private void cetakMnCetakSuratKepolisian() {
+        cekNarkoba = "";
+        String isi = "";
+
+        if (tbSurat.getSelectedRow() > -1) {
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
+
+            param.put("nosurat", "NOMOR : " + TnoDokumen.getText() + " / " + TNoSurat.getText());
+            param.put("nama", TPasien.getText());
+            param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText() + " (" + Sequel.cariIsi("select concat(umurdaftar,' tahun') from reg_periksa where no_rawat='" + TNoRW.getText() + "'") + ")");
+            param.put("jk", Tjk.getText());
+            param.put("pekerjaan", TPekerjaan.getText());
+            param.put("tempattinggal", Ttmpt_tinggal.getText());
+            param.put("permintaandari", TPermintaanDari.getText());
+            param.put("kesimpulan", cmbKesHasil.getSelectedItem().toString());
+            param.put("keperluan", Tkeperluan.getText() + "\n\n");
+            param.put("penyidik", Tpenyidik.getText());
+            param.put("nrp", Tnrp.getText());
+            param.put("indikasi", cmbIndikasi.getSelectedItem().toString());
+            param.put("nosuratdari", TnoSuratDari.getText());
+            param.put("tglsuratdari", Valid.SetTglINDONESIA(tbSurat.getValueAt(tbSurat.getSelectedRow(), 32).toString()));
+            param.put("nik", Sequel.cariIsi("select no_ktp from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            param.put("agama", Sequel.cariIsi("select agama from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            param.put("suku", Sequel.cariIsi("select s.nama_suku_bangsa from pasien p inner join suku_bangsa s on s.id=p.suku_bangsa "
+                    + "where p.no_rkm_medis='" + TNoRM.getText() + "'"));
+            param.put("pendidikan", Sequel.cariIsi("select pnd from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
+                    + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_napza where "
+                            + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
+            param.put("nmdokter", Tnmdokter.getText());
+            param.put("nipdokter", kddokter);
+
+            for (n = 0; n < tbHasilTes.getRowCount(); n++) {
+                cekNarkoba = cekNarkoba + "* "
+                        + tbHasilTes.getValueAt(n, 0).toString() + " "
+                        + tbHasilTes.getValueAt(n, 1).toString() + " "
+                        + tbHasilTes.getValueAt(n, 2).toString() + "\n";
+            }
+
+            param.put("hasil_tes", "Catatan :\n" + cekNarkoba);
+            
+            if (tte.equals("tidak")) {
+                Valid.MyReport("rptSuratNarkobaKepolisian.jasper", "report", "::[ Surat Keterangan Narkoba (Kepolisian) ]::",
+                        "SELECT now() tgl", param);
+                TCari.setText(TNoRW.getText());
+                tbSurat.requestFocus();
+                emptTeks();
+                tampil();
+            } else if (tte.equals("ya")) {
+                if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                    "Surat Keterangan Pemeriksaan Narkoba", Tnmdokter.getText(),
+                                    Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_napza where "
+                                            + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                    Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                    Valid.MyReport("rptSuratNarkobaKepolisianQr.jasper", "report", "::[ Surat Keterangan Narkoba (Kepolisian) ]::",
+                            "SELECT now() tgl", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    TCari.setText(TNoRW.getText());
+                    tbSurat.requestFocus();
+                    emptTeks();
+                    tampil();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
         }
     }
 }

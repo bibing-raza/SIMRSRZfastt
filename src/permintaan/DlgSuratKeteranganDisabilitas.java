@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -405,6 +406,8 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel147 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
         internalFrame4 = new widget.InternalFrame();
@@ -1053,6 +1056,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         PanelInput.add(jLabel29);
         jLabel29.setBounds(0, 654, 180, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
 
         Tcatatan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1076,6 +1080,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         PanelInput.add(jLabel30);
         jLabel30.setBounds(0, 740, 180, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
 
         Tkeperluan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1100,7 +1105,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         jLabel31.setBounds(675, 10, 70, 23);
 
         Ttgl_surat.setEditable(false);
-        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-10-2024" }));
+        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         Ttgl_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_surat.setName("Ttgl_surat"); // NOI18N
         Ttgl_surat.setOpaque(false);
@@ -1222,6 +1227,18 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        jLabel147.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel147.setText("Cetak Dalam Bentuk :");
+        jLabel147.setName("jLabel147"); // NOI18N
+        jLabel147.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel147);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -1278,6 +1295,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
 
         tbSurat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbSurat.setName("tbSurat"); // NOI18N
+        tbSurat.getTableHeader().setReorderingAllowed(false);
         tbSurat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbSuratMouseClicked(evt);
@@ -1306,7 +1324,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         jLabel46.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass9.add(jLabel46);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-10-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1320,7 +1338,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel48);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-10-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1962,11 +1980,36 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
             param.put("nip", kddokter);
             param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(tbSurat.getValueAt(tbSurat.getSelectedRow(), 45).toString()));
             
-            Valid.MyReport("rptSuratDisabilitas.jasper", "report", "::[ Surat Keterangan Dokter Pasien Disabilitas ]::",
-                "SELECT now() tanggal", param);
-
-            emptTeks();
-            tampil();
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, nama dokter pemeriksa harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                    "Surat Keterangan Dokter (Disabilitas)", Tnmdokter.getText(),
+                                    Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                            + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                    Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+                    
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+                    
+                    Valid.MyReport("rptSuratDisabilitasQr.jasper", "report", "::[ Surat Keterangan Dokter Pasien Disabilitas ]::",
+                            "SELECT now() tanggal", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    emptTeks();
+                    tampil();
+                }
+            } else {
+                Valid.MyReport("rptSuratDisabilitas.jasper", "report", "::[ Surat Keterangan Dokter Pasien Disabilitas ]::",
+                        "SELECT now() tanggal", param);
+                emptTeks();
+                tampil();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
             tbSurat.requestFocus();
@@ -2051,6 +2094,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
     private widget.ComboBox cmbPengobatan;
     private widget.ComboBox cmbPenyakit;
     private widget.ComboBox cmbPenyebab;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbSensorik;
     private widget.ComboBox cmbTanganKaki;
     private widget.InternalFrame internalFrame1;
@@ -2062,6 +2106,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
     private widget.Label jLabel12;
     private widget.Label jLabel13;
     private widget.Label jLabel14;
+    private widget.Label jLabel147;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;

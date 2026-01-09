@@ -21,6 +21,7 @@ import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,7 +52,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgMasterNomorDokumen dokumen = new DlgMasterNomorDokumen(null, false);
     private String nosrt = "", kddokter = "", cekTgl = "", kodepoli = "",
-            sttsnomor = "", cekCaten = "", noSuratFix = "";
+            sttsnomor = "", cekCaten = "", noSuratFix = "", tte = "";
     private int x = 0;
 
     /** Creates new form DlgSpesialis
@@ -374,12 +375,20 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnSuratKetDokter = new javax.swing.JMenuItem();
-        MnSuratKetDokterCaten = new javax.swing.JMenuItem();
-        MnSuratKetDokterMCUhasildiagnosa = new javax.swing.JMenuItem();
+        MnSuratKetDokter = new javax.swing.JMenu();
+        MnTTD = new javax.swing.JMenuItem();
+        MnTTE = new javax.swing.JMenuItem();
+        MnSuratKetDokterCaten = new javax.swing.JMenu();
+        MnTTDcaten = new javax.swing.JMenuItem();
+        MnTTEcaten = new javax.swing.JMenuItem();
+        MnSuratKetDokterMCUhasildiagnosa = new javax.swing.JMenu();
+        MnTTDmcu = new javax.swing.JMenuItem();
+        MnTTEmcu = new javax.swing.JMenuItem();
         MnSuratKetDokterManual = new javax.swing.JMenuItem();
         MnSuratKetDokterManualPenDalam = new javax.swing.JMenuItem();
-        MnSuratKetDokterLayakTerbang = new javax.swing.JMenuItem();
+        MnSuratKetDokterLayakTerbang = new javax.swing.JMenu();
+        MnTTDlt = new javax.swing.JMenuItem();
+        MnTTElt = new javax.swing.JMenuItem();
         MnSuratKetDokterGilutManual = new javax.swing.JMenuItem();
         MnCpns100Persen = new javax.swing.JMenuItem();
         MnDisabilitas = new javax.swing.JMenu();
@@ -388,7 +397,9 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
         jPopupMenu3 = new javax.swing.JPopupMenu();
-        MnCetakSuratCpns = new javax.swing.JMenuItem();
+        MnCetakSuratCpns = new javax.swing.JMenu();
+        MnTTDcpns = new javax.swing.JMenuItem();
+        MnTTEcpns = new javax.swing.JMenuItem();
         Tnomor = new widget.TextBox();
         WindowCpns = new javax.swing.JDialog();
         internalFrame3 = new widget.InternalFrame();
@@ -519,46 +530,130 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnSuratKetDokter.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSuratKetDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSuratKetDokter.setText("Surat Keterangan Dokter");
+        MnSuratKetDokter.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSuratKetDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnSuratKetDokter.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSuratKetDokter.setIconTextGap(5);
         MnSuratKetDokter.setName("MnSuratKetDokter"); // NOI18N
-        MnSuratKetDokter.setPreferredSize(new java.awt.Dimension(280, 26));
-        MnSuratKetDokter.addActionListener(new java.awt.event.ActionListener() {
+        MnSuratKetDokter.setOpaque(true);
+        MnSuratKetDokter.setPreferredSize(new java.awt.Dimension(190, 26));
+
+        MnTTD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTD.setText("TTD Basah");
+        MnTTD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTD.setIconTextGap(5);
+        MnTTD.setName("MnTTD"); // NOI18N
+        MnTTD.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnSuratKetDokterActionPerformed(evt);
+                MnTTDActionPerformed(evt);
             }
         });
+        MnSuratKetDokter.add(MnTTD);
+
+        MnTTE.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTE.setText("TTE (QRCode)");
+        MnTTE.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTE.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTE.setIconTextGap(5);
+        MnTTE.setName("MnTTE"); // NOI18N
+        MnTTE.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEActionPerformed(evt);
+            }
+        });
+        MnSuratKetDokter.add(MnTTE);
+
         jPopupMenu1.add(MnSuratKetDokter);
 
-        MnSuratKetDokterCaten.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSuratKetDokterCaten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSuratKetDokterCaten.setText("Surat Keterangan Dokter (CATEN)");
+        MnSuratKetDokterCaten.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSuratKetDokterCaten.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnSuratKetDokterCaten.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSuratKetDokterCaten.setIconTextGap(5);
         MnSuratKetDokterCaten.setName("MnSuratKetDokterCaten"); // NOI18N
-        MnSuratKetDokterCaten.setPreferredSize(new java.awt.Dimension(280, 26));
-        MnSuratKetDokterCaten.addActionListener(new java.awt.event.ActionListener() {
+        MnSuratKetDokterCaten.setOpaque(true);
+        MnSuratKetDokterCaten.setPreferredSize(new java.awt.Dimension(190, 26));
+
+        MnTTDcaten.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDcaten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTDcaten.setText("TTD Basah");
+        MnTTDcaten.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDcaten.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDcaten.setIconTextGap(5);
+        MnTTDcaten.setName("MnTTDcaten"); // NOI18N
+        MnTTDcaten.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDcaten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnSuratKetDokterCatenActionPerformed(evt);
+                MnTTDcatenActionPerformed(evt);
             }
         });
+        MnSuratKetDokterCaten.add(MnTTDcaten);
+
+        MnTTEcaten.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEcaten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTEcaten.setText("TTE (QRCode)");
+        MnTTEcaten.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEcaten.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEcaten.setIconTextGap(5);
+        MnTTEcaten.setName("MnTTEcaten"); // NOI18N
+        MnTTEcaten.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEcaten.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEcatenActionPerformed(evt);
+            }
+        });
+        MnSuratKetDokterCaten.add(MnTTEcaten);
+
         jPopupMenu1.add(MnSuratKetDokterCaten);
 
-        MnSuratKetDokterMCUhasildiagnosa.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSuratKetDokterMCUhasildiagnosa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSuratKetDokterMCUhasildiagnosa.setText("Suket Dokter (MCU - Hasil Pemeriksaan)");
+        MnSuratKetDokterMCUhasildiagnosa.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSuratKetDokterMCUhasildiagnosa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnSuratKetDokterMCUhasildiagnosa.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSuratKetDokterMCUhasildiagnosa.setIconTextGap(5);
         MnSuratKetDokterMCUhasildiagnosa.setName("MnSuratKetDokterMCUhasildiagnosa"); // NOI18N
-        MnSuratKetDokterMCUhasildiagnosa.setPreferredSize(new java.awt.Dimension(280, 26));
-        MnSuratKetDokterMCUhasildiagnosa.addActionListener(new java.awt.event.ActionListener() {
+        MnSuratKetDokterMCUhasildiagnosa.setOpaque(true);
+        MnSuratKetDokterMCUhasildiagnosa.setPreferredSize(new java.awt.Dimension(190, 26));
+
+        MnTTDmcu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDmcu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTDmcu.setText("TTD Basah");
+        MnTTDmcu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDmcu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDmcu.setIconTextGap(5);
+        MnTTDmcu.setName("MnTTDmcu"); // NOI18N
+        MnTTDmcu.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDmcu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnSuratKetDokterMCUhasildiagnosaActionPerformed(evt);
+                MnTTDmcuActionPerformed(evt);
             }
         });
+        MnSuratKetDokterMCUhasildiagnosa.add(MnTTDmcu);
+
+        MnTTEmcu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEmcu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTEmcu.setText("TTE (QRCode)");
+        MnTTEmcu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEmcu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEmcu.setIconTextGap(5);
+        MnTTEmcu.setName("MnTTEmcu"); // NOI18N
+        MnTTEmcu.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEmcu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEmcuActionPerformed(evt);
+            }
+        });
+        MnSuratKetDokterMCUhasildiagnosa.add(MnTTEmcu);
+
         jPopupMenu1.add(MnSuratKetDokterMCUhasildiagnosa);
 
         MnSuratKetDokterManual.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -589,18 +684,46 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnSuratKetDokterManualPenDalam);
 
-        MnSuratKetDokterLayakTerbang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSuratKetDokterLayakTerbang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSuratKetDokterLayakTerbang.setText("Surat Keterangan Dokter (Layak Terbang)");
+        MnSuratKetDokterLayakTerbang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSuratKetDokterLayakTerbang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnSuratKetDokterLayakTerbang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSuratKetDokterLayakTerbang.setIconTextGap(5);
         MnSuratKetDokterLayakTerbang.setName("MnSuratKetDokterLayakTerbang"); // NOI18N
-        MnSuratKetDokterLayakTerbang.setPreferredSize(new java.awt.Dimension(280, 26));
-        MnSuratKetDokterLayakTerbang.addActionListener(new java.awt.event.ActionListener() {
+        MnSuratKetDokterLayakTerbang.setOpaque(true);
+        MnSuratKetDokterLayakTerbang.setPreferredSize(new java.awt.Dimension(190, 26));
+
+        MnTTDlt.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDlt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTDlt.setText("TTD Basah");
+        MnTTDlt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDlt.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDlt.setIconTextGap(5);
+        MnTTDlt.setName("MnTTDlt"); // NOI18N
+        MnTTDlt.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDlt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnSuratKetDokterLayakTerbangActionPerformed(evt);
+                MnTTDltActionPerformed(evt);
             }
         });
+        MnSuratKetDokterLayakTerbang.add(MnTTDlt);
+
+        MnTTElt.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTElt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTElt.setText("TTE (QRCode)");
+        MnTTElt.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTElt.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTElt.setIconTextGap(5);
+        MnTTElt.setName("MnTTElt"); // NOI18N
+        MnTTElt.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTElt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEltActionPerformed(evt);
+            }
+        });
+        MnSuratKetDokterLayakTerbang.add(MnTTElt);
+
         jPopupMenu1.add(MnSuratKetDokterLayakTerbang);
 
         MnSuratKetDokterGilutManual.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -692,19 +815,46 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         jPopupMenu3.setName("jPopupMenu3"); // NOI18N
 
-        MnCetakSuratCpns.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakSuratCpns.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCetakSuratCpns.setText("Surat KIR CPNS 100%");
+        MnCetakSuratCpns.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakSuratCpns.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnCetakSuratCpns.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnCetakSuratCpns.setIconTextGap(5);
         MnCetakSuratCpns.setName("MnCetakSuratCpns"); // NOI18N
+        MnCetakSuratCpns.setOpaque(true);
         MnCetakSuratCpns.setPreferredSize(new java.awt.Dimension(165, 26));
-        MnCetakSuratCpns.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTDcpns.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDcpns.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTDcpns.setText("TTD Basah");
+        MnTTDcpns.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDcpns.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDcpns.setIconTextGap(5);
+        MnTTDcpns.setName("MnTTDcpns"); // NOI18N
+        MnTTDcpns.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDcpns.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCetakSuratCpnsActionPerformed(evt);
+                MnTTDcpnsActionPerformed(evt);
             }
         });
+        MnCetakSuratCpns.add(MnTTDcpns);
+
+        MnTTEcpns.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEcpns.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTEcpns.setText("TTE (QRCode)");
+        MnTTEcpns.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEcpns.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEcpns.setIconTextGap(5);
+        MnTTEcpns.setName("MnTTEcpns"); // NOI18N
+        MnTTEcpns.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEcpns.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEcpnsActionPerformed(evt);
+            }
+        });
+        MnCetakSuratCpns.add(MnTTEcpns);
+
         jPopupMenu3.add(MnCetakSuratCpns);
 
         Tnomor.setEditable(false);
@@ -775,7 +925,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         jLabel20.setBounds(500, 38, 145, 23);
 
         TtglSuratMenkes.setEditable(false);
-        TtglSuratMenkes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2026" }));
+        TtglSuratMenkes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
         TtglSuratMenkes.setDisplayFormat("dd-MM-yyyy");
         TtglSuratMenkes.setName("TtglSuratMenkes"); // NOI18N
         TtglSuratMenkes.setOpaque(false);
@@ -890,7 +1040,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         jLabel39.setBounds(500, 150, 145, 23);
 
         TtglSuratPermintaan.setEditable(false);
-        TtglSuratPermintaan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2026" }));
+        TtglSuratPermintaan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
         TtglSuratPermintaan.setDisplayFormat("dd-MM-yyyy");
         TtglSuratPermintaan.setName("TtglSuratPermintaan"); // NOI18N
         TtglSuratPermintaan.setOpaque(false);
@@ -975,7 +1125,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         panelisi6.add(jLabel40);
 
         DTPCariA.setEditable(false);
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2026" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -990,7 +1140,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         panelisi6.add(jLabel41);
 
         DTPCariB.setEditable(false);
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2026" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -1015,7 +1165,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('3');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+3");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -1040,7 +1189,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan1.setMnemonic('S');
         BtnSimpan1.setText("Simpan");
         BtnSimpan1.setToolTipText("Alt+S");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
@@ -1054,7 +1202,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnBatal1.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal1.setMnemonic('B');
         BtnBatal1.setText("Baru");
         BtnBatal1.setToolTipText("Alt+B");
         BtnBatal1.setName("BtnBatal1"); // NOI18N
@@ -1073,7 +1220,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnHapus1.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus1.setMnemonic('H');
         BtnHapus1.setText("Hapus");
         BtnHapus1.setToolTipText("Alt+H");
         BtnHapus1.setName("BtnHapus1"); // NOI18N
@@ -1087,7 +1233,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnEdit1.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit1.setMnemonic('G');
         BtnEdit1.setText("Ganti");
         BtnEdit1.setToolTipText("Alt+G");
         BtnEdit1.setName("BtnEdit1"); // NOI18N
@@ -1101,7 +1246,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll1.setMnemonic('M');
         BtnAll1.setText("Semua");
         BtnAll1.setToolTipText("Alt+M");
         BtnAll1.setName("BtnAll1"); // NOI18N
@@ -1120,7 +1264,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -1186,7 +1329,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -1205,7 +1347,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -1224,7 +1365,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1243,7 +1383,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -1262,7 +1401,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1292,7 +1430,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1307,7 +1445,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1332,7 +1470,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('1');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+1");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -1351,7 +1488,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('2');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+2");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -1486,7 +1622,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         TAlamat.setBounds(105, 94, 380, 23);
 
         Ttgl_no_surat.setEditable(false);
-        Ttgl_no_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2026" }));
+        Ttgl_no_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
         Ttgl_no_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_no_surat.setName("Ttgl_no_surat"); // NOI18N
         Ttgl_no_surat.setOpaque(false);
@@ -1506,7 +1642,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         Tnmdokter.setBounds(105, 327, 470, 23);
 
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokter.setMnemonic('2');
         BtnDokter.setToolTipText("Alt+2");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1587,7 +1722,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         jLabel25.setBounds(505, 270, 80, 23);
 
         Ttgl_surat.setEditable(false);
-        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2026" }));
+        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2026" }));
         Ttgl_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_surat.setName("Ttgl_surat"); // NOI18N
         Ttgl_surat.setOpaque(false);
@@ -1776,7 +1911,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         TnoDokumen.setBounds(105, 38, 112, 23);
 
         BtnDokumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokumen.setMnemonic('2');
         BtnDokumen.setToolTipText("Alt+2");
         BtnDokumen.setName("BtnDokumen"); // NOI18N
         BtnDokumen.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1790,7 +1924,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
         BtnPasteHasil.setForeground(new java.awt.Color(0, 0, 0));
         BtnPasteHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnPasteHasil.setMnemonic('L');
         BtnPasteHasil.setText("Paste");
         BtnPasteHasil.setToolTipText("Alt+L");
         BtnPasteHasil.setName("BtnPasteHasil"); // NOI18N
@@ -2185,119 +2318,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         Valid.pindah(evt, TPekerjaan, Tpermintaan);
     }//GEN-LAST:event_TAlamatKeyPressed
 
-    private void MnSuratKetDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSuratKetDokterActionPerformed
-        if (TNoRW.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
-            tbSurat.requestFocus();
-        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_dokter where no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data surat keterangan dokter utk. pasien yg. bernama " + TPasien.getText() + "    \n"
-                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
-        } else {
-            if (tbSurat.getSelectedRow() > -1) {
-                Map<String, Object> param = new HashMap<>();
-                param.put("namars", akses.getnamars());
-                param.put("alamatrs", akses.getalamatrs());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("propinsirs", akses.getpropinsirs());
-                param.put("kontakrs", akses.getkontakrs());
-                param.put("emailrs", akses.getemailrs());
-                param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
-                param.put("nosurat", TnoDokumen.getText() + " / " + TNoSurat.getText());
-                param.put("nmpasien", TPasien.getText());
-                param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText());
-                param.put("jnskelamin", Tjk.getText());
-                param.put("pekerjaan", TPekerjaan.getText());
-                param.put("alamat", TAlamat.getText());
-                param.put("permintaan", Tpermintaan.getText());                
-                param.put("bb", Tbb.getText() + " Kg.");
-                param.put("tb", Ttb.getText() + " Cm.");
-                param.put("goldarah", "- " + Tgol.getText() + " -");
-                param.put("berlaku", Tberlaku.getText() + " (" + Sequel.Terbilang(Valid.SetAngka(Tberlaku.getText())) + ") "
-                        + cmbSelama.getSelectedItem().toString() + " sejak tanggal dikeluarkan.");                
-                param.put("nmdokter", Tnmdokter.getText());
-                param.put("nipdokter", kddokter);
-                param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
-                        + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_dokter where "
-                                + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
-
-                if (cekTgl.equals("ya")) {
-                    param.put("nosuratdari", Tno_surat_dari.getText() + ", tanggal " + Ttgl_no_surat.getSelectedItem().toString());
-                } else {
-                    param.put("nosuratdari", Tno_surat_dari.getText());
-                }
-                
-                if (kodepoli.equals("UMUM")) {
-                    param.put("tensi", Ttensi.getText());
-                    param.put("nadi", Tnadi.getText());
-                    param.put("bmi", Tbmi.getText());
-                    
-                    if (cmbDinyatakan.getSelectedIndex() == 0 || cmbDinyatakan.getSelectedIndex() == 8) {
-                        param.put("dinyatakan", "....................................................................................................."
-                                + "..................................................................................................................."
-                                + "........................................................................................");
-                        param.put("keperluan", "......................................................................................................"
-                                + "..................................................................................................................."
-                                + "..................................................................................................................."
-                                + ".............................................................................................................");
-                    } else if (cmbDinyatakan.getSelectedIndex() == 6) {
-                        param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText());
-                        param.put("keperluan", Tkeperluan.getText());
-                    } else {
-                        param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString());
-                        param.put("keperluan", Tkeperluan.getText());
-                    }
-                    
-                    Valid.MyReport("rptSuratDokter.jasper", "report",
-                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
-                            "SELECT date(now())", param);
-                   
-                } else if (kodepoli.equals("MAT")) {
-                    param.put("hasil", Thasil.getText() + "\n");
-                    param.put("keperluan", Tkeperluan.getText() + "\n");
-                    Valid.MyReport("rptSuratDokterMata.jasper", "report",
-                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
-                            "SELECT date(now())", param);
-                    
-                } else if (kodepoli.equals("THT")) {
-                    param.put("hasil", Thasil.getText() + "\n");
-                    param.put("dinyatakan", "Kesimpulan : ....................................................................................................."
-                            + "..................................................................................................................."
-                            + "..................................................................................................................."
-                            + "........................................................................................");
-                    param.put("keperluan", Tkeperluan.getText() + "\n");
-                    Valid.MyReport("rptSuratDokterSemuaPoli.jasper", "report",
-                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
-                            "SELECT date(now())", param);
-                    
-                } else if (kodepoli.equals("KLT")) {
-                    param.put("hasil", Thasil.getText() + "\n");
-                    param.put("keperluan", Tkeperluan.getText() + "\n");
-                    if (cmbDinyatakan.getSelectedIndex() == 6) {
-                        param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText() + "\n");
-                    } else {
-                        param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString() + "\n");
-                    }
-                    Valid.MyReport("rptSuratDokterKulit.jasper", "report",
-                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
-                            "SELECT date(now())", param);
-                    
-                } else {
-                    param.put("hasil", Thasil.getText() + "\n");
-                    param.put("dinyatakan", "Kesimpulan : " + cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText());
-                    param.put("keperluan", Tkeperluan.getText() + "\n");
-                    Valid.MyReport("rptSuratDokterSemuaPoli.jasper", "report",
-                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
-                            "SELECT date(now())", param);
-                }
-            }
-            
-            TCari.setText(TNoRW.getText());
-            tbSurat.requestFocus();
-            emptTeks();
-            tampil();            
-        }
-    }//GEN-LAST:event_MnSuratKetDokterActionPerformed
-
     private void Tno_surat_dariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tno_surat_dariKeyPressed
         Valid.pindah(evt, Tpermintaan, Tberlaku);
     }//GEN-LAST:event_Tno_surat_dariKeyPressed
@@ -2513,145 +2533,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
             Tpermintaan.setText("");
         }
     }//GEN-LAST:event_ChkYbsActionPerformed
-
-    private void MnSuratKetDokterMCUhasildiagnosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSuratKetDokterMCUhasildiagnosaActionPerformed
-        if (TNoRW.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
-            tbSurat.requestFocus();
-        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_dokter where no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data surat keterangan dokter utk. pasien yg. bernama " + TPasien.getText() + "    \n"
-                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
-        } else {
-            if (tbSurat.getSelectedRow() > -1) {
-                Map<String, Object> param = new HashMap<>();
-                param.put("namars", akses.getnamars());
-                param.put("alamatrs", akses.getalamatrs());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("propinsirs", akses.getpropinsirs());
-                param.put("kontakrs", akses.getkontakrs());
-                param.put("emailrs", akses.getemailrs());
-                param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
-                param.put("nosurat", TnoDokumen.getText() + " / " + TNoSurat.getText());
-                param.put("nmpasien", TPasien.getText());
-                param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText());
-                param.put("jnskelamin", Tjk.getText());
-                param.put("pekerjaan", TPekerjaan.getText());
-                param.put("alamat", TAlamat.getText());
-                param.put("permintaan", Tpermintaan.getText());                
-                param.put("bb", Tbb.getText() + " Kg.");
-                param.put("tb", Ttb.getText() + " Cm.");
-                param.put("goldarah", "- " + Tgol.getText() + " -");
-                param.put("berlaku", Tberlaku.getText() + " (" + Sequel.Terbilang(Valid.SetAngka(Tberlaku.getText())) + ") "
-                        + cmbSelama.getSelectedItem().toString() + " sejak tanggal dikeluarkan.");                
-                param.put("nmdokter", Tnmdokter.getText());
-                param.put("nipdokter", kddokter);
-                param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
-                        + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_dokter where "
-                                + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
-
-                if (cekTgl.equals("ya")) {
-                    param.put("nosuratdari", Tno_surat_dari.getText() + ", tanggal " + Ttgl_no_surat.getSelectedItem().toString());
-                } else {
-                    param.put("nosuratdari", Tno_surat_dari.getText());
-                }
-
-                param.put("hasil", Thasil.getText());
-                param.put("diagnosa", Tdiagnosa.getText());
-                param.put("keperluan", Tkeperluan.getText());
-                Valid.MyReport("rptSuratDokterHasilDiagnosa.jasper", "report",
-                        "::[ Surat Keterangan Dokter (MCU) " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
-                        "SELECT date(now())", param);
-            }
-
-            TCari.setText(TNoRW.getText());
-            tbSurat.requestFocus();
-            emptTeks();
-            tampil();
-        }
-    }//GEN-LAST:event_MnSuratKetDokterMCUhasildiagnosaActionPerformed
-
-    private void MnSuratKetDokterCatenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSuratKetDokterCatenActionPerformed
-        if (TNoRW.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
-            tbSurat.requestFocus();
-        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_dokter where no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data surat keterangan dokter utk. pasien yg. bernama " + TPasien.getText() + "    \n"
-                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
-        } else {
-            if (tbSurat.getSelectedRow() > -1) {
-                if (tbSurat.getValueAt(tbSurat.getSelectedRow(), 30).toString().equals("tidak")) {
-                    JOptionPane.showMessageDialog(null, "Jenis surat keterangan dokter yg. tersimpan bukan caten...!!!!");
-                } else {
-                    Map<String, Object> param = new HashMap<>();
-                    param.put("namars", akses.getnamars());
-                    param.put("alamatrs", akses.getalamatrs());
-                    param.put("kotars", akses.getkabupatenrs());
-                    param.put("propinsirs", akses.getpropinsirs());
-                    param.put("kontakrs", akses.getkontakrs());
-                    param.put("emailrs", akses.getemailrs());
-                    param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
-                    param.put("nosurat", TnoDokumen.getText() + " / " + TNoSurat.getText());
-                    param.put("nmpasien", TPasien.getText());
-                    param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText());
-                    param.put("jnskelamin", Tjk.getText());
-                    param.put("pekerjaan", TPekerjaan.getText());
-                    param.put("alamat", TAlamat.getText());
-                    param.put("permintaan", Tpermintaan.getText());
-                    param.put("bb", Tbb.getText() + " Kg.");
-                    param.put("tb", Ttb.getText() + " Cm.");
-                    param.put("goldarah", "- " + Tgol.getText() + " -");
-                    param.put("berlaku", Tberlaku.getText() + " (" + Sequel.Terbilang(Valid.SetAngka(Tberlaku.getText())) + ") "
-                            + cmbSelama.getSelectedItem().toString() + " sejak tanggal dikeluarkan.");
-                    param.put("nmdokter", Tnmdokter.getText());
-                    param.put("nipdokter", kddokter);
-                    param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
-                            + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_dokter where "
-                                    + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
-
-                    if (cekTgl.equals("ya")) {
-                        param.put("nosuratdari", Tno_surat_dari.getText() + ", tanggal " + Ttgl_no_surat.getSelectedItem().toString());
-                    } else {
-                        param.put("nosuratdari", Tno_surat_dari.getText());
-                    }
-
-                    if (kodepoli.equals("UMUM")) {
-                        if (cmbDinyatakan.getSelectedIndex() == 0 || cmbDinyatakan.getSelectedIndex() == 8) {
-                            param.put("dinyatakan", "....................................................................................................."
-                                    + "..................................................................................................................."
-                                    + "........................................................................................");
-                            param.put("keperluan", "......................................................................................................"
-                                    + "..................................................................................................................."
-                                    + "..................................................................................................................."
-                                    + ".............................................................................................................");
-                        } else if (cmbDinyatakan.getSelectedIndex() == 7) {
-                            param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString());
-                            param.put("keperluan", Tkeperluan.getText());
-                        } else {
-                            param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString());
-                            param.put("keperluan", Tkeperluan.getText());
-                        }
-
-                        Valid.MyReport("rptSuratDokterCaten.jasper", "report",
-                                "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
-                                "SELECT date(now())", param);
-
-                    } else {
-                        param.put("hasil", Thasil.getText() + "\n");
-                        param.put("dinyatakan", "Kesimpulan : " + cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText());
-                        param.put("keperluan", Tkeperluan.getText() + "\n");
-                        Valid.MyReport("rptSuratDokterSemuaPoli.jasper", "report",
-                                "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
-                                "SELECT date(now())", param);
-                    }
-                }
-
-                TCari.setText(TNoRW.getText());
-                tbSurat.requestFocus();
-                emptTeks();
-                tampil();
-            }
-        }
-    }//GEN-LAST:event_MnSuratKetDokterCatenActionPerformed
 
     private void TtensiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtensiKeyPressed
         Valid.pindah(evt, Ttgl_surat, Tnadi);
@@ -2961,38 +2842,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ChkSamaNamaActionPerformed
 
-    private void MnCetakSuratCpnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakSuratCpnsActionPerformed
-        if (tbCpns.getSelectedRow() > -1) {
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
-            param.put("tglSuratMenkes", Valid.SetTglINDONESIA(tbCpns.getValueAt(tbCpns.getSelectedRow(), 12).toString()));
-            param.put("tglLahir", Valid.SetTglINDONESIA(tbCpns.getValueAt(tbCpns.getSelectedRow(), 14).toString()));
-            param.put("tglSuratPermintaan", Valid.SetTglINDONESIA(tbCpns.getValueAt(tbCpns.getSelectedRow(), 13).toString()));            
-            param.put("tglsurat", Valid.SetTglINDONESIA(tbCpns.getValueAt(tbCpns.getSelectedRow(), 15).toString()));
-
-            Valid.MyReport("rptSuratDokterKirCpns.jasper", "report", "::[ Surat KIR CPNS 100 % ]::",
-                    "SELECT c.*, s.*, concat(s.no_surat,' / ',s.no_dokumen) noSurat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(c.tgl_surat_menkes,'%d-%m-%Y') tglMenkes, "
-                    + "DATE_FORMAT(c.tgl_atas_permintaan,'%d-%m-%Y') tglAtasPermintaan, concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', ',kb.nm_kab) almt, "
-                    + "if(p.jk='L','Laki-laki','Perempuan') jenkel, pg.nama nmDokter FROM cpns_seratus_persen c "
-                    + "inner join surat_keterangan_dokter s on s.no_rawat=c.no_rawat inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "
-                    + "inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
-                    + "inner join pegawai pg on pg.nik=s.nip_dokter where c.no_rawat='" + tbCpns.getValueAt(tbCpns.getSelectedRow(), 0).toString() + "'", param);
-            
-            BtnBatal1ActionPerformed(null);
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
-            tampilCpns();
-            tbCpns.requestFocus();
-        }
-    }//GEN-LAST:event_MnCetakSuratCpnsActionPerformed
-
     private void MnSuratKetDokterManualPenDalamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSuratKetDokterManualPenDalamActionPerformed
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
@@ -3051,7 +2900,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnSuratKetDokterManualPenDalamActionPerformed
 
-    private void MnSuratKetDokterLayakTerbangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSuratKetDokterLayakTerbangActionPerformed
+    private void MnTTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDActionPerformed
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
             tbSurat.requestFocus();
@@ -3059,7 +2908,251 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Data surat keterangan dokter utk. pasien yg. bernama " + TPasien.getText() + "    \n"
                     + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
         } else {
+            tte = "";
+            tte = "tidak";
+            cetakMnSuratKetDokter();
+        }
+    }//GEN-LAST:event_MnTTDActionPerformed
+
+    private void MnTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_dokter where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data surat keterangan dokter utk. pasien yg. bernama " + TPasien.getText() + "    \n"
+                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
+        } else {
+            tte = "";
+            tte = "ya";
+            cetakMnSuratKetDokter();
+        }
+    }//GEN-LAST:event_MnTTEActionPerformed
+
+    private void MnTTDcatenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDcatenActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_dokter where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data surat keterangan dokter utk. pasien yg. bernama " + TPasien.getText() + "    \n"
+                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
+        } else {
+            tte = "";
+            tte = "tidak";
+            cetakMnSuratKetDokterCaten();
+        }
+    }//GEN-LAST:event_MnTTDcatenActionPerformed
+
+    private void MnTTEcatenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEcatenActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_dokter where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data surat keterangan dokter utk. pasien yg. bernama " + TPasien.getText() + "    \n"
+                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
+        } else {
+            tte = "";
+            tte = "ya";
+            cetakMnSuratKetDokterCaten();
+        }
+    }//GEN-LAST:event_MnTTEcatenActionPerformed
+
+    private void MnTTDmcuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDmcuActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_dokter where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data surat keterangan dokter utk. pasien yg. bernama " + TPasien.getText() + "    \n"
+                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
+        } else {
+            tte = "";
+            tte = "tidak";
             if (tbSurat.getSelectedRow() > -1) {
+                String isi = "";
+                
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("alamatrs", akses.getalamatrs());
+                param.put("kotars", akses.getkabupatenrs());
+                param.put("propinsirs", akses.getpropinsirs());
+                param.put("kontakrs", akses.getkontakrs());
+                param.put("emailrs", akses.getemailrs());
+                param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
+                param.put("nosurat", TnoDokumen.getText() + " / " + TNoSurat.getText());
+                param.put("nmpasien", TPasien.getText());
+                param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText());
+                param.put("jnskelamin", Tjk.getText());
+                param.put("pekerjaan", TPekerjaan.getText());
+                param.put("alamat", TAlamat.getText());
+                param.put("permintaan", Tpermintaan.getText());                
+                param.put("bb", Tbb.getText() + " Kg.");
+                param.put("tb", Ttb.getText() + " Cm.");
+                param.put("goldarah", "- " + Tgol.getText() + " -");
+                param.put("berlaku", Tberlaku.getText() + " (" + Sequel.Terbilang(Valid.SetAngka(Tberlaku.getText())) + ") "
+                        + cmbSelama.getSelectedItem().toString() + " sejak tanggal dikeluarkan.");                
+                param.put("nmdokter", Tnmdokter.getText());
+                param.put("nipdokter", kddokter);
+                param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
+                        + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_dokter where "
+                                + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
+
+                if (cekTgl.equals("ya")) {
+                    param.put("nosuratdari", Tno_surat_dari.getText() + ", tanggal " + Ttgl_no_surat.getSelectedItem().toString());
+                } else {
+                    param.put("nosuratdari", Tno_surat_dari.getText());
+                }
+
+                param.put("hasil", Thasil.getText());
+                param.put("diagnosa", Tdiagnosa.getText());
+                param.put("keperluan", Tkeperluan.getText());
+                
+                if (tte.equals("tidak")) {
+                    Valid.MyReport("rptSuratDokterHasilDiagnosa.jasper", "report",
+                            "::[ Surat Keterangan Dokter (MCU) " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                            "SELECT date(now())", param);
+                    
+                    TCari.setText(TNoRW.getText());
+                    tbSurat.requestFocus();
+                    emptTeks();
+                    tampil();
+                } else if (tte.equals("ya")) {
+                    if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                        "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                        Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                                + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                        Valid.MyReport("rptSuratDokterHasilDiagnosaQr.jasper", "report",
+                                "::[ Surat Keterangan Dokter (MCU) " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                "SELECT date(now())", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        TCari.setText(TNoRW.getText());
+                        tbSurat.requestFocus();
+                        emptTeks();
+                        tampil();
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
+                tbSurat.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnTTDmcuActionPerformed
+
+    private void MnTTEmcuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEmcuActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_dokter where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data surat keterangan dokter utk. pasien yg. bernama " + TPasien.getText() + "    \n"
+                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
+        } else {
+            tte = "";
+            tte = "ya";
+            if (tbSurat.getSelectedRow() > -1) {
+                String isi = "";
+                
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("alamatrs", akses.getalamatrs());
+                param.put("kotars", akses.getkabupatenrs());
+                param.put("propinsirs", akses.getpropinsirs());
+                param.put("kontakrs", akses.getkontakrs());
+                param.put("emailrs", akses.getemailrs());
+                param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
+                param.put("nosurat", TnoDokumen.getText() + " / " + TNoSurat.getText());
+                param.put("nmpasien", TPasien.getText());
+                param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText());
+                param.put("jnskelamin", Tjk.getText());
+                param.put("pekerjaan", TPekerjaan.getText());
+                param.put("alamat", TAlamat.getText());
+                param.put("permintaan", Tpermintaan.getText());                
+                param.put("bb", Tbb.getText() + " Kg.");
+                param.put("tb", Ttb.getText() + " Cm.");
+                param.put("goldarah", "- " + Tgol.getText() + " -");
+                param.put("berlaku", Tberlaku.getText() + " (" + Sequel.Terbilang(Valid.SetAngka(Tberlaku.getText())) + ") "
+                        + cmbSelama.getSelectedItem().toString() + " sejak tanggal dikeluarkan.");                
+                param.put("nmdokter", Tnmdokter.getText());
+                param.put("nipdokter", kddokter);
+                param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
+                        + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_dokter where "
+                                + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
+
+                if (cekTgl.equals("ya")) {
+                    param.put("nosuratdari", Tno_surat_dari.getText() + ", tanggal " + Ttgl_no_surat.getSelectedItem().toString());
+                } else {
+                    param.put("nosuratdari", Tno_surat_dari.getText());
+                }
+
+                param.put("hasil", Thasil.getText());
+                param.put("diagnosa", Tdiagnosa.getText());
+                param.put("keperluan", Tkeperluan.getText());
+                
+                if (tte.equals("tidak")) {
+                    Valid.MyReport("rptSuratDokterHasilDiagnosa.jasper", "report",
+                            "::[ Surat Keterangan Dokter (MCU) " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                            "SELECT date(now())", param);
+                    
+                    TCari.setText(TNoRW.getText());
+                    tbSurat.requestFocus();
+                    emptTeks();
+                    tampil();
+                } else if (tte.equals("ya")) {
+                    if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                        "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                        Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                                + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                        Valid.MyReport("rptSuratDokterHasilDiagnosaQr.jasper", "report",
+                                "::[ Surat Keterangan Dokter (MCU) " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                "SELECT date(now())", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        TCari.setText(TNoRW.getText());
+                        tbSurat.requestFocus();
+                        emptTeks();
+                        tampil();
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
+                tbSurat.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnTTEmcuActionPerformed
+
+    private void MnTTDltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDltActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_dokter where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data surat keterangan dokter utk. pasien yg. bernama " + TPasien.getText() + "    \n"
+                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
+        } else {
+            tte = "";
+            tte = "tidak";
+            if (tbSurat.getSelectedRow() > -1) {
+                String isi = "";
+
                 Map<String, Object> param = new HashMap<>();
                 param.put("namars", akses.getnamars());
                 param.put("alamatrs", akses.getalamatrs());
@@ -3087,20 +3180,269 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                 } else {
                     param.put("nosuratdari", Tno_surat_dari.getText());
                 }
-                
+
                 param.put("diagnosa", Tdiagnosa.getText());
                 param.put("keperluan", Tkeperluan.getText() + "\n");
-                Valid.MyReport("rptSuratDokterLayakTerbang.jasper", "report",
-                        "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
-                        "SELECT date(now())", param);
+
+                if (tte.equals("tidak")) {
+                    Valid.MyReport("rptSuratDokterLayakTerbang.jasper", "report",
+                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                            "SELECT date(now())", param);
+                    
+                    TCari.setText(TNoRW.getText());
+                    tbSurat.requestFocus();
+                    emptTeks();
+                    tampil();
+                } else if (tte.equals("ya")) {
+                    if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                        "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                        Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                                + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                        Valid.MyReport("rptSuratDokterLayakTerbangQr.jasper", "report",
+                                "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                "SELECT date(now())", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        TCari.setText(TNoRW.getText());
+                        tbSurat.requestFocus();
+                        emptTeks();
+                        tampil();
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
+                tbSurat.requestFocus();
             }
-            
-            TCari.setText(TNoRW.getText());
-            tbSurat.requestFocus();
-            emptTeks();
-            tampil();
         }
-    }//GEN-LAST:event_MnSuratKetDokterLayakTerbangActionPerformed
+    }//GEN-LAST:event_MnTTDltActionPerformed
+
+    private void MnTTEltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEltActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_dokter where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data surat keterangan dokter utk. pasien yg. bernama " + TPasien.getText() + "    \n"
+                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
+        } else {
+            tte = "";
+            tte = "ya";
+            if (tbSurat.getSelectedRow() > -1) {
+                String isi = "";
+
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("alamatrs", akses.getalamatrs());
+                param.put("kotars", akses.getkabupatenrs());
+                param.put("propinsirs", akses.getpropinsirs());
+                param.put("kontakrs", akses.getkontakrs());
+                param.put("emailrs", akses.getemailrs());
+                param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
+
+                param.put("nosurat", TnoDokumen.getText() + " / " + TNoSurat.getText());
+                param.put("nmpasien", TPasien.getText());
+                param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText());
+                param.put("jnskelamin", Tjk.getText());
+                param.put("pekerjaan", TPekerjaan.getText());
+                param.put("alamat", TAlamat.getText());
+                param.put("permintaan", Tpermintaan.getText());
+                param.put("nmdokter", Tnmdokter.getText());
+                param.put("nipdokter", kddokter);
+                param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
+                        + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_dokter where "
+                                + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
+
+                if (cekTgl.equals("ya")) {
+                    param.put("nosuratdari", Tno_surat_dari.getText() + ", tanggal " + Ttgl_no_surat.getSelectedItem().toString());
+                } else {
+                    param.put("nosuratdari", Tno_surat_dari.getText());
+                }
+
+                param.put("diagnosa", Tdiagnosa.getText());
+                param.put("keperluan", Tkeperluan.getText() + "\n");
+
+                if (tte.equals("tidak")) {
+                    Valid.MyReport("rptSuratDokterLayakTerbang.jasper", "report",
+                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                            "SELECT date(now())", param);
+                    
+                    TCari.setText(TNoRW.getText());
+                    tbSurat.requestFocus();
+                    emptTeks();
+                    tampil();
+                } else if (tte.equals("ya")) {
+                    if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                        "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                        Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                                + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                        Valid.MyReport("rptSuratDokterLayakTerbangQr.jasper", "report",
+                                "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                "SELECT date(now())", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        TCari.setText(TNoRW.getText());
+                        tbSurat.requestFocus();
+                        emptTeks();
+                        tampil();
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
+                tbSurat.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnTTEltActionPerformed
+
+    private void MnTTDcpnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDcpnsActionPerformed
+        if (tbCpns.getSelectedRow() > -1) {
+            tte = "";
+            tte = "tidak";
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
+            param.put("tglSuratMenkes", Valid.SetTglINDONESIA(tbCpns.getValueAt(tbCpns.getSelectedRow(), 12).toString()));
+            param.put("tglLahir", Valid.SetTglINDONESIA(tbCpns.getValueAt(tbCpns.getSelectedRow(), 14).toString()));
+            param.put("tglSuratPermintaan", Valid.SetTglINDONESIA(tbCpns.getValueAt(tbCpns.getSelectedRow(), 13).toString()));            
+            param.put("tglsurat", Valid.SetTglINDONESIA(tbCpns.getValueAt(tbCpns.getSelectedRow(), 15).toString()));
+
+            if (tte.equals("tidak")) {
+                Valid.MyReport("rptSuratDokterKirCpns.jasper", "report", "::[ Surat KIR CPNS 100 % ]::",
+                        "SELECT c.*, s.*, concat(s.no_surat,' / ',s.no_dokumen) noSurat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(c.tgl_surat_menkes,'%d-%m-%Y') tglMenkes, "
+                        + "DATE_FORMAT(c.tgl_atas_permintaan,'%d-%m-%Y') tglAtasPermintaan, concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', ',kb.nm_kab) almt, "
+                        + "if(p.jk='L','Laki-laki','Perempuan') jenkel, pg.nama nmDokter FROM cpns_seratus_persen c "
+                        + "inner join surat_keterangan_dokter s on s.no_rawat=c.no_rawat inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "
+                        + "inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
+                        + "inner join pegawai pg on pg.nik=s.nip_dokter where c.no_rawat='" + tbCpns.getValueAt(tbCpns.getSelectedRow(), 0).toString() + "'", param);
+                
+                BtnBatal1ActionPerformed(null);
+            } else if (tte.equals("ya")) {
+                String isi = "";
+                if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                    "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                    Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                            + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                    Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                    Valid.MyReport("rptSuratDokterKirCpnsQr.jasper", "report", "::[ Surat KIR CPNS 100 % ]::",
+                            "SELECT c.*, s.*, concat(s.no_surat,' / ',s.no_dokumen) noSurat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(c.tgl_surat_menkes,'%d-%m-%Y') tglMenkes, "
+                            + "DATE_FORMAT(c.tgl_atas_permintaan,'%d-%m-%Y') tglAtasPermintaan, concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', ',kb.nm_kab) almt, "
+                            + "if(p.jk='L','Laki-laki','Perempuan') jenkel, pg.nama nmDokter FROM cpns_seratus_persen c "
+                            + "inner join surat_keterangan_dokter s on s.no_rawat=c.no_rawat inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
+                            + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "
+                            + "inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
+                            + "inner join pegawai pg on pg.nik=s.nip_dokter where c.no_rawat='" + tbCpns.getValueAt(tbCpns.getSelectedRow(), 0).toString() + "'", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    BtnBatal1ActionPerformed(null);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            tampilCpns();
+            tbCpns.requestFocus();
+        }
+    }//GEN-LAST:event_MnTTDcpnsActionPerformed
+
+    private void MnTTEcpnsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEcpnsActionPerformed
+        if (tbCpns.getSelectedRow() > -1) {
+            tte = "";
+            tte = "ya";
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
+            param.put("tglSuratMenkes", Valid.SetTglINDONESIA(tbCpns.getValueAt(tbCpns.getSelectedRow(), 12).toString()));
+            param.put("tglLahir", Valid.SetTglINDONESIA(tbCpns.getValueAt(tbCpns.getSelectedRow(), 14).toString()));
+            param.put("tglSuratPermintaan", Valid.SetTglINDONESIA(tbCpns.getValueAt(tbCpns.getSelectedRow(), 13).toString()));            
+            param.put("tglsurat", Valid.SetTglINDONESIA(tbCpns.getValueAt(tbCpns.getSelectedRow(), 15).toString()));
+
+            if (tte.equals("tidak")) {
+                Valid.MyReport("rptSuratDokterKirCpns.jasper", "report", "::[ Surat KIR CPNS 100 % ]::",
+                        "SELECT c.*, s.*, concat(s.no_surat,' / ',s.no_dokumen) noSurat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(c.tgl_surat_menkes,'%d-%m-%Y') tglMenkes, "
+                        + "DATE_FORMAT(c.tgl_atas_permintaan,'%d-%m-%Y') tglAtasPermintaan, concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', ',kb.nm_kab) almt, "
+                        + "if(p.jk='L','Laki-laki','Perempuan') jenkel, pg.nama nmDokter FROM cpns_seratus_persen c "
+                        + "inner join surat_keterangan_dokter s on s.no_rawat=c.no_rawat inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "
+                        + "inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
+                        + "inner join pegawai pg on pg.nik=s.nip_dokter where c.no_rawat='" + tbCpns.getValueAt(tbCpns.getSelectedRow(), 0).toString() + "'", param);
+                
+                BtnBatal1ActionPerformed(null);
+            } else if (tte.equals("ya")) {
+                String isi = "";
+                if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                    "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                    Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                            + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                    Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                    Valid.MyReport("rptSuratDokterKirCpnsQr.jasper", "report", "::[ Surat KIR CPNS 100 % ]::",
+                            "SELECT c.*, s.*, concat(s.no_surat,' / ',s.no_dokumen) noSurat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(c.tgl_surat_menkes,'%d-%m-%Y') tglMenkes, "
+                            + "DATE_FORMAT(c.tgl_atas_permintaan,'%d-%m-%Y') tglAtasPermintaan, concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', ',kb.nm_kab) almt, "
+                            + "if(p.jk='L','Laki-laki','Perempuan') jenkel, pg.nama nmDokter FROM cpns_seratus_persen c "
+                            + "inner join surat_keterangan_dokter s on s.no_rawat=c.no_rawat inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
+                            + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "
+                            + "inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
+                            + "inner join pegawai pg on pg.nik=s.nip_dokter where c.no_rawat='" + tbCpns.getValueAt(tbCpns.getSelectedRow(), 0).toString() + "'", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    BtnBatal1ActionPerformed(null);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            tampilCpns();
+            tbCpns.requestFocus();
+        }
+    }//GEN-LAST:event_MnTTEcpnsActionPerformed
 
     /**
     * @param args the command line arguments
@@ -3146,19 +3488,29 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
     private widget.Tanggal DTPCariA;
     private widget.Tanggal DTPCariB;
     private widget.Label LCount;
-    private javax.swing.JMenuItem MnCetakSuratCpns;
+    private javax.swing.JMenu MnCetakSuratCpns;
     private javax.swing.JMenuItem MnCpns100Persen;
     private javax.swing.JMenu MnDisabilitas;
     private javax.swing.JMenuItem MnGantiTidak;
     private javax.swing.JMenuItem MnGantiYa;
     private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
-    private javax.swing.JMenuItem MnSuratKetDokter;
-    private javax.swing.JMenuItem MnSuratKetDokterCaten;
+    private javax.swing.JMenu MnSuratKetDokter;
+    private javax.swing.JMenu MnSuratKetDokterCaten;
     private javax.swing.JMenuItem MnSuratKetDokterGilutManual;
-    private javax.swing.JMenuItem MnSuratKetDokterLayakTerbang;
-    private javax.swing.JMenuItem MnSuratKetDokterMCUhasildiagnosa;
+    private javax.swing.JMenu MnSuratKetDokterLayakTerbang;
+    private javax.swing.JMenu MnSuratKetDokterMCUhasildiagnosa;
     private javax.swing.JMenuItem MnSuratKetDokterManual;
     private javax.swing.JMenuItem MnSuratKetDokterManualPenDalam;
+    private javax.swing.JMenuItem MnTTD;
+    private javax.swing.JMenuItem MnTTDcaten;
+    private javax.swing.JMenuItem MnTTDcpns;
+    private javax.swing.JMenuItem MnTTDlt;
+    private javax.swing.JMenuItem MnTTDmcu;
+    private javax.swing.JMenuItem MnTTE;
+    private javax.swing.JMenuItem MnTTEcaten;
+    private javax.swing.JMenuItem MnTTEcpns;
+    private javax.swing.JMenuItem MnTTElt;
+    private javax.swing.JMenuItem MnTTEmcu;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll10;
@@ -3668,6 +4020,421 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void cetakMnSuratKetDokter() {
+        if (tbSurat.getSelectedRow() > -1) {
+            String isi = "";
+            
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
+            param.put("nosurat", TnoDokumen.getText() + " / " + TNoSurat.getText());
+            param.put("nmpasien", TPasien.getText());
+            param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText());
+            param.put("jnskelamin", Tjk.getText());
+            param.put("pekerjaan", TPekerjaan.getText());
+            param.put("alamat", TAlamat.getText());
+            param.put("permintaan", Tpermintaan.getText());
+            param.put("bb", Tbb.getText() + " Kg.");
+            param.put("tb", Ttb.getText() + " Cm.");
+            param.put("goldarah", "- " + Tgol.getText() + " -");
+            param.put("berlaku", Tberlaku.getText() + " (" + Sequel.Terbilang(Valid.SetAngka(Tberlaku.getText())) + ") "
+                    + cmbSelama.getSelectedItem().toString() + " sejak tanggal dikeluarkan.");
+            param.put("nmdokter", Tnmdokter.getText());
+            param.put("nipdokter", kddokter);
+            param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
+                    + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_dokter where "
+                            + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
+
+            if (cekTgl.equals("ya")) {
+                param.put("nosuratdari", Tno_surat_dari.getText() + ", tanggal " + Ttgl_no_surat.getSelectedItem().toString());
+            } else {
+                param.put("nosuratdari", Tno_surat_dari.getText());
+            }
+
+            if (kodepoli.equals("UMUM")) {
+                param.put("tensi", Ttensi.getText());
+                param.put("nadi", Tnadi.getText());
+                param.put("bmi", Tbmi.getText());
+
+                if (cmbDinyatakan.getSelectedIndex() == 0 || cmbDinyatakan.getSelectedIndex() == 8) {
+                    param.put("dinyatakan", "....................................................................................................."
+                            + "..................................................................................................................."
+                            + "........................................................................................");
+                    param.put("keperluan", "......................................................................................................"
+                            + "..................................................................................................................."
+                            + "..................................................................................................................."
+                            + ".............................................................................................................");
+                } else if (cmbDinyatakan.getSelectedIndex() == 6) {
+                    param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText());
+                    param.put("keperluan", Tkeperluan.getText());
+                } else {
+                    param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString());
+                    param.put("keperluan", Tkeperluan.getText());
+                }
+
+                if (tte.equals("tidak")) {
+                    Valid.MyReport("rptSuratDokter.jasper", "report",
+                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                            "SELECT date(now())", param);
+                 
+                    TCari.setText(TNoRW.getText());
+                    tbSurat.requestFocus();
+                    emptTeks();
+                    tampil();
+                } else if (tte.equals("ya")) {
+                    if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                        "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                        Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                                + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+                     
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                        Valid.MyReport("rptSuratDokterQr.jasper", "report",
+                                "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                "SELECT date(now())", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        TCari.setText(TNoRW.getText());
+                        tbSurat.requestFocus();
+                        emptTeks();
+                        tampil();
+                    }
+                }
+
+            } else if (kodepoli.equals("MAT")) {
+                param.put("hasil", Thasil.getText() + "\n");
+                param.put("keperluan", Tkeperluan.getText() + "\n");
+                
+                if (tte.equals("tidak")) {
+                    Valid.MyReport("rptSuratDokterMata.jasper", "report",
+                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                            "SELECT date(now())", param);
+                    
+                    TCari.setText(TNoRW.getText());
+                    tbSurat.requestFocus();
+                    emptTeks();
+                    tampil();
+                } else if (tte.equals("ya")) {
+                    if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                        "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                        Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                                + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                        Valid.MyReport("rptSuratDokterMataQr.jasper", "report",
+                                "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                "SELECT date(now())", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        TCari.setText(TNoRW.getText());
+                        tbSurat.requestFocus();
+                        emptTeks();
+                        tampil();
+                    }
+                }
+            } else if (kodepoli.equals("THT")) {
+                param.put("hasil", Thasil.getText() + "\n");
+                param.put("dinyatakan", "Kesimpulan : ....................................................................................................."
+                        + "..................................................................................................................."
+                        + "..................................................................................................................."
+                        + "........................................................................................");
+                param.put("keperluan", Tkeperluan.getText() + "\n");
+                
+                if (tte.equals("tidak")) {
+                    Valid.MyReport("rptSuratDokterSemuaPoli.jasper", "report",
+                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                            "SELECT date(now())", param);
+                    
+                    TCari.setText(TNoRW.getText());
+                    tbSurat.requestFocus();
+                    emptTeks();
+                    tampil();
+                } else if (tte.equals("ya")) {
+                    if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                        "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                        Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                                + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                        Valid.MyReport("rptSuratDokterSemuaPoliQr.jasper", "report",
+                                "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                "SELECT date(now())", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        TCari.setText(TNoRW.getText());
+                        tbSurat.requestFocus();
+                        emptTeks();
+                        tampil();
+                    }
+                }
+
+            } else if (kodepoli.equals("KLT")) {
+                param.put("hasil", Thasil.getText() + "\n");
+                param.put("keperluan", Tkeperluan.getText() + "\n");
+                if (cmbDinyatakan.getSelectedIndex() == 6) {
+                    param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText() + "\n");
+                } else {
+                    param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString() + "\n");
+                }
+                
+                if (tte.equals("tidak")) {
+                    Valid.MyReport("rptSuratDokterKulit.jasper", "report",
+                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                            "SELECT date(now())", param);
+                    
+                    TCari.setText(TNoRW.getText());
+                    tbSurat.requestFocus();
+                    emptTeks();
+                    tampil();
+                } else if (tte.equals("ya")) {
+                    if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                        "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                        Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                                + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                        Valid.MyReport("rptSuratDokterKulitQr.jasper", "report",
+                                "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                "SELECT date(now())", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        TCari.setText(TNoRW.getText());
+                        tbSurat.requestFocus();
+                        emptTeks();
+                        tampil();
+                    }
+                }
+
+            } else {
+                param.put("hasil", Thasil.getText() + "\n");
+                param.put("dinyatakan", "Kesimpulan : " + cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText());
+                param.put("keperluan", Tkeperluan.getText() + "\n");
+
+                if (tte.equals("tidak")) {
+                    Valid.MyReport("rptSuratDokterSemuaPoli.jasper", "report",
+                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                            "SELECT date(now())", param);
+                    
+                    TCari.setText(TNoRW.getText());
+                    tbSurat.requestFocus();
+                    emptTeks();
+                    tampil();
+                } else if (tte.equals("ya")) {
+                    if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                        "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                        Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                                + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                        Valid.MyReport("rptSuratDokterSemuaPoliQr.jasper", "report",
+                                "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                "SELECT date(now())", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                        TCari.setText(TNoRW.getText());
+                        tbSurat.requestFocus();
+                        emptTeks();
+                        tampil();
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        }
+    }
+    
+    private void cetakMnSuratKetDokterCaten() {
+        if (tbSurat.getSelectedRow() > -1) {
+            String isi = "";
+            
+            if (tbSurat.getValueAt(tbSurat.getSelectedRow(), 30).toString().equals("tidak")) {
+                JOptionPane.showMessageDialog(null, "Jenis surat keterangan dokter yg. tersimpan bukan caten...!!!!");
+            } else {
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("alamatrs", akses.getalamatrs());
+                param.put("kotars", akses.getkabupatenrs());
+                param.put("propinsirs", akses.getpropinsirs());
+                param.put("kontakrs", akses.getkontakrs());
+                param.put("emailrs", akses.getemailrs());
+                param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
+                param.put("nosurat", TnoDokumen.getText() + " / " + TNoSurat.getText());
+                param.put("nmpasien", TPasien.getText());
+                param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText());
+                param.put("jnskelamin", Tjk.getText());
+                param.put("pekerjaan", TPekerjaan.getText());
+                param.put("alamat", TAlamat.getText());
+                param.put("permintaan", Tpermintaan.getText());
+                param.put("bb", Tbb.getText() + " Kg.");
+                param.put("tb", Ttb.getText() + " Cm.");
+                param.put("goldarah", "- " + Tgol.getText() + " -");
+                param.put("berlaku", Tberlaku.getText() + " (" + Sequel.Terbilang(Valid.SetAngka(Tberlaku.getText())) + ") "
+                        + cmbSelama.getSelectedItem().toString() + " sejak tanggal dikeluarkan.");
+                param.put("nmdokter", Tnmdokter.getText());
+                param.put("nipdokter", kddokter);
+                param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
+                        + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_dokter where "
+                                + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
+
+                if (cekTgl.equals("ya")) {
+                    param.put("nosuratdari", Tno_surat_dari.getText() + ", tanggal " + Ttgl_no_surat.getSelectedItem().toString());
+                } else {
+                    param.put("nosuratdari", Tno_surat_dari.getText());
+                }
+
+                if (kodepoli.equals("UMUM")) {
+                    if (cmbDinyatakan.getSelectedIndex() == 0 || cmbDinyatakan.getSelectedIndex() == 8) {
+                        param.put("dinyatakan", "....................................................................................................."
+                                + "..................................................................................................................."
+                                + "........................................................................................");
+                        param.put("keperluan", "......................................................................................................"
+                                + "..................................................................................................................."
+                                + "..................................................................................................................."
+                                + ".............................................................................................................");
+                    } else if (cmbDinyatakan.getSelectedIndex() == 7) {
+                        param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString());
+                        param.put("keperluan", Tkeperluan.getText());
+                    } else {
+                        param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString());
+                        param.put("keperluan", Tkeperluan.getText());
+                    }
+
+                    if (tte.equals("tidak")) {
+                        Valid.MyReport("rptSuratDokterCaten.jasper", "report",
+                                "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                "SELECT date(now())", param);
+                     
+                        TCari.setText(TNoRW.getText());
+                        tbSurat.requestFocus();
+                        emptTeks();
+                        tampil();
+                    } else if (tte.equals("ya")) {
+                        if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                            JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                        } else {
+                            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                            "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                            Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                                    + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                            Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                            Valid.MyReport("rptSuratDokterCatenQr.jasper", "report",
+                                    "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                    "SELECT date(now())", param);
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                            TCari.setText(TNoRW.getText());
+                            tbSurat.requestFocus();
+                            emptTeks();
+                            tampil();
+                        }
+                    }
+
+                } else {
+                    param.put("hasil", Thasil.getText() + "\n");
+                    param.put("dinyatakan", "Kesimpulan : " + cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText());
+                    param.put("keperluan", Tkeperluan.getText() + "\n");
+
+                    if (tte.equals("tidak")) {
+                        Valid.MyReport("rptSuratDokterSemuaPoli.jasper", "report",
+                                "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                "SELECT date(now())", param);
+                        
+                        TCari.setText(TNoRW.getText());
+                        tbSurat.requestFocus();
+                        emptTeks();
+                        tampil();
+                    } else if (tte.equals("ya")) {
+                        if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
+                            JOptionPane.showMessageDialog(rootPane, "Nama dokter pemeriksa harus diisi dulu,..");
+                        } else {
+                            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                            "Surat Keterangan Dokter", Tnmdokter.getText(),
+                                            Sequel.cariIsi("select date_format(tgl_surat,'%d/%m/%Y') from surat_keterangan_dokter where "
+                                                    + "no_rawat='" + TNoRW.getText() + "' and no_surat='" + TNoSurat.getText() + "'"),
+                                            Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRW.getText() + "'")) + "') from kalimat_tte where kode='002'");
+
+                            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat", Sequel.cariFolderPrintTte());
+                            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+                            Valid.MyReport("rptSuratDokterSemuaPoliQr.jasper", "report",
+                                    "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                                    "SELECT date(now())", param);
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                            TCari.setText(TNoRW.getText());
+                            tbSurat.requestFocus();
+                            emptTeks();
+                            tampil();
+                        }
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
         }
     }
 }

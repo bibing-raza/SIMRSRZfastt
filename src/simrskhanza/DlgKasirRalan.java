@@ -912,7 +912,9 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnPiutangPasien = new javax.swing.JMenuItem();
         MnDiagnosa = new javax.swing.JMenuItem();
         MnLihatSEP = new javax.swing.JMenuItem();
-        MnFormulirKlaim = new javax.swing.JMenuItem();
+        MnFormulirKlaim = new javax.swing.JMenu();
+        MnTTDfk = new javax.swing.JMenuItem();
+        MnTTEfk = new javax.swing.JMenuItem();
         MnLembarStatusPasien = new javax.swing.JMenuItem();
         MnStatusPasienAllKunjungan = new javax.swing.JMenuItem();
         ppCatatanPasien = new javax.swing.JMenuItem();
@@ -3956,19 +3958,46 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnLihatSEP);
 
-        MnFormulirKlaim.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnFormulirKlaim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnFormulirKlaim.setText("Formulir Klaim Pasien");
+        MnFormulirKlaim.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnFormulirKlaim.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnFormulirKlaim.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnFormulirKlaim.setIconTextGap(5);
         MnFormulirKlaim.setName("MnFormulirKlaim"); // NOI18N
+        MnFormulirKlaim.setOpaque(true);
         MnFormulirKlaim.setPreferredSize(new java.awt.Dimension(220, 26));
-        MnFormulirKlaim.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTDfk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDfk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTDfk.setText("TTD Basah");
+        MnTTDfk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDfk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDfk.setIconTextGap(5);
+        MnTTDfk.setName("MnTTDfk"); // NOI18N
+        MnTTDfk.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDfk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnFormulirKlaimBtnPrintActionPerformed(evt);
+                MnTTDfkActionPerformed(evt);
             }
         });
+        MnFormulirKlaim.add(MnTTDfk);
+
+        MnTTEfk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEfk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTEfk.setText("TTE (QRCode)");
+        MnTTEfk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEfk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEfk.setIconTextGap(5);
+        MnTTEfk.setName("MnTTEfk"); // NOI18N
+        MnTTEfk.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEfk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEfkActionPerformed(evt);
+            }
+        });
+        MnFormulirKlaim.add(MnTTEfk);
+
         jPopupMenu1.add(MnFormulirKlaim);
 
         MnLembarStatusPasien.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -4611,7 +4640,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2025" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -5477,7 +5506,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -5501,7 +5530,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -5721,7 +5750,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5740,7 +5769,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6851,18 +6880,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             }
         }
     }//GEN-LAST:event_MnRujukInternalActionPerformed
-
-    private void MnFormulirKlaimBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnFormulirKlaimBtnPrintActionPerformed
-        if (tbKasirRalan.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-            TCari.requestFocus();
-        } else if (TNoRw.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Klik dulu salah satu nama pasiennya pada tabel...!!!!");
-            tbKasirRalan.requestFocus();
-        } else if (tbKasirRalan.getRowCount() != 0) {
-            formulirKlaim();
-        }
-    }//GEN-LAST:event_MnFormulirKlaimBtnPrintActionPerformed
 
     private void MnLembarStatusPasienBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLembarStatusPasienBtnPrintActionPerformed
         if (tbKasirRalan.getRowCount() == 0) {
@@ -11260,6 +11277,34 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnLihatDataTransferSerahTerimaPonekQrActionPerformed
 
+    private void MnTTDfkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDfkActionPerformed
+        if (tbKasirRalan.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Klik dulu salah satu nama pasiennya pada tabel...!!!!");
+            tbKasirRalan.requestFocus();
+        } else if (tbKasirRalan.getRowCount() != 0) {
+            tte = "";
+            tte = "tidak";
+            formulirKlaim();
+        }
+    }//GEN-LAST:event_MnTTDfkActionPerformed
+
+    private void MnTTEfkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEfkActionPerformed
+        if (tbKasirRalan.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Klik dulu salah satu nama pasiennya pada tabel...!!!!");
+            tbKasirRalan.requestFocus();
+        } else if (tbKasirRalan.getRowCount() != 0) {
+            tte = "";
+            tte = "ya";
+            formulirKlaim();
+        }
+    }//GEN-LAST:event_MnTTEfkActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -11357,7 +11402,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnDokumenPenunjangMedis;
     private javax.swing.JMenu MnEklaimINACBG;
     private javax.swing.JMenuItem MnFollowUPPerawatanTerapiHIV;
-    private javax.swing.JMenuItem MnFormulirKlaim;
+    private javax.swing.JMenu MnFormulirKlaim;
     private javax.swing.JMenu MnGanti;
     private javax.swing.JMenu MnGanti1;
     private javax.swing.JMenuItem MnHapusData;
@@ -11487,6 +11532,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnSuratKeteranganRohani;
     private javax.swing.JMenuItem MnSuratKeteranganSakit;
     private javax.swing.JMenuItem MnSuratPengantarRanap;
+    private javax.swing.JMenuItem MnTTDfk;
+    private javax.swing.JMenuItem MnTTEfk;
     private javax.swing.JMenuItem MnTerapiAntiretroviralHIV;
     private javax.swing.JMenuItem MnTeridentifikasiTB;
     private javax.swing.JMenu MnTindakanRalan;
@@ -12649,12 +12696,13 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         drdpjp = "";
         poli = "";
         crBayar = "";
+        String tglreg = "", isi = "";
 
         try {
             Sequel.queryu("delete from temporary_formulir_klaim");
             pspasien = koneksi.prepareStatement("SELECT rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, IF (p.jk = 'L','LAKI-LAKI','PEREMPUAN') jk, "
                     + "IF (rp.status_lanjut = 'Ralan','RAWAT JALAN','-') status_kunjungan, DATE_FORMAT(p.tgl_lahir,'%d') tgl_lhr, "
-                    + "CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') umur, DATE_FORMAT(rp.tgl_registrasi,'%d') tgl_kunj, d.nm_dokter, pl.nm_poli, "
+                    + "CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') umur, rp.tgl_registrasi, d.nm_dokter, pl.nm_poli, "
                     + "pj.png_jawab, IFNULL(pr.diagnosa,'-') diag_resum, IFNULL(pr.keluhan,'-') keluhan, IFNULL(pr.pemeriksaan,'-') pemeriksaan, "
                     + "IFNULL(pr.alergi,'-') alergi, IFNULL(pr.terapi,'-') terapi, IFNULL(pr.rincian_tindakan,'-') tindakan, ifnull(pr.rencana_follow_up,'-') renFolow "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
@@ -12665,8 +12713,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             try {
                 rspasien = pspasien.executeQuery();
                 while (rspasien.next()) {
-                    tglklaim = rspasien.getString("tgl_kunj") + " " + Sequel.bulanINDONESIA("select month(tgl_registrasi) from reg_periksa where no_rawat='" + rspasien.getString("no_rawat") + "'") + " "
-                            + Sequel.cariIsi("select year(tgl_registrasi) from reg_periksa where no_rawat='" + rspasien.getString("no_rawat") + "'");
+                    tglklaim = Valid.SetTglINDONESIA(rspasien.getString("tgl_registrasi"));
+                    tglreg = rspasien.getString("tgl_registrasi");
                     drdpjp = rspasien.getString("nm_dokter");
                     poli = rspasien.getString("nm_poli");
                     crBayar = rspasien.getString("png_jawab");
@@ -12680,9 +12728,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                             + Sequel.bulanINDONESIA("select month(tgl_lahir) from pasien where no_rkm_medis='" + rspasien.getString("no_rkm_medis") + "'") + " "
                             + Sequel.cariIsi("select year(tgl_lahir) from pasien where no_rkm_medis='" + rspasien.getString("no_rkm_medis") + "'") + "',"
                             + "'6. Umur',': " + rspasien.getString("umur") + "',"
-                            + "'7. Tgl. Kunjungan',': " + rspasien.getString("tgl_kunj") + " "
-                            + Sequel.bulanINDONESIA("select month(tgl_registrasi) from reg_periksa where no_rawat='" + rspasien.getString("no_rawat") + "'") + " "
-                            + Sequel.cariIsi("select year(tgl_registrasi) from reg_periksa where no_rawat='" + rspasien.getString("no_rawat") + "'") + "',"
+                            + "'7. Tgl. Kunjungan',': " + Valid.SetTglINDONESIA(rspasien.getString("tgl_registrasi")) + "',"
                             + "'8. Resume Medis',':','','','','','','','','','','','','','','','','',''", "Formulir Klaim Rawat Jalan");
 
                     Sequel.menyimpan("temporary_formulir_klaim", "'','','','','','','','','','','','','','','','','','',"
@@ -12797,8 +12843,27 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         param.put("drDPJP", "( " + drdpjp + " )");
         param.put("poli", poli);
         param.put("caraBayar", crBayar);
-        Valid.MyReport("rptFormulirKlaim.jasper", "report", "::[ Lembar Formulir Klaim Pasien Rawat Jalan ]::",
-                "select * from temporary_formulir_klaim", param);
+        
+        if (tte.equals("tidak")) {
+            Valid.MyReport("rptFormulirKlaim.jasper", "report", "::[ Lembar Formulir Klaim Pasien Rawat Jalan ]::",
+                    "select * from temporary_formulir_klaim", param);
+        } else if (tte.equals("ya")) {
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='005'"),
+                            "Formulir Klaim Rawat Jalan", drdpjp,
+                            Sequel.cariIsi("select date_format('" + tglreg + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='005'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Formulir", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='005'"));
+
+            Valid.MyReport("rptFormulirKlaimQr.jasper", "report", "::[ Lembar Formulir Klaim Pasien Rawat Jalan ]::",
+                    "select * from temporary_formulir_klaim", param);
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+        }
         this.setCursor(Cursor.getDefaultCursor());
     }
 

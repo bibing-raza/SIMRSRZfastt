@@ -120,7 +120,7 @@ public class DlgUser extends javax.swing.JDialog {
                     "[L]Survey Kepuasan","[K]Kemenkes Kanker","[O]Set Bridging","[O]Operator Antrian","[L]Penilaian Awal Medis Ralan THT","[I]Rekam Psikologis",
                     "[L]Penilaian Awal Medis & Tambahan Pasien Geriatri","[L]Penilaian Awal Medis Ralan Mata","[L]Surat Sakit","[L]Surat Keterangan KIR/MCU","[L]Asesmen Medik Dewasa Ranap",
                     "[D]Pemberian Obat Pasien","[L]CPPT","[K]Bridging SatuSehat","[L]Kemoterapi","[J]Cek Piutang","[L]Asesmen Medik Anak Ranap", "[B]Checklist Pra Operasi",
-                    "[L]Asesmen Medik Bedah Ranap", "[N]Indikator Mutu", "[J]PIC Keuangan", "[N]PIC KMKP", "[N]PIC IGD"
+                    "[L]Asesmen Medik Bedah Ranap", "[N]Indikator Mutu", "[J]PIC Keuangan", "[N]PIC KMKP", "[N]PIC IGD", "[I]Analisis RM"
         };
         
         tabMode=new DefaultTableModel(null,row){
@@ -231,7 +231,7 @@ public class DlgUser extends javax.swing.JDialog {
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class,
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class,
                 java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class,
-                java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Boolean.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -243,7 +243,7 @@ public class DlgUser extends javax.swing.JDialog {
         tbUser.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbUser.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 389; i++) {
+        for (i = 0; i < 390; i++) {
             TableColumn column = tbUser.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
@@ -657,6 +657,8 @@ public class DlgUser extends javax.swing.JDialog {
                 column.setPreferredWidth(80);
             } else if (i == 388) {
                 column.setPreferredWidth(70);
+            } else if (i == 389) {
+                column.setPreferredWidth(90);
             } else {
                 column.setPreferredWidth(130);
             }
@@ -1402,7 +1404,7 @@ public class DlgUser extends javax.swing.JDialog {
                     + "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"
                     + "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"
                     + "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"
-                    + "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false'", "User") == true) {
+                    + "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false'", "User") == true) {
                 tampil();
                 emptTeks();
             }
@@ -1833,7 +1835,8 @@ public class DlgUser extends javax.swing.JDialog {
                         + "indikator_mutu='" + tbUser.getValueAt(i, 385).toString() + "',"
                         + "pic_keuangan='" + tbUser.getValueAt(i, 386).toString() + "',"
                         + "pic_kmkp='" + tbUser.getValueAt(i, 387).toString() + "',"
-                        + "pic_igd='" + tbUser.getValueAt(i, 388).toString() + "'");
+                        + "pic_igd='" + tbUser.getValueAt(i, 388).toString() + "',"
+                        + "analisis_rekam_medis='" + tbUser.getValueAt(i, 389).toString() + "'");
             }
             tampil();
             emptTeks();
@@ -2664,7 +2667,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             rs.getBoolean("indikator_mutu"),
                             rs.getBoolean("pic_keuangan"),
                             rs.getBoolean("pic_kmkp"),
-                            rs.getBoolean("pic_igd")
+                            rs.getBoolean("pic_igd"),
+                            rs.getBoolean("analisis_rekam_medis")
                         });
                     } catch (Exception e) {
                         tabMode.addRow(new Object[]{
@@ -3055,7 +3059,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             rs.getBoolean("indikator_mutu"),
                             rs.getBoolean("pic_keuangan"),
                             rs.getBoolean("pic_kmkp"),
-                            rs.getBoolean("pic_igd")
+                            rs.getBoolean("pic_igd"),
+                            rs.getBoolean("analisis_rekam_medis")
                         });
                     }                                             
                  }
