@@ -1137,6 +1137,8 @@ public class DlgKamarInap extends javax.swing.JDialog {
         cmbTanggal = new widget.ComboBox();
         jLabel50 = new widget.Label();
         internalFrame15 = new widget.InternalFrame();
+        jLabel67 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnBaca = new widget.Button();
         BtnCloseIn6 = new widget.Button();
         WindowCatatanTindakanKeperawatan = new javax.swing.JDialog();
@@ -5732,7 +5734,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel42.setBounds(0, 10, 90, 23);
 
         cmbJnsCppt.setForeground(new java.awt.Color(0, 0, 0));
-        cmbJnsCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rawat Inap", "IGD" }));
+        cmbJnsCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rawat Inap", "IGD", "Ponek", "Semua" }));
         cmbJnsCppt.setName("cmbJnsCppt"); // NOI18N
         cmbJnsCppt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5802,6 +5804,18 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame15.setPreferredSize(new java.awt.Dimension(0, 46));
         internalFrame15.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame15.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 8, 8));
+
+        jLabel67.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel67.setText(" Dalam Bentuk :");
+        jLabel67.setName("jLabel67"); // NOI18N
+        jLabel67.setPreferredSize(new java.awt.Dimension(120, 23));
+        internalFrame15.add(jLabel67);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        internalFrame15.add(cmbPilihCetak);
 
         BtnBaca.setForeground(new java.awt.Color(0, 0, 0));
         BtnBaca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search.png"))); // NOI18N
@@ -11523,7 +11537,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             tbKamIn.requestFocus();
         } else {
             if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + norawat.getText() + "'") > 0) {
-                WindowCPPT.setSize(456, 139);
+                WindowCPPT.setSize(543, 139);
                 WindowCPPT.setLocationRelativeTo(internalFrame1);
                 WindowCPPT.setAlwaysOnTop(false);
                 WindowCPPT.setVisible(true);
@@ -11561,12 +11575,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         cmbSift.setSelectedIndex(0);
         cmbTanggal.setSelectedIndex(0);
 
-        if (cmbJnsCppt.getSelectedIndex() == 0) {
+        if (cmbJnsCppt.getSelectedIndex() == 0 || cmbJnsCppt.getSelectedIndex() == 3) {
             cmbTanggal.setEnabled(true);
             cmbSift.setEnabled(false);
             tglA.setEnabled(false);
             tglB.setEnabled(false);
-        } else if (cmbJnsCppt.getSelectedIndex() == 1) {
+        } else if (cmbJnsCppt.getSelectedIndex() == 1 || cmbJnsCppt.getSelectedIndex() == 2) {
             cmbTanggal.setEnabled(false);
             cmbSift.setEnabled(false);
             tglA.setEnabled(false);
@@ -11576,17 +11590,11 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
     private void BtnBacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBacaActionPerformed
         if (cmbJnsCppt.getSelectedIndex() == 0) {
-            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + norawat.getText() + "' and STATUS='Ranap'") > 0) {
-                cetakCPPTranap();
-            } else {
-                JOptionPane.showMessageDialog(null, "Data CPPT rawat inap tidak ditemukan...!!!");
-            }
-        } else if (cmbJnsCppt.getSelectedIndex() == 1) {
-            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + norawat.getText() + "' and STATUS='Ralan'") > 0) {
-                cetakCPPTralan();
-            } else {
-                JOptionPane.showMessageDialog(null, "Data CPPT IGD tidak ditemukan...!!!");
-            }
+            cetakCPPTranap();    
+        } else if (cmbJnsCppt.getSelectedIndex() == 1 || cmbJnsCppt.getSelectedIndex() == 2) {
+            cetakCPPTralan();    
+        } else if (cmbJnsCppt.getSelectedIndex() == 3) {
+            cetakCPPTsemua();            
         }
     }//GEN-LAST:event_BtnBacaActionPerformed
 
@@ -13087,6 +13095,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.ComboBox cmbMnt1;
     private widget.ComboBox cmbMnt2;
     private widget.ComboBox cmbMntpindah;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbRuangKhusus1;
     private widget.ComboBox cmbRuangKhusus2;
     private widget.ComboBox cmbRuangKhusus3;
@@ -13177,6 +13186,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Label jLabel6;
     private widget.Label jLabel65;
     private widget.Label jLabel66;
+    private widget.Label jLabel67;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel93;
@@ -19283,6 +19293,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
 
         if (cmbTanggal.getSelectedIndex() == 0 && cmbSift.getSelectedIndex() != 4) {
             param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (Rawat Inap), Shift : " + cmbSift.getSelectedItem().toString());
@@ -19292,8 +19303,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             } else {
                 simpanTemporaryCppt("1", "Ranap");
                 if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
-                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
-                            "SELECT * from temporary_cppt", param);
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                                "SELECT * from temporary_cppt", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                                "SELECT * from temporary_cppt", param);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
                 }
@@ -19311,8 +19328,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             } else {
                 simpanTemporaryCppt("2", "Ranap");
                 if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
-                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
-                            "SELECT * from temporary_cppt", param);
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                                "SELECT * from temporary_cppt", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                                "SELECT * from temporary_cppt", param);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
                 }
@@ -19329,8 +19352,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             } else {
                 simpanTemporaryCppt("3", "Ranap");
                 if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
-                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
-                            "SELECT * from temporary_cppt", param);
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                                "SELECT * from temporary_cppt", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                                "SELECT * from temporary_cppt", param);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
                 }
@@ -19345,8 +19374,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             } else {
                 simpanTemporaryCppt("4", "Ranap");
                 if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
-                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
-                            "SELECT * from temporary_cppt", param);
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                                "SELECT * from temporary_cppt", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                                "SELECT * from temporary_cppt", param);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
                 }
@@ -19363,8 +19398,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             } else {
                 simpanTemporaryCppt("5", "Ranap");
                 if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
-                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
-                            "SELECT * from temporary_cppt", param);
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                                "SELECT * from temporary_cppt", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                                "SELECT * from temporary_cppt", param);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
                 }
@@ -19381,8 +19422,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             } else {
                 simpanTemporaryCppt("6", "Ranap");
                 if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
-                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
-                            "SELECT * from temporary_cppt", param);
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                                "SELECT * from temporary_cppt", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                                "SELECT * from temporary_cppt", param);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
                 }
@@ -19395,18 +19442,175 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
-        param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (IGD)");
+        param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (IGD/Ponek)");
+        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+        
         if (Sequel.cariInteger("select count(-1) from cppt where no_rawat = '" + norawat.getText() + "' AND STATUS='Ralan' and flag_hapus='tidak'") == 0) {
             JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
         } else {
             simpanTemporaryCppt("4", "Ralan");
             if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
-                Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Jalan/IGD ]::",
-                        "SELECT * from temporary_cppt", param);
+                if (cmbPilihCetak.getSelectedIndex() == 0) {
+                    Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT Rawat Jalan/IGD/Ponek ]::",
+                            "SELECT * from temporary_cppt", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                } else {
+                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Jalan/IGD/Ponek ]::",
+                            "SELECT * from temporary_cppt", param);
+                }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
             }
             BtnCloseIn6ActionPerformed(null);
+        }
+    }
+    
+    private void cetakCPPTsemua() {
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));        
+        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+        if (cmbTanggal.getSelectedIndex() == 0 && cmbSift.getSelectedIndex() != 4) {
+            param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI, Shift : " + cmbSift.getSelectedItem().toString());
+            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat = '" + norawat.getText() + "' and flag_hapus='tidak' "
+                    + "and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%'") == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
+            } else {
+                simpanTemporaryCppt("7", "");
+                if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT ]::",
+                                "SELECT * from temporary_cppt", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT ]::",
+                                "SELECT * from temporary_cppt", param);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                }
+                BtnCloseIn6ActionPerformed(null);
+            }
+        
+        //periode    
+        } else if (cmbTanggal.getSelectedIndex() == 1 && cmbSift.getSelectedIndex() != 4) {
+            param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI \n"
+                    + "Periode Tgl. " + tglA.getSelectedItem() + " S.D Tgl. " + tglB.getSelectedItem() + ", Shift : " + cmbSift.getSelectedItem().toString());
+            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat = '" + norawat.getText() + "' and flag_hapus='tidak' "
+                    + "and tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' "
+                    + "and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%'") == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
+            } else {
+                simpanTemporaryCppt("8", "");
+                if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT ]::",
+                                "SELECT * from temporary_cppt", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT ]::",
+                                "SELECT * from temporary_cppt", param);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                }
+                BtnCloseIn6ActionPerformed(null);
+            }
+       
+        //pertanggal    
+        } else if (cmbTanggal.getSelectedIndex() == 2 && cmbSift.getSelectedIndex() != 4) {
+            param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI \n"
+                    + "Tgl. " + tglA.getSelectedItem() + ", Shift : " + cmbSift.getSelectedItem().toString());
+            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat = '" + norawat.getText() + "' and flag_hapus='tidak' "
+                    + "and tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%'") == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
+            } else {
+                simpanTemporaryCppt("9", "");
+                if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT ]::",
+                                "SELECT * from temporary_cppt", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT ]::",
+                                "SELECT * from temporary_cppt", param);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                }
+                BtnCloseIn6ActionPerformed(null);                
+            }
+   
+            //---------------------------------------------------------------------------------
+        } else if (cmbTanggal.getSelectedIndex() == 0 && cmbSift.getSelectedIndex() == 4) {
+            param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI, Semua Shift Petugas");
+            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat = '" + norawat.getText() + "' and flag_hapus='tidak'") == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
+            } else {
+                simpanTemporaryCppt("10", "");
+                if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT ]::",
+                                "SELECT * from temporary_cppt", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT ]::",
+                                "SELECT * from temporary_cppt", param);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                }
+                BtnCloseIn6ActionPerformed(null);
+            }
+        
+        //periode    
+        } else if (cmbTanggal.getSelectedIndex() == 1 && cmbSift.getSelectedIndex() == 4) {
+            param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI \n"
+                    + "Periode Tgl. " + tglA.getSelectedItem() + " S.D Tgl. " + tglB.getSelectedItem() + ", Semua Shift Petugas");
+            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat = '" + norawat.getText() + "' and flag_hapus='tidak' "
+                    + "and tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "'") == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
+            } else {
+                simpanTemporaryCppt("11", "");
+                if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT ]::",
+                                "SELECT * from temporary_cppt", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT ]::",
+                                "SELECT * from temporary_cppt", param);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                }
+                BtnCloseIn6ActionPerformed(null);
+            }
+        
+        //pertanggal
+        } else if (cmbTanggal.getSelectedIndex() == 2 && cmbSift.getSelectedIndex() == 4) {
+            param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI \n"
+                    + "Tgl. " + tglA.getSelectedItem() + ", Semua Shift Petugas");
+            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat = '" + norawat.getText() + "' and flag_hapus='tidak' "
+                    + "and tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "'") == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
+            } else {
+                simpanTemporaryCppt("12", "");
+                if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                    if (cmbPilihCetak.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT ]::",
+                                "SELECT * from temporary_cppt", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    } else {
+                        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT ]::",
+                                "SELECT * from temporary_cppt", param);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                }
+                BtnCloseIn6ActionPerformed(null);
+            }
         }
     }
     
@@ -20521,7 +20725,26 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 whereNya = "c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='" + rwt + "' and c.tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
                         + "and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "'";
             } else if (nomor.equals("6")) {
-                whereNya = "c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='" + rwt + "' and c.tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "'";
+                whereNya = "c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='" + rwt + "' and c.tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "'";            
+            
+            //semua rawat dengan sift petugas
+            } else if (nomor.equals("7")) {
+                whereNya = "c.no_rawat = '" + norawat.getText() + "' and c.cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%'";
+            } else if (nomor.equals("8")) {
+                whereNya = "c.no_rawat = '" + norawat.getText() + "' and c.tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
+                        + "and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' and c.cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%'";
+            } else if (nomor.equals("9")) {
+                whereNya = "c.no_rawat = '" + norawat.getText() + "' and c.tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
+                        + "and c.cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%'";                  
+            
+            //semua rawat tanpa sift petugas
+            } else if (nomor.equals("10")) {
+                whereNya = "c.no_rawat = '" + norawat.getText() + "'";
+            } else if (nomor.equals("11")) {
+                whereNya = "c.no_rawat = '" + norawat.getText() + "' and c.tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
+                        + "and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "'";
+            } else if (nomor.equals("12")) {
+                whereNya = "c.no_rawat = '" + norawat.getText() + "' and c.tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "'";
             }
 
             psCetak = koneksi.prepareStatement("SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), "
@@ -20531,14 +20754,19 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                     + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                     + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                    + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift, c.status, c.no_rawat "
+                    + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift, c.status, "
+                    + "c.no_rawat, if(vc.no_rawat is not null,'terverif','belum') StatusVerif, if(vc.no_rawat is not null,pg5.nama,'-') nmVerifikator, "
+                    + "if(vc.no_rawat is not null,date_format(vc.waktu_verif,'%d/%m/%Y'),'') tglVerif, if(vc.no_rawat is not null,time(vc.waktu_verif),'-') jamVerif "
                     + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                     + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                    + "LEFT JOIN verifikasi_cppt vc on vc.waktu_simpan_cppt=c.waktu_simpan LEFT JOIN pegawai pg5 on pg5.nik=vc.nip_verifikator "
                     + "WHERE " + whereNya + " and c.flag_hapus='tidak' ORDER BY c.tgl_cppt, c.jam_cppt");
             try {
                 rsCetak = psCetak.executeQuery();
                 while (rsCetak.next()) {
+                    String isi = "", dokterVerif = "", fileGambar = "";
+                    
                     if (Sequel.cariInteger("select count(-1) from cppt_konfirmasi_terapi where no_rawat='" + rsCetak.getString("no_rawat") + "' "
                             + "and tgl_cppt='" + rsCetak.getString("tgl_cppt") + "' and jam_cppt='" + rsCetak.getString("jam_cppt") + "' "
                             + "and cppt_shift='" + rsCetak.getString("cppt_shift") + "'") == 0) {
@@ -20548,8 +20776,22 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                                 rsCetak.getString("jam_cppt"), rsCetak.getString("cppt_shift"));
                         dataKonfir = konfirmasi_terapi;
                     }
+                    
+                    if (rsCetak.getString("StatusVerif").equals("terverif")) {
+                        dokterVerif = rsCetak.getString("nmVerifikator");
+                        fileGambar = Sequel.cariFolderPrintTte();
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "CPPT", rsCetak.getString("nmVerifikator"),
+                                        rsCetak.getString("tglVerif"), rsCetak.getString("jamVerif")) + "') from kalimat_tte where kode='001'");
 
-                    Sequel.menyimpanIgnore("temporary_cppt",
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    } else {
+                        dokterVerif = rsCetak.getString("verif");
+                        fileGambar = "";
+                    }
+
+                    Sequel.menyimpanQrTte("temporary_cppt",
                             "'" + rsCetak.getString("no_rkm_medis") + "','"
                             + rsCetak.getString("nm_pasien").replaceAll("'", "") + "','"
                             + rsCetak.getString("tgllhr") + "','"
@@ -20558,13 +20800,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             + rsCetak.getString("bagian_cppt") + "','"
                             + rsCetak.getString("hasil_pemeriksaan") + "','"
                             + rsCetak.getString("instruksi_nakes") + "','"
-                            + rsCetak.getString("verif") + "','"
+                            + dokterVerif + "','"
                             + rsCetak.getString("ptgsSerah").replaceAll("'", "") + "','"
                             + rsCetak.getString("ptgsTerima").replaceAll("'", "") + "','"
                             + rsCetak.getString("tgl_cppt") + "','"
                             + rsCetak.getString("jam_cppt") + "','"
                             + rsCetak.getString("cppt_shift") + "','"
-                            + rsCetak.getString("status") + "','" + dataKonfir + "','','','','','','','','','','','','','','','','','','','','',''", "CPPT");
+                            + rsCetak.getString("status") + "','" + dataKonfir + "','','','','','','','','','','','','','','','','','','','','',''",
+                            "file QRCode TTE verifikasi CPPT", fileGambar);
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);

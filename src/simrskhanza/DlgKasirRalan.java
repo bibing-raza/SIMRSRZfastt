@@ -846,7 +846,8 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnLihatDataAsesmenMedikObstetri = new javax.swing.JMenuItem();
         MnCPPTIGD = new javax.swing.JMenu();
         MnInputDataCPPT = new javax.swing.JMenuItem();
-        MnLihatDataCPPT = new javax.swing.JMenuItem();
+        MnTTDcpptIgd = new javax.swing.JMenuItem();
+        MnTTEcpptIgd = new javax.swing.JMenuItem();
         MnVerifCPPT = new javax.swing.JMenuItem();
         MnPenilaianAwalMedis = new javax.swing.JMenu();
         MnPenilaianAwalMedisRalanGeriatri = new javax.swing.JMenuItem();
@@ -882,7 +883,8 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnLihatDataTransferSerahTerimaPonekQr = new javax.swing.JMenuItem();
         MnCPPTvkBersalin = new javax.swing.JMenu();
         MnInputDataCPPTvk = new javax.swing.JMenuItem();
-        MnLihatDataCPPTvk = new javax.swing.JMenuItem();
+        MnTTDcpptVk = new javax.swing.JMenuItem();
+        MnTTEcpptVk = new javax.swing.JMenuItem();
         MnVerifCPPTvk = new javax.swing.JMenuItem();
         ppDokumenJangMed = new javax.swing.JMenuItem();
         MnStatusKakiDiabetes = new javax.swing.JMenuItem();
@@ -2907,7 +2909,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnInputDataCPPT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnInputDataCPPT.setIconTextGap(5);
         MnInputDataCPPT.setName("MnInputDataCPPT"); // NOI18N
-        MnInputDataCPPT.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnInputDataCPPT.setPreferredSize(new java.awt.Dimension(170, 26));
         MnInputDataCPPT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInputDataCPPTActionPerformed(evt);
@@ -2915,22 +2917,37 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
         MnCPPTIGD.add(MnInputDataCPPT);
 
-        MnLihatDataCPPT.setBackground(new java.awt.Color(255, 255, 254));
-        MnLihatDataCPPT.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnLihatDataCPPT.setForeground(new java.awt.Color(50, 50, 50));
-        MnLihatDataCPPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnLihatDataCPPT.setText("Lihat Data");
-        MnLihatDataCPPT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnLihatDataCPPT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnLihatDataCPPT.setIconTextGap(5);
-        MnLihatDataCPPT.setName("MnLihatDataCPPT"); // NOI18N
-        MnLihatDataCPPT.setPreferredSize(new java.awt.Dimension(130, 26));
-        MnLihatDataCPPT.addActionListener(new java.awt.event.ActionListener() {
+        MnTTDcpptIgd.setBackground(new java.awt.Color(255, 255, 254));
+        MnTTDcpptIgd.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDcpptIgd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTDcpptIgd.setText("Lihat Data (TTD Basah)");
+        MnTTDcpptIgd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDcpptIgd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDcpptIgd.setIconTextGap(5);
+        MnTTDcpptIgd.setName("MnTTDcpptIgd"); // NOI18N
+        MnTTDcpptIgd.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnTTDcpptIgd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnLihatDataCPPTActionPerformed(evt);
+                MnTTDcpptIgdActionPerformed(evt);
             }
         });
-        MnCPPTIGD.add(MnLihatDataCPPT);
+        MnCPPTIGD.add(MnTTDcpptIgd);
+
+        MnTTEcpptIgd.setBackground(new java.awt.Color(255, 255, 254));
+        MnTTEcpptIgd.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEcpptIgd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTEcpptIgd.setText("Lihat Data (TTE QRCode)");
+        MnTTEcpptIgd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEcpptIgd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEcpptIgd.setIconTextGap(5);
+        MnTTEcpptIgd.setName("MnTTEcpptIgd"); // NOI18N
+        MnTTEcpptIgd.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnTTEcpptIgd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEcpptIgdActionPerformed(evt);
+            }
+        });
+        MnCPPTIGD.add(MnTTEcpptIgd);
 
         MnVerifCPPT.setBackground(new java.awt.Color(255, 255, 254));
         MnVerifCPPT.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -2941,7 +2958,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnVerifCPPT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnVerifCPPT.setIconTextGap(5);
         MnVerifCPPT.setName("MnVerifCPPT"); // NOI18N
-        MnVerifCPPT.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnVerifCPPT.setPreferredSize(new java.awt.Dimension(170, 26));
         MnVerifCPPT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnVerifCPPTActionPerformed(evt);
@@ -3486,7 +3503,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnInputDataCPPTvk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnInputDataCPPTvk.setIconTextGap(5);
         MnInputDataCPPTvk.setName("MnInputDataCPPTvk"); // NOI18N
-        MnInputDataCPPTvk.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnInputDataCPPTvk.setPreferredSize(new java.awt.Dimension(170, 26));
         MnInputDataCPPTvk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInputDataCPPTvkActionPerformed(evt);
@@ -3494,22 +3511,37 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
         MnCPPTvkBersalin.add(MnInputDataCPPTvk);
 
-        MnLihatDataCPPTvk.setBackground(new java.awt.Color(255, 255, 254));
-        MnLihatDataCPPTvk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnLihatDataCPPTvk.setForeground(new java.awt.Color(50, 50, 50));
-        MnLihatDataCPPTvk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnLihatDataCPPTvk.setText("Lihat Data");
-        MnLihatDataCPPTvk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnLihatDataCPPTvk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnLihatDataCPPTvk.setIconTextGap(5);
-        MnLihatDataCPPTvk.setName("MnLihatDataCPPTvk"); // NOI18N
-        MnLihatDataCPPTvk.setPreferredSize(new java.awt.Dimension(130, 26));
-        MnLihatDataCPPTvk.addActionListener(new java.awt.event.ActionListener() {
+        MnTTDcpptVk.setBackground(new java.awt.Color(255, 255, 254));
+        MnTTDcpptVk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDcpptVk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTDcpptVk.setText("Lihat Data (TTD Basah)");
+        MnTTDcpptVk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDcpptVk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDcpptVk.setIconTextGap(5);
+        MnTTDcpptVk.setName("MnTTDcpptVk"); // NOI18N
+        MnTTDcpptVk.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnTTDcpptVk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnLihatDataCPPTvkActionPerformed(evt);
+                MnTTDcpptVkActionPerformed(evt);
             }
         });
-        MnCPPTvkBersalin.add(MnLihatDataCPPTvk);
+        MnCPPTvkBersalin.add(MnTTDcpptVk);
+
+        MnTTEcpptVk.setBackground(new java.awt.Color(255, 255, 254));
+        MnTTEcpptVk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEcpptVk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTTEcpptVk.setText("Lihat Data (TTE QRCode)");
+        MnTTEcpptVk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEcpptVk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEcpptVk.setIconTextGap(5);
+        MnTTEcpptVk.setName("MnTTEcpptVk"); // NOI18N
+        MnTTEcpptVk.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnTTEcpptVk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEcpptVkActionPerformed(evt);
+            }
+        });
+        MnCPPTvkBersalin.add(MnTTEcpptVk);
 
         MnVerifCPPTvk.setBackground(new java.awt.Color(255, 255, 254));
         MnVerifCPPTvk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -3520,7 +3552,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnVerifCPPTvk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnVerifCPPTvk.setIconTextGap(5);
         MnVerifCPPTvk.setName("MnVerifCPPTvk"); // NOI18N
-        MnVerifCPPTvk.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnVerifCPPTvk.setPreferredSize(new java.awt.Dimension(170, 26));
         MnVerifCPPTvk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnVerifCPPTvkActionPerformed(evt);
@@ -4640,7 +4672,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -5506,7 +5538,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -5530,7 +5562,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -5750,7 +5782,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5769,7 +5801,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -9168,22 +9200,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnInputDataCPPTActionPerformed
 
-    private void MnLihatDataCPPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataCPPTActionPerformed
-        if (tabModekasir.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
-        } else if (TNoRw.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
-            tbKasirRalan.requestFocus();
-        } else {
-            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and STATUS='Ralan'") > 0) {
-                cetakCPPTigd();
-            } else {
-                JOptionPane.showMessageDialog(null, "Data CPPT IGD tidak ditemukan...!!!");
-                tbKasirRalan.requestFocus();
-            }
-        }
-    }//GEN-LAST:event_MnLihatDataCPPTActionPerformed
-
     private void MnSpirometriBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSpirometriBtnPrintActionPerformed
         if (tabModekasir.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
@@ -10448,22 +10464,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnInputDataCPPTvkActionPerformed
 
-    private void MnLihatDataCPPTvkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataCPPTvkActionPerformed
-        if (tabModekasir.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
-        } else if (TNoRw.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
-            tbKasirRalan.requestFocus();
-        } else {
-            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and STATUS='Ralan'") > 0) {
-                cetakCPPTvkBersalin();
-            } else {
-                JOptionPane.showMessageDialog(null, "Data CPPT VK Bersalin tidak ditemukan...!!!");
-                tbKasirRalan.requestFocus();
-            }
-        }
-    }//GEN-LAST:event_MnLihatDataCPPTvkActionPerformed
-
     private void MnVerifCPPTvkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnVerifCPPTvkActionPerformed
         if (tabModekasir.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
@@ -11305,6 +11305,58 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnTTEfkActionPerformed
 
+    private void MnTTDcpptIgdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDcpptIgdActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            tte = "";
+            tte = "tidak";
+            cetakCPPTigd();            
+        }
+    }//GEN-LAST:event_MnTTDcpptIgdActionPerformed
+
+    private void MnTTEcpptIgdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEcpptIgdActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            tte = "";
+            tte = "ya";
+            cetakCPPTigd();            
+        }
+    }//GEN-LAST:event_MnTTEcpptIgdActionPerformed
+
+    private void MnTTDcpptVkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDcpptVkActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            tte = "";
+            tte = "tidak";
+            cetakCPPTvkBersalin();
+        }
+    }//GEN-LAST:event_MnTTDcpptVkActionPerformed
+
+    private void MnTTEcpptVkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEcpptVkActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            tte = "";
+            tte = "ya";
+            cetakCPPTvkBersalin();
+        }
+    }//GEN-LAST:event_MnTTEcpptVkActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -11441,8 +11493,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnLihatDataAssesmenKeperawatanIGDQr;
     private javax.swing.JMenuItem MnLihatDataAssesmenMedikIGD;
     private javax.swing.JMenuItem MnLihatDataAssesmenMedikIGDQr;
-    private javax.swing.JMenuItem MnLihatDataCPPT;
-    private javax.swing.JMenuItem MnLihatDataCPPTvk;
     private javax.swing.JMenuItem MnLihatDataPeri;
     private javax.swing.JMenuItem MnLihatDataPeriQr;
     private javax.swing.JMenuItem MnLihatDataScorePeri;
@@ -11532,7 +11582,11 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnSuratKeteranganRohani;
     private javax.swing.JMenuItem MnSuratKeteranganSakit;
     private javax.swing.JMenuItem MnSuratPengantarRanap;
+    private javax.swing.JMenuItem MnTTDcpptIgd;
+    private javax.swing.JMenuItem MnTTDcpptVk;
     private javax.swing.JMenuItem MnTTDfk;
+    private javax.swing.JMenuItem MnTTEcpptIgd;
+    private javax.swing.JMenuItem MnTTEcpptVk;
     private javax.swing.JMenuItem MnTTEfk;
     private javax.swing.JMenuItem MnTerapiAntiretroviralHIV;
     private javax.swing.JMenuItem MnTeridentifikasiTB;
@@ -12201,8 +12255,10 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnPemberianObatPonek.setEnabled(akses.getpemberian_obat());
         MnPetugasPemberianObatIGD.setEnabled(akses.getpemberian_obat());
         MnPetugasPemberianObatPonek.setEnabled(akses.getpemberian_obat());
-        MnCPPTIGD.setEnabled(akses.getcppt());
-        MnCPPTvkBersalin.setEnabled(akses.getcppt());
+        MnInputDataCPPT.setEnabled(akses.getcppt());
+        MnInputDataCPPTvk.setEnabled(akses.getcppt());
+        MnVerifCPPT.setEnabled(akses.getcppt());
+        MnVerifCPPTvk.setEnabled(akses.getcppt());
         MnInputDataAssesmenMedikIGD.setEnabled(akses.getresep_dokter());
         MnInputDataAssesmenKeperawatanIGD.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         MnInputDataKebidanan.setEnabled(akses.getcppt());
@@ -15278,12 +15334,26 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         param.put("namars", akses.getnamars());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
         param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (IGD)");
-        simpanTemporaryCppt();
-        if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
-            Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Jalan/IGD ]::",
-                    "SELECT * from temporary_cppt", param);
+        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+        if (Sequel.cariInteger("select count(-1) from cppt where no_rawat = '" + TNoRw.getText() + "' AND STATUS='Ralan' and flag_hapus='tidak' and bagian='IGDK'") == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Maaf, data CPPT IGD tidak ditemukan..!!");
+            tbKasirRalan.requestFocus();
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+            simpanTemporaryCppt();
+            if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                if (tte.equals("ya")) {
+                    Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT IGD ]::",
+                            "SELECT * from temporary_cppt", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                } else if (tte.equals("tidak")) {
+                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT IGD ]::",
+                            "SELECT * from temporary_cppt", param);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                tbKasirRalan.requestFocus();
+            }
         }
     }
     
@@ -15291,13 +15361,27 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
-        param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (VK Bersalin)");
-        simpanTemporaryCppt();
-        if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
-            Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Jalan/VK Bersalin ]::",
-                    "SELECT * from temporary_cppt", param);
+        param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (Ponek/VK Bersalin)");
+        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+        
+        if (Sequel.cariInteger("select count(-1) from cppt where no_rawat = '" + TNoRw.getText() + "' AND STATUS='Ralan' and flag_hapus='tidak' and bagian='PON'") == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Maaf, data CPPT Ponek/VK Bersalin tidak ditemukan..!!");
+            tbKasirRalan.requestFocus();
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+            simpanTemporaryCppt();
+            if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                if (tte.equals("ya")) {
+                    Valid.MyReport("rptCPPTQr.jasper", "report", "::[ Laporan CPPT Rawat Jalan/Ponek/VK Bersalin ]::",
+                            "SELECT * from temporary_cppt", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                } else if (tte.equals("tidak")) {
+                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Jalan/Ponek/VK Bersalin ]::",
+                            "SELECT * from temporary_cppt", param);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                tbKasirRalan.requestFocus();
+            }
         }
     }
     
@@ -15313,14 +15397,19 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                     + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                     + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                    + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift, c.status, c.no_rawat "
+                    + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift, c.status, "
+                    + "c.no_rawat, if(vc.no_rawat is not null,'terverif','belum') StatusVerif, if(vc.no_rawat is not null,pg5.nama,'-') nmVerifikator, "
+                    + "if(vc.no_rawat is not null,date_format(vc.waktu_verif,'%d/%m/%Y'),'') tglVerif, if(vc.no_rawat is not null,time(vc.waktu_verif),'-') jamVerif "
                     + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                     + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                    + "LEFT JOIN verifikasi_cppt vc on vc.waktu_simpan_cppt=c.waktu_simpan LEFT JOIN pegawai pg5 on pg5.nik=vc.nip_verifikator "
                     + "WHERE c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ralan' and c.flag_hapus='tidak' ORDER BY c.tgl_cppt, c.jam_cppt");
             try {
                 rsCetak = psCetak.executeQuery();
                 while (rsCetak.next()) {
+                    String isi = "", dokterVerif = "", fileGambar = "";
+                    
                     if (Sequel.cariInteger("select count(-1) from cppt_konfirmasi_terapi where no_rawat='" + rsCetak.getString("no_rawat") + "' "
                             + "and tgl_cppt='" + rsCetak.getString("tgl_cppt") + "' and jam_cppt='" + rsCetak.getString("jam_cppt") + "' "
                             + "and cppt_shift='" + rsCetak.getString("cppt_shift") + "'") == 0) {
@@ -15330,8 +15419,22 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                                 rsCetak.getString("jam_cppt"), rsCetak.getString("cppt_shift"));
                         dataKonfir = konfirmasi_terapi;
                     }
+                    
+                    if (rsCetak.getString("StatusVerif").equals("terverif")) {
+                        dokterVerif = rsCetak.getString("nmVerifikator");
+                        fileGambar = Sequel.cariFolderPrintTte();
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "CPPT", rsCetak.getString("nmVerifikator"),
+                                        rsCetak.getString("tglVerif"), rsCetak.getString("jamVerif")) + "') from kalimat_tte where kode='001'");
 
-                    Sequel.menyimpanIgnore("temporary_cppt",
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    } else {
+                        dokterVerif = rsCetak.getString("verif");
+                        fileGambar = "";
+                    }
+
+                    Sequel.menyimpanQrTte("temporary_cppt",
                             "'" + rsCetak.getString("no_rkm_medis") + "','"
                             + rsCetak.getString("nm_pasien").replaceAll("'", "") + "','"
                             + rsCetak.getString("tgllhr") + "','"
@@ -15340,13 +15443,14 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                             + rsCetak.getString("bagian_cppt") + "','"
                             + rsCetak.getString("hasil_pemeriksaan") + "','"
                             + rsCetak.getString("instruksi_nakes") + "','"
-                            + rsCetak.getString("verif") + "','"
+                            + dokterVerif + "','"
                             + rsCetak.getString("ptgsSerah").replaceAll("'", "") + "','"
                             + rsCetak.getString("ptgsTerima").replaceAll("'", "") + "','"
                             + rsCetak.getString("tgl_cppt") + "','"
                             + rsCetak.getString("jam_cppt") + "','"
                             + rsCetak.getString("cppt_shift") + "','"
-                            + rsCetak.getString("status") + "','" + dataKonfir + "','','','','','','','','','','','','','','','','','','','','',''", "CPPT");
+                            + rsCetak.getString("status") + "','" + dataKonfir + "','','','','','','','','','','','','','','','','','','','','',''",
+                            "file QRCode TTE verifikasi CPPT", fileGambar);
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);

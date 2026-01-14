@@ -26,6 +26,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -62,7 +63,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
     private double total = 0, totTagihan = 0, sdhByr = 0, sisaTagihan = 0, byrKe = 0, stlhByr = 0,
             rumus1 = 0, rumus2 = 0, rumus3 = 0, hasilrumus = 0, hasilmaksimal = 0, tarifAmbulan = 0;
     private int cekData = 0, x = 0;
-    private String norw = "", ambulanDibayar = "";
+    private String norw = "", ambulanDibayar = "", tte = "", isi = "", nmpetugas = "";
 
     /**
      * Creates new form DlgResepObat
@@ -504,9 +505,15 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        cetakNota = new javax.swing.JMenuItem();
-        cetakNotaAmbulan = new javax.swing.JMenuItem();
-        cetakNotaNaikKls = new javax.swing.JMenuItem();
+        cetakNota = new javax.swing.JMenu();
+        MnTTDcn = new javax.swing.JMenuItem();
+        MnTTEcn = new javax.swing.JMenuItem();
+        cetakNotaAmbulan = new javax.swing.JMenu();
+        MnTTDcna = new javax.swing.JMenuItem();
+        MnTTEcna = new javax.swing.JMenuItem();
+        cetakNotaNaikKls = new javax.swing.JMenu();
+        MnTTDcnnk = new javax.swing.JMenuItem();
+        MnTTEcnnk = new javax.swing.JMenuItem();
         lihatSelisihTarif = new javax.swing.JMenuItem();
         MnDataSampah = new javax.swing.JMenuItem();
         MnLaporan = new javax.swing.JMenu();
@@ -712,40 +719,130 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        cetakNota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        cetakNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        cetakNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         cetakNota.setText("Cetak Nota/Kwitansi");
+        cetakNota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        cetakNota.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cetakNota.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cetakNota.setIconTextGap(5);
         cetakNota.setName("cetakNota"); // NOI18N
+        cetakNota.setOpaque(true);
         cetakNota.setPreferredSize(new java.awt.Dimension(190, 26));
-        cetakNota.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTDcn.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDcn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnTTDcn.setText("TTD Basah");
+        MnTTDcn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDcn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDcn.setIconTextGap(5);
+        MnTTDcn.setName("MnTTDcn"); // NOI18N
+        MnTTDcn.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDcn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cetakNotaActionPerformed(evt);
+                MnTTDcnActionPerformed(evt);
             }
         });
+        cetakNota.add(MnTTDcn);
+
+        MnTTEcn.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEcn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnTTEcn.setText("TTE (QRCode)");
+        MnTTEcn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEcn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEcn.setIconTextGap(5);
+        MnTTEcn.setName("MnTTEcn"); // NOI18N
+        MnTTEcn.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEcn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEcnActionPerformed(evt);
+            }
+        });
+        cetakNota.add(MnTTEcn);
+
         jPopupMenu1.add(cetakNota);
 
-        cetakNotaAmbulan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        cetakNotaAmbulan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        cetakNotaAmbulan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         cetakNotaAmbulan.setText("Cetak Nota/Kwitansi Ambulan");
+        cetakNotaAmbulan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        cetakNotaAmbulan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cetakNotaAmbulan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cetakNotaAmbulan.setIconTextGap(5);
         cetakNotaAmbulan.setName("cetakNotaAmbulan"); // NOI18N
+        cetakNotaAmbulan.setOpaque(true);
         cetakNotaAmbulan.setPreferredSize(new java.awt.Dimension(190, 26));
-        cetakNotaAmbulan.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTDcna.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDcna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnTTDcna.setText("TTD Basah");
+        MnTTDcna.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDcna.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDcna.setIconTextGap(5);
+        MnTTDcna.setName("MnTTDcna"); // NOI18N
+        MnTTDcna.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDcna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cetakNotaAmbulanActionPerformed(evt);
+                MnTTDcnaActionPerformed(evt);
             }
         });
+        cetakNotaAmbulan.add(MnTTDcna);
+
+        MnTTEcna.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEcna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnTTEcna.setText("TTE (QRCode)");
+        MnTTEcna.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEcna.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEcna.setIconTextGap(5);
+        MnTTEcna.setName("MnTTEcna"); // NOI18N
+        MnTTEcna.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEcna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEcnaActionPerformed(evt);
+            }
+        });
+        cetakNotaAmbulan.add(MnTTEcna);
+
         jPopupMenu1.add(cetakNotaAmbulan);
 
-        cetakNotaNaikKls.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        cetakNotaNaikKls.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        cetakNotaNaikKls.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         cetakNotaNaikKls.setText("Nota/Kwitansi Naik Kelas");
+        cetakNotaNaikKls.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        cetakNotaNaikKls.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cetakNotaNaikKls.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cetakNotaNaikKls.setIconTextGap(5);
         cetakNotaNaikKls.setName("cetakNotaNaikKls"); // NOI18N
+        cetakNotaNaikKls.setOpaque(true);
         cetakNotaNaikKls.setPreferredSize(new java.awt.Dimension(190, 26));
-        cetakNotaNaikKls.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTDcnnk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDcnnk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnTTDcnnk.setText("TTD Basah");
+        MnTTDcnnk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDcnnk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDcnnk.setIconTextGap(5);
+        MnTTDcnnk.setName("MnTTDcnnk"); // NOI18N
+        MnTTDcnnk.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDcnnk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cetakNotaNaikKlsActionPerformed(evt);
+                MnTTDcnnkActionPerformed(evt);
             }
         });
+        cetakNotaNaikKls.add(MnTTDcnnk);
+
+        MnTTEcnnk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEcnnk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnTTEcnnk.setText("TTE (QRCode)");
+        MnTTEcnnk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEcnnk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEcnnk.setIconTextGap(5);
+        MnTTEcnnk.setName("MnTTEcnnk"); // NOI18N
+        MnTTEcnnk.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEcnnk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEcnnkActionPerformed(evt);
+            }
+        });
+        cetakNotaNaikKls.add(MnTTEcnnk);
+
         jPopupMenu1.add(cetakNotaNaikKls);
 
         lihatSelisihTarif.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1196,6 +1293,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         internalFrame9.add(jLabel56);
         jLabel56.setBounds(0, 53, 102, 23);
 
+        Scroll39.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll39.setName("Scroll39"); // NOI18N
 
         TKalkulasi.setEditable(false);
@@ -1687,7 +1785,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel101.setPreferredSize(new java.awt.Dimension(80, 23));
         internalFrame17.add(jLabel101);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-08-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1701,7 +1799,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel102.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel102);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-08-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1814,6 +1912,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         tbRiwayat.setToolTipText("Silahkan pilih salah satu data yang mau direstore");
         tbRiwayat.setName("tbRiwayat"); // NOI18N
+        tbRiwayat.getTableHeader().setReorderingAllowed(false);
         tbRiwayat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRiwayatMouseClicked(evt);
@@ -1833,6 +1932,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         Scroll7.setOpaque(true);
 
         tbRiwayat1.setName("tbRiwayat1"); // NOI18N
+        tbRiwayat1.getTableHeader().setReorderingAllowed(false);
         Scroll7.setViewportView(tbRiwayat1);
 
         internalFrame20.add(Scroll7);
@@ -1926,6 +2026,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         tbPemasukan.setToolTipText("Silahkan klik untuk memilih data yang mau dicetak nota/kwitansinya");
         tbPemasukan.setComponentPopupMenu(jPopupMenu1);
         tbPemasukan.setName("tbPemasukan"); // NOI18N
+        tbPemasukan.getTableHeader().setReorderingAllowed(false);
         tbPemasukan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPemasukanMouseClicked(evt);
@@ -2064,7 +2165,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass8.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-08-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -2083,7 +2184,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2098,7 +2199,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2232,7 +2333,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         btnKategori.setBounds(610, 40, 28, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-08-2025" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2026" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -2353,6 +2454,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         FormInput.add(telahTerimaPAS);
         telahTerimaPAS.setBounds(925, 100, 315, 23);
 
+        Scroll3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
 
@@ -2678,70 +2780,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         Valid.pindah(evt, CmbMenit, pemasukan);
     }//GEN-LAST:event_CmbDetikKeyPressed
 
-    private void cetakNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakNotaActionPerformed
-        if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, data pemasukan lain-lain tidak ada...!!!!");
-            DTPCari1.requestFocus();
-        } else if (noTransaksi.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
-            tbPemasukan.requestFocus();
-        } else if (KdKategori.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
-            tbPemasukan.requestFocus();
-        } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("tglNota", "Martapura, " + tglNota.getSelectedItem().toString());
-
-            if (KdKategori.getText().equals("SWKTN")) {
-                Valid.MyReport("rptNotaSewaTempat.jasper", "report", "::[ Kwitansi pembayaran Sewa Tempat ]::", " select pemasukan_lain.tanggal, "
-                        + " pemasukan_lain.keterangan, pemasukan_lain.besar, pemasukan_lain.nip, "
-                        + " petugas.nama,pemasukan_lain.no_transaksi,pemasukan_lain.jam_penerimaan, "
-                        + " kategori_pemasukan_lain.nama_kategori, if(pemasukan_lain.telah_terima_dari is null,'-',"
-                        + " pemasukan_lain.telah_terima_dari) pembayar, pemasukan_lain.nominal_sewa "
-                        + " from pemasukan_lain inner join petugas inner join kategori_pemasukan_lain on pemasukan_lain.nip=petugas.nip "
-                        + " and pemasukan_lain.kode_kategori=kategori_pemasukan_lain.kode_kategori "
-                        + " where pemasukan_lain.no_transaksi='" + noTransaksi.getText() + "' ", param);
-
-            } else if (KdKategori.getText().equals("SBPJS")) {
-                SimpanKwitansi();
-                param.put("telah_terimaAN", telahTerimaAN.getText());
-                param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
-                param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp3,'.','.'),',','.')) FROM temporary_bayar_ranap"));
-                Valid.MyReport("rptNotaKwitansi.jasper", "report", "::[ Kwitansi pembayaran (Selisih Tarif BPJS) ]::", "SELECT * FROM temporary_bayar_ranap", param);
-                Sequel.mengedit("reg_periksa", "no_rawat='" + norw + "'", "p_jawab='" + telahTerimaAN.getText() + "' ");
-
-            } else {
-                SimpanKwitansi();
-                String kalimatBayar = "", bayar = "";
-                kalimatBayar = Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap"));
-                bayar = Sequel.cariIsi("SELECT temp3 FROM temporary_bayar_ranap");
-
-                param.put("uang_sebanyak", kalimatBayar + " Rupiah.");
-                param.put("terbilang", "Terbilang Rp. " + bayar);
-
-                if (KdKategori.getText().equals("AMBLN")) {
-                    param.put("sebesar", "");
-                } else {
-                    param.put("sebesar", " sebesar Rp. " + bayar + "\n");
-                }
-                Valid.MyReport("rptNotaKwitansiLain.jasper", "report", "::[ Kwitansi pembayaran lain-lain ]::", "SELECT * FROM temporary_bayar_ranap", param);
-
-            }
-            this.setCursor(Cursor.getDefaultCursor());
-            emptTeks();
-            selisihBaru();
-            tampil();
-        }
-    }//GEN-LAST:event_cetakNotaActionPerformed
-
     private void telahTerimaPASKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telahTerimaPASKeyPressed
         Valid.pindah(evt, pemasukan, Keterangan);
     }//GEN-LAST:event_telahTerimaPASKeyPressed
@@ -3014,58 +3052,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             }
         }
     }//GEN-LAST:event_lihatSelisihTarifActionPerformed
-
-    private void cetakNotaNaikKlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakNotaNaikKlsActionPerformed
-        if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Tabel masih kosong...!!!!");
-            DTPCari1.requestFocus();
-        } else if (noTransaksi.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
-            tbPemasukan.requestFocus();
-        } else if (KdKategori.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
-            tbPemasukan.requestFocus();
-        } else if (!KdKategori.getText().trim().equals("SBPJS")) {
-            JOptionPane.showMessageDialog(null, "Pilihan cetak nota/kwitansi pembayaran salah...!!!");
-            tbPemasukan.requestFocus();
-        } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(tglNota.getSelectedItem() + "")));
-
-            if (statusTran.getText().equals("dicicil")) {
-                SimpanNotaNaikKelas();
-                param.put("keterangan", Keterangan.getText());
-                param.put("judul_kwitansi", "KUITANSI PEMBAYARAN (Angsuran Ke - " + bayarKe.getText() + ")");
-                param.put("telah_terimaAN", telahTerimaAN.getText());
-                param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp13,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
-                param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp13,'.','.'),',','.')) FROM temporary_bayar_ranap"));
-
-                Valid.MyReport("rptNotaSelisihTarifCicil.jasper", "report", "::[ Kwitansi pembayaran selisih tarif BPJS (Angsuran) ]::", "SELECT * FROM temporary_bayar_ranap", param);
-                Sequel.mengedit("reg_periksa", "no_rawat='" + norw + "'", "p_jawab='" + telahTerimaAN.getText() + "' ");
-
-            } else if (statusTran.getText().equals("lunas") || (statusTran.getText().equals(""))) {
-                SimpanNotaNaikKelas();
-                param.put("telah_terimaAN", telahTerimaAN.getText());
-                param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp13,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
-                param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp13,'.','.'),',','.')) FROM temporary_bayar_ranap"));
-
-                Valid.MyReport("rptNotaSelisihTarif.jasper", "report", "::[ Kwitansi pembayaran selisih tarif BPJS (Pelunasan) ]::", "SELECT * FROM temporary_bayar_ranap", param);
-                Sequel.mengedit("reg_periksa", "no_rawat='" + norw + "'", "p_jawab='" + telahTerimaAN.getText() + "' ");
-            }
-            this.setCursor(Cursor.getDefaultCursor());
-            emptTeks();
-            selisihBaru();
-            tampil();
-        }
-    }//GEN-LAST:event_cetakNotaNaikKlsActionPerformed
 
     private void RekapSelisihLunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RekapSelisihLunasActionPerformed
         if (tabMode.getRowCount() == 0) {
@@ -3418,48 +3404,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_TjlhBiayaPihak3KeyPressed
 
-    private void cetakNotaAmbulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakNotaAmbulanActionPerformed
-        if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Tabel masih kosong...!!!!");
-            DTPCari1.requestFocus();
-        } else if (noTransaksi.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
-            tbPemasukan.requestFocus();
-        } else if (KdKategori.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
-            tbPemasukan.requestFocus();
-        } else if (!KdKategori.getText().trim().equals("AMBLN")) {
-            JOptionPane.showMessageDialog(null, "Pilihan cetak nota/kwitansi pembayaran salah...!!!");
-            tbPemasukan.requestFocus();
-        } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(tglNota.getSelectedItem() + "")));
-
-            SimpanKwitansi();
-            String kalimatBayar = "", bayar = "";
-            kalimatBayar = Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap"));
-            bayar = Sequel.cariIsi("SELECT temp3 FROM temporary_bayar_ranap");
-
-            param.put("uang_sebanyak", kalimatBayar + " Rupiah.");
-            param.put("terbilang", "Terbilang Rp. " + bayar);
-            Valid.MyReport("rptNotaAmbulan.jasper", "report", "::[ Kwitansi pembayaran Ambulance ]::", 
-                    "SELECT * FROM temporary_bayar_ranap", param);
-
-            this.setCursor(Cursor.getDefaultCursor());
-            emptTeks();
-            selisihBaru();
-            tampil();
-        }
-    }//GEN-LAST:event_cetakNotaAmbulanActionPerformed
-
     private void BtnPanjarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPanjarActionPerformed
         if (norm.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Pasien belum dipilih...!!!");
@@ -3646,6 +3590,120 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         WindowRiwayat.setVisible(true);
     }//GEN-LAST:event_MnDataSampahActionPerformed
 
+    private void MnTTDcnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDcnActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data pemasukan lain-lain tidak ada...!!!!");
+            DTPCari1.requestFocus();
+        } else if (noTransaksi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (KdKategori.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else {
+            tte = "";
+            tte = "tidak";
+            cetakNota();
+        }
+    }//GEN-LAST:event_MnTTDcnActionPerformed
+
+    private void MnTTEcnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEcnActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data pemasukan lain-lain tidak ada...!!!!");
+            DTPCari1.requestFocus();
+        } else if (noTransaksi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (KdKategori.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else {
+            tte = "";
+            tte = "ya";
+            cetakNota();
+        }
+    }//GEN-LAST:event_MnTTEcnActionPerformed
+
+    private void MnTTDcnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDcnaActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Tabel masih kosong...!!!!");
+            DTPCari1.requestFocus();
+        } else if (noTransaksi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (KdKategori.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (!KdKategori.getText().trim().equals("AMBLN")) {
+            JOptionPane.showMessageDialog(null, "Pilihan cetak nota/kwitansi pembayaran salah...!!!");
+            tbPemasukan.requestFocus();
+        } else {
+            tte = "";
+            tte = "tidak";
+            cetakNotaAmbulan();
+        }
+    }//GEN-LAST:event_MnTTDcnaActionPerformed
+
+    private void MnTTEcnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEcnaActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Tabel masih kosong...!!!!");
+            DTPCari1.requestFocus();
+        } else if (noTransaksi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (KdKategori.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (!KdKategori.getText().trim().equals("AMBLN")) {
+            JOptionPane.showMessageDialog(null, "Pilihan cetak nota/kwitansi pembayaran salah...!!!");
+            tbPemasukan.requestFocus();
+        } else {
+            tte = "";
+            tte = "ya";
+            cetakNotaAmbulan();
+        }
+    }//GEN-LAST:event_MnTTEcnaActionPerformed
+
+    private void MnTTDcnnkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDcnnkActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Tabel masih kosong...!!!!");
+            DTPCari1.requestFocus();
+        } else if (noTransaksi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (KdKategori.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (!KdKategori.getText().trim().equals("SBPJS")) {
+            JOptionPane.showMessageDialog(null, "Pilihan cetak nota/kwitansi pembayaran salah...!!!");
+            tbPemasukan.requestFocus();
+        } else {
+            tte = "";
+            tte = "tidak";
+            cetakNotaNaikKls();
+        }
+    }//GEN-LAST:event_MnTTDcnnkActionPerformed
+
+    private void MnTTEcnnkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEcnnkActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Tabel masih kosong...!!!!");
+            DTPCari1.requestFocus();
+        } else if (noTransaksi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (KdKategori.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (!KdKategori.getText().trim().equals("SBPJS")) {
+            JOptionPane.showMessageDialog(null, "Pilihan cetak nota/kwitansi pembayaran salah...!!!");
+            tbPemasukan.requestFocus();
+        } else {
+            tte = "";
+            tte = "ya";
+            cetakNotaNaikKls();
+        }
+    }//GEN-LAST:event_MnTTEcnnkActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3702,6 +3760,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label LCount;
     private javax.swing.JMenuItem MnDataSampah;
     private javax.swing.JMenu MnLaporan;
+    private javax.swing.JMenuItem MnTTDcn;
+    private javax.swing.JMenuItem MnTTDcna;
+    private javax.swing.JMenuItem MnTTDcnnk;
+    private javax.swing.JMenuItem MnTTEcn;
+    private javax.swing.JMenuItem MnTTEcna;
+    private javax.swing.JMenuItem MnTTEcnnk;
     private widget.TextBox NmKategori;
     private widget.TextBox NmPtg;
     private widget.TextBox NoSEP;
@@ -3748,9 +3812,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox byrSimpan;
     private widget.TextBox cekNoSEP;
     private widget.TextBox cekNoTransaksi;
-    private javax.swing.JMenuItem cetakNota;
-    private javax.swing.JMenuItem cetakNotaAmbulan;
-    private javax.swing.JMenuItem cetakNotaNaikKls;
+    private javax.swing.JMenu cetakNota;
+    private javax.swing.JMenu cetakNotaAmbulan;
+    private javax.swing.JMenu cetakNotaNaikKls;
     private widget.TextBox dataSelisihTarif;
     private widget.TextBox deskripsiKD;
     private widget.TextBox hakkelas;
@@ -4709,6 +4773,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             try {
                 rsTem = psTem.executeQuery();
                 while (rsTem.next()) {
+                    nmpetugas = rsTem.getString("nama");
+                    
                     Sequel.menyimpan("temporary_bayar_ranap",
                             "'0','"
                             + rsTem.getString("tanggal") + "','"
@@ -4751,6 +4817,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             try {
                 rsTem1 = psTem1.executeQuery();
                 while (rsTem1.next()) {
+                    nmpetugas = rsTem1.getString("petugas");
                     cekNoSEP.setText(rsTem1.getString("nosep"));
                     cekSEP();
                     cekINACBG();
@@ -5299,5 +5366,287 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    private void cetakNota() {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        isi = "";
+        nmpetugas = "";
+        
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("tglNota", "Martapura, " + tglNota.getSelectedItem().toString());
+
+        if (tte.equals("tidak")) {
+            if (KdKategori.getText().equals("SWKTN")) {
+                Valid.MyReport("rptNotaSewaTempat.jasper", "report", "::[ Kwitansi pembayaran Sewa Tempat ]::", " select pemasukan_lain.tanggal, "
+                        + " pemasukan_lain.keterangan, pemasukan_lain.besar, pemasukan_lain.nip, "
+                        + " petugas.nama,pemasukan_lain.no_transaksi,pemasukan_lain.jam_penerimaan, "
+                        + " kategori_pemasukan_lain.nama_kategori, if(pemasukan_lain.telah_terima_dari is null,'-',"
+                        + " pemasukan_lain.telah_terima_dari) pembayar, pemasukan_lain.nominal_sewa "
+                        + " from pemasukan_lain inner join petugas inner join kategori_pemasukan_lain on pemasukan_lain.nip=petugas.nip "
+                        + " and pemasukan_lain.kode_kategori=kategori_pemasukan_lain.kode_kategori "
+                        + " where pemasukan_lain.no_transaksi='" + noTransaksi.getText() + "' ", param);
+            } else if (KdKategori.getText().equals("SBPJS")) {
+                SimpanKwitansi();
+                param.put("telah_terimaAN", telahTerimaAN.getText());
+                param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
+                param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp3,'.','.'),',','.')) FROM temporary_bayar_ranap"));
+                Valid.MyReport("rptNotaKwitansi.jasper", "report", "::[ Kwitansi pembayaran (Selisih Tarif BPJS) ]::", "SELECT * FROM temporary_bayar_ranap", param);
+                Sequel.mengedit("reg_periksa", "no_rawat='" + norw + "'", "p_jawab='" + telahTerimaAN.getText() + "' ");
+            } else {
+                SimpanKwitansi();
+                String kalimatBayar = "", bayar = "";
+                kalimatBayar = Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap"));
+                bayar = Sequel.cariIsi("SELECT temp3 FROM temporary_bayar_ranap");
+
+                param.put("uang_sebanyak", kalimatBayar + " Rupiah.");
+                param.put("terbilang", "Terbilang Rp. " + bayar);
+
+                if (KdKategori.getText().equals("AMBLN")) {
+                    param.put("sebesar", "");
+                } else {
+                    param.put("sebesar", " sebesar Rp. " + bayar + "\n");
+                }
+                Valid.MyReport("rptNotaKwitansiLain.jasper", "report", "::[ Kwitansi pembayaran lain-lain ]::", "SELECT * FROM temporary_bayar_ranap", param);
+            }
+            
+            emptTeks();
+            selisihBaru();
+            tampil();
+        } else if (tte.equals("ya")) {
+            if (KdKategori.getText().equals("SWKTN")) {                
+                nmpetugas = Sequel.cariIsi("select pg.nama from pemasukan_lain pl inner join pegawai pg on pg.nik=pl.nip where pl.no_transaksi='" + noTransaksi.getText() + "'");
+                
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Kuitansi Pembayaran", nmpetugas,
+                                Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+                
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+                
+                Valid.MyReport("rptNotaSewaTempatQr.jasper", "report", "::[ Kwitansi pembayaran Sewa Tempat ]::", " select pemasukan_lain.tanggal, "
+                        + " pemasukan_lain.keterangan, pemasukan_lain.besar, pemasukan_lain.nip, "
+                        + " petugas.nama,pemasukan_lain.no_transaksi,pemasukan_lain.jam_penerimaan, "
+                        + " kategori_pemasukan_lain.nama_kategori, if(pemasukan_lain.telah_terima_dari is null,'-',"
+                        + " pemasukan_lain.telah_terima_dari) pembayar, pemasukan_lain.nominal_sewa "
+                        + " from pemasukan_lain inner join petugas inner join kategori_pemasukan_lain on pemasukan_lain.nip=petugas.nip "
+                        + " and pemasukan_lain.kode_kategori=kategori_pemasukan_lain.kode_kategori "
+                        + " where pemasukan_lain.no_transaksi='" + noTransaksi.getText() + "' ", param);
+
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            } else if (KdKategori.getText().equals("SBPJS")) {
+                SimpanKwitansi();                
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Kuitansi Pembayaran", nmpetugas,
+                                Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+                
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+                
+                param.put("telah_terimaAN", telahTerimaAN.getText());
+                param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
+                param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp3,'.','.'),',','.')) FROM temporary_bayar_ranap"));
+                
+                Valid.MyReport("rptNotaKwitansiQr.jasper", "report", "::[ Kwitansi pembayaran (Selisih Tarif BPJS) ]::", "SELECT * FROM temporary_bayar_ranap", param);
+                Sequel.mengedit("reg_periksa", "no_rawat='" + norw + "'", "p_jawab='" + telahTerimaAN.getText() + "' ");
+                
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            } else {
+                SimpanKwitansi();
+                String kalimatBayar = "", bayar = "";
+                kalimatBayar = Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap"));
+                bayar = Sequel.cariIsi("SELECT temp3 FROM temporary_bayar_ranap");
+
+                param.put("uang_sebanyak", kalimatBayar + " Rupiah.");
+                param.put("terbilang", "Terbilang Rp. " + bayar);
+
+                if (KdKategori.getText().equals("AMBLN")) {
+                    param.put("sebesar", "");
+                } else {
+                    param.put("sebesar", " sebesar Rp. " + bayar + "\n");
+                }
+                
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Kuitansi Pembayaran", nmpetugas,
+                                Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+                
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+                
+                Valid.MyReport("rptNotaKwitansiLainQr.jasper", "report", "::[ Kwitansi pembayaran lain-lain ]::", "SELECT * FROM temporary_bayar_ranap", param);
+                
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);                
+            }
+            
+            emptTeks();
+            selisihBaru();
+            tampil();
+        }
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+
+    private void cetakNotaAmbulan() {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        isi = "";
+        nmpetugas = "";
+        
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(tglNota.getSelectedItem() + "")));
+
+        SimpanKwitansi();
+        String kalimatBayar = "", bayar = "";
+        kalimatBayar = Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap"));
+        bayar = Sequel.cariIsi("SELECT temp3 FROM temporary_bayar_ranap");
+
+        param.put("uang_sebanyak", kalimatBayar + " Rupiah.");
+        param.put("terbilang", "Terbilang Rp. " + bayar);
+        
+        if (tte.equals("tidak")) {
+            Valid.MyReport("rptNotaAmbulan.jasper", "report", "::[ Kwitansi pembayaran Ambulance ]::",
+                    "SELECT * FROM temporary_bayar_ranap", param);
+        } else if (tte.equals("ya")) {
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Kuitansi Pembayaran Ambulance", nmpetugas,
+                            Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReport("rptNotaAmbulanQr.jasper", "report", "::[ Kwitansi pembayaran Ambulance ]::",
+                    "SELECT * FROM temporary_bayar_ranap", param);
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);                       
+        }
+        
+        emptTeks();
+        selisihBaru();
+        tampil();
+        this.setCursor(Cursor.getDefaultCursor());        
+    }
+    
+    private void cetakNotaNaikKls() {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        isi = "";
+        nmpetugas = "";
+        
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(tglNota.getSelectedItem() + "")));
+
+        if (tte.equals("tidak")) {
+            if (statusTran.getText().equals("dicicil")) {
+                SimpanNotaNaikKelas();
+                param.put("keterangan", Keterangan.getText());
+                param.put("judul_kwitansi", "KUITANSI PEMBAYARAN (Angsuran Ke - " + bayarKe.getText() + ")");
+                param.put("telah_terimaAN", telahTerimaAN.getText());
+                param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp13,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
+                param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp13,'.','.'),',','.')) FROM temporary_bayar_ranap"));
+
+                Valid.MyReport("rptNotaSelisihTarifCicil.jasper", "report", "::[ Kwitansi pembayaran selisih tarif BPJS (Angsuran) ]::", "SELECT * FROM temporary_bayar_ranap", param);
+                Sequel.mengedit("reg_periksa", "no_rawat='" + norw + "'", "p_jawab='" + telahTerimaAN.getText() + "' ");
+
+            } else if (statusTran.getText().equals("lunas") || (statusTran.getText().equals(""))) {
+                SimpanNotaNaikKelas();
+                param.put("telah_terimaAN", telahTerimaAN.getText());
+                param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp13,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
+                param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp13,'.','.'),',','.')) FROM temporary_bayar_ranap"));
+
+                Valid.MyReport("rptNotaSelisihTarif.jasper", "report", "::[ Kwitansi pembayaran selisih tarif BPJS (Pelunasan) ]::", "SELECT * FROM temporary_bayar_ranap", param);
+                Sequel.mengedit("reg_periksa", "no_rawat='" + norw + "'", "p_jawab='" + telahTerimaAN.getText() + "' ");
+            }
+            emptTeks();
+            selisihBaru();
+            tampil();
+        } else if (tte.equals("ya")) {
+            if (statusTran.getText().equals("dicicil")) {
+                SimpanNotaNaikKelas();
+                param.put("keterangan", Keterangan.getText());
+                param.put("judul_kwitansi", "KUITANSI PEMBAYARAN (Angsuran Ke - " + bayarKe.getText() + ")");
+                param.put("telah_terimaAN", telahTerimaAN.getText());
+                param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp13,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
+                param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp13,'.','.'),',','.')) FROM temporary_bayar_ranap"));
+                
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Kuitansi Pembayaran (Angsuran Ke - " + bayarKe.getText() + ")", nmpetugas,
+                                Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+                Valid.MyReport("rptNotaSelisihTarifCicilQr.jasper", "report", "::[ Kwitansi pembayaran selisih tarif BPJS (Angsuran) ]::", "SELECT * FROM temporary_bayar_ranap", param);
+                Sequel.mengedit("reg_periksa", "no_rawat='" + norw + "'", "p_jawab='" + telahTerimaAN.getText() + "' ");
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+
+            } else if (statusTran.getText().equals("lunas") || (statusTran.getText().equals(""))) {
+                SimpanNotaNaikKelas();
+                param.put("telah_terimaAN", telahTerimaAN.getText());
+                param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp13,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
+                param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp13,'.','.'),',','.')) FROM temporary_bayar_ranap"));
+
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Kuitansi Pembayaran (Pelunasan)", nmpetugas,
+                                Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+                Valid.MyReport("rptNotaSelisihTarifQr.jasper", "report", "::[ Kwitansi pembayaran selisih tarif BPJS (Pelunasan) ]::", "SELECT * FROM temporary_bayar_ranap", param);
+                Sequel.mengedit("reg_periksa", "no_rawat='" + norw + "'", "p_jawab='" + telahTerimaAN.getText() + "' ");
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+            emptTeks();
+            selisihBaru();
+            tampil();
+        }
+        this.setCursor(Cursor.getDefaultCursor());        
     }
 }

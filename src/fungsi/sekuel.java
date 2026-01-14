@@ -3007,7 +3007,20 @@ public final class sekuel {
         try {
             ps = connect.prepareStatement("insert into " + table + " values(" + value + ",?)");
             try {
-                ps.setBinaryStream(1, new FileInputStream(AlmGb), new File(AlmGb).length());
+                //jika file gambar tidak ada
+                if (AlmGb == null || AlmGb.trim().equals("")) {
+                    ps.setNull(1, java.sql.Types.BLOB);
+                } else {
+                    File file = new File(AlmGb);
+                    if (!file.exists()) {
+                        // file tidak ada → tetap kirim NULL
+                        ps.setNull(1, java.sql.Types.BLOB);
+                    } else {
+                        FileInputStream fis = new FileInputStream(file);
+                        ps.setBinaryStream(1, fis, file.length());
+                    }
+//                    ps.setBinaryStream(1, new FileInputStream(AlmGb), new File(AlmGb).length());
+                }
                 ps.executeUpdate();
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);

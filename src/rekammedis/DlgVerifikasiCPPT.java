@@ -45,7 +45,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
     private Properties prop = new Properties();
     private PreparedStatement ps, ps1, ps2, ps3;
     private ResultSet rs, rs1, rs2, rs3, rsPrev;
-    private int i = 0, x = 0, cekKonfirmasi = 0;
+    private int i = 0, x = 0, cekKonfirmasi = 0, jmlData = 0;
     private String status = "", kodekamar = "", dataKonfirmasi = "", konfirmasi_terapi = "";
     private Boolean conteng;
     
@@ -58,7 +58,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         tabMode=new DefaultTableModel(null, new Object[]{
             "Cek", "Verifikasi", "Tgl. CPPT", "Jam CPPT", "Jenis Bagian", "DPJP Lainnya", "Jenis PPA",
-            "Nama PPA", "Shift", "hasil", "instruksi", "wkt_simpan", "no_rawat", "tgl_cppt", "jam_cppt"
+            "Nama PPA", "Shift", "hasil", "instruksi", "wkt_simpan", "no_rawat", "tgl_cppt", "jam_cppt", "nip_dpjp"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -73,7 +73,8 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class
             };
 
             @Override
@@ -86,7 +87,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         tbCPPT.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbCPPT.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 15; i++) {
+        for (i = 0; i < 16; i++) {
             TableColumn column = tbCPPT.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(32);
@@ -97,7 +98,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
             } else if (i == 3) {
                 column.setPreferredWidth(60);
             } else if (i == 4) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(150);
             } else if (i == 5) {
                 column.setPreferredWidth(200);
             } else if (i == 6) {
@@ -122,6 +123,9 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 14) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 15) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } 
@@ -365,6 +369,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         tbCPPT.setToolTipText("Silahkan klik untuk membaca CPPT");
         tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.getTableHeader().setReorderingAllowed(false);
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCPPTMouseClicked(evt);
@@ -391,7 +396,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         jLabel8.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass8.add(jLabel8);
 
-        tglCppt1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2024" }));
+        tglCppt1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-01-2026" }));
         tglCppt1.setDisplayFormat("dd-MM-yyyy");
         tglCppt1.setName("tglCppt1"); // NOI18N
         tglCppt1.setOpaque(false);
@@ -405,7 +410,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel21);
 
-        tglCppt2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2024" }));
+        tglCppt2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-01-2026" }));
         tglCppt2.setDisplayFormat("dd-MM-yyyy");
         tglCppt2.setName("tglCppt2"); // NOI18N
         tglCppt2.setOpaque(false);
@@ -414,7 +419,6 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('1');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+1");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -433,7 +437,6 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         BtnResep.setForeground(new java.awt.Color(0, 0, 0));
         BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
-        BtnResep.setMnemonic('R');
         BtnResep.setText("Resep Obat");
         BtnResep.setToolTipText("Alt+R");
         BtnResep.setName("BtnResep"); // NOI18N
@@ -447,7 +450,6 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         BtnConteng.setForeground(new java.awt.Color(0, 0, 0));
         BtnConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnConteng.setMnemonic('G');
         BtnConteng.setText("Conteng Semua");
         BtnConteng.setToolTipText("Alt+G");
         BtnConteng.setName("BtnConteng"); // NOI18N
@@ -461,7 +463,6 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnHapus.setMnemonic('M');
         BtnHapus.setText("Hapus Conteng");
         BtnHapus.setToolTipText("Alt+M");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -475,7 +476,6 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Batal Verifikasi");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -489,7 +489,6 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Setuju Verifikasi");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -508,7 +507,6 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -550,7 +548,6 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -569,7 +566,6 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         BtnResep1.setForeground(new java.awt.Color(0, 0, 0));
         BtnResep1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
-        BtnResep1.setMnemonic('R');
         BtnResep1.setText("Resep Obat");
         BtnResep1.setToolTipText("Alt+R");
         BtnResep1.setName("BtnResep1"); // NOI18N
@@ -583,7 +579,6 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -616,21 +611,39 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Pasien");
             TNoRw.requestFocus();
         } else {
+            jmlData = 0;
             x = 0;
+            
             for (i = 0; i < tbCPPT.getRowCount(); i++) {
                 if (tbCPPT.getValueAt(i, 0).toString().equals("true")) {
                     x++;
                 }
             }
+            jmlData = x;
             
             if (x == 0) {
                 JOptionPane.showMessageDialog(null, "Silahkan conteng dulu CPPTnya untuk setuju diverifikasi..!!!!");
                 tbCPPT.requestFocus();
             } else {
+                JOptionPane.showMessageDialog(rootPane, "Verifikasi cppt memerlukan waktu " + jmlData + " detik, silahkan tunggu sampai prosesnya selesai ...!");
+                
                 try {
                     for (i = 0; i < tbCPPT.getRowCount(); i++) {
                         if (tbCPPT.getValueAt(i, 0).toString().equals("true")) {
                             Sequel.queryu("update cppt set verifikasi = 'Sudah' where waktu_simpan='" + tbCPPT.getValueAt(i, 11).toString() + "'");
+                            
+                            if (!tbCPPT.getValueAt(i, 15).toString().equals("-")) {
+                                Sequel.menyimpanIgnore("verifikasi_cppt",
+                                        "'" + tbCPPT.getValueAt(i, 12).toString() + "',"
+                                        + "'" + tbCPPT.getValueAt(i, 15).toString() + "',"
+                                        + "'" + tbCPPT.getValueAt(i, 11).toString() + "',"
+                                        + "'" + Sequel.cariIsi("select now()") + "'", "Verifikasi CPPT");
+
+                                Sequel.queryu("delete from verifikasi_cppt_history where waktu_simpan_cppt='" + tbCPPT.getValueAt(i, 11).toString() + "'");
+                            }
+                            
+                            //jeda 1 detik
+                            Thread.sleep(1000);
                         }
                     }
                     Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Verifikasi CPPT", "Sudah");
@@ -643,10 +656,10 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnSimpanActionPerformed(null);
-        }else{
-            Valid.pindah(evt,TNoRw,BtnBatal);
+        } else {
+            Valid.pindah(evt, TNoRw, BtnBatal);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
@@ -669,6 +682,11 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                 try {
                     for (i = 0; i < tbCPPT.getRowCount(); i++) {
                         if (tbCPPT.getValueAt(i, 0).toString().equals("true")) {
+                            if (tbCPPT.getValueAt(i, 1).toString().equals("Sudah")) {
+                                Sequel.queryu("delete from verifikasi_cppt where no_rawat='" + tbCPPT.getValueAt(i, 12).toString() + "' "
+                                        + "and waktu_simpan_cppt='" + tbCPPT.getValueAt(i, 11).toString() + "'");
+                            }
+                            
                             Sequel.queryu("update cppt set verifikasi = 'Belum' where waktu_simpan='" + tbCPPT.getValueAt(i, 11).toString() + "'");
                         }
                     }
@@ -896,17 +914,23 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("vk bersalin")) {
                 ps = koneksi.prepareStatement("SELECT c.verifikasi, DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tgl, if(c.cek_jam='ya',TIME_FORMAT(c.jam_cppt,'%H:%i'),'-') jam, "
                         + "c.jenis_bagian, pg1.nama nmdpjp, c.jenis_ppa, pg2.nama nmppa, c.cppt_shift, c.hasil_pemeriksaan, "
-                        + "c.instruksi_nakes, c.waktu_simpan, c.no_rawat, c.tgl_cppt, c.jam_cppt from cppt c "
+                        + "c.instruksi_nakes, c.waktu_simpan, c.no_rawat, c.tgl_cppt, c.jam_cppt, c.nip_dpjp, if(c.status='Ralan',pl.nm_poli,b.nm_gedung) ruangRwt from cppt c "
                         + "inner join pegawai pg1 on pg1.nik=c.nip_konsulen "
-                        + "inner join pegawai pg2 on pg2.nik=c.nip_ppa where "
+                        + "inner join pegawai pg2 on pg2.nik=c.nip_ppa "
+                        + "left join poliklinik pl on pl.kd_poli=c.bagian "
+                        + "left join kamar k on k.kd_kamar=c.bagian "
+                        + "left join bangsal b on b.kd_bangsal=k.kd_bangsal where "
                         + "c.flag_hapus='tidak' and c.status='ralan' and c.tgl_cppt between ? and ? and c.no_rawat='" + TNoRw.getText() + "' order by c.tgl_cppt, c.jam_cppt");
             } else if (status.equals("ranap")) {
                 ps = koneksi.prepareStatement("SELECT c.verifikasi, DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tgl, if(c.cek_jam='ya',TIME_FORMAT(c.jam_cppt,'%H:%i'),'-') jam, "
                         + "c.jenis_bagian, pg1.nama nmdpjp, c.jenis_ppa, pg2.nama nmppa, c.cppt_shift, c.hasil_pemeriksaan, "
-                        + "c.instruksi_nakes, c.waktu_simpan, c.no_rawat, c.tgl_cppt, c.jam_cppt from cppt c "
+                        + "c.instruksi_nakes, c.waktu_simpan, c.no_rawat, c.tgl_cppt, c.jam_cppt, c.nip_dpjp, if(c.status='Ralan',pl.nm_poli,b.nm_gedung) ruangRwt from cppt c "
                         + "inner join pegawai pg1 on pg1.nik=c.nip_konsulen "
-                        + "inner join pegawai pg2 on pg2.nik=c.nip_ppa where "
-                        + "c.flag_hapus='tidak' and c.status='ranap' and c.tgl_cppt between ? and ? and c.no_rawat='" + TNoRw.getText() + "' order by c.tgl_cppt, c.jam_cppt");
+                        + "inner join pegawai pg2 on pg2.nik=c.nip_ppa "
+                        + "left join poliklinik pl on pl.kd_poli=c.bagian "
+                        + "left join kamar k on k.kd_kamar=c.bagian "
+                        + "left join bangsal b on b.kd_bangsal=k.kd_bangsal where "
+                        + "c.flag_hapus='tidak' and c.tgl_cppt between ? and ? and c.no_rawat='" + TNoRw.getText() + "' order by c.tgl_cppt, c.jam_cppt");
             }
 
             try {
@@ -919,13 +943,13 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                     } else {
                         conteng = false;
                     }
-
+                    
                     tabMode.addRow(new Object[]{
                         conteng,
                         rs.getString("verifikasi"),
                         rs.getString("tgl"),
                         rs.getString("jam"),
-                        rs.getString("jenis_bagian"),
+                        rs.getString("jenis_bagian") + " (" + rs.getString("ruangRwt") + ")",
                         rs.getString("nmdpjp"),
                         rs.getString("jenis_ppa"),
                         rs.getString("nmppa"),
@@ -935,10 +959,10 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                         rs.getString("waktu_simpan"),
                         rs.getString("no_rawat"),
                         rs.getString("tgl_cppt"),
-                        rs.getString("jam_cppt")
+                        rs.getString("jam_cppt"),
+                        rs.getString("nip_dpjp")
                     });
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
