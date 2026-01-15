@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -1105,6 +1106,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
             form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnCPPTActionPerformed

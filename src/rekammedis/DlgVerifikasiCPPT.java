@@ -949,7 +949,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                         rs.getString("verifikasi"),
                         rs.getString("tgl"),
                         rs.getString("jam"),
-                        rs.getString("jenis_bagian") + " (" + rs.getString("ruangRwt") + ")",
+                        rs.getString("jenis_bagian") + " (Rg. " + rs.getString("ruangRwt") + ")",
                         rs.getString("nmdpjp"),
                         rs.getString("jenis_ppa"),
                         rs.getString("nmppa"),

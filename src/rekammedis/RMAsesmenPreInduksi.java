@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -623,6 +624,8 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel95 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
         PanelInput1 = new javax.swing.JPanel();
@@ -719,7 +722,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-01-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -733,7 +736,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-01-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -853,6 +856,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         tbRiwayat.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/direstore");
         tbRiwayat.setComponentPopupMenu(jPopupMenu2);
         tbRiwayat.setName("tbRiwayat"); // NOI18N
+        tbRiwayat.getTableHeader().setReorderingAllowed(false);
         Scroll6.setViewportView(tbRiwayat);
 
         internalFrame13.add(Scroll6, java.awt.BorderLayout.CENTER);
@@ -869,9 +873,8 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         internalFrame5.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame5.setLayout(new java.awt.BorderLayout());
 
-        panelisi4.setBackground(new java.awt.Color(255, 150, 255));
         panelisi4.setName("panelisi4"); // NOI18N
-        panelisi4.setPreferredSize(new java.awt.Dimension(100, 44));
+        panelisi4.setPreferredSize(new java.awt.Dimension(100, 48));
         panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
 
         jLabel36.setForeground(new java.awt.Color(0, 0, 0));
@@ -938,7 +941,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         });
         panelisi4.add(BtnCloseIn1);
 
-        internalFrame5.add(panelisi4, java.awt.BorderLayout.CENTER);
+        internalFrame5.add(panelisi4, java.awt.BorderLayout.PAGE_END);
 
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setOpaque(false);
@@ -951,6 +954,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
 
         tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
         tbTemplate.setName("tbTemplate"); // NOI18N
+        tbTemplate.getTableHeader().setReorderingAllowed(false);
         tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTemplateMouseClicked(evt);
@@ -972,7 +976,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
 
         jPanel1.add(Scroll3);
 
-        internalFrame5.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        internalFrame5.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         WindowTemplate.getContentPane().add(internalFrame5, java.awt.BorderLayout.CENTER);
 
@@ -1199,6 +1203,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         FormInput.add(cmbDtk);
         cmbDtk.setBounds(400, 66, 45, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
 
         Tperencanaan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1222,7 +1227,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         FormInput.add(jLabel85);
         jLabel85.setBounds(0, 66, 140, 23);
 
-        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
+        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-01-2026" }));
         TtglAsesmen.setDisplayFormat("dd-MM-yyyy");
         TtglAsesmen.setName("TtglAsesmen"); // NOI18N
         TtglAsesmen.setOpaque(false);
@@ -1280,6 +1285,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         FormInput.add(jLabel68);
         jLabel68.setBounds(0, 206, 140, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
 
         TposisiLain.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1998,6 +2004,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         FormInput.add(label24);
         label24.setBounds(0, 993, 200, 23);
 
+        scrollPane15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane15.setName("scrollPane15"); // NOI18N
 
         TjenisTeknik.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2021,6 +2028,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         FormInput.add(jLabel88);
         jLabel88.setBounds(0, 1018, 140, 23);
 
+        scrollPane16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane16.setName("scrollPane16"); // NOI18N
 
         TaksesIntra.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2115,6 +2123,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         FormInput.add(jLabel92);
         jLabel92.setBounds(355, 1159, 30, 23);
 
+        scrollPane17.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane17.setName("scrollPane17"); // NOI18N
 
         Tobat.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2138,6 +2147,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         FormInput.add(jLabel93);
         jLabel93.setBounds(0, 1187, 140, 23);
 
+        scrollPane18.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane18.setName("scrollPane18"); // NOI18N
 
         Tkomplikasi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2330,6 +2340,18 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        jLabel95.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel95.setText("Cetak Dalam Bentuk :");
+        jLabel95.setName("jLabel95"); // NOI18N
+        jLabel95.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel95);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -2382,6 +2404,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
 
         tbAsesmen.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki/dihapus");
         tbAsesmen.setName("tbAsesmen"); // NOI18N
+        tbAsesmen.getTableHeader().setReorderingAllowed(false);
         tbAsesmen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbAsesmenMouseClicked(evt);
@@ -2410,7 +2433,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass12.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2424,7 +2447,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass12.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2942,11 +2965,40 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
             param.put("obat", Tobat.getText());
             param.put("komplikasi", Tkomplikasi.getText());
             param.put("dokter", "(" + TnmDokter.getText() + ")");
-            Valid.MyReport("rptAsesmenPreInduksi.jasper", "report", "::[ Lembar Assesmen Pre Induksi ]::",
-                    "SELECT now() tanggal", param);
+           
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (TnipDokter.getText().equals("") || TnipDokter.getText().equals("-") || TnipDokter.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, nama dokter anestesi harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Assesmen Pre Induksi", TnmDokter.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from asesmen_pre_induksi where "
+                                            + "waktu_simpan='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from asesmen_pre_induksi where "
+                                            + "waktu_simpan='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "'")) + "') from kalimat_tte where kode='001'");
 
-            tampil();
-            emptTeks();
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Assesmen Pre Induksi", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                    Valid.MyReport("rptAsesmenPreInduksiQr.jasper", "report", "::[ Lembar Assesmen Pre Induksi ]::",
+                            "SELECT now() tanggal", param);
+
+                    tampil();
+                    emptTeks();
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                Valid.MyReport("rptAsesmenPreInduksi.jasper", "report", "::[ Lembar Assesmen Pre Induksi ]::",
+                        "SELECT now() tanggal", param);
+
+                tampil();
+                emptTeks();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan klik/pilih salah satu datanya terlebih dulu pada tabel..!!!!");
             tbAsesmen.requestFocus();
@@ -3622,6 +3674,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
     private widget.ComboBox cmbJam;
     private widget.ComboBox cmbKateter;
     private widget.ComboBox cmbMnt;
+    private widget.ComboBox cmbPilihCetak;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame13;
     private widget.InternalFrame internalFrame17;
@@ -3671,6 +3724,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
     private widget.Label jLabel92;
     private widget.Label jLabel93;
     private widget.Label jLabel94;
+    private widget.Label jLabel95;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
