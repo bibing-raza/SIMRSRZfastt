@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -737,6 +738,8 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel95 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
 
@@ -832,6 +835,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
 
         tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
         tbTemplate.setName("tbTemplate"); // NOI18N
+        tbTemplate.getTableHeader().setReorderingAllowed(false);
         tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTemplateMouseClicked(evt);
@@ -948,7 +952,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(205, 66, 85, 23);
 
-        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-09-2024" }));
+        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2026" }));
         TtglAsesmen.setDisplayFormat("dd-MM-yyyy");
         TtglAsesmen.setName("TtglAsesmen"); // NOI18N
         TtglAsesmen.setOpaque(false);
@@ -1326,6 +1330,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         FormInput.add(jLabel72);
         jLabel72.setBounds(0, 402, 130, 23);
 
+        scrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane4.setName("scrollPane4"); // NOI18N
 
         TdataSubyektif.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2212,6 +2217,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
 
         tbHitungan.setToolTipText("Silahkan klik/pilih salah satu data untuk dihapus");
         tbHitungan.setName("tbHitungan"); // NOI18N
+        tbHitungan.getTableHeader().setReorderingAllowed(false);
         Scroll2.setViewportView(tbHitungan);
 
         FormInput.add(Scroll2);
@@ -2358,6 +2364,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
 
         tbAsesmen.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki/dihapus");
         tbAsesmen.setName("tbAsesmen"); // NOI18N
+        tbAsesmen.getTableHeader().setReorderingAllowed(false);
         tbAsesmen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbAsesmenMouseClicked(evt);
@@ -2386,7 +2393,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass12.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2400,7 +2407,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass12.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2559,6 +2566,18 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnGanti);
+
+        jLabel95.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel95.setText("Cetak Dalam Bentuk :");
+        jLabel95.setName("jLabel95"); // NOI18N
+        jLabel95.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel95);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -3570,13 +3589,61 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             param.put("kejadian", Tkejadian.getText());
             param.put("perawatKamar", "(" + TnmPerawatOperasi.getText() + ")");
 
-            Valid.MyReport("rptAsesmenKeperawatanPerioperatif.jasper", "report", "::[ Lembar Assesmen Keperawatan Perioperatif ]::",
-                    "select * from hitungan_asesmen_keperawatan_perioperatif where no_rawat='" + TNoRw.getText().trim() + "' and "
-                    + "waktu_simpan_asesmen='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "' order by waktu_simpan", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (TnipPerawatOperasi.getText().equals("") || TnipPerawatOperasi.getText().equals("-") || TnipPerawatOperasi.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, nama perawat kamar operasi harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Assesmen Keperawatan Perioperatif", TnmPerawatOperasi.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from asesmen_keperawatan_perioperatif where "
+                                            + "waktu_simpan='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from asesmen_keperawatan_perioperatif where "
+                                            + "waktu_simpan='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "'")) + "') from kalimat_tte where kode='001'");
 
-            TCari.setText(TNoRw.getText());
-            tampil();
-            emptTeks();
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Assesmen Keperawatan Perioperatif", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                    if (Sequel.cariInteger("select count(-1) from hitungan_asesmen_keperawatan_perioperatif where no_rawat='" + TNoRw.getText().trim() + "' and "
+                            + "waktu_simpan_asesmen='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "'") == 0) {
+
+                        Valid.MyReport("rptAsesmenKeperawatanPerioperatifQr.jasper", "report", "::[ Lembar Assesmen Keperawatan Perioperatif ]::",
+                                "SELECT * FROM hitungan_asesmen_keperawatan_perioperatif UNION ALL "
+                                + "SELECT '-' no_rawat, '-' waktu_simpan_asesmen, '-' jenis, '-' awal, '-' tambahan, '-' akhir, '-' keterangan, '-' waktu_simpan "
+                                + "FROM dual WHERE NOT EXISTS (SELECT 1 FROM hitungan_asesmen_keperawatan_perioperatif)", param);               
+                    } else {
+                        Valid.MyReport("rptAsesmenKeperawatanPerioperatifQr.jasper", "report", "::[ Lembar Assesmen Keperawatan Perioperatif ]::",
+                                "select * from hitungan_asesmen_keperawatan_perioperatif where no_rawat='" + TNoRw.getText().trim() + "' and "
+                                + "waktu_simpan_asesmen='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "' order by waktu_simpan", param);
+                    }
+                    
+                    TCari.setText(TNoRw.getText());
+                    tampil();
+                    emptTeks();
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                if (Sequel.cariInteger("select count(-1) from hitungan_asesmen_keperawatan_perioperatif where no_rawat='" + TNoRw.getText().trim() + "' and "
+                        + "waktu_simpan_asesmen='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "'") == 0) {
+
+                    Valid.MyReport("rptAsesmenKeperawatanPerioperatif.jasper", "report", "::[ Lembar Assesmen Keperawatan Perioperatif ]::",
+                            "SELECT * FROM hitungan_asesmen_keperawatan_perioperatif UNION ALL "
+                            + "SELECT '-' no_rawat, '-' waktu_simpan_asesmen, '-' jenis, '-' awal, '-' tambahan, '-' akhir, '-' keterangan, '-' waktu_simpan "
+                            + "FROM dual WHERE NOT EXISTS (SELECT 1 FROM hitungan_asesmen_keperawatan_perioperatif)", param);
+                } else {
+                    Valid.MyReport("rptAsesmenKeperawatanPerioperatif.jasper", "report", "::[ Lembar Assesmen Keperawatan Perioperatif ]::",
+                            "select * from hitungan_asesmen_keperawatan_perioperatif where no_rawat='" + TNoRw.getText().trim() + "' and "
+                            + "waktu_simpan_asesmen='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "' order by waktu_simpan", param);
+                }
+
+                TCari.setText(TNoRw.getText());
+                tampil();
+                emptTeks();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan klik/pilih salah satu datanya terlebih dulu pada tabel..!!!!");
             tbAsesmen.requestFocus();
@@ -3736,6 +3803,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
     private widget.ComboBox cmbKesadaran;
     private widget.ComboBox cmbMnt;
     private widget.ComboBox cmbMnt1;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbRuangOK;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame5;
@@ -3785,6 +3853,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
     private widget.Label jLabel92;
     private widget.Label jLabel93;
     private widget.Label jLabel94;
+    private widget.Label jLabel95;
     private widget.Label jLabel96;
     private javax.swing.JPanel jPanel1;
     private widget.Label label104;

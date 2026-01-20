@@ -453,6 +453,7 @@ public class DlgMasterMaterialOperasi extends javax.swing.JDialog {
         tbInfus.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbInfus.setName("tbInfus"); // NOI18N
         tbInfus.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 450));
+        tbInfus.getTableHeader().setReorderingAllowed(false);
         tbInfus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbInfusMouseClicked(evt);
@@ -540,6 +541,7 @@ public class DlgMasterMaterialOperasi extends javax.swing.JDialog {
         tbObat.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbObat.setName("tbObat"); // NOI18N
         tbObat.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 450));
+        tbObat.getTableHeader().setReorderingAllowed(false);
         tbObat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbObatMouseClicked(evt);
@@ -627,6 +629,7 @@ public class DlgMasterMaterialOperasi extends javax.swing.JDialog {
         tbPsiko.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbPsiko.setName("tbPsiko"); // NOI18N
         tbPsiko.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 450));
+        tbPsiko.getTableHeader().setReorderingAllowed(false);
         tbPsiko.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPsikoMouseClicked(evt);
@@ -714,6 +717,7 @@ public class DlgMasterMaterialOperasi extends javax.swing.JDialog {
         tbAntibiotik.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbAntibiotik.setName("tbAntibiotik"); // NOI18N
         tbAntibiotik.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 450));
+        tbAntibiotik.getTableHeader().setReorderingAllowed(false);
         tbAntibiotik.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbAntibiotikMouseClicked(evt);
@@ -801,6 +805,7 @@ public class DlgMasterMaterialOperasi extends javax.swing.JDialog {
         tbBahan.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbBahan.setName("tbBahan"); // NOI18N
         tbBahan.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 450));
+        tbBahan.getTableHeader().setReorderingAllowed(false);
         tbBahan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbBahanMouseClicked(evt);
@@ -888,6 +893,7 @@ public class DlgMasterMaterialOperasi extends javax.swing.JDialog {
         tbBenang.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbBenang.setName("tbBenang"); // NOI18N
         tbBenang.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 450));
+        tbBenang.getTableHeader().setReorderingAllowed(false);
         tbBenang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbBenangMouseClicked(evt);
@@ -975,6 +981,7 @@ public class DlgMasterMaterialOperasi extends javax.swing.JDialog {
         tbLain.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbLain.setName("tbLain"); // NOI18N
         tbLain.setPreferredScrollableViewportSize(new java.awt.Dimension(450, 450));
+        tbLain.getTableHeader().setReorderingAllowed(false);
         tbLain.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbLainMouseClicked(evt);

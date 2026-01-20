@@ -621,6 +621,9 @@
                                   <ComponentRef name="jPopupMenu1"/>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="tbNomor" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbNomorMouseClicked"/>
@@ -653,6 +656,9 @@
                               <Properties>
                                 <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
                                 <Property name="name" type="java.lang.String" value="tbPermintaan" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPermintaanMouseClicked"/>
@@ -775,8 +781,10 @@
                           <SubComponents>
                             <Component class="widget.Table" name="tbPemeriksaan">
                               <Properties>
-                                <Property name="toolTipText" type="java.lang.String" value=""/>
                                 <Property name="name" type="java.lang.String" value="tbPemeriksaan" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPemeriksaanMouseClicked"/>

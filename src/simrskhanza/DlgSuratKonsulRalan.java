@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,7 +44,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
     private ResultSet rs;
     private int i = 0, x = 0;
     private DlgCariPoli poli = new DlgCariPoli(null, false);
-    private String aktifjadwal = "", kasus = "", ketklinis = "", tgljawaban = "", tglkonsululang = "", dokterpenjawab = "";
+    private String aktifjadwal = "", kasus = "", ketklinis = "", dokterpenjawab = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -208,6 +209,8 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel95 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -326,7 +329,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
         jLabel14.setBounds(0, 94, 110, 23);
 
         TtglMintaKonsul.setEditable(false);
-        TtglMintaKonsul.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-01-2025" }));
+        TtglMintaKonsul.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2025" }));
         TtglMintaKonsul.setDisplayFormat("dd-MM-yyyy");
         TtglMintaKonsul.setName("TtglMintaKonsul"); // NOI18N
         TtglMintaKonsul.setOpaque(false);
@@ -344,6 +347,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
         FormInput.add(jLabel15);
         jLabel15.setBounds(0, 122, 110, 23);
 
+        Scroll7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
 
@@ -493,6 +497,18 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        jLabel95.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel95.setText("Cetak Dalam Bentuk :");
+        jLabel95.setName("jLabel95"); // NOI18N
+        jLabel95.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel95);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -563,7 +579,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
         panelGlass10.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-01-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -578,7 +594,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
         panelGlass10.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-01-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -645,6 +661,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
 
         tbKonsul.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbKonsul.setName("tbKonsul"); // NOI18N
+        tbKonsul.getTableHeader().setReorderingAllowed(false);
         tbKonsul.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbKonsulMouseClicked(evt);
@@ -889,6 +906,9 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         if (tbKonsul.getSelectedRow() > -1) {
+            String drPengonsul = "", konsulUlg = "", tglJawab = "";
+            drPengonsul = Sequel.cariIsi("select d.nm_dokter from reg_periksa rp inner join dokter d on d.kd_dokter=rp.kd_dokter where rp.no_rawat='" + TNoRw.getText() + "'");
+            
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("alamatrs", akses.getalamatrs());
@@ -905,9 +925,9 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
             param.put("jenkel", Sequel.cariIsi("select if(jk='L','Laki-laki','Perempuan') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
             param.put("poliAwal", Sequel.cariIsi("select pl.nm_poli from reg_periksa rp "
                     + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + TNoRw.getText() + "'"));
-            param.put("dokterPengonsul", Sequel.cariIsi("select d.nm_dokter from reg_periksa rp "
-                    + "inner join dokter d on d.kd_dokter=rp.kd_dokter where rp.no_rawat='" + TNoRw.getText() + "'"));
-            param.put("tglKunjungan", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'")));
+            param.put("dokterPengonsul", drPengonsul);
+            param.put("tglKunjungan", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_permintaan_konsul from surat_konsul_unit_ralan where "
+                    + "waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'")));
             param.put("poliTujuan", TPoli.getText());
             param.put("jenisKonsul", cmbJenisKonsul.getSelectedItem().toString());
             param.put("dokterPenjawab", dokterpenjawab);
@@ -922,19 +942,69 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
             param.put("ketKlinis", TketKlinis.getText() + "\n");
             param.put("jawabanKonsul", "Ditemukan kasus : " + kasus + "\n\n" + ketklinis + "\n");
             
-            if (tgljawaban.equals("0000-00-00")) {
-                param.put("tglJawaban", Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
+            if (tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 16).toString().equals("-")) {
+                tglJawab = Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())"));
             } else {
-                param.put("tglJawaban", Valid.SetTglINDONESIA(tgljawaban));
+                tglJawab = Valid.SetTglINDONESIA(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 16).toString());
             }
             
             if (tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 19).toString().equals("tidak")) {
-                param.put("tglKonsulUlang", "-");
+                konsulUlg = "-";
             } else {
-                param.put("tglKonsulUlang", Valid.SetTglINDONESIA(tglkonsululang));
+                konsulUlg = Valid.SetTglINDONESIA(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 17).toString());
             }
-            Valid.MyReport("rptCetakSuratKonsulRalan.jasper", "report", "::[ Surat Konsultasi Internal Poliklinik ]::",
-                "SELECT now() tanggal", param);
+            
+            param.put("tglJawaban", tglJawab);
+            param.put("tglKonsulUlang", konsulUlg);
+            
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                Sequel.AutoComitFalse();
+                Sequel.queryu("delete from temporaryTTE");
+                String isiKonsul = "", isiJawab = "", nipJawab = "", fileGambar = "";
+                nipJawab = Sequel.cariIsi("select kd_dokter_pembalas from surat_konsul_unit_ralan where waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'");
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                isiKonsul = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                "Surat Konsultasi Poliklinik Rawat Jalan", drPengonsul + " (Dokter Pengirim)",
+                                Sequel.cariIsi("select date_format(tgl_permintaan_konsul,'%d/%m/%Y') from surat_konsul_unit_ralan where "
+                                        + "waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'"),
+                                Sequel.cariIsi("select time(jam_permintaan_konsul) from surat_konsul_unit_ralan where "
+                                        + "waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'")) + "') from kalimat_tte where kode='001'");
+                
+                Valid.cetakQrTte(isiKonsul, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat Konsultasi Poliklinik", Sequel.cariFolderPrintTte());
+                param.put("lokasiQrDokterKonsul", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                
+                if (nipJawab.equals("") || nipJawab.equals("-") || nipJawab.equals("--")) {
+                    fileGambar = "";
+                } else {
+                    isiJawab = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Surat Konsultasi Poliklinik Rawat Jalan", dokterpenjawab + " (Dokter Menjawab)",
+                                    Sequel.cariIsi("select date_format(tgl_menjawab,'%d/%m/%Y') from surat_konsul_unit_ralan where "
+                                            + "waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'"),
+                                    Sequel.cariIsi("select time(jam_menjawab) from surat_konsul_unit_ralan where "
+                                            + "waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'")) + "') from kalimat_tte where kode='001'");
+                    
+                    Valid.cetakQrTte(isiJawab, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    fileGambar = Sequel.cariFolderPrintTte();
+                }
+
+                Sequel.menyimpanQrTte("temporaryTTE",
+                        "'Tgl. Konsultasi Ulang : " + konsulUlg + "',"
+                        + "'Ditemukan kasus : " + kasus + "\n\n" + ketklinis + "\n','Martapura, " + tglJawab + "','(" + dokterpenjawab + ")','','','','','',''",
+                        "file QRCode TTE Surat Konsultasi Poliklinik Rawat Jalan", fileGambar);
+                
+                Valid.MyReport("rptCetakSuratKonsulRalanQr.jasper", "report", "::[ Surat Konsultasi Internal Poliklinik ]::",
+                        "SELECT * FROM temporaryTTE", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                Sequel.AutoComitTrue();
+            } else {
+                Valid.MyReport("rptCetakSuratKonsulRalan.jasper", "report", "::[ Surat Konsultasi Internal Poliklinik ]::",
+                        "SELECT now() tanggal", param);
+            }
 
             emptTeks();
             tampil();
@@ -993,6 +1063,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
     private widget.TextBox TketLain;
     private widget.Tanggal TtglMintaKonsul;
     private widget.ComboBox cmbJenisKonsul;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbTujuanKonsul;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
@@ -1009,6 +1080,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel9;
+    private widget.Label jLabel95;
     private javax.swing.JPanel jPanel3;
     private widget.TextBox kdpoli;
     private widget.Label ketHari;
@@ -1021,7 +1093,8 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("select sk.*, p.no_rkm_medis, p.nm_pasien, pl1.nm_poli poliAwal, d.nm_dokter, "
-                    + "pl2.nm_poli poliTujuan, DATE_FORMAT(sk.tgl_permintaan_konsul,'%d-%m-%Y') tglKonsul from surat_konsul_unit_ralan sk "
+                    + "pl2.nm_poli poliTujuan, DATE_FORMAT(sk.tgl_permintaan_konsul,'%d-%m-%Y') tglKonsul, if(sk.tgl_menjawab='0000-00-00','-',sk.tgl_menjawab) tglmenjawab, "
+                    + "if(sk.tgl_konsul_ulang='0000-00-00','-',sk.tgl_konsul_ulang) tglkonsululang from surat_konsul_unit_ralan sk "
                     + "inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "inner join poliklinik pl1 on pl1.kd_poli=sk.kd_poli inner join poliklinik pl2 on pl2.kd_poli=sk.kd_poli_pembalas "
                     + "inner join dokter d on d.kd_dokter=sk.kd_dokter_pembalas where "
@@ -1081,8 +1154,8 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
                         rs.getString("kd_poli"),                        
                         rs.getString("kasus_ditemukan"),
                         rs.getString("ket_klinis_jawaban"),
-                        rs.getString("tgl_menjawab"),
-                        rs.getString("tgl_konsul_ulang"),
+                        rs.getString("tglmenjawab"),
+                        rs.getString("tglkonsululang"),
                         rs.getString("nm_dokter"),
                         rs.getString("konsul_ulang"),
                         rs.getString("kd_poli_pembalas")
@@ -1120,8 +1193,6 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
     private void getData() {
         kasus = "";
         ketklinis = "";
-        tgljawaban = "";
-        tglkonsululang = "";
         dokterpenjawab = "";
 
         if (tbKonsul.getSelectedRow() != -1) {
@@ -1138,18 +1209,6 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
             kasus = tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 14).toString();
             ketklinis = tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 15).toString();
             dokterpenjawab = tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 18).toString();
-            
-            if (tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 16).toString().equals("")) {
-                tgljawaban = "0000-00-00";
-            } else {
-                tgljawaban = tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 16).toString();
-            }
-            
-            if (tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 19).toString().equals("tidak")) {
-                tglkonsululang = "0000-00-00";
-            } else {
-                tglkonsululang = tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 17).toString();
-            }
         }
     }
     

@@ -566,6 +566,7 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
         tbNomor.setToolTipText("Silahkan klik untuk memilih data yang mau dilihat");
         tbNomor.setComponentPopupMenu(jPopupMenu1);
         tbNomor.setName("tbNomor"); // NOI18N
+        tbNomor.getTableHeader().setReorderingAllowed(false);
         tbNomor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbNomorMouseClicked(evt);
@@ -586,6 +587,7 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
 
         tbPermintaan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPermintaan.setName("tbPermintaan"); // NOI18N
+        tbPermintaan.getTableHeader().setReorderingAllowed(false);
         tbPermintaan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPermintaanMouseClicked(evt);
@@ -649,8 +651,8 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
         Scroll2.setName("Scroll2"); // NOI18N
         Scroll2.setOpaque(true);
 
-        tbPemeriksaan.setToolTipText("");
         tbPemeriksaan.setName("tbPemeriksaan"); // NOI18N
+        tbPemeriksaan.getTableHeader().setReorderingAllowed(false);
         tbPemeriksaan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPemeriksaanMouseClicked(evt);

@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -1112,10 +1113,13 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                         + "concat(replace(c.instruksi_nakes,'<','&lt'),if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('<br/><br/>(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('<br/><br/>(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('<br/><br/>Tgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'<br/>','Menyerahkan :<br/>',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :<br/>',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :<br/>',pg4.nama),'') ptgsTerima, c.tgl_cppt, c.jam_cppt, c.cppt_shift, "
+                        + "if(vc.no_rawat is not null,'terverif','belum') StatusVerif, if(vc.no_rawat is not null,pg5.nama,'-') nmVerifikator, "
+                        + "if(vc.no_rawat is not null,date_format(vc.waktu_verif,'%d/%m/%Y'),'') tglVerif, if(vc.no_rawat is not null,time(vc.waktu_verif),'-') jamVerif "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN verifikasi_cppt vc on vc.waktu_simpan_cppt=c.waktu_simpan LEFT JOIN pegawai pg5 on pg5.nik=vc.nip_verifikator "
                         + "WHERE c.no_rawat = '" + TNoRw.getText() + "' and c.flag_hapus='tidak' ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
 
                 if (rsPrev.next()) {
@@ -1134,7 +1138,9 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                     );
 
                     rsPrev.beforeFirst();
+                    x = 1;
                     while (rsPrev.next()) {
+                        String isi = "";
                         cekKonfirmasi = Sequel.cariInteger("select count(-1) from cppt_konfirmasi_terapi where no_rawat='" + TNoRw.getText() + "' "
                                 + "and tgl_cppt='" + rsPrev.getString("tgl_cppt") + "' and jam_cppt='" + rsPrev.getString("jam_cppt") + "' "
                                 + "and cppt_shift='" + rsPrev.getString("cppt_shift") + "'");
@@ -1145,29 +1151,65 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                             konfirmasiTerapiPreview(TNoRw.getText(), rsPrev.getString("tgl_cppt"), rsPrev.getString("jam_cppt"), rsPrev.getString("cppt_shift"));
                         }
 
-                        if (rsPrev.getString("bagian_cppt").contains("DPJP")
-                                || rsPrev.getString("bagian_cppt").contains("DPJP (K)")
-                                || rsPrev.getString("bagian_cppt").contains("DPJP Raber")) {
-                            htmlContent.append(
-                                    "<tr style='background-color: #d2e9e9' class='isi'>"
-                                    + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
-                                    + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
-                                    + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
-                                    + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
-                                    + "<td width='60%' valign='top'>" + rsPrev.getString("verif") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
-                                    + "</tr>"
-                            );
+                        if (rsPrev.getString("StatusVerif").equals("terverif")) {
+                            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                            "CPPT", rsPrev.getString("nmVerifikator"),
+                                            rsPrev.getString("tglVerif"), rsPrev.getString("jamVerif")) + "') from kalimat_tte where kode='001'");
+
+                            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTteSemuaPpa" + x + ".jpg", "select logo from setting");
+
+                            if (rsPrev.getString("bagian_cppt").contains("DPJP")
+                                    || rsPrev.getString("bagian_cppt").contains("DPJP (K)")
+                                    || rsPrev.getString("bagian_cppt").contains("DPJP Raber")) {
+                                htmlContent.append(
+                                        "<tr style='background-color: #d2e9e9' class='isi'>"
+                                        + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                        + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                        + "<td width='60%' valign='top' align='center'><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTteSemuaPpa" + x + ".jpg" + "' width='150' alt='TTE Verifikasi CPPT'><br>"
+                                        + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                        + "</tr>"
+                                );
+                            } else {
+                                htmlContent.append(
+                                        "<tr class='isi'>"
+                                        + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                        + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                        + "<td width='60%' valign='top'  align='center'><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTteSemuaPpa" + x + ".jpg" + "' width='150' alt='TTE Verifikasi CPPT'><br>"
+                                        + rsPrev.getString("nmVerifikator") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                        + "</tr>"
+                                );
+                            }
                         } else {
-                            htmlContent.append(
-                                    "<tr class='isi'>"
-                                    + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
-                                    + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
-                                    + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
-                                    + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
-                                    + "<td width='60%' valign='top'>" + rsPrev.getString("verif") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
-                                    + "</tr>"
-                            );
+                            if (rsPrev.getString("bagian_cppt").contains("DPJP")
+                                    || rsPrev.getString("bagian_cppt").contains("DPJP (K)")
+                                    || rsPrev.getString("bagian_cppt").contains("DPJP Raber")) {
+                                htmlContent.append(
+                                        "<tr style='background-color: #d2e9e9' class='isi'>"
+                                        + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                        + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                        + "<td width='60%' valign='top'>" + rsPrev.getString("verif") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                        + "</tr>"
+                                );
+                            } else {
+                                htmlContent.append(
+                                        "<tr class='isi'>"
+                                        + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                        + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                        + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                        + "<td width='60%' valign='top'>" + rsPrev.getString("verif") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                        + "</tr>"
+                                );
+                            }
                         }
+                        x++;
                     }
                     htmlContent.append(
                             "</tbody>"

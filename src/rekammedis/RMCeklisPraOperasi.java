@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -442,6 +443,8 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel95 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
         PanelInput1 = new javax.swing.JPanel();
@@ -1007,6 +1010,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         FormInput.add(label19);
         label19.setBounds(0, 486, 180, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
 
         Tpemeriksaan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1094,7 +1098,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel85);
         jLabel85.setBounds(535, 600, 80, 23);
 
-        Ttglceklis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2024" }));
+        Ttglceklis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         Ttglceklis.setDisplayFormat("dd-MM-yyyy");
         Ttglceklis.setName("Ttglceklis"); // NOI18N
         Ttglceklis.setOpaque(false);
@@ -1296,6 +1300,18 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        jLabel95.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel95.setText("Cetak Dalam Bentuk :");
+        jLabel95.setName("jLabel95"); // NOI18N
+        jLabel95.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel95);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -1348,6 +1364,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
 
         tbCeklis.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki/dihapus");
         tbCeklis.setName("tbCeklis"); // NOI18N
+        tbCeklis.getTableHeader().setReorderingAllowed(false);
         tbCeklis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCeklisMouseClicked(evt);
@@ -1377,7 +1394,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1392,7 +1409,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         panelGlass12.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1948,11 +1965,56 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
             param.put("perawatBangsal", "(" + TnmPerawatBangsal.getText() + ")");
             param.put("perawatIbs", "(" + TnmPerawatIbs.getText() + ")");
 
-            Valid.MyReport("rptCeklisPraOperasi.jasper", "report", "::[ Lembar Checklist Pra Operasi ]::",
-                "SELECT now() tanggal", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isiBangsal = "", isiIbs = "", tgl = "", jam = "";
+                tgl = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from ceklis_pra_operasi where "
+                        + "waktu_simpan='" + tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 0).toString() + "'");
+                jam = Sequel.cariIsi("select time(waktu_simpan) from ceklis_pra_operasi where "
+                        + "waktu_simpan='" + tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 0).toString() + "'");
+                
+                if ((TnipBangsal.getText().equals("") || TnipBangsal.getText().equals("-") || TnipBangsal.getText().equals("--"))
+                        && (TnipIbs.getText().equals("") || TnipIbs.getText().equals("-") || TnipIbs.getText().equals("--"))) {
+                    Valid.MyReport("rptCeklisPraOperasi.jasper", "report", "::[ Lembar Checklist Pra Operasi ]::",
+                            "SELECT now() tanggal", param);
 
-            tampil();
-            emptTeks();
+                    tampil();
+                    emptTeks();
+                } else {
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    if (TnipBangsal.getText().equals("") || TnipBangsal.getText().equals("-") || TnipBangsal.getText().equals("--")) {
+                        param.put("lokasiQrBangsal", "");
+                    } else {
+                        isiBangsal = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Checklist Pra Operasi", TnmPerawatBangsal.getText() + " (Perawat Bangsal)", tgl, jam) + "') from kalimat_tte where kode='001'");
+                        Valid.cetakQrTte(isiBangsal, Sequel.cariFolderTte(), "QRTteBangsal.jpg", "select logo from setting");
+                        param.put("lokasiQrBangsal", Sequel.cariFolderTte() + File.separator + "QRTteBangsal.jpg");
+                    }
+                    
+                    if (TnipIbs.getText().equals("") || TnipIbs.getText().equals("-") || TnipIbs.getText().equals("--")) {
+                        param.put("lokasiQrIbs", "");
+                    } else {
+                        isiIbs = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Checklist Pra Operasi", TnmPerawatIbs.getText() + " (Perawat Bedah Sentral)", tgl, jam) + "') from kalimat_tte where kode='001'");
+                        Valid.cetakQrTte(isiIbs, Sequel.cariFolderTte(), "QRTteIbs.jpg", "select logo from setting");
+                        param.put("lokasiQrIbs", Sequel.cariFolderTte() + File.separator + "QRTteIbs.jpg");
+                    }
+                    
+                    Valid.MyReport("rptCeklisPraOperasiQr.jasper", "report", "::[ Lembar Checklist Pra Operasi ]::",
+                            "SELECT now() tanggal", param);
+
+                    tampil();
+                    emptTeks();
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                } 
+            } else {
+                Valid.MyReport("rptCeklisPraOperasi.jasper", "report", "::[ Lembar Checklist Pra Operasi ]::",
+                        "SELECT now() tanggal", param);
+
+                tampil();
+                emptTeks();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan klik/pilih salah satu datanya terlebih dulu pada tabel..!!!!");
             tbCeklis.requestFocus();
@@ -2081,6 +2143,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
     private widget.ComboBox cmbPenandaan;
     private widget.ComboBox cmbPersiapanDarah;
     private widget.ComboBox cmbPersiapanPuasa;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbSuperAnastesi;
     private widget.ComboBox cmbSuperTindakan;
     private widget.ComboBox cmbSuperTransfusi;
@@ -2114,6 +2177,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
     private widget.Label jLabel83;
     private widget.Label jLabel84;
     private widget.Label jLabel85;
+    private widget.Label jLabel95;
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.Label label104;
     private widget.Label label106;

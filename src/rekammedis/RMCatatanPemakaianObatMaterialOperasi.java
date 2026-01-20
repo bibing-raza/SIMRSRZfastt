@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,7 +46,8 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
             rsCek1, rsCek2, rsCek3, rsCek4, rsCek5, rsCek6, rsCek7;
     private int i = 0, x = 0, cekInfus = 0, cekObat = 0, cekPsiko = 0, cekAnti = 0, cekBahan = 0, cekBenang = 0, cekLain = 0,
             dataInfus = 0, dataObat = 0, dataPsiko = 0, dataAnti = 0, dataBahan = 0, dataBenang = 0, dataLain = 0,
-            cetakInfus = 0, cetakObat = 0, cetakPsiko = 0, cetakAnti = 0, cetakBahan = 0, cetakBenang = 0, cetakLain = 0;
+            cetakInfus = 0, cetakObat = 0, cetakPsiko = 0, cetakAnti = 0, cetakBahan = 0, cetakBenang = 0, cetakLain = 0,
+            infus = 0, obat = 0, psiko = 0, anti = 0, bahan = 0, benang = 0, lain = 0, nilai = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String wktSimpan = "", dataDipilih = "", kodePilih1 = "", kodePilih2 = "", kodePilih3 = "", kodePilih4 = "", 
             kodePilih5 = "", kodePilih6 = "", kodePilih7 = "";
@@ -490,6 +492,8 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel95 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
         PanelInput1 = new javax.swing.JPanel();
@@ -587,7 +591,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
         FormInput.add(TrgRawat);
         TrgRawat.setBounds(145, 38, 430, 23);
 
-        TtglCatatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-11-2024" }));
+        TtglCatatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2026" }));
         TtglCatatan.setDisplayFormat("dd-MM-yyyy");
         TtglCatatan.setName("TtglCatatan"); // NOI18N
         TtglCatatan.setOpaque(false);
@@ -658,6 +662,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
 
         tbInfus.setToolTipText("Silahkan dobel klik pada kolom keterangan atau jumlah untuk mengisi datanya");
         tbInfus.setName("tbInfus"); // NOI18N
+        tbInfus.getTableHeader().setReorderingAllowed(false);
         Scroll2.setViewportView(tbInfus);
 
         FormInput.add(Scroll2);
@@ -670,6 +675,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
 
         tbObat.setToolTipText("Silahkan dobel klik pada kolom keterangan atau jumlah untuk mengisi datanya");
         tbObat.setName("tbObat"); // NOI18N
+        tbObat.getTableHeader().setReorderingAllowed(false);
         Scroll3.setViewportView(tbObat);
 
         FormInput.add(Scroll3);
@@ -682,6 +688,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
 
         tbPsiko.setToolTipText("Silahkan dobel klik pada kolom keterangan atau jumlah untuk mengisi datanya");
         tbPsiko.setName("tbPsiko"); // NOI18N
+        tbPsiko.getTableHeader().setReorderingAllowed(false);
         Scroll4.setViewportView(tbPsiko);
 
         FormInput.add(Scroll4);
@@ -694,6 +701,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
 
         tbAnti.setToolTipText("Silahkan dobel klik pada kolom keterangan atau jumlah untuk mengisi datanya");
         tbAnti.setName("tbAnti"); // NOI18N
+        tbAnti.getTableHeader().setReorderingAllowed(false);
         Scroll5.setViewportView(tbAnti);
 
         FormInput.add(Scroll5);
@@ -706,6 +714,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
 
         tbBahan.setToolTipText("Silahkan dobel klik pada kolom keterangan atau jumlah untuk mengisi datanya");
         tbBahan.setName("tbBahan"); // NOI18N
+        tbBahan.getTableHeader().setReorderingAllowed(false);
         Scroll6.setViewportView(tbBahan);
 
         FormInput.add(Scroll6);
@@ -718,6 +727,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
 
         tbBenang.setToolTipText("Silahkan dobel klik pada kolom keterangan atau jumlah untuk mengisi datanya");
         tbBenang.setName("tbBenang"); // NOI18N
+        tbBenang.getTableHeader().setReorderingAllowed(false);
         Scroll7.setViewportView(tbBenang);
 
         FormInput.add(Scroll7);
@@ -730,6 +740,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
 
         tbLain.setToolTipText("Silahkan dobel klik pada kolom keterangan atau jumlah untuk mengisi datanya");
         tbLain.setName("tbLain"); // NOI18N
+        tbLain.getTableHeader().setReorderingAllowed(false);
         Scroll8.setViewportView(tbLain);
 
         FormInput.add(Scroll8);
@@ -1024,6 +1035,18 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        jLabel95.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel95.setText("Cetak Dalam Bentuk :");
+        jLabel95.setName("jLabel95"); // NOI18N
+        jLabel95.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel95);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -1078,6 +1101,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
         tbCatatan.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki/dihapus");
         tbCatatan.setComponentPopupMenu(jPopupMenu1);
         tbCatatan.setName("tbCatatan"); // NOI18N
+        tbCatatan.getTableHeader().setReorderingAllowed(false);
         tbCatatan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCatatanMouseClicked(evt);
@@ -1106,7 +1130,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass12.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-11-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1120,7 +1144,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass12.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-11-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1214,108 +1238,113 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else {
-            wktSimpan = "";
-            try {
-                wktSimpan = Sequel.cariIsi("select now()");
-                for (i = 0; i < tbInfus.getRowCount(); i++) {
-                    if (!tbInfus.getValueAt(i, 3).toString().trim().equals("")) {
-                        Sequel.menyimpanIgnore("catatan_material_operasi",
-                                "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
-                                + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
-                                + "'" + tbInfus.getValueAt(i, 0).toString() + "',"
-                                + "'" + tbInfus.getValueAt(i, 3).toString() + "',"
-                                + "'" + tbInfus.getValueAt(i, 2).toString() + "',"
-                                + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data infus dan alat");
+            cekTabel();
+            if (nilai == 90) {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan isi dulu datanya dg. cara dobel klik pd. tabel kolom jumlah ...!");
+            } else {
+                wktSimpan = "";
+                try {
+                    wktSimpan = Sequel.cariIsi("select now()");
+                    for (i = 0; i < tbInfus.getRowCount(); i++) {
+                        if (!tbInfus.getValueAt(i, 3).toString().trim().equals("")) {
+                            Sequel.menyimpanIgnore("catatan_material_operasi",
+                                    "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
+                                    + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
+                                    + "'" + tbInfus.getValueAt(i, 0).toString() + "',"
+                                    + "'" + tbInfus.getValueAt(i, 3).toString() + "',"
+                                    + "'" + tbInfus.getValueAt(i, 2).toString() + "',"
+                                    + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data infus dan alat");
+                        }
                     }
-                }
 
-                for (i = 0; i < tbObat.getRowCount(); i++) {
-                    if (!tbObat.getValueAt(i, 3).toString().trim().equals("")) {
-                        Sequel.menyimpanIgnore("catatan_material_operasi",
-                                "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
-                                + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
-                                + "'" + tbObat.getValueAt(i, 0).toString() + "',"
-                                + "'" + tbObat.getValueAt(i, 3).toString() + "',"
-                                + "'" + tbObat.getValueAt(i, 2).toString() + "',"
-                                + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data obat anestesi");
+                    for (i = 0; i < tbObat.getRowCount(); i++) {
+                        if (!tbObat.getValueAt(i, 3).toString().trim().equals("")) {
+                            Sequel.menyimpanIgnore("catatan_material_operasi",
+                                    "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
+                                    + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
+                                    + "'" + tbObat.getValueAt(i, 0).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 3).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 2).toString() + "',"
+                                    + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data obat anestesi");
+                        }
                     }
-                }
 
-                for (i= 0; i < tbPsiko.getRowCount(); i++) {
-                    if (!tbPsiko.getValueAt(i, 3).toString().trim().equals("")) {
-                        Sequel.menyimpanIgnore("catatan_material_operasi",
-                                "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
-                                + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
-                                + "'" + tbPsiko.getValueAt(i, 0).toString() + "',"
-                                + "'" + tbPsiko.getValueAt(i, 3).toString() + "',"
-                                + "'" + tbPsiko.getValueAt(i, 2).toString() + "',"
-                                + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data golongan psikotropika & narkotika");
+                    for (i = 0; i < tbPsiko.getRowCount(); i++) {
+                        if (!tbPsiko.getValueAt(i, 3).toString().trim().equals("")) {
+                            Sequel.menyimpanIgnore("catatan_material_operasi",
+                                    "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
+                                    + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
+                                    + "'" + tbPsiko.getValueAt(i, 0).toString() + "',"
+                                    + "'" + tbPsiko.getValueAt(i, 3).toString() + "',"
+                                    + "'" + tbPsiko.getValueAt(i, 2).toString() + "',"
+                                    + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data golongan psikotropika & narkotika");
+                        }
                     }
-                }
 
-                for (i = 0; i < tbAnti.getRowCount(); i++) {
-                    if (!tbAnti.getValueAt(i, 3).toString().trim().equals("")) {
-                        Sequel.menyimpanIgnore("catatan_material_operasi",
-                                "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
-                                + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
-                                + "'" + tbAnti.getValueAt(i, 0).toString() + "',"
-                                + "'" + tbAnti.getValueAt(i, 3).toString() + "',"
-                                + "'" + tbAnti.getValueAt(i, 2).toString() + "',"
-                                + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data antibiotik");
+                    for (i = 0; i < tbAnti.getRowCount(); i++) {
+                        if (!tbAnti.getValueAt(i, 3).toString().trim().equals("")) {
+                            Sequel.menyimpanIgnore("catatan_material_operasi",
+                                    "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
+                                    + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
+                                    + "'" + tbAnti.getValueAt(i, 0).toString() + "',"
+                                    + "'" + tbAnti.getValueAt(i, 3).toString() + "',"
+                                    + "'" + tbAnti.getValueAt(i, 2).toString() + "',"
+                                    + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data antibiotik");
+                        }
                     }
-                }
 
-                for (i = 0; i < tbBahan.getRowCount(); i++) {
-                    if (!tbBahan.getValueAt(i, 3).toString().trim().equals("")) {
-                        Sequel.menyimpanIgnore("catatan_material_operasi",
-                                "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
-                                + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
-                                + "'" + tbBahan.getValueAt(i, 0).toString() + "',"
-                                + "'" + tbBahan.getValueAt(i, 3).toString() + "',"
-                                + "'" + tbBahan.getValueAt(i, 2).toString() + "',"
-                                + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data bahan habis pakai");
+                    for (i = 0; i < tbBahan.getRowCount(); i++) {
+                        if (!tbBahan.getValueAt(i, 3).toString().trim().equals("")) {
+                            Sequel.menyimpanIgnore("catatan_material_operasi",
+                                    "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
+                                    + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
+                                    + "'" + tbBahan.getValueAt(i, 0).toString() + "',"
+                                    + "'" + tbBahan.getValueAt(i, 3).toString() + "',"
+                                    + "'" + tbBahan.getValueAt(i, 2).toString() + "',"
+                                    + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data bahan habis pakai");
+                        }
                     }
-                }
 
-                for (i = 0; i < tbBenang.getRowCount(); i++) {
-                    if (!tbBenang.getValueAt(i, 3).toString().trim().equals("")) {
-                        Sequel.menyimpanIgnore("catatan_material_operasi",
-                                "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
-                                + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
-                                + "'" + tbBenang.getValueAt(i, 0).toString() + "',"
-                                + "'" + tbBenang.getValueAt(i, 3).toString() + "',"
-                                + "'" + tbBenang.getValueAt(i, 2).toString() + "',"
-                                + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data benang");
+                    for (i = 0; i < tbBenang.getRowCount(); i++) {
+                        if (!tbBenang.getValueAt(i, 3).toString().trim().equals("")) {
+                            Sequel.menyimpanIgnore("catatan_material_operasi",
+                                    "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
+                                    + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
+                                    + "'" + tbBenang.getValueAt(i, 0).toString() + "',"
+                                    + "'" + tbBenang.getValueAt(i, 3).toString() + "',"
+                                    + "'" + tbBenang.getValueAt(i, 2).toString() + "',"
+                                    + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data benang");
+                        }
                     }
-                }
 
-                for (i = 0; i < tbLain.getRowCount(); i++) {
-                    if (!tbLain.getValueAt(i, 3).toString().trim().equals("")) {
-                        Sequel.menyimpanIgnore("catatan_material_operasi",
-                                "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
-                                + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
-                                + "'" + tbLain.getValueAt(i, 0).toString() + "',"
-                                + "'" + tbLain.getValueAt(i, 3).toString() + "',"
-                                + "'" + tbLain.getValueAt(i, 2).toString() + "',"
-                                + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data lain-lain");
+                    for (i = 0; i < tbLain.getRowCount(); i++) {
+                        if (!tbLain.getValueAt(i, 3).toString().trim().equals("")) {
+                            Sequel.menyimpanIgnore("catatan_material_operasi",
+                                    "'" + TNoRw.getText() + "','" + TrgRawat.getText() + "',"
+                                    + "'" + Valid.SetTgl(TtglCatatan.getSelectedItem() + "") + "',"
+                                    + "'" + tbLain.getValueAt(i, 0).toString() + "',"
+                                    + "'" + tbLain.getValueAt(i, 3).toString() + "',"
+                                    + "'" + tbLain.getValueAt(i, 2).toString() + "',"
+                                    + "'" + TnipPetugas.getText() + "','" + wktSimpan + "'", "Data lain-lain");
+                        }
                     }
-                }
 
-                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Pemakaian Obat Dan Material Operasi", "Simpan");
-                TCari.setText(TNoRw.getText());
-                tampil();
-                if (Sequel.cariInteger("select count(-1) from catatan_material_operasi where no_rawat='" + TNoRw.getText() + "'") > 0) {
-                    emptTeks();
-                    tampilInfus("kosong");
-                    tampilObat("kosong");
-                    tampilPsiko("kosong");
-                    tampilAnti("kosong");
-                    tampilBahan("kosong");
-                    tampilBenang("kosong");
-                    tampilLainlain("kosong");
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Pemakaian Obat Dan Material Operasi", "Simpan");
+                    TCari.setText(TNoRw.getText());
+                    tampil();
+                    if (Sequel.cariInteger("select count(-1) from catatan_material_operasi where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                        emptTeks();
+                        tampilInfus("kosong");
+                        tampilObat("kosong");
+                        tampilPsiko("kosong");
+                        tampilAnti("kosong");
+                        tampilBahan("kosong");
+                        tampilBenang("kosong");
+                        tampilLainlain("kosong");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Simpan Catatan Pemakaian Obat Dan Material Operasi : " + e);
                 }
-            } catch (Exception e) {
-                System.out.println("Simpan Catatan Pemakaian Obat Dan Material Operasi : " + e);
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -1761,18 +1790,52 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
             param.put("tglcatatan", Valid.SetTglINDONESIA(Valid.SetTgl(TtglCatatan.getSelectedItem() + "")));
             param.put("petugas", "(" + TnmPetugas.getText() + ")");
 
-            Valid.MyReport("rptCatatanMaterialOperasi.jasper", "report", "::[ Lembar Catatan Pemakaian Obat Dan Material Operasi ]::",
-                "select * from temporary", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (TnipPetugas.getText().equals("") || TnipPetugas.getText().equals("-") || TnipPetugas.getText().equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, nama petugas harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Catatan Pemakaian Obat Dan Material Operasi", TnmPetugas.getText(),
+                                    Sequel.cariIsi("select date_format(now(),'%d/%m/%Y')"),
+                                    Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='001'");
 
-            tampil();
-            tampilInfus("kosong");
-            tampilObat("kosong");
-            tampilPsiko("kosong");
-            tampilAnti("kosong");
-            tampilBahan("kosong");
-            tampilBenang("kosong");
-            tampilLainlain("kosong");
-            emptTeks();
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Catatan Pemakaian Obat Dan Material Operasi", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    
+                    Valid.MyReport("rptCatatanMaterialOperasiQr.jasper", "report", "::[ Lembar Catatan Pemakaian Obat Dan Material Operasi ]::",
+                            "select * from temporary", param);
+
+                    tampil();
+                    tampilInfus("kosong");
+                    tampilObat("kosong");
+                    tampilPsiko("kosong");
+                    tampilAnti("kosong");
+                    tampilBahan("kosong");
+                    tampilBenang("kosong");
+                    tampilLainlain("kosong");
+                    emptTeks();
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+                
+            } else {
+                Valid.MyReport("rptCatatanMaterialOperasi.jasper", "report", "::[ Lembar Catatan Pemakaian Obat Dan Material Operasi ]::",
+                        "select * from temporary", param);
+
+                tampil();
+                tampilInfus("kosong");
+                tampilObat("kosong");
+                tampilPsiko("kosong");
+                tampilAnti("kosong");
+                tampilBahan("kosong");
+                tampilBenang("kosong");
+                tampilLainlain("kosong");
+                emptTeks();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan klik/pilih salah satu datanya terlebih dulu pada tabel..!!!!");
             tbCatatan.requestFocus();
@@ -2208,6 +2271,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
     private widget.TextBox TrgRawat;
     private widget.Tanggal TtglCatatan;
     private widget.CekBox chkSaya;
+    private widget.ComboBox cmbPilihCetak;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel10;
     private widget.Label jLabel122;
@@ -2216,6 +2280,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel63;
     private widget.Label jLabel7;
+    private widget.Label jLabel95;
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.Label label20;
     private widget.panelisi panelGlass10;
@@ -3162,5 +3227,61 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
             System.out.println("Notifikasi : " + e);
         }
         dataLain = 1;
+    }
+    
+    private void cekTabel() {
+        infus = 0;
+        obat = 0;
+        psiko = 0;
+        anti = 0;
+        bahan = 0;
+        benang = 0;
+        lain = 0;
+        nilai = 0;
+        
+        //cek data
+        for (i = 0; i < tbInfus.getRowCount(); i++) {
+            if (tbInfus.getValueAt(i, 3).toString().trim().equals("")) {
+                infus++;
+            }
+        }
+
+        for (i = 0; i < tbObat.getRowCount(); i++) {
+            if (tbObat.getValueAt(i, 3).toString().trim().equals("")) {
+                obat++;
+            }
+        }
+
+        for (i = 0; i < tbPsiko.getRowCount(); i++) {
+            if (tbPsiko.getValueAt(i, 3).toString().trim().equals("")) {
+                psiko++;
+            }
+        }
+
+        for (i = 0; i < tbAnti.getRowCount(); i++) {
+            if (tbAnti.getValueAt(i, 3).toString().trim().equals("")) {
+                anti++;
+            }
+        }
+
+        for (i = 0; i < tbBahan.getRowCount(); i++) {
+            if (tbBahan.getValueAt(i, 3).toString().trim().equals("")) {
+                bahan++;
+            }
+        }
+
+        for (i = 0; i < tbBenang.getRowCount(); i++) {
+            if (tbBenang.getValueAt(i, 3).toString().trim().equals("")) {
+                benang++;
+            }
+        }
+
+        for (i = 0; i < tbLain.getRowCount(); i++) {
+            if (tbLain.getValueAt(i, 3).toString().trim().equals("")) {
+                lain++;
+            }
+        }
+
+        nilai = infus + obat + psiko + anti + bahan + benang + lain;
     }
 }

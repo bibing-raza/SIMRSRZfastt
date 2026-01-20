@@ -1,0 +1,1126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="805" leftMargin="18" rightMargin="19" topMargin="28" bottomMargin="19">
+	<property name="ireport.zoom" value="1.2418426461183192"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="namars" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="norm" class="java.lang.String"/>
+	<parameter name="nmpasien" class="java.lang.String"/>
+	<parameter name="tgllahir" class="java.lang.String"/>
+	<parameter name="theSignIn" class="java.lang.String"/>
+	<parameter name="identifikasi" class="java.lang.String"/>
+	<parameter name="lokasiOperasi1" class="java.lang.String"/>
+	<parameter name="prosedur1" class="java.lang.String"/>
+	<parameter name="surat" class="java.lang.String"/>
+	<parameter name="lokasiOperasi2" class="java.lang.String"/>
+	<parameter name="mesin" class="java.lang.String"/>
+	<parameter name="pulse" class="java.lang.String"/>
+	<parameter name="apakahPasien" class="java.lang.String"/>
+	<parameter name="kesulitan" class="java.lang.String"/>
+	<parameter name="dan" class="java.lang.String"/>
+	<parameter name="resiko" class="java.lang.String"/>
+	<parameter name="500" class="java.lang.String"/>
+	<parameter name="dua" class="java.lang.String"/>
+	<parameter name="rencana" class="java.lang.String"/>
+	<parameter name="theTimeOut" class="java.lang.String"/>
+	<parameter name="konfirmasi" class="java.lang.String"/>
+	<parameter name="namaPasien" class="java.lang.String"/>
+	<parameter name="prosedur2" class="java.lang.String"/>
+	<parameter name="lokasiDimana" class="java.lang.String"/>
+	<parameter name="apakahAntibiotik" class="java.lang.String"/>
+	<parameter name="cekNamaAntibiotik" class="java.lang.String"/>
+	<parameter name="cekDosisAntibiotik" class="java.lang.String"/>
+	<parameter name="nmAntibiotik" class="java.lang.String"/>
+	<parameter name="dosisAntibiotik" class="java.lang.String"/>
+	<parameter name="antisipasi" class="java.lang.String"/>
+	<parameter name="reviewDokter" class="java.lang.String"/>
+	<parameter name="reviewTimAnes" class="java.lang.String"/>
+	<parameter name="cvc" class="java.lang.String"/>
+	<parameter name="reviewTimPerawat" class="java.lang.String"/>
+	<parameter name="apakahFoto" class="java.lang.String"/>
+	<parameter name="theSignOut" class="java.lang.String"/>
+	<parameter name="namaProsedur" class="java.lang.String"/>
+	<parameter name="instrumen" class="java.lang.String"/>
+	<parameter name="spesimen" class="java.lang.String"/>
+	<parameter name="adakah" class="java.lang.String"/>
+	<parameter name="operatorDokterBedah" class="java.lang.String"/>
+	<parameter name="halYang" class="java.lang.String"/>
+	<parameter name="tglTindakan" class="java.lang.String"/>
+	<parameter name="verifikasi" class="java.lang.String"/>
+	<parameter name="perawatSirkuler" class="java.lang.String"/>
+	<parameter name="dokterAnestesi1" class="java.lang.String"/>
+	<parameter name="operator" class="java.lang.String"/>
+	<parameter name="dokterAnestesi2" class="java.lang.String"/>
+	<parameter name="perawatSirkuit1" class="java.lang.String"/>
+	<parameter name="perawatSirkuit2" class="java.lang.String"/>
+	<parameter name="dokterAnestesi3" class="java.lang.String"/>
+	<parameter name="kalimatTte" class="java.lang.String"/>
+	<parameter name="lokasiQrSirkuler" class="java.lang.String"/>
+	<parameter name="lokasiQrDokterAnestesi1" class="java.lang.String"/>
+	<parameter name="lokasiQrOperator" class="java.lang.String"/>
+	<parameter name="lokasiQrDokterAnestesi2" class="java.lang.String"/>
+	<parameter name="lokasiQrSirkuit1" class="java.lang.String"/>
+	<parameter name="lokasiQrSirkuit2" class="java.lang.String"/>
+	<parameter name="lokasiQrDokterAnestesi3" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT now() tanggal]]>
+	</queryString>
+	<field name="tanggal" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="521">
+			<staticText>
+				<reportElement x="774" y="302" width="11" height="52">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="774" y="353" width="11" height="7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="763" y="353" width="11" height="7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="763" y="302" width="11" height="52">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Nama Pasien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="752" y="302" width="11" height="52">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Tanggal Lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="752" y="353" width="11" height="7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" hAlign="Right" vAlign="Top" isUsingCache="true" onErrorType="Blank">
+				<reportElement x="748" y="12" width="40" height="35"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="745" height="17" backcolor="#F0F0DC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CHECKLIST KESELAMATAN ANESTESI]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="50" width="745" height="1">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="768" y="57" width="12" height="154">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RUMAH SAKIT UMUM DAERAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="755" y="57" width="12" height="154">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RATU ZALECHA MARTAPURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="790" y="424" width="15" height="95">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RM 8.1.1.6 REV 01]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="790" height="1">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="746" y="294" width="43" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="789" y="0" width="1" height="519">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="745" y="0" width="1" height="519"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="519"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="774" y="359" width="11" height="158"/>
+				<textElement verticalAlignment="Middle" rotation="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{norm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="763" y="359" width="11" height="158"/>
+				<textElement verticalAlignment="Middle" rotation="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{nmpasien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="752" y="359" width="11" height="158"/>
+				<textElement verticalAlignment="Middle" rotation="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tgllahir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="522" y="20" width="223" height="13"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["THE SIGN OUT (Pukul) : "+$P{theSignOut}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="53" width="187" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1. Pasien Telah Dikonfirmasikan]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="18" width="745" height="1">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="522" y="32" width="223" height="19">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="7" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Dilakukan sebelum pasien meninggalkan OK, diisi oleh perawat, dokter anestesi dan operator)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="64" width="177" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Identifikasi Dari Gelang Pasien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="76" width="177" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Lokasi Operasi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="88" width="177" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Prosedur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="100" width="177" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Surat Ijin Operasi]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="189" y="64" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{identifikasi}+" ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="76" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{lokasiOperasi1}+" ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="88" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{prosedur1}+" ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="100" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{surat}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="112" width="187" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[2. Lokasi Operasi Sudah Diberi Tanda]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="189" y="112" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{lokasiOperasi2}+" ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="124" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{mesin}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="124" width="187" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[3. Mesin dan Obat-obatan Anestesi Sudah Dicek]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="135" width="177" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lengkap]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="147" width="187" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[4. Pulse Oximeter Sudah Terpasang dan Berfungsi]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="189" y="147" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{pulse}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="159" width="187" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[5. Apakah Pasien Mempunyai Riwayat Alergi]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="189" y="159" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{apakahPasien}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="170" width="187" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[6. Kesulitan Bernafas Resiko Aspirasi ?]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="189" y="170" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{kesulitan}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="182" width="187" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[7. Dan Menggunakan Peralatan Bantuan ?]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="189" y="182" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{dan}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="194" width="187" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[8. Resiko Kehilangan Darah]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="189" y="194" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{resiko}+" ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="206" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{500}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="206" width="177" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[a. 500 ml (7 ml/kg 88) Pada Anak ?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="218" width="187" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[9. Dua Akses Intravensi Akses Sentral Dan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="189" y="218" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{dua}+" ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="229" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{rencana}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="229" width="187" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[10. Rencana Terapi Cairan ?]]></text>
+			</staticText>
+			<line>
+				<reportElement x="233" y="18" width="1" height="502"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="236" y="20" width="279" height="13"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["THE TIME OUT (Pukul) : "+$P{theTimeOut}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="236" y="32" width="279" height="19">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="7" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Dilakukan sebelum insisi kulit, diisi oleh perawat, dokter anestesi dan operator)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="53" width="240" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1. Konfirmasi Anggota Tim Memperkenalkan Nama Dan Perannya]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="64" width="230" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Masing-Masing]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="475" y="53" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{konfirmasi}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="236" y="76" width="240" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[2. Dokter Bedah, Dokter Anestesi Dan Perawat Melakukan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="87" width="230" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Konfirmasi Secara Verbal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="475" y="99" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{namaPasien}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="246" y="99" width="230" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Nama Pasien]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="475" y="111" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{prosedur2}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="246" y="111" width="230" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Prosedur]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="475" y="122" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{lokasiDimana}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="246" y="122" width="230" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[- Lokasi Dimana Insisi Akan Dibuat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="134" width="240" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[3. Apakah Antibiotik Proflaksis Sudah Diberikan 30 Menit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="145" width="230" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sebelumnya]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="475" y="134" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{apakahAntibiotik}+" ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="157" width="230" height="24"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{nmAntibiotik}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="182" width="230" height="24"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dosisAntibiotik}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="157" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{cekNamaAntibiotik}+" ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="182" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{cekDosisAntibiotik}+" ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="236" y="206" width="279" height="24"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["4. Antisipasi Kejadian Kritis : "+$P{antisipasi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="236" y="230" width="279" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[a. Review dokter bedah langkah apa yang akan dilakukan bila kondisi kritis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="246" y="241" width="269" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[atau kejadian yang tidak diharapkan, lamanya operasi, antisipasi kehilangan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="246" y="252" width="269" height="39"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["darah "+$P{reviewDokter}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="236" y="292" width="279" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[b. Review tim anestesi apakah ada hal khusus yang perlu diperhatikan pada]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="246" y="304" width="269" height="39"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["pasien "+$P{reviewTimAnes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="343" width="269" height="28"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Jika Diperlukan CVC, Kapan Akan Dipasang "+$P{cvc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="382" width="269" height="39"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["perlu diperhatikan khusus atau dalam masalah "+$P{reviewTimPerawat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="246" y="371" width="269" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Review tim perawat apakah peralatan sudah steril, adakah alat-alat yang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="422" width="240" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[5. Apakah Foto Rontgen / CT Scan Dan MRI Telah Ditayangkan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="475" y="422" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{apakahFoto}+" ]"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="396" width="233" height="1">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="518" y="18" width="1" height="502"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="522" y="53" width="220" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1. Perawat Melakukan Konfirmasi Secara Verbal dengan Tim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="531" y="64" width="171" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[a. Nama Prosedur Tindakan Telah Dicatat]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="702" y="64" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{namaProsedur}+" ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="702" y="76" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{instrumen}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="531" y="76" width="171" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[b. Instrumen Kasa, Dan Jarum Telah Dihitung]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="541" y="87" width="161" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dengan Benar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="531" y="99" width="171" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[c. Spesimen Telah Diberi Label (Termasuk]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="702" y="99" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{spesimen}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="541" y="110" width="161" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nama Pasien & Asal Jaringan Specimen)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="531" y="122" width="171" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[d. Adakah Masalah Dengan Peralatan Selama]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="702" y="122" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{adakah}+" ]"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="541" y="133" width="161" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Operasi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="522" y="145" width="180" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[2. Operator dokter bedah, dokter anestesi dan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="531" y="156" width="171" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[perawat melakukan review masalah utama apa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="531" y="166" width="171" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[yang harus diperhatikan untuk penyembuhan &]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="531" y="176" width="171" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[manajemen pasien selanjutnya]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="702" y="145" width="40" height="11"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["[ "+$P{operatorDokterBedah}+" ]"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="522" y="187" width="220" height="207"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Hal Yang Harus Diperhatikan "+$P{halYang}+"\n\nTanggal Tindakan "+$P{tglTindakan}+"\n\nVerifikasi "+$P{verifikasi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="400" width="114" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Perawat Sirkuler]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="117" y="400" width="114" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dokter Anestesi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="327" y="438" width="97" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dokter Anestesi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="438" width="90" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Operator]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="425" y="438" width="90" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Perawat Sirkuit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="636" y="400" width="106" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dokter Anestesi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="522" y="400" width="114" height="11">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Perawat Sirkuit]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="3" y="20" width="226" height="13"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["THE SIGN IN (Pukul) : "+$P{theSignIn}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="32" width="226" height="19">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="7" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[(Dilakukan sebelum induksi anestesi, minimalnya oleh perawat & dokter anestesi)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="3" y="486" width="114" height="28"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{perawatSirkuler}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="486" width="114" height="28"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dokterAnestesi1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="236" y="486" width="91" height="28"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{operator}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="486" width="97" height="28"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dokterAnestesi2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="486" width="90" height="28"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{perawatSirkuit1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="522" y="486" width="114" height="28"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{perawatSirkuit2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="636" y="486" width="106" height="28"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dokterAnestesi3}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="519" width="790" height="1">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="135" y="411" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQrDokterAnestesi1}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="19" y="411" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQrSirkuler}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="233" y="435" width="286" height="1">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="649" y="411" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQrDokterAnestesi3}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="540" y="411" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQrSirkuit2}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="519" y="396" width="227" height="1">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="262" y="448" width="41" height="39"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQrOperator}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="355" y="448" width="41" height="39"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQrDokterAnestesi2}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="450" y="448" width="41" height="39"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQrSirkuit1}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="16">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="1" width="790" height="15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{kalimatTte}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="790" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

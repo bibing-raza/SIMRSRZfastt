@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -531,6 +532,8 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        jLabel124 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
         PanelInput1 = new javax.swing.JPanel();
@@ -739,7 +742,7 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
         FormInput.add(cmbSurat);
         cmbSurat.setBounds(385, 150, 65, 23);
 
-        TtglTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-10-2024" }));
+        TtglTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2026" }));
         TtglTindakan.setDisplayFormat("dd-MM-yyyy");
         TtglTindakan.setName("TtglTindakan"); // NOI18N
         TtglTindakan.setOpaque(false);
@@ -1188,6 +1191,7 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel107);
         jLabel107.setBounds(0, 710, 790, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
 
         TreviewA.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1211,6 +1215,7 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel108);
         jLabel108.setBounds(0, 823, 790, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
 
         TreviewB.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1250,6 +1255,7 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel110);
         jLabel110.setBounds(0, 961, 790, 23);
 
+        scrollPane15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane15.setName("scrollPane15"); // NOI18N
 
         TreviewC.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1461,6 +1467,7 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel121);
         jLabel121.setBounds(0, 1417, 175, 23);
 
+        scrollPane16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane16.setName("scrollPane16"); // NOI18N
 
         ThalYang.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1663,6 +1670,18 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        jLabel124.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel124.setText("Cetak Dalam Bentuk :");
+        jLabel124.setName("jLabel124"); // NOI18N
+        jLabel124.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel124);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -1715,6 +1734,7 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
 
         tbCeklis.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki/dihapus");
         tbCeklis.setName("tbCeklis"); // NOI18N
+        tbCeklis.getTableHeader().setReorderingAllowed(false);
         tbCeklis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbCeklisMouseClicked(evt);
@@ -1743,7 +1763,7 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass12.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-10-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1757,7 +1777,7 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass12.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-10-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2219,11 +2239,116 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
             param.put("perawatSirkuit2", "(" + TnmPerawatSirkuit2.getText() + ")");
             param.put("dokterAnestesi3", "(" + TnmDokterAnes3.getText() + ")");
 
-            Valid.MyReport("rptCeklisKeselamatanOperasi.jasper", "report", "::[ Lembar Checklist Keselamatan Operasi ]::",
-                "SELECT now() tanggal", param);
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isiSirkuler = "", isiDokterAnes1 = "", isiOperator = "", isiDokterAnes2 = "", isiSirkuit1 = "",
+                        isiSirkuit2 = "", isiDokterAnes3 = "", tgl1 = "", jam1 = "", tgl2 = "", jam2 = "", tgl3 = "", jam3 = "";
 
-            tampil();
-            emptTeks();
+                tgl1 = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from ceklis_keselamatan_operasi1 where no_rawat='" + TNoRw.getText() + "'");
+                jam1 = Sequel.cariIsi("select time(waktu_simpan) from ceklis_keselamatan_operasi1 where no_rawat='" + TNoRw.getText() + "'");
+                tgl2 = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from ceklis_keselamatan_operasi2 where no_rawat='" + TNoRw.getText() + "'");
+                jam2 = Sequel.cariIsi("select time(waktu_simpan) from ceklis_keselamatan_operasi2 where no_rawat='" + TNoRw.getText() + "'");
+                tgl3 = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from ceklis_keselamatan_operasi3 where no_rawat='" + TNoRw.getText() + "'");
+                jam3 = Sequel.cariIsi("select time(waktu_simpan) from ceklis_keselamatan_operasi3 where no_rawat='" + TNoRw.getText() + "'");
+                
+                if ((TnipPerawatSir.getText().equals("") || TnipPerawatSir.getText().equals("-") || TnipPerawatSir.getText().equals("--")) 
+                        && (TnipDokterAnes1.getText().equals("") || TnipDokterAnes1.getText().equals("-") || TnipDokterAnes1.getText().equals("--")) 
+                        && (TnipOperator.getText().equals("") || TnipOperator.getText().equals("-") || TnipOperator.getText().equals("--")) 
+                        && (TnipDokterAnes2.getText().equals("") || TnipDokterAnes2.getText().equals("-") || TnipDokterAnes2.getText().equals("--")) 
+                        && (TnipPerawatSirkuit1.getText().equals("") || TnipPerawatSirkuit1.getText().equals("-") || TnipPerawatSirkuit1.getText().equals("--")) 
+                        && (TnipPerawatSirkuit2.getText().equals("") || TnipPerawatSirkuit2.getText().equals("-") || TnipPerawatSirkuit2.getText().equals("--"))
+                        && (TnipDokterAnes3.getText().equals("") || TnipDokterAnes3.getText().equals("-") || TnipDokterAnes3.getText().equals("--"))) {
+                    
+                    Valid.MyReport("rptCeklisKeselamatanOperasi.jasper", "report", "::[ Lembar Checklist Keselamatan Operasi ]::",
+                            "SELECT now() tanggal", param);
+                    tampil();
+                    emptTeks();
+                } else {
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    //THE SIGN IN
+                    if (TnipPerawatSir.getText().equals("") || TnipPerawatSir.getText().equals("-") || TnipPerawatSir.getText().equals("--")) {
+                        param.put("lokasiQrSirkuler", "");
+                    } else {
+                        isiSirkuler = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Checklist Keselamatan Operasi", TnmPerawatSir.getText() + " (Perawat Sirkuler)", tgl1, jam1) + "') from kalimat_tte where kode='001'");
+                        Valid.cetakQrTte(isiSirkuler, Sequel.cariFolderTte(), "QRTteSirkuler.jpg", "select logo from setting");
+                        param.put("lokasiQrSirkuler", Sequel.cariFolderTte() + File.separator + "QRTteSirkuler.jpg");
+                    }
+                    
+                    if (TnipDokterAnes1.getText().equals("") || TnipDokterAnes1.getText().equals("-") || TnipDokterAnes1.getText().equals("--")) {
+                        param.put("lokasiQrDokterAnestesi1", "");
+                    } else {
+                        isiDokterAnes1 = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Checklist Keselamatan Operasi", TnmDokterAnes1.getText() + " (Dokter Anestesi)", tgl1, jam1) + "') from kalimat_tte where kode='001'");
+                        Valid.cetakQrTte(isiDokterAnes1, Sequel.cariFolderTte(), "QRTteDokterAnes1.jpg", "select logo from setting");
+                        param.put("lokasiQrDokterAnestesi1", Sequel.cariFolderTte() + File.separator + "QRTteDokterAnes1.jpg");
+                    }
+                    
+                    //THE TIME OUT
+                    if (TnipOperator.getText().equals("") || TnipOperator.getText().equals("-") || TnipOperator.getText().equals("--")) {
+                        param.put("lokasiQrOperator", "");
+                    } else {
+                        isiOperator = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Checklist Keselamatan Operasi", TnmOperator.getText() + " (Operator)", tgl1, jam1) + "') from kalimat_tte where kode='001'");
+                        Valid.cetakQrTte(isiOperator, Sequel.cariFolderTte(), "QRTteOperator.jpg", "select logo from setting");
+                        param.put("lokasiQrOperator", Sequel.cariFolderTte() + File.separator + "QRTteOperator.jpg");
+                    }
+
+                    if (TnipDokterAnes2.getText().equals("") || TnipDokterAnes2.getText().equals("-") || TnipDokterAnes2.getText().equals("--")) {
+                        param.put("lokasiQrDokterAnestesi2", "");
+                    } else {
+                        isiDokterAnes2 = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Checklist Keselamatan Operasi", TnmDokterAnes2.getText() + " (Dokter Anestesi)", tgl1, jam1) + "') from kalimat_tte where kode='001'");
+                        Valid.cetakQrTte(isiDokterAnes2, Sequel.cariFolderTte(), "QRTteDokterAnes2.jpg", "select logo from setting");
+                        param.put("lokasiQrDokterAnestesi2", Sequel.cariFolderTte() + File.separator + "QRTteDokterAnes2.jpg");
+                    }
+                    
+                    if (TnipPerawatSirkuit1.getText().equals("") || TnipPerawatSirkuit1.getText().equals("-") || TnipPerawatSirkuit1.getText().equals("--")) {
+                        param.put("lokasiQrSirkuit1", "");
+                    } else {
+                        isiSirkuit1 = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Checklist Keselamatan Operasi", TnmPerawatSirkuit1.getText() + " (Perawat Sirkuit)", tgl1, jam1) + "') from kalimat_tte where kode='001'");
+                        Valid.cetakQrTte(isiSirkuit1, Sequel.cariFolderTte(), "QRTteSirkuit1.jpg", "select logo from setting");
+                        param.put("lokasiQrSirkuit1", Sequel.cariFolderTte() + File.separator + "QRTteSirkuit1.jpg");
+                    }
+                    
+                    //THE SIGN OUT
+                    if (TnipPerawatSirkuit2.getText().equals("") || TnipPerawatSirkuit2.getText().equals("-") || TnipPerawatSirkuit2.getText().equals("--")) {
+                        param.put("lokasiQrSirkuit2", "");
+                    } else {
+                        isiSirkuit2 = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Checklist Keselamatan Operasi", TnmPerawatSirkuit2.getText() + " (Perawat Sirkuit)", tgl1, jam1) + "') from kalimat_tte where kode='001'");
+                        Valid.cetakQrTte(isiSirkuit2, Sequel.cariFolderTte(), "QRTteSirkuit2.jpg", "select logo from setting");
+                        param.put("lokasiQrSirkuit2", Sequel.cariFolderTte() + File.separator + "QRTteSirkuit2.jpg");
+                    }
+                    
+                    if (TnipDokterAnes3.getText().equals("") || TnipDokterAnes3.getText().equals("-") || TnipDokterAnes3.getText().equals("--")) {
+                        param.put("lokasiQrDokterAnestesi3", "");
+                    } else {
+                        isiDokterAnes3 = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Checklist Keselamatan Operasi", TnmDokterAnes3.getText() + " (Dokter Anestesi)", tgl1, jam1) + "') from kalimat_tte where kode='001'");
+                        Valid.cetakQrTte(isiDokterAnes3, Sequel.cariFolderTte(), "QRTteDokterAnes3.jpg", "select logo from setting");
+                        param.put("lokasiQrDokterAnestesi3", Sequel.cariFolderTte() + File.separator + "QRTteDokterAnes3.jpg");
+                    }
+
+                    Valid.MyReport("rptCeklisKeselamatanOperasiQr.jasper", "report", "::[ Lembar Checklist Keselamatan Operasi ]::",
+                            "SELECT now() tanggal", param);
+                    tampil();
+                    emptTeks();
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                Valid.MyReport("rptCeklisKeselamatanOperasi.jasper", "report", "::[ Lembar Checklist Keselamatan Operasi ]::",
+                        "SELECT now() tanggal", param);
+                tampil();
+                emptTeks();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan klik/pilih salah satu datanya terlebih dulu pada tabel..!!!!");
             tbCeklis.requestFocus();
@@ -2496,6 +2621,7 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
     private widget.ComboBox cmbNama;
     private widget.ComboBox cmbNamaAntibiotik;
     private widget.ComboBox cmbNamaProsedur;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbProsedur1;
     private widget.ComboBox cmbProsedur2;
     private widget.ComboBox cmbPulse;
@@ -2529,6 +2655,7 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
     private widget.Label jLabel121;
     private widget.Label jLabel122;
     private widget.Label jLabel123;
+    private widget.Label jLabel124;
     private widget.Label jLabel19;
     private widget.Label jLabel21;
     private widget.Label jLabel6;
@@ -2579,9 +2706,11 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement("SELECT c1.*, c2.*, c3.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
                     + "DATE_FORMAT(c1.waktu_simpan,'%d-%m-%Y') tglCeklis, date(c1.waktu_simpan) tglCeklisAsli, pg1.nama nmPerawatC1, pg2.nama nmDokterC1, pg3.nama nmOperatorC2, "
-                    + "pg4.nama nmDokterC2, pg5.nama nmPerawatC2, pg6.nama nmPerawatC3, pg7.nama nmDokterC3 FROM ceklis_keselamatan_operasi1 c1 "
-                    + "inner join ceklis_keselamatan_operasi2 c2 on c2.waktu_simpan=c1.waktu_simpan inner join ceklis_keselamatan_operasi3 c3 on c3.waktu_simpan=c1.waktu_simpan "
-                    + "inner join reg_periksa rp on rp.no_rawat=c1.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg1 on pg1.nik=c1.nip_perawat "
+                    + "pg4.nama nmDokterC2, pg5.nama nmPerawatC2, pg6.nama nmPerawatC3, pg7.nama nmDokterC3, c1.nip_perawat nip_perawatC1, c1.nip_dokter nip_dokterC1, "
+                    + "c2.nip_operator nip_operatorC2, c2.nip_dokter nip_dokterC2, c2.nip_perawat nip_perawatC2, c3.nip_perawat nip_perawatC3, c3.nip_dokter nip_dokterC3 "
+                    + "FROM ceklis_keselamatan_operasi1 c1 inner join ceklis_keselamatan_operasi2 c2 on c2.waktu_simpan=c1.waktu_simpan "
+                    + "inner join ceklis_keselamatan_operasi3 c3 on c3.waktu_simpan=c1.waktu_simpan inner join reg_periksa rp on rp.no_rawat=c1.no_rawat "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg1 on pg1.nik=c1.nip_perawat "
                     + "inner join pegawai pg2 on pg2.nik=c1.nip_dokter inner join pegawai pg3 on pg3.nik=c2.nip_operator inner join pegawai pg4 on pg4.nik=c2.nip_dokter "
                     + "inner join pegawai pg5 on pg5.nik=c2.nip_perawat inner join pegawai pg6 on pg6.nik=c3.nip_perawat inner join pegawai pg7 on pg7.nik=c3.nip_dokter WHERE "
                     + "date(c1.waktu_simpan) between ? and ? and c1.no_rawat LIKE ? or "
@@ -2651,8 +2780,8 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
                         rs.getString("500ml_pada_anak"),
                         rs.getString("dua_akses_intravensi"),
                         rs.getString("rencana_terapi_cairan"),
-                        rs.getString("nip_perawat"),
-                        rs.getString("nip_dokter"),
+                        rs.getString("nip_perawatC1"),
+                        rs.getString("nip_dokterC1"),
                         rs.getString("waktu_simpan"),
                         rs.getString("the_time_out"),
                         rs.getString("konfirmasi_anggota_tim"),
@@ -2670,9 +2799,9 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
                         rs.getString("cvc_dipasang"),
                         rs.getString("review_tim_perawat"),
                         rs.getString("foto_rongsen_ditayangkan"),
-                        rs.getString("nip_operator"),
-                        rs.getString("nip_dokter"),
-                        rs.getString("nip_perawat"),
+                        rs.getString("nip_operatorC2"),
+                        rs.getString("nip_dokterC2"),
+                        rs.getString("nip_perawatC2"),
                         rs.getString("the_sign_out"),
                         rs.getString("nama_prosedur"),
                         rs.getString("instrumen_kasa"),
@@ -2682,8 +2811,8 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
                         rs.getString("hal_yang_diperhatikan"),
                         rs.getString("tgl_tindakan"),
                         rs.getString("verifikasi"),
-                        rs.getString("nip_perawat"),
-                        rs.getString("nip_dokter"),
+                        rs.getString("nip_perawatC3"),
+                        rs.getString("nip_dokterC3"),
                         rs.getString("tglCeklisAsli"),                        
                         rs.getString("nmPerawatC1"),
                         rs.getString("nmDokterC1"),

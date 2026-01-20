@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -47,7 +48,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
     private ResultSet rs, rsPasien, rsLab, rs1;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private int i = 0, x = 0, jlhOrder = 0, cekDiterima = 0, cekDRinap = 0;
-    private String kddokter = "", sttsRawat = "", kdPoli = "", cekNORW = "",
+    private String kddokter = "", sttsRawat = "", kdPoli = "", cekNORW = "", tte = "",
             cekNOMINTA = "", diperiksa = "", kddokterFIX = "", cito = "", nokirim = "", tgl = "", jam = "";
 
     /** Creates new form DlgPemberianInfus
@@ -237,7 +238,8 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         noMinta = new widget.TextBox();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnHapusNomor = new javax.swing.JMenuItem();
-        MnCetakPermintaan = new javax.swing.JMenuItem();
+        MnCetakPermintaanTtd = new javax.swing.JMenuItem();
+        MnCetakPermintaanTte = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -302,7 +304,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         MnHapusNomor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnHapusNomor.setText("Hapus Permintaan");
         MnHapusNomor.setName("MnHapusNomor"); // NOI18N
-        MnHapusNomor.setPreferredSize(new java.awt.Dimension(170, 28));
+        MnHapusNomor.setPreferredSize(new java.awt.Dimension(210, 28));
         MnHapusNomor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnHapusNomorActionPerformed(evt);
@@ -310,17 +312,29 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnHapusNomor);
 
-        MnCetakPermintaan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCetakPermintaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        MnCetakPermintaan.setText("Cetak Permintaan");
-        MnCetakPermintaan.setName("MnCetakPermintaan"); // NOI18N
-        MnCetakPermintaan.setPreferredSize(new java.awt.Dimension(170, 28));
-        MnCetakPermintaan.addActionListener(new java.awt.event.ActionListener() {
+        MnCetakPermintaanTtd.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakPermintaanTtd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnCetakPermintaanTtd.setText("Cetak Permintaan (TTD Basah)");
+        MnCetakPermintaanTtd.setName("MnCetakPermintaanTtd"); // NOI18N
+        MnCetakPermintaanTtd.setPreferredSize(new java.awt.Dimension(210, 28));
+        MnCetakPermintaanTtd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCetakPermintaanActionPerformed(evt);
+                MnCetakPermintaanTtdActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(MnCetakPermintaan);
+        jPopupMenu1.add(MnCetakPermintaanTtd);
+
+        MnCetakPermintaanTte.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakPermintaanTte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnCetakPermintaanTte.setText("Cetak Permintaan (TTE QRCode)");
+        MnCetakPermintaanTte.setName("MnCetakPermintaanTte"); // NOI18N
+        MnCetakPermintaanTte.setPreferredSize(new java.awt.Dimension(210, 28));
+        MnCetakPermintaanTte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCetakPermintaanTteActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCetakPermintaanTte);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -564,6 +578,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         FormInput.add(TAlamat);
         TAlamat.setBounds(130, 66, 630, 23);
 
+        Scroll6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
 
@@ -627,6 +642,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         tbNomor.setToolTipText("Silahkan klik untuk memilih data yang mau dilihat");
         tbNomor.setComponentPopupMenu(jPopupMenu1);
         tbNomor.setName("tbNomor"); // NOI18N
+        tbNomor.getTableHeader().setReorderingAllowed(false);
         tbNomor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbNomorMouseClicked(evt);
@@ -647,6 +663,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
 
         tbMintaPeriksa.setToolTipText("Silahkan klik untuk memilih data yang ataupun dihapus");
         tbMintaPeriksa.setName("tbMintaPeriksa"); // NOI18N
+        tbMintaPeriksa.getTableHeader().setReorderingAllowed(false);
         tbMintaPeriksa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbMintaPeriksaMouseClicked(evt);
@@ -750,8 +767,8 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         Scroll33.setOpaque(true);
 
         tbMasterItem.setAutoCreateRowSorter(true);
-        tbMasterItem.setToolTipText("");
         tbMasterItem.setName("tbMasterItem"); // NOI18N
+        tbMasterItem.getTableHeader().setReorderingAllowed(false);
         tbMasterItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbMasterItemMouseClicked(evt);
@@ -1039,7 +1056,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnHapusNomorActionPerformed
 
-    private void MnCetakPermintaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakPermintaanActionPerformed
+    private void MnCetakPermintaanTtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakPermintaanTtdActionPerformed
         if (noRW.getText().equals("")) {
             Valid.textKosong(noRW, "Pasien");
         } else if (nokirim.equals("")) {
@@ -1049,69 +1066,11 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Permintaan pemeriksaan laboratorium harus dikirim dulu setelah disimpan....!!!");
             BtnKirim.requestFocus();
         } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));            
-
-            if (sttsRawat.equals("Ralan")) {
-                cekDiterima = 0;
-                cekDiterima = Sequel.cariInteger("SELECT count(-1) FROM permintaan_lab_raza WHERE no_rawat='" + noRW.getText() + "' and status_periksa='BELUM' and status_rawat='Ralan'");
-                if (cekDiterima == 0) {
-                    JOptionPane.showMessageDialog(null, "Item permintaan pemeriksaan Lab. sudah diperiksa semua..!!!");
-                } else if (cekDiterima >= 1) {
-                    param.put("kamar", "Poliklinik");
-                    param.put("namakamar", Sequel.cariIsi("select p.nm_poli from reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli where r.no_rawat='" + noRW.getText() + "'"));
-                    param.put("diagnosa", Sequel.cariIsi("select ifnull(diagnosa,'-') diag from pemeriksaan_ralan where no_rawat='" + noRW.getText() + "'"));
-                    param.put("tglsurat", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_permintaan from permintaan_lab_raza where no_rawat='" + noRW.getText() + "' "
-                            + "and no_kirim='" + nokirim + "' and status_periksa='BELUM' and status_rawat='Ralan' group by no_kirim, no_rawat limit 1")));
-                    
-                    Valid.MyReport("rptPermintaanLabRZ.jasper", "report", "::[ Lembar Permintaan Pemeriksaan Laboratorium ]::",
-                            "SELECT x.no_rawat, concat(p.no_rkm_medis,' (No. Kirim : ',x.no_kirim,')') no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-laki','Perempuan') jk, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') usia, "
-                            + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, DATE_FORMAT(x.tgl_permintaan,'%d-%m-%Y') tglMinta, "
-                            + "date_format(x.jam_permintaan,'%H:%i') jam_permintaan, d.nm_dokter, x.nm_pemeriksaan FROM permintaan_lab_raza x "
-                            + "INNER JOIN reg_periksa rp on rp.no_rawat=x.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
-                            + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab INNER JOIN dokter d on d.kd_dokter=x.dokter_perujuk WHERE "
-                            + "x.no_rawat='" + noRW.getText() + "' and x.no_kirim='" + nokirim + "' "
-                            + "and x.status_rawat='Ralan'", param);
-                    emptTeks();
-                    dispose();
-                }
-            } else {
-                cekDiterima = 0;
-                cekDiterima = Sequel.cariInteger("SELECT count(-1) FROM permintaan_lab_raza WHERE no_rawat='" + noRW.getText() + "' and status_periksa='BELUM' and status_rawat='Ranap'");
-                if (cekDiterima == 0) {
-                    JOptionPane.showMessageDialog(null, "Item permintaan pemeriksaan Lab. sudah diperiksa semua..!!!");
-                } else if (cekDiterima >= 1) {
-                    param.put("kamar", "Ruang Rawat");
-                    param.put("namakamar", Sequel.cariIsi("SELECT b.nm_bangsal from kamar_inap ki INNER JOIN kamar k ON k.kd_kamar=ki.kd_kamar "
-                            + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE ki.stts_pulang IN ('-','Pindah Kamar') and ki.no_rawat='" + noRW.getText() + "' "
-                            + "ORDER BY ki.tgl_keluar DESC, ki.jam_keluar DESC LIMIT 1"));
-                    param.put("diagnosa", Sequel.cariIsi("select ifnull(diagnosa_awal,'-') from kamar_inap where no_rawat='" + noRW.getText() + "'"));
-                    param.put("tglsurat", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_permintaan from permintaan_lab_raza where no_rawat='" + noRW.getText() + "' "
-                            + "and no_kirim='" + nokirim + "'and status_periksa='BELUM' and status_rawat='Ranap' group by no_kirim, no_rawat limit 1")));
-
-                    Valid.MyReport("rptPermintaanLabRZ.jasper", "report", "::[ Lembar Permintaan Pemeriksaan Laboratorium ]::",
-                            "SELECT x.no_rawat, concat(p.no_rkm_medis,' (No. Kirim : ',x.no_kirim,')') no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-laki','Perempuan') jk, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') usia, "
-                            + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, DATE_FORMAT(x.tgl_permintaan,'%d-%m-%Y') tglMinta, "
-                            + "date_format(x.jam_permintaan,'%H:%i') jam_permintaan, d.nm_dokter, x.nm_pemeriksaan FROM permintaan_lab_raza x "
-                            + "INNER JOIN reg_periksa rp on rp.no_rawat=x.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
-                            + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab INNER JOIN dokter d on d.kd_dokter=x.dokter_perujuk WHERE "
-                            + "x.no_rawat='" + noRW.getText() + "' and x.no_kirim='" + nokirim + "' and x.status_rawat='Ranap'", param);
-                    emptTeks();
-                    dispose();
-                }
-            }
-            this.setCursor(Cursor.getDefaultCursor());
+            tte = "";
+            tte = "tidak";
+            cetak();
         }
-    }//GEN-LAST:event_MnCetakPermintaanActionPerformed
+    }//GEN-LAST:event_MnCetakPermintaanTtdActionPerformed
 
     private void BtnKirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimActionPerformed
         if (noRW.getText().equals("")) {
@@ -1145,6 +1104,22 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnKirimActionPerformed
 
+    private void MnCetakPermintaanTteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakPermintaanTteActionPerformed
+        if (noRW.getText().equals("")) {
+            Valid.textKosong(noRW, "Pasien");
+        } else if (nokirim.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan klik dulu salah satu datanya pada tabel daftar permintaan....!!!");
+            tbNomor.requestFocus();
+        } else if (nokirim.equals("Menunggu")) {
+            JOptionPane.showMessageDialog(rootPane, "Permintaan pemeriksaan laboratorium harus dikirim dulu setelah disimpan....!!!");
+            BtnKirim.requestFocus();
+        } else {
+            tte = "";
+            tte = "ya";
+            cetak();
+        }
+    }//GEN-LAST:event_MnCetakPermintaanTteActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1171,7 +1146,8 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
     private widget.Button BtnKirim;
     private widget.Button BtnSimpan;
     private widget.PanelBiasa FormInput;
-    private javax.swing.JMenuItem MnCetakPermintaan;
+    private javax.swing.JMenuItem MnCetakPermintaanTtd;
+    private javax.swing.JMenuItem MnCetakPermintaanTte;
     private javax.swing.JMenuItem MnHapusNomor;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
@@ -1492,5 +1468,135 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
     private void AutoNomerKirim() {
         Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_kirim,4),signed)),0) from permintaan_lab_raza where "
                 + "tgl_permintaan='" + Sequel.cariIsi("select date(now())") + "' ", "KL" + Sequel.cariIsi("select DATE_FORMAT(now(),'%Y%m%d')"), 4, TNoKirim);
+    }
+    
+    private void cetak() {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        String isi = "", nipDokter = "";
+
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+
+        if (sttsRawat.equals("Ralan")) {
+            cekDiterima = 0;
+            cekDiterima = Sequel.cariInteger("SELECT count(-1) FROM permintaan_lab_raza WHERE no_rawat='" + noRW.getText() + "' and status_periksa='BELUM' and status_rawat='Ralan'");
+            if (cekDiterima == 0) {
+                JOptionPane.showMessageDialog(null, "Item permintaan pemeriksaan Lab. sudah diperiksa semua..!!!");
+            } else if (cekDiterima >= 1) {
+                param.put("kamar", "Poliklinik");
+                param.put("namakamar", Sequel.cariIsi("select p.nm_poli from reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli where r.no_rawat='" + noRW.getText() + "'"));
+                param.put("diagnosa", Sequel.cariIsi("select ifnull(diagnosa,'-') diag from pemeriksaan_ralan where no_rawat='" + noRW.getText() + "'"));
+                param.put("tglsurat", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_permintaan from permintaan_lab_raza where no_rawat='" + noRW.getText() + "' "
+                        + "and no_kirim='" + nokirim + "' and status_periksa='BELUM' and status_rawat='Ralan' group by no_kirim, no_rawat limit 1")));
+
+                if (tte.equals("tidak")) {
+                    Valid.MyReport("rptPermintaanLabRZ.jasper", "report", "::[ Lembar Permintaan Pemeriksaan Laboratorium ]::",
+                            "SELECT x.no_rawat, concat(p.no_rkm_medis,' (No. Kirim : ',x.no_kirim,')') no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-laki','Perempuan') jk, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') usia, "
+                            + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, DATE_FORMAT(x.tgl_permintaan,'%d-%m-%Y') tglMinta, "
+                            + "date_format(x.jam_permintaan,'%H:%i') jam_permintaan, d.nm_dokter, x.nm_pemeriksaan FROM permintaan_lab_raza x "
+                            + "INNER JOIN reg_periksa rp on rp.no_rawat=x.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                            + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab INNER JOIN dokter d on d.kd_dokter=x.dokter_perujuk WHERE "
+                            + "x.no_rawat='" + noRW.getText() + "' and x.no_kirim='" + nokirim + "' "
+                            + "and x.status_rawat='Ralan'", param);
+                    emptTeks();
+                    dispose();
+                } else if (tte.equals("ya")) {
+                    nipDokter = Sequel.cariIsi("select dokter_perujuk FROM permintaan_lab_raza where no_rawat='" + noRW.getText() + "' and no_kirim='" + nokirim + "' and status_rawat='Ralan'");
+                    if (nipDokter.equals("") || nipDokter.equals("-") || nipDokter.equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Maaf, nama dokter perujuk harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
+                                        "Permintaan Pemeriksaan Laboratorium", Sequel.cariIsi("select nama from pegawai where nik='" + nipDokter + "'"),
+                                        Sequel.cariIsi("select date_format(tgl_permintaan,'%d/%m/%Y') from permintaan_lab_raza where no_rawat='" + noRW.getText() + "' "
+                                                + "and no_kirim='" + nokirim + "' and status_periksa='BELUM' and status_rawat='Ralan' group by no_kirim, no_rawat limit 1"),
+                                        Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='006'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Permintaan Pemeriksaan Lab.", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='006'"));
+
+                        Valid.MyReport("rptPermintaanLabRZQr.jasper", "report", "::[ Lembar Permintaan Pemeriksaan Laboratorium ]::",
+                                "SELECT x.no_rawat, concat(p.no_rkm_medis,' (No. Kirim : ',x.no_kirim,')') no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-laki','Perempuan') jk, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') usia, "
+                                + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, DATE_FORMAT(x.tgl_permintaan,'%d-%m-%Y') tglMinta, "
+                                + "date_format(x.jam_permintaan,'%H:%i') jam_permintaan, d.nm_dokter, x.nm_pemeriksaan FROM permintaan_lab_raza x "
+                                + "INNER JOIN reg_periksa rp on rp.no_rawat=x.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                                + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                                + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab INNER JOIN dokter d on d.kd_dokter=x.dokter_perujuk WHERE "
+                                + "x.no_rawat='" + noRW.getText() + "' and x.no_kirim='" + nokirim + "' "
+                                + "and x.status_rawat='Ralan'", param);
+                        emptTeks();
+                        dispose();
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    }
+                }
+            }
+        } else {
+            cekDiterima = 0;
+            cekDiterima = Sequel.cariInteger("SELECT count(-1) FROM permintaan_lab_raza WHERE no_rawat='" + noRW.getText() + "' and status_periksa='BELUM' and status_rawat='Ranap'");
+            if (cekDiterima == 0) {
+                JOptionPane.showMessageDialog(null, "Item permintaan pemeriksaan Lab. sudah diperiksa semua..!!!");
+            } else if (cekDiterima >= 1) {
+                param.put("kamar", "Ruang Rawat");
+                param.put("namakamar", Sequel.cariIsi("SELECT b.nm_bangsal from kamar_inap ki INNER JOIN kamar k ON k.kd_kamar=ki.kd_kamar "
+                        + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE ki.no_rawat='" + noRW.getText() + "' ORDER BY ki.tgl_keluar DESC, ki.jam_keluar DESC LIMIT 1"));
+                param.put("diagnosa", Sequel.cariIsi("select ifnull(diagnosa_awal,'-') from kamar_inap where no_rawat='" + noRW.getText() + "'"));
+                param.put("tglsurat", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_permintaan from permintaan_lab_raza where no_rawat='" + noRW.getText() + "' "
+                        + "and no_kirim='" + nokirim + "'and status_periksa='BELUM' and status_rawat='Ranap' group by no_kirim, no_rawat limit 1")));
+
+                if (tte.equals("tidak")) {
+                    Valid.MyReport("rptPermintaanLabRZ.jasper", "report", "::[ Lembar Permintaan Pemeriksaan Laboratorium ]::",
+                            "SELECT x.no_rawat, concat(p.no_rkm_medis,' (No. Kirim : ',x.no_kirim,')') no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-laki','Perempuan') jk, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') usia, "
+                            + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, DATE_FORMAT(x.tgl_permintaan,'%d-%m-%Y') tglMinta, "
+                            + "date_format(x.jam_permintaan,'%H:%i') jam_permintaan, d.nm_dokter, x.nm_pemeriksaan FROM permintaan_lab_raza x "
+                            + "INNER JOIN reg_periksa rp on rp.no_rawat=x.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                            + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab INNER JOIN dokter d on d.kd_dokter=x.dokter_perujuk WHERE "
+                            + "x.no_rawat='" + noRW.getText() + "' and x.no_kirim='" + nokirim + "' and x.status_rawat='Ranap'", param);
+                    emptTeks();
+                    dispose();
+                } else if (tte.equals("ya")) {
+                    nipDokter = Sequel.cariIsi("select dokter_perujuk FROM permintaan_lab_raza where no_rawat='" + noRW.getText() + "' and no_kirim='" + nokirim + "' and status_rawat='Ranap'");
+                    if (nipDokter.equals("") || nipDokter.equals("-") || nipDokter.equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Maaf, nama dokter perujuk harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
+                                        "Permintaan Pemeriksaan Laboratorium", Sequel.cariIsi("select nama from pegawai where nik='" + nipDokter + "'"),
+                                        Sequel.cariIsi("select date_format(tgl_permintaan,'%d/%m/%Y') from permintaan_lab_raza where no_rawat='" + noRW.getText() + "' "
+                                                + "and no_kirim='" + nokirim + "'and status_periksa='BELUM' and status_rawat='Ranap' group by no_kirim, no_rawat limit 1"),
+                                        Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='006'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Permintaan Pemeriksaan Lab.", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='006'"));
+
+                        Valid.MyReport("rptPermintaanLabRZQr.jasper", "report", "::[ Lembar Permintaan Pemeriksaan Laboratorium ]::",
+                                "SELECT x.no_rawat, concat(p.no_rkm_medis,' (No. Kirim : ',x.no_kirim,')') no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-laki','Perempuan') jk, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') usia, "
+                                + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, DATE_FORMAT(x.tgl_permintaan,'%d-%m-%Y') tglMinta, "
+                                + "date_format(x.jam_permintaan,'%H:%i') jam_permintaan, d.nm_dokter, x.nm_pemeriksaan FROM permintaan_lab_raza x "
+                                + "INNER JOIN reg_periksa rp on rp.no_rawat=x.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                                + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                                + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab INNER JOIN dokter d on d.kd_dokter=x.dokter_perujuk WHERE "
+                                + "x.no_rawat='" + noRW.getText() + "' and x.no_kirim='" + nokirim + "' and x.status_rawat='Ranap'", param);
+                        emptTeks();
+                        dispose();
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    }
+                }
+            }
+        }
+        this.setCursor(Cursor.getDefaultCursor());
     }
 }

@@ -7610,6 +7610,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
+        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
         x = JOptionPane.showConfirmDialog(rootPane, "Apakah CPPT anda sudah selesai diisi/diperbaiki..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (x == JOptionPane.YES_OPTION) {
             dispose();
@@ -14944,7 +14945,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     rsPrev.beforeFirst();
                     x = 1;
                     while (rsPrev.next()) {
-                        isi = "";                        
+                        isi = "";
                         cekKonfirmasi = Sequel.cariInteger("select count(-1) from cppt_konfirmasi_terapi where no_rawat='" + TNoRw.getText() + "' "
                                 + "and tgl_cppt='" + rsPrev.getString("tgl_cppt") + "' and jam_cppt='" + rsPrev.getString("jam_cppt") + "' "
                                 + "and cppt_shift='" + rsPrev.getString("cppt_shift") + "'");
