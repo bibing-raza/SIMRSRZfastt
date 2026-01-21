@@ -6891,7 +6891,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else {
             DlgRujukanPoliInternal dlgrjk = new DlgRujukanPoliInternal(null, false);
             if (cekRujukInternal == 0 || cekRujukInternal > 1) {
-                dlgrjk.setSize(787, 588);
+                dlgrjk.setSize(941, 588);
                 dlgrjk.setLocationRelativeTo(internalFrame1);
                 dlgrjk.isCek();
                 dlgrjk.setNoRm(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 3).toString(),
@@ -6900,7 +6900,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 dlgrjk.inputbaru();
                 dlgrjk.setVisible(true);
             } else if (cekRujukInternal == 1) {
-                dlgrjk.setSize(787, 588);
+                dlgrjk.setSize(941, 588);
                 dlgrjk.setLocationRelativeTo(internalFrame1);
                 dlgrjk.isCek();
                 dlgrjk.setNoRm(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 3).toString(),

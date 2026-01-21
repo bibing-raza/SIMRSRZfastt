@@ -28,6 +28,7 @@ import java.sql.ResultSet;
 import java.util.Properties;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -187,6 +188,8 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
         BtnSimpan = new widget.Button();
         BtnGanti = new widget.Button();
         BtnHapus = new widget.Button();
+        jLabel95 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
 
@@ -270,7 +273,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
         jLabel15.setBounds(0, 68, 100, 23);
 
         tglDirujuk.setEditable(false);
-        tglDirujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2022" }));
+        tglDirujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-01-2026" }));
         tglDirujuk.setDisplayFormat("dd-MM-yyyy");
         tglDirujuk.setName("tglDirujuk"); // NOI18N
         tglDirujuk.setOpaque(false);
@@ -288,6 +291,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
         FormInput.add(jLabel16);
         jLabel16.setBounds(0, 96, 100, 23);
 
+        Scroll3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
 
@@ -330,6 +334,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
         tbRujukInternal.setAutoCreateRowSorter(true);
         tbRujukInternal.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRujukInternal.setName("tbRujukInternal"); // NOI18N
+        tbRujukInternal.getTableHeader().setReorderingAllowed(false);
         tbRujukInternal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRujukInternalMouseClicked(evt);
@@ -423,6 +428,18 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnHapus);
+
+        jLabel95.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel95.setText("Cetak Dalam Bentuk :");
+        jLabel95.setName("jLabel95"); // NOI18N
+        jLabel95.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel95);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -571,6 +588,11 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
         } else if (Sequel.cariInteger("select count(-1) from rujukan_internal_poli where no_rawat='" + TNoRw.getText() + "' and kd_poli_pembalas='" + kdpoli.getText() + "'") < 1) {
             JOptionPane.showMessageDialog(null, "Silahkan simpan dulu rujukan internal poliklinik nya...!!!!");
         } else {
+            String drPerujuk = "", drPenjawab = "", tglsmpn = "";
+            drPerujuk = Sequel.cariIsi("SELECT d.nm_dokter FROM rujukan_internal_poli r INNER JOIN reg_periksa rp ON rp.no_rawat = r.no_rawat "
+                    + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter WHERE r.no_rawat='" + TNoRw.getText() + "' AND r.kd_poli_pembalas='" + kdpoli.getText() + "'");
+            tglsmpn = Sequel.cariIsi("select tgl_simpan from rujukan_internal_poli where no_rawat='" + TNoRw.getText() + "' AND kd_poli_pembalas='" + kdpoli.getText() + "'");
+            
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("alamatrs", akses.getalamatrs());
@@ -579,27 +601,89 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
             param.put("kontakrs", akses.getkontakrs());
             param.put("emailrs", akses.getemailrs());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("tglSuratPenjawab", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_rencana_dirujuk from rujukan_internal_poli where no_rawat='" + TNoRw.getText() + "'") + "'"));
+            param.put("tglSuratPenjawab", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
             param.put("tglSuratPerujuk", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'")));
-            param.put("nmDokterPerujuk", Sequel.cariIsi("SELECT d.nm_dokter FROM rujukan_internal_poli r INNER JOIN reg_periksa rp ON rp.no_rawat = r.no_rawat "
-                    + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter WHERE r.no_rawat='" + TNoRw.getText() + "' AND r.kd_poli_pembalas='" + kdpoli.getText() + "'"));                
+            param.put("nmDokterPerujuk", drPerujuk);                
             
             if (Sequel.cariIsi("select ifnull(keterangan_balasan,'') from rujukan_internal_poli where no_rawat='" + TNoRw.getText() + "'").equals("")) {
-                param.put("judul", "SURAT RUJUKAN INTERNAL POLIKLINIK");                
-                param.put("nmDokterPenjawab", ".........................................");
+                param.put("judul", "SURAT RUJUKAN INTERNAL POLIKLINIK");
+                drPenjawab = ".........................................";
             } else {
                 param.put("judul", "SURAT BALASAN/JAWABAN RUJUKAN INTERNAL POLIKLINIK");
-                param.put("nmDokterPenjawab", Sequel.cariIsi("SELECT d.nm_dokter FROM rujukan_internal_poli r INNER JOIN reg_periksa rp ON rp.no_rawat = r.no_rawat_pembalas "
-                        + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter WHERE r.no_rawat='" + TNoRw.getText() + "' AND r.kd_poli_pembalas='" + kdpoli.getText() + "'"));
+                drPenjawab = Sequel.cariIsi("SELECT d.nm_dokter FROM rujukan_internal_poli r INNER JOIN reg_periksa rp ON rp.no_rawat = r.no_rawat_pembalas "
+                        + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter WHERE r.no_rawat='" + TNoRw.getText() + "' AND r.kd_poli_pembalas='" + kdpoli.getText() + "'");
             }
-            Valid.MyReport("rptSuratRujukanInternal.jasper", "report", "::[ Surat Rujukan Poliklinik Internal ]::",
-                    "SELECT r.no_rawat, p.no_rkm_medis, p.nm_pasien, pl1.nm_poli asal_poli, pl2.nm_poli ke_poli, "
-                    + "DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y') tgl_registrasi, d.nm_dokter dr_perujuk, "
-                    + "trim(r.keterangan) keterangan, DATE_FORMAT(r.tgl_rencana_dirujuk,'%d-%m-%Y') tgl_rencana_dirujuk, IF(p.jk='L','Laki-laki','Perempuan') jk, "
-                    + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgl_lhr, ifnull(r.keterangan_balasan,'-') jawaban FROM rujukan_internal_poli r "
-                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = r.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                    + "INNER JOIN poliklinik pl1 ON pl1.kd_poli = r.kd_poli INNER JOIN poliklinik pl2 ON pl2.kd_poli = r.kd_poli_pembalas "
-                    + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter WHERE r.no_rawat='" + TNoRw.getText() + "' AND r.kd_poli_pembalas='" + kdpoli.getText() + "'", param);
+            
+            param.put("nmDokterPenjawab", drPenjawab);
+            
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                Sequel.AutoComitFalse();
+                Sequel.queryu("delete from temporaryTTE");
+                String isiRujuk = "", isiJawab = "", nipJawab = "", fileGambar = "";
+                nipJawab = Sequel.cariIsi("select kd_dokter_pembalas from rujukan_internal_poli where no_rawat='" + TNoRw.getText() + "' and tgl_simpan='" + tglsmpn + "'");
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                isiRujuk = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                "Surat Rujukan Poliklinik Internal", drPerujuk + " (Dokter Perujuk)",
+                                Sequel.cariIsi("select date_format(tgl_simpan,'%d/%m/%Y') from rujukan_internal_poli where tgl_simpan='" + tglsmpn + "'"),
+                                Sequel.cariIsi("select time(tgl_simpan) from rujukan_internal_poli where tgl_simpan='" + tglsmpn + "'")) + "') from kalimat_tte where kode='001'");
+                
+                Valid.cetakQrTte(isiRujuk, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat Rujukan Poliklinik Internal", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+
+                if (nipJawab.equals("") || nipJawab.equals("-") || nipJawab.equals("--")) {
+                    fileGambar = "";
+                } else {
+                    isiJawab = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Surat Rujukan Poliklinik Internal", drPenjawab + " (Dokter Menjawab)",
+                                    Sequel.cariIsi("select date_format(now(),'%d/%m/%Y')"),
+                                    Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isiJawab, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    fileGambar = Sequel.cariFolderPrintTte();
+                }
+                
+                param.put("keterangan", Sequel.cariIsi("select keterangan from rujukan_internal_poli where no_rawat='" + TNoRw.getText() + "' "
+                        + "AND kd_poli_pembalas='" + kdpoli.getText() + "'"));
+                
+                Sequel.menyimpanQrTte("temporaryTTE",
+                        "'" + Sequel.cariIsi("select ifnull(keterangan_balasan,'-') from rujukan_internal_poli where no_rawat='" + TNoRw.getText() + "' "
+                                + "AND kd_poli_pembalas='" + kdpoli.getText() + "'") + "',"
+                        + "'',"
+                        + "'',"
+                        + "'" + TNoRM.getText() + "',"
+                        + "'" + TPasien.getText() + "',"
+                        + "'" + Sequel.cariIsi("select DATE_FORMAT(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + "',"
+                        + "'" + Sequel.cariIsi("select IF(jk='L','Laki-laki','Perempuan') from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + "',"
+                        + "'" + Sequel.cariIsi("select concat(pl.nm_poli,' (',d.nm_dokter,'), kunjgn. tgl. ',DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y')) "
+                                + "from rujukan_internal_poli r INNER JOIN reg_periksa rp ON rp.no_rawat = r.no_rawat "
+                                + "INNER JOIN poliklinik pl ON pl.kd_poli = r.kd_poli INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter WHERE "
+                                + "r.no_rawat='" + TNoRw.getText() + "' AND r.kd_poli_pembalas='" + kdpoli.getText() + "'") + "',"
+                        + "'" + Sequel.cariIsi("select concat(pl.nm_poli,', untuk rencana kunjungan tgl. ',DATE_FORMAT(r.tgl_rencana_dirujuk,'%d-%m-%Y')) "
+                                + "from rujukan_internal_poli r INNER JOIN reg_periksa rp ON rp.no_rawat = r.no_rawat "
+                                + "INNER JOIN poliklinik pl ON pl.kd_poli = r.kd_poli_pembalas INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter WHERE "
+                                + "r.no_rawat='" + TNoRw.getText() + "' AND r.kd_poli_pembalas='" + kdpoli.getText() + "'") + "',"
+                        + "'" + TNoRw.getText() + "'",
+                        "file QRCode TTE Surat Rujukan Poliklinik Internal", fileGambar);
+                
+                Valid.MyReport("rptSuratRujukanInternalQr.jasper", "report", "::[ Surat Rujukan Poliklinik Internal ]::",
+                        "SELECT * FROM temporaryTTE", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                Sequel.AutoComitTrue();
+            } else {
+                Valid.MyReport("rptSuratRujukanInternal.jasper", "report", "::[ Surat Rujukan Poliklinik Internal ]::",
+                        "SELECT r.no_rawat, p.no_rkm_medis, p.nm_pasien, pl1.nm_poli asal_poli, pl2.nm_poli ke_poli, "
+                        + "DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y') tgl_registrasi, d.nm_dokter dr_perujuk, "
+                        + "trim(r.keterangan) keterangan, DATE_FORMAT(r.tgl_rencana_dirujuk,'%d-%m-%Y') tgl_rencana_dirujuk, IF(p.jk='L','Laki-laki','Perempuan') jk, "
+                        + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgl_lhr, ifnull(r.keterangan_balasan,'-') jawaban FROM rujukan_internal_poli r "
+                        + "INNER JOIN reg_periksa rp ON rp.no_rawat = r.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "INNER JOIN poliklinik pl1 ON pl1.kd_poli = r.kd_poli INNER JOIN poliklinik pl2 ON pl2.kd_poli = r.kd_poli_pembalas "
+                        + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter WHERE r.no_rawat='" + TNoRw.getText() + "' AND r.kd_poli_pembalas='" + kdpoli.getText() + "'", param);
+            }
             
             empttext();
             dispose();
@@ -715,12 +799,14 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
     private widget.TextBox TPoli;
+    private widget.ComboBox cmbPilihCetak;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
     private widget.Label jLabel19;
     private widget.Label jLabel3;
+    private widget.Label jLabel95;
     private widget.TextBox kdpoli;
     private widget.Label ketHari;
     private widget.TextArea keterangan;
@@ -795,7 +881,6 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
                     });
                     i++;
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("simrskhanza.DlgRujukanPoliInternal.tampil() : " + e);
             } finally {

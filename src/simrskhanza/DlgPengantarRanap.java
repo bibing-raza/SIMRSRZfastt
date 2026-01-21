@@ -9,6 +9,7 @@ import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -131,6 +132,8 @@ public class DlgPengantarRanap extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
+        jLabel95 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
 
@@ -175,6 +178,7 @@ public class DlgPengantarRanap extends javax.swing.JDialog {
         panelGlass7.add(jLabel5);
         jLabel5.setBounds(0, 68, 120, 23);
 
+        Scroll7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
 
@@ -237,7 +241,7 @@ public class DlgPengantarRanap extends javax.swing.JDialog {
         jLabel7.setBounds(560, 40, 150, 23);
 
         TtglRencana.setEditable(false);
-        TtglRencana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
+        TtglRencana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2025" }));
         TtglRencana.setDisplayFormat("dd-MM-yyyy");
         TtglRencana.setName("TtglRencana"); // NOI18N
         TtglRencana.setOpaque(false);
@@ -265,6 +269,7 @@ public class DlgPengantarRanap extends javax.swing.JDialog {
 
         tbSurat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbSurat.setName("tbSurat"); // NOI18N
+        tbSurat.getTableHeader().setReorderingAllowed(false);
         tbSurat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbSuratMouseClicked(evt);
@@ -359,6 +364,18 @@ public class DlgPengantarRanap extends javax.swing.JDialog {
         });
         panelGlass9.add(BtnEdit);
 
+        jLabel95.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel95.setText("Cetak Dalam Bentuk :");
+        jLabel95.setName("jLabel95"); // NOI18N
+        jLabel95.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass9.add(jLabel95);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass9.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
@@ -442,26 +459,71 @@ public class DlgPengantarRanap extends javax.swing.JDialog {
             param.put("emailrs", akses.getemailrs());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
             param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'")));
-            Valid.MyReport("rptSuratPengantarRanap.jasper", "report", "::[ Cetak Surat Pengantar Rawat Inap Pasien ]::",
-                    "SELECT sp.*, p.no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-laki','Perempuan') jenkel, "
-                    + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt, IFNULL(pr.keluhan,'-') keluhan, IFNULL(pr.diagnosa,'-') diagnosa, "
-                    + "pg.nama nmDokter, CONCAT(DAY(sp.tgl_rencana), ' ', CASE MONTH(sp.tgl_rencana) "
-                    + "WHEN 1 THEN 'Januari' "
-                    + "WHEN 2 THEN 'Februari' "
-                    + "WHEN 3 THEN 'Maret' "
-                    + "WHEN 4 THEN 'April' "
-                    + "WHEN 5 THEN 'Mei' "
-                    + "WHEN 6 THEN 'Juni' "
-                    + "WHEN 7 THEN 'Juli' "
-                    + "WHEN 8 THEN 'Agustus' "
-                    + "WHEN 9 THEN 'September' "
-                    + "WHEN 10 THEN 'Oktober' "
-                    + "WHEN 11 THEN 'November' "
-                    + "WHEN 12 THEN 'Desember' END,' ',YEAR(sp.tgl_rencana)) tglRencana FROM surat_pengantar_ranap sp inner join reg_periksa rp on rp.no_rawat=sp.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "
-                    + "inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
-                    + "inner join pegawai pg on pg.nik=sp.nip_dokter left join pemeriksaan_ralan pr on pr.no_rawat=sp.no_rawat "
-                    + "where sp.no_rawat='" + TNoRw.getText() + "'", param);
+            
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "", nip = "", nmdokter = "";
+                nip = Sequel.cariIsi("select nip_dokter from surat_pengantar_ranap where no_rawat='" + TNoRw.getText() + "'");
+                nmdokter = Sequel.cariIsi("select nama from pegawai where nik='" + nip + "'");
+                
+                if (nip.equals("") || nip.equals("-") || nip.equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, nama dokter harus dipilih dulu dengan benar,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Surat Pengantar Rawat Inap", nmdokter,
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from surat_pengantar_ranap where no_rawat='" + TNoRw.getText() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from surat_pengantar_ranap where no_rawat='" + TNoRw.getText() + "'")) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Triase Ponek", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                    Valid.MyReport("rptSuratPengantarRanapQr.jasper", "report", "::[ Cetak Surat Pengantar Rawat Inap Pasien ]::",
+                            "SELECT sp.*, p.no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-laki','Perempuan') jenkel, "
+                            + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt, IFNULL(pr.keluhan,'-') keluhan, IFNULL(pr.diagnosa,'-') diagnosa, "
+                            + "pg.nama nmDokter, CONCAT(DAY(sp.tgl_rencana), ' ', CASE MONTH(sp.tgl_rencana) "
+                            + "WHEN 1 THEN 'Januari' "
+                            + "WHEN 2 THEN 'Februari' "
+                            + "WHEN 3 THEN 'Maret' "
+                            + "WHEN 4 THEN 'April' "
+                            + "WHEN 5 THEN 'Mei' "
+                            + "WHEN 6 THEN 'Juni' "
+                            + "WHEN 7 THEN 'Juli' "
+                            + "WHEN 8 THEN 'Agustus' "
+                            + "WHEN 9 THEN 'September' "
+                            + "WHEN 10 THEN 'Oktober' "
+                            + "WHEN 11 THEN 'November' "
+                            + "WHEN 12 THEN 'Desember' END,' ',YEAR(sp.tgl_rencana)) tglRencana FROM surat_pengantar_ranap sp inner join reg_periksa rp on rp.no_rawat=sp.no_rawat "
+                            + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "
+                            + "inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
+                            + "inner join pegawai pg on pg.nik=sp.nip_dokter left join pemeriksaan_ralan pr on pr.no_rawat=sp.no_rawat "
+                            + "where sp.no_rawat='" + TNoRw.getText() + "'", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                Valid.MyReport("rptSuratPengantarRanap.jasper", "report", "::[ Cetak Surat Pengantar Rawat Inap Pasien ]::",
+                        "SELECT sp.*, p.no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-laki','Perempuan') jenkel, "
+                        + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt, IFNULL(pr.keluhan,'-') keluhan, IFNULL(pr.diagnosa,'-') diagnosa, "
+                        + "pg.nama nmDokter, CONCAT(DAY(sp.tgl_rencana), ' ', CASE MONTH(sp.tgl_rencana) "
+                        + "WHEN 1 THEN 'Januari' "
+                        + "WHEN 2 THEN 'Februari' "
+                        + "WHEN 3 THEN 'Maret' "
+                        + "WHEN 4 THEN 'April' "
+                        + "WHEN 5 THEN 'Mei' "
+                        + "WHEN 6 THEN 'Juni' "
+                        + "WHEN 7 THEN 'Juli' "
+                        + "WHEN 8 THEN 'Agustus' "
+                        + "WHEN 9 THEN 'September' "
+                        + "WHEN 10 THEN 'Oktober' "
+                        + "WHEN 11 THEN 'November' "
+                        + "WHEN 12 THEN 'Desember' END,' ',YEAR(sp.tgl_rencana)) tglRencana FROM surat_pengantar_ranap sp inner join reg_periksa rp on rp.no_rawat=sp.no_rawat "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "
+                        + "inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab "
+                        + "inner join pegawai pg on pg.nik=sp.nip_dokter left join pemeriksaan_ralan pr on pr.no_rawat=sp.no_rawat "
+                        + "where sp.no_rawat='" + TNoRw.getText() + "'", param);
+            }
 
             BtnKeluarActionPerformed(null);
             this.setCursor(Cursor.getDefaultCursor());
@@ -633,6 +695,7 @@ public class DlgPengantarRanap extends javax.swing.JDialog {
     private widget.TextArea TsdhDiberikan;
     private widget.Tanggal TtglRencana;
     public widget.CekBox chkCopy;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbRuangan;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel4;
@@ -640,6 +703,7 @@ public class DlgPengantarRanap extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
+    private widget.Label jLabel95;
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass9;
     private widget.Table tbSurat;

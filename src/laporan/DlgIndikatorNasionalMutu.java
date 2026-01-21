@@ -288,7 +288,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(100);
             } else if (i == 2) {
-                column.setPreferredWidth(635);
+                column.setPreferredWidth(1000);
             } 
         }
         tbNumdenom.setDefaultRenderer(Object.class, new WarnaTable());
@@ -1387,7 +1387,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(192, 188));
+        PanelInput.setPreferredSize(new java.awt.Dimension(192, 218));
         PanelInput.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -1424,13 +1424,13 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             }
         });
         PanelInput.add(cmbIndikator);
-        cmbIndikator.setBounds(125, 38, 760, 23);
+        cmbIndikator.setBounds(125, 38, 1120, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Tgl. Dilaporkan :");
         jLabel8.setName("jLabel8"); // NOI18N
         PanelInput.add(jLabel8);
-        jLabel8.setBounds(0, 154, 120, 23);
+        jLabel8.setBounds(0, 182, 120, 23);
 
         TtglCatat.setEditable(false);
         TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2026" }));
@@ -1439,13 +1439,13 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         TtglCatat.setOpaque(false);
         TtglCatat.setPreferredSize(new java.awt.Dimension(90, 23));
         PanelInput.add(TtglCatat);
-        TtglCatat.setBounds(125, 154, 90, 23);
+        TtglCatat.setBounds(125, 182, 90, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Jumlah Dilaporkan :");
         jLabel9.setName("jLabel9"); // NOI18N
         PanelInput.add(jLabel9);
-        jLabel9.setBounds(220, 154, 110, 23);
+        jLabel9.setBounds(220, 182, 110, 23);
 
         Tjumlah.setForeground(new java.awt.Color(0, 0, 0));
         Tjumlah.setName("Tjumlah"); // NOI18N
@@ -1455,7 +1455,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             }
         });
         PanelInput.add(Tjumlah);
-        Tjumlah.setBounds(335, 154, 60, 23);
+        Tjumlah.setBounds(335, 182, 60, 23);
 
         Scroll1.setComponentPopupMenu(jPopupMenu1);
         Scroll1.setName("Scroll1"); // NOI18N
@@ -1468,7 +1468,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         Scroll1.setViewportView(tbNumdenom);
 
         PanelInput.add(Scroll1);
-        Scroll1.setBounds(125, 67, 760, 80);
+        Scroll1.setBounds(125, 67, 1280, 108);
 
         BtnNumdenom.setForeground(new java.awt.Color(0, 0, 0));
         BtnNumdenom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
@@ -1482,7 +1482,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             }
         });
         PanelInput.add(BtnNumdenom);
-        BtnNumdenom.setBounds(410, 154, 210, 23);
+        BtnNumdenom.setBounds(410, 182, 210, 23);
 
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
