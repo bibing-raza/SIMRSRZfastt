@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,7 +42,7 @@ public class DlgCariReturJual extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private PreparedStatement ps, ps2;
     private ResultSet rs, rs2;
-    private String tanggal = "", noret = "", ptg = "", sat = "", bar = "", nonot = "";
+    private String tanggal = "", noret = "", ptg = "", sat = "", bar = "", nonot = "", tte = "";
     private int no = 0;
 
     /**
@@ -78,19 +79,19 @@ public class DlgCariReturJual extends javax.swing.JDialog {
         for (int i = 0; i < 10; i++) {
             TableColumn column = tbRetur.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(130);
             } else if (i == 1) {
                 column.setPreferredWidth(80);
             } else if (i == 2) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(220);
             } else if (i == 3) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(250);
             } else if (i == 4) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(70);
             } else if (i == 5) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(400);
             } else if (i == 6) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             } else if (i == 7) {
                 column.setPreferredWidth(90);
             } else if (i == 8) {
@@ -267,7 +268,9 @@ public class DlgCariReturJual extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         ppHapus = new javax.swing.JMenuItem();
-        ppCetakBilRetur = new javax.swing.JMenuItem();
+        ppCetakBilRetur = new javax.swing.JMenu();
+        MnTTD = new javax.swing.JMenuItem();
+        MnTTE = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         scrollPane1 = new widget.ScrollPane();
         tbRetur = new widget.Table();
@@ -307,7 +310,7 @@ public class DlgCariReturJual extends javax.swing.JDialog {
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         ppHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
         ppHapus.setText("Hapus Retur");
         ppHapus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ppHapus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -321,19 +324,46 @@ public class DlgCariReturJual extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppHapus);
 
-        ppCetakBilRetur.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppCetakBilRetur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        ppCetakBilRetur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppCetakBilRetur.setText("Cetak Bil Retur");
+        ppCetakBilRetur.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppCetakBilRetur.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ppCetakBilRetur.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppCetakBilRetur.setIconTextGap(8);
         ppCetakBilRetur.setName("ppCetakBilRetur"); // NOI18N
+        ppCetakBilRetur.setOpaque(true);
         ppCetakBilRetur.setPreferredSize(new java.awt.Dimension(150, 25));
-        ppCetakBilRetur.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTD.setText("TTD Basah");
+        MnTTD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTD.setIconTextGap(5);
+        MnTTD.setName("MnTTD"); // NOI18N
+        MnTTD.setPreferredSize(new java.awt.Dimension(120, 25));
+        MnTTD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ppCetakBilReturActionPerformed(evt);
+                MnTTDActionPerformed(evt);
             }
         });
+        ppCetakBilRetur.add(MnTTD);
+
+        MnTTE.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTE.setText("TTE (QRCode)");
+        MnTTE.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTE.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTE.setIconTextGap(5);
+        MnTTE.setName("MnTTE"); // NOI18N
+        MnTTE.setPreferredSize(new java.awt.Dimension(120, 25));
+        MnTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEActionPerformed(evt);
+            }
+        });
+        ppCetakBilRetur.add(MnTTE);
+
         jPopupMenu1.add(ppCetakBilRetur);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -367,6 +397,7 @@ public class DlgCariReturJual extends javax.swing.JDialog {
         tbRetur.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRetur.setComponentPopupMenu(jPopupMenu1);
         tbRetur.setName("tbRetur"); // NOI18N
+        tbRetur.getTableHeader().setReorderingAllowed(false);
         tbRetur.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbReturMouseClicked(evt);
@@ -961,7 +992,11 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         tampil();
     }//GEN-LAST:event_formWindowOpened
 
-    private void ppCetakBilReturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppCetakBilReturActionPerformed
+    private void tbReturMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbReturMouseClicked
+        NoRetur.setText(tbRetur.getValueAt(tbRetur.getSelectedRow(), 0).toString());
+    }//GEN-LAST:event_tbReturMouseClicked
+
+    private void MnTTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDActionPerformed
         if (tabMode.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data retur obat sudah habis...!!!!");
             NoRetur.requestFocus();
@@ -969,31 +1004,25 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu nomor retur dengan mengklik data pada tabel...!!!");
             tbRetur.requestFocus();
         } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
-            Valid.MyReport("rptBilReturJual.jasper", "report", "::[ Bil. Pembayaran Retur Obat ]::", " SELECT RJ.tgl_retur, DRT.no_retur_jual, B.nm_bangsal AS asal_apotek, DRT.nota_jual, "
-                    + " RJ.no_rkm_medis, P.nm_pasien, DB.nama_brng, DRT.jml_jual, DRT.h_jual, DRT.jml_retur, "
-                    + " DRT.h_retur, DRT.subtotal, PT.nama, (SELECT SUM(subtotal) as total from detreturjual where no_retur_jual='" + NoRetur.getText() + "') as total_bayar"
-                    + " FROM detreturjual DRT "
-                    + " INNER JOIN databarang DB ON DRT.kode_brng = DB.kode_brng "
-                    + " INNER JOIN returjual RJ ON DRT.no_retur_jual = RJ.no_retur_jual "
-                    + " INNER JOIN pasien P ON RJ.no_rkm_medis = P.no_rkm_medis "
-                    + " INNER JOIN petugas PT ON RJ.nip = PT.nip "
-                    + " INNER JOIN bangsal B ON RJ.kd_bangsal = B.kd_bangsal where DRT.no_retur_jual='" + NoRetur.getText() + "'", param);
-            this.setCursor(Cursor.getDefaultCursor());
+            tte = "";
+            tte = "tidak";
+            cetakBill();
         }
-    }//GEN-LAST:event_ppCetakBilReturActionPerformed
+    }//GEN-LAST:event_MnTTDActionPerformed
 
-    private void tbReturMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbReturMouseClicked
-        NoRetur.setText(tbRetur.getValueAt(tbRetur.getSelectedRow(), 0).toString());
-    }//GEN-LAST:event_tbReturMouseClicked
+    private void MnTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data retur obat sudah habis...!!!!");
+            NoRetur.requestFocus();
+        } else if (NoRetur.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu nomor retur dengan mengklik data pada tabel...!!!");
+            tbRetur.requestFocus();
+        } else {
+            tte = "";
+            tte = "ya";
+            cetakBill();
+        }
+    }//GEN-LAST:event_MnTTEActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1018,6 +1047,8 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private widget.Button BtnPrint;
     private widget.TextBox Kdptg;
     private widget.Label LTotal;
+    private javax.swing.JMenuItem MnTTD;
+    private javax.swing.JMenuItem MnTTE;
     private widget.TextBox Nmptg;
     private widget.TextBox NoNota;
     private widget.TextBox NoRetur;
@@ -1046,7 +1077,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private widget.panelisi panelisi1;
     private widget.panelisi panelisi4;
     private widget.panelisi panelisijual;
-    private javax.swing.JMenuItem ppCetakBilRetur;
+    private javax.swing.JMenu ppCetakBilRetur;
     private javax.swing.JMenuItem ppHapus;
     private widget.ScrollPane scrollPane1;
     private widget.Table tbRetur;
@@ -1192,5 +1223,63 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             ppHapus.setEnabled(false);
         }
     }
+    
+    private void cetakBill() {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
 
+        if (tte.equals("tidak")) {
+            Valid.MyReport("rptBilReturJual.jasper", "report", "::[ Bil. Pembayaran Retur Obat ]::",
+                    "SELECT RJ.tgl_retur, DRT.no_retur_jual, B.nm_bangsal AS asal_apotek, DRT.nota_jual, "
+                    + " RJ.no_rkm_medis, P.nm_pasien, DB.nama_brng, DRT.jml_jual, DRT.h_jual, DRT.jml_retur, "
+                    + " DRT.h_retur, DRT.subtotal, PT.nama, (SELECT SUM(subtotal) as total from detreturjual where no_retur_jual='" + NoRetur.getText() + "') as total_bayar"
+                    + " FROM detreturjual DRT "
+                    + " INNER JOIN databarang DB ON DRT.kode_brng = DB.kode_brng "
+                    + " INNER JOIN returjual RJ ON DRT.no_retur_jual = RJ.no_retur_jual "
+                    + " INNER JOIN pasien P ON RJ.no_rkm_medis = P.no_rkm_medis "
+                    + " INNER JOIN petugas PT ON RJ.nip = PT.nip "
+                    + " INNER JOIN bangsal B ON RJ.kd_bangsal = B.kd_bangsal where DRT.no_retur_jual='" + NoRetur.getText() + "'", param);
+        } else if (tte.equals("ya")) {
+            String isi = "", nipPetugas = "", tglretur = "";
+            nipPetugas = Sequel.cariIsi("SELECT RJ.nip FROM detreturjual DRT INNER JOIN returjual RJ ON DRT.no_retur_jual = RJ.no_retur_jual "
+                    + "where DRT.no_retur_jual='" + NoRetur.getText() + "' group by RJ.nip");
+            tglretur = Sequel.cariIsi("SELECT date_format(RJ.tgl_retur,'%d/%m/%Y') FROM detreturjual DRT INNER JOIN returjual RJ ON DRT.no_retur_jual = RJ.no_retur_jual "
+                    + "where DRT.no_retur_jual='" + NoRetur.getText() + "' group by RJ.nip");
+
+            if (nipPetugas.equals("") || nipPetugas.equals("-") || nipPetugas.equals("--")) {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, nama petugas yang melakukan retur harus diisi dulu dg. benar,....     ");
+            } else {
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Kuitansi Retur Obat", Sequel.cariIsi("select nama from pegawai where nik='" + nipPetugas + "'"),
+                                tglretur, Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi Retur Obat", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+                Valid.MyReport("rptBilReturJualQr.jasper", "report", "::[ Bil. Pembayaran Retur Obat ]::",
+                        "SELECT RJ.tgl_retur, DRT.no_retur_jual, B.nm_bangsal AS asal_apotek, DRT.nota_jual, "
+                        + " RJ.no_rkm_medis, P.nm_pasien, DB.nama_brng, DRT.jml_jual, DRT.h_jual, DRT.jml_retur, "
+                        + " DRT.h_retur, DRT.subtotal, PT.nama, (SELECT SUM(subtotal) as total from detreturjual where no_retur_jual='" + NoRetur.getText() + "') as total_bayar"
+                        + " FROM detreturjual DRT "
+                        + " INNER JOIN databarang DB ON DRT.kode_brng = DB.kode_brng "
+                        + " INNER JOIN returjual RJ ON DRT.no_retur_jual = RJ.no_retur_jual "
+                        + " INNER JOIN pasien P ON RJ.no_rkm_medis = P.no_rkm_medis "
+                        + " INNER JOIN petugas PT ON RJ.nip = PT.nip "
+                        + " INNER JOIN bangsal B ON RJ.kd_bangsal = B.kd_bangsal where DRT.no_retur_jual='" + NoRetur.getText() + "'", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        }
+        this.setCursor(Cursor.getDefaultCursor());
+    }
 }

@@ -343,9 +343,7 @@ public final class DlgUbahPeriksaLab extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        ppBersihkan.setBackground(new java.awt.Color(255, 255, 255));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppBersihkan.setForeground(new java.awt.Color(0, 0, 0));
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBersihkan.setText("Bersihkan Pilihan");
         ppBersihkan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -360,9 +358,7 @@ public final class DlgUbahPeriksaLab extends javax.swing.JDialog {
         });
         Popup.add(ppBersihkan);
 
-        ppSemua.setBackground(new java.awt.Color(255, 255, 255));
         ppSemua.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppSemua.setForeground(new java.awt.Color(0, 0, 0));
         ppSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppSemua.setText("Pilih Semua");
         ppSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -381,7 +377,7 @@ public final class DlgUbahPeriksaLab extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Ubah Data Hasil Periksa Laboratorium & Radiologi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Ubah Data Hasil Periksa Laboratorium & Radiologi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -583,6 +579,7 @@ public final class DlgUbahPeriksaLab extends javax.swing.JDialog {
 
         tbTarif.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbTarif.setName("tbTarif"); // NOI18N
+        tbTarif.getTableHeader().setReorderingAllowed(false);
         tbTarif.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTarifMouseClicked(evt);
@@ -690,6 +687,7 @@ public final class DlgUbahPeriksaLab extends javax.swing.JDialog {
 
         tbPemeriksaan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPemeriksaan.setName("tbPemeriksaan"); // NOI18N
+        tbPemeriksaan.getTableHeader().setReorderingAllowed(false);
         Scroll.setViewportView(tbPemeriksaan);
 
         PanelCariUtama.add(Scroll, java.awt.BorderLayout.CENTER);

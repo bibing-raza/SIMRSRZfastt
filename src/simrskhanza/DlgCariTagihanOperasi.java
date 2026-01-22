@@ -667,7 +667,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         BtnOperator1.setForeground(new java.awt.Color(0, 0, 0));
         BtnOperator1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnOperator1.setMnemonic('2');
         BtnOperator1.setToolTipText("Alt+2");
         BtnOperator1.setName("BtnOperator1"); // NOI18N
         BtnOperator1.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -706,7 +705,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnAsis1.setForeground(new java.awt.Color(0, 0, 0));
         btnAsis1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnAsis1.setMnemonic('2');
         btnAsis1.setToolTipText("Alt+2");
         btnAsis1.setName("btnAsis1"); // NOI18N
         btnAsis1.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -745,7 +743,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         BtnOperator2.setForeground(new java.awt.Color(0, 0, 0));
         BtnOperator2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnOperator2.setMnemonic('2');
         BtnOperator2.setToolTipText("Alt+2");
         BtnOperator2.setName("BtnOperator2"); // NOI18N
         BtnOperator2.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -784,7 +781,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnInstrumen.setForeground(new java.awt.Color(0, 0, 0));
         btnInstrumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnInstrumen.setMnemonic('2');
         btnInstrumen.setToolTipText("Alt+2");
         btnInstrumen.setName("btnInstrumen"); // NOI18N
         btnInstrumen.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -823,7 +819,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         BtnAnastesi.setForeground(new java.awt.Color(0, 0, 0));
         BtnAnastesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnAnastesi.setMnemonic('2');
         BtnAnastesi.setToolTipText("Alt+2");
         BtnAnastesi.setName("BtnAnastesi"); // NOI18N
         BtnAnastesi.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -862,7 +857,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnAnak.setForeground(new java.awt.Color(0, 0, 0));
         btnAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnAnak.setMnemonic('2');
         btnAnak.setToolTipText("Alt+2");
         btnAnak.setName("btnAnak"); // NOI18N
         btnAnak.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -876,7 +870,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnAsis2.setForeground(new java.awt.Color(0, 0, 0));
         btnAsis2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnAsis2.setMnemonic('2');
         btnAsis2.setToolTipText("Alt+2");
         btnAsis2.setName("btnAsis2"); // NOI18N
         btnAsis2.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -915,7 +908,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnAsis3.setForeground(new java.awt.Color(0, 0, 0));
         btnAsis3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnAsis3.setMnemonic('2');
         btnAsis3.setToolTipText("Alt+2");
         btnAsis3.setName("btnAsis3"); // NOI18N
         btnAsis3.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -954,7 +946,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnPrwRes.setForeground(new java.awt.Color(0, 0, 0));
         btnPrwRes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPrwRes.setMnemonic('2');
         btnPrwRes.setToolTipText("Alt+2");
         btnPrwRes.setName("btnPrwRes"); // NOI18N
         btnPrwRes.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1018,7 +1009,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         BtnAsnes.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnAsnes.setMnemonic('2');
         BtnAsnes.setToolTipText("Alt+2");
         BtnAsnes.setName("BtnAsnes"); // NOI18N
         BtnAsnes.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1057,7 +1047,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnBidan.setForeground(new java.awt.Color(0, 0, 0));
         btnBidan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnBidan.setMnemonic('2');
         btnBidan.setToolTipText("Alt+2");
         btnBidan.setName("btnBidan"); // NOI18N
         btnBidan.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1096,7 +1085,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnPrwLuar.setForeground(new java.awt.Color(0, 0, 0));
         btnPrwLuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPrwLuar.setMnemonic('2');
         btnPrwLuar.setToolTipText("Alt+2");
         btnPrwLuar.setName("btnPrwLuar"); // NOI18N
         btnPrwLuar.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1110,7 +1098,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnBidan2.setForeground(new java.awt.Color(0, 0, 0));
         btnBidan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnBidan2.setMnemonic('2');
         btnBidan2.setToolTipText("Alt+2");
         btnBidan2.setName("btnBidan2"); // NOI18N
         btnBidan2.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1174,7 +1161,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnBidan3.setForeground(new java.awt.Color(0, 0, 0));
         btnBidan3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnBidan3.setMnemonic('2');
         btnBidan3.setToolTipText("Alt+2");
         btnBidan3.setName("btnBidan3"); // NOI18N
         btnBidan3.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1213,7 +1199,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnOnloop1.setForeground(new java.awt.Color(0, 0, 0));
         btnOnloop1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnOnloop1.setMnemonic('2');
         btnOnloop1.setToolTipText("Alt+2");
         btnOnloop1.setName("btnOnloop1"); // NOI18N
         btnOnloop1.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1227,7 +1212,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnOnloop2.setForeground(new java.awt.Color(0, 0, 0));
         btnOnloop2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnOnloop2.setMnemonic('2');
         btnOnloop2.setToolTipText("Alt+2");
         btnOnloop2.setName("btnOnloop2"); // NOI18N
         btnOnloop2.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1273,7 +1257,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnOnloop3.setForeground(new java.awt.Color(0, 0, 0));
         btnOnloop3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnOnloop3.setMnemonic('2');
         btnOnloop3.setToolTipText("Alt+2");
         btnOnloop3.setName("btnOnloop3"); // NOI18N
         btnOnloop3.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1330,7 +1313,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btndrpjanak.setForeground(new java.awt.Color(0, 0, 0));
         btndrpjanak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btndrpjanak.setMnemonic('2');
         btndrpjanak.setToolTipText("Alt+2");
         btndrpjanak.setName("btndrpjanak"); // NOI18N
         btndrpjanak.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1369,7 +1351,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btndrumum.setForeground(new java.awt.Color(0, 0, 0));
         btndrumum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btndrumum.setMnemonic('2');
         btndrumum.setToolTipText("Alt+2");
         btndrumum.setName("btndrumum"); // NOI18N
         btndrumum.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1408,7 +1389,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnAsis4.setForeground(new java.awt.Color(0, 0, 0));
         btnAsis4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnAsis4.setMnemonic('2');
         btnAsis4.setToolTipText("Alt+2");
         btnAsis4.setName("btnAsis4"); // NOI18N
         btnAsis4.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1447,7 +1427,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         BtnAsnes1.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsnes1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnAsnes1.setMnemonic('2');
         BtnAsnes1.setToolTipText("Alt+2");
         BtnAsnes1.setName("BtnAsnes1"); // NOI18N
         BtnAsnes1.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1486,7 +1465,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnOnloop4.setForeground(new java.awt.Color(0, 0, 0));
         btnOnloop4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnOnloop4.setMnemonic('2');
         btnOnloop4.setToolTipText("Alt+2");
         btnOnloop4.setName("btnOnloop4"); // NOI18N
         btnOnloop4.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1500,7 +1478,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnOnloop5.setForeground(new java.awt.Color(0, 0, 0));
         btnOnloop5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnOnloop5.setMnemonic('2');
         btnOnloop5.setToolTipText("Alt+2");
         btnOnloop5.setName("btnOnloop5"); // NOI18N
         btnOnloop5.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1539,7 +1516,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         BtnSimpan4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan4.setMnemonic('S');
         BtnSimpan4.setText("Simpan");
         BtnSimpan4.setToolTipText("Alt+S");
         BtnSimpan4.setName("BtnSimpan4"); // NOI18N
@@ -1553,7 +1529,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn4.setMnemonic('U');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+U");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -1605,6 +1580,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         tbDokter.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDokter.setComponentPopupMenu(jPopupMenu1);
         tbDokter.setName("tbDokter"); // NOI18N
+        tbDokter.getTableHeader().setReorderingAllowed(false);
         tbDokter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDokterMouseClicked(evt);
@@ -1668,7 +1644,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         BtnCari5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnCari5.setMnemonic('2');
         BtnCari5.setToolTipText("Alt+2");
         BtnCari5.setName("BtnCari5"); // NOI18N
         BtnCari5.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1743,7 +1718,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnCariDokter.setForeground(new java.awt.Color(0, 0, 0));
         btnCariDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnCariDokter.setMnemonic('7');
         btnCariDokter.setToolTipText("ALt+7");
         btnCariDokter.setName("btnCariDokter"); // NOI18N
         btnCariDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -1799,7 +1773,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         btnCariDokter1.setForeground(new java.awt.Color(0, 0, 0));
         btnCariDokter1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnCariDokter1.setMnemonic('7');
         btnCariDokter1.setToolTipText("ALt+7");
         btnCariDokter1.setName("btnCariDokter1"); // NOI18N
         btnCariDokter1.addActionListener(new java.awt.event.ActionListener() {
@@ -1834,7 +1807,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('5');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+5");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -1866,7 +1838,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -1885,7 +1856,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N

@@ -947,6 +947,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
 
         tbPemeriksaan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPemeriksaan.setName("tbPemeriksaan"); // NOI18N
+        tbPemeriksaan.getTableHeader().setReorderingAllowed(false);
         tbPemeriksaan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPemeriksaanMouseClicked(evt);
@@ -1023,6 +1024,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
 
         tbPermintaan.setToolTipText("");
         tbPermintaan.setName("tbPermintaan"); // NOI18N
+        tbPermintaan.getTableHeader().setReorderingAllowed(false);
         tbPermintaan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPermintaanMouseClicked(evt);
@@ -1129,6 +1131,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
 
         tbBHPRadiologi.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbBHPRadiologi.setName("tbBHPRadiologi"); // NOI18N
+        tbBHPRadiologi.getTableHeader().setReorderingAllowed(false);
         tbBHPRadiologi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbBHPRadiologiMouseClicked(evt);

@@ -58,7 +58,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             Utang_Jasa_Medik_Dokter_Radiologi_Ranap = "", Beban_Jasa_Medik_Petugas_Radiologi_Ranap = "", dialog_simpan = "",
             Utang_Jasa_Medik_Petugas_Radiologi_Ranap = "", Beban_Kso_Radiologi_Ranap = "", Utang_Kso_Radiologi_Ranap = "",
             HPP_Persediaan_Radiologi_Rawat_Inap = "", Persediaan_BHP_Radiologi_Rawat_Inap = "", cekDataRad = "", khususIgd = "",
-            dokterBaca = "", cekJamSelesai = "", cekDurasi = "";
+            dokterBaca = "", cekJamSelesai = "", cekDurasi = "", tte = "";
 
     /**
      * Creates new form DlgProgramStudi
@@ -657,8 +657,12 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         Kd2 = new widget.TextBox();
         NoBalasan = new widget.TextBox();
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnCetakNota = new javax.swing.JMenuItem();
-        MnCetakBuktiReg = new javax.swing.JMenuItem();
+        MnCetakNota = new javax.swing.JMenu();
+        MnTTDnota = new javax.swing.JMenuItem();
+        MnTTEnota = new javax.swing.JMenuItem();
+        MnCetakBuktiReg = new javax.swing.JMenu();
+        MnTTDreg = new javax.swing.JMenuItem();
+        MnTTEreg = new javax.swing.JMenuItem();
         MnHasilPemeriksaan = new javax.swing.JMenuItem();
         MnRiwayatPerawatan = new javax.swing.JMenuItem();
         MnDokumenPenunjangMedis = new javax.swing.JMenuItem();
@@ -881,28 +885,88 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jPopupMenu1.setPreferredSize(new java.awt.Dimension(260, 350));
         jPopupMenu1.setRequestFocusEnabled(false);
 
-        MnCetakNota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCetakNota.setText("Cetak Nota Radiologi");
+        MnCetakNota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakNota.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCetakNota.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCetakNota.setIconTextGap(5);
         MnCetakNota.setName("MnCetakNota"); // NOI18N
+        MnCetakNota.setOpaque(true);
         MnCetakNota.setPreferredSize(new java.awt.Dimension(260, 26));
-        MnCetakNota.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTDnota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDnota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTDnota.setText("TTD Basah");
+        MnTTDnota.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDnota.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDnota.setIconTextGap(5);
+        MnTTDnota.setName("MnTTDnota"); // NOI18N
+        MnTTDnota.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDnota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCetakNotaActionPerformed(evt);
+                MnTTDnotaActionPerformed(evt);
             }
         });
+        MnCetakNota.add(MnTTDnota);
+
+        MnTTEnota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEnota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTEnota.setText("TTE (QRCode)");
+        MnTTEnota.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEnota.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEnota.setIconTextGap(5);
+        MnTTEnota.setName("MnTTEnota"); // NOI18N
+        MnTTEnota.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEnota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEnotaActionPerformed(evt);
+            }
+        });
+        MnCetakNota.add(MnTTEnota);
+
         jPopupMenu1.add(MnCetakNota);
 
-        MnCetakBuktiReg.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakBuktiReg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCetakBuktiReg.setText("Cetak Bukti Reg. Radiologi");
+        MnCetakBuktiReg.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakBuktiReg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCetakBuktiReg.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCetakBuktiReg.setIconTextGap(5);
         MnCetakBuktiReg.setName("MnCetakBuktiReg"); // NOI18N
+        MnCetakBuktiReg.setOpaque(true);
         MnCetakBuktiReg.setPreferredSize(new java.awt.Dimension(260, 26));
-        MnCetakBuktiReg.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTDreg.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDreg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTDreg.setText("TTD Basah");
+        MnTTDreg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDreg.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDreg.setIconTextGap(5);
+        MnTTDreg.setName("MnTTDreg"); // NOI18N
+        MnTTDreg.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDreg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCetakBuktiRegActionPerformed(evt);
+                MnTTDregActionPerformed(evt);
             }
         });
+        MnCetakBuktiReg.add(MnTTDreg);
+
+        MnTTEreg.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEreg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTEreg.setText("TTE (QRCode)");
+        MnTTEreg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEreg.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEreg.setIconTextGap(5);
+        MnTTEreg.setName("MnTTEreg"); // NOI18N
+        MnTTEreg.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEreg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEregActionPerformed(evt);
+            }
+        });
+        MnCetakBuktiReg.add(MnTTEreg);
+
         jPopupMenu1.add(MnCetakBuktiReg);
 
         MnHasilPemeriksaan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1826,6 +1890,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         tbPemeriksaan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit");
         tbPemeriksaan.setComponentPopupMenu(jPopupMenu2);
         tbPemeriksaan.setName("tbPemeriksaan"); // NOI18N
+        tbPemeriksaan.getTableHeader().setReorderingAllowed(false);
         tbPemeriksaan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPemeriksaanMouseClicked(evt);
@@ -1878,6 +1943,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
 
         jPanel2.add(panelisi4, java.awt.BorderLayout.PAGE_START);
 
+        Scroll3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll3.setComponentPopupMenu(jPopupMenu2);
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
@@ -2016,7 +2082,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel51.setBounds(0, 25, 130, 23);
 
         tanggalPeriksa.setEditable(false);
-        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025" }));
+        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-01-2026" }));
         tanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         tanggalPeriksa.setName("tanggalPeriksa"); // NOI18N
         tanggalPeriksa.setOpaque(false);
@@ -2428,8 +2494,8 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
 
-        tbDataPeriksa.setToolTipText("");
         tbDataPeriksa.setName("tbDataPeriksa"); // NOI18N
+        tbDataPeriksa.getTableHeader().setReorderingAllowed(false);
         tbDataPeriksa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDataPeriksaMouseClicked(evt);
@@ -2448,8 +2514,8 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         Scroll4.setName("Scroll4"); // NOI18N
         Scroll4.setOpaque(true);
 
-        tbExpertise.setToolTipText("");
         tbExpertise.setName("tbExpertise"); // NOI18N
+        tbExpertise.getTableHeader().setReorderingAllowed(false);
         tbExpertise.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbExpertiseMouseClicked(evt);
@@ -2625,6 +2691,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         tbPeriksaRadiologi.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPeriksaRadiologi.setComponentPopupMenu(jPopupMenu1);
         tbPeriksaRadiologi.setName("tbPeriksaRadiologi"); // NOI18N
+        tbPeriksaRadiologi.getTableHeader().setReorderingAllowed(false);
         tbPeriksaRadiologi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPeriksaRadiologiMouseClicked(evt);
@@ -3009,7 +3076,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         panelisi1.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-01-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -3347,57 +3414,6 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         khususIgd = "tidak";
         tampil();
     }//GEN-LAST:event_formWindowOpened
-
-    private void MnCetakNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakNotaActionPerformed
-        if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
-            TCari.requestFocus();
-        } else if (tbPeriksaRadiologi.getSelectedRow() <= -1) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan pilih data..!!");
-            khususIgd = "tidak";
-            tampil();
-        } else {
-            if (Kd2.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data yang mau ditampilkan...!!!!");
-                khususIgd = "tidak";
-                tampil();
-            } else if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + Kd2.getText() + "'") == 0) {
-                JOptionPane.showMessageDialog(null, "Maaf, silahkan klik tepat pada nama pasiennya...!!!!");
-            } else {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                try {
-                    ps4.setString(1, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 3).toString());
-                    ps4.setString(2, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 4).toString());
-                    ps4.setString(3, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 0).toString());
-                    rs = ps4.executeQuery();
-                    while (rs.next()) {
-                        Sequel.queryu("delete from temporary");
-                        koneksi.setAutoCommit(false);
-                        ps2.setString(1, rs.getString("no_rawat"));
-                        ps2.setString(2, rs.getString("tgl_periksa"));
-                        ps2.setString(3, rs.getString("jam"));
-                        rs2 = ps2.executeQuery();
-                        ttl = 0;
-                        while (rs2.next()) {
-                            item = rs2.getDouble("biaya") + Sequel.cariIsiAngka("select sum(biaya_item) from template_laboratorium where kd_jenis_prw=?", rs2.getString("kd_jenis_prw"));
-                            ttl = ttl + item;
-                            Sequel.menyimpan("temporary", "'0','" + rs2.getString("nm_perawatan") + "','" + item + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Rad");
-                        }
-                        Sequel.menyimpan("temporary", "'0','Total Biaya Pemeriksaan Radiologi','" + ttl + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Rad");
-                        cetakNota();
-//                        Valid.panggilUrl("billing/LaporanBiayaRadiologi.php?norm=" + rs.getString("no_rkm_medis") + "&pasien=" + rs.getString("nm_pasien").replaceAll(" ", "_")
-//                                + "&tanggal=" + rs.getString("tgl_periksa") + "&jam=" + rs.getString("jam") + "&pjlab=" + rs.getString("nm_dokter").replaceAll(" ", "_")
-//                                + "&petugas=" + rs.getString("nama").replaceAll(" ", "_") + "&kasir=" + Sequel.cariIsi("select nama from pegawai where nik=?", var.getkode()));
-                        koneksi.setAutoCommit(true);
-
-                    }
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
-                this.setCursor(Cursor.getDefaultCursor());
-            }
-        }        
-    }//GEN-LAST:event_MnCetakNotaActionPerformed
 
     private void MnHasilPemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanActionPerformed
         lihatHasil = "";
@@ -5248,7 +5264,138 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         }
     }//GEN-LAST:event_MnTglRegKhususIGDActionPerformed
 
-    private void MnCetakBuktiRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakBuktiRegActionPerformed
+    private void BtnCloseIn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn7ActionPerformed
+        WindowBeratBadan.dispose();
+        tampil();
+    }//GEN-LAST:event_BtnCloseIn7ActionPerformed
+
+    private void BtnSimpan6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan6ActionPerformed
+        Sequel.mengedit("periksa_radiologi", "no_rawat='" + Kd2.getText() + "'", "berat_badan='" + Tbb.getText() + "'");
+        WindowBeratBadan.dispose();
+        tampil();
+    }//GEN-LAST:event_BtnSimpan6ActionPerformed
+
+    private void MnBeratBadanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBeratBadanActionPerformed
+        if (NoRawat.getText().equals("") || NoRawat.getText().equals("Cara Bayar") || NoRawat.getText().equals("Berat Badan")) {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya, klik pada nama/no. RM pasien ditabel..!!");            
+            tampil();
+            tbPeriksaRadiologi.requestFocus();
+        } else {
+            WindowBeratBadan.setSize(469, 88);
+            WindowBeratBadan.setLocationRelativeTo(internalFrame1);
+            WindowBeratBadan.setVisible(true);
+            Tbb.setText(Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + Kd2.getText() + "'"));
+            Tbb.requestFocus();
+        }
+    }//GEN-LAST:event_MnBeratBadanActionPerformed
+
+    private void TbbKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TbbKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnSimpan6ActionPerformed(null);
+        }
+    }//GEN-LAST:event_TbbKeyPressed
+
+    private void MnTTDnotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDnotaActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+            TCari.requestFocus();
+        } else if (tbPeriksaRadiologi.getSelectedRow() <= -1) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan pilih data..!!");
+            khususIgd = "tidak";
+            tampil();
+        } else {
+            if (Kd2.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data yang mau ditampilkan...!!!!");
+                khususIgd = "tidak";
+                tampil();
+            } else if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + Kd2.getText() + "'") == 0) {
+                JOptionPane.showMessageDialog(null, "Maaf, silahkan klik tepat pada nama pasiennya...!!!!");
+            } else {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                try {
+                    ps4.setString(1, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 3).toString());
+                    ps4.setString(2, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 4).toString());
+                    ps4.setString(3, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 0).toString());
+                    rs = ps4.executeQuery();
+                    while (rs.next()) {
+                        Sequel.queryu("delete from temporary");
+                        koneksi.setAutoCommit(false);
+                        ps2.setString(1, rs.getString("no_rawat"));
+                        ps2.setString(2, rs.getString("tgl_periksa"));
+                        ps2.setString(3, rs.getString("jam"));
+                        rs2 = ps2.executeQuery();
+                        ttl = 0;
+                        while (rs2.next()) {
+                            item = rs2.getDouble("biaya") + Sequel.cariIsiAngka("select sum(biaya_item) from template_laboratorium where kd_jenis_prw=?", rs2.getString("kd_jenis_prw"));
+                            ttl = ttl + item;
+                            Sequel.menyimpan("temporary", "'0','" + rs2.getString("nm_perawatan") + "','" + item + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Rad");
+                        }
+                        Sequel.menyimpan("temporary", "'0','Total Biaya Pemeriksaan Radiologi','" + ttl + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Rad");
+                        tte = "";
+                        tte = "tidak";
+                        cetakNota();
+                        koneksi.setAutoCommit(true);
+
+                    }
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnTTDnotaActionPerformed
+
+    private void MnTTEnotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEnotaActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+            TCari.requestFocus();
+        } else if (tbPeriksaRadiologi.getSelectedRow() <= -1) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan pilih data..!!");
+            khususIgd = "tidak";
+            tampil();
+        } else {
+            if (Kd2.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data yang mau ditampilkan...!!!!");
+                khususIgd = "tidak";
+                tampil();
+            } else if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + Kd2.getText() + "'") == 0) {
+                JOptionPane.showMessageDialog(null, "Maaf, silahkan klik tepat pada nama pasiennya...!!!!");
+            } else {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                try {
+                    ps4.setString(1, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 3).toString());
+                    ps4.setString(2, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 4).toString());
+                    ps4.setString(3, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 0).toString());
+                    rs = ps4.executeQuery();
+                    while (rs.next()) {
+                        Sequel.queryu("delete from temporary");
+                        koneksi.setAutoCommit(false);
+                        ps2.setString(1, rs.getString("no_rawat"));
+                        ps2.setString(2, rs.getString("tgl_periksa"));
+                        ps2.setString(3, rs.getString("jam"));
+                        rs2 = ps2.executeQuery();
+                        ttl = 0;
+                        while (rs2.next()) {
+                            item = rs2.getDouble("biaya") + Sequel.cariIsiAngka("select sum(biaya_item) from template_laboratorium where kd_jenis_prw=?", rs2.getString("kd_jenis_prw"));
+                            ttl = ttl + item;
+                            Sequel.menyimpan("temporary", "'0','" + rs2.getString("nm_perawatan") + "','" + item + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Rad");
+                        }
+                        Sequel.menyimpan("temporary", "'0','Total Biaya Pemeriksaan Radiologi','" + ttl + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Rad");
+                        tte = "";
+                        tte = "ya";
+                        cetakNota();
+                        koneksi.setAutoCommit(true);
+
+                    }
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnTTEnotaActionPerformed
+
+    private void MnTTDregActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDregActionPerformed
         if (tabMode.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
             TCari.requestFocus();
@@ -5282,6 +5429,8 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                             + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Rad");
                         }
                         
+                        tte = "";
+                        tte = "tidak";
                         cetakBuktiReg();
                         koneksi.setAutoCommit(true);
                     }
@@ -5291,38 +5440,54 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }
-    }//GEN-LAST:event_MnCetakBuktiRegActionPerformed
+    }//GEN-LAST:event_MnTTDregActionPerformed
 
-    private void BtnCloseIn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn7ActionPerformed
-        WindowBeratBadan.dispose();
-        tampil();
-    }//GEN-LAST:event_BtnCloseIn7ActionPerformed
-
-    private void BtnSimpan6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan6ActionPerformed
-        Sequel.mengedit("periksa_radiologi", "no_rawat='" + Kd2.getText() + "'", "berat_badan='" + Tbb.getText() + "'");
-        WindowBeratBadan.dispose();
-        tampil();
-    }//GEN-LAST:event_BtnSimpan6ActionPerformed
-
-    private void MnBeratBadanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBeratBadanActionPerformed
-        if (NoRawat.getText().equals("") || NoRawat.getText().equals("Cara Bayar") || NoRawat.getText().equals("Berat Badan")) {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya, klik pada nama/no. RM pasien ditabel..!!");            
+    private void MnTTEregActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEregActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+            TCari.requestFocus();
+        } else if (tbPeriksaRadiologi.getSelectedRow() <= -1) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan pilih data..!!");
+            khususIgd = "tidak";
             tampil();
-            tbPeriksaRadiologi.requestFocus();
         } else {
-            WindowBeratBadan.setSize(469, 88);
-            WindowBeratBadan.setLocationRelativeTo(internalFrame1);
-            WindowBeratBadan.setVisible(true);
-            Tbb.setText(Sequel.cariIsi("select berat_badan from periksa_radiologi where no_rawat='" + Kd2.getText() + "'"));
-            Tbb.requestFocus();
+            if (Kd2.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data yang mau ditampilkan...!!!!");
+                khususIgd = "tidak";
+                tampil();
+            } else if (Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + Kd2.getText() + "'") == 0) {
+                JOptionPane.showMessageDialog(null, "Maaf, silahkan klik tepat pada nama pasiennya...!!!!");
+            } else {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                try {
+                    ps4.setString(1, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 3).toString());
+                    ps4.setString(2, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 4).toString());
+                    ps4.setString(3, tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 0).toString());
+                    rs = ps4.executeQuery();
+                    while (rs.next()) {
+                        Sequel.queryu("delete from temporary");
+                        koneksi.setAutoCommit(false);
+                        ps2.setString(1, rs.getString("no_rawat"));
+                        ps2.setString(2, rs.getString("tgl_periksa"));
+                        ps2.setString(3, rs.getString("jam"));
+                        rs2 = ps2.executeQuery();
+                        while (rs2.next()) {
+                            Sequel.menyimpan("temporary", "'0','" + rs2.getString("nm_perawatan") + "','','','','','','','',"
+                            + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Rad");
+                        }
+                        
+                        tte = "";
+                        tte = "ya";
+                        cetakBuktiReg();
+                        koneksi.setAutoCommit(true);
+                    }
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                }
+                this.setCursor(Cursor.getDefaultCursor());
+            }
         }
-    }//GEN-LAST:event_MnBeratBadanActionPerformed
-
-    private void TbbKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TbbKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnSimpan6ActionPerformed(null);
-        }
-    }//GEN-LAST:event_TbbKeyPressed
+    }//GEN-LAST:event_MnTTEregActionPerformed
 
     /**
      * @param args the command line arguments
@@ -5376,8 +5541,8 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     private javax.swing.JMenuItem MnAsalRujukan;
     private javax.swing.JMenuItem MnAsalRujukan1;
     private javax.swing.JMenuItem MnBeratBadan;
-    private javax.swing.JMenuItem MnCetakBuktiReg;
-    private javax.swing.JMenuItem MnCetakNota;
+    private javax.swing.JMenu MnCetakBuktiReg;
+    private javax.swing.JMenu MnCetakNota;
     private javax.swing.JMenuItem MnDokterPemeriksaRad;
     private javax.swing.JMenuItem MnDokterPemeriksaRad1;
     private javax.swing.JMenuItem MnDokterPengirim;
@@ -5414,6 +5579,10 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     private javax.swing.JMenuItem MnSRDetailSemuaCaraBayar;
     private javax.swing.JMenuItem MnSRPerCaraBayar;
     private javax.swing.JMenuItem MnSRSemuaCaraBayar;
+    private javax.swing.JMenuItem MnTTDnota;
+    private javax.swing.JMenuItem MnTTDreg;
+    private javax.swing.JMenuItem MnTTEnota;
+    private javax.swing.JMenuItem MnTTEreg;
     private javax.swing.JMenuItem MnTglPemeriksaan;
     private javax.swing.JMenuItem MnTglReg;
     private javax.swing.JMenuItem MnTglRegKhususIGD;
@@ -5708,7 +5877,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     }
 
     public void isCek() {
-        MnCetakNota.setEnabled(akses.getperiksa_radiologi());
+        MnCetakNota.setEnabled(akses.getbilling_ralan());
         MnCetakBuktiReg.setEnabled(akses.getperiksa_radiologi());
         BtnHapus.setEnabled(akses.getperiksa_radiologi());
         MnGantiData.setEnabled(akses.getperiksa_radiologi());
@@ -5847,6 +6016,9 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     }
 
     private void cetakNota() {
+        String crbyr = "", nmpetgs = "";
+        crbyr = Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + Kd2.getText() + "'");
+        
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("alamatrs", akses.getalamatrs());
@@ -5859,7 +6031,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         param.put("nmpasien", nmmem.getText());
         param.put("tglPeriksa", tglperiksa + ", Pukul : " + jam);
         param.put("drRad", dokterRad.getText());
-        param.put("cara_byr", Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + Kd2.getText() + "'"));
+        param.put("cara_byr", crbyr);
         param.put("tglNota", "Martapura, " + tglNota.getSelectedItem().toString());
         param.put("umur", Sequel.cariIsi("select concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (',rp.umurdaftar,' ',rp.sttsumur,'.)') from reg_periksa rp "
                 + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + Kd2.getText() + "'"));
@@ -5872,16 +6044,48 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         }
 
         if (akses.getadmin() == true) {
-            param.put("petugas_ksr", "( ................... )");
+            nmpetgs = "...................";            
         } else {
-            param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
+            nmpetgs = Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'");
         }
-        Valid.MyReport("rptNotaRadiologi.jasper", "report", "::[ Nota Transaksi Radiologi ]::",
-                " SELECT temp1, FORMAT(temp2, 0) biaya, (SELECT FORMAT(temp2, 0) FROM temporary WHERE temp1 = 'Total Biaya Pemeriksaan Radiologi') total_byr "
-                + "FROM temporary WHERE temp1 NOT LIKE '%biaya%' ", param);
+        
+        param.put("petugas_ksr", "( " + nmpetgs + " )");
+
+        if (tte.equals("tidak")) {
+            Valid.MyReport("rptNotaRadiologi.jasper", "report", "::[ Nota Transaksi Radiologi ]::",
+                    " SELECT temp1, FORMAT(temp2, 0) biaya, (SELECT FORMAT(temp2, 0) FROM temporary WHERE temp1 = 'Total Biaya Pemeriksaan Radiologi') total_byr "
+                    + "FROM temporary WHERE temp1 NOT LIKE '%biaya%' ", param);
+        } else if (tte.equals("ya")) {
+            if (akses.getadmin() == true) {
+                Valid.MyReport("rptNotaRadiologi.jasper", "report", "::[ Nota Transaksi Radiologi ]::",
+                        " SELECT temp1, FORMAT(temp2, 0) biaya, (SELECT FORMAT(temp2, 0) FROM temporary WHERE temp1 = 'Total Biaya Pemeriksaan Radiologi') total_byr "
+                        + "FROM temporary WHERE temp1 NOT LIKE '%biaya%' ", param);
+            } else {
+                String isi = "";
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Nota Transaksi Radiologi", nmpetgs,
+                                Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Nota Transaksi Radiologi", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+                Valid.MyReport("rptNotaRadiologiQr.jasper", "report", "::[ Nota Transaksi Radiologi ]::",
+                        " SELECT temp1, FORMAT(temp2, 0) biaya, (SELECT FORMAT(temp2, 0) FROM temporary WHERE temp1 = 'Total Biaya Pemeriksaan Radiologi') total_byr "
+                        + "FROM temporary WHERE temp1 NOT LIKE '%biaya%' ", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        }
     }
     
     private void cetakBuktiReg() {
+        String crbyr = "", nmpetgs = "";
+        crbyr = Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + Kd2.getText() + "'");
+        
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("alamatrs", akses.getalamatrs());
@@ -5894,7 +6098,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         param.put("nmpasien", nmmem.getText());
         param.put("tglPeriksa", tglperiksa + ", Pukul : " + jam);
         param.put("drRad", dokterRad.getText());
-        param.put("cara_byr", Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + Kd2.getText() + "'"));
+        param.put("cara_byr", crbyr);
         param.put("tglReg", "Martapura, " + tglNota.getSelectedItem().toString());
         param.put("umur", Sequel.cariIsi("select concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (',rp.umurdaftar,' ',rp.sttsumur,'.)') from reg_periksa rp "
                 + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + Kd2.getText() + "'"));
@@ -5907,12 +6111,49 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         }
 
         if (akses.getadmin() == true) {
-            param.put("petugas", "( ................... )");
+            nmpetgs = "...................";            
         } else {
-            param.put("petugas", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
+            nmpetgs = Sequel.cariIsi("select pg.nama from periksa_radiologi p inner join pegawai pg on pg.nik=p.nip where p.no_rawat='" + Kd2.getText() + "' "
+                    + "and p.tgl_periksa='" + tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 3).toString() + "' "
+                    + "and p.jam='" + tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 4).toString() + "'");
         }
-        Valid.MyReport("rptBuktiRegRadiologi.jasper", "report", "::[ Bukti Registrasi Radiologi ]::",
-                "SELECT temp1, temp2 FROM temporary WHERE temp1 NOT LIKE '%biaya%'", param);
+        
+        param.put("petugas", "( " + nmpetgs + " )");
+        
+        if (tte.equals("tidak")) {
+            Valid.MyReport("rptBuktiRegRadiologi.jasper", "report", "::[ Bukti Registrasi Radiologi ]::",
+                    "SELECT temp1, temp2 FROM temporary WHERE temp1 NOT LIKE '%biaya%'", param);
+        } else if (tte.equals("ya")) {
+            if (akses.getadmin() == true) {
+                Valid.MyReport("rptBuktiRegRadiologi.jasper", "report", "::[ Bukti Registrasi Radiologi ]::",
+                        "SELECT temp1, temp2 FROM temporary WHERE temp1 NOT LIKE '%biaya%'", param);
+            } else {                
+                String isi = "", nipPtgs = "";
+                nipPtgs = Sequel.cariIsi("select nip from periksa_radiologi where no_rawat='" + Kd2.getText() + "' "
+                        + "and tgl_periksa='" + tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 3).toString() + "' "
+                        + "and jam='" + tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 4).toString() + "'");
+
+                if (nipPtgs.equals("") || nipPtgs.equals("-") || nipPtgs.equals("--") || nipPtgs.equals("PP23")) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, nama petugas radiologi harus diisi dulu dengan benar sesuai namanya,...   ");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Bukti Registrasi Radiologi", nmpetgs,
+                                    Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                                    Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Bukti Registrasi Radiologi", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                    Valid.MyReport("rptBuktiRegRadiologiQr.jasper", "report", "::[ Bukti Registrasi Radiologi ]::",
+                            "SELECT temp1, temp2 FROM temporary WHERE temp1 NOT LIKE '%biaya%'", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            }
+        }
     }
 
     public void setData(String norw, String kditem, String item, String lihathasil, String Norm, String nmPas,

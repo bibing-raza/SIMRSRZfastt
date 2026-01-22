@@ -640,6 +640,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         tbPemberianObat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPemberianObat.setComponentPopupMenu(Popup2);
         tbPemberianObat.setName("tbPemberianObat"); // NOI18N
+        tbPemberianObat.getTableHeader().setReorderingAllowed(false);
         tbPemberianObat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPemberianObatMouseClicked(evt);
@@ -665,7 +666,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setEnabled(false);
@@ -685,7 +685,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -704,7 +703,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -723,7 +721,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -742,7 +739,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -761,7 +757,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -793,7 +788,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -824,7 +818,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari1.setToolTipText("");
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
@@ -840,7 +834,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari2.setToolTipText("");
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
@@ -868,7 +862,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         BtnSeek4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnSeek4.setMnemonic('5');
         BtnSeek4.setToolTipText("");
         BtnSeek4.setName("BtnSeek4"); // NOI18N
         BtnSeek4.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -913,7 +906,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('6');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -941,7 +933,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setMnemonic('I');
         ChkInput.setText(".: Input Data");
         ChkInput.setToolTipText("Alt+I");
         ChkInput.setBorderPainted(true);
@@ -1024,7 +1015,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
         jLabel9.setBounds(-2, 102, 80, 23);
 
         DTPBeri.setEditable(false);
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2025" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);
@@ -1056,7 +1047,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         btnObat1.setForeground(new java.awt.Color(0, 0, 0));
         btnObat1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnObat1.setMnemonic('4');
         btnObat1.setToolTipText("Alt+4");
         btnObat1.setName("btnObat1"); // NOI18N
         btnObat1.addActionListener(new java.awt.event.ActionListener() {
@@ -1187,7 +1177,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         btnKonversi.setForeground(new java.awt.Color(0, 0, 0));
         btnKonversi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/011.png"))); // NOI18N
-        btnKonversi.setMnemonic('2');
         btnKonversi.setToolTipText("Alt+2");
         btnKonversi.setName("btnKonversi"); // NOI18N
         btnKonversi.addActionListener(new java.awt.event.ActionListener() {
@@ -1200,7 +1189,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         BtnObat2.setForeground(new java.awt.Color(0, 0, 0));
         BtnObat2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnObat2.setMnemonic('4');
         BtnObat2.setToolTipText("Alt+4");
         BtnObat2.setName("BtnObat2"); // NOI18N
         BtnObat2.addActionListener(new java.awt.event.ActionListener() {
@@ -1213,7 +1201,6 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 
         BtnObat3.setForeground(new java.awt.Color(0, 0, 0));
         BtnObat3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnObat3.setMnemonic('4');
         BtnObat3.setToolTipText("Alt+4");
         BtnObat3.setName("BtnObat3"); // NOI18N
         BtnObat3.addActionListener(new java.awt.event.ActionListener() {
@@ -2338,34 +2325,44 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }//GEN-LAST:event_ppLaporanFarmasiActionPerformed
 
     private void ppBatalResepObatKronisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppBatalResepObatKronisActionPerformed
-        noSep = "";
-        noSep = Sequel.cariIsi("select no_sep from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "' limit 1");
+        if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRw.getText() + "' and kd_pj='B01'") > 0) {
+            noSep = "";
+            noSep = Sequel.cariIsi("select no_sep from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "' limit 1");
 
-        if (Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSep + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
-            JOptionPane.showMessageDialog(null, "Kategori resep obat kronis tidak bisa dibatalkan karena ini adalah resep iter...!!!");
-        } else {
-            x = JOptionPane.showConfirmDialog(rootPane, "Apakah kategori resep obat kronis akan dibatalkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-            if (x == JOptionPane.YES_OPTION) {
-                Sequel.mengedit("bridging_sep", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
-                Sequel.mengedit("bridging_sep_backup", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
-                Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
-                JOptionPane.showMessageDialog(null, "Kategori resep obat kronis telah dibatalkan utk. pasien ini...!!!");
-                tampilPO();
+            if (Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSep + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
+                JOptionPane.showMessageDialog(null, "Kategori resep obat kronis tidak bisa dibatalkan karena ini adalah resep iter...!!!");
             } else {
-                tampilPO();
+                x = JOptionPane.showConfirmDialog(rootPane, "Apakah kategori resep obat kronis akan dibatalkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    Sequel.mengedit("bridging_sep", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
+                    Sequel.mengedit("bridging_sep_backup", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
+                    Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
+                    JOptionPane.showMessageDialog(null, "Kategori resep obat kronis telah dibatalkan utk. pasien ini...!!!");
+                    tampilPO();
+                } else {
+                    tampilPO();
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien BPJS saja...!!!");
+            tampilPO();
         }
     }//GEN-LAST:event_ppBatalResepObatKronisActionPerformed
 
     private void ppSimpanResepObatKronisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppSimpanResepObatKronisActionPerformed
-        x = JOptionPane.showConfirmDialog(rootPane, "Apakah akan dijadikan sebagai resep obat kronis..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-        if (x == JOptionPane.YES_OPTION) {
-            Sequel.mengedit("bridging_sep", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
-            Sequel.mengedit("bridging_sep_backup", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
-            Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
-            JOptionPane.showMessageDialog(null, "Resep sudah diupdate menjadi kategori resep obat kronis...!!!");
-            tampilPO();
+        if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRw.getText() + "' and kd_pj='B01'") > 0) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah akan dijadikan sebagai resep obat kronis..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                Sequel.mengedit("bridging_sep", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
+                Sequel.mengedit("bridging_sep_backup", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
+                Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
+                JOptionPane.showMessageDialog(null, "Resep sudah diupdate menjadi kategori resep obat kronis...!!!");
+                tampilPO();
+            } else {
+                tampilPO();
+            }
         } else {
+            JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien BPJS saja...!!!");
             tampilPO();
         }
     }//GEN-LAST:event_ppSimpanResepObatKronisActionPerformed

@@ -94,11 +94,11 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private PreparedStatement ps3, ps4, ps5, ps6, ps7, ps15, ps16, ps17, ps18, ps19, ps20, ps21, ps22, ps23, ps24, psFar, psLab1, psLab2, psRad1, psRad2, 
-            psparu, psRiwKunj, psIter, psPet, psR1, psR2, psru1, psTglBO, psRiwIO, psrestor, pskonsul, psCtkKonsul, psRDO, psRDU, psRDD, psRDM;
+            psparu, psRiwKunj, psIter, psPet, psR1, psR2, psru1, psTglBO, psRiwIO, psrestor, pskonsul, psCtkKonsul, psRDO, psRDU, psRDD, psRDM, psPrmrj;
     private ResultSet rs, rs1, rs2, rs3, rs4, rsDiag, rsDiag1, rsObat, rs6, rs7, rs8, rs9, rs10, rs11, rs12, rs18, rs19, rs20, rs21, rs22, rs23, rs24, 
             rsLab1, rskonsul, rsCtkKonsul, rsLab2, rsRad1, rsRad2, rsLIS1, rsLIS2, rsLIS3, rsLISMaster, rsparu, rsFar, rsRiwKunj, rsPet, 
             rsR1, rsR2, rsru1, rsIter, rs13, rs14, rs15, rs16, rs17, rsTglBO, rsRiwIO, rsrad, rshslRad, rsprmrj, rsrestor, rsRiwRujukan, 
-            rsTHT, rsDiabet, rsRDO, rsRDU, rsRDD, rsRDM;
+            rsTHT, rsDiabet, rsRDO, rsRDU, rsRDD, rsRDM, rsPrmrj;
     private int i = 0, n = 0, pilih_prmrj = 0, x = 0, k = 0, cekSuratTindakan = 0, lis1 = 0, lis2 = 0, lisM = 0, cekPilihanRehab = 0,
             ceksensusparu = 0, z = 0, cekRujukInternal = 0, x1 = 0, cekDataPetugas = 0, j = 0, cekPemeriksaan = 0, pilihan = 0;
     private String kode_poli = "", cekIGD = "", a = "", orang1 = "", orang2 = "", nmOrang1 = "", nmOrang2 = "", mencari = "",
@@ -1739,7 +1739,9 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         MnStatusPasienPerKunjungan = new javax.swing.JMenuItem();
         MnStatusPasienAllKunjungan = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
-        MnPrinPRMRJ = new javax.swing.JMenuItem();
+        MnPrinPRMRJ1 = new javax.swing.JMenu();
+        MnTTDprmrj = new javax.swing.JMenuItem();
+        MnTTEprmrj = new javax.swing.JMenuItem();
         jPopupMenu3 = new javax.swing.JPopupMenu();
         MnCetakJawabanRujukan = new javax.swing.JMenu();
         MnTTDrujuk = new javax.swing.JMenuItem();
@@ -2863,20 +2865,47 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
 
-        MnPrinPRMRJ.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnPrinPRMRJ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnPrinPRMRJ.setText("Cetak Lembar PRMRJ");
-        MnPrinPRMRJ.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnPrinPRMRJ.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnPrinPRMRJ.setIconTextGap(5);
-        MnPrinPRMRJ.setName("MnPrinPRMRJ"); // NOI18N
-        MnPrinPRMRJ.setPreferredSize(new java.awt.Dimension(180, 26));
-        MnPrinPRMRJ.addActionListener(new java.awt.event.ActionListener() {
+        MnPrinPRMRJ1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPrinPRMRJ1.setText("Cetak Lembar PRMRJ");
+        MnPrinPRMRJ1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPrinPRMRJ1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPrinPRMRJ1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPrinPRMRJ1.setIconTextGap(5);
+        MnPrinPRMRJ1.setName("MnPrinPRMRJ1"); // NOI18N
+        MnPrinPRMRJ1.setOpaque(true);
+        MnPrinPRMRJ1.setPreferredSize(new java.awt.Dimension(180, 26));
+
+        MnTTDprmrj.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDprmrj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTDprmrj.setText("TTD Basah");
+        MnTTDprmrj.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDprmrj.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDprmrj.setIconTextGap(5);
+        MnTTDprmrj.setName("MnTTDprmrj"); // NOI18N
+        MnTTDprmrj.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDprmrj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnPrinPRMRJActionPerformed(evt);
+                MnTTDprmrjActionPerformed(evt);
             }
         });
-        jPopupMenu2.add(MnPrinPRMRJ);
+        MnPrinPRMRJ1.add(MnTTDprmrj);
+
+        MnTTEprmrj.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEprmrj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTEprmrj.setText("TTE (QRCode)");
+        MnTTEprmrj.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEprmrj.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEprmrj.setIconTextGap(5);
+        MnTTEprmrj.setName("MnTTEprmrj"); // NOI18N
+        MnTTEprmrj.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEprmrj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEprmrjActionPerformed(evt);
+            }
+        });
+        MnPrinPRMRJ1.add(MnTTEprmrj);
+
+        jPopupMenu2.add(MnPrinPRMRJ1);
 
         jPopupMenu3.setName("jPopupMenu3"); // NOI18N
 
@@ -8265,6 +8294,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         WindowRehabMedik.dispose();
         WindowRiwayat.dispose();
         WindowGantiPetugas.dispose();
+        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -8312,6 +8342,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         } else if (TabRawat.getSelectedIndex() == 3) {
             kdpoli.setText("");
             TPoli.setText("");
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             tampilPRMRJ();
         } else if (TabRawat.getSelectedIndex() == 4) {
             kdpoli.setText("");
@@ -8613,6 +8644,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             cmbBulan.setSelectedIndex(0);
             kdpoli.setText("");
             TPoli.setText("");
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             tampilPRMRJ();
         } else if (TabRawat.getSelectedIndex() == 4) {
             ChkLihat.setEnabled(false);
@@ -9690,19 +9722,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private void kdptg1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdptg1KeyTyped
         evt.setKeyChar(Character.toUpperCase(evt.getKeyChar()));
     }//GEN-LAST:event_kdptg1KeyTyped
-
-    private void MnPrinPRMRJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPrinPRMRJActionPerformed
-        if (LoadHTML5.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-            BtnBatal.requestFocus();
-        } else if (!LoadHTML5.getText().equals("")) {
-            if (!TNoRM.getText().equals("")) {
-                cetakPRMRJ();
-            } else {
-                JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu data pasiennya dulu,..!!");
-            }
-        }
-    }//GEN-LAST:event_MnPrinPRMRJActionPerformed
 
     private void TNoRwKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoRwKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
@@ -11192,6 +11211,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             cmbBulan.setSelectedIndex(0);
             kdpoli.setText("");
             TPoli.setText("");
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             tampilPRMRJ();
         }
     }//GEN-LAST:event_BtnPRMRJActionPerformed
@@ -12687,6 +12707,36 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             cetakPemeriksaanTht();
         }
     }//GEN-LAST:event_MnTTEthtActionPerformed
+
+    private void MnTTDprmrjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDprmrjActionPerformed
+        if (LoadHTML5.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+            BtnBatal.requestFocus();
+        } else if (!LoadHTML5.getText().equals("")) {
+            if (!TNoRM.getText().equals("")) {
+                tte = "";
+                tte = "tidak";
+                cetakPRMRJ();
+            } else {
+                JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu data pasiennya dulu,..!!");
+            }
+        }
+    }//GEN-LAST:event_MnTTDprmrjActionPerformed
+
+    private void MnTTEprmrjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEprmrjActionPerformed
+        if (LoadHTML5.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+            BtnBatal.requestFocus();
+        } else if (!LoadHTML5.getText().equals("")) {
+            if (!TNoRM.getText().equals("")) {
+                tte = "";
+                tte = "ya";
+                cetakPRMRJ();
+            } else {
+                JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu data pasiennya dulu,..!!");
+            }
+        }
+    }//GEN-LAST:event_MnTTEprmrjActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -12851,7 +12901,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JMenuItem MnPeriksaRadiologi;
     private javax.swing.JMenuItem MnPermintaanLab;
     private javax.swing.JMenu MnPermintaanPenunjang;
-    private javax.swing.JMenuItem MnPrinPRMRJ;
+    private javax.swing.JMenu MnPrinPRMRJ1;
     private javax.swing.JMenuItem MnRehabMedik;
     private javax.swing.JMenu MnRekamMedis;
     private javax.swing.JMenuItem MnRiwayatData;
@@ -12864,9 +12914,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JMenuItem MnStatusPasienPerKunjungan;
     private javax.swing.JMenuItem MnSuratPengantarRanap;
     private javax.swing.JMenuItem MnTTDkonsul;
+    private javax.swing.JMenuItem MnTTDprmrj;
     private javax.swing.JMenuItem MnTTDrujuk;
     private javax.swing.JMenuItem MnTTDtht;
     private javax.swing.JMenuItem MnTTEkonsul;
+    private javax.swing.JMenuItem MnTTEprmrj;
     private javax.swing.JMenuItem MnTTErujuk;
     private javax.swing.JMenuItem MnTTEtht;
     private widget.TextBox OlehDokter;
@@ -19620,32 +19672,106 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         param.put("nmpasien", Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
         param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
 
-        if (ChkTanggal.isSelected() == true) {
-            Valid.MyReport("rptprmrj.jasper", "report", "::[ Lembar RM 3.1.1 (Profil Ringkas Medis Rawat Jalan) ]::",
-                    "select rp.no_rawat, date_format(rp.tgl_registrasi, '%d-%m-%Y') tglKun, pr.diagnosa, "
-                    + "concat(ifnull(py.kd_penyakit,'-'),' - ',ifnull(py.ciri_ciri,'-')) icd10, ifnull(GROUP_CONCAT(DISTINCT ' ',jr.nm_perawatan),'-') pemrk_rad, "
-                    + "ifnull(GROUP_CONCAT(DISTINCT ' ',tl.Pemeriksaan),'-') pemrk_lab, ifnull(GROUP_CONCAT(DISTINCT ' ',cr.nama_obat),'-') obat, d.nm_dokter dpjp "
-                    + "FROM reg_periksa rp INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj INNER JOIN dokter d on d.kd_dokter=rp.kd_dokter "
-                    + "INNER JOIN pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat LEFT JOIN catatan_resep cr on cr.no_rawat=rp.no_rawat "
-                    + "LEFT JOIN periksa_radiologi prad on prad.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_radiologi jr on jr.kd_jenis_prw=prad.kd_jenis_prw "
-                    + "LEFT JOIN diagnosa_pasien dp on dp.no_rawat=rp.no_rawat and dp.prioritas='1' LEFT JOIN penyakit py on py.kd_penyakit=dp.kd_penyakit "
-                    + "LEFT JOIN detail_periksa_lab dl on dl.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_lab jl on jl.kd_jenis_prw=dl.kd_jenis_prw "
-                    + "LEFT JOIN template_laboratorium tl on tl.id_template=dl.id_template WHERE "
-                    + "rp.no_rkm_medis = '" + TNoRM.getText() + "' AND pr.tgl_perawatan BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
-                    + "and pr.stts_prmrj='1' and rp.status_lanjut='ralan' GROUP BY rp.no_rawat ORDER BY pr.tgl_perawatan, pr.jam_rawat", param);
-        } else {
-            Valid.MyReport("rptprmrj.jasper", "report", "::[ Lembar RM 3.1.1 (Profil Ringkas Medis Rawat Jalan) ]::",
-                    "select rp.no_rawat, date_format(rp.tgl_registrasi, '%d-%m-%Y') tglKun, pr.diagnosa, "
-                    + "concat(ifnull(py.kd_penyakit,'-'),' - ',ifnull(py.ciri_ciri,'-')) icd10, ifnull(GROUP_CONCAT(DISTINCT ' ',jr.nm_perawatan),'-') pemrk_rad, "
-                    + "ifnull(GROUP_CONCAT(DISTINCT ' ',tl.Pemeriksaan),'-') pemrk_lab, ifnull(GROUP_CONCAT(DISTINCT ' ',cr.nama_obat),'-') obat, d.nm_dokter dpjp "
-                    + "FROM reg_periksa rp INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj INNER JOIN dokter d on d.kd_dokter=rp.kd_dokter "
-                    + "INNER JOIN pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat LEFT JOIN catatan_resep cr on cr.no_rawat=rp.no_rawat "
-                    + "LEFT JOIN periksa_radiologi prad on prad.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_radiologi jr on jr.kd_jenis_prw=prad.kd_jenis_prw "
-                    + "LEFT JOIN diagnosa_pasien dp on dp.no_rawat=rp.no_rawat and dp.prioritas='1' LEFT JOIN penyakit py on py.kd_penyakit=dp.kd_penyakit "
-                    + "LEFT JOIN detail_periksa_lab dl on dl.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_lab jl on jl.kd_jenis_prw=dl.kd_jenis_prw "
-                    + "LEFT JOIN template_laboratorium tl on tl.id_template=dl.id_template WHERE "
-                    + "rp.no_rkm_medis = '" + TNoRM.getText() + "' and pr.stts_prmrj='1' and rp.status_lanjut='ralan' "
-                    + "GROUP BY rp.no_rawat ORDER BY pr.tgl_perawatan, pr.jam_rawat limit 5", param);
+        if (tte.equals("tidak")) {
+            if (ChkTanggal.isSelected() == true) {
+                Valid.MyReport("rptprmrj.jasper", "report", "::[ Lembar RM 3.1.1 (Profil Ringkas Medis Rawat Jalan) ]::",
+                        "select rp.no_rawat, date_format(rp.tgl_registrasi, '%d-%m-%Y') tglKun, pr.diagnosa, "
+                        + "concat(ifnull(py.kd_penyakit,'-'),' - ',ifnull(py.ciri_ciri,'-')) icd10, ifnull(GROUP_CONCAT(DISTINCT ' ',jr.nm_perawatan),'-') pemrk_rad, "
+                        + "ifnull(GROUP_CONCAT(DISTINCT ' ',tl.Pemeriksaan),'-') pemrk_lab, ifnull(GROUP_CONCAT(DISTINCT ' ',cr.nama_obat),'-') obat, d.nm_dokter dpjp "
+                        + "FROM reg_periksa rp INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj INNER JOIN dokter d on d.kd_dokter=rp.kd_dokter "
+                        + "INNER JOIN pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat LEFT JOIN catatan_resep cr on cr.no_rawat=rp.no_rawat "
+                        + "LEFT JOIN periksa_radiologi prad on prad.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_radiologi jr on jr.kd_jenis_prw=prad.kd_jenis_prw "
+                        + "LEFT JOIN diagnosa_pasien dp on dp.no_rawat=rp.no_rawat and dp.prioritas='1' LEFT JOIN penyakit py on py.kd_penyakit=dp.kd_penyakit "
+                        + "LEFT JOIN detail_periksa_lab dl on dl.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_lab jl on jl.kd_jenis_prw=dl.kd_jenis_prw "
+                        + "LEFT JOIN template_laboratorium tl on tl.id_template=dl.id_template WHERE "
+                        + "rp.no_rkm_medis = '" + TNoRM.getText() + "' AND pr.tgl_perawatan BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                        + "and pr.stts_prmrj='1' and rp.status_lanjut='ralan' GROUP BY rp.no_rawat ORDER BY pr.tgl_perawatan, pr.jam_rawat", param);
+            } else {
+                Valid.MyReport("rptprmrj.jasper", "report", "::[ Lembar RM 3.1.1 (Profil Ringkas Medis Rawat Jalan) ]::",
+                        "select rp.no_rawat, date_format(rp.tgl_registrasi, '%d-%m-%Y') tglKun, pr.diagnosa, "
+                        + "concat(ifnull(py.kd_penyakit,'-'),' - ',ifnull(py.ciri_ciri,'-')) icd10, ifnull(GROUP_CONCAT(DISTINCT ' ',jr.nm_perawatan),'-') pemrk_rad, "
+                        + "ifnull(GROUP_CONCAT(DISTINCT ' ',tl.Pemeriksaan),'-') pemrk_lab, ifnull(GROUP_CONCAT(DISTINCT ' ',cr.nama_obat),'-') obat, d.nm_dokter dpjp "
+                        + "FROM reg_periksa rp INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj INNER JOIN dokter d on d.kd_dokter=rp.kd_dokter "
+                        + "INNER JOIN pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat LEFT JOIN catatan_resep cr on cr.no_rawat=rp.no_rawat "
+                        + "LEFT JOIN periksa_radiologi prad on prad.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_radiologi jr on jr.kd_jenis_prw=prad.kd_jenis_prw "
+                        + "LEFT JOIN diagnosa_pasien dp on dp.no_rawat=rp.no_rawat and dp.prioritas='1' LEFT JOIN penyakit py on py.kd_penyakit=dp.kd_penyakit "
+                        + "LEFT JOIN detail_periksa_lab dl on dl.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_lab jl on jl.kd_jenis_prw=dl.kd_jenis_prw "
+                        + "LEFT JOIN template_laboratorium tl on tl.id_template=dl.id_template WHERE "
+                        + "rp.no_rkm_medis = '" + TNoRM.getText() + "' and pr.stts_prmrj='1' and rp.status_lanjut='ralan' "
+                        + "GROUP BY rp.no_rawat ORDER BY pr.tgl_perawatan, pr.jam_rawat limit 5", param);
+            }
+        } else if (tte.equals("ya")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporaryTTE");
+            
+            try {                
+                if (ChkTanggal.isSelected() == true) {
+                    psPrmrj = koneksi.prepareStatement("select rp.no_rawat, date_format(rp.tgl_registrasi, '%d-%m-%Y') tglKun, pr.diagnosa, "
+                            + "concat(ifnull(py.kd_penyakit,'-'),' - ',ifnull(py.ciri_ciri,'-')) icd10, ifnull(GROUP_CONCAT(DISTINCT ' ',jr.nm_perawatan),'-') pemrk_rad, "
+                            + "ifnull(GROUP_CONCAT(DISTINCT ' ',tl.Pemeriksaan),'-') pemrk_lab, ifnull(GROUP_CONCAT(DISTINCT ' ',cr.nama_obat),'-') obat, d.nm_dokter dpjp, "
+                            + "date_format(pr.tgl_perawatan,'%d/%m/%Y') tgl, pr.jam_rawat "
+                            + "FROM reg_periksa rp INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj INNER JOIN dokter d on d.kd_dokter=rp.kd_dokter "
+                            + "INNER JOIN pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat LEFT JOIN catatan_resep cr on cr.no_rawat=rp.no_rawat "
+                            + "LEFT JOIN periksa_radiologi prad on prad.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_radiologi jr on jr.kd_jenis_prw=prad.kd_jenis_prw "
+                            + "LEFT JOIN diagnosa_pasien dp on dp.no_rawat=rp.no_rawat and dp.prioritas='1' LEFT JOIN penyakit py on py.kd_penyakit=dp.kd_penyakit "
+                            + "LEFT JOIN detail_periksa_lab dl on dl.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_lab jl on jl.kd_jenis_prw=dl.kd_jenis_prw "
+                            + "LEFT JOIN template_laboratorium tl on tl.id_template=dl.id_template WHERE "
+                            + "rp.no_rkm_medis = '" + TNoRM.getText() + "' AND pr.tgl_perawatan BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "and pr.stts_prmrj='1' and rp.status_lanjut='ralan' GROUP BY rp.no_rawat ORDER BY pr.tgl_perawatan, pr.jam_rawat");
+                } else {
+                    psPrmrj = koneksi.prepareStatement("select rp.no_rawat, date_format(rp.tgl_registrasi, '%d-%m-%Y') tglKun, pr.diagnosa, "
+                            + "concat(ifnull(py.kd_penyakit,'-'),' - ',ifnull(py.ciri_ciri,'-')) icd10, ifnull(GROUP_CONCAT(DISTINCT ' ',jr.nm_perawatan),'-') pemrk_rad, "
+                            + "ifnull(GROUP_CONCAT(DISTINCT ' ',tl.Pemeriksaan),'-') pemrk_lab, ifnull(GROUP_CONCAT(DISTINCT ' ',cr.nama_obat),'-') obat, d.nm_dokter dpjp, "
+                            + "date_format(pr.tgl_perawatan,'%d/%m/%Y') tgl, pr.jam_rawat "
+                            + "FROM reg_periksa rp INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj INNER JOIN dokter d on d.kd_dokter=rp.kd_dokter "
+                            + "INNER JOIN pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat LEFT JOIN catatan_resep cr on cr.no_rawat=rp.no_rawat "
+                            + "LEFT JOIN periksa_radiologi prad on prad.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_radiologi jr on jr.kd_jenis_prw=prad.kd_jenis_prw "
+                            + "LEFT JOIN diagnosa_pasien dp on dp.no_rawat=rp.no_rawat and dp.prioritas='1' LEFT JOIN penyakit py on py.kd_penyakit=dp.kd_penyakit "
+                            + "LEFT JOIN detail_periksa_lab dl on dl.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_lab jl on jl.kd_jenis_prw=dl.kd_jenis_prw "
+                            + "LEFT JOIN template_laboratorium tl on tl.id_template=dl.id_template WHERE "
+                            + "rp.no_rkm_medis = '" + TNoRM.getText() + "' and pr.stts_prmrj='1' and rp.status_lanjut='ralan' "
+                            + "GROUP BY rp.no_rawat ORDER BY pr.tgl_perawatan, pr.jam_rawat limit 5");
+                }                
+                try {
+                    rsPrmrj = psPrmrj.executeQuery();
+                    while (rsPrmrj.next()) {
+                        String isi = "";
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Profil Ringkas Medis Rawat Jalan", rsPrmrj.getString("dpjp"),
+                                        rsPrmrj.getString("tgl"), rsPrmrj.getString("jam_rawat")) + "') from kalimat_tte where kode='001'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.menyimpanQrTte("temporaryTTE",
+                                "'" + rsPrmrj.getString("tglKun") + "',"
+                                + "'" + rsPrmrj.getString("diagnosa") + "',"
+                                + "'" + rsPrmrj.getString("icd10") + "',"
+                                + "'" + rsPrmrj.getString("pemrk_rad") + ", " + rsPrmrj.getString("pemrk_lab") + "',"
+                                + "'" + rsPrmrj.getString("obat") + "',"
+                                + "'" + rsPrmrj.getString("dpjp") + "',"
+                                + "'','','',''",
+                                "file QRCode TTE Pemberian Informasi Dan Edukasi", Sequel.cariFolderPrintTte());
+                    }                    
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                } finally {
+                    if (rsPrmrj != null) {
+                        rsPrmrj.close();
+                    }
+                    if (psPrmrj != null) {
+                        psPrmrj.close();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            }
+            
+            Valid.MyReport("rptprmrjQr.jasper", "report", "::[ Lembar RM 3.1.1 (Profil Ringkas Medis Rawat Jalan) ]::",
+                    "SELECT * FROM temporaryTTE", param);
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            Sequel.AutoComitTrue();
         }
         this.setCursor(Cursor.getDefaultCursor());
         tampilPRMRJ();
@@ -22737,7 +22863,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 if (ChkTanggal.isSelected() == true) {
                     rsprmrj = koneksi.prepareStatement("select rp.no_rawat, date_format(rp.tgl_registrasi, '%d-%m-%Y') tglKun, pr.diagnosa, "
                             + "concat(ifnull(py.kd_penyakit,'-'),' - ',ifnull(py.ciri_ciri,'-')) icd10, ifnull(GROUP_CONCAT(DISTINCT ' ',jr.nm_perawatan),'-') pemrk_rad, "
-                            + "ifnull(GROUP_CONCAT(DISTINCT ' ',tl.Pemeriksaan),'-') pemrk_lab, ifnull(GROUP_CONCAT(DISTINCT ' ',cr.nama_obat),'-') obat, d.nm_dokter dpjp "
+                            + "ifnull(GROUP_CONCAT(DISTINCT ' ',tl.Pemeriksaan),'-') pemrk_lab, ifnull(GROUP_CONCAT(DISTINCT ' ',cr.nama_obat),'-') obat, d.nm_dokter dpjp, "
+                            + "date_format(pr.tgl_perawatan,'%d/%m/%Y') tgl, pr.jam_rawat "
                             + "FROM reg_periksa rp INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj INNER JOIN dokter d on d.kd_dokter=rp.kd_dokter "
                             + "INNER JOIN pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat LEFT JOIN catatan_resep cr on cr.no_rawat=rp.no_rawat "
                             + "LEFT JOIN periksa_radiologi prad on prad.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_radiologi jr on jr.kd_jenis_prw=prad.kd_jenis_prw "
@@ -22749,7 +22876,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 } else {
                     rsprmrj = koneksi.prepareStatement("select * from (select rp.no_rawat, date_format(rp.tgl_registrasi, '%d-%m-%Y') tglKun, pr.diagnosa, "
                             + "concat(ifnull(py.kd_penyakit,'-'),' - ',ifnull(py.ciri_ciri,'-')) icd10, ifnull(GROUP_CONCAT(DISTINCT ' ',jr.nm_perawatan),'-') pemrk_rad, "
-                            + "ifnull(GROUP_CONCAT(DISTINCT ' ',tl.Pemeriksaan),'-') pemrk_lab, ifnull(GROUP_CONCAT(DISTINCT ' ',cr.nama_obat),'-') obat, d.nm_dokter dpjp, pr.tgl_perawatan "
+                            + "ifnull(GROUP_CONCAT(DISTINCT ' ',tl.Pemeriksaan),'-') pemrk_lab, ifnull(GROUP_CONCAT(DISTINCT ' ',cr.nama_obat),'-') obat, d.nm_dokter dpjp, "
+                            + "pr.tgl_perawatan, date_format(pr.tgl_perawatan,'%d/%m/%Y') tgl, pr.jam_rawat "
                             + "FROM reg_periksa rp INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj INNER JOIN dokter d on d.kd_dokter=rp.kd_dokter "
                             + "INNER JOIN pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat LEFT JOIN catatan_resep cr on cr.no_rawat=rp.no_rawat "
                             + "LEFT JOIN periksa_radiologi prad on prad.no_rawat=rp.no_rawat LEFT JOIN jns_perawatan_radiologi jr on jr.kd_jenis_prw=prad.kd_jenis_prw "
@@ -22774,7 +22902,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             + "    <td align='center' bgcolor='#f8fdf3'><b>Obat - Obatan</b></td>"
                             + "    <td align='center' bgcolor='#f8fdf3'><b>Riwayat MRS &<br>Kunjungan Terakhir</b></td>"
                             + "    <td align='center' bgcolor='#f8fdf3'><b>Prosedur Bedah / Operasi<br>Sejak Kunjungan Terakhir</b></td>"
-                            + "    <td align='center' bgcolor='#f8fdf3'><b>Nama DPJP</b></td>"
+                            + "    <td align='center' bgcolor='#f8fdf3'><b>TTE & Nama DPJP</b></td>"
                             + "</tr>"
                             + "</thead>"
                             + "<tbody>"
@@ -22782,6 +22910,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                     rsprmrj.beforeFirst();
                     while (rsprmrj.next()) {
+                        String isi = "";
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Profil Ringkas Medis Rawat Jalan", rsprmrj.getString("dpjp"),
+                                        rsprmrj.getString("tgl"), rsprmrj.getString("jam_rawat")) + "') from kalimat_tte where kode='001'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTteDokter" + urut + ".jpg", "select logo from setting");
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='top' width='20px'>" + urut + ".</td>"
@@ -22792,7 +22927,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 + "<td valign='top'>" + rsprmrj.getString("obat") + "</td>"
                                 + "<td></td>"
                                 + "<td></td>"
-                                + "<td valign='top'>" + rsprmrj.getString("dpjp") + "</td>"
+                                + "<td valign='top' align='center'><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTteDokter" + urut + ".jpg" + "' width='150' alt='TTE PRMRJ'><br>"
+                                + rsprmrj.getString("dpjp") + "<br></td>"
                                 + "</tr>"
                         );
                         urut++;

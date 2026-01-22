@@ -666,6 +666,7 @@ public class DlgTagihanOperasi extends javax.swing.JDialog {
 
         tbtindakan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbtindakan.setName("tbtindakan"); // NOI18N
+        tbtindakan.getTableHeader().setReorderingAllowed(false);
         tbtindakan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbtindakanMouseClicked(evt);
@@ -767,6 +768,7 @@ public class DlgTagihanOperasi extends javax.swing.JDialog {
 
         tbObat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbObat.setName("tbObat"); // NOI18N
+        tbObat.getTableHeader().setReorderingAllowed(false);
         tbObat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbObatMouseClicked(evt);
