@@ -5840,6 +5840,8 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             emptTeksPatologi();
         } else {
             if (tbHasil.getSelectedRow() > -1) {
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgCariPeriksaLab");
                 DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);

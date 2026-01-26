@@ -1257,10 +1257,10 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass8.add(jLabel100);
         jLabel100.setBounds(0, 10, 140, 23);
 
-        internalFrame20.add(panelGlass8, java.awt.BorderLayout.PAGE_START);
+        internalFrame20.add(panelGlass8, java.awt.BorderLayout.CENTER);
 
         panelGlass17.setName("panelGlass17"); // NOI18N
-        panelGlass17.setPreferredSize(new java.awt.Dimension(44, 150));
+        panelGlass17.setPreferredSize(new java.awt.Dimension(44, 48));
         panelGlass17.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 9, 5));
 
         BtnSimpan3.setForeground(new java.awt.Color(0, 0, 0));
@@ -1305,7 +1305,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         });
         panelGlass17.add(BtnCloseIn4);
 
-        internalFrame20.add(panelGlass17, java.awt.BorderLayout.CENTER);
+        internalFrame20.add(panelGlass17, java.awt.BorderLayout.PAGE_END);
 
         WindowDataTritmen.getContentPane().add(internalFrame20, java.awt.BorderLayout.CENTER);
 
@@ -1324,7 +1324,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         TabPsikologis.setBackground(new java.awt.Color(169, 169, 250));
         TabPsikologis.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
-        TabPsikologis.setForeground(new java.awt.Color(0, 0, 0));
         TabPsikologis.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
         TabPsikologis.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         TabPsikologis.setName("TabPsikologis"); // NOI18N
@@ -1413,12 +1412,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass16.add(Ttl);
         Ttl.setBounds(133, 10, 592, 23);
 
+        Scroll7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll7.setName("Scroll7"); // NOI18N
 
         TAlamat.setEditable(false);
         TAlamat.setColumns(20);
         TAlamat.setRows(5);
         TAlamat.setName("TAlamat"); // NOI18N
+        TAlamat.setPreferredSize(new java.awt.Dimension(170, 1000));
         Scroll7.setViewportView(TAlamat);
 
         panelGlass16.add(Scroll7);
@@ -1478,6 +1479,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         tbdatadiri.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbdatadiri.setName("tbdatadiri"); // NOI18N
+        tbdatadiri.getTableHeader().setReorderingAllowed(false);
         tbdatadiri.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbdatadiriMouseClicked(evt);
@@ -1509,6 +1511,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         tbIdentitasPas.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbIdentitasPas.setName("tbIdentitasPas"); // NOI18N
+        tbIdentitasPas.getTableHeader().setReorderingAllowed(false);
         tbIdentitasPas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbIdentitasPasMouseClicked(evt);
@@ -1585,7 +1588,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         cmbPasangan.setForeground(new java.awt.Color(0, 0, 0));
         cmbPasangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SUAMI", "ISTRI" }));
         cmbPasangan.setName("cmbPasangan"); // NOI18N
-        cmbPasangan.setOpaque(false);
         cmbPasangan.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass11.add(cmbPasangan);
         cmbPasangan.setBounds(132, 10, 70, 23);
@@ -1600,7 +1602,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         cmbPendidikan.setForeground(new java.awt.Color(0, 0, 0));
         cmbPendidikan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "TIDAK SEKOLAH", "TK", "SD/MI", "SMP/SLTP/MTS", "SMA/SLTA/SMK/MAN", "PESANTREN", "D1", "D3", "D4", "S1", "S2", "S3" }));
         cmbPendidikan.setName("cmbPendidikan"); // NOI18N
-        cmbPendidikan.setOpaque(false);
         cmbPendidikan.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass11.add(cmbPendidikan);
         cmbPendidikan.setBounds(312, 38, 140, 23);
@@ -1614,7 +1615,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         cmbagama.setForeground(new java.awt.Color(0, 0, 0));
         cmbagama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Islam", "Hindu", "Budha", "Kristen Protestan", "Kristen Katolik", "Konghucu", "Kepercayaan Lain" }));
         cmbagama.setName("cmbagama"); // NOI18N
-        cmbagama.setOpaque(false);
         cmbagama.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass11.add(cmbagama);
         cmbagama.setBounds(132, 94, 120, 23);
@@ -1661,13 +1661,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass11.add(jLabel38);
         jLabel38.setBounds(452, 94, 70, 23);
 
+        Scroll36.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll36.setName("Scroll36"); // NOI18N
         Scroll36.setOpaque(true);
 
         Talamatpasangan.setColumns(20);
         Talamatpasangan.setRows(5);
         Talamatpasangan.setName("Talamatpasangan"); // NOI18N
-        Talamatpasangan.setPreferredSize(new java.awt.Dimension(170, 110));
+        Talamatpasangan.setPreferredSize(new java.awt.Dimension(170, 1000));
         Talamatpasangan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TalamatpasanganKeyPressed(evt);
@@ -1744,7 +1745,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass11.add(jLabel110);
         jLabel110.setBounds(562, 66, 115, 23);
 
-        tgl_nikah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-10-2022" }));
+        tgl_nikah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-11-2022" }));
         tgl_nikah.setDisplayFormat("dd-MM-yyyy");
         tgl_nikah.setName("tgl_nikah"); // NOI18N
         tgl_nikah.setOpaque(false);
@@ -1815,6 +1816,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         tbIdentitasAnak.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbIdentitasAnak.setName("tbIdentitasAnak"); // NOI18N
+        tbIdentitasAnak.getTableHeader().setReorderingAllowed(false);
         tbIdentitasAnak.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbIdentitasAnakMouseClicked(evt);
@@ -1897,7 +1899,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         cmbJK.setForeground(new java.awt.Color(0, 0, 0));
         cmbJK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Laki-laki", "Perempuan" }));
         cmbJK.setName("cmbJK"); // NOI18N
-        cmbJK.setOpaque(false);
         cmbJK.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass12.add(cmbJK);
         cmbJK.setBounds(133, 38, 90, 23);
@@ -1905,7 +1906,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         cmbKetAnak.setForeground(new java.awt.Color(0, 0, 0));
         cmbKetAnak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kandung", "Angkat", "Tiri" }));
         cmbKetAnak.setName("cmbKetAnak"); // NOI18N
-        cmbKetAnak.setOpaque(false);
         cmbKetAnak.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass12.add(cmbKetAnak);
         cmbKetAnak.setBounds(133, 66, 80, 23);
@@ -1913,7 +1913,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         cmbidumur.setForeground(new java.awt.Color(0, 0, 0));
         cmbidumur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tahun", "Bulan", "Hari" }));
         cmbidumur.setName("cmbidumur"); // NOI18N
-        cmbidumur.setOpaque(false);
         cmbidumur.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass12.add(cmbidumur);
         cmbidumur.setBounds(395, 38, 70, 23);
@@ -1949,6 +1948,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         tbKeluhan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbKeluhan.setName("tbKeluhan"); // NOI18N
+        tbKeluhan.getTableHeader().setReorderingAllowed(false);
         tbKeluhan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbKeluhanMouseClicked(evt);
@@ -1979,13 +1979,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass14.add(jLabel58);
         jLabel58.setBounds(0, 25, 130, 23);
 
+        Scroll38.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll38.setName("Scroll38"); // NOI18N
         Scroll38.setOpaque(true);
 
         TpermasalahanNikah.setColumns(20);
         TpermasalahanNikah.setRows(5);
         TpermasalahanNikah.setName("TpermasalahanNikah"); // NOI18N
-        TpermasalahanNikah.setPreferredSize(new java.awt.Dimension(170, 110));
+        TpermasalahanNikah.setPreferredSize(new java.awt.Dimension(170, 2000));
         TpermasalahanNikah.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TpermasalahanNikahKeyPressed(evt);
@@ -2014,13 +2015,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass14.add(jLabel54);
         jLabel54.setBounds(0, 115, 130, 23);
 
+        Scroll41.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll41.setName("Scroll41"); // NOI18N
         Scroll41.setOpaque(true);
 
         TsudahBerapa.setColumns(20);
         TsudahBerapa.setRows(5);
         TsudahBerapa.setName("TsudahBerapa"); // NOI18N
-        TsudahBerapa.setPreferredSize(new java.awt.Dimension(170, 110));
+        TsudahBerapa.setPreferredSize(new java.awt.Dimension(170, 2000));
         TsudahBerapa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TsudahBerapaKeyPressed(evt);
@@ -2031,13 +2033,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass14.add(Scroll41);
         Scroll41.setBounds(132, 85, 430, 70);
 
+        Scroll42.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll42.setName("Scroll42"); // NOI18N
         Scroll42.setOpaque(true);
 
         TalasanBantuan.setColumns(20);
         TalasanBantuan.setRows(5);
         TalasanBantuan.setName("TalasanBantuan"); // NOI18N
-        TalasanBantuan.setPreferredSize(new java.awt.Dimension(170, 110));
+        TalasanBantuan.setPreferredSize(new java.awt.Dimension(170, 2000));
         TalasanBantuan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TalasanBantuanKeyPressed(evt);
@@ -2072,7 +2075,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass14.add(jLabel59);
         jLabel59.setBounds(560, 10, 170, 23);
 
-        RSangatSeriusKP.setBackground(new java.awt.Color(240, 250, 230));
         RSangatSeriusKP.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(RSangatSeriusKP);
         RSangatSeriusKP.setText("Sangat Serius");
@@ -2083,7 +2085,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass14.add(RSangatSeriusKP);
         RSangatSeriusKP.setBounds(734, 10, 100, 23);
 
-        RSeriusKP.setBackground(new java.awt.Color(240, 250, 230));
         RSeriusKP.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(RSeriusKP);
         RSeriusKP.setText("Serius");
@@ -2094,7 +2095,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass14.add(RSeriusKP);
         RSeriusKP.setBounds(734, 38, 100, 23);
 
-        RKurangSeriusKP.setBackground(new java.awt.Color(240, 250, 230));
         RKurangSeriusKP.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(RKurangSeriusKP);
         RKurangSeriusKP.setText("Kurang Serius");
@@ -2111,13 +2111,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass14.add(jLabel114);
         jLabel114.setBounds(560, 94, 70, 23);
 
+        Scroll43.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll43.setName("Scroll43"); // NOI18N
         Scroll43.setOpaque(true);
 
         Tkarena.setColumns(20);
         Tkarena.setRows(5);
         Tkarena.setName("Tkarena"); // NOI18N
-        Tkarena.setPreferredSize(new java.awt.Dimension(170, 110));
+        Tkarena.setPreferredSize(new java.awt.Dimension(170, 2000));
         Tkarena.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TkarenaKeyPressed(evt);
@@ -2147,6 +2148,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         tbHarapan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbHarapan.setName("tbHarapan"); // NOI18N
+        tbHarapan.getTableHeader().setReorderingAllowed(false);
         tbHarapan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbHarapanMouseClicked(evt);
@@ -2177,13 +2179,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass15.add(jLabel29);
         jLabel29.setBounds(0, 10, 160, 23);
 
+        Scroll12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll12.setName("Scroll12"); // NOI18N
         Scroll12.setOpaque(true);
 
         Tharapan.setColumns(20);
         Tharapan.setRows(5);
         Tharapan.setName("Tharapan"); // NOI18N
-        Tharapan.setPreferredSize(new java.awt.Dimension(170, 230));
+        Tharapan.setPreferredSize(new java.awt.Dimension(170, 2000));
         Tharapan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TharapanKeyPressed(evt);
@@ -2194,13 +2197,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass15.add(Scroll12);
         Scroll12.setBounds(162, 10, 830, 70);
 
+        Scroll13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll13.setName("Scroll13"); // NOI18N
         Scroll13.setOpaque(true);
 
         TperubahanSendiri.setColumns(20);
         TperubahanSendiri.setRows(5);
         TperubahanSendiri.setName("TperubahanSendiri"); // NOI18N
-        TperubahanSendiri.setPreferredSize(new java.awt.Dimension(170, 230));
+        TperubahanSendiri.setPreferredSize(new java.awt.Dimension(170, 2000));
         TperubahanSendiri.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TperubahanSendiriKeyPressed(evt);
@@ -2211,13 +2215,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass15.add(Scroll13);
         Scroll13.setBounds(162, 86, 830, 70);
 
+        Scroll14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll14.setName("Scroll14"); // NOI18N
         Scroll14.setOpaque(true);
 
         TperubahanPasangan.setColumns(20);
         TperubahanPasangan.setRows(5);
         TperubahanPasangan.setName("TperubahanPasangan"); // NOI18N
-        TperubahanPasangan.setPreferredSize(new java.awt.Dimension(170, 230));
+        TperubahanPasangan.setPreferredSize(new java.awt.Dimension(170, 2000));
         TperubahanPasangan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TperubahanPasanganKeyPressed(evt);
@@ -2234,13 +2239,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass15.add(jLabel26);
         jLabel26.setBounds(0, 162, 160, 23);
 
+        Scroll19.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll19.setName("Scroll19"); // NOI18N
         Scroll19.setOpaque(true);
 
         Tkemungkinan.setColumns(20);
         Tkemungkinan.setRows(5);
         Tkemungkinan.setName("Tkemungkinan"); // NOI18N
-        Tkemungkinan.setPreferredSize(new java.awt.Dimension(170, 230));
+        Tkemungkinan.setPreferredSize(new java.awt.Dimension(170, 2000));
         Tkemungkinan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TkemungkinanKeyPressed(evt);
@@ -2307,7 +2313,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         jPanel4.setPreferredSize(new java.awt.Dimension(816, 330));
         jPanel4.setLayout(new java.awt.GridLayout(1, 2));
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Suami ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Suami ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel5.setName("jPanel5"); // NOI18N
         jPanel5.setOpaque(false);
         jPanel5.setPreferredSize(new java.awt.Dimension(250, 102));
@@ -2319,13 +2325,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         jPanel5.add(jLabel32);
         jLabel32.setBounds(0, 18, 90, 23);
 
-        Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Data kelebihan suami ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Data kelebihan suami ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll5.setName("Scroll5"); // NOI18N
         Scroll5.setOpaque(true);
 
         tblebihSuami.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/diperbaiki");
         tblebihSuami.setComponentPopupMenu(jPopupMenu1);
         tblebihSuami.setName("tblebihSuami"); // NOI18N
+        tblebihSuami.getTableHeader().setReorderingAllowed(false);
         tblebihSuami.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblebihSuamiMouseClicked(evt);
@@ -2341,13 +2348,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         jPanel5.add(Scroll5);
         Scroll5.setBounds(95, 18, 430, 150);
 
-        Scroll8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Data kekurangan suami ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        Scroll8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Data kekurangan suami ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll8.setName("Scroll8"); // NOI18N
         Scroll8.setOpaque(true);
 
         tbkurangSuami.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/diperbaiki");
         tbkurangSuami.setComponentPopupMenu(jPopupMenu1);
         tbkurangSuami.setName("tbkurangSuami"); // NOI18N
+        tbkurangSuami.getTableHeader().setReorderingAllowed(false);
         tbkurangSuami.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbkurangSuamiMouseClicked(evt);
@@ -2371,19 +2379,20 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         jPanel4.add(jPanel5);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Istri ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Istri ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel6.setName("jPanel6"); // NOI18N
         jPanel6.setOpaque(false);
         jPanel6.setPreferredSize(new java.awt.Dimension(350, 102));
         jPanel6.setLayout(null);
 
-        Scroll9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Data kelebihan istri ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        Scroll9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Data kelebihan istri ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll9.setName("Scroll9"); // NOI18N
         Scroll9.setOpaque(true);
 
         tblebihIstri.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/diperbaiki");
         tblebihIstri.setComponentPopupMenu(jPopupMenu1);
         tblebihIstri.setName("tblebihIstri"); // NOI18N
+        tblebihIstri.getTableHeader().setReorderingAllowed(false);
         tblebihIstri.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblebihIstriMouseClicked(evt);
@@ -2405,13 +2414,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         jPanel6.add(jLabel34);
         jLabel34.setBounds(0, 18, 90, 23);
 
-        Scroll11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Data kekurangan istri ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        Scroll11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Data kekurangan istri ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll11.setName("Scroll11"); // NOI18N
         Scroll11.setOpaque(true);
 
         tbkurangIstri.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/diperbaiki");
         tbkurangIstri.setComponentPopupMenu(jPopupMenu1);
         tbkurangIstri.setName("tbkurangIstri"); // NOI18N
+        tbkurangIstri.getTableHeader().setReorderingAllowed(false);
         tbkurangIstri.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbkurangIstriMouseClicked(evt);
@@ -2465,7 +2475,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         cmbPasanganKL.setForeground(new java.awt.Color(0, 0, 0));
         cmbPasanganKL.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SUAMI", "ISTRI" }));
         cmbPasanganKL.setName("cmbPasanganKL"); // NOI18N
-        cmbPasanganKL.setOpaque(false);
         cmbPasanganKL.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass19.add(cmbPasanganKL);
         cmbPasanganKL.setBounds(133, 10, 70, 23);
@@ -2473,7 +2482,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         cmbPenilaian.setForeground(new java.awt.Color(0, 0, 0));
         cmbPenilaian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "KELEBIHAN", "KEKURANGAN" }));
         cmbPenilaian.setName("cmbPenilaian"); // NOI18N
-        cmbPenilaian.setOpaque(false);
         cmbPenilaian.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass19.add(cmbPenilaian);
         cmbPenilaian.setBounds(316, 10, 100, 23);
@@ -2503,6 +2511,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         tbPemeriksaan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPemeriksaan.setName("tbPemeriksaan"); // NOI18N
+        tbPemeriksaan.getTableHeader().setReorderingAllowed(false);
         tbPemeriksaan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPemeriksaanMouseClicked(evt);
@@ -2533,13 +2542,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass27.add(jLabel48);
         jLabel48.setBounds(0, 86, 130, 23);
 
+        Scroll20.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll20.setName("Scroll20"); // NOI18N
         Scroll20.setOpaque(true);
 
         Twawancara.setColumns(20);
         Twawancara.setRows(5);
         Twawancara.setName("Twawancara"); // NOI18N
-        Twawancara.setPreferredSize(new java.awt.Dimension(170, 230));
+        Twawancara.setPreferredSize(new java.awt.Dimension(170, 2000));
         Twawancara.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TwawancaraKeyPressed(evt);
@@ -2550,13 +2560,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass27.add(Scroll20);
         Scroll20.setBounds(133, 10, 830, 70);
 
+        Scroll21.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll21.setName("Scroll21"); // NOI18N
         Scroll21.setOpaque(true);
 
         Tobservasi.setColumns(20);
         Tobservasi.setRows(5);
         Tobservasi.setName("Tobservasi"); // NOI18N
-        Tobservasi.setPreferredSize(new java.awt.Dimension(170, 230));
+        Tobservasi.setPreferredSize(new java.awt.Dimension(170, 2000));
         Tobservasi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TobservasiKeyPressed(evt);
@@ -2581,6 +2592,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         tbTesPsiko.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbTesPsiko.setName("tbTesPsiko"); // NOI18N
+        tbTesPsiko.getTableHeader().setReorderingAllowed(false);
         tbTesPsiko.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTesPsikoMouseClicked(evt);
@@ -2654,7 +2666,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         TTester.setBounds(133, 94, 390, 23);
 
         tgl_rencana.setEditable(false);
-        tgl_rencana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-10-2022" }));
+        tgl_rencana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-11-2022" }));
         tgl_rencana.setDisplayFormat("dd-MM-yyyy");
         tgl_rencana.setName("tgl_rencana"); // NOI18N
         tgl_rencana.setOpaque(false);
@@ -2676,6 +2688,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         tbManifestasi.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbManifestasi.setName("tbManifestasi"); // NOI18N
+        tbManifestasi.getTableHeader().setReorderingAllowed(false);
         tbManifestasi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbManifestasiMouseClicked(evt);
@@ -2700,13 +2713,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass30.add(jLabel94);
         jLabel94.setBounds(0, 10, 130, 23);
 
+        Scroll29.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll29.setName("Scroll29"); // NOI18N
         Scroll29.setOpaque(true);
 
         TManifes.setColumns(20);
         TManifes.setRows(5);
         TManifes.setName("TManifes"); // NOI18N
-        TManifes.setPreferredSize(new java.awt.Dimension(170, 230));
+        TManifes.setPreferredSize(new java.awt.Dimension(170, 2000));
         Scroll29.setViewportView(TManifes);
 
         panelGlass30.add(Scroll29);
@@ -2726,6 +2740,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         tbDiagnosis.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDiagnosis.setName("tbDiagnosis"); // NOI18N
+        tbDiagnosis.getTableHeader().setReorderingAllowed(false);
         tbDiagnosis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDiagnosisMouseClicked(evt);
@@ -2750,13 +2765,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass31.add(jLabel95);
         jLabel95.setBounds(0, 10, 130, 23);
 
+        Scroll31.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll31.setName("Scroll31"); // NOI18N
         Scroll31.setOpaque(true);
 
         TKesan.setColumns(20);
         TKesan.setRows(5);
         TKesan.setName("TKesan"); // NOI18N
-        TKesan.setPreferredSize(new java.awt.Dimension(170, 230));
+        TKesan.setPreferredSize(new java.awt.Dimension(170, 2000));
         TKesan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TKesanKeyPressed(evt);
@@ -2841,6 +2857,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         tbPrognosis.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPrognosis.setName("tbPrognosis"); // NOI18N
+        tbPrognosis.getTableHeader().setReorderingAllowed(false);
         tbPrognosis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPrognosisMouseClicked(evt);
@@ -2865,13 +2882,14 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass32.add(jLabel98);
         jLabel98.setBounds(0, 10, 130, 23);
 
+        Scroll33.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         Scroll33.setName("Scroll33"); // NOI18N
         Scroll33.setOpaque(true);
 
         Tprognosis.setColumns(20);
         Tprognosis.setRows(5);
         Tprognosis.setName("Tprognosis"); // NOI18N
-        Tprognosis.setPreferredSize(new java.awt.Dimension(170, 230));
+        Tprognosis.setPreferredSize(new java.awt.Dimension(170, 2000));
         Scroll33.setViewportView(Tprognosis);
 
         panelGlass32.add(Scroll33);
@@ -2891,6 +2909,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
 
         tbTritmen.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbTritmen.setName("tbTritmen"); // NOI18N
+        tbTritmen.getTableHeader().setReorderingAllowed(false);
         tbTritmen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTritmenMouseClicked(evt);
@@ -2909,12 +2928,13 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass33.setPreferredSize(new java.awt.Dimension(44, 215));
         panelGlass33.setLayout(null);
 
-        Scroll6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Item Rencana Tritmen ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        Scroll6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Item Rencana Tritmen ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
 
         tbItemTritmen.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/diperbaiki");
         tbItemTritmen.setName("tbItemTritmen"); // NOI18N
+        tbItemTritmen.getTableHeader().setReorderingAllowed(false);
         tbItemTritmen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbItemTritmenMouseClicked(evt);
@@ -3180,7 +3200,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass23.add(jLabel41);
 
         tgl1.setEditable(false);
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-10-2022" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-11-2022" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -3195,7 +3215,7 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         panelGlass23.add(jLabel42);
 
         tgl2.setEditable(false);
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-10-2022" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-11-2022" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -3227,7 +3247,6 @@ public final class DlgRekamPsikologisPerkawinan extends javax.swing.JDialog {
         cmbLimit.setForeground(new java.awt.Color(0, 0, 0));
         cmbLimit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "200", "300", "400", "500", "1000", "Semua" }));
         cmbLimit.setName("cmbLimit"); // NOI18N
-        cmbLimit.setOpaque(false);
         cmbLimit.setPreferredSize(new java.awt.Dimension(66, 23));
         panelGlass23.add(cmbLimit);
 

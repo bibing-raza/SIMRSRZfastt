@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -536,6 +537,8 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass15 = new widget.panelisi();
         jLabel103 = new widget.Label();
         cmbPrin = new widget.ComboBox();
+        jLabel73 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnLabelGZ = new widget.Button();
         BtnBatal1 = new widget.Button();
         BtnCloseIn10 = new widget.Button();
@@ -715,6 +718,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         tbPoli.setAutoCreateRowSorter(true);
         tbPoli.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPoli.setName("tbPoli"); // NOI18N
+        tbPoli.getTableHeader().setReorderingAllowed(false);
         tbPoli.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPoliMouseClicked(evt);
@@ -758,6 +762,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         BtnCari4.setBorder(null);
         BtnCari4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari4.setMnemonic('2');
         BtnCari4.setText("Tampilkan Data");
         BtnCari4.setName("BtnCari4"); // NOI18N
         BtnCari4.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -775,6 +780,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnAll4.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll4.setMnemonic('M');
         BtnAll4.setText("Semua Data");
         BtnAll4.setToolTipText("Alt+M");
         BtnAll4.setName("BtnAll4"); // NOI18N
@@ -812,7 +818,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass13.add(jLabel100);
 
         tglKun.setEditable(false);
-        tglKun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
+        tglKun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2026" }));
         tglKun.setDisplayFormat("dd-MM-yyyy");
         tglKun.setName("tglKun"); // NOI18N
         tglKun.setOpaque(false);
@@ -826,7 +832,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass13.add(jLabel99);
 
         tglDiet.setEditable(false);
-        tglDiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
+        tglDiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2026" }));
         tglDiet.setDisplayFormat("dd-MM-yyyy");
         tglDiet.setName("tglDiet"); // NOI18N
         tglDiet.setOpaque(false);
@@ -851,8 +857,21 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         cmbPrin.setPreferredSize(new java.awt.Dimension(120, 23));
         panelGlass15.add(cmbPrin);
 
+        jLabel73.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel73.setText("Cetak Dalam Bentuk :");
+        jLabel73.setName("jLabel73"); // NOI18N
+        jLabel73.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass15.add(jLabel73);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass15.add(cmbPilihCetak);
+
         BtnLabelGZ.setForeground(new java.awt.Color(0, 0, 0));
         BtnLabelGZ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnLabelGZ.setMnemonic('C');
         BtnLabelGZ.setText("Cetak");
         BtnLabelGZ.setToolTipText("Alt+C");
         BtnLabelGZ.setName("BtnLabelGZ"); // NOI18N
@@ -867,6 +886,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         BtnBatal1.setBorder(null);
         BtnBatal1.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal1.setMnemonic('B');
         BtnBatal1.setText("Baru");
         BtnBatal1.setToolTipText("Alt+B");
         BtnBatal1.setName("BtnBatal1"); // NOI18N
@@ -880,6 +900,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnCloseIn10.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn10.setMnemonic('U');
         BtnCloseIn10.setText("Keluar");
         BtnCloseIn10.setToolTipText("Alt+U");
         BtnCloseIn10.setName("BtnCloseIn10"); // NOI18N
@@ -962,6 +983,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         btnDiet.setForeground(new java.awt.Color(0, 0, 0));
         btnDiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnDiet.setMnemonic('X');
         btnDiet.setToolTipText("Alt+X");
         btnDiet.setName("btnDiet"); // NOI18N
         btnDiet.addActionListener(new java.awt.event.ActionListener() {
@@ -974,6 +996,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         btnJumlahBeri.setForeground(new java.awt.Color(0, 0, 0));
         btnJumlahBeri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnJumlahBeri.setMnemonic('X');
         btnJumlahBeri.setToolTipText("Alt+X");
         btnJumlahBeri.setName("btnJumlahBeri"); // NOI18N
         btnJumlahBeri.addActionListener(new java.awt.event.ActionListener() {
@@ -998,6 +1021,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnSimpan2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan2.setMnemonic('S');
         BtnSimpan2.setText("Simpan");
         BtnSimpan2.setToolTipText("Alt+S");
         BtnSimpan2.setName("BtnSimpan2"); // NOI18N
@@ -1011,6 +1035,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -1029,6 +1054,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnCloseIn3.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn3.setMnemonic('U');
         BtnCloseIn3.setText("Tutup");
         BtnCloseIn3.setToolTipText("Alt+U");
         BtnCloseIn3.setName("BtnCloseIn3"); // NOI18N
@@ -1072,6 +1098,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -1090,6 +1117,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -1108,6 +1136,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -1134,6 +1163,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1192,6 +1222,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnSeek2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnSeek2.setMnemonic('X');
         BtnSeek2.setToolTipText("Alt+X");
         BtnSeek2.setName("BtnSeek2"); // NOI18N
         BtnSeek2.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1220,7 +1251,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass10.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1240,7 +1271,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass10.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1271,6 +1302,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         BtnCari.setBorder(null);
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -1297,6 +1329,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setMnemonic('M');
         ChkInput.setText(".: Input Data");
         ChkInput.setBorderPainted(true);
         ChkInput.setBorderPaintedFlat(true);
@@ -1332,7 +1365,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         TPasien.setBounds(155, 42, 310, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2026" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1352,6 +1385,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnPilihDiet.setForeground(new java.awt.Color(0, 0, 0));
         BtnPilihDiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPilihDiet.setMnemonic('P');
         BtnPilihDiet.setText("Pilihan Diet");
         BtnPilihDiet.setToolTipText("Alt+P");
         BtnPilihDiet.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1415,6 +1449,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         tbDiet.setAutoCreateRowSorter(true);
         tbDiet.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/diperbaiki");
         tbDiet.setName("tbDiet"); // NOI18N
+        tbDiet.getTableHeader().setReorderingAllowed(false);
         tbDiet.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDietMouseClicked(evt);
@@ -1432,6 +1467,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnHapusPilihan.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusPilihan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapusPilihan.setMnemonic('H');
         BtnHapusPilihan.setText("Hapus Dipilih");
         BtnHapusPilihan.setToolTipText("Alt+H");
         BtnHapusPilihan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1448,6 +1484,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti Dipilih");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1523,7 +1560,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         FormInput.add(cekDietSore);
         cekDietSore.setBounds(78, 192, 80, 23);
 
-        cekKemasan.setBackground(new java.awt.Color(255, 255, 250));
         cekKemasan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         cekKemasan.setForeground(new java.awt.Color(0, 0, 0));
         cekKemasan.setText("Disajikan Seperti Biasa");
@@ -1569,6 +1605,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         tbRanap.setToolTipText("Silahkan klik untuk memilih data yang mau dihapus");
         tbRanap.setComponentPopupMenu(jPopupMenu1);
         tbRanap.setName("tbRanap"); // NOI18N
+        tbRanap.getTableHeader().setReorderingAllowed(false);
         tbRanap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRanapMouseClicked(evt);
@@ -1599,6 +1636,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         tbRalan.setToolTipText("Silahkan klik untuk memilih data yang mau dihapus");
         tbRalan.setComponentPopupMenu(jPopupMenu1);
         tbRalan.setName("tbRalan"); // NOI18N
+        tbRalan.getTableHeader().setReorderingAllowed(false);
         tbRalan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRalanMouseClicked(evt);
@@ -1930,7 +1968,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_BtnCloseIn10ActionPerformed
 
     private void MnDataDietRalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDataDietRalanActionPerformed
-        WindowLabelGiziRALAN.setSize(596, 370);
+        WindowLabelGiziRALAN.setSize(779, 370);
         WindowLabelGiziRALAN.setLocationRelativeTo(internalFrame1);
         WindowLabelGiziRALAN.setVisible(true);
         emptLabelGZ();
@@ -2419,6 +2457,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public widget.CekBox cekKemasan;
     public widget.CekBox cekWaktu;
     private widget.ComboBox cmbJamCari;
+    private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbPrin;
     private widget.ComboBox cmbSatuan;
     private widget.TextBox inisial;
@@ -2443,6 +2482,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
+    private widget.Label jLabel73;
     private widget.Label jLabel8;
     private widget.Label jLabel97;
     private widget.Label jLabel99;
@@ -3159,16 +3199,59 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         param.put("tgl_beri_diet", nmHari + ", " + tglDiet.getSelectedItem());
         param.put("tgl_sekarang", nmHari1 + ", " + Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%d-%m-%Y')"));
         param.put("nm_unit", "DAFTAR NAMA PASIEN POLIKLINIK/INSTALASI " + nama_unit);
-        Valid.MyReport("rptbondietRalan.jasper", "report", "::[ Bon Diet Makanan Pasien ]::",
-                "SELECT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lhr, "
-                + "pl.nm_poli, lower(IFNULL(pr.diagnosa, '-')) diag_resum, IFNULL(d.nama_diet, '') nm_diet FROM reg_periksa rp "
-                + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
-                + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                + "LEFT JOIN pemeriksaan_ralan pr ON pr.no_rawat = rp.no_rawat "
-                + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
-                + "AND (dd.waktu = 'SIANG' OR ifnull(dd.waktu, '-') = '-') LEFT JOIN diet d ON d.kd_diet = dd.kd_diet WHERE "
-                + "rp.status_lanjut = 'ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "' "
-                + "ORDER BY pl.nm_poli, pasien", param);
+
+        if (cmbPilihCetak.getSelectedIndex() == 0) {
+            if (akses.getadmin() == true) {
+                Valid.MyReport("rptbondietRalan.jasper", "report", "::[ Bon Diet Makanan Pasien ]::",
+                        "SELECT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lhr, "
+                        + "pl.nm_poli, lower(IFNULL(pr.diagnosa, '-')) diag_resum, IFNULL(d.nama_diet, '') nm_diet FROM reg_periksa rp "
+                        + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "LEFT JOIN pemeriksaan_ralan pr ON pr.no_rawat = rp.no_rawat "
+                        + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "AND (dd.waktu = 'SIANG' OR ifnull(dd.waktu, '-') = '-') LEFT JOIN diet d ON d.kd_diet = dd.kd_diet WHERE "
+                        + "rp.status_lanjut = 'ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "' "
+                        + "ORDER BY pl.nm_poli, pasien", param);
+            } else {
+                String isi = "", user = "";
+                user = Sequel.cariIsi("select nama from pegawai where nik='" + akses.getkode() + "'");
+                param.put("nmAhliGz", user);
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='008'"),
+                                "Daftar Nama Pasien Rawat Jalan", user,
+                                Sequel.cariIsi("select date_format(now(),'%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='008'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Daftar Nama Pasien Rawat Jalan", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='008'"));
+
+                Valid.MyReport("rptbondietRalanQr.jasper", "report", "::[ Bon Diet Makanan Pasien ]::",
+                        "SELECT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lhr, "
+                        + "pl.nm_poli, lower(IFNULL(pr.diagnosa, '-')) diag_resum, IFNULL(d.nama_diet, '') nm_diet FROM reg_periksa rp "
+                        + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "LEFT JOIN pemeriksaan_ralan pr ON pr.no_rawat = rp.no_rawat "
+                        + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "AND (dd.waktu = 'SIANG' OR ifnull(dd.waktu, '-') = '-') LEFT JOIN diet d ON d.kd_diet = dd.kd_diet WHERE "
+                        + "rp.status_lanjut = 'ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "' "
+                        + "ORDER BY pl.nm_poli, pasien", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        } else {
+            Valid.MyReport("rptbondietRalan.jasper", "report", "::[ Bon Diet Makanan Pasien ]::",
+                    "SELECT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lhr, "
+                    + "pl.nm_poli, lower(IFNULL(pr.diagnosa, '-')) diag_resum, IFNULL(d.nama_diet, '') nm_diet FROM reg_periksa rp "
+                    + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "LEFT JOIN pemeriksaan_ralan pr ON pr.no_rawat = rp.no_rawat "
+                    + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal = '" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    + "AND (dd.waktu = 'SIANG' OR ifnull(dd.waktu, '-') = '-') LEFT JOIN diet d ON d.kd_diet = dd.kd_diet WHERE "
+                    + "rp.status_lanjut = 'ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "' "
+                    + "ORDER BY pl.nm_poli, pasien", param);
+        }
         this.setCursor(Cursor.getDefaultCursor());
         tampilPoliGZ();
     }
@@ -3221,35 +3304,116 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         param.put("tgl_beri_diet", nmHari + ", " + tglDiet.getSelectedItem());
         param.put("tgl_sekarang", nmHari1 + ", " + Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%d-%m-%Y')"));
         param.put("nm_unit", "FORM KETEPATAN DIET POLIKLINIK/INSTALASI " + nama_unit);
-        Valid.MyReport("rptKetepatandietRalan.jasper", "report", "::[ Form Ketepatan Diet Pasien Rawat Jalan ]::",
-                "select concat(a.no_rkm_medis,' - ',a.nm_pasien) pasien, a.tgl_lahir, a.nm_poli, ifnull(b.nama_diet,'') diet_pagi, ifnull(b.waktu,'Pagi') waktu_pagi, "
-                + "ifnull(c.nama_diet,'') diet_siang, ifnull(c.waktu,'Siang') waktu_siang, ifnull(d.nama_diet,'') diet_sore, ifnull(d.waktu,'Sore') waktu_sore, 'RJ' kelas "
-                + "from ((select rp.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lahir, pl.nm_poli from reg_periksa rp "
-                + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
-                + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                + "where rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' AND rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as a "
-                + "left join "
-                + "(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu FROM reg_periksa rp "
-                + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
-                + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
-                + "and dd.waktu = 'pagi' LEFT JOIN diet d ON d.kd_diet = dd.kd_diet "
-                + "WHERE rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as b on b.no_rkm_medis = a.no_rkm_medis "
-                + "left JOIN "
-                + "(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu FROM reg_periksa rp "
-                + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
-                + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
-                + "and dd.waktu = 'siang' LEFT JOIN diet d ON d.kd_diet = dd.kd_diet "
-                + "WHERE rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as c on a.no_rkm_medis = c.no_rkm_medis "
-                + "left JOIN "
-                + "(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu FROM reg_periksa rp "
-                + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
-                + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
-                + "and dd.waktu = 'sore' LEFT JOIN diet d ON d.kd_diet = dd.kd_diet "
-                + "WHERE rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as d on a.no_rkm_medis = d.no_rkm_medis) "
-                + "ORDER BY nm_poli, pasien", param);
+
+        if (cmbPilihCetak.getSelectedIndex() == 0) {
+            if (akses.getadmin() == true) {
+                Valid.MyReport("rptKetepatandietRalan.jasper", "report", "::[ Form Ketepatan Diet Pasien Rawat Jalan ]::",
+                        "select concat(a.no_rkm_medis,' - ',a.nm_pasien) pasien, a.tgl_lahir, a.nm_poli, ifnull(b.nama_diet,'') diet_pagi, ifnull(b.waktu,'Pagi') waktu_pagi, "
+                        + "ifnull(c.nama_diet,'') diet_siang, ifnull(c.waktu,'Siang') waktu_siang, ifnull(d.nama_diet,'') diet_sore, ifnull(d.waktu,'Sore') waktu_sore, 'RJ' kelas "
+                        + "from ((select rp.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lahir, pl.nm_poli from reg_periksa rp "
+                        + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "where rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' AND rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as a "
+                        + "left join "
+                        + "(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu FROM reg_periksa rp "
+                        + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "and dd.waktu = 'pagi' LEFT JOIN diet d ON d.kd_diet = dd.kd_diet "
+                        + "WHERE rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as b on b.no_rkm_medis = a.no_rkm_medis "
+                        + "left JOIN "
+                        + "(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu FROM reg_periksa rp "
+                        + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "and dd.waktu = 'siang' LEFT JOIN diet d ON d.kd_diet = dd.kd_diet "
+                        + "WHERE rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as c on a.no_rkm_medis = c.no_rkm_medis "
+                        + "left JOIN "
+                        + "(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu FROM reg_periksa rp "
+                        + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "and dd.waktu = 'sore' LEFT JOIN diet d ON d.kd_diet = dd.kd_diet "
+                        + "WHERE rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as d on a.no_rkm_medis = d.no_rkm_medis) "
+                        + "ORDER BY nm_poli, pasien", param);
+            } else {
+                String isi = "", user = "";
+                user = Sequel.cariIsi("select nama from pegawai where nik='" + akses.getkode() + "'");
+                param.put("nmPengawas", user);
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='008'"),
+                                "Form Ketepatan Diet Rawat Jalan", user,
+                                Sequel.cariIsi("select date_format(now(),'%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='008'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Form Ketepatan Diet", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='008'"));
+                
+                Valid.MyReport("rptKetepatandietRalanQr.jasper", "report", "::[ Form Ketepatan Diet Pasien Rawat Jalan ]::",
+                        "select concat(a.no_rkm_medis,' - ',a.nm_pasien) pasien, a.tgl_lahir, a.nm_poli, ifnull(b.nama_diet,'') diet_pagi, ifnull(b.waktu,'Pagi') waktu_pagi, "
+                        + "ifnull(c.nama_diet,'') diet_siang, ifnull(c.waktu,'Siang') waktu_siang, ifnull(d.nama_diet,'') diet_sore, ifnull(d.waktu,'Sore') waktu_sore, 'RJ' kelas "
+                        + "from ((select rp.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lahir, pl.nm_poli from reg_periksa rp "
+                        + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "where rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' AND rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as a "
+                        + "left join "
+                        + "(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu FROM reg_periksa rp "
+                        + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "and dd.waktu = 'pagi' LEFT JOIN diet d ON d.kd_diet = dd.kd_diet "
+                        + "WHERE rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as b on b.no_rkm_medis = a.no_rkm_medis "
+                        + "left JOIN "
+                        + "(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu FROM reg_periksa rp "
+                        + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "and dd.waktu = 'siang' LEFT JOIN diet d ON d.kd_diet = dd.kd_diet "
+                        + "WHERE rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as c on a.no_rkm_medis = c.no_rkm_medis "
+                        + "left JOIN "
+                        + "(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu FROM reg_periksa rp "
+                        + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                        + "and dd.waktu = 'sore' LEFT JOIN diet d ON d.kd_diet = dd.kd_diet "
+                        + "WHERE rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as d on a.no_rkm_medis = d.no_rkm_medis) "
+                        + "ORDER BY nm_poli, pasien", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        } else {
+            Valid.MyReport("rptKetepatandietRalan.jasper", "report", "::[ Form Ketepatan Diet Pasien Rawat Jalan ]::",
+                    "select concat(a.no_rkm_medis,' - ',a.nm_pasien) pasien, a.tgl_lahir, a.nm_poli, ifnull(b.nama_diet,'') diet_pagi, ifnull(b.waktu,'Pagi') waktu_pagi, "
+                    + "ifnull(c.nama_diet,'') diet_siang, ifnull(c.waktu,'Siang') waktu_siang, ifnull(d.nama_diet,'') diet_sore, ifnull(d.waktu,'Sore') waktu_sore, 'RJ' kelas "
+                    + "from ((select rp.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lahir, pl.nm_poli from reg_periksa rp "
+                    + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "where rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' AND rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as a "
+                    + "left join "
+                    + "(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu FROM reg_periksa rp "
+                    + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    + "and dd.waktu = 'pagi' LEFT JOIN diet d ON d.kd_diet = dd.kd_diet "
+                    + "WHERE rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as b on b.no_rkm_medis = a.no_rkm_medis "
+                    + "left JOIN "
+                    + "(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu FROM reg_periksa rp "
+                    + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    + "and dd.waktu = 'siang' LEFT JOIN diet d ON d.kd_diet = dd.kd_diet "
+                    + "WHERE rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as c on a.no_rkm_medis = c.no_rkm_medis "
+                    + "left JOIN "
+                    + "(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu FROM reg_periksa rp "
+                    + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='" + Valid.SetTgl(tglDiet.getSelectedItem() + "") + "' "
+                    + "and dd.waktu = 'sore' LEFT JOIN diet d ON d.kd_diet = dd.kd_diet "
+                    + "WHERE rp.status_lanjut = 'Ralan' AND rp.kd_poli = '" + kdPoli + "' and rp.tgl_registrasi='" + Valid.SetTgl(tglKun.getSelectedItem() + "") + "') as d on a.no_rkm_medis = d.no_rkm_medis) "
+                    + "ORDER BY nm_poli, pasien", param);
+        }
         this.setCursor(Cursor.getDefaultCursor());
         tampilPoliGZ();
     }

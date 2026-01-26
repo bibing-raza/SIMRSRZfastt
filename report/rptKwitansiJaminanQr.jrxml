@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="36" uuid="42ac4f9d-53a7-4ad5-abc8-cfa210ff1089">
+	<property name="ireport.zoom" value="1.818181818181852"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
+	<parameter name="namars" class="java.lang.String"/>
+	<parameter name="alamatrs" class="java.lang.String"/>
+	<parameter name="kotars" class="java.lang.String"/>
+	<parameter name="propinsirs" class="java.lang.String"/>
+	<parameter name="kontakrs" class="java.lang.String"/>
+	<parameter name="emailrs" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="no_kwitansi" class="java.lang.String"/>
+	<parameter name="petugas_ksr" class="java.lang.String"/>
+	<parameter name="telah_terima" class="java.lang.String"/>
+	<parameter name="uang_sebanyak" class="java.lang.String"/>
+	<parameter name="untuk_byr" class="java.lang.String"/>
+	<parameter name="terbilang" class="java.lang.String"/>
+	<parameter name="tglNota" class="java.lang.String"/>
+	<parameter name="lokasiQr" class="java.io.InputStream"/>
+	<parameter name="kalimatTte" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT now() tgl]]>
+	</queryString>
+	<field name="tgl" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="302">
+			<textField>
+				<reportElement x="14" y="41" width="529" height="14" uuid="9a78ddc3-45ee-418d-a56a-1034da12dc26"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["E-mail : "+$P{emailrs}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="14" y="57" width="529" height="1" uuid="fb8cfee6-2a34-40d4-9f9d-4f8dbad32e5a"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="137" y="16" width="30" height="38" uuid="9580501b-de8f-4dbd-991e-904b17b6895e"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="14" y="30" width="529" height="14" uuid="8bec4bc4-be86-4b9f-b134-7a2b675a7a9f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{alamatrs}+", "+$P{kotars}+", "+$P{propinsirs}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="14" y="16" width="529" height="17" uuid="a24408a9-0bad-4143-aad4-47cb7d4b64e9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="12"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{namars}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="84" width="95" height="14" uuid="ad9d7527-93e8-4ff4-a031-36258a175b01"/>
+				<textElement textAlignment="Left">
+					<font fontName="Tahoma" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[No. Kuitansi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="97" width="95" height="14" uuid="fca95ee5-5179-4a1f-90fe-7a04555fdfbd"/>
+				<textElement textAlignment="Left">
+					<font fontName="Tahoma" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Telah Terima Dari]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="110" width="95" height="14" uuid="d14ec90e-a9c1-4198-8f25-2a5523e21211"/>
+				<textElement textAlignment="Left">
+					<font fontName="Tahoma" size="10" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Uang Sebanyak]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="135" width="95" height="14" uuid="c9998fd5-4384-4b63-9a89-93846a8fc5d4"/>
+				<textElement textAlignment="Left">
+					<font fontName="Tahoma" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Untuk Pembayaran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="64" width="529" height="15" uuid="5836dbe4-6274-4d6e-a951-f5439d4cf804"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="11" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[KUITANSI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="135" width="7" height="14" uuid="fa14dba4-e1a6-40b1-b984-0d60f30661c2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="110" width="7" height="14" uuid="5b6040c6-beaa-4f63-ba44-23eec0c4f653"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="10" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="97" width="7" height="14" uuid="c42e0903-058d-47b7-8fcb-04c755dfd5cc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="84" width="7" height="14" uuid="4f68ca6d-c8b4-4097-b86b-65e6064fff6f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="118" y="84" width="425" height="14" uuid="6f27836e-eb15-4910-9f43-f9f96cf1ef19"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{no_kwitansi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="97" width="425" height="14" uuid="af32041a-af33-4010-a567-5f7cedb6aa07"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{telah_terima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="110" width="425" height="26" uuid="49fde873-39c4-4518-ad85-dc81999d35e8"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{uang_sebanyak}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="135" width="425" height="45" uuid="843f3fbc-7ff4-4546-baf3-003e74747c43"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{untuk_byr}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="272" width="222" height="14" uuid="7ed440d5-1d70-4e1c-a858-cce355bfe4cc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Adm. Keuangan]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="320" y="260" width="222" height="14" uuid="f5a7ad0d-886a-4477-8299-8dcd635f6e87"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{petugas_ksr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="38" y="214" width="278" height="20" uuid="4b5edfc0-2936-47a4-b896-3cb075f0e8ea"/>
+				<textElement>
+					<font fontName="Tahoma" size="11" isBold="true" isItalic="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{terbilang}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement mode="Transparent" x="6" y="0" width="545" height="290" uuid="69397563-2542-4eac-8a56-704f6456b4dd"/>
+			</rectangle>
+			<textField>
+				<reportElement x="320" y="179" width="222" height="14" uuid="2b3f9451-9f6a-4af2-afea-b18b9adc8ef8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tglNota}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="397" y="192" width="70" height="68" uuid="56337809-e9ca-4aa1-853d-b0d5267869f1"/>
+				<imageExpression><![CDATA[$P{lokasiQr}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="14" y="234" width="302" height="12" uuid="95652c3d-d231-4cfd-aa47-9f26c0ede207"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Keterangan :\n"+$P{kalimatTte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

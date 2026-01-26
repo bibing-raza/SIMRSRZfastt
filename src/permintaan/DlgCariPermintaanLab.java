@@ -292,6 +292,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         tbPasien.setToolTipText("Silahkan klik untuk memilih data yang mau diverifikasi/dicetak ulang");
         tbPasien.setComponentPopupMenu(jPopupMenu1);
         tbPasien.setName("tbPasien"); // NOI18N
+        tbPasien.getTableHeader().setReorderingAllowed(false);
         tbPasien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPasienMouseClicked(evt);
@@ -321,8 +322,8 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
 
             }
         ));
-        tbPermintaan.setToolTipText("");
         tbPermintaan.setName("tbPermintaan"); // NOI18N
+        tbPermintaan.getTableHeader().setReorderingAllowed(false);
         tbPermintaan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPermintaanMouseClicked(evt);

@@ -1061,7 +1061,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
 
         TabIkhtisar.setBackground(new java.awt.Color(255, 153, 255));
         TabIkhtisar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 0));
-        TabIkhtisar.setForeground(new java.awt.Color(0, 0, 0));
         TabIkhtisar.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
         TabIkhtisar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         TabIkhtisar.setName("TabIkhtisar"); // NOI18N
@@ -1103,7 +1102,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         btnPengawas.setBounds(660, 38, 28, 23);
 
         TglKonfirmasiTes.setEditable(false);
-        TglKonfirmasiTes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        TglKonfirmasiTes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         TglKonfirmasiTes.setDisplayFormat("dd-MM-yyyy");
         TglKonfirmasiTes.setName("TglKonfirmasiTes"); // NOI18N
         TglKonfirmasiTes.setOpaque(false);
@@ -1118,7 +1117,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbHubPasien.setForeground(new java.awt.Color(0, 0, 0));
         cmbHubPasien.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Pendukung", "LSM", "Saudara", "Ayah", "Ibu", "Anak", "Suami", "Istri", "Sepupu", "Pasien Sendiri", "Paman", "Bibi", "Kakek", "Nenek", "Teman", "Tetangga", "Ipar", "Besan", "Menantu", "Mertua", "Keponakan", "Kakak", "Adik" }));
         cmbHubPasien.setName("cmbHubPasien"); // NOI18N
-        cmbHubPasien.setOpaque(false);
         cmbHubPasien.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbHubPasien.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1208,7 +1206,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbEntriPoin.setForeground(new java.awt.Color(0, 0, 0));
         cmbEntriPoin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1. KIA", "2. Rawat Jalan", "3. Rawat Inap", "4. Praktek Swasta", "5. Jangkauan", "6. LSM", "7. Datang Sendiri", "8. Lainnya" }));
         cmbEntriPoin.setName("cmbEntriPoin"); // NOI18N
-        cmbEntriPoin.setOpaque(false);
         cmbEntriPoin.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbEntriPoin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1238,7 +1235,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbEntriPoin2.setForeground(new java.awt.Color(0, 0, 0));
         cmbEntriPoin2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "TB", "Anak", "Penyakit Dalam", "IMS", "Lainnya" }));
         cmbEntriPoin2.setName("cmbEntriPoin2"); // NOI18N
-        cmbEntriPoin2.setOpaque(false);
         cmbEntriPoin2.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbEntriPoin2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1279,7 +1275,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbEntriPoin5.setForeground(new java.awt.Color(0, 0, 0));
         cmbEntriPoin5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "IDU", "PSK", "LSL", "Lainnya" }));
         cmbEntriPoin5.setName("cmbEntriPoin5"); // NOI18N
-        cmbEntriPoin5.setOpaque(false);
         cmbEntriPoin5.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbEntriPoin5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1295,7 +1290,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         FormInput3.add(jLabel85);
         jLabel85.setBounds(0, 262, 230, 23);
 
-        RdgART.setBackground(new java.awt.Color(240, 250, 230));
         RdgART.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(RdgART);
         RdgART.setText("Dengan ART");
@@ -1306,7 +1300,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         FormInput3.add(RdgART);
         RdgART.setBounds(390, 262, 85, 23);
 
-        RtnpART.setBackground(new java.awt.Color(240, 250, 230));
         RtnpART.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(RtnpART);
         RtnpART.setText("Tanpa ART");
@@ -1326,7 +1319,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbPndkn.setForeground(new java.awt.Color(0, 0, 0));
         cmbPndkn.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0. Tidak Sekolah", "1. SD", "2. SMP", "3. SMU", "4. Perguruan Tinggi" }));
         cmbPndkn.setName("cmbPndkn"); // NOI18N
-        cmbPndkn.setOpaque(false);
         cmbPndkn.setPreferredSize(new java.awt.Dimension(55, 28));
         FormInput3.add(cmbPndkn);
         cmbPndkn.setBounds(560, 262, 130, 23);
@@ -1349,7 +1341,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         jLabel88.setBounds(510, 318, 90, 23);
 
         TglRujukMsk.setEditable(false);
-        TglRujukMsk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        TglRujukMsk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         TglRujukMsk.setDisplayFormat("dd-MM-yyyy");
         TglRujukMsk.setName("TglRujukMsk"); // NOI18N
         TglRujukMsk.setOpaque(false);
@@ -1367,7 +1359,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         FormInput3.add(jLabel89);
         jLabel89.setBounds(0, 318, 230, 23);
 
-        RtdkBekerja.setBackground(new java.awt.Color(240, 250, 230));
         RtdkBekerja.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup2.add(RtdkBekerja);
         RtdkBekerja.setText("Tidak Bekerja");
@@ -1378,7 +1369,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         FormInput3.add(RtdkBekerja);
         RtdkBekerja.setBounds(230, 318, 100, 23);
 
-        RBekerja.setBackground(new java.awt.Color(240, 250, 230));
         RBekerja.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup2.add(RBekerja);
         RBekerja.setText("Bekerja");
@@ -1403,7 +1393,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbFaktorResiko.setForeground(new java.awt.Color(0, 0, 0));
         cmbFaktorResiko.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1. Heteroseksual", "2. Homoseksual", "3. Biseksual", "4. Perinatal", "5. Transfusi Darah", "6. NAPZA Suntik", "7. Lain-lain" }));
         cmbFaktorResiko.setName("cmbFaktorResiko"); // NOI18N
-        cmbFaktorResiko.setOpaque(false);
         cmbFaktorResiko.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbFaktorResiko.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1422,7 +1411,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbRujukMasuk.setForeground(new java.awt.Color(0, 0, 0));
         cmbRujukMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
         cmbRujukMasuk.setName("cmbRujukMasuk"); // NOI18N
-        cmbRujukMasuk.setOpaque(false);
         cmbRujukMasuk.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbRujukMasuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1441,7 +1429,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbSttsNikah.setForeground(new java.awt.Color(0, 0, 0));
         cmbSttsNikah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Menikah", "Belum Menikah", "Janda/Duda" }));
         cmbSttsNikah.setName("cmbSttsNikah"); // NOI18N
-        cmbSttsNikah.setOpaque(false);
         cmbSttsNikah.setPreferredSize(new java.awt.Dimension(55, 28));
         FormInput3.add(cmbSttsNikah);
         cmbSttsNikah.setBounds(133, 150, 120, 23);
@@ -1456,7 +1443,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbTerimaART.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
         cmbTerimaART.setSelectedIndex(1);
         cmbTerimaART.setName("cmbTerimaART"); // NOI18N
-        cmbTerimaART.setOpaque(false);
         cmbTerimaART.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbTerimaART.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1475,7 +1461,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbJikaYA.setForeground(new java.awt.Color(0, 0, 0));
         cmbJikaYA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1. PMTCT", "2. ART", "3. PPP" }));
         cmbJikaYA.setName("cmbJikaYA"); // NOI18N
-        cmbJikaYA.setOpaque(false);
         cmbJikaYA.setPreferredSize(new java.awt.Dimension(55, 28));
         FormInput3.add(cmbJikaYA);
         cmbJikaYA.setBounds(256, 374, 80, 23);
@@ -1489,7 +1474,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbTmpART.setForeground(new java.awt.Color(0, 0, 0));
         cmbTmpART.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1. RS Pemerintah", "2. RS Swasta", "3. PKM" }));
         cmbTmpART.setName("cmbTmpART"); // NOI18N
-        cmbTmpART.setOpaque(false);
         cmbTmpART.setPreferredSize(new java.awt.Dimension(55, 28));
         FormInput3.add(cmbTmpART);
         cmbTmpART.setBounds(570, 374, 120, 23);
@@ -1537,6 +1521,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
 
         tb12.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tb12.setName("tb12"); // NOI18N
+        tb12.getTableHeader().setReorderingAllowed(false);
         tb12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb12MouseClicked(evt);
@@ -1568,6 +1553,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
 
         tb3.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tb3.setName("tb3"); // NOI18N
+        tb3.getTableHeader().setReorderingAllowed(false);
         tb3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb3MouseClicked(evt);
@@ -1617,7 +1603,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbHubKeluarga.setForeground(new java.awt.Color(0, 0, 0));
         cmbHubKeluarga.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Saudara", "Ayah", "Ibu", "Anak", "Suami", "Istri", "Sepupu", "Pasien Sendiri", "Paman", "Bibi", "Kakek", "Nenek", "Teman", "Tetangga", "Ipar", "Besan", "Menantu", "Mertua", "Keponakan", "Kakak", "Adik" }));
         cmbHubKeluarga.setName("cmbHubKeluarga"); // NOI18N
-        cmbHubKeluarga.setOpaque(false);
         cmbHubKeluarga.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass11.add(cmbHubKeluarga);
         cmbHubKeluarga.setBounds(311, 38, 105, 23);
@@ -1641,7 +1626,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbIDumurKlg.setForeground(new java.awt.Color(0, 0, 0));
         cmbIDumurKlg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Th", "Bl", "Hr" }));
         cmbIDumurKlg.setName("cmbIDumurKlg"); // NOI18N
-        cmbIDumurKlg.setOpaque(false);
         cmbIDumurKlg.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass11.add(cmbIDumurKlg);
         cmbIDumurKlg.setBounds(523, 66, 50, 23);
@@ -1655,7 +1639,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbHIVklg.setForeground(new java.awt.Color(0, 0, 0));
         cmbHIVklg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "+", "-" }));
         cmbHIVklg.setName("cmbHIVklg"); // NOI18N
-        cmbHIVklg.setOpaque(false);
         cmbHIVklg.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass11.add(cmbHIVklg);
         cmbHIVklg.setBounds(628, 38, 45, 23);
@@ -1669,7 +1652,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbARTklg.setForeground(new java.awt.Color(0, 0, 0));
         cmbARTklg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "+", "tdk" }));
         cmbARTklg.setName("cmbARTklg"); // NOI18N
-        cmbARTklg.setOpaque(false);
         cmbARTklg.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass11.add(cmbARTklg);
         cmbARTklg.setBounds(628, 66, 52, 23);
@@ -1711,6 +1693,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
 
         tb4.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tb4.setName("tb4"); // NOI18N
+        tb4.getTableHeader().setReorderingAllowed(false);
         tb4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb4MouseClicked(evt);
@@ -1779,7 +1762,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         jLabel18.setBounds(375, 66, 140, 23);
 
         TglDicatat.setEditable(false);
-        TglDicatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        TglDicatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         TglDicatat.setDisplayFormat("dd-MM-yyyy");
         TglDicatat.setName("TglDicatat"); // NOI18N
         TglDicatat.setOpaque(false);
@@ -1830,6 +1813,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
 
         tb5.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tb5.setName("tb5"); // NOI18N
+        tb5.getTableHeader().setReorderingAllowed(false);
         tb5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb5MouseClicked(evt);
@@ -1849,7 +1833,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         panelGlass14.setLayout(null);
 
         tglPemeriksaan.setEditable(false);
-        tglPemeriksaan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        tglPemeriksaan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         tglPemeriksaan.setDisplayFormat("dd-MM-yyyy");
         tglPemeriksaan.setName("tglPemeriksaan"); // NOI18N
         tglPemeriksaan.setOpaque(false);
@@ -1897,7 +1881,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbstsFung.setForeground(new java.awt.Color(0, 0, 0));
         cmbstsFung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1 = Kerja", "2 = Ambulatori", "3 = Baring" }));
         cmbstsFung.setName("cmbstsFung"); // NOI18N
-        cmbstsFung.setOpaque(false);
         cmbstsFung.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass14.add(cmbstsFung);
         cmbstsFung.setBounds(415, 38, 105, 23);
@@ -1943,7 +1926,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbPemeriksaan.setForeground(new java.awt.Color(0, 0, 0));
         cmbPemeriksaan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Kunjungan pertama", "Memenuhi syarat medis untuk ART", "Saat mulai ART", "Setelah 6 bulan ART", "Setelah 12 bulan ART", "Setelah 24 bulan ART" }));
         cmbPemeriksaan.setName("cmbPemeriksaan"); // NOI18N
-        cmbPemeriksaan.setOpaque(false);
         cmbPemeriksaan.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass14.add(cmbPemeriksaan);
         cmbPemeriksaan.setBounds(102, 10, 200, 23);
@@ -1968,6 +1950,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
 
         tb6.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tb6.setName("tb6"); // NOI18N
+        tb6.getTableHeader().setReorderingAllowed(false);
         tb6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb6MouseClicked(evt);
@@ -2004,7 +1987,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         panelGlass15.add(jLabel31);
         jLabel31.setBounds(475, 66, 130, 23);
 
-        Rsubstitusi.setBackground(new java.awt.Color(240, 250, 230));
         Rsubstitusi.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup3.add(Rsubstitusi);
         Rsubstitusi.setText("Substitusi");
@@ -2020,7 +2002,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         panelGlass15.add(Rsubstitusi);
         Rsubstitusi.setBounds(162, 38, 75, 23);
 
-        Rswitch.setBackground(new java.awt.Color(240, 250, 230));
         Rswitch.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup3.add(Rswitch);
         Rswitch.setText("Switch");
@@ -2036,7 +2017,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         panelGlass15.add(Rswitch);
         Rswitch.setBounds(162, 66, 75, 23);
 
-        Rstop.setBackground(new java.awt.Color(240, 250, 230));
         Rstop.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup3.add(Rstop);
         Rstop.setText("Stop");
@@ -2052,7 +2032,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         panelGlass15.add(Rstop);
         Rstop.setBounds(162, 94, 75, 23);
 
-        Rrestart.setBackground(new java.awt.Color(240, 250, 230));
         Rrestart.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup3.add(Rrestart);
         Rrestart.setText("Restart");
@@ -2081,7 +2060,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbAlasanSub.setForeground(new java.awt.Color(0, 0, 0));
         cmbAlasanSub.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1. Toksisitas/efek samping", "2. Hamil", "3. Resiko Hamil", "4. TB baru", "5. Ada obat baru", "6. Stok obat habis", "7. Alasan lain (uraikan)" }));
         cmbAlasanSub.setName("cmbAlasanSub"); // NOI18N
-        cmbAlasanSub.setOpaque(false);
         cmbAlasanSub.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbAlasanSub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2118,7 +2096,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         jLabel32.setBounds(475, 10, 130, 23);
 
         tglTerapi.setEditable(false);
-        tglTerapi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        tglTerapi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         tglTerapi.setDisplayFormat("dd-MM-yyyy");
         tglTerapi.setName("tglTerapi"); // NOI18N
         tglTerapi.setOpaque(false);
@@ -2128,7 +2106,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbAlasanSwi.setForeground(new java.awt.Color(0, 0, 0));
         cmbAlasanSwi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "8. Gagal pengobatan secara linis", "9. Gagal imunologis", "10. Gagal virologis" }));
         cmbAlasanSwi.setName("cmbAlasanSwi"); // NOI18N
-        cmbAlasanSwi.setOpaque(false);
         cmbAlasanSwi.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass15.add(cmbAlasanSwi);
         cmbAlasanSwi.setBounds(248, 66, 200, 23);
@@ -2136,7 +2113,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbAlasanSto.setForeground(new java.awt.Color(0, 0, 0));
         cmbAlasanSto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1. Toksisitas/efek samping", "2. Hamil", "3. Gagal pengobatan", "4. Adherene buruk", "5. Sakit/MRS", "6. Stok obat habis", "7. Kekurangan biaya", "8. Keputusan pasien lainnya", "9. Lain-lain" }));
         cmbAlasanSto.setName("cmbAlasanSto"); // NOI18N
-        cmbAlasanSto.setOpaque(false);
         cmbAlasanSto.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass15.add(cmbAlasanSto);
         cmbAlasanSto.setBounds(248, 94, 200, 23);
@@ -2173,6 +2149,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
 
         tb7.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tb7.setName("tb7"); // NOI18N
+        tb7.getTableHeader().setReorderingAllowed(false);
         tb7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb7MouseClicked(evt);
@@ -2212,7 +2189,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbKlasifikasi.setForeground(new java.awt.Color(0, 0, 0));
         cmbKlasifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1. TB Paru", "2. TB Ekstra paru lokasi" }));
         cmbKlasifikasi.setName("cmbKlasifikasi"); // NOI18N
-        cmbKlasifikasi.setOpaque(false);
         cmbKlasifikasi.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbKlasifikasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2225,7 +2201,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbTipe.setForeground(new java.awt.Color(0, 0, 0));
         cmbTipe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1. Baru", "2. Kambuh", "3. Default", "4. Gagal" }));
         cmbTipe.setName("cmbTipe"); // NOI18N
-        cmbTipe.setOpaque(false);
         cmbTipe.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass26.add(cmbTipe);
         cmbTipe.setBounds(142, 38, 85, 23);
@@ -2233,7 +2208,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbRejimen.setForeground(new java.awt.Color(0, 0, 0));
         cmbRejimen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1. Kategori I", "2. Kategori II", "3. Kategori anak", "4. OAT lini 2 MDR" }));
         cmbRejimen.setName("cmbRejimen"); // NOI18N
-        cmbRejimen.setOpaque(false);
         cmbRejimen.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass26.add(cmbRejimen);
         cmbRejimen.setBounds(142, 66, 120, 23);
@@ -2325,20 +2299,20 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         jLabel46.setBounds(0, 122, 140, 23);
 
         tglMulaitb.setEditable(false);
-        tglMulaitb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        tglMulaitb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         tglMulaitb.setDisplayFormat("dd-MM-yyyy");
         tglMulaitb.setName("tglMulaitb"); // NOI18N
         tglMulaitb.setOpaque(false);
         panelGlass26.add(tglMulaitb);
-        tglMulaitb.setBounds(142, 94, 90, 23);
+        tglMulaitb.setBounds(142, 94, 90, 24);
 
         tglSelesaitb.setEditable(false);
-        tglSelesaitb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        tglSelesaitb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         tglSelesaitb.setDisplayFormat("dd-MM-yyyy");
         tglSelesaitb.setName("tglSelesaitb"); // NOI18N
         tglSelesaitb.setOpaque(false);
         panelGlass26.add(tglSelesaitb);
-        tglSelesaitb.setBounds(142, 122, 90, 23);
+        tglSelesaitb.setBounds(142, 122, 90, 24);
 
         internalFrame11.add(panelGlass26, java.awt.BorderLayout.PAGE_START);
 
@@ -2354,6 +2328,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
 
         tb8.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tb8.setName("tb8"); // NOI18N
+        tb8.getTableHeader().setReorderingAllowed(false);
         tb8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb8MouseClicked(evt);
@@ -2381,7 +2356,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbAkhir.setForeground(new java.awt.Color(0, 0, 0));
         cmbAkhir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Meninggal dunia", "Gagal follow-up (>3 bulan)", "Rujuk keluar" }));
         cmbAkhir.setName("cmbAkhir"); // NOI18N
-        cmbAkhir.setOpaque(false);
         cmbAkhir.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbAkhir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2398,12 +2372,12 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         jLabel48.setBounds(0, 38, 150, 23);
 
         tglMati.setEditable(false);
-        tglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        tglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         tglMati.setDisplayFormat("dd-MM-yyyy");
         tglMati.setName("tglMati"); // NOI18N
         tglMati.setOpaque(false);
         panelGlass27.add(tglMati);
-        tglMati.setBounds(154, 38, 90, 23);
+        tglMati.setBounds(154, 38, 90, 24);
 
         jLabel49.setForeground(new java.awt.Color(0, 0, 0));
         jLabel49.setText("Tgl. Kunjungan Terakhir : ");
@@ -2412,12 +2386,12 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         jLabel49.setBounds(0, 66, 150, 23);
 
         tglKunAkhir.setEditable(false);
-        tglKunAkhir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        tglKunAkhir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         tglKunAkhir.setDisplayFormat("dd-MM-yyyy");
         tglKunAkhir.setName("tglKunAkhir"); // NOI18N
         tglKunAkhir.setOpaque(false);
         panelGlass27.add(tglKunAkhir);
-        tglKunAkhir.setBounds(154, 66, 90, 23);
+        tglKunAkhir.setBounds(154, 66, 90, 24);
 
         jLabel50.setForeground(new java.awt.Color(0, 0, 0));
         jLabel50.setText("Tgl. Rujuk Keluar : ");
@@ -2426,12 +2400,12 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         jLabel50.setBounds(0, 94, 150, 23);
 
         tglRujukKeluar.setEditable(false);
-        tglRujukKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        tglRujukKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         tglRujukKeluar.setDisplayFormat("dd-MM-yyyy");
         tglRujukKeluar.setName("tglRujukKeluar"); // NOI18N
         tglRujukKeluar.setOpaque(false);
         panelGlass27.add(tglRujukKeluar);
-        tglRujukKeluar.setBounds(154, 94, 90, 23);
+        tglRujukKeluar.setBounds(154, 94, 90, 24);
 
         jLabel51.setForeground(new java.awt.Color(0, 0, 0));
         jLabel51.setText("Klinik : baru : ");
@@ -2458,6 +2432,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
 
         tb9.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tb9.setName("tb9"); // NOI18N
+        tb9.getTableHeader().setReorderingAllowed(false);
         tb9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tb9MouseClicked(evt);
@@ -2549,7 +2524,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         FormInput4.add(jLabel102);
         jLabel102.setBounds(0, 150, 130, 23);
 
-        RT.setBackground(new java.awt.Color(240, 250, 230));
         RT.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup4.add(RT);
         RT.setText("T");
@@ -2560,7 +2534,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         FormInput4.add(RT);
         RT.setBounds(768, 234, 40, 23);
 
-        RY.setBackground(new java.awt.Color(240, 250, 230));
         RY.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup4.add(RY);
         RY.setSelected(true);
@@ -2589,7 +2562,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         TobatARV.setBounds(717, 10, 240, 23);
 
         TglFollowup.setEditable(false);
-        TglFollowup.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        TglFollowup.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         TglFollowup.setDisplayFormat("dd-MM-yyyy");
         TglFollowup.setName("TglFollowup"); // NOI18N
         TglFollowup.setOpaque(false);
@@ -2597,7 +2570,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         TglFollowup.setBounds(133, 10, 90, 23);
 
         TglRencKun.setEditable(false);
-        TglRencKun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        TglRencKun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         TglRencKun.setDisplayFormat("dd-MM-yyyy");
         TglRencKun.setName("TglRencKun"); // NOI18N
         TglRencKun.setOpaque(false);
@@ -2633,7 +2606,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbSttsFung.setForeground(new java.awt.Color(0, 0, 0));
         cmbSttsFung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1. Kerja", "2. Ambulatori", "3. Baring" }));
         cmbSttsFung.setName("cmbSttsFung"); // NOI18N
-        cmbSttsFung.setOpaque(false);
         cmbSttsFung.setPreferredSize(new java.awt.Dimension(55, 28));
         FormInput4.add(cmbSttsFung);
         cmbSttsFung.setBounds(133, 94, 100, 23);
@@ -2651,7 +2623,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbHamil.setForeground(new java.awt.Color(0, 0, 0));
         cmbHamil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ya", "Tidak" }));
         cmbHamil.setName("cmbHamil"); // NOI18N
-        cmbHamil.setOpaque(false);
         cmbHamil.setPreferredSize(new java.awt.Dimension(55, 28));
         FormInput4.add(cmbHamil);
         cmbHamil.setBounds(133, 150, 60, 23);
@@ -2675,7 +2646,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbInfeksiOpor.setForeground(new java.awt.Color(0, 0, 0));
         cmbInfeksiOpor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "K", "D", "Cr", "PCP", "CMV", "P", "Z", "S", "T", "H", "Lain-lain" }));
         cmbInfeksiOpor.setName("cmbInfeksiOpor"); // NOI18N
-        cmbInfeksiOpor.setOpaque(false);
         cmbInfeksiOpor.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbInfeksiOpor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2704,7 +2674,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbSttsTB.setForeground(new java.awt.Color(0, 0, 0));
         cmbSttsTB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1. Tidak ada gejala/tanda TB", "2. Suspek TB (rujuk ke klinik DOTS atau pemeriksaan sputum)", "3. Dalam terapi TB" }));
         cmbSttsTB.setName("cmbSttsTB"); // NOI18N
-        cmbSttsTB.setOpaque(false);
         cmbSttsTB.setPreferredSize(new java.awt.Dimension(55, 28));
         FormInput4.add(cmbSttsTB);
         cmbSttsTB.setBounds(133, 234, 330, 23);
@@ -2718,7 +2687,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbAdherance.setForeground(new java.awt.Color(0, 0, 0));
         cmbAdherance.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1. (>95%)", "2. (80-95%)", "3. (<80%)" }));
         cmbAdherance.setName("cmbAdherance"); // NOI18N
-        cmbAdherance.setOpaque(false);
         cmbAdherance.setPreferredSize(new java.awt.Dimension(55, 28));
         FormInput4.add(cmbAdherance);
         cmbAdherance.setBounds(717, 38, 100, 23);
@@ -2732,7 +2700,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbEfekSamping.setForeground(new java.awt.Color(0, 0, 0));
         cmbEfekSamping.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "R", "Mua", "Mun", "D", "N", "Ikt", "An", "Ll", "SK", "Dem", "Hip", "Dep", "P", "Lip", "Ngan", "Ln" }));
         cmbEfekSamping.setName("cmbEfekSamping"); // NOI18N
-        cmbEfekSamping.setOpaque(false);
         cmbEfekSamping.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbEfekSamping.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2799,7 +2766,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbDiberiKondom.setForeground(new java.awt.Color(0, 0, 0));
         cmbDiberiKondom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak", "Tidak Ada" }));
         cmbDiberiKondom.setName("cmbDiberiKondom"); // NOI18N
-        cmbDiberiKondom.setOpaque(false);
         cmbDiberiKondom.setPreferredSize(new java.awt.Dimension(55, 28));
         FormInput4.add(cmbDiberiKondom);
         cmbDiberiKondom.setBounds(717, 178, 100, 23);
@@ -2972,7 +2938,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         panelGlass23.add(jLabel41);
 
         tgl1.setEditable(false);
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -2987,7 +2953,7 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         panelGlass23.add(jLabel42);
 
         tgl2.setEditable(false);
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2022" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2022" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -3019,7 +2985,6 @@ public final class DlgIkhtisarPerawatanHIVart extends javax.swing.JDialog {
         cmbLimit.setForeground(new java.awt.Color(0, 0, 0));
         cmbLimit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "200", "300", "400", "500", "1000", "Semua" }));
         cmbLimit.setName("cmbLimit"); // NOI18N
-        cmbLimit.setOpaque(false);
         cmbLimit.setPreferredSize(new java.awt.Dimension(66, 23));
         panelGlass23.add(cmbLimit);
 

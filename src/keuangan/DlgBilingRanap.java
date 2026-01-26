@@ -47,6 +47,7 @@ import java.util.Map;
 import keuangan.DlgLhtBiaya;
 import keuangan.DlgLhtPiutang;
 import keuangan.Jurnal;
+import laporan.DlgKirimWhatsapp;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariPerawatanRanap;
 import simrskhanza.DlgInputResepPulang;
@@ -84,11 +85,12 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             rsralandokter, rsralandrpr, rsranapdokter, rsoperasi, rsralanperawat, rsranapperawat, rsperiksalab, rskategori,
             rsperiksarad, rsanak, rstamkur, rsrekening, rsservice, rsakunbayar, rsakunpiutang, rscaridpjp;
     private String biaya = "", tambahan = "", totals = "", norawatbayi = "", centangdokterranap = "", kd_pj = "", jamplgRS1 = "", caraByr = "",
-            rinciandokterranap = "", rincianoperasi = "", hariawal = "", notaranap = "", tampilkan_administrasi_di_billingranap = "",
+            rinciandokterranap = "", rincianoperasi = "", hariawal = "", notaranap = "", tampilkan_administrasi_di_billingranap = "", apakahPiutang = "",
             Tindakan_Ranap = "", Laborat_Ranap = "", Radiologi_Ranap = "", Obat_Ranap = "", Registrasi_Ranap = "", kodePJ = "", isi = "",
             Tambahan_Ranap = "", Potongan_Ranap = "", Retur_Obat_Ranap = "", Resep_Pulang_Ranap = "", Kamar_Inap = "", Operasi_Ranap = "",
             Harian_Ranap = "", Uang_Muka_Ranap = "", Piutang_Pasien_Ranap = "", tampilkan_ppnobat_ranap = "", tglmskRS = "", tglklrRS1 = "",
             Service_Ranap = "", status = "", diagnosa_ok = "", cekdokter = "", kdkamar = "", data_pasien = "", tglklrRS2 = "", jamplgRS2 = "",
+            kembaliWA = "", piutangWA = "",
             sqlpscekbilling = "select count(billing.no_rawat) from billing where billing.no_rawat=?",
             sqlpsdokterranap = "select dokter.nm_dokter from rawat_inap_dr "
             + "inner join dokter on rawat_inap_dr.kd_dokter=dokter.kd_dokter "
@@ -1492,6 +1494,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCloseIn.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn.setMnemonic('3');
         BtnCloseIn.setText("Tutup");
         BtnCloseIn.setToolTipText("Alt+3");
         BtnCloseIn.setName("BtnCloseIn"); // NOI18N
@@ -1510,6 +1513,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan2.setMnemonic('1');
         BtnSimpan2.setText("Simpan");
         BtnSimpan2.setToolTipText("Alt+1");
         BtnSimpan2.setName("BtnSimpan2"); // NOI18N
@@ -1528,6 +1532,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnBatal1.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnBatal1.setMnemonic('2');
         BtnBatal1.setText("Hapus");
         BtnBatal1.setToolTipText("Alt+2");
         BtnBatal1.setName("BtnBatal1"); // NOI18N
@@ -1598,6 +1603,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
+        BtnTambah.setMnemonic('T');
         BtnTambah.setText("Tambah");
         BtnTambah.setToolTipText("Alt+T");
         BtnTambah.setName("BtnTambah"); // NOI18N
@@ -1611,6 +1617,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan3.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan3.setMnemonic('S');
         BtnSimpan3.setText("Simpan");
         BtnSimpan3.setToolTipText("Alt+S");
         BtnSimpan3.setName("BtnSimpan3"); // NOI18N
@@ -1624,6 +1631,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1637,6 +1645,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -1704,6 +1713,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnTambahPotongan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambahPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
+        BtnTambahPotongan.setMnemonic('T');
         BtnTambahPotongan.setText("Tambah");
         BtnTambahPotongan.setToolTipText("Alt+T");
         BtnTambahPotongan.setName("BtnTambahPotongan"); // NOI18N
@@ -1717,6 +1727,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpanPotongan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpanPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpanPotongan.setMnemonic('S');
         BtnSimpanPotongan.setText("Simpan");
         BtnSimpanPotongan.setToolTipText("Alt+S");
         BtnSimpanPotongan.setName("BtnSimpanPotongan"); // NOI18N
@@ -1730,6 +1741,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnHapusPotongan.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapusPotongan.setMnemonic('H');
         BtnHapusPotongan.setText("Hapus");
         BtnHapusPotongan.setToolTipText("Alt+H");
         BtnHapusPotongan.setName("BtnHapusPotongan"); // NOI18N
@@ -1743,6 +1755,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnKeluarPotongan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluarPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluarPotongan.setMnemonic('K');
         BtnKeluarPotongan.setText("Keluar");
         BtnKeluarPotongan.setToolTipText("Alt+K");
         BtnKeluarPotongan.setName("BtnKeluarPotongan"); // NOI18N
@@ -1815,6 +1828,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpanUbahLama.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpanUbahLama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpanUbahLama.setMnemonic('S');
         BtnSimpanUbahLama.setText("Simpan");
         BtnSimpanUbahLama.setToolTipText("Alt+S");
         BtnSimpanUbahLama.setName("BtnSimpanUbahLama"); // NOI18N
@@ -1828,6 +1842,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnKeluarUbahLama.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluarUbahLama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluarUbahLama.setMnemonic('K');
         BtnKeluarUbahLama.setText("Keluar");
         BtnKeluarUbahLama.setToolTipText("Alt+K");
         BtnKeluarUbahLama.setName("BtnKeluarUbahLama"); // NOI18N
@@ -1855,6 +1870,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn4.setMnemonic('P');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+P");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -1868,6 +1884,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan4.setMnemonic('S');
         BtnSimpan4.setText("Simpan");
         BtnSimpan4.setToolTipText("Alt+S");
         BtnSimpan4.setName("BtnSimpan4"); // NOI18N
@@ -1904,6 +1921,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         btnPenjab.setForeground(new java.awt.Color(0, 0, 0));
         btnPenjab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPenjab.setMnemonic('7');
         btnPenjab.setToolTipText("ALt+7");
         btnPenjab.setName("btnPenjab"); // NOI18N
         btnPenjab.addActionListener(new java.awt.event.ActionListener() {
@@ -1928,6 +1946,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCloseIn5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn5.setMnemonic('P');
         BtnCloseIn5.setText("Tutup");
         BtnCloseIn5.setToolTipText("Alt+P");
         BtnCloseIn5.setName("BtnCloseIn5"); // NOI18N
@@ -1941,6 +1960,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan5.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan5.setMnemonic('S');
         BtnSimpan5.setText("Simpan");
         BtnSimpan5.setToolTipText("Alt+S");
         BtnSimpan5.setName("BtnSimpan5"); // NOI18N
@@ -2250,6 +2270,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan6.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan6.setMnemonic('S');
         BtnSimpan6.setText("Simpan");
         BtnSimpan6.setToolTipText("Alt+S");
         BtnSimpan6.setName("BtnSimpan6"); // NOI18N
@@ -2263,6 +2284,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnHapusKode.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusKode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapusKode.setMnemonic('H');
         BtnHapusKode.setText("Hapus Kode INACBG");
         BtnHapusKode.setToolTipText("Alt+H");
         BtnHapusKode.setName("BtnHapusKode"); // NOI18N
@@ -2281,6 +2303,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnGantikode.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantikode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGantikode.setMnemonic('S');
         BtnGantikode.setText("Ganti");
         BtnGantikode.setToolTipText("Alt+S");
         BtnGantikode.setName("BtnGantikode"); // NOI18N
@@ -2294,6 +2317,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCloseIn6.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn6.setMnemonic('U');
         BtnCloseIn6.setText("Tutup");
         BtnCloseIn6.setToolTipText("Alt+U");
         BtnCloseIn6.setName("BtnCloseIn6"); // NOI18N
@@ -2382,7 +2406,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -2440,6 +2464,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('R');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+R");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -2462,7 +2487,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025 11:08:20" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026 14:48:02" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2490,6 +2515,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -2521,6 +2547,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnNota.setForeground(new java.awt.Color(0, 0, 0));
         BtnNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Agenda-1-16x16.png"))); // NOI18N
+        BtnNota.setMnemonic('B');
         BtnNota.setText(" Nota");
         BtnNota.setToolTipText("Alt+B");
         BtnNota.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -2540,6 +2567,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnView.setForeground(new java.awt.Color(0, 0, 0));
         BtnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnView.setMnemonic('L');
         BtnView.setText("Lihat");
         BtnView.setToolTipText("Alt+L");
         BtnView.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -2559,6 +2587,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -2582,7 +2611,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelGlass2.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-12-2025" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -2812,6 +2841,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCariBayar.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCariBayar.setMnemonic('3');
         BtnCariBayar.setToolTipText("Alt+3");
         BtnCariBayar.setName("BtnCariBayar"); // NOI18N
         BtnCariBayar.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -2841,6 +2871,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         btnCariPiutang.setForeground(new java.awt.Color(0, 0, 0));
         btnCariPiutang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        btnCariPiutang.setMnemonic('3');
         btnCariPiutang.setToolTipText("Alt+3");
         btnCariPiutang.setName("btnCariPiutang"); // NOI18N
         btnCariPiutang.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -4104,6 +4135,10 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         } else if (data_a == 1) {
             JOptionPane.showMessageDialog(null, "Maaf proses pembayaran gagal, tanggal pulang pasien belum diisi & nota pembayaran belum bisa dicetak...");
         } else if (tbBilling.getRowCount() != 0) {
+            apakahPiutang = "";
+            kembaliWA = "";
+            piutangWA = "";
+                    
             try {
                 koneksi.setAutoCommit(false);
                 Sequel.queryu2("delete from temporary_bayar_ranap");
@@ -4175,41 +4210,48 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 //                    Sequel.menyimpan("temporary_bayar_ranap", "'0','UANG MUKA',':','','','','','<b>" + Valid.SetAngka(bayar) + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
 //                    Sequel.menyimpan("temporary_bayar_ranap", "'0','SISA PIUTANG',':','','','','','<b>" + Valid.SetAngka(piutang) + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
 //                }
+
                 if (ChkPiutang.isSelected() == false) {
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','','','','','','','','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+                    apakahPiutang = "tidak";
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','TOTAL TAGIHAN',':','','','','','" + TtlSemua.getText() + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','PPN',':','','','','','" + Valid.SetAngka(besarppn) + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','TAGIHAN+PPN',':','','','','','" + TagihanPPn.getText() + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','','','','','','','','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','DEPOSIT',':','','','','','" + Deposit.getText() + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','BAYAR',':','','','','','" + Valid.SetAngka(bayar) + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','Kembali',':','','','','','" + TKembali.getText() + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+                    kembaliWA = TKembali.getText();
+                    piutangWA = "0";
                 } else if (ChkPiutang.isSelected() == true) {
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','','','','','','','','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+                    apakahPiutang = "ya";
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','TOTAL TAGIHAN',':','','','','','" + TtlSemua.getText() + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','PPN',':','','','','','" + Valid.SetAngka(besarppn) + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','TAGIHAN + PPN',':','','','','','" + TagihanPPn.getText() + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','','','','','','','','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','DEPOSIT',':','','','','','" + Deposit.getText() + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','UANG MUKA',':','','','','','" + Valid.SetAngka(bayar) + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','SISA PIUTANG',':','','','','','" + Valid.SetAngka(piutang) + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+                    kembaliWA = "0";
+                    piutangWA = Valid.SetAngka(piutang);
                 }
-
+                
                 i = 0;
                 try {
-                    biaya = (String) JOptionPane.showInputDialog(null, "Silahkan pilih nota/kwitansi yang mau dicetak..!", "Nota", JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Nota", "Kwitansi", "Nota & Kwitansi"}, "Nota");
+                    biaya = (String) JOptionPane.showInputDialog(null, "Silahkan pilih nota/kwitansi yang mau dicetak..!", "Nota",
+                            JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Nota", "Kwitansi", "Nota & Kwitansi", "Kirim Nota Ke WhatsApp", "Kirim Kwitansi Ke WhatsApp"}, "Nota");
                     switch (biaya) {
                         case "Nota":
                             i = 1;
                             break;
-//                        case "Nota 2":
-//                            i = 2;
-//                            break;
                         case "Kwitansi":
                             i = 2;
                             break;
                         case "Nota & Kwitansi":
                             i = 3;
+                            break;
+                        case "Kirim Nota Ke WhatsApp":
+                            i = 4;
+                            break;
+                        case "Kirim Kwitansi Ke WhatsApp":
+                            i = 5;
                             break;
                     }
                 } catch (Exception e) {
@@ -4232,19 +4274,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 cetakNotaAJA();
                             }
                         }
-
-//                        Valid.panggilUrl("billing/LaporanBilling2.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&ttl=" + ttl + "&tanggal=" + DTPTgl.getSelectedItem().toString().replaceAll(" ", "_"));
-//                    } 
-//                    else if (i == 2) {
-//                        Valid.panggilUrl("billing/LaporanBilling3.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&tanggal=" + DTPTgl.getSelectedItem().toString().replaceAll(" ", "_"));
-//                    } else if (i == 2) {
-//                        if (piutang > 0) {
-//                            Valid.panggilUrl("billing/LaporanBilling8.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&nonota=" + Sequel.cariIsi("select count(kamar_inap.no_rawat) from kamar_inap inner join reg_periksa "
-//                                    + "on kamar_inap.no_rawat=reg_periksa.no_rawat where reg_periksa.kd_pj='" + kd_pj + "' and kamar_inap.tgl_keluar like '%" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 7) + "%'") + "/RI/" + kd_pj + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(5, 7) + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4));
-//                        } else if (piutang <= 0) {
-//                            Valid.panggilUrl("billing/LaporanBilling4.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&nonota=" + Sequel.cariIsi("select count(kamar_inap.no_rawat) from kamar_inap inner join reg_periksa "
-//                                    + "on kamar_inap.no_rawat=reg_periksa.no_rawat where reg_periksa.kd_pj='" + kd_pj + "' and kamar_inap.tgl_keluar like '%" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 7) + "%'") + "/RI/" + kd_pj + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(5, 7) + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4) + "&tanggal=" + DTPTgl.getSelectedItem().toString().replaceAll(" ", "_"));
-//                        }
                     } else if (i == 2) {
                         if (piutang > 0) {
                             cetakKwitansiPIUTANG();
@@ -4259,13 +4288,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     } else if (i == 3) {
                         ttl = (ttlLaborat + ttlRadiologi + ttlOperasi + ttlObat + ttlRanap_Dokter + ttlRanap_Paramedis + ttlRalan_Dokter
                                 + ttlRalan_Paramedis + ttlTambahan + ttlKamar + ttlRegistrasi + ttlHarian + ttlRetur_Obat + ttlResep_Pulang + ttlService);
-//                        Valid.panggilUrl("billing/LaporanBilling2.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&ttl=" + ttl + "&tanggal=" + DTPTgl.getSelectedItem().toString().replaceAll(" ", "_"));
-//                        Valid.panggilUrl("billing/LaporanBilling3.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&tanggal=" + DTPTgl.getSelectedItem().toString().replaceAll(" ", "_"));
                         if (piutang > 0) {
                             cetakNotaPiutangAJA();
                             cetakKwitansiPIUTANG();
-//                            Valid.panggilUrl("billing/LaporanBilling8.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&nonota=" + Sequel.cariIsi("select count(kamar_inap.no_rawat) from kamar_inap inner join reg_periksa "
-//                                    + "on kamar_inap.no_rawat=reg_periksa.no_rawat where reg_periksa.kd_pj='" + kd_pj + "' and kamar_inap.tgl_keluar like '%" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 7) + "%'") + "/RI/" + kd_pj + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(5, 7) + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4));
                         } else if (piutang <= 0) {
                             if (ChkPiutang.isSelected() == true) {
                                 JOptionPane.showMessageDialog(null, "Hilangkan dulu conteng pada PIUTANG, kemudian klik tombol nota lagi...!!!");
@@ -4274,9 +4299,26 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 cetakNotaAJA();
                                 cetakKwitansiLUNAS();
                             }
-//                            Valid.panggilUrl("billing/LaporanBilling4.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&nonota=" + Sequel.cariIsi("select count(kamar_inap.no_rawat) from kamar_inap inner join reg_periksa "
-//                                    + "on kamar_inap.no_rawat=reg_periksa.no_rawat where reg_periksa.kd_pj='" + kd_pj + "' and kamar_inap.tgl_keluar like '%" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 7) + "%'") + "/RI/" + kd_pj + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(5, 7) + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4) + "&tanggal=" + DTPTgl.getSelectedItem().toString().replaceAll(" ", "_"));
                         }
+                    } else if (i == 4) {
+                        if (akses.getbilling_ranap() == true) {
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                            akses.setform("DlgBilingRanap");
+                            DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
+                            form.setSize(817, 181);
+                            form.setLocationRelativeTo(internalFrame8);
+                            form.emptTeks();
+                            form.setData("kasir nota ranap", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""));
+                            form.cekPiutang(apakahPiutang, TtlSemua.getText(), Valid.SetAngka(besarppn), TagihanPPn.getText(),
+                                    Deposit.getText(), Valid.SetAngka(bayar), kembaliWA, piutangWA);
+                            form.setVisible(true);
+                            form.toFront();
+                            form.requestFocus();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Maaf, fitur ini yang bisa hanya petugas kasir...!!!");
+                        }
+                    } else if (i == 5) {
+                        JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
                     }
                     this.setCursor(Cursor.getDefaultCursor());
                 }
@@ -4285,7 +4327,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             } catch (Exception ex) {
                 System.out.println(ex);
             }
-
         }
     }//GEN-LAST:event_BtnNotaActionPerformed
 

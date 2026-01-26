@@ -251,107 +251,206 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
     
     private void dataKirim() {
         if (nmDokumen.equals("hasil patologi anatomi")) {
+            hasilPatologiAnatomi();
+        } else if (nmDokumen.equals("kasir nota ranap")) {
+            notaRanap();
+        }
+    }
+    
+    public void cekPiutang(String piutang, String TtlSemua, String besarppn, String TagihanPPn, String Deposit, String bayar, String kembali, String Piutang) {
+        if (piutang.equals("tidak")) {
+            Sequel.menyimpan("temporary_bayar_ranap", "'0','TOTAL TAGIHAN',':','','','','','" + TtlSemua + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+            Sequel.menyimpan("temporary_bayar_ranap", "'0','PPN',':','','','','','" + besarppn + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+            Sequel.menyimpan("temporary_bayar_ranap", "'0','TAGIHAN+PPN',':','','','','','" + TagihanPPn + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+            Sequel.menyimpan("temporary_bayar_ranap", "'0','DEPOSIT',':','','','','','" + Deposit + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+            Sequel.menyimpan("temporary_bayar_ranap", "'0','BAYAR',':','','','','','" + bayar + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+            Sequel.menyimpan("temporary_bayar_ranap", "'0','Kembali',':','','','','','" + kembali + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+        } else if (piutang.equals("ya")) {
+            Sequel.menyimpan("temporary_bayar_ranap", "'0','TOTAL TAGIHAN',':','','','','','" + TtlSemua + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+            Sequel.menyimpan("temporary_bayar_ranap", "'0','PPN',':','','','','','" + besarppn + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+            Sequel.menyimpan("temporary_bayar_ranap", "'0','TAGIHAN + PPN',':','','','','','" + TagihanPPn + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+            Sequel.menyimpan("temporary_bayar_ranap", "'0','DEPOSIT',':','','','','','" + Deposit + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+            Sequel.menyimpan("temporary_bayar_ranap", "'0','UANG MUKA',':','','','','','" + bayar + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+            Sequel.menyimpan("temporary_bayar_ranap", "'0','SISA PIUTANG',':','','','','','" + Piutang + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+        }
+    }
+
+    private void hasilPatologiAnatomi() {
+        try {
+            ps = koneksi.prepareStatement("select hp.*, p.no_rkm_medis, p.nm_pasien, p.tgl_lahir, p.jk, pg1.nama drPengirim, p.no_tlp, "
+                    + "ifnull(d.no_ijn_praktek,'-') nosip, pg2.nama drPatologi, date_format(hp.waktu_simpan,'%d/%m/%Y') tgl, time(hp.waktu_simpan) jam "
+                    + "from hasil_patologi_anatomi hp inner join reg_periksa rp on rp.no_rawat=hp.no_rawat "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg1 on pg1.nik=hp.nip_perujuk "
+                    + "inner join pegawai pg2 on pg2.nik=hp.nip_dokter_pa left join dokter d on d.kd_dokter=hp.nip_dokter_pa "
+                    + "where hp.waktu_simpan='" + waktuSimpan + "'");
             try {
-                ps = koneksi.prepareStatement("select hp.*, p.no_rkm_medis, p.nm_pasien, p.tgl_lahir, p.jk, pg1.nama drPengirim, p.no_tlp, "
-                        + "ifnull(d.no_ijn_praktek,'-') nosip, pg2.nama drPatologi, date_format(hp.waktu_simpan,'%d/%m/%Y') tgl, time(hp.waktu_simpan) jam "
-                        + "from hasil_patologi_anatomi hp inner join reg_periksa rp on rp.no_rawat=hp.no_rawat "
-                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg1 on pg1.nik=hp.nip_perujuk "
-                        + "inner join pegawai pg2 on pg2.nik=hp.nip_dokter_pa left join dokter d on d.kd_dokter=hp.nip_dokter_pa "
-                        + "where hp.waktu_simpan='" + waktuSimpan + "'");
-                try {
-                    rs = ps.executeQuery();
-                    while (rs.next()) {
-                        Map<String, Object> param = new HashMap<>();
-                        param.put("namars", akses.getnamars());
-                        param.put("alamatrs", akses.getalamatrs());
-                        param.put("kotars", akses.getkabupatenrs());
-                        param.put("propinsirs", akses.getpropinsirs());
-                        param.put("kontakrs", akses.getkontakrs());
-                        param.put("emailrs", akses.getemailrs());
-                        param.put("logo", Sequel.cariGambar("select logo from setting"));
-                        
-                        param.put("noPA", rs.getString("no_pa"));
-                        param.put("norm", rs.getString("no_rkm_medis"));
-                        param.put("nmpasien", rs.getString("nm_pasien"));
-                        param.put("tgllahir", Valid.SetTglINDONESIA(rs.getString("tgl_lahir")));
-                        param.put("jenkel", rs.getString("jk").replaceAll("L", "Laki-laki").replaceAll("P", "Perempuan"));
-                        param.put("drPengirim", rs.getString("drPengirim"));
-                        param.put("unit", rs.getString("nm_unit"));
-                        param.put("tglperiksa", Valid.SetTglINDONESIA(rs.getString("tgl_periksa")));
-                        param.put("tglhasil", Valid.SetTglINDONESIA(rs.getString("tgl_hasil")));
-                        param.put("lokasi", rs.getString("lokasi_organ") + "\n");
-                        param.put("makros", rs.getString("makroskopik").replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
-                        param.put("italicmakros", rs.getString("italic_makroskopik"));
-                        param.put("mikros", rs.getString("mikroskopik").replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
-                        param.put("italicmikros", rs.getString("italic_mikroskopik"));
-                        param.put("kesimpulan", rs.getString("kesimpulan").replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
-                        param.put("italickesimpulan", rs.getString("italic_kesimpulan"));
-                        param.put("anjuran", rs.getString("anjuran").replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
-                        param.put("italicanjuran", rs.getString("italic_anjuran"));
-                        param.put("sip", rs.getString("nosip"));
-                        param.put("nmDokterpa", rs.getString("drPatologi"));
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("alamatrs", akses.getalamatrs());
+                    param.put("kotars", akses.getkabupatenrs());
+                    param.put("propinsirs", akses.getpropinsirs());
+                    param.put("kontakrs", akses.getkontakrs());
+                    param.put("emailrs", akses.getemailrs());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
 
+                    param.put("noPA", rs.getString("no_pa"));
+                    param.put("norm", rs.getString("no_rkm_medis"));
+                    param.put("nmpasien", rs.getString("nm_pasien"));
+                    param.put("tgllahir", Valid.SetTglINDONESIA(rs.getString("tgl_lahir")));
+                    param.put("jenkel", rs.getString("jk").replaceAll("L", "Laki-laki").replaceAll("P", "Perempuan"));
+                    param.put("drPengirim", rs.getString("drPengirim"));
+                    param.put("unit", rs.getString("nm_unit"));
+                    param.put("tglperiksa", Valid.SetTglINDONESIA(rs.getString("tgl_periksa")));
+                    param.put("tglhasil", Valid.SetTglINDONESIA(rs.getString("tgl_hasil")));
+                    param.put("lokasi", rs.getString("lokasi_organ") + "\n");
+                    param.put("makros", rs.getString("makroskopik").replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
+                    param.put("italicmakros", rs.getString("italic_makroskopik"));
+                    param.put("mikros", rs.getString("mikroskopik").replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
+                    param.put("italicmikros", rs.getString("italic_mikroskopik"));
+                    param.put("kesimpulan", rs.getString("kesimpulan").replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
+                    param.put("italickesimpulan", rs.getString("italic_kesimpulan"));
+                    param.put("anjuran", rs.getString("anjuran").replace("\r\n", "<br/>").replace("\n", "<br/>").replace("\r", "<br/>"));
+                    param.put("italicanjuran", rs.getString("italic_anjuran"));
+                    param.put("sip", rs.getString("nosip"));
+                    param.put("nmDokterpa", rs.getString("drPatologi"));
+
+                    try {
+                        String gambarnya = "", ipGambarnya = "";
                         try {
-                            String gambarnya = "", ipGambarnya = "";
-                            try {
-                                //cek atau ping ip addres
-                                ipGambarnya = "192.168.0.230";
-                                InetAddress inet = InetAddress.getByName(ipGambarnya);
+                            //cek atau ping ip addres
+                            ipGambarnya = "192.168.0.230";
+                            InetAddress inet = InetAddress.getByName(ipGambarnya);
 
-                                //ping sukses timeout 100 ms (0.1 detik)
-                                if (inet.isReachable(100)) {
-                                    if (rs.getString("kd_gambar").equals("")) {
-                                        gambarnya = "http://192.168.0.230:7183/img-rme/gambar_tidak_ditemukan.jpg";
-                                    } else {
-                                        gambarnya = "http://192.168.0.230:7183/rme/download.php?id=" + rs.getString("kd_gambar");
-                                    }
-                                    //ping gagal
+                            //ping sukses timeout 100 ms (0.1 detik)
+                            if (inet.isReachable(100)) {
+                                if (rs.getString("kd_gambar").equals("")) {
+                                    gambarnya = "http://192.168.0.230:7183/img-rme/gambar_tidak_ditemukan.jpg";
                                 } else {
-                                    gambarnya = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
+                                    gambarnya = "http://192.168.0.230:7183/rme/download.php?id=" + rs.getString("kd_gambar");
                                 }
-                            } catch (Exception e) {
-                                System.out.println("Notif : " + e);
+                                //ping gagal
+                            } else {
                                 gambarnya = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
                             }
-
-                            param.put("gambarPA", gambarnya);
                         } catch (Exception e) {
-                            System.out.println("Notifikasi : " + e);
+                            System.out.println("Notif : " + e);
+                            gambarnya = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/gambar_tidak_ditemukan.jpg";
                         }
 
-                        String isi = "", nmFile = "";
-                        nmFile = rs.getString("no_pa").replaceAll("-", "");
-                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
-                                        "Hasil Pemeriksaan Lab. (Patologi Anatomi)", rs.getString("drPatologi"),
-                                        rs.getString("tgl"), rs.getString("jam")) + "') from kalimat_tte where kode='006'");
+                        param.put("gambarPA", gambarnya);
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
 
-                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
-                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
-                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Lab. Patologi Anatomi", Sequel.cariFolderPrintTte());
-                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
-                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='006'"));
-                        Valid.MyReportToPDF("rptPeriksaPatologiAnatomiQr.jasper", "report", "::[ Lembar Hasil Pemeriksaan Patologi Anatomi ]::", "SELECT now() tgl",
-                                param, Sequel.cariFolderTte(), nmFile);
-                        
-                        TPesan.setText("Hasil Pemeriksaan Lab. Patologi Anatomi " + akses.getnamars());
-                        TnoWa.setText(rs.getString("no_tlp"));
-                        TnmFile.setText(nmFile);
-                        TnoWa.requestFocus();
-                    }
-                } catch (Exception e) {
-                    System.out.println("Notifikasi : " + e);
-                } finally {
-                    if (rs != null) {
-                        rs.close();
-                    }
-                    if (ps != null) {
-                        ps.close();
-                    }
+                    String isi = "", nmFile = "";
+                    nmFile = rs.getString("no_pa").replaceAll("-", "");
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
+                                    "Hasil Pemeriksaan Lab. (Patologi Anatomi)", rs.getString("drPatologi"),
+                                    rs.getString("tgl"), rs.getString("jam")) + "') from kalimat_tte where kode='006'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Lab. Patologi Anatomi", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='006'"));
+                    Valid.MyReportToPDF("rptPeriksaPatologiAnatomiQr.jasper", "report", "::[ Lembar Hasil Pemeriksaan Patologi Anatomi ]::", "SELECT now() tgl",
+                            param, Sequel.cariFolderTte(), nmFile);
+
+                    TPesan.setText("Hasil Pemeriksaan Lab. Patologi Anatomi " + akses.getnamars());
+                    TnoWa.setText(rs.getString("no_tlp"));
+                    TnmFile.setText(nmFile);
+                    TnoWa.requestFocus();
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    private void notaRanap() {
+        String crbyr = "", isi = "", nmFile = "";
+        crbyr = Sequel.cariIsi("select pj.png_jawab from reg_periksa r inner join penjab pj on pj.kd_pj=r.kd_pj where r.no_rawat='" + norawat + "'");
+        nmFile = "Nota Pembayaran " + norawat.replaceAll("/", "");
+
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("cara_byr", crbyr);
+        param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(waktuSimpan));
+
+        if (akses.getadmin() == true) {
+            param.put("petugas_ksr", "( ................... )");
+        } else if (akses.getbilling_ranap()) {
+            param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
+        }
+
+        if (akses.getadmin() == true) {
+            Valid.MyReportToPDF("rptNotaRanap.jasper", "report", "::[ Nota Pembayaran - LUNAS (Rawat Inap) ]::",
+                    " SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota') no_nota, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar') bangsal, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan') tgl_rawat, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien') pasien, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan') tot_tagihan, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn') ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan+ppn') tagihan_ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit') deposit, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='bayar') bayar, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='kembali') kembali "
+                    + "FROM temporary_bayar_ranap WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN+PPN','PPN','DEPOSIT','BAYAR','Kembali','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien') ",
+                    param, Sequel.cariFolderTte(), nmFile);
+        } else {
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Nota Pembayaran (" + crbyr + ")", Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'"),
+                            Sequel.cariIsi("select date_format('" + waktuSimpan + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Nota Pembayaran", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReportToPDF("rptNotaRanapQr.jasper", "report", "::[ Nota Pembayaran - LUNAS (Rawat Inap) ]::",
+                    " SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota') no_nota, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar') bangsal, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan') tgl_rawat, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien') pasien, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan') tot_tagihan, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn') ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan+ppn') tagihan_ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit') deposit, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='bayar') bayar, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='kembali') kembali "
+                    + "FROM temporary_bayar_ranap WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN+PPN','PPN','DEPOSIT','BAYAR','Kembali','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien') ",
+                    param, Sequel.cariFolderTte(), nmFile);
+        }
+
+        TPesan.setText("Nota Pembayaran Rawat Inap (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
+                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
     }
 }

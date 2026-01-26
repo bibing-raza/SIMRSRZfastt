@@ -1394,8 +1394,8 @@ public final class sekuel {
         rm40 = cariInteger("select count(-1) from assesmen_gizi_ulang where no_rawat='" + norawat + "'");
         rm41 = cariInteger("select count(-1) from lembar_observasi where no_rawat='" + norawat + "' and ruang_rawat not like '%igd%'");
         rm42 = cariInteger("select count(-1) from detail_lembar_observasi where no_rawat='" + norawat + "' and ruang_rawat not like '%igd%'");
-        rm43 = cariInteger("select count(-1) from transfer_sebelum_tindakan where no_rawat='" + norawat + "'");
-        rm44 = cariInteger("select count(-1) from transfer_sesudah_tindakan where no_rawat='" + norawat + "'");
+        rm43 = cariInteger("select count(-1) from transfer_sebelum_tindakan where no_rawat='" + norawat + "' and ruang_rawat not in ('IGD','PONEK - VK BERSALIN')");
+        rm44 = cariInteger("select count(-1) from transfer_sesudah_tindakan where no_rawat='" + norawat + "' and ruang_rawat not in ('IGD','PONEK - VK BERSALIN')");
         rm45 = cariInteger("select count(-1) from asesmen_pra_sedasi where no_rawat='" + norawat + "' and ruang_rawat not like '%igd%'");
         rm46 = cariInteger("select count(-1) from ceklis_pra_operasi where no_rawat='" + norawat + "'");
         rm47 = cariInteger("select count(-1) from ceklis_kesiapan_anestesi where no_rawat='" + norawat + "'");

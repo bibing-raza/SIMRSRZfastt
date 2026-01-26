@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,7 +44,7 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
     private int x = 0, i = 0, jml = 0;
     private boolean[] pilih;
     private String[] kode, caByr, sttsMOU;
-    private String koderekening = "", wktsimpan = "", penjabPilih = "", penjabOK = "", bangsal = "", kodekmr = "", kodedok = "",
+    private String koderekening = "", wktsimpan = "", penjabPilih = "", penjabOK = "", bangsal = "", kodekmr = "", kodedok = "", tte = "",
             sqlpsotomatis = "select jns_perawatan.kd_jenis_prw,jns_perawatan.material,jns_perawatan.bhp,"
             + "jns_perawatan.tarif_tindakandr,jns_perawatan.total_byrdr,jns_perawatan.kso,jns_perawatan.menejemen from set_otomatis_tindakan_ralan "
             + "inner join jns_perawatan on set_otomatis_tindakan_ralan.kd_jenis_prw=jns_perawatan.kd_jenis_prw "
@@ -299,7 +300,9 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
 
         TKd = new widget.TextBox();
         Popup = new javax.swing.JPopupMenu();
-        ppNotaPiutang = new javax.swing.JMenuItem();
+        MnCetakKuitansi = new javax.swing.JMenu();
+        MnTTDnota = new javax.swing.JMenuItem();
+        MnTTEnota = new javax.swing.JMenuItem();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnSemuanya = new javax.swing.JMenuItem();
         MnDibatalkan = new javax.swing.JMenuItem();
@@ -384,20 +387,47 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        ppNotaPiutang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppNotaPiutang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        ppNotaPiutang.setText("Nota Bayar Piutang");
-        ppNotaPiutang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ppNotaPiutang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ppNotaPiutang.setIconTextGap(8);
-        ppNotaPiutang.setName("ppNotaPiutang"); // NOI18N
-        ppNotaPiutang.setPreferredSize(new java.awt.Dimension(160, 25));
-        ppNotaPiutang.addActionListener(new java.awt.event.ActionListener() {
+        MnCetakKuitansi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCetakKuitansi.setText("Nota Bayar Piutang");
+        MnCetakKuitansi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakKuitansi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCetakKuitansi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCetakKuitansi.setIconTextGap(5);
+        MnCetakKuitansi.setName("MnCetakKuitansi"); // NOI18N
+        MnCetakKuitansi.setOpaque(true);
+        MnCetakKuitansi.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        MnTTDnota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDnota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTDnota.setText("TTD Basah");
+        MnTTDnota.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDnota.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDnota.setIconTextGap(5);
+        MnTTDnota.setName("MnTTDnota"); // NOI18N
+        MnTTDnota.setPreferredSize(new java.awt.Dimension(120, 25));
+        MnTTDnota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ppNotaPiutangBtnPrintActionPerformed(evt);
+                MnTTDnotaActionPerformed(evt);
             }
         });
-        Popup.add(ppNotaPiutang);
+        MnCetakKuitansi.add(MnTTDnota);
+
+        MnTTEnota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEnota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTEnota.setText("TTE (QRCode)");
+        MnTTEnota.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEnota.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEnota.setIconTextGap(5);
+        MnTTEnota.setName("MnTTEnota"); // NOI18N
+        MnTTEnota.setPreferredSize(new java.awt.Dimension(120, 25));
+        MnTTEnota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEnotaActionPerformed(evt);
+            }
+        });
+        MnCetakKuitansi.add(MnTTEnota);
+
+        Popup.add(MnCetakKuitansi);
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -584,6 +614,7 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         tbPiutang.setToolTipText("Silahkan klik untuk memilih data yang mau diperbaiki cara bayarnya");
         tbPiutang.setComponentPopupMenu(jPopupMenu2);
         tbPiutang.setName("tbPiutang"); // NOI18N
+        tbPiutang.getTableHeader().setReorderingAllowed(false);
         tbPiutang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPiutangMouseClicked(evt);
@@ -719,6 +750,7 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         tbPenjab.setToolTipText("Silahkan conteng untuk memilih data yang dipilih");
         tbPenjab.setComponentPopupMenu(jPopupMenu1);
         tbPenjab.setName("tbPenjab"); // NOI18N
+        tbPenjab.getTableHeader().setReorderingAllowed(false);
         Scroll2.setViewportView(tbPenjab);
 
         panelGlass6.add(Scroll2, java.awt.BorderLayout.CENTER);
@@ -959,6 +991,7 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         tbBayar.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbBayar.setComponentPopupMenu(Popup);
         tbBayar.setName("tbBayar"); // NOI18N
+        tbBayar.getTableHeader().setReorderingAllowed(false);
         tbBayar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbBayarMouseClicked(evt);
@@ -1148,7 +1181,7 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelisi1.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -1582,51 +1615,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }//GEN-LAST:event_BtnKeluar1KeyPressed
 
-    private void ppNotaPiutangBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppNotaPiutangBtnPrintActionPerformed
-        if (tabMode1.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-            BtnKeluar1.requestFocus();
-        } else {
-            if (tbBayar.getSelectedRow() > -1) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                Map<String, Object> param = new HashMap<>();
-                param.put("namars", akses.getnamars());
-                param.put("alamatrs", akses.getalamatrs());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("propinsirs", akses.getpropinsirs());
-                param.put("kontakrs", akses.getkontakrs());
-                param.put("emailrs", akses.getemailrs());
-                param.put("logo", Sequel.cariGambar("select logo from setting"));
-                param.put("cara_byr", Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + NoRawat.getText() + "'"));
-                param.put("tot_bayar", "Rp. " + tabMode1.getValueAt(tbBayar.getSelectedRow(), 3).toString());
-                param.put("tglNota", "Martapura, " + tglNota.getSelectedItem().toString());
-
-                param.put("norawat", tabMode1.getValueAt(tbBayar.getSelectedRow(), 5).toString());
-                param.put("tglbayar", tabMode1.getValueAt(tbBayar.getSelectedRow(), 6).toString());
-                param.put("norm", tabMode1.getValueAt(tbBayar.getSelectedRow(), 1).toString());
-                param.put("nmpasien", tabMode1.getValueAt(tbBayar.getSelectedRow(), 2).toString());
-                param.put("keterangan", tabMode1.getValueAt(tbBayar.getSelectedRow(), 4).toString());
-                param.put("nilaicicilan", tabMode1.getValueAt(tbBayar.getSelectedRow(), 3).toString());
-                param.put("sisapiutang", tabMode1.getValueAt(tbBayar.getSelectedRow(), 8).toString());
-
-                if (akses.getadmin() == true) {
-                    param.put("petugas_ksr", "( ................... )");
-                } else {
-                    param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
-                }
-
-                Valid.MyReport("rptNotaBayarPiutang.jasper", "report", "::[ Nota Pembayaran Piutang Pasien ]::",
-                    "SELECT now() tgl", param);
-
-                tampilBayar();
-                this.setCursor(Cursor.getDefaultCursor());
-            } else {
-                JOptionPane.showMessageDialog(null, "Maaf, pilih dulu salah satu datanya yang mau dicetak notanya...!!!!");
-                tbBayar.requestFocus();
-            }
-        }
-    }//GEN-LAST:event_ppNotaPiutangBtnPrintActionPerformed
-
     private void cmbPiutangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbPiutangKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbPiutangKeyPressed
@@ -1752,6 +1740,38 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }//GEN-LAST:event_MnDetailPiutangActionPerformed
 
+    private void MnTTDnotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDnotaActionPerformed
+        if (tabMode1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+            BtnKeluar1.requestFocus();
+        } else {
+            if (tbBayar.getSelectedRow() > -1) {
+                tte = "";
+                tte = "tidak";
+                cetakNotaPiutang();
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, pilih dulu salah satu datanya yang mau dicetak notanya...!!!!");
+                tbBayar.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnTTDnotaActionPerformed
+
+    private void MnTTEnotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEnotaActionPerformed
+        if (tabMode1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+            BtnKeluar1.requestFocus();
+        } else {
+            if (tbBayar.getSelectedRow() > -1) {
+                tte = "";
+                tte = "ya";
+                cetakNotaPiutang();
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, pilih dulu salah satu datanya yang mau dicetak notanya...!!!!");
+                tbBayar.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnTTEnotaActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1789,9 +1809,12 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Label LCountBayar;
     private widget.Label LTotalBayar;
     private javax.swing.JMenuItem MnBilling;
+    private javax.swing.JMenu MnCetakKuitansi;
     private javax.swing.JMenuItem MnDetailPiutang;
     private javax.swing.JMenuItem MnDibatalkan;
     private javax.swing.JMenuItem MnSemuanya;
+    private javax.swing.JMenuItem MnTTDnota;
+    private javax.swing.JMenuItem MnTTEnota;
     private widget.TextBox NoRawat;
     private javax.swing.JPopupMenu Popup;
     private widget.ScrollPane Scroll;
@@ -1845,7 +1868,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.panelisi panelisi3;
     private widget.panelisi panelisi4;
     private widget.panelisi panelisi5;
-    private javax.swing.JMenuItem ppNotaPiutang;
     private widget.Table tbBayar;
     private widget.Table tbPenjab;
     private widget.Table tbPiutang;
@@ -2275,5 +2297,68 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 System.out.println("Notifikasi : " + e);
             }
         }
+    }
+
+    private void cetakNotaPiutang() {
+        String user = "";
+        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("cara_byr", Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + NoRawat.getText() + "'"));
+        param.put("tot_bayar", "Rp. " + tabMode1.getValueAt(tbBayar.getSelectedRow(), 3).toString());
+        param.put("tglNota", "Martapura, " + tglNota.getSelectedItem().toString());
+
+        param.put("norawat", tabMode1.getValueAt(tbBayar.getSelectedRow(), 5).toString());
+        param.put("tglbayar", tabMode1.getValueAt(tbBayar.getSelectedRow(), 6).toString());
+        param.put("norm", tabMode1.getValueAt(tbBayar.getSelectedRow(), 1).toString());
+        param.put("nmpasien", tabMode1.getValueAt(tbBayar.getSelectedRow(), 2).toString());
+        param.put("keterangan", tabMode1.getValueAt(tbBayar.getSelectedRow(), 4).toString());
+        param.put("nilaicicilan", tabMode1.getValueAt(tbBayar.getSelectedRow(), 3).toString());
+        param.put("sisapiutang", tabMode1.getValueAt(tbBayar.getSelectedRow(), 8).toString());
+
+        if (akses.getadmin() == true) {
+            user = "...................";
+        } else {
+            user = Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'");
+        }
+        
+        param.put("petugas_ksr", "( " + user + " )");
+
+        if (tte.equals("tidak")) {
+            Valid.MyReport("rptNotaBayarPiutang.jasper", "report", "::[ Nota Pembayaran Piutang Pasien ]::",
+                    "SELECT now() tgl", param);
+        } else if (tte.equals("ya")) {
+            if (akses.getadmin() == true) {
+                Valid.MyReport("rptNotaBayarPiutang.jasper", "report", "::[ Nota Pembayaran Piutang Pasien ]::",
+                        "SELECT now() tgl", param);
+            } else {
+                String isi = "";
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Nota Pembayaran Piutang", user,
+                                Sequel.cariIsi("select date_format('" + Valid.SetTgl(tglNota.getSelectedItem() + "") + "','%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Nota Pembayaran Piutang", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+                
+                Valid.MyReport("rptNotaBayarPiutangQr.jasper", "report", "::[ Nota Pembayaran Piutang Pasien ]::",
+                        "SELECT now() tgl", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        }
+
+        tampilBayar();
+        this.setCursor(Cursor.getDefaultCursor());
     }
 }

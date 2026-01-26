@@ -527,6 +527,7 @@ public class UTDPenyerahanDarahPasienDirawat extends javax.swing.JDialog {
             }
         ));
         tbPenyerahan.setName("tbPenyerahan"); // NOI18N
+        tbPenyerahan.getTableHeader().setReorderingAllowed(false);
         tbPenyerahan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPenyerahanMouseClicked(evt);
@@ -614,6 +615,7 @@ public class UTDPenyerahanDarahPasienDirawat extends javax.swing.JDialog {
         ));
         tbDarah.setToolTipText("Silahkan conteng untuk memilih jenis darah");
         tbDarah.setName("tbDarah"); // NOI18N
+        tbDarah.getTableHeader().setReorderingAllowed(false);
         scrollPane2.setViewportView(tbDarah);
 
         PanelInput.add(scrollPane2);

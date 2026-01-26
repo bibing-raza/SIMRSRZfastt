@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -137,6 +138,8 @@ public final class DlgRencanaKontrolUmum extends javax.swing.JDialog {
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
+        jLabel73 = new widget.Label();
+        cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
         PanelInput = new javax.swing.JPanel();
@@ -176,9 +179,20 @@ public final class DlgRencanaKontrolUmum extends javax.swing.JDialog {
         panelGlass8.setPreferredSize(new java.awt.Dimension(44, 44));
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 8));
 
+        jLabel73.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel73.setText("Cetak Dalam Bentuk :");
+        jLabel73.setName("jLabel73"); // NOI18N
+        jLabel73.setPreferredSize(new java.awt.Dimension(120, 23));
+        panelGlass8.add(jLabel73);
+
+        cmbPilihCetak.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPilihCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TTE (QR Code)", "TTD Basah" }));
+        cmbPilihCetak.setName("cmbPilihCetak"); // NOI18N
+        cmbPilihCetak.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass8.add(cmbPilihCetak);
+
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak Surat");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -192,7 +206,6 @@ public final class DlgRencanaKontrolUmum extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -242,7 +255,6 @@ public final class DlgRencanaKontrolUmum extends javax.swing.JDialog {
 
         BtnDokter.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnDokter.setMnemonic('2');
         BtnDokter.setToolTipText("Alt+2");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -279,7 +291,6 @@ public final class DlgRencanaKontrolUmum extends javax.swing.JDialog {
 
         BtnPoli.setForeground(new java.awt.Color(0, 0, 0));
         BtnPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnPoli.setMnemonic('2');
         BtnPoli.setToolTipText("Alt+2");
         BtnPoli.setName("BtnPoli"); // NOI18N
         BtnPoli.addActionListener(new java.awt.event.ActionListener() {
@@ -297,7 +308,7 @@ public final class DlgRencanaKontrolUmum extends javax.swing.JDialog {
         jLabel11.setBounds(0, 12, 140, 23);
 
         TanggalKontrol.setEditable(false);
-        TanggalKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
+        TanggalKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-08-2025" }));
         TanggalKontrol.setDisplayFormat("dd-MM-yyyy");
         TanggalKontrol.setName("TanggalKontrol"); // NOI18N
         TanggalKontrol.setOpaque(false);
@@ -342,8 +353,28 @@ public final class DlgRencanaKontrolUmum extends javax.swing.JDialog {
             param.put("diagnosa", diagnosa.getText());
             param.put("tglkontrol", Valid.SetTglINDONESIA(Valid.SetTgl(TanggalKontrol.getSelectedItem() + "")));
             param.put("dpjpnya", nmdpjp);
-            Valid.MyReport("rptSuratKontrolUmum.jasper", "report", "::[ Cetak Surat Rencana Kontrol Pasien Non BPJS/UMUM ]::",
-                    "SELECT date(now()) tgl", param);
+
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                                "Surat Rencana Kontrol (Non BPJS/UMUM)", nmdpjp,
+                                Sequel.cariIsi("select date_format(now(),'%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='002'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat Rencana Kontrol", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+                
+                Valid.MyReport("rptSuratKontrolUmumQr.jasper", "report", "::[ Cetak Surat Rencana Kontrol Pasien Non BPJS/UMUM ]::",
+                        "SELECT date(now()) tgl", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            } else {
+                Valid.MyReport("rptSuratKontrolUmum.jasper", "report", "::[ Cetak Surat Rencana Kontrol Pasien Non BPJS/UMUM ]::",
+                        "SELECT date(now()) tgl", param);
+            }
             this.setCursor(Cursor.getDefaultCursor());
             dispose();
         }
@@ -399,11 +430,13 @@ public final class DlgRencanaKontrolUmum extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput;
     private javax.swing.JPanel PanelInput;
     private widget.Tanggal TanggalKontrol;
+    private widget.ComboBox cmbPilihCetak;
     private widget.TextBox diagnosa;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
     private widget.Label jLabel3;
+    private widget.Label jLabel73;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
     private widget.TextBox kddokter;

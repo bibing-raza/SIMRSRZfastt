@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.2" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
@@ -85,9 +85,6 @@
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder thickness="0"/>
               </Border>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="tabPlacement" type="int" value="4"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -204,7 +201,7 @@
                                 <Property name="editable" type="boolean" value="false"/>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
-                                    <StringItem index="0" value="02-08-2022"/>
+                                    <StringItem index="0" value="24-01-2026"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -254,7 +251,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbHubPasien" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -446,7 +442,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbEntriPoin" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -517,7 +512,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbEntriPoin2" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -614,7 +608,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbEntriPoin5" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -644,9 +637,6 @@
                             </Component>
                             <Component class="widget.RadioButton" name="RdgART">
                               <Properties>
-                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="e6" green="fa" red="f0" type="rgb"/>
-                                </Property>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                     <LineBorder>
@@ -673,9 +663,6 @@
                             </Component>
                             <Component class="widget.RadioButton" name="RtnpART">
                               <Properties>
-                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="e6" green="fa" red="f0" type="rgb"/>
-                                </Property>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                     <LineBorder>
@@ -730,7 +717,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbPndkn" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -787,7 +773,7 @@
                                 <Property name="editable" type="boolean" value="false"/>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
-                                    <StringItem index="0" value="02-08-2022"/>
+                                    <StringItem index="0" value="24-01-2026"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -819,9 +805,6 @@
                             </Component>
                             <Component class="widget.RadioButton" name="RtdkBekerja">
                               <Properties>
-                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="e6" green="fa" red="f0" type="rgb"/>
-                                </Property>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                     <LineBorder>
@@ -848,9 +831,6 @@
                             </Component>
                             <Component class="widget.RadioButton" name="RBekerja">
                               <Properties>
-                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="e6" green="fa" red="f0" type="rgb"/>
-                                </Property>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                     <LineBorder>
@@ -920,7 +900,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbFaktorResiko" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -960,7 +939,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbRujukMasuk" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -1002,7 +980,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbSttsNikah" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -1040,7 +1017,6 @@
                                 </Property>
                                 <Property name="selectedIndex" type="int" value="1"/>
                                 <Property name="name" type="java.lang.String" value="cmbTerimaART" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -1082,7 +1058,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbJikaYA" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -1121,7 +1096,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbTmpART" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -1221,6 +1195,9 @@
                       <Properties>
                         <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
                         <Property name="name" type="java.lang.String" value="tb12" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb12MouseClicked"/>
@@ -1271,6 +1248,9 @@
                       <Properties>
                         <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
                         <Property name="name" type="java.lang.String" value="tb3" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb3MouseClicked"/>
@@ -1386,7 +1366,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbHubKeluarga" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -1440,7 +1419,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbIDumurKlg" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -1477,7 +1455,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbHIVklg" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -1514,7 +1491,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbARTklg" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -1616,6 +1592,9 @@
                       <Properties>
                         <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
                         <Property name="name" type="java.lang.String" value="tb4" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb4MouseClicked"/>
@@ -1747,7 +1726,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="02-08-2022"/>
+                            <StringItem index="0" value="24-01-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -1874,6 +1853,9 @@
                       <Properties>
                         <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
                         <Property name="name" type="java.lang.String" value="tb5" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb5MouseClicked"/>
@@ -1904,7 +1886,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="02-08-2022"/>
+                            <StringItem index="0" value="24-01-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2005,7 +1987,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbstsFung" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -2107,7 +2088,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbPemeriksaan" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -2176,6 +2156,9 @@
                       <Properties>
                         <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
                         <Property name="name" type="java.lang.String" value="tb6" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb6MouseClicked"/>
@@ -2245,9 +2228,6 @@
                     </Component>
                     <Component class="widget.RadioButton" name="Rsubstitusi">
                       <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="e6" green="fa" red="f0" type="rgb"/>
-                        </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>
@@ -2277,9 +2257,6 @@
                     </Component>
                     <Component class="widget.RadioButton" name="Rswitch">
                       <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="e6" green="fa" red="f0" type="rgb"/>
-                        </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>
@@ -2309,9 +2286,6 @@
                     </Component>
                     <Component class="widget.RadioButton" name="Rstop">
                       <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="e6" green="fa" red="f0" type="rgb"/>
-                        </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>
@@ -2341,9 +2315,6 @@
                     </Component>
                     <Component class="widget.RadioButton" name="Rrestart">
                       <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="e6" green="fa" red="f0" type="rgb"/>
-                        </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>
@@ -2405,7 +2376,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbAlasanSub" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -2470,7 +2440,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="02-08-2022"/>
+                            <StringItem index="0" value="24-01-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2497,7 +2467,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbAlasanSwi" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -2528,7 +2497,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbAlasanSto" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -2625,6 +2593,9 @@
                       <Properties>
                         <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
                         <Property name="name" type="java.lang.String" value="tb7" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb7MouseClicked"/>
@@ -2704,7 +2675,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbKlasifikasi" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -2732,7 +2702,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbTipe" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -2757,7 +2726,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbRejimen" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -2937,7 +2905,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="02-08-2022"/>
+                            <StringItem index="0" value="24-01-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2955,7 +2923,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="02-08-2022"/>
+                            <StringItem index="0" value="24-01-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3012,6 +2980,9 @@
                       <Properties>
                         <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
                         <Property name="name" type="java.lang.String" value="tb8" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb8MouseClicked"/>
@@ -3064,7 +3035,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbAkhir" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -3097,7 +3067,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="02-08-2022"/>
+                            <StringItem index="0" value="24-01-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3129,7 +3099,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="02-08-2022"/>
+                            <StringItem index="0" value="24-01-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3161,7 +3131,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="02-08-2022"/>
+                            <StringItem index="0" value="24-01-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3245,6 +3215,9 @@
                       <Properties>
                         <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
                         <Property name="name" type="java.lang.String" value="tb9" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tb9MouseClicked"/>
@@ -3443,9 +3416,6 @@
                             </Component>
                             <Component class="widget.RadioButton" name="RT">
                               <Properties>
-                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="e6" green="fa" red="f0" type="rgb"/>
-                                </Property>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                     <LineBorder>
@@ -3472,9 +3442,6 @@
                             </Component>
                             <Component class="widget.RadioButton" name="RY">
                               <Properties>
-                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="e6" green="fa" red="f0" type="rgb"/>
-                                </Property>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                     <LineBorder>
@@ -3535,7 +3502,7 @@
                                 <Property name="editable" type="boolean" value="false"/>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
-                                    <StringItem index="0" value="02-08-2022"/>
+                                    <StringItem index="0" value="24-01-2026"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3553,7 +3520,7 @@
                                 <Property name="editable" type="boolean" value="false"/>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="1">
-                                    <StringItem index="0" value="02-08-2022"/>
+                                    <StringItem index="0" value="24-01-2026"/>
                                   </StringArray>
                                 </Property>
                                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3626,7 +3593,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbSttsFung" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -3665,7 +3631,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbHamil" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -3728,7 +3693,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbInfeksiOpor" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -3786,7 +3750,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbSttsTB" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -3825,7 +3788,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbAdherance" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -3877,7 +3839,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbEfekSamping" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -4009,7 +3970,6 @@
                                   </StringArray>
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="cmbDiberiKondom" noResource="true"/>
-                                <Property name="opaque" type="boolean" value="false"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[55, 28]"/>
                                 </Property>
@@ -4270,7 +4230,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="02-08-2022"/>
+                        <StringItem index="0" value="24-01-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -4299,7 +4259,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="02-08-2022"/>
+                        <StringItem index="0" value="24-01-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -4366,7 +4326,6 @@
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbLimit" noResource="true"/>
-                    <Property name="opaque" type="boolean" value="false"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[66, 23]"/>
                     </Property>

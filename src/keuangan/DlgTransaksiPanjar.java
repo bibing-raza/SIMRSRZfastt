@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,7 +45,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private ResultSet rs, rs1, rs2, rs3;
     private int i = 0, x = 0, totBayarKurang = 0, totBayarLebih = 0, totBayar = 0;
     public DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
-    private String nipSimpan = "", nipGanti = "", totReal = "", totSelisih = "", kodePJ = "",
+    private String nipSimpan = "", nipGanti = "", totReal = "", totSelisih = "", kodePJ = "", tte = "",
             totSelisihAwalnya = "", totRealTerakhir = "", jlhKurangDibayar = "", lebihDikembalikan = "", nilaiReal = "", nilaiSelisih = "";
     
     /** Creates new form DlgPemberianInfus
@@ -291,7 +292,9 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnKuitansi = new javax.swing.JMenuItem();
+        MnKuitansi = new javax.swing.JMenu();
+        MnTTDkuitansi = new javax.swing.JMenuItem();
+        MnTTEkuitansi = new javax.swing.JMenuItem();
         MnLembarPanjar = new javax.swing.JMenuItem();
         MnHapus = new javax.swing.JMenuItem();
         MnPerbaikiHitungan = new javax.swing.JMenuItem();
@@ -394,21 +397,46 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnKuitansi.setBackground(new java.awt.Color(242, 242, 242));
-        MnKuitansi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnKuitansi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnKuitansi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnKuitansi.setText("Kuitansi Pembayaran");
-        MnKuitansi.setToolTipText("");
+        MnKuitansi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnKuitansi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnKuitansi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnKuitansi.setIconTextGap(5);
         MnKuitansi.setName("MnKuitansi"); // NOI18N
+        MnKuitansi.setOpaque(true);
         MnKuitansi.setPreferredSize(new java.awt.Dimension(170, 26));
-        MnKuitansi.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTDkuitansi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDkuitansi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTDkuitansi.setText("TTD Basah");
+        MnTTDkuitansi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDkuitansi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDkuitansi.setIconTextGap(5);
+        MnTTDkuitansi.setName("MnTTDkuitansi"); // NOI18N
+        MnTTDkuitansi.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDkuitansi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnKuitansiActionPerformed(evt);
+                MnTTDkuitansiActionPerformed(evt);
             }
         });
+        MnKuitansi.add(MnTTDkuitansi);
+
+        MnTTEkuitansi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEkuitansi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTEkuitansi.setText("TTE (QRCode)");
+        MnTTEkuitansi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEkuitansi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEkuitansi.setIconTextGap(5);
+        MnTTEkuitansi.setName("MnTTEkuitansi"); // NOI18N
+        MnTTEkuitansi.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEkuitansi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEkuitansiActionPerformed(evt);
+            }
+        });
+        MnKuitansi.add(MnTTEkuitansi);
+
         jPopupMenu1.add(MnKuitansi);
 
         MnLembarPanjar.setBackground(new java.awt.Color(242, 242, 242));
@@ -576,7 +604,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel101.setPreferredSize(new java.awt.Dimension(80, 23));
         internalFrame17.add(jLabel101);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -590,7 +618,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel102.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel102);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -709,6 +737,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
 
         tbRiwayat.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/direstore");
         tbRiwayat.setName("tbRiwayat"); // NOI18N
+        tbRiwayat.getTableHeader().setReorderingAllowed(false);
         Scroll6.setViewportView(tbRiwayat);
 
         internalFrame13.add(Scroll6, java.awt.BorderLayout.CENTER);
@@ -903,7 +932,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(78, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -917,7 +946,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1035,7 +1064,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         PanelInput.add(jLabel11);
         jLabel11.setBounds(525, 94, 70, 23);
 
-        TtglPanjar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2025" }));
+        TtglPanjar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         TtglPanjar.setDisplayFormat("dd-MM-yyyy");
         TtglPanjar.setName("TtglPanjar"); // NOI18N
         TtglPanjar.setOpaque(false);
@@ -1187,6 +1216,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         PanelInput.add(jLabel18);
         jLabel18.setBounds(0, 234, 140, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
         scrollPane13.setPreferredSize(new java.awt.Dimension(174, 100));
 
@@ -1326,6 +1356,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         tbPanjar.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbPanjar.setComponentPopupMenu(jPopupMenu1);
         tbPanjar.setName("tbPanjar"); // NOI18N
+        tbPanjar.getTableHeader().setReorderingAllowed(false);
         tbPanjar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPanjarMouseClicked(evt);
@@ -1739,49 +1770,6 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TnominalStatusKeyReleased
 
-    private void MnKuitansiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKuitansiActionPerformed
-        if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
-        } else {
-            if (tbPanjar.getSelectedRow() > -1) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                Map<String, Object> param = new HashMap<>();
-                param.put("namars", akses.getnamars());
-                param.put("logo", Sequel.cariGambar("select logo from setting"));
-                param.put("alamatrs", akses.getalamatrs());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("propinsirs", akses.getpropinsirs());
-                param.put("emailrs", akses.getemailrs());
-                param.put("norm", TNoRM.getText());
-                param.put("nmpasien", TPasien.getText());
-                param.put("nopanjar", TnoPanjar.getText());
-                param.put("telahTerima", TtelahTerima.getText());                
-                param.put("keterangan", Tketerangan.getText() + "\nNo. Hp/Telp. yang bisa dihubungi " + TnoTelp1.getText() + " / " + TnoTelp2.getText());
-                param.put("tanggal", "Martapura, " + Valid.SetTglINDONESIA(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 17).toString()));
-                
-                if (cmbStatus.getSelectedIndex() == 2 || cmbStatus.getSelectedIndex() == 3) {
-                    param.put("terbilang", Sequel.Terbilang(Double.parseDouble(TnominalStatus.getText())).toUpperCase() + " RUPIAH");
-                    param.put("nominal", labelnom_status.getText().replaceAll(",", "."));
-                    param.put("petugas", "(" + tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 14).toString() + ")");
-                } else {
-                    param.put("terbilang", Sequel.Terbilang(Double.parseDouble(TnominalPanjar.getText())).toUpperCase() + " RUPIAH");
-                    param.put("nominal", labelnom_panjar.getText().replaceAll(",", "."));
-                    param.put("petugas", "(" + tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 13).toString() + ")");
-                }
-
-                Valid.MyReport("rptKwitansiPanjar.jasper", "report", "::[ Kuitansi Transaksi Panjar ]::",
-                        "SELECT now() tanggal", param);
-
-                emptTeks();
-                tampil();
-                this.setCursor(Cursor.getDefaultCursor());
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
-                tbPanjar.requestFocus();
-            }
-        }
-    }//GEN-LAST:event_MnKuitansiActionPerformed
-
     private void MnLembarPanjarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLembarPanjarActionPerformed
         if (tabMode.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
@@ -2102,6 +2090,36 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         emptTeks();
     }//GEN-LAST:event_BtnCloseIn12ActionPerformed
 
+    private void MnTTDkuitansiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDkuitansiActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+        } else {
+            if (tbPanjar.getSelectedRow() > -1) {
+                tte = "";
+                tte = "tidak";
+                cetakKuitansiPanjar();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+                tbPanjar.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnTTDkuitansiActionPerformed
+
+    private void MnTTEkuitansiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEkuitansiActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+        } else {
+            if (tbPanjar.getSelectedRow() > -1) {
+                tte = "";
+                tte = "ya";
+                cetakKuitansiPanjar();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+                tbPanjar.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnTTEkuitansiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2143,9 +2161,11 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private widget.Label LCount1;
     private javax.swing.JMenuItem MnDataSampah;
     private javax.swing.JMenuItem MnHapus;
-    private javax.swing.JMenuItem MnKuitansi;
+    private javax.swing.JMenu MnKuitansi;
     private javax.swing.JMenuItem MnLembarPanjar;
     private javax.swing.JMenuItem MnPerbaikiHitungan;
+    private javax.swing.JMenuItem MnTTDkuitansi;
+    private javax.swing.JMenuItem MnTTEkuitansi;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll6;
@@ -2662,5 +2682,67 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+
+    private void cetakKuitansiPanjar() {
+        String user = "";
+        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("norm", TNoRM.getText());
+        param.put("nmpasien", TPasien.getText());
+        param.put("nopanjar", TnoPanjar.getText());
+        param.put("telahTerima", TtelahTerima.getText());
+        param.put("keterangan", Tketerangan.getText() + "\nNo. Hp/Telp. yang bisa dihubungi " + TnoTelp1.getText() + " / " + TnoTelp2.getText());
+        param.put("tanggal", "Martapura, " + Valid.SetTglINDONESIA(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 17).toString()));
+
+        if (cmbStatus.getSelectedIndex() == 2 || cmbStatus.getSelectedIndex() == 3) {
+            param.put("terbilang", Sequel.Terbilang(Double.parseDouble(TnominalStatus.getText())).toUpperCase() + " RUPIAH");
+            param.put("nominal", labelnom_status.getText().replaceAll(",", "."));
+            user = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 14).toString();
+        } else {
+            param.put("terbilang", Sequel.Terbilang(Double.parseDouble(TnominalPanjar.getText())).toUpperCase() + " RUPIAH");
+            param.put("nominal", labelnom_panjar.getText().replaceAll(",", "."));
+            user = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 13).toString();
+        }
+        
+        param.put("petugas", "(" + user + ")");
+
+        if (tte.equals("tidak")) {
+            Valid.MyReport("rptKwitansiPanjar.jasper", "report", "::[ Kuitansi Transaksi Panjar ]::",
+                    "SELECT now() tanggal", param);
+        } else if (tte.equals("ya")) {
+            if (akses.getadmin() == true) {
+                Valid.MyReport("rptKwitansiPanjar.jasper", "report", "::[ Kuitansi Transaksi Panjar ]::",
+                        "SELECT now() tanggal", param);
+            } else {
+                String isi = "";
+                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                "Kuitansi Pembayaran", user,
+                                Sequel.cariIsi("select date_format('" + tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 17).toString() + "','%d/%m/%Y')"),
+                                Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+                param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+                Valid.MyReport("rptKwitansiPanjarQr.jasper", "report", "::[ Kuitansi Transaksi Panjar ]::",
+                        "SELECT now() tanggal", param);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            }
+        }
+
+        emptTeks();
+        tampil();
+        this.setCursor(Cursor.getDefaultCursor());
     }
 }

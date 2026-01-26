@@ -15,6 +15,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.net.URI;
 import java.security.SecureRandom;
@@ -65,7 +66,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
     private HttpHeaders headers;
     private HttpEntity requestEntity;
     private ObjectMapper mapper = new ObjectMapper();    
-    private String requestJson = "", URL = "", user = "", utc = "", diagnosa = "", kdICD10 = "", daripolinya = "", SEPkontrol = "";
+    private String requestJson = "", URL = "", user = "", utc = "", diagnosa = "", kdICD10 = "", daripolinya = "", SEPkontrol = "", tte = "";
     public JsonNode respon_lagi;
     private BPJSApi api = new BPJSApi();
 
@@ -310,7 +311,9 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnSurat = new javax.swing.JMenuItem();
+        MnSurat = new javax.swing.JMenu();
+        MnTTDsurat = new javax.swing.JMenuItem();
+        MnTTEsurat = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnAmbilSuratKontrolVCLAIM = new javax.swing.JMenuItem();
         MnCekRujukanJKN = new javax.swing.JMenuItem();
@@ -379,27 +382,52 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnSurat.setBackground(new java.awt.Color(255, 255, 254));
-        MnSurat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnSurat.setForeground(new java.awt.Color(0, 0, 0));
         MnSurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSurat.setText("Surat Rencana Kontrol");
+        MnSurat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSurat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnSurat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSurat.setIconTextGap(5);
         MnSurat.setName("MnSurat"); // NOI18N
+        MnSurat.setOpaque(true);
         MnSurat.setPreferredSize(new java.awt.Dimension(180, 26));
-        MnSurat.addActionListener(new java.awt.event.ActionListener() {
+
+        MnTTDsurat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTDsurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTDsurat.setText("TTD Basah");
+        MnTTDsurat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTDsurat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTDsurat.setIconTextGap(5);
+        MnTTDsurat.setName("MnTTDsurat"); // NOI18N
+        MnTTDsurat.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDsurat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnSuratActionPerformed(evt);
+                MnTTDsuratActionPerformed(evt);
             }
         });
+        MnSurat.add(MnTTDsurat);
+
+        MnTTEsurat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTTEsurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnTTEsurat.setText("TTE (QRCode)");
+        MnTTEsurat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTTEsurat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTTEsurat.setIconTextGap(5);
+        MnTTEsurat.setName("MnTTEsurat"); // NOI18N
+        MnTTEsurat.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEsurat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTTEsuratActionPerformed(evt);
+            }
+        });
+        MnSurat.add(MnTTEsurat);
+
         jPopupMenu1.add(MnSurat);
 
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
 
         MnAmbilSuratKontrolVCLAIM.setBackground(new java.awt.Color(255, 255, 254));
         MnAmbilSuratKontrolVCLAIM.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnAmbilSuratKontrolVCLAIM.setForeground(new java.awt.Color(0, 0, 0));
         MnAmbilSuratKontrolVCLAIM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnAmbilSuratKontrolVCLAIM.setText("Ambil Surat Kontrol dari VClaim");
         MnAmbilSuratKontrolVCLAIM.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -415,7 +443,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
 
         MnCekRujukanJKN.setBackground(new java.awt.Color(255, 255, 254));
         MnCekRujukanJKN.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCekRujukanJKN.setForeground(new java.awt.Color(0, 0, 0));
         MnCekRujukanJKN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCekRujukanJKN.setText("Cek Rujukan BPJS");
         MnCekRujukanJKN.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -438,7 +465,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Surat Rencana Kontrol VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Surat Rencana Kontrol VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -454,6 +481,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         tbSuratKontrol.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbSuratKontrol.setComponentPopupMenu(jPopupMenu1);
         tbSuratKontrol.setName("tbSuratKontrol"); // NOI18N
+        tbSuratKontrol.getTableHeader().setReorderingAllowed(false);
         tbSuratKontrol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbSuratKontrolMouseClicked(evt);
@@ -670,7 +698,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         panelCari.setPreferredSize(new java.awt.Dimension(44, 43));
         panelCari.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 2, 9));
 
-        R1.setBackground(new java.awt.Color(240, 250, 230));
         R1.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(R1);
         R1.setSelected(true);
@@ -682,7 +709,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         panelCari.add(R1);
 
         tglSurat1.setEditable(false);
-        tglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-04-2023" }));
+        tglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2023" }));
         tglSurat1.setDisplayFormat("dd-MM-yyyy");
         tglSurat1.setName("tglSurat1"); // NOI18N
         tglSurat1.setOpaque(false);
@@ -702,7 +729,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         panelCari.add(jLabel22);
 
         tglSurat2.setEditable(false);
-        tglSurat2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-04-2023" }));
+        tglSurat2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2023" }));
         tglSurat2.setDisplayFormat("dd-MM-yyyy");
         tglSurat2.setName("tglSurat2"); // NOI18N
         tglSurat2.setOpaque(false);
@@ -714,7 +741,6 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         });
         panelCari.add(tglSurat2);
 
-        R2.setBackground(new java.awt.Color(240, 250, 230));
         R2.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(R2);
         R2.setText("Tgl. Rencana  Kontrol : ");
@@ -725,7 +751,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         panelCari.add(R2);
 
         tglKontrol1.setEditable(false);
-        tglKontrol1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-04-2023" }));
+        tglKontrol1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2023" }));
         tglKontrol1.setDisplayFormat("dd-MM-yyyy");
         tglKontrol1.setName("tglKontrol1"); // NOI18N
         tglKontrol1.setOpaque(false);
@@ -745,7 +771,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         panelCari.add(jLabel25);
 
         tglKontrol2.setEditable(false);
-        tglKontrol2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-04-2023" }));
+        tglKontrol2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2023" }));
         tglKontrol2.setDisplayFormat("dd-MM-yyyy");
         tglKontrol2.setName("tglKontrol2"); // NOI18N
         tglKontrol2.setOpaque(false);
@@ -905,7 +931,7 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         label_rencana.setBounds(295, 70, 120, 23);
 
         TanggalKontrol.setEditable(false);
-        TanggalKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-04-2023" }));
+        TanggalKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2023" }));
         TanggalKontrol.setDisplayFormat("dd-MM-yyyy");
         TanggalKontrol.setName("TanggalKontrol"); // NOI18N
         TanggalKontrol.setOpaque(false);
@@ -1016,8 +1042,8 @@ public class BPJSSuratKontrol extends javax.swing.JDialog {
         scrollInput2.setName("scrollInput2"); // NOI18N
         scrollInput2.setPreferredSize(new java.awt.Dimension(102, 1200));
 
-        tbRiwayat.setToolTipText("");
         tbRiwayat.setName("tbRiwayat"); // NOI18N
+        tbRiwayat.getTableHeader().setReorderingAllowed(false);
         tbRiwayat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbRiwayatMouseClicked(evt);
@@ -1397,33 +1423,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         poli.TCari.requestFocus();        
     }//GEN-LAST:event_BtnPoliActionPerformed
 
-    private void MnSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSuratActionPerformed
-        if (tbSuratKontrol.getSelectedRow() != -1) {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("logo", Sequel.cariGambar("select bpjs from gambar"));
-            param.put("dokter_layan", Sequel.cariIsi("select ifnull(nmdpjpLayan,'-') from bridging_sep where no_rawat='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 0).toString() + "'"));
-            param.put("tgl_lahir", Sequel.cariIsi("select DATE_FORMAT(tgl_lahir,'%d') from pasien where no_rkm_medis='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 3).toString() + "'") + " "
-                    + Sequel.bulanINDONESIA("select DATE_FORMAT(tgl_lahir,'%m') from pasien where no_rkm_medis='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 3).toString() + "'") + " "
-                    + Sequel.cariIsi("select DATE_FORMAT(tgl_lahir,'%Y') from pasien where no_rkm_medis='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 3).toString() + "'"));
-            param.put("tgl_rencana", Sequel.cariIsi("select DATE_FORMAT(tgl_rencana,'%d') from bridging_surat_kontrol_bpjs where no_surat='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 9).toString() + "'") + " "
-                    + Sequel.bulanINDONESIA("select DATE_FORMAT(tgl_rencana,'%m') from bridging_surat_kontrol_bpjs where no_surat='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 9).toString() + "'") + " "
-                    + Sequel.cariIsi("select DATE_FORMAT(tgl_rencana,'%Y') from bridging_surat_kontrol_bpjs where no_surat='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 9).toString() + "'"));
-            
-            Valid.MyReport("rptBridgingSuratKontrol2.jasper", "report", "::[ Cetak Surat Rencana Kontrol ]::",
-                    " SELECT bsk.no_surat, bsk.nm_dokter_bpjs, bsk.nm_poli_bpjs, bs.no_kartu, "
-                    + "CONCAT(bs.nama_pasien,' (',IF(bs.jkel='L','Laki-laki','Perempuan'),')') peserta, "
-                    + "IF(rp.kd_poli='HIV',bs.diagawal,CONCAT(bs.diagawal,' - ',bs.nmdiagnosaawal)) diagnosa, bs.nomr FROM bridging_surat_kontrol_bpjs bsk "
-                    + "INNER JOIN bridging_sep bs ON bs.no_rawat=bsk.no_rawat INNER JOIN reg_periksa rp ON rp.no_rawat=bsk.no_rawat "
-                    + "WHERE bsk.no_surat='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 9).toString() + "'", param);
-            this.setCursor(Cursor.getDefaultCursor());
-        } else {
-            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data No. Surat nya yang mau dicetak...!!!!");
-            BtnBatal.requestFocus();
-        }
-    }//GEN-LAST:event_MnSuratActionPerformed
-
     private void tglSurat1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tglSurat1ItemStateChanged
         R1.setSelected(true);
     }//GEN-LAST:event_tglSurat1ItemStateChanged
@@ -1577,6 +1576,28 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_MnCekRujukanJKNActionPerformed
 
+    private void MnTTDsuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTDsuratActionPerformed
+        if (tbSuratKontrol.getSelectedRow() != -1) {
+            tte = "";
+            tte = "tidak";
+            cetakSurat();
+        } else {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data No. Surat nya yang mau dicetak...!!!!");
+            BtnBatal.requestFocus();
+        }
+    }//GEN-LAST:event_MnTTDsuratActionPerformed
+
+    private void MnTTEsuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTTEsuratActionPerformed
+        if (tbSuratKontrol.getSelectedRow() != -1) {
+            tte = "";
+            tte = "ya";
+            cetakSurat();
+        } else {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data No. Surat nya yang mau dicetak...!!!!");
+            BtnBatal.requestFocus();
+        }
+    }//GEN-LAST:event_MnTTEsuratActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1612,7 +1633,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label LCount;
     private javax.swing.JMenuItem MnAmbilSuratKontrolVCLAIM;
     private javax.swing.JMenuItem MnCekRujukanJKN;
-    private javax.swing.JMenuItem MnSurat;
+    private javax.swing.JMenu MnSurat;
+    private javax.swing.JMenuItem MnTTDsurat;
+    private javax.swing.JMenuItem MnTTEsurat;
     private widget.TextBox NmDokter;
     private widget.TextBox NmPasien;
     private widget.TextBox NmPoli;
@@ -2039,5 +2062,54 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 isForm();                
             }
         }
+    }
+    
+    private void cetakSurat() {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        String dokter = "";
+        dokter = Sequel.cariIsi("select ifnull(nmdpjpLayan,'-') from bridging_sep where no_rawat='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 0).toString() + "'");
+
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("logo", Sequel.cariGambar("select bpjs from gambar"));
+        param.put("dokter_layan", dokter);
+        param.put("tgl_lahir", Sequel.cariIsi("select DATE_FORMAT(tgl_lahir,'%d') from pasien where no_rkm_medis='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 3).toString() + "'") + " "
+                + Sequel.bulanINDONESIA("select DATE_FORMAT(tgl_lahir,'%m') from pasien where no_rkm_medis='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 3).toString() + "'") + " "
+                + Sequel.cariIsi("select DATE_FORMAT(tgl_lahir,'%Y') from pasien where no_rkm_medis='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 3).toString() + "'"));
+        param.put("tgl_rencana", Sequel.cariIsi("select DATE_FORMAT(tgl_rencana,'%d') from bridging_surat_kontrol_bpjs where no_surat='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 9).toString() + "'") + " "
+                + Sequel.bulanINDONESIA("select DATE_FORMAT(tgl_rencana,'%m') from bridging_surat_kontrol_bpjs where no_surat='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 9).toString() + "'") + " "
+                + Sequel.cariIsi("select DATE_FORMAT(tgl_rencana,'%Y') from bridging_surat_kontrol_bpjs where no_surat='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 9).toString() + "'"));
+
+        if (tte.equals("tidak")) {
+            Valid.MyReport("rptBridgingSuratKontrol2.jasper", "report", "::[ Cetak Surat Rencana Kontrol ]::",
+                    " SELECT bsk.no_surat, bsk.nm_dokter_bpjs, bsk.nm_poli_bpjs, bs.no_kartu, "
+                    + "CONCAT(bs.nama_pasien,' (',IF(bs.jkel='L','Laki-laki','Perempuan'),')') peserta, "
+                    + "IF(rp.kd_poli='HIV',bs.diagawal,CONCAT(bs.diagawal,' - ',bs.nmdiagnosaawal)) diagnosa, bs.nomr FROM bridging_surat_kontrol_bpjs bsk "
+                    + "INNER JOIN bridging_sep bs ON bs.no_rawat=bsk.no_rawat INNER JOIN reg_periksa rp ON rp.no_rawat=bsk.no_rawat "
+                    + "WHERE bsk.no_surat='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 9).toString() + "'", param);
+        } else if (tte.equals("ya")) {
+            String isi = "";
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='002'"),
+                            "Surat Rencana Kontrol", dokter,
+                            Sequel.cariIsi("select date_format(now(),'%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='002'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat Rencana Kontrol", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='002'"));
+
+            Valid.MyReport("rptBridgingSuratKontrol2Qr.jasper", "report", "::[ Cetak Surat Rencana Kontrol ]::",
+                    " SELECT bsk.no_surat, bsk.nm_dokter_bpjs, bsk.nm_poli_bpjs, bs.no_kartu, "
+                    + "CONCAT(bs.nama_pasien,' (',IF(bs.jkel='L','Laki-laki','Perempuan'),')') peserta, "
+                    + "IF(rp.kd_poli='HIV',bs.diagawal,CONCAT(bs.diagawal,' - ',bs.nmdiagnosaawal)) diagnosa, bs.nomr FROM bridging_surat_kontrol_bpjs bsk "
+                    + "INNER JOIN bridging_sep bs ON bs.no_rawat=bsk.no_rawat INNER JOIN reg_periksa rp ON rp.no_rawat=bsk.no_rawat "
+                    + "WHERE bsk.no_surat='" + tbSuratKontrol.getValueAt(tbSuratKontrol.getSelectedRow(), 9).toString() + "'", param);
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+
+        }
+        this.setCursor(Cursor.getDefaultCursor());
     }
  }

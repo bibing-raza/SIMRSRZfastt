@@ -502,6 +502,7 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
         tbPermintaan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPermintaan.setComponentPopupMenu(jPopupMenu1);
         tbPermintaan.setName("tbPermintaan"); // NOI18N
+        tbPermintaan.getTableHeader().setReorderingAllowed(false);
         tbPermintaan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPermintaanMouseClicked(evt);
@@ -533,6 +534,7 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
         ));
         tbItem.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbItem.setName("tbItem"); // NOI18N
+        tbItem.getTableHeader().setReorderingAllowed(false);
         tbItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbItemMouseClicked(evt);
