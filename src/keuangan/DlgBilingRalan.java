@@ -34,6 +34,7 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import laporan.DlgKirimWhatsapp;
 import org.eclipse.jdt.internal.compiler.ast.NormalAnnotation;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariPerawatanRalan;
@@ -75,10 +76,10 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             Beban_Jasa_Medik_Dokter_Tindakan_Ralan = "", Utang_Jasa_Medik_Dokter_Tindakan_Ralan = "", 
             Beban_Jasa_Medik_Paramedis_Tindakan_Ralan = "", Utang_Jasa_Medik_Paramedis_Tindakan_Ralan = "",
             Beban_KSO_Tindakan_Ralan = "", Utang_KSO_Tindakan_Ralan = "", Beban_Jasa_Medik_Dokter_Laborat_Ralan = "",
-            Utang_Jasa_Medik_Dokter_Laborat_Ralan = "", Beban_Jasa_Medik_Petugas_Laborat_Ralan = "",
+            Utang_Jasa_Medik_Dokter_Laborat_Ralan = "", Beban_Jasa_Medik_Petugas_Laborat_Ralan = "", apakahPiutang = "",
             Utang_Jasa_Medik_Petugas_Laborat_Ralan = "", Beban_Kso_Laborat_Ralan = "", Utang_Kso_Laborat_Ralan = "",
             HPP_Persediaan_Laborat_Rawat_Jalan = "", Persediaan_BHP_Laborat_Rawat_Jalan = "", judulBanyak = "", judulTunggal = "",
-            Beban_Jasa_Medik_Dokter_Radiologi_Ralan = "", Utang_Jasa_Medik_Dokter_Radiologi_Ralan = "",
+            Beban_Jasa_Medik_Dokter_Radiologi_Ralan = "", Utang_Jasa_Medik_Dokter_Radiologi_Ralan = "", bayarWA = "", piutangWA = "",
             Beban_Jasa_Medik_Petugas_Radiologi_Ralan = "", Utang_Jasa_Medik_Petugas_Radiologi_Ralan = "",
             Beban_Kso_Radiologi_Ralan = "", Utang_Kso_Radiologi_Ralan = "", HPP_Persediaan_Radiologi_Rawat_Jalan = "",
             Persediaan_BHP_Radiologi_Rawat_Jalan = "", HPP_Obat_Rawat_Jalan = "", Persediaan_Obat_Rawat_Jalan = "",
@@ -2946,6 +2947,9 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         } else if (tabModeRwJlDr.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
         } else if (tabModeRwJlDr.getRowCount() != 0) {
+            bayarWA = "";
+            piutangWA = "";
+            
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             try {
                 koneksi.setAutoCommit(false);
@@ -3001,21 +3005,28 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                 }
 
                 if (piutang <= 0) {
+                    apakahPiutang = "tidak";
                     Sequel.menyimpan("temporary_bayar_ralan", "'0','TOTAL TAGIHAN',':','','','','','" + TtlSemua.getText() + "','Tagihan','','','','','','','','',''", "Tagihan");
                     Sequel.menyimpan("temporary_bayar_ralan", "'0','PPN',':','','','','','" + Valid.SetAngka(besarppn) + "','Tagihan','','','','','','','','',''", "Tagihan");
                     Sequel.menyimpan("temporary_bayar_ralan", "'0','TOTAL BAYAR',':','','','','','" + TagihanPPn.getText() + "','Tagihan','','','','','','','','',''", "Tagihan");
+                    bayarWA = "0";
+                    piutangWA = "0";
                 } else if (piutang > 0) {
+                    apakahPiutang = "ya";
                     Sequel.menyimpan("temporary_bayar_ralan", "'0','TOTAL TAGIHAN',':','','','','','" + TtlSemua.getText() + "','Tagihan','','','','','','','','',''", "Tagihan");
                     Sequel.menyimpan("temporary_bayar_ralan", "'0','PPN',':','','','','','" + Valid.SetAngka(besarppn) + "','Tagihan','','','','','','','','',''", "Tagihan");
                     Sequel.menyimpan("temporary_bayar_ralan", "'0','TAGIHAN + PPN',':','','','','','" + TagihanPPn.getText() + "','Tagihan','','','','','','','','',''", "Tagihan");
                     Sequel.menyimpan("temporary_bayar_ralan", "'0','UANG MUKA',':','','','','','" + Valid.SetAngka(bayar) + "','Tagihan','','','','','','','','',''", "Tagihan");
                     Sequel.menyimpan("temporary_bayar_ralan", "'0','SISA PIUTANG',':','','','','','" + Valid.SetAngka(piutang) + "','Tagihan','','','','','','','','',''", "Tagihan");
+                    bayarWA = Valid.SetAngka(bayar);
+                    piutangWA = Valid.SetAngka(piutang);
                 }
 
                 i = 0;
                 try {
                     biaya = (String) JOptionPane.showInputDialog(null, "Silahkan pilih nota/kwitansi yang mau dicetak..!", "Nota",
-                            JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Nota", "Kwitansi", "Kwitansi (Datanya Adalah Nota)"}, "Nota");
+                            JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Nota", "Kwitansi", "Kwitansi (Datanya Adalah Nota)",
+                                "Kirim Nota Ke WhatsApp", "Kirim Kwitansi Ke WhatsApp", "Kirim Kwitansi (Datanya Adalah Nota) Ke WhatsApp"}, "Nota");
                     switch (biaya) {
                         case "Nota":
                             i = 1;
@@ -3025,6 +3036,15 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                             break;
                         case "Kwitansi (Datanya Adalah Nota)":
                             i = 3;
+                            break;
+                        case "Kirim Nota Ke WhatsApp":
+                            i = 4;
+                            break;
+                        case "Kirim Kwitansi Ke WhatsApp":
+                            i = 5;
+                            break;
+                        case "Kirim Kwitansi (Datanya Adalah Nota) Ke WhatsApp":
+                            i = 6;
                             break;
                     }
                 } catch (Exception e) {
@@ -3044,6 +3064,59 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                         }
                     } else if (i == 3) {
                         cetakNota("kwitansi_nota");
+                    } else if (i == 4) {
+                        if (akses.getbilling_ralan() == true) {
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                            akses.setform("DlgBilingRalan");
+                            DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
+                            form.setSize(817, 181);
+                            form.setLocationRelativeTo(internalFrame8);
+                            form.emptTeks();
+                            form.setData("kasir nota ralan", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""));
+                            form.setTransaksi(apakahPiutang, "nota", tglNota.getSelectedItem() + "");
+                            form.isPiutang(TtlSemua.getText(), Valid.SetAngka(besarppn), TagihanPPn.getText(), "0", Valid.SetAngka(bayar), bayarWA, piutangWA);
+                            form.dataKirim();
+                            form.setVisible(true);
+                            form.toFront();
+                            form.requestFocus();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Maaf, fitur ini yang bisa hanya petugas kasir...!!!");
+                        }
+                    } else if (i == 5) {
+                        if (akses.getbilling_ralan() == true) {
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                            akses.setform("DlgBilingRalan");
+                            DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
+                            form.setSize(817, 181);
+                            form.setLocationRelativeTo(internalFrame8);
+                            form.emptTeks();
+                            form.setData("kasir kuitansi ralan", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""));
+                            form.setTransaksi(apakahPiutang, "", tglNota.getSelectedItem() + "");
+                            form.dataKirim();
+                            form.setVisible(true);
+                            form.toFront();
+                            form.requestFocus();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Maaf, fitur ini yang bisa hanya petugas kasir...!!!");
+                        }
+                    } else if (i == 6) {
+                        if (akses.getbilling_ralan() == true) {
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                            akses.setform("DlgBilingRalan");
+                            DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
+                            form.setSize(817, 181);
+                            form.setLocationRelativeTo(internalFrame8);
+                            form.emptTeks();
+                            form.setData("kasir nota ralan", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""));
+                            form.setTransaksi(apakahPiutang, "kwitansi_nota", tglNota.getSelectedItem() + "");
+                            form.isPiutang(TtlSemua.getText(), Valid.SetAngka(besarppn), TagihanPPn.getText(), "0", Valid.SetAngka(bayar), bayarWA, piutangWA);
+                            form.dataKirim();
+                            form.setVisible(true);
+                            form.toFront();
+                            form.requestFocus();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Maaf, fitur ini yang bisa hanya petugas kasir...!!!");
+                        }
                     }
                     this.setCursor(Cursor.getDefaultCursor());
                 }

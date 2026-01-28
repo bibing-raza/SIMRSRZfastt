@@ -41,8 +41,10 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ApiWhatapp wa = new ApiWhatapp();
     private ResultSet rs;
-    private int i = 0;
-    private String nmDokumen = "", norawat = "", waktuSimpan = "";
+    private int i = 0, jmlNota = 0;
+    private String nmDokumen = "", norawat = "", waktuSimpan = "", cekPiutang = "", crbyr = "", isi = "", nmFile = "",
+            judulReport = "", judulBanyak = "", judulTunggal = "", tanggal = "", nmPemberiJT = "", noTelpJT = "", jmlNominalJT = "",
+            namaPasJT = "", norkmJT = "", noPanjarP = "", keterP = "", notelpP = "", sttsP = "", angkaNomP = "", userP = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -81,7 +83,7 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Kirim Hasil Pemeriksaan Lab. Patologi Anatomi Ke WhatsApp Tujuan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Kirim File PDF Ke Nomor WhatsApp Tujuan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setWarnaAtas(new java.awt.Color(204, 255, 204));
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -246,26 +248,68 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
         nmDokumen = jnsDokumen;
         norawat = norw;
         waktuSimpan = wktSimpan;
-        dataKirim();
     }
-    
-    private void dataKirim() {
+
+    public void dataKirim() {        
         if (nmDokumen.equals("hasil patologi anatomi")) {
             hasilPatologiAnatomi();
         } else if (nmDokumen.equals("kasir nota ranap")) {
-            notaRanap();
+            if (cekPiutang.equals("tidak")) {
+                notaRanap();
+            } else if (cekPiutang.equals("ya")) {
+                notaRanapPiutang();
+            }
+        } else if (nmDokumen.equals("kasir kuitansi ranap")) {
+            if (cekPiutang.equals("tidak")) {
+                kuitansiRanap();
+            } else if (cekPiutang.equals("ya")) {
+                kuitansiPiutangRanap();
+            }
+        } else if (nmDokumen.equals("kasir nota ralan")) {
+            notaRalan();
+        } else if (nmDokumen.equals("kasir kuitansi ralan")) {
+            if (cekPiutang.equals("tidak")) {
+                kuitansiRalan();
+            } else if (cekPiutang.equals("ya")) {
+                kuitansiRalanPiutang();
+            }
+        } else if (nmDokumen.equals("jaminan transaksi")) {
+            jaminanTransaksi();
+        } else if (nmDokumen.equals("panjar")) {
+            panjar();
         }
     }
     
-    public void cekPiutang(String piutang, String TtlSemua, String besarppn, String TagihanPPn, String Deposit, String bayar, String kembali, String Piutang) {
-        if (piutang.equals("tidak")) {
+    public void setTransaksi(String piutang, String judulnya, String tglnota) {
+        cekPiutang = piutang;
+        judulReport = judulnya;
+        tanggal = tglnota;
+    }
+    
+    public void jaminanTrans(String nmPemberi, String notelp, String jmlnominal, String nmPasien, String norkm, String noPanjar, 
+            String ketPanjar, String notelp2, String sttsPanjar, String angkaNomPanjar, String userPanjar) {
+        nmPemberiJT = nmPemberi;
+        noTelpJT = notelp;
+        jmlNominalJT = jmlnominal;
+        namaPasJT = nmPasien;
+        norkmJT = norkm;
+        noPanjarP = noPanjar;
+        keterP = ketPanjar;
+        notelpP = notelp2;
+        sttsP = sttsPanjar;
+        angkaNomP = angkaNomPanjar;
+        userP = userPanjar;
+    }
+    
+    public void isPiutang(String TtlSemua, String besarppn, String TagihanPPn, String Deposit, String bayar, String kembali, String Piutang) {        
+        if (cekPiutang.equals("tidak")) {
             Sequel.menyimpan("temporary_bayar_ranap", "'0','TOTAL TAGIHAN',':','','','','','" + TtlSemua + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
             Sequel.menyimpan("temporary_bayar_ranap", "'0','PPN',':','','','','','" + besarppn + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
             Sequel.menyimpan("temporary_bayar_ranap", "'0','TAGIHAN+PPN',':','','','','','" + TagihanPPn + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
             Sequel.menyimpan("temporary_bayar_ranap", "'0','DEPOSIT',':','','','','','" + Deposit + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
             Sequel.menyimpan("temporary_bayar_ranap", "'0','BAYAR',':','','','','','" + bayar + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
             Sequel.menyimpan("temporary_bayar_ranap", "'0','Kembali',':','','','','','" + kembali + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-        } else if (piutang.equals("ya")) {
+        } else if (cekPiutang.equals("ya")) {
             Sequel.menyimpan("temporary_bayar_ranap", "'0','TOTAL TAGIHAN',':','','','','','" + TtlSemua + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
             Sequel.menyimpan("temporary_bayar_ranap", "'0','PPN',':','','','','','" + besarppn + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
             Sequel.menyimpan("temporary_bayar_ranap", "'0','TAGIHAN + PPN',':','','','','','" + TagihanPPn + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
@@ -344,7 +388,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                         System.out.println("Notifikasi : " + e);
                     }
 
-                    String isi = "", nmFile = "";
                     nmFile = rs.getString("no_pa").replaceAll("-", "");
                     isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                             + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
@@ -380,7 +423,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
     }
     
     private void notaRanap() {
-        String crbyr = "", isi = "", nmFile = "";
         crbyr = Sequel.cariIsi("select pj.png_jawab from reg_periksa r inner join penjab pj on pj.kd_pj=r.kd_pj where r.no_rawat='" + norawat + "'");
         nmFile = "Nota Pembayaran " + norawat.replaceAll("/", "");
 
@@ -403,19 +445,19 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
 
         if (akses.getadmin() == true) {
             Valid.MyReportToPDF("rptNotaRanap.jasper", "report", "::[ Nota Pembayaran - LUNAS (Rawat Inap) ]::",
-                    " SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
-                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota') no_nota, "
-                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar') bangsal, "
-                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan') tgl_rawat, "
-                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien') pasien, "
-                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien, "
-                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan') tot_tagihan, "
-                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn') ppn, "
-                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan+ppn') tagihan_ppn, "
-                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit') deposit, "
-                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='bayar') bayar, "
-                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='kembali') kembali "
-                    + "FROM temporary_bayar_ranap WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN+PPN','PPN','DEPOSIT','BAYAR','Kembali','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien') ",
+                    "SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota' LIMIT 1) no_nota, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar' LIMIT 1) bangsal, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan' LIMIT 1) tgl_rawat, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien' LIMIT 1) pasien, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien' LIMIT 1) alamat_pasien, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan' LIMIT 1) tot_tagihan, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn' LIMIT 1) ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan+ppn' LIMIT 1) tagihan_ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit' LIMIT 1) deposit, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='bayar' LIMIT 1) bayar, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='kembali' LIMIT 1) kembali FROM temporary_bayar_ranap WHERE "
+                    + "temp1 NOT IN ('TOTAL TAGIHAN','TAGIHAN+PPN','PPN','DEPOSIT','BAYAR','Kembali', 'No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien')",
                     param, Sequel.cariFolderTte(), nmFile);
         } else {
             isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
@@ -431,23 +473,510 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
             param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
 
             Valid.MyReportToPDF("rptNotaRanapQr.jasper", "report", "::[ Nota Pembayaran - LUNAS (Rawat Inap) ]::",
-                    " SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
-                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota') no_nota, "
-                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar') bangsal, "
-                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan') tgl_rawat, "
-                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien') pasien, "
-                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien, "
-                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan') tot_tagihan, "
-                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn') ppn, "
-                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan+ppn') tagihan_ppn, "
-                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit') deposit, "
-                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='bayar') bayar, "
-                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='kembali') kembali "
-                    + "FROM temporary_bayar_ranap WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN+PPN','PPN','DEPOSIT','BAYAR','Kembali','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien') ",
+                    "SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota' LIMIT 1) no_nota, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar' LIMIT 1) bangsal, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan' LIMIT 1) tgl_rawat, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien' LIMIT 1) pasien, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien' LIMIT 1) alamat_pasien, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan' LIMIT 1) tot_tagihan, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn' LIMIT 1) ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan+ppn' LIMIT 1) tagihan_ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit' LIMIT 1) deposit, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='bayar' LIMIT 1) bayar, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='kembali' LIMIT 1) kembali FROM temporary_bayar_ranap WHERE "
+                    + "temp1 NOT IN ('TOTAL TAGIHAN','TAGIHAN+PPN','PPN','DEPOSIT','BAYAR','Kembali', 'No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien')",
                     param, Sequel.cariFolderTte(), nmFile);
         }
 
         TPesan.setText("Nota Pembayaran Rawat Inap (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
+                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
+    }
+
+    private void notaRanapPiutang() {
+        crbyr = Sequel.cariIsi("select pj.png_jawab from reg_periksa r inner join penjab pj on pj.kd_pj=r.kd_pj where r.no_rawat='" + norawat + "'");
+        nmFile = "Nota Pembayaran Piutang " + norawat.replaceAll("/", "");
+        
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("cara_byr", crbyr);
+        param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(waktuSimpan));
+
+        if (akses.getadmin() == true) {
+            param.put("petugas_ksr", "( ................... )");
+        } else if (akses.getbilling_ranap()) {
+            param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
+        }
+
+        if (akses.getadmin() == true) {
+            Valid.MyReportToPDF("rptNotaRanapPiutang.jasper", "report", "::[ Nota Pembayaran - PIUTANG (Rawat Inap) ]::",
+                    "SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota' LIMIT 1) no_nota, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar' LIMIT 1) bangsal, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan' LIMIT 1) tgl_rawat, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien' LIMIT 1) pasien, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien' LIMIT 1) alamat_pasien, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan' LIMIT 1) tot_tagihan, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn' LIMIT 1) ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan + ppn' LIMIT 1) tagihan_ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit' LIMIT 1) deposit, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='uang muka' LIMIT 1) uang_muka, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='sisa piutang' LIMIT 1) sisa_piutang FROM temporary_bayar_ranap WHERE "
+                    + "temp1 NOT IN('TOTAL TAGIHAN','TAGIHAN + PPN','PPN','DEPOSIT','UANG MUKA','SISA PIUTANG', 'No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien')",
+                    param, Sequel.cariFolderTte(), nmFile);
+        } else {
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Nota Pembayaran Piutang (" + crbyr + ")", Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'"),
+                            Sequel.cariIsi("select date_format('" + waktuSimpan + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Nota Pembayaran", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReportToPDF("rptNotaRanapPiutangQr.jasper", "report", "::[ Nota Pembayaran - PIUTANG (Rawat Inap) ]::",
+                    "SELECT temp1, temp2, temp3, temp4, temp5, IF(temp6='0','',temp6) temp6, temp7, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='No.Nota' LIMIT 1) no_nota, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Bangsal/Kamar' LIMIT 1) bangsal, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Tgl. Perawatan' LIMIT 1) tgl_rawat, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Pasien' LIMIT 1) pasien, "
+                    + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien' LIMIT 1) alamat_pasien, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total tagihan' LIMIT 1) tot_tagihan, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='ppn' LIMIT 1) ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='tagihan + ppn' LIMIT 1) tagihan_ppn, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='deposit' LIMIT 1) deposit, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='uang muka' LIMIT 1) uang_muka, "
+                    + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='sisa piutang' LIMIT 1) sisa_piutang FROM temporary_bayar_ranap WHERE "
+                    + "temp1 NOT IN('TOTAL TAGIHAN','TAGIHAN + PPN','PPN','DEPOSIT','UANG MUKA','SISA PIUTANG', 'No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien')",
+                    param, Sequel.cariFolderTte(), nmFile);
+        }
+        
+        TPesan.setText("Nota Pembayaran Piutang Rawat Inap (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
+                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
+    }
+    
+    private void kuitansiRanap() {
+        nmFile = "Kuitansi Pembayaran " + norawat.replaceAll("/", "");
+        
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("no_kwitansi", Sequel.cariIsi("SELECT REPLACE(temp2,': ','') no_kwitansi FROM temporary_bayar_ranap WHERE temp1='No.Nota'"));
+        param.put("telah_terima", Sequel.cariIsi("select concat(rp.p_jawab,' (No. Telp./HP. ',p.no_tlp,')') from reg_periksa rp "
+                + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + norawat + "'"));
+        param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp7,'.',''),',','') tot_bayar FROM temporary_bayar_ranap WHERE temp1='BAYAR'")) + " Rupiah.");
+        param.put("untuk_byr", "Pelayanan Kesehatan Rawat Inap di " + Sequel.cariIsi("select nama_instansi from setting") + " ruang perawatan " + Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki "
+                + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal where "
+                + "ki.no_rawat='" + norawat + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1") + " a/n "
+                + Sequel.cariIsi("SELECT REPLACE(temp2,': ','') pasien FROM temporary_bayar_ranap WHERE temp1='Pasien'"));
+        param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp7,'.','.'),',','.')) terbilang FROM temporary_bayar_ranap WHERE temp1='BAYAR'"));
+        param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(waktuSimpan));
+
+        if (akses.getadmin() == true) {
+            param.put("petugas_ksr", "( ____________________ )");
+        } else if (akses.getbilling_ranap()) {
+            param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
+        }
+
+        if (akses.getadmin() == true) {
+            Valid.MyReportToPDF("rptKwitansiRanap.jasper", "report", "::[ Kwitansi Pembayaran - LUNAS (Rawat Inap) ]::",
+                    " SELECT * FROM temporary_bayar_ranap ", param, Sequel.cariFolderTte(), nmFile);
+        } else {
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Kuitansi", Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'"),
+                            Sequel.cariIsi("select date_format('" + waktuSimpan + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReportToPDF("rptKwitansiRanapQr.jasper", "report", "::[ Kwitansi Pembayaran - LUNAS (Rawat Inap) ]::",
+                    " SELECT * FROM temporary_bayar_ranap ", param, Sequel.cariFolderTte(), nmFile);
+        }
+        
+        TPesan.setText("Kuitansi Pembayaran Rawat Inap (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
+                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
+    }
+
+    private void kuitansiPiutangRanap() {
+        nmFile = "Kuitansi Pembayaran Piutang " + norawat.replaceAll("/", "");
+
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("no_kwitansi", Sequel.cariIsi("SELECT REPLACE(temp2,': ','') no_kwitansi FROM temporary_bayar_ranap WHERE temp1='No.Nota'"));
+        param.put("telah_terima", Sequel.cariIsi("select concat(rp.p_jawab,' (No. Telp./HP. ',p.no_tlp,')') from reg_periksa rp "
+                + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + norawat + "'"));
+        param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp7,'.',''),',','') tot_bayar FROM temporary_bayar_ranap WHERE temp1='UANG MUKA'")) + " Rupiah.");
+        param.put("untuk_byr", "Pelayanan Kesehatan Rawat Inap di " + Sequel.cariIsi("select nama_instansi from setting") + " a/n "
+                + Sequel.cariIsi("SELECT REPLACE(temp2,': ','') pasien FROM temporary_bayar_ranap WHERE temp1='Pasien'") + " sebagai uang muka.");
+        param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp7,'.','.'),',','.')) terbilang FROM temporary_bayar_ranap WHERE temp1='UANG MUKA'"));
+        param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(waktuSimpan));
+
+        if (akses.getadmin() == true) {
+            param.put("petugas_ksr", "( ____________________ )");
+        } else if (akses.getbilling_ranap()) {
+            param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
+        }
+
+        if (akses.getadmin() == true) {
+            Valid.MyReportToPDF("rptKwitansiRanap.jasper", "report", "::[ Kwitansi Pembayaran - PIUTANG (Rawat Inap) ]::",
+                    " SELECT * FROM temporary_bayar_ranap ", param, Sequel.cariFolderTte(), nmFile);
+        } else {
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Kuitansi", Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'"),
+                            Sequel.cariIsi("select date_format('" + waktuSimpan + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReportToPDF("rptKwitansiRanapQr.jasper", "report", "::[ Kwitansi Pembayaran - PIUTANG (Rawat Inap) ]::",
+                    " SELECT * FROM temporary_bayar_ranap ", param, Sequel.cariFolderTte(), nmFile);
+        }
+        
+        TPesan.setText("Kuitansi Pembayaran Piutang Rawat Inap (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
+                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
+    }
+    
+    private void notaRalan() {
+        jmlNota = 0;
+        jmlNota = Sequel.cariInteger("SELECT count(-1) cek FROM temporary_bayar_ralan WHERE temp1='No. Nota'");
+        crbyr = Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + norawat + "'");        
+
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("cara_byr", crbyr);
+        param.put("tot_bayar", Sequel.cariIsi("select REPLACE(REPLACE(temp7,'.','.'),',','.') from temporary_bayar_ralan where temp1='TOTAL BAYAR'"));
+        param.put("tglNota", "Martapura, " + tanggal);
+
+        if (akses.getadmin() == true) {
+            param.put("petugas_ksr", "( ................... )");
+        } else if (akses.getbilling_ralan()) {
+            param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
+        }
+
+        if (judulReport.equals("nota")) {
+            param.put("judul", "NOTA PEMBAYARAN (" + crbyr + ")");
+            judulBanyak = "::[ Nota Pembayaran Banyak - LUNAS (Rawat Jalan) ]::";
+            judulTunggal = "::[ Nota Pembayaran - LUNAS (Rawat Jalan) ]::";
+            nmFile = "Nota Pembayaran " + norawat.replaceAll("/", "");
+        } else if (judulReport.equals("kwitansi_nota")) {
+            param.put("judul", "KUITANSI PEMBAYARAN (" + crbyr + ")");
+            judulBanyak = "::[ Kuitansi Pembayaran Banyak - LUNAS (Rawat Jalan) ]::";
+            judulTunggal = "::[ Kuitansi Pembayaran - LUNAS (Rawat Jalan) ]::";
+            nmFile = "Kuitansi Pembayaran Transaksi " + norawat.replaceAll("/", "");
+        }
+
+        if (akses.getadmin() == true) {
+            if (jmlNota > 1) {
+                Valid.MyReportToPDF("rptNotaRalanBanyak.jasper", "report", judulBanyak,
+                        " SELECT temp1, temp2, temp5, temp7 FROM temporary_bayar_ralan WHERE temp1 <> 'TOTAL BAYAR'", param, Sequel.cariFolderTte(), nmFile);
+            } else if (jmlNota <= 1) {
+                Valid.MyReportToPDF("rptNotaRalan.jasper", "report", judulTunggal,
+                        "SELECT temp1, temp2, temp5, temp7 , "
+                        + "(SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='No. Nota') no_nota,"
+                        + "(SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='Poliklinik/Inst.') poli,"
+                        + "(SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='Tanggal & Jam') tgl_jam,"
+                        + "(SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='Pasien') pasien,"
+                        + "(SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='Alamat Pasien') alamat "
+                        + "FROM temporary_bayar_ralan WHERE temp1 not in ('No. Nota','Poliklinik/Inst.','Tanggal & Jam','Pasien','Alamat Pasien')",
+                        param, Sequel.cariFolderTte(), nmFile);
+            }
+        } else {
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Kuitansi Pembayaran (" + crbyr + ")",
+                            Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'"),
+                            Sequel.cariIsi("select date_format('" + waktuSimpan + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            if (jmlNota > 1) {
+                Valid.MyReportToPDF("rptNotaRalanBanyakQr.jasper", "report", judulBanyak,
+                        " SELECT temp1, temp2, temp5, temp7 FROM temporary_bayar_ralan WHERE temp1 <> 'TOTAL BAYAR'", param, Sequel.cariFolderTte(), nmFile);
+            } else if (jmlNota <= 1) {
+                Valid.MyReportToPDF("rptNotaRalanQr.jasper", "report", judulTunggal,
+                        "SELECT temp1, temp2, temp5, temp7 , "
+                        + "(SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='No. Nota') no_nota,"
+                        + "(SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='Poliklinik/Inst.') poli,"
+                        + "(SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='Tanggal & Jam') tgl_jam,"
+                        + "(SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='Pasien') pasien,"
+                        + "(SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='Alamat Pasien') alamat "
+                        + "FROM temporary_bayar_ralan WHERE temp1 not in ('No. Nota','Poliklinik/Inst.','Tanggal & Jam','Pasien','Alamat Pasien')",
+                        param, Sequel.cariFolderTte(), nmFile);
+            }
+        }
+        
+        TPesan.setText("Nota Pembayaran Rawat Jalan (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
+                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
+    }
+    
+    private void kuitansiRalan() {
+        nmFile = "Kuitansi Pembayaran " + norawat.replaceAll("/", "");
+        
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("no_kwitansi", Sequel.cariIsi("SELECT REPLACE(temp2,': ','') no_nota FROM temporary_bayar_ralan WHERE temp1='No. Nota'"));
+        param.put("telah_terima", Sequel.cariIsi("select p_jawab from reg_periksa where no_rawat='" + norawat + "'"));
+        param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp7,'.',''),',','') tot_bayar FROM temporary_bayar_ralan WHERE temp1='TOTAL BAYAR'")) + " Rupiah.");
+        param.put("untuk_byr", "Pelayanan Kesehatan Rawat Jalan di " + Sequel.cariIsi("select nama_instansi from setting") + " a/n "
+                + Sequel.cariIsi("SELECT REPLACE(temp2,': ','') pasien FROM temporary_bayar_ralan WHERE temp1='Pasien'"));
+        param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp7,'.','.'),',','.')) terbilang FROM temporary_bayar_ralan WHERE temp1='TOTAL BAYAR'"));
+        param.put("tglNota", "Martapura, " + tanggal);
+
+        if (akses.getadmin() == true) {
+            param.put("petugas_ksr", "( ____________________ )");
+        } else if (akses.getbilling_ralan()) {
+            param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
+        }
+
+        if (akses.getadmin() == true) {
+            Valid.MyReportToPDF("rptKwitansiRalan.jasper", "report", "::[ Kwitansi Pembayaran - LUNAS (Rawat Jalan) ]::",
+                    " SELECT * FROM temporary_bayar_ralan ", param, Sequel.cariFolderTte(), nmFile);
+        } else {
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "KUITANSI", Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'"),
+                            Sequel.cariIsi("select date_format('" + waktuSimpan + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReportToPDF("rptKwitansiRalanQr.jasper", "report", "::[ Kwitansi Pembayaran - LUNAS (Rawat Jalan) ]::",
+                    " SELECT * FROM temporary_bayar_ralan ", param, Sequel.cariFolderTte(), nmFile);
+        }
+        
+        TPesan.setText("Kuitansi Pembayaran Rawat Jalan (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
+                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
+    }
+    
+    private void kuitansiRalanPiutang() {
+        nmFile = "Kuitansi Pembayaran Piutang " + norawat.replaceAll("/", "");
+        
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("no_kwitansi", Sequel.cariIsi("SELECT REPLACE(temp2,': ','') no_nota FROM temporary_bayar_ralan WHERE temp1='No. Nota'"));
+        param.put("telah_terima", Sequel.cariIsi("select p_jawab from reg_periksa where no_rawat='" + norawat + "'"));
+        param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp7,'.',''),',','') tot_bayar FROM temporary_bayar_ralan WHERE temp1='UANG MUKA'")) + " Rupiah.");
+        param.put("untuk_byr", "Pelayanan Kesehatan Rawat Jalan di " + Sequel.cariIsi("select nama_instansi from setting") + " a/n "
+                + Sequel.cariIsi("SELECT REPLACE(temp2,': ','') pasien FROM temporary_bayar_ralan WHERE temp1='Pasien'") + " sebagai uang muka.");
+        param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp7,'.','.'),',','.')) terbilang FROM temporary_bayar_ralan WHERE temp1='UANG MUKA'"));
+        param.put("tglNota", "Martapura, " + tanggal);
+
+        if (akses.getadmin() == true) {
+            param.put("petugas_ksr", "( ____________________ )");
+        } else if (akses.getbilling_ralan()) {
+            param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
+        }
+
+        if (akses.getadmin() == true) {
+            Valid.MyReportToPDF("rptKwitansiRalanPiutang.jasper", "report", "::[ Kwitansi Pembayaran - PIUTANG (Rawat Jalan) ]::",
+                    " SELECT * FROM temporary_bayar_ralan ", param, Sequel.cariFolderTte(), nmFile);
+        } else {
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "KUITANSI", Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'"),
+                            Sequel.cariIsi("select date_format('" + waktuSimpan + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReportToPDF("rptKwitansiRalanPiutangQr.jasper", "report", "::[ Kwitansi Pembayaran - PIUTANG (Rawat Jalan) ]::",
+                    " SELECT * FROM temporary_bayar_ralan ", param, Sequel.cariFolderTte(), nmFile);
+        }
+        
+        TPesan.setText("Kuitansi Pembayaran Piutang Rawat Jalan (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
+                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
+    }
+
+    private void jaminanTransaksi() {
+        String user = "";
+        nmFile = "Kuitansi Pembayaran Jaminan " + norawat.replaceAll("/", "");
+
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("no_kwitansi", norawat);
+        param.put("telah_terima", nmPemberiJT + " (No. Telp./HP. " + noTelpJT + ")");
+        param.put("uang_sebanyak", Sequel.Terbilang(Double.parseDouble(jmlNominalJT)) + " Rupiah.");
+        param.put("untuk_byr", "Jaminan transaksi pelayanan Kesehatan Rawat Inap di " + Sequel.cariIsi("select nama_instansi from setting") + " ruang perawatan\n"
+                + Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal where "
+                        + "ki.no_rawat='" + norawat + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1") + " a.n " + namaPasJT + " (No. RM : " + norkmJT + ")");
+        param.put("terbilang", "Terbilang Rp. " + Valid.SetAngka(Double.parseDouble(jmlNominalJT)).replaceAll(",", "."));
+        param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(waktuSimpan));
+
+        if (akses.getadmin() == true) {
+            user = "____________________";
+        } else if (akses.getbilling_ranap()) {
+            user = Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'");
+        }
+
+        param.put("petugas_ksr", "( " + user + " )");
+
+        if (akses.getadmin() == true) {
+            Valid.MyReportToPDF("rptKwitansiJaminan.jasper", "report", "::[ Kwitansi Jaminan Transaksi (Rawat Inap) ]::",
+                    "SELECT now() tgl", param, Sequel.cariFolderTte(), nmFile);
+        } else {
+            String isi = "";
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Kuitansi Jaminan", user, Sequel.cariIsi("select date_format('" + waktuSimpan + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReportToPDF("rptKwitansiJaminanQr.jasper", "report", "::[ Kwitansi Jaminan Transaksi (Rawat Inap) ]::",
+                    "SELECT now() tgl", param, Sequel.cariFolderTte(), nmFile);
+        }
+        
+        TPesan.setText("Kuitansi Jaminan (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
+                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
+    }
+    
+    private void panjar() {
+        String user = "";
+        nmFile = "Kuitansi Pembayaran Panjar " + norawat.replaceAll("/", "");
+
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("norm", norkmJT);
+        param.put("nmpasien", namaPasJT);
+        param.put("nopanjar", noPanjarP);
+        param.put("telahTerima", nmPemberiJT);
+        param.put("keterangan", keterP + "\nNo. Hp/Telp. yang bisa dihubungi " + noTelpJT + " / " + notelpP);
+        param.put("tanggal", "Martapura, " + Valid.SetTglINDONESIA(waktuSimpan));
+
+        if (sttsP.equals("Kurang Bayar") || sttsP.equals("Lebih Bayar")) {
+            param.put("terbilang", Sequel.Terbilang(Double.parseDouble(jmlNominalJT)).toUpperCase() + " RUPIAH");
+            param.put("nominal", angkaNomP.replaceAll(",", "."));
+            user = userP.toString();
+        } else {
+            param.put("terbilang", Sequel.Terbilang(Double.parseDouble(jmlNominalJT)).toUpperCase() + " RUPIAH");
+            param.put("nominal", angkaNomP.replaceAll(",", "."));
+            user = userP.toString();
+        }
+
+        param.put("petugas", "(" + user + ")");
+
+        if (akses.getadmin() == true) {
+            Valid.MyReportToPDF("rptKwitansiPanjar.jasper", "report", "::[ Kuitansi Transaksi Panjar ]::",
+                    "SELECT now() tanggal", param, Sequel.cariFolderTte(), nmFile);
+        } else {
+            String isi = "";
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Kuitansi Pembayaran Panjar", user,
+                            Sequel.cariIsi("select date_format('" + waktuSimpan + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReportToPDF("rptKwitansiPanjarQr.jasper", "report", "::[ Kuitansi Transaksi Panjar ]::",
+                    "SELECT now() tanggal", param, Sequel.cariFolderTte(), nmFile);
+        }
+        
+        TPesan.setText("Kuitansi Panjar (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
                 + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
         TnoWa.setText("");
         TnmFile.setText(nmFile);

@@ -5594,9 +5594,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         
         switch (URUTNOREG) {
             case "poli":
-                jmlPxLoket = Sequel.cariInteger("select count(*) from reg_periksa where kd_poli='" + KdPoli.getText() + "' "
+                jmlPxLoket = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + KdPoli.getText() + "' "
                         + "and tgl_registrasi='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "'");
-                jmlPxBoking = Sequel.cariInteger("select count(*) from booking_registrasi where kd_poli='" + KdPoli.getText() + "' "
+                jmlPxBoking = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_poli='" + KdPoli.getText() + "' "
                         + "and tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "'");
 
                 hasil = jmlPxLoket + jmlPxBoking;

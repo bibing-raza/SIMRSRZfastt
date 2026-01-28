@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
+import laporan.DlgKirimWhatsapp;
 
 /**
  *
@@ -231,6 +232,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         MnCetakKuitansi = new javax.swing.JMenu();
         MnTTDkuitansi = new javax.swing.JMenuItem();
         MnTTEkuitansi = new javax.swing.JMenuItem();
+        MnKirimKeWhatsapp = new javax.swing.JMenuItem();
         MnPanjar = new javax.swing.JMenuItem();
         MnHapus = new javax.swing.JMenuItem();
         MnDataSampah = new javax.swing.JMenuItem();
@@ -359,6 +361,22 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         MnCetakKuitansi.add(MnTTEkuitansi);
 
         jPopupMenu1.add(MnCetakKuitansi);
+
+        MnKirimKeWhatsapp.setBackground(new java.awt.Color(242, 242, 242));
+        MnKirimKeWhatsapp.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnKirimKeWhatsapp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/whatsapp.png"))); // NOI18N
+        MnKirimKeWhatsapp.setText("Kirim Kuitansi Ke WhatsApp");
+        MnKirimKeWhatsapp.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnKirimKeWhatsapp.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnKirimKeWhatsapp.setIconTextGap(5);
+        MnKirimKeWhatsapp.setName("MnKirimKeWhatsapp"); // NOI18N
+        MnKirimKeWhatsapp.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnKirimKeWhatsapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnKirimKeWhatsappActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnKirimKeWhatsapp);
 
         MnPanjar.setBackground(new java.awt.Color(242, 242, 242));
         MnPanjar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -509,7 +527,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         jLabel101.setPreferredSize(new java.awt.Dimension(80, 23));
         internalFrame17.add(jLabel101);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -523,7 +541,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         jLabel102.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel102);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -798,7 +816,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         panelGlass10.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -813,7 +831,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         panelGlass10.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -969,7 +987,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         jLabel68.setBounds(0, 122, 120, 23);
 
         TtglTerima.setEditable(false);
-        TtglTerima.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
+        TtglTerima.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2026" }));
         TtglTerima.setDisplayFormat("dd-MM-yyyy");
         TtglTerima.setName("TtglTerima"); // NOI18N
         TtglTerima.setOpaque(false);
@@ -1617,6 +1635,28 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnTTEkuitansiActionPerformed
 
+    private void MnKirimKeWhatsappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKirimKeWhatsappActionPerformed
+        if (tbJaminan.getSelectedRow() > -1) {
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            akses.setform("DlgJaminanTransaksi");
+            DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
+            form.setSize(817, 181);
+            form.setLocationRelativeTo(internalFrame1);
+            form.emptTeks();
+            form.setData("jaminan transaksi", TNoRw.getText(), Valid.SetTgl(TtglTerima.getSelectedItem() + ""));
+            form.jaminanTrans(TnmPemberi.getText(), TnoTelp.getText(), TJmlNominal.getText(), TPasien.getText(), TNoRM.getText(),
+                    "", "", "", "", "", "");
+            form.dataKirim();
+            form.setVisible(true);
+            form.toFront();
+            form.requestFocus();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            tampil();
+            tbJaminan.requestFocus();
+        }
+    }//GEN-LAST:event_MnKirimKeWhatsappActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1658,6 +1698,7 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
     private javax.swing.JMenu MnCetakKuitansi;
     private javax.swing.JMenuItem MnDataSampah;
     private javax.swing.JMenuItem MnHapus;
+    private javax.swing.JMenuItem MnKirimKeWhatsapp;
     private javax.swing.JMenuItem MnPanjar;
     private javax.swing.JMenuItem MnTTDkuitansi;
     private javax.swing.JMenuItem MnTTEkuitansi;

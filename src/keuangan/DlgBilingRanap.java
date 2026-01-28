@@ -4191,26 +4191,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     }
                 }
 
-//                if (ChkPiutang.isSelected() == false) {
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','','','','','','','','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','TOTAL TAGIHAN',':','','','','','<b>" + TtlSemua.getText() + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','PPN',':','','','','','<b>" + Valid.SetAngka(besarppn) + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','TAGIHAN+PPN',':','','','','','<b>" + TagihanPPn.getText() + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','','','','','','','','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','DEPOSIT',':','','','','','<b>" + Deposit.getText() + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','BAYAR',':','','','','','<b>" + Valid.SetAngka(bayar) + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','Kembali',':','','','','','<b>" + TKembali.getText() + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                } else if (ChkPiutang.isSelected() == true) {
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','','','','','','','','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','TOTAL TAGIHAN',':','','','','','<b>" + TtlSemua.getText() + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','PPN',':','','','','','<b>" + Valid.SetAngka(besarppn) + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','TAGIHAN + PPN',':','','','','','<b>" + TagihanPPn.getText() + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','','','','','','','','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','DEPOSIT',':','','','','','<b>" + Deposit.getText() + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','UANG MUKA',':','','','','','<b>" + Valid.SetAngka(bayar) + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                    Sequel.menyimpan("temporary_bayar_ranap", "'0','SISA PIUTANG',':','','','','','<b>" + Valid.SetAngka(piutang) + "</b>','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-//                }
-
                 if (ChkPiutang.isSelected() == false) {
                     apakahPiutang = "tidak";
                     Sequel.menyimpan("temporary_bayar_ranap", "'0','TOTAL TAGIHAN',':','','','','','" + TtlSemua.getText() + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
@@ -4309,8 +4289,10 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             form.setLocationRelativeTo(internalFrame8);
                             form.emptTeks();
                             form.setData("kasir nota ranap", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""));
-                            form.cekPiutang(apakahPiutang, TtlSemua.getText(), Valid.SetAngka(besarppn), TagihanPPn.getText(),
+                            form.setTransaksi(apakahPiutang, "", "");
+                            form.isPiutang(TtlSemua.getText(), Valid.SetAngka(besarppn), TagihanPPn.getText(),
                                     Deposit.getText(), Valid.SetAngka(bayar), kembaliWA, piutangWA);
+                            form.dataKirim();
                             form.setVisible(true);
                             form.toFront();
                             form.requestFocus();
@@ -4318,7 +4300,22 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             JOptionPane.showMessageDialog(null, "Maaf, fitur ini yang bisa hanya petugas kasir...!!!");
                         }
                     } else if (i == 5) {
-                        JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+                        if (akses.getbilling_ranap() == true) {
+                            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                            akses.setform("DlgBilingRanap");
+                            DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
+                            form.setSize(817, 181);
+                            form.setLocationRelativeTo(internalFrame8);
+                            form.emptTeks();
+                            form.setData("kasir kuitansi ranap", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""));
+                            form.setTransaksi(apakahPiutang, "", "");
+                            form.dataKirim();
+                            form.setVisible(true);
+                            form.toFront();
+                            form.requestFocus();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Maaf, fitur ini yang bisa hanya petugas kasir...!!!");
+                        }
                     }
                     this.setCursor(Cursor.getDefaultCursor());
                 }

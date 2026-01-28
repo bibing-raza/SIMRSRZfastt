@@ -29,6 +29,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import laporan.DlgKirimWhatsapp;
 import simrskhanza.DlgPenanggungJawab;
 
 /**
@@ -295,6 +296,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         MnKuitansi = new javax.swing.JMenu();
         MnTTDkuitansi = new javax.swing.JMenuItem();
         MnTTEkuitansi = new javax.swing.JMenuItem();
+        MnKirimKeWhatsapp = new javax.swing.JMenuItem();
         MnLembarPanjar = new javax.swing.JMenuItem();
         MnHapus = new javax.swing.JMenuItem();
         MnPerbaikiHitungan = new javax.swing.JMenuItem();
@@ -405,7 +407,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         MnKuitansi.setIconTextGap(5);
         MnKuitansi.setName("MnKuitansi"); // NOI18N
         MnKuitansi.setOpaque(true);
-        MnKuitansi.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnKuitansi.setPreferredSize(new java.awt.Dimension(200, 26));
 
         MnTTDkuitansi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnTTDkuitansi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
@@ -439,6 +441,22 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
 
         jPopupMenu1.add(MnKuitansi);
 
+        MnKirimKeWhatsapp.setBackground(new java.awt.Color(242, 242, 242));
+        MnKirimKeWhatsapp.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnKirimKeWhatsapp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/whatsapp.png"))); // NOI18N
+        MnKirimKeWhatsapp.setText("Kirim Kuitansi Ke WhatsApp");
+        MnKirimKeWhatsapp.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnKirimKeWhatsapp.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnKirimKeWhatsapp.setIconTextGap(5);
+        MnKirimKeWhatsapp.setName("MnKirimKeWhatsapp"); // NOI18N
+        MnKirimKeWhatsapp.setPreferredSize(new java.awt.Dimension(200, 26));
+        MnKirimKeWhatsapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnKirimKeWhatsappActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnKirimKeWhatsapp);
+
         MnLembarPanjar.setBackground(new java.awt.Color(242, 242, 242));
         MnLembarPanjar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLembarPanjar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
@@ -447,7 +465,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         MnLembarPanjar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnLembarPanjar.setIconTextGap(5);
         MnLembarPanjar.setName("MnLembarPanjar"); // NOI18N
-        MnLembarPanjar.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnLembarPanjar.setPreferredSize(new java.awt.Dimension(200, 26));
         MnLembarPanjar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnLembarPanjarActionPerformed(evt);
@@ -463,7 +481,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         MnHapus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnHapus.setIconTextGap(5);
         MnHapus.setName("MnHapus"); // NOI18N
-        MnHapus.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnHapus.setPreferredSize(new java.awt.Dimension(200, 26));
         MnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnHapusActionPerformed(evt);
@@ -479,7 +497,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         MnPerbaikiHitungan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnPerbaikiHitungan.setIconTextGap(5);
         MnPerbaikiHitungan.setName("MnPerbaikiHitungan"); // NOI18N
-        MnPerbaikiHitungan.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnPerbaikiHitungan.setPreferredSize(new java.awt.Dimension(200, 26));
         MnPerbaikiHitungan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnPerbaikiHitunganActionPerformed(evt);
@@ -495,7 +513,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         MnDataSampah.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnDataSampah.setIconTextGap(5);
         MnDataSampah.setName("MnDataSampah"); // NOI18N
-        MnDataSampah.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnDataSampah.setPreferredSize(new java.awt.Dimension(200, 26));
         MnDataSampah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnDataSampahActionPerformed(evt);
@@ -604,7 +622,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel101.setPreferredSize(new java.awt.Dimension(80, 23));
         internalFrame17.add(jLabel101);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-01-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -618,7 +636,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel102.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel102);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-01-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -932,7 +950,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(78, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -946,7 +964,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1064,7 +1082,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         PanelInput.add(jLabel11);
         jLabel11.setBounds(525, 94, 70, 23);
 
-        TtglPanjar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
+        TtglPanjar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-01-2026" }));
         TtglPanjar.setDisplayFormat("dd-MM-yyyy");
         TtglPanjar.setName("TtglPanjar"); // NOI18N
         TtglPanjar.setOpaque(false);
@@ -2120,6 +2138,37 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnTTEkuitansiActionPerformed
 
+    private void MnKirimKeWhatsappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKirimKeWhatsappActionPerformed
+        if (tbPanjar.getSelectedRow() > -1) {
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+
+            String usernya = "";
+            if (cmbStatus.getSelectedIndex() == 2 || cmbStatus.getSelectedIndex() == 3) {
+                usernya = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 14).toString();
+            } else {
+                usernya = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 13).toString();
+            }
+
+            akses.setform("DlgTransaksiPanjar");
+            DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
+            form.setSize(817, 181);
+            form.setLocationRelativeTo(internalFrame1);
+            form.emptTeks();
+            form.setData("panjar", TNoRw.getText(), tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 17).toString());
+            form.jaminanTrans(TtelahTerima.getText(), TnoTelp1.getText(), TnominalStatus.getText(), TPasien.getText(), TNoRM.getText(),
+                    TnoPanjar.getText(), Tketerangan.getText(), TnoTelp2.getText(), cmbStatus.getSelectedItem().toString(),
+                    labelnom_status.getText(), usernya);
+            form.dataKirim();
+            form.setVisible(true);
+            form.toFront();
+            form.requestFocus();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            tampil();
+            tbPanjar.requestFocus();
+        }
+    }//GEN-LAST:event_MnKirimKeWhatsappActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2161,6 +2210,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private widget.Label LCount1;
     private javax.swing.JMenuItem MnDataSampah;
     private javax.swing.JMenuItem MnHapus;
+    private javax.swing.JMenuItem MnKirimKeWhatsapp;
     private javax.swing.JMenu MnKuitansi;
     private javax.swing.JMenuItem MnLembarPanjar;
     private javax.swing.JMenuItem MnPerbaikiHitungan;

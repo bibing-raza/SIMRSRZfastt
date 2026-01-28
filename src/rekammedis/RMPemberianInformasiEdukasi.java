@@ -3172,6 +3172,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                 //data penilaian informasi edukasi
                 Sequel.AutoComitFalse();
                 Sequel.queryu("delete from temporaryTTE");
+                Sequel.queryu("delete from temporary3");
                 try {
                     ps3 = koneksi.prepareStatement("select pi.*, date_format(pi.tanggal,'%d/%m/%Y') tggl, time_format(pi.jam,'%H:%i') jamm, "
                             + "date_format(pi.tanggal,'%W') harii, date_format(pi.waktu_simpan,'%d/%m/%Y') tglSimpan, time(pi.waktu_simpan) jamSimpan, "
@@ -3547,20 +3548,36 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                                 evaluasi = rs3.getString("evaluasi_respon");
                             }
 
-                            String isi = "";
-                            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                                String isi = "";
+                                param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
 
-                            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                            "Pemberian Informasi Dan Edukasi", rs3.getString("nmPetugas"),
-                                            rs3.getString("tglSimpan"), rs3.getString("jamSimpan")) + "') from kalimat_tte where kode='001'");
+                                isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                                "Pemberian Informasi Dan Edukasi", rs3.getString("nmPetugas"),
+                                                rs3.getString("tglSimpan"), rs3.getString("jamSimpan")) + "') from kalimat_tte where kode='001'");
 
-                            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
-                            Sequel.menyimpanQrTte("temporaryTTE",
-                                    "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita" + "',"
-                                    + "'" + penerimaPND + "','" + metodeNilai + "','" + profesi + "','" + isiPenKesOK + "','" + tingkatPemahanan + "',"
-                                    + "'" + evaluasi + "','" + rs3.getString("nmPetugas") + "','" + rs3.getString("nm_penerima_edukasi") + "','" + rs3.getString("wktSimpan") + "'",
-                                    "file QRCode TTE Pemberian Informasi Dan Edukasi", Sequel.cariFolderPrintTte());
+                                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                                Sequel.menyimpanQrTte("temporaryTTE",
+                                        "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita" + "',"
+                                        + "'" + penerimaPND + "','" + metodeNilai + "','" + profesi + "','" + isiPenKesOK + "','" + tingkatPemahanan + "',"
+                                        + "'" + evaluasi + "','" + rs3.getString("nmPetugas") + "','" + rs3.getString("nm_penerima_edukasi") + "','" + rs3.getString("wktSimpan") + "'",
+                                        "file QRCode TTE Pemberian Informasi Dan Edukasi", Sequel.cariFolderPrintTte());
+                            } else {
+                                Sequel.menyimpanIgnore("temporary3",
+                                        "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita" + "','"
+                                        + penerimaPND + "','"
+                                        + metodeNilai + "','"
+                                        + profesi + "','"
+                                        + isiPenKesOK + "','"
+                                        + tingkatPemahanan + "','"
+                                        + evaluasi + "','"
+                                        + rs3.getString("nmPetugas") + "','"
+                                        + rs3.getString("nm_penerima_edukasi") + "','"
+                                        + rs3.getString("wktSimpan") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
+                                        + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
+                                        + "'','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Pemberian Informasi Edukasi");
+                            }
                         }
                     } catch (Exception e) {
                         System.out.println("Notifikasi : " + e);
@@ -3587,7 +3604,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                         Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                     } else {
                         Valid.MyReport("rptPemberianInformasiEdukasi.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
-                                "SELECT * FROM temporaryTTE", param);
+                                "SELECT * FROM temporary3", param);
                     }
                 }
 

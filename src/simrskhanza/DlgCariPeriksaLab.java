@@ -5849,6 +5849,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                 form.setLocationRelativeTo(internalFrame8);
                 form.emptTeks();
                 form.setData("hasil patologi anatomi", tbHasil.getValueAt(tbHasil.getSelectedRow(), 0).toString(), tbHasil.getValueAt(tbHasil.getSelectedRow(), 20).toString());
+                form.dataKirim();
                 form.setVisible(true);
                 form.toFront();
                 form.requestFocus();
