@@ -8,6 +8,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -75,7 +76,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             rinciandokterralan = "", centangobatralan = "", tampilkan_ppnobat_ralan = "", diagsekunder = "", tindakan = "", konfirmasi_terapi = "";
     private String biaya = "", tambahan = "", totals = "", norawatbayi = "", centangdokterranap = "", kd_pj = "", jamplgRS1 = "",
             rinciandokterranap = "", rincianoperasi = "", hariawal = "", notaranap = "", tampilkan_administrasi_di_billingranap = "",
-            Tindakan_Ranap = "", Laborat_Ranap = "", Radiologi_Ranap = "", Obat_Ranap = "", Registrasi_Ranap = "", isi = "",
+            Tindakan_Ranap = "", Laborat_Ranap = "", Radiologi_Ranap = "", Obat_Ranap = "", Registrasi_Ranap = "", isi = "", 
             Tambahan_Ranap = "", Potongan_Ranap = "", Retur_Obat_Ranap = "", Resep_Pulang_Ranap = "", Kamar_Inap = "", Operasi_Ranap = "",
             Harian_Ranap = "", Uang_Muka_Ranap = "", Piutang_Pasien_Ranap = "", tampilkan_ppnobat_ranap = "", tglmskRS = "", tglklrRS1 = "",
             Service_Ranap = "", status = "", diagnosa_ok = "", cekdokter = "", kdkamar = "", data_pasien = "", tglklrRS2 = "", jamplgRS2 = "",
@@ -1191,6 +1192,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         jLabel20 = new widget.Label();
         chkDiagnosa = new widget.CekBox();
         BtnTindakanRanap = new widget.Button();
+        Tketerangan = new widget.Label();
         Scroll43 = new widget.ScrollPane();
         LoadHTML1 = new widget.editorpane();
         Scroll44 = new widget.ScrollPane();
@@ -1316,7 +1318,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         nmpoli.setHighlighter(null);
         nmpoli.setName("nmpoli"); // NOI18N
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2025 09:35:01" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-01-2026 13:37:22" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1531,7 +1533,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-01-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1545,7 +1547,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-01-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1944,6 +1946,14 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         });
         FormInput.add(BtnTindakanRanap);
         BtnTindakanRanap.setBounds(1135, 42, 180, 23);
+
+        Tketerangan.setForeground(new java.awt.Color(0, 0, 0));
+        Tketerangan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Tketerangan.setText("Catatan : -");
+        Tketerangan.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        Tketerangan.setName("Tketerangan"); // NOI18N
+        FormInput.add(Tketerangan);
+        Tketerangan.setBounds(440, 165, 310, 23);
 
         TabData.addTab("Input Diagnosa & Prosedur (Tindakan)", FormInput);
 
@@ -3387,6 +3397,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JTabbedPane TabData;
     private javax.swing.JTabbedPane TabPreview;
     private javax.swing.JTabbedPane TabRawat;
+    private widget.Label Tketerangan;
     private widget.TextBox TtlSemua;
     private widget.Button btnTambahPenyakit;
     private widget.Button btnTambahPenyakit1;
@@ -3662,6 +3673,22 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         ChkInput.setSelected(true);
         cmbDiagPro.setSelectedIndex(0);
         isForm();
+
+        if (status.equals("Ralan")) {
+            String noSep = "";
+            noSep = Sequel.cariIsi("select no_sep from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "' limit 1");
+            if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0
+                    || Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSep + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
+                Tketerangan.setForeground(Color.red);
+                Tketerangan.setText("Catatan : Penerima resep obat KRONIS");                
+            } else {
+                Tketerangan.setForeground(Color.black);
+                Tketerangan.setText("Catatan : -");
+            }
+        } else {
+            Tketerangan.setForeground(Color.black);
+            Tketerangan.setText("Catatan : -");
+        }
         
         chkDiagnosa.setSelected(false);
         if (Status.getSelectedIndex() == 0) {

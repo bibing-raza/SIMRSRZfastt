@@ -331,6 +331,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
         tbIter.setToolTipText("Silahkan klik salah satu untuk melihat resep iternya");
         tbIter.setComponentPopupMenu(Popup1);
         tbIter.setName("tbIter"); // NOI18N
+        tbIter.getTableHeader().setReorderingAllowed(false);
         tbIter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbIterMouseClicked(evt);
@@ -354,6 +355,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
         Scroll1.setOpaque(true);
 
         tbCatatanResep.setName("tbCatatanResep"); // NOI18N
+        tbCatatanResep.getTableHeader().setReorderingAllowed(false);
         Scroll1.setViewportView(tbCatatanResep);
 
         panelGlass9.add(Scroll1);
@@ -363,6 +365,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
         Scroll2.setOpaque(true);
 
         tbFarmasi.setName("tbFarmasi"); // NOI18N
+        tbFarmasi.getTableHeader().setReorderingAllowed(false);
         Scroll2.setViewportView(tbFarmasi);
 
         panelGlass9.add(Scroll2);
@@ -382,7 +385,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
         panelGlass10.add(jLabel23);
 
         tglCari1.setEditable(false);
-        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
+        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2025" }));
         tglCari1.setDisplayFormat("dd-MM-yyyy");
         tglCari1.setName("tglCari1"); // NOI18N
         tglCari1.setOpaque(false);
@@ -397,7 +400,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
         panelGlass10.add(jLabel24);
 
         tglCari2.setEditable(false);
-        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-07-2025" }));
+        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2025" }));
         tglCari2.setDisplayFormat("dd-MM-yyyy");
         tglCari2.setName("tglCari2"); // NOI18N
         tglCari2.setOpaque(false);

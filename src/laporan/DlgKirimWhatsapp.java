@@ -38,13 +38,14 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps;
-    private ApiWhatapp wa = new ApiWhatapp();
-    private ResultSet rs;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5;
+    private ApiWhatapp wa = new ApiWhatapp();    
     private int i = 0, jmlNota = 0;
+    private double ttl = 0, item = 0;
     private String nmDokumen = "", norawat = "", waktuSimpan = "", cekPiutang = "", crbyr = "", isi = "", nmFile = "",
             judulReport = "", judulBanyak = "", judulTunggal = "", tanggal = "", nmPemberiJT = "", noTelpJT = "", jmlNominalJT = "",
-            namaPasJT = "", norkmJT = "", noPanjarP = "", keterP = "", notelpP = "", sttsP = "", angkaNomP = "", userP = "";
+            namaPasJT = "", norkmJT = "", noPanjarP = "", keterP = "", notelpP = "", sttsP = "", angkaNomP = "", userP = "", nmpetgs = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -277,6 +278,10 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
             jaminanTransaksi();
         } else if (nmDokumen.equals("panjar")) {
             panjar();
+        } else if (nmDokumen.equals("nota lab")) {
+            notaLab();
+        } else if (nmDokumen.equals("nota radiologi")) {
+            notaRadiologi();
         }
     }
     
@@ -981,5 +986,293 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
         TnoWa.setText("");
         TnmFile.setText(nmFile);
         TnoWa.requestFocus();
+    }
+    
+    private void notaLab() {
+        try {
+            StringBuilder sb1 = new StringBuilder();
+            sb1.append("SELECT pl.no_rawat, IFNULL(lr.no_lab,'-') no_lab, rp.no_rkm_medis, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') AS umur_thn, ");
+            sb1.append("pt.nama, pl.tgl_periksa, pl.jam, pl.dokter_perujuk, pl.kd_dokter, d.nm_dokter,IF(ifnull(h.no_lab,'-')='-','Belum','Sudah') hasil, rp.kd_pj, pj.png_jawab, ");
+            sb1.append("CASE WHEN rp.kd_pj='U01' THEN IF(COUNT(bl.no_rawat) > 0, 'Sudah Lunas', 'Belum Bayar') ");
+            sb1.append("ELSE IF(COUNT(pp.no_rawat) > 0, 'Piutang', 'Transaksi Belum Selesai') END cekBayar ");
+            sb1.append("FROM periksa_lab pl INNER JOIN reg_periksa rp on rp.no_rawat=pl.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+            sb1.append("INNER JOIN petugas pt on pt.nip=pl.nip INNER JOIN dokter d on d.kd_dokter=pl.kd_dokter INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj ");
+            sb1.append("LEFT JOIN lis_reg lr on lr.no_rawat=pl.no_rawat and lr.tgl_periksa=pl.tgl_periksa AND lr.jam_periksa=pl.jam ");
+            sb1.append("left join lis_hasil_periksa_lab h on h.no_lab = lr.no_lab LEFT JOIN billing bl ON bl.no_rawat=pl.no_rawat LEFT JOIN piutang_pasien pp ON pp.no_rawat=pl.no_rawat WHERE ");
+            sb1.append("pl.tgl_periksa BETWEEN '" + Valid.SetTgl(namaPasJT) + "' AND '" + Valid.SetTgl(norkmJT) + "' AND (" + noPanjarP + ") ");
+            sb1.append("GROUP BY concat(pl.no_rawat, pl.tgl_periksa, pl.jam) " + keterP + " order by pl.tgl_periksa desc, pl.jam desc");
+            ps1 = koneksi.prepareStatement(sb1.toString());
+
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append("SELECT jpl.kd_jenis_prw, jpl.nm_perawatan, pl.biaya FROM periksa_lab pl ");
+            sb2.append("INNER JOIN jns_perawatan_lab jpl ON jpl.kd_jenis_prw=pl.kd_jenis_prw WHERE pl.no_rawat =? AND pl.tgl_periksa =? AND pl.jam =?");
+            ps2 = koneksi.prepareStatement(sb2.toString());
+
+            StringBuilder sb3 = new StringBuilder();
+            sb3.append("SELECT tl.Pemeriksaan, dpl.nilai, tl.satuan, dpl.nilai_rujukan, dpl.biaya_item, dpl.keterangan, ");
+            sb3.append("dpl.kd_jenis_prw FROM detail_periksa_lab dpl INNER JOIN template_laboratorium tl ON tl.id_template=dpl.id_template ");
+            sb3.append("WHERE dpl.no_rawat =? AND dpl.kd_jenis_prw =? AND dpl.tgl_periksa =? AND dpl.jam =?");
+            ps3 = koneksi.prepareStatement(sb3.toString());
+
+            StringBuilder sb4 = new StringBuilder();
+            sb4.append("SELECT pl.no_rawat, IFNULL(lr.no_lab,'-') no_lab, rp.no_rkm_medis, p.nm_pasien, p.jk, p.umur, pt.nama, ");
+            sb4.append("DATE_FORMAT(pl.tgl_periksa,'%d-%m-%Y') AS tgl_periksa, pl.jam, pl.dokter_perujuk, pl.kd_dokter, p.alamat, d.nm_dokter, ");
+            sb4.append("DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') AS lahir FROM periksa_lab pl INNER JOIN reg_periksa rp on rp.no_rawat=pl.no_rawat ");
+            sb4.append("INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis INNER JOIN petugas pt ON pt.nip=pl.nip INNER JOIN dokter d ON d.kd_dokter=pl.kd_dokter ");
+            sb4.append("LEFT JOIN lis_reg lr on lr.no_rawat=pl.no_rawat and lr.tgl_periksa=pl.tgl_periksa AND lr.jam_periksa=pl.jam ");
+            sb4.append("WHERE pl.tgl_periksa =? AND pl.jam =? AND pl.no_rawat =? GROUP BY concat(pl.no_rawat, pl.tgl_periksa, pl.jam)");
+            ps4 = koneksi.prepareStatement(sb4.toString());
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+       
+        try {
+            Sequel.AutoComitFalse();
+            ps4.setString(1, nmPemberiJT);
+            ps4.setString(2, noTelpJT);
+            ps4.setString(3, norawat);
+            rs = ps4.executeQuery();
+            if (rs.next()) {
+                Sequel.queryu("delete from temporary");
+                ps2.setString(1, rs.getString("no_rawat"));
+                ps2.setString(2, Valid.SetTgl(rs.getString("tgl_periksa")));
+                ps2.setString(3, rs.getString("jam"));
+                rs2 = ps2.executeQuery();
+                ttl = 0;
+                while (rs2.next()) {
+                    item = rs2.getDouble("biaya");//Sequel.cariIsiAngka("select sum(biaya_item) from template_laboratorium where kd_jenis_prw=?",rs2.getString("kd_jenis_prw"));
+                    ttl = ttl + item;
+                    Sequel.menyimpan("temporary", "'0','" + rs2.getString("kd_jenis_prw") + "','" + rs2.getString("nm_perawatan") + "','','Pemeriksaan','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Lab");
+                    ps3.setString(1, rs.getString("no_rawat"));
+                    ps3.setString(2, rs2.getString("kd_jenis_prw"));
+                    ps3.setString(3, Valid.SetTgl(rs.getString("tgl_periksa")));
+                    ps3.setString(4, rs.getString("jam"));
+                    rs3 = ps3.executeQuery();
+                    while (rs3.next()) {
+                        item = rs3.getDouble("biaya_item");
+                        ttl = ttl + item;
+                        Sequel.menyimpan("temporary", "'0','" + rs3.getString("kd_jenis_prw") + "','   " + rs3.getString("Pemeriksaan") + "','" + item + "','Detail Pemeriksaan','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Lab");
+                    }
+                }
+                Sequel.menyimpan("temporary", "'0','','Total Biaya Pemeriksaan Lab','" + ttl + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Lab");
+                
+                //proses data ke nota pdf
+                crbyr = Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + norawat + "'");
+                nmFile = "Nota Transaksi Laboratorium " + norawat.replaceAll("/", "");
+
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("alamatrs", akses.getalamatrs());
+                param.put("kotars", akses.getkabupatenrs());
+                param.put("propinsirs", akses.getpropinsirs());
+                param.put("kontakrs", akses.getkontakrs());
+                param.put("emailrs", akses.getemailrs());
+                param.put("logo", Sequel.cariGambar("select logo from setting"));
+                param.put("norm", Sequel.cariIsi("select p.no_rkm_medis from reg_periksa r inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'"));
+                param.put("nmpasien", Sequel.cariIsi("select p.nm_pasien from reg_periksa r inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'"));
+                param.put("tglPeriksa", nmPemberiJT + ", Pukul : " + noTelpJT);
+                param.put("drLab", jmlNominalJT);
+                param.put("cara_byr", crbyr);
+                param.put("tglNota", "Martapura, " + waktuSimpan);
+
+                if (akses.getadmin() == true) {
+                    nmpetgs = "...................";
+                } else {
+                    nmpetgs = Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'");
+                }
+
+                param.put("petugas_ksr", "( " + nmpetgs + " )");
+
+                if (akses.getadmin() == true) {
+                    Valid.MyReportToPDF("rptNotaLaboratorium.jasper", "report", "::[ Nota Transaksi Laboratorium ]::",
+                            "SELECT temp2, IF(FORMAT(temp3,0)='0','',FORMAT(temp3,0)) biaya, (select FORMAT(temp3,0) from temporary where "
+                            + "temp2='Total Biaya Pemeriksaan Lab') tot_byr FROM temporary WHERE temp2 not LIKE '%biaya%'", param, Sequel.cariFolderTte(), nmFile);
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                    "Nota Transaksi Laboratorium (" + crbyr + ")", nmpetgs,
+                                    Sequel.cariIsi("select date_format('" + Valid.SetTgl(waktuSimpan + "") + "','%d/%m/%Y')"),
+                                    Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Nota Transaksi Lab.", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+                    Valid.MyReportToPDF("rptNotaLaboratoriumQr.jasper", "report", "::[ Nota Transaksi Laboratorium ]::",
+                            " SELECT temp2, IF(FORMAT(temp3,0)='0','',FORMAT(temp3,0)) biaya, (select FORMAT(temp3,0) from temporary where "
+                            + "temp2='Total Biaya Pemeriksaan Lab') tot_byr FROM temporary WHERE temp2 not LIKE '%biaya%'", param, Sequel.cariFolderTte(), nmFile);
+                }
+
+                TPesan.setText("Nota Pembayaran Pemeriksaan Laboratorium (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
+                        + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
+                TnoWa.setText("");
+                TnmFile.setText(nmFile);
+                TnoWa.requestFocus();
+                //------------------------------------------
+            }
+            Sequel.AutoComitTrue();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    private void notaRadiologi() {
+        try {
+            if (sttsP.equals("ya")) {
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append("select pr.no_rawat, rp.no_rkm_medis, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur) as umur_thn, pt.nama, pr.tgl_periksa, pr.jam, ");
+                sb1.append("pr.dokter_perujuk, pr.kd_dokter, d.nm_dokter, rp.status_lanjut, pr.nip, pj.png_jawab, rp.kd_pj, pl.nm_poli, '-' nmBangsal, ");
+                sb1.append("CASE WHEN rp.kd_pj='U01' THEN IF(COUNT(bl.no_rawat) > 0, 'Sudah Lunas', 'Belum Bayar') ");
+                sb1.append("ELSE IF(COUNT(pp.no_rawat) > 0, 'Piutang', 'Transaksi Belum Selesai') END cekBayar, IFNULL(CASE WHEN pr.berat_badan = '' THEN '-' ");
+                sb1.append("WHEN LOWER(pr.berat_badan) LIKE '%kg%' OR LOWER(pr.berat_badan) LIKE '%gram%' THEN pr.berat_badan ");
+                sb1.append("WHEN LENGTH(pr.berat_badan) >= 4 THEN CONCAT(pr.berat_badan, ' gram') ");
+                sb1.append("ELSE CONCAT(pr.berat_badan, ' kg') END,'-') bb ");
+                sb1.append("from periksa_radiologi pr inner join reg_periksa rp on rp.no_rawat=pr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+                sb1.append("inner join petugas pt on pt.nip=pr.nip inner join dokter d on d.kd_dokter=pr.kd_dokter inner join penjab pj on pj.kd_pj=rp.kd_pj ");
+                sb1.append("inner join jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw inner join poliklinik pl on pl.kd_poli=rp.kd_poli ");
+                sb1.append("LEFT JOIN billing bl ON bl.no_rawat=pr.no_rawat LEFT JOIN piutang_pasien pp ON pp.no_rawat=pr.no_rawat where ");
+                sb1.append("pr.tgl_periksa BETWEEN '" + Valid.SetTgl(namaPasJT) + "' AND '" + Valid.SetTgl(norkmJT) + "' AND rp.kd_poli = 'igdk' AND (" + notelpP + ") ");
+                sb1.append("group by concat(pr.no_rawat,pr.tgl_periksa,pr.jam) " + keterP + " order by pr.tgl_periksa desc, pr.jam desc");
+                ps1 = koneksi.prepareStatement(sb1.toString());
+            } else {
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append("select pr.no_rawat, rp.no_rkm_medis, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur) as umur_thn, pt.nama, pr.tgl_periksa, pr.jam, ");
+                sb1.append("pr.dokter_perujuk, pr.kd_dokter, d.nm_dokter, rp.status_lanjut, pr.nip, pj.png_jawab, rp.kd_pj, pl.nm_poli, ifnull(b.nm_bangsal,'-') nmBangsal, ");
+                sb1.append("CASE WHEN rp.kd_pj='U01' THEN IF(COUNT(bl.no_rawat) > 0, 'Sudah Lunas', 'Belum Bayar') ");
+                sb1.append("ELSE IF(COUNT(pp.no_rawat) > 0, 'Piutang', 'Transaksi Belum Selesai') END cekBayar, IFNULL(CASE WHEN pr.berat_badan = '' THEN '-' ");
+                sb1.append("WHEN LOWER(pr.berat_badan) LIKE '%kg%' OR LOWER(pr.berat_badan) LIKE '%gram%' THEN pr.berat_badan ");
+                sb1.append("WHEN LENGTH(pr.berat_badan) >= 4 THEN CONCAT(pr.berat_badan, ' gram') ");
+                sb1.append("ELSE CONCAT(pr.berat_badan, ' kg') END,'-') bb ");
+                sb1.append("from periksa_radiologi pr inner join reg_periksa rp on rp.no_rawat=pr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+                sb1.append("inner join petugas pt on pt.nip=pr.nip inner join dokter d on d.kd_dokter=pr.kd_dokter inner join penjab pj on pj.kd_pj=rp.kd_pj ");
+                sb1.append("inner join jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw inner join poliklinik pl on pl.kd_poli=rp.kd_poli ");
+                sb1.append("left join kamar_inap ki on ki.no_rawat=pr.no_rawat left join kamar k on k.kd_kamar=ki.kd_kamar ");
+                sb1.append("left join bangsal b on b.kd_bangsal=k.kd_bangsal LEFT JOIN billing bl ON bl.no_rawat=pr.no_rawat ");
+                sb1.append("LEFT JOIN piutang_pasien pp ON pp.no_rawat=pr.no_rawat where ");
+                sb1.append("pr.tgl_periksa BETWEEN '" + Valid.SetTgl(namaPasJT) + "' AND '" + Valid.SetTgl(norkmJT) + "' AND (" + noPanjarP + ") ");
+                sb1.append("group by concat(pr.no_rawat,pr.tgl_periksa,pr.jam) " + keterP + " order by pr.tgl_periksa desc, pr.jam desc");
+                ps1 = koneksi.prepareStatement(sb1.toString());
+            }
+      
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append("select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,periksa_radiologi.biaya ");
+            sb2.append("from periksa_radiologi inner join jns_perawatan_radiologi on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw where ");
+            sb2.append("periksa_radiologi.no_rawat like ? and periksa_radiologi.tgl_periksa like ? and periksa_radiologi.jam like ?");
+            ps2 = koneksi.prepareStatement(sb2.toString());
+
+            StringBuilder sb3 = new StringBuilder();
+            sb3.append("select beri_bhp_radiologi.kode_brng,ipsrsbarang.nama_brng,beri_bhp_radiologi.kode_sat,beri_bhp_radiologi.jumlah, ");
+            sb3.append("beri_bhp_radiologi.total from beri_bhp_radiologi inner join ipsrsbarang on ipsrsbarang.kode_brng=beri_bhp_radiologi.kode_brng ");
+            sb3.append("where beri_bhp_radiologi.no_rawat like ? and beri_bhp_radiologi.tgl_periksa like ? and beri_bhp_radiologi.jam like ?");
+            ps3 = koneksi.prepareStatement(sb3.toString());
+
+            StringBuilder sb4 = new StringBuilder();
+            sb4.append("select periksa_radiologi.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,reg_periksa.umurdaftar umur,petugas.nama,periksa_radiologi.tgl_periksa,periksa_radiologi.jam,");
+            sb4.append("periksa_radiologi.dokter_perujuk,periksa_radiologi.kd_dokter,periksa_radiologi.tgl_periksa,periksa_radiologi.jam,pasien.alamat,dokter.nm_dokter from periksa_radiologi inner join reg_periksa inner join pasien inner join petugas  inner join dokter ");
+            sb4.append("on periksa_radiologi.no_rawat=reg_periksa.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis and periksa_radiologi.nip=petugas.nip and periksa_radiologi.kd_dokter=dokter.kd_dokter where ");
+            sb4.append("periksa_radiologi.tgl_periksa like ? and periksa_radiologi.jam like ? and periksa_radiologi.no_rawat like ? group by concat(periksa_radiologi.no_rawat,periksa_radiologi.tgl_periksa,periksa_radiologi.jam)");
+            ps4 = koneksi.prepareStatement(sb4.toString());
+
+            StringBuilder sb5 = new StringBuilder();
+            sb5.append("select hasil, diag_klinis_radiologi, kd_jenis_prw from hasil_radiologi where hasil_radiologi.no_rawat like ? and ");
+            sb5.append("hasil_radiologi.tgl_periksa like ? and hasil_radiologi.jam like ? and hasil_radiologi.kd_jenis_prw like ?");
+            ps5 = koneksi.prepareStatement(sb5.toString());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        try {
+            ps4.setString(1, nmPemberiJT.toString());
+            ps4.setString(2, noTelpJT.toString());
+            ps4.setString(3, norawat.toString());
+            rs = ps4.executeQuery();
+            while (rs.next()) {
+                Sequel.queryu("delete from temporary");
+                koneksi.setAutoCommit(false);
+                ps2.setString(1, rs.getString("no_rawat"));
+                ps2.setString(2, rs.getString("tgl_periksa"));
+                ps2.setString(3, rs.getString("jam"));
+                rs2 = ps2.executeQuery();
+                ttl = 0;
+                while (rs2.next()) {
+                    item = rs2.getDouble("biaya") + Sequel.cariIsiAngka("select sum(biaya_item) from template_laboratorium where kd_jenis_prw=?", rs2.getString("kd_jenis_prw"));
+                    ttl = ttl + item;
+                    Sequel.menyimpan("temporary", "'0','" + rs2.getString("nm_perawatan") + "','" + item + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Rad");
+                }
+                Sequel.menyimpan("temporary", "'0','Total Biaya Pemeriksaan Radiologi','" + ttl + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Transaksi Biaya Rad");
+                
+                //proses data ke nota pdf
+                crbyr = Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + norawat + "'");
+                nmFile = "Nota Transaksi Radiologi " + norawat.replaceAll("/", "");
+
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("alamatrs", akses.getalamatrs());
+                param.put("kotars", akses.getkabupatenrs());
+                param.put("propinsirs", akses.getpropinsirs());
+                param.put("kontakrs", akses.getkontakrs());
+                param.put("emailrs", akses.getemailrs());
+                param.put("logo", Sequel.cariGambar("select logo from setting"));
+                param.put("norm", jmlNominalJT);
+                param.put("nmpasien", angkaNomP);
+                param.put("tglPeriksa", nmPemberiJT + ", Pukul : " + noTelpJT);
+                param.put("drRad", userP);
+                param.put("cara_byr", crbyr);
+                param.put("tglNota", "Martapura, " + waktuSimpan);
+                param.put("umur", Sequel.cariIsi("select concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (',rp.umurdaftar,' ',rp.sttsumur,'.)') from reg_periksa rp "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + norawat + "'"));
+
+                if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + norawat + "' and status_lanjut='Ralan'") > 0) {
+                    param.put("nmUnit", Sequel.cariIsi("select pl.nm_poli from reg_periksa rp inner join poliklinik pl on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + norawat + "'"));
+                } else {
+                    param.put("nmUnit", Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                            + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + norawat + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
+                }
+
+                if (akses.getadmin() == true) {
+                    nmpetgs = "...................";
+                } else {
+                    nmpetgs = Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'");
+                }
+
+                param.put("petugas_ksr", "( " + nmpetgs + " )");
+
+                if (akses.getadmin() == true) {
+                    Valid.MyReportToPDF("rptNotaRadiologi.jasper", "report", "::[ Nota Transaksi Radiologi ]::",
+                            " SELECT temp1, FORMAT(temp2, 0) biaya, (SELECT FORMAT(temp2, 0) FROM temporary WHERE temp1 = 'Total Biaya Pemeriksaan Radiologi') total_byr "
+                            + "FROM temporary WHERE temp1 NOT LIKE '%biaya%'", param, Sequel.cariFolderTte(), nmFile);
+                } else {
+                    String isi = "";
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                                    "Nota Transaksi Radiologi", nmpetgs,
+                                    Sequel.cariIsi("select date_format('" + Valid.SetTgl(waktuSimpan + "") + "','%d/%m/%Y')"),
+                                    Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Nota Transaksi Radiologi", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+                    Valid.MyReportToPDF("rptNotaRadiologiQr.jasper", "report", "::[ Nota Transaksi Radiologi ]::",
+                            " SELECT temp1, FORMAT(temp2, 0) biaya, (SELECT FORMAT(temp2, 0) FROM temporary WHERE temp1 = 'Total Biaya Pemeriksaan Radiologi') total_byr "
+                            + "FROM temporary WHERE temp1 NOT LIKE '%biaya%'", param, Sequel.cariFolderTte(), nmFile);
+                }              
+                
+                TPesan.setText("Nota Pembayaran Pemeriksaan Radiologi (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
+                        + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
+                TnoWa.setText("");
+                TnmFile.setText(nmFile);
+                TnoWa.requestFocus();
+                //-------------------------------
+                koneksi.setAutoCommit(true);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 }

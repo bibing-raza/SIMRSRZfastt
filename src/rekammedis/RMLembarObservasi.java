@@ -1143,7 +1143,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1157,7 +1157,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1254,7 +1254,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 66, 110, 23);
 
-        tglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
+        tglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2025" }));
         tglObservasi.setDisplayFormat("dd-MM-yyyy");
         tglObservasi.setName("tglObservasi"); // NOI18N
         tglObservasi.setOpaque(false);
@@ -2287,32 +2287,32 @@ public class RMLembarObservasi extends javax.swing.JDialog {
                         + "time_format(lo.jam_observasi,'%H:%i') jamobs, p1.nama nmpetugas, p2.nama nmdokter from lembar_observasi lo "
                         + "inner join reg_periksa rp on rp.no_rawat=lo.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join pegawai p1 on p1.nik=lo.nik_petugas inner join pegawai p2 on p2.nik=lo.nik_dokter where "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat like '%IGD%' and lo.no_rawat like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat like '%IGD%' and p.no_rkm_medis like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat like '%IGD%' and p.nm_pasien like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat like '%IGD%' and lo.data_a like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat like '%IGD%' and lo.data_b like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat like '%IGD%' and lo.data_c like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat like '%IGD%' and lo.data_d like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat like '%IGD%' and lo.diagnosis_kerja like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat like '%IGD%' and p1.nama like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat like '%IGD%' and p2.nama like ? "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat in ('IGD','PONEK - VK BERSALIN') and lo.no_rawat like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat in ('IGD','PONEK - VK BERSALIN') and p.no_rkm_medis like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat in ('IGD','PONEK - VK BERSALIN') and p.nm_pasien like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat in ('IGD','PONEK - VK BERSALIN') and lo.data_a like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat in ('IGD','PONEK - VK BERSALIN') and lo.data_b like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat in ('IGD','PONEK - VK BERSALIN') and lo.data_c like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat in ('IGD','PONEK - VK BERSALIN') and lo.data_d like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat in ('IGD','PONEK - VK BERSALIN') and lo.diagnosis_kerja like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat in ('IGD','PONEK - VK BERSALIN') and p1.nama like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat in ('IGD','PONEK - VK BERSALIN') and p2.nama like ? "
                         + "order by lo.tgl_observasi desc, lo.jam_observasi desc");
             } else if (cmbObservasi.getSelectedIndex() == 2) {
                 ps = koneksi.prepareStatement("select lo.*, p.no_rkm_medis, p.nm_pasien, date_format(lo.tgl_observasi,'%d-%m-%Y') tglobs, "
                         + "time_format(lo.jam_observasi,'%H:%i') jamobs, p1.nama nmpetugas, p2.nama nmdokter from lembar_observasi lo "
                         + "inner join reg_periksa rp on rp.no_rawat=lo.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join pegawai p1 on p1.nik=lo.nik_petugas inner join pegawai p2 on p2.nik=lo.nik_dokter where "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not like '%IGD%' and lo.no_rawat like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not like '%IGD%' and p.no_rkm_medis like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not like '%IGD%' and p.nm_pasien like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not like '%IGD%' and lo.data_a like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not like '%IGD%' and lo.data_b like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not like '%IGD%' and lo.data_c like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not like '%IGD%' and lo.data_d like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not like '%IGD%' and lo.diagnosis_kerja like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not like '%IGD%' and p1.nama like ? or "
-                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not like '%IGD%' and p2.nama like ? "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not in ('IGD','PONEK - VK BERSALIN') and lo.no_rawat like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not in ('IGD','PONEK - VK BERSALIN') and p.no_rkm_medis like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not in ('IGD','PONEK - VK BERSALIN') and p.nm_pasien like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not in ('IGD','PONEK - VK BERSALIN') and lo.data_a like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not in ('IGD','PONEK - VK BERSALIN') and lo.data_b like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not in ('IGD','PONEK - VK BERSALIN') and lo.data_c like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not in ('IGD','PONEK - VK BERSALIN') and lo.data_d like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not in ('IGD','PONEK - VK BERSALIN') and lo.diagnosis_kerja like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not in ('IGD','PONEK - VK BERSALIN') and p1.nama like ? or "
+                        + "lo.tgl_observasi between ? and ? and lo.ruang_rawat not in ('IGD','PONEK - VK BERSALIN') and p2.nama like ? "
                         + "order by lo.tgl_observasi desc, lo.jam_observasi desc");
             }
 
@@ -2507,7 +2507,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         Truangan1.setText(ruangan);
         TCari.setText(norw);
         
-        if (ruangan.equals("IGD")) {
+        if (ruangan.equals("IGD") || ruangan.equals("PONEK - VK BERSALIN")) {
             cmbObservasi.setSelectedIndex(1);
         } else if (!ruangan.equals("IGD")) {
             cmbObservasi.setSelectedIndex(2);

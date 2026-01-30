@@ -70,7 +70,8 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
             HPP_Persediaan_Laborat_Rawat_inap = "", Persediaan_BHP_Laborat_Rawat_Inap = "", status = "", cekDataLab = "",
             nolab = "", tglPeriksa = "", jamPeriksa = "", diagnosa_ok = "", tnorwt = "", kdunit = "", kdpenjab = "",
             status_rawat = "", cekbayar = "", drLab = "", noLIS = "", nm_unit = "", Tnip = "", notelpFaskes = "", tte = "",
-            dokterBaca = "", user = "", tglperiksaHsl = "", nipperujukHsl = "", kddokter = "", form = "", nipPerujuk = "";
+            dokterBaca = "", user = "", tglperiksaHsl = "", nipperujukHsl = "", kddokter = "", form = "", nipPerujuk = "",
+            cariData = "", cariBayar = "";
 
     /**
      * Creates new form DlgProgramStudi
@@ -625,6 +626,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         MnCetakNota = new javax.swing.JMenu();
         MnTTDnota = new javax.swing.JMenuItem();
         MnTTEnota = new javax.swing.JMenuItem();
+        MnKirimKeWhatsappNota = new javax.swing.JMenuItem();
         MnHasilPatologiAnatomi = new javax.swing.JMenuItem();
         MnDokumenJangMed = new javax.swing.JMenuItem();
         MnUbah = new javax.swing.JMenuItem();
@@ -928,6 +930,22 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         MnCetakNota.add(MnTTEnota);
 
         jPopupMenu1.add(MnCetakNota);
+
+        MnKirimKeWhatsappNota.setBackground(new java.awt.Color(242, 242, 242));
+        MnKirimKeWhatsappNota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnKirimKeWhatsappNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/whatsapp.png"))); // NOI18N
+        MnKirimKeWhatsappNota.setText("Kirim Nota Ke WhatsApp");
+        MnKirimKeWhatsappNota.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnKirimKeWhatsappNota.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnKirimKeWhatsappNota.setIconTextGap(5);
+        MnKirimKeWhatsappNota.setName("MnKirimKeWhatsappNota"); // NOI18N
+        MnKirimKeWhatsappNota.setPreferredSize(new java.awt.Dimension(250, 28));
+        MnKirimKeWhatsappNota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnKirimKeWhatsappNotaActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnKirimKeWhatsappNota);
 
         MnHasilPatologiAnatomi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnHasilPatologiAnatomi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -2067,7 +2085,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         jLabel42.setBounds(265, 122, 80, 23);
 
         TtglHasil.setEditable(false);
-        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-01-2026" }));
+        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-01-2026" }));
         TtglHasil.setDisplayFormat("dd-MM-yyyy");
         TtglHasil.setName("TtglHasil"); // NOI18N
         TtglHasil.setOpaque(false);
@@ -3119,7 +3137,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi1.add(jLabel25);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-01-2026" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-01-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -6038,6 +6056,28 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
         }
     }//GEN-LAST:event_MnGantiPemeriksaLabActionPerformed
 
+    private void MnKirimKeWhatsappNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKirimKeWhatsappNotaActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+            TCari.requestFocus();
+        } else if (Kd2.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Gagal mencetak. Pilih dulu data yang mau dicetak. Klik No. Rawat pada tabel untuk memilih...!!!!");
+        } else if (!(Kd2.getText().trim().equals(""))) {
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            akses.setform("DlgCariPeriksaLab");
+            DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
+            form.setSize(817, 181);
+            form.setLocationRelativeTo(internalFrame1);
+            form.emptTeks();
+            form.setData("nota lab", Kd2.getText(), tglNota.getSelectedItem().toString());
+            form.jaminanTrans(tglPeriksa, jamPeriksa, drLab, Tgl1.getSelectedItem() + "", Tgl2.getSelectedItem() + "", cariData, cariBayar, "", "", "", "");
+            form.dataKirim();
+            form.setVisible(true);
+            form.toFront();
+            form.requestFocus();
+        }
+    }//GEN-LAST:event_MnKirimKeWhatsappNotaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -6109,6 +6149,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private javax.swing.JMenuItem MnJalanPerPoli;
     private javax.swing.JMenuItem MnJalanSemuaCaraBayar;
     private javax.swing.JMenuItem MnKirimKeWhatsapp;
+    private javax.swing.JMenuItem MnKirimKeWhatsappNota;
     private javax.swing.JMenuItem MnKirimLIS;
     private javax.swing.JMenuItem MnLapRekapPerPasien;
     private javax.swing.JMenuItem MnLihatHasilLIS;
@@ -6471,6 +6512,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     public void isCek() {
         MnCetakHasilLab.setEnabled(akses.getperiksa_lab());
         MnCetakNota.setEnabled(akses.getbilling_ralan());
+        MnKirimKeWhatsappNota.setEnabled(akses.getbilling_ralan());
         MnGantiPemeriksaLab.setEnabled(akses.getperiksa_lab());
         tglNota.setDate(new Date());
 //        MnUbah.setEnabled(var.getperiksa_lab());
@@ -6734,7 +6776,9 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     }
     
     private void queryTampil() {
-        String cariData = "", cariBayar = "";
+        cariData = "";
+        cariBayar = "";
+        
         cariData = "pl.no_rawat LIKE '%" + TCari.getText() + "%' OR "
                 + "rp.no_rkm_medis LIKE '%" + TCari.getText() + "%' OR "
                 + "pt.nip LIKE '%" + TCari.getText() + "%' OR "

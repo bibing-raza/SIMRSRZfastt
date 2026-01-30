@@ -202,6 +202,8 @@ public final class sekuel {
                     ps.setString(angka, a[angka - 1]);
                 }
                 ps.executeUpdate();
+                int totalBerhasil = ps.executeUpdate();
+                System.out.println("Affected rows : " + totalBerhasil);
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
                 System.out.println("Gagal menyimpan data. Kemungkinan ada " + sama + " yang sama dimasukkan sebelumnya...!");
