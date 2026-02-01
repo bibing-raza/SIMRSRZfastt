@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="310" pageHeight="450" columnWidth="270" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="6">
 	<property name="ireport.zoom" value="2.415765000000002"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="656"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -29,6 +29,14 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="tot_byr" class="java.lang.String"/>
+	<background>
+		<band height="202">
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="0" y="50" width="270" height="139"/>
+				<imageExpression class="java.lang.String"><![CDATA["setting/lunas_watermark.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
 	<title>
 		<band height="122" splitType="Stretch">
 			<line>

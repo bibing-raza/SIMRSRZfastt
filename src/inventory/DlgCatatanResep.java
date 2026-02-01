@@ -131,7 +131,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         }
         tbResepObat.setDefaultRenderer(Object.class, new WarnaTableResepRanap1());
         
-        tabModeFarmasi = new DefaultTableModel(null, new Object[]{
+        tabModeFarmasi = new DefaultTableModel(null, new String[]{
             "Nama Obat/Alkes", "Satuan", "Harga (Rp.)", "Stok Apt. IGD (UMUM)", "Stok Apt. Sentral (BPJS)"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -573,7 +573,9 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelisi4 = new widget.panelisi();
         BtnPilih = new widget.Button();
         cmbObat = new widget.ComboBox();
-        BtnCariObat1 = new widget.Button();
+        jLabel64 = new widget.Label();
+        TCariObat = new widget.TextBox();
+        BtnCariObat2 = new widget.Button();
         Scroll33 = new widget.ScrollPane();
         tbObat = new widget.Table();
 
@@ -716,7 +718,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -730,7 +732,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -755,6 +757,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari2.setMnemonic('1');
         BtnCari2.setText("Tampilkan Data");
         BtnCari2.setToolTipText("Alt+1");
         BtnCari2.setName("BtnCari2"); // NOI18N
@@ -794,6 +797,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll1.setMnemonic('2');
         BtnAll1.setText("Semua Data");
         BtnAll1.setToolTipText("Alt+2");
         BtnAll1.setName("BtnAll1"); // NOI18N
@@ -812,6 +816,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnRestor.setForeground(new java.awt.Color(0, 0, 0));
         BtnRestor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRestor.setMnemonic('U');
         BtnRestor.setText("Restore");
         BtnRestor.setToolTipText("Alt+U");
         BtnRestor.setName("BtnRestor"); // NOI18N
@@ -825,6 +830,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnCloseIn10.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn10.setMnemonic('U');
         BtnCloseIn10.setText("Tutup");
         BtnCloseIn10.setToolTipText("Alt+U");
         BtnCloseIn10.setName("BtnCloseIn10"); // NOI18N
@@ -928,6 +934,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnCopyResep.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopyResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnCopyResep.setMnemonic('R');
         BtnCopyResep.setText("Copy Resep");
         BtnCopyResep.setToolTipText("Alt+R");
         BtnCopyResep.setName("BtnCopyResep"); // NOI18N
@@ -946,6 +953,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnCloseIn8.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn8.setMnemonic('U');
         BtnCloseIn8.setText("Tutup");
         BtnCloseIn8.setToolTipText("Alt+U");
         BtnCloseIn8.setName("BtnCloseIn8"); // NOI18N
@@ -1061,6 +1069,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         btnCariDokter.setForeground(new java.awt.Color(0, 0, 0));
         btnCariDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        btnCariDokter.setMnemonic('7');
         btnCariDokter.setToolTipText("ALt+7");
         btnCariDokter.setName("btnCariDokter"); // NOI18N
         btnCariDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -1080,6 +1089,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan1.setMnemonic('S');
         BtnSimpan1.setText("Simpan");
         BtnSimpan1.setToolTipText("Alt+S");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
@@ -1093,6 +1103,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -1165,7 +1176,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelGlass13.add(jLabel54);
         jLabel54.setBounds(0, 66, 105, 23);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2025" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -1181,7 +1192,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelGlass13.add(jLabel55);
         jLabel55.setBounds(200, 66, 23, 23);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2025" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -1209,6 +1220,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnCariObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCariObat.setMnemonic('3');
         BtnCariObat.setText("Tampilkan Data");
         BtnCariObat.setToolTipText("Alt+3");
         BtnCariObat.setName("BtnCariObat"); // NOI18N
@@ -1299,6 +1311,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnResep.setForeground(new java.awt.Color(0, 0, 0));
         BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/tasksgroup.png"))); // NOI18N
+        BtnResep.setMnemonic('8');
         BtnResep.setText("Riwayat Resep");
         BtnResep.setToolTipText("Alt+8");
         BtnResep.setName("BtnResep"); // NOI18N
@@ -1320,6 +1333,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -1333,6 +1347,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1346,6 +1361,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -1376,6 +1392,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak Resep");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -1394,6 +1411,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnNotepad.setMnemonic('N');
         BtnNotepad.setText("Notepad");
         BtnNotepad.setToolTipText("Alt+N");
         BtnNotepad.setName("BtnNotepad"); // NOI18N
@@ -1407,6 +1425,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnKeluar.setMnemonic('T');
         BtnKeluar.setText("Tutup");
         BtnKeluar.setToolTipText("Alt+T");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1437,6 +1456,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnSetuju.setForeground(new java.awt.Color(0, 0, 0));
         BtnSetuju.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnSetuju.setMnemonic('U');
         BtnSetuju.setText("Setuju");
         BtnSetuju.setToolTipText("Alt+U");
         BtnSetuju.setGlassColor(new java.awt.Color(0, 153, 0));
@@ -1514,6 +1534,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         BtnCopyResepTerakhir.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopyResepTerakhir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnCopyResepTerakhir.setMnemonic('P');
         BtnCopyResepTerakhir.setText("Copy Resep Terakhir");
         BtnCopyResepTerakhir.setToolTipText("");
         BtnCopyResepTerakhir.setName("BtnCopyResepTerakhir"); // NOI18N
@@ -1679,11 +1700,12 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         panelisi4.setBorder(null);
         panelisi4.setName("panelisi4"); // NOI18N
-        panelisi4.setPreferredSize(new java.awt.Dimension(100, 88));
+        panelisi4.setPreferredSize(new java.awt.Dimension(100, 80));
         panelisi4.setLayout(null);
 
         BtnPilih.setForeground(new java.awt.Color(0, 0, 0));
         BtnPilih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnPilih.setMnemonic('P');
         BtnPilih.setText("Pilih Obat/Alkes :");
         BtnPilih.setToolTipText("Alt+P");
         BtnPilih.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1696,7 +1718,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             }
         });
         panelisi4.add(BtnPilih);
-        BtnPilih.setBounds(8, 10, 125, 23);
+        BtnPilih.setBounds(8, 43, 125, 23);
 
         cmbObat.setForeground(new java.awt.Color(0, 0, 0));
         cmbObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
@@ -1707,35 +1729,47 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                 cmbObatMouseReleased(evt);
             }
         });
-        cmbObat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbObatActionPerformed(evt);
-            }
-        });
         panelisi4.add(cmbObat);
-        cmbObat.setBounds(140, 10, 330, 23);
+        cmbObat.setBounds(140, 43, 330, 23);
 
-        BtnCariObat1.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCariObat1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search.png"))); // NOI18N
-        BtnCariObat1.setText("Pencarian Obat Baru");
-        BtnCariObat1.setToolTipText("Alt+P");
-        BtnCariObat1.setName("BtnCariObat1"); // NOI18N
-        BtnCariObat1.setPreferredSize(new java.awt.Dimension(65, 30));
-        BtnCariObat1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCariObat1ActionPerformed(evt);
+        jLabel64.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel64.setText("Cari Obat :");
+        jLabel64.setName("jLabel64"); // NOI18N
+        jLabel64.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelisi4.add(jLabel64);
+        jLabel64.setBounds(0, 10, 80, 23);
+
+        TCariObat.setForeground(new java.awt.Color(0, 0, 0));
+        TCariObat.setName("TCariObat"); // NOI18N
+        TCariObat.setPreferredSize(new java.awt.Dimension(250, 23));
+        TCariObat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCariObatKeyPressed(evt);
             }
         });
-        panelisi4.add(BtnCariObat1);
-        BtnCariObat1.setBounds(8, 45, 180, 30);
+        panelisi4.add(TCariObat);
+        TCariObat.setBounds(85, 10, 250, 23);
 
-        jPanel2.add(panelisi4, java.awt.BorderLayout.PAGE_END);
+        BtnCariObat2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCariObat2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnCariObat2.setText("Cek");
+        BtnCariObat2.setName("BtnCariObat2"); // NOI18N
+        BtnCariObat2.setPreferredSize(new java.awt.Dimension(120, 23));
+        BtnCariObat2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCariObat2ActionPerformed(evt);
+            }
+        });
+        panelisi4.add(BtnCariObat2);
+        BtnCariObat2.setBounds(340, 10, 65, 23);
+
+        jPanel2.add(panelisi4, java.awt.BorderLayout.PAGE_START);
 
         Scroll33.setName("Scroll33"); // NOI18N
         Scroll33.setOpaque(true);
 
         tbObat.setAutoCreateRowSorter(true);
-        tbObat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbObat.setToolTipText("Silahkan klik salah satu nama obat sebagai resepnya ...");
         tbObat.setName("tbObat"); // NOI18N
         tbObat.getTableHeader().setReorderingAllowed(false);
         tbObat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2789,34 +2823,6 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         WindowGantiDokter.dispose();
     }//GEN-LAST:event_BtnCloseIn1ActionPerformed
 
-    private void BtnPilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPilihActionPerformed
-        if (cmbObat.getSelectedItem().equals("-")) {
-            JOptionPane.showMessageDialog(null, "Obat/alkes belum dipilih dengan benar...!!!!");
-            cmbObat.requestFocus();
-        } else {
-            if (TResepObat.getText().equals("")) {
-                TResepObat.setText(cmbObat.getSelectedItem().toString() + " ");
-            } else {
-                TResepObat.setText(TResepObat.getText() + " " + cmbObat.getSelectedItem().toString());
-            }
-            TResepObat.requestFocus();
-        }
-    }//GEN-LAST:event_BtnPilihActionPerformed
-
-    private void cmbObatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbObatMouseReleased
-        AutoCompleteDecorator.decorate(cmbObat);
-    }//GEN-LAST:event_cmbObatMouseReleased
-
-    private void cmbObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbObatActionPerformed
-        tampilFarmasi();
-    }//GEN-LAST:event_cmbObatActionPerformed
-
-    private void BtnCariObat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariObat1ActionPerformed
-        cmbObat.setSelectedIndex(0);
-        Valid.tabelKosong(tabModeFarmasi);
-        cmbObat.requestFocus();
-    }//GEN-LAST:event_BtnCariObat1ActionPerformed
-
     private void tbObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbObatMouseClicked
         if (tabModeFarmasi.getRowCount() != 0) {
             try {
@@ -2836,6 +2842,35 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_tbObatKeyPressed
+
+    private void BtnPilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPilihActionPerformed
+        if (cmbObat.getSelectedItem().equals("-")) {
+            JOptionPane.showMessageDialog(null, "Obat/alkes belum dipilih dengan benar...!!!!");
+            cmbObat.requestFocus();
+        } else {
+            if (TResepObat.getText().equals("")) {
+                TResepObat.setText(cmbObat.getSelectedItem().toString() + " ");
+            } else {
+                TResepObat.setText(TResepObat.getText() + " " + cmbObat.getSelectedItem().toString());
+            }
+            TResepObat.requestFocus();
+        }
+    }//GEN-LAST:event_BtnPilihActionPerformed
+
+    private void cmbObatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbObatMouseReleased
+        AutoCompleteDecorator.decorate(cmbObat);
+    }//GEN-LAST:event_cmbObatMouseReleased
+
+    private void TCariObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariObatKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCariObat2ActionPerformed(null);
+        }
+    }//GEN-LAST:event_TCariObatKeyPressed
+
+    private void BtnCariObat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariObat2ActionPerformed
+        tampilFarmasi();
+        cmbObat.setSelectedIndex(0);
+    }//GEN-LAST:event_BtnCariObat2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2857,7 +2892,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private widget.Button BtnAll1;
     private widget.Button BtnCari2;
     private widget.Button BtnCariObat;
-    private widget.Button BtnCariObat1;
+    private widget.Button BtnCariObat2;
     private widget.Button BtnCloseIn1;
     private widget.Button BtnCloseIn10;
     private widget.Button BtnCloseIn8;
@@ -2903,6 +2938,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private widget.ScrollPane Scroll6;
     private widget.TextBox TCari;
     private widget.TextBox TCari2;
+    private widget.TextBox TCariObat;
     private widget.TextBox TDokter;
     private widget.TextBox TIdObat;
     private widget.TextBox TNoRM;
@@ -2948,6 +2984,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private widget.Label jLabel56;
     private widget.Label jLabel57;
     private widget.Label jLabel58;
+    private widget.Label jLabel64;
     private widget.Label jLabel68;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -2986,6 +3023,10 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         ChkCito.setSelected(false);
         cmbJnsResep.setSelectedIndex(0);
         cmbIniResep.setSelectedIndex(0);
+        Valid.tabelKosong(tabModeFarmasi);
+        cmbObat.setSelectedIndex(0);
+        TResepObat.setText("");
+        TCariObat.setText("");
         
         if (sttsrwt.equals("IGD (Ralan)")) {
             status = "IGD (Ralan)";
@@ -3151,13 +3192,13 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             psFar = koneksi.prepareStatement("SELECT db.nama_brng, db.kode_sat, sum(case when gd.kd_bangsal = 'APT01' then ifnull(format(gd.stok,0),0) END) apotek_igd, "
                     + "sum(case when gd.kd_bangsal = 'APT02' then ifnull(format(gd.stok,0),0) END) apotek_sentral, format(db.ralan,0) harga FROM gudangbarang gd "
                     + "INNER JOIN databarang db on db.kode_brng=gd.kode_brng where "
-                    + "db.nama_brng<>'-' and db.nama_brng = ? and gd.kd_bangsal in ('APT01','APT02') and db.nama_brng not like '(FR)%' group by gd.kode_brng "
+                    + "db.nama_brng<>'-' and db.nama_brng like ? and gd.kd_bangsal in ('APT01','APT02') and db.nama_brng not like '(FR)%' group by gd.kode_brng "
                     + "order by db.nama_brng");
             try {
-                psFar.setString(1, cmbObat.getSelectedItem().toString());                
+                psFar.setString(1, "%" + TCariObat.getText().trim() + "%");
                 rsFar = psFar.executeQuery();
                 while (rsFar.next()) {
-                    tabModeFarmasi.addRow(new Object[]{
+                    tabModeFarmasi.addRow(new String[]{
                         rsFar.getString("nama_brng"),
                         rsFar.getString("kode_sat"),
                         rsFar.getString("harga").replaceAll(",", "."),

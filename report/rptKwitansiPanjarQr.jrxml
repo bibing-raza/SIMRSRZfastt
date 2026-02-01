@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="385" columnWidth="540" leftMargin="35" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.200000000000001"/>
 	<property name="ireport.x" value="40"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="569"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -26,6 +26,14 @@
 	<field name="tanggal" class="java.sql.Timestamp">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<background>
+		<band height="242">
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="52" y="54" width="454" height="177"/>
+				<imageExpression class="java.lang.String"><![CDATA["setting/lunas_watermark.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
 	<title>
 		<band height="117">
 			<staticText>

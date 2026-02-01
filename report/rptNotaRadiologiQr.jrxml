@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="310" pageHeight="450" columnWidth="270" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="6">
 	<property name="ireport.zoom" value="2.4157650000000013"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="85"/>
+	<property name="ireport.y" value="733"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -34,6 +34,14 @@ FROM TEMPORARY WHERE temp1 NOT LIKE '%biaya%']]>
 	<field name="total_byr" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<background>
+		<band height="202">
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="0" y="50" width="270" height="139"/>
+				<imageExpression class="java.lang.String"><![CDATA["setting/lunas_watermark.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
 	<title>
 		<band height="157" splitType="Stretch">
 			<line>

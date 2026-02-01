@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="310" pageHeight="450" columnWidth="270" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="10">
 	<property name="ireport.zoom" value="2.4157650000000013"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="23"/>
+	<property name="ireport.y" value="847"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -49,6 +49,14 @@ FROM temporary_bayar_ralan WHERE temp1 not in ('No. Nota','Poliklinik/Inst.','Ta
 	<field name="alamat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<background>
+		<band height="361">
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="0" y="152" width="270" height="139"/>
+				<imageExpression class="java.lang.String"><![CDATA["setting/lunas_watermark.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
 	<title>
 		<band height="137" splitType="Stretch">
 			<line>
