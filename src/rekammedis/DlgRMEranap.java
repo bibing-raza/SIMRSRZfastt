@@ -118,6 +118,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         TabRekamMedis = new javax.swing.JTabbedPane();
         scrollInput = new widget.ScrollPane();
         FormInput = new widget.PanelBiasa();
+        BtnGeneralConsent = new widget.ButtonBig();
         BtnTriasePonek = new widget.ButtonBig();
         BtnAsesmenRestrain = new widget.ButtonBig();
         BtnObservasiRestrain = new widget.ButtonBig();
@@ -328,6 +329,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(870, 834));
         FormInput.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 25));
+
+        BtnGeneralConsent.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGeneralConsent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnGeneralConsent.setText("General Consent");
+        BtnGeneralConsent.setIconTextGap(0);
+        BtnGeneralConsent.setName("BtnGeneralConsent"); // NOI18N
+        BtnGeneralConsent.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnGeneralConsent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGeneralConsentActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnGeneralConsent);
 
         BtnTriasePonek.setForeground(new java.awt.Color(0, 0, 0));
         BtnTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/report_icon.png"))); // NOI18N
@@ -1960,6 +1974,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnResepAntibiotikActionPerformed
 
+    private void BtnGeneralConsentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGeneralConsentActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMGeneralConsent form = new RMGeneralConsent(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnGeneralConsentActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2000,6 +2031,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnCeklisPraOperasi;
     private widget.Button BtnCloseIn10;
     private widget.ButtonBig BtnDokumenJangMed;
+    private widget.ButtonBig BtnGeneralConsent;
     private widget.ButtonBig BtnGrafikPantauHarian;
     private widget.ButtonBig BtnJadwalObat;
     private widget.ButtonBig BtnJawabKonsul;

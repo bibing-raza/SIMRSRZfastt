@@ -740,7 +740,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-01-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -754,7 +754,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-01-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1189,7 +1189,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel54.setBounds(0, 66, 105, 23);
 
         DTPCariA.setEditable(false);
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-01-2026" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -1206,7 +1206,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         jLabel55.setBounds(200, 66, 23, 23);
 
         DTPCariB.setEditable(false);
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-01-2026" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -1573,7 +1573,8 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelGlass16.add(jLabel59);
         jLabel59.setBounds(0, 37, 75, 23);
 
-        Tket.setForeground(new java.awt.Color(0, 0, 0));
+        Tket.setForeground(new java.awt.Color(0, 0, 153));
+        Tket.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Tket.setName("Tket"); // NOI18N
         Tket.setPreferredSize(new java.awt.Dimension(370, 24));
         Tket.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1582,7 +1583,7 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
             }
         });
         panelGlass16.add(Tket);
-        Tket.setBounds(211, 37, 690, 24);
+        Tket.setBounds(221, 37, 680, 24);
 
         cmbHari.setForeground(new java.awt.Color(0, 0, 0));
         cmbHari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
@@ -1601,12 +1602,13 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
         panelGlass16.add(cmbHari);
         cmbHari.setBounds(81, 37, 45, 23);
 
-        jLabel60.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel60.setForeground(new java.awt.Color(255, 0, 51));
         jLabel60.setText("Keterangan :");
+        jLabel60.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel60.setName("jLabel60"); // NOI18N
         jLabel60.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass16.add(jLabel60);
-        jLabel60.setBounds(126, 37, 80, 23);
+        jLabel60.setBounds(126, 37, 90, 23);
 
         jPanel4.add(panelGlass16, java.awt.BorderLayout.PAGE_START);
 

@@ -429,6 +429,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import rekammedis.DlgMasterNomorDokumenRM;
+import rekammedis.RMGeneralConsent;
 import tranfusidarah.UTDPenyerahanDarahPasienDirawat;
 
 /**
@@ -987,6 +989,8 @@ public class frmUtama extends javax.swing.JFrame {
         btnBPJSMonitoringKlaimApotek = new widget.ButtonBig();
         btnBPJSDataTerkirimApotek = new widget.ButtonBig();
         btnUTDPenyerahanDarahDirawat = new widget.ButtonBig();
+        btnMasterNomorDokumenRM = new widget.ButtonBig();
+        btnGeneralConsent = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6602,6 +6606,32 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnUTDPenyerahanDarahDirawat);
 
+        btnMasterNomorDokumenRM.setForeground(new java.awt.Color(0, 0, 0));
+        btnMasterNomorDokumenRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/Gnome-X-Office-Address-Book-48.png"))); // NOI18N
+        btnMasterNomorDokumenRM.setText("Master No. Dokumen Rekam Medis");
+        btnMasterNomorDokumenRM.setIconTextGap(0);
+        btnMasterNomorDokumenRM.setName("btnMasterNomorDokumenRM"); // NOI18N
+        btnMasterNomorDokumenRM.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMasterNomorDokumenRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMasterNomorDokumenRMActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnMasterNomorDokumenRM);
+
+        btnGeneralConsent.setForeground(new java.awt.Color(0, 0, 0));
+        btnGeneralConsent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        btnGeneralConsent.setText("General Consent");
+        btnGeneralConsent.setIconTextGap(0);
+        btnGeneralConsent.setName("btnGeneralConsent"); // NOI18N
+        btnGeneralConsent.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnGeneralConsent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGeneralConsentActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnGeneralConsent);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6610,7 +6640,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09/12/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03/02/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13047,6 +13077,35 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnTarifUpdActionPerformed
 
+    private void btnMasterNomorDokumenRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterNomorDokumenRMActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgMasterNomorDokumenRM form = new DlgMasterNomorDokumenRM(this, false);
+        form.isCek();
+        form.emptTeks();
+        form.tampil();
+        form.ChkInput.setSelected(true);
+        form.isForm();
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnMasterNomorDokumenRMActionPerformed
+
+    private void btnGeneralConsentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneralConsentActionPerformed
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMGeneralConsent form = new RMGeneralConsent(this, false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnGeneralConsentActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13217,6 +13276,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnFrekuensiRalan;
     private widget.ButtonBig btnFrekuensiRanap;
     private widget.ButtonBig btnGantiPassword;
+    private widget.ButtonBig btnGeneralConsent;
     private widget.ButtonBig btnGolonganBarang;
     private widget.ButtonBig btnGrafikDemografiRegistrasi;
     private widget.ButtonBig btnGrafikKunjunganPerBulan;
@@ -13316,6 +13376,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnMasterKeluhanPsikologis;
     private widget.ButtonBig btnMasterMasalahKeperawatan;
     private widget.ButtonBig btnMasterNomorDokumen;
+    private widget.ButtonBig btnMasterNomorDokumenRM;
     private widget.ButtonBig btnMasterNumdenom;
     private widget.ButtonBig btnMasterRencanaTritmenPsikologis;
     private widget.ButtonBig btnMasterResikoDecubitus;
@@ -13801,6 +13862,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         } else if (cmbMenu.getSelectedIndex() == 1) {
             jmlmenu = 0;
+            if (akses.getbpjs_sep() == true) {
+                Panelmenu.add(btnGeneralConsent);
+                jmlmenu++;
+            }
+            
             if (akses.getpenilaian_awal_keperawatan_ralan() == true) {
                 Panelmenu.add(btnStatusKakiDiabetes);
                 jmlmenu++;
@@ -15343,6 +15409,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         } else if (cmbMenu.getSelectedIndex() == 11) {
             jmlmenu = 0;
             if (akses.getadmin()== true) {
+                Panelmenu.add(btnMasterNomorDokumenRM);
+                jmlmenu++;
+            }
+            
+            if (akses.getadmin()== true) {
                 Panelmenu.add(btnPasienBlackList);
                 jmlmenu++;
             }
@@ -15731,6 +15802,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         Panelmenu.add(btnIndikatorNasionalMutu);
         Panelmenu.add(btnLaporanIndikatorMutu);
         jmlmenu++;
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnMasterNomorDokumenRM);
+            jmlmenu++;
+        }
 
         if (akses.getadmin() == true) {
             Panelmenu.add(btnMasterCatatanMaterialOperasi);
@@ -15879,6 +15955,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getpermintaan_lab() == true) {
             Panelmenu.add(btnSuratKonsulUnitRanap);
+            jmlmenu++;
+        }
+        
+        if (akses.getbpjs_sep() == true) {
+            Panelmenu.add(btnGeneralConsent);
             jmlmenu++;
         }
 
@@ -17758,6 +17839,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariIsi() {
         jmlmenu = 0;
+        if (btnMasterNomorDokumenRM.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+            Panelmenu.add(btnMasterNomorDokumenRM);
+            jmlmenu++;
+        }
+        
         if (btnIndikatorNasionalMutu.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
             Panelmenu.add(btnIndikatorNasionalMutu);
             jmlmenu++;
@@ -17963,6 +18049,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getsatu_sehat()== true) {
             if (btnKirimMedicationDispenseSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnKirimMedicationDispenseSatuSehat);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getbpjs_sep()== true) {
+            if (btnGeneralConsent.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnGeneralConsent);
                 jmlmenu++;
             }
         }

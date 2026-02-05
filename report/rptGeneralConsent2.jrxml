@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
+	<property name="ireport.zoom" value="2.0000000000000058"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="600"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="tgl" class="java.lang.String"/>
+	<parameter name="pemberiInformasi" class="java.lang.String"/>
+	<parameter name="saksi1" class="java.lang.String"/>
+	<parameter name="saksi2" class="java.lang.String"/>
+	<parameter name="nmBerttd" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT date(now()) tgl]]>
+	</queryString>
+	<field name="tgl" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="665">
+			<line>
+				<reportElement x="0" y="12" width="519" height="1">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="12" width="1" height="650"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="519" y="12" width="1" height="650"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="661" width="519" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="10" y="14" width="507" height="12">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[VII. HAK, KEWAJIBAN DAN TANGGUNG JAWAB PASIEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="25" width="487" height="342">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Saya memiliki hak sebagai Pasien RSUD RATU ZALECHA sebagai berikut :
+1. Mendapatkan informasi mengenai kesehatan dirinya;
+2. Mendapatkan penjelasan yang memadai mengenai pelayanan kesehatan yang diterimanya;
+3. Mendapatkan pelayanan kesehatan sesuai dengan kebutuhan medis, standar profesi dan pelayanan yang bermutu;
+4. Menolak atau menyetujui tindakan medis, kecuali untuk tindakan medis yang diperlukan dalam rangka pencegahan penyakit menular
+   dan penanggulangan KLB atau Wabah;
+5. Mendapatkan akses terhadap informasi yang terdapat dalam rekam medis;
+6. Meminta pendapat tenaga medis atau tenaga kesehatan; dan
+7. Mendapatkan hak lain sesuai dengan peraturan perundang-undangan.
+
+Saya juga akan memenuhi kewajiban saya sebagai pasien di RSUD Ratu Zalecha dengan kewajiban sebagai berikut :
+1. Memberikan informasi yang lengkap dan jujur tentang masalah kesehatannya;
+2. Memenuhi nasihat dan petunjuk tenaga medis dan tenaga kesehatan lainnya;
+3. Mematuhi ketentuan yang berlaku pada fasilitas pelayanan kesehatan; dan
+4. Memberikan imbalan jasa atas pelayanan yang diterima.
+
+Saya dan juga keluarga mempunyai tanggung jawab sebagai pasien di RSUD Ratu Zalecha, sebagai berikut :
+1. Mengajukan pertanyaan dan berpartisipasi aktif dalam diskusi pengambilan keputusan mengenai perawatan kesehatan pasien.
+2. Memberikan informasi yang lengkap dan akurat tentang kesehatan dan riwayat kesehatan termasuk kondisi sekarang, masa lalu
+    penyakit, rawat inap dan obat-obatan.
+3. Mendiskusikan masalah perawatan kesehatan, kekhawatiran dan kebutuhan pribadi dengan penyedia layanan kesehatan secara jujur
+    dan untuk menginformasikan kepada penyedia layanan kesehatan tentang setiap perubahan kondisi yang terjadi.
+4. Tidak mengkonsumsi narkoba dan alkohol selama masa perawatan di rumah sakit.
+5. Bekerja sama dengan semua petugas kesehatan yang terlibat dalam perawatan dan berperilaku sopan dan hormat.
+6. Menghormati hak penyedia layanan kesehatan dan bertukar informasi dengan cara yang tidak kasar, baik secara fisik maupun lisan
+    saat menerima perawatan.
+7. Mengikuti instruksi perawatan kesehatan atau memberitahu penyedia layanan kesehatan jika tidak dapat atau tidak mengikuti
+    rencana perawatan.
+8. Menerima konsekuensi karena menolak atau tidak mengikuti rencana perawatan.
+9. Menghormati hak semua profesional perawatan kesehatan, karyawan dan pasien lain.
+10. Menepati semua janji pertemuan yang dijadwalkan untuk memastikan bahwa semua pasien dilayani tepat waktu. Pasien
+     bertanggung jawab untuk memberitahu 24 jam sebelumnya jika ada perubahan jadwal.
+11. Membayar layanan yang diterima dan pasien menerima informasi terperinci mengenai tagihan.
+12. Membantu penyedia layanan kesehatan terhadap perubahan keputusan mengenai orang yang ditunjuk dalam membuat keputusan
+     perawatan kesehatan.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="379" width="507" height="12">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[VIII. INFORMASI BIAYA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="390" width="487" height="52">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top" lineSpacing="Single" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Saya memahami tentang informasi biaya pengobatan atau biaya tindakan yang dijelaskan oleh petugas rumah sakit.
+<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dengan tanda tangan saya di bawah, saya menyatakan bahwa saya telah membaca dan memahami item pada Persetujuan Umum / <i>General Consent.</i>]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="27" y="442" width="304" height="12"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tgl}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="27" y="454" width="235" height="12">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Pasien/Penanggung jawab pasien,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="454" width="221" height="12">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Pemberi informasi,]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="27" y="526" width="235" height="12"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["("+$P{nmBerttd}+")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="293" y="526" width="221" height="12"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["("+$P{pemberiInformasi}+")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="27" y="629" width="235" height="12"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["("+$P{saksi1}+")"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="27" y="564" width="235" height="12">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Saksi 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="564" width="221" height="12">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Saksi 2]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="293" y="629" width="221" height="12"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["("+$P{saksi2}+")"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>
