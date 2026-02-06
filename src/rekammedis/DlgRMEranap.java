@@ -118,6 +118,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         TabRekamMedis = new javax.swing.JTabbedPane();
         scrollInput = new widget.ScrollPane();
         FormInput = new widget.PanelBiasa();
+        BtnPersetujuanRanap = new widget.ButtonBig();
         BtnGeneralConsent = new widget.ButtonBig();
         BtnTriasePonek = new widget.ButtonBig();
         BtnAsesmenRestrain = new widget.ButtonBig();
@@ -329,6 +330,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(870, 834));
         FormInput.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 25));
+
+        BtnPersetujuanRanap.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPersetujuanRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnPersetujuanRanap.setText("Persetujuan Rawat Inap");
+        BtnPersetujuanRanap.setIconTextGap(0);
+        BtnPersetujuanRanap.setName("BtnPersetujuanRanap"); // NOI18N
+        BtnPersetujuanRanap.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPersetujuanRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPersetujuanRanapActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnPersetujuanRanap);
 
         BtnGeneralConsent.setForeground(new java.awt.Color(0, 0, 0));
         BtnGeneralConsent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
@@ -1983,13 +1997,30 @@ public class DlgRMEranap extends javax.swing.JDialog {
             RMGeneralConsent form = new RMGeneralConsent(null, false);
             form.emptTeks();
             form.isCek();
-            form.setData(TNoRW.getText(), nmUnit.getText());
+            form.setData(TNoRW.getText());
             form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnGeneralConsentActionPerformed
+
+    private void BtnPersetujuanRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPersetujuanRanapActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMPersetujuanRawatInap form = new RMPersetujuanRawatInap(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnPersetujuanRanapActionPerformed
 
     /**
     * @param args the command line arguments
@@ -2048,6 +2079,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnPengamatanMenyusui;
     private widget.ButtonBig BtnPengelolaanTranfusiDarah;
     private widget.ButtonBig BtnPerencanaanPulang;
+    private widget.ButtonBig BtnPersetujuanRanap;
     private widget.ButtonBig BtnPersetujuanTindakan;
     private widget.ButtonBig BtnProtokolKemoterapi;
     private widget.Button BtnRefres;

@@ -42,6 +42,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
@@ -70,7 +71,7 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
     private int i = 0, x = 0;
-    private String kdkel = "", kdkec = "", kdkab = "", nipPtgs = "", pngJwbPasien = "", saksi1 = "", saksi2 = "";
+    private String kdkel = "", kdkec = "", kdkab = "", nipPtgs = "", pngJwbPasien = "", saksi1 = "", saksi2 = "", ruangrwt = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -78,6 +79,9 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
     public RMGeneralConsent(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         this.setLocation(8,1);
         
         tabMode = new DefaultTableModel(null, new String[]{
@@ -174,6 +178,11 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
             }
         }
         tbGC.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbGC.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbGC.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        tbGC.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbGC.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
         
         TnmBerttd.setDocument(new batasInput((int) 200).getKata(TnmBerttd));
         Talamat.setDocument(new batasInput((int) 200).getKata(Talamat));
@@ -522,7 +531,7 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
         BtnPtgs.setBounds(657, 514, 28, 23);
 
         TtglGC.setEditable(false);
-        TtglGC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2026" }));
+        TtglGC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2026" }));
         TtglGC.setDisplayFormat("dd-MM-yyyy");
         TtglGC.setName("TtglGC"); // NOI18N
         TtglGC.setOpaque(false);
@@ -838,7 +847,7 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
 
         chkSamaPasien.setBorder(null);
         chkSamaPasien.setForeground(new java.awt.Color(0, 0, 0));
-        chkSamaPasien.setText("Alamat Sama Dengan Pasien");
+        chkSamaPasien.setText("Alamat Sama Dengan Data Persetujuan R. Inap");
         chkSamaPasien.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         chkSamaPasien.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSamaPasien.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -849,7 +858,7 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
             }
         });
         FormInput.add(chkSamaPasien);
-        chkSamaPasien.setBounds(455, 150, 210, 23);
+        chkSamaPasien.setBounds(455, 150, 300, 23);
 
         TnoTelp.setBackground(new java.awt.Color(245, 250, 240));
         TnoTelp.setForeground(new java.awt.Color(0, 0, 0));
@@ -924,7 +933,8 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
         jLabel20.setPreferredSize(new java.awt.Dimension(120, 23));
         panelGlass10.add(jLabel20);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2026" }));
+        DTPCari1.setEditable(false);
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -938,7 +948,8 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2026" }));
+        DTPCari2.setEditable(false);
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1360,16 +1371,16 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
                     param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
                     param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
                     
-                    Valid.MyReport("rptGeneralConsent1Qr.jasper", "report", "::[ General Consent hal. 1]::",
+                    Valid.MyReport("rptGeneralConsent2Qr.jasper", "report", "::[ General Consent hal. 1 ]::",
                             "SELECT date(now()) tgl", param);
-                    Valid.MyReport("rptGeneralConsent2Qr.jasper", "report", "::[ General Consent hal. 2]::",
+                    Valid.MyReport("rptGeneralConsent1Qr.jasper", "report", "::[ General Consent hal. 2 ]::",
                             "SELECT date(now()) tgl", param);
                     Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 }
             } else {
-                Valid.MyReport("rptGeneralConsent1.jasper", "report", "::[ General Consent hal. 1]::",
+                Valid.MyReport("rptGeneralConsent2.jasper", "report", "::[ General Consent hal. 1 ]::",
                         "SELECT date(now()) tgl", param);
-                Valid.MyReport("rptGeneralConsent2.jasper", "report", "::[ General Consent hal. 2]::",
+                Valid.MyReport("rptGeneralConsent1.jasper", "report", "::[ General Consent hal. 2 ]::",
                         "SELECT date(now()) tgl", param);
             }
             
@@ -1527,20 +1538,22 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
     private void chkSamaPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSamaPasienActionPerformed
         if (chkSamaPasien.isSelected() == true) {
             try {
-                ps1 = koneksi.prepareStatement("select p.*, kl.nm_kel, kc.nm_kec, kb.nm_kab from pasien p "
-                        + "inner join kelurahan kl on kl.kd_kel=p.kd_kel "
-                        + "inner join kecamatan kc on kc.kd_kec=p.kd_kec "
-                        + "inner join kabupaten kb on kb.kd_kab=p.kd_kab where p.no_rkm_medis='" + TNoRM.getText() + "'");
+                ps1 = koneksi.prepareStatement("select p.*, kl.nm_kel, kc.nm_kec, kb.nm_kab from persetujuan_ranap p "
+                    + "inner join kelurahan kl on kl.kd_kel=p.kd_kel "
+                    + "inner join kecamatan kc on kc.kd_kec=p.kd_kec "
+                    + "inner join kabupaten kb on kb.kd_kab=p.kd_kab where p.no_rawat='" + TNoRw.getText() + "'");
                 try {
                     rs1 = ps1.executeQuery();
                     while (rs1.next()) {
+                        TnmBerttd.setText(rs1.getString("nm_berttd"));
                         Talamat.setText(rs1.getString("alamat"));
                         kdkel = rs1.getString("kd_kel");
                         kdkec = rs1.getString("kd_kec");
-                        kdkab = rs1.getString("kd_kab");                        
+                        kdkab = rs1.getString("kd_kab");
                         TnmKel.setText(rs1.getString("nm_kel"));
                         TnmKec.setText(rs1.getString("nm_kec"));
                         TnmKab.setText(rs1.getString("nm_kab"));
+                        TnoTelp.setText(rs1.getString("no_tlp"));
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : " + e);
@@ -1556,13 +1569,15 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
                 System.out.println("Notifikasi : " + e);
             }
         } else {
+            TnmBerttd.setText("");
             Talamat.setText("");
-            kdkel = "-";
-            kdkec = "-";
-            kdkab = "-";
+            kdkel = "0";
+            kdkec = "0";
+            kdkab = "0";
             TnmKel.setText("-");
             TnmKec.setText("-");
             TnmKab.setText("-");
+            TnoTelp.setText("");
         }
     }//GEN-LAST:event_chkSamaPasienActionPerformed
 
@@ -1692,17 +1707,14 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("select gc.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
-                    + "if(rp.status_lanjut='Ralan',pl.nm_poli,b.nm_bangsal) rgrawat, date_format(gc.tanggal,'%d-%m-%Y') tglGC, pg.nama nmPtgs, "
-                    + "replace(nm_berttd,' (Penanggung Jawab)','') nmttd, replace(saksi1,' (Saksi 1)','') sak1, replace(saksi2,' (Saksi 2)','') sak2 from general_consent gc "
+                    + "date_format(gc.tanggal,'%d-%m-%Y') tglGC, pg.nama nmPtgs, replace(nm_berttd,' (Penanggung Jawab)','') nmttd, "
+                    + "replace(saksi1,' (Saksi 1)','') sak1, replace(saksi2,' (Saksi 2)','') sak2 from general_consent gc "
                     + "inner join reg_periksa rp on rp.no_rawat=gc.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli inner join pegawai pg on pg.nik=gc.nip_petugas "
-                    + "left join kamar_inap ki on ki.no_rawat=gc.no_rawat left join kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "left join bangsal b on b.kd_bangsal=k.kd_bangsal where "
+                    + "inner join pegawai pg on pg.nik=gc.nip_petugas where "
                     + "gc.tanggal between ? and ? and gc.no_rawat like ? or "
                     + "gc.tanggal between ? and ? and p.no_rkm_medis like ? or "
                     + "gc.tanggal between ? and ? and p.nm_pasien like ? or "
-                    + "gc.tanggal between ? and ? and pg.nama like ? or "
-                    + "gc.tanggal between ? and ? and if(rp.status_lanjut='Ralan',pl.nm_poli,b.nm_bangsal) like ? order by gc.waktu_simpan desc");
+                    + "gc.tanggal between ? and ? and pg.nama like ? order by gc.waktu_simpan desc");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -1716,18 +1728,19 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
                 ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
                 ps.setString(12, "%" + TCari.getText().trim() + "%");
-                ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(15, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
+                    ruangrwt = Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                            + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + rs.getString("no_rawat") + "' "
+                            + "order by ki.tgl_masuk, ki.jam_masuk limit 1");
+                    
                     tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
                         rs.getString("jenkel"),
                         rs.getString("tglLahir"),
-                        rs.getString("rgrawat"),
+                        ruangrwt,
                         rs.getString("tglGC"),
                         rs.getString("nmPtgs"),
                         rs.getString("nmttd"),
@@ -1770,9 +1783,9 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
     public void emptTeks(){
         TnmBerttd.setText("");
         Talamat.setText("");
-        kdkel = "-";
-        kdkec = "-";
-        kdkab = "-";
+        kdkel = "0";
+        kdkec = "0";
+        kdkab = "0";
         TnmKel.setText("-");
         TnmKec.setText("-");
         TnmKab.setText("-");
@@ -1792,19 +1805,21 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
         if (akses.getadmin() == true) {
             nipPtgs = "-";
         } else {
-            nipPtgs = Sequel.cariIsi("select nip_petugas from reg_periksa where no_rawat='" + TNoRw.getText() + "'");
+            nipPtgs = akses.getkode();
         }
 
         TnmPetugas.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipPtgs + "'"));
         TnmSaksi1.setText("");
         TnmSaksi2.setText("");
     }
-    
-    public void setData(String norwt, String rgrawat) {
+
+    public void setData(String norwt) {
         TNoRw.setText(norwt);
         TNoRM.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + norwt + "'"));
         TPasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
-        TrgRawat.setText(rgrawat);
+        TrgRawat.setText(Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + norwt + "' "
+                + "order by ki.tgl_masuk, ki.jam_masuk limit 1"));
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
         DTPCari2.setDate(new Date());
         TCari.setText(norwt);
@@ -1821,7 +1836,7 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
             if (TnmPetugas.getText().equals("")) {
                 TnmPetugas.setText("-");
             }
-        }  
+        }
     }
 
     private void getData() {

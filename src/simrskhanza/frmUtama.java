@@ -431,6 +431,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import rekammedis.DlgMasterNomorDokumenRM;
 import rekammedis.RMGeneralConsent;
+import rekammedis.RMPersetujuanRawatInap;
 import tranfusidarah.UTDPenyerahanDarahPasienDirawat;
 
 /**
@@ -991,6 +992,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnUTDPenyerahanDarahDirawat = new widget.ButtonBig();
         btnMasterNomorDokumenRM = new widget.ButtonBig();
         btnGeneralConsent = new widget.ButtonBig();
+        btnPersetujuanRanap = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6632,6 +6634,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnGeneralConsent);
 
+        btnPersetujuanRanap.setForeground(new java.awt.Color(0, 0, 0));
+        btnPersetujuanRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        btnPersetujuanRanap.setText("Persetujuan Rawat Inap");
+        btnPersetujuanRanap.setIconTextGap(0);
+        btnPersetujuanRanap.setName("btnPersetujuanRanap"); // NOI18N
+        btnPersetujuanRanap.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPersetujuanRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPersetujuanRanapActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnPersetujuanRanap);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6640,7 +6655,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03/02/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/02/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13106,6 +13121,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnGeneralConsentActionPerformed
 
+    private void btnPersetujuanRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersetujuanRanapActionPerformed
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMPersetujuanRawatInap form = new RMPersetujuanRawatInap(this, false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnPersetujuanRanapActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13433,6 +13461,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnPeriksaRadiologi;
     private widget.ButtonBig btnPermintaanLab;
     private widget.ButtonBig btnPermintaanRadiologi;
+    private widget.ButtonBig btnPersetujuanRanap;
     private widget.ButtonBig btnPersetujuanTindakan;
     private widget.ButtonBig btnPerusahaan;
     private widget.ButtonBig btnPetugasPelaksanaPemberianObat;
@@ -13862,6 +13891,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         } else if (cmbMenu.getSelectedIndex() == 1) {
             jmlmenu = 0;
+            if (akses.getbpjs_sep() == true) {
+                Panelmenu.add(btnPersetujuanRanap);
+                jmlmenu++;
+            }
+            
             if (akses.getbpjs_sep() == true) {
                 Panelmenu.add(btnGeneralConsent);
                 jmlmenu++;
@@ -15959,6 +15993,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
         
         if (akses.getbpjs_sep() == true) {
+            Panelmenu.add(btnPersetujuanRanap);
+            jmlmenu++;
+        }
+        
+        if (akses.getbpjs_sep() == true) {
             Panelmenu.add(btnGeneralConsent);
             jmlmenu++;
         }
@@ -18049,6 +18088,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getsatu_sehat()== true) {
             if (btnKirimMedicationDispenseSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnKirimMedicationDispenseSatuSehat);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getbpjs_sep()== true) {
+            if (btnPersetujuanRanap.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnPersetujuanRanap);
                 jmlmenu++;
             }
         }
