@@ -71,7 +71,8 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
     private int i = 0, x = 0;
-    private String kdkel = "", kdkec = "", kdkab = "", nipPtgs = "", pngJwbPasien = "", saksi1 = "", saksi2 = "", ruangrwt = "";
+    private String kdkel = "", kdkec = "", kdkab = "", nipPtgs = "", pngJwbPasien = "", saksi1 = "", saksi2 = "",
+            ruangrwt = "", idFileNmBerttd = "", idFileSaksi1 = "", idFileSaksi2 = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -88,7 +89,7 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
             "No. Rawat", "No. RM", "Nama Pasien", "Jns. Kelamin", "Tgl. Lahir", "Ruang Perawatan", "Tgl. General C.", "Nama Petugas",
             "nm_berttd", "alamat", "kd_kel", "kd_kec", "kd_kab", "selaku", "informasi_anggota_klg1", "informasi_anggota_klg2", "informasi_anggota_klg3",
             "izin_privasi", "orang_penengok1", "orang_penengok2", "orang_penengok3", "tanggal", "nip_petugas", "saksi1", "saksi2", "waktu_simpan",
-            "no_tlp"
+            "no_tlp", "id_file_nm_berttd", "id_file_saksi1", "id_file_saksi2"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -100,7 +101,7 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
         tbGC.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbGC.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 27; i++) {
+        for (i = 0; i < 30; i++) {
             TableColumn column = tbGC.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -173,6 +174,15 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 26) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 27) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 28) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 29) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -1173,11 +1183,11 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
                 saksi2 = TnmSaksi2.getText() + " (Saksi 2)";
             }
             
-            if (Sequel.menyimpantf("general_consent", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 20, new String[]{
+            if (Sequel.menyimpantf("general_consent", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 23, new String[]{
                 TNoRw.getText(), pngJwbPasien, Talamat.getText(), kdkel, kdkec, kdkab, TnoTelp.getText(), cmbSelaku.getSelectedItem().toString(),
                 TnmKlgA.getText(), TnmKlgB.getText(), TnmKlgC.getText(), cmbIzin.getSelectedItem().toString(), TnmTengokA.getText(),
-                TnmTengokB.getText(), TnmTengokC.getText(), Valid.SetTgl(TtglGC.getSelectedItem() + ""), nipPtgs,
-                saksi1, saksi2, Sequel.cariIsi("select now()")
+                TnmTengokB.getText(), TnmTengokC.getText(), Valid.SetTgl(TtglGC.getSelectedItem() + ""), nipPtgs, saksi1, saksi2,
+                Sequel.cariIsi("select now()"), "", "", ""
             }) == true) {
 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "General Consent", "Simpan");
@@ -1761,7 +1771,10 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
                         rs.getString("sak1"),
                         rs.getString("sak2"),
                         rs.getString("waktu_simpan"),
-                        rs.getString("no_tlp")
+                        rs.getString("no_tlp"),                        
+                        rs.getString("id_file_nm_berttd"),
+                        rs.getString("id_file_saksi1"),
+                        rs.getString("id_file_saksi2")
                     });
                 }
             } catch (Exception e) {
@@ -1844,6 +1857,9 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
         kdkel = "";
         kdkec = "";
         kdkab = "";
+        idFileNmBerttd = "";
+        idFileSaksi1 = "";
+        idFileSaksi2 = "";
         
         if (tbGC.getSelectedRow() != -1) {
             TNoRw.setText(tbGC.getValueAt(tbGC.getSelectedRow(), 0).toString());
@@ -1871,7 +1887,10 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
             TnmPetugas.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipPtgs + "'"));
             TnmSaksi1.setText(tbGC.getValueAt(tbGC.getSelectedRow(), 23).toString());
             TnmSaksi2.setText(tbGC.getValueAt(tbGC.getSelectedRow(), 24).toString());
-            TnoTelp.setText(tbGC.getValueAt(tbGC.getSelectedRow(), 26).toString());
+            TnoTelp.setText(tbGC.getValueAt(tbGC.getSelectedRow(), 26).toString());            
+            idFileNmBerttd = tbGC.getValueAt(tbGC.getSelectedRow(), 27).toString();
+            idFileSaksi1 = tbGC.getValueAt(tbGC.getSelectedRow(), 28).toString();
+            idFileSaksi2 = tbGC.getValueAt(tbGC.getSelectedRow(), 29).toString();
         }
     }
 }

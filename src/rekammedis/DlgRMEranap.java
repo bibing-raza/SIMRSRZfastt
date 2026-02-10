@@ -120,6 +120,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         FormInput = new widget.PanelBiasa();
         BtnPersetujuanRanap = new widget.ButtonBig();
         BtnGeneralConsent = new widget.ButtonBig();
+        BtnSuratPernyataanRanap = new widget.ButtonBig();
         BtnTriasePonek = new widget.ButtonBig();
         BtnAsesmenRestrain = new widget.ButtonBig();
         BtnObservasiRestrain = new widget.ButtonBig();
@@ -356,6 +357,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnGeneralConsent);
+
+        BtnSuratPernyataanRanap.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSuratPernyataanRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnSuratPernyataanRanap.setText("Surat Pernyataan Peserta BPJS");
+        BtnSuratPernyataanRanap.setIconTextGap(0);
+        BtnSuratPernyataanRanap.setName("BtnSuratPernyataanRanap"); // NOI18N
+        BtnSuratPernyataanRanap.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnSuratPernyataanRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSuratPernyataanRanapActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnSuratPernyataanRanap);
 
         BtnTriasePonek.setForeground(new java.awt.Color(0, 0, 0));
         BtnTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/report_icon.png"))); // NOI18N
@@ -2022,6 +2036,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPersetujuanRanapActionPerformed
 
+    private void BtnSuratPernyataanRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSuratPernyataanRanapActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMSuratPenyataanRanapBPJS form = new RMSuratPenyataanRanapBPJS(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnSuratPernyataanRanapActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2091,6 +2122,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnSerahTerimaBayiPulang;
     private widget.Button BtnSimpan6;
     private widget.ButtonBig BtnSkriningUlangGizi;
+    private widget.ButtonBig BtnSuratPernyataanRanap;
     private widget.ButtonBig BtnTransferSerahTerima;
     private widget.ButtonBig BtnTransferTindakan;
     private widget.ButtonBig BtnTriasePonek;

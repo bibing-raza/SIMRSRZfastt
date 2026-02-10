@@ -54,7 +54,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private int i = 0, x = 0;
     private String kdkel = "", kdkec = "", kdkab = "", nipPtgs = "", kdSpes = "", nipDokter = "", 
-            norawat = "", tglreg = "", ruangrwt = "";
+            norawat = "", tglreg = "", ruangrwt = "", idFileNmBerttd = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -70,7 +70,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
             "No. Rawat", "Nama BerTTD", "No. RM", "Nama Pasien", "Jns. Kelamin", "Tgl. Lahir", "Ruang Perawatan", "Tgl. Daftar/Reg.",
             "Tgl. Persetujuan", "Nama Dokter", "Nama Petugas",
             "nm_berttd", "umur", "alamat", "kd_kel", "kd_kec", "kd_kab", "no_tlp", "no_identitas", "biaya_untuk", "kd_sps", "nip_dokter",
-            "tanggal", "jam", "nip_petugas", "waktu_simpan", "tgl_registrasi"
+            "tanggal", "jam", "nip_petugas", "waktu_simpan", "tgl_registrasi", "id_file_nm_berttd"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -82,7 +82,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         tbPersetujuan.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPersetujuan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 27; i++) {
+        for (i = 0; i < 28; i++) {
             TableColumn column = tbPersetujuan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -152,6 +152,9 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 26) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 27) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -515,7 +518,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         BtnKelurahan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKelurahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnKelurahan.setMnemonic('2');
         BtnKelurahan.setToolTipText("ALt+2");
         BtnKelurahan.setName("BtnKelurahan"); // NOI18N
         BtnKelurahan.addActionListener(new java.awt.event.ActionListener() {
@@ -555,7 +557,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         BtnKecamatan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKecamatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnKecamatan.setMnemonic('3');
         BtnKecamatan.setToolTipText("ALt+3");
         BtnKecamatan.setName("BtnKecamatan"); // NOI18N
         BtnKecamatan.addActionListener(new java.awt.event.ActionListener() {
@@ -580,7 +581,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         BtnKabupaten.setForeground(new java.awt.Color(0, 0, 0));
         BtnKabupaten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnKabupaten.setMnemonic('4');
         BtnKabupaten.setToolTipText("ALt+4");
         BtnKabupaten.setName("BtnKabupaten"); // NOI18N
         BtnKabupaten.addActionListener(new java.awt.event.ActionListener() {
@@ -646,11 +646,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         Tpasien.setEditable(false);
         Tpasien.setForeground(new java.awt.Color(0, 0, 0));
         Tpasien.setName("Tpasien"); // NOI18N
-        Tpasien.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TpasienKeyPressed(evt);
-            }
-        });
         FormInput.add(Tpasien);
         Tpasien.setBounds(204, 234, 450, 23);
 
@@ -679,7 +674,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         jLabel19.setBounds(0, 318, 110, 23);
 
         Ttgl.setEditable(false);
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2026" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -740,7 +735,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         BtnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPetugas.setMnemonic('4');
         BtnPetugas.setToolTipText("ALt+4");
         BtnPetugas.setName("BtnPetugas"); // NOI18N
         BtnPetugas.addActionListener(new java.awt.event.ActionListener() {
@@ -753,7 +747,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         BtnDokter.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokter.setMnemonic('4');
         BtnDokter.setToolTipText("ALt+4");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -813,7 +806,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -832,7 +824,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -851,7 +842,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -865,7 +855,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -914,7 +903,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -933,7 +921,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -963,7 +950,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         panelGlass10.add(jLabel24);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -978,7 +965,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         panelGlass10.add(jLabel25);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1003,7 +990,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -1071,11 +1057,11 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         if (norawat.equals("")) {
             Valid.textKosong(TNoRM, "Pasien");
         } else {
-            if (Sequel.menyimpantf("persetujuan_ranap", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 16, new String[]{
+            if (Sequel.menyimpantf("persetujuan_ranap", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 17, new String[]{
                 norawat, Tnm.getText(), Tumur.getText(), Talamat.getText(), kdkel, kdkec, kdkab, TnoTelp.getText(),
                 TnoIdentitas.getText(), cmbBiaya.getSelectedItem().toString(), kdSpes, nipDokter, Valid.SetTgl(Ttgl.getSelectedItem() + ""),
                 cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), nipPtgs,
-                Sequel.cariIsi("select now()")
+                Sequel.cariIsi("select now()"), ""
             }) == true) {
 
                 Sequel.SimpanHistoriRekamMedis(norawat, "Persetujuan Rawat Inap", "Simpan");
@@ -1288,10 +1274,6 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
             Talamat.requestFocus();
         }
     }//GEN-LAST:event_TnoTelpKeyPressed
-
-    private void TpasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TpasienKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TpasienKeyPressed
 
     private void cmbJamMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJamMouseReleased
         AutoCompleteDecorator.decorate(cmbJam);
@@ -1592,7 +1574,8 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
                         rs.getString("jam"),
                         rs.getString("nip_petugas"),
                         rs.getString("waktu_simpan"),
-                        rs.getString("tgl_registrasi")
+                        rs.getString("tgl_registrasi"),
+                        rs.getString("id_file_nm_berttd")
                     });
                 }
             } catch (Exception e) {
@@ -1650,6 +1633,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         nipDokter = "";
         norawat = "";
         tglreg = "";
+        idFileNmBerttd = "";
 
         if (tbPersetujuan.getSelectedRow() != -1) {
             norawat = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 0).toString();
@@ -1679,6 +1663,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
             cmbDtk.setSelectedItem(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 23).toString().substring(6, 8));
             nipPtgs = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 24).toString();
             TnmPetugas.setText(tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 10).toString());
+            idFileNmBerttd = tbPersetujuan.getValueAt(tbPersetujuan.getSelectedRow(), 27).toString();
         }
     }
     
