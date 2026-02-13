@@ -432,6 +432,8 @@ import java.text.SimpleDateFormat;
 import rekammedis.DlgMasterNomorDokumenRM;
 import rekammedis.RMGeneralConsent;
 import rekammedis.RMPersetujuanRawatInap;
+import rekammedis.RMSuratPenyataanBukanKLL;
+import rekammedis.RMSuratPenyataanNaikKelas;
 import rekammedis.RMSuratPenyataanRanapBPJS;
 import tranfusidarah.UTDPenyerahanDarahPasienDirawat;
 
@@ -995,6 +997,8 @@ public class frmUtama extends javax.swing.JFrame {
         btnGeneralConsent = new widget.ButtonBig();
         btnPersetujuanRanap = new widget.ButtonBig();
         btnSuratPernyataanRanapBpjs = new widget.ButtonBig();
+        btnSuratPernyataanNaikKelas = new widget.ButtonBig();
+        btnSuratPernyataanBukanKLL = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6662,6 +6666,32 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnSuratPernyataanRanapBpjs);
 
+        btnSuratPernyataanNaikKelas.setForeground(new java.awt.Color(0, 0, 0));
+        btnSuratPernyataanNaikKelas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        btnSuratPernyataanNaikKelas.setText("Surat Pernyataan Naik Kls. BPJS");
+        btnSuratPernyataanNaikKelas.setIconTextGap(0);
+        btnSuratPernyataanNaikKelas.setName("btnSuratPernyataanNaikKelas"); // NOI18N
+        btnSuratPernyataanNaikKelas.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratPernyataanNaikKelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuratPernyataanNaikKelasActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnSuratPernyataanNaikKelas);
+
+        btnSuratPernyataanBukanKLL.setForeground(new java.awt.Color(0, 0, 0));
+        btnSuratPernyataanBukanKLL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        btnSuratPernyataanBukanKLL.setText("Surat Pernyataan Bukan KLL");
+        btnSuratPernyataanBukanKLL.setIconTextGap(0);
+        btnSuratPernyataanBukanKLL.setName("btnSuratPernyataanBukanKLL"); // NOI18N
+        btnSuratPernyataanBukanKLL.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratPernyataanBukanKLL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuratPernyataanBukanKLLActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnSuratPernyataanBukanKLL);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6670,7 +6700,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09/02/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/02/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13162,6 +13192,32 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnSuratPernyataanRanapBpjsActionPerformed
 
+    private void btnSuratPernyataanNaikKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuratPernyataanNaikKelasActionPerformed
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMSuratPenyataanNaikKelas form = new RMSuratPenyataanNaikKelas(this, false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnSuratPernyataanNaikKelasActionPerformed
+
+    private void btnSuratPernyataanBukanKLLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuratPernyataanBukanKLLActionPerformed
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMSuratPenyataanBukanKLL form = new RMSuratPenyataanBukanKLL(this, false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnSuratPernyataanBukanKLLActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13593,6 +13649,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnSuratKeteranganSakit;
     private widget.ButtonBig btnSuratKonsulInternalPoli;
     private widget.ButtonBig btnSuratKonsulUnitRanap;
+    private widget.ButtonBig btnSuratPernyataanBukanKLL;
+    private widget.ButtonBig btnSuratPernyataanNaikKelas;
     private widget.ButtonBig btnSuratPernyataanRanapBpjs;
     private widget.ButtonBig btnSurveilansPD3I;
     private widget.ButtonBig btnSurveilansRalan;
@@ -13932,6 +13990,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getbpjs_sep() == true) {
                 Panelmenu.add(btnSuratPernyataanRanapBpjs);
+                jmlmenu++;
+            }
+            
+            if (akses.getbpjs_sep() == true) {
+                Panelmenu.add(btnSuratPernyataanNaikKelas);
+                jmlmenu++;
+            }
+            
+            if (akses.getbpjs_sep() == true) {
+                Panelmenu.add(btnSuratPernyataanBukanKLL);
                 jmlmenu++;
             }
             
@@ -16038,6 +16106,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getbpjs_sep() == true) {
             Panelmenu.add(btnSuratPernyataanRanapBpjs);
+            jmlmenu++;
+        }
+        
+        if (akses.getbpjs_sep() == true) {
+            Panelmenu.add(btnSuratPernyataanNaikKelas);
+            jmlmenu++;
+        }
+        
+        if (akses.getbpjs_sep() == true) {
+            Panelmenu.add(btnSuratPernyataanBukanKLL);
             jmlmenu++;
         }
 
@@ -18148,6 +18226,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getbpjs_sep()== true) {
             if (btnSuratPernyataanRanapBpjs.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnSuratPernyataanRanapBpjs);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getbpjs_sep()== true) {
+            if (btnSuratPernyataanNaikKelas.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnSuratPernyataanNaikKelas);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getbpjs_sep()== true) {
+            if (btnSuratPernyataanBukanKLL.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnSuratPernyataanBukanKLL);
                 jmlmenu++;
             }
         }

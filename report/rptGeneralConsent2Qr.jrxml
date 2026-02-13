@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="2.0000000000000058"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="660"/>
+	<property name="ireport.y" value="668"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -23,6 +23,9 @@
 	<parameter name="nmBerttd" class="java.lang.String"/>
 	<parameter name="lokasiQr" class="java.io.InputStream"/>
 	<parameter name="kalimatTte" class="java.lang.String"/>
+	<parameter name="gambarTtd0" class="java.lang.String"/>
+	<parameter name="gambarTtd1" class="java.lang.String"/>
+	<parameter name="gambarTtd2" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT date(now()) tgl]]>
 	</queryString>
@@ -30,7 +33,7 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
-		<band height="675">
+		<band height="687">
 			<line>
 				<reportElement x="0" y="12" width="519" height="1">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -40,19 +43,19 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="12" width="1" height="660"/>
+				<reportElement x="0" y="12" width="1" height="670"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="519" y="12" width="1" height="660"/>
+				<reportElement x="519" y="12" width="1" height="670"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="671" width="519" height="1"/>
+				<reportElement x="0" y="682" width="519" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -168,14 +171,14 @@ Saya dan juga keluarga mempunyai tanggung jawab sebagai pasien di RSUD Ratu Zale
 				<textFieldExpression class="java.lang.String"><![CDATA["("+$P{pemberiInformasi}+")"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="27" y="644" width="235" height="12"/>
+				<reportElement x="27" y="655" width="235" height="12"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["("+$P{saksi1}+")"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="27" y="579" width="235" height="12">
+				<reportElement x="27" y="569" width="235" height="12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
@@ -184,7 +187,7 @@ Saya dan juga keluarga mempunyai tanggung jawab sebagai pasien di RSUD Ratu Zale
 				<text><![CDATA[Saksi 1]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="293" y="579" width="221" height="12">
+				<reportElement x="293" y="569" width="221" height="12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
@@ -193,7 +196,7 @@ Saya dan juga keluarga mempunyai tanggung jawab sebagai pasien di RSUD Ratu Zale
 				<text><![CDATA[Saksi 2]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="293" y="644" width="221" height="12"/>
+				<reportElement x="293" y="655" width="221" height="12"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -202,6 +205,18 @@ Saya dan juga keluarga mempunyai tanggung jawab sebagai pasien di RSUD Ratu Zale
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="365" y="465" width="80" height="76"/>
 				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQr}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="103" y="465" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd0}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="103" y="580" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd1}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="365" y="580" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd2}]]></imageExpression>
 			</image>
 		</band>
 	</title>

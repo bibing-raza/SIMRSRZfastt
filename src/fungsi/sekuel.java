@@ -24,7 +24,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.ByteBuffer;
@@ -46,6 +48,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.net.InetAddress;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -1345,7 +1349,7 @@ public final class sekuel {
                 rm27 = 0, rm28 = 0, rm29 = 0, rm30 = 0, rm31 = 0, rm32 = 0, rm33 = 0, rm34 = 0, rm35 = 0, rm36 = 0, rm37 = 0, rm38 = 0, rm39 = 0,
                 rm40 = 0, rm41 = 0, rm42 = 0, rm43 = 0, rm44 = 0, rm45 = 0, rm46 = 0, rm47 = 0, rm48 = 0, rm49 = 0, rm50 = 0, rm51 = 0, rm52 = 0,
                 rm53 = 0, rm54 = 0, rm55 = 0, rm56 = 0, rm57 = 0, rm58 = 0, rm59 = 0, rm60 = 0, rm61 = 0, rm62 = 0, rm63 = 0, rm64 = 0, rm65 = 0,
-                rm66 = 0, rm67 = 0, rm68 = 0, rm69 = 0;
+                rm66 = 0, rm67 = 0, rm68 = 0, rm69 = 0, rm70 = 0, rm71 = 0;
 
         String tbl1 = "", tbl2 = "", tbl3 = "", tbl4 = "", tbl5 = "", tbl6 = "", tbl7 = "", tbl8 = "", tbl9 = "", tbl10 = "", tbl11 = "", tbl12 = "",
                 tbl13 = "", tbl14 = "", tbl15 = "", tbl16 = "", tbl17 = "", tbl18 = "", tbl19 = "", tbl20 = "", tbl21 = "", tbl22 = "", tbl23 = "",
@@ -1353,7 +1357,7 @@ public final class sekuel {
                 tbl35 = "", tbl36 = "", tbl37 = "", tbl38 = "", tbl39 = "", tbl40 = "", tbl41 = "", tbl42 = "", tbl43 = "", tbl44 = "", tbl45 = "",
                 tbl46 = "", tbl47 = "", tbl48 = "", tbl49 = "", tbl50 = "", tbl51 = "", tbl52 = "", tbl53 = "", tbl54 = "", tbl55 = "", tbl56 = "",
                 tbl57 = "", tbl58 = "", tbl59 = "", tbl60 = "", tbl61 = "", tbl62 = "", tbl63 = "", tbl64 = "", tbl65 = "", tbl66 = "", tbl67 = "",
-                tbl68 = "", tbl69 = "";
+                tbl68 = "", tbl69 = "", tbl70 = "", tbl71 = "";
 
         rm1 = cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
         rm2 = cariInteger("select count(-1) from evaluasi_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
@@ -1424,6 +1428,8 @@ public final class sekuel {
         rm67 = cariInteger("select count(-1) from general_consent where no_rawat='" + norawat + "'");
         rm68 = cariInteger("select count(-1) from persetujuan_ranap where no_rawat='" + norawat + "'");
         rm69 = cariInteger("select count(-1) from surat_pernyataan_ranap_bpjs where no_rawat='" + norawat + "'");
+        rm70 = cariInteger("select count(-1) from surat_pernyataan_naik_kelas_bpjs where no_rawat='" + norawat + "'");
+        rm71 = cariInteger("select count(-1) from surat_pernyataan_bukan_kll where no_rawat='" + norawat + "'");
         
         if (rm1 > 0) {
             tbl1 = "catatan_tindakan_keperawatan\n";
@@ -1839,10 +1845,22 @@ public final class sekuel {
             tbl69 = "";
         }
         
+        if (rm70 > 0) {
+            tbl70= "surat_pernyataan_naik_kelas_bpjs\n";
+        } else {
+            tbl70 = "";
+        }
+        
+        if (rm71 > 0) {
+            tbl71= "surat_pernyataan_bukan_kll\n";
+        } else {
+            tbl71 = "";
+        }
+        
         angka = rm1 + rm2 + rm3 + rm4 + rm5 + rm6 + rm7 + rm8 + rm9 + rm10 + rm11 + rm12 + rm13 + rm14 + rm15 + rm16 + rm17 + rm18 + rm19
                 + rm20 + rm21 + rm22 + rm23 + rm24 + rm25 + rm26 + rm27 + rm28 + rm29 + rm30 + rm31 + rm32 + rm33 + rm34 + rm35 + rm36 + rm37
                 + rm38 + rm39 + rm40 + rm41 + rm42 + rm43 + rm44 + rm45 + rm46 + rm47 + rm48 + rm49 + rm50 + rm51 + rm52 + rm53 + rm54 + rm55 + rm56
-                + rm57 + rm58 + rm59 + rm60 + rm61 + rm62 + rm63 + rm64 + rm65 + rm66 + rm67 + rm68 + rm69;
+                + rm57 + rm58 + rm59 + rm60 + rm61 + rm62 + rm63 + rm64 + rm65 + rm66 + rm67 + rm68 + rm69 + rm70 + rm71;
         
         if (angka > 0) {
             System.out.println("\nPesan  : no. rawat " + norawat + " utk. data e-RM nya masih ada tersimpan ditabel berikut ini :\n"
@@ -1850,6 +1868,7 @@ public final class sekuel {
                     + tbl19 + tbl20 + tbl21 + tbl22 + tbl23 + tbl24 + tbl25 + tbl26 + tbl27 + tbl28 + tbl29 + tbl30 + tbl31 + tbl32 + tbl33 + tbl34 + tbl35
                     + tbl36 + tbl37 + tbl38 + tbl39 + tbl40 + tbl41 + tbl42 + tbl43 + tbl44 + tbl45 + tbl46 + tbl47 + tbl48 + tbl49 + tbl50 + tbl51 + tbl52
                     + tbl53 + tbl54 + tbl55 + tbl56 + tbl57 + tbl58 + tbl59 + tbl60 + tbl61 + tbl62 + tbl63 + tbl64 + tbl65 + tbl66 + tbl67 + tbl68 + tbl69
+                    + tbl70 + tbl71
             );
         }
 
@@ -3740,5 +3759,50 @@ public final class sekuel {
         }
 
         return Base64.getEncoder().encodeToString(bytes);
+    }
+    
+    public boolean hapusFileTTD(String idFilenya) {
+        bool = false;
+        String ipGambar = "";
+        try {
+            //cek atau ping ip addres
+            ipGambar = "192.168.0.230";
+            InetAddress inet = InetAddress.getByName(ipGambar);
+
+            //ping sukses timeout 100 ms (0.1 detik)
+            if (inet.isReachable(100)) {
+                String idFile = idFilenya;
+                String urlHapus = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/hapus";
+                URL url = new URL(urlHapus);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestMethod("POST");
+                conn.setDoOutput(true);
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                String body = "id=" + URLEncoder.encode(idFile, "UTF-8");
+
+                try (OutputStream os = conn.getOutputStream()) {
+                    os.write(body.getBytes(StandardCharsets.UTF_8));
+                }
+
+                int responseCode = conn.getResponseCode();
+
+                if (responseCode == 200) {
+                    // sukses hapus
+                    String urlPreview = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + URLEncoder.encode(idFile, "UTF-8");
+                    queryu("delete from ttd_erm_keluarga_pasien where id_file='" + idFilenya + "'");
+                    bool = true;                    
+                } else {
+                    bool = false;
+                    JOptionPane.showMessageDialog(null, "Gagal menghapus TTD..!!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Terjadi kesalahan koneksi");
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        
+        return bool;
     }
 }

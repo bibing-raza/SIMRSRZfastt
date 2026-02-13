@@ -121,6 +121,8 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnPersetujuanRanap = new widget.ButtonBig();
         BtnGeneralConsent = new widget.ButtonBig();
         BtnSuratPernyataanRanap = new widget.ButtonBig();
+        BtnSuratPernyataanNaikKelas = new widget.ButtonBig();
+        BtnSuratPernyataanBukanKLL = new widget.ButtonBig();
         BtnTriasePonek = new widget.ButtonBig();
         BtnAsesmenRestrain = new widget.ButtonBig();
         BtnObservasiRestrain = new widget.ButtonBig();
@@ -370,6 +372,32 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnSuratPernyataanRanap);
+
+        BtnSuratPernyataanNaikKelas.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSuratPernyataanNaikKelas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnSuratPernyataanNaikKelas.setText("Surat Pernyataan Naik Kelas");
+        BtnSuratPernyataanNaikKelas.setIconTextGap(0);
+        BtnSuratPernyataanNaikKelas.setName("BtnSuratPernyataanNaikKelas"); // NOI18N
+        BtnSuratPernyataanNaikKelas.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnSuratPernyataanNaikKelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSuratPernyataanNaikKelasActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnSuratPernyataanNaikKelas);
+
+        BtnSuratPernyataanBukanKLL.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSuratPernyataanBukanKLL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnSuratPernyataanBukanKLL.setText("Surat Pernyataan Bukan KLL");
+        BtnSuratPernyataanBukanKLL.setIconTextGap(0);
+        BtnSuratPernyataanBukanKLL.setName("BtnSuratPernyataanBukanKLL"); // NOI18N
+        BtnSuratPernyataanBukanKLL.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnSuratPernyataanBukanKLL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSuratPernyataanBukanKLLActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnSuratPernyataanBukanKLL);
 
         BtnTriasePonek.setForeground(new java.awt.Color(0, 0, 0));
         BtnTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/report_icon.png"))); // NOI18N
@@ -2053,6 +2081,40 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnSuratPernyataanRanapActionPerformed
 
+    private void BtnSuratPernyataanNaikKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSuratPernyataanNaikKelasActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMSuratPenyataanNaikKelas form = new RMSuratPenyataanNaikKelas(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnSuratPernyataanNaikKelasActionPerformed
+
+    private void BtnSuratPernyataanBukanKLLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSuratPernyataanBukanKLLActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMSuratPenyataanBukanKLL form = new RMSuratPenyataanBukanKLL(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnSuratPernyataanBukanKLLActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2122,6 +2184,8 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnSerahTerimaBayiPulang;
     private widget.Button BtnSimpan6;
     private widget.ButtonBig BtnSkriningUlangGizi;
+    private widget.ButtonBig BtnSuratPernyataanBukanKLL;
+    private widget.ButtonBig BtnSuratPernyataanNaikKelas;
     private widget.ButtonBig BtnSuratPernyataanRanap;
     private widget.ButtonBig BtnTransferSerahTerima;
     private widget.ButtonBig BtnTransferTindakan;
@@ -2215,6 +2279,16 @@ public class DlgRMEranap extends javax.swing.JDialog {
         gedung = nmgedung;
         TtglMasuk.setText(tglmsk);
         tombolCek(norw);
+        
+        if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + norw + "' and kd_pj='B01'") > 0) {
+            BtnSuratPernyataanRanap.setEnabled(true);
+            BtnSuratPernyataanNaikKelas.setEnabled(true);
+            BtnSuratPernyataanBukanKLL.setEnabled(true);
+        } else {
+            BtnSuratPernyataanRanap.setEnabled(false);
+            BtnSuratPernyataanNaikKelas.setEnabled(false);
+            BtnSuratPernyataanBukanKLL.setEnabled(false);
+        }
     }
 
     private void tombolCek(String norawat) {

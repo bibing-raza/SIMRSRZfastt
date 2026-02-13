@@ -464,7 +464,6 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         BtnKelurahan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKelurahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnKelurahan.setMnemonic('2');
         BtnKelurahan.setToolTipText("ALt+2");
         BtnKelurahan.setName("BtnKelurahan"); // NOI18N
         BtnKelurahan.addActionListener(new java.awt.event.ActionListener() {
@@ -477,7 +476,7 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         chkSamaAlamat.setBorder(null);
         chkSamaAlamat.setForeground(new java.awt.Color(0, 0, 0));
-        chkSamaAlamat.setText("Alamat Sama Dengan Data Persetujuan R. Inap");
+        chkSamaAlamat.setText("Data Sama Dengan Persetujuan Rawat Inap");
         chkSamaAlamat.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         chkSamaAlamat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSamaAlamat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -504,7 +503,6 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         BtnKecamatan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKecamatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnKecamatan.setMnemonic('3');
         BtnKecamatan.setToolTipText("ALt+3");
         BtnKecamatan.setName("BtnKecamatan"); // NOI18N
         BtnKecamatan.addActionListener(new java.awt.event.ActionListener() {
@@ -529,7 +527,6 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         BtnKabupaten.setForeground(new java.awt.Color(0, 0, 0));
         BtnKabupaten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnKabupaten.setMnemonic('4');
         BtnKabupaten.setToolTipText("ALt+4");
         BtnKabupaten.setName("BtnKabupaten"); // NOI18N
         BtnKabupaten.addActionListener(new java.awt.event.ActionListener() {
@@ -628,7 +625,7 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
         jLabel19.setBounds(485, 290, 60, 23);
 
         Ttgl.setEditable(false);
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2026" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -650,7 +647,6 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         BtnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPetugas.setMnemonic('4');
         BtnPetugas.setToolTipText("ALt+4");
         BtnPetugas.setName("BtnPetugas"); // NOI18N
         BtnPetugas.addActionListener(new java.awt.event.ActionListener() {
@@ -732,7 +728,6 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -751,7 +746,6 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -770,7 +764,6 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -784,7 +777,6 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -815,7 +807,6 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -834,7 +825,6 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -853,7 +843,6 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -883,7 +872,7 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
         panelGlass10.add(jLabel24);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -898,7 +887,7 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
         panelGlass10.add(jLabel25);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-02-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -923,7 +912,6 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -1534,6 +1522,7 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
         TnmKec.setText("-");
         TnmKab.setText("-");
         TnoIdentitas.setText("");
+        chkSamaAlamat.setSelected(false);
         cmbHubungan.setSelectedIndex(0);
         TjnsHubLain.setEnabled(false);
         TjnsHubLain.setText("");        
@@ -1576,6 +1565,12 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
             nipPtgs = tbSurat.getValueAt(tbSurat.getSelectedRow(), 21).toString();
             TnmPetugas.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 9).toString());
             idFileNmBerttd = tbSurat.getValueAt(tbSurat.getSelectedRow(), 22).toString();
+            
+            if (cmbHubungan.getSelectedIndex() == 6) {
+                TjnsHubLain.setEnabled(true);
+            } else {
+                TjnsHubLain.setEnabled(false);
+            }
         }
     }
     
@@ -1583,6 +1578,7 @@ public class RMSuratPenyataanRanapBPJS extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getbpjs_sep());
         BtnHapus.setEnabled(akses.getbpjs_sep());
         BtnGanti.setEnabled(akses.getbpjs_sep());
+        BtnPetugas.setEnabled(akses.getadmin());
         
         if (akses.getjml2() >= 1) {
             nipPtgs = akses.getkode();

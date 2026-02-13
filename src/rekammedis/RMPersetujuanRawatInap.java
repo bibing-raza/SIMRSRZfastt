@@ -1606,6 +1606,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         TnmKel.setText("-");
         TnmKec.setText("-");
         TnmKab.setText("-");
+        chkSamaAlamat.setSelected(false);
         TnoIdentitas.setText("");
         cmbBiaya.setSelectedIndex(0);
         kdSpes = "-";
@@ -1671,6 +1672,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getbpjs_sep());
         BtnHapus.setEnabled(akses.getbpjs_sep());
         BtnGanti.setEnabled(akses.getbpjs_sep());
+        BtnPetugas.setEnabled(akses.getadmin());
         
         if (akses.getjml2() >= 1) {
             nipPtgs = akses.getkode();

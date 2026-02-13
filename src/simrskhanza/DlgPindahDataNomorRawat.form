@@ -138,7 +138,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="09-02-2026"/>
+                        <StringItem index="0" value="12-02-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -166,7 +166,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="09-02-2026"/>
+                        <StringItem index="0" value="12-02-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -585,7 +585,7 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="72">
+                      <StringArray count="74">
                         <StringItem index="0" value=" "/>
                         <StringItem index="1" value="FARMASI"/>
                         <StringItem index="2" value="RADIOLOGI"/>
@@ -658,6 +658,8 @@
                         <StringItem index="69" value="GENERAL CONSENT"/>
                         <StringItem index="70" value="PERSETUJUAN RAWAT INAP"/>
                         <StringItem index="71" value="SURAT PERNYATAAN RANAP PESERTA BPJS"/>
+                        <StringItem index="72" value="SURAT PERNYATAAN NAIK KELAS RAWAT BPJS"/>
+                        <StringItem index="73" value="SURAT PERNYATAAN BUKAN KASUS KLL"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbJnsTran" noResource="true"/>
