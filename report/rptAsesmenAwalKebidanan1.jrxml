@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="2.0000000000000075"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="780"/>
+	<property name="ireport.y" value="758"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -1135,16 +1135,16 @@
 	<detail>
 		<band height="12">
 			<staticText>
-				<reportElement x="3" y="0" width="124" height="11">
+				<reportElement x="3" y="0" width="148" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<text><![CDATA[Periksa Ketempat Bidan]]></text>
+				<text><![CDATA[Periksa Ketempat Bidan/Dokter/RS Lain]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="127" y="0" width="388" height="11"/>
+				<reportElement x="151" y="0" width="364" height="11"/>
 				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>

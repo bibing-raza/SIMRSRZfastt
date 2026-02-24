@@ -8,6 +8,7 @@ import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -15,6 +16,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,9 +28,13 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
+import javax.swing.event.HyperlinkEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPetugas;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
@@ -55,7 +61,7 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
     private BPJSCekNoKartu cekViaBPJSKartu = new BPJSCekNoKartu();
     private int i = 0, x = 0;
     private String kdkel = "", kdkec = "", kdkab = "", nipPtgs = "", norawat = "", ruangrwt = "", idFileNmBerttd = "",
-            idFileNmSaksi = "";
+            idFileNmSaksi = "", cekNmBerttd = "", cekNmSaksi = "", pngJwbPasien = "", saksi = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -324,6 +330,26 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
             @Override
             public void windowDeactivated(WindowEvent e) {}
         });
+        
+        HTMLEditorKit kit = new HTMLEditorKit();
+        StyleSheet styleSheet = kit.getStyleSheet();
+        styleSheet.addRule(".isi td{border-right: 1px solid #edf2e8;font: 10px tahoma;height:12px;border-bottom: 1px solid #edf2e8;background: 0000000;color:0000000;}");
+        Document doc = kit.createDefaultDocument();
+        
+        LoadHTML1.setEditable(true);
+        LoadHTML1.setEditorKit(kit);
+        LoadHTML1.setDocument(doc);
+        LoadHTML1.setEditable(false);
+        LoadHTML1.addHyperlinkListener(e -> {
+            if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.browse(e.getURL().toURI());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
  
     /** This method is called from within the constructor to
@@ -335,6 +361,9 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnHapusTtdPemberi = new javax.swing.JMenuItem();
+        MnHapusTtdSaksi = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         FormInput = new widget.PanelBiasa();
         jLabel4 = new widget.Label();
@@ -382,6 +411,8 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
         cmbNaikKelas = new widget.ComboBox();
         jLabel5 = new widget.Label();
         TnmSaksi = new widget.TextBox();
+        Scroll5 = new widget.ScrollPane();
+        LoadHTML1 = new widget.editorpane();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
@@ -406,6 +437,39 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbSurat = new widget.Table();
+
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+        jPopupMenu1.setPreferredSize(new java.awt.Dimension(200, 60));
+
+        MnHapusTtdPemberi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtdPemberi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtdPemberi.setText("Hapus TTD Pemberi Pernyataan");
+        MnHapusTtdPemberi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtdPemberi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtdPemberi.setIconTextGap(5);
+        MnHapusTtdPemberi.setName("MnHapusTtdPemberi"); // NOI18N
+        MnHapusTtdPemberi.setPreferredSize(new java.awt.Dimension(200, 26));
+        MnHapusTtdPemberi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdPemberiActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapusTtdPemberi);
+
+        MnHapusTtdSaksi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtdSaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtdSaksi.setText("Hapus TTD Saksi");
+        MnHapusTtdSaksi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtdSaksi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtdSaksi.setIconTextGap(5);
+        MnHapusTtdSaksi.setName("MnHapusTtdSaksi"); // NOI18N
+        MnHapusTtdSaksi.setPreferredSize(new java.awt.Dimension(200, 26));
+        MnHapusTtdSaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdSaksiActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapusTtdSaksi);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -633,7 +697,7 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
         jLabel19.setBounds(485, 318, 60, 23);
 
         Ttgl.setEditable(false);
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2026" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2026" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -765,6 +829,18 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
         });
         FormInput.add(TnmSaksi);
         TnmSaksi.setBounds(114, 346, 400, 23);
+
+        Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: TANDA TANGAN :.", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        Scroll5.setName("Scroll5"); // NOI18N
+        Scroll5.setOpaque(true);
+
+        LoadHTML1.setBorder(null);
+        LoadHTML1.setForeground(new java.awt.Color(0, 0, 0));
+        LoadHTML1.setName("LoadHTML1"); // NOI18N
+        Scroll5.setViewportView(LoadHTML1);
+
+        FormInput.add(Scroll5);
+        Scroll5.setBounds(680, 150, 490, 240);
 
         internalFrame1.add(FormInput, java.awt.BorderLayout.PAGE_START);
 
@@ -930,7 +1006,7 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
         panelGlass10.add(jLabel24);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -945,7 +1021,7 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
         panelGlass10.add(jLabel25);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-02-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1011,6 +1087,7 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbSurat.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki/dihapus");
+        tbSurat.setComponentPopupMenu(jPopupMenu1);
         tbSurat.setName("tbSurat"); // NOI18N
         tbSurat.getTableHeader().setReorderingAllowed(false);
         tbSurat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1038,10 +1115,22 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
         if (norawat.equals("")) {
             Valid.textKosong(TNoRM, "Pasien");
         } else {
+            if (Tnm.getText().equals("")) {
+                pngJwbPasien = "";
+            } else {
+                pngJwbPasien = Tnm.getText() + " (Pemberi Pernyataan)";
+            }
+            
+            if (TnmSaksi.getText().equals("")) {
+                saksi = "";
+            } else {
+                saksi = TnmSaksi.getText() + " (Saksi)";
+            }
+            
             if (Sequel.menyimpantf("surat_pernyataan_naik_kelas_bpjs", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18, new String[]{
-                norawat, Tnm.getText(), Tumur.getText(), Talamat.getText(), kdkel, kdkec, kdkab, TnoKtp.getText(),
+                norawat, pngJwbPasien, Tumur.getText(), Talamat.getText(), kdkel, kdkec, kdkab, TnoKtp.getText(),
                 cmbHubungan.getSelectedItem().toString(), TjnsHubLain.getText(), ThakKelas.getText(), cmbNaikKelas.getSelectedItem().toString(),
-                Valid.SetTgl(Ttgl.getSelectedItem() + ""), nipPtgs, TnmSaksi.getText(), "", "", Sequel.cariIsi("select now()")
+                Valid.SetTgl(Ttgl.getSelectedItem() + ""), nipPtgs, saksi, "", "", Sequel.cariIsi("select now()")
             }) == true) {
 
                 Sequel.SimpanHistoriRekamMedis(norawat, "Surat Pernyataan Naik Kelas BPJS Kesehatan", "Simpan");
@@ -1075,19 +1164,41 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
 
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
         if (tbSurat.getSelectedRow() > -1) {
-            if (Sequel.mengedittf("surat_pernyataan_naik_kelas_bpjs", "no_rawat=?", "nm_berttd=?, umur=?, alamat=?, "
-                    + "kd_kel=?, kd_kec=?, kd_kab=?, no_ktp=?, hub_dengan_pasien=?, lainya_hubungan=?, hak_kelas=?, naik_kls_rawat=?, "
-                    + "tanggal=?, nip_petugas=?, nm_saksi=?", 15, new String[]{
-                        Tnm.getText(), Tumur.getText(), Talamat.getText(), kdkel, kdkec, kdkab, TnoKtp.getText(),
-                        cmbHubungan.getSelectedItem().toString(), TjnsHubLain.getText(), ThakKelas.getText(), cmbNaikKelas.getSelectedItem().toString(),
-                        Valid.SetTgl(Ttgl.getSelectedItem() + ""), nipPtgs, TnmSaksi.getText(),
-                        tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
-                    }) == true) {
+            if (Tnm.getText().equals("")) {
+                pngJwbPasien = "";
+            } else {
+                pngJwbPasien = Tnm.getText() + " (Pemberi Pernyataan)";
+            }
+          
+            if (TnmSaksi.getText().equals("")) {
+                saksi = "";
+            } else {
+                saksi = TnmSaksi.getText() + " (Saksi)";
+            }
 
-                Sequel.SimpanHistoriRekamMedis(tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString(), "Surat Pernyataan Naik Kelas BPJS Kesehatan", "Ganti");
-                TCari.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString());
-                tampil();
-                emptTeks();
+            if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmBerttd + "'") > 0
+                    && !cekNmBerttd.equals(Tnm.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, yang memberi pernyataan pasien sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
+                        + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
+            } else if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmSaksi + "'") > 0
+                    && !cekNmSaksi.equals(TnmSaksi.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, saksi pasien sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
+                        + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
+            } else {
+                if (Sequel.mengedittf("surat_pernyataan_naik_kelas_bpjs", "no_rawat=?", "nm_berttd=?, umur=?, alamat=?, "
+                        + "kd_kel=?, kd_kec=?, kd_kab=?, no_ktp=?, hub_dengan_pasien=?, lainya_hubungan=?, hak_kelas=?, naik_kls_rawat=?, "
+                        + "tanggal=?, nip_petugas=?, nm_saksi=?", 15, new String[]{
+                            pngJwbPasien, Tumur.getText(), Talamat.getText(), kdkel, kdkec, kdkab, TnoKtp.getText(),
+                            cmbHubungan.getSelectedItem().toString(), TjnsHubLain.getText(), ThakKelas.getText(), cmbNaikKelas.getSelectedItem().toString(),
+                            Valid.SetTgl(Ttgl.getSelectedItem() + ""), nipPtgs, saksi,
+                            tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
+                        }) == true) {
+
+                    Sequel.SimpanHistoriRekamMedis(tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString(), "Surat Pernyataan Naik Kelas BPJS Kesehatan", "Ganti");
+                    TCari.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString());
+                    tampil();
+                    emptTeks();
+                }
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
@@ -1267,17 +1378,32 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbSurat.getSelectedRow() > -1) {
-            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-            if (x == JOptionPane.YES_OPTION) {
-                if (Sequel.queryu2tf("delete from surat_pernyataan_naik_kelas_bpjs where no_rawat=?", 1, new String[]{
-                    tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
-                }) == true) {
+            if (akses.getadmin() == true || nipPtgs.equals(akses.getkode())) {
+                x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    if (Sequel.queryu2tf("delete from surat_pernyataan_naik_kelas_bpjs where no_rawat=?", 1, new String[]{
+                        tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
+                    }) == true) {
+                        if (!idFileNmBerttd.equals("")) {
+                            Sequel.hapusSemuaTtd(idFileNmBerttd);                            
+                        }
+                        
+                        if (!idFileNmSaksi.equals("")) {
+                            Sequel.hapusSemuaTtd(idFileNmSaksi);
+                        }
+                        
+                        tampil();
+                        emptTeks();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                    }
+                } else {
                     tampil();
                     emptTeks();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
             } else {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, data rekam medis Surat Pernyataan Kenaikan Kelas Perawatan Atas Permintaan Sendiri     \n"
+                        + "Peserta BPJS Kesehatan hanya bisa dihapus oleh " + TnmPetugas.getText() + " ...!!");
                 tampil();
                 emptTeks();
             }
@@ -1347,6 +1473,43 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
                 if (nipPtgs.equals("") || nipPtgs.equals("-") || nipPtgs.equals("--")) {
                     JOptionPane.showMessageDialog(rootPane, "Nama petugas TPPRI harus diisi dulu,..");
                 } else {
+                    try {
+                        String gambar0 = "", gambar1 = "", ipGambar = "";
+                        try {
+                            //cek atau ping ip addres
+                            ipGambar = "192.168.0.230";
+                            InetAddress inet = InetAddress.getByName(ipGambar);
+
+                            //ping sukses timeout 100 ms (0.1 detik)
+                            if (inet.isReachable(100)) {
+                                if (idFileNmBerttd.equals("")) {
+                                    gambar0 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                                } else {
+                                    gambar0 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileNmBerttd;
+                                }
+
+                                if (idFileNmSaksi.equals("")) {
+                                    gambar1 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                                } else {
+                                    gambar1 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileNmSaksi;
+                                }
+                                //ping gagal
+                            } else {
+                                gambar0 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                                gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Notif : " + e);
+                            gambar0 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                            gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                        }
+                        
+                        param.put("gambarTtd0", gambar0);
+                        param.put("gambarTtd1", gambar1);
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
+                    
                     isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                             + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
                                     "Surat Pernyataan Naik Kelas Rawat", TnmPetugas.getText(),
@@ -1405,6 +1568,92 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TnmSaksiKeyPressed
 
+    private void MnHapusTtdPemberiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdPemberiActionPerformed
+        if (tbSurat.getSelectedRow() > -1) {
+            if (akses.getadmin() == true || nipPtgs.equals(akses.getkode())) {
+                x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan pemberi pernyataan pasien mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    String ipGambar = "";
+                    try {
+                        //cek atau ping ip addres
+                        ipGambar = "192.168.0.230";
+                        InetAddress inet = InetAddress.getByName(ipGambar);
+
+                        //ping sukses timeout 100 ms (0.1 detik)
+                        if (inet.isReachable(100)) {
+                            if (idFileNmBerttd.equals("")) {
+                                JOptionPane.showMessageDialog(null, "Yang memberi pernyataan pasien ini belum melakukan tanda tangan...!!!!");
+                            } else {
+                                if (Sequel.hapusFileTTD(idFileNmBerttd) == true) {
+                                    Sequel.mengedit("surat_pernyataan_naik_kelas_bpjs", "no_rawat='" + norawat + "'", "id_file_nm_berttd=''");
+                                    tampil();
+                                    emptTeks();
+                                }
+                            }
+                            //ping gagal
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif : " + e);
+                    }
+                } else {
+                    tampil();
+                    emptTeks();
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, tanda tangan yang memberi pernyataan pasien hanya bisa dihapus oleh " + TnmPetugas.getText() + " ...!!");
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdPemberiActionPerformed
+
+    private void MnHapusTtdSaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdSaksiActionPerformed
+        if (tbSurat.getSelectedRow() > -1) {
+            if (akses.getadmin() == true || nipPtgs.equals(akses.getkode())) {
+                x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan saksi mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    String ipGambar = "";
+                    try {
+                        //cek atau ping ip addres
+                        ipGambar = "192.168.0.230";
+                        InetAddress inet = InetAddress.getByName(ipGambar);
+
+                        //ping sukses timeout 100 ms (0.1 detik)
+                        if (inet.isReachable(100)) {
+                            if (idFileNmSaksi.equals("")) {
+                                JOptionPane.showMessageDialog(null, "Saksi pasien ini belum melakukan tanda tangan...!!!!");
+                            } else {
+                                if (Sequel.hapusFileTTD(idFileNmSaksi) == true) {
+                                    Sequel.mengedit("surat_pernyataan_naik_kelas_bpjs", "no_rawat='" + norawat + "'", "id_file_nm_saksi=''");
+                                    tampil();
+                                    emptTeks();
+                                }
+                            }
+                            //ping gagal
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif : " + e);
+                    }
+                } else {
+                    tampil();
+                    emptTeks();
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, tanda tangan saksi hanya bisa dihapus oleh " + TnmPetugas.getText() + " ...!!");
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdSaksiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1438,7 +1687,11 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormInput;
     private widget.Label LCount;
+    private widget.editorpane LoadHTML1;
+    private javax.swing.JMenuItem MnHapusTtdPemberi;
+    private javax.swing.JMenuItem MnHapusTtdSaksi;
     private widget.ScrollPane Scroll;
+    private widget.ScrollPane Scroll5;
     public widget.TextBox TCari;
     private widget.TextBox TNoRM;
     private widget.TextBox Talamat;
@@ -1490,18 +1743,20 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass8;
     private widget.Table tbSurat;
     // End of variables declaration//GEN-END:variables
 
-    public void tampil() {     
+    public void tampil() {
+        LoadHTML1.setText("");
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("select sp.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
                     + "rp.tgl_registrasi, date_format(rp.tgl_registrasi,'%d-%m-%Y') tglReg, date_format(sp.tanggal,'%d-%m-%Y') tglSurat, "
-                    + "pg.nama nmPtgs from surat_pernyataan_naik_kelas_bpjs sp inner join reg_periksa rp on rp.no_rawat=sp.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=sp.nip_petugas WHERE "
+                    + "pg.nama nmPtgs, replace(sp.nm_berttd,' (Pemberi Pernyataan)','') nmttd, replace(sp.nm_saksi,' (Saksi)','') saksi from surat_pernyataan_naik_kelas_bpjs sp "
+                    + "inner join reg_periksa rp on rp.no_rawat=sp.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=sp.nip_petugas WHERE "
                     + "sp.tanggal between ? and ? and sp.no_rawat LIKE ? or "
                     + "sp.tanggal between ? and ? and p.no_rkm_medis LIKE ? or "
                     + "sp.tanggal between ? and ? and p.nm_pasien LIKE ? or "
@@ -1527,7 +1782,7 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
                             
                     tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
-                        rs.getString("nm_berttd"),
+                        rs.getString("nmttd"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
                         rs.getString("jenkel"),
@@ -1551,7 +1806,7 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
                         rs.getString("naik_kls_rawat"),
                         rs.getString("tanggal"),
                         rs.getString("nip_petugas"),
-                        rs.getString("nm_saksi"),
+                        rs.getString("saksi"),
                         rs.getString("id_file_nm_berttd"),
                         rs.getString("id_file_nm_saksi"),
                         rs.getString("waktu_simpan")
@@ -1592,6 +1847,7 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
         cmbNaikKelas.setSelectedIndex(0);
         Ttgl.setDate(new Date());
         TnmSaksi.setText("");
+        LoadHTML1.setText("");
         
         if (akses.getadmin() == true) {
             nipPtgs = "-";
@@ -1609,6 +1865,8 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
         ruangrwt = "";
         idFileNmBerttd = "";
         idFileNmSaksi = "";
+        cekNmBerttd = "";
+        cekNmSaksi = "";
 
         if (tbSurat.getSelectedRow() != -1) {
             norawat = tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString();
@@ -1634,6 +1892,9 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
             TnmPetugas.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 11).toString());
             idFileNmBerttd = tbSurat.getValueAt(tbSurat.getSelectedRow(), 26).toString();
             idFileNmSaksi = tbSurat.getValueAt(tbSurat.getSelectedRow(), 27).toString();
+            cekNmBerttd = tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString();
+            cekNmSaksi = tbSurat.getValueAt(tbSurat.getSelectedRow(), 25).toString();
+            tampilTTD();
 
             if (cmbHubungan.getSelectedIndex() == 6) {
                 TjnsHubLain.setEnabled(true);
@@ -1714,6 +1975,71 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
             }
         } else {
             ThakKelas.setText("-");
+        }
+    }
+    
+    private void tampilTTD() {
+        try {
+            StringBuilder htmlContent = new StringBuilder();
+            String gambar0 = "", gambar1 = "", ipGambar = "";
+            try {
+                //cek atau ping ip addres
+                ipGambar = "192.168.0.230";
+                InetAddress inet = InetAddress.getByName(ipGambar);
+                
+                //ping sukses timeout 100 ms (0.1 detik)
+                if (inet.isReachable(100)) {
+                    if (idFileNmBerttd.equals("")) {
+                        gambar0 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                    } else {
+                        gambar0 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileNmBerttd;
+                    }
+                    
+                    if (idFileNmSaksi.equals("")) {
+                        gambar1 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                    } else {
+                        gambar1 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileNmSaksi;
+                    }
+                    //ping gagal
+                } else {
+                    gambar0 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+                gambar0 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+            }
+            
+            htmlContent.append(
+                    "<table width='100%' class='isi'>"
+                    + "<thead>"
+                    + "<tr class='isi'>"
+                    + "    <td align='center' bgcolor='#f8fdf3'><b>Yang Memberi Pernyataan</b></td>"
+                    + "    <td align='center' bgcolor='#f8fdf3'><b>Saksi</b></td>"
+                    + "</tr>"
+                    + "</thead>"
+                    + "<tbody>"
+            );
+
+            htmlContent.append(
+                    "<tr class='isi'>"
+                    + "<td valign='middle' align='center'><img src='" + gambar0 + "' width='160' height='160' alt='TTD Pemberi Pernyataan'><br>(" + Tnm.getText() + ")<br></td>"
+                    + "<td valign='middle' align='center'><img src='" + gambar1 + "' width='160' height='160' alt='TTD Saksi'><br>(" + TnmSaksi.getText() + ")<br></td>"
+                    + "</tr>"
+            );
+
+            htmlContent.append("</tbody>"
+                    + "</table>");
+
+            LoadHTML1.setText(
+                    "<html>"
+                    + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                    + htmlContent.toString()
+                    + "</table>"
+                    + "</html>");
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }

@@ -1327,15 +1327,15 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
                         tbGC.getValueAt(tbGC.getSelectedRow(), 0).toString()
                     }) == true) {
                         if (!idFileNmBerttd.equals("")) {
-                            hapusSemuaTtd(idFileNmBerttd);
+                            Sequel.hapusSemuaTtd(idFileNmBerttd);                            
                         }
                         
                         if (!idFileSaksi1.equals("")) {
-                            hapusSemuaTtd(idFileSaksi1);
+                            Sequel.hapusSemuaTtd(idFileSaksi1);
                         }
                         
                         if (!idFileSaksi2.equals("")) {
-                            hapusSemuaTtd(idFileSaksi2);
+                            Sequel.hapusSemuaTtd(idFileSaksi2);
                         }
                         
                         tampil();
@@ -2296,50 +2296,6 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
                     + htmlContent.toString()
                     + "</table>"
                     + "</html>");
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        }
-    }
-    
-    private void hapusSemuaTtd(String kodeFile) {
-        String ipGambar = "";
-        try {
-            //cek atau ping ip addres
-            ipGambar = "192.168.0.230";
-            InetAddress inet = InetAddress.getByName(ipGambar);
-
-            //ping sukses timeout 100 ms (0.1 detik)
-            if (inet.isReachable(100)) {
-                try {
-                    String idFile = kodeFile;
-                    String urlHapus = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/hapus";
-                    URL url = new URL(urlHapus);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                    conn.setRequestMethod("POST");
-                    conn.setDoOutput(true);
-                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-                    String body = "id=" + URLEncoder.encode(idFile, "UTF-8");
-
-                    try (OutputStream os = conn.getOutputStream()) {
-                        os.write(body.getBytes(StandardCharsets.UTF_8));
-                    }
-
-                    int responseCode = conn.getResponseCode();
-
-                    if (responseCode == 200) {
-                        // sukses → refresh preview
-                        String urlPreview = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + URLEncoder.encode(idFile, "UTF-8");
-                        Sequel.queryu("delete from ttd_erm_keluarga_pasien where id_file='" + kodeFile + "'");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Gagal menghapus TTD..!!");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Notifikasi : " + e);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Terjadi kesalahan koneksi");
-            }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }

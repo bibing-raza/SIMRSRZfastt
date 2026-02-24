@@ -320,6 +320,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         jMenuPerDokter = new javax.swing.JMenuItem();
         jMenuObatKhususPerTgl = new javax.swing.JMenuItem();
         jMenuObatKhusus = new javax.swing.JMenuItem();
+        jMenuObatRacikanPerDepo = new javax.swing.JMenuItem();
         jMenuRekapResepObatKronis = new javax.swing.JMenuItem();
         jMenuRekapPemakaianObat = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
@@ -348,7 +349,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         jLabel18 = new widget.Label();
         KdGudang = new widget.TextBox();
         NmGudang = new widget.TextBox();
-        btnBarang1 = new widget.Button();
+        btnDepo = new widget.Button();
         label19 = new widget.Label();
         kdpoli = new widget.TextBox();
         TPoli = new widget.TextBox();
@@ -850,6 +851,18 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         });
         jMenuLapPemakaian.add(jMenuObatKhusus);
 
+        jMenuObatRacikanPerDepo.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jMenuObatRacikanPerDepo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        jMenuObatRacikanPerDepo.setText("4) Obat Racikan PerDepo");
+        jMenuObatRacikanPerDepo.setName("jMenuObatRacikanPerDepo"); // NOI18N
+        jMenuObatRacikanPerDepo.setPreferredSize(new java.awt.Dimension(190, 25));
+        jMenuObatRacikanPerDepo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuObatRacikanPerDepoActionPerformed(evt);
+            }
+        });
+        jMenuLapPemakaian.add(jMenuObatRacikanPerDepo);
+
         Popup1.add(jMenuLapPemakaian);
 
         jMenuRekapResepObatKronis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1163,19 +1176,19 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         FormInput.add(NmGudang);
         NmGudang.setBounds(200, 40, 240, 23);
 
-        btnBarang1.setForeground(new java.awt.Color(0, 0, 0));
-        btnBarang1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnBarang1.setMnemonic('1');
-        btnBarang1.setToolTipText("Alt+1");
-        btnBarang1.setName("btnBarang1"); // NOI18N
-        btnBarang1.setPreferredSize(new java.awt.Dimension(28, 23));
-        btnBarang1.addActionListener(new java.awt.event.ActionListener() {
+        btnDepo.setForeground(new java.awt.Color(0, 0, 0));
+        btnDepo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnDepo.setMnemonic('1');
+        btnDepo.setToolTipText("Alt+1");
+        btnDepo.setName("btnDepo"); // NOI18N
+        btnDepo.setPreferredSize(new java.awt.Dimension(28, 23));
+        btnDepo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBarang1ActionPerformed(evt);
+                btnDepoActionPerformed(evt);
             }
         });
-        FormInput.add(btnBarang1);
-        btnBarang1.setBounds(444, 40, 28, 23);
+        FormInput.add(btnDepo);
+        btnDepo.setBounds(444, 40, 28, 23);
 
         label19.setForeground(new java.awt.Color(0, 0, 0));
         label19.setText("Nama Unit/Poliklinik :");
@@ -1229,8 +1242,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         FormInput.add(jLabel14);
         jLabel14.setBounds(0, 100, 120, 23);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2026" }));
-        DTPCari1.setToolTipText("");
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1247,8 +1259,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
         FormInput.add(jLabel19);
         jLabel19.setBounds(217, 100, 30, 23);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2026" }));
-        DTPCari2.setToolTipText("");
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1380,7 +1391,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
     }//GEN-LAST:event_KdGudangKeyPressed
 
-    private void btnBarang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarang1ActionPerformed
+    private void btnDepoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepoActionPerformed
         akses.setform("DlgLaporanFarmasi");
         bangsal.emptTeks();
         bangsal.isCek();
@@ -1389,7 +1400,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         bangsal.setAlwaysOnTop(false);
         bangsal.setVisible(true);
         bangsal.emptTeks();
-    }//GEN-LAST:event_btnBarang1ActionPerformed
+    }//GEN-LAST:event_btnDepoActionPerformed
 
     private void kdpoliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdpoliKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
@@ -4913,6 +4924,43 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_jMenuRekapPemakaianObatActionPerformed
 
+    private void jMenuObatRacikanPerDepoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuObatRacikanPerDepoActionPerformed
+        if (tbObat.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data pasien sudah habis...!!!!");
+            TCari.requestFocus();
+        } else if (KdGudang.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Pilahkan pilih dulu salah satu unit farmasi/nama deponya terlebih dulu...!!!!");
+            btnDepo.requestFocus();
+        } else if (TCari.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nama obat yang akan dicari belum diketik pada key word...!!!!");
+            TCari.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT z.no_rawat 'No. Rawat', z.tglresep 'Tgl. Resep', z.nama_brng 'Nama Obat', z.jumlah 'Jumlah', z.nmdokter 'Nama Dokter' "
+                    + "FROM (SELECT x.no_rawat, DATE_FORMAT(x.tgl_perawatan,'%d/%m/%Y') tglresep, x.nama_brng, x.jumlah, "
+                    + "IFNULL(d.nm_dokter,'-') nmdokter, x.tgl_perawatan sort_tgl, 1 sort_src "
+                    + "FROM (SELECT dpo.no_rawat, dpo.tgl_perawatan, dpo.kode_brng, db.nama_brng, SUM(dpo.jml) jumlah, MAX(CONCAT(dpo.tgl_perawatan,' ',dpo.jam)) max_dtjam "
+                    + "FROM detail_pemberian_obat dpo INNER JOIN databarang db ON db.kode_brng = dpo.kode_brng INNER JOIN bangsal bs ON bs.kd_bangsal = dpo.kd_bangsal WHERE "
+                    + "dpo.tgl_perawatan >= '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND dpo.tgl_perawatan < '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "AND db.nama_brng LIKE '%" + TCari.getText() + "%' AND bs.kd_bangsal LIKE '%" + KdGudang.getText() + "%' "
+                    + "GROUP BY dpo.no_rawat, dpo.tgl_perawatan, dpo.kode_brng, db.nama_brng) x "
+                    + "LEFT JOIN resep_obat ro ON ro.no_rawat = x.no_rawat AND CONCAT(ro.tgl_perawatan,' ',ro.jam) = x.max_dtjam LEFT JOIN dokter d ON d.kd_dokter = ro.kd_dokter "
+                    + "UNION ALL "
+                    + "SELECT y.no_ref no_rawat, DATE_FORMAT(y.tgl_jual,'%d/%m/%Y') tglresep, y.nama_brng, y.jumlah, IFNULL(y.dokter,'-') nmdokter, y.tgl_jual sort_tgl, 2 sort_src "
+                    + "FROM (SELECT p.nota_jual no_ref, p.tgl_jual, j.kode_brng, d.nama_brng, SUM(j.jumlah) jumlah, IFNULL(dk.nm_dokter, NULLIF(p.keterangan,'')) dokter "
+                    + "FROM penjualan p INNER JOIN detailjual j ON j.nota_jual = p.nota_jual INNER JOIN databarang d ON d.kode_brng = j.kode_brng "
+                    + "INNER JOIN bangsal b ON b.kd_bangsal = p.kd_bangsal LEFT JOIN dokter dk ON dk.kd_dokter = p.kd_dokter WHERE "
+                    + "p.tgl_jual >= '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND p.tgl_jual < '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "AND d.nama_brng LIKE '%" + TCari.getText() + "%' AND b.kd_bangsal LIKE '%" + KdGudang.getText() + "%' "
+                    + "GROUP BY p.nota_jual, p.tgl_jual, j.kode_brng, d.nama_brng, p.kd_dokter, p.keterangan) y) z "
+                    + "ORDER BY z.sort_tgl, z.sort_src, z.no_rawat, z.nama_brng", dialog_simpan);
+
+            JOptionPane.showMessageDialog(null, "Data rekap resep obat racikan perdepo berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_jMenuObatRacikanPerDepoActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4947,7 +4995,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;
     private widget.TextBox TPoli;
-    private widget.Button btnBarang1;
+    private widget.Button btnDepo;
     private widget.Button btnPenjab;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel14;
@@ -4966,6 +5014,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenu jMenuLapSemuaAllDepo;
     private javax.swing.JMenuItem jMenuObatKhusus;
     private javax.swing.JMenuItem jMenuObatKhususPerTgl;
+    private javax.swing.JMenuItem jMenuObatRacikanPerDepo;
     private javax.swing.JMenuItem jMenuPerDokter;
     private javax.swing.JMenuItem jMenuRekapPemakaianObat;
     private javax.swing.JMenuItem jMenuRekapResepObatKronis;
