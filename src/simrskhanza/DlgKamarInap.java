@@ -19189,6 +19189,13 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         System.out.println("Notifikasi : " + e);
                     }
 
+                    String satur = "";
+                    if (rsLaprm.getString("saturasi").equals("")) {
+                        satur = "........ %";
+                    } else {
+                        satur = rsLaprm.getString("saturasi") + " %";
+                    }
+
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     Map<String, Object> param = new HashMap<>();
                     param.put("namars", akses.getnamars());
@@ -19221,7 +19228,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     param.put("png_jawab_px", rsLaprm.getString("penanggung_jwb_pasien"));
                     param.put("kondisiPlg", tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 18).toString());
                     param.put("keadaanumum", rsLaprm.getString("keadaan_umum"));
-                    param.put("kesadaran", rsLaprm.getString("kesadaran") + ", GCS : " + rsLaprm.getString("GCS"));
+                    param.put("kesadaran", rsLaprm.getString("kesadaran") + ", GCS : " + rsLaprm.getString("GCS") + ", Saturasi : " + satur);
                     param.put("tandavital", "Tekanan Darah : " + rsLaprm.getString("tekanan_darah") + " mmHg, Suhu : " + rsLaprm.getString("suhu") + " °C, Nadi : " + rsLaprm.getString("nadi") + " x/mnt, Frekuensi Nafas : " + rsLaprm.getString("frekuensi_nafas") + " x/mnt");
                     param.put("edukasi", rsLaprm.getString("edukasi"));
                     param.put("catatanPenting", rsLaprm.getString("catatan_penting"));

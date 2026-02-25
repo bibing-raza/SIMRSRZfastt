@@ -190,6 +190,12 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
          
                 if (base64String != null) {
                     if (wa.ngirimFile(TnoWa.getText(), TnmFile.getText(), base64String) == true) {
+                        if (nmDokumen.equals("hasil patologi anatomi")) {
+                            Sequel.mengedit("hasil_patologi_anatomi", "waktu_simpan='" + waktuSimpan + "'",
+                                    "terkirim_ke_whatsapp='SUDAH', waktu_terkirim='" + Sequel.cariIsi("select now()") + "', "
+                                    + "no_whatsapp_penerima='" + TnoWa.getText() + "'");
+                        }
+                        
                         Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                         dispose();
                     } else {

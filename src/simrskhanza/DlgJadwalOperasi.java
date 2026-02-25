@@ -381,7 +381,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-02-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -395,7 +395,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-02-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -529,7 +529,8 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
         panelBiasa1.add(jLabel8);
         jLabel8.setBounds(170, 94, 80, 23);
 
-        tglOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2024" }));
+        tglOperasi.setEditable(false);
+        tglOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-02-2026" }));
         tglOperasi.setDisplayFormat("dd-MM-yyyy");
         tglOperasi.setName("tglOperasi"); // NOI18N
         tglOperasi.setOpaque(false);
@@ -626,6 +627,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -637,23 +639,26 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        if (TNoRm.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
-            tbJadwal.requestFocus();
-        } else if (Sequel.cariInteger("select count(-1) from jadwal_operasi where kd_booking='" + TNoBoking.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "No. booking jadwal operasi tersebut tidak ada tersimpan pada database..!!");
-        } else {
+        if (tbJadwal.getSelectedRow() != -1) {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
-                if (Sequel.queryu2tf("delete from jadwal_operasi where kd_booking=?", 1, new String[]{TNoBoking.getText()
+                if (Sequel.queryu2tf("delete from jadwal_operasi where kd_booking=?", 1, new String[]{
+                    tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 0).toString()
                 }) == true) {
                     tampil();
                     emptTeks();
                 } else {
                     JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
+            } else {
+                tampil();
+                emptTeks();
             }
-        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            tampil();
+            tbJadwal.requestFocus();
+        }        
 }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed
@@ -669,28 +674,35 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Pasien");
         } else if (TNoRm.getText().trim().equals("")) {
             Valid.textKosong(TNoRm, "Pasien");
-        } else if (Sequel.cariInteger("select count(-1) from jadwal_operasi where kd_booking='" + TNoBoking.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
-            tbJadwal.requestFocus();
         } else {
-            terlaksana = "";
-            kdsps = "";
-            
-            kdsps = Sequel.cariIsi("select kd_poli from poliklinik where nm_poli='" + cmbJnsOperasi.getSelectedItem().toString() + "'");
-            if (cmbTerlaksana.getSelectedIndex() == 0) {
-                terlaksana = "0";
+            if (tbJadwal.getSelectedRow() != -1) {
+                terlaksana = "";
+                kdsps = "";
+
+                kdsps = Sequel.cariIsi("select kd_poli from poliklinik where nm_poli='" + cmbJnsOperasi.getSelectedItem().toString() + "'");
+                if (cmbTerlaksana.getSelectedIndex() == 0) {
+                    terlaksana = "0";
+                } else {
+                    terlaksana = "1";
+                }
+
+                if (!tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 10).toString().equals(Valid.SetTgl(tglOperasi.getSelectedItem() + ""))) {
+                    autoNomorBooking();
+                }
+
+                if (Sequel.mengedittf("jadwal_operasi", "kd_booking=?", "no_rawat=?, nomr=?, kd_booking=?, tanggaloperasi=?, jenistindakan=?, kodepoli=?, namapoli=?, "
+                        + "terlaksana=?, no_peserta=?, last_update=?", 11, new String[]{
+                            TNoRw.getText(), TNoRm.getText(), TNoBoking.getText(), Valid.SetTgl(tglOperasi.getSelectedItem() + ""), cmbPaketOperasi.getSelectedItem().toString(),
+                            kdsps, cmbJnsOperasi.getSelectedItem().toString(), terlaksana, TNoPeserta.getText(), Sequel.cariIsi("select now()"),
+                            tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 0).toString()
+                        }) == true) {
+                    tampil();
+                    emptTeks();
+                }
             } else {
-                terlaksana = "1";
-            }
-            
-            if (Sequel.mengedittf("jadwal_operasi", "kd_booking=?", "no_rawat=?, nomr=?, tanggaloperasi=?, jenistindakan=?, kodepoli=?, namapoli=?, "
-                    + "terlaksana=?, no_peserta=?, last_update=?", 10, new String[]{
-                        TNoRw.getText(), TNoRm.getText(), Valid.SetTgl(tglOperasi.getSelectedItem() + ""), cmbPaketOperasi.getSelectedItem().toString(), 
-                        kdsps, cmbJnsOperasi.getSelectedItem().toString(), terlaksana, TNoPeserta.getText(), Sequel.cariIsi("select now()"), 
-                        TNoBoking.getText()
-                    }) == true) {
+                JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
                 tampil();
-                emptTeks();
+                tbJadwal.requestFocus();
             }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
@@ -782,6 +794,8 @@ private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 + "('KLT','BDO','BED','132','GIG','GND','GPR','JAN','OBG','MAT','ORT','PAR','SAR','THT','BDM') "
                 + "order by nm_poli", cmbJnsOperasi);
         tampil();
+        DTPCari1.setDate(new Date());
+        Valid.SetTgl(DTPCari2, Sequel.cariIsi("select DATE_ADD(now(),interval 60 day)"));
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -926,9 +940,7 @@ private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         cmbPaketOperasi.setSelectedIndex(0);
         cmbJnsOperasi.setSelectedIndex(0);
         cmbTerlaksana.setSelectedIndex(0);
-        tglOperasi.setDate(new Date());
-        DTPCari1.setDate(new Date());
-        Valid.SetTgl(DTPCari2, Sequel.cariIsi("select DATE_ADD(now(),interval 60 day)"));
+        tglOperasi.setDate(new Date());        
         btnPasien.setEnabled(true);
         TCari.setText("");
         autoNomorBooking();

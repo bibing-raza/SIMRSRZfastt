@@ -55,7 +55,7 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
 
         tabMode=new DefaultTableModel(null,new String[]{
             "Kode e-RM", "No. Dokumen", "Nama Dokumen RM", "Status", "Tgl. Disahkan", "TTD. Klg. Pasien", 
-            "status", "tgl_disahkan", "waktu_simpan"}) {
+            "status", "tgl_disahkan", "waktu_simpan", "Unit Pengguna RM"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -66,7 +66,7 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
         tbNomor.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbNomor.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 9; i++) {
+        for (i = 0; i < 10; i++) {
             TableColumn column = tbNomor.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(70);
@@ -89,6 +89,8 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
             } else if (i == 8) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 9) {
+                column.setPreferredWidth(150);
             }
         }
         tbNomor.setDefaultRenderer(Object.class, new WarnaTable());
@@ -154,6 +156,8 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
         TtglDisahkan = new widget.Tanggal();
         jLabel11 = new widget.Label();
         cmbDokumen = new widget.ComboBox();
+        jLabel12 = new widget.Label();
+        cmbUnit = new widget.ComboBox();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbNomor = new widget.Table();
@@ -423,7 +427,7 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
         jLabel8.setBounds(200, 66, 90, 23);
 
         TtglDisahkan.setEditable(false);
-        TtglDisahkan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-02-2026" }));
+        TtglDisahkan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2026" }));
         TtglDisahkan.setDisplayFormat("dd-MM-yyyy");
         TtglDisahkan.setName("TtglDisahkan"); // NOI18N
         TtglDisahkan.setOpaque(false);
@@ -442,6 +446,18 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
         cmbDokumen.setName("cmbDokumen"); // NOI18N
         FormInput.add(cmbDokumen);
         cmbDokumen.setBounds(295, 94, 60, 23);
+
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Unit Pengguna RM :");
+        jLabel12.setName("jLabel12"); // NOI18N
+        FormInput.add(jLabel12);
+        jLabel12.setBounds(355, 94, 114, 23);
+
+        cmbUnit.setForeground(new java.awt.Color(0, 0, 0));
+        cmbUnit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "TPPRI", "Ruang Perawatan", "Poliklinik", "Instalasi" }));
+        cmbUnit.setName("cmbUnit"); // NOI18N
+        FormInput.add(cmbUnit);
+        cmbUnit.setBounds(475, 94, 155, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -498,7 +514,8 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
             
             Sequel.menyimpan("master_nomor_dokumen_erm", "'" + TkdErm.getText() + "','" + TnoDok.getText() + "',"
                     + "'" + TnmDokumen.getText() + "','" + stts + "','" + Valid.SetTgl(TtglDisahkan.getSelectedItem() + "") + "',"
-                    + "'" + cmbDokumen.getSelectedItem().toString() + "','" + Sequel.cariIsi("select now()") + "'", "Dokumen RM");
+                    + "'" + cmbDokumen.getSelectedItem().toString() + "','" + Sequel.cariIsi("select now()") + "',"
+                    + "'" + cmbUnit.getSelectedItem().toString() + "'", "Dokumen RM");
             
             emptTeks();
             BtnCariActionPerformed(null);
@@ -547,7 +564,8 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
             Sequel.mengedit("master_nomor_dokumen_erm", "waktu_simpan='" + tbNomor.getValueAt(tbNomor.getSelectedRow(), 8).toString() + "'",
                     "nomor_dokumen='" + TnoDok.getText() + "', nm_dokumen='" + TnmDokumen.getText() + "',"
                     + "status='" + stts + "',tgl_disahkan='" + Valid.SetTgl(TtglDisahkan.getSelectedItem() + "") + "', "
-                    + "ttd_keluarga_pasien='" + cmbDokumen.getSelectedItem().toString() + "'");
+                    + "ttd_keluarga_pasien='" + cmbDokumen.getSelectedItem().toString() + "', "
+                    + "unit_pengguna='" + cmbUnit.getSelectedItem().toString() + "'");
             emptTeks();
             BtnCariActionPerformed(null);
         }
@@ -683,10 +701,12 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
     private widget.Tanggal TtglDisahkan;
     private widget.ComboBox cmbDokumen;
     private widget.ComboBox cmbStatus;
+    private widget.ComboBox cmbUnit;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
+    private widget.Label jLabel12;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
@@ -708,13 +728,15 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
                     + "m.nomor_dokumen like ? or "
                     + "m.nm_dokumen like ? or "
                     + "m.ttd_keluarga_pasien like ? or "
-                    + "m.status like ? ORDER BY m.kode_erm");
+                    + "m.status like ? or "
+                    + "m.unit_pengguna like ? ORDER BY m.kode_erm");
             try {
                 ps.setString(1, "%" + TCari.getText().trim() + "%");
                 ps.setString(2, "%" + TCari.getText().trim() + "%");
                 ps.setString(3, "%" + TCari.getText().trim() + "%");
                 ps.setString(4, "%" + TCari.getText().trim() + "%");
                 ps.setString(5, "%" + TCari.getText().trim() + "%");
+                ps.setString(6, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{                        
@@ -726,7 +748,8 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
                         rs.getString("ttd_keluarga_pasien"),
                         rs.getString("status"),
                         rs.getString("tgl_disahkan"),                        
-                        rs.getString("waktu_simpan")
+                        rs.getString("waktu_simpan"),
+                        rs.getString("unit_pengguna")
                     });
                 }
             } catch (Exception e) {
@@ -752,6 +775,7 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
         cmbStatus.setSelectedIndex(0);
         TtglDisahkan.setDate(new Date());
         cmbDokumen.setSelectedIndex(0);
+        cmbUnit.setSelectedIndex(0);
         TnoDok.requestFocus();
         AutoKode();
     }
@@ -766,6 +790,7 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
             cmbDokumen.setSelectedItem(tbNomor.getValueAt(tbNomor.getSelectedRow(), 5).toString());
             stts = tbNomor.getValueAt(tbNomor.getSelectedRow(), 6).toString();
             Valid.SetTgl(TtglDisahkan, tbNomor.getValueAt(tbNomor.getSelectedRow(), 7).toString());
+            cmbUnit.setSelectedItem(tbNomor.getValueAt(tbNomor.getSelectedRow(), 9).toString());
         }
     }
     
