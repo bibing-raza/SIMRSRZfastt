@@ -189,7 +189,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             "No. Rawat", "No. PA", "No. RM", "Nama Pasien", "Jns. Kelamin", "Tgl. Lahir", "Dokter Pengirim", "Rg. Rawat/Poli/Inst.",
             "Tgl. Periksa", "Tgl. Hasil", "lokasi", "makroskopik", "mikroskopik", "kesimpulan", "anjuran",
             "kd_gambar", "nip_perujuk", "tgl_periksa", "tgl_lahir", "tgl_hasil", "waktu_simpan",
-            "italic_makroskopik", "italic_mikroskopik", "italic_kesimpulan", "italic_anjuran", "nmDokterPA"}) {
+            "italic_makroskopik", "italic_mikroskopik", "italic_kesimpulan", "italic_anjuran", "nmDokterPA", "nm_unit", "rumah_sakit"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -200,7 +200,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         tbPA.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPA.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
-        for (int i = 0; i < 26; i++) {
+        for (int i = 0; i < 28; i++) {
             TableColumn column = tbPA.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(115);
@@ -268,6 +268,12 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 25) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 26) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 27) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -1475,7 +1481,8 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             param.put("tgllahir", Valid.SetTglINDONESIA(tbPA.getValueAt(tbPA.getSelectedRow(), 18).toString() + ""));
             param.put("jenkel", tbPA.getValueAt(tbPA.getSelectedRow(), 4).toString());
             param.put("drPengirim", tbPA.getValueAt(tbPA.getSelectedRow(), 6).toString());
-            param.put("unit", tbPA.getValueAt(tbPA.getSelectedRow(), 7).toString());
+            param.put("unit", tbPA.getValueAt(tbPA.getSelectedRow(), 26).toString());
+            param.put("rs", tbPA.getValueAt(tbPA.getSelectedRow(), 27).toString());
             param.put("tglperiksa", Valid.SetTglINDONESIA(tbPA.getValueAt(tbPA.getSelectedRow(), 17).toString() + ""));
             param.put("tglhasil", Valid.SetTglINDONESIA(tbPA.getValueAt(tbPA.getSelectedRow(), 19).toString() + ""));
             param.put("lokasi", tbPA.getValueAt(tbPA.getSelectedRow(), 10).toString() + "\n");
@@ -1992,7 +1999,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                         rs7.getString("jenkel"),
                         rs7.getString("tglLahir"),                        
                         rs7.getString("drPengirim"),                        
-                        rs7.getString("nm_unit"),                        
+                        rs7.getString("nm_unit") + " (" + rs7.getString("rumah_sakit") + ")",
                         rs7.getString("tglPeriksa"),                        
                         rs7.getString("tglHasil"),                        
                         rs7.getString("lokasi_organ"),
@@ -2010,7 +2017,9 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                         rs7.getString("italic_mikroskopik"),
                         rs7.getString("italic_kesimpulan"),
                         rs7.getString("italic_anjuran"),
-                        rs7.getString("nmDokterPA")
+                        rs7.getString("nmDokterPA"),
+                        rs7.getString("nm_unit"),
+                        rs7.getString("rumah_sakit")
                     });
                 }
             } catch (Exception e) {

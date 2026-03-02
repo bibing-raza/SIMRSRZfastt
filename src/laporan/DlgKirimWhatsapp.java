@@ -357,6 +357,7 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                     param.put("jenkel", rs.getString("jk").replaceAll("L", "Laki-laki").replaceAll("P", "Perempuan"));
                     param.put("drPengirim", rs.getString("drPengirim"));
                     param.put("unit", rs.getString("nm_unit"));
+                    param.put("rs", rs.getString("rumah_sakit"));
                     param.put("tglperiksa", Valid.SetTglINDONESIA(rs.getString("tgl_periksa")));
                     param.put("tglhasil", Valid.SetTglINDONESIA(rs.getString("tgl_hasil")));
                     param.put("lokasi", rs.getString("lokasi_organ") + "\n");

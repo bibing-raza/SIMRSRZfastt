@@ -49,7 +49,7 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Object[] judul = {"Jml", "Kode Barang", "Nama Barang", "Harga", "Subtotal", "Satuan", "Stok Asal", "Stok Tujuan"};
+        Object[] judul = {"Jml", "Kode Barang", "Nama Barang", "Harga", "Subtotal", "Satuan", "Stok Asal", "Sisa Stok Asal", "Stok Tujuan"};
         tabMode = new DefaultTableModel(null, judul) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -65,7 +65,7 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
         tbDokter.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbDokter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < 9; i++) {
             TableColumn column = tbDokter.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(50);
@@ -82,6 +82,8 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(60);
             } else if (i == 7) {
+                column.setPreferredWidth(80);
+            } else if (i == 8) {
                 column.setPreferredWidth(68);
             }
         }
@@ -191,9 +193,7 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        ppBersihkan.setBackground(new java.awt.Color(255, 255, 255));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppBersihkan.setForeground(new java.awt.Color(0, 0, 0));
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBersihkan.setText("Bersihkan Jumlah");
         ppBersihkan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -208,9 +208,7 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
         });
         Popup.add(ppBersihkan);
 
-        ppStok.setBackground(new java.awt.Color(255, 255, 255));
         ppStok.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppStok.setForeground(new java.awt.Color(0, 0, 0));
         ppStok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppStok.setText("Tampilkan Semua Stok");
         ppStok.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -238,7 +236,7 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengambilan BHP Medis Unit Tranfusi Darah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengambilan BHP Medis Unit Tranfusi Darah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -246,7 +244,6 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
         scrollPane1.setName("scrollPane1"); // NOI18N
         scrollPane1.setOpaque(true);
 
-        tbDokter.setForeground(new java.awt.Color(0, 0, 0));
         tbDokter.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -261,6 +258,7 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
         tbDokter.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDokter.setComponentPopupMenu(Popup);
         tbDokter.setName("tbDokter"); // NOI18N
+        tbDokter.getTableHeader().setReorderingAllowed(false);
         tbDokter.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tbDokterKeyPressed(evt);
@@ -276,7 +274,6 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -312,9 +309,10 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari1.setMnemonic('1');
+        BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
-        BtnCari1.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnCari1.setPreferredSize(new java.awt.Dimension(130, 23));
         BtnCari1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCari1ActionPerformed(evt);
@@ -329,7 +327,6 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
 
         BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambah.setMnemonic('3');
         BtnTambah.setToolTipText("Alt+3");
         BtnTambah.setName("BtnTambah"); // NOI18N
         BtnTambah.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -347,7 +344,6 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnCari.setMnemonic('C');
         BtnCari.setText("Cari");
         BtnCari.setToolTipText("Alt+C");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -366,7 +362,6 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -416,7 +411,6 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
 
         btnDari.setForeground(new java.awt.Color(0, 0, 0));
         btnDari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnDari.setMnemonic('1');
         btnDari.setToolTipText("Alt+1");
         btnDari.setName("btnDari"); // NOI18N
         btnDari.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -435,7 +429,6 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
         panelisi3.add(label32);
         label32.setBounds(510, 10, 70, 23);
 
-        Tanggal.setForeground(new java.awt.Color(0, 0, 0));
         Tanggal.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -633,6 +626,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     for (i = 0; i < tbDokter.getRowCount(); i++) {
         tbDokter.setValueAt("", i, 0);
         tbDokter.setValueAt("0", i, 4);
+        tbDokter.setValueAt("0", i, 6);
+        tbDokter.setValueAt("0", i, 7);
+        tbDokter.setValueAt("0", i, 8);
     }
     isTotal();
 }//GEN-LAST:event_ppBersihkanActionPerformed
@@ -717,6 +713,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                                     psstok2.close();
                                 }
                             }
+                            
                             tbDokter.setValueAt(
                                     Double.toString(
                                             Double.parseDouble(tabMode.getValueAt(tbDokter.getSelectedRow(), 0).toString())
@@ -724,7 +721,13 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                                     ),
                                     tbDokter.getSelectedRow(), 4);
                             tbDokter.setValueAt(stok_asal, tbDokter.getSelectedRow(), 6);
-                            tbDokter.setValueAt(stok_tujuan, tbDokter.getSelectedRow(), 7);
+                            tbDokter.setValueAt(
+                                    Double.toString(
+                                            Double.parseDouble(tabMode.getValueAt(tbDokter.getSelectedRow(), 6).toString())
+                                            - Double.parseDouble(tabMode.getValueAt(tbDokter.getSelectedRow(), 0).toString())
+                                    ),
+                                    tbDokter.getSelectedRow(), 7);
+                            tbDokter.setValueAt(stok_tujuan, tbDokter.getSelectedRow(), 8);
                         }
                     } catch (Exception e) {
                         tbDokter.setValueAt(0, tbDokter.getSelectedRow(), 4);
@@ -777,6 +780,7 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                                     psstok2.close();
                                 }
                             }
+                            
                             tbDokter.setValueAt(
                                     Double.toString(
                                             Double.parseDouble(tabMode.getValueAt(tbDokter.getSelectedRow(), 0).toString())
@@ -784,7 +788,13 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                                     ),
                                     tbDokter.getSelectedRow(), 4);
                             tbDokter.setValueAt(stok_asal, tbDokter.getSelectedRow(), 6);
-                            tbDokter.setValueAt(stok_tujuan, tbDokter.getSelectedRow(), 7);
+                            tbDokter.setValueAt(
+                                    Double.toString(
+                                            Double.parseDouble(tabMode.getValueAt(tbDokter.getSelectedRow(), 6).toString())
+                                            - Double.parseDouble(tabMode.getValueAt(tbDokter.getSelectedRow(), 0).toString())
+                                    ),
+                                    tbDokter.getSelectedRow(), 7);
+                            tbDokter.setValueAt(stok_tujuan, tbDokter.getSelectedRow(), 8);
                         } else {
                             tbDokter.setValueAt(0, tbDokter.getSelectedRow(), 4);
                             tbDokter.setValueAt(0, tbDokter.getSelectedRow(), 6);
@@ -878,10 +888,10 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                     }
                 }
                 tbDokter.setValueAt(stok_asal, i, 6);
-                tbDokter.setValueAt(stok_tujuan, i, 7);
+                tbDokter.setValueAt(stok_tujuan, i, 8);
             } catch (Exception e) {
                 tbDokter.setValueAt(0, i, 6);
-                tbDokter.setValueAt(0, i, 7);
+                tbDokter.setValueAt(0, i, 8);
             }
         }
     }//GEN-LAST:event_ppStokActionPerformed
@@ -996,7 +1006,17 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 ps.setString(2, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new Object[]{"", rs.getString(1), rs.getString(2), rs.getString(3), 0, rs.getString(4), 0, 0});
+                    tabMode.addRow(new Object[]{
+                        "", 
+                        rs.getString(1), 
+                        rs.getString(2), 
+                        rs.getString(3), 
+                        0, 
+                        rs.getString(4), 
+                        0,
+                        0,
+                        0
+                    });
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);

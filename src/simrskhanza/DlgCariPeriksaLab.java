@@ -156,7 +156,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
             "Tgl. Periksa", "Tgl. Hasil", "Lokasi/Organ", "Makroskopik", "Mikroskopik", "Kesimpulan", "Anjuran",
             "kd_gambar", "nip_perujuk", "tgl_periksa", "tgl_lahir", "tgl_hasil", "waktu_simpan",
             "italic_makroskopik", "italic_mikroskopik", "italic_kesimpulan", "italic_anjuran", "nmDokterPA", "Terkirim Ke WA", 
-            "Waktu Terkirim", "No. WA Penerima"}) {
+            "Waktu Terkirim", "No. WA Penerima", "nm_unit", "rumah_sakit"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -166,7 +166,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         tbHasil.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbHasil.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 29; i++) {
+        for (int i = 0; i < 31; i++) {
             TableColumn column = tbHasil.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(115);
@@ -237,6 +237,12 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
                 column.setPreferredWidth(130);
             } else if (i == 28) {
                 column.setPreferredWidth(100);
+            } else if (i == 29) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 30) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbHasil.setDefaultRenderer(Object.class, new WarnaTable());
@@ -248,6 +254,8 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         TnoTelpPx.setDocument(new batasInput((byte) 15).getOnlyAngka(TnoTelpPx));
         TnoTelpDokter.setDocument(new batasInput((byte) 13).getOnlyAngka(TnoTelpDokter));
         TnoTlpnFaskes.setDocument(new batasInput((byte) 15).getOnlyAngka(TnoTlpnFaskes));    
+        Tunit.setDocument(new batasInput((int) 200).getKata(Tunit));
+        Trs.setDocument(new batasInput((int) 200).getKata(Trs));
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         
 //        if (koneksiDB.cariCepat().equals("aktif")) {
@@ -801,6 +809,8 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         TitalicKesimpulan = new widget.TextBox();
         jLabel54 = new widget.Label();
         TitalicAnjuran = new widget.TextBox();
+        jLabel58 = new widget.Label();
+        Trs = new widget.TextBox();
         Scroll2 = new widget.ScrollPane();
         tbHasil = new widget.Table();
         jPanel4 = new javax.swing.JPanel();
@@ -1629,6 +1639,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         btnPemeriksa.setForeground(new java.awt.Color(0, 0, 0));
         btnPemeriksa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPemeriksa.setMnemonic('2');
         btnPemeriksa.setToolTipText("Alt+2");
         btnPemeriksa.setName("btnPemeriksa"); // NOI18N
         btnPemeriksa.addActionListener(new java.awt.event.ActionListener() {
@@ -1675,6 +1686,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak Hasil Periksa Lab.");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -1693,6 +1705,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn4.setMnemonic('U');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+U");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -1878,6 +1891,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         btnFaskes.setForeground(new java.awt.Color(0, 0, 0));
         btnFaskes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnFaskes.setMnemonic('4');
         btnFaskes.setToolTipText("ALt+4");
         btnFaskes.setName("btnFaskes"); // NOI18N
         btnFaskes.addActionListener(new java.awt.event.ActionListener() {
@@ -1940,6 +1954,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnKirim.setForeground(new java.awt.Color(0, 0, 0));
         BtnKirim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        BtnKirim.setMnemonic('S');
         BtnKirim.setText("Kirim Data Ke LIS");
         BtnKirim.setToolTipText("Alt+S");
         BtnKirim.setName("BtnKirim"); // NOI18N
@@ -1953,6 +1968,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -1984,7 +2000,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         internalFrame9.setLayout(null);
 
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel34.setText("Tgl. Periksa :");
+        jLabel34.setText("Rumah Sakit :");
         jLabel34.setName("jLabel34"); // NOI18N
         internalFrame9.add(jLabel34);
         jLabel34.setBounds(0, 122, 130, 23);
@@ -1993,7 +2009,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         Ttglperiksa.setForeground(new java.awt.Color(0, 0, 0));
         Ttglperiksa.setName("Ttglperiksa"); // NOI18N
         internalFrame9.add(Ttglperiksa);
-        Ttglperiksa.setBounds(135, 122, 130, 23);
+        Ttglperiksa.setBounds(490, 122, 110, 23);
 
         jLabel35.setForeground(new java.awt.Color(0, 0, 0));
         jLabel35.setText("Rg. Rawat/Poli/Inst. :");
@@ -2001,9 +2017,13 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         internalFrame9.add(jLabel35);
         jLabel35.setBounds(0, 94, 130, 23);
 
-        Tunit.setEditable(false);
         Tunit.setForeground(new java.awt.Color(0, 0, 0));
         Tunit.setName("Tunit"); // NOI18N
+        Tunit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TunitKeyPressed(evt);
+            }
+        });
         internalFrame9.add(Tunit);
         Tunit.setBounds(135, 94, 630, 23);
 
@@ -2080,10 +2100,10 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         Tjenkel.setBounds(350, 38, 100, 23);
 
         jLabel42.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel42.setText("Tgl. Hasil :");
+        jLabel42.setText("Tgl. Hasil : ");
         jLabel42.setName("jLabel42"); // NOI18N
         internalFrame9.add(jLabel42);
-        jLabel42.setBounds(265, 122, 80, 23);
+        jLabel42.setBounds(605, 122, 70, 23);
 
         TtglHasil.setEditable(false);
         TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2026" }));
@@ -2096,7 +2116,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
             }
         });
         internalFrame9.add(TtglHasil);
-        TtglHasil.setBounds(350, 122, 90, 23);
+        TtglHasil.setBounds(675, 122, 90, 23);
 
         jLabel43.setForeground(new java.awt.Color(0, 0, 0));
         jLabel43.setText("Lokasi / Organ :");
@@ -2325,6 +2345,22 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         internalFrame9.add(TitalicAnjuran);
         TitalicAnjuran.setBounds(887, 502, 570, 23);
 
+        jLabel58.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel58.setText("Tgl. Periksa : ");
+        jLabel58.setName("jLabel58"); // NOI18N
+        internalFrame9.add(jLabel58);
+        jLabel58.setBounds(410, 122, 80, 23);
+
+        Trs.setForeground(new java.awt.Color(0, 0, 0));
+        Trs.setName("Trs"); // NOI18N
+        Trs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TrsKeyPressed(evt);
+            }
+        });
+        internalFrame9.add(Trs);
+        Trs.setBounds(135, 122, 270, 23);
+
         internalFrame8.add(internalFrame9, java.awt.BorderLayout.PAGE_START);
 
         Scroll2.setName("Scroll2"); // NOI18N
@@ -2360,6 +2396,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -2378,6 +2415,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -2396,6 +2434,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnHapus1.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus1.setMnemonic('H');
         BtnHapus1.setText("Hapus");
         BtnHapus1.setToolTipText("Alt+H");
         BtnHapus1.setName("BtnHapus1"); // NOI18N
@@ -2414,6 +2453,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -2444,6 +2484,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnPrint1.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint1.setMnemonic('T');
         BtnPrint1.setText("Cetak");
         BtnPrint1.setToolTipText("Alt+T");
         BtnPrint1.setName("BtnPrint1"); // NOI18N
@@ -2457,6 +2498,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnDokumen.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-search24.png"))); // NOI18N
+        BtnDokumen.setMnemonic('T');
         BtnDokumen.setText("Dokumen Penunjang Medis");
         BtnDokumen.setToolTipText("Alt+T");
         BtnDokumen.setName("BtnDokumen"); // NOI18N
@@ -2475,6 +2517,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnCloseIn5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn5.setMnemonic('U');
         BtnCloseIn5.setText("Tutup");
         BtnCloseIn5.setToolTipText("Alt+U");
         BtnCloseIn5.setName("BtnCloseIn5"); // NOI18N
@@ -2500,6 +2543,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -2550,6 +2594,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         btnPerujuk.setForeground(new java.awt.Color(0, 0, 0));
         btnPerujuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        btnPerujuk.setMnemonic('7');
         btnPerujuk.setToolTipText("ALt+7");
         btnPerujuk.setName("btnPerujuk"); // NOI18N
         btnPerujuk.addActionListener(new java.awt.event.ActionListener() {
@@ -2574,6 +2619,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan1.setMnemonic('S');
         BtnSimpan1.setText("Simpan");
         BtnSimpan1.setToolTipText("Alt+S");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
@@ -2587,6 +2633,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnCloseIn2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn2.setMnemonic('U');
         BtnCloseIn2.setText("Tutup");
         BtnCloseIn2.setToolTipText("Alt+U");
         BtnCloseIn2.setName("BtnCloseIn2"); // NOI18N
@@ -2630,6 +2677,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         btnPetugas1.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        btnPetugas1.setMnemonic('7');
         btnPetugas1.setToolTipText("ALt+7");
         btnPetugas1.setName("btnPetugas1"); // NOI18N
         btnPetugas1.addActionListener(new java.awt.event.ActionListener() {
@@ -2654,6 +2702,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnSimpan2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan2.setMnemonic('S');
         BtnSimpan2.setText("Simpan");
         BtnSimpan2.setToolTipText("Alt+S");
         BtnSimpan2.setName("BtnSimpan2"); // NOI18N
@@ -2667,6 +2716,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnCloseIn3.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn3.setMnemonic('U');
         BtnCloseIn3.setText("Tutup");
         BtnCloseIn3.setToolTipText("Alt+U");
         BtnCloseIn3.setName("BtnCloseIn3"); // NOI18N
@@ -2821,6 +2871,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         btnPasien.setForeground(new java.awt.Color(0, 0, 0));
         btnPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPasien.setMnemonic('1');
         btnPasien.setToolTipText("Alt+1");
         btnPasien.setName("btnPasien"); // NOI18N
         btnPasien.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -2834,6 +2885,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         btnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPetugas.setMnemonic('2');
         btnPetugas.setToolTipText("Alt+2");
         btnPetugas.setName("btnPetugas"); // NOI18N
         btnPetugas.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -2883,6 +2935,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         btnPenjab.setForeground(new java.awt.Color(0, 0, 0));
         btnPenjab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPenjab.setMnemonic('2');
         btnPenjab.setToolTipText("ALt+2");
         btnPenjab.setName("btnPenjab"); // NOI18N
         btnPenjab.addActionListener(new java.awt.event.ActionListener() {
@@ -2927,6 +2980,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnUnit.setForeground(new java.awt.Color(0, 0, 0));
         BtnUnit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnUnit.setMnemonic('4');
         BtnUnit.setToolTipText("ALt+4");
         BtnUnit.setName("BtnUnit"); // NOI18N
         BtnUnit.addActionListener(new java.awt.event.ActionListener() {
@@ -2939,6 +2993,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnBersih.setForeground(new java.awt.Color(0, 0, 0));
         BtnBersih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnBersih.setMnemonic('R');
         BtnBersih.setText("Refresh");
         BtnBersih.setToolTipText("Alt+R");
         BtnBersih.setName("BtnBersih"); // NOI18N
@@ -3026,6 +3081,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('5');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+5");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -3057,6 +3113,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -3075,6 +3132,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -3093,6 +3151,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -5379,6 +5438,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             param.put("jenkel", Tjenkel.getText());
             param.put("drPengirim", TdokterPengirim.getText());
             param.put("unit", Tunit.getText());
+            param.put("rs", Trs.getText());
             param.put("tglperiksa", Ttglperiksa.getText());
             param.put("tglhasil", Valid.SetTglINDONESIA(Valid.SetTgl(TtglHasil.getSelectedItem() + "")));
             param.put("lokasi", Tlokasi.getText() + "\n");
@@ -5496,10 +5556,10 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                 user = akses.getkode();
             }
             
-            if (Sequel.menyimpantf("hasil_patologi_anatomi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Hasil pemeriksaan patologi anatomi", 21, new String[]{
+            if (Sequel.menyimpantf("hasil_patologi_anatomi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Hasil pemeriksaan patologi anatomi", 22, new String[]{
                 TnoRw.getText(), TnoPa.getText(), Valid.SetTgl(TtglHasil.getSelectedItem() + ""), Tlokasi.getText(), Tmakros.getText(), Tmikros.getText(),
                 Tkesimpulan.getText(), Tanjuran.getText(), user, TkodeFile.getText(), nipperujukHsl, Tunit.getText(), tglperiksaHsl, Sequel.cariIsi("select now()"),
-                TitalicMakros.getText(), TitalicMikros.getText(), TitalicKesimpulan.getText(), TitalicAnjuran.getText(), "BELUM", "0000-00-00 00:00:00", ""
+                TitalicMakros.getText(), TitalicMikros.getText(), TitalicKesimpulan.getText(), TitalicAnjuran.getText(), "BELUM", "0000-00-00 00:00:00", "", Trs.getText()
             }) == true) {
                 emptTeksPatologi();
                 tampilHasil();
@@ -5575,10 +5635,10 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
 
                 if (Sequel.mengedittf("hasil_patologi_anatomi", "waktu_simpan=?", "no_pa=?, tgl_hasil=?, lokasi_organ=?, makroskopik=?, mikroskopik=?, "
                         + "kesimpulan=?, anjuran=?, nip_dokter_pa=?, kd_gambar=?, nip_perujuk=?, nm_unit=?, tgl_periksa=?, italic_makroskopik=?, "
-                        + "italic_mikroskopik=?, italic_kesimpulan=?, italic_anjuran=?", 17, new String[]{
+                        + "italic_mikroskopik=?, italic_kesimpulan=?, italic_anjuran=?, rumah_sakit=?", 18, new String[]{
                             TnoPa.getText(), Valid.SetTgl(TtglHasil.getSelectedItem() + ""), Tlokasi.getText(), Tmakros.getText(), Tmikros.getText(),
                             Tkesimpulan.getText(), Tanjuran.getText(), user, TkodeFile.getText(), nipperujukHsl, Tunit.getText(), tglperiksaHsl,
-                            TitalicMakros.getText(), TitalicMikros.getText(), TitalicKesimpulan.getText(), TitalicAnjuran.getText(),
+                            TitalicMakros.getText(), TitalicMikros.getText(), TitalicKesimpulan.getText(), TitalicAnjuran.getText(), Trs.getText(),
                             tbHasil.getValueAt(tbHasil.getSelectedRow(), 20).toString()
                         }) == true) {
                     emptTeksPatologi();
@@ -5616,6 +5676,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                     WindowHasilPA.toFront();
                     WindowHasilPA.requestFocus();
 
+                    emptTeksPatologi();
                     TnoRw.setText(nRawat.getText());
                     TnoRm.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + TnoRw.getText() + "'"));
                     Tpasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TnoRm.getText() + "'"));
@@ -5625,9 +5686,9 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                     tglperiksaHsl = tglPeriksa;
                     TdokterPengirim.setText(dokter_pengirim.getText());
                     Tunit.setText(nm_unit);
+                    Trs.setText(akses.getnamars());
                     Ttglperiksa.setText(Valid.SetTglINDONESIA(tglPeriksa));
-                    cmbLimit.setSelectedIndex(0);
-                    emptTeksPatologi();
+                    cmbLimit.setSelectedIndex(0);                    
                     tampilHasil();
                 }
             } else {
@@ -6057,6 +6118,18 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
         }
     }//GEN-LAST:event_MnKirimKeWhatsappNotaActionPerformed
 
+    private void TunitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TunitKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Trs.requestFocus();
+        }
+    }//GEN-LAST:event_TunitKeyPressed
+
+    private void TrsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TrsKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Tlokasi.requestFocus();
+        }
+    }//GEN-LAST:event_TrsKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -6193,6 +6266,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.TextBox TnoTelpPx;
     private widget.TextBox TnoTlpnFaskes;
     private widget.TextBox Tpasien;
+    private widget.TextBox Trs;
     private widget.Tanggal TtglHasil;
     private widget.TextBox TtglLahir;
     private widget.TextBox TtglPeriksa;
@@ -6274,6 +6348,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.Label jLabel55;
     private widget.Label jLabel56;
     private widget.Label jLabel57;
+    private widget.Label jLabel58;
     private widget.Label jLabel7;
     private widget.Label jLabel95;
     private javax.swing.JMenu jMnCetakHasilLab;
@@ -6846,6 +6921,8 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     
     private void emptTeksPatologi() {
         TtglHasil.setDate(new Date());
+        Tunit.setText("");
+        Trs.setText("");
         Tlokasi.setText("");
         Tlokasi.requestFocus();
         Tmakros.setText("");
@@ -6893,7 +6970,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                         rs6.getString("jenkel"),
                         rs6.getString("tglLahir"),
                         rs6.getString("drPengirim"),
-                        rs6.getString("nm_unit"),
+                        rs6.getString("nm_unit") + " (" + rs6.getString("rumah_sakit") + ")",
                         rs6.getString("tglPeriksa"),
                         rs6.getString("tglHasil"),
                         rs6.getString("lokasi_organ"),
@@ -6914,7 +6991,9 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                         rs6.getString("nmDokterPA"),
                         rs6.getString("terkirim_ke_whatsapp"),
                         rs6.getString("wktTerkirim"),
-                        rs6.getString("no_whatsapp_penerima")
+                        rs6.getString("no_whatsapp_penerima"),
+                        rs6.getString("nm_unit"),
+                        rs6.getString("rumah_sakit")
                     });
                 }
             } catch (Exception e) {
@@ -6943,8 +7022,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             Tjenkel.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 4).toString());
             TnoPa.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 1).toString());
             nipperujukHsl = tbHasil.getValueAt(tbHasil.getSelectedRow(), 16).toString();
-            TdokterPengirim.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipperujukHsl + "'"));
-            Tunit.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 7).toString());
+            TdokterPengirim.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipperujukHsl + "'"));            
             Ttglperiksa.setText(Valid.SetTglINDONESIA(tbHasil.getValueAt(tbHasil.getSelectedRow(), 17).toString()));
             Valid.SetTgl(TtglHasil, tbHasil.getValueAt(tbHasil.getSelectedRow(), 19).toString());
             Tlokasi.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 10).toString());
@@ -6964,6 +7042,8 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             TitalicMikros.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 22).toString());
             TitalicKesimpulan.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 23).toString());
             TitalicAnjuran.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 24).toString());
+            Tunit.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 29).toString());
+            Trs.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 30).toString());
             tampilGambar();
         }
     }
