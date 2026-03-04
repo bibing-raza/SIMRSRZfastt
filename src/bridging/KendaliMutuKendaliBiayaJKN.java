@@ -325,6 +325,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnExportkeExcelRalan = new javax.swing.JMenuItem();
         MnExportkeExcelRekapRalan = new javax.swing.JMenuItem();
+        MnExportkeExcelRekapObat = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnExportkeExcelRanap = new javax.swing.JMenuItem();
         MnExportkeExcelRekapRanap = new javax.swing.JMenuItem();
@@ -398,6 +399,22 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnExportkeExcelRekapRalan);
 
+        MnExportkeExcelRekapObat.setBackground(new java.awt.Color(242, 242, 242));
+        MnExportkeExcelRekapObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnExportkeExcelRekapObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnExportkeExcelRekapObat.setText("Export Ke Ms. Excel Rekap Data Obat");
+        MnExportkeExcelRekapObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnExportkeExcelRekapObat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnExportkeExcelRekapObat.setIconTextGap(5);
+        MnExportkeExcelRekapObat.setName("MnExportkeExcelRekapObat"); // NOI18N
+        MnExportkeExcelRekapObat.setPreferredSize(new java.awt.Dimension(300, 26));
+        MnExportkeExcelRekapObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnExportkeExcelRekapObatActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnExportkeExcelRekapObat);
+
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
 
         MnExportkeExcelRanap.setBackground(new java.awt.Color(242, 242, 242));
@@ -456,6 +473,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         panelisi3.add(label11);
         label11.setBounds(0, 10, 90, 23);
 
+        TglSEP1.setEditable(false);
         TglSEP1.setDisplayFormat("dd-MM-yyyy");
         TglSEP1.setName("TglSEP1"); // NOI18N
         panelisi3.add(TglSEP1);
@@ -504,6 +522,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         panelisi3.add(label12);
         label12.setBounds(183, 10, 27, 23);
 
+        TglSEP2.setEditable(false);
         TglSEP2.setDisplayFormat("dd-MM-yyyy");
         TglSEP2.setName("TglSEP2"); // NOI18N
         panelisi3.add(TglSEP2);
@@ -697,11 +716,6 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         TabRawat.setBackground(new java.awt.Color(255, 255, 254));
         TabRawat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
-        TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TabRawatMouseClicked(evt);
-            }
-        });
 
         internalFrame2.setBorder(null);
         internalFrame2.setName("internalFrame2"); // NOI18N
@@ -724,6 +738,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         ));
         tbKendaliKlaimRalan.setComponentPopupMenu(jPopupMenu1);
         tbKendaliKlaimRalan.setName("tbKendaliKlaimRalan"); // NOI18N
+        tbKendaliKlaimRalan.getTableHeader().setReorderingAllowed(false);
         scrollPane1.setViewportView(tbKendaliKlaimRalan);
 
         internalFrame2.add(scrollPane1, java.awt.BorderLayout.CENTER);
@@ -740,6 +755,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         tbKendaliKlaimRanap.setAutoCreateRowSorter(true);
         tbKendaliKlaimRanap.setComponentPopupMenu(jPopupMenu2);
         tbKendaliKlaimRanap.setName("tbKendaliKlaimRanap"); // NOI18N
+        tbKendaliKlaimRanap.getTableHeader().setReorderingAllowed(false);
         Scroll.setViewportView(tbKendaliKlaimRanap);
 
         internalFrame4.add(Scroll, java.awt.BorderLayout.CENTER);
@@ -936,14 +952,6 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         }
     }//GEN-LAST:event_MnExportkeExcelRekapRalanActionPerformed
 
-    private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
-        if (TabRawat.getSelectedIndex() == 0) {
-            tampilRalan();
-        } else if (TabRawat.getSelectedIndex() == 1) {
-            tampilRanap();
-        }
-    }//GEN-LAST:event_TabRawatMouseClicked
-
     private void jnsRawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnsRawatActionPerformed
         KdPoli.setText("");
         NmPoli.setText("");
@@ -953,17 +961,14 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             cmbRuangan.setEnabled(true);
             btnPoli.setEnabled(false);
             TabRawat.setSelectedIndex(1);
-//            tampilRanap();
         } else if (jnsRawat.getSelectedIndex() == 2) {
             cmbRuangan.setEnabled(false);
             btnPoli.setEnabled(true);
             TabRawat.setSelectedIndex(0);
-//            tampilRalan();
         } else {
             cmbRuangan.setEnabled(false);
             btnPoli.setEnabled(false);
             TabRawat.setSelectedIndex(0);
-//            tampilRalan();
         }
     }//GEN-LAST:event_jnsRawatActionPerformed
 
@@ -1070,6 +1075,24 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         TDokter.setText("");
     }//GEN-LAST:event_BtnHapusDpjpActionPerformed
 
+    private void MnExportkeExcelRekapObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnExportkeExcelRekapObatActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        dialog_simpan = Valid.openDialog();
+        Valid.MyReportToExcel("select DISTINCT date_format(rp.tgl_registrasi,'%d-%m-%Y') 'Tgl. Kunjungan', pl.nm_poli 'Poliklinik', pg.nama 'Nama Dokter', "
+                + "d.nama_brng 'Nama Obat', date_format(dpo.tgl_perawatan,'%d-%m-%Y') 'Tgl. Resep', time_format(dpo.jam,'%H:%i:%s') 'Jam Pemberian', bs.no_sep 'No. SEP', "
+                + "dpo.jml 'Jml. Pemberian', dpo.biaya_obat 'Biaya Obat', if(pg2.nama is null,'-',pg2.nama) 'Petugas Farmasi' from detail_pemberian_obat dpo "
+                + "inner join databarang d on d.kode_brng =dpo.kode_brng inner join reg_periksa rp on rp.no_rawat=dpo.no_rawat "
+                + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join poliklinik pl on pl.kd_poli=rp.kd_poli "
+                + "inner join pegawai pg on pg.nik=rp.kd_dokter inner join bridging_sep bs on bs.no_rawat=rp.no_rawat "
+                + "left join riwayat_obat_pasien rop on rop.no_rawat=dpo.no_rawat left join pegawai pg2 on pg2.nik=rop.petugas "
+                + "where dpo.tgl_perawatan <> rp.tgl_registrasi and rp.status_lanjut='ralan' "
+                + "AND rp.tgl_registrasi BETWEEN '" + Valid.SetTgl(TglSEP1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(TglSEP2.getSelectedItem() + "") + "' "
+                + "order by rp.tgl_registrasi, rp.no_rawat, rp.kd_poli ", dialog_simpan);
+
+        JOptionPane.showMessageDialog(null, "Data resep rawat jalan beda tgl. resep & tgl. kunjungan berhasil diexport menjadi file excel,..!!!");
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnExportkeExcelRekapObatActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1096,6 +1119,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private widget.Label LCount;
     private javax.swing.JMenuItem MnExportkeExcelRalan;
     private javax.swing.JMenuItem MnExportkeExcelRanap;
+    private javax.swing.JMenuItem MnExportkeExcelRekapObat;
     private javax.swing.JMenuItem MnExportkeExcelRekapRalan;
     private javax.swing.JMenuItem MnExportkeExcelRekapRanap;
     private widget.TextBox NmPoli;
