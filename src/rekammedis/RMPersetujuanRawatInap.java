@@ -20,6 +20,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Year;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -179,6 +180,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         TnoTelp.setDocument(new batasInput((byte) 13).getOnlyAngka(TnoTelp));
         Talamat.setDocument(new batasInput((int) 200).getKata(Talamat));
         TnoIdentitas.setDocument(new batasInput((byte) 17).getOnlyAngka(TnoIdentitas));
+        Tthn.setDocument(new batasInput((byte) 4).getOnlyAngka(Tthn));
         
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
@@ -444,6 +446,8 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         TtglReg = new widget.TextBox();
         Scroll5 = new widget.ScrollPane();
         LoadHTML1 = new widget.editorpane();
+        jLabel26 = new widget.Label();
+        Tthn = new widget.TextBox();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
@@ -521,7 +525,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         Tnm.setBounds(114, 10, 420, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Umur : ");
+        jLabel9.setText("Tahun Lahir : ");
         jLabel9.setName("jLabel9"); // NOI18N
         FormInput.add(jLabel9);
         jLabel9.setBounds(0, 38, 110, 23);
@@ -534,7 +538,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tumur);
-        Tumur.setBounds(114, 38, 80, 23);
+        Tumur.setBounds(250, 38, 80, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Alamat : ");
@@ -646,7 +650,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         jLabel13.setText("No. Telp. : ");
         jLabel13.setName("jLabel13"); // NOI18N
         FormInput.add(jLabel13);
-        jLabel13.setBounds(200, 38, 70, 23);
+        jLabel13.setBounds(335, 38, 70, 23);
 
         TnoTelp.setBackground(new java.awt.Color(245, 250, 240));
         TnoTelp.setForeground(new java.awt.Color(0, 0, 0));
@@ -657,7 +661,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
             }
         });
         FormInput.add(TnoTelp);
-        TnoTelp.setBounds(273, 38, 130, 23);
+        TnoTelp.setBounds(405, 38, 130, 23);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("No. KTP/SIM : ");
@@ -725,7 +729,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         jLabel19.setBounds(0, 318, 110, 23);
 
         Ttgl.setEditable(false);
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2026" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2026" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -857,6 +861,23 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
         FormInput.add(Scroll5);
         Scroll5.setBounds(800, 120, 260, 240);
+
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Umur : ");
+        jLabel26.setName("jLabel26"); // NOI18N
+        FormInput.add(jLabel26);
+        jLabel26.setBounds(200, 38, 50, 23);
+
+        Tthn.setForeground(new java.awt.Color(0, 0, 0));
+        Tthn.setToolTipText("Setelah angka tahun terisi, tekan ENTER ");
+        Tthn.setName("Tthn"); // NOI18N
+        Tthn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TthnKeyPressed(evt);
+            }
+        });
+        FormInput.add(Tthn);
+        Tthn.setBounds(114, 38, 65, 23);
 
         internalFrame1.add(FormInput, java.awt.BorderLayout.PAGE_START);
 
@@ -1022,7 +1043,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         panelGlass10.add(jLabel24);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1037,7 +1058,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         panelGlass10.add(jLabel25);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1418,7 +1439,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
 
     private void TnmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Tumur.requestFocus();
+            Tthn.requestFocus();
         }
     }//GEN-LAST:event_TnmKeyPressed
 
@@ -1585,6 +1606,22 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnHapusTtdActionPerformed
 
+    private void TthnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TthnKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (Tthn.getText().equals("")) {
+                Tthn.setText("0");
+            } else {
+                int A = 0, B = 0, C = 0;
+                A = Integer.parseInt(Tthn.getText());
+                B = Year.now().getValue();
+                C = B - A;
+
+                Tumur.setText(Valid.SetAngka2(C) + " Thn.");
+                TnoTelp.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_TthnKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -1639,6 +1676,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
     private widget.TextBox Tspesialis;
     private widget.Tanggal Ttgl;
     private widget.TextBox TtglReg;
+    private widget.TextBox Tthn;
     private widget.TextBox Tumur;
     private widget.CekBox chkSamaAlamat;
     private widget.ComboBox cmbBiaya;
@@ -1664,6 +1702,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
     private widget.Label jLabel23;
     private widget.Label jLabel24;
     private widget.Label jLabel25;
+    private widget.Label jLabel26;
     private widget.Label jLabel4;
     private widget.Label jLabel6;
     private widget.Label jLabel63;
@@ -1763,6 +1802,7 @@ public class RMPersetujuanRawatInap extends javax.swing.JDialog {
     public void emptTeks() {  
         Tnm.setText("");
         Tnm.requestFocus();
+        Tthn.setText("");
         Tumur.setText("");
         TnoTelp.setText("");
         Talamat.setText("");
