@@ -531,12 +531,11 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         MnLapPerbekalanFarm.setPreferredSize(new java.awt.Dimension(60, 30));
 
         MnLapPakaiBekalFarmasiPdf.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnLapPakaiBekalFarmasiPdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnLapPakaiBekalFarmasiPdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnLapPakaiBekalFarmasiPdf.setText("PDF");
-        MnLapPakaiBekalFarmasiPdf.setToolTipText("");
         MnLapPakaiBekalFarmasiPdf.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MnLapPakaiBekalFarmasiPdf.setName("MnLapPakaiBekalFarmasiPdf"); // NOI18N
-        MnLapPakaiBekalFarmasiPdf.setPreferredSize(new java.awt.Dimension(70, 26));
+        MnLapPakaiBekalFarmasiPdf.setPreferredSize(new java.awt.Dimension(90, 26));
         MnLapPakaiBekalFarmasiPdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnLapPakaiBekalFarmasiPdfActionPerformed(evt);
@@ -545,10 +544,10 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         MnLapPerbekalanFarm.add(MnLapPakaiBekalFarmasiPdf);
 
         MnLapPakaiBekalFarmasiExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnLapPakaiBekalFarmasiExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnLapPakaiBekalFarmasiExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
         MnLapPakaiBekalFarmasiExcel.setText("EXCEL");
         MnLapPakaiBekalFarmasiExcel.setName("MnLapPakaiBekalFarmasiExcel"); // NOI18N
-        MnLapPakaiBekalFarmasiExcel.setPreferredSize(new java.awt.Dimension(70, 26));
+        MnLapPakaiBekalFarmasiExcel.setPreferredSize(new java.awt.Dimension(90, 26));
         MnLapPakaiBekalFarmasiExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnLapPakaiBekalFarmasiExcelActionPerformed(evt);
@@ -589,6 +588,7 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         ));
         tbRiwayat.setComponentPopupMenu(jPopupMenu1);
         tbRiwayat.setName("tbRiwayat"); // NOI18N
+        tbRiwayat.getTableHeader().setReorderingAllowed(false);
         scrollPane1.setViewportView(tbRiwayat);
 
         internalFrame1.add(scrollPane1, java.awt.BorderLayout.CENTER);
@@ -1549,57 +1549,92 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         param.put("logo", Sequel.cariGambar("select logo from setting"));
         param.put("periode", "Periode Pemakaian Tgl. " + Tgl1.getSelectedItem() + " S.D " + Tgl2.getSelectedItem());
         Valid.MyReport("rptRencanaFarmasi.jasper", "report", "::[ Laporan Rekap Pemakaian Perbekalan Farmasi ]::",
-                " SELECT a.kode_brng, a.nama_brng, IFNULL(b.h_beli,ifnull(c.h_beli,IFNULL(d.h_beli,IFNULL(e.h_beli,IFNULL(f.h_beli,IFNULL(g.h_beli, 0)))))) AS 'Harga Beli', "
-                + "IFNULL(b.jumlah, 0) AS 'R_INAP SENTRAL', "
-                + "IFNULL(c.jumlah, 0) AS 'R_INAP IGD', "
-                + "IFNULL(d.jumlah, 0) AS 'IBS', "
-                + "IFNULL(e.jumlah, 0) AS 'R_JALAN SENTRAL', "
-                + "IFNULL(f.jumlah, 0) AS 'R_JALAN IGD', "
-                + "IFNULL(g.jumlah, 0) AS 'IGD JUAL BEBAS', "
-                + "IFNULL(b.jumlah, 0) + IFNULL(c.jumlah, 0) + IFNULL(d.jumlah, 0) AS 'TOTAL R_INAP', "
-                + "IFNULL(e.jumlah, 0) + IFNULL(f.jumlah, 0) + IFNULL(g.jumlah, 0) AS 'TOTAL R_JALAN', "
-                + "IFNULL(b.jumlah, 0) + IFNULL(c.jumlah, 0) + IFNULL(d.jumlah, 0) + IFNULL(e.jumlah, 0) + IFNULL(f.jumlah, 0) + IFNULL(g.jumlah, 0) AS 'JUMLAH RI_RJ' "
-                + "FROM ((SELECT kode_brng, nama_brng FROM databarang) AS a LEFT JOIN (SELECT d.kode_brng, d.h_beli, sum(d.jml) jumlah FROM detail_pemberian_obat d "
-                + "WHERE d.tgl_perawatan BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d. STATUS = 'RANAP' AND d.kd_bangsal = 'APT02' GROUP BY d.kode_brng) AS b ON b.kode_brng = a.kode_brng "
-                + "LEFT JOIN (SELECT d.kode_brng, d.h_beli, sum(d.jml) jumlah FROM detail_pemberian_obat d WHERE d.tgl_perawatan BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d. STATUS = 'RANAP' "
-                + "AND d.kd_bangsal = 'APT01' GROUP BY d.kode_brng) AS c ON c.kode_brng = a.kode_brng LEFT JOIN (SELECT d.kode_brng, d.h_beli, sum(d.jml) jumlah FROM detail_pemberian_obat d "
-                + "WHERE d.tgl_perawatan BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d.kd_bangsal = 'APT07' GROUP BY d.kode_brng) AS d ON d.kode_brng = a.kode_brng "
-                + "LEFT JOIN (SELECT d.kode_brng, d.h_beli, sum(d.jml) jumlah FROM detail_pemberian_obat d WHERE d.tgl_perawatan BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d. STATUS = 'RALAN' "
-                + "AND d.kd_bangsal = 'APT02' GROUP BY d.kode_brng) AS e ON e.kode_brng = a.kode_brng LEFT JOIN (SELECT d.kode_brng, d.h_beli, sum(d.jml) jumlah FROM detail_pemberian_obat d "
-                + "WHERE d.tgl_perawatan BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d. STATUS = 'RALAN' AND d.kd_bangsal = 'APT01' GROUP BY d.kode_brng) AS f ON f.kode_brng = a.kode_brng "
-                + "LEFT JOIN (SELECT b.kode_brng, b.nama_brng, sum(d.jumlah) jumlah, d.h_beli FROM penjualan p INNER JOIN detailjual d ON d.nota_jual = p.nota_jual "
-                + "INNER JOIN databarang b ON b.kode_brng = d.kode_brng WHERE p.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' GROUP BY d.kode_brng) AS g ON g.kode_brng = a.kode_brng) "
-                + "ORDER BY a.nama_brng", param);
+                "SELECT a.kode_brng, a.nama_brng, "
+                + "    COALESCE(x.harga_beli, y.harga_beli, 0) 'Harga Beli', "
+                + "    COALESCE(x.ranap_sentral, 0) 'R_INAP SENTRAL', "
+                + "    COALESCE(x.ranap_igd, 0) 'R_INAP IGD', "
+                + "    COALESCE(x.ibs, 0) 'IBS', "
+                + "    COALESCE(x.kemoterapi, 0) 'KEMOTERAPI', "
+                + "    COALESCE(x.ralan_sentral, 0) 'R_JALAN SENTRAL', "
+                + "    COALESCE(x.ralan_igd, 0) 'R_JALAN IGD', "
+                + "    COALESCE(y.igd_jual_bebas, 0) 'IGD JUAL BEBAS', "
+                + "    COALESCE(x.ranap_sentral, 0) + COALESCE(x.ranap_igd, 0) + COALESCE(x.ibs, 0) + COALESCE(x.kemoterapi, 0) 'TOTAL R_INAP', "
+                + "    COALESCE(x.ralan_sentral, 0) + COALESCE(x.ralan_igd, 0) + COALESCE(y.igd_jual_bebas, 0) 'TOTAL R_JALAN', "
+                + "    COALESCE(x.ranap_sentral, 0) + COALESCE(x.ranap_igd, 0) + COALESCE(x.ibs, 0) + COALESCE(x.kemoterapi, 0) +  "
+                + "    COALESCE(x.ralan_sentral, 0) + COALESCE(x.ralan_igd, 0) + COALESCE(y.igd_jual_bebas, 0) 'JUMLAH RI_RJ' FROM databarang a  "
+                + "LEFT JOIN (SELECT "
+                + "        d.kode_brng, "
+                + "        MAX(d.h_beli) harga_beli, "
+                + "        SUM(CASE WHEN d.status = 'RANAP' AND d.kd_bangsal = 'APT02' THEN d.jml ELSE 0 END) ranap_sentral, "
+                + "        SUM(CASE WHEN d.status = 'RANAP' AND d.kd_bangsal = 'APT01' THEN d.jml ELSE 0 END) ranap_igd, "
+                + "        SUM(CASE WHEN d.kd_bangsal = 'APT07' THEN d.jml ELSE 0 END) ibs, "
+                + "        SUM(CASE WHEN d.status = 'RALAN' AND d.kd_bangsal = 'APT02' THEN d.jml ELSE 0 END) ralan_sentral, "
+                + "        SUM(CASE WHEN d.status = 'RALAN' AND d.kd_bangsal = 'APT01' THEN d.jml ELSE 0 END) ralan_igd, "
+                + "        SUM(CASE WHEN d.kd_bangsal = 'APT08' THEN d.jml ELSE 0 END) kemoterapi "
+                + "    FROM detail_pemberian_obat d "
+                + "    WHERE d.tgl_perawatan between'" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d.kd_bangsal IN ('APT01', 'APT02', 'APT07','APT08') "
+                + "    GROUP BY d.kode_brng) x ON x.kode_brng = a.kode_brng "
+                + "LEFT JOIN (SELECT "
+                + "        d.kode_brng, "
+                + "        SUM(d.jumlah) igd_jual_bebas, "
+                + "        MAX(d.h_beli) harga_beli "
+                + "    FROM penjualan p "
+                + "    INNER JOIN detailjual d ON d.nota_jual = p.nota_jual "
+                + "    WHERE p.tgl_jual between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' GROUP BY d.kode_brng) y ON y.kode_brng = a.kode_brng WHERE  "
+                + "    COALESCE(x.ranap_sentral, 0) <> 0 OR "
+                + "    COALESCE(x.ranap_igd, 0) <> 0 OR "
+                + "    COALESCE(x.ibs, 0) <> 0 OR "
+                + "    COALESCE(x.ralan_sentral, 0) <> 0 OR "
+                + "    COALESCE(x.ralan_igd, 0) <> 0 OR "
+                + "    COALESCE(x.kemoterapi, 0) <> 0 OR "
+                + "    COALESCE(y.igd_jual_bebas, 0) <> 0 ORDER BY a.nama_brng", param);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnLapPakaiBekalFarmasiPdfActionPerformed
 
     private void MnLapPakaiBekalFarmasiExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLapPakaiBekalFarmasiExcelActionPerformed
-        // TODO add your handling code here:
         dialog_simpan = "";
         dialog_simpan = Valid.openDialog();
         if (!dialog_simpan.equals("the user cancelled the operation")) {
-            if (Valid.MyReportToExcelBoolean(
-                    " SELECT a.kode_brng 'Kode Obat', a.nama_brng 'Nama Obat', IFNULL(b.h_beli,ifnull(c.h_beli,IFNULL(d.h_beli,IFNULL(e.h_beli,IFNULL(f.h_beli,IFNULL(g.h_beli, 0)))))) AS 'Harga Beli', "
-                    + "IFNULL(b.jumlah, 0) AS 'RAWAT INAP SENTRAL', "
-                    + "IFNULL(c.jumlah, 0) AS 'RAWAT INAP IGD', "
-                    + "IFNULL(d.jumlah, 0) AS 'IBS', "
-                    + "IFNULL(e.jumlah, 0) AS 'RAWAT JALAN SENTRAL', "
-                    + "IFNULL(f.jumlah, 0) AS 'RAWAT JALAN IGD', "
-                    + "IFNULL(g.jumlah, 0) AS 'IGD JUAL BEBAS', "
-                    + "IFNULL(b.jumlah, 0) + IFNULL(c.jumlah, 0) + IFNULL(d.jumlah, 0) AS 'TOTAL RAWAT INAP', "
-                    + "IFNULL(e.jumlah, 0) + IFNULL(f.jumlah, 0) + IFNULL(g.jumlah, 0) AS 'TOTAL RAWAT JALAN', "
-                    + "IFNULL(b.jumlah, 0) + IFNULL(c.jumlah, 0) + IFNULL(d.jumlah, 0) + IFNULL(e.jumlah, 0) + IFNULL(f.jumlah, 0) + IFNULL(g.jumlah, 0) AS 'JUMLAH SEMUA RAWAT' "
-                    + "FROM ((SELECT kode_brng, nama_brng FROM databarang) AS a LEFT JOIN (SELECT d.kode_brng, d.h_beli, sum(d.jml) jumlah FROM detail_pemberian_obat d "
-                    + "WHERE d.tgl_perawatan BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d. STATUS = 'RANAP' AND d.kd_bangsal = 'APT02' GROUP BY d.kode_brng) AS b ON b.kode_brng = a.kode_brng "
-                    + "LEFT JOIN (SELECT d.kode_brng, d.h_beli, sum(d.jml) jumlah FROM detail_pemberian_obat d WHERE d.tgl_perawatan BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d. STATUS = 'RANAP' "
-                    + "AND d.kd_bangsal = 'APT01' GROUP BY d.kode_brng) AS c ON c.kode_brng = a.kode_brng LEFT JOIN (SELECT d.kode_brng, d.h_beli, sum(d.jml) jumlah FROM detail_pemberian_obat d "
-                    + "WHERE d.tgl_perawatan BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d.kd_bangsal = 'APT07' GROUP BY d.kode_brng) AS d ON d.kode_brng = a.kode_brng "
-                    + "LEFT JOIN (SELECT d.kode_brng, d.h_beli, sum(d.jml) jumlah FROM detail_pemberian_obat d WHERE d.tgl_perawatan BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d. STATUS = 'RALAN' "
-                    + "AND d.kd_bangsal = 'APT02' GROUP BY d.kode_brng) AS e ON e.kode_brng = a.kode_brng LEFT JOIN (SELECT d.kode_brng, d.h_beli, sum(d.jml) jumlah FROM detail_pemberian_obat d "
-                    + "WHERE d.tgl_perawatan BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d. STATUS = 'RALAN' AND d.kd_bangsal = 'APT01' GROUP BY d.kode_brng) AS f ON f.kode_brng = a.kode_brng "
-                    + "LEFT JOIN (SELECT b.kode_brng, b.nama_brng, sum(d.jumlah) jumlah, d.h_beli FROM penjualan p INNER JOIN detailjual d ON d.nota_jual = p.nota_jual "
-                    + "INNER JOIN databarang b ON b.kode_brng = d.kode_brng WHERE p.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' GROUP BY d.kode_brng) AS g ON g.kode_brng = a.kode_brng) "
-                    + "ORDER BY a.nama_brng", dialog_simpan) == true) {
+            if (Valid.MyReportToExcelBoolean("SELECT a.kode_brng 'Kode Obat', "
+                    + "    a.nama_brng 'Nama Obat', "
+                    + "    COALESCE(x.harga_beli, y.harga_beli, 0) 'Harga Beli', "
+                    + "    COALESCE(x.ranap_sentral, 0) 'RAWAT INAP SENTRAL', "
+                    + "    COALESCE(x.ranap_igd, 0) 'RAWAT INAP IGD', "
+                    + "    COALESCE(x.ibs, 0) 'IBS', "
+                    + "    COALESCE(x.kemoterapi, 0) 'KEMOTERAPI', "
+                    + "    COALESCE(x.ralan_sentral, 0) 'RAWAT JALAN SENTRAL', "
+                    + "    COALESCE(x.ralan_igd, 0) 'RAWAT JALAN IGD', "
+                    + "    COALESCE(y.igd_jual_bebas, 0) 'IGD JUAL BEBAS', "
+                    + "    COALESCE(x.ranap_sentral, 0) + COALESCE(x.ranap_igd, 0) + COALESCE(x.ibs, 0) + COALESCE(x.kemoterapi, 0) 'TOTAL RAWAT INAP', "
+                    + "    COALESCE(x.ralan_sentral, 0) + COALESCE(x.ralan_igd, 0) + COALESCE(y.igd_jual_bebas, 0) 'TOTAL RAWAT JALAN', "
+                    + "    COALESCE(x.ranap_sentral, 0) + COALESCE(x.ranap_igd, 0) + COALESCE(x.ibs, 0) + COALESCE(x.kemoterapi, 0) +  "
+                    + "    COALESCE(x.ralan_sentral, 0) + COALESCE(x.ralan_igd, 0) + COALESCE(y.igd_jual_bebas, 0) 'JUMLAH SEMUA RAWAT' FROM databarang a  "
+                    + "LEFT JOIN (SELECT "
+                    + "        d.kode_brng, "
+                    + "        MAX(d.h_beli) harga_beli, "
+                    + "        SUM(CASE WHEN d.status = 'RANAP' AND d.kd_bangsal = 'APT02' THEN d.jml ELSE 0 END) ranap_sentral, "
+                    + "        SUM(CASE WHEN d.status = 'RANAP' AND d.kd_bangsal = 'APT01' THEN d.jml ELSE 0 END) ranap_igd, "
+                    + "        SUM(CASE WHEN d.kd_bangsal = 'APT07' THEN d.jml ELSE 0 END) ibs, "
+                    + "        SUM(CASE WHEN d.status = 'RALAN' AND d.kd_bangsal = 'APT02' THEN d.jml ELSE 0 END) ralan_sentral, "
+                    + "        SUM(CASE WHEN d.status = 'RALAN' AND d.kd_bangsal = 'APT01' THEN d.jml ELSE 0 END) ralan_igd, "
+                    + "        SUM(CASE WHEN d.kd_bangsal = 'APT08' THEN d.jml ELSE 0 END) kemoterapi "
+                    + "    FROM detail_pemberian_obat d "
+                    + "    WHERE d.tgl_perawatan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d.kd_bangsal IN ('APT01', 'APT02', 'APT07','APT08') "
+                    + "    GROUP BY d.kode_brng) x ON x.kode_brng = a.kode_brng "
+                    + "LEFT JOIN (SELECT "
+                    + "        d.kode_brng, "
+                    + "        SUM(d.jumlah) igd_jual_bebas, "
+                    + "        MAX(d.h_beli) harga_beli "
+                    + "    FROM penjualan p "
+                    + "    INNER JOIN detailjual d ON d.nota_jual = p.nota_jual "
+                    + "    WHERE p.tgl_jual between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' GROUP BY d.kode_brng) y ON y.kode_brng = a.kode_brng WHERE  "
+                    + "    COALESCE(x.ranap_sentral, 0) <> 0 OR "
+                    + "    COALESCE(x.ranap_igd, 0) <> 0 OR "
+                    + "    COALESCE(x.ibs, 0) <> 0 OR "
+                    + "    COALESCE(x.ralan_sentral, 0) <> 0 OR "
+                    + "    COALESCE(x.ralan_igd, 0) <> 0 OR "
+                    + "    COALESCE(x.kemoterapi, 0) <> 0 OR "
+                    + "    COALESCE(y.igd_jual_bebas, 0) <> 0 ORDER BY a.nama_brng", dialog_simpan) == true) {
                 JOptionPane.showMessageDialog(null, "Data berhasil diexport menjadi file excel,..!!!");
             } else {
                 JOptionPane.showMessageDialog(null, "Data gagal diexport menjadi file excel,..!!!");
