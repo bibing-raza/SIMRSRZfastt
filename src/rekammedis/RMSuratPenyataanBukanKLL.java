@@ -1195,27 +1195,21 @@ public class RMSuratPenyataanBukanKLL extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbSurat.getSelectedRow() > -1) {
-            if (akses.getadmin() == true || nipPtgs.equals(akses.getkode())) {
-                x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
-                    if (Sequel.queryu2tf("delete from surat_pernyataan_bukan_kll where no_rawat=?", 1, new String[]{
-                        tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
-                    }) == true) {
-                        if (!idFileNmBerttd.equals("")) {
-                            Sequel.hapusSemuaTtd(idFileNmBerttd);
-                        }
-                        
-                        tampil();
-                        emptTeks();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.queryu2tf("delete from surat_pernyataan_bukan_kll where no_rawat=?", 1, new String[]{
+                    tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
+                }) == true) {
+                    if (!idFileNmBerttd.equals("")) {
+                        Sequel.hapusSemuaTtd(idFileNmBerttd);
                     }
-                } else {
+
                     tampil();
                     emptTeks();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Maaf, data rekam medis surat pernyataan bukan kasus KLL hanya bisa dihapus oleh " + TnmPetugas.getText() + " ...!!");
                 tampil();
                 emptTeks();
             }
@@ -1334,39 +1328,33 @@ public class RMSuratPenyataanBukanKLL extends javax.swing.JDialog {
 
     private void MnHapusTtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdActionPerformed
         if (tbSurat.getSelectedRow() > -1) {
-            if (akses.getadmin() == true || nipPtgs.equals(akses.getkode())) {
-                x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan yang memberikan pernyataan mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
-                    String ipGambar = "";
-                    try {
-                        //cek atau ping ip addres
-                        ipGambar = "192.168.0.230";
-                        InetAddress inet = InetAddress.getByName(ipGambar);
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan yang memberikan pernyataan mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                String ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
 
-                        //ping sukses timeout 100 ms (0.1 detik)
-                        if (inet.isReachable(100)) {
-                            if (idFileNmBerttd.equals("")) {
-                                JOptionPane.showMessageDialog(null, "Yang memberikan pernyataan ini belum melakukan tanda tangan...!!!!");
-                            } else {
-                                if (Sequel.hapusFileTTD(idFileNmBerttd) == true) {
-                                    Sequel.mengedit("surat_pernyataan_bukan_kll", "no_rawat='" + norawat + "'", "id_file_nm_berttd=''");
-                                    tampil();
-                                    emptTeks();
-                                }
-                            }
-                            //ping gagal
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFileNmBerttd.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Yang memberikan pernyataan ini belum melakukan tanda tangan...!!!!");
                         } else {
-                            JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                            if (Sequel.hapusFileTTD(idFileNmBerttd) == true) {
+                                Sequel.mengedit("surat_pernyataan_bukan_kll", "no_rawat='" + norawat + "'", "id_file_nm_berttd=''");
+                                tampil();
+                                emptTeks();
+                            }
                         }
-                    } catch (Exception e) {
-                        System.out.println("Notif : " + e);
+                        //ping gagal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
                     }
-                } else {
-                    tampil();
-                    emptTeks();
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Maaf, tanda tangan yang memberikan pernyataan hanya bisa dihapus oleh " + TnmPetugas.getText() + " ...!!");
                 tampil();
                 emptTeks();
             }

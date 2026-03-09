@@ -255,8 +255,8 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         MnRiwayatSetiapDepoUmum = new javax.swing.JMenuItem();
         MnRiwayatSetiapDepoLainnya = new javax.swing.JMenuItem();
         MnLapPerbekalanFarm = new javax.swing.JMenu();
-        MnLapPakaiBekalFarmasiPdf = new javax.swing.JMenuItem();
-        MnLapPakaiBekalFarmasiExcel = new javax.swing.JMenuItem();
+        MnLapExcelPerRawat = new javax.swing.JMenuItem();
+        MnLapPakaiSemuaRawat = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         scrollPane1 = new widget.ScrollPane();
         tbRiwayat = new widget.Table();
@@ -530,30 +530,29 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         MnLapPerbekalanFarm.setName("MnLapPerbekalanFarm"); // NOI18N
         MnLapPerbekalanFarm.setPreferredSize(new java.awt.Dimension(60, 30));
 
-        MnLapPakaiBekalFarmasiPdf.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnLapPakaiBekalFarmasiPdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnLapPakaiBekalFarmasiPdf.setText("PDF");
-        MnLapPakaiBekalFarmasiPdf.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        MnLapPakaiBekalFarmasiPdf.setName("MnLapPakaiBekalFarmasiPdf"); // NOI18N
-        MnLapPakaiBekalFarmasiPdf.setPreferredSize(new java.awt.Dimension(90, 26));
-        MnLapPakaiBekalFarmasiPdf.addActionListener(new java.awt.event.ActionListener() {
+        MnLapExcelPerRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLapExcelPerRawat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnLapExcelPerRawat.setText("Ms. Excell (Apotek Per Jns. Rawat)");
+        MnLapExcelPerRawat.setName("MnLapExcelPerRawat"); // NOI18N
+        MnLapExcelPerRawat.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnLapExcelPerRawat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnLapPakaiBekalFarmasiPdfActionPerformed(evt);
+                MnLapExcelPerRawatActionPerformed(evt);
             }
         });
-        MnLapPerbekalanFarm.add(MnLapPakaiBekalFarmasiPdf);
+        MnLapPerbekalanFarm.add(MnLapExcelPerRawat);
 
-        MnLapPakaiBekalFarmasiExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnLapPakaiBekalFarmasiExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
-        MnLapPakaiBekalFarmasiExcel.setText("EXCEL");
-        MnLapPakaiBekalFarmasiExcel.setName("MnLapPakaiBekalFarmasiExcel"); // NOI18N
-        MnLapPakaiBekalFarmasiExcel.setPreferredSize(new java.awt.Dimension(90, 26));
-        MnLapPakaiBekalFarmasiExcel.addActionListener(new java.awt.event.ActionListener() {
+        MnLapPakaiSemuaRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLapPakaiSemuaRawat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnLapPakaiSemuaRawat.setText("Ms. Excell (Apotek Semua Rawat)");
+        MnLapPakaiSemuaRawat.setName("MnLapPakaiSemuaRawat"); // NOI18N
+        MnLapPakaiSemuaRawat.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnLapPakaiSemuaRawat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnLapPakaiBekalFarmasiExcelActionPerformed(evt);
+                MnLapPakaiSemuaRawatActionPerformed(evt);
             }
         });
-        MnLapPerbekalanFarm.add(MnLapPakaiBekalFarmasiExcel);
+        MnLapPerbekalanFarm.add(MnLapPakaiSemuaRawat);
 
         jPopupMenu1.add(MnLapPerbekalanFarm);
 
@@ -1537,61 +1536,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
 
     }//GEN-LAST:event_filterTglKeyPressed
 
-    private void MnLapPakaiBekalFarmasiPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLapPakaiBekalFarmasiPdfActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        Map<String, Object> param = new HashMap<>();
-        param.put("namars", akses.getnamars());
-        param.put("alamatrs", akses.getalamatrs());
-        param.put("kotars", akses.getkabupatenrs());
-        param.put("propinsirs", akses.getpropinsirs());
-        param.put("kontakrs", akses.getkontakrs());
-        param.put("emailrs", akses.getemailrs());
-        param.put("logo", Sequel.cariGambar("select logo from setting"));
-        param.put("periode", "Periode Pemakaian Tgl. " + Tgl1.getSelectedItem() + " S.D " + Tgl2.getSelectedItem());
-        Valid.MyReport("rptRencanaFarmasi.jasper", "report", "::[ Laporan Rekap Pemakaian Perbekalan Farmasi ]::",
-                "SELECT a.kode_brng, a.nama_brng, "
-                + "    COALESCE(x.harga_beli, y.harga_beli, 0) 'Harga Beli', "
-                + "    COALESCE(x.ranap_sentral, 0) 'R_INAP SENTRAL', "
-                + "    COALESCE(x.ranap_igd, 0) 'R_INAP IGD', "
-                + "    COALESCE(x.ibs, 0) 'IBS', "
-                + "    COALESCE(x.kemoterapi, 0) 'KEMOTERAPI', "
-                + "    COALESCE(x.ralan_sentral, 0) 'R_JALAN SENTRAL', "
-                + "    COALESCE(x.ralan_igd, 0) 'R_JALAN IGD', "
-                + "    COALESCE(y.igd_jual_bebas, 0) 'IGD JUAL BEBAS', "
-                + "    COALESCE(x.ranap_sentral, 0) + COALESCE(x.ranap_igd, 0) + COALESCE(x.ibs, 0) + COALESCE(x.kemoterapi, 0) 'TOTAL R_INAP', "
-                + "    COALESCE(x.ralan_sentral, 0) + COALESCE(x.ralan_igd, 0) + COALESCE(y.igd_jual_bebas, 0) 'TOTAL R_JALAN', "
-                + "    COALESCE(x.ranap_sentral, 0) + COALESCE(x.ranap_igd, 0) + COALESCE(x.ibs, 0) + COALESCE(x.kemoterapi, 0) +  "
-                + "    COALESCE(x.ralan_sentral, 0) + COALESCE(x.ralan_igd, 0) + COALESCE(y.igd_jual_bebas, 0) 'JUMLAH RI_RJ' FROM databarang a  "
-                + "LEFT JOIN (SELECT "
-                + "        d.kode_brng, "
-                + "        MAX(d.h_beli) harga_beli, "
-                + "        SUM(CASE WHEN d.status = 'RANAP' AND d.kd_bangsal = 'APT02' THEN d.jml ELSE 0 END) ranap_sentral, "
-                + "        SUM(CASE WHEN d.status = 'RANAP' AND d.kd_bangsal = 'APT01' THEN d.jml ELSE 0 END) ranap_igd, "
-                + "        SUM(CASE WHEN d.kd_bangsal = 'APT07' THEN d.jml ELSE 0 END) ibs, "
-                + "        SUM(CASE WHEN d.status = 'RALAN' AND d.kd_bangsal = 'APT02' THEN d.jml ELSE 0 END) ralan_sentral, "
-                + "        SUM(CASE WHEN d.status = 'RALAN' AND d.kd_bangsal = 'APT01' THEN d.jml ELSE 0 END) ralan_igd, "
-                + "        SUM(CASE WHEN d.kd_bangsal = 'APT08' THEN d.jml ELSE 0 END) kemoterapi "
-                + "    FROM detail_pemberian_obat d "
-                + "    WHERE d.tgl_perawatan between'" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d.kd_bangsal IN ('APT01', 'APT02', 'APT07','APT08') "
-                + "    GROUP BY d.kode_brng) x ON x.kode_brng = a.kode_brng "
-                + "LEFT JOIN (SELECT "
-                + "        d.kode_brng, "
-                + "        SUM(d.jumlah) igd_jual_bebas, "
-                + "        MAX(d.h_beli) harga_beli "
-                + "    FROM penjualan p "
-                + "    INNER JOIN detailjual d ON d.nota_jual = p.nota_jual "
-                + "    WHERE p.tgl_jual between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' GROUP BY d.kode_brng) y ON y.kode_brng = a.kode_brng WHERE  "
-                + "    COALESCE(x.ranap_sentral, 0) <> 0 OR "
-                + "    COALESCE(x.ranap_igd, 0) <> 0 OR "
-                + "    COALESCE(x.ibs, 0) <> 0 OR "
-                + "    COALESCE(x.ralan_sentral, 0) <> 0 OR "
-                + "    COALESCE(x.ralan_igd, 0) <> 0 OR "
-                + "    COALESCE(x.kemoterapi, 0) <> 0 OR "
-                + "    COALESCE(y.igd_jual_bebas, 0) <> 0 ORDER BY a.nama_brng", param);
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_MnLapPakaiBekalFarmasiPdfActionPerformed
-
-    private void MnLapPakaiBekalFarmasiExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLapPakaiBekalFarmasiExcelActionPerformed
+    private void MnLapExcelPerRawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLapExcelPerRawatActionPerformed
         dialog_simpan = "";
         dialog_simpan = Valid.openDialog();
         if (!dialog_simpan.equals("the user cancelled the operation")) {
@@ -1640,8 +1585,52 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                 JOptionPane.showMessageDialog(null, "Data gagal diexport menjadi file excel,..!!!");
             }
         }
+    }//GEN-LAST:event_MnLapExcelPerRawatActionPerformed
 
-    }//GEN-LAST:event_MnLapPakaiBekalFarmasiExcelActionPerformed
+    private void MnLapPakaiSemuaRawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLapPakaiSemuaRawatActionPerformed
+        dialog_simpan = "";
+        dialog_simpan = Valid.openDialog();
+        if (!dialog_simpan.equals("the user cancelled the operation")) {
+            if (Valid.MyReportToExcelBoolean("SELECT a.kode_brng 'Kode Obat', "
+                    + "    a.nama_brng 'Nama Obat', "
+                    + "    COALESCE(a.h_beli, 0) 'Harga Beli', "
+                    + "    COALESCE(x.sentral_bop, 0) + COALESCE(n.sentral_op, 0) 'APT. SENTRAL', "
+                    + "    COALESCE(x.igd_bop, 0) + COALESCE(n.igd_op, 0) 'APT. IGD', "
+                    + "    COALESCE(x.ibs_bop, 0) + COALESCE(n.ibs_op, 0) 'APT. IBS', "
+                    + "    COALESCE(x.kemoterapi_bop, 0) + COALESCE(n.kemoterapi_op, 0) 'APT. KEMOTERAPI', "
+                    + "    COALESCE(y.igd_jual_bebas, 0) 'IGD JUAL BEBAS', "
+                    + "    COALESCE(x.sentral_bop, 0) + COALESCE(n.sentral_op, 0) + COALESCE(x.igd_bop, 0) + COALESCE(n.igd_op, 0) + COALESCE(x.ibs_bop, 0) + "
+                    + "    COALESCE(n.ibs_op, 0) + COALESCE(x.kemoterapi_bop, 0) + COALESCE(n.kemoterapi_op, 0) + COALESCE(y.igd_jual_bebas, 0) 'JUMLAH SEMUA APT' "
+                    + "    FROM databarang a "
+                    + "LEFT JOIN (SELECT rb.kode_brng, "
+                    + "        round(SUM(CASE WHEN rb.kd_bangsal = 'APT02' and rb.posisi <> 'Opname' THEN rb.keluar ELSE 0 END)) sentral_bop, "
+                    + "        round(SUM(CASE WHEN rb.kd_bangsal = 'APT01' and rb.posisi <> 'Opname' THEN rb.keluar ELSE 0 END)) igd_bop, "
+                    + "        round(SUM(CASE WHEN rb.kd_bangsal = 'APT07' and rb.posisi <> 'Opname' THEN rb.keluar ELSE 0 END)) ibs_bop, "
+                    + "        round(SUM(CASE WHEN rb.kd_bangsal = 'APT08' and rb.posisi <> 'Opname' THEN rb.keluar ELSE 0 END)) kemoterapi_bop "
+                    + "    FROM riwayat_barang_medis rb "
+                    + "    WHERE rb.tanggal between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND rb.kd_bangsal IN ('APT01', 'APT02', 'APT07','APT08') "
+                    + "    GROUP BY rb.kode_brng) x ON x.kode_brng = a.kode_brng "
+                    + "LEFT JOIN (SELECT rb.kode_brng, "
+                    + "        round(SUM(CASE WHEN rb.kd_bangsal = 'APT02' and rb.posisi = 'Opname' THEN rb.stok_awal ELSE 0 END)) sentral_op, "
+                    + "        round(SUM(CASE WHEN rb.kd_bangsal = 'APT01' and rb.posisi = 'Opname' THEN rb.stok_awal ELSE 0 END)) igd_op, "
+                    + "        round(SUM(CASE WHEN rb.kd_bangsal = 'APT07' and rb.posisi = 'Opname' THEN rb.stok_awal ELSE 0 END)) ibs_op, "
+                    + "        round(SUM(CASE WHEN rb.kd_bangsal = 'APT08' and rb.posisi = 'Opname' THEN rb.stok_awal ELSE 0 END)) kemoterapi_op "
+                    + "    FROM riwayat_barang_medis rb "
+                    + "    WHERE rb.tanggal between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND rb.kd_bangsal IN ('APT01', 'APT02', 'APT07','APT08') "
+                    + "    GROUP BY rb.kode_brng) n ON n.kode_brng = a.kode_brng "
+                    + "LEFT JOIN (SELECT d.kode_brng, SUM(d.jumlah) igd_jual_bebas, MAX(d.h_beli) harga_beli "
+                    + "    FROM penjualan p "
+                    + "    INNER JOIN detailjual d ON d.nota_jual = p.nota_jual "
+                    + "    WHERE p.tgl_jual between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' GROUP BY d.kode_brng) y ON y.kode_brng = a.kode_brng WHERE "
+                    + "    COALESCE(x.sentral_bop, 0) + COALESCE(x.igd_bop, 0) + COALESCE(x.ibs_bop, 0) + COALESCE(x.kemoterapi_bop, 0) + COALESCE(n.sentral_op, 0) + "
+                    + "    COALESCE(n.igd_op, 0) + COALESCE(n.ibs_op, 0) + COALESCE(n.kemoterapi_op, 0) + COALESCE(y.igd_jual_bebas, 0) <> 0 "
+                    + "    ORDER BY a.nama_brng", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data gagal diexport menjadi file excel,..!!!");
+            }
+        }
+    }//GEN-LAST:event_MnLapPakaiSemuaRawatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1666,8 +1655,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private widget.Button BtnPrint;
     private widget.TextBox Kd2;
     private widget.TextBox KdGudang;
-    private javax.swing.JMenuItem MnLapPakaiBekalFarmasiExcel;
-    private javax.swing.JMenuItem MnLapPakaiBekalFarmasiPdf;
+    private javax.swing.JMenuItem MnLapExcelPerRawat;
+    private javax.swing.JMenuItem MnLapPakaiSemuaRawat;
     private javax.swing.JMenu MnLapPerbekalanFarm;
     private javax.swing.JMenu MnLapRiwayat;
     private javax.swing.JMenu MnLapRiwayat1;
