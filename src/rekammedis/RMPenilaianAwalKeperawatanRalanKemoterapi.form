@@ -1210,6 +1210,11 @@
                         </Component>
                         <Container class="widget.ScrollPane" name="scrollPane1">
                           <Properties>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                <LineBorder roundedCorners="true"/>
+                              </Border>
+                            </Property>
                             <Property name="name" type="java.lang.String" value="scrollPane1" noResource="true"/>
                           </Properties>
                           <Constraints>
@@ -1251,6 +1256,11 @@
                         </Component>
                         <Container class="widget.ScrollPane" name="scrollPane2">
                           <Properties>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                <LineBorder roundedCorners="true"/>
+                              </Border>
+                            </Property>
                             <Property name="name" type="java.lang.String" value="scrollPane2" noResource="true"/>
                           </Properties>
                           <Constraints>
@@ -1297,6 +1307,11 @@
                         </Component>
                         <Container class="widget.ScrollPane" name="scrollPane3">
                           <Properties>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                <LineBorder roundedCorners="true"/>
+                              </Border>
+                            </Property>
                             <Property name="name" type="java.lang.String" value="scrollPane3" noResource="true"/>
                           </Properties>
                           <Constraints>
@@ -1343,6 +1358,11 @@
                         </Component>
                         <Container class="widget.ScrollPane" name="scrollPane4">
                           <Properties>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                <LineBorder roundedCorners="true"/>
+                              </Border>
+                            </Property>
                             <Property name="name" type="java.lang.String" value="scrollPane4" noResource="true"/>
                           </Properties>
                           <Constraints>
@@ -2523,6 +2543,11 @@
                         </Component>
                         <Container class="widget.ScrollPane" name="scrollPane5">
                           <Properties>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                                <LineBorder roundedCorners="true"/>
+                              </Border>
+                            </Property>
                             <Property name="name" type="java.lang.String" value="scrollPane5" noResource="true"/>
                           </Properties>
                           <AccessibilityProperties>
@@ -2593,7 +2618,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="07-11-2025 10:14:57"/>
+                                <StringItem index="0" value="11-03-2026 08:46:00"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy HH:mm:ss"/>
@@ -3113,6 +3138,9 @@
                             <Component class="widget.Table" name="tbMasalahKeperawatan">
                               <Properties>
                                 <Property name="name" type="java.lang.String" value="tbMasalahKeperawatan" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -3381,6 +3409,9 @@
                         <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
                         <Property name="name" type="java.lang.String" value="tbPenilaian" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPenilaianMouseClicked"/>
@@ -3424,7 +3455,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="07-11-2025"/>
+                            <StringItem index="0" value="11-03-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3453,7 +3484,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="07-11-2025"/>
+                            <StringItem index="0" value="11-03-2026"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3724,6 +3755,9 @@
                             <Component class="widget.Table" name="tbMasalahDetailMasalah">
                               <Properties>
                                 <Property name="name" type="java.lang.String" value="tbMasalahDetailMasalah" noResource="true"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                             </Component>
                           </SubComponents>

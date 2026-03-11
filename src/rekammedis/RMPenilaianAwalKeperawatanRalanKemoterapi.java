@@ -1243,6 +1243,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         FormInput.add(jLabel53);
         jLabel53.setBounds(10, 70, 180, 23);
 
+        scrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane1.setName("scrollPane1"); // NOI18N
 
         KeluhanUtama.setColumns(20);
@@ -1265,6 +1266,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         FormInput.add(jLabel30);
         jLabel30.setBounds(0, 190, 175, 20);
 
+        scrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane2.setName("scrollPane2"); // NOI18N
 
         RPD.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1288,6 +1290,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         FormInput.add(jLabel31);
         jLabel31.setBounds(0, 240, 175, 23);
 
+        scrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane3.setName("scrollPane3"); // NOI18N
 
         RPK.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1311,6 +1314,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         FormInput.add(jLabel32);
         jLabel32.setBounds(440, 190, 150, 23);
 
+        scrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane4.setName("scrollPane4"); // NOI18N
 
         RPO.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1905,6 +1909,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         FormInput.add(KetDokter);
         KetDokter.setBounds(775, 1060, 80, 23);
 
+        scrollPane5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane5.setName("scrollPane5"); // NOI18N
 
         Rencana.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1942,7 +1947,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         FormInput.add(TotalHasil);
         TotalHasil.setBounds(774, 770, 80, 23);
 
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2025 07:35:58" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025 10:14:57" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -2154,6 +2159,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         Scroll6.setOpaque(true);
 
         tbMasalahKeperawatan.setName("tbMasalahKeperawatan"); // NOI18N
+        tbMasalahKeperawatan.getTableHeader().setReorderingAllowed(false);
         Scroll6.setViewportView(tbMasalahKeperawatan);
 
         FormInput.add(Scroll6);
@@ -2297,6 +2303,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         tbPenilaian.setAutoCreateRowSorter(true);
         tbPenilaian.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPenilaian.setName("tbPenilaian"); // NOI18N
+        tbPenilaian.getTableHeader().setReorderingAllowed(false);
         tbPenilaian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPenilaianMouseClicked(evt);
@@ -2322,7 +2329,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2337,7 +2344,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2467,6 +2474,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
         Scroll7.setOpaque(true);
 
         tbMasalahDetailMasalah.setName("tbMasalahDetailMasalah"); // NOI18N
+        tbMasalahDetailMasalah.getTableHeader().setReorderingAllowed(false);
         Scroll7.setViewportView(tbMasalahDetailMasalah);
 
         FormMasalahRencana.add(Scroll7);

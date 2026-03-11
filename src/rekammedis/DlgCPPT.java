@@ -35,6 +35,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -1441,6 +1442,10 @@ public class DlgCPPT extends javax.swing.JDialog {
         Scroll3 = new widget.ScrollPane();
         Ttemplate = new widget.TextArea();
         panelisi4 = new widget.panelisi();
+        jLabel66 = new widget.Label();
+        DTPCariA = new widget.Tanggal();
+        jLabel67 = new widget.Label();
+        DTPCariB = new widget.Tanggal();
         jLabel36 = new widget.Label();
         TCari1 = new widget.TextBox();
         BtnCari1 = new widget.Button();
@@ -2971,6 +2976,35 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelisi4.setPreferredSize(new java.awt.Dimension(100, 44));
         panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
 
+        jLabel66.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel66.setText("Tanggal :");
+        jLabel66.setName("jLabel66"); // NOI18N
+        jLabel66.setPreferredSize(new java.awt.Dimension(60, 23));
+        panelisi4.add(jLabel66);
+
+        DTPCariA.setEditable(false);
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
+        DTPCariA.setDisplayFormat("dd-MM-yyyy");
+        DTPCariA.setName("DTPCariA"); // NOI18N
+        DTPCariA.setOpaque(false);
+        DTPCariA.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelisi4.add(DTPCariA);
+
+        jLabel67.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel67.setText("s.d.");
+        jLabel67.setName("jLabel67"); // NOI18N
+        jLabel67.setPreferredSize(new java.awt.Dimension(23, 23));
+        panelisi4.add(jLabel67);
+
+        DTPCariB.setEditable(false);
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
+        DTPCariB.setDisplayFormat("dd-MM-yyyy");
+        DTPCariB.setName("DTPCariB"); // NOI18N
+        DTPCariB.setOpaque(false);
+        DTPCariB.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelisi4.add(DTPCariB);
+
         jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setText("Key Word :");
         jLabel36.setName("jLabel36"); // NOI18N
@@ -3083,7 +3117,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbSiftPetugas.setBounds(287, 10, 65, 23);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -3099,7 +3133,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 38, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -3548,7 +3582,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel29.setBounds(0, 40, 80, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -3746,7 +3780,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3760,7 +3794,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3956,7 +3990,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel43.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass12.add(jLabel43);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -3970,7 +4004,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel44.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass12.add(jLabel44);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -4472,7 +4506,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame7.add(jLabel8);
         jLabel8.setBounds(0, 38, 180, 23);
 
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -5238,7 +5272,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel35.setBounds(0, 8, 120, 23);
 
         tglLapor.setEditable(false);
-        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         tglLapor.setDisplayFormat("dd-MM-yyyy");
         tglLapor.setName("tglLapor"); // NOI18N
         tglLapor.setOpaque(false);
@@ -5292,7 +5326,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel38.setBounds(0, 36, 120, 23);
 
         tglVerifikasi.setEditable(false);
-        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         tglVerifikasi.setDisplayFormat("dd-MM-yyyy");
         tglVerifikasi.setName("tglVerifikasi"); // NOI18N
         tglVerifikasi.setOpaque(false);
@@ -5753,7 +5787,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5767,7 +5801,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6954,7 +6988,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelGlass26.add(ChkTanggal);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -6968,7 +7002,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel59.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass26.add(jLabel59);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-01-2026" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2026" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -7763,6 +7797,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
+        tglTemplate();
         TCari1.setText(TNoRm.getText());
         TCari1.requestFocus();
         tampilTemplate();
@@ -7779,6 +7814,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
+        tglTemplate();
         TCari1.setText(TNoRm.getText());
         TCari1.requestFocus();
         tampilTemplate();
@@ -8877,6 +8913,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
+        tglTemplate();
         TCari1.setText(TNoRm.getText());
         TCari1.requestFocus();
         tampilTemplate();
@@ -8905,6 +8942,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
+        tglTemplate();
         TCari1.setText(TNoRm.getText());
         TCari1.requestFocus();
         tampilTemplate();
@@ -8933,6 +8971,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
+        tglTemplate();
         TCari1.setText(TNoRm.getText());
         TCari1.requestFocus();
         tampilTemplate();
@@ -8961,6 +9000,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
+        tglTemplate();
         TCari1.setText(TNoRm.getText());
         TCari1.requestFocus();
         tampilTemplate();
@@ -11134,6 +11174,8 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Tanggal DTPCari4;
     private widget.Tanggal DTPCari5;
     private widget.Tanggal DTPCari6;
+    private widget.Tanggal DTPCariA;
+    private widget.Tanggal DTPCariB;
     private widget.Tanggal DTPTgl;
     private widget.PanelBiasa FormInput;
     private widget.PanelBiasa FormInput1;
@@ -11431,6 +11473,8 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Label jLabel63;
     private widget.Label jLabel64;
     private widget.Label jLabel65;
+    private widget.Label jLabel66;
+    private widget.Label jLabel67;
     private widget.Label jLabel69;
     private widget.Label jLabel7;
     private widget.Label jLabel75;
@@ -12014,56 +12058,62 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "c.hasil_pemeriksaan<>'' and p.no_rkm_medis like ? OR "
-                        + "c.hasil_pemeriksaan<>'' and p.nm_pasien like ? OR "
-                        + "c.hasil_pemeriksaan<>'' and c.hasil_pemeriksaan like ? ORDER BY c.tgl_cppt, c.jam_cppt limit 200");
+                        + "c.tgl_cppt between ? and ? and c.hasil_pemeriksaan<>'' and p.no_rkm_medis like ? OR "
+                        + "c.tgl_cppt between ? and ? and c.hasil_pemeriksaan<>'' and p.nm_pasien like ? OR "
+                        + "c.tgl_cppt between ? and ? and c.hasil_pemeriksaan<>'' and c.hasil_pemeriksaan like ? ORDER BY c.tgl_cppt, c.jam_cppt");
             } else if (pilihan == 2) {
                 pps2 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "c.instruksi_nakes<>'' and p.no_rkm_medis like ? OR "
-                        + "c.instruksi_nakes<>'' and p.nm_pasien like ? OR "
-                        + "c.instruksi_nakes<>'' and c.instruksi_nakes like ? ORDER BY c.tgl_cppt, c.jam_cppt limit 200");
+                        + "c.tgl_cppt between ? and ? and c.instruksi_nakes<>'' and p.no_rkm_medis like ? OR "
+                        + "c.tgl_cppt between ? and ? and c.instruksi_nakes<>'' and p.nm_pasien like ? OR "
+                        + "c.tgl_cppt between ? and ? and c.instruksi_nakes<>'' and c.instruksi_nakes like ? ORDER BY c.tgl_cppt, c.jam_cppt");
             } else if (pilihan == 3) {
                 pps3 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "c.subjektif<>'' and p.no_rkm_medis like ? OR "
-                        + "c.subjektif<>'' and p.nm_pasien like ? OR "
-                        + "c.subjektif<>'' and c.subjektif like ? ORDER BY c.tgl_cppt, c.jam_cppt limit 200");
+                        + "c.tgl_cppt between ? and ? and c.subjektif<>'' and p.no_rkm_medis like ? OR "
+                        + "c.tgl_cppt between ? and ? and c.subjektif<>'' and p.nm_pasien like ? OR "
+                        + "c.tgl_cppt between ? and ? and c.subjektif<>'' and c.subjektif like ? ORDER BY c.tgl_cppt, c.jam_cppt");
             } else if (pilihan == 4) {
                 pps4 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "c.objektif<>'' and p.no_rkm_medis like ? OR "
-                        + "c.objektif<>'' and p.nm_pasien like ? OR "
-                        + "c.objektif<>'' and c.objektif like ? ORDER BY c.tgl_cppt, c.jam_cppt limit 200");
+                        + "c.tgl_cppt between ? and ? and c.objektif<>'' and p.no_rkm_medis like ? OR "
+                        + "c.tgl_cppt between ? and ? and c.objektif<>'' and p.nm_pasien like ? OR "
+                        + "c.tgl_cppt between ? and ? and c.objektif<>'' and c.objektif like ? ORDER BY c.tgl_cppt, c.jam_cppt");
             } else if (pilihan == 5) {
                 pps5 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "c.asesmen<>'' and p.no_rkm_medis like ? OR "
-                        + "c.asesmen<>'' and p.nm_pasien like ? OR "
-                        + "c.asesmen<>'' and c.asesmen like ? ORDER BY c.tgl_cppt, c.jam_cppt limit 200");
+                        + "c.tgl_cppt between ? and ? and c.asesmen<>'' and p.no_rkm_medis like ? OR "
+                        + "c.tgl_cppt between ? and ? and c.asesmen<>'' and p.nm_pasien like ? OR "
+                        + "c.tgl_cppt between ? and ? and c.asesmen<>'' and c.asesmen like ? ORDER BY c.tgl_cppt, c.jam_cppt");
             } else if (pilihan == 6) {
                 pps6 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "c.planing<>'' and p.no_rkm_medis like ? OR "
-                        + "c.planing<>'' and p.nm_pasien like ? OR "
-                        + "c.planing<>'' and c.planing like ? ORDER BY c.tgl_cppt, c.jam_cppt limit 200");
+                        + "c.tgl_cppt between ? and ? and c.planing<>'' and p.no_rkm_medis like ? OR "
+                        + "c.tgl_cppt between ? and ? and c.planing<>'' and p.nm_pasien like ? OR "
+                        + "c.tgl_cppt between ? and ? and c.planing<>'' and c.planing like ? ORDER BY c.tgl_cppt, c.jam_cppt");
             }
             
             try {
                 if (pilihan == 1) {
-                    pps1.setString(1, "%" + TCari1.getText() + "%");
-                    pps1.setString(2, "%" + TCari1.getText() + "%");
+                    pps1.setString(1, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps1.setString(2, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
                     pps1.setString(3, "%" + TCari1.getText() + "%");
+                    pps1.setString(4, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps1.setString(5, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
+                    pps1.setString(6, "%" + TCari1.getText() + "%");
+                    pps1.setString(7, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps1.setString(8, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
+                    pps1.setString(9, "%" + TCari1.getText() + "%");
                     rrs1 = pps1.executeQuery();
                     while (rrs1.next()) {
                         tabMode1.addRow(new String[]{
@@ -12077,9 +12127,15 @@ public class DlgCPPT extends javax.swing.JDialog {
                         });
                     }
                 } else if (pilihan == 2) {
-                    pps2.setString(1, "%" + TCari1.getText() + "%");
-                    pps2.setString(2, "%" + TCari1.getText() + "%");
+                    pps2.setString(1, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps2.setString(2, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
                     pps2.setString(3, "%" + TCari1.getText() + "%");
+                    pps2.setString(4, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps2.setString(5, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
+                    pps2.setString(6, "%" + TCari1.getText() + "%");
+                    pps2.setString(7, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps2.setString(8, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
+                    pps2.setString(9, "%" + TCari1.getText() + "%");
                     rrs2 = pps2.executeQuery();
                     while (rrs2.next()) {
                         tabMode1.addRow(new String[]{
@@ -12093,9 +12149,15 @@ public class DlgCPPT extends javax.swing.JDialog {
                         });
                     }
                 } else if (pilihan == 3) {
-                    pps3.setString(1, "%" + TCari1.getText() + "%");
-                    pps3.setString(2, "%" + TCari1.getText() + "%");
+                    pps3.setString(1, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps3.setString(2, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
                     pps3.setString(3, "%" + TCari1.getText() + "%");
+                    pps3.setString(4, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps3.setString(5, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
+                    pps3.setString(6, "%" + TCari1.getText() + "%");
+                    pps3.setString(7, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps3.setString(8, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
+                    pps3.setString(9, "%" + TCari1.getText() + "%");
                     rrs3 = pps3.executeQuery();
                     while (rrs3.next()) {
                         tabMode1.addRow(new String[]{
@@ -12109,9 +12171,15 @@ public class DlgCPPT extends javax.swing.JDialog {
                         });
                     }
                 } else if (pilihan == 4) {
-                    pps4.setString(1, "%" + TCari1.getText() + "%");
-                    pps4.setString(2, "%" + TCari1.getText() + "%");
+                    pps4.setString(1, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps4.setString(2, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
                     pps4.setString(3, "%" + TCari1.getText() + "%");
+                    pps4.setString(4, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps4.setString(5, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
+                    pps4.setString(6, "%" + TCari1.getText() + "%");
+                    pps4.setString(7, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps4.setString(8, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
+                    pps4.setString(9, "%" + TCari1.getText() + "%");
                     rrs4 = pps4.executeQuery();
                     while (rrs4.next()) {
                         tabMode1.addRow(new String[]{
@@ -12125,9 +12193,15 @@ public class DlgCPPT extends javax.swing.JDialog {
                         });
                     }
                 } else if (pilihan == 5) {
-                    pps5.setString(1, "%" + TCari1.getText() + "%");
-                    pps5.setString(2, "%" + TCari1.getText() + "%");
+                    pps5.setString(1, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps5.setString(2, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
                     pps5.setString(3, "%" + TCari1.getText() + "%");
+                    pps5.setString(4, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps5.setString(5, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
+                    pps5.setString(6, "%" + TCari1.getText() + "%");
+                    pps5.setString(7, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps5.setString(8, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
+                    pps5.setString(9, "%" + TCari1.getText() + "%");
                     rrs5 = pps5.executeQuery();
                     while (rrs5.next()) {
                         tabMode1.addRow(new String[]{
@@ -12141,9 +12215,15 @@ public class DlgCPPT extends javax.swing.JDialog {
                         });
                     }
                 } else if (pilihan == 6) {
-                    pps6.setString(1, "%" + TCari1.getText() + "%");
-                    pps6.setString(2, "%" + TCari1.getText() + "%");
+                    pps6.setString(1, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps6.setString(2, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
                     pps6.setString(3, "%" + TCari1.getText() + "%");
+                    pps6.setString(4, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps6.setString(5, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
+                    pps6.setString(6, "%" + TCari1.getText() + "%");
+                    pps6.setString(7, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
+                    pps6.setString(8, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
+                    pps6.setString(9, "%" + TCari1.getText() + "%");
                     rrs6 = pps6.executeQuery();
                     while (rrs6.next()) {
                         tabMode1.addRow(new String[]{
@@ -22141,5 +22221,16 @@ public class DlgCPPT extends javax.swing.JDialog {
             System.out.println("Notifikasi : " + e);
         }
         this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void tglTemplate() {
+        Calendar cal = Calendar.getInstance();
+        Date akhir = cal.getTime(); // hari ini
+
+        cal.add(Calendar.MONTH, -2);
+        Date awal = cal.getTime(); // 2 bulan lalu
+
+        DTPCariA.setDate(awal);
+        DTPCariB.setDate(akhir);
     }
 }

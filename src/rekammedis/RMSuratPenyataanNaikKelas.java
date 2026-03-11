@@ -1889,6 +1889,8 @@ public class RMSuratPenyataanNaikKelas extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getbpjs_sep());
         BtnHapus.setEnabled(akses.getbpjs_sep());
         BtnGanti.setEnabled(akses.getbpjs_sep());
+        MnHapusTtdPemberi.setEnabled(akses.getbpjs_sep());
+        MnHapusTtdSaksi.setEnabled(akses.getbpjs_sep());
         BtnPetugas.setEnabled(akses.getadmin());
         
         if (akses.getjml2() >= 1) {

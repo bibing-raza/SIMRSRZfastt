@@ -2236,6 +2236,7 @@ public class RMSuratPenyataanBayarDenda extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getbpjs_sep());
         BtnHapus.setEnabled(akses.getbpjs_sep());
         BtnGanti.setEnabled(akses.getbpjs_sep());
+        MnHapusTtd.setEnabled(akses.getbpjs_sep());
         BtnPetugas.setEnabled(akses.getadmin());
         
         if (akses.getjml2() >= 1) {
