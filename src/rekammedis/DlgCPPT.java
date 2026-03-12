@@ -2974,7 +2974,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelisi4.setBackground(new java.awt.Color(255, 150, 255));
         panelisi4.setName("panelisi4"); // NOI18N
         panelisi4.setPreferredSize(new java.awt.Dimension(100, 44));
-        panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
+        panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 7, 9));
 
         jLabel66.setForeground(new java.awt.Color(0, 0, 0));
         jLabel66.setText("Tanggal :");
@@ -3014,7 +3014,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 
         TCari1.setForeground(new java.awt.Color(0, 0, 0));
         TCari1.setName("TCari1"); // NOI18N
-        TCari1.setPreferredSize(new java.awt.Dimension(250, 23));
+        TCari1.setPreferredSize(new java.awt.Dimension(200, 23));
         TCari1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCari1KeyPressed(evt);
@@ -3028,7 +3028,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
-        BtnCari1.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari1.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnCari1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCari1ActionPerformed(evt);
@@ -3061,7 +3061,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
-        BtnCloseIn1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnCloseIn1.setPreferredSize(new java.awt.Dimension(90, 30));
         BtnCloseIn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCloseIn1ActionPerformed(evt);

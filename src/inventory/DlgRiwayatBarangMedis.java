@@ -292,7 +292,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
 
         MnLapRiwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         MnLapRiwayat.setText("Lap. Rekap Total Riwayat");
-        MnLapRiwayat.setToolTipText("");
         MnLapRiwayat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLapRiwayat.setName("MnLapRiwayat"); // NOI18N
         MnLapRiwayat.setPreferredSize(new java.awt.Dimension(60, 30));
@@ -300,7 +299,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         MnRiwayatPerDepo.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRiwayatPerDepo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnRiwayatPerDepo.setText("Obat/Alkes/BHP Per Depo");
-        MnRiwayatPerDepo.setToolTipText("");
         MnRiwayatPerDepo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MnRiwayatPerDepo.setName("MnRiwayatPerDepo"); // NOI18N
         MnRiwayatPerDepo.setPreferredSize(new java.awt.Dimension(230, 26));
@@ -326,7 +324,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         MnTIRiwayatPerDepo.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnTIRiwayatPerDepo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnTIRiwayatPerDepo.setText("Per Item Obat/Alkes/BHP Per Depo");
-        MnTIRiwayatPerDepo.setToolTipText("");
         MnTIRiwayatPerDepo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MnTIRiwayatPerDepo.setName("MnTIRiwayatPerDepo"); // NOI18N
         MnTIRiwayatPerDepo.setPreferredSize(new java.awt.Dimension(230, 26));
@@ -353,7 +350,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
 
         MnLapRiwayat1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         MnLapRiwayat1.setText("Lap. Rekap Riwayat Pemakaian");
-        MnLapRiwayat1.setToolTipText("");
         MnLapRiwayat1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLapRiwayat1.setName("MnLapRiwayat1"); // NOI18N
         MnLapRiwayat1.setPreferredSize(new java.awt.Dimension(60, 30));
@@ -361,7 +357,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         MnRiwayatPerDepo0.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRiwayatPerDepo0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnRiwayatPerDepo0.setText("Obat/Alkes/BHP Per Depo Jual Bebas");
-        MnRiwayatPerDepo0.setToolTipText("");
         MnRiwayatPerDepo0.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MnRiwayatPerDepo0.setName("MnRiwayatPerDepo0"); // NOI18N
         MnRiwayatPerDepo0.setPreferredSize(new java.awt.Dimension(260, 26));
@@ -375,7 +370,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         MnRiwayatPerDepo1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRiwayatPerDepo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnRiwayatPerDepo1.setText("Obat/Alkes/BHP Per Depo Rawat Jalan");
-        MnRiwayatPerDepo1.setToolTipText("");
         MnRiwayatPerDepo1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MnRiwayatPerDepo1.setName("MnRiwayatPerDepo1"); // NOI18N
         MnRiwayatPerDepo1.setPreferredSize(new java.awt.Dimension(260, 26));
@@ -401,7 +395,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         MnRiwayatPerDepo3.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRiwayatPerDepo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnRiwayatPerDepo3.setText("Obat/Alkes/BHP Per Depo Semua Rawat");
-        MnRiwayatPerDepo3.setToolTipText("");
         MnRiwayatPerDepo3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MnRiwayatPerDepo3.setName("MnRiwayatPerDepo3"); // NOI18N
         MnRiwayatPerDepo3.setPreferredSize(new java.awt.Dimension(260, 26));
@@ -464,7 +457,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
 
         MnLapRiwayat2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         MnLapRiwayat2.setText("Lap. Rekap Pemakaian Obat");
-        MnLapRiwayat2.setToolTipText("");
         MnLapRiwayat2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLapRiwayat2.setName("MnLapRiwayat2"); // NOI18N
         MnLapRiwayat2.setPreferredSize(new java.awt.Dimension(60, 30));
@@ -472,7 +464,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         MnRiwayatSetiapDepoAllPay.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRiwayatSetiapDepoAllPay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnRiwayatSetiapDepoAllPay.setText("Semua Bayar");
-        MnRiwayatSetiapDepoAllPay.setToolTipText("");
         MnRiwayatSetiapDepoAllPay.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MnRiwayatSetiapDepoAllPay.setName("MnRiwayatSetiapDepoAllPay"); // NOI18N
         MnRiwayatSetiapDepoAllPay.setPreferredSize(new java.awt.Dimension(110, 26));
@@ -498,7 +489,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         MnRiwayatSetiapDepoUmum.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRiwayatSetiapDepoUmum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnRiwayatSetiapDepoUmum.setText("Umum");
-        MnRiwayatSetiapDepoUmum.setToolTipText("");
         MnRiwayatSetiapDepoUmum.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         MnRiwayatSetiapDepoUmum.setName("MnRiwayatSetiapDepoUmum"); // NOI18N
         MnRiwayatSetiapDepoUmum.setPreferredSize(new java.awt.Dimension(110, 26));
@@ -525,7 +515,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
 
         MnLapPerbekalanFarm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         MnLapPerbekalanFarm.setText("Lap. Pemakaian Perbekalan Farmasi");
-        MnLapPerbekalanFarm.setToolTipText("");
         MnLapPerbekalanFarm.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLapPerbekalanFarm.setName("MnLapPerbekalanFarm"); // NOI18N
         MnLapPerbekalanFarm.setPreferredSize(new java.awt.Dimension(60, 30));
