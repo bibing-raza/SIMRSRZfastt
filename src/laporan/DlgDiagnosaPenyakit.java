@@ -1216,6 +1216,9 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         TNoRm1 = new widget.TextBox();
         TPasien1 = new widget.TextBox();
         chkTglCppt = new widget.CekBox();
+        jLabel7 = new widget.Label();
+        TCariCppt = new widget.TextBox();
+        BtnCariCppt = new widget.Button();
         TabPreview = new javax.swing.JTabbedPane();
         Scroll15 = new widget.ScrollPane();
         LoadHTML3 = new widget.editorpane();
@@ -1347,7 +1350,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         nmpoli.setHighlighter(null);
         nmpoli.setName("nmpoli"); // NOI18N
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-01-2026 13:37:22" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2026 10:29:21" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1392,6 +1395,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -1410,6 +1414,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -1428,6 +1433,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1458,6 +1464,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('P');
         BtnPrint.setText("Formulir Klaim Pasien");
         BtnPrint.setToolTipText("Alt+P");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -1476,6 +1483,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnKlaim.setForeground(new java.awt.Color(0, 0, 0));
         BtnKlaim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnKlaim.setMnemonic('P');
         BtnKlaim.setText("Pengajuan Klaim JKN");
         BtnKlaim.setToolTipText("Alt+P");
         BtnKlaim.setGlassColor(new java.awt.Color(255, 204, 0));
@@ -1495,6 +1503,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -1526,6 +1535,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1555,7 +1565,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-01-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1569,7 +1579,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-01-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1594,6 +1604,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnSeek4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
+        BtnSeek4.setMnemonic('5');
         BtnSeek4.setToolTipText("Alt+5");
         BtnSeek4.setName("BtnSeek4"); // NOI18N
         BtnSeek4.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1635,6 +1646,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('6');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+6");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -1665,6 +1677,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnResume.setForeground(new java.awt.Color(0, 0, 0));
         BtnResume.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientFile.png"))); // NOI18N
+        BtnResume.setMnemonic('R');
         BtnResume.setText("Rngksn. Pulang / Resume");
         BtnResume.setToolTipText("Alt+R");
         BtnResume.setName("BtnResume"); // NOI18N
@@ -1765,6 +1778,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnCariPenyakit.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariPenyakit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCariPenyakit.setMnemonic('1');
         BtnCariPenyakit.setToolTipText("Alt+1");
         BtnCariPenyakit.setName("BtnCariPenyakit"); // NOI18N
         BtnCariPenyakit.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1778,6 +1792,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         btnTambahPenyakit.setForeground(new java.awt.Color(0, 0, 0));
         btnTambahPenyakit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        btnTambahPenyakit.setMnemonic('2');
         btnTambahPenyakit.setToolTipText("Alt+2");
         btnTambahPenyakit.setEnabled(false);
         btnTambahPenyakit.setName("btnTambahPenyakit"); // NOI18N
@@ -1791,6 +1806,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         btnTambahProsedur.setForeground(new java.awt.Color(0, 0, 0));
         btnTambahProsedur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        btnTambahProsedur.setMnemonic('2');
         btnTambahProsedur.setToolTipText("Alt+2");
         btnTambahProsedur.setEnabled(false);
         btnTambahProsedur.setName("btnTambahProsedur"); // NOI18N
@@ -1804,6 +1820,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnCariProsedur.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariProsedur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCariProsedur.setMnemonic('1');
         BtnCariProsedur.setToolTipText("Alt+1");
         BtnCariProsedur.setName("BtnCariProsedur"); // NOI18N
         BtnCariProsedur.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1890,6 +1907,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnCariPenyakit1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariPenyakit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCariPenyakit1.setMnemonic('1');
         BtnCariPenyakit1.setToolTipText("Alt+1");
         BtnCariPenyakit1.setName("BtnCariPenyakit1"); // NOI18N
         BtnCariPenyakit1.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1903,6 +1921,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         btnTambahPenyakit1.setForeground(new java.awt.Color(0, 0, 0));
         btnTambahPenyakit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        btnTambahPenyakit1.setMnemonic('2');
         btnTambahPenyakit1.setToolTipText("Alt+2");
         btnTambahPenyakit1.setEnabled(false);
         btnTambahPenyakit1.setName("btnTambahPenyakit1"); // NOI18N
@@ -1948,6 +1967,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnTindakanRanap.setForeground(new java.awt.Color(0, 0, 0));
         BtnTindakanRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/36.png"))); // NOI18N
+        BtnTindakanRanap.setMnemonic('1');
         BtnTindakanRanap.setText("Paket Tind. Rawat Inap");
         BtnTindakanRanap.setToolTipText("Alt+1");
         BtnTindakanRanap.setName("BtnTindakanRanap"); // NOI18N
@@ -2014,6 +2034,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('6');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+6");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -2088,7 +2109,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         TPasien1.setEditable(false);
         TPasien1.setForeground(new java.awt.Color(0, 0, 0));
         TPasien1.setName("TPasien1"); // NOI18N
-        TPasien1.setPreferredSize(new java.awt.Dimension(407, 24));
+        TPasien1.setPreferredSize(new java.awt.Dimension(307, 24));
         panelGlass13.add(TPasien1);
 
         chkTglCppt.setBackground(new java.awt.Color(255, 255, 250));
@@ -2109,6 +2130,41 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             }
         });
         panelGlass13.add(chkTglCppt);
+
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Key Word CPPT :");
+        jLabel7.setName("jLabel7"); // NOI18N
+        jLabel7.setPreferredSize(new java.awt.Dimension(100, 23));
+        panelGlass13.add(jLabel7);
+
+        TCariCppt.setForeground(new java.awt.Color(0, 0, 0));
+        TCariCppt.setName("TCariCppt"); // NOI18N
+        TCariCppt.setPreferredSize(new java.awt.Dimension(190, 23));
+        TCariCppt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCariCpptKeyPressed(evt);
+            }
+        });
+        panelGlass13.add(TCariCppt);
+
+        BtnCariCppt.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCariCppt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCariCppt.setMnemonic('6');
+        BtnCariCppt.setText("Tampilkan Data");
+        BtnCariCppt.setToolTipText("Alt+6");
+        BtnCariCppt.setName("BtnCariCppt"); // NOI18N
+        BtnCariCppt.setPreferredSize(new java.awt.Dimension(130, 28));
+        BtnCariCppt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCariCpptActionPerformed(evt);
+            }
+        });
+        BtnCariCppt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCariCpptKeyPressed(evt);
+            }
+        });
+        panelGlass13.add(BtnCariCppt);
 
         internalFrame26.add(panelGlass13, java.awt.BorderLayout.PAGE_START);
 
@@ -2230,6 +2286,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         BtnCari9.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari9.setMnemonic('6');
         BtnCari9.setText("Tampilkan Data");
         BtnCari9.setToolTipText("Alt+6");
         BtnCari9.setName("BtnCari9"); // NOI18N
@@ -2269,6 +2326,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setMnemonic('I');
         ChkInput.setText(".: Input Data");
         ChkInput.setToolTipText("Alt+I");
         ChkInput.setBorderPainted(true);
@@ -3331,6 +3389,22 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_MnHapusConteng1ActionPerformed
 
+    private void TCariCpptKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariCpptKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCariCpptActionPerformed(null);
+        }
+    }//GEN-LAST:event_TCariCpptKeyPressed
+
+    private void BtnCariCpptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariCpptActionPerformed
+        TabPreviewMouseClicked(null);
+    }//GEN-LAST:event_BtnCariCpptActionPerformed
+
+    private void BtnCariCpptKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariCpptKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnCariCpptActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnCariCpptKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -3353,6 +3427,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
     private widget.Button BtnCari9;
+    private widget.Button BtnCariCppt;
     private widget.Button BtnCariPenyakit;
     private widget.Button BtnCariPenyakit1;
     private widget.Button BtnCariProsedur;
@@ -3412,6 +3487,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.ComboBox Status;
     private widget.TextBox TCari;
     private widget.TextBox TCari6;
+    private widget.TextBox TCariCppt;
     private widget.TextBox TCariPasien;
     private widget.TextArea TDiagDokter;
     private widget.TextArea TDiagPerawat;
@@ -3471,6 +3547,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel63;
     private widget.Label jLabel64;
     private widget.Label jLabel65;
+    private widget.Label jLabel7;
     private widget.Label jLabel80;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
@@ -7814,6 +7891,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                             + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima WHERE "
                             + "c.no_rawat = '" + TNoRw.getText() + "' and c.flag_hapus='tidak' and c.tgl_cppt between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "and (c.hasil_pemeriksaan like '%" + TCariCppt.getText() + "%' or c.instruksi_nakes like '%" + TCariCppt.getText() + "%') "
                             + "ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
                 } else {
                     rsPrev = koneksi.prepareStatement("SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),'<br/>',date_format(c.jam_cppt,'%H:%i'),' Wita'), "
@@ -7827,7 +7905,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                             + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                             + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
-                            + "WHERE c.no_rawat = '" + TNoRw.getText() + "' and c.flag_hapus='tidak' ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
+                            + "WHERE c.no_rawat = '" + TNoRw.getText() + "' and c.flag_hapus='tidak' and (c.hasil_pemeriksaan like '%" + TCariCppt.getText() + "%' or c.instruksi_nakes like '%" + TCariCppt.getText() + "%') "
+                            + "ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
                 }                
 
                 if (rsPrev.next()) {
@@ -7969,6 +8048,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') like '%DPJP (K)%' or "
                             + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') like '%DPJP Raber%') "
                             + "and c.tgl_cppt between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "and (c.hasil_pemeriksaan like '%" + TCariCppt.getText() + "%' or c.instruksi_nakes like '%" + TCariCppt.getText() + "%') "
                             + "ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
                 } else {
                     rsPrev = koneksi.prepareStatement("SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),'<br/>',date_format(c.jam_cppt,'%H:%i'),' Wita'), "
@@ -7986,6 +8066,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             + "(ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') like '%DPJP%' or "
                             + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') like '%DPJP (K)%' or "
                             + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') like '%DPJP Raber%') "
+                            + "and (c.hasil_pemeriksaan like '%" + TCariCppt.getText() + "%' or c.instruksi_nakes like '%" + TCariCppt.getText() + "%') "
                             + "ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
                 }
                 
@@ -8073,6 +8154,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') not like '%DPJP (K)%' or "
                             + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') not like '%DPJP Raber%') "
                             + "and c.tgl_cppt between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "and (c.hasil_pemeriksaan like '%" + TCariCppt.getText() + "%' or c.instruksi_nakes like '%" + TCariCppt.getText() + "%') "
                             + "ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
                 } else {
                     rsPrev = koneksi.prepareStatement("SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),'<br/>',date_format(c.jam_cppt,'%H:%i'),' Wita'), "
@@ -8090,6 +8172,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             + "(ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') not like '%DPJP%' or "
                             + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') not like '%DPJP (K)%' or "
                             + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') not like '%DPJP Raber%') "
+                            + "and (c.hasil_pemeriksaan like '%" + TCariCppt.getText() + "%' or c.instruksi_nakes like '%" + TCariCppt.getText() + "%') "
                             + "ORDER BY c.tgl_cppt, c.jam_cppt").executeQuery();
                 }
 
