@@ -1131,6 +1131,9 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         jPopupMenu3 = new javax.swing.JPopupMenu();
         MnContengSemua1 = new javax.swing.JMenuItem();
         MnHapusConteng1 = new javax.swing.JMenuItem();
+        jPopupMenu4 = new javax.swing.JPopupMenu();
+        MnContengSemua2 = new javax.swing.JMenuItem();
+        MnHapusConteng2 = new javax.swing.JMenuItem();
         kdpoli = new widget.TextBox();
         nmpoli = new widget.TextBox();
         DTPTgl = new widget.Tanggal();
@@ -1340,6 +1343,32 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         });
         jPopupMenu3.add(MnHapusConteng1);
 
+        jPopupMenu4.setName("jPopupMenu4"); // NOI18N
+
+        MnContengSemua2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnContengSemua2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnContengSemua2.setText("Conteng Semua");
+        MnContengSemua2.setName("MnContengSemua2"); // NOI18N
+        MnContengSemua2.setPreferredSize(new java.awt.Dimension(155, 26));
+        MnContengSemua2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnContengSemua2ActionPerformed(evt);
+            }
+        });
+        jPopupMenu4.add(MnContengSemua2);
+
+        MnHapusConteng2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusConteng2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHapusConteng2.setText("Hapus Conteng Semua");
+        MnHapusConteng2.setName("MnHapusConteng2"); // NOI18N
+        MnHapusConteng2.setPreferredSize(new java.awt.Dimension(155, 26));
+        MnHapusConteng2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusConteng2ActionPerformed(evt);
+            }
+        });
+        jPopupMenu4.add(MnHapusConteng2);
+
         kdpoli.setEditable(false);
         kdpoli.setForeground(new java.awt.Color(0, 0, 0));
         kdpoli.setHighlighter(null);
@@ -1350,7 +1379,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         nmpoli.setHighlighter(null);
         nmpoli.setName("nmpoli"); // NOI18N
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2026 10:29:21" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-03-2026 13:53:17" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1565,7 +1594,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-03-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1579,7 +1608,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-03-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1893,6 +1922,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll4.setName("Scroll4"); // NOI18N
         Scroll4.setOpaque(true);
 
+        tbDiagnosa1.setComponentPopupMenu(jPopupMenu4);
         tbDiagnosa1.setName("tbDiagnosa1"); // NOI18N
         tbDiagnosa1.getTableHeader().setReorderingAllowed(false);
         tbDiagnosa1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -3405,6 +3435,26 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_BtnCariCpptKeyPressed
 
+    private void MnContengSemua2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengSemua2ActionPerformed
+        if (tbDiagnosa1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Belum ada kode ICD 10 yang dipilih...!!!");
+        } else {
+            for (i = 0; i < tbDiagnosa1.getRowCount(); i++) {
+                tbDiagnosa1.setValueAt(Boolean.TRUE, i, 0);
+            }
+        }
+    }//GEN-LAST:event_MnContengSemua2ActionPerformed
+
+    private void MnHapusConteng2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusConteng2ActionPerformed
+        if (tbDiagnosa1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Belum ada kode ICD 10 yang dipilih...!!!");
+        } else {
+            for (i = 0; i < tbDiagnosa1.getRowCount(); i++) {
+                tbDiagnosa1.setValueAt(Boolean.FALSE, i, 0);
+            }
+        }
+    }//GEN-LAST:event_MnHapusConteng2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3457,8 +3507,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.editorpane LoadHTML6;
     private javax.swing.JMenuItem MnContengSemua;
     private javax.swing.JMenuItem MnContengSemua1;
+    private javax.swing.JMenuItem MnContengSemua2;
     private javax.swing.JMenuItem MnHapusConteng;
     private javax.swing.JMenuItem MnHapusConteng1;
+    private javax.swing.JMenuItem MnHapusConteng2;
     private javax.swing.JMenuItem MnSimpanQTYinadrg;
     private javax.swing.JPanel PanelInput;
     private widget.TextBox Prosedur;
@@ -3553,6 +3605,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
+    private javax.swing.JPopupMenu jPopupMenu4;
     private javax.swing.JSeparator jSeparator5;
     private widget.TextBox kdpoli;
     private widget.Label lbl_jns_byr;
