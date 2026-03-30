@@ -7637,43 +7637,43 @@ private void MnBillingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
         tbKamIn.requestFocus();
     } else {
-        try {
-            pscaripiutang = koneksi.prepareStatement("select tgl_piutang from piutang_pasien where no_rkm_medis=? and status='Belum Lunas' order by tgl_piutang asc limit 1");
-            try {
-                pscaripiutang.setString(1, TNoRM.getText());
-                rs = pscaripiutang.executeQuery();
-                if (rs.next()) {
-                    i = JOptionPane.showConfirmDialog(null, "Masih ada tunggakan pembayaran, apa mau bayar sekarang ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                    if (i == JOptionPane.YES_OPTION) {
-                        DlgLhtPiutang piutang = new DlgLhtPiutang(null, false);
-                        piutang.setNoRm(TNoRM.getText(), rs.getDate(1));
-                        piutang.tampil();
-                        piutang.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                        piutang.setLocationRelativeTo(internalFrame1);
-                        piutang.setVisible(true);
-                    } else {
-                        bangsal = Sequel.cariIsi("select kd_depo from set_depo_ranap where kd_bangsal=?", Sequel.cariIsi("select kd_bangsal from kamar "
-                                + "where kd_kamar=?", kdkamar.getText()));
-                        if (bangsal.equals("")) {
-                            if (Sequel.cariIsi("select asal_stok from set_lokasi").equals("Gunakan Stok Bangsal")) {
-                                akses.setkdbangsal(Sequel.cariIsi("select kd_bangsal from kamar where kd_kamar=?", kdkamar.getText()));
-                            } else {
-                                akses.setkdbangsal(Sequel.cariIsi("select kd_bangsal from set_lokasi"));
-                            }
-                        } else {
-                            akses.setkdbangsal(bangsal);
-                        }
-
-                        DlgBilingRanap billing = new DlgBilingRanap(null, false);
-                        billing.TNoRw.setText(norawat.getText());
-                        billing.isCek(kdkamar.getText());
-                        billing.cekLR.setSelected(true);
-                        billing.isRawat();
-                        billing.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-                        billing.setLocationRelativeTo(internalFrame1);
-                        billing.setVisible(true);
-                    }
-                } else {
+//        try {
+//            pscaripiutang = koneksi.prepareStatement("select tgl_piutang from piutang_pasien where no_rkm_medis=? and status='Belum Lunas' order by tgl_piutang asc limit 1");
+//            try {
+//                pscaripiutang.setString(1, TNoRM.getText());
+//                rs = pscaripiutang.executeQuery();
+//                if (rs.next()) {
+//                    i = JOptionPane.showConfirmDialog(null, "Masih ada tunggakan pembayaran, apa mau bayar sekarang ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+//                    if (i == JOptionPane.YES_OPTION) {
+//                        DlgLhtPiutang piutang = new DlgLhtPiutang(null, false);
+//                        piutang.setNoRm(TNoRM.getText(), rs.getDate(1));
+//                        piutang.tampil();
+//                        piutang.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+//                        piutang.setLocationRelativeTo(internalFrame1);
+//                        piutang.setVisible(true);
+//                    } else {
+//                        bangsal = Sequel.cariIsi("select kd_depo from set_depo_ranap where kd_bangsal=?", Sequel.cariIsi("select kd_bangsal from kamar "
+//                                + "where kd_kamar=?", kdkamar.getText()));
+//                        if (bangsal.equals("")) {
+//                            if (Sequel.cariIsi("select asal_stok from set_lokasi").equals("Gunakan Stok Bangsal")) {
+//                                akses.setkdbangsal(Sequel.cariIsi("select kd_bangsal from kamar where kd_kamar=?", kdkamar.getText()));
+//                            } else {
+//                                akses.setkdbangsal(Sequel.cariIsi("select kd_bangsal from set_lokasi"));
+//                            }
+//                        } else {
+//                            akses.setkdbangsal(bangsal);
+//                        }
+//
+//                        DlgBilingRanap billing = new DlgBilingRanap(null, false);
+//                        billing.TNoRw.setText(norawat.getText());
+//                        billing.isCek(kdkamar.getText());
+//                        billing.cekLR.setSelected(true);
+//                        billing.isRawat();
+//                        billing.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+//                        billing.setLocationRelativeTo(internalFrame1);
+//                        billing.setVisible(true);
+//                    }
+//                } else {
                     bangsal = Sequel.cariIsi("select kd_depo from set_depo_ranap where kd_bangsal=?", Sequel.cariIsi("select kd_bangsal from kamar where kd_kamar=?", kdkamar.getText()));
                     if (bangsal.equals("")) {
                         if (Sequel.cariIsi("select asal_stok from set_lokasi").equals("Gunakan Stok Bangsal")) {
@@ -7693,20 +7693,20 @@ private void MnBillingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     billing.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                     billing.setLocationRelativeTo(internalFrame1);
                     billing.setVisible(true);
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (pscaripiutang != null) {
-                    pscaripiutang.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//                }
+//            } catch (Exception e) {
+//                System.out.println("Notifikasi : " + e);
+//            } finally {
+//                if (rs != null) {
+//                    rs.close();
+//                }
+//                if (pscaripiutang != null) {
+//                    pscaripiutang.close();
+//                }
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
     }
 }//GEN-LAST:event_MnBillingActionPerformed
 

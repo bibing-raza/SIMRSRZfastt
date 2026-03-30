@@ -1212,6 +1212,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("perubahan_dpjp_ranap", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("general_consent", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("persetujuan_ranap", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("ttd_erm_keluarga_pasien", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");            
             Sequel.mengedit("surat_pernyataan_ranap_bpjs", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("surat_pernyataan_naik_kelas_bpjs", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("surat_pernyataan_bukan_kll", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");            
@@ -1304,6 +1305,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("perubahan_dpjp_ranap", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("general_consent", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("persetujuan_ranap", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("ttd_erm_keluarga_pasien", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");            
             Sequel.mengedit("surat_pernyataan_ranap_bpjs", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("surat_pernyataan_naik_kelas_bpjs", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("surat_pernyataan_bukan_kll", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");            
@@ -2854,8 +2856,10 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
     private void persetujuanRanap() {
         if (pilihan == 1) {
             Sequel.mengedit("persetujuan_ranap", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("ttd_erm_keluarga_pasien", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         } else if (pilihan == 2) {
             Sequel.mengedit("persetujuan_ranap", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("ttd_erm_keluarga_pasien", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
         }
 
         tampil();
