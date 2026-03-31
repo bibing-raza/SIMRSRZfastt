@@ -2090,12 +2090,12 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 
                 for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
                     if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
-                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 21, new String[]{
+                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 24, new String[]{
                             TNoRw.getText(), KdPtg.getText(), tbPemeriksaan.getValueAt(i, 1).toString(), tglperiksa, jamperiksa, KodePerujuk.getText(),
                             tbPemeriksaan.getValueAt(i, 4).toString(), tbPemeriksaan.getValueAt(i, 5).toString(), tbPemeriksaan.getValueAt(i, 6).toString(),
                             tbPemeriksaan.getValueAt(i, 7).toString(), tbPemeriksaan.getValueAt(i, 8).toString(), tbPemeriksaan.getValueAt(i, 9).toString(),
                             tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
-                            KodePj.getText(), status, "Belum", "-", Tbb.getText(), "-", ""
+                            KodePj.getText(), status, "Belum", "-", Tbb.getText(), "", "", "", "", ""
                         }) == true) {
                             ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
                             ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
@@ -2174,12 +2174,12 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 
                 for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
                     if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
-                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 21, new String[]{
+                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 24, new String[]{
                             TNoRw.getText(), KdPtg.getText(), tbPemeriksaan.getValueAt(i, 1).toString(), tglperiksa, jamperiksa, KodePerujuk.getText(),
                             tbPemeriksaan.getValueAt(i, 4).toString(), tbPemeriksaan.getValueAt(i, 5).toString(), tbPemeriksaan.getValueAt(i, 6).toString(),
                             tbPemeriksaan.getValueAt(i, 7).toString(), tbPemeriksaan.getValueAt(i, 8).toString(), tbPemeriksaan.getValueAt(i, 9).toString(),
                             tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
-                            KodePj.getText(), status, "Belum", "-", Tbb.getText(), "-", ""
+                            KodePj.getText(), status, "Belum", "-", Tbb.getText(), "", "", "", "", ""
                         }) == true) {
                             ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
                             ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
