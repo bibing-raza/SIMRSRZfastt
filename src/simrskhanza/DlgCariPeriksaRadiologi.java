@@ -2157,7 +2157,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         jLabel51.setBounds(0, 25, 130, 23);
 
         tanggalPeriksa.setEditable(false);
-        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-03-2026" }));
+        tanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-03-2026" }));
         tanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         tanggalPeriksa.setName("tanggalPeriksa"); // NOI18N
         tanggalPeriksa.setOpaque(false);
@@ -3297,7 +3297,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
         panelisi1.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-03-2026" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-03-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -5386,7 +5386,8 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             dialog_simpan = Valid.openDialog();
             Valid.MyReportToExcel("SELECT @rownum := @rownum + 1 'No.', sub.`No. RM`, sub.`Nama Pasien`, sub.`Jns. Kelamin`, sub.`Umur`, sub.`Berat Badan`, "
-                    + "sub.`Tgl. Registrasi`, sub.`R. Jalan`, sub.`R. Inap`, sub.`Nama Pemeriksaan Rad.`, sub.`Tgl. Pemeriksaan`, sub.`Cara Bayar`, sub.`Rg. Rawat/Poli/Inst.` "
+                    + "sub.`Tgl. Registrasi`, sub.`R. Jalan`, sub.`R. Inap`, sub.`Nama Pemeriksaan Rad.`, sub.`Tgl. Pemeriksaan`, sub.`Cara Bayar`, sub.`Rg. Rawat/Poli/Inst.`, "
+                    + "sub.`Parameter kV`, sub.`Parameter mAs`, sub.`Parameter mA/CTDi`, sub.`Parameter s/Fase`, sub.`Parameter DLP` "
                     + "FROM (SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', IF(p.jk='L', 'Laki-laki', 'Perempuan') 'Jns. Kelamin', "
                     + "CONCAT(rp.umurdaftar, ' ', rp.sttsumur, '.') 'Umur', DATE_FORMAT(rp.tgl_registrasi, '%d-%m-%Y') 'Tgl. Registrasi', "
                     + "IF(rp.status_lanjut='Ralan', 'V', '-') 'R. Jalan', IF(rp.status_lanjut='Ranap', 'V', '-') 'R. Inap', "
@@ -5394,7 +5395,8 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     + "pj.png_jawab 'Cara Bayar', rp.no_rawat, DATE_FORMAT(pr.tgl_periksa, '%Y-%m-%d') tgl_periksa_sort, pr.jam jam_sort, "
                     + "p.no_rkm_medis no_rkm_medis_sort, if(rp.status_lanjut='Ranap',b.nm_bangsal,pl.nm_poli) 'Rg. Rawat/Poli/Inst.', IFNULL(CASE WHEN pr.berat_badan = '' THEN '-' "
                     + "WHEN LOWER(pr.berat_badan) LIKE '%kg%' OR LOWER(pr.berat_badan) LIKE '%gram%' THEN pr.berat_badan "
-                    + "WHEN LENGTH(pr.berat_badan) >= 4 THEN CONCAT(pr.berat_badan, ' gram') ELSE CONCAT(pr.berat_badan, ' kg') END,'-') 'Berat Badan' "
+                    + "WHEN LENGTH(pr.berat_badan) >= 4 THEN CONCAT(pr.berat_badan, ' gram') ELSE CONCAT(pr.berat_badan, ' kg') END,'-') 'Berat Badan', "
+                    + "pr.nilai_kv 'Parameter kV', pr.nilai_mas 'Parameter mAs', pr.nilai_ma 'Parameter mA/CTDi', pr.nilai_fase 'Parameter s/Fase', pr.nilai_dlp 'Parameter DLP' "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj "
                     + "INNER JOIN periksa_radiologi pr ON pr.no_rawat = rp.no_rawat INNER JOIN jns_perawatan_radiologi jpr ON jpr.kd_jenis_prw = pr.kd_jenis_prw "
                     + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli left join kamar_inap ki on ki.no_rawat=rp.no_rawat left join kamar k on k.kd_kamar=ki.kd_kamar "
@@ -5417,7 +5419,8 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             dialog_simpan = Valid.openDialog();
             Valid.MyReportToExcel("SELECT @rownum := @rownum + 1 'No.', sub.`No. RM`, sub.`Nama Pasien`, sub.`Jns. Kelamin`, sub.`Umur`, sub.`Berat Badan`, "
-                    + "sub.`Tgl. Registrasi`, sub.`R. Jalan`, sub.`R. Inap`, sub.`Nama Pemeriksaan Rad.`, sub.`Tgl. Pemeriksaan`, sub.`Cara Bayar`, sub.`Rg. Rawat/Poli/Inst.` "
+                    + "sub.`Tgl. Registrasi`, sub.`R. Jalan`, sub.`R. Inap`, sub.`Nama Pemeriksaan Rad.`, sub.`Tgl. Pemeriksaan`, sub.`Cara Bayar`, sub.`Rg. Rawat/Poli/Inst.`, "
+                    + "sub.`Parameter kV`, sub.`Parameter mAs`, sub.`Parameter mA/CTDi`, sub.`Parameter s/Fase`, sub.`Parameter DLP` "
                     + "FROM (SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', IF(p.jk='L', 'Laki-laki', 'Perempuan') 'Jns. Kelamin', "
                     + "CONCAT(rp.umurdaftar, ' ', rp.sttsumur, '.') 'Umur', DATE_FORMAT(rp.tgl_registrasi, '%d-%m-%Y') 'Tgl. Registrasi', "
                     + "IF(rp.status_lanjut='Ralan', 'V', '-') 'R. Jalan', IF(rp.status_lanjut='Ranap', 'V', '-') 'R. Inap', "
@@ -5425,7 +5428,8 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     + "pj.png_jawab 'Cara Bayar', rp.no_rawat, DATE_FORMAT(pr.tgl_periksa, '%Y-%m-%d') tgl_periksa_sort, pr.jam jam_sort, "
                     + "p.no_rkm_medis no_rkm_medis_sort, if(rp.status_lanjut='Ranap',b.nm_bangsal,pl.nm_poli) 'Rg. Rawat/Poli/Inst.', "
                     + "IFNULL(CASE WHEN pr.berat_badan = '' THEN '-' WHEN LOWER(pr.berat_badan) LIKE '%kg%' OR LOWER(pr.berat_badan) LIKE '%gram%' THEN pr.berat_badan "
-                    + "WHEN LENGTH(pr.berat_badan) >= 4 THEN CONCAT(pr.berat_badan, ' gram') ELSE CONCAT(pr.berat_badan, ' kg') END,'-') 'Berat Badan' "
+                    + "WHEN LENGTH(pr.berat_badan) >= 4 THEN CONCAT(pr.berat_badan, ' gram') ELSE CONCAT(pr.berat_badan, ' kg') END,'-') 'Berat Badan', "
+                    + "pr.nilai_kv 'Parameter kV', pr.nilai_mas 'Parameter mAs', pr.nilai_ma 'Parameter mA/CTDi', pr.nilai_fase 'Parameter s/Fase', pr.nilai_dlp 'Parameter DLP' "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj "
                     + "INNER JOIN periksa_radiologi pr ON pr.no_rawat = rp.no_rawat INNER JOIN jns_perawatan_radiologi jpr ON jpr.kd_jenis_prw = pr.kd_jenis_prw "
                     + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli left join kamar_inap ki on ki.no_rawat=rp.no_rawat left join kamar k on k.kd_kamar=ki.kd_kamar "
@@ -5465,14 +5469,16 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             dialog_simpan = Valid.openDialog();
             Valid.MyReportToExcel("SELECT @rownum := @rownum + 1 'No.', sub.`No. RM`, sub.`Nama Pasien`, sub.`Jns. Kelamin`, sub.`Umur`, sub.`Berat Badan`, "
-                    + "sub.`Tgl. Registrasi`, sub.`Nama Pemeriksaan Rad.`, sub.`Tgl. Pemeriksaan`, sub.`Cara Bayar`, sub.`Inst./Unit` "
+                    + "sub.`Tgl. Registrasi`, sub.`Nama Pemeriksaan Rad.`, sub.`Tgl. Pemeriksaan`, sub.`Cara Bayar`, sub.`Inst./Unit`, "
+                    + "sub.`Parameter kV`, sub.`Parameter mAs`, sub.`Parameter mA/CTDi`, sub.`Parameter s/Fase`, sub.`Parameter DLP` "
                     + "FROM (SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', IF(p.jk='L', 'Laki-laki', 'Perempuan') 'Jns. Kelamin', "
                     + "CONCAT(rp.umurdaftar, ' ', rp.sttsumur, '.') 'Umur', DATE_FORMAT(rp.tgl_registrasi, '%d-%m-%Y') 'Tgl. Registrasi', "
                     + "GROUP_CONCAT(jpr.nm_perawatan SEPARATOR ', ') 'Nama Pemeriksaan Rad.', DATE_FORMAT(pr.tgl_periksa, '%d-%m-%Y') 'Tgl. Pemeriksaan', "
                     + "pj.png_jawab 'Cara Bayar', rp.no_rawat, DATE_FORMAT(pr.tgl_periksa, '%Y-%m-%d') tgl_periksa_sort, pr.jam jam_sort, "
                     + "p.no_rkm_medis no_rkm_medis_sort, pl.nm_poli 'Inst./Unit', IFNULL(CASE WHEN pr.berat_badan = '' THEN '-' "
                     + "WHEN LOWER(pr.berat_badan) LIKE '%kg%' OR LOWER(pr.berat_badan) LIKE '%gram%' THEN pr.berat_badan "
-                    + "WHEN LENGTH(pr.berat_badan) >= 4 THEN CONCAT(pr.berat_badan, ' gram') ELSE CONCAT(pr.berat_badan, ' kg') END,'-') 'Berat Badan' "
+                    + "WHEN LENGTH(pr.berat_badan) >= 4 THEN CONCAT(pr.berat_badan, ' gram') ELSE CONCAT(pr.berat_badan, ' kg') END,'-') 'Berat Badan', "
+                    + "pr.nilai_kv 'Parameter kV', pr.nilai_mas 'Parameter mAs', pr.nilai_ma 'Parameter mA/CTDi', pr.nilai_fase 'Parameter s/Fase', pr.nilai_dlp 'Parameter DLP' "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj "
                     + "INNER JOIN periksa_radiologi pr ON pr.no_rawat = rp.no_rawat INNER JOIN jns_perawatan_radiologi jpr ON jpr.kd_jenis_prw = pr.kd_jenis_prw "
                     + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli WHERE "
@@ -5753,7 +5759,7 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     }//GEN-LAST:event_BtnCloseIn8ActionPerformed
 
     private void BtnSimpan7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan7ActionPerformed
-        Sequel.mengedit("periksa_radiologi", "no_rawat='" + Kd2.getText() + "'",
+        Sequel.mengedit("periksa_radiologi", "no_rawat='" + Kd2.getText() + "' and tgl_periksa='" + tglperiksa + "' and jam='" + jam + "'",
                 "nilai_kv='" + TnilaiKv.getText() + "', nilai_mas='" + TnilaiMas.getText() + "', nilai_ma='" + TnilaiMa.getText() + "', "
                 + "nilai_fase='" + TnilaiFase.getText() + "', nilai_dlp='" + TnilaiDlp.getText() + "'");
         WindowParameter.dispose();
