@@ -1095,6 +1095,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("asesmen_awal_kebidanan2", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("inspeksi_ginekologi_awal_kebidanan", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("riwayat_kehamilan_asesmen_awal_kebidanan", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("asesmen_keperawatan_perinatologi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         } else if (pilihan == 2) {
             Sequel.mengedit("triase_igd", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("penilaian_awal_medis_igd", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
@@ -1123,6 +1124,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("asesmen_awal_kebidanan2", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("inspeksi_ginekologi_awal_kebidanan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("riwayat_kehamilan_asesmen_awal_kebidanan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("asesmen_keperawatan_perinatologi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
         }
     }
     

@@ -656,7 +656,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
                         + "'',"
                         + "'',"
                         + "'" + TNoRM.getText() + "',"
-                        + "'" + TPasien.getText() + "',"
+                        + "'" + TPasien.getText().replaceAll("'", "") + "',"
                         + "'" + Sequel.cariIsi("select DATE_FORMAT(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + "',"
                         + "'" + Sequel.cariIsi("select IF(jk='L','Laki-laki','Perempuan') from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + "',"
                         + "'" + Sequel.cariIsi("select concat(pl.nm_poli,' (',d.nm_dokter,'), kunjgn. tgl. ',DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y')) "
