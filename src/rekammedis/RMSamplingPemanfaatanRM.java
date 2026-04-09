@@ -577,7 +577,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         tbPasAnakAskep.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         
         tabMode6=new DefaultTableModel(null,new String[]{
-            "No.", "NIP/NR", "Nama Petugas", "CPPT", "Asesmen Keperawatan Anak", "Unit Kerja"}) {
+            "No.", "NIP/NR", "Nama Perawat", "CPPT", "Asesmen Keperawatan Anak", "Unit Kerja"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -855,6 +855,24 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         MnDownloadData7 = new javax.swing.JMenuItem();
         jPopupMenu8 = new javax.swing.JPopupMenu();
         MnDownloadData8 = new javax.swing.JMenuItem();
+        jPopupMenu9 = new javax.swing.JPopupMenu();
+        MnDownloadData9 = new javax.swing.JMenuItem();
+        jPopupMenu10 = new javax.swing.JPopupMenu();
+        MnDownloadData10 = new javax.swing.JMenuItem();
+        jPopupMenu11 = new javax.swing.JPopupMenu();
+        MnDownloadData11 = new javax.swing.JMenuItem();
+        jPopupMenu12 = new javax.swing.JPopupMenu();
+        MnDownloadData12 = new javax.swing.JMenuItem();
+        jPopupMenu13 = new javax.swing.JPopupMenu();
+        MnDownloadData13 = new javax.swing.JMenuItem();
+        jPopupMenu14 = new javax.swing.JPopupMenu();
+        MnDownloadData14 = new javax.swing.JMenuItem();
+        jPopupMenu15 = new javax.swing.JPopupMenu();
+        MnDownloadData15 = new javax.swing.JMenuItem();
+        jPopupMenu16 = new javax.swing.JPopupMenu();
+        MnDownloadData16 = new javax.swing.JMenuItem();
+        jPopupMenu17 = new javax.swing.JPopupMenu();
+        MnDownloadData17 = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         internalFrame2 = new widget.InternalFrame();
         TabRM = new javax.swing.JTabbedPane();
@@ -1125,6 +1143,177 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
             }
         });
         jPopupMenu8.add(MnDownloadData8);
+
+        jPopupMenu9.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jPopupMenu9.setName("jPopupMenu9"); // NOI18N
+        jPopupMenu9.setPreferredSize(new java.awt.Dimension(140, 28));
+
+        MnDownloadData9.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDownloadData9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnDownloadData9.setText("Download Data");
+        MnDownloadData9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDownloadData9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDownloadData9.setIconTextGap(5);
+        MnDownloadData9.setName("MnDownloadData9"); // NOI18N
+        MnDownloadData9.setPreferredSize(new java.awt.Dimension(140, 28));
+        MnDownloadData9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDownloadData9ActionPerformed(evt);
+            }
+        });
+        jPopupMenu9.add(MnDownloadData9);
+
+        jPopupMenu10.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jPopupMenu10.setName("jPopupMenu10"); // NOI18N
+        jPopupMenu10.setPreferredSize(new java.awt.Dimension(140, 28));
+
+        MnDownloadData10.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDownloadData10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnDownloadData10.setText("Download Data");
+        MnDownloadData10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDownloadData10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDownloadData10.setIconTextGap(5);
+        MnDownloadData10.setName("MnDownloadData10"); // NOI18N
+        MnDownloadData10.setPreferredSize(new java.awt.Dimension(140, 28));
+        MnDownloadData10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDownloadData10ActionPerformed(evt);
+            }
+        });
+        jPopupMenu10.add(MnDownloadData10);
+
+        jPopupMenu11.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jPopupMenu11.setName("jPopupMenu11"); // NOI18N
+        jPopupMenu11.setPreferredSize(new java.awt.Dimension(140, 28));
+
+        MnDownloadData11.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDownloadData11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnDownloadData11.setText("Download Data");
+        MnDownloadData11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDownloadData11.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDownloadData11.setIconTextGap(5);
+        MnDownloadData11.setName("MnDownloadData11"); // NOI18N
+        MnDownloadData11.setPreferredSize(new java.awt.Dimension(140, 28));
+        MnDownloadData11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDownloadData11ActionPerformed(evt);
+            }
+        });
+        jPopupMenu11.add(MnDownloadData11);
+
+        jPopupMenu12.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jPopupMenu12.setName("jPopupMenu12"); // NOI18N
+        jPopupMenu12.setPreferredSize(new java.awt.Dimension(140, 28));
+
+        MnDownloadData12.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDownloadData12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnDownloadData12.setText("Download Data");
+        MnDownloadData12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDownloadData12.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDownloadData12.setIconTextGap(5);
+        MnDownloadData12.setName("MnDownloadData12"); // NOI18N
+        MnDownloadData12.setPreferredSize(new java.awt.Dimension(140, 28));
+        MnDownloadData12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDownloadData12ActionPerformed(evt);
+            }
+        });
+        jPopupMenu12.add(MnDownloadData12);
+
+        jPopupMenu13.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jPopupMenu13.setName("jPopupMenu13"); // NOI18N
+        jPopupMenu13.setPreferredSize(new java.awt.Dimension(140, 28));
+
+        MnDownloadData13.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDownloadData13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnDownloadData13.setText("Download Data");
+        MnDownloadData13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDownloadData13.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDownloadData13.setIconTextGap(5);
+        MnDownloadData13.setName("MnDownloadData13"); // NOI18N
+        MnDownloadData13.setPreferredSize(new java.awt.Dimension(140, 28));
+        MnDownloadData13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDownloadData13ActionPerformed(evt);
+            }
+        });
+        jPopupMenu13.add(MnDownloadData13);
+
+        jPopupMenu14.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jPopupMenu14.setName("jPopupMenu14"); // NOI18N
+        jPopupMenu14.setPreferredSize(new java.awt.Dimension(140, 28));
+
+        MnDownloadData14.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDownloadData14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnDownloadData14.setText("Download Data");
+        MnDownloadData14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDownloadData14.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDownloadData14.setIconTextGap(5);
+        MnDownloadData14.setName("MnDownloadData14"); // NOI18N
+        MnDownloadData14.setPreferredSize(new java.awt.Dimension(140, 28));
+        MnDownloadData14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDownloadData14ActionPerformed(evt);
+            }
+        });
+        jPopupMenu14.add(MnDownloadData14);
+
+        jPopupMenu15.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jPopupMenu15.setName("jPopupMenu15"); // NOI18N
+        jPopupMenu15.setPreferredSize(new java.awt.Dimension(140, 28));
+
+        MnDownloadData15.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDownloadData15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnDownloadData15.setText("Download Data");
+        MnDownloadData15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDownloadData15.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDownloadData15.setIconTextGap(5);
+        MnDownloadData15.setName("MnDownloadData15"); // NOI18N
+        MnDownloadData15.setPreferredSize(new java.awt.Dimension(140, 28));
+        MnDownloadData15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDownloadData15ActionPerformed(evt);
+            }
+        });
+        jPopupMenu15.add(MnDownloadData15);
+
+        jPopupMenu16.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jPopupMenu16.setName("jPopupMenu16"); // NOI18N
+        jPopupMenu16.setPreferredSize(new java.awt.Dimension(140, 28));
+
+        MnDownloadData16.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDownloadData16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnDownloadData16.setText("Download Data");
+        MnDownloadData16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDownloadData16.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDownloadData16.setIconTextGap(5);
+        MnDownloadData16.setName("MnDownloadData16"); // NOI18N
+        MnDownloadData16.setPreferredSize(new java.awt.Dimension(140, 28));
+        MnDownloadData16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDownloadData16ActionPerformed(evt);
+            }
+        });
+        jPopupMenu16.add(MnDownloadData16);
+
+        jPopupMenu17.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jPopupMenu17.setName("jPopupMenu17"); // NOI18N
+        jPopupMenu17.setPreferredSize(new java.awt.Dimension(140, 28));
+
+        MnDownloadData17.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDownloadData17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnDownloadData17.setText("Download Data");
+        MnDownloadData17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDownloadData17.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDownloadData17.setIconTextGap(5);
+        MnDownloadData17.setName("MnDownloadData17"); // NOI18N
+        MnDownloadData17.setPreferredSize(new java.awt.Dimension(140, 28));
+        MnDownloadData17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDownloadData17ActionPerformed(evt);
+            }
+        });
+        jPopupMenu17.add(MnDownloadData17);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1470,6 +1659,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll4.setName("Scroll4"); // NOI18N
         Scroll4.setOpaque(true);
 
+        tbNutrisionis.setComponentPopupMenu(jPopupMenu9);
         tbNutrisionis.setName("tbNutrisionis"); // NOI18N
         tbNutrisionis.getTableHeader().setReorderingAllowed(false);
         tbNutrisionis.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1533,6 +1723,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll19.setName("Scroll19"); // NOI18N
         Scroll19.setOpaque(true);
 
+        tbPasCpptNutri.setComponentPopupMenu(jPopupMenu10);
         tbPasCpptNutri.setName("tbPasCpptNutri"); // NOI18N
         tbPasCpptNutri.getTableHeader().setReorderingAllowed(false);
         Scroll19.setViewportView(tbPasCpptNutri);
@@ -1542,6 +1733,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll20.setName("Scroll20"); // NOI18N
         Scroll20.setOpaque(true);
 
+        tbPasAsuhan.setComponentPopupMenu(jPopupMenu10);
         tbPasAsuhan.setName("tbPasAsuhan"); // NOI18N
         tbPasAsuhan.getTableHeader().setReorderingAllowed(false);
         Scroll20.setViewportView(tbPasAsuhan);
@@ -1561,6 +1753,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll5.setName("Scroll5"); // NOI18N
         Scroll5.setOpaque(true);
 
+        tbPerawatAnak.setComponentPopupMenu(jPopupMenu11);
         tbPerawatAnak.setName("tbPerawatAnak"); // NOI18N
         tbPerawatAnak.getTableHeader().setReorderingAllowed(false);
         tbPerawatAnak.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1624,6 +1817,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll21.setName("Scroll21"); // NOI18N
         Scroll21.setOpaque(true);
 
+        tbPasAnakCppt.setComponentPopupMenu(jPopupMenu12);
         tbPasAnakCppt.setName("tbPasAnakCppt"); // NOI18N
         tbPasAnakCppt.getTableHeader().setReorderingAllowed(false);
         Scroll21.setViewportView(tbPasAnakCppt);
@@ -1633,6 +1827,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll22.setName("Scroll22"); // NOI18N
         Scroll22.setOpaque(true);
 
+        tbPasAnakAskep.setComponentPopupMenu(jPopupMenu12);
         tbPasAnakAskep.setName("tbPasAnakAskep"); // NOI18N
         tbPasAnakAskep.getTableHeader().setReorderingAllowed(false);
         Scroll22.setViewportView(tbPasAnakAskep);
@@ -1652,6 +1847,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll9.setName("Scroll9"); // NOI18N
         Scroll9.setOpaque(true);
 
+        tbPerawatAnak1.setComponentPopupMenu(jPopupMenu13);
         tbPerawatAnak1.setName("tbPerawatAnak1"); // NOI18N
         tbPerawatAnak1.getTableHeader().setReorderingAllowed(false);
         tbPerawatAnak1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1715,6 +1911,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll23.setName("Scroll23"); // NOI18N
         Scroll23.setOpaque(true);
 
+        tbPasRanapAnakCppt.setComponentPopupMenu(jPopupMenu14);
         tbPasRanapAnakCppt.setName("tbPasRanapAnakCppt"); // NOI18N
         tbPasRanapAnakCppt.getTableHeader().setReorderingAllowed(false);
         Scroll23.setViewportView(tbPasRanapAnakCppt);
@@ -1724,6 +1921,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll24.setName("Scroll24"); // NOI18N
         Scroll24.setOpaque(true);
 
+        tbPasRanapAnakAskep.setComponentPopupMenu(jPopupMenu14);
         tbPasRanapAnakAskep.setName("tbPasRanapAnakAskep"); // NOI18N
         tbPasRanapAnakAskep.getTableHeader().setReorderingAllowed(false);
         Scroll24.setViewportView(tbPasRanapAnakAskep);
@@ -1743,6 +1941,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
 
+        tbBidan.setComponentPopupMenu(jPopupMenu15);
         tbBidan.setName("tbBidan"); // NOI18N
         tbBidan.getTableHeader().setReorderingAllowed(false);
         tbBidan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1796,6 +1995,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll13.setName("Scroll13"); // NOI18N
         Scroll13.setOpaque(true);
 
+        tbPasienBidanRanap.setComponentPopupMenu(jPopupMenu16);
         tbPasienBidanRanap.setName("tbPasienBidanRanap"); // NOI18N
         tbPasienBidanRanap.getTableHeader().setReorderingAllowed(false);
         Scroll13.setViewportView(tbPasienBidanRanap);
@@ -1809,6 +2009,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
 
+        tbDpjp.setComponentPopupMenu(jPopupMenu17);
         tbDpjp.setName("tbDpjp"); // NOI18N
         tbDpjp.getTableHeader().setReorderingAllowed(false);
         Scroll7.setViewportView(tbDpjp);
@@ -1838,7 +2039,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         jLabel5.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass8.add(jLabel5);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-04-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1852,7 +2053,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-04-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2307,6 +2508,102 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnDownloadData8ActionPerformed
 
+    private void MnDownloadData9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDownloadData9ActionPerformed
+        if (tbNutrisionis.getRowCount() != 0) {
+            downloadData("petugas nutrisionis");
+        } else {
+            JOptionPane.showMessageDialog(null, "Data masih kosong,..!!!");
+        }
+    }//GEN-LAST:event_MnDownloadData9ActionPerformed
+
+    private void MnDownloadData10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDownloadData10ActionPerformed
+        if (TabPetugasNutri.getSelectedIndex() == 0) {
+            if (tbPasCpptNutri.getRowCount() != 0) {
+                downloadData("cppt nutrisionis");
+            } else {                
+                JOptionPane.showMessageDialog(null, "Data cppt pasien masih kosong,..!!!");
+            }
+        } else {
+            if (tbPasAsuhan.getRowCount() != 0) {
+                downloadData("asuhan nutrisionis");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data asuhan gizi pasien masih kosong,..!!!");
+            }
+        }
+    }//GEN-LAST:event_MnDownloadData10ActionPerformed
+
+    private void MnDownloadData11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDownloadData11ActionPerformed
+        if (tbPerawatAnak.getRowCount() != 0) {
+            downloadData("perawat ruang anak");
+        } else {
+            JOptionPane.showMessageDialog(null, "Data masih kosong,..!!!");
+        }
+    }//GEN-LAST:event_MnDownloadData11ActionPerformed
+
+    private void MnDownloadData12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDownloadData12ActionPerformed
+        if (TabPerawatAnak.getSelectedIndex() == 0) {
+            if (tbPasAnakCppt.getRowCount() != 0) {
+                downloadData("cppt perawat rg anak");
+            } else {                
+                JOptionPane.showMessageDialog(null, "Data cppt pasien masih kosong,..!!!");
+            }
+        } else {
+            if (tbPasAnakAskep.getRowCount() != 0) {
+                downloadData("askep perawat rg anak");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data assesmen keperawatan rawat inap pasien masih kosong,..!!!");
+            }
+        }
+    }//GEN-LAST:event_MnDownloadData12ActionPerformed
+
+    private void MnDownloadData13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDownloadData13ActionPerformed
+        if (tbPerawatAnak1.getRowCount() != 0) {
+            downloadData("perawat ranap anak");
+        } else {
+            JOptionPane.showMessageDialog(null, "Data masih kosong,..!!!");
+        }
+    }//GEN-LAST:event_MnDownloadData13ActionPerformed
+
+    private void MnDownloadData14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDownloadData14ActionPerformed
+        if (TabPerawatRanapAnak.getSelectedIndex() == 0) {
+            if (tbPasRanapAnakCppt.getRowCount() != 0) {
+                downloadData("cppt perawat ranap anak");
+            } else {                
+                JOptionPane.showMessageDialog(null, "Data cppt pasien masih kosong,..!!!");
+            }
+        } else {
+            if (tbPasRanapAnakAskep.getRowCount() != 0) {
+                downloadData("askep perawat ranap anak");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data assesmen keperawatan rawat inap pasien masih kosong,..!!!");
+            }
+        }
+    }//GEN-LAST:event_MnDownloadData14ActionPerformed
+
+    private void MnDownloadData15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDownloadData15ActionPerformed
+        if (tbBidan.getRowCount() != 0) {
+            downloadData("bidan ranap");
+        } else {
+            JOptionPane.showMessageDialog(null, "Data masih kosong,..!!!");
+        }
+    }//GEN-LAST:event_MnDownloadData15ActionPerformed
+
+    private void MnDownloadData16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDownloadData16ActionPerformed
+        if (tbPasienBidanRanap.getRowCount() != 0) {
+            downloadData("cppt bidan ranap");
+        } else {
+            JOptionPane.showMessageDialog(null, "Data masih kosong,..!!!");
+        }
+    }//GEN-LAST:event_MnDownloadData16ActionPerformed
+
+    private void MnDownloadData17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDownloadData17ActionPerformed
+        if (tbDpjp.getRowCount() != 0) {
+            downloadData("dpjp");
+        } else {
+            JOptionPane.showMessageDialog(null, "Data masih kosong,..!!!");
+        }
+    }//GEN-LAST:event_MnDownloadData17ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2330,6 +2627,14 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private javax.swing.JMenuItem MnDownloadData1;
+    private javax.swing.JMenuItem MnDownloadData10;
+    private javax.swing.JMenuItem MnDownloadData11;
+    private javax.swing.JMenuItem MnDownloadData12;
+    private javax.swing.JMenuItem MnDownloadData13;
+    private javax.swing.JMenuItem MnDownloadData14;
+    private javax.swing.JMenuItem MnDownloadData15;
+    private javax.swing.JMenuItem MnDownloadData16;
+    private javax.swing.JMenuItem MnDownloadData17;
     private javax.swing.JMenuItem MnDownloadData2;
     private javax.swing.JMenuItem MnDownloadData3;
     private javax.swing.JMenuItem MnDownloadData4;
@@ -2337,6 +2642,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnDownloadData6;
     private javax.swing.JMenuItem MnDownloadData7;
     private javax.swing.JMenuItem MnDownloadData8;
+    private javax.swing.JMenuItem MnDownloadData9;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll10;
@@ -2387,6 +2693,14 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
     private widget.Label jLabel5;
     private widget.Label jLabel6;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu10;
+    private javax.swing.JPopupMenu jPopupMenu11;
+    private javax.swing.JPopupMenu jPopupMenu12;
+    private javax.swing.JPopupMenu jPopupMenu13;
+    private javax.swing.JPopupMenu jPopupMenu14;
+    private javax.swing.JPopupMenu jPopupMenu15;
+    private javax.swing.JPopupMenu jPopupMenu16;
+    private javax.swing.JPopupMenu jPopupMenu17;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JPopupMenu jPopupMenu4;
@@ -2394,6 +2708,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
     private javax.swing.JPopupMenu jPopupMenu6;
     private javax.swing.JPopupMenu jPopupMenu7;
     private javax.swing.JPopupMenu jPopupMenu8;
+    private javax.swing.JPopupMenu jPopupMenu9;
     private widget.Label label_key;
     private widget.Label label_key1;
     private widget.Label label_key10;
@@ -3581,6 +3896,308 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Data cppt petugas farmasi berhasil diexport menjadi file excel,..!!!");
             } else {
                 JOptionPane.showMessageDialog(null, "Data cppt petugas farmasi gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("petugas nutrisionis")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode4.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode4.getValueAt(r, 0).toString() + "','"
+                        + tabMode4.getValueAt(r, 1).toString() + "','"
+                        + tabMode4.getValueAt(r, 2).toString().replaceAll("'", "") + "','"
+                        + tabMode4.getValueAt(r, 3).toString() + "','"
+                        + tabMode4.getValueAt(r, 4).toString() + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Petugas Nutrisionis");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'NIP/NR', temp3 'Nama Petugas', temp4 'CPPT', temp5 'Asuhan Gizi' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data petugas nutrisionis berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data petugas nutrisionis gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("cppt nutrisionis")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode13.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode13.getValueAt(r, 0).toString() + "','"
+                        + tabMode13.getValueAt(r, 1).toString() + "','"
+                        + tabMode13.getValueAt(r, 2).toString() + "','"
+                        + tabMode13.getValueAt(r, 3).toString().replaceAll("'", "") + "','"
+                        + tabMode13.getValueAt(r, 4).toString() + "','"
+                        + tabMode13.getValueAt(r, 5).toString() + "','"
+                        + tabMode13.getValueAt(r, 6).toString() + "','"
+                        + tabMode13.getValueAt(r, 7).toString() + "','"
+                        + TnipPetNutri.getText() + "','"
+                        + TnmPetNutri.getText().replaceAll("'", "") + "','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data CPPT Petugas Nutrisionis");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'Tgl. MRS', temp3 'No. RM', temp4 'Nama Pasien', "
+                    + "temp5 'Cara Bayar', temp6 'Alamat', temp7 'Rg. Rawat Terakhir', temp8 'Nama DPJP', temp9 'NIP/NR', temp10 'Nama Petugas' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data cppt petugas nutrisionis berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data cppt petugas nutrisionis gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("asuhan nutrisionis")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode14.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode14.getValueAt(r, 0).toString() + "','"
+                        + tabMode14.getValueAt(r, 1).toString() + "','"
+                        + tabMode14.getValueAt(r, 2).toString() + "','"
+                        + tabMode14.getValueAt(r, 3).toString().replaceAll("'", "") + "','"
+                        + tabMode14.getValueAt(r, 4).toString() + "','"
+                        + tabMode14.getValueAt(r, 5).toString() + "','"
+                        + tabMode14.getValueAt(r, 6).toString() + "','"
+                        + tabMode14.getValueAt(r, 7).toString() + "','"
+                        + TnipPetNutri.getText() + "','"
+                        + TnmPetNutri.getText().replaceAll("'", "") + "','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Asuhan Gizi Petugas Nutrisionis");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'Tgl. MRS', temp3 'No. RM', temp4 'Nama Pasien', "
+                    + "temp5 'Cara Bayar', temp6 'Alamat', temp7 'Rg. Rawat Terakhir', temp8 'Nama DPJP', temp9 'NIP/NR', temp10 'Nama Petugas' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data asuhan petugas nutrisionis berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data asuhan petugas nutrisionis gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("perawat ruang anak")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode5.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode5.getValueAt(r, 0).toString() + "','"
+                        + tabMode5.getValueAt(r, 1).toString() + "','"
+                        + tabMode5.getValueAt(r, 2).toString().replaceAll("'", "") + "','"
+                        + tabMode5.getValueAt(r, 3).toString() + "','"
+                        + tabMode5.getValueAt(r, 4).toString() + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Perawat Rg. Anak");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'NIP/NR', temp3 'Nama Perawat', temp4 'CPPT', temp5 'Asesmen Keperawatan Anak' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data perawat rg. anak berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data perawat rg. anak gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("cppt perawat rg anak")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode15.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode15.getValueAt(r, 0).toString() + "','"
+                        + tabMode15.getValueAt(r, 1).toString() + "','"
+                        + tabMode15.getValueAt(r, 2).toString() + "','"
+                        + tabMode15.getValueAt(r, 3).toString().replaceAll("'", "") + "','"
+                        + tabMode15.getValueAt(r, 4).toString() + "','"
+                        + tabMode15.getValueAt(r, 5).toString() + "','"
+                        + tabMode15.getValueAt(r, 6).toString() + "','"
+                        + tabMode15.getValueAt(r, 7).toString() + "','"
+                        + TnipPerawatAnak.getText() + "','"
+                        + TnmPerawatAnak.getText().replaceAll("'", "") + "','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data CPPT Perawat Rg. Anak");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'Tgl. MRS', temp3 'No. RM', temp4 'Nama Pasien', "
+                    + "temp5 'Cara Bayar', temp6 'Alamat', temp7 'Rg. Rawat Terakhir', temp8 'Nama DPJP', temp9 'NIP/NR', temp10 'Nama Perawat' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data cppt perawat rg. anak berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data cppt perawat rg. anak gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("askep perawat rg anak")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode16.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode16.getValueAt(r, 0).toString() + "','"
+                        + tabMode16.getValueAt(r, 1).toString() + "','"
+                        + tabMode16.getValueAt(r, 2).toString() + "','"
+                        + tabMode16.getValueAt(r, 3).toString().replaceAll("'", "") + "','"
+                        + tabMode16.getValueAt(r, 4).toString() + "','"
+                        + tabMode16.getValueAt(r, 5).toString() + "','"
+                        + tabMode16.getValueAt(r, 6).toString() + "','"
+                        + tabMode16.getValueAt(r, 7).toString() + "','"
+                        + TnipPerawatAnak.getText() + "','"
+                        + TnmPerawatAnak.getText().replaceAll("'", "") + "','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data CPPT Perawat Rg. Anak");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'Tgl. MRS', temp3 'No. RM', temp4 'Nama Pasien', "
+                    + "temp5 'Cara Bayar', temp6 'Alamat', temp7 'Rg. Rawat Terakhir', temp8 'Nama DPJP', temp9 'NIP/NR', temp10 'Nama Perawat' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data askep perawat rg. anak berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data askep perawat rg. anak gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("perawat ranap anak")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode6.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode6.getValueAt(r, 0).toString() + "','"
+                        + tabMode6.getValueAt(r, 1).toString() + "','"
+                        + tabMode6.getValueAt(r, 2).toString().replaceAll("'", "") + "','"
+                        + tabMode6.getValueAt(r, 3).toString() + "','"
+                        + tabMode6.getValueAt(r, 4).toString() + "','"
+                        + tabMode6.getValueAt(r, 5).toString() + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Perawat R.Inap (Pasien Anak)");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'NIP/NR', temp3 'Nama Perawat', temp4 'CPPT', "
+                    + "temp5 'Asesmen Keperawatan Anak', temp6 'Unit Kerja' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data perawat rwt. inap (pasien anak) berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data perawat rwt. inap (pasien anak) gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("cppt perawat ranap anak")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode17.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode17.getValueAt(r, 0).toString() + "','"
+                        + tabMode17.getValueAt(r, 1).toString() + "','"
+                        + tabMode17.getValueAt(r, 2).toString() + "','"
+                        + tabMode17.getValueAt(r, 3).toString().replaceAll("'", "") + "','"
+                        + tabMode17.getValueAt(r, 4).toString() + "','"
+                        + tabMode17.getValueAt(r, 5).toString() + "','"
+                        + tabMode17.getValueAt(r, 6).toString() + "','"
+                        + tabMode17.getValueAt(r, 7).toString() + "','"
+                        + TnipPerawatRanapAnak.getText() + "','"
+                        + TnmPerawatRanapAnak.getText().replaceAll("'", "") + "','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data CPPT Perawat R.Inap (Pasien Anak)");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'Tgl. MRS', temp3 'No. RM', temp4 'Nama Pasien', "
+                    + "temp5 'Cara Bayar', temp6 'Alamat', temp7 'Rg. Rawat Terakhir', temp8 'Nama DPJP', temp9 'NIP/NR', temp10 'Nama Perawat' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data cppt perawat rwt. inap (pasien anak) berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data cppt perawat rwt. inap (pasien anak) gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("askep perawat ranap anak")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode18.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode18.getValueAt(r, 0).toString() + "','"
+                        + tabMode18.getValueAt(r, 1).toString() + "','"
+                        + tabMode18.getValueAt(r, 2).toString() + "','"
+                        + tabMode18.getValueAt(r, 3).toString().replaceAll("'", "") + "','"
+                        + tabMode18.getValueAt(r, 4).toString() + "','"
+                        + tabMode18.getValueAt(r, 5).toString() + "','"
+                        + tabMode18.getValueAt(r, 6).toString() + "','"
+                        + tabMode18.getValueAt(r, 7).toString() + "','"
+                        + TnipPerawatRanapAnak.getText() + "','"
+                        + TnmPerawatRanapAnak.getText().replaceAll("'", "") + "','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data AsKep Perawat R.Inap (Pasien Anak)");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'Tgl. MRS', temp3 'No. RM', temp4 'Nama Pasien', "
+                    + "temp5 'Cara Bayar', temp6 'Alamat', temp7 'Rg. Rawat Terakhir', temp8 'Nama DPJP', temp9 'NIP/NR', temp10 'Nama Perawat' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data askep perawat rwt. inap (pasien anak) berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data askep perawat rwt. inap (pasien anak) gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("bidan ranap")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode7.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode7.getValueAt(r, 0).toString() + "','"
+                        + tabMode7.getValueAt(r, 1).toString() + "','"
+                        + tabMode7.getValueAt(r, 2).toString().replaceAll("'", "") + "','"
+                        + tabMode7.getValueAt(r, 3).toString() + "','"
+                        + tabMode7.getValueAt(r, 4).toString() + "',"
+                        + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Bidan R.Inap");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'NIP/NR', temp3 'Nama Petugas', temp4 'Jml. CPPT PerPasien', "
+                    + "temp5 'Ruang Perawatan' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data bidan rwt. inap berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data bidan rwt. inap gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("cppt bidan ranap")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode19.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode19.getValueAt(r, 0).toString() + "','"
+                        + tabMode19.getValueAt(r, 1).toString() + "','"
+                        + tabMode19.getValueAt(r, 2).toString() + "','"
+                        + tabMode19.getValueAt(r, 3).toString().replaceAll("'", "") + "','"
+                        + tabMode19.getValueAt(r, 4).toString() + "','"
+                        + tabMode19.getValueAt(r, 5).toString() + "','"
+                        + tabMode19.getValueAt(r, 6).toString() + "','"
+                        + tabMode19.getValueAt(r, 7).toString() + "','"
+                        + TnipBidanRanap.getText() + "','"
+                        + TnmBidanRanap.getText().replaceAll("'", "") + "','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data CPPT Bidan R.Inap");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'Tgl. MRS', temp3 'No. RM', temp4 'Nama Pasien', "
+                    + "temp5 'Cara Bayar', temp6 'Alamat', temp7 'Rg. Rawat Terakhir', temp8 'Nama DPJP', temp9 'NIP/NR', temp10 'Nama Petugas' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data cppt bidan rwt. inap berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data cppt bidan rwt. inap gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("dpjp")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode20.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode20.getValueAt(r, 0).toString() + "','"
+                        + tabMode20.getValueAt(r, 1).toString() + "','"
+                        + tabMode20.getValueAt(r, 2).toString().replaceAll("'", "") + "','"
+                        + tabMode20.getValueAt(r, 3).toString() + "','"
+                        + tabMode20.getValueAt(r, 4).toString() + "','"
+                        + tabMode20.getValueAt(r, 5).toString() + "','"
+                        + tabMode20.getValueAt(r, 6).toString() + "','"
+                        + tabMode20.getValueAt(r, 7).toString() + "','"
+                        + tabMode20.getValueAt(r, 8).toString() + "','"
+                        + tabMode20.getValueAt(r, 9).toString() + "','"
+                        + tabMode20.getValueAt(r, 10).toString() + "','"
+                        + tabMode20.getValueAt(r, 11).toString() + "','"
+                        + tabMode20.getValueAt(r, 12).toString() + "','"
+                        + tabMode20.getValueAt(r, 13).toString() + "','"
+                        + tabMode20.getValueAt(r, 14).toString() + "','"
+                        + tabMode20.getValueAt(r, 15).toString() + "','"
+                        + tabMode20.getValueAt(r, 16).toString() + "','"
+                        + tabMode20.getValueAt(r, 17).toString() + "','','','','','','','','','','','','','','','','','','',''", "Data Bidan R.Inap");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'NIP/NR', temp3 'Nama Dokter', temp4 'Spesialis', "
+                    + "temp5 'Sbg. DPJP', temp6 'AsMed Bedah', temp7 'AsMed Dewasa', temp8 'AsMed Anak', temp9 'AsMed Perinatologi', temp10 'CPPT', "
+                    + "temp11 'e-Resep', temp12 'Resume Medis', temp13 'Pemberian Inf. Edukasi', temp14 'Surat Konsul', temp15 'Surat Jwbn. Konsul', "
+                    + "temp16 'Perstjuan./Penlokaan. Tndkn.', temp17 'Portokol Kemoterapi', temp18 'Total RM Terisi' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data pemanfaatan e-RM dokter spesialis berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data pemanfaatan e-RM dokter spesialis gagal diexport menjadi file excel,..!!!");
             }
         }
     }

@@ -860,6 +860,12 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         ChkInput.setSelected(false);
         isForm();
         jam();
+        BtnSimpan.setMnemonic(java.awt.event.KeyEvent.VK_S);
+        BtnHapus.setMnemonic(java.awt.event.KeyEvent.VK_H);
+        BtnEdit.setMnemonic(java.awt.event.KeyEvent.VK_G);
+        BtnKeluar.setMnemonic(java.awt.event.KeyEvent.VK_K);
+        BtnCari.setMnemonic(java.awt.event.KeyEvent.VK_T);
+        
         try {
             psrekening = koneksi.prepareStatement("select * from set_akun_ranap");
             try {
