@@ -834,6 +834,9 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         TnmPerujuk = new widget.TextBox();
         btnPerujuk = new widget.Button();
         TNip = new widget.TextBox();
+        chkPerujuk = new widget.CekBox();
+        jLabel59 = new widget.Label();
+        TnmPengirim = new widget.TextBox();
         panelisi7 = new widget.panelisi();
         BtnSimpan1 = new widget.Button();
         BtnCloseIn2 = new widget.Button();
@@ -2106,7 +2109,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         jLabel42.setBounds(605, 122, 70, 23);
 
         TtglHasil.setEditable(false);
-        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2026" }));
+        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2026" }));
         TtglHasil.setDisplayFormat("dd-MM-yyyy");
         TtglHasil.setName("TtglHasil"); // NOI18N
         TtglHasil.setOpaque(false);
@@ -2610,6 +2613,36 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         TNip.setName("TNip"); // NOI18N
         panelisi6.add(TNip);
         TNip.setBounds(100, 10, 125, 23);
+
+        chkPerujuk.setBackground(new java.awt.Color(255, 255, 250));
+        chkPerujuk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkPerujuk.setForeground(new java.awt.Color(0, 0, 0));
+        chkPerujuk.setText("Selain Yang Ada Pada Pilihan Yang Tersedia");
+        chkPerujuk.setBorderPainted(true);
+        chkPerujuk.setBorderPaintedFlat(true);
+        chkPerujuk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkPerujuk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkPerujuk.setName("chkPerujuk"); // NOI18N
+        chkPerujuk.setOpaque(false);
+        chkPerujuk.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkPerujuk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkPerujukActionPerformed(evt);
+            }
+        });
+        panelisi6.add(chkPerujuk);
+        chkPerujuk.setBounds(100, 38, 250, 23);
+
+        jLabel59.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel59.setText("Nama Pengirim : ");
+        jLabel59.setName("jLabel59"); // NOI18N
+        panelisi6.add(jLabel59);
+        jLabel59.setBounds(0, 66, 100, 23);
+
+        TnmPengirim.setForeground(new java.awt.Color(0, 0, 0));
+        TnmPengirim.setName("TnmPengirim"); // NOI18N
+        panelisi6.add(TnmPengirim);
+        TnmPengirim.setBounds(100, 66, 460, 23);
 
         internalFrame4.add(panelisi6, java.awt.BorderLayout.CENTER);
 
@@ -3175,7 +3208,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi1.add(jLabel25);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2026" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -5684,7 +5717,13 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                     Tjenkel.setText(Sequel.cariIsi("select if(jk='L','Laki-laki','Perempuan') from pasien where no_rkm_medis='" + TnoRm.getText() + "'"));
                     nipperujukHsl = kddokter;
                     tglperiksaHsl = tglPeriksa;
-                    TdokterPengirim.setText(dokter_pengirim.getText());
+                    
+                    if (Sequel.cariInteger("select count(-1) from perujuk_lab where no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'") > 0) {
+                        TdokterPengirim.setText(Sequel.cariIsi("select nm_perujuk_pengirim from perujuk_lab where no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'"));
+                    } else {
+                        TdokterPengirim.setText(dokter_pengirim.getText());
+                    }
+                            
                     Tunit.setText(nm_unit);
                     Trs.setText(akses.getnamars());
                     Ttglperiksa.setText(Valid.SetTglINDONESIA(tglPeriksa));
@@ -5817,24 +5856,68 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
         if (form.equals("1")) {
             if (Kd2.getText().trim().equals("")) {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih/klik salah satu datanya pada tabel..!");
-            } else if (TNip.getText().trim().equals("") || TnmPerujuk.getText().trim().equals("")) {
-                Valid.textKosong(TNip, "nama perujuk");
             } else {
-                Sequel.mengedit("periksa_lab", "no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'", "dokter_perujuk='" + TNip.getText() + "'");
-                Sequel.mengedit("hasil_patologi_anatomi", "no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "'", "nip_perujuk='" + TNip.getText() + "'");
-                BtnCariActionPerformed(null);
+                if (chkPerujuk.isSelected() == true) {
+                    if (TnmPengirim.getText().equals("")) {
+                        Valid.textKosong(TnmPengirim, "nama perujuk");
+                        TnmPengirim.requestFocus();
+                    } else {
+                        Sequel.mengedit("periksa_lab", "no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'", "dokter_perujuk='" + TNip.getText() + "'");
+                        Sequel.mengedit("hasil_patologi_anatomi", "no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "'", "nip_perujuk='" + TNip.getText() + "'");
+                        
+                        if (Sequel.cariInteger("select count(-1) from perujuk_lab where no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'") > 0) {
+                            Sequel.mengedit("perujuk_lab", "no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'",
+                                    "nm_perujuk_pengirim='" + TnmPengirim.getText() + "'");
+                        } else {
+                            Sequel.menyimpan("perujuk_lab", "'" + Kd2.getText() + "','" + tglPeriksa + "','" + jamPeriksa + "','" + TnmPengirim.getText() + "'", "Nama Perujuk/Pengirim");
+                        }
+                        BtnCariActionPerformed(null);
+                    }
+                } else {
+                    if (TNip.getText().trim().equals("") || TnmPerujuk.getText().trim().equals("")) {
+                        Valid.textKosong(TNip, "nama perujuk");
+                    } else {
+                        Sequel.mengedit("periksa_lab", "no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'", "dokter_perujuk='" + TNip.getText() + "'");
+                        Sequel.mengedit("hasil_patologi_anatomi", "no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "'", "nip_perujuk='" + TNip.getText() + "'");
+                        Sequel.queryu("delete from perujuk_lab where no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'");
+                        BtnCariActionPerformed(null);
+                    }
+                }
             }
         } else if (form.equals("2")) {
             if (TnoRw.getText().trim().equals("")) {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih/klik salah satu datanya pada tabel..!");
-            } else if (TNip.getText().trim().equals("") || TnmPerujuk.getText().trim().equals("")) {
-                Valid.textKosong(TNip, "nama perujuk");
             } else {
-                Sequel.mengedit("periksa_lab", "no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'", "dokter_perujuk='" + TNip.getText() + "'");
-                Sequel.mengedit("hasil_patologi_anatomi", "no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "'", "nip_perujuk='" + TNip.getText() + "'");
-                TdokterPengirim.setText(TnmPerujuk.getText());
-                tampilHasil();
-                emptTeksPatologi();
+                if (chkPerujuk.isSelected() == true) {
+                    if (TnmPengirim.getText().equals("")) {
+                        Valid.textKosong(TnmPengirim, "nama perujuk");
+                        TnmPengirim.requestFocus();
+                    } else {
+                        Sequel.mengedit("periksa_lab", "no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'", "dokter_perujuk='" + TNip.getText() + "'");
+                        Sequel.mengedit("hasil_patologi_anatomi", "no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "'", "nip_perujuk='" + TNip.getText() + "'");
+
+                        if (Sequel.cariInteger("select count(-1) from perujuk_lab where no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'") > 0) {
+                            Sequel.mengedit("perujuk_lab", "no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'",
+                                    "nm_perujuk_pengirim='" + TnmPengirim.getText() + "'");
+                        } else {
+                            Sequel.menyimpan("perujuk_lab", "'" + TnoRw.getText() + "','" + tglPeriksa + "','" + jamPeriksa + "','" + TnmPengirim.getText() + "'", "Nama Perujuk/Pengirim");
+                        }
+                        TdokterPengirim.setText(TnmPengirim.getText());
+                        tampilHasil();
+                        emptTeksPatologi();
+                    }
+                } else {
+                    if (TNip.getText().trim().equals("") || TnmPerujuk.getText().trim().equals("")) {
+                        Valid.textKosong(TNip, "nama perujuk");
+                    } else {
+                        Sequel.mengedit("periksa_lab", "no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'", "dokter_perujuk='" + TNip.getText() + "'");
+                        Sequel.mengedit("hasil_patologi_anatomi", "no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "'", "nip_perujuk='" + TNip.getText() + "'");
+                        Sequel.queryu("delete from perujuk_lab where no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'");
+                        TdokterPengirim.setText(TnmPerujuk.getText());
+                        tampilHasil();
+                        emptTeksPatologi();
+                    }
+                }
             }
         }
         WindowGantiPerujuk.dispose();
@@ -5855,15 +5938,27 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                     JOptionPane.showMessageDialog(rootPane, "Silahkan pilih/klik dulu datanya pada tabel tepat di nama pasien/no. RM nya..!");
                     tampil();
                 } else {
-                    WindowGantiPerujuk.setSize(659, 122);
+                    WindowGantiPerujuk.setSize(659, 186);
                     WindowGantiPerujuk.setLocationRelativeTo(internalFrame1);
                     WindowGantiPerujuk.setVisible(true);
                     WindowGantiPerujuk.toFront();
                     
                     form = "1";
                     TNip.setText(kddokter);
-                    TnmPerujuk.setText(dokter_pengirim.getText());
-                    btnPerujuk.requestFocus();
+                    TnmPerujuk.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + kddokter + "'"));
+                    
+                    if (kddokter.equals("-")) {
+                        chkPerujuk.setSelected(true);
+                        TnmPengirim.setEnabled(true);
+                        TnmPengirim.setText(Sequel.cariIsi("select if(nm_perujuk_pengirim is null,'',nm_perujuk_pengirim) from perujuk_lab "
+                                + "where no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'"));
+                        btnPerujuk.setEnabled(false);
+                    } else {
+                        chkPerujuk.setSelected(false);
+                        TnmPengirim.setEnabled(false);
+                        TnmPengirim.setText("");
+                        btnPerujuk.setEnabled(true);
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih/klik dulu datanya pada tabel tepat di nama pasien/no. RM nya..!");
@@ -5879,15 +5974,27 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             emptTeksPatologi();
         } else {
             form = "";
-            WindowGantiPerujuk.setSize(659, 122);
+            WindowGantiPerujuk.setSize(659, 186);
             WindowGantiPerujuk.setLocationRelativeTo(internalFrame8);
             WindowGantiPerujuk.setVisible(true);
             WindowGantiPerujuk.toFront();
 
             form = "2";
             TNip.setText(kddokter);
-            TnmPerujuk.setText(TdokterPengirim.getText());
-            btnPerujuk.requestFocus();
+            TnmPerujuk.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + kddokter + "'"));
+            
+            if (kddokter.equals("-")) {
+                chkPerujuk.setSelected(true);
+                TnmPengirim.setEnabled(true);
+                TnmPengirim.setText(Sequel.cariIsi("select if(nm_perujuk_pengirim is null,'',nm_perujuk_pengirim) from perujuk_lab "
+                        + "where no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'"));
+                btnPerujuk.setEnabled(false);
+            } else {
+                chkPerujuk.setSelected(false);
+                TnmPengirim.setEnabled(false);
+                TnmPengirim.setText("");
+                btnPerujuk.setEnabled(true);
+            }
         }
     }//GEN-LAST:event_MnGantiPerujukPAActionPerformed
 
@@ -6130,6 +6237,21 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
         }
     }//GEN-LAST:event_TrsKeyPressed
 
+    private void chkPerujukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPerujukActionPerformed
+        if (chkPerujuk.isSelected() == true) {
+            TNip.setText("-");
+            TnmPerujuk.setText("-");
+            btnPerujuk.setEnabled(false);
+            TnmPengirim.setEnabled(true);
+            TnmPengirim.requestFocus();
+        } else {
+            btnPerujuk.setEnabled(true);
+            TnmPengirim.setText("");
+            TnmPengirim.setEnabled(false);
+            btnPerujuk.requestFocus();
+        }
+    }//GEN-LAST:event_chkPerujukActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -6255,6 +6377,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.TextBox TnmFaskes;
     private widget.TextBox TnmPemeriksa;
     private widget.TextBox TnmPemeriksaan;
+    private widget.TextBox TnmPengirim;
     private widget.TextBox TnmPenjab;
     private widget.TextBox TnmPerujuk;
     private widget.TextBox TnmPetugas;
@@ -6286,6 +6409,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.Button btnPetugas;
     private widget.Button btnPetugas1;
     private widget.TextBox caraByr;
+    public widget.CekBox chkPerujuk;
     private widget.ComboBox cmbLimit;
     private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbPilihCetak1;
@@ -6349,6 +6473,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private widget.Label jLabel56;
     private widget.Label jLabel57;
     private widget.Label jLabel58;
+    private widget.Label jLabel59;
     private widget.Label jLabel7;
     private widget.Label jLabel95;
     private javax.swing.JMenu jMnCetakHasilLab;
@@ -6525,10 +6650,15 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             kdpenjab = Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat='" + Kd2.getText() + "'");
             caraByr.setText(Sequel.cariIsi("select png_jawab from penjab where kd_pj='" + kdpenjab + "'"));
             status_rawat = Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + Kd2.getText() + "'");
-
-            if (status_rawat.equals("Ralan")) {
-                kddokter = Sequel.cariIsi("select dokter_perujuk from periksa_lab where no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'");
+            kddokter = Sequel.cariIsi("select dokter_perujuk from periksa_lab where no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'");
+            
+            if (Sequel.cariInteger("select count(-1) from perujuk_lab where no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'") > 0) {
+                dokter_pengirim.setText(Sequel.cariIsi("select nm_perujuk_pengirim from perujuk_lab where no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'"));
+            } else {
                 dokter_pengirim.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + kddokter + "'"));
+            }
+
+            if (status_rawat.equals("Ralan")) {                
                 kdunit = Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + Kd2.getText() + "'");
                 nm_unit = Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdunit + "'");
                 notelpFaskes = "0";
@@ -6539,12 +6669,9 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
                     dAwal.setText(diagnosa_ok);
                 } else {
                     diagnosa_ok = Sequel.cariIsi("select diagnosa from pemeriksaan_ralan where no_rawat='" + Kd2.getText() + "'");
-                    dAwal.setText(diagnosa_ok);
-                    
+                    dAwal.setText(diagnosa_ok);                    
                 }
             } else {
-                kddokter = Sequel.cariIsi("select dokter_perujuk from periksa_lab where no_rawat='" + Kd2.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'");
-                dokter_pengirim.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + kddokter + "'"));
                 kdunit = Sequel.cariIsi("select b.kd_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
                         + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + Kd2.getText() + "' and ki.stts_pulang<>'Pindah Kamar'");
                 nm_unit = Sequel.cariIsi("select nm_bangsal from bangsal where kd_bangsal='" + kdunit + "'");
@@ -7021,8 +7148,8 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             TtglLahir.setText(Valid.SetTglINDONESIA(tbHasil.getValueAt(tbHasil.getSelectedRow(), 18).toString()));
             Tjenkel.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 4).toString());
             TnoPa.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 1).toString());
-            nipperujukHsl = tbHasil.getValueAt(tbHasil.getSelectedRow(), 16).toString();
-            TdokterPengirim.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipperujukHsl + "'"));            
+//            nipperujukHsl = tbHasil.getValueAt(tbHasil.getSelectedRow(), 16).toString();
+            nipperujukHsl = Sequel.cariIsi("select dokter_perujuk from periksa_lab where no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'");
             Ttglperiksa.setText(Valid.SetTglINDONESIA(tbHasil.getValueAt(tbHasil.getSelectedRow(), 17).toString()));
             Valid.SetTgl(TtglHasil, tbHasil.getValueAt(tbHasil.getSelectedRow(), 19).toString());
             Tlokasi.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 10).toString());
@@ -7044,6 +7171,12 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             TitalicAnjuran.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 24).toString());
             Tunit.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 29).toString());
             Trs.setText(tbHasil.getValueAt(tbHasil.getSelectedRow(), 30).toString());
+            
+            if (Sequel.cariInteger("select count(-1) from perujuk_lab where no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'") > 0) {
+                TdokterPengirim.setText(Sequel.cariIsi("select nm_perujuk_pengirim from perujuk_lab where no_rawat='" + TnoRw.getText() + "' and tgl_periksa = '" + tglPeriksa + "' and jam = '" + jamPeriksa + "'"));
+            } else {
+                TdokterPengirim.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipperujukHsl + "'"));
+            }
             tampilGambar();
         }
     }

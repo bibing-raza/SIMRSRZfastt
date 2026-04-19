@@ -118,17 +118,17 @@ public final class DlgReg extends javax.swing.JDialog {
     private final JFXPanel jfxPanel = new JFXPanel();
     private final JPanel panel = new JPanel(new BorderLayout());
     private DlgPasien pasien = new DlgPasien(null, false);
-    public DlgCariDokter dokter = new DlgCariDokter(null, false);
-    public DlgCariDokter2 dokter2 = new DlgCariDokter2(null, false);
-    public DlgCariDokter dokter3 = new DlgCariDokter(null, false);
-    public DlgCariDokter2 dokter4 = new DlgCariDokter2(null, false);
+    private DlgCariDokter dokter = new DlgCariDokter(null, false);
+    private DlgCariDokter2 dokter2 = new DlgCariDokter2(null, false);
+    private DlgCariDokter dokter3 = new DlgCariDokter(null, false);
+    private DlgCariDokter2 dokter4 = new DlgCariDokter2(null, false);
     private DlgCariPoli poli = new DlgCariPoli(null, false);
     private DlgCariPoli2 poli2 = new DlgCariPoli2(null, false);
     private DlgCariPoli poli3 = new DlgCariPoli(null, false);
     private DlgCariPoli2 poli4 = new DlgCariPoli2(null, false);
-    public DlgRujukMasuk rujukmasuk = new DlgRujukMasuk(null, false);
-    public DlgBahasa bahasa = new DlgBahasa(null, false);
-    public DlgSuku suku = new DlgSuku(null, false);
+    private DlgRujukMasuk rujukmasuk = new DlgRujukMasuk(null, false);
+    private DlgBahasa bahasa = new DlgBahasa(null, false);
+    private DlgSuku suku = new DlgSuku(null, false);
     private DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
     private DlgKabupaten kab = new DlgKabupaten(null, false);
     private DlgKecamatan kec = new DlgKecamatan(null, false);
@@ -154,8 +154,7 @@ public final class DlgReg extends javax.swing.JDialog {
     private String now = dateFormat.format(tglSekarang);
     private String[] urut = {"", "./suara/satu.mp3", "./suara/dua.mp3", "./suara/tiga.mp3", "./suara/empat.mp3",
         "./suara/lima.mp3", "./suara/enam.mp3", "./suara/tujuh.mp3", "./suara/delapan.mp3",
-        "./suara/sembilan.mp3", "./suara/sepuluh.mp3", "./suara/sebelas.mp3"};
-    
+        "./suara/sembilan.mp3", "./suara/sepuluh.mp3", "./suara/sebelas.mp3"};    
     
     private BackgroundMusic music;
     private char ESC = 27;
@@ -203,8 +202,7 @@ public final class DlgReg extends javax.swing.JDialog {
     // set unit for margin setting
     private char[] UNIT_1_360 = {ESC, 40, 'U', '1', '0'};
     // move vertical print position
-    private char[] VERTICAL_PRINT_POSITION = {ESC, 'J', '1'};
-    
+    private char[] VERTICAL_PRINT_POSITION = {ESC, 'J', '1'};    
 
     /**
      * Creates new form DlgReg
@@ -869,8 +867,8 @@ public final class DlgReg extends javax.swing.JDialog {
                         } else if (pilihan == 2) {
                             CrDokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
                             CrDokter.requestFocus();
-                            tampilAwal();
-                            tampilCekFinger();
+//                            tampilAwal();
+//                            tampilCekFinger();
                         }
                     }
                 }
@@ -914,8 +912,8 @@ public final class DlgReg extends javax.swing.JDialog {
                         } else if (pilihan == 2) {
                             CrDokter.setText(dokter2.getTable().getValueAt(dokter2.getTable().getSelectedRow(), 1).toString());
                             CrDokter.requestFocus();
-                            tampilAwal();
-                            tampilCekFinger();
+//                            tampilAwal();
+//                            tampilCekFinger();
                         }
                     }
                 }
@@ -955,8 +953,8 @@ public final class DlgReg extends javax.swing.JDialog {
                             kdDokterRujuk.setText(dokter3.getTable().getValueAt(dokter3.getTable().getSelectedRow(), 0).toString());
                             nmDokterRujuk.setText(dokter3.getTable().getValueAt(dokter3.getTable().getSelectedRow(), 1).toString());
                         } else if (pilihan == 2) {
-                            tampilAwal();
-                            tampilCekFinger();
+//                            tampilAwal();
+//                            tampilCekFinger();
                         }
                     }
                 }
@@ -996,8 +994,8 @@ public final class DlgReg extends javax.swing.JDialog {
                             kdDokterRujuk.setText(dokter4.getTable().getValueAt(dokter4.getTable().getSelectedRow(), 0).toString());
                             nmDokterRujuk.setText(dokter4.getTable().getValueAt(dokter4.getTable().getSelectedRow(), 1).toString());
                         } else if (pilihan == 2) {
-                            tampilAwal();
-                            tampilCekFinger();
+//                            tampilAwal();
+//                            tampilCekFinger();
                         }
                     }
                 }
@@ -1053,8 +1051,8 @@ public final class DlgReg extends javax.swing.JDialog {
                             } else if (pilihan == 2) {
                                 CrPoli.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 1).toString());
                                 CrPoli.requestFocus();
-                                tampilAwal();
-                                tampilCekFinger();
+//                                tampilAwal();
+//                                tampilCekFinger();
                             }
 
                         } else if (akses.getperiksa_radiologi() == true) {
@@ -1083,8 +1081,8 @@ public final class DlgReg extends javax.swing.JDialog {
                                 } else if (pilihan == 2) {
                                     CrPoli.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 1).toString());
                                     CrPoli.requestFocus();
-                                    tampilAwal();
-                                    tampilCekFinger();
+//                                    tampilAwal();
+//                                    tampilCekFinger();
                                 }
                             }
                             
@@ -1114,8 +1112,8 @@ public final class DlgReg extends javax.swing.JDialog {
                                 } else if (pilihan == 2) {
                                     CrPoli.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 1).toString());
                                     CrPoli.requestFocus();
-                                    tampilAwal();
-                                    tampilCekFinger();
+//                                    tampilAwal();
+//                                    tampilCekFinger();
                                 }
                             }
 
@@ -1139,8 +1137,8 @@ public final class DlgReg extends javax.swing.JDialog {
                             } else if (pilihan == 2) {
                                 CrPoli.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 1).toString());
                                 CrPoli.requestFocus();
-                                tampilAwal();
-                                tampilCekFinger();
+//                                tampilAwal();
+//                                tampilCekFinger();
                             }
                         }
                     }
@@ -1206,8 +1204,8 @@ public final class DlgReg extends javax.swing.JDialog {
                             } else if (pilihan == 2) {
                                 CrPoli.setText(poli2.getTable().getValueAt(poli2.getTable().getSelectedRow(), 1).toString());
                                 CrPoli.requestFocus();
-                                tampilAwal();
-                                tampilCekFinger();
+//                                tampilAwal();
+//                                tampilCekFinger();
                             }
 
                         } else if (akses.getperiksa_radiologi() == true) {
@@ -1237,8 +1235,8 @@ public final class DlgReg extends javax.swing.JDialog {
                                 } else if (pilihan == 2) {
                                     CrPoli.setText(poli2.getTable().getValueAt(poli2.getTable().getSelectedRow(), 1).toString());
                                     CrPoli.requestFocus();
-                                    tampilAwal();
-                                    tampilCekFinger();
+//                                    tampilAwal();
+//                                    tampilCekFinger();
                                 }
                             }
                         } else if (akses.getperiksa_lab() == true) {
@@ -1267,8 +1265,8 @@ public final class DlgReg extends javax.swing.JDialog {
                                 } else if (pilihan == 2) {
                                     CrPoli.setText(poli2.getTable().getValueAt(poli2.getTable().getSelectedRow(), 1).toString());
                                     CrPoli.requestFocus();
-                                    tampilAwal();
-                                    tampilCekFinger();
+//                                    tampilAwal();
+//                                    tampilCekFinger();
                                 }
                             }
 
@@ -1292,8 +1290,8 @@ public final class DlgReg extends javax.swing.JDialog {
                             } else if (pilihan == 2) {
                                 CrPoli.setText(poli2.getTable().getValueAt(poli2.getTable().getSelectedRow(), 1).toString());
                                 CrPoli.requestFocus();
-                                tampilAwal();
-                                tampilCekFinger();
+//                                tampilAwal();
+//                                tampilCekFinger();
                             }
                         }
                     }
@@ -1344,8 +1342,8 @@ public final class DlgReg extends javax.swing.JDialog {
                                 kdpoliRujuk.setText(poli3.getTable().getValueAt(poli3.getTable().getSelectedRow(), 0).toString());
                                 nmpoliRujuk.setText(poli3.getTable().getValueAt(poli3.getTable().getSelectedRow(), 1).toString());
                             } else if (pilihan == 2) {
-                                tampilAwal();
-                                tampilCekFinger();
+//                                tampilAwal();
+//                                tampilCekFinger();
                             }
                         } else if (akses.getperiksa_radiologi() == true) {
                             if (!poli3.getTable().getValueAt(poli3.getTable().getSelectedRow(), 0).toString().equals("RAD")) {
@@ -1357,8 +1355,8 @@ public final class DlgReg extends javax.swing.JDialog {
                                     kdpoliRujuk.setText(poli3.getTable().getValueAt(poli3.getTable().getSelectedRow(), 0).toString());
                                     nmpoliRujuk.setText(poli3.getTable().getValueAt(poli3.getTable().getSelectedRow(), 1).toString());
                                 } else if (pilihan == 2) {
-                                    tampilAwal();
-                                    tampilCekFinger();
+//                                    tampilAwal();
+//                                    tampilCekFinger();
                                 }
                             }
                         } else if (akses.getperiksa_lab() == true) {
@@ -1372,8 +1370,8 @@ public final class DlgReg extends javax.swing.JDialog {
                                     kdpoliRujuk.setText(poli3.getTable().getValueAt(poli3.getTable().getSelectedRow(), 0).toString());
                                     nmpoliRujuk.setText(poli3.getTable().getValueAt(poli3.getTable().getSelectedRow(), 1).toString());
                                 } else if (pilihan == 2) {
-                                    tampilAwal();
-                                    tampilCekFinger();
+//                                    tampilAwal();
+//                                    tampilCekFinger();
                                 }
                             }
 
@@ -1382,8 +1380,8 @@ public final class DlgReg extends javax.swing.JDialog {
                                 kdpoliRujuk.setText(poli3.getTable().getValueAt(poli3.getTable().getSelectedRow(), 0).toString());
                                 nmpoliRujuk.setText(poli3.getTable().getValueAt(poli3.getTable().getSelectedRow(), 1).toString());
                             } else if (pilihan == 2) {
-                                tampilAwal();
-                                tampilCekFinger();
+//                                tampilAwal();
+//                                tampilCekFinger();
                             }
                         }
                     }
@@ -1435,8 +1433,8 @@ public final class DlgReg extends javax.swing.JDialog {
                                 kdpoliRujuk.setText(poli4.getTable().getValueAt(poli4.getTable().getSelectedRow(), 0).toString());
                                 nmpoliRujuk.setText(poli4.getTable().getValueAt(poli4.getTable().getSelectedRow(), 1).toString());
                             } else if (pilihan == 2) {
-                                tampilAwal();
-                                tampilCekFinger();
+//                                tampilAwal();
+//                                tampilCekFinger();
                             }
                         } else if (akses.getperiksa_radiologi() == true) {
                             if (!poli4.getTable().getValueAt(poli4.getTable().getSelectedRow(), 0).toString().equals("RAD")) {
@@ -1449,8 +1447,8 @@ public final class DlgReg extends javax.swing.JDialog {
                                     kdpoliRujuk.setText(poli4.getTable().getValueAt(poli4.getTable().getSelectedRow(), 0).toString());
                                     nmpoliRujuk.setText(poli4.getTable().getValueAt(poli4.getTable().getSelectedRow(), 1).toString());
                                 } else if (pilihan == 2) {
-                                    tampilAwal();
-                                    tampilCekFinger();
+//                                    tampilAwal();
+//                                    tampilCekFinger();
                                 }
                             }
                         } else if (akses.getperiksa_lab() == true) {
@@ -1464,8 +1462,8 @@ public final class DlgReg extends javax.swing.JDialog {
                                     kdpoliRujuk.setText(poli4.getTable().getValueAt(poli4.getTable().getSelectedRow(), 0).toString());
                                     nmpoliRujuk.setText(poli4.getTable().getValueAt(poli4.getTable().getSelectedRow(), 1).toString());
                                 } else if (pilihan == 2) {
-                                    tampilAwal();
-                                    tampilCekFinger();
+//                                    tampilAwal();
+//                                    tampilCekFinger();
                                 }
                             }
 
@@ -1474,8 +1472,8 @@ public final class DlgReg extends javax.swing.JDialog {
                                 kdpoliRujuk.setText(poli4.getTable().getValueAt(poli4.getTable().getSelectedRow(), 0).toString());
                                 nmpoliRujuk.setText(poli4.getTable().getValueAt(poli4.getTable().getSelectedRow(), 1).toString());
                             } else if (pilihan == 2) {
-                                tampilAwal();
-                                tampilCekFinger();
+//                                tampilAwal();
+//                                tampilCekFinger();
                             }
                         }
                     }
@@ -7411,6 +7409,7 @@ public final class DlgReg extends javax.swing.JDialog {
         ChkInput.setSelected(true);
         isForm();
         emptTeks();
+        BtnCariActionPerformed(null);
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -8503,9 +8502,9 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }//GEN-LAST:event_BtnKeluar3KeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        tampilAwal();
+//        tampilAwal();
         akses.tRefreshAntri.start();
-        tampilCekFinger();
+//        tampilCekFinger();
     }//GEN-LAST:event_formWindowOpened
 
     private void MnPeriksaRadiologiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPeriksaRadiologiActionPerformed
@@ -9504,10 +9503,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }//GEN-LAST:event_MnCetakRegister1ActionPerformed
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
-        if (TabRawat.getSelectedIndex() == 0) {
-            tampilAwal();
-            tampilCekFinger();
-        } else if (TabRawat.getSelectedIndex() == 1) {
+        if (TabRawat.getSelectedIndex() == 1) {
             TnoLompatBPJS.setText("");
             TnoLompatUMUM.setText("");
             TnoLompatKHUSUS.setText("");
@@ -12618,11 +12614,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }
 
     public void isCek() {
-        tulisan_tanggal.setText(Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%d')") + " "
-                + Sequel.bulanINDONESIA("SELECT DATE_FORMAT(NOW(),'%m')") + " "
-                + Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%Y')"));
-        tglDaftar = Sequel.cariIsi("SELECT DATE(NOW()) tgl_daftar");
-        tglnoRW = Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%Y/%m/%d') tgl_daftar");
         DTPCari1.setDate(new Date());
         DTPCari2.setDate(new Date());
         BtnSimpan.setEnabled(akses.getregistrasi());

@@ -33,13 +33,13 @@ import javax.swing.table.TableColumn;
  */
 public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
     private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabMode4, tabMode5, tabMode6, tabMode7, tabMode8,
-            tabMode9, tabMode10, tabMode11, tabMode12, tabMode13, tabMode14, tabMode15, tabMode16, tabMode17, tabMode18, tabMode19, tabMode20;
+            tabMode9, tabMode10, tabMode11, tabMode12, tabMode13, tabMode14, tabMode15, tabMode16, tabMode17, tabMode18, tabMode19, tabMode20, tabMode21;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps, psPas, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8;
-    private ResultSet rs, rsPas, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8;
+    private PreparedStatement ps, psPas, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9;
+    private ResultSet rs, rsPas, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9;
     private int i = 0, x = 0;
     private String pilihan = "", dialog_simpan = "";
     
@@ -828,6 +828,79 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         tbDpjp.getColumnModel().getColumn(15).setCellRenderer(centerRenderer);
         tbDpjp.getColumnModel().getColumn(16).setCellRenderer(centerRenderer);
         tbDpjp.getColumnModel().getColumn(17).setCellRenderer(centerRenderer);
+        
+        tabMode21=new DefaultTableModel(null,new String[]{
+            "No.", "NIP/NR", "Nama Dokter", "Triase IGD", "Triase Pediatrik", "Triase Ponek", "CPPT", "e-Resep R.Inap", "e-Resep R.Jalan", 
+            "Trans. Serah Trm.", "Lembar Obs.", "Obs. Kala 1", "Penge. Transfusi Drh.", "Pemberian Inf. Edukasi", "Surat Konsul Antar Unit", 
+            "AsMed IGD", "Total RM Terisi", "Persentase"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbDokter.setModel(tabMode21);
+        tbDokter.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbDokter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 18; i++) {
+            TableColumn column = tbDokter.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(30);
+            } else if (i == 1) {
+                column.setPreferredWidth(130);
+            } else if (i == 2) {
+                column.setPreferredWidth(220);
+            } else if (i == 3) {
+                column.setPreferredWidth(70);
+            } else if (i == 4) {
+                column.setPreferredWidth(90);
+            } else if (i == 5) {
+                column.setPreferredWidth(80);
+            } else if (i == 6) {
+                column.setPreferredWidth(50);
+            } else if (i == 7) {
+                column.setPreferredWidth(90);
+            } else if (i == 8) {
+                column.setPreferredWidth(100);
+            } else if (i == 9) {
+                column.setPreferredWidth(110);
+            } else if (i == 10) {
+                column.setPreferredWidth(80);
+            } else if (i == 11) {
+                column.setPreferredWidth(80);
+            } else if (i == 12) {
+                column.setPreferredWidth(120);
+            } else if (i == 13) {
+                column.setPreferredWidth(140);
+            } else if (i == 14) {
+                column.setPreferredWidth(125);
+            } else if (i == 15) {
+                column.setPreferredWidth(75);
+            } else if (i == 16) {
+                column.setPreferredWidth(90);
+            } else if (i == 17) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } 
+        }
+        tbDokter.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbDokter.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(11).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(12).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(13).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(14).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(15).setCellRenderer(centerRenderer);
+        tbDokter.getColumnModel().getColumn(16).setCellRenderer(centerRenderer);
     }
  
     /** This method is called from within the constructor to
@@ -873,6 +946,8 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         MnDownloadData16 = new javax.swing.JMenuItem();
         jPopupMenu17 = new javax.swing.JPopupMenu();
         MnDownloadData17 = new javax.swing.JMenuItem();
+        jPopupMenu18 = new javax.swing.JPopupMenu();
+        MnDownloadData18 = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         internalFrame2 = new widget.InternalFrame();
         TabRM = new javax.swing.JTabbedPane();
@@ -979,7 +1054,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll7 = new widget.ScrollPane();
         tbDpjp = new widget.Table();
         Scroll8 = new widget.ScrollPane();
-        tbPerawatIgd8 = new widget.Table();
+        tbDokter = new widget.Table();
         panelGlass8 = new widget.panelisi();
         jLabel5 = new widget.Label();
         DTPCari1 = new widget.Tanggal();
@@ -1314,6 +1389,25 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
             }
         });
         jPopupMenu17.add(MnDownloadData17);
+
+        jPopupMenu18.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jPopupMenu18.setName("jPopupMenu18"); // NOI18N
+        jPopupMenu18.setPreferredSize(new java.awt.Dimension(140, 28));
+
+        MnDownloadData18.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDownloadData18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnDownloadData18.setText("Download Data");
+        MnDownloadData18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDownloadData18.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDownloadData18.setIconTextGap(5);
+        MnDownloadData18.setName("MnDownloadData18"); // NOI18N
+        MnDownloadData18.setPreferredSize(new java.awt.Dimension(140, 28));
+        MnDownloadData18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDownloadData18ActionPerformed(evt);
+            }
+        });
+        jPopupMenu18.add(MnDownloadData18);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -2019,9 +2113,10 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         Scroll8.setName("Scroll8"); // NOI18N
         Scroll8.setOpaque(true);
 
-        tbPerawatIgd8.setName("tbPerawatIgd8"); // NOI18N
-        tbPerawatIgd8.getTableHeader().setReorderingAllowed(false);
-        Scroll8.setViewportView(tbPerawatIgd8);
+        tbDokter.setComponentPopupMenu(jPopupMenu18);
+        tbDokter.setName("tbDokter"); // NOI18N
+        tbDokter.getTableHeader().setReorderingAllowed(false);
+        Scroll8.setViewportView(tbDokter);
 
         TabRM.addTab("Dokter Umum", Scroll8);
 
@@ -2039,7 +2134,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         jLabel5.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass8.add(jLabel5);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-04-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2053,7 +2148,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-04-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2217,6 +2312,10 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
             label_key.setVisible(false);
             TCari.setVisible(false);
             tampilDpjp();
+        } else if (TabRM.getSelectedIndex() == 9) {
+            label_key.setVisible(false);
+            TCari.setVisible(false);
+            tampilDokter();
         }
     }//GEN-LAST:event_BtnCariActionPerformed
 
@@ -2604,6 +2703,14 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnDownloadData17ActionPerformed
 
+    private void MnDownloadData18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDownloadData18ActionPerformed
+        if (tbDokter.getRowCount() != 0) {
+            downloadData("dokter umum");
+        } else {
+            JOptionPane.showMessageDialog(null, "Data masih kosong,..!!!");
+        }
+    }//GEN-LAST:event_MnDownloadData18ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2635,6 +2742,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnDownloadData15;
     private javax.swing.JMenuItem MnDownloadData16;
     private javax.swing.JMenuItem MnDownloadData17;
+    private javax.swing.JMenuItem MnDownloadData18;
     private javax.swing.JMenuItem MnDownloadData2;
     private javax.swing.JMenuItem MnDownloadData3;
     private javax.swing.JMenuItem MnDownloadData4;
@@ -2701,6 +2809,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
     private javax.swing.JPopupMenu jPopupMenu15;
     private javax.swing.JPopupMenu jPopupMenu16;
     private javax.swing.JPopupMenu jPopupMenu17;
+    private javax.swing.JPopupMenu jPopupMenu18;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JPopupMenu jPopupMenu3;
     private javax.swing.JPopupMenu jPopupMenu4;
@@ -2753,6 +2862,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
     private widget.panelisi panelGlass9;
     private widget.Table tbBidan;
     private widget.Table tbBidanPonek;
+    private widget.Table tbDokter;
     private widget.Table tbDpjp;
     private widget.Table tbFarmasi;
     private widget.Table tbNutrisionis;
@@ -2772,7 +2882,6 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
     private widget.Table tbPerawatAnak1;
     private widget.Table tbPerawatDewasa;
     private widget.Table tbPerawatIgd;
-    private widget.Table tbPerawatIgd8;
     // End of variables declaration//GEN-END:variables
 
     private void tampilPerawatIgd() {     
@@ -3118,6 +3227,179 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
                 }
                 if (ps7 != null) {
                     ps7.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilDokter() {
+        Valid.tabelKosong(tabMode21);
+        try {
+            ps9 = koneksi.prepareStatement("SELECT z.`NIP/NR`, z.`Nama Dokter`, z.`Triase IGD`, z.`Triase Pediatrik`, z.`Triase Ponek`, z.`CPPT`, z.`e-Resep R.Inap`, "
+                    + "z.`e-Resep R.Jalan`, z.`Trans. Serah Trm.`, z.`Lembar Obs.`, z.`Obs. Kala 1`, z.`Penge. Transfusi Drh.`, z.`Pemberian Inf. Edukasi`, z.`Surat Konsul Antar Unit`, "
+                    + "z.`AsMed IGD`, z.`Total RM Terisi`, CONCAT(CASE WHEN MOD(z.`persen`,1)=0 THEN FORMAT(z.`persen`,0) ELSE FORMAT(z.`persen`,2) END,' %') AS `Persentase` "
+                    + "FROM (SELECT y.nik `NIP/NR`, y.nama `Nama Dokter`, y.triase_igd `Triase IGD`, y.triase_pediatrik `Triase Pediatrik`, y.triase_ponek `Triase Ponek`, "
+                    + "    y.cppt `CPPT`, y.resep_ranap `e-Resep R.Inap`, y.resep_ralan `e-Resep R.Jalan`, y.transfer `Trans. Serah Trm.`, y.lembar_obs `Lembar Obs.`, "
+                    + "    y.obs_kala1 `Obs. Kala 1`, y.transfusi `Penge. Transfusi Drh.`, y.pemberian_inf_edukasi `Pemberian Inf. Edukasi`, "
+                    + "    y.surat_konsul `Surat Konsul Antar Unit`, y.asmed_igd `AsMed IGD`, "
+                    + "    (CASE WHEN y.triase_igd > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.triase_pediatrik > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.triase_ponek > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.cppt > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.resep_ranap > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.resep_ralan > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.transfer > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.lembar_obs > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.obs_kala1 > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.transfusi > 0 THEN 1 ELSE 0 END + "
+                    + "	CASE WHEN y.pemberian_inf_edukasi > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.surat_konsul > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.asmed_igd > 0 THEN 1 ELSE 0 END) `Total RM Terisi`, "
+                    + "    ((CASE WHEN y.triase_igd > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.triase_pediatrik > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.triase_ponek > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.cppt > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.resep_ranap > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.resep_ralan > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.transfer > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.lembar_obs > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.obs_kala1 > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.transfusi > 0 THEN 1 ELSE 0 END + "
+                    + "	CASE WHEN y.pemberian_inf_edukasi > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.surat_konsul > 0 THEN 1 ELSE 0 END + "
+                    + "        CASE WHEN y.asmed_igd > 0 THEN 1 ELSE 0 END)/13)*100 `persen` "
+                    + "FROM (SELECT * FROM (SELECT pg.nik, pg.nama, "
+                    + "            /* Triase IGD */ "
+                    + "            (SELECT COUNT(DISTINCT ti.no_rawat) "
+                    + "                FROM triase_igd ti "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = ti.no_rawat "
+                    + "                WHERE ti.nip_petugas = pg.nik "
+                    + "                  AND DATE(ti.waktu_simpan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "            ) triase_igd, "
+                    + "            /* Triase Pediatrik */ "
+                    + "            (SELECT COUNT(DISTINCT tp.no_rawat) "
+                    + "                FROM triase_pediatrik tp "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = tp.no_rawat "
+                    + "                WHERE tp.nip_petugas = pg.nik "
+                    + "                  AND DATE(tp.waktu_simpan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "            ) triase_pediatrik, "
+                    + "            /* Triase Ponek */ "
+                    + "            (SELECT COUNT(DISTINCT tpon.no_rawat) "
+                    + "                FROM triase_ponek tpon "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = tpon.no_rawat "
+                    + "                WHERE tpon.nip_petugas = pg.nik "
+                    + "                  AND DATE(tpon.waktu_simpan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "            ) triase_ponek, "
+                    + "            /* CPPT */ "
+                    + "            (SELECT COUNT(DISTINCT c.no_rawat) "
+                    + "                FROM cppt c "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat "
+                    + "                WHERE c.nip_ppa = pg.nik "
+                    + "                  AND c.status = 'Ralan' "
+                    + "                  AND c.jenis_bagian in ('DPJP','Dokter IGD') "
+                    + "                  AND (c.bagian like '%IGDK%' or c.bagian like '%PON%') "
+                    + "                  AND DATE(c.waktu_simpan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "            ) cppt, "
+                    + "            /* Catatan Resep Ranap */ "
+                    + "            (SELECT COUNT(DISTINCT crr.no_rawat) "
+                    + "                FROM catatan_resep_ranap crr "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = crr.no_rawat "
+                    + "                inner join kamar_inap ki2 on ki2.no_rawat=crr.no_rawat "
+                    + "                WHERE crr.kd_dokter = pg.nik "
+                    + "                  AND DATE(crr.tgl_perawatan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "            ) resep_ranap, "
+                    + "            /* Catatan Resep Ralan */ "
+                    + "            (SELECT COUNT(DISTINCT cr.no_rawat) "
+                    + "                FROM catatan_resep cr "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = cr.no_rawat "
+                    + "                inner join kamar_inap ki1 on ki1.no_rawat=cr.no_rawat "
+                    + "                WHERE cr.kd_dokter = pg.nik "
+                    + "                  AND DATE(cr.tgl_perawatan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "            ) resep_ralan, "
+                    + "            /* Transfer Serah Terima Pasien */ "
+                    + "            (SELECT COUNT(DISTINCT ts.no_rawat) "
+                    + "                FROM transfer_serah_terima_pasien_igd ts "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = ts.no_rawat "
+                    + "                WHERE ts.nip_menyerahkan = pg.nik "
+                    + "                  AND DATE(ts.waktu_simpan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and ts.status='Ralan' "
+                    + "            ) transfer, "
+                    + "            /* Lembar Observasi */ "
+                    + "            (SELECT COUNT(DISTINCT lo.no_rawat) "
+                    + "                FROM lembar_observasi lo "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = lo.no_rawat "
+                    + "                WHERE lo.nik_petugas = pg.nik "
+                    + "                  AND DATE(lo.waktu_simpan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "            ) lembar_obs, "
+                    + "            /* Observasi Kala 1 */ "
+                    + "            (SELECT COUNT(DISTINCT ok.no_rawat) "
+                    + "                FROM observasi_kala1_kebidanan ok "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = ok.no_rawat "
+                    + "                WHERE ok.nip_petugas = pg.nik "
+                    + "                  AND DATE(ok.waktu_simpan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "            ) obs_kala1, "
+                    + "            /* Pengelolaan Transfusi Darah */ "
+                    + "            (SELECT COUNT(DISTINCT pt.no_rawat) "
+                    + "                FROM pengelolaan_transfusi_darah pt "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = pt.no_rawat "
+                    + "                WHERE pt.15_sebelum_nip_petugas = pg.nik "
+                    + "                  AND DATE(pt.waktu_simpan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "            ) transfusi, "
+                    + "            /* Pemberian Informasi Edukasi */ "
+                    + "            (SELECT COUNT(DISTINCT pi.no_rawat) "
+                    + "                FROM pemberian_informasi_edukasi pi "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = pi.no_rawat "
+                    + "                WHERE pi.nip_petugas = pg.nik "
+                    + "                  AND DATE(pi.waktu_simpan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "            ) pemberian_inf_edukasi, "
+                    + "            /* Surat Konsul Antar Unit */ "
+                    + "            (SELECT COUNT(DISTINCT sku.no_rawat) "
+                    + "                FROM surat_konsul_unit_ranap sku "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = sku.no_rawat "
+                    + "                WHERE sku.nip_dokter_minta = pg.nik "
+                    + "                  AND DATE(sku.waktu_simpan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "            ) surat_konsul, "
+                    + "            /* Asesmen Medis IGD */ "
+                    + "            (SELECT COUNT(DISTINCT pa.no_rawat) "
+                    + "                FROM penilaian_awal_medis_igd pa "
+                    + "                INNER JOIN reg_periksa rp ON rp.no_rawat = pa.no_rawat "
+                    + "                WHERE pa.nip_dpjp = pg.nik "
+                    + "                  AND DATE(pa.waktu_simpan) BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "            ) asmed_igd FROM pegawai pg WHERE pg.nik NOT IN ('-', '--')) x WHERE x.asmed_igd > 0) y) z ORDER BY (z.`Total RM Terisi` / 13) DESC, z.`Nama Dokter`");
+            try {
+                rs9 = ps9.executeQuery();
+                x = 1;
+                while (rs9.next()) {
+                    tabMode21.addRow(new String[]{
+                        x + ".",
+                        rs9.getString(1),
+                        rs9.getString(2),
+                        rs9.getString(3),
+                        rs9.getString(4),
+                        rs9.getString(5),
+                        rs9.getString(6),
+                        rs9.getString(7),
+                        rs9.getString(8),
+                        rs9.getString(9),
+                        rs9.getString(10),
+                        rs9.getString(11),
+                        rs9.getString(12),
+                        rs9.getString(13),
+                        rs9.getString(14),
+                        rs9.getString(15),
+                        rs9.getString(16)
+                    });
+                    x++;
+                }
+            } catch (Exception e) {
+                System.out.println("tampilDokter() : " + e);
+            } finally {
+                if (rs9 != null) {
+                    rs9.close();
+                }
+                if (ps9 != null) {
+                    ps9.close();
                 }
             }
         } catch (SQLException e) {
@@ -4186,7 +4468,7 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
                         + tabMode20.getValueAt(r, 14).toString() + "','"
                         + tabMode20.getValueAt(r, 15).toString() + "','"
                         + tabMode20.getValueAt(r, 16).toString() + "','"
-                        + tabMode20.getValueAt(r, 17).toString() + "','','','','','','','','','','','','','','','','','','',''", "Data Bidan R.Inap");
+                        + tabMode20.getValueAt(r, 17).toString() + "','','','','','','','','','','','','','','','','','','',''", "Data DPJP R.Inap");
             }
             Sequel.AutoComitTrue();
 
@@ -4198,6 +4480,41 @@ public class RMSamplingPemanfaatanRM extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Data pemanfaatan e-RM dokter spesialis berhasil diexport menjadi file excel,..!!!");
             } else {
                 JOptionPane.showMessageDialog(null, "Data pemanfaatan e-RM dokter spesialis gagal diexport menjadi file excel,..!!!");
+            }
+        } else if (nilai.equals("dokter umum")) {
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary1");
+            int row = tabMode21.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary1", "'"
+                        + tabMode21.getValueAt(r, 0).toString() + "','"
+                        + tabMode21.getValueAt(r, 1).toString() + "','"
+                        + tabMode21.getValueAt(r, 2).toString().replaceAll("'", "") + "','"
+                        + tabMode21.getValueAt(r, 3).toString() + "','"
+                        + tabMode21.getValueAt(r, 4).toString() + "','"
+                        + tabMode21.getValueAt(r, 5).toString() + "','"
+                        + tabMode21.getValueAt(r, 6).toString() + "','"
+                        + tabMode21.getValueAt(r, 7).toString() + "','"
+                        + tabMode21.getValueAt(r, 8).toString() + "','"
+                        + tabMode21.getValueAt(r, 9).toString() + "','"
+                        + tabMode21.getValueAt(r, 10).toString() + "','"
+                        + tabMode21.getValueAt(r, 11).toString() + "','"
+                        + tabMode21.getValueAt(r, 12).toString() + "','"
+                        + tabMode21.getValueAt(r, 13).toString() + "','"
+                        + tabMode21.getValueAt(r, 14).toString() + "','"
+                        + tabMode21.getValueAt(r, 15).toString() + "','"
+                        + tabMode21.getValueAt(r, 16).toString() + "','','','','','','','','','','','','','','','','','','','',''", "Data Dokter Umum");
+            }
+            Sequel.AutoComitTrue();
+
+            dialog_simpan = Valid.openDialog();
+            if (Valid.MyReportToExcelBoolean("SELECT temp1 'No.', temp2 'NIP/NR', temp3 'Nama Dokter', temp4 'Triase IGD', "
+                    + "temp5 'Triase Pediatrik', temp6 'Triase Ponek', temp7 'CPPT', temp8 'e-Resep R.Inap', temp9 'e-Resep R.Jalan', temp10 'Trans. Serah Trm.', "
+                    + "temp11 'Lembar Obs.', temp12 'Obs. Kala 1', temp13 'Penge. Transfusi Drh.', temp14 'Pemberian Inf. Edukasi', temp15 'Surat Konsul Antar Unit', "
+                    + "temp16 'AsMed IGD', temp17 'Total RM Terisi' from temporary1", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data pemanfaatan e-RM dokter umum berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data pemanfaatan e-RM dokter umum gagal diexport menjadi file excel,..!!!");
             }
         }
     }
