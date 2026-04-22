@@ -1382,6 +1382,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnSelisihBaru.setForeground(new java.awt.Color(0, 0, 0));
         BtnSelisihBaru.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnSelisihBaru.setMnemonic('B');
         BtnSelisihBaru.setText("Baru");
         BtnSelisihBaru.setToolTipText("Alt+B");
         BtnSelisihBaru.setName("BtnSelisihBaru"); // NOI18N
@@ -1394,6 +1395,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnSimpan6.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan6.setMnemonic('S');
         BtnSimpan6.setText("Simpan");
         BtnSimpan6.setToolTipText("Alt+S");
         BtnSimpan6.setName("BtnSimpan6"); // NOI18N
@@ -1407,6 +1409,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak Tarif");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -1425,6 +1428,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnCloseIn6.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn6.setMnemonic('U');
         BtnCloseIn6.setText("Tutup");
         BtnCloseIn6.setToolTipText("Alt+U");
         BtnCloseIn6.setName("BtnCloseIn6"); // NOI18N
@@ -1627,6 +1631,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnHitung.setForeground(new java.awt.Color(0, 0, 0));
         BtnHitung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnHitung.setMnemonic('H');
         BtnHitung.setText("Hitung Total Bayar");
         BtnHitung.setToolTipText("Alt+H");
         BtnHitung.setGlassColor(new java.awt.Color(255, 204, 0));
@@ -1649,6 +1654,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnSimpan4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan4.setMnemonic('S');
         BtnSimpan4.setText("Simpan");
         BtnSimpan4.setToolTipText("Alt+S");
         BtnSimpan4.setName("BtnSimpan4"); // NOI18N
@@ -1662,6 +1668,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn4.setMnemonic('U');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+U");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -1715,6 +1722,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnHapus1.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnHapus1.setMnemonic('H');
         BtnHapus1.setText("Hapus");
         BtnHapus1.setToolTipText("Alt+H");
         BtnHapus1.setName("BtnHapus1"); // NOI18N
@@ -1733,6 +1741,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -1815,6 +1824,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari2.setMnemonic('1');
         BtnCari2.setText("Tampilkan Data");
         BtnCari2.setToolTipText("Alt+1");
         BtnCari2.setName("BtnCari2"); // NOI18N
@@ -1841,6 +1851,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnAll2.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll2.setMnemonic('2');
         BtnAll2.setText("Semua Data");
         BtnAll2.setToolTipText("Alt+2");
         BtnAll2.setName("BtnAll2"); // NOI18N
@@ -1859,6 +1870,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnRestor.setForeground(new java.awt.Color(0, 0, 0));
         BtnRestor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRestor.setMnemonic('U');
         BtnRestor.setText("Restore");
         BtnRestor.setToolTipText("Alt+U");
         BtnRestor.setName("BtnRestor"); // NOI18N
@@ -1872,6 +1884,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnCloseIn12.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn12.setMnemonic('U');
         BtnCloseIn12.setText("Tutup");
         BtnCloseIn12.setToolTipText("Alt+U");
         BtnCloseIn12.setName("BtnCloseIn12"); // NOI18N
@@ -2039,6 +2052,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -2057,6 +2071,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -2075,6 +2090,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -2093,6 +2109,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -2124,6 +2141,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -2206,6 +2224,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('4');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+4");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -2261,6 +2280,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         btnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPetugas.setMnemonic('3');
         btnPetugas.setToolTipText("Alt+3");
         btnPetugas.setName("btnPetugas"); // NOI18N
         btnPetugas.addActionListener(new java.awt.event.ActionListener() {
@@ -2296,6 +2316,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         btnKategori.setForeground(new java.awt.Color(0, 0, 0));
         btnKategori.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnKategori.setMnemonic('3');
         btnKategori.setToolTipText("Alt+3");
         btnKategori.setName("btnKategori"); // NOI18N
         btnKategori.addActionListener(new java.awt.event.ActionListener() {
@@ -2502,6 +2523,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setMnemonic('I');
         ChkInput.setText(".: Input Data");
         ChkInput.setToolTipText("Alt+I");
         ChkInput.setBorderPainted(true);
@@ -4966,118 +4988,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // Isi keterangan
         Keterangan.setText(buildKeteranganAmbulan(jenisTarif, jarak, tarif15KmPertama, tarifPerKmLebih15, selisihJarak,
                 biayaSelisihJarak, jumlahBayar, biayaPihak3, totalBayar));
-    }
-    
-    private void hitungAmbulan() {
-        double A, B, C, D, selisihJrk, hslSelisihJrk, bayarAmbulan, totalBayarAmbulan;
-        A = 0;
-        B = 0;
-        C = 0;
-        D = 0;
-        selisihJrk = 0;
-        hslSelisihJrk = 0;
-        bayarAmbulan = 0;
-        totalBayarAmbulan = 0;
-        ambulanDibayar = "";
-        
-        if (Tjarak.getText().equals("")) {
-            Tjarak.setText("0");
-        } else {
-            Tjarak.setText(Tjarak.getText());
-        }
-        
-        if (TjlhBiayaPihak3.getText().equals("")) {
-            TjlhBiayaPihak3.setText("0");
-        } else {
-            TjlhBiayaPihak3.setText(TjlhBiayaPihak3.getText());
-        }
-        
-        A = Double.parseDouble(Tjarak.getText());
-        B = tarifAmbulan;
-        C = Double.parseDouble(Sequel.cariIsi("SELECT total_byrdrpr FROM jns_perawatan WHERE kd_kategori='swkn' AND STATUS='1' and kd_jenis_prw='2024RJ9B004'"));
-        D = Double.parseDouble(TjlhBiayaPihak3.getText());
-        
-        // angka 15 adalah Jarak < 15 km sesuai nama tarif diperbup
-        // kd_jenis_prw='2024RJ9B004'adalah nm_perawatan Jarak < 15 km sesuai nama tarif diperbup
-        
-        if (Double.parseDouble(Tjarak.getText()) > 15) {
-            if (CmbTarif.getSelectedIndex() == 0 || CmbTarif.getSelectedIndex() == 4) {
-                selisihJrk = 0;
-                hslSelisihJrk = 0;
-                bayarAmbulan = 0;
-                totalBayarAmbulan = 0;
-                totalBayarAmbulan = bayarAmbulan - D;
-                
-                TselisihJrk.setText(Valid.SetAngka2(selisihJrk));                
-                TtarifSelisihJrk.setText(Valid.SetAngka(hslSelisihJrk));                
-                TjlhBayar.setText(Valid.SetAngka(bayarAmbulan));
-                TtotBayar.setText(Valid.SetAngka(totalBayarAmbulan));
-                pemasukan.setText(TtotBayar.getText());
-                
-                if (TjlhBiayaPihak3.getText().equals("0")) {
-                    Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\nUraian Penjelasan :\n"
-                            + "a.) Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : " + Tjarak.getText() + " Km. - 15 Km. = " + TselisihJrk.getText() + " Km.\n"
-                            + "b.) Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
-                            + "c.) Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
-                            + "d.) Jumlah Bayar : Biaya Selisih Jarak Rp. " + TtarifSelisihJrk.getText() + " + Tarif Standar PerBup Rp. 450.000 = Rp. " + TjlhBayar.getText() + "\n");
-                } else {
-                    Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\nUraian Penjelasan :\n"
-                            + "a.) Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : " + Tjarak.getText() + " Km. - 15 Km. = " + TselisihJrk.getText() + " Km.\n"
-                            + "b.) Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
-                            + "c.) Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
-                            + "d.) Jumlah Bayar : Biaya Selisih Jarak Rp. " + TtarifSelisihJrk.getText() + " + Tarif Standar PerBup Rp. 450.000 = Rp. " + TjlhBayar.getText() + "\n"
-                            + "e.) Jumlah Biaya Dibayar Oleh Pihak Ke 3 : Rp. " + Valid.SetAngka(D) + "\n"
-                            + "f.) Total Bayar : Jumlah Bayar Rp. " + TjlhBayar.getText() + " - Jumlah Biaya Dibayar Oleh Pihak Ke 3 Rp. " + Valid.SetAngka(D) + " = Rp. " + TtotBayar.getText() + "\n");
-                }
-                telahTerimaPAS.setText(Tnmpasien.getText() + " (" + Tnorm.getText() + ")");
-            } else {
-                selisihJrk = A - 15;
-                hslSelisihJrk = selisihJrk * B;
-                bayarAmbulan = hslSelisihJrk + C;
-                totalBayarAmbulan = bayarAmbulan - D;
-                
-                TselisihJrk.setText(Valid.SetAngka2(selisihJrk));                
-                TtarifSelisihJrk.setText(Valid.SetAngka(hslSelisihJrk));                
-                TjlhBayar.setText(Valid.SetAngka(bayarAmbulan));
-                TtotBayar.setText(Valid.SetAngka(totalBayarAmbulan));
-                pemasukan.setText(TtotBayar.getText());
-
-                if (TjlhBiayaPihak3.getText().equals("0")) {
-                    Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\nUraian Penjelasan :\n"
-                            + "a.) Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : " + Tjarak.getText() + " Km. - 15 Km. = " + TselisihJrk.getText() + " Km.\n"
-                            + "b.) Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
-                            + "c.) Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
-                            + "d.) Jumlah Bayar : Biaya Selisih Jarak Rp. " + TtarifSelisihJrk.getText() + " + Tarif Standar PerBup Rp. 450.000 = Rp. " + TjlhBayar.getText() + "\n");
-                } else {
-                    Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\nUraian Penjelasan :\n"
-                            + "a.) Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : " + Tjarak.getText() + " Km. - 15 Km. = " + TselisihJrk.getText() + " Km.\n"
-                            + "b.) Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
-                            + "c.) Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
-                            + "d.) Jumlah Bayar : Biaya Selisih Jarak Rp. " + TtarifSelisihJrk.getText() + " + Tarif Standar PerBup Rp. 450.000 = Rp. " + TjlhBayar.getText() + "\n"
-                            + "e.) Jumlah Biaya Dibayar Oleh Pihak Ke 3 : Rp. " + Valid.SetAngka(D) + "\n"
-                            + "f.) Total Bayar : Jumlah Bayar Rp. " + TjlhBayar.getText() + " - Jumlah Biaya Dibayar Oleh Pihak Ke 3 Rp. " + Valid.SetAngka(D) + " = Rp. " + TtotBayar.getText() + "\n");
-                }
-                telahTerimaPAS.setText(Tnmpasien.getText() + " (" + Tnorm.getText() + ")");
-            }
-            ambulanDibayar = Valid.SetAngka2(totalBayarAmbulan);
-        } else {
-            totalBayarAmbulan = C - D;
-            TjlhBayar.setText(Valid.SetAngka(C));          
-            TtotBayar.setText(Valid.SetAngka(totalBayarAmbulan));
-            pemasukan.setText(TtotBayar.getText());
-            ambulanDibayar = Valid.SetAngka2(totalBayarAmbulan);
-            
-            if (TjlhBiayaPihak3.getText().equals("0")) {
-                Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\n"
-                        + "Jenis Tarif PerBup Yang Dipilih " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n");
-            } else {
-                Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\nUraian Penjelasan :\n"
-                        + "a.) Jenis Tarif PerBup Yang Dipilih " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
-                        + "b.) Jumlah Biaya Dibayar Oleh Pihak Ke 3 : Rp. " + Valid.SetAngka(D) + "\n"
-                        + "c.) Total Bayar : Jenis Tarif PerBup Yang Dipilih " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + " - Jumlah Biaya Dibayar Oleh Pihak Ke 3 Rp. " + Valid.SetAngka(D) + " = Rp. " + TtotBayar.getText() + "\n");
-            }
-            telahTerimaPAS.setText(Tnmpasien.getText() + " (" + Tnorm.getText() + ")");            
-        }
     }
     
     private void cekPanjar() {
