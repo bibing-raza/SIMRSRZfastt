@@ -814,7 +814,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel53 = new widget.Label();
         hakkelas = new widget.TextBox();
         jLabel59 = new widget.Label();
-        naikKLS = new widget.TextBox();
         jLabel60 = new widget.Label();
         lmrawat = new widget.TextBox();
         jLabel61 = new widget.Label();
@@ -824,6 +823,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         Scroll39 = new widget.ScrollPane();
         TKalkulasi = new widget.TextArea();
         jLabel64 = new widget.Label();
+        cmbNaikKls = new widget.ComboBox();
         internalFrame13 = new widget.InternalFrame();
         BtnSimpan6 = new widget.Button();
         BtnHapusKode = new widget.Button();
@@ -836,7 +836,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         ppBersihkan = new javax.swing.JMenuItem();
         kddokter = new widget.TextBox();
         nmdokter = new widget.TextBox();
-        hasilLM = new widget.TextBox();
         realcostRS = new widget.TextBox();
         tglPiutang = new widget.Tanggal();
         internalFrame1 = new widget.InternalFrame();
@@ -1494,7 +1493,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCloseIn.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn.setMnemonic('3');
         BtnCloseIn.setText("Tutup");
         BtnCloseIn.setToolTipText("Alt+3");
         BtnCloseIn.setName("BtnCloseIn"); // NOI18N
@@ -1513,7 +1511,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan2.setMnemonic('1');
         BtnSimpan2.setText("Simpan");
         BtnSimpan2.setToolTipText("Alt+1");
         BtnSimpan2.setName("BtnSimpan2"); // NOI18N
@@ -1532,7 +1529,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnBatal1.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnBatal1.setMnemonic('2');
         BtnBatal1.setText("Hapus");
         BtnBatal1.setToolTipText("Alt+2");
         BtnBatal1.setName("BtnBatal1"); // NOI18N
@@ -1603,7 +1599,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
-        BtnTambah.setMnemonic('T');
         BtnTambah.setText("Tambah");
         BtnTambah.setToolTipText("Alt+T");
         BtnTambah.setName("BtnTambah"); // NOI18N
@@ -1617,7 +1612,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan3.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan3.setMnemonic('S');
         BtnSimpan3.setText("Simpan");
         BtnSimpan3.setToolTipText("Alt+S");
         BtnSimpan3.setName("BtnSimpan3"); // NOI18N
@@ -1631,7 +1625,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1645,7 +1638,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -1713,7 +1705,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnTambahPotongan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambahPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
-        BtnTambahPotongan.setMnemonic('T');
         BtnTambahPotongan.setText("Tambah");
         BtnTambahPotongan.setToolTipText("Alt+T");
         BtnTambahPotongan.setName("BtnTambahPotongan"); // NOI18N
@@ -1727,7 +1718,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpanPotongan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpanPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanPotongan.setMnemonic('S');
         BtnSimpanPotongan.setText("Simpan");
         BtnSimpanPotongan.setToolTipText("Alt+S");
         BtnSimpanPotongan.setName("BtnSimpanPotongan"); // NOI18N
@@ -1741,7 +1731,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnHapusPotongan.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapusPotongan.setMnemonic('H');
         BtnHapusPotongan.setText("Hapus");
         BtnHapusPotongan.setToolTipText("Alt+H");
         BtnHapusPotongan.setName("BtnHapusPotongan"); // NOI18N
@@ -1755,7 +1744,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnKeluarPotongan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluarPotongan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluarPotongan.setMnemonic('K');
         BtnKeluarPotongan.setText("Keluar");
         BtnKeluarPotongan.setToolTipText("Alt+K");
         BtnKeluarPotongan.setName("BtnKeluarPotongan"); // NOI18N
@@ -1828,7 +1816,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpanUbahLama.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpanUbahLama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanUbahLama.setMnemonic('S');
         BtnSimpanUbahLama.setText("Simpan");
         BtnSimpanUbahLama.setToolTipText("Alt+S");
         BtnSimpanUbahLama.setName("BtnSimpanUbahLama"); // NOI18N
@@ -1842,7 +1829,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnKeluarUbahLama.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluarUbahLama.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluarUbahLama.setMnemonic('K');
         BtnKeluarUbahLama.setText("Keluar");
         BtnKeluarUbahLama.setToolTipText("Alt+K");
         BtnKeluarUbahLama.setName("BtnKeluarUbahLama"); // NOI18N
@@ -1870,7 +1856,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn4.setMnemonic('P');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+P");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -1884,7 +1869,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan4.setMnemonic('S');
         BtnSimpan4.setText("Simpan");
         BtnSimpan4.setToolTipText("Alt+S");
         BtnSimpan4.setName("BtnSimpan4"); // NOI18N
@@ -1921,7 +1905,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         btnPenjab.setForeground(new java.awt.Color(0, 0, 0));
         btnPenjab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPenjab.setMnemonic('7');
         btnPenjab.setToolTipText("ALt+7");
         btnPenjab.setName("btnPenjab"); // NOI18N
         btnPenjab.addActionListener(new java.awt.event.ActionListener() {
@@ -1946,7 +1929,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCloseIn5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn5.setMnemonic('P');
         BtnCloseIn5.setText("Tutup");
         BtnCloseIn5.setToolTipText("Alt+P");
         BtnCloseIn5.setName("BtnCloseIn5"); // NOI18N
@@ -1960,7 +1942,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan5.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan5.setMnemonic('S');
         BtnSimpan5.setText("Simpan");
         BtnSimpan5.setToolTipText("Alt+S");
         BtnSimpan5.setName("BtnSimpan5"); // NOI18N
@@ -2191,18 +2172,11 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         internalFrame12.add(jLabel59);
         jLabel59.setBounds(152, 25, 46, 23);
 
-        naikKLS.setEditable(false);
-        naikKLS.setForeground(new java.awt.Color(0, 0, 0));
-        naikKLS.setHighlighter(null);
-        naikKLS.setName("naikKLS"); // NOI18N
-        internalFrame12.add(naikKLS);
-        naikKLS.setBounds(199, 25, 83, 24);
-
         jLabel60.setForeground(new java.awt.Color(0, 0, 0));
         jLabel60.setText("Lama rawat Rg. VIP : ");
         jLabel60.setName("jLabel60"); // NOI18N
         internalFrame12.add(jLabel60);
-        jLabel60.setBounds(290, 25, 110, 23);
+        jLabel60.setBounds(310, 25, 120, 23);
 
         lmrawat.setEditable(false);
         lmrawat.setForeground(new java.awt.Color(0, 0, 0));
@@ -2211,13 +2185,13 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         lmrawat.setHighlighter(null);
         lmrawat.setName("lmrawat"); // NOI18N
         internalFrame12.add(lmrawat);
-        lmrawat.setBounds(400, 25, 40, 23);
+        lmrawat.setBounds(430, 25, 40, 23);
 
         jLabel61.setForeground(new java.awt.Color(0, 0, 0));
         jLabel61.setText("Persentase tambahan kelas VIP : ");
         jLabel61.setName("jLabel61"); // NOI18N
         internalFrame12.add(jLabel61);
-        jLabel61.setBounds(482, 25, 170, 23);
+        jLabel61.setBounds(512, 25, 170, 23);
 
         persenSELISIH.setEditable(false);
         persenSELISIH.setForeground(new java.awt.Color(0, 0, 0));
@@ -2226,14 +2200,14 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         persenSELISIH.setHighlighter(null);
         persenSELISIH.setName("persenSELISIH"); // NOI18N
         internalFrame12.add(persenSELISIH);
-        persenSELISIH.setBounds(655, 25, 45, 23);
+        persenSELISIH.setBounds(685, 25, 45, 23);
 
         jLabel62.setForeground(new java.awt.Color(0, 0, 0));
         jLabel62.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel62.setText("%");
         jLabel62.setName("jLabel62"); // NOI18N
         internalFrame12.add(jLabel62);
-        jLabel62.setBounds(705, 25, 20, 23);
+        jLabel62.setBounds(735, 25, 20, 23);
 
         jLabel55.setForeground(new java.awt.Color(0, 0, 0));
         jLabel55.setText("Kalkulasi Tarif : ");
@@ -2258,7 +2232,18 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel64.setText("hari.");
         jLabel64.setName("jLabel64"); // NOI18N
         internalFrame12.add(jLabel64);
-        jLabel64.setBounds(446, 25, 25, 23);
+        jLabel64.setBounds(476, 25, 25, 23);
+
+        cmbNaikKls.setForeground(new java.awt.Color(0, 0, 0));
+        cmbNaikKls.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
+        cmbNaikKls.setName("cmbNaikKls"); // NOI18N
+        cmbNaikKls.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbNaikKlsActionPerformed(evt);
+            }
+        });
+        internalFrame12.add(cmbNaikKls);
+        cmbNaikKls.setBounds(199, 25, 110, 23);
 
         internalFrame10.add(internalFrame12, java.awt.BorderLayout.CENTER);
 
@@ -2270,7 +2255,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan6.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan6.setMnemonic('S');
         BtnSimpan6.setText("Simpan");
         BtnSimpan6.setToolTipText("Alt+S");
         BtnSimpan6.setName("BtnSimpan6"); // NOI18N
@@ -2284,7 +2268,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnHapusKode.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusKode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapusKode.setMnemonic('H');
         BtnHapusKode.setText("Hapus Kode INACBG");
         BtnHapusKode.setToolTipText("Alt+H");
         BtnHapusKode.setName("BtnHapusKode"); // NOI18N
@@ -2303,7 +2286,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnGantikode.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantikode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGantikode.setMnemonic('S');
         BtnGantikode.setText("Ganti");
         BtnGantikode.setToolTipText("Alt+S");
         BtnGantikode.setName("BtnGantikode"); // NOI18N
@@ -2317,7 +2299,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCloseIn6.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn6.setMnemonic('U');
         BtnCloseIn6.setText("Tutup");
         BtnCloseIn6.setToolTipText("Alt+U");
         BtnCloseIn6.setName("BtnCloseIn6"); // NOI18N
@@ -2381,18 +2362,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         nmdokter.setName("nmdokter"); // NOI18N
         nmdokter.setPreferredSize(new java.awt.Dimension(90, 23));
 
-        hasilLM.setForeground(new java.awt.Color(0, 0, 0));
-        hasilLM.setHighlighter(null);
-        hasilLM.setName("hasilLM"); // NOI18N
-        hasilLM.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                hasilLMKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                hasilLMKeyPressed(evt);
-            }
-        });
-
         realcostRS.setForeground(new java.awt.Color(0, 0, 0));
         realcostRS.setHighlighter(null);
         realcostRS.setName("realcostRS"); // NOI18N
@@ -2406,7 +2375,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2026" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -2425,6 +2394,11 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Billing/Pembayaran Ranap Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
@@ -2464,7 +2438,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('R');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+R");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -2487,7 +2460,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026 14:48:02" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2026 09:35:54" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2515,7 +2488,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -2547,7 +2519,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnNota.setForeground(new java.awt.Color(0, 0, 0));
         BtnNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Agenda-1-16x16.png"))); // NOI18N
-        BtnNota.setMnemonic('B');
         BtnNota.setText(" Nota");
         BtnNota.setToolTipText("Alt+B");
         BtnNota.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -2567,7 +2538,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnView.setForeground(new java.awt.Color(0, 0, 0));
         BtnView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnView.setMnemonic('L');
         BtnView.setText("Lihat");
         BtnView.setToolTipText("Alt+L");
         BtnView.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -2587,7 +2557,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -2611,7 +2580,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelGlass2.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -2841,7 +2810,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         BtnCariBayar.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCariBayar.setMnemonic('3');
         BtnCariBayar.setToolTipText("Alt+3");
         BtnCariBayar.setName("BtnCariBayar"); // NOI18N
         BtnCariBayar.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -2871,7 +2839,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         btnCariPiutang.setForeground(new java.awt.Color(0, 0, 0));
         btnCariPiutang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        btnCariPiutang.setMnemonic('3');
         btnCariPiutang.setToolTipText("Alt+3");
         btnCariPiutang.setName("btnCariPiutang"); // NOI18N
         btnCariPiutang.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -4754,6 +4721,10 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         } else if (!Sequel.cariIsi("select ifnull(kode_inacbg,'') from bridging_sep where no_sep='" + NoSEP.getText() + "'").equals("")) {
             cekSEP();
             cekINACBG();
+            
+            if (Sequel.cariInteger("select count(-1) from pemasukan_lain where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                cmbNaikKls.setSelectedItem(Sequel.cariIsi("select naik_kelas from pemasukan_lain pl where pl.no_rawat='" + TNoRw.getText() + "'"));
+            }
             hitungSelisih();
 
             WindowSelisihTarif.setSize(824, 456);
@@ -4819,6 +4790,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 kdINACBG.requestFocus();
             } else {
                 cekINACBG();
+                lmrawat.setText(Sequel.cariIsi("select if(sum(ki.lama) is null,'0',sum(ki.lama)) from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar where "
+                        + "ki.no_rawat='" + TNoRw.getText() + "' and k.kelas='" + cmbNaikKls.getSelectedItem().toString() + "'"));
 
                 if (deskripsiKD.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Kode INACBG salah, ulangi lagi..!!!");
@@ -4849,14 +4822,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private void realcostRSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_realcostRSKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_realcostRSKeyPressed
-
-    private void hasilLMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hasilLMKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hasilLMKeyPressed
-
-    private void hasilLMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hasilLMKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hasilLMKeyTyped
 
     private void MnPiutangPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPiutangPasienActionPerformed
         if (TPasien.getText().trim().equals("")) {
@@ -5054,6 +5019,35 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }//GEN-LAST:event_BtnJaminanActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Sequel.cariIsiComboDB("select kelas from kamar group by kelas", cmbNaikKls);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void cmbNaikKlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNaikKlsActionPerformed
+        if (kdINACBG.getText().trim().equals("")) {
+            kdINACBG.requestFocus();
+        } else {
+            cekINACBG();
+            lmrawat.setText(Sequel.cariIsi("select if(sum(ki.lama) is null,'0',sum(ki.lama)) from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar where "
+                    + "ki.no_rawat='" + TNoRw.getText() + "' and k.kelas='" + cmbNaikKls.getSelectedItem().toString() + "'"));
+
+            if (deskripsiKD.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Kode INACBG salah, ulangi lagi..!!!");
+                kdINACBG.requestFocus();
+                kdINACBG.setText("");
+            } else if (!deskripsiKD.getText().equals("")) {
+                if (hakkelas.getText().equals("1")) {
+                    hitungSelisih();
+                } else if (hakkelas.getText().equals("2")) {
+                    hitungSelisih();
+                } else if (hakkelas.getText().equals("3")) {
+                    JOptionPane.showMessageDialog(null, "Sesuai Permenkes RI No. 3 Tahun 2023, utk. hak kelas 3 tdk. diperkenankan lagi naik kls. rawat..!!!");
+                    BtnCloseIn6.requestFocus();
+                }
+            }
+        }
+    }//GEN-LAST:event_cmbNaikKlsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5177,11 +5171,11 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     public widget.CekBox cekObat;
     private widget.CekBox chkRalan;
     private widget.CekBox chkRanap;
+    private widget.ComboBox cmbNaikKls;
     private widget.ComboBox cmbPenjamin;
     private widget.ComboBox cmbPilihCetak;
     private widget.TextBox deskripsiKD;
     private widget.TextBox hakkelas;
-    private widget.TextBox hasilLM;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame10;
     private widget.InternalFrame internalFrame11;
@@ -5238,7 +5232,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Label label18;
     private widget.Label lbl_jns_byr;
     private widget.TextBox lmrawat;
-    private widget.TextBox naikKLS;
     private widget.TextBox nm_telah_terima;
     private widget.TextBox nmdokter;
     private widget.TextBox nmpasien;
@@ -8032,48 +8025,39 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
-
-        Sequel.cariIsi("SELECT k.kelas FROM kamar_inap ki INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
-                + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE stts_pulang not in ('-','Pindah Kamar') and ki.no_rawat=? ", naikKLS, TNoRw.getText());
-        Sequel.cariIsi("SELECT ki.lama FROM reg_periksa r INNER JOIN kamar_inap ki on ki.no_rawat=r.no_rawat INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
-                + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal LEFT JOIN bridging_sep bs on bs.no_rawat=ki.no_rawat "
-                + "WHERE ki.stts_pulang not in ('-','Pindah Kamar') and r.kd_pj='b01' and r.status_lanjut='Ranap' and r.stts_daftar <> 'batal' "
-                + "and b.nm_bangsal like '%vip%' and bs.no_sep=? ", hasilLM, NoSEP.getText());
+        
+        cmbNaikKls.setSelectedItem(Sequel.cariIsi("SELECT k.kelas FROM kamar_inap ki INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
+                + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE stts_pulang not in ('-','Pindah Kamar') and ki.no_rawat='" + TNoRw.getText() + "'"));        
+        
+        lmrawat.setText(Sequel.cariIsi("select if(sum(ki.lama) is null,'0',sum(ki.lama)) from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar where "
+                + "ki.no_rawat='" + TNoRw.getText() + "' and k.kelas='" + cmbNaikKls.getSelectedItem().toString() + "'"));
         persenSELISIH.setText(Sequel.cariIsi("select selisih_tarif_bpjs2 from set_tarif"));
 
-        if (naikKLS.getText().equals("Intensif")) {
-            naikKLS.setText("");
-            hasilLM.setText("");
-            Sequel.cariIsi("SELECT k.kelas FROM kamar_inap ki INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE ki.kd_kamar not like '%IC%' and ki.no_rawat=? "
-                    + "order by tgl_keluar desc limit 1 ", naikKLS, TNoRw.getText());
+        if (cmbNaikKls.getSelectedItem().equals("Intensif")) {            
+            cmbNaikKls.setSelectedIndex(0);
+            
+            cmbNaikKls.setSelectedItem(Sequel.cariIsi("SELECT k.kelas FROM kamar_inap ki INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE ki.kd_kamar not like '%IC%' and ki.no_rawat='" + TNoRw.getText() + "' "
+                    + "order by tgl_keluar desc limit 1"));
 
-            Sequel.cariIsi("SELECT ki.lama FROM reg_periksa r INNER JOIN kamar_inap ki on ki.no_rawat=r.no_rawat INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal LEFT JOIN bridging_sep bs on bs.no_rawat=ki.no_rawat "
-                    + "WHERE r.kd_pj='b01' and r.status_lanjut='Ranap' and r.stts_daftar <> 'batal' "
-                    + "and b.nm_bangsal like '%vip%' and bs.no_sep=? ", hasilLM, NoSEP.getText());
+            lmrawat.setText(Sequel.cariIsi("select if(sum(ki.lama) is null,'0',sum(ki.lama)) from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar where "
+                + "ki.no_rawat='" + TNoRw.getText() + "' and k.kelas='" + cmbNaikKls.getSelectedItem().toString() + "'"));
         }
 
         Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar_inap ki INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
-                + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE stts_pulang not in ('-','Pindah Kamar') and no_rawat=? ", rginap, TNoRw.getText());
+                + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE stts_pulang not in ('-','Pindah Kamar') and no_rawat=? ", rginap, TNoRw.getText());        
 
-        if (hasilLM.getText().equals("")) {
-            lmrawat.setText("0");
-        } else if (!hasilLM.getText().equals("")) {
-            lmrawat.setText(hasilLM.getText());
-        }
-
-        if ((hakkelas.getText().equals("1")) && (naikKLS.getText().equals("Kelas 1"))
-                || (hakkelas.getText().equals("2")) && (naikKLS.getText().equals("Kelas 2"))
-                || (hakkelas.getText().equals("3")) && (naikKLS.getText().equals("Kelas 3"))) {
+        if ((hakkelas.getText().equals("1")) && (cmbNaikKls.getSelectedItem().equals("Kelas 1"))
+                || (hakkelas.getText().equals("2")) && (cmbNaikKls.getSelectedItem().equals("Kelas 2"))
+                || (hakkelas.getText().equals("3")) && (cmbNaikKls.getSelectedItem().equals("Kelas 3"))) {
             BtnCloseIn6ActionPerformed(null);
             JOptionPane.showMessageDialog(null, "Pasien sudah sesuai hak kelasnya...!!!");
             selisihBaru();
-        } else if (naikKLS.getText().equals("Intensif")) {
+        } else if (cmbNaikKls.getSelectedItem().equals("Intensif")) {
             JOptionPane.showMessageDialog(null, "Ruang rawat ICU,ICCU atau NICU tidak dianggap naik kelas rawat..!!!");
             selisihBaru();
             WindowSelisihTarif.dispose();
-        } else if (naikKLS.getText().equals("")) {
+        } else if (cmbNaikKls.getSelectedItem().equals("")) {
             JOptionPane.showMessageDialog(null, "Pasien belum pulang, harus dipulangkan dulu...!!!");
             selisihBaru();
             WindowSelisihTarif.dispose();
@@ -8112,11 +8096,11 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         double d = Double.parseDouble(persenSELISIH.getText());
         double e = Double.parseDouble(realcostRS.getText());
 
-        if (hakkelas.getText().equals("2") && naikKLS.getText().equals("Kelas 1")) {
+        if (hakkelas.getText().equals("2") && cmbNaikKls.getSelectedItem().equals("Kelas 1")) {
             TKalkulasi.setText("tarif INACBG : Kelas 1 Rp. " + Valid.SetAngka3(a) + " - Kelas 2 Rp. " + Valid.SetAngka3(b) + " = Rp. " + Valid.SetAngka3(a - b) + "\n"
                     + "Jadi yang harus dibayar pasien adalah Rp. " + Valid.SetAngka3(a - b) + "");
 
-        } else if (hakkelas.getText().equals("2") && (naikKLS.getText().equals("Kelas VIP") || naikKLS.getText().equals("Kelas VVIP"))) {
+        } else if (hakkelas.getText().equals("2") && (cmbNaikKls.getSelectedItem().equals("Kelas VIP") || cmbNaikKls.getSelectedItem().equals("Kelas VVIP"))) {
             //tarif inacbg kelas 1 - kelas 2
             rumus1 = a - b;
             //tarif inacbg kelas 1 x 75 %
@@ -8158,7 +8142,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         + "                     Jadi yang harus dibayarkan sesuai dengan Permenkes No. 3 Tahun 2023 adalah Rp. " + Valid.SetAngka3(rumus3) + "");
             }
 
-        } else if (hakkelas.getText().equals("1") && (naikKLS.getText().equals("Kelas VIP") || naikKLS.getText().equals("Kelas VVIP"))) {
+        } else if (hakkelas.getText().equals("1") && (cmbNaikKls.getSelectedItem().equals("Kelas VIP") || cmbNaikKls.getSelectedItem().equals("Kelas VVIP"))) {
             rumus1 = d / 100 * a;
             rumus2 = rumus1 + a;
 
@@ -8203,12 +8187,11 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         tarifkls2.setText("0");
         tarifkls3.setText("0");
         tarifRC.setText("0");
-        realcostRS.setText("0");
+//        realcostRS.setText("0");
         persenSELISIH.setText("0");
         TKalkulasi.setText("-");
-        hasilLM.setText("");
         lmrawat.setText("0");
-        naikKLS.setText("");
+        cmbNaikKls.setSelectedIndex(0);
     }
     
     private void cekPanjar() {

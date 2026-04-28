@@ -558,7 +558,6 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel54 = new widget.Label();
         hakkelas = new widget.TextBox();
         jLabel47 = new widget.Label();
-        naikKLS = new widget.TextBox();
         jLabel48 = new widget.Label();
         lmrawat = new widget.TextBox();
         jLabel49 = new widget.Label();
@@ -585,6 +584,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         TnominalPanjar = new widget.TextBox();
         BtnPanjar = new widget.Button();
         BtnJaminan = new widget.Button();
+        cmbNaikKls = new widget.ComboBox();
         internalFrame10 = new widget.InternalFrame();
         BtnSelisihBaru = new widget.Button();
         BtnSimpan6 = new widget.Button();
@@ -649,7 +649,6 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         Scroll7 = new widget.ScrollPane();
         tbRiwayat1 = new widget.Table();
         cekNoSEP = new widget.TextBox();
-        hasilLM = new widget.TextBox();
         byrSimpan = new widget.TextBox();
         rumusbayar = new widget.TextBox();
         statusSELISIH = new widget.TextBox();
@@ -1163,18 +1162,11 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         internalFrame9.add(jLabel47);
         jLabel47.setBounds(152, 25, 46, 23);
 
-        naikKLS.setEditable(false);
-        naikKLS.setForeground(new java.awt.Color(0, 0, 0));
-        naikKLS.setHighlighter(null);
-        naikKLS.setName("naikKLS"); // NOI18N
-        internalFrame9.add(naikKLS);
-        naikKLS.setBounds(199, 25, 90, 24);
-
         jLabel48.setForeground(new java.awt.Color(0, 0, 0));
         jLabel48.setText("Lama rawat Rg. VIP : ");
         jLabel48.setName("jLabel48"); // NOI18N
         internalFrame9.add(jLabel48);
-        jLabel48.setBounds(290, 25, 110, 23);
+        jLabel48.setBounds(325, 25, 110, 23);
 
         lmrawat.setEditable(false);
         lmrawat.setForeground(new java.awt.Color(0, 0, 0));
@@ -1183,13 +1175,13 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         lmrawat.setHighlighter(null);
         lmrawat.setName("lmrawat"); // NOI18N
         internalFrame9.add(lmrawat);
-        lmrawat.setBounds(400, 25, 50, 23);
+        lmrawat.setBounds(435, 25, 50, 23);
 
         jLabel49.setForeground(new java.awt.Color(0, 0, 0));
         jLabel49.setText("hari,  Persentase tambahan naik kelas : ");
         jLabel49.setName("jLabel49"); // NOI18N
         internalFrame9.add(jLabel49);
-        jLabel49.setBounds(452, 25, 196, 23);
+        jLabel49.setBounds(487, 25, 196, 23);
 
         persenSELISIH.setEditable(false);
         persenSELISIH.setForeground(new java.awt.Color(0, 0, 0));
@@ -1198,14 +1190,14 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         persenSELISIH.setHighlighter(null);
         persenSELISIH.setName("persenSELISIH"); // NOI18N
         internalFrame9.add(persenSELISIH);
-        persenSELISIH.setBounds(650, 25, 45, 23);
+        persenSELISIH.setBounds(685, 25, 45, 23);
 
         jLabel50.setForeground(new java.awt.Color(0, 0, 0));
         jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel50.setText("%");
         jLabel50.setName("jLabel50"); // NOI18N
         internalFrame9.add(jLabel50);
-        jLabel50.setBounds(700, 25, 20, 23);
+        jLabel50.setBounds(735, 25, 20, 23);
 
         labelbyr.setForeground(new java.awt.Color(0, 0, 0));
         labelbyr.setText("Total bayar : Rp. ");
@@ -1371,6 +1363,17 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         });
         internalFrame9.add(BtnJaminan);
         BtnJaminan.setBounds(650, 337, 90, 23);
+
+        cmbNaikKls.setForeground(new java.awt.Color(0, 0, 0));
+        cmbNaikKls.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
+        cmbNaikKls.setName("cmbNaikKls"); // NOI18N
+        cmbNaikKls.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbNaikKlsActionPerformed(evt);
+            }
+        });
+        internalFrame9.add(cmbNaikKls);
+        cmbNaikKls.setBounds(199, 25, 110, 23);
 
         internalFrame7.add(internalFrame9, java.awt.BorderLayout.CENTER);
 
@@ -1785,7 +1788,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel101.setPreferredSize(new java.awt.Dimension(80, 23));
         internalFrame17.add(jLabel101);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1799,7 +1802,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel102.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel102);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1944,10 +1947,6 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         cekNoSEP.setForeground(new java.awt.Color(0, 0, 0));
         cekNoSEP.setHighlighter(null);
         cekNoSEP.setName("cekNoSEP"); // NOI18N
-
-        hasilLM.setForeground(new java.awt.Color(0, 0, 0));
-        hasilLM.setHighlighter(null);
-        hasilLM.setName("hasilLM"); // NOI18N
 
         byrSimpan.setForeground(new java.awt.Color(0, 0, 0));
         byrSimpan.setHighlighter(null);
@@ -2165,7 +2164,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass8.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2026" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -2184,7 +2183,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2199,7 +2198,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2333,7 +2332,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         btnKategori.setBounds(610, 40, 28, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2026" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2026" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -2741,6 +2740,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
         Sequel.cariIsiComboDB("SELECT nm_perawatan FROM jns_perawatan WHERE kd_kategori='ambl' AND STATUS='1'", CmbTarif);
+        Sequel.cariIsiComboDB("select kelas from kamar group by kelas", cmbNaikKls);
     }//GEN-LAST:event_formWindowOpened
 
     private void KdKategoriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KdKategoriKeyPressed
@@ -2825,7 +2825,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } else if (jlhdibayar.getText().trim().equals(byrSimpan.getText()) && (ChkSesuaiTagihan.isSelected() == false)) {
             JOptionPane.showMessageDialog(null, "Nominal angka pembayaran sdh. sesuai tagihan, conteng dulu jenis pembayaranya..!!!!");
             ChkSesuaiTagihan.requestFocus();
-        } else if ((naikKLS.getText().equals("Kelas VIP") || naikKLS.getText().equals("Kelas VVIP"))
+        } else if ((cmbNaikKls.getSelectedItem().equals("Kelas VIP") || cmbNaikKls.getSelectedItem().equals("Kelas VVIP"))
                 && Sequel.cariInteger("select count(-1) from piutang_pasien where no_rawat='" + norawat.getText() + "'") == 0) {
             JOptionPane.showMessageDialog(null, "Transaksi gagal tersimpan,..!! \n"
                     + "Simpan dulu Nota/Kwitansinya utk. melanjutkan proses penghitungan selisih biaya perawatan..!!");
@@ -2846,7 +2846,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         noTransaksi.getText(), telahTerimaPAS.getText(),
                         NoSEP.getText(), norm.getText(), nokartu.getText(), norawat.getText(), tglmsk.getText(),
                         tglklr.getText(), rginap.getText(), kdINACBG.getText(), tarifkls1.getText(),
-                        tarifkls2.getText(), tarifkls3.getText(), hakkelas.getText(), naikKLS.getText(), lmrawat.getText(),
+                        tarifkls2.getText(), tarifkls3.getText(), hakkelas.getText(), cmbNaikKls.getSelectedItem().toString(), lmrawat.getText(),
                         persenSELISIH.getText(), rumusbayar.getText(), jlhdibayar.getText(), nominalPajakSewa.getText(), totalbyrsewa.getText()
                     });
 
@@ -2913,7 +2913,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     JOptionPane.showMessageDialog(null, "Kode INACBG salah atau belum terisi, ulangi lagi..!!!");
                     kdINACBG.requestFocus();
                     kdINACBG.setText("");
-                } else if ((naikKLS.getText().equals("Kelas VIP") || naikKLS.getText().equals("Kelas VVIP"))
+                } else if ((cmbNaikKls.getSelectedItem().equals("Kelas VIP") || cmbNaikKls.getSelectedItem().equals("Kelas VVIP"))
                         && Sequel.cariInteger("select count(-1) from piutang_pasien where no_rawat='" + norawat.getText() + "'") == 0) {
                     JOptionPane.showMessageDialog(null, "Simpan dulu Nota/Kwitansinya utk. melanjutkan proses penghitungan selisih biaya perawatan..!!");
                     NoSEP.requestFocus();
@@ -2948,12 +2948,14 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 kdINACBG.requestFocus();
             } else {
                 cekINACBG();
+                lmrawat.setText(Sequel.cariIsi("select if(sum(ki.lama) is null,'0',sum(ki.lama)) from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar where "
+                        + "ki.no_rawat='" + norawat.getText() + "' and k.kelas='" + cmbNaikKls.getSelectedItem().toString() + "'"));
 
                 if (deskripsiKD.getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Kode INACBG salah, ulangi lagi..!!!");
                     kdINACBG.requestFocus();
                     kdINACBG.setText("");
-                } else if ((naikKLS.getText().equals("Kelas VIP") || naikKLS.getText().equals("Kelas VVIP"))
+                } else if ((cmbNaikKls.getSelectedItem().equals("Kelas VIP") || cmbNaikKls.getSelectedItem().equals("Kelas VVIP"))
                         && Sequel.cariInteger("select count(-1) from piutang_pasien where no_rawat='" + norawat.getText() + "'") == 0) {
                     JOptionPane.showMessageDialog(null, "Simpan dulu Nota/Kwitansinya utk. melanjutkan proses penghitungan selisih biaya perawatan..!!");
                     NoSEP.requestFocus();
@@ -3684,6 +3686,31 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_MnTTEcnnkActionPerformed
 
+    private void cmbNaikKlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNaikKlsActionPerformed
+        if (kdINACBG.getText().trim().equals("")) {
+            kdINACBG.requestFocus();
+        } else {
+            cekINACBG();
+            lmrawat.setText(Sequel.cariIsi("select if(sum(ki.lama) is null,'0',sum(ki.lama)) from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar where "
+                    + "ki.no_rawat='" + norawat.getText() + "' and k.kelas='" + cmbNaikKls.getSelectedItem().toString() + "'"));
+
+            if (deskripsiKD.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Kode INACBG salah, ulangi lagi..!!!");
+                kdINACBG.requestFocus();
+                kdINACBG.setText("");
+            } else if (!deskripsiKD.getText().equals("")) {
+                if (hakkelas.getText().equals("1")) {
+                    hitungSelisih();
+                } else if (hakkelas.getText().equals("2")) {
+                    hitungSelisih();
+                } else if (hakkelas.getText().equals("3")) {
+                    JOptionPane.showMessageDialog(null, "Sesuai Permenkes RI No. 3 Tahun 2023, utk. hak kelas 3 tdk. diperkenankan lagi naik kls. rawat..!!!");
+                    BtnCloseIn6.requestFocus();
+                }
+            }
+        }
+    }//GEN-LAST:event_cmbNaikKlsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3795,10 +3822,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenu cetakNota;
     private javax.swing.JMenu cetakNotaAmbulan;
     private javax.swing.JMenu cetakNotaNaikKls;
+    private widget.ComboBox cmbNaikKls;
     private widget.TextBox dataSelisihTarif;
     private widget.TextBox deskripsiKD;
     private widget.TextBox hakkelas;
-    private widget.TextBox hasilLM;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame10;
     private widget.InternalFrame internalFrame11;
@@ -3879,7 +3906,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem lihatSelisihTarif;
     private widget.TextBox lmrawat;
     private widget.Label lunas;
-    private widget.TextBox naikKLS;
     private widget.TextBox nmpasien;
     private widget.TextBox noTranAngsur;
     private widget.TextBox noTransaksi;
@@ -4129,7 +4155,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     Keterangan.setText("Jumlah pembayaran angsuran ke " + bayarKe.getText() + " Rp. " + Valid.SetAngka3(ii) 
                             + ", dan sisa tagihan yg. belum dibayar adalah Rp. " + Valid.SetAngka3(jj));
                 } else if (statusTran.getText().equals("lunas")) {
-                    Keterangan.setText("Jumlah pembayaran utk. pelunasan tagihan dgn. kalkulasi penghitungan sebagai beikut :\n"+ TKalkulasi.getText());
+//                    Keterangan.setText("Jumlah pembayaran utk. pelunasan tagihan dgn. kalkulasi penghitungan sebagai beikut :\n"+ TKalkulasi.getText());
+                    Keterangan.setText(tbPemasukan.getValueAt(tbPemasukan.getSelectedRow(), 6).toString());
                 }
 
             } else if (KdKategori.getText().equals("SBPJS") && (dataSelisihTarif.getText().equals(""))) {
@@ -4263,56 +4290,41 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         
         Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=? ", tglmsk, norawat.getText());
         Sequel.cariIsi("select tgl_keluar from kamar_inap where stts_pulang not in ('-','Pindah Kamar') and no_rawat=? ", tglklr, norawat.getText());
-        Sequel.cariIsi("SELECT k.kelas FROM kamar_inap ki INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
-                + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE stts_pulang not in ('-','Pindah Kamar') and no_rawat=? ", naikKLS, norawat.getText());
         
-        Sequel.cariIsi("SELECT ki.lama FROM reg_periksa r INNER JOIN kamar_inap ki on ki.no_rawat=r.no_rawat INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
-                + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal LEFT JOIN bridging_sep bs on bs.no_rawat=ki.no_rawat "
-                + "WHERE ki.stts_pulang not in ('-','Pindah Kamar') and r.kd_pj='b01' and r.status_lanjut='Ranap' and r.stts_daftar <> 'batal' "
-                + "and b.nm_bangsal like '%vip%' and bs.no_sep=? ", hasilLM, cekNoSEP.getText());
+        if (Sequel.cariIsi("select ifnull(totalpiutang,'') from piutang_pasien where no_rawat='" + norw + "'").equals("")) {
+            realcostRS.setText("0");
+        } else {
+            realcostRS.setText(Sequel.cariIsi("select ifnull(totalpiutang,'0') from piutang_pasien where no_rawat='" + norw + "'"));
+        }
+        tarifrc.setText(Valid.SetAngka3(Double.parseDouble(realcostRS.getText())));
+        
+        cmbNaikKls.setSelectedItem(Sequel.cariIsi("SELECT k.kelas FROM kamar_inap ki INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
+                + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE stts_pulang not in ('-','Pindah Kamar') and ki.no_rawat='" + norawat.getText() + "' "
+                + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
+        lmrawat.setText(Sequel.cariIsi("select if(sum(ki.lama) is null,'0',sum(ki.lama)) from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar where "
+                + "ki.no_rawat='" + norawat.getText() + "' and k.kelas='" + cmbNaikKls.getSelectedItem().toString() + "'"));
         
         Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar_inap ki INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
                 + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE ki.stts_pulang not in ('-','Pindah Kamar') and ki.no_rawat=? ", rginap, norawat.getText());
         
         persenSELISIH.setText(Sequel.cariIsi("select selisih_tarif_bpjs2 from set_tarif"));
         
-        if (Sequel.cariIsi("select ifnull(totalpiutang,'') from piutang_pasien where no_rawat='" + norw + "'").equals("")) {
-            realcostRS.setText("0");
-        } else {
-            realcostRS.setText(Sequel.cariIsi("select ifnull(totalpiutang,'0') from piutang_pasien where no_rawat='" + norw + "'"));
-        }        
-        tarifrc.setText(Valid.SetAngka3(Double.parseDouble(realcostRS.getText())));
-        
-        if (naikKLS.getText().equals("Intensif")) {
-            naikKLS.setText("");
-            hasilLM.setText("");
-            Sequel.cariIsi("SELECT k.kelas FROM kamar_inap ki INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal WHERE ki.kd_kamar not like '%IC%' and ki.no_rawat=? "
-                    + "order by tgl_keluar desc limit 1 ", naikKLS, norawat.getText());
-
-            Sequel.cariIsi("SELECT ki.lama FROM reg_periksa r INNER JOIN kamar_inap ki on ki.no_rawat=r.no_rawat INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal LEFT JOIN bridging_sep bs on bs.no_rawat=ki.no_rawat "
-                    + "WHERE r.kd_pj='b01' and r.status_lanjut='Ranap' and r.stts_daftar <> 'batal' "
-                    + "and b.nm_bangsal like '%vip%' and bs.no_sep=? ", hasilLM, cekNoSEP.getText());
+        if (cmbNaikKls.getSelectedItem().equals("Intensif")) {
+            lmrawat.setText(Sequel.cariIsi("select if(sum(ki.lama) is null,'0',sum(ki.lama)) from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar where "
+                + "ki.no_rawat='" + norawat.getText() + "' and k.kelas='" + cmbNaikKls.getSelectedItem().toString() + "'"));
         }
 
-        if (hasilLM.getText().equals("")) {
-            lmrawat.setText("0");
-        } else if (!hasilLM.getText().equals("")) {
-            lmrawat.setText(hasilLM.getText());
-        }
-
-        if ((hakkelas.getText().equals("1")) && (naikKLS.getText().equals("Kelas 1"))
-                || (hakkelas.getText().equals("2")) && (naikKLS.getText().equals("Kelas 2"))
-                || (hakkelas.getText().equals("3")) && (naikKLS.getText().equals("Kelas 3"))) {
+        if ((hakkelas.getText().equals("1")) && (cmbNaikKls.getSelectedItem().equals("Kelas 1"))
+                || (hakkelas.getText().equals("2")) && (cmbNaikKls.getSelectedItem().equals("Kelas 2"))
+                || (hakkelas.getText().equals("3")) && (cmbNaikKls.getSelectedItem().equals("Kelas 3"))) {
             BtnCloseIn6ActionPerformed(null);
             JOptionPane.showMessageDialog(null, "Pasien sudah sesuai hak kelasnya...!!!");
             selisihBaru();
-        } else if (naikKLS.getText().equals("Intensif")) {
+        } else if (cmbNaikKls.getSelectedItem().equals("Intensif")) {
             BtnCloseIn6ActionPerformed(null);
             JOptionPane.showMessageDialog(null, "Ruang rawat ICU,ICCU atau NICU tidak dianggap naik kelas rawat..!!!");
             selisihBaru();
-        } else if (naikKLS.getText().equals("")) {
+        } else if (cmbNaikKls.getSelectedItem().equals("")) {
             BtnCloseIn6ActionPerformed(null);
             JOptionPane.showMessageDialog(null, "Pasien belum pulang, petugas ruang inap harus memulangkan dulu...!!!");
             selisihBaru();
@@ -4358,9 +4370,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         Totdibayar.setText("0");
         persenSELISIH.setText("0");
         labelbyr.setText("Total bayar : Rp. ");
-        hasilLM.setText("");
         lmrawat.setText("0");
-        naikKLS.setText("");
+        cmbNaikKls.setSelectedIndex(0);
         byrSimpan.setText("");
         rumusbayar.setText("");
         statusSELISIH.setText("");
@@ -4369,7 +4380,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         jlhdibayar.setText("");
         TKalkulasi.setText("-");
         tarifrc.setText("0");
-        realcostRS.setText("0");
+//        realcostRS.setText("0");
         
         totTagihan = 0;
         sdhByr = 0;
@@ -4404,7 +4415,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         if (cekData <= 0) {
             byrKe += 1;
 
-            if (hakkelas.getText().equals("2") && naikKLS.getText().equals("Kelas 1")) {
+            if (hakkelas.getText().equals("2") && cmbNaikKls.getSelectedItem().equals("Kelas 1")) {
                 TKalkulasi.setText("tarif INACBG : Kelas 1 Rp. " + Valid.SetAngka3(a) + " - Kelas 2 Rp. " + Valid.SetAngka3(b) + " = Rp. " + Valid.SetAngka3(a - b) + "\n"
                         + "Jadi yang harus dibayar pasien adalah Rp. " + Valid.SetAngka3(a - b) + "");
 
@@ -4414,7 +4425,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 SisaTagihan.setText(Valid.SetAngka3(a - b));
                 sisaTagihan = a - b;
 
-            } else if (hakkelas.getText().equals("2") && (naikKLS.getText().equals("Kelas VIP") || naikKLS.getText().equals("Kelas VVIP"))) {
+            } else if (hakkelas.getText().equals("2") && (cmbNaikKls.getSelectedItem().equals("Kelas VIP") || cmbNaikKls.getSelectedItem().equals("Kelas VVIP"))) {
                 //tarif inacbg kelas 1 - kelas 2
                 rumus1 = a - b;
                 //tarif inacbg kelas 1 x 75 %
@@ -4476,7 +4487,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     sisaTagihan = rumus3;
                 }
 
-            } else if (hakkelas.getText().equals("1") && (naikKLS.getText().equals("Kelas VIP") || naikKLS.getText().equals("Kelas VVIP"))) {
+            } else if (hakkelas.getText().equals("1") && (cmbNaikKls.getSelectedItem().equals("Kelas VIP") || cmbNaikKls.getSelectedItem().equals("Kelas VVIP"))) {
                 rumus1 = d / 100 * a;
                 rumus2 = rumus1 + a;
                 //jika real cost RS <= dari tarif inacbg kelas 1 
@@ -4536,12 +4547,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             SisaTagihan.setText(Valid.SetAngka3(sisaTagihan));
             byrSimpan.setText(String.valueOf(totTagihan));
 
-            if (hakkelas.getText().equals("2") && naikKLS.getText().equals("Kelas 1")) {
+            if (hakkelas.getText().equals("2") && cmbNaikKls.getSelectedItem().equals("Kelas 1")) {
                 TKalkulasi.setText("tarif INACBG : Kelas 1 Rp. " + Valid.SetAngka3(a) + " - Kelas 2 Rp. " + Valid.SetAngka3(b) + " = Rp. " + Valid.SetAngka3(a - b) + "\n"
                         + "Jadi yang harus dibayar pasien adalah Rp. " + Valid.SetAngka3(a - b) + "");
                 rumusbayar.setText("Tarif INACBG kls. 1 Rp. " + Valid.SetAngka3(a) + " - Tarif INACBG kls. 2 Rp. " + Valid.SetAngka3(b) + "");
 
-            } else if (hakkelas.getText().equals("2") && (naikKLS.getText().equals("Kelas VIP") || naikKLS.getText().equals("Kelas VVIP"))) {
+            } else if (hakkelas.getText().equals("2") && (cmbNaikKls.getSelectedItem().equals("Kelas VIP") || cmbNaikKls.getSelectedItem().equals("Kelas VVIP"))) {
                 //tarif inacbg kelas 1 - kelas 2
                 rumus1 = a - b;
                 //tarif inacbg kelas 1 x 75 %
@@ -4591,7 +4602,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     rumusbayar.setText("Sesuaikan dengan Permenkes No. 3 Tahun 2023 seperti rincian pada kalkulasi tarif");
                 }
 
-            } else if (hakkelas.getText().equals("1") && (naikKLS.getText().equals("Kelas VIP") || naikKLS.getText().equals("Kelas VVIP"))) {
+            } else if (hakkelas.getText().equals("1") && (cmbNaikKls.getSelectedItem().equals("Kelas VIP") || cmbNaikKls.getSelectedItem().equals("Kelas VVIP"))) {
                 rumus1 = d / 100 * a;
                 rumus2 = rumus1 + a;
                 //jika real cost RS <= dari tarif inacbg kelas 1 
@@ -4697,7 +4708,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             ChkSesuaiTagihan.setText("Pembayaran sesuai tagihan >>>");
             ChkSesuaiTagihan.setEnabled(true);
             statusTran.setText("lunas");
-            jlhdibayar.setText((String.valueOf(sisaTagihan)));
+//            jlhdibayar.setText((String.valueOf(sisaTagihan)));
+            jlhdibayar.setText(Totdibayar.getText().replaceAll(",", ""));
+            pemasukan.setText(Totdibayar.getText().replaceAll(",", ""));
             jlhdibayar.setEditable(false);
             BtnSimpan6.requestFocus();
             
@@ -4801,6 +4814,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     cekNoSEP.setText(rsTem1.getString("nosep"));
                     cekSEP();
                     cekINACBG();
+                    cmbNaikKls.setSelectedItem(Sequel.cariIsi("select naik_kelas from pemasukan_lain pl where pl.no_rawat='" + norawat.getText() + "'"));
                     hitungSelisih();
                     Sequel.menyimpan("temporary_bayar_ranap",
                             "'0','"
