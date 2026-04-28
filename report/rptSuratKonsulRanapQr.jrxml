@@ -21,7 +21,7 @@
 	<parameter name="kalimatTte" class="java.lang.String"/>
 	<parameter name="lokasiQr" class="java.io.InputStream"/>
 	<queryString>
-		<![CDATA[SELECT * from temporaryTTE]]>
+		<![CDATA[SELECT * from temporary_tte]]>
 	</queryString>
 	<field name="temp1" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>

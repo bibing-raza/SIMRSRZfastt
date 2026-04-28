@@ -959,7 +959,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
             
             if (cmbPilihCetak.getSelectedIndex() == 0) {
                 Sequel.AutoComitFalse();
-                Sequel.queryu("delete from temporaryTTE");
+                Sequel.queryu("delete from temporary_tte");
                 String isiKonsul = "", isiJawab = "", nipJawab = "", fileGambar = "";
                 nipJawab = Sequel.cariIsi("select kd_dokter_pembalas from surat_konsul_unit_ralan where waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'");
                 param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
@@ -992,13 +992,13 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
                     fileGambar = Sequel.cariFolderPrintTte();
                 }
 
-                Sequel.menyimpanQrTte("temporaryTTE",
+                Sequel.menyimpanQrTte("temporary_tte",
                         "'Tgl. Konsultasi Ulang : " + konsulUlg + "',"
                         + "'Ditemukan kasus : " + kasus + "\n\n" + ketklinis + "\n','Martapura, " + tglJawab + "','(" + dokterpenjawab + ")','','','','','',''",
                         "file QRCode TTE Surat Konsultasi Poliklinik Rawat Jalan", fileGambar);
                 
                 Valid.MyReport("rptCetakSuratKonsulRalanQr.jasper", "report", "::[ Surat Konsultasi Internal Poliklinik ]::",
-                        "SELECT * FROM temporaryTTE", param);
+                        "SELECT * FROM temporary_tte", param);
                 Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 Sequel.AutoComitTrue();
             } else {

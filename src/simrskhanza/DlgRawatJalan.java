@@ -19735,7 +19735,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             }
         } else if (tte.equals("ya")) {
             Sequel.AutoComitFalse();
-            Sequel.queryu("delete from temporaryTTE");
+            Sequel.queryu("delete from temporary_tte");
             
             try {                
                 if (ChkTanggal.isSelected() == true) {
@@ -19777,7 +19777,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                         rsPrmrj.getString("tgl"), rsPrmrj.getString("jam_rawat")) + "') from kalimat_tte where kode='001'");
 
                         Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
-                        Sequel.menyimpanQrTte("temporaryTTE",
+                        Sequel.menyimpanQrTte("temporary_tte",
                                 "'" + rsPrmrj.getString("tglKun") + "',"
                                 + "'" + rsPrmrj.getString("diagnosa") + "',"
                                 + "'" + rsPrmrj.getString("icd10") + "',"
@@ -19802,7 +19802,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             }
             
             Valid.MyReport("rptprmrjQr.jasper", "report", "::[ Lembar RM 3.1.1 (Profil Ringkas Medis Rawat Jalan) ]::",
-                    "SELECT * FROM temporaryTTE", param);
+                    "SELECT * FROM temporary_tte", param);
             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             Sequel.AutoComitTrue();
         }
@@ -23973,7 +23973,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                 "SELECT now() tanggal", param);
                     } else if (tte.equals("ya")) {
                         Sequel.AutoComitFalse();
-                        Sequel.queryu("delete from temporaryTTE");
+                        Sequel.queryu("delete from temporary_tte");
                         String isiKonsul = "", isiJawab = "", fileGambar = "";
                         param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
 
@@ -23999,14 +23999,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             fileGambar = Sequel.cariFolderPrintTte();
                         }
 
-                        Sequel.menyimpanQrTte("temporaryTTE",
+                        Sequel.menyimpanQrTte("temporary_tte",
                                 "'Tgl. Konsultasi Ulang : " + konsulUlg + "',"
                                 + "'Ditemukan kasus : " + rsCtkKonsul.getString("kasus_ditemukan") + "\n\n" + rsCtkKonsul.getString("ket_klinis_jawaban") + "\n',"
                                 + "'Martapura, " + tglJawab + "','(" + rsCtkKonsul.getString("nm_dokter") + ")','','','','','',''",
                                 "file QRCode TTE Surat Konsultasi Poliklinik Rawat Jalan", fileGambar);
 
                         Valid.MyReport("rptCetakSuratKonsulRalanQr.jasper", "report", "::[ Surat Konsultasi Internal Poliklinik ]::",
-                                "SELECT * FROM temporaryTTE", param);
+                                "SELECT * FROM temporary_tte", param);
                         Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                         Sequel.AutoComitTrue();
                     }
@@ -24091,7 +24091,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
         } else if (tte.equals("ya")) {
             Sequel.AutoComitFalse();
-            Sequel.queryu("delete from temporaryTTE");
+            Sequel.queryu("delete from temporary_tte");
             String isiRujuk = "", isiJawab = "", nipJawab = "", fileGambar = "";
             nipJawab = Sequel.cariIsi("select kd_dokter_pembalas from rujukan_internal_poli where no_rawat='" + Tnorawat.getText() + "' and tgl_simpan='" + tglsmpn + "'");
             param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
@@ -24123,7 +24123,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             param.put("keterangan", Sequel.cariIsi("select keterangan from rujukan_internal_poli where no_rawat='" + Tnorawat.getText() + "' "
                     + "AND kd_poli_pembalas='" + polinya + "'"));
 
-            Sequel.menyimpanQrTte("temporaryTTE",
+            Sequel.menyimpanQrTte("temporary_tte",
                     "'" + Sequel.cariIsi("select ifnull(keterangan_balasan,'-') from rujukan_internal_poli where no_rawat='" + Tnorawat.getText() + "' "
                             + "AND kd_poli_pembalas='" + polinya + "'") + "',"
                     + "'',"
@@ -24144,7 +24144,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     "file QRCode TTE Surat Rujukan Poliklinik Internal", fileGambar);
 
             Valid.MyReport("rptSuratRujukanInternalQr.jasper", "report", "::[ Surat Rujukan Poliklinik Internal ]::",
-                    "SELECT * FROM temporaryTTE", param);
+                    "SELECT * FROM temporary_tte", param);
             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             Sequel.AutoComitTrue();
         }

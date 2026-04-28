@@ -948,7 +948,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
                         if (kddokter.equals("") || kddokter.equals("-") || kddokter.equals("--")) {
                             JOptionPane.showMessageDialog(rootPane, "Maaf, nama dokter harus diisi dulu,..");
                         } else {
-                            Sequel.queryu("delete from temporaryTTE");
+                            Sequel.queryu("delete from temporary_tte");
                             String isiMinta = "", isiJawab = "", nmDokterJawab = "", tglJawab = "", jwbn = "";
                             param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
 
@@ -961,7 +961,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
                                                     + "waktu_simpan='" + wktSimpan + "'")) + "') from kalimat_tte where kode='001'");
                             Valid.cetakQrTte(isiMinta, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
 
-                            Sequel.menyimpanQrTte("temporaryTTE",
+                            Sequel.menyimpanQrTte("temporary_tte",
                                     "'" + TNoRM.getText() + "',"
                                     + "'" + TPasien.getText() + "',"
                                     + "'" + Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + "',"
@@ -1000,9 +1000,9 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
                                 param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
                             }
 
-                            Sequel.queryu("update temporaryTTE set temp8='" + jwbn + "\n', temp9='" + nmDokterJawab + "', temp10='" + tglJawab + "'");
+                            Sequel.queryu("update temporary_tte set temp8='" + jwbn + "\n', temp9='" + nmDokterJawab + "', temp10='" + tglJawab + "'");
                             Valid.MyReport("rptSuratKonsulRanapQr.jasper", "report", "::[ Cetak Surat Konsul Antar Unit Rawat Inap ]::",
-                                    "SELECT * from temporaryTTE", param);
+                                    "SELECT * from temporary_tte", param);
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                         }
                     } else {

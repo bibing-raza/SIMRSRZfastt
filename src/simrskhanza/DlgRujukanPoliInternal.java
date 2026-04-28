@@ -618,7 +618,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
             
             if (cmbPilihCetak.getSelectedIndex() == 0) {
                 Sequel.AutoComitFalse();
-                Sequel.queryu("delete from temporaryTTE");
+                Sequel.queryu("delete from temporary_tte");
                 String isiRujuk = "", isiJawab = "", nipJawab = "", fileGambar = "";
                 nipJawab = Sequel.cariIsi("select kd_dokter_pembalas from rujukan_internal_poli where no_rawat='" + TNoRw.getText() + "' and tgl_simpan='" + tglsmpn + "'");
                 param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
@@ -650,7 +650,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
                 param.put("keterangan", Sequel.cariIsi("select keterangan from rujukan_internal_poli where no_rawat='" + TNoRw.getText() + "' "
                         + "AND kd_poli_pembalas='" + kdpoli.getText() + "'"));
                 
-                Sequel.menyimpanQrTte("temporaryTTE",
+                Sequel.menyimpanQrTte("temporary_tte",
                         "'" + Sequel.cariIsi("select ifnull(keterangan_balasan,'-') from rujukan_internal_poli where no_rawat='" + TNoRw.getText() + "' "
                                 + "AND kd_poli_pembalas='" + kdpoli.getText() + "'") + "',"
                         + "'',"
@@ -671,7 +671,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
                         "file QRCode TTE Surat Rujukan Poliklinik Internal", fileGambar);
                 
                 Valid.MyReport("rptSuratRujukanInternalQr.jasper", "report", "::[ Surat Rujukan Poliklinik Internal ]::",
-                        "SELECT * FROM temporaryTTE", param);
+                        "SELECT * FROM temporary_tte", param);
                 Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 Sequel.AutoComitTrue();
             } else {

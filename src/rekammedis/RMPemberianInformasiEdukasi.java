@@ -3393,7 +3393,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
                 //data penilaian informasi edukasi
                 Sequel.AutoComitFalse();
-                Sequel.queryu("delete from temporaryTTE");
+                Sequel.queryu("delete from temporary_tte");
                 Sequel.queryu("delete from temporary3");
                 try {
                     ps3 = koneksi.prepareStatement("select pi.*, date_format(pi.tanggal,'%d/%m/%Y') tggl, time_format(pi.jam,'%H:%i') jamm, "
@@ -3847,7 +3847,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                                                 rs3.getString("tglSimpan"), rs3.getString("jamSimpan")) + "') from kalimat_tte where kode='001'");
 
                                 Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
-                                Sequel.menyimpanQrTte("temporaryTTE",
+                                Sequel.menyimpanQrTte("temporary_tte",
                                         "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita" + "',"
                                         + "'" + penerimaPND + "','" + metodeNilai + "','" + profesi + "','" + isiPenKesOK + "','" + tingkatPemahanan + "',"
                                         + "'" + evaluasi + "','" + rs3.getString("nmPetugas") + "','" + rs3.getString("nm_penerima_edukasi") + "','" + rs3.getString("wktSimpan") + "'",
@@ -3889,7 +3889,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                 } else {
                     if (cmbPilihCetak.getSelectedIndex() == 0) {
                         Valid.MyReport("rptPemberianInformasiEdukasiQr.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
-                                "SELECT * FROM temporaryTTE", param);
+                                "SELECT * FROM temporary_tte", param);
                         Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                     } else {
                         Valid.MyReport("rptPemberianInformasiEdukasi.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
