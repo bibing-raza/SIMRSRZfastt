@@ -3701,8 +3701,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             } else if (!deskripsiKD.getText().equals("")) {
                 if (hakkelas.getText().equals("1")) {
                     hitungSelisih();
+                    cektagihan();
                 } else if (hakkelas.getText().equals("2")) {
                     hitungSelisih();
+                    cektagihan();
                 } else if (hakkelas.getText().equals("3")) {
                     JOptionPane.showMessageDialog(null, "Sesuai Permenkes RI No. 3 Tahun 2023, utk. hak kelas 3 tdk. diperkenankan lagi naik kls. rawat..!!!");
                     BtnCloseIn6.requestFocus();
@@ -4534,6 +4536,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     SisaTagihan.setText(Valid.SetAngka3(e - a));
                     sisaTagihan = e - a;
                 }
+            } else {
+                Keterangan.setText("");
+                pemasukan.setText("0");
+                
+                TKalkulasi.setText("");
+                Totdibayar.setText("0");
+                rumusbayar.setText("");
+                byrSimpan.setText("");
+                SisaTagihan.setText("0");
+                sisaTagihan = 0;
             }
 
         } else {
@@ -4643,6 +4655,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 jlhdibayar.setText((String.valueOf(sisaTagihan)));
                 jlhdibayar.setEditable(true);
                 jlhdibayar.requestFocus();
+            } else {
+                Keterangan.setText("");
+                pemasukan.setText("0");
+
+                TKalkulasi.setText("");
+                Totdibayar.setText("0");
+                rumusbayar.setText("");
+                byrSimpan.setText("");
+                SisaTagihan.setText("0");
+                sisaTagihan = 0;
             }
         }
     }

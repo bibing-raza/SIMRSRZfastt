@@ -2460,7 +2460,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2026 09:35:54" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2026 12:26:24" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -8170,6 +8170,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         + "                     kelas 1, sebagai berikut : Rp. " + Valid.SetAngka3(e) + " - Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(e - a) + "\n"
                         + "                     Jadi yang harus dibayarkan sesuai dengan Permenkes No. 3 Tahun 2023 adalah Rp. " + Valid.SetAngka3(e - a) + "");
             }
+        } else {
+            TKalkulasi.setText("");
         }
     }
 

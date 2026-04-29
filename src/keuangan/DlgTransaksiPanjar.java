@@ -42,12 +42,13 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps, ps1, ps2, ps3;
-    private ResultSet rs, rs1, rs2, rs3;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4;
+    private ResultSet rs, rs1, rs2, rs3, rs4;
     private int i = 0, x = 0, totBayarKurang = 0, totBayarLebih = 0, totBayar = 0;
     public DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
     private String nipSimpan = "", nipGanti = "", totReal = "", totSelisih = "", kodePJ = "", tte = "",
-            totSelisihAwalnya = "", totRealTerakhir = "", jlhKurangDibayar = "", lebihDikembalikan = "", nilaiReal = "", nilaiSelisih = "";
+            totSelisihAwalnya = "", totRealTerakhir = "", jlhKurangDibayar = "", lebihDikembalikan = "", nilaiReal = "", nilaiSelisih = "",
+            judulKolomExcel = "", periodeExcel = "", judulExcel = "", dialog_simpan = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -335,6 +336,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnGanti = new widget.Button();
         BtnPrint = new widget.Button();
+        BtnDownload = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
         label16 = new widget.Label();
@@ -859,6 +861,18 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnPrint);
+
+        BtnDownload.setForeground(new java.awt.Color(0, 0, 0));
+        BtnDownload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        BtnDownload.setText("Download Data");
+        BtnDownload.setName("BtnDownload"); // NOI18N
+        BtnDownload.setPreferredSize(new java.awt.Dimension(140, 30));
+        BtnDownload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDownloadActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnDownload);
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
@@ -1583,7 +1597,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         if (tbPanjar.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Data yang ditampilkan pada tabel masih kosong..!!!!");
             DTPCari1.requestFocus();
-        } else {            
+        } else {
             tampil();
             
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -2169,6 +2183,193 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnKirimKeWhatsappActionPerformed
 
+    private void BtnDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDownloadActionPerformed
+        if (tbPanjar.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data yang ditampilkan pada tabel masih kosong..!!!!");
+            DTPCari1.requestFocus();
+        } else {
+            tampil();
+            periodeExcel = "PERIODE TANGGAL " + DTPCari1.getSelectedItem() + " S.D " + DTPCari2.getSelectedItem();
+
+            if (cmbStatus1.getSelectedIndex() == 0 || cmbStatus1.getSelectedIndex() == 1) {
+                judulKolomExcel = "Nominal Status";
+            } else if (cmbStatus1.getSelectedIndex() == 2) {
+                judulKolomExcel = "Biaya Jumlah Kekurangan";
+            } else if (cmbStatus1.getSelectedIndex() == 3) {
+                judulKolomExcel = "Biaya Jumlah Kelebihan";
+            } else if (cmbStatus1.getSelectedIndex() == 4) {
+                judulKolomExcel = "Jumlah Piutang";
+            }
+
+            if (cmbStatus1.getSelectedIndex() == 0) {
+                if (kdpnj.getText().equals("")) {
+                    if (Sequel.cariInteger("select count(-1) from transaksi_panjar where "
+                            + "tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "'") == 0) {
+                        JOptionPane.showMessageDialog(null, "Data tidak ditemukan..!!!!");
+                    } else {
+                        Sequel.AutoComitFalse();
+                        Sequel.queryu("delete from temporary1");
+                        judulExcel = "LAPORAN PENERIMAAN PEMBAYARAN PANJAR SEMUA CARA BAYAR";
+                        Sequel.menyimpan("temporary1", "'" + judulExcel + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul");
+                        Sequel.menyimpan("temporary1", "'" + periodeExcel + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Periode");
+                        Sequel.menyimpan("temporary1", "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Spasi");
+                        Sequel.menyimpan("temporary1", "'No.','No. Panjar\n(Tanggal Jam)','No. Rawat','Cara Bayar','No. RM - Nama Pasien','Ruang Rawat','Status Panjar',"
+                                + "'Nominal Panjar','" + judulKolomExcel + "','Petugas Penerima Panjar','Panjar Diselesaikan Oleh','Biaya Real Cost','Biaya Selisih Tarif INACBG',"
+                                + "'Total Bayar','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
+                        
+                        dataExcel("SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
+                                + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
+                                + "pg1.nama petugas1, pg2.nama petugas2, tp.jumlah_tagihan byReal, tp.selisih_tarif_bpjs bySelisih, "
+                                + "tp.jumlah_tagihan, tp.selisih_tarif_bpjs, CASE "
+                                + "WHEN tp.status_panjar = 'Kurang Bayar' THEN tp.nominal_panjar + tp.nominal_balik "
+                                + "WHEN tp.status_panjar = 'Lebih Bayar' THEN tp.nominal_panjar - tp.nominal_balik "
+                                + "ELSE 0 END AS total_bayar, pj.png_jawab from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
+                                + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
+                                + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti inner join penjab pj on pj.kd_pj=rp.kd_pj where "
+                                + "tp.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                + "order by tp.waktu_simpan", judulExcel);
+                        Sequel.AutoComitTrue();
+
+                        dialog_simpan = Valid.openDialog();
+                        if (Valid.MyReportToExcelBoolean("SELECT temp1 '', temp2 '', temp3 '', temp4 '', temp5 '', temp6 '', temp7 '', temp8 '', temp9 '', temp10 '', temp11 '', "
+                                + "temp12 '', temp13 '', temp14 '' from temporary1", dialog_simpan) == true) {
+                            JOptionPane.showMessageDialog(null, "Data transaksi panjar berhasil diexport menjadi file excel,..!!!");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Data transaksi panjar gagal diexport menjadi file excel,..!!!");
+                        }
+                    }
+                } else {
+                    if (Sequel.cariInteger("select count(-1) from transaksi_panjar t inner join reg_periksa rp on rp.no_rawat=t.no_rawat where "
+                            + "t.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "and rp.kd_pj='" + kdpnj.getText() + "'") == 0) {
+                        JOptionPane.showMessageDialog(null, "Data tidak ditemukan..!!!!");
+                    } else {
+                        Sequel.AutoComitFalse();
+                        Sequel.queryu("delete from temporary1");
+                        judulExcel = "LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + nmpnj.getText() + ")";
+                        Sequel.menyimpan("temporary1", "'" + judulExcel + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul");
+                        Sequel.menyimpan("temporary1", "'" + periodeExcel + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Periode");
+                        Sequel.menyimpan("temporary1", "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Spasi");
+
+                        if (kdpnj.getText().equals("U01")) {
+                            Sequel.menyimpan("temporary1", "'No.','No. Panjar\n(Tanggal Jam)','No. Rawat','No. RM - Nama Pasien','Ruang Rawat','Status Panjar','Nominal Panjar','" + judulKolomExcel + "',"
+                                    + "'Petugas Penerima Panjar','Panjar Diselesaikan Oleh','Biaya Real Cost','Total Bayar',"
+                                    + "'','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
+                        } else {
+                            Sequel.menyimpan("temporary1", "'No.','No. Panjar\n(Tanggal Jam)','No. Rawat','No. RM - Nama Pasien','Ruang Rawat','Status Panjar','Nominal Panjar','" + judulKolomExcel + "',"
+                                    + "'Petugas Penerima Panjar','Panjar Diselesaikan Oleh','Biaya Selisih Tarif INACBG','Total Bayar',"
+                                    + "'','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
+                        }
+
+                        dataExcel("SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
+                                + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
+                                + "pg1.nama petugas1, pg2.nama petugas2, tp.jumlah_tagihan byReal, tp.selisih_tarif_bpjs bySelisih, "
+                                + "tp.jumlah_tagihan, tp.selisih_tarif_bpjs, CASE "
+                                + "WHEN tp.status_panjar = 'Kurang Bayar' THEN tp.nominal_panjar + tp.nominal_balik "
+                                + "WHEN tp.status_panjar = 'Lebih Bayar' THEN tp.nominal_panjar - tp.nominal_balik "
+                                + "ELSE 0 END AS total_bayar from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
+                                + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
+                                + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where "
+                                + "tp.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                + "and rp.kd_pj='" + kdpnj.getText() + "' order by tp.waktu_simpan", judulExcel);
+                        Sequel.AutoComitTrue();
+
+                        dialog_simpan = Valid.openDialog();
+                        if (Valid.MyReportToExcelBoolean("SELECT temp1 '', temp2 '', temp3 '', temp4 '', temp5 '', temp6 '', temp7 '', temp8 '', "
+                                + "temp9 '', temp10 '', temp11 '', temp12 '' from temporary1", dialog_simpan) == true) {
+                            JOptionPane.showMessageDialog(null, "Data transaksi panjar berhasil diexport menjadi file excel,..!!!");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Data transaksi panjar gagal diexport menjadi file excel,..!!!");
+                        }
+                    }
+                }
+            } else {
+                if (kdpnj.getText().equals("")) {
+                    if (Sequel.cariInteger("select count(-1) from transaksi_panjar where "
+                            + "tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "and status_panjar='" + cmbStatus1.getSelectedItem().toString() + "'") == 0) {
+                        JOptionPane.showMessageDialog(null, "Data tidak ditemukan..!!!!");
+                    } else {
+                        Sequel.AutoComitFalse();
+                        Sequel.queryu("delete from temporary1");
+                        judulExcel = "LAPORAN PENERIMAAN PEMBAYARAN PANJAR SEMUA CARA BAYAR (" + cmbStatus1.getSelectedItem().toString().toUpperCase() + ")";
+                        Sequel.menyimpan("temporary1", "'" + judulExcel + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul");
+                        Sequel.menyimpan("temporary1", "'" + periodeExcel + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Periode");
+                        Sequel.menyimpan("temporary1", "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Spasi");
+                        Sequel.menyimpan("temporary1", "'No.','No. Panjar\n(Tanggal Jam)','No. Rawat','Cara Bayar','No. RM - Nama Pasien','Ruang Rawat','Status Panjar',"
+                                + "'Nominal Panjar','" + judulKolomExcel + "','Petugas Penerima Panjar','Panjar Diselesaikan Oleh','Biaya Real Cost','Biaya Selisih Tarif INACBG',"
+                                + "'Total Bayar','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
+
+                        dataExcel("SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
+                                + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
+                                + "pg1.nama petugas1, pg2.nama petugas2, tp.jumlah_tagihan byReal, tp.selisih_tarif_bpjs bySelisih, "
+                                + "tp.jumlah_tagihan, tp.selisih_tarif_bpjs, CASE "
+                                + "WHEN tp.status_panjar = 'Kurang Bayar' THEN tp.nominal_panjar + tp.nominal_balik "
+                                + "WHEN tp.status_panjar = 'Lebih Bayar' THEN tp.nominal_panjar - tp.nominal_balik "
+                                + "ELSE 0 END AS total_bayar, pj.png_jawab from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
+                                + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
+                                + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti inner join penjab pj on pj.kd_pj=rp.kd_pj where "
+                                + "tp.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                + "and tp.status_panjar='" + cmbStatus1.getSelectedItem().toString() + "' order by tp.waktu_simpan", judulExcel);
+                        Sequel.AutoComitTrue();
+
+                        dialog_simpan = Valid.openDialog();
+                        if (Valid.MyReportToExcelBoolean("SELECT temp1 '', temp2 '', temp3 '', temp4 '', temp5 '', temp6 '', temp7 '', temp8 '', temp9 '', temp10 '', temp11 '', "
+                                + "temp12 '', temp13 '', temp14 '' from temporary1", dialog_simpan) == true) {
+                            JOptionPane.showMessageDialog(null, "Data transaksi panjar berhasil diexport menjadi file excel,..!!!");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Data transaksi panjar gagal diexport menjadi file excel,..!!!");
+                        }
+                    }
+                } else {
+                    if (Sequel.cariInteger("select count(-1) from transaksi_panjar t inner join reg_periksa rp on rp.no_rawat=t.no_rawat where "
+                            + "t.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                            + "and rp.kd_pj='" + kdpnj.getText() + "'") == 0) {
+                        JOptionPane.showMessageDialog(null, "Data tidak ditemukan..!!!!");
+                    } else {
+                        Sequel.AutoComitFalse();
+                        Sequel.queryu("delete from temporary1");
+                        judulExcel = "LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + cmbStatus1.getSelectedItem().toString().toUpperCase() + " - " + nmpnj.getText() + ")";
+                        Sequel.menyimpan("temporary1", "'" + judulExcel + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul");
+                        Sequel.menyimpan("temporary1", "'" + periodeExcel + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Periode");
+                        Sequel.menyimpan("temporary1", "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Spasi");
+
+                        if (kdpnj.getText().equals("U01")) {
+                            Sequel.menyimpan("temporary1", "'No.','No. Panjar\n(Tanggal Jam)','No. Rawat','No. RM - Nama Pasien','Ruang Rawat','Status Panjar','Nominal Panjar','" + judulKolomExcel + "',"
+                                    + "'Petugas Penerima Panjar','Panjar Diselesaikan Oleh','Biaya Real Cost','Total Bayar',"
+                                    + "'','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
+                        } else {
+                            Sequel.menyimpan("temporary1", "'No.','No. Panjar\n(Tanggal Jam)','No. Rawat','No. RM - Nama Pasien','Ruang Rawat','Status Panjar','Nominal Panjar','" + judulKolomExcel + "',"
+                                    + "'Petugas Penerima Panjar','Panjar Diselesaikan Oleh','Biaya Selisih Tarif INACBG','Total Bayar',"
+                                    + "'','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
+                        }
+
+                        dataExcel("SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
+                                + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
+                                + "pg1.nama petugas1, pg2.nama petugas2, tp.jumlah_tagihan byReal, tp.selisih_tarif_bpjs bySelisih, "
+                                + "tp.jumlah_tagihan, tp.selisih_tarif_bpjs, CASE "
+                                + "WHEN tp.status_panjar = 'Kurang Bayar' THEN tp.nominal_panjar + tp.nominal_balik "
+                                + "WHEN tp.status_panjar = 'Lebih Bayar' THEN tp.nominal_panjar - tp.nominal_balik "
+                                + "ELSE 0 END AS total_bayar from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
+                                + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
+                                + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where "
+                                + "tp.tgl_panjar BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                + "and tp.status_panjar='" + cmbStatus1.getSelectedItem().toString() + "' and rp.kd_pj='" + kdpnj.getText() + "' order by tp.waktu_simpan", judulExcel);
+                        Sequel.AutoComitTrue();
+
+                        dialog_simpan = Valid.openDialog();
+                        if (Valid.MyReportToExcelBoolean("SELECT temp1 '', temp2 '', temp3 '', temp4 '', temp5 '', temp6 '', temp7 '', temp8 '', "
+                                + "temp9 '', temp10 '', temp11 '', temp12 '' from temporary1", dialog_simpan) == true) {
+                            JOptionPane.showMessageDialog(null, "Data transaksi panjar berhasil diexport menjadi file excel,..!!!");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Data transaksi panjar gagal diexport menjadi file excel,..!!!");
+                        }
+                    }
+                }
+            }            
+        }
+    }//GEN-LAST:event_BtnDownloadActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2195,6 +2396,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private widget.Button BtnCekSelisih;
     private widget.Button BtnCloseIn1;
     private widget.Button BtnCloseIn12;
+    private widget.Button BtnDownload;
     private widget.Button BtnGanti;
     private widget.Button BtnHapus1;
     private widget.Button BtnKeluar;
@@ -2794,5 +2996,62 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         emptTeks();
         tampil();
         this.setCursor(Cursor.getDefaultCursor());
+    }
+
+    private void dataExcel(String sql, String judulnya) {        
+        try {
+            ps4 = koneksi.prepareStatement(sql);
+            try {
+                rs4 = ps4.executeQuery();
+                x = 1;
+                while (rs4.next()) {
+                    if (judulnya.equals("LAPORAN PENERIMAAN PEMBAYARAN PANJAR SEMUA CARA BAYAR")
+                            || judulnya.equals("LAPORAN PENERIMAAN PEMBAYARAN PANJAR SEMUA CARA BAYAR (" + cmbStatus1.getSelectedItem().toString().toUpperCase() + ")")) {
+                        Sequel.menyimpan("temporary1", "'"
+                                + x + ".','"
+                                + rs4.getString("no_panjar") + "\n" + rs4.getString("tglpanjar") + " - " + rs4.getString("jam") + " Wita','"
+                                + rs4.getString("no_rawat") + "','"
+                                + rs4.getString("png_jawab") + "','"
+                                + rs4.getString("no_rkm_medis") + " - " + rs4.getString("nm_pasien").replaceAll("'", "") + "','"
+                                + rs4.getString("ruang_rawat") + "','"
+                                + rs4.getString("status_panjar") + "','"
+                                + rs4.getString("nominal_panjar") + "','"
+                                + rs4.getString("nominal_balik") + "','"
+                                + rs4.getString("petugas1").replaceAll("'", "") + "','"
+                                + rs4.getString("petugas2").replaceAll("'", "") + "','"
+                                + rs4.getString("byReal") + "','"
+                                + rs4.getString("bySelisih") + "','"
+                                + rs4.getString("total_bayar") + "','','','','','','','','','','','','','','','','','','','','','','',''", "Data Transaksi Panjar");
+
+                    } else if (judulnya.equals("LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + nmpnj.getText() + ")")) {
+                        Sequel.menyimpan("temporary1", "'"
+                                + x + ".','"
+                                + rs4.getString("no_panjar") + "\n" + rs4.getString("tglpanjar") + " - " + rs4.getString("jam") + " Wita','"
+                                + rs4.getString("no_rawat") + "','"
+                                + rs4.getString("no_rkm_medis") + " - " + rs4.getString("nm_pasien").replaceAll("'", "") + "','"
+                                + rs4.getString("ruang_rawat") + "','"
+                                + rs4.getString("status_panjar") + "','"
+                                + rs4.getString("nominal_panjar") + "','"
+                                + rs4.getString("nominal_balik") + "','"
+                                + rs4.getString("petugas1").replaceAll("'", "") + "','"
+                                + rs4.getString("petugas2").replaceAll("'", "") + "','"
+                                + rs4.getString("byReal") + "','"
+                                + rs4.getString("total_bayar") + "','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Transaksi Panjar");
+                    }
+                    x++;
+                }
+            } catch (Exception e) {
+                System.out.println("dataExcel() : " + e);
+            } finally {
+                if (rs4 != null) {
+                    rs4.close();
+                }
+                if (ps4 != null) {
+                    ps4.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 }
