@@ -756,7 +756,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<text><![CDATA[Kondisi Klinis Sebelum Transfer :]]></text>
+				<text><![CDATA[Kondisi Klinis Sesudah Transfer :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="3" y="162" width="10" height="11">

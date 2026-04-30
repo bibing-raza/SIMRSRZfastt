@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19" uuid="12b8dfde-cd29-4558-ae43-7b3cfca75039">
 	<property name="ireport.zoom" value="1.8181818181818235"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="370"/>
+	<property name="ireport.y" value="96"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -835,7 +835,7 @@
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[Kondisi Klinis Sebelum Transfer :]]></text>
+				<text><![CDATA[Kondisi Klinis Sesudah Transfer :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="3" y="162" width="10" height="11" uuid="f876f253-3823-4f23-909e-850b6fce4f79">

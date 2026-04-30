@@ -45,8 +45,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9, ps10;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rs10;
     private int i = 0;
     private String nipBidan = "", pembukaan = "", trun_kpl = "", urutPantau = "";
     
@@ -57,8 +57,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        tabMode=new DefaultTableModel(null,new Object[]{
-            "Kode Komite", "Nama Komite"}) {
+        tabMode = new DefaultTableModel(null, new String[]{
+            "No. Rawat", "No. RM", "Nama Pasien", "Ruang Rawat", "Gravida", "Paritas", "Abortus", "Tgl. Masuk", "Jam Masuk", 
+            "Ketuban Pecah", "NIP Bidan", "Nama Bidan", "tgl_masuk", "jam_masuk", "masalah", "penatalaksanaan", "hasilnya", "waktu_simpan"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -69,12 +70,50 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         tbPartograf.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPartograf.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 2; i++) {
+        for (i = 0; i < 18; i++) {
             TableColumn column = tbPartograf.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(105);
             } else if (i == 1) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(60);
+            } else if (i == 2) {
+                column.setPreferredWidth(220);
+            } else if (i == 3) {
+                column.setPreferredWidth(250);
+            } else if (i == 4) {
+                column.setPreferredWidth(75);
+            } else if (i == 5) {
+                column.setPreferredWidth(75);
+            } else if (i == 6) {
+                column.setPreferredWidth(75);
+            } else if (i == 7) {
+                column.setPreferredWidth(75);
+            } else if (i == 8) {
+                column.setPreferredWidth(75);
+            } else if (i == 9) {
+                column.setPreferredWidth(100);
+            } else if (i == 10) {
+                column.setPreferredWidth(105);
+            } else if (i == 11) {
+                column.setPreferredWidth(220);
+            } else if (i == 12) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 13) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 14) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 15) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 16) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 17) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbPartograf.setDefaultRenderer(Object.class, new WarnaTable());
@@ -882,6 +921,11 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         TabPartograf.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TabPartograf.setName("TabPartograf"); // NOI18N
         TabPartograf.setPreferredSize(new java.awt.Dimension(0, 2000));
+        TabPartograf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabPartografMouseClicked(evt);
+            }
+        });
 
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
@@ -993,7 +1037,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel10.setBounds(0, 94, 135, 23);
 
         TtglMasuk.setEditable(false);
-        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-04-2026" }));
+        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-04-2026" }));
         TtglMasuk.setDisplayFormat("dd-MM-yyyy");
         TtglMasuk.setName("TtglMasuk"); // NOI18N
         TtglMasuk.setOpaque(false);
@@ -2498,7 +2542,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -2517,7 +2560,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -2536,7 +2578,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -2568,7 +2609,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -2616,7 +2656,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel53.setBounds(0, 38, 175, 23);
 
         TtglCatatan.setEditable(false);
-        TtglCatatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-04-2026" }));
+        TtglCatatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-04-2026" }));
         TtglCatatan.setDisplayFormat("dd-MM-yyyy");
         TtglCatatan.setName("TtglCatatan"); // NOI18N
         TtglCatatan.setOpaque(false);
@@ -4175,7 +4215,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         ThasilKala4.setBounds(180, 1251, 860, 23);
 
         BtnBidan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnBidan.setMnemonic('2');
         BtnBidan.setToolTipText("Alt+2");
         BtnBidan.setName("BtnBidan"); // NOI18N
         BtnBidan.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -4197,7 +4236,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan1.setMnemonic('S');
         BtnSimpan1.setText("Simpan");
         BtnSimpan1.setToolTipText("Alt+S");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
@@ -4216,7 +4254,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnBatal1.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal1.setMnemonic('B');
         BtnBatal1.setText("Baru");
         BtnBatal1.setToolTipText("Alt+B");
         BtnBatal1.setName("BtnBatal1"); // NOI18N
@@ -4230,7 +4267,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnGanti1.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti1.setMnemonic('G');
         BtnGanti1.setText("Ganti");
         BtnGanti1.setToolTipText("Alt+G");
         BtnGanti1.setName("BtnGanti1"); // NOI18N
@@ -4262,7 +4298,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -4312,7 +4347,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         panelGlass10.add(jLabel118);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-04-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-04-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4327,7 +4362,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         panelGlass10.add(jLabel130);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-04-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-04-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4352,7 +4387,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 30));
@@ -4370,7 +4404,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -4402,7 +4435,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar2.setMnemonic('K');
         BtnKeluar2.setText("Keluar");
         BtnKeluar2.setToolTipText("Alt+K");
         BtnKeluar2.setName("BtnKeluar2"); // NOI18N
@@ -4588,11 +4620,23 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtk2MouseReleased
 
     private void tbDjjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDjjMouseClicked
-        // TODO add your handling code here:
+        if (tabMode1.getRowCount() != 0) {
+            try {
+                getDataDjj();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
     }//GEN-LAST:event_tbDjjMouseClicked
 
     private void tbDjjKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbDjjKeyPressed
-        // TODO add your handling code here:
+        if (tabMode1.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {                    
+                    getDataDjj();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
     }//GEN-LAST:event_tbDjjKeyPressed
 
     private void BtnBaruDjjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruDjjActionPerformed
@@ -4689,11 +4733,23 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtk3MouseReleased
 
     private void tbAirKetubanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAirKetubanMouseClicked
-        // TODO add your handling code here:
+        if (tabMode2.getRowCount() != 0) {
+            try {
+                getDataAirKetuban();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
     }//GEN-LAST:event_tbAirKetubanMouseClicked
 
     private void tbAirKetubanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbAirKetubanKeyPressed
-        // TODO add your handling code here:
+        if (tabMode2.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {                    
+                    getDataAirKetuban();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
     }//GEN-LAST:event_tbAirKetubanKeyPressed
 
     private void BtnBaruAKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruAKMActionPerformed
@@ -4760,11 +4816,23 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtk4MouseReleased
 
     private void tbServikMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbServikMouseClicked
-        // TODO add your handling code here:
+        if (tabMode3.getRowCount() != 0) {
+            try {
+                getDataServiks();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
     }//GEN-LAST:event_tbServikMouseClicked
 
     private void tbServikKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbServikKeyPressed
-        // TODO add your handling code here:
+        if (tabMode3.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {                    
+                    getDataServiks();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
     }//GEN-LAST:event_tbServikKeyPressed
 
     private void BtnBaruServikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruServikActionPerformed
@@ -4863,11 +4931,23 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }//GEN-LAST:event_TlamanyaKeyPressed
 
     private void tbKontraksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKontraksiMouseClicked
-        // TODO add your handling code here:
+        if (tabMode4.getRowCount() != 0) {
+            try {
+                getDataKontraksi();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
     }//GEN-LAST:event_tbKontraksiMouseClicked
 
     private void tbKontraksiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbKontraksiKeyPressed
-        // TODO add your handling code here:
+        if (tabMode4.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {                    
+                    getDataKontraksi();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
     }//GEN-LAST:event_tbKontraksiKeyPressed
 
     private void BtnBaruKontraksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruKontraksiActionPerformed
@@ -4940,11 +5020,23 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtk6MouseReleased
 
     private void tbOksitosinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbOksitosinMouseClicked
-        // TODO add your handling code here:
+        if (tabMode5.getRowCount() != 0) {
+            try {
+                getDataOksitosin();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
     }//GEN-LAST:event_tbOksitosinMouseClicked
 
     private void tbOksitosinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbOksitosinKeyPressed
-        // TODO add your handling code here:
+        if (tabMode5.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {                    
+                    getDataOksitosin();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
     }//GEN-LAST:event_tbOksitosinKeyPressed
 
     private void BtnBaruOksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruOksiActionPerformed
@@ -5023,11 +5115,23 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtk7MouseReleased
 
     private void tbObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbObatMouseClicked
-        // TODO add your handling code here:
+        if (tabMode6.getRowCount() != 0) {
+            try {
+                getDataObatCairan();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
     }//GEN-LAST:event_tbObatMouseClicked
 
     private void tbObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbObatKeyPressed
-        // TODO add your handling code here:
+        if (tabMode6.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {                    
+                    getDataObatCairan();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
     }//GEN-LAST:event_tbObatKeyPressed
 
     private void BtnBaruObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruObatActionPerformed
@@ -5118,11 +5222,23 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtk8MouseReleased
 
     private void tbNadiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbNadiMouseClicked
-        // TODO add your handling code here:
+        if (tabMode7.getRowCount() != 0) {
+            try {
+                getDataNadiTD();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
     }//GEN-LAST:event_tbNadiMouseClicked
 
     private void tbNadiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbNadiKeyPressed
-        // TODO add your handling code here:
+        if (tabMode7.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {                    
+                    getDataNadiTD();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
     }//GEN-LAST:event_tbNadiKeyPressed
 
     private void BtnBaruNadiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruNadiActionPerformed
@@ -5195,11 +5311,23 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtk9MouseReleased
 
     private void tbSuhuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSuhuMouseClicked
-        // TODO add your handling code here:
+        if (tabMode8.getRowCount() != 0) {
+            try {
+                getDataSuhu();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
     }//GEN-LAST:event_tbSuhuMouseClicked
 
     private void tbSuhuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbSuhuKeyPressed
-        // TODO add your handling code here:
+        if (tabMode8.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {                    
+                    getDataSuhu();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
     }//GEN-LAST:event_tbSuhuKeyPressed
 
     private void BtnBaruSuhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruSuhuActionPerformed
@@ -5278,11 +5406,23 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtk10MouseReleased
 
     private void tbUrinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbUrinMouseClicked
-        // TODO add your handling code here:
+        if (tabMode9.getRowCount() != 0) {
+            try {
+                getDataUrin();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
     }//GEN-LAST:event_tbUrinMouseClicked
 
     private void tbUrinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbUrinKeyPressed
-        // TODO add your handling code here:
+        if (tabMode9.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {                    
+                    getDataUrin();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
     }//GEN-LAST:event_tbUrinKeyPressed
 
     private void BtnBaruUrinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruUrinActionPerformed
@@ -5866,11 +6006,23 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }//GEN-LAST:event_TdarahYangKeyPressed
 
     private void tbPemantauanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPemantauanMouseClicked
-        // TODO add your handling code here:
+        if (tabMode10.getRowCount() != 0) {
+            try {
+                getDataPemantauan();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
     }//GEN-LAST:event_tbPemantauanMouseClicked
 
     private void tbPemantauanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbPemantauanKeyPressed
-        // TODO add your handling code here:
+        if (tabMode10.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {                    
+                    getDataPemantauan();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
     }//GEN-LAST:event_tbPemantauanKeyPressed
 
     private void BtnBaruKala4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruKala4ActionPerformed
@@ -6021,6 +6173,12 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         TabPartograf.setSelectedIndex(0);
         tampil();
     }//GEN-LAST:event_formWindowOpened
+
+    private void TabPartografMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabPartografMouseClicked
+        if (TabPartograf.getSelectedIndex() == 2) {
+            tampil();
+        }
+    }//GEN-LAST:event_TabPartografMouseClicked
 
     /**
     * @param args the command line arguments
@@ -6421,23 +6579,60 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     public void tampil() {     
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT kd_komite, nm_komite FROM jabatan_komite WHERE "
-                    + "kd_komite LIKE ? or "
-                    + "nm_komite like ? ORDER BY kd_komite");
-
+            ps = koneksi.prepareStatement("SELECT pp.*, p.no_rkm_medis, p.nm_pasien, if(pcp.no_rawat is null,'-',pcp.cttn_nip_bidan) nipBidan, "
+                    + "if(pcp.no_rawat is null,'-',pg.nama) nmBidan, date_fromat(pp.tgl_masuk,'%d-%m-%Y') tglmasuk, date_fromat(pp.jam_masuk,'%H:%i') jammasuk, "
+                    + "if(ppk.no_rawat is null,'',ppk.masalah) mslah, if(ppk.no_rawat is null,'',ppk.penatalaksanaan) pnata, if(ppk.no_rawat is null,'',ppk.hasilnya) hasil "
+                    + "from partograf_persalinan pp inner join reg_periksa rp on rp.no_rawat=pp.no_rawat "
+                    + "inner join pasien p on p.no_rkm_medis =rp.no_rkm_medis "
+                    + "left join partograf_catatan_persalinan pcp on pcp.no_rawat=pp.no_rawat "
+                    + "left join partograf_pemantauan_kala4 ppk on ppk.no_rawat=pp.no_rawat "
+                    + "left join pegawai pg on pg.nik=pcp.cttn_nip_bidan where "
+                    + "date(pp.waktu_simpan) between ? and ? and pp.no_rawat like ? or "
+                    + "date(pp.waktu_simpan) between ? and ? and p.no_rkm_medis like ? or "
+                    + "date(pp.waktu_simpan) between ? and ? and p.nm_pasien like ? or "
+                    + "date(pp.waktu_simpan) between ? and ? and if(pcp.no_rawat is null,'-',pcp.cttn_nip_bidan) like ? or "
+                    + "date(pp.waktu_simpan) between ? and ? and if(pcp.no_rawat is null,'-',pg.nama) like ? order by pp.waktu_simpan desc");
             try {
-                ps.setString(1, "%" + TCari.getText().trim() + "%");
-                ps.setString(2, "%" + TCari.getText().trim() + "%");
+                ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(3, "%" + TCari.getText() + "%");
+                ps.setString(4, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(5, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(6, "%" + TCari.getText() + "%");
+                ps.setString(7, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(8, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(9, "%" + TCari.getText() + "%");
+                ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(12, "%" + TCari.getText() + "%");
+                ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(15, "%" + TCari.getText() + "%");
                 rs = ps.executeQuery();                
                 while (rs.next()) {
-                    tabMode.addRow(new Object[]{                        
-                        rs.getString(1),
-                        rs.getString(2)
+                    tabMode.addRow(new String[]{                        
+                        rs.getString("no_rawat"),
+                        rs.getString("no_rkm_medis"),
+                        rs.getString("nm_pasien"),
+                        rs.getString("ruang_rawat"),
+                        rs.getString("gravida"),
+                        rs.getString("paritas"),
+                        rs.getString("abortus"),
+                        rs.getString("tglmasuk"),
+                        rs.getString("jammasuk") + " Wita",
+                        rs.getString("ketuban_pecah"),
+                        rs.getString("nipBidan"),
+                        rs.getString("nmBidan"),
+                        rs.getString("tgl_masuk"),
+                        rs.getString("jam_masuk"),
+                        rs.getString("mslah"),
+                        rs.getString("pnata"),
+                        rs.getString("hasil"),
+                        rs.getString("waktu_simpan")
                     });
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
-                System.out.println("rekammedis.DlgMasterJabatanKomite.tampil() : " + e);
+                System.out.println("tampil() : " + e);
             } finally {
                 if (rs != null) {
                     rs.close();
@@ -6691,6 +6886,129 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         }
     }
     
+    private void getDataDjj() {
+        if (tbDjj.getSelectedRow() != -1) {            
+            TnadiDjj.setText(tbDjj.getValueAt(tbDjj.getSelectedRow(), 1).toString());
+            cmbJam2.setSelectedItem(tbDjj.getValueAt(tbDjj.getSelectedRow(), 2).toString().substring(0, 2));
+            cmbMnt2.setSelectedItem(tbDjj.getValueAt(tbDjj.getSelectedRow(), 2).toString().substring(3, 5));
+            cmbDtk2.setSelectedItem(tbDjj.getValueAt(tbDjj.getSelectedRow(), 2).toString().substring(6, 8));
+        }
+    }
+    
+    private void getDataAirKetuban() {        
+        if (tbAirKetuban.getSelectedRow() != -1) {            
+            cmbJam3.setSelectedItem(tbAirKetuban.getValueAt(tbAirKetuban.getSelectedRow(), 1).toString().substring(0, 2));
+            cmbMnt3.setSelectedItem(tbAirKetuban.getValueAt(tbAirKetuban.getSelectedRow(), 1).toString().substring(3, 5));
+            cmbDtk3.setSelectedItem(tbAirKetuban.getValueAt(tbAirKetuban.getSelectedRow(), 1).toString().substring(6, 8));
+            cmbAirKetuban.setSelectedItem(tbAirKetuban.getValueAt(tbAirKetuban.getSelectedRow(), 2).toString());
+            cmbMulase.setSelectedItem(tbAirKetuban.getValueAt(tbAirKetuban.getSelectedRow(), 3).toString());            
+        }
+    }
+    
+    private void getDataServiks() {
+        pembukaan = "";
+        trun_kpl = "";
+        if (tbServik.getSelectedRow() != -1) {
+            cmbWaktuKe.setSelectedItem(tbServik.getValueAt(tbServik.getSelectedRow(), 1).toString());
+            cmbJam4.setSelectedItem(tbServik.getValueAt(tbServik.getSelectedRow(), 2).toString().substring(0, 2));
+            cmbMnt4.setSelectedItem(tbServik.getValueAt(tbServik.getSelectedRow(), 2).toString().substring(3, 5));
+            cmbDtk4.setSelectedItem(tbServik.getValueAt(tbServik.getSelectedRow(), 2).toString().substring(6, 8));            
+            cmbCm.setSelectedItem(tbServik.getValueAt(tbServik.getSelectedRow(), 3).toString());
+            pembukaan = tbServik.getValueAt(tbServik.getSelectedRow(), 4).toString();
+            trun_kpl = tbServik.getValueAt(tbServik.getSelectedRow(), 5).toString();
+            TketServik.setText(tbServik.getValueAt(tbServik.getSelectedRow(), 6).toString());
+            
+            if (pembukaan.equals("X")) {
+                chkPembukaan.setSelected(true);
+            } else {
+                chkPembukaan.setSelected(false);
+            }
+            
+            if (trun_kpl.equals("O")) {
+                chkTurunya.setSelected(true);
+            } else {
+                chkTurunya.setSelected(false);
+            }
+        }
+    }
+    
+    private void getDataKontraksi() {
+        if (tbKontraksi.getSelectedRow() != -1) {            
+            cmbJam5.setSelectedItem(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 1).toString().substring(0, 2));
+            cmbMnt5.setSelectedItem(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 1).toString().substring(3, 5));
+            cmbDtk5.setSelectedItem(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 1).toString().substring(6, 8));
+            cmbLajur.setSelectedItem(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 2).toString());
+            cmbDetik.setSelectedItem(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 3).toString());   
+            Tlamanya.setText(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 4).toString());
+        }
+    }
+    
+    private void getDataOksitosin() {
+        if (tbOksitosin.getSelectedRow() != -1) {            
+            cmbJam6.setSelectedItem(tbOksitosin.getValueAt(tbOksitosin.getSelectedRow(), 1).toString().substring(0, 2));
+            cmbMnt6.setSelectedItem(tbOksitosin.getValueAt(tbOksitosin.getSelectedRow(), 1).toString().substring(3, 5));
+            cmbDtk6.setSelectedItem(tbOksitosin.getValueAt(tbOksitosin.getSelectedRow(), 1).toString().substring(6, 8));            
+            Toksitosin.setText(tbOksitosin.getValueAt(tbOksitosin.getSelectedRow(), 2).toString());
+        }
+    }
+    
+    private void getDataObatCairan() {
+        if (tbObat.getSelectedRow() != -1) {            
+            cmbJam7.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 1).toString().substring(0, 2));
+            cmbMnt7.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 1).toString().substring(3, 5));
+            cmbDtk7.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 1).toString().substring(6, 8));            
+            TobatCairan.setText(tbObat.getValueAt(tbObat.getSelectedRow(), 2).toString());
+        }
+    }
+    
+    private void getDataNadiTD() {
+        if (tbNadi.getSelectedRow() != -1) {            
+            cmbJam8.setSelectedItem(tbNadi.getValueAt(tbNadi.getSelectedRow(), 1).toString().substring(0, 2));
+            cmbMnt8.setSelectedItem(tbNadi.getValueAt(tbNadi.getSelectedRow(), 1).toString().substring(3, 5));
+            cmbDtk8.setSelectedItem(tbNadi.getValueAt(tbNadi.getSelectedRow(), 1).toString().substring(6, 8));            
+            Tnadi.setText(tbNadi.getValueAt(tbNadi.getSelectedRow(), 2).toString());
+            Tsistol.setText(tbNadi.getValueAt(tbNadi.getSelectedRow(), 3).toString());
+            Tdistol.setText(tbNadi.getValueAt(tbNadi.getSelectedRow(), 4).toString());
+        }
+    }
+    
+    private void getDataSuhu() {
+        if (tbSuhu.getSelectedRow() != -1) {            
+            cmbJam9.setSelectedItem(tbSuhu.getValueAt(tbSuhu.getSelectedRow(), 1).toString().substring(0, 2));
+            cmbMnt9.setSelectedItem(tbSuhu.getValueAt(tbSuhu.getSelectedRow(), 1).toString().substring(3, 5));
+            cmbDtk9.setSelectedItem(tbSuhu.getValueAt(tbSuhu.getSelectedRow(), 1).toString().substring(6, 8));            
+            Tsuhu.setText(tbSuhu.getValueAt(tbSuhu.getSelectedRow(), 2).toString());
+        }
+    }
+    
+    private void getDataUrin() {
+        if (tbUrin.getSelectedRow() != -1) {            
+            cmbJam10.setSelectedItem(tbUrin.getValueAt(tbUrin.getSelectedRow(), 1).toString().substring(0, 2));
+            cmbMnt10.setSelectedItem(tbUrin.getValueAt(tbUrin.getSelectedRow(), 1).toString().substring(3, 5));
+            cmbDtk10.setSelectedItem(tbUrin.getValueAt(tbUrin.getSelectedRow(), 1).toString().substring(6, 8));  
+            cmbProtein.setSelectedItem(tbUrin.getValueAt(tbUrin.getSelectedRow(), 2).toString());
+            cmbAseton.setSelectedItem(tbUrin.getValueAt(tbUrin.getSelectedRow(), 3).toString());
+            Tvolume.setText(tbUrin.getValueAt(tbUrin.getSelectedRow(), 2).toString());
+            Tsistol.setText(tbUrin.getValueAt(tbUrin.getSelectedRow(), 4).toString());
+        }
+    }
+    
+    private void getDataPemantauan() {
+        if (tbPemantauan.getSelectedRow() != -1) {
+            TjamKe.setText(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 2).toString());
+            cmbJam11.setSelectedItem(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 3).toString().substring(0, 2));
+            cmbMnt11.setSelectedItem(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 3).toString().substring(3, 5));
+            cmbDtk11.setSelectedItem(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 3).toString().substring(6, 8));            
+            TtdKala4.setText(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 4).toString());
+            TnadiKala4.setText(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 5).toString());
+            TsuhuKala4.setText(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 6).toString());
+            TTinggiFundus.setText(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 7).toString());
+            Tkontraksi.setText(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 8).toString());
+            Turin.setText(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 9).toString());
+            TdarahYang.setText(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 10).toString());            
+        }
+    }
+    
     public void isCek() {
         BtnSimpan.setEnabled(akses.getcppt());
         BtnGanti.setEnabled(akses.getcppt());
@@ -6740,5 +7058,314 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         ));
 
         sorter.sort();
+    }
+    
+    private void tampilDjj(String norw) {
+        Valid.tabelKosong(tabMode1);
+        try {
+            ps1 = koneksi.prepareStatement("select * from partograf_djj where no_rawat ='" + norw + "' order by waktu_simpan");
+            try {                
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    tabMode1.addRow(new String[]{
+                        rs1.getString("no_rawat"),
+                        rs1.getString("nadi"),
+                        rs1.getString("jam_djj"),
+                        rs1.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("tampilDjj() : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilAirKetuban(String norw) {
+        Valid.tabelKosong(tabMode2);
+        try {
+            ps2 = koneksi.prepareStatement("select * from partograf_air_ketuban where no_rawat ='" + norw + "' order by waktu_simpan");
+            try {                
+                rs2 = ps2.executeQuery();
+                while (rs2.next()) {
+                    tabMode2.addRow(new String[]{
+                        rs2.getString("no_rawat"),
+                        rs2.getString("pukul"),
+                        rs2.getString("air_ketuban"),
+                        rs2.getString("mulase"),
+                        rs2.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("tampilAirKetuban() : " + e);
+            } finally {
+                if (rs2 != null) {
+                    rs2.close();
+                }
+                if (ps2 != null) {
+                    ps2.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilServiks(String norw) {
+        Valid.tabelKosong(tabMode3);
+        try {
+            ps3 = koneksi.prepareStatement("select * from partograf_pembukaan_serviks where no_rawat ='" + norw + "' order by waktu_simpan");
+            try {                
+                rs3 = ps3.executeQuery();
+                while (rs3.next()) {
+                    tabMode3.addRow(new String[]{
+                        rs3.getString("no_rawat"),
+                        rs3.getString("waktu_ke"),
+                        rs3.getString("jam"),
+                        rs3.getString("centimeter_servik"),
+                        rs3.getString("pembukaan"),
+                        rs3.getString("turun_kepala"),
+                        rs3.getString("keterangan"),
+                        rs3.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("tampilServiks() : " + e);
+            } finally {
+                if (rs3 != null) {
+                    rs3.close();
+                }
+                if (ps3 != null) {
+                    ps3.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilKontraksi(String norw) {
+        Valid.tabelKosong(tabMode4);
+        try {
+            ps4 = koneksi.prepareStatement("select * from partograf_kontraksi where no_rawat ='" + norw + "' order by waktu_simpan");
+            try {                
+                rs4 = ps4.executeQuery();
+                while (rs4.next()) {
+                    tabMode4.addRow(new String[]{
+                        rs4.getString("no_rawat"),
+                        rs4.getString("pukul"),
+                        rs4.getString("lajur_kontraksi"),
+                        rs4.getString("detik_kontraksi"),
+                        rs4.getString("lama_waktu"),
+                        rs4.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("tampilKontraksi() : " + e);
+            } finally {
+                if (rs4 != null) {
+                    rs4.close();
+                }
+                if (ps4 != null) {
+                    ps4.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilOksitosin(String norw) {
+        Valid.tabelKosong(tabMode5);
+        try {
+            ps5 = koneksi.prepareStatement("select * from partograf_oksitosin where no_rawat ='" + norw + "' order by waktu_simpan");
+            try {                
+                rs5 = ps5.executeQuery();
+                while (rs5.next()) {
+                    tabMode5.addRow(new String[]{
+                        rs5.getString("no_rawat"),
+                        rs5.getString("pukul"),
+                        rs5.getString("oksitosin"),
+                        rs5.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("tampilOksitosin() : " + e);
+            } finally {
+                if (rs5 != null) {
+                    rs5.close();
+                }
+                if (ps5 != null) {
+                    ps5.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilObatCairan(String norw) {
+        Valid.tabelKosong(tabMode6);
+        try {
+            ps6 = koneksi.prepareStatement("select * from partograf_obat_cairan where no_rawat ='" + norw + "' order by waktu_simpan");
+            try {                
+                rs6 = ps6.executeQuery();
+                while (rs6.next()) {
+                    tabMode6.addRow(new String[]{
+                        rs6.getString("no_rawat"),
+                        rs6.getString("pukul"),
+                        rs6.getString("obat_cairan"),
+                        rs6.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("tampilObatCairan() : " + e);
+            } finally {
+                if (rs6 != null) {
+                    rs6.close();
+                }
+                if (ps6 != null) {
+                    ps6.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilNadiTD(String norw) {
+        Valid.tabelKosong(tabMode7);
+        try {
+            ps7 = koneksi.prepareStatement("select * from partograf_nadi_tensi where no_rawat ='" + norw + "' order by waktu_simpan");
+            try {                
+                rs7 = ps7.executeQuery();
+                while (rs7.next()) {
+                    tabMode7.addRow(new String[]{
+                        rs7.getString("no_rawat"),
+                        rs7.getString("pukul"),
+                        rs7.getString("nadi"),
+                        rs7.getString("sistole"),
+                        rs7.getString("distole"),
+                        rs7.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("tampilNadiTD() : " + e);
+            } finally {
+                if (rs7 != null) {
+                    rs7.close();
+                }
+                if (ps7 != null) {
+                    ps7.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilSuhu(String norw) {
+        Valid.tabelKosong(tabMode8);
+        try {
+            ps8 = koneksi.prepareStatement("select * from partograf_suhu where no_rawat ='" + norw + "' order by waktu_simpan");
+            try {                
+                rs8 = ps8.executeQuery();
+                while (rs8.next()) {
+                    tabMode8.addRow(new String[]{
+                        rs8.getString("no_rawat"),
+                        rs8.getString("pukul"),
+                        rs8.getString("suhu"),
+                        rs8.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("tampilSuhu() : " + e);
+            } finally {
+                if (rs8 != null) {
+                    rs8.close();
+                }
+                if (ps8 != null) {
+                    ps8.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilUrin(String norw) {
+        Valid.tabelKosong(tabMode9);
+        try {
+            ps9 = koneksi.prepareStatement("select * from partograf_urin where no_rawat ='" + norw + "' order by waktu_simpan");
+            try {                
+                rs9 = ps9.executeQuery();
+                while (rs9.next()) {
+                    tabMode9.addRow(new String[]{
+                        rs9.getString("no_rawat"),
+                        rs9.getString("pukul"),
+                        rs9.getString("protein"),
+                        rs9.getString("aseton"),
+                        rs9.getString("volume"),
+                        rs9.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("tampilUrin() : " + e);
+            } finally {
+                if (rs9 != null) {
+                    rs9.close();
+                }
+                if (ps9 != null) {
+                    ps9.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilPemantauanKala4(String norw) {
+        Valid.tabelKosong(tabMode10);
+        try {
+            ps10 = koneksi.prepareStatement("select * from partograf_kala_4 where no_rawat ='" + norw + "' order by waktu_simpan");
+            try {                
+                rs10 = ps10.executeQuery();
+                while (rs10.next()) {
+                    tabMode10.addRow(new String[]{
+                        rs10.getString("no_rawat"),
+                        rs10.getString("urutan"),
+                        rs10.getString("jam_ke"),
+                        rs10.getString("waktu"),
+                        rs10.getString("tekanan_darah"),
+                        rs10.getString("nadi"),
+                        rs10.getString("suhu"),
+                        rs10.getString("tinggi_fundus_uteri"),
+                        rs10.getString("kontraksi_uterus"),
+                        rs10.getString("urin_output"),
+                        rs10.getString("darah_yang_keluar"),
+                        rs10.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("tampilPemantauanKala4() : " + e);
+            } finally {
+                if (rs10 != null) {
+                    rs10.close();
+                }
+                if (ps10 != null) {
+                    ps10.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 }
