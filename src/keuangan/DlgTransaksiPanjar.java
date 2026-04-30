@@ -3005,6 +3005,8 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                 rs4 = ps4.executeQuery();
                 x = 1;
                 while (rs4.next()) {
+                    String nominalCabar = "";
+                    
                     if (judulnya.equals("LAPORAN PENERIMAAN PEMBAYARAN PANJAR SEMUA CARA BAYAR")
                             || judulnya.equals("LAPORAN PENERIMAAN PEMBAYARAN PANJAR SEMUA CARA BAYAR (" + cmbStatus1.getSelectedItem().toString().toUpperCase() + ")")) {
                         Sequel.menyimpan("temporary1", "'"
@@ -3023,7 +3025,14 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                                 + rs4.getString("bySelisih") + "','"
                                 + rs4.getString("total_bayar") + "','','','','','','','','','','','','','','','','','','','','','','',''", "Data Transaksi Panjar");
 
-                    } else if (judulnya.equals("LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + nmpnj.getText() + ")")) {
+                    } else if (judulnya.equals("LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + nmpnj.getText() + ")")
+                            || judulnya.equals("LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + cmbStatus1.getSelectedItem().toString().toUpperCase() + " - " + nmpnj.getText() + ")")) {
+                        if (kdpnj.getText().equals("U01")) {
+                            nominalCabar = rs4.getString("byReal");
+                        } else {
+                            nominalCabar = rs4.getString("bySelisih");
+                        }
+
                         Sequel.menyimpan("temporary1", "'"
                                 + x + ".','"
                                 + rs4.getString("no_panjar") + "\n" + rs4.getString("tglpanjar") + " - " + rs4.getString("jam") + " Wita','"
@@ -3035,7 +3044,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                                 + rs4.getString("nominal_balik") + "','"
                                 + rs4.getString("petugas1").replaceAll("'", "") + "','"
                                 + rs4.getString("petugas2").replaceAll("'", "") + "','"
-                                + rs4.getString("byReal") + "','"
+                                + nominalCabar + "','"
                                 + rs4.getString("total_bayar") + "','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Transaksi Panjar");
                     }
                     x++;

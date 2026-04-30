@@ -2256,7 +2256,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 RMPartografPersalinan form = new RMPartografPersalinan(null, false);
                 form.emptTeks();
                 form.isCek();
-//            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+                form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
                 form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
@@ -2423,6 +2423,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnTriasePonek.setEnabled(akses.getcppt());
         BtnObservasiKala1.setEnabled(akses.getcppt());
         BtnSamplingPemanfaatanRM.setEnabled(akses.getadmin());
+        BtnPartograf.setEnabled(akses.getcppt());
     }
     
     public void setData(String norw, String norm, String nmpasien,

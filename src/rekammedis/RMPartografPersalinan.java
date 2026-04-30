@@ -17,15 +17,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import kepegawaian.DlgCariPetugas;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -34,7 +39,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  * @author dosen
  */
 public class RMPartografPersalinan extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabMode4, tabMode5, tabMode6, tabMode7;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabMode4, tabMode5, tabMode6, tabMode7, tabMode8, tabMode9, tabMode10;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
@@ -43,7 +48,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private int i = 0;
-    private String nipBidan = "", pembukaan = "", trun_kpl = "";
+    private String nipBidan = "", pembukaan = "", trun_kpl = "", urutPantau = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -269,7 +274,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 1) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(80);
             } else if (i == 2) {
                 column.setPreferredWidth(70);
             } else if (i == 3) {
@@ -282,6 +287,109 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             } 
         }
         tbNadi.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode8 = new DefaultTableModel(null, new String[]{"no_rawat", "Jam", "Suhu", "waktu_simpan"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbSuhu.setModel(tabMode8);
+        tbSuhu.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbSuhu.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 4; i++) {
+            TableColumn column = tbSuhu.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 1) {
+                column.setPreferredWidth(80);
+            } else if (i == 2) {
+                column.setPreferredWidth(70);
+            } else if (i == 3) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } 
+        }
+        tbSuhu.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode9 = new DefaultTableModel(null, new String[]{"no_rawat", "Jam", "Protein", "Aseton", "Volume", "waktu_simpan"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbUrin.setModel(tabMode9);
+        tbUrin.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbUrin.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 6; i++) {
+            TableColumn column = tbUrin.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 1) {
+                column.setPreferredWidth(80);
+            } else if (i == 2) {
+                column.setPreferredWidth(70);
+            } else if (i == 3) {
+                column.setPreferredWidth(70);
+            } else if (i == 4) {
+                column.setPreferredWidth(80);
+            } else if (i == 5) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } 
+        }
+        tbUrin.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode10 = new DefaultTableModel(null, new String[]{"no_rawat", "urutan", "Jam Ke", "Waktu", "Tekanan Drh.", "Nadi",
+            "Suhu", "Tinggi Fundus U.", "Kontraksi Uterus", "Urin Output", "Darah Yg. Keluar", "waktu_simpan"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbPemantauan.setModel(tabMode10);
+        tbPemantauan.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbPemantauan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 12; i++) {
+            TableColumn column = tbPemantauan.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 1) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 2) {
+                column.setPreferredWidth(70);
+            } else if (i == 3) {
+                column.setPreferredWidth(80);
+            } else if (i == 4) {
+                column.setPreferredWidth(90);
+            } else if (i == 5) {
+                column.setPreferredWidth(70);
+            } else if (i == 6) {
+                column.setPreferredWidth(70);
+            } else if (i == 7) {
+                column.setPreferredWidth(100);
+            } else if (i == 8) {
+                column.setPreferredWidth(100);
+            } else if (i == 9) {
+                column.setPreferredWidth(90);
+            } else if (i == 10) {
+                column.setPreferredWidth(130);
+            } else if (i == 11) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } 
+        }
+        tbPemantauan.setDefaultRenderer(Object.class, new WarnaTable());
 
         Tgravida.setDocument(new batasInput((int) 10).getKata(Tgravida));
         Tparitas.setDocument(new batasInput((int) 10).getKata(Tparitas));
@@ -381,6 +489,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         internalFrame1 = new widget.InternalFrame();
         TabPartograf = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
         Scroll3 = new widget.ScrollPane();
         internalFrame20 = new widget.InternalFrame();
         jLabel4 = new widget.Label();
@@ -407,8 +516,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbJam1 = new widget.ComboBox();
         cmbMnt1 = new widget.ComboBox();
         cmbDtk1 = new widget.ComboBox();
-        jLabel14 = new widget.Label();
-        TkdPartograf = new widget.TextBox();
         jLabel15 = new widget.Label();
         jLabel16 = new widget.Label();
         TnadiDjj = new widget.TextBox();
@@ -418,8 +525,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbDtk2 = new widget.ComboBox();
         Scroll1 = new widget.ScrollPane();
         tbDjj = new widget.Table();
+        BtnBaruDjj = new widget.Button();
         BtnTambahDjj = new widget.Button();
-        BtnSimpanDjj = new widget.Button();
         BtnHapusDjj = new widget.Button();
         BtnGantiDjj = new widget.Button();
         jLabel18 = new widget.Label();
@@ -432,8 +539,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbDtk3 = new widget.ComboBox();
         Scroll2 = new widget.ScrollPane();
         tbAirKetuban = new widget.Table();
+        BtnBaruAKM = new widget.Button();
         BtnTambahAKM = new widget.Button();
-        BtnSimpanAKM = new widget.Button();
         BtnHapusAKM = new widget.Button();
         BtnGantiAKM = new widget.Button();
         jLabel21 = new widget.Label();
@@ -453,9 +560,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         TketServik = new widget.TextBox();
         Scroll4 = new widget.ScrollPane();
         tbServik = new widget.Table();
-        BtnTambahServik = new widget.Button();
+        BtnBaruServik = new widget.Button();
         BtnHapusServik = new widget.Button();
-        BtnSimpanServik = new widget.Button();
+        BtnTambahServik = new widget.Button();
         BtnGantiServik = new widget.Button();
         jLabel28 = new widget.Label();
         jLabel29 = new widget.Label();
@@ -471,9 +578,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel33 = new widget.Label();
         Scroll5 = new widget.ScrollPane();
         tbKontraksi = new widget.Table();
-        BtnTambahKontraksi = new widget.Button();
+        BtnBaruKontraksi = new widget.Button();
         BtnHapusKontraksi = new widget.Button();
-        BtnSimpanKontraksi = new widget.Button();
+        BtnTambahKontraksi = new widget.Button();
         BtnGantiKontraksi = new widget.Button();
         jLabel34 = new widget.Label();
         Toksitosin = new widget.TextBox();
@@ -484,9 +591,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbDtk6 = new widget.ComboBox();
         Scroll6 = new widget.ScrollPane();
         tbOksitosin = new widget.Table();
-        BtnTambahOksi = new widget.Button();
+        BtnBaruOksi = new widget.Button();
         BtnHapusOksi = new widget.Button();
-        BtnSimpanOksi = new widget.Button();
+        BtnTambahOksi = new widget.Button();
         BtnGantiOksi = new widget.Button();
         jLabel37 = new widget.Label();
         TobatCairan = new widget.TextBox();
@@ -496,9 +603,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbDtk7 = new widget.ComboBox();
         Scroll7 = new widget.ScrollPane();
         tbObat = new widget.Table();
-        BtnTambahObat = new widget.Button();
+        BtnBaruObat = new widget.Button();
         BtnHapusObat = new widget.Button();
-        BtnSimpanObat = new widget.Button();
+        BtnTambahObat = new widget.Button();
         BtnGantiObat = new widget.Button();
         jLabel38 = new widget.Label();
         Tnadi = new widget.TextBox();
@@ -513,9 +620,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbDtk8 = new widget.ComboBox();
         Scroll8 = new widget.ScrollPane();
         tbNadi = new widget.Table();
-        BtnTambahNadi = new widget.Button();
+        BtnBaruNadi = new widget.Button();
         BtnHapusNadi = new widget.Button();
-        BtnSimpanNadi = new widget.Button();
+        BtnTambahNadi = new widget.Button();
         BtnGantiNadi = new widget.Button();
         jLabel44 = new widget.Label();
         Tsuhu = new widget.TextBox();
@@ -526,9 +633,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbDtk9 = new widget.ComboBox();
         Scroll9 = new widget.ScrollPane();
         tbSuhu = new widget.Table();
-        BtnTambahSuhu = new widget.Button();
+        BtnBaruSuhu = new widget.Button();
         BtnHapusSuhu = new widget.Button();
-        BtnSimpanSuhu = new widget.Button();
+        BtnTambahSuhu = new widget.Button();
         BtnGantiSuhu = new widget.Button();
         jLabel47 = new widget.Label();
         jLabel48 = new widget.Label();
@@ -541,12 +648,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbDtk10 = new widget.ComboBox();
         Scroll10 = new widget.ScrollPane();
         tbUrin = new widget.Table();
-        BtnTambahUrin = new widget.Button();
+        BtnBaruUrin = new widget.Button();
         BtnHapusUrin = new widget.Button();
-        BtnSimpanUrin = new widget.Button();
+        BtnTambahUrin = new widget.Button();
         BtnGantiUrin = new widget.Button();
         cmbProtein = new widget.ComboBox();
         cmbAseton = new widget.ComboBox();
+        panelGlass8 = new widget.panelisi();
+        BtnSimpan = new widget.Button();
+        BtnBatal = new widget.Button();
+        BtnGanti = new widget.Button();
+        BtnHapus = new widget.Button();
+        BtnKeluar = new widget.Button();
+        panelGlass9 = new widget.panelisi();
         Scroll11 = new widget.ScrollPane();
         internalFrame21 = new widget.InternalFrame();
         jLabel52 = new widget.Label();
@@ -718,8 +832,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         TdarahYang = new widget.TextBox();
         Scroll12 = new widget.ScrollPane();
         tbPemantauan = new widget.Table();
+        BtnBaruKala4 = new widget.Button();
         BtnTambahKala4 = new widget.Button();
-        BtnSimpanKala4 = new widget.Button();
         BtnHapusKala4 = new widget.Button();
         BtnGantiKala4 = new widget.Button();
         jLabel127 = new widget.Label();
@@ -729,26 +843,36 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel129 = new widget.Label();
         ThasilKala4 = new widget.TextBox();
         BtnBidan = new widget.Button();
+        panelGlass11 = new widget.panelisi();
+        BtnSimpan1 = new widget.Button();
+        BtnBatal1 = new widget.Button();
+        BtnGanti1 = new widget.Button();
+        BtnHapus1 = new widget.Button();
+        BtnKeluar1 = new widget.Button();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbPartograf = new widget.Table();
-        jPanel3 = new javax.swing.JPanel();
-        panelGlass8 = new widget.panelisi();
-        BtnSimpan = new widget.Button();
-        BtnBatal = new widget.Button();
-        BtnGanti = new widget.Button();
-        BtnAll = new widget.Button();
-        BtnKeluar = new widget.Button();
         panelGlass10 = new widget.panelisi();
+        jLabel118 = new widget.Label();
+        DTPCari1 = new widget.Tanggal();
+        jLabel130 = new widget.Label();
+        DTPCari2 = new widget.Tanggal();
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
+        BtnAll = new widget.Button();
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
+        BtnKeluar2 = new widget.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Partograf Persalinan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
@@ -759,13 +883,18 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         TabPartograf.setName("TabPartograf"); // NOI18N
         TabPartograf.setPreferredSize(new java.awt.Dimension(0, 2000));
 
+        jPanel3.setName("jPanel3"); // NOI18N
+        jPanel3.setOpaque(false);
+        jPanel3.setPreferredSize(new java.awt.Dimension(44, 100));
+        jPanel3.setLayout(new java.awt.BorderLayout(1, 1));
+
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
         Scroll3.setPreferredSize(new java.awt.Dimension(102, 557));
 
         internalFrame20.setBorder(null);
         internalFrame20.setName("internalFrame20"); // NOI18N
-        internalFrame20.setPreferredSize(new java.awt.Dimension(900, 1556));
+        internalFrame20.setPreferredSize(new java.awt.Dimension(900, 1553));
         internalFrame20.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -864,7 +993,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel10.setBounds(0, 94, 135, 23);
 
         TtglMasuk.setEditable(false);
-        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2026" }));
+        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-04-2026" }));
         TtglMasuk.setDisplayFormat("dd-MM-yyyy");
         TtglMasuk.setName("TtglMasuk"); // NOI18N
         TtglMasuk.setOpaque(false);
@@ -962,18 +1091,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(cmbDtk1);
         cmbDtk1.setBounds(397, 122, 45, 23);
 
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Kode Partograf : ");
-        jLabel14.setName("jLabel14"); // NOI18N
-        internalFrame20.add(jLabel14);
-        jLabel14.setBounds(445, 94, 100, 23);
-
-        TkdPartograf.setEditable(false);
-        TkdPartograf.setForeground(new java.awt.Color(0, 0, 0));
-        TkdPartograf.setName("TkdPartograf"); // NOI18N
-        internalFrame20.add(TkdPartograf);
-        TkdPartograf.setBounds(546, 94, 175, 23);
-
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Denyut Jantung Janin : ");
         jLabel15.setName("jLabel15"); // NOI18N
@@ -1057,10 +1174,24 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(Scroll1);
         Scroll1.setBounds(136, 178, 320, 100);
 
+        BtnBaruDjj.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBaruDjj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaruDjj.setText("Baru");
+        BtnBaruDjj.setToolTipText("Data DJJ Baru");
+        BtnBaruDjj.setName("BtnBaruDjj"); // NOI18N
+        BtnBaruDjj.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnBaruDjj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBaruDjjActionPerformed(evt);
+            }
+        });
+        internalFrame20.add(BtnBaruDjj);
+        BtnBaruDjj.setBounds(465, 178, 90, 30);
+
         BtnTambahDjj.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambahDjj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
         BtnTambahDjj.setText("Tambah");
-        BtnTambahDjj.setToolTipText("Tambah DJJ");
+        BtnTambahDjj.setToolTipText("Tambah Data DJJ");
         BtnTambahDjj.setName("BtnTambahDjj"); // NOI18N
         BtnTambahDjj.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnTambahDjj.addActionListener(new java.awt.event.ActionListener() {
@@ -1069,21 +1200,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnTambahDjj);
-        BtnTambahDjj.setBounds(465, 178, 90, 30);
-
-        BtnSimpanDjj.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpanDjj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanDjj.setText("Simpan");
-        BtnSimpanDjj.setToolTipText("Simpan DJJ");
-        BtnSimpanDjj.setName("BtnSimpanDjj"); // NOI18N
-        BtnSimpanDjj.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnSimpanDjj.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanDjjActionPerformed(evt);
-            }
-        });
-        internalFrame20.add(BtnSimpanDjj);
-        BtnSimpanDjj.setBounds(465, 217, 90, 30);
+        BtnTambahDjj.setBounds(465, 217, 90, 30);
 
         BtnHapusDjj.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusDjj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -1196,10 +1313,24 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(Scroll2);
         Scroll2.setBounds(136, 340, 585, 110);
 
+        BtnBaruAKM.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBaruAKM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaruAKM.setText("Baru");
+        BtnBaruAKM.setToolTipText("Data Air Ketuban/Mulase Baru");
+        BtnBaruAKM.setName("BtnBaruAKM"); // NOI18N
+        BtnBaruAKM.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnBaruAKM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBaruAKMActionPerformed(evt);
+            }
+        });
+        internalFrame20.add(BtnBaruAKM);
+        BtnBaruAKM.setBounds(730, 340, 90, 30);
+
         BtnTambahAKM.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambahAKM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
         BtnTambahAKM.setText("Tambah");
-        BtnTambahAKM.setToolTipText("Tambah Air Ketuban/Mulase");
+        BtnTambahAKM.setToolTipText("Tambah Data Air Ketuban/Mulase");
         BtnTambahAKM.setName("BtnTambahAKM"); // NOI18N
         BtnTambahAKM.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnTambahAKM.addActionListener(new java.awt.event.ActionListener() {
@@ -1208,21 +1339,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnTambahAKM);
-        BtnTambahAKM.setBounds(730, 340, 90, 30);
-
-        BtnSimpanAKM.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpanAKM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanAKM.setText("Simpan");
-        BtnSimpanAKM.setToolTipText("Simpan Air Ketuban/Mulase");
-        BtnSimpanAKM.setName("BtnSimpanAKM"); // NOI18N
-        BtnSimpanAKM.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnSimpanAKM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanAKMActionPerformed(evt);
-            }
-        });
-        internalFrame20.add(BtnSimpanAKM);
-        BtnSimpanAKM.setBounds(730, 379, 90, 30);
+        BtnTambahAKM.setBounds(730, 379, 90, 30);
 
         BtnHapusAKM.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusAKM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -1399,19 +1516,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(Scroll4);
         Scroll4.setBounds(136, 539, 585, 110);
 
-        BtnTambahServik.setForeground(new java.awt.Color(0, 0, 0));
-        BtnTambahServik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambahServik.setText("Tambah");
-        BtnTambahServik.setToolTipText("Tambah Data Serviks");
-        BtnTambahServik.setName("BtnTambahServik"); // NOI18N
-        BtnTambahServik.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnTambahServik.addActionListener(new java.awt.event.ActionListener() {
+        BtnBaruServik.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBaruServik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaruServik.setText("Baru");
+        BtnBaruServik.setToolTipText("Data Pembukaan Serviks Baru");
+        BtnBaruServik.setName("BtnBaruServik"); // NOI18N
+        BtnBaruServik.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnBaruServik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTambahServikActionPerformed(evt);
+                BtnBaruServikActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnTambahServik);
-        BtnTambahServik.setBounds(730, 539, 90, 30);
+        internalFrame20.add(BtnBaruServik);
+        BtnBaruServik.setBounds(730, 539, 90, 30);
 
         BtnHapusServik.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusServik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -1427,19 +1544,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(BtnHapusServik);
         BtnHapusServik.setBounds(835, 539, 90, 30);
 
-        BtnSimpanServik.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpanServik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanServik.setText("Simpan");
-        BtnSimpanServik.setToolTipText("Simpan Data Serviks");
-        BtnSimpanServik.setName("BtnSimpanServik"); // NOI18N
-        BtnSimpanServik.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnSimpanServik.addActionListener(new java.awt.event.ActionListener() {
+        BtnTambahServik.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTambahServik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnTambahServik.setText("Tambah");
+        BtnTambahServik.setToolTipText("Tambah Data Pembukaan Serviks");
+        BtnTambahServik.setName("BtnTambahServik"); // NOI18N
+        BtnTambahServik.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnTambahServik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanServikActionPerformed(evt);
+                BtnTambahServikActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnSimpanServik);
-        BtnSimpanServik.setBounds(730, 578, 90, 30);
+        internalFrame20.add(BtnTambahServik);
+        BtnTambahServik.setBounds(730, 578, 90, 30);
 
         BtnGantiServik.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiServik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -1568,19 +1685,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(Scroll5);
         Scroll5.setBounds(136, 711, 410, 110);
 
-        BtnTambahKontraksi.setForeground(new java.awt.Color(0, 0, 0));
-        BtnTambahKontraksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambahKontraksi.setText("Tambah");
-        BtnTambahKontraksi.setToolTipText("Tambah Data Kontraksi");
-        BtnTambahKontraksi.setName("BtnTambahKontraksi"); // NOI18N
-        BtnTambahKontraksi.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnTambahKontraksi.addActionListener(new java.awt.event.ActionListener() {
+        BtnBaruKontraksi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBaruKontraksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaruKontraksi.setText("Baru");
+        BtnBaruKontraksi.setToolTipText("Data Kontraksi Baru");
+        BtnBaruKontraksi.setName("BtnBaruKontraksi"); // NOI18N
+        BtnBaruKontraksi.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnBaruKontraksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTambahKontraksiActionPerformed(evt);
+                BtnBaruKontraksiActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnTambahKontraksi);
-        BtnTambahKontraksi.setBounds(565, 711, 90, 30);
+        internalFrame20.add(BtnBaruKontraksi);
+        BtnBaruKontraksi.setBounds(565, 711, 90, 30);
 
         BtnHapusKontraksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusKontraksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -1596,19 +1713,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(BtnHapusKontraksi);
         BtnHapusKontraksi.setBounds(670, 711, 90, 30);
 
-        BtnSimpanKontraksi.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpanKontraksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanKontraksi.setText("Simpan");
-        BtnSimpanKontraksi.setToolTipText("Simpan Data Kontraksi");
-        BtnSimpanKontraksi.setName("BtnSimpanKontraksi"); // NOI18N
-        BtnSimpanKontraksi.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnSimpanKontraksi.addActionListener(new java.awt.event.ActionListener() {
+        BtnTambahKontraksi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTambahKontraksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnTambahKontraksi.setText("Tambah");
+        BtnTambahKontraksi.setToolTipText("Tambah Data Kontraksi");
+        BtnTambahKontraksi.setName("BtnTambahKontraksi"); // NOI18N
+        BtnTambahKontraksi.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnTambahKontraksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanKontraksiActionPerformed(evt);
+                BtnTambahKontraksiActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnSimpanKontraksi);
-        BtnSimpanKontraksi.setBounds(565, 750, 90, 30);
+        internalFrame20.add(BtnTambahKontraksi);
+        BtnTambahKontraksi.setBounds(565, 750, 90, 30);
 
         BtnGantiKontraksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiKontraksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -1707,19 +1824,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(Scroll6);
         Scroll6.setBounds(136, 855, 320, 100);
 
-        BtnTambahOksi.setForeground(new java.awt.Color(0, 0, 0));
-        BtnTambahOksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambahOksi.setText("Tambah");
-        BtnTambahOksi.setToolTipText("Tambah Oksitosin");
-        BtnTambahOksi.setName("BtnTambahOksi"); // NOI18N
-        BtnTambahOksi.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnTambahOksi.addActionListener(new java.awt.event.ActionListener() {
+        BtnBaruOksi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBaruOksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaruOksi.setText("Baru");
+        BtnBaruOksi.setToolTipText("Data Oksitosin Baru");
+        BtnBaruOksi.setName("BtnBaruOksi"); // NOI18N
+        BtnBaruOksi.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnBaruOksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTambahOksiActionPerformed(evt);
+                BtnBaruOksiActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnTambahOksi);
-        BtnTambahOksi.setBounds(465, 855, 90, 30);
+        internalFrame20.add(BtnBaruOksi);
+        BtnBaruOksi.setBounds(465, 855, 90, 30);
 
         BtnHapusOksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusOksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -1735,19 +1852,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(BtnHapusOksi);
         BtnHapusOksi.setBounds(570, 855, 90, 30);
 
-        BtnSimpanOksi.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpanOksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanOksi.setText("Simpan");
-        BtnSimpanOksi.setToolTipText("Simpan Oksitosin");
-        BtnSimpanOksi.setName("BtnSimpanOksi"); // NOI18N
-        BtnSimpanOksi.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnSimpanOksi.addActionListener(new java.awt.event.ActionListener() {
+        BtnTambahOksi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTambahOksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnTambahOksi.setText("Tambah");
+        BtnTambahOksi.setToolTipText("Tambah Data Oksitosin");
+        BtnTambahOksi.setName("BtnTambahOksi"); // NOI18N
+        BtnTambahOksi.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnTambahOksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanOksiActionPerformed(evt);
+                BtnTambahOksiActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnSimpanOksi);
-        BtnSimpanOksi.setBounds(465, 894, 90, 30);
+        internalFrame20.add(BtnTambahOksi);
+        BtnTambahOksi.setBounds(465, 894, 90, 30);
 
         BtnGantiOksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiOksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -1839,19 +1956,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(Scroll7);
         Scroll7.setBounds(136, 989, 410, 100);
 
-        BtnTambahObat.setForeground(new java.awt.Color(0, 0, 0));
-        BtnTambahObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambahObat.setText("Tambah");
-        BtnTambahObat.setToolTipText("Tambah Obat & Cairan");
-        BtnTambahObat.setName("BtnTambahObat"); // NOI18N
-        BtnTambahObat.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnTambahObat.addActionListener(new java.awt.event.ActionListener() {
+        BtnBaruObat.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBaruObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaruObat.setText("Baru");
+        BtnBaruObat.setToolTipText("Data Obat & Cairan Baru");
+        BtnBaruObat.setName("BtnBaruObat"); // NOI18N
+        BtnBaruObat.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnBaruObat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTambahObatActionPerformed(evt);
+                BtnBaruObatActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnTambahObat);
-        BtnTambahObat.setBounds(565, 989, 90, 30);
+        internalFrame20.add(BtnBaruObat);
+        BtnBaruObat.setBounds(565, 989, 90, 30);
 
         BtnHapusObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -1867,19 +1984,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(BtnHapusObat);
         BtnHapusObat.setBounds(670, 989, 90, 30);
 
-        BtnSimpanObat.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpanObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanObat.setText("Simpan");
-        BtnSimpanObat.setToolTipText("Simpan Obat & Cairan");
-        BtnSimpanObat.setName("BtnSimpanObat"); // NOI18N
-        BtnSimpanObat.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnSimpanObat.addActionListener(new java.awt.event.ActionListener() {
+        BtnTambahObat.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTambahObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnTambahObat.setText("Tambah");
+        BtnTambahObat.setToolTipText("Tambah Data Obat & Cairan");
+        BtnTambahObat.setName("BtnTambahObat"); // NOI18N
+        BtnTambahObat.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnTambahObat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanObatActionPerformed(evt);
+                BtnTambahObatActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnSimpanObat);
-        BtnSimpanObat.setBounds(565, 1028, 90, 30);
+        internalFrame20.add(BtnTambahObat);
+        BtnTambahObat.setBounds(565, 1028, 90, 30);
 
         BtnGantiObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -2013,19 +2130,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(Scroll8);
         Scroll8.setBounds(136, 1123, 410, 110);
 
-        BtnTambahNadi.setForeground(new java.awt.Color(0, 0, 0));
-        BtnTambahNadi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambahNadi.setText("Tambah");
-        BtnTambahNadi.setToolTipText("Tambah Data Nadi Tensi");
-        BtnTambahNadi.setName("BtnTambahNadi"); // NOI18N
-        BtnTambahNadi.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnTambahNadi.addActionListener(new java.awt.event.ActionListener() {
+        BtnBaruNadi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBaruNadi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaruNadi.setText("Baru");
+        BtnBaruNadi.setToolTipText("Data Nadi Tensi Baru");
+        BtnBaruNadi.setName("BtnBaruNadi"); // NOI18N
+        BtnBaruNadi.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnBaruNadi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTambahNadiActionPerformed(evt);
+                BtnBaruNadiActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnTambahNadi);
-        BtnTambahNadi.setBounds(565, 1123, 90, 30);
+        internalFrame20.add(BtnBaruNadi);
+        BtnBaruNadi.setBounds(565, 1123, 90, 30);
 
         BtnHapusNadi.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusNadi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -2041,19 +2158,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(BtnHapusNadi);
         BtnHapusNadi.setBounds(670, 1123, 90, 30);
 
-        BtnSimpanNadi.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpanNadi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanNadi.setText("Simpan");
-        BtnSimpanNadi.setToolTipText("Simpan Data Nadi Tensi");
-        BtnSimpanNadi.setName("BtnSimpanNadi"); // NOI18N
-        BtnSimpanNadi.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnSimpanNadi.addActionListener(new java.awt.event.ActionListener() {
+        BtnTambahNadi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTambahNadi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnTambahNadi.setText("Tambah");
+        BtnTambahNadi.setToolTipText("Tambah Data Nadi Tensi");
+        BtnTambahNadi.setName("BtnTambahNadi"); // NOI18N
+        BtnTambahNadi.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnTambahNadi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanNadiActionPerformed(evt);
+                BtnTambahNadiActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnSimpanNadi);
-        BtnSimpanNadi.setBounds(565, 1162, 90, 30);
+        internalFrame20.add(BtnTambahNadi);
+        BtnTambahNadi.setBounds(565, 1162, 90, 30);
 
         BtnGantiNadi.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiNadi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -2152,19 +2269,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(Scroll9);
         Scroll9.setBounds(136, 1266, 320, 100);
 
-        BtnTambahSuhu.setForeground(new java.awt.Color(0, 0, 0));
-        BtnTambahSuhu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambahSuhu.setText("Tambah");
-        BtnTambahSuhu.setToolTipText("Tambah Data Suhu");
-        BtnTambahSuhu.setName("BtnTambahSuhu"); // NOI18N
-        BtnTambahSuhu.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnTambahSuhu.addActionListener(new java.awt.event.ActionListener() {
+        BtnBaruSuhu.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBaruSuhu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaruSuhu.setText("Baru");
+        BtnBaruSuhu.setToolTipText("Data Suhu Baru");
+        BtnBaruSuhu.setName("BtnBaruSuhu"); // NOI18N
+        BtnBaruSuhu.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnBaruSuhu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTambahSuhuActionPerformed(evt);
+                BtnBaruSuhuActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnTambahSuhu);
-        BtnTambahSuhu.setBounds(465, 1266, 90, 30);
+        internalFrame20.add(BtnBaruSuhu);
+        BtnBaruSuhu.setBounds(465, 1266, 90, 30);
 
         BtnHapusSuhu.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusSuhu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -2180,19 +2297,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(BtnHapusSuhu);
         BtnHapusSuhu.setBounds(570, 1266, 90, 30);
 
-        BtnSimpanSuhu.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpanSuhu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanSuhu.setText("Simpan");
-        BtnSimpanSuhu.setToolTipText("Simpan Data Suhu");
-        BtnSimpanSuhu.setName("BtnSimpanSuhu"); // NOI18N
-        BtnSimpanSuhu.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnSimpanSuhu.addActionListener(new java.awt.event.ActionListener() {
+        BtnTambahSuhu.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTambahSuhu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnTambahSuhu.setText("Tambah");
+        BtnTambahSuhu.setToolTipText("Tambah Data Suhu");
+        BtnTambahSuhu.setName("BtnTambahSuhu"); // NOI18N
+        BtnTambahSuhu.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnTambahSuhu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanSuhuActionPerformed(evt);
+                BtnTambahSuhuActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnSimpanSuhu);
-        BtnSimpanSuhu.setBounds(465, 1305, 90, 30);
+        internalFrame20.add(BtnTambahSuhu);
+        BtnTambahSuhu.setBounds(465, 1305, 90, 30);
 
         BtnGantiSuhu.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiSuhu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -2301,21 +2418,21 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         Scroll10.setViewportView(tbUrin);
 
         internalFrame20.add(Scroll10);
-        Scroll10.setBounds(136, 1428, 585, 110);
+        Scroll10.setBounds(136, 1428, 320, 110);
 
-        BtnTambahUrin.setForeground(new java.awt.Color(0, 0, 0));
-        BtnTambahUrin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambahUrin.setText("Tambah");
-        BtnTambahUrin.setToolTipText("Tambah Data Urin");
-        BtnTambahUrin.setName("BtnTambahUrin"); // NOI18N
-        BtnTambahUrin.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnTambahUrin.addActionListener(new java.awt.event.ActionListener() {
+        BtnBaruUrin.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBaruUrin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaruUrin.setText("Baru");
+        BtnBaruUrin.setToolTipText("Data Urin Baru");
+        BtnBaruUrin.setName("BtnBaruUrin"); // NOI18N
+        BtnBaruUrin.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnBaruUrin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTambahUrinActionPerformed(evt);
+                BtnBaruUrinActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnTambahUrin);
-        BtnTambahUrin.setBounds(730, 1428, 90, 30);
+        internalFrame20.add(BtnBaruUrin);
+        BtnBaruUrin.setBounds(465, 1428, 90, 30);
 
         BtnHapusUrin.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusUrin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -2329,21 +2446,21 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnHapusUrin);
-        BtnHapusUrin.setBounds(835, 1428, 90, 30);
+        BtnHapusUrin.setBounds(570, 1428, 90, 30);
 
-        BtnSimpanUrin.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpanUrin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanUrin.setText("Simpan");
-        BtnSimpanUrin.setToolTipText("Simpan Data Urin");
-        BtnSimpanUrin.setName("BtnSimpanUrin"); // NOI18N
-        BtnSimpanUrin.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnSimpanUrin.addActionListener(new java.awt.event.ActionListener() {
+        BtnTambahUrin.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTambahUrin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
+        BtnTambahUrin.setText("Tambah");
+        BtnTambahUrin.setToolTipText("Tambah Data Urin");
+        BtnTambahUrin.setName("BtnTambahUrin"); // NOI18N
+        BtnTambahUrin.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnTambahUrin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanUrinActionPerformed(evt);
+                BtnTambahUrinActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnSimpanUrin);
-        BtnSimpanUrin.setBounds(730, 1467, 90, 30);
+        internalFrame20.add(BtnTambahUrin);
+        BtnTambahUrin.setBounds(465, 1467, 90, 30);
 
         BtnGantiUrin.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiUrin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -2357,7 +2474,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnGantiUrin);
-        BtnGantiUrin.setBounds(835, 1467, 90, 30);
+        BtnGantiUrin.setBounds(570, 1467, 90, 30);
 
         cmbProtein.setForeground(new java.awt.Color(0, 0, 0));
         cmbProtein.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "-", "+", "++", "+++" }));
@@ -2373,7 +2490,108 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         Scroll3.setViewportView(internalFrame20);
 
-        TabPartograf.addTab("Input Partograf", Scroll3);
+        jPanel3.add(Scroll3, java.awt.BorderLayout.CENTER);
+
+        panelGlass8.setName("panelGlass8"); // NOI18N
+        panelGlass8.setPreferredSize(new java.awt.Dimension(55, 55));
+        panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
+        BtnSimpan.setText("Simpan");
+        BtnSimpan.setToolTipText("Alt+S");
+        BtnSimpan.setName("BtnSimpan"); // NOI18N
+        BtnSimpan.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpanActionPerformed(evt);
+            }
+        });
+        BtnSimpan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnSimpanKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnSimpan);
+
+        BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
+        BtnBatal.setText("Baru");
+        BtnBatal.setToolTipText("Alt+B");
+        BtnBatal.setName("BtnBatal"); // NOI18N
+        BtnBatal.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnBatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBatalActionPerformed(evt);
+            }
+        });
+        BtnBatal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnBatalKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnBatal);
+
+        BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGanti.setMnemonic('G');
+        BtnGanti.setText("Ganti");
+        BtnGanti.setToolTipText("Alt+G");
+        BtnGanti.setName("BtnGanti"); // NOI18N
+        BtnGanti.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnGanti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGantiActionPerformed(evt);
+            }
+        });
+        BtnGanti.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnGantiKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnGanti);
+
+        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        BtnHapus.setText("Hapus");
+        BtnHapus.setToolTipText("Hapus Air Ketuban/Mulase");
+        BtnHapus.setName("BtnHapus"); // NOI18N
+        BtnHapus.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnHapus);
+
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
+        BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
+        BtnKeluar.setText("Keluar");
+        BtnKeluar.setToolTipText("Alt+K");
+        BtnKeluar.setName("BtnKeluar"); // NOI18N
+        BtnKeluar.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKeluarActionPerformed(evt);
+            }
+        });
+        BtnKeluar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnKeluarKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnKeluar);
+
+        jPanel3.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
+
+        TabPartograf.addTab("Input Partograf", jPanel3);
+
+        panelGlass9.setName("panelGlass9"); // NOI18N
+        panelGlass9.setPreferredSize(new java.awt.Dimension(55, 55));
+        panelGlass9.setLayout(new java.awt.BorderLayout());
 
         Scroll11.setName("Scroll11"); // NOI18N
         Scroll11.setOpaque(true);
@@ -2381,7 +2599,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         internalFrame21.setBorder(null);
         internalFrame21.setName("internalFrame21"); // NOI18N
-        internalFrame21.setPreferredSize(new java.awt.Dimension(900, 1556));
+        internalFrame21.setPreferredSize(new java.awt.Dimension(900, 1552));
         internalFrame21.setLayout(null);
 
         jLabel52.setForeground(new java.awt.Color(0, 0, 0));
@@ -2398,7 +2616,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel53.setBounds(0, 38, 175, 23);
 
         TtglCatatan.setEditable(false);
-        TtglCatatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-04-2026" }));
+        TtglCatatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-04-2026" }));
         TtglCatatan.setDisplayFormat("dd-MM-yyyy");
         TtglCatatan.setName("TtglCatatan"); // NOI18N
         TtglCatatan.setOpaque(false);
@@ -3839,6 +4057,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         Scroll12.setName("Scroll12"); // NOI18N
         Scroll12.setOpaque(true);
 
+        tbPemantauan.setAutoCreateRowSorter(true);
         tbPemantauan.setName("tbPemantauan"); // NOI18N
         tbPemantauan.getTableHeader().setReorderingAllowed(false);
         tbPemantauan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -3856,10 +4075,24 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame21.add(Scroll12);
         Scroll12.setBounds(71, 1025, 970, 160);
 
+        BtnBaruKala4.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBaruKala4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaruKala4.setText("Baru");
+        BtnBaruKala4.setToolTipText("Data Pemantauan Persalinan Kala 4 Baru");
+        BtnBaruKala4.setName("BtnBaruKala4"); // NOI18N
+        BtnBaruKala4.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnBaruKala4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBaruKala4ActionPerformed(evt);
+            }
+        });
+        internalFrame21.add(BtnBaruKala4);
+        BtnBaruKala4.setBounds(1050, 1025, 90, 30);
+
         BtnTambahKala4.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambahKala4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
         BtnTambahKala4.setText("Tambah");
-        BtnTambahKala4.setToolTipText("Tambah DJJ");
+        BtnTambahKala4.setToolTipText("Tambah Data Pemantauan Persalinan Kala 4");
         BtnTambahKala4.setName("BtnTambahKala4"); // NOI18N
         BtnTambahKala4.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnTambahKala4.addActionListener(new java.awt.event.ActionListener() {
@@ -3868,26 +4101,12 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame21.add(BtnTambahKala4);
-        BtnTambahKala4.setBounds(1050, 1025, 90, 30);
-
-        BtnSimpanKala4.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpanKala4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanKala4.setText("Simpan");
-        BtnSimpanKala4.setToolTipText("Simpan DJJ");
-        BtnSimpanKala4.setName("BtnSimpanKala4"); // NOI18N
-        BtnSimpanKala4.setPreferredSize(new java.awt.Dimension(130, 30));
-        BtnSimpanKala4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanKala4ActionPerformed(evt);
-            }
-        });
-        internalFrame21.add(BtnSimpanKala4);
-        BtnSimpanKala4.setBounds(1050, 1065, 90, 30);
+        BtnTambahKala4.setBounds(1050, 1065, 90, 30);
 
         BtnHapusKala4.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusKala4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
         BtnHapusKala4.setText("Hapus");
-        BtnHapusKala4.setToolTipText("Hapus DJJ");
+        BtnHapusKala4.setToolTipText("Hapus Pemantauan Persalinan Kala 4");
         BtnHapusKala4.setName("BtnHapusKala4"); // NOI18N
         BtnHapusKala4.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnHapusKala4.addActionListener(new java.awt.event.ActionListener() {
@@ -3901,7 +4120,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         BtnGantiKala4.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiKala4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
         BtnGantiKala4.setText("Ganti");
-        BtnGantiKala4.setToolTipText("Ganti DJJ");
+        BtnGantiKala4.setToolTipText("Ganti Pemantauan Persalinan Kala 4");
         BtnGantiKala4.setName("BtnGantiKala4"); // NOI18N
         BtnGantiKala4.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnGantiKala4.addActionListener(new java.awt.event.ActionListener() {
@@ -3970,7 +4189,94 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         Scroll11.setViewportView(internalFrame21);
 
-        TabPartograf.addTab("Catatan Persalinan", Scroll11);
+        panelGlass9.add(Scroll11, java.awt.BorderLayout.CENTER);
+
+        panelGlass11.setName("panelGlass11"); // NOI18N
+        panelGlass11.setPreferredSize(new java.awt.Dimension(55, 55));
+        panelGlass11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan1.setMnemonic('S');
+        BtnSimpan1.setText("Simpan");
+        BtnSimpan1.setToolTipText("Alt+S");
+        BtnSimpan1.setName("BtnSimpan1"); // NOI18N
+        BtnSimpan1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnSimpan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpan1ActionPerformed(evt);
+            }
+        });
+        BtnSimpan1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnSimpan1KeyPressed(evt);
+            }
+        });
+        panelGlass11.add(BtnSimpan1);
+
+        BtnBatal1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBatal1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal1.setMnemonic('B');
+        BtnBatal1.setText("Baru");
+        BtnBatal1.setToolTipText("Alt+B");
+        BtnBatal1.setName("BtnBatal1"); // NOI18N
+        BtnBatal1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnBatal1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBatal1ActionPerformed(evt);
+            }
+        });
+        panelGlass11.add(BtnBatal1);
+
+        BtnGanti1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGanti1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGanti1.setMnemonic('G');
+        BtnGanti1.setText("Ganti");
+        BtnGanti1.setToolTipText("Alt+G");
+        BtnGanti1.setName("BtnGanti1"); // NOI18N
+        BtnGanti1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnGanti1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGanti1ActionPerformed(evt);
+            }
+        });
+        BtnGanti1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnGanti1KeyPressed(evt);
+            }
+        });
+        panelGlass11.add(BtnGanti1);
+
+        BtnHapus1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        BtnHapus1.setText("Hapus");
+        BtnHapus1.setToolTipText("Hapus Air Ketuban/Mulase");
+        BtnHapus1.setName("BtnHapus1"); // NOI18N
+        BtnHapus1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnHapus1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapus1ActionPerformed(evt);
+            }
+        });
+        panelGlass11.add(BtnHapus1);
+
+        BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar1.setMnemonic('K');
+        BtnKeluar1.setText("Keluar");
+        BtnKeluar1.setToolTipText("Alt+K");
+        BtnKeluar1.setName("BtnKeluar1"); // NOI18N
+        BtnKeluar1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKeluar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKeluar1ActionPerformed(evt);
+            }
+        });
+        panelGlass11.add(BtnKeluar1);
+
+        panelGlass9.add(panelGlass11, java.awt.BorderLayout.PAGE_END);
+
+        TabPartograf.addTab("Catatan Persalinan", panelGlass9);
 
         internalFrame2.setBorder(null);
         internalFrame2.setName("internalFrame2"); // NOI18N
@@ -3995,119 +4301,38 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         internalFrame2.add(Scroll, java.awt.BorderLayout.CENTER);
 
-        TabPartograf.addTab("Data Partograf", internalFrame2);
-
-        internalFrame1.add(TabPartograf, java.awt.BorderLayout.CENTER);
-
-        jPanel3.setName("jPanel3"); // NOI18N
-        jPanel3.setOpaque(false);
-        jPanel3.setPreferredSize(new java.awt.Dimension(44, 100));
-        jPanel3.setLayout(new java.awt.BorderLayout(1, 1));
-
-        panelGlass8.setName("panelGlass8"); // NOI18N
-        panelGlass8.setPreferredSize(new java.awt.Dimension(55, 55));
-        panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
-
-        BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
-        BtnSimpan.setText("Simpan");
-        BtnSimpan.setToolTipText("Alt+S");
-        BtnSimpan.setName("BtnSimpan"); // NOI18N
-        BtnSimpan.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnSimpan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanActionPerformed(evt);
-            }
-        });
-        BtnSimpan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnSimpanKeyPressed(evt);
-            }
-        });
-        panelGlass8.add(BtnSimpan);
-
-        BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
-        BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
-        BtnBatal.setText("Baru");
-        BtnBatal.setToolTipText("Alt+B");
-        BtnBatal.setName("BtnBatal"); // NOI18N
-        BtnBatal.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnBatal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBatalActionPerformed(evt);
-            }
-        });
-        BtnBatal.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnBatalKeyPressed(evt);
-            }
-        });
-        panelGlass8.add(BtnBatal);
-
-        BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
-        BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
-        BtnGanti.setText("Ganti");
-        BtnGanti.setToolTipText("Alt+G");
-        BtnGanti.setName("BtnGanti"); // NOI18N
-        BtnGanti.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnGanti.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGantiActionPerformed(evt);
-            }
-        });
-        BtnGanti.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnGantiKeyPressed(evt);
-            }
-        });
-        panelGlass8.add(BtnGanti);
-
-        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
-        BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
-        BtnAll.setText("Semua");
-        BtnAll.setToolTipText("Alt+M");
-        BtnAll.setName("BtnAll"); // NOI18N
-        BtnAll.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAllActionPerformed(evt);
-            }
-        });
-        BtnAll.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnAllKeyPressed(evt);
-            }
-        });
-        panelGlass8.add(BtnAll);
-
-        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
-        BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
-        BtnKeluar.setText("Keluar");
-        BtnKeluar.setToolTipText("Alt+K");
-        BtnKeluar.setName("BtnKeluar"); // NOI18N
-        BtnKeluar.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnKeluar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKeluarActionPerformed(evt);
-            }
-        });
-        BtnKeluar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnKeluarKeyPressed(evt);
-            }
-        });
-        panelGlass8.add(BtnKeluar);
-
-        jPanel3.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
-
         panelGlass10.setName("panelGlass10"); // NOI18N
-        panelGlass10.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass10.setPreferredSize(new java.awt.Dimension(44, 55));
         panelGlass10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        jLabel118.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel118.setText("Tgl. Partograf :");
+        jLabel118.setName("jLabel118"); // NOI18N
+        jLabel118.setPreferredSize(new java.awt.Dimension(100, 23));
+        panelGlass10.add(jLabel118);
+
+        DTPCari1.setEditable(false);
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-04-2026" }));
+        DTPCari1.setDisplayFormat("dd-MM-yyyy");
+        DTPCari1.setName("DTPCari1"); // NOI18N
+        DTPCari1.setOpaque(false);
+        DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelGlass10.add(DTPCari1);
+
+        jLabel130.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel130.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel130.setText("s.d.");
+        jLabel130.setName("jLabel130"); // NOI18N
+        jLabel130.setPreferredSize(new java.awt.Dimension(23, 23));
+        panelGlass10.add(jLabel130);
+
+        DTPCari2.setEditable(false);
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-04-2026" }));
+        DTPCari2.setDisplayFormat("dd-MM-yyyy");
+        DTPCari2.setName("DTPCari2"); // NOI18N
+        DTPCari2.setOpaque(false);
+        DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelGlass10.add(DTPCari2);
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Key Word :");
@@ -4130,7 +4355,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
-        BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCariActionPerformed(evt);
@@ -4142,6 +4367,25 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(BtnCari);
+
+        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
+        BtnAll.setText("Semua Data");
+        BtnAll.setToolTipText("Alt+M");
+        BtnAll.setName("BtnAll"); // NOI18N
+        BtnAll.setPreferredSize(new java.awt.Dimension(120, 30));
+        BtnAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAllActionPerformed(evt);
+            }
+        });
+        BtnAll.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnAllKeyPressed(evt);
+            }
+        });
+        panelGlass10.add(BtnAll);
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Record :");
@@ -4156,9 +4400,25 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         LCount.setPreferredSize(new java.awt.Dimension(50, 23));
         panelGlass10.add(LCount);
 
-        jPanel3.add(panelGlass10, java.awt.BorderLayout.CENTER);
+        BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar2.setMnemonic('K');
+        BtnKeluar2.setText("Keluar");
+        BtnKeluar2.setToolTipText("Alt+K");
+        BtnKeluar2.setName("BtnKeluar2"); // NOI18N
+        BtnKeluar2.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKeluar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKeluar2ActionPerformed(evt);
+            }
+        });
+        panelGlass10.add(BtnKeluar2);
 
-        internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
+        internalFrame2.add(panelGlass10, java.awt.BorderLayout.PAGE_END);
+
+        TabPartograf.addTab("Data Partograf", internalFrame2);
+
+        internalFrame1.add(TabPartograf, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
@@ -4187,6 +4447,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        TabPartograf.setSelectedIndex(0);
         tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
@@ -4216,9 +4477,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiActionPerformed
 
     private void BtnGantiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGantiKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnGantiActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, BtnBatal, BtnKeluar);
         }
 }//GEN-LAST:event_BtnGantiKeyPressed
@@ -4228,9 +4489,11 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             dispose();
-        }else{Valid.pindah(evt,BtnBatal,TCari);}
+        } else {
+            Valid.pindah(evt, BtnBatal, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
@@ -4332,20 +4595,23 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbDjjKeyPressed
 
-    private void BtnTambahDjjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahDjjActionPerformed
+    private void BtnBaruDjjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruDjjActionPerformed
         emptTeksDJJ();
-    }//GEN-LAST:event_BtnTambahDjjActionPerformed
+    }//GEN-LAST:event_BtnBaruDjjActionPerformed
 
-    private void BtnSimpanDjjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanDjjActionPerformed
+    private void BtnTambahDjjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahDjjActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
+        } else if (TnadiDjj.getText().equals("")) {
+            Valid.textKosong(TnadiDjj, "Nadi");
+            TnadiDjj.requestFocus();
         } else {
             tabMode1.addRow(new String[]{TNoRw.getText(), TnadiDjj.getText(),
                 cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), Sequel.cariIsi("select now()")
             });
-            BtnTambahDjjActionPerformed(null);
+            BtnBaruDjjActionPerformed(null);
         }
-    }//GEN-LAST:event_BtnSimpanDjjActionPerformed
+    }//GEN-LAST:event_BtnTambahDjjActionPerformed
 
     private void BtnHapusDjjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusDjjActionPerformed
         if (tbDjj.getRowCount() == 0) {
@@ -4353,7 +4619,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         } else {
             if (tbDjj.getSelectedRow() > -1) {
                 tabMode1.removeRow(tbDjj.getSelectedRow());
-                BtnTambahDjjActionPerformed(null);
+                BtnBaruDjjActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel denyut jantung janin..!!");
                 tbDjj.requestFocus();
@@ -4368,13 +4634,16 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             if (tbDjj.getSelectedRow() > -1) {
                 if (TNoRw.getText().equals("")) {
                     Valid.textKosong(TNoRw, "Nama Pasien");
+                } else if (TnadiDjj.getText().equals("")) {
+                    Valid.textKosong(TnadiDjj, "Nadi");
+                    TnadiDjj.requestFocus();
                 } else {
                     tabMode1.addRow(new String[]{TNoRw.getText(), TnadiDjj.getText(),
                         cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), Sequel.cariIsi("select now()")
                     });
 
                     tabMode1.removeRow(tbDjj.getSelectedRow());
-                    BtnTambahDjjActionPerformed(null);
+                    BtnBaruDjjActionPerformed(null);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel denyut jantung janin..!!");
@@ -4427,20 +4696,20 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbAirKetubanKeyPressed
 
-    private void BtnTambahAKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahAKMActionPerformed
+    private void BtnBaruAKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruAKMActionPerformed
         emptTeksAirKetuban();
-    }//GEN-LAST:event_BtnTambahAKMActionPerformed
+    }//GEN-LAST:event_BtnBaruAKMActionPerformed
 
-    private void BtnSimpanAKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanAKMActionPerformed
+    private void BtnTambahAKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahAKMActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else {
             tabMode2.addRow(new String[]{TNoRw.getText(), cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem(),
                 cmbAirKetuban.getSelectedItem().toString(), cmbMulase.getSelectedItem().toString(), Sequel.cariIsi("select now()")
             });
-            BtnTambahAKMActionPerformed(null);
+            BtnBaruAKMActionPerformed(null);
         }
-    }//GEN-LAST:event_BtnSimpanAKMActionPerformed
+    }//GEN-LAST:event_BtnTambahAKMActionPerformed
 
     private void BtnHapusAKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusAKMActionPerformed
         if (tbAirKetuban.getRowCount() == 0) {
@@ -4448,7 +4717,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         } else {
             if (tbAirKetuban.getSelectedRow() > -1) {
                 tabMode2.removeRow(tbAirKetuban.getSelectedRow());
-                BtnTambahAKMActionPerformed(null);
+                BtnBaruAKMActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel air ketuban (mulase)..!!");
                 tbAirKetuban.requestFocus();
@@ -4469,7 +4738,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                     });
 
                     tabMode2.removeRow(tbAirKetuban.getSelectedRow());
-                    BtnTambahAKMActionPerformed(null);
+                    BtnBaruAKMActionPerformed(null);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel air ketuban (mulase)..!!");
@@ -4498,9 +4767,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbServikKeyPressed
 
-    private void BtnTambahServikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahServikActionPerformed
+    private void BtnBaruServikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruServikActionPerformed
         emptTeksServik();
-    }//GEN-LAST:event_BtnTambahServikActionPerformed
+    }//GEN-LAST:event_BtnBaruServikActionPerformed
 
     private void BtnHapusServikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusServikActionPerformed
         if (tbServik.getRowCount() == 0) {
@@ -4508,7 +4777,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         } else {
             if (tbServik.getSelectedRow() > -1) {
                 tabMode3.removeRow(tbServik.getSelectedRow());
-                BtnTambahServikActionPerformed(null);
+                BtnBaruServikActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel pembukaan serviks..!!");
                 tbServik.requestFocus();
@@ -4516,7 +4785,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnHapusServikActionPerformed
 
-    private void BtnSimpanServikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanServikActionPerformed
+    private void BtnTambahServikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahServikActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else {
@@ -4536,9 +4805,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                 cmbJam4.getSelectedItem() + ":" + cmbMnt4.getSelectedItem() + ":" + cmbDtk4.getSelectedItem(),
                 cmbCm.getSelectedItem().toString(), pembukaan, trun_kpl, TketServik.getText(), Sequel.cariIsi("select now()")
             });
-            BtnTambahServikActionPerformed(null);
+            BtnBaruServikActionPerformed(null);
         }
-    }//GEN-LAST:event_BtnSimpanServikActionPerformed
+    }//GEN-LAST:event_BtnTambahServikActionPerformed
 
     private void BtnGantiServikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiServikActionPerformed
         if (tbServik.getRowCount() == 0) {
@@ -4566,7 +4835,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                     });
 
                     tabMode3.removeRow(tbServik.getSelectedRow());
-                    BtnTambahServikActionPerformed(null);
+                    BtnBaruServikActionPerformed(null);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel pembukaan serviks..!!");
@@ -4589,7 +4858,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
     private void TlamanyaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlamanyaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnSimpanKontraksi.requestFocus();
+            BtnTambahKontraksi.requestFocus();
         }
     }//GEN-LAST:event_TlamanyaKeyPressed
 
@@ -4601,9 +4870,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbKontraksiKeyPressed
 
-    private void BtnTambahKontraksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahKontraksiActionPerformed
+    private void BtnBaruKontraksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruKontraksiActionPerformed
         emptTeksKontaksi();
-    }//GEN-LAST:event_BtnTambahKontraksiActionPerformed
+    }//GEN-LAST:event_BtnBaruKontraksiActionPerformed
 
     private void BtnHapusKontraksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusKontraksiActionPerformed
         if (tbKontraksi.getRowCount() == 0) {
@@ -4611,7 +4880,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         } else {
             if (tbKontraksi.getSelectedRow() > -1) {
                 tabMode4.removeRow(tbKontraksi.getSelectedRow());
-                BtnTambahKontraksiActionPerformed(null);
+                BtnBaruKontraksiActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel kontraksi tiap 10 menit..!!");
                 tbKontraksi.requestFocus();
@@ -4619,16 +4888,16 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnHapusKontraksiActionPerformed
 
-    private void BtnSimpanKontraksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanKontraksiActionPerformed
+    private void BtnTambahKontraksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahKontraksiActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else {
             tabMode4.addRow(new String[]{TNoRw.getText(), cmbJam5.getSelectedItem() + ":" + cmbMnt5.getSelectedItem() + ":" + cmbDtk5.getSelectedItem(),
                 cmbLajur.getSelectedItem().toString(), cmbDetik.getSelectedItem().toString(), Tlamanya.getText(), Sequel.cariIsi("select now()")
             });
-            BtnTambahKontraksiActionPerformed(null);
+            BtnBaruKontraksiActionPerformed(null);
         }
-    }//GEN-LAST:event_BtnSimpanKontraksiActionPerformed
+    }//GEN-LAST:event_BtnTambahKontraksiActionPerformed
 
     private void BtnGantiKontraksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiKontraksiActionPerformed
         if (tbKontraksi.getRowCount() == 0) {
@@ -4643,7 +4912,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                     });
 
                     tabMode4.removeRow(tbKontraksi.getSelectedRow());
-                    BtnTambahKontraksiActionPerformed(null);
+                    BtnBaruKontraksiActionPerformed(null);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel kontraksi tiap 10 menit..!!");
@@ -4678,9 +4947,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbOksitosinKeyPressed
 
-    private void BtnTambahOksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahOksiActionPerformed
+    private void BtnBaruOksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruOksiActionPerformed
         emptTeksOksitosin();
-    }//GEN-LAST:event_BtnTambahOksiActionPerformed
+    }//GEN-LAST:event_BtnBaruOksiActionPerformed
 
     private void BtnHapusOksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusOksiActionPerformed
         if (tbOksitosin.getRowCount() == 0) {
@@ -4688,7 +4957,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         } else {
             if (tbOksitosin.getSelectedRow() > -1) {
                 tabMode5.removeRow(tbOksitosin.getSelectedRow());
-                BtnTambahOksiActionPerformed(null);
+                BtnBaruOksiActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel oksitosin..!!");
                 tbOksitosin.requestFocus();
@@ -4696,16 +4965,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnHapusOksiActionPerformed
 
-    private void BtnSimpanOksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanOksiActionPerformed
+    private void BtnTambahOksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahOksiActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
+        } else if (Toksitosin.getText().equals("")) {
+            Valid.textKosong(Toksitosin, "Oksitosin");
+            Toksitosin.requestFocus();
         } else {
             tabMode5.addRow(new String[]{TNoRw.getText(), cmbJam6.getSelectedItem() + ":" + cmbMnt6.getSelectedItem() + ":" + cmbDtk6.getSelectedItem(),
                 Toksitosin.getText(), Sequel.cariIsi("select now()")
             });
-            BtnTambahOksiActionPerformed(null);
+            BtnBaruOksiActionPerformed(null);
         }
-    }//GEN-LAST:event_BtnSimpanOksiActionPerformed
+    }//GEN-LAST:event_BtnTambahOksiActionPerformed
 
     private void BtnGantiOksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiOksiActionPerformed
         if (tbOksitosin.getRowCount() == 0) {
@@ -4714,13 +4986,16 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             if (tbOksitosin.getSelectedRow() > -1) {
                 if (TNoRw.getText().equals("")) {
                     Valid.textKosong(TNoRw, "Nama Pasien");
+                } else if (Toksitosin.getText().equals("")) {
+                    Valid.textKosong(Toksitosin, "Oksitosin");
+                    Toksitosin.requestFocus();
                 } else {
                     tabMode5.addRow(new String[]{TNoRw.getText(), cmbJam6.getSelectedItem() + ":" + cmbMnt6.getSelectedItem() + ":" + cmbDtk6.getSelectedItem(),
                         Toksitosin.getText(), Sequel.cariIsi("select now()")
                     });
 
                     tabMode5.removeRow(tbOksitosin.getSelectedRow());
-                    BtnTambahOksiActionPerformed(null);
+                    BtnBaruOksiActionPerformed(null);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel oksitosin..!!");
@@ -4755,9 +5030,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbObatKeyPressed
 
-    private void BtnTambahObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahObatActionPerformed
+    private void BtnBaruObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruObatActionPerformed
         emptTeksObat();
-    }//GEN-LAST:event_BtnTambahObatActionPerformed
+    }//GEN-LAST:event_BtnBaruObatActionPerformed
 
     private void BtnHapusObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusObatActionPerformed
         if (tbObat.getRowCount() == 0) {
@@ -4765,7 +5040,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         } else {
             if (tbObat.getSelectedRow() > -1) {
                 tabMode6.removeRow(tbObat.getSelectedRow());
-                BtnTambahObatActionPerformed(null);
+                BtnBaruObatActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel obat & cairan IV..!!");
                 tbObat.requestFocus();
@@ -4773,16 +5048,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnHapusObatActionPerformed
 
-    private void BtnSimpanObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanObatActionPerformed
+    private void BtnTambahObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahObatActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
+        } else if (TobatCairan.getText().equals("")) {
+            Valid.textKosong(TobatCairan, "Obat & Cairan IV");
+            TobatCairan.requestFocus();
         } else {
             tabMode6.addRow(new String[]{TNoRw.getText(), cmbJam7.getSelectedItem() + ":" + cmbMnt7.getSelectedItem() + ":" + cmbDtk7.getSelectedItem(),
                 TobatCairan.getText(), Sequel.cariIsi("select now()")
             });
-            BtnTambahObatActionPerformed(null);
+            BtnBaruObatActionPerformed(null);
         }
-    }//GEN-LAST:event_BtnSimpanObatActionPerformed
+    }//GEN-LAST:event_BtnTambahObatActionPerformed
 
     private void BtnGantiObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiObatActionPerformed
         if (tbObat.getRowCount() == 0) {
@@ -4791,13 +5069,16 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             if (tbObat.getSelectedRow() > -1) {
                 if (TNoRw.getText().equals("")) {
                     Valid.textKosong(TNoRw, "Nama Pasien");
+                } else if (TobatCairan.getText().equals("")) {
+                    Valid.textKosong(TobatCairan, "Obat & Cairan IV");
+                    TobatCairan.requestFocus();
                 } else {
                     tabMode6.addRow(new String[]{TNoRw.getText(), cmbJam7.getSelectedItem() + ":" + cmbMnt7.getSelectedItem() + ":" + cmbDtk7.getSelectedItem(),
                         TobatCairan.getText(), Sequel.cariIsi("select now()")
                     });
 
                     tabMode6.removeRow(tbObat.getSelectedRow());
-                    BtnTambahObatActionPerformed(null);
+                    BtnBaruObatActionPerformed(null);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel obat & cairan IV..!!");
@@ -4844,9 +5125,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbNadiKeyPressed
 
-    private void BtnTambahNadiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahNadiActionPerformed
+    private void BtnBaruNadiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruNadiActionPerformed
         emptTeksNadiTensi();
-    }//GEN-LAST:event_BtnTambahNadiActionPerformed
+    }//GEN-LAST:event_BtnBaruNadiActionPerformed
 
     private void BtnHapusNadiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusNadiActionPerformed
         if (tbNadi.getRowCount() == 0) {
@@ -4854,7 +5135,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         } else {
             if (tbNadi.getSelectedRow() > -1) {
                 tabMode7.removeRow(tbNadi.getSelectedRow());
-                BtnTambahNadiActionPerformed(null);
+                BtnBaruNadiActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel nadi & tekanan darah..!!");
                 tbNadi.requestFocus();
@@ -4862,16 +5143,16 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnHapusNadiActionPerformed
 
-    private void BtnSimpanNadiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanNadiActionPerformed
+    private void BtnTambahNadiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahNadiActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else {
             tabMode7.addRow(new String[]{TNoRw.getText(), cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem(),
                 Tnadi.getText(), Tsistol.getText(), Tdistol.getText(), Sequel.cariIsi("select now()")
             });
-            BtnTambahNadiActionPerformed(null);
+            BtnBaruNadiActionPerformed(null);
         }
-    }//GEN-LAST:event_BtnSimpanNadiActionPerformed
+    }//GEN-LAST:event_BtnTambahNadiActionPerformed
 
     private void BtnGantiNadiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiNadiActionPerformed
         if (tbNadi.getRowCount() == 0) {
@@ -4886,7 +5167,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                     });
 
                     tabMode7.removeRow(tbNadi.getSelectedRow());
-                    BtnTambahNadiActionPerformed(null);
+                    BtnBaruNadiActionPerformed(null);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel nadi & tekanan darah..!!");
@@ -4921,20 +5202,61 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbSuhuKeyPressed
 
-    private void BtnTambahSuhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahSuhuActionPerformed
+    private void BtnBaruSuhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruSuhuActionPerformed
         emptTeksSuhu();
-    }//GEN-LAST:event_BtnTambahSuhuActionPerformed
+    }//GEN-LAST:event_BtnBaruSuhuActionPerformed
 
     private void BtnHapusSuhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusSuhuActionPerformed
-        // TODO add your handling code here:
+        if (tbSuhu.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Tidak ada data suhu yang bisa dihapus..!!");
+        } else {
+            if (tbSuhu.getSelectedRow() > -1) {
+                tabMode8.removeRow(tbSuhu.getSelectedRow());
+                BtnBaruSuhuActionPerformed(null);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel suhu..!!");
+                tbSuhu.requestFocus();
+            }
+        }
     }//GEN-LAST:event_BtnHapusSuhuActionPerformed
 
-    private void BtnSimpanSuhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanSuhuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnSimpanSuhuActionPerformed
+    private void BtnTambahSuhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahSuhuActionPerformed
+        if (TNoRw.getText().equals("")) {
+            Valid.textKosong(TNoRw, "Nama Pasien");
+        } else if (Tsuhu.getText().equals("")) {
+            Valid.textKosong(Tsuhu, "Suhu");
+            Tsuhu.requestFocus();
+        } else {
+            tabMode8.addRow(new String[]{TNoRw.getText(), cmbJam9.getSelectedItem() + ":" + cmbMnt9.getSelectedItem() + ":" + cmbDtk9.getSelectedItem(),
+                Tsuhu.getText(), Sequel.cariIsi("select now()")
+            });
+            BtnBaruSuhuActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnTambahSuhuActionPerformed
 
     private void BtnGantiSuhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiSuhuActionPerformed
-        // TODO add your handling code here:
+        if (tbSuhu.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Tidak ada data suhu yang bisa diganti..!!");
+        } else {
+            if (tbSuhu.getSelectedRow() > -1) {
+                if (TNoRw.getText().equals("")) {
+                    Valid.textKosong(TNoRw, "Nama Pasien");
+                } else if (Tsuhu.getText().equals("")) {
+                    Valid.textKosong(Tsuhu, "Suhu");
+                    Tsuhu.requestFocus();
+                } else {
+                    tabMode8.addRow(new String[]{TNoRw.getText(), cmbJam9.getSelectedItem() + ":" + cmbMnt9.getSelectedItem() + ":" + cmbDtk9.getSelectedItem(),
+                        Tsuhu.getText(), Sequel.cariIsi("select now()")
+                    });
+
+                    tabMode8.removeRow(tbSuhu.getSelectedRow());
+                    BtnBaruSuhuActionPerformed(null);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel suhu..!!");
+                tbSuhu.requestFocus();
+            }
+        }
     }//GEN-LAST:event_BtnGantiSuhuActionPerformed
 
     private void TvolumeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TvolumeKeyPressed
@@ -4963,20 +5285,55 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbUrinKeyPressed
 
-    private void BtnTambahUrinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahUrinActionPerformed
+    private void BtnBaruUrinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruUrinActionPerformed
         emptTeksUrin();
-    }//GEN-LAST:event_BtnTambahUrinActionPerformed
+    }//GEN-LAST:event_BtnBaruUrinActionPerformed
 
     private void BtnHapusUrinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusUrinActionPerformed
-        // TODO add your handling code here:
+        if (tbUrin.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Tidak ada data urin yang bisa dihapus..!!");
+        } else {
+            if (tbUrin.getSelectedRow() > -1) {
+                tabMode9.removeRow(tbUrin.getSelectedRow());
+                BtnBaruUrinActionPerformed(null);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel urin..!!");
+                tbUrin.requestFocus();
+            }
+        }
     }//GEN-LAST:event_BtnHapusUrinActionPerformed
 
-    private void BtnSimpanUrinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanUrinActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnSimpanUrinActionPerformed
+    private void BtnTambahUrinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahUrinActionPerformed
+        if (TNoRw.getText().equals("")) {
+            Valid.textKosong(TNoRw, "Nama Pasien");
+        } else {
+            tabMode9.addRow(new String[]{TNoRw.getText(), cmbJam10.getSelectedItem() + ":" + cmbMnt10.getSelectedItem() + ":" + cmbDtk10.getSelectedItem(),
+                cmbProtein.getSelectedItem().toString(), cmbAseton.getSelectedItem().toString(), Tvolume.getText(), Sequel.cariIsi("select now()")
+            });
+            BtnBaruUrinActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnTambahUrinActionPerformed
 
     private void BtnGantiUrinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiUrinActionPerformed
-        // TODO add your handling code here:
+        if (tbUrin.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Tidak ada data urin yang bisa diganti..!!");
+        } else {
+            if (tbUrin.getSelectedRow() > -1) {
+                if (TNoRw.getText().equals("")) {
+                    Valid.textKosong(TNoRw, "Nama Pasien");
+                } else {
+                    tabMode9.addRow(new String[]{TNoRw.getText(), cmbJam10.getSelectedItem() + ":" + cmbMnt10.getSelectedItem() + ":" + cmbDtk10.getSelectedItem(),
+                        cmbProtein.getSelectedItem().toString(), cmbAseton.getSelectedItem().toString(), Tvolume.getText(), Sequel.cariIsi("select now()")
+                    });
+
+                    tabMode9.removeRow(tbUrin.getSelectedRow());
+                    BtnBaruUrinActionPerformed(null);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel urin..!!");
+                tbUrin.requestFocus();
+            }
+        }
     }//GEN-LAST:event_BtnGantiUrinActionPerformed
 
     private void cmbTmptPersalinanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTmptPersalinanActionPerformed
@@ -5504,7 +5861,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
     private void TdarahYangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TdarahYangKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnSimpanKala4.requestFocus();
+            BtnTambahKala4.requestFocus();
         }
     }//GEN-LAST:event_TdarahYangKeyPressed
 
@@ -5516,20 +5873,85 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbPemantauanKeyPressed
 
-    private void BtnTambahKala4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahKala4ActionPerformed
+    private void BtnBaruKala4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruKala4ActionPerformed
         emptTeksPemantauanKala4();
+        urutkanDataKala4();
+    }//GEN-LAST:event_BtnBaruKala4ActionPerformed
+
+    private void BtnTambahKala4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahKala4ActionPerformed
+        if (TNoRw.getText().equals("")) {
+            Valid.textKosong(TNoRw, "Nama Pasien");
+        } else {
+            urutPantau = "1";
+            if (tabMode10.getRowCount() > 0) {
+                int max = 0;
+                for (int i = 0; i < tabMode10.getRowCount(); i++) {
+                    int nilai = Integer.parseInt(tabMode10.getValueAt(i, 1).toString());
+                    if (nilai > max) {
+                        max = nilai;
+                    }
+                }
+                urutPantau = String.valueOf(max + 1);
+            }
+            
+            tabMode10.addRow(new String[]{TNoRw.getText(), urutPantau, TjamKe.getText(),
+                cmbJam11.getSelectedItem() + ":" + cmbMnt11.getSelectedItem() + ":" + cmbDtk11.getSelectedItem(), TtdKala4.getText(), 
+                TnadiKala4.getText(), TsuhuKala4.getText(), TTinggiFundus.getText(), Tkontraksi.getText(), Turin.getText(), TdarahYang.getText(), 
+                Sequel.cariIsi("select now()")
+            });
+            
+            BtnBaruKala4ActionPerformed(null);
+        }
     }//GEN-LAST:event_BtnTambahKala4ActionPerformed
 
-    private void BtnSimpanKala4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanKala4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnSimpanKala4ActionPerformed
-
     private void BtnHapusKala4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusKala4ActionPerformed
-        // TODO add your handling code here:
+        if (tbPemantauan.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Tidak ada data pemantauan persalinan kala 4 yang bisa dihapus..!!");
+        } else {
+            if (tbPemantauan.getSelectedRow() > -1) {
+                tabMode10.removeRow(tbPemantauan.getSelectedRow());
+                BtnBaruKala4ActionPerformed(null);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel pemantauan persalinan kala 4..!!");
+                tbPemantauan.requestFocus();
+            }
+        }
     }//GEN-LAST:event_BtnHapusKala4ActionPerformed
 
     private void BtnGantiKala4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiKala4ActionPerformed
-        // TODO add your handling code here:
+        if (tbPemantauan.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Tidak ada data pemantauan persalinan kala 4 yang bisa diganti..!!");
+        } else {
+            if (tbPemantauan.getSelectedRow() > -1) {
+                if (TNoRw.getText().equals("")) {
+                    Valid.textKosong(TNoRw, "Nama Pasien");
+                } else {
+                    urutPantau = "1";
+                    if (tabMode10.getRowCount() > 0) {
+                        int max = 0;
+                        for (int i = 0; i < tabMode10.getRowCount(); i++) {
+                            int nilai = Integer.parseInt(tabMode10.getValueAt(i, 1).toString());
+                            if (nilai > max) {
+                                max = nilai;
+                            }
+                        }
+                        urutPantau = String.valueOf(max + 1);
+                    }
+
+                    tabMode10.addRow(new String[]{TNoRw.getText(), urutPantau, TjamKe.getText(),
+                        cmbJam11.getSelectedItem() + ":" + cmbMnt11.getSelectedItem() + ":" + cmbDtk11.getSelectedItem(), TtdKala4.getText(),
+                        TnadiKala4.getText(), TsuhuKala4.getText(), TTinggiFundus.getText(), Tkontraksi.getText(), Turin.getText(), TdarahYang.getText(),
+                        Sequel.cariIsi("select now()")
+                    });
+
+                    tabMode10.removeRow(tbPemantauan.getSelectedRow());
+                    BtnBaruKala4ActionPerformed(null);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel pemantauan persalinan kala 4..!!");
+                tbPemantauan.requestFocus();
+            }
+        }
     }//GEN-LAST:event_BtnGantiKala4ActionPerformed
 
     private void TmasalahKala4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TmasalahKala4KeyPressed
@@ -5555,9 +5977,50 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
     private void TketServikKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TketServikKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnSimpanServik.requestFocus();
+            BtnTambahServik.requestFocus();
         }
     }//GEN-LAST:event_TketServikKeyPressed
+
+    private void BtnSimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnSimpan1ActionPerformed
+
+    private void BtnSimpan1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpan1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnSimpan1KeyPressed
+
+    private void BtnBatal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatal1ActionPerformed
+        BtnBatalActionPerformed(null);
+    }//GEN-LAST:event_BtnBatal1ActionPerformed
+
+    private void BtnGanti1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGanti1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnGanti1ActionPerformed
+
+    private void BtnGanti1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGanti1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnGanti1KeyPressed
+
+    private void BtnKeluar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar1ActionPerformed
+        BtnKeluarActionPerformed(null);
+    }//GEN-LAST:event_BtnKeluar1ActionPerformed
+
+    private void BtnKeluar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar2ActionPerformed
+        BtnKeluarActionPerformed(null);
+    }//GEN-LAST:event_BtnKeluar2ActionPerformed
+
+    private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnHapusActionPerformed
+
+    private void BtnHapus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapus1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnHapus1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        TabPartograf.setSelectedIndex(0);
+        tampil();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
     * @param args the command line arguments
@@ -5577,10 +6040,22 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
+    private widget.Button BtnBaruAKM;
+    private widget.Button BtnBaruDjj;
+    private widget.Button BtnBaruKala4;
+    private widget.Button BtnBaruKontraksi;
+    private widget.Button BtnBaruNadi;
+    private widget.Button BtnBaruObat;
+    private widget.Button BtnBaruOksi;
+    private widget.Button BtnBaruServik;
+    private widget.Button BtnBaruSuhu;
+    private widget.Button BtnBaruUrin;
     private widget.Button BtnBatal;
+    private widget.Button BtnBatal1;
     private widget.Button BtnBidan;
     private widget.Button BtnCari;
     private widget.Button BtnGanti;
+    private widget.Button BtnGanti1;
     private widget.Button BtnGantiAKM;
     private widget.Button BtnGantiDjj;
     private widget.Button BtnGantiKala4;
@@ -5591,6 +6066,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.Button BtnGantiServik;
     private widget.Button BtnGantiSuhu;
     private widget.Button BtnGantiUrin;
+    private widget.Button BtnHapus;
+    private widget.Button BtnHapus1;
     private widget.Button BtnHapusAKM;
     private widget.Button BtnHapusDjj;
     private widget.Button BtnHapusKala4;
@@ -5602,17 +6079,10 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.Button BtnHapusSuhu;
     private widget.Button BtnHapusUrin;
     private widget.Button BtnKeluar;
+    private widget.Button BtnKeluar1;
+    private widget.Button BtnKeluar2;
     private widget.Button BtnSimpan;
-    private widget.Button BtnSimpanAKM;
-    private widget.Button BtnSimpanDjj;
-    private widget.Button BtnSimpanKala4;
-    private widget.Button BtnSimpanKontraksi;
-    private widget.Button BtnSimpanNadi;
-    private widget.Button BtnSimpanObat;
-    private widget.Button BtnSimpanOksi;
-    private widget.Button BtnSimpanServik;
-    private widget.Button BtnSimpanSuhu;
-    private widget.Button BtnSimpanUrin;
+    private widget.Button BtnSimpan1;
     private widget.Button BtnTambahAKM;
     private widget.Button BtnTambahDjj;
     private widget.Button BtnTambahKala4;
@@ -5623,6 +6093,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.Button BtnTambahServik;
     private widget.Button BtnTambahSuhu;
     private widget.Button BtnTambahUrin;
+    private widget.Tanggal DTPCari1;
+    private widget.Tanggal DTPCari2;
     private widget.Label LCount;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
@@ -5685,7 +6157,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.TextBox Tkala3Plasenta25B;
     private widget.TextBox Tkala3Plasenta26;
     private widget.TextBox Tkala3Tidak;
-    private widget.TextBox TkdPartograf;
     private widget.TextBox TketServik;
     private widget.TextBox Tkontraksi;
     private widget.TextBox Tlamanya;
@@ -5822,6 +6293,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.Label jLabel115;
     private widget.Label jLabel116;
     private widget.Label jLabel117;
+    private widget.Label jLabel118;
     private widget.Label jLabel119;
     private widget.Label jLabel12;
     private widget.Label jLabel120;
@@ -5835,7 +6307,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.Label jLabel128;
     private widget.Label jLabel129;
     private widget.Label jLabel13;
-    private widget.Label jLabel14;
+    private widget.Label jLabel130;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
@@ -5930,7 +6402,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private widget.Label labelKetPemberian;
     private widget.panelisi panelGlass10;
+    private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass8;
+    private widget.panelisi panelGlass9;
     private widget.Table tbAirKetuban;
     private widget.Table tbDjj;
     private widget.Table tbKontraksi;
@@ -6197,6 +6671,17 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         TmasalahKala4.setText("");
         TpenataKala4.setText("");
         ThasilKala4.setText("");
+        
+        Valid.tabelKosong(tabMode1);
+        Valid.tabelKosong(tabMode2);
+        Valid.tabelKosong(tabMode3);
+        Valid.tabelKosong(tabMode4);
+        Valid.tabelKosong(tabMode5);
+        Valid.tabelKosong(tabMode6);
+        Valid.tabelKosong(tabMode7);
+        Valid.tabelKosong(tabMode8);
+        Valid.tabelKosong(tabMode9);
+        Valid.tabelKosong(tabMode10);
     }
 
     private void getData() {
@@ -6207,8 +6692,53 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getpegawai_admin());
-        BtnGanti.setEnabled(akses.getpegawai_admin());
-        tampil();
+        BtnSimpan.setEnabled(akses.getcppt());
+        BtnGanti.setEnabled(akses.getcppt());
+        BtnHapus.setEnabled(akses.getcppt());
+        
+        BtnSimpan1.setEnabled(akses.getcppt());
+        BtnGanti1.setEnabled(akses.getcppt());
+        BtnHapus1.setEnabled(akses.getcppt());
+
+        if (akses.getjml2() >= 1) {
+//            BtnBidan.setEnabled(false);
+            nipBidan = akses.getkode();
+            Sequel.cariIsi("select nama from pegawai where nik=?", TnmBidan, nipBidan);
+            if (TnmBidan.getText().equals("")) {
+                nipBidan = "";
+            }
+        }
+    }
+    
+    public void setData(String norwt, String norm, String nmpasien, String rgrawat) {
+        TNoRw.setText(norwt);
+        TNoRM.setText(norm);
+        TPasien.setText(nmpasien);
+        TrgRawat.setText(rgrawat);
+        TCari.setText(norwt);
+        Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
+        DTPCari2.setDate(new Date());
+    }
+
+    private void urutkanDataKala4() {
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tabMode10);
+        tbPemantauan.setRowSorter(sorter);
+
+        /*Penjelasan : sorter.setComparator(1 
+        new RowSorter.SortKey(1
+        angka 1 adalah kolom ke nya
+         */
+        
+        sorter.setComparator(1, (o1, o2) -> {
+            Integer n1 = Integer.parseInt(o1.toString());
+            Integer n2 = Integer.parseInt(o2.toString());
+            return n1.compareTo(n2);
+        });
+
+        sorter.setSortKeys(Arrays.asList(
+                new RowSorter.SortKey(1, SortOrder.ASCENDING)
+        ));
+
+        sorter.sort();
     }
 }
