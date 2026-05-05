@@ -248,6 +248,7 @@ public class DlgJadwal extends javax.swing.JDialog {
 
         tbJadwal.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbJadwal.setName("tbJadwal"); // NOI18N
+        tbJadwal.getTableHeader().setReorderingAllowed(false);
         tbJadwal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbJadwalMouseClicked(evt);
@@ -613,7 +614,6 @@ public class DlgJadwal extends javax.swing.JDialog {
 
         kddokter.setEditable(false);
         kddokter.setForeground(new java.awt.Color(0, 0, 0));
-        kddokter.setHighlighter(null);
         kddokter.setName("kddokter"); // NOI18N
         kddokter.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -808,17 +808,20 @@ public class DlgJadwal extends javax.swing.JDialog {
         } else {
             if (tbJadwal.getSelectedRow() != -1) {
                 hariDiurutkan();
-                Sequel.queryu("update jadwal set jam_mulai='" + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "',"
-                        + "jam_selesai='" + cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem() + "',"
-                        + "kd_poli='" + KdPoli.getText() + "',kd_dokter='" + kddokter.getText() + "',hari_kerja='" + cmbHari.getSelectedItem() + "',"
-                        + "urutan_hari='" + urutanHari + "', kuota_jkn='" + TkuotaJkn.getText() + "', kuota_nonjkn='" + TkuotaNonJkn.getText() + "' where "
-                        + "kd_dokter='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 0).toString() + "' "
-                        + "and hari_kerja='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 2).toString() + "' "
+                if (Sequel.mengedittf("jadwal", "kd_dokter=? and hari_kerja='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 2).toString() + "' "
                         + "and jam_mulai='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 3).toString() + "' "
-                        + "and jam_selesai='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 4).toString() + "'");
-                
-                tampil();
-                emptTeks();
+                        + "and jam_selesai='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 4).toString() + "' "
+                        + "and kd_poli='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 6).toString() + "'",
+                        "jam_mulai=?, jam_selesai=?, kd_poli=?, kd_dokter=?, hari_kerja=?, urutan_hari=?, kuota_jkn=?, kuota_nonjkn=?", 9, new String[]{
+                            cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
+                            cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(),
+                            KdPoli.getText(), kddokter.getText(), cmbHari.getSelectedItem().toString(), urutanHari, TkuotaJkn.getText(), TkuotaNonJkn.getText(),
+                            tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 0).toString()
+                        }) == true) {
+
+                    tampil();
+                    emptTeks();
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Silahkan klik/pilih dulu salah satu datanya pada tabel...!!!!");
                 tampil();
