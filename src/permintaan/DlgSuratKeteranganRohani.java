@@ -1673,6 +1673,12 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
        BtnSimpan.setEnabled(akses.getsurat_keterangan_kir_mcu());       
        BtnEdit.setEnabled(akses.getsurat_keterangan_kir_mcu());
        BtnHapus.setEnabled(akses.getsurat_keterangan_kir_mcu());
+       
+        if (akses.getadmin() == true) {
+            MnSuratRohaniMMPI.setVisible(true);
+        } else {
+            MnSuratRohaniMMPI.setVisible(false);
+        }
     }
     
     public void setData(String norw) {

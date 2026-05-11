@@ -17,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -50,8 +51,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9, ps10, ps11;
     private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rs10, rs11;
-    private int i = 0;
-    private String nipBidan = "", pembukaan = "", trun_kpl = "", urutPantau = "", dataKala3A = "", dataKala3B = "", dataKala3C = "",
+    private int i = 0, x = 0;
+    private String nipBidan = "", pembukaan = "", trun_kpl = "", urutPantau = "", dataKala3A = "", dataKala3B = "", dataKala3C = "", urutanKe = "",
             bidan8 = "", teman8 = "", klg8 = "", suami8 = "", dukun8 = "", tdkAda8 = "", gawat9 = "", perdarahan9 = "", hdk9 = "", infeksi9 = "", peb9 = "",
             bidan9 = "", lainya9 = "", suami15 = "", teman15 = "", tdkAda15 = "", klg15 = "", dukun15 = "", sebutkan38a = "", sebutkan38b = "";
     
@@ -129,7 +130,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         }
         tbPartograf.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode1 = new DefaultTableModel(null, new String[]{"no_rawat", "Nadi", "Jam", "waktu_simpan"}) {
+        tabMode1 = new DefaultTableModel(null, new String[]{"no_rawat", "Nadi", ".../menit", "Jam", "waktu_simpan"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -140,16 +141,18 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         tbDjj.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbDjj.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < 5; i++) {
             TableColumn column = tbDjj.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 1) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(60);
             } else if (i == 2) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(60);
             } else if (i == 3) {
+                column.setPreferredWidth(72);
+            } else if (i == 4) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -158,6 +161,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         //ini posisi kolom yang datanya ingin rata tengah
         tbDjj.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
         tbDjj.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbDjj.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
         
         tabMode2 = new DefaultTableModel(null, new String[]{"no_rawat", "Jam", "Air Ketuban", "Mulase", "waktu_simpan"}) {
             @Override
@@ -232,8 +236,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         tbServik.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
         tbServik.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
         
-        tabMode4 = new DefaultTableModel(null, new String[]{"no_rawat", "Jam", "Lajur", "Detik", 
-            "Lama Kontraksi", "waktu_simpan"}) {
+        tabMode4 = new DefaultTableModel(null, new String[]{"no_rawat", "Lajur", "Detik", "waktu_simpan"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -244,20 +247,16 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         tbKontraksi.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKontraksi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 6; i++) {
+        for (i = 0; i < 4; i++) {
             TableColumn column = tbKontraksi.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 1) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(70);
             } else if (i == 2) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(80);
             } else if (i == 3) {
-                column.setPreferredWidth(75);
-            } else if (i == 4) {
-                column.setPreferredWidth(110);
-            } else if (i == 5) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -265,9 +264,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         tbKontraksi.setDefaultRenderer(Object.class, new WarnaTable());
         //ini posisi kolom yang datanya ingin rata tengah
         tbKontraksi.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-        tbKontraksi.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         
-        tabMode5 = new DefaultTableModel(null, new String[]{"no_rawat", "Jam", "Oksitosin", "waktu_simpan"}) {
+        tabMode5 = new DefaultTableModel(null, new String[]{"no_rawat", "Konsentrasi U/L", "Kecepatan (tetes/mnt)", "waktu_simpan"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -284,20 +282,17 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 1) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(100);
             } else if (i == 2) {
-                column.setPreferredWidth(210);
+                column.setPreferredWidth(150);
             } else if (i == 3) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } 
         }
         tbOksitosin.setDefaultRenderer(Object.class, new WarnaTable());
-        //ini posisi kolom yang datanya ingin rata tengah
-        tbOksitosin.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-        tbOksitosin.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         
-        tabMode6 = new DefaultTableModel(null, new String[]{"no_rawat", "Jam", "Obat / Cairan", "waktu_simpan"}) {
+        tabMode6 = new DefaultTableModel(null, new String[]{"no_rawat", "Obat / Cairan", "waktu_simpan"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -308,23 +303,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < 3; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 1) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(310);
             } else if (i == 2) {
-                column.setPreferredWidth(300);
-            } else if (i == 3) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } 
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
-        //ini posisi kolom yang datanya ingin rata tengah
-        tbObat.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
         
         tabMode7 = new DefaultTableModel(null, new String[]{"no_rawat", "Jam", "Nadi", "TD (Sistole)", "TD (Diastole)", "waktu_simpan"}) {
             @Override
@@ -424,7 +415,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         tbUrin.setDefaultRenderer(Object.class, new WarnaTable());
         //ini posisi kolom yang datanya ingin rata tengah
         tbUrin.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-        
+
         tabMode10 = new DefaultTableModel(null, new String[]{"no_rawat", "urutan", "Jam Ke", "Waktu", "Tekanan Drh.", "Nadi",
             "Suhu", "Tinggi Fundus U.", "Kontraksi Uterus", "Urin Output", "Darah Yg. Keluar", "waktu_simpan"}) {
             @Override
@@ -466,7 +457,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             } else if (i == 11) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } 
+            }
         }
         tbPemantauan.setDefaultRenderer(Object.class, new WarnaTable());
         //ini posisi kolom yang datanya ingin rata tengah
@@ -480,8 +471,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         Tparitas.setDocument(new batasInput((int) 10).getKata(Tparitas));
         Tabortus.setDocument(new batasInput((int) 10).getKata(Tabortus));
         TnadiDjj.setDocument(new batasInput((int) 7).getKata(TnadiDjj));
-        Tlamanya.setDocument(new batasInput((int) 10).getKata(Tlamanya));
+        Tjeda.setDocument(new batasInput((int) 3).getKata(Tjeda));        
         Toksitosin.setDocument(new batasInput((int) 30).getKata(Toksitosin));
+        Ttetes.setDocument(new batasInput((int) 30).getKata(Ttetes));
         TobatCairan.setDocument(new batasInput((int) 200).getKata(TobatCairan));
         Tnadi.setDocument(new batasInput((int) 7).getKata(Tnadi));
         Tsistol.setDocument(new batasInput((int) 7).getKata(Tsistol));
@@ -497,8 +489,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         Tkala2Pemantauan.setDocument(new batasInput((int) 200).getKata(Tkala2Pemantauan));
         Tkala2YaTindakanDisto.setDocument(new batasInput((int) 200).getKata(Tkala2YaTindakanDisto));
         Tkala3Tidak.setDocument(new batasInput((int) 200).getKata(Tkala3Tidak));
-        Tkala3Lama.setDocument(new batasInput((int) 7).getKata(Tkala3Lama));
-        Tkala3PemberianOksi.setDocument(new batasInput((int) 200).getKata(Tkala3PemberianOksi));
+        Tkala3Lama.setDocument(new batasInput((int) 7).getKata(Tkala3Lama));        
         Tkala3PemberianUlang.setDocument(new batasInput((int) 200).getKata(Tkala3PemberianUlang));
         Tkala3Penegangan.setDocument(new batasInput((int) 200).getKata(Tkala3Penegangan));
         Tkala3Masase.setDocument(new batasInput((int) 200).getKata(Tkala3Masase));
@@ -572,6 +563,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         internalFrame1 = new widget.InternalFrame();
         TabPartograf = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -654,13 +646,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbLajur = new widget.ComboBox();
         jLabel30 = new widget.Label();
         cmbDetik = new widget.ComboBox();
-        jLabel31 = new widget.Label();
-        cmbJam5 = new widget.ComboBox();
-        cmbMnt5 = new widget.ComboBox();
-        cmbDtk5 = new widget.ComboBox();
-        jLabel32 = new widget.Label();
-        Tlamanya = new widget.TextBox();
-        jLabel33 = new widget.Label();
         Scroll5 = new widget.ScrollPane();
         tbKontraksi = new widget.Table();
         BtnBaruKontraksi = new widget.Button();
@@ -668,12 +653,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         BtnTambahKontraksi = new widget.Button();
         BtnGantiKontraksi = new widget.Button();
         jLabel34 = new widget.Label();
-        Toksitosin = new widget.TextBox();
+        Ttetes = new widget.TextBox();
         jLabel35 = new widget.Label();
-        jLabel36 = new widget.Label();
-        cmbJam6 = new widget.ComboBox();
-        cmbMnt6 = new widget.ComboBox();
-        cmbDtk6 = new widget.ComboBox();
         Scroll6 = new widget.ScrollPane();
         tbOksitosin = new widget.Table();
         BtnBaruOksi = new widget.Button();
@@ -682,10 +663,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         BtnGantiOksi = new widget.Button();
         jLabel37 = new widget.Label();
         TobatCairan = new widget.TextBox();
-        jLabel39 = new widget.Label();
-        cmbJam7 = new widget.ComboBox();
-        cmbMnt7 = new widget.ComboBox();
-        cmbDtk7 = new widget.ComboBox();
         Scroll7 = new widget.ScrollPane();
         tbObat = new widget.Table();
         BtnBaruObat = new widget.Button();
@@ -739,11 +716,18 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         BtnGantiUrin = new widget.Button();
         cmbProtein = new widget.ComboBox();
         cmbAseton = new widget.ComboBox();
+        Tjeda = new widget.TextBox();
+        jLabel131 = new widget.Label();
+        jLabel32 = new widget.Label();
+        jLabel132 = new widget.Label();
+        Toksitosin = new widget.TextBox();
+        jLabel36 = new widget.Label();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
         BtnGanti = new widget.Button();
         BtnHapus = new widget.Button();
+        BtnCetak = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass9 = new widget.panelisi();
         Scroll11 = new widget.ScrollPane();
@@ -933,6 +917,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         BtnBatal1 = new widget.Button();
         BtnGanti1 = new widget.Button();
         BtnHapus1 = new widget.Button();
+        BtnCetak1 = new widget.Button();
         BtnKeluar1 = new widget.Button();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -944,10 +929,11 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         DTPCari2 = new widget.Tanggal();
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
-        BtnCari = new widget.Button();
-        BtnAll = new widget.Button();
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
+        BtnCari = new widget.Button();
+        BtnAll = new widget.Button();
+        BtnCetak2 = new widget.Button();
         BtnKeluar2 = new widget.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -1083,7 +1069,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel10.setBounds(0, 94, 135, 23);
 
         TtglMasuk.setEditable(false);
-        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-05-2026" }));
+        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-05-2026" }));
         TtglMasuk.setDisplayFormat("dd-MM-yyyy");
         TtglMasuk.setName("TtglMasuk"); // NOI18N
         TtglMasuk.setOpaque(false);
@@ -1188,10 +1174,11 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel15.setBounds(0, 150, 135, 23);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Nadi : ");
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel16.setText("/menit   Nadi : ");
         jLabel16.setName("jLabel16"); // NOI18N
         internalFrame20.add(jLabel16);
-        jLabel16.setBounds(136, 150, 44, 23);
+        jLabel16.setBounds(240, 150, 70, 23);
 
         TnadiDjj.setBackground(new java.awt.Color(245, 250, 240));
         TnadiDjj.setForeground(new java.awt.Color(0, 0, 0));
@@ -1202,14 +1189,14 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(TnadiDjj);
-        TnadiDjj.setBounds(183, 150, 60, 23);
+        TnadiDjj.setBounds(313, 150, 60, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel17.setText("x/menit        Pukul :");
         jLabel17.setName("jLabel17"); // NOI18N
         internalFrame20.add(jLabel17);
-        jLabel17.setBounds(250, 150, 95, 23);
+        jLabel17.setBounds(380, 150, 95, 23);
 
         cmbJam2.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1220,7 +1207,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(cmbJam2);
-        cmbJam2.setBounds(345, 150, 45, 23);
+        cmbJam2.setBounds(475, 150, 45, 23);
 
         cmbMnt2.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1231,7 +1218,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(cmbMnt2);
-        cmbMnt2.setBounds(397, 150, 45, 23);
+        cmbMnt2.setBounds(527, 150, 45, 23);
 
         cmbDtk2.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1242,7 +1229,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(cmbDtk2);
-        cmbDtk2.setBounds(448, 150, 45, 23);
+        cmbDtk2.setBounds(578, 150, 45, 23);
 
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
@@ -1536,6 +1523,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         chkPembukaan.setBackground(new java.awt.Color(255, 255, 250));
         chkPembukaan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup1.add(chkPembukaan);
         chkPembukaan.setForeground(new java.awt.Color(0, 0, 0));
         chkPembukaan.setText("X");
         chkPembukaan.setBorderPainted(true);
@@ -1557,6 +1545,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         chkTurunya.setBackground(new java.awt.Color(255, 255, 250));
         chkTurunya.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup1.add(chkTurunya);
         chkTurunya.setForeground(new java.awt.Color(0, 0, 0));
         chkTurunya.setText("O");
         chkTurunya.setBorderPainted(true);
@@ -1663,7 +1652,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         BtnGantiServik.setBounds(835, 578, 90, 30);
 
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel28.setText("Kontraksi Tiap 10 Menit : ");
+        jLabel28.setText("Kontraksi : ");
         jLabel28.setName("jLabel28"); // NOI18N
         internalFrame20.add(jLabel28);
         jLabel28.setBounds(0, 655, 135, 23);
@@ -1692,69 +1681,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(cmbDetik);
         cmbDetik.setBounds(414, 655, 70, 23);
 
-        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel31.setText("Jam : ");
-        jLabel31.setName("jLabel31"); // NOI18N
-        internalFrame20.add(jLabel31);
-        jLabel31.setBounds(486, 655, 40, 23);
-
-        cmbJam5.setForeground(new java.awt.Color(0, 0, 0));
-        cmbJam5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        cmbJam5.setName("cmbJam5"); // NOI18N
-        cmbJam5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbJam5MouseReleased(evt);
-            }
-        });
-        internalFrame20.add(cmbJam5);
-        cmbJam5.setBounds(531, 655, 45, 23);
-
-        cmbMnt5.setForeground(new java.awt.Color(0, 0, 0));
-        cmbMnt5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        cmbMnt5.setName("cmbMnt5"); // NOI18N
-        cmbMnt5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbMnt5MouseReleased(evt);
-            }
-        });
-        internalFrame20.add(cmbMnt5);
-        cmbMnt5.setBounds(583, 655, 45, 23);
-
-        cmbDtk5.setForeground(new java.awt.Color(0, 0, 0));
-        cmbDtk5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        cmbDtk5.setName("cmbDtk5"); // NOI18N
-        cmbDtk5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbDtk5MouseReleased(evt);
-            }
-        });
-        internalFrame20.add(cmbDtk5);
-        cmbDtk5.setBounds(636, 655, 45, 23);
-
-        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel32.setText("Lamanya Kontraksi : ");
-        jLabel32.setName("jLabel32"); // NOI18N
-        internalFrame20.add(jLabel32);
-        jLabel32.setBounds(136, 683, 120, 23);
-
-        Tlamanya.setBackground(new java.awt.Color(245, 250, 240));
-        Tlamanya.setForeground(new java.awt.Color(0, 0, 0));
-        Tlamanya.setName("Tlamanya"); // NOI18N
-        Tlamanya.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TlamanyaKeyPressed(evt);
-            }
-        });
-        internalFrame20.add(Tlamanya);
-        Tlamanya.setBounds(258, 683, 60, 23);
-
-        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel33.setText("detik");
-        jLabel33.setName("jLabel33"); // NOI18N
-        internalFrame20.add(jLabel33);
-        jLabel33.setBounds(325, 683, 40, 23);
-
         Scroll5.setName("Scroll5"); // NOI18N
         Scroll5.setOpaque(true);
 
@@ -1773,7 +1699,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         Scroll5.setViewportView(tbKontraksi);
 
         internalFrame20.add(Scroll5);
-        Scroll5.setBounds(136, 711, 370, 110);
+        Scroll5.setBounds(136, 683, 190, 138);
 
         BtnBaruKontraksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnBaruKontraksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
@@ -1787,7 +1713,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnBaruKontraksi);
-        BtnBaruKontraksi.setBounds(525, 711, 90, 30);
+        BtnBaruKontraksi.setBounds(340, 683, 90, 30);
 
         BtnHapusKontraksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusKontraksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -1801,7 +1727,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnHapusKontraksi);
-        BtnHapusKontraksi.setBounds(630, 711, 90, 30);
+        BtnHapusKontraksi.setBounds(445, 683, 90, 30);
 
         BtnTambahKontraksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambahKontraksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
@@ -1815,7 +1741,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnTambahKontraksi);
-        BtnTambahKontraksi.setBounds(525, 750, 90, 30);
+        BtnTambahKontraksi.setBounds(340, 722, 90, 30);
 
         BtnGantiKontraksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiKontraksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -1829,70 +1755,26 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnGantiKontraksi);
-        BtnGantiKontraksi.setBounds(630, 750, 90, 30);
+        BtnGantiKontraksi.setBounds(445, 722, 90, 30);
 
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel34.setText("Oksitosin U/L : ");
+        jLabel34.setText("Oksitosin : ");
         jLabel34.setName("jLabel34"); // NOI18N
         internalFrame20.add(jLabel34);
         jLabel34.setBounds(0, 827, 135, 23);
 
-        Toksitosin.setBackground(new java.awt.Color(245, 250, 240));
-        Toksitosin.setForeground(new java.awt.Color(0, 0, 0));
-        Toksitosin.setName("Toksitosin"); // NOI18N
-        Toksitosin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ToksitosinKeyPressed(evt);
-            }
-        });
-        internalFrame20.add(Toksitosin);
-        Toksitosin.setBounds(136, 827, 90, 23);
+        Ttetes.setBackground(new java.awt.Color(245, 250, 240));
+        Ttetes.setForeground(new java.awt.Color(0, 0, 0));
+        Ttetes.setName("Ttetes"); // NOI18N
+        internalFrame20.add(Ttetes);
+        Ttetes.setBounds(466, 827, 150, 23);
 
         jLabel35.setForeground(new java.awt.Color(0, 0, 0));
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel35.setText("tetes/menit");
         jLabel35.setName("jLabel35"); // NOI18N
         internalFrame20.add(jLabel35);
-        jLabel35.setBounds(233, 827, 70, 23);
-
-        jLabel36.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel36.setText("Jam : ");
-        jLabel36.setName("jLabel36"); // NOI18N
-        internalFrame20.add(jLabel36);
-        jLabel36.setBounds(350, 827, 40, 23);
-
-        cmbJam6.setForeground(new java.awt.Color(0, 0, 0));
-        cmbJam6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        cmbJam6.setName("cmbJam6"); // NOI18N
-        cmbJam6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbJam6MouseReleased(evt);
-            }
-        });
-        internalFrame20.add(cmbJam6);
-        cmbJam6.setBounds(395, 827, 45, 23);
-
-        cmbMnt6.setForeground(new java.awt.Color(0, 0, 0));
-        cmbMnt6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        cmbMnt6.setName("cmbMnt6"); // NOI18N
-        cmbMnt6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbMnt6MouseReleased(evt);
-            }
-        });
-        internalFrame20.add(cmbMnt6);
-        cmbMnt6.setBounds(447, 827, 45, 23);
-
-        cmbDtk6.setForeground(new java.awt.Color(0, 0, 0));
-        cmbDtk6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        cmbDtk6.setName("cmbDtk6"); // NOI18N
-        cmbDtk6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbDtk6MouseReleased(evt);
-            }
-        });
-        internalFrame20.add(cmbDtk6);
-        cmbDtk6.setBounds(500, 827, 45, 23);
+        jLabel35.setBounds(624, 827, 70, 23);
 
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
@@ -1912,7 +1794,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         Scroll6.setViewportView(tbOksitosin);
 
         internalFrame20.add(Scroll6);
-        Scroll6.setBounds(136, 855, 320, 100);
+        Scroll6.setBounds(136, 855, 280, 100);
 
         BtnBaruOksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnBaruOksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
@@ -1926,7 +1808,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnBaruOksi);
-        BtnBaruOksi.setBounds(465, 855, 90, 30);
+        BtnBaruOksi.setBounds(425, 855, 90, 30);
 
         BtnHapusOksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusOksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -1940,7 +1822,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnHapusOksi);
-        BtnHapusOksi.setBounds(570, 855, 90, 30);
+        BtnHapusOksi.setBounds(530, 855, 90, 30);
 
         BtnTambahOksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambahOksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
@@ -1954,7 +1836,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnTambahOksi);
-        BtnTambahOksi.setBounds(465, 894, 90, 30);
+        BtnTambahOksi.setBounds(425, 894, 90, 30);
 
         BtnGantiOksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiOksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -1968,7 +1850,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnGantiOksi);
-        BtnGantiOksi.setBounds(570, 894, 90, 30);
+        BtnGantiOksi.setBounds(530, 894, 90, 30);
 
         jLabel37.setForeground(new java.awt.Color(0, 0, 0));
         jLabel37.setText("Obat & Cairan IV : ");
@@ -1979,52 +1861,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         TobatCairan.setBackground(new java.awt.Color(245, 250, 240));
         TobatCairan.setForeground(new java.awt.Color(0, 0, 0));
         TobatCairan.setName("TobatCairan"); // NOI18N
-        TobatCairan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TobatCairanKeyPressed(evt);
-            }
-        });
         internalFrame20.add(TobatCairan);
-        TobatCairan.setBounds(136, 961, 190, 23);
-
-        jLabel39.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel39.setText("Jam : ");
-        jLabel39.setName("jLabel39"); // NOI18N
-        internalFrame20.add(jLabel39);
-        jLabel39.setBounds(350, 961, 40, 23);
-
-        cmbJam7.setForeground(new java.awt.Color(0, 0, 0));
-        cmbJam7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        cmbJam7.setName("cmbJam7"); // NOI18N
-        cmbJam7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbJam7MouseReleased(evt);
-            }
-        });
-        internalFrame20.add(cmbJam7);
-        cmbJam7.setBounds(395, 961, 45, 23);
-
-        cmbMnt7.setForeground(new java.awt.Color(0, 0, 0));
-        cmbMnt7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        cmbMnt7.setName("cmbMnt7"); // NOI18N
-        cmbMnt7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbMnt7MouseReleased(evt);
-            }
-        });
-        internalFrame20.add(cmbMnt7);
-        cmbMnt7.setBounds(447, 961, 45, 23);
-
-        cmbDtk7.setForeground(new java.awt.Color(0, 0, 0));
-        cmbDtk7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        cmbDtk7.setName("cmbDtk7"); // NOI18N
-        cmbDtk7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmbDtk7MouseReleased(evt);
-            }
-        });
-        internalFrame20.add(cmbDtk7);
-        cmbDtk7.setBounds(500, 961, 45, 23);
+        TobatCairan.setBounds(136, 961, 340, 23);
 
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
@@ -2044,7 +1882,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         Scroll7.setViewportView(tbObat);
 
         internalFrame20.add(Scroll7);
-        Scroll7.setBounds(136, 989, 410, 100);
+        Scroll7.setBounds(136, 989, 340, 100);
 
         BtnBaruObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnBaruObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
@@ -2058,7 +1896,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnBaruObat);
-        BtnBaruObat.setBounds(565, 989, 90, 30);
+        BtnBaruObat.setBounds(490, 989, 90, 30);
 
         BtnHapusObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -2072,7 +1910,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnHapusObat);
-        BtnHapusObat.setBounds(670, 989, 90, 30);
+        BtnHapusObat.setBounds(600, 989, 90, 30);
 
         BtnTambahObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambahObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
@@ -2086,7 +1924,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnTambahObat);
-        BtnTambahObat.setBounds(565, 1028, 90, 30);
+        BtnTambahObat.setBounds(490, 1028, 90, 30);
 
         BtnGantiObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -2100,7 +1938,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(BtnGantiObat);
-        BtnGantiObat.setBounds(670, 1028, 90, 30);
+        BtnGantiObat.setBounds(600, 1028, 90, 30);
 
         jLabel38.setForeground(new java.awt.Color(0, 0, 0));
         jLabel38.setText("Nadi : ");
@@ -2578,6 +2416,53 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         internalFrame20.add(cmbAseton);
         cmbAseton.setBounds(862, 1238, 40, 23);
 
+        Tjeda.setBackground(new java.awt.Color(245, 250, 240));
+        Tjeda.setForeground(new java.awt.Color(0, 0, 0));
+        Tjeda.setName("Tjeda"); // NOI18N
+        Tjeda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TjedaKeyPressed(evt);
+            }
+        });
+        internalFrame20.add(Tjeda);
+        Tjeda.setBounds(185, 150, 50, 23);
+
+        jLabel131.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel131.setText("Jeda : ");
+        jLabel131.setName("jLabel131"); // NOI18N
+        internalFrame20.add(jLabel131);
+        jLabel131.setBounds(136, 150, 45, 23);
+
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setText("Tiap 10 Menit   ");
+        jLabel32.setName("jLabel32"); // NOI18N
+        internalFrame20.add(jLabel32);
+        jLabel32.setBounds(0, 670, 135, 23);
+
+        jLabel132.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel132.setText("Konsentrasi :");
+        jLabel132.setName("jLabel132"); // NOI18N
+        internalFrame20.add(jLabel132);
+        jLabel132.setBounds(136, 827, 80, 23);
+
+        Toksitosin.setBackground(new java.awt.Color(245, 250, 240));
+        Toksitosin.setForeground(new java.awt.Color(0, 0, 0));
+        Toksitosin.setName("Toksitosin"); // NOI18N
+        Toksitosin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ToksitosinKeyPressed(evt);
+            }
+        });
+        internalFrame20.add(Toksitosin);
+        Toksitosin.setBounds(220, 827, 150, 23);
+
+        jLabel36.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel36.setText("U/L    Kecepatan :");
+        jLabel36.setName("jLabel36"); // NOI18N
+        internalFrame20.add(jLabel36);
+        jLabel36.setBounds(375, 827, 90, 23);
+
         Scroll3.setViewportView(internalFrame20);
 
         jPanel3.add(Scroll3, java.awt.BorderLayout.CENTER);
@@ -2656,6 +2541,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnHapus);
 
+        BtnCetak.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        BtnCetak.setText("Cetak");
+        BtnCetak.setToolTipText("Hapus Air Ketuban/Mulase");
+        BtnCetak.setName("BtnCetak"); // NOI18N
+        BtnCetak.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnCetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCetakActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnCetak);
+
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
@@ -2706,7 +2604,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel53.setBounds(0, 38, 175, 23);
 
         TtglCatatan.setEditable(false);
-        TtglCatatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-05-2026" }));
+        TtglCatatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-05-2026" }));
         TtglCatatan.setDisplayFormat("dd-MM-yyyy");
         TtglCatatan.setName("TtglCatatan"); // NOI18N
         TtglCatatan.setOpaque(false);
@@ -4350,6 +4248,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         });
         panelGlass11.add(BtnHapus1);
 
+        BtnCetak1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCetak1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        BtnCetak1.setText("Cetak");
+        BtnCetak1.setToolTipText("Hapus Air Ketuban/Mulase");
+        BtnCetak1.setName("BtnCetak1"); // NOI18N
+        BtnCetak1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnCetak1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCetak1ActionPerformed(evt);
+            }
+        });
+        panelGlass11.add(BtnCetak1);
+
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar1.setMnemonic('K');
@@ -4377,6 +4288,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         tbPartograf.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbPartograf.setName("tbPartograf"); // NOI18N
+        tbPartograf.getTableHeader().setReorderingAllowed(false);
         tbPartograf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPartografMouseClicked(evt);
@@ -4402,7 +4314,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         panelGlass10.add(jLabel118);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-05-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-05-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4417,7 +4329,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         panelGlass10.add(jLabel130);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-05-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-05-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4439,6 +4351,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(TCari);
+
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Record :");
+        jLabel7.setName("jLabel7"); // NOI18N
+        jLabel7.setPreferredSize(new java.awt.Dimension(65, 23));
+        panelGlass10.add(jLabel7);
+
+        LCount.setForeground(new java.awt.Color(0, 0, 0));
+        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount.setText("0");
+        LCount.setName("LCount"); // NOI18N
+        LCount.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelGlass10.add(LCount);
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
@@ -4477,18 +4402,18 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         });
         panelGlass10.add(BtnAll);
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Record :");
-        jLabel7.setName("jLabel7"); // NOI18N
-        jLabel7.setPreferredSize(new java.awt.Dimension(65, 23));
-        panelGlass10.add(jLabel7);
-
-        LCount.setForeground(new java.awt.Color(0, 0, 0));
-        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LCount.setText("0");
-        LCount.setName("LCount"); // NOI18N
-        LCount.setPreferredSize(new java.awt.Dimension(50, 23));
-        panelGlass10.add(LCount);
+        BtnCetak2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCetak2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        BtnCetak2.setText("Cetak");
+        BtnCetak2.setToolTipText("Hapus Air Ketuban/Mulase");
+        BtnCetak2.setName("BtnCetak2"); // NOI18N
+        BtnCetak2.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnCetak2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCetak2ActionPerformed(evt);
+            }
+        });
+        panelGlass10.add(BtnCetak2);
 
         BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -4523,7 +4448,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             BtnBidan.requestFocus();
         } else {
             cekData();
-            if (Sequel.menyimpantf("partograf_persalinan", "?,?,?,?,?,?,?,?,?,?", "No.Rawat", 10, new String[]{
+            if (Sequel.menyimpantf("partograf_persalinan", "?,?,?,?,?,?,?,?,?,?", "partograf persalinan", 10, new String[]{
                 TNoRw.getText(), TrgRawat.getText(), Tgravida.getText(), Tparitas.getText(), Tabortus.getText(), Valid.SetTgl(TtglMasuk.getSelectedItem() + ""),
                 cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), 
                 cmbKetuban.getSelectedItem().toString(), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), 
@@ -4535,7 +4460,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                                 "'" + tbDjj.getValueAt(i, 0).toString() + "','"
                                 + tbDjj.getValueAt(i, 1).toString() + "','"
                                 + tbDjj.getValueAt(i, 2).toString() + "','"
-                                + tbDjj.getValueAt(i, 3).toString() + "'", "Data DJJ");
+                                + tbDjj.getValueAt(i, 3).toString() + "','"
+                                + tbDjj.getValueAt(i, 4).toString() + "'", "Data DJJ");
                     }
                 }
 
@@ -4570,9 +4496,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                                 "'" + tbKontraksi.getValueAt(i, 0).toString() + "','"
                                 + tbKontraksi.getValueAt(i, 1).toString() + "','"
                                 + tbKontraksi.getValueAt(i, 2).toString() + "','"
-                                + tbKontraksi.getValueAt(i, 3).toString() + "','"
-                                + tbKontraksi.getValueAt(i, 4).toString() + "','"
-                                + tbKontraksi.getValueAt(i, 5).toString() + "'", "Data Kontraksi");
+                                + tbKontraksi.getValueAt(i, 3).toString() + "'", "Data Kontraksi");
                     }
                 }
                 
@@ -4591,8 +4515,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                         Sequel.menyimpanIgnore("partograf_obat_cairan",
                                 "'" + tbObat.getValueAt(i, 0).toString() + "','"
                                 + tbObat.getValueAt(i, 1).toString() + "','"
-                                + tbObat.getValueAt(i, 2).toString() + "','"
-                                + tbObat.getValueAt(i, 3).toString() + "'", "Data Obat & Cairan");
+                                + tbObat.getValueAt(i, 2).toString() + "'", "Data Obat & Cairan");
                     }                
                 }
 
@@ -4690,7 +4613,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                         }) == true) {
                     System.out.println("Proses simpan data partograf pemantauan kala 4 berhasil disimpan,...!!");
                 }
-                
+
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Partograf Persalinan", "Simpan");
                 TCari.setText(TNoRw.getText());
                 TabPartograf.setSelectedIndex(2);
@@ -4719,31 +4642,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             Valid.pindah(evt, BtnSimpan, BtnGanti);
         }
 }//GEN-LAST:event_BtnBatalKeyPressed
-
-    private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
-//        if (kdkomite.getText().trim().equals("")) {
-//            Valid.textKosong(kdkomite, "kode komite");
-//            kdkomite.requestFocus();
-//        } else if (nmkomite.getText().trim().equals("")) {
-//            Valid.textKosong(nmkomite, "nama komite");
-//            nmkomite.requestFocus();
-//        } else if (kode.equals("")) {
-//            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu jabatan komitenya pada tabel...!!!!");
-//            tbKomite.requestFocus();
-//        } else {           
-//            Sequel.mengedit("jabatan_komite", "kd_komite='" + kode + "'", "kd_komite='" + kdkomite.getText() + "',nm_komite='" + nmkomite.getText() + "'");
-//            emptTeks();
-//            BtnCariActionPerformed(null);
-//        }
-}//GEN-LAST:event_BtnGantiActionPerformed
-
-    private void BtnGantiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGantiKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            BtnGantiActionPerformed(null);
-        } else {
-            Valid.pindah(evt, BtnBatal, BtnKeluar);
-        }
-}//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
@@ -4876,11 +4774,14 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private void BtnTambahDjjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahDjjActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
+        } else if (Tjeda.getText().equals("")) {
+            Valid.textKosong(Tjeda, "jeda/menit");
+            Tjeda.requestFocus();
         } else if (TnadiDjj.getText().equals("")) {
             Valid.textKosong(TnadiDjj, "Nadi");
             TnadiDjj.requestFocus();
         } else {
-            tabMode1.addRow(new String[]{TNoRw.getText(), TnadiDjj.getText(),
+            tabMode1.addRow(new String[]{TNoRw.getText(), TnadiDjj.getText(), Tjeda.getText(),
                 cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), Sequel.cariIsi("select now()")
             });
             BtnBaruDjjActionPerformed(null);
@@ -4892,7 +4793,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Tidak ada data denyut jantung janin yang bisa dihapus..!!");
         } else {
             if (tbDjj.getSelectedRow() > -1) {
-                tabMode1.removeRow(tbDjj.getSelectedRow());
+                int row = tbDjj.convertRowIndexToModel(tbDjj.getSelectedRow());
+                tabMode1.removeRow(row);
                 BtnBaruDjjActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel denyut jantung janin..!!");
@@ -4908,15 +4810,20 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             if (tbDjj.getSelectedRow() > -1) {
                 if (TNoRw.getText().equals("")) {
                     Valid.textKosong(TNoRw, "Nama Pasien");
+                } else if (Tjeda.getText().equals("")) {
+                    Valid.textKosong(Tjeda, "jeda/menit");
+                    Tjeda.requestFocus();
                 } else if (TnadiDjj.getText().equals("")) {
                     Valid.textKosong(TnadiDjj, "Nadi");
                     TnadiDjj.requestFocus();
                 } else {
-                    tabMode1.addRow(new String[]{TNoRw.getText(), TnadiDjj.getText(),
-                        cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), Sequel.cariIsi("select now()")
-                    });
-
-                    tabMode1.removeRow(tbDjj.getSelectedRow());
+                    int row = tbDjj.convertRowIndexToModel(tbDjj.getSelectedRow());
+                    tabMode1.setValueAt(TNoRw.getText(), row, 0);
+                    tabMode1.setValueAt(TnadiDjj.getText(), row, 1);
+                    tabMode1.setValueAt(Tjeda.getText(), row, 2);
+                    tabMode1.setValueAt(cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), row, 3);
+                    tabMode1.setValueAt(Sequel.cariIsi("select now()"), row, 4);
+                    
                     BtnBaruDjjActionPerformed(null);
                 }
             } else {
@@ -5003,7 +4910,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Tidak ada data air ketuban (mulase) yang bisa dihapus..!!");
         } else {
             if (tbAirKetuban.getSelectedRow() > -1) {
-                tabMode2.removeRow(tbAirKetuban.getSelectedRow());
+                int row = tbAirKetuban.convertRowIndexToModel(tbAirKetuban.getSelectedRow());
+                tabMode2.removeRow(row);
                 BtnBaruAKMActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel air ketuban (mulase)..!!");
@@ -5020,11 +4928,13 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                 if (TNoRw.getText().equals("")) {
                     Valid.textKosong(TNoRw, "Nama Pasien");
                 } else {
-                    tabMode2.addRow(new String[]{TNoRw.getText(), cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem(),
-                        cmbAirKetuban.getSelectedItem().toString(), cmbMulase.getSelectedItem().toString(), Sequel.cariIsi("select now()")
-                    });
-
-                    tabMode2.removeRow(tbAirKetuban.getSelectedRow());
+                    int row = tbAirKetuban.convertRowIndexToModel(tbAirKetuban.getSelectedRow());
+                    tabMode2.setValueAt(TNoRw.getText(), row, 0);
+                    tabMode2.setValueAt(cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem(), row, 1);
+                    tabMode2.setValueAt(cmbAirKetuban.getSelectedItem().toString(), row, 2);
+                    tabMode2.setValueAt(cmbMulase.getSelectedItem().toString(), row, 3);
+                    tabMode2.setValueAt(Sequel.cariIsi("select now()"), row, 4);
+                    
                     BtnBaruAKMActionPerformed(null);
                 }
             } else {
@@ -5075,8 +4985,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         if (tbServik.getRowCount() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Tidak ada data pembukaan serviks yang bisa dihapus..!!");
         } else {
-            if (tbServik.getSelectedRow() > -1) {
-                tabMode3.removeRow(tbServik.getSelectedRow());
+            if (tbServik.getSelectedRow() > -1) {                
+                int row = tbServik.convertRowIndexToModel(tbServik.getSelectedRow());
+                tabMode3.removeRow(row);
                 BtnBaruServikActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel pembukaan serviks..!!");
@@ -5113,7 +5024,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         if (tbServik.getRowCount() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Tidak ada data pembukaan serviks yang bisa diganti..!!");
         } else {
-            if (tbServik.getSelectedRow() > -1) {
+            if (tbServik.getSelectedRow() > -1) {                
                 if (TNoRw.getText().equals("")) {
                     Valid.textKosong(TNoRw, "Nama Pasien");
                 } else {
@@ -5128,13 +5039,17 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                     } else {
                         trun_kpl = "";
                     }
-
-                    tabMode3.addRow(new String[]{TNoRw.getText(), cmbWaktuKe.getSelectedItem().toString(),
-                        cmbJam4.getSelectedItem() + ":" + cmbMnt4.getSelectedItem() + ":" + cmbDtk4.getSelectedItem(),
-                        cmbCm.getSelectedItem().toString(), pembukaan, trun_kpl, TketServik.getText(), Sequel.cariIsi("select now()")
-                    });
-
-                    tabMode3.removeRow(tbServik.getSelectedRow());
+                    
+                    int row = tbServik.convertRowIndexToModel(tbServik.getSelectedRow());
+                    tabMode3.setValueAt(TNoRw.getText(), row, 0);
+                    tabMode3.setValueAt(cmbWaktuKe.getSelectedItem().toString(), row, 1);
+                    tabMode3.setValueAt(cmbJam4.getSelectedItem() + ":" + cmbMnt4.getSelectedItem() + ":" + cmbDtk4.getSelectedItem(), row, 2);
+                    tabMode3.setValueAt(cmbCm.getSelectedItem().toString(), row, 3);
+                    tabMode3.setValueAt(pembukaan, row, 4);
+                    tabMode3.setValueAt(trun_kpl, row, 5);
+                    tabMode3.setValueAt(TketServik.getText(), row, 6);
+                    tabMode3.setValueAt(Sequel.cariIsi("select now()"), row, 7);
+                    
                     BtnBaruServikActionPerformed(null);
                 }
             } else {
@@ -5143,24 +5058,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_BtnGantiServikActionPerformed
-
-    private void cmbJam5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJam5MouseReleased
-        AutoCompleteDecorator.decorate(cmbJam5);
-    }//GEN-LAST:event_cmbJam5MouseReleased
-
-    private void cmbMnt5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMnt5MouseReleased
-        AutoCompleteDecorator.decorate(cmbMnt5);
-    }//GEN-LAST:event_cmbMnt5MouseReleased
-
-    private void cmbDtk5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtk5MouseReleased
-        AutoCompleteDecorator.decorate(cmbDtk5);
-    }//GEN-LAST:event_cmbDtk5MouseReleased
-
-    private void TlamanyaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlamanyaKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnTambahKontraksi.requestFocus();
-        }
-    }//GEN-LAST:event_TlamanyaKeyPressed
 
     private void tbKontraksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKontraksiMouseClicked
         if (tabMode4.getRowCount() != 0) {
@@ -5192,7 +5089,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Tidak ada data kontraksi tiap 10 menit yang bisa dihapus..!!");
         } else {
             if (tbKontraksi.getSelectedRow() > -1) {
-                tabMode4.removeRow(tbKontraksi.getSelectedRow());
+                int row = tbKontraksi.convertRowIndexToModel(tbKontraksi.getSelectedRow());
+                tabMode4.removeRow(row);
                 BtnBaruKontraksiActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel kontraksi tiap 10 menit..!!");
@@ -5204,10 +5102,13 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private void BtnTambahKontraksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahKontraksiActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
+        } else if (cmbDetik.getSelectedIndex() == 0) {
+            Valid.textKosong(cmbDetik, "Detik Kontraksi");
+            cmbDetik.requestFocus();
         } else {
-            tabMode4.addRow(new String[]{TNoRw.getText(), cmbJam5.getSelectedItem() + ":" + cmbMnt5.getSelectedItem() + ":" + cmbDtk5.getSelectedItem(),
-                cmbLajur.getSelectedItem().toString(), cmbDetik.getSelectedItem().toString(), Tlamanya.getText(), Sequel.cariIsi("select now()")
-            });
+            tabMode4.addRow(new String[]{TNoRw.getText(), cmbLajur.getSelectedItem().toString(), cmbDetik.getSelectedItem().toString(),
+                Sequel.cariIsi("select now()")});
+            
             BtnBaruKontraksiActionPerformed(null);
         }
     }//GEN-LAST:event_BtnTambahKontraksiActionPerformed
@@ -5219,12 +5120,16 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             if (tbKontraksi.getSelectedRow() > -1) {
                 if (TNoRw.getText().equals("")) {
                     Valid.textKosong(TNoRw, "Nama Pasien");
+                } else if (cmbDetik.getSelectedIndex() == 0) {
+                    Valid.textKosong(cmbDetik, "Detik Kontraksi");
+                    cmbDetik.requestFocus();
                 } else {
-                    tabMode4.addRow(new String[]{TNoRw.getText(), cmbJam5.getSelectedItem() + ":" + cmbMnt5.getSelectedItem() + ":" + cmbDtk5.getSelectedItem(),
-                        cmbLajur.getSelectedItem().toString(), cmbDetik.getSelectedItem().toString(), Tlamanya.getText(), Sequel.cariIsi("select now()")
-                    });
-
-                    tabMode4.removeRow(tbKontraksi.getSelectedRow());
+                    int row = tbKontraksi.convertRowIndexToModel(tbKontraksi.getSelectedRow());
+                    tabMode4.setValueAt(TNoRw.getText(), row, 0);
+                    tabMode4.setValueAt(cmbLajur.getSelectedItem().toString(), row, 1);
+                    tabMode4.setValueAt(cmbDetik.getSelectedItem().toString(), row, 2);
+                    tabMode4.setValueAt(Sequel.cariIsi("select now()"), row, 3);
+                    
                     BtnBaruKontraksiActionPerformed(null);
                 }
             } else {
@@ -5233,24 +5138,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_BtnGantiKontraksiActionPerformed
-
-    private void ToksitosinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ToksitosinKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            cmbJam6.requestFocus();
-        }
-    }//GEN-LAST:event_ToksitosinKeyPressed
-
-    private void cmbJam6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJam6MouseReleased
-        AutoCompleteDecorator.decorate(cmbJam6);
-    }//GEN-LAST:event_cmbJam6MouseReleased
-
-    private void cmbMnt6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMnt6MouseReleased
-        AutoCompleteDecorator.decorate(cmbMnt6);
-    }//GEN-LAST:event_cmbMnt6MouseReleased
-
-    private void cmbDtk6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtk6MouseReleased
-        AutoCompleteDecorator.decorate(cmbDtk6);
-    }//GEN-LAST:event_cmbDtk6MouseReleased
 
     private void tbOksitosinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbOksitosinMouseClicked
         if (tabMode5.getRowCount() != 0) {
@@ -5282,7 +5169,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Tidak ada data oksitosin yang bisa dihapus..!!");
         } else {
             if (tbOksitosin.getSelectedRow() > -1) {
-                tabMode5.removeRow(tbOksitosin.getSelectedRow());
+                int row = tbOksitosin.convertRowIndexToModel(tbOksitosin.getSelectedRow());
+                tabMode5.removeRow(row);
                 BtnBaruOksiActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel oksitosin..!!");
@@ -5295,12 +5183,13 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else if (Toksitosin.getText().equals("")) {
-            Valid.textKosong(Toksitosin, "Oksitosin");
+            Valid.textKosong(Toksitosin, "konsentrasi U/L");
             Toksitosin.requestFocus();
+        } else if (Ttetes.getText().equals("")) {
+            Valid.textKosong(Ttetes, "kecepatan (tetes/mnt)");
+            Ttetes.requestFocus();
         } else {
-            tabMode5.addRow(new String[]{TNoRw.getText(), cmbJam6.getSelectedItem() + ":" + cmbMnt6.getSelectedItem() + ":" + cmbDtk6.getSelectedItem(),
-                Toksitosin.getText(), Sequel.cariIsi("select now()")
-            });
+            tabMode5.addRow(new String[]{TNoRw.getText(), Toksitosin.getText(), Ttetes.getText(), Sequel.cariIsi("select now()")});
             BtnBaruOksiActionPerformed(null);
         }
     }//GEN-LAST:event_BtnTambahOksiActionPerformed
@@ -5312,15 +5201,15 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             if (tbOksitosin.getSelectedRow() > -1) {
                 if (TNoRw.getText().equals("")) {
                     Valid.textKosong(TNoRw, "Nama Pasien");
-                } else if (Toksitosin.getText().equals("")) {
-                    Valid.textKosong(Toksitosin, "Oksitosin");
-                    Toksitosin.requestFocus();
+                } else if (Ttetes.getText().equals("")) {
+                    Valid.textKosong(Ttetes, "Oksitosin");
+                    Ttetes.requestFocus();
                 } else {
-                    tabMode5.addRow(new String[]{TNoRw.getText(), cmbJam6.getSelectedItem() + ":" + cmbMnt6.getSelectedItem() + ":" + cmbDtk6.getSelectedItem(),
-                        Toksitosin.getText(), Sequel.cariIsi("select now()")
-                    });
-
-                    tabMode5.removeRow(tbOksitosin.getSelectedRow());
+                    int row = tbOksitosin.convertRowIndexToModel(tbOksitosin.getSelectedRow());
+                    tabMode5.setValueAt(TNoRw.getText(), row, 0);
+                    tabMode5.setValueAt(Toksitosin.getText(), row, 1);
+                    tabMode5.setValueAt(Ttetes.getText(), row, 2);
+                    
                     BtnBaruOksiActionPerformed(null);
                 }
             } else {
@@ -5329,24 +5218,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_BtnGantiOksiActionPerformed
-
-    private void TobatCairanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TobatCairanKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            cmbJam7.requestFocus();
-        }
-    }//GEN-LAST:event_TobatCairanKeyPressed
-
-    private void cmbJam7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJam7MouseReleased
-        AutoCompleteDecorator.decorate(cmbJam7);
-    }//GEN-LAST:event_cmbJam7MouseReleased
-
-    private void cmbMnt7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMnt7MouseReleased
-        AutoCompleteDecorator.decorate(cmbMnt7);
-    }//GEN-LAST:event_cmbMnt7MouseReleased
-
-    private void cmbDtk7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtk7MouseReleased
-        AutoCompleteDecorator.decorate(cmbDtk7);
-    }//GEN-LAST:event_cmbDtk7MouseReleased
 
     private void tbObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbObatMouseClicked
         if (tabMode6.getRowCount() != 0) {
@@ -5378,7 +5249,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Tidak ada data obat & cairan IV yang bisa dihapus..!!");
         } else {
             if (tbObat.getSelectedRow() > -1) {
-                tabMode6.removeRow(tbObat.getSelectedRow());
+                int row = tbObat.convertRowIndexToModel(tbObat.getSelectedRow());
+                tabMode6.removeRow(row);
                 BtnBaruObatActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel obat & cairan IV..!!");
@@ -5394,9 +5266,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             Valid.textKosong(TobatCairan, "Obat & Cairan IV");
             TobatCairan.requestFocus();
         } else {
-            tabMode6.addRow(new String[]{TNoRw.getText(), cmbJam7.getSelectedItem() + ":" + cmbMnt7.getSelectedItem() + ":" + cmbDtk7.getSelectedItem(),
-                TobatCairan.getText(), Sequel.cariIsi("select now()")
-            });
+            tabMode6.addRow(new String[]{TNoRw.getText(), TobatCairan.getText(), Sequel.cariIsi("select now()")});
             BtnBaruObatActionPerformed(null);
         }
     }//GEN-LAST:event_BtnTambahObatActionPerformed
@@ -5412,11 +5282,10 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                     Valid.textKosong(TobatCairan, "Obat & Cairan IV");
                     TobatCairan.requestFocus();
                 } else {
-                    tabMode6.addRow(new String[]{TNoRw.getText(), cmbJam7.getSelectedItem() + ":" + cmbMnt7.getSelectedItem() + ":" + cmbDtk7.getSelectedItem(),
-                        TobatCairan.getText(), Sequel.cariIsi("select now()")
-                    });
-
-                    tabMode6.removeRow(tbObat.getSelectedRow());
+                    int row = tbObat.convertRowIndexToModel(tbObat.getSelectedRow());
+                    tabMode6.setValueAt(TNoRw.getText(), row, 0);
+                    tabMode6.setValueAt(TobatCairan.getText().toString(), row, 1);
+                    
                     BtnBaruObatActionPerformed(null);
                 }
             } else {
@@ -5486,7 +5355,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Tidak ada data nadi & tekanan darah yang bisa dihapus..!!");
         } else {
             if (tbNadi.getSelectedRow() > -1) {
-                tabMode7.removeRow(tbNadi.getSelectedRow());
+                int row = tbNadi.convertRowIndexToModel(tbNadi.getSelectedRow());
+                tabMode7.removeRow(row);
                 BtnBaruNadiActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel nadi & tekanan darah..!!");
@@ -5514,11 +5384,13 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                 if (TNoRw.getText().equals("")) {
                     Valid.textKosong(TNoRw, "Nama Pasien");
                 } else {
-                    tabMode7.addRow(new String[]{TNoRw.getText(), cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem(),
-                        Tnadi.getText(), Tsistol.getText(), Tdistol.getText(), Sequel.cariIsi("select now()")
-                    });
-
-                    tabMode7.removeRow(tbNadi.getSelectedRow());
+                    int row = tbNadi.convertRowIndexToModel(tbNadi.getSelectedRow());
+                    tabMode7.setValueAt(TNoRw.getText(), row, 0);
+                    tabMode7.setValueAt(cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem(), row, 1);
+                    tabMode7.setValueAt(Tnadi.getText(), row, 2);
+                    tabMode7.setValueAt(Tsistol.getText(), row, 3);
+                    tabMode7.setValueAt(Tdistol.getText(), row, 4);
+                    
                     BtnBaruNadiActionPerformed(null);
                 }
             } else {
@@ -5576,7 +5448,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Tidak ada data suhu yang bisa dihapus..!!");
         } else {
             if (tbSuhu.getSelectedRow() > -1) {
-                tabMode8.removeRow(tbSuhu.getSelectedRow());
+                int row = tbSuhu.convertRowIndexToModel(tbSuhu.getSelectedRow());
+                tabMode8.removeRow(row);
                 BtnBaruSuhuActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel suhu..!!");
@@ -5610,11 +5483,12 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                     Valid.textKosong(Tsuhu, "Suhu");
                     Tsuhu.requestFocus();
                 } else {
-                    tabMode8.addRow(new String[]{TNoRw.getText(), cmbJam9.getSelectedItem() + ":" + cmbMnt9.getSelectedItem() + ":" + cmbDtk9.getSelectedItem(),
-                        Tsuhu.getText(), Sequel.cariIsi("select now()")
-                    });
-
-                    tabMode8.removeRow(tbSuhu.getSelectedRow());
+                    int row = tbSuhu.convertRowIndexToModel(tbSuhu.getSelectedRow());
+                    tabMode8.setValueAt(TNoRw.getText(), row, 0);
+                    tabMode8.setValueAt(cmbJam9.getSelectedItem() + ":" + cmbMnt9.getSelectedItem() + ":" + cmbDtk9.getSelectedItem(), row, 1);
+                    tabMode8.setValueAt(Tsuhu.getText(), row, 2);
+                    tabMode8.setValueAt(Sequel.cariIsi("select now()"), row, 3);
+                    
                     BtnBaruSuhuActionPerformed(null);
                 }
             } else {
@@ -5672,7 +5546,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Tidak ada data urin yang bisa dihapus..!!");
         } else {
             if (tbUrin.getSelectedRow() > -1) {
-                tabMode9.removeRow(tbUrin.getSelectedRow());
+                int row = tbUrin.convertRowIndexToModel(tbUrin.getSelectedRow());
+                tabMode9.removeRow(row);
                 BtnBaruUrinActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel urin..!!");
@@ -5700,11 +5575,14 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                 if (TNoRw.getText().equals("")) {
                     Valid.textKosong(TNoRw, "Nama Pasien");
                 } else {
-                    tabMode9.addRow(new String[]{TNoRw.getText(), cmbJam10.getSelectedItem() + ":" + cmbMnt10.getSelectedItem() + ":" + cmbDtk10.getSelectedItem(),
-                        cmbProtein.getSelectedItem().toString(), cmbAseton.getSelectedItem().toString(), Tvolume.getText(), Sequel.cariIsi("select now()")
-                    });
-
-                    tabMode9.removeRow(tbUrin.getSelectedRow());
+                    int row = tbUrin.convertRowIndexToModel(tbUrin.getSelectedRow());
+                    tabMode9.setValueAt(TNoRw.getText(), row, 0);
+                    tabMode9.setValueAt(cmbJam10.getSelectedItem() + ":" + cmbMnt10.getSelectedItem() + ":" + cmbDtk10.getSelectedItem(), row, 1);
+                    tabMode9.setValueAt(cmbProtein.getSelectedItem().toString(), row, 2);
+                    tabMode9.setValueAt(cmbAseton.getSelectedItem().toString(), row, 3);
+                    tabMode9.setValueAt(Tvolume.getText(), row, 4);
+                    tabMode9.setValueAt(Sequel.cariIsi("select now()"), row, 5);
+                    
                     BtnBaruUrinActionPerformed(null);
                 }
             } else {
@@ -5782,12 +5660,15 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         if (cmbPemberianOksi.getSelectedIndex() == 1) {
             labelKetPemberian.setText("Menit sesudah persalinan");
             Tkala3PemberianOksi.setEnabled(true);
+            Tkala3PemberianOksi.setDocument(new batasInput((int) 7).getKata(Tkala3PemberianOksi));
         } else if (cmbPemberianOksi.getSelectedIndex() == 2 || cmbPemberianOksi.getSelectedIndex() == 0) {
             labelKetPemberian.setText("");
             Tkala3PemberianOksi.setEnabled(true);
+            Tkala3PemberianOksi.setDocument(new batasInput((int) 200).getKata(Tkala3PemberianOksi));
         } else if (cmbPemberianOksi.getSelectedIndex() == 3) {
             labelKetPemberian.setText("Menit setelah bayi lahir");
             Tkala3PemberianOksi.setEnabled(true);
+            Tkala3PemberianOksi.setDocument(new batasInput((int) 7).getKata(Tkala3PemberianOksi));
         } else {
             Tkala3PemberianOksi.setEnabled(false);
         }
@@ -6299,7 +6180,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Tidak ada data pemantauan persalinan kala 4 yang bisa dihapus..!!");
         } else {
             if (tbPemantauan.getSelectedRow() > -1) {
-                tabMode10.removeRow(tbPemantauan.getSelectedRow());
+                int row = tbPemantauan.convertRowIndexToModel(tbPemantauan.getSelectedRow());
+                tabMode10.removeRow(row);
                 BtnBaruKala4ActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel pemantauan persalinan kala 4..!!");
@@ -6316,25 +6198,20 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                 if (TNoRw.getText().equals("")) {
                     Valid.textKosong(TNoRw, "Nama Pasien");
                 } else {
-                    urutPantau = "1";
-                    if (tabMode10.getRowCount() > 0) {
-                        int max = 0;
-                        for (int i = 0; i < tabMode10.getRowCount(); i++) {
-                            int nilai = Integer.parseInt(tabMode10.getValueAt(i, 1).toString());
-                            if (nilai > max) {
-                                max = nilai;
-                            }
-                        }
-                        urutPantau = String.valueOf(max + 1);
-                    }
-
-                    tabMode10.addRow(new String[]{TNoRw.getText(), urutPantau, TjamKe.getText(),
-                        cmbJam11.getSelectedItem() + ":" + cmbMnt11.getSelectedItem() + ":" + cmbDtk11.getSelectedItem(), TtdKala4.getText(),
-                        TnadiKala4.getText(), TsuhuKala4.getText(), TTinggiFundus.getText(), Tkontraksi.getText(), Turin.getText(), TdarahYang.getText(),
-                        Sequel.cariIsi("select now()")
-                    });
-
-                    tabMode10.removeRow(tbPemantauan.getSelectedRow());
+                    int row = tbPemantauan.convertRowIndexToModel(tbPemantauan.getSelectedRow());
+                    tabMode10.setValueAt(TNoRw.getText(), row, 0);
+                    tabMode10.setValueAt(urutanKe, row, 1);
+                    tabMode10.setValueAt(TjamKe.getText(), row, 2);
+                    tabMode10.setValueAt(cmbJam11.getSelectedItem() + ":" + cmbMnt11.getSelectedItem() + ":" + cmbDtk11.getSelectedItem(), row, 3);
+                    tabMode10.setValueAt(TtdKala4.getText(), row, 4);
+                    tabMode10.setValueAt(TnadiKala4.getText(), row, 5);
+                    tabMode10.setValueAt(TsuhuKala4.getText(), row, 6);
+                    tabMode10.setValueAt(TTinggiFundus.getText(), row, 7);
+                    tabMode10.setValueAt(Tkontraksi.getText(), row, 8);
+                    tabMode10.setValueAt(Turin.getText(), row, 9);
+                    tabMode10.setValueAt(TdarahYang.getText(), row, 10);
+                    tabMode10.setValueAt(Sequel.cariIsi("select now()"), row, 11);
+                    
                     BtnBaruKala4ActionPerformed(null);
                 }
             } else {
@@ -6384,11 +6261,11 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnBatal1ActionPerformed
 
     private void BtnGanti1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGanti1ActionPerformed
-        // TODO add your handling code here:
+        BtnGantiActionPerformed(null);
     }//GEN-LAST:event_BtnGanti1ActionPerformed
 
     private void BtnGanti1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGanti1KeyPressed
-        // TODO add your handling code here:
+        BtnGantiKeyPressed(null);
     }//GEN-LAST:event_BtnGanti1KeyPressed
 
     private void BtnKeluar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar1ActionPerformed
@@ -6400,11 +6277,24 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKeluar2ActionPerformed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        // TODO add your handling code here:
+        if (tbPartograf.getSelectedRow() > -1) {
+            if (akses.getkode().equals(tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 10).toString()) || akses.getadmin() == true) {
+                hapus();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, data partograf persalinan pasien ini hanya bisa dihapus oleh "
+                        + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 11).toString() + " ...!!");
+                TabPartograf.setSelectedIndex(2);
+                tbPartograf.requestFocus();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            TabPartograf.setSelectedIndex(2);
+            tbPartograf.requestFocus();
+        }
     }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnHapus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapus1ActionPerformed
-        // TODO add your handling code here:
+        BtnHapusActionPerformed(null);
     }//GEN-LAST:event_BtnHapus1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -6417,6 +6307,251 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             tampil();
         }
     }//GEN-LAST:event_TabPartografMouseClicked
+
+    private void BtnGantiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGantiKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnGantiActionPerformed(null);
+        } else {
+            Valid.pindah(evt, BtnBatal, BtnKeluar);
+        }
+    }//GEN-LAST:event_BtnGantiKeyPressed
+
+    private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
+        if (TNoRw.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "Ppasien");
+        } else if (nipBidan.equals("")) {
+            Valid.textKosong(TnmBidan, "nama bidan");
+            BtnBidan.requestFocus();
+        } else {
+            if (Sequel.mengedittf("partograf_persalinan", "no_rawat=?", "ruang_rawat=?, gravida=?, paritas=?, abortus=?, tgl_masuk=?, jam_masuk=?, ketuban_pecah=?, jam_ketuban=?", 9, new String[]{
+                TrgRawat.getText(), Tgravida.getText(), Tparitas.getText(), Tabortus.getText(), Valid.SetTgl(TtglMasuk.getSelectedItem() + ""),
+                cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                cmbKetuban.getSelectedItem().toString(), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
+                tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString()
+            }) == true) {
+                if (tbDjj.getRowCount() != 0) {
+                    Sequel.queryu("delete from partograf_djj where no_rawat='" + TNoRw.getText() + "'");
+                    for (i = 0; i < tbDjj.getRowCount(); i++) {
+                        Sequel.menyimpanIgnore("partograf_djj",
+                                "'" + tbDjj.getValueAt(i, 0).toString() + "','"
+                                + tbDjj.getValueAt(i, 1).toString() + "','"
+                                + tbDjj.getValueAt(i, 2).toString() + "','"
+                                + tbDjj.getValueAt(i, 3).toString() + "','"
+                                + tbDjj.getValueAt(i, 4).toString() + "'", "Data DJJ");
+                    }
+                }
+
+                if (tbAirKetuban.getRowCount() != 0) {
+                    Sequel.queryu("delete from partograf_air_ketuban where no_rawat='" + TNoRw.getText() + "'");
+                    for (i = 0; i < tbAirKetuban.getRowCount(); i++) {
+                        Sequel.menyimpanIgnore("partograf_air_ketuban",
+                                "'" + tbAirKetuban.getValueAt(i, 0).toString() + "','"
+                                + tbAirKetuban.getValueAt(i, 1).toString() + "','"
+                                + tbAirKetuban.getValueAt(i, 2).toString() + "','"
+                                + tbAirKetuban.getValueAt(i, 3).toString() + "','"
+                                + tbAirKetuban.getValueAt(i, 4).toString() + "'", "Data Air Ketuban");
+                    }
+                }
+
+                if (tbServik.getRowCount() != 0) {
+                    Sequel.queryu("delete from partograf_pembukaan_serviks where no_rawat='" + TNoRw.getText() + "'");
+                    for (i = 0; i < tbServik.getRowCount(); i++) {
+                        Sequel.menyimpanIgnore("partograf_pembukaan_serviks",
+                                "'" + tbServik.getValueAt(i, 0).toString() + "','"
+                                + tbServik.getValueAt(i, 1).toString() + "','"
+                                + tbServik.getValueAt(i, 2).toString() + "','"
+                                + tbServik.getValueAt(i, 3).toString() + "','"
+                                + tbServik.getValueAt(i, 4).toString() + "','"
+                                + tbServik.getValueAt(i, 5).toString() + "','"
+                                + tbServik.getValueAt(i, 6).toString() + "','"
+                                + tbServik.getValueAt(i, 7).toString() + "'", "Data Pembukaan Serviks");
+                    }
+                }
+
+                if (tbKontraksi.getRowCount() != 0) {
+                    Sequel.queryu("delete from partograf_kontraksi where no_rawat='" + TNoRw.getText() + "'");
+                    for (i = 0; i < tbKontraksi.getRowCount(); i++) {
+                        Sequel.menyimpanIgnore("partograf_kontraksi",
+                                "'" + tbKontraksi.getValueAt(i, 0).toString() + "','"
+                                + tbKontraksi.getValueAt(i, 1).toString() + "','"
+                                + tbKontraksi.getValueAt(i, 2).toString() + "','"
+                                + tbKontraksi.getValueAt(i, 3).toString() + "'", "Data Kontraksi");
+                    }
+                }
+
+                if (tbOksitosin.getRowCount() != 0) {
+                    Sequel.queryu("delete from partograf_oksitosin where no_rawat='" + TNoRw.getText() + "'");
+                    for (i = 0; i < tbOksitosin.getRowCount(); i++) {
+                        Sequel.menyimpanIgnore("partograf_oksitosin",
+                                "'" + tbOksitosin.getValueAt(i, 0).toString() + "','"
+                                + tbOksitosin.getValueAt(i, 1).toString() + "','"
+                                + tbOksitosin.getValueAt(i, 2).toString() + "','"
+                                + tbOksitosin.getValueAt(i, 3).toString() + "'", "Data Oksitosin");
+                    }
+                }
+
+                if (tbObat.getRowCount() != 0) {
+                    Sequel.queryu("delete from partograf_obat_cairan where no_rawat='" + TNoRw.getText() + "'");
+                    for (i = 0; i < tbObat.getRowCount(); i++) {
+                        Sequel.menyimpanIgnore("partograf_obat_cairan",
+                                "'" + tbObat.getValueAt(i, 0).toString() + "','"
+                                + tbObat.getValueAt(i, 1).toString() + "','"
+                                + tbObat.getValueAt(i, 2).toString() + "'", "Data Obat & Cairan");
+                    }
+                }
+
+                if (tbNadi.getRowCount() != 0) {
+                    Sequel.queryu("delete from partograf_nadi_tensi where no_rawat='" + TNoRw.getText() + "'");
+                    for (i = 0; i < tbNadi.getRowCount(); i++) {
+                        Sequel.menyimpanIgnore("partograf_nadi_tensi",
+                                "'" + tbNadi.getValueAt(i, 0).toString() + "','"
+                                + tbNadi.getValueAt(i, 1).toString() + "','"
+                                + tbNadi.getValueAt(i, 2).toString() + "','"
+                                + tbNadi.getValueAt(i, 3).toString() + "','"
+                                + tbNadi.getValueAt(i, 4).toString() + "','"
+                                + tbNadi.getValueAt(i, 5).toString() + "'", "Data Nadi");
+                    }
+                }
+
+                if (tbSuhu.getRowCount() != 0) {
+                    Sequel.queryu("delete from partograf_suhu where no_rawat='" + TNoRw.getText() + "'");
+                    for (i = 0; i < tbSuhu.getRowCount(); i++) {
+                        Sequel.menyimpanIgnore("partograf_suhu",
+                                "'" + tbSuhu.getValueAt(i, 0).toString() + "','"
+                                + tbSuhu.getValueAt(i, 1).toString() + "','"
+                                + tbSuhu.getValueAt(i, 2).toString() + "','"
+                                + tbSuhu.getValueAt(i, 3).toString() + "'", "Data Suhu");
+                    }
+                }
+
+                if (tbUrin.getRowCount() != 0) {
+                    Sequel.queryu("delete from partograf_urin where no_rawat='" + TNoRw.getText() + "'");
+                    for (i = 0; i < tbUrin.getRowCount(); i++) {
+                        Sequel.menyimpanIgnore("partograf_urin",
+                                "'" + tbUrin.getValueAt(i, 0).toString() + "','"
+                                + tbUrin.getValueAt(i, 1).toString() + "','"
+                                + tbUrin.getValueAt(i, 2).toString() + "','"
+                                + tbUrin.getValueAt(i, 3).toString() + "','"
+                                + tbUrin.getValueAt(i, 4).toString() + "','"
+                                + tbUrin.getValueAt(i, 5).toString() + "'", "Data Urin");
+                    }
+                }
+
+                cekData();
+                if (cmbPemberianOksi.getSelectedIndex() == 1) {
+                    dataKala3A = Tkala3PemberianOksi.getText();
+                } else if (cmbPemberianOksi.getSelectedIndex() == 2 || cmbPemberianOksi.getSelectedIndex() == 0) {
+                    dataKala3B = Tkala3PemberianOksi.getText();
+                } else if (cmbPemberianOksi.getSelectedIndex() == 3) {
+                    dataKala3C = Tkala3PemberianOksi.getText();
+                }
+
+                if (cmbBayiLahir.getSelectedIndex() == 6) {
+                    sebutkan38a = TbayiSebutkan.getText();
+                } else if (cmbBayiAsfeksia.getSelectedIndex() == 6) {
+                    sebutkan38b = TbayiSebutkan.getText();
+                }
+
+                if (Sequel.mengedittf("partograf_catatan_persalinan", "no_rawat=?", "cttn_tanggal=?, cttn_nip_bidan=?, cttn_tempat_persalinan=?, cttn_ket_lainya_tmpt=?, "
+                        + "cttn_alamat_tempat=?, cttn_rujukan=?, cttn_alasan_merujuk=?, cttn_tempat_rujukan=?, cttn_pendamping_bidan=?, cttn_pendamping_teman=?, cttn_pendamping_klg=?, "
+                        + "cttn_pendamping_suami=?, cttn_pendamping_dukun=?, cttn_pendamping_tidak_ada=?, cttn_masalah_gawat=?, cttn_masalah_perdarahan=?, cttn_masalah_infeksi=?, "
+                        + "cttn_masalah_peb=?, cttn_masalah_hdk=?, cttn_masalah_bidan_pmtct=?, cttn_masalah_lainya=?, cttn_masalah_ket_lainya=?, kala1_partogram=?, kala1_masalah_lain=?, "
+                        + "kala1_penatalaksanaan=?, kala1_hasilnya=?, kala2_episiotomi=?, kala2_episiotomi_indikasi=?, kala2_pendamping_suami=?, kala2_pendamping_klg=?, "
+                        + "kala2_pendamping_teman=?, kala2_pendamping_dukun=?, kala2_pendamping_tidak_ada=?, kala2_gawat_janin=?, kala2_ket_ya_gawat_janin=?, kala2_ket_hasil_pemantauan=?, "
+                        + "kala2_distosia_bahu=?, kala2_ket_ya_distosia_bahu=?, kala2_masalah_lain_hasilnya=?, kala3_inisiasi=?, kala3_ket_tidak_alasan=?, kala3_lama=?, "
+                        + "kala3_pemberian_oksitosin=?, kala3_pemberian_oksitosin_ya=?, kala3_pemberian_oksitosin_tidak=?, kala3_pemberian_oksitosin_penjepitan=?, kala3_pemberian_ulang=?, "
+                        + "kala3_pemberian_ulang_ya=?, kala3_penegangan_tali=?, kala3_penegangan_tali_tidak=?, kala3_masase_fundus=?, kala3_masase_fundus_tidak=?, kala3_plasenta_lahir=?, "
+                        + "kala3_plasenta_lahir_tidak_a=?, kala3_plasenta_lahir_tidak_b=?, kala3_plasenta_tidak_lahir=?, kala3_plasenta_tidak_lahir_ya=?, kala3_laserasi=?, "
+                        + "kala3_laserasi_ya=?, kala3_laserasi_perineum=?, kala3_laserasi_perineum_penjahitan=?, kala3_laserasi_perineum_penjahitan_tidak=?, kala3_atonia_uteri=?, "
+                        + "kala3_atonia_uteri_ya=?, kala3_jumlah_darah=?, kala3_masalah=?, kala3_penatalaksanaan_masalah=?, kala3_hasilnya=?, bayi_bb=?, bayi_pb=?, bayi_jenkel=?, "
+                        + "bayi_penilaian=?, bayi_bayi_lahir=?, bayi_bayi_lahir_normal=?, bayi_bayi_lahir_asfiksia_tindakan=?, bayi_bayi_lahir_asfiksia_tindakan_sebutkan=?, "
+                        + "bayi_bayi_lahir_cacat_bawaan_sebutkan=?, bayi_bayi_lahir_hipotermia_a=?, bayi_bayi_lahir_hipotermia_b=?, bayi_bayi_lahir_hipotermia_c=?, bayi_pemberian_asi=?, "
+                        + "bayi_pemberian_asi_ya=?, bayi_pemberian_asi_tidak_alasan=?, bayi_masalah_lain=?, bayi_hasilnya=?", 86, new String[]{
+                            Valid.SetTgl(TtglCatatan.getSelectedItem() + ""), nipBidan, cmbTmptPersalinan.getSelectedItem().toString(), TtmptPersalinanLain.getText(),
+                            TalmtTmpPersalinan.getText(), cmbCttnRujuk.getSelectedItem().toString(), TalasanMerujuk.getText(), TtmptRujukan.getText(), bidan8, teman8,
+                            klg8, suami8, dukun8, tdkAda8, gawat9, perdarahan9, infeksi9, peb9, hdk9, bidan9, lainya9, TmasalahLain.getText(), cmbPartogram.getSelectedItem().toString(),
+                            Tkala1MasalahLain.getText(), Tkala1Penata.getText(), Tkala1Hasilnya.getText(), cmbEpisiotomi.getSelectedItem().toString(), Tkala2YaIndikasi.getText(),
+                            suami15, klg15, teman15, dukun15, tdkAda15, cmbGawatJanin.getSelectedItem().toString(), Tkala2YaTindakanGawat.getText(), Tkala2Pemantauan.getText(),
+                            cmbDistosia.getSelectedItem().toString(), Tkala2YaTindakanDisto.getText(), Tkala2MasalahLain.getText(), cmbInisiasi.getSelectedItem().toString(),
+                            Tkala3Tidak.getText(), Tkala3Lama.getText(), cmbPemberianOksi.getSelectedItem().toString(), dataKala3A, dataKala3B, dataKala3C,
+                            cmbPemberianUlang.getSelectedItem().toString(), Tkala3PemberianUlang.getText(), cmbPenegangan.getSelectedItem().toString(), Tkala3Penegangan.getText(),
+                            cmbMasase.getSelectedItem().toString(), Tkala3Masase.getText(), cmbPlasenta25.getSelectedItem().toString(), Tkala3Plasenta25A.getText(),
+                            Tkala3Plasenta25B.getText(), cmbPlasenta26.getSelectedItem().toString(), Tkala3Plasenta26.getText(), cmbLaserasi.getSelectedItem().toString(),
+                            Tkala3Laserasi.getText(), cmbJika.getSelectedItem().toString(), cmbTindakan.getSelectedItem().toString(), Tkala3Alasan.getText(),
+                            cmbAtonia.getSelectedItem().toString(), Tkala3Atonia.getText(), Tkala3Jumlah.getText(), Tkala3Masalah.getText(), Tkala3Penata.getText(),
+                            Tkala3Hasilnya.getText(), TbayiBB.getText(), TbayiPB.getText(), cmbJenkel.getSelectedItem().toString(), cmbPenilaian.getSelectedItem().toString(),
+                            cmbBayiLahir.getSelectedItem().toString(), cmbBayiNormal.getSelectedItem().toString(), cmbBayiAsfeksia.getSelectedItem().toString(),
+                            sebutkan38b, sebutkan38a, TbayiTindakanA.getText(), TbayiTindakanB.getText(), TbayiTindakanC.getText(), cmbPemberianAsi.getSelectedItem().toString(),
+                            TbayiYaPemberian.getText(), TbayiTidakAlasan.getText(), TbayiMasalah.getText(), TbayiHasilnya.getText(),
+                            tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString()
+                        }) == true) {
+                    System.out.println("Proses ganti data partograf catatan persalinan berhasil disimpan,...!!");
+                }
+
+                if (tbPemantauan.getRowCount() != 0) {
+                    Sequel.queryu("delete from partograf_kala_4 where no_rawat='" + TNoRw.getText() + "'");
+                    for (i = 0; i < tbPemantauan.getRowCount(); i++) {
+                        Sequel.menyimpanIgnore("partograf_kala_4",
+                                "'" + tbPemantauan.getValueAt(i, 0).toString() + "','"
+                                + tbPemantauan.getValueAt(i, 1).toString() + "','"
+                                + tbPemantauan.getValueAt(i, 2).toString() + "','"
+                                + tbPemantauan.getValueAt(i, 3).toString() + "','"
+                                + tbPemantauan.getValueAt(i, 4).toString() + "','"
+                                + tbPemantauan.getValueAt(i, 5).toString() + "','"
+                                + tbPemantauan.getValueAt(i, 6).toString() + "','"
+                                + tbPemantauan.getValueAt(i, 7).toString() + "','"
+                                + tbPemantauan.getValueAt(i, 8).toString() + "','"
+                                + tbPemantauan.getValueAt(i, 9).toString() + "','"
+                                + tbPemantauan.getValueAt(i, 10).toString() + "','"
+                                + tbPemantauan.getValueAt(i, 11).toString() + "'", "Data Pemantauan Persalinan Kala 4");
+                    }
+                }
+
+                if (Sequel.mengedittf("partograf_pemantauan_kala4", "no_rawat=?", "masalah=?, penatalaksanaan=?, hasilnya=?", 4, new String[]{
+                    TmasalahKala4.getText(), TpenataKala4.getText(), ThasilKala4.getText(),
+                    tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString()
+                }) == true) {
+                    System.out.println("Proses ganti data partograf pemantauan kala 4 berhasil disimpan,...!!");
+                }
+
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Partograf Persalinan", "Ganti");
+                TCari.setText(TNoRw.getText());
+                TabPartograf.setSelectedIndex(2);
+                tampil();
+                emptTeks();
+            }
+        }
+    }//GEN-LAST:event_BtnGantiActionPerformed
+
+    private void BtnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCetakActionPerformed
+        if (tbPartograf.getSelectedRow() > -1) {
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            TabPartograf.setSelectedIndex(2);
+            tbPartograf.requestFocus();
+        }
+    }//GEN-LAST:event_BtnCetakActionPerformed
+
+    private void BtnCetak1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCetak1ActionPerformed
+        BtnCetakActionPerformed(null);
+    }//GEN-LAST:event_BtnCetak1ActionPerformed
+
+    private void BtnCetak2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCetak2ActionPerformed
+        BtnCetakActionPerformed(null);
+    }//GEN-LAST:event_BtnCetak2ActionPerformed
+
+    private void TjedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TjedaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            TnadiDjj.requestFocus();
+        }
+    }//GEN-LAST:event_TjedaKeyPressed
+
+    private void ToksitosinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ToksitosinKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Ttetes.requestFocus();
+        }
+    }//GEN-LAST:event_ToksitosinKeyPressed
 
     /**
     * @param args the command line arguments
@@ -6450,6 +6585,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.Button BtnBatal1;
     private widget.Button BtnBidan;
     private widget.Button BtnCari;
+    private widget.Button BtnCetak;
+    private widget.Button BtnCetak1;
+    private widget.Button BtnCetak2;
     private widget.Button BtnGanti;
     private widget.Button BtnGanti1;
     private widget.Button BtnGantiAKM;
@@ -6529,6 +6667,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.TextBox Tgravida;
     private widget.TextBox ThasilKala4;
     private widget.TextBox TjamKe;
+    private widget.TextBox Tjeda;
     private widget.TextBox Tkala1Hasilnya;
     private widget.TextBox Tkala1MasalahLain;
     private widget.TextBox Tkala1Penata;
@@ -6555,7 +6694,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.TextBox Tkala3Tidak;
     private widget.TextBox TketServik;
     private widget.TextBox Tkontraksi;
-    private widget.TextBox Tlamanya;
     private widget.TextBox TmasalahKala4;
     private widget.TextBox TmasalahLain;
     private widget.TextBox Tnadi;
@@ -6571,12 +6709,14 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.TextBox Tsuhu;
     private widget.TextBox TsuhuKala4;
     private widget.TextBox TtdKala4;
+    private widget.TextBox Ttetes;
     private widget.Tanggal TtglCatatan;
     private widget.Tanggal TtglMasuk;
     private widget.TextBox TtmptPersalinanLain;
     private widget.TextBox TtmptRujukan;
     private widget.TextBox Turin;
     private widget.TextBox Tvolume;
+    private javax.swing.ButtonGroup buttonGroup1;
     public widget.CekBox chkBidan8;
     public widget.CekBox chkBidan9;
     public widget.CekBox chkDukun8;
@@ -6614,9 +6754,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.ComboBox cmbDtk2;
     private widget.ComboBox cmbDtk3;
     private widget.ComboBox cmbDtk4;
-    private widget.ComboBox cmbDtk5;
-    private widget.ComboBox cmbDtk6;
-    private widget.ComboBox cmbDtk7;
     private widget.ComboBox cmbDtk8;
     private widget.ComboBox cmbDtk9;
     private widget.ComboBox cmbEpisiotomi;
@@ -6629,9 +6766,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.ComboBox cmbJam2;
     private widget.ComboBox cmbJam3;
     private widget.ComboBox cmbJam4;
-    private widget.ComboBox cmbJam5;
-    private widget.ComboBox cmbJam6;
-    private widget.ComboBox cmbJam7;
     private widget.ComboBox cmbJam8;
     private widget.ComboBox cmbJam9;
     private widget.ComboBox cmbJenkel;
@@ -6647,9 +6781,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.ComboBox cmbMnt2;
     private widget.ComboBox cmbMnt3;
     private widget.ComboBox cmbMnt4;
-    private widget.ComboBox cmbMnt5;
-    private widget.ComboBox cmbMnt6;
-    private widget.ComboBox cmbMnt7;
     private widget.ComboBox cmbMnt8;
     private widget.ComboBox cmbMnt9;
     private widget.ComboBox cmbMulase;
@@ -6704,6 +6835,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.Label jLabel129;
     private widget.Label jLabel13;
     private widget.Label jLabel130;
+    private widget.Label jLabel131;
+    private widget.Label jLabel132;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
@@ -6720,15 +6853,12 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private widget.Label jLabel28;
     private widget.Label jLabel29;
     private widget.Label jLabel30;
-    private widget.Label jLabel31;
     private widget.Label jLabel32;
-    private widget.Label jLabel33;
     private widget.Label jLabel34;
     private widget.Label jLabel35;
     private widget.Label jLabel36;
     private widget.Label jLabel37;
     private widget.Label jLabel38;
-    private widget.Label jLabel39;
     private widget.Label jLabel4;
     private widget.Label jLabel40;
     private widget.Label jLabel41;
@@ -6892,6 +7022,14 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbMnt2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk2.setSelectedIndex(0);
         tbDjj.clearSelection();
+
+        if (tabMode1.getRowCount() != 0) {
+            int viewRow = tbDjj.getRowCount() - 1;
+            int modelRow = tbDjj.convertRowIndexToModel(viewRow);
+            Tjeda.setText(tabMode1.getValueAt(modelRow, 2).toString());
+        } else {
+            Tjeda.setText("");
+        }
     }
     
     private void emptTeksAirKetuban() {
@@ -6911,6 +7049,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbCm.setSelectedIndex(0);
         chkPembukaan.setSelected(false);
         chkTurunya.setSelected(false);
+        buttonGroup1.clearSelection();
         TketServik.setText("");
         tbServik.clearSelection();
     }
@@ -6918,26 +7057,17 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private void emptTeksKontaksi() {
         cmbLajur.setSelectedIndex(0);
         cmbDetik.setSelectedIndex(0);
-        cmbJam5.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
-        cmbMnt5.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
-        cmbDtk5.setSelectedIndex(0);
-        Tlamanya.setText("");
         tbKontraksi.clearSelection();
     }
     
     private void emptTeksOksitosin() {
         Toksitosin.setText("");
-        cmbJam6.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
-        cmbMnt6.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
-        cmbDtk6.setSelectedIndex(0);
+        Ttetes.setText("");
         tbOksitosin.clearSelection();
     }
     
     private void emptTeksObat() {
         TobatCairan.setText("");
-        cmbJam7.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
-        cmbMnt7.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
-        cmbDtk7.setSelectedIndex(0);
         tbObat.clearSelection();
     }
     
@@ -6984,7 +7114,18 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         tbPemantauan.clearSelection();
     }
 
-    public void emptTeks() {  
+    public void emptTeks() {
+        Valid.tabelKosong(tabMode1);
+        Valid.tabelKosong(tabMode2);
+        Valid.tabelKosong(tabMode3);
+        Valid.tabelKosong(tabMode4);
+        Valid.tabelKosong(tabMode5);
+        Valid.tabelKosong(tabMode6);
+        Valid.tabelKosong(tabMode7);
+        Valid.tabelKosong(tabMode8);
+        Valid.tabelKosong(tabMode9);
+        Valid.tabelKosong(tabMode10);
+        
         Tgravida.setText("");
         Tparitas.setText("");
         Tabortus.setText("");
@@ -7115,17 +7256,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         TmasalahKala4.setText("");
         TpenataKala4.setText("");
         ThasilKala4.setText("");
-        
-        Valid.tabelKosong(tabMode1);
-        Valid.tabelKosong(tabMode2);
-        Valid.tabelKosong(tabMode3);
-        Valid.tabelKosong(tabMode4);
-        Valid.tabelKosong(tabMode5);
-        Valid.tabelKosong(tabMode6);
-        Valid.tabelKosong(tabMode7);
-        Valid.tabelKosong(tabMode8);
-        Valid.tabelKosong(tabMode9);
-        Valid.tabelKosong(tabMode10);
     }
 
     private void getData() {
@@ -7180,9 +7310,10 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private void getDataDjj() {
         if (tbDjj.getSelectedRow() != -1) {            
             TnadiDjj.setText(tbDjj.getValueAt(tbDjj.getSelectedRow(), 1).toString());
-            cmbJam2.setSelectedItem(tbDjj.getValueAt(tbDjj.getSelectedRow(), 2).toString().substring(0, 2));
-            cmbMnt2.setSelectedItem(tbDjj.getValueAt(tbDjj.getSelectedRow(), 2).toString().substring(3, 5));
-            cmbDtk2.setSelectedItem(tbDjj.getValueAt(tbDjj.getSelectedRow(), 2).toString().substring(6, 8));
+            Tjeda.setText(tbDjj.getValueAt(tbDjj.getSelectedRow(), 2).toString());
+            cmbJam2.setSelectedItem(tbDjj.getValueAt(tbDjj.getSelectedRow(), 3).toString().substring(0, 2));
+            cmbMnt2.setSelectedItem(tbDjj.getValueAt(tbDjj.getSelectedRow(), 3).toString().substring(3, 5));
+            cmbDtk2.setSelectedItem(tbDjj.getValueAt(tbDjj.getSelectedRow(), 3).toString().substring(6, 8));
         }
     }
     
@@ -7225,30 +7356,21 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     
     private void getDataKontraksi() {
         if (tbKontraksi.getSelectedRow() != -1) {            
-            cmbJam5.setSelectedItem(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 1).toString().substring(0, 2));
-            cmbMnt5.setSelectedItem(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 1).toString().substring(3, 5));
-            cmbDtk5.setSelectedItem(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 1).toString().substring(6, 8));
-            cmbLajur.setSelectedItem(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 2).toString());
-            cmbDetik.setSelectedItem(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 3).toString());   
-            Tlamanya.setText(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 4).toString());
+            cmbLajur.setSelectedItem(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 1).toString());
+            cmbDetik.setSelectedItem(tbKontraksi.getValueAt(tbKontraksi.getSelectedRow(), 2).toString());            
         }
     }
-    
+
     private void getDataOksitosin() {
-        if (tbOksitosin.getSelectedRow() != -1) {            
-            cmbJam6.setSelectedItem(tbOksitosin.getValueAt(tbOksitosin.getSelectedRow(), 1).toString().substring(0, 2));
-            cmbMnt6.setSelectedItem(tbOksitosin.getValueAt(tbOksitosin.getSelectedRow(), 1).toString().substring(3, 5));
-            cmbDtk6.setSelectedItem(tbOksitosin.getValueAt(tbOksitosin.getSelectedRow(), 1).toString().substring(6, 8));            
-            Toksitosin.setText(tbOksitosin.getValueAt(tbOksitosin.getSelectedRow(), 2).toString());
+        if (tbOksitosin.getSelectedRow() != -1) {
+            Toksitosin.setText(tbOksitosin.getValueAt(tbOksitosin.getSelectedRow(), 1).toString());
+            Ttetes.setText(tbOksitosin.getValueAt(tbOksitosin.getSelectedRow(), 2).toString());
         }
     }
     
     private void getDataObatCairan() {
         if (tbObat.getSelectedRow() != -1) {            
-            cmbJam7.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 1).toString().substring(0, 2));
-            cmbMnt7.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 1).toString().substring(3, 5));
-            cmbDtk7.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 1).toString().substring(6, 8));            
-            TobatCairan.setText(tbObat.getValueAt(tbObat.getSelectedRow(), 2).toString());
+            TobatCairan.setText(tbObat.getValueAt(tbObat.getSelectedRow(), 1).toString());
         }
     }
     
@@ -7285,7 +7407,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }
     
     private void getDataPemantauan() {
+        urutanKe = "";
         if (tbPemantauan.getSelectedRow() != -1) {
+            urutanKe = tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 1).toString();
             TjamKe.setText(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 2).toString());
             cmbJam11.setSelectedItem(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 3).toString().substring(0, 2));
             cmbMnt11.setSelectedItem(tbPemantauan.getValueAt(tbPemantauan.getSelectedRow(), 3).toString().substring(3, 5));
@@ -7356,19 +7480,19 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(tabMode1);
         tbDjj.setRowSorter(sorter);
 
-        /*Penjelasan : sorter.setComparator(2 
-        new RowSorter.SortKey(2
-        angka 2 adalah kolom ke nya
+        /*Penjelasan : sorter.setComparator(3 
+        new RowSorter.SortKey(3
+        angka 3 adalah kolom ke nya
          */
         
-        sorter.setComparator(2, (o1, o2) -> {
+        sorter.setComparator(3, (o1, o2) -> {
             LocalTime t1 = LocalTime.parse(o1.toString(), format);
             LocalTime t2 = LocalTime.parse(o2.toString(), format);
             return t1.compareTo(t2);
         });
 
         sorter.setSortKeys(Arrays.asList(
-                new RowSorter.SortKey(2, SortOrder.ASCENDING)
+                new RowSorter.SortKey(3, SortOrder.ASCENDING)
         ));
 
         sorter.sort();
@@ -7423,65 +7547,65 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(tabMode4);
         tbKontraksi.setRowSorter(sorter);
 
-        /*Penjelasan : sorter.setComparator(2 
-        new RowSorter.SortKey(2
-        angka 2 adalah kolom ke nya
+        /*Penjelasan : sorter.setComparator(1 
+        new RowSorter.SortKey(1
+        angka 1 adalah kolom ke nya
          */
         
-        sorter.setComparator(2, (o1, o2) -> {
+        sorter.setComparator(1, (o1, o2) -> {
             Integer n1 = Integer.parseInt(o1.toString());
             Integer n2 = Integer.parseInt(o2.toString());
             return n1.compareTo(n2);
         });
 
         sorter.setSortKeys(Arrays.asList(
-                new RowSorter.SortKey(2, SortOrder.ASCENDING)
+                new RowSorter.SortKey(1, SortOrder.ASCENDING)
         ));
 
         sorter.sort();
     }
     
     private void urutkanDataOksitosi() {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss[.S]");
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(tabMode5);
         tbOksitosin.setRowSorter(sorter);
 
-        /*Penjelasan : sorter.setComparator(1 
-        new RowSorter.SortKey(1
-        angka 1 adalah kolom ke nya
+        /*Penjelasan : sorter.setComparator(3 
+        new RowSorter.SortKey(3
+        angka 3 adalah kolom ke nya
          */
         
-        sorter.setComparator(1, (o1, o2) -> {
-            LocalTime t1 = LocalTime.parse(o1.toString(), format);
-            LocalTime t2 = LocalTime.parse(o2.toString(), format);
+        sorter.setComparator(3, (o1, o2) -> {
+            LocalDateTime t1 = LocalDateTime.parse(o1.toString(), format);
+            LocalDateTime t2 = LocalDateTime.parse(o2.toString(), format);
             return t1.compareTo(t2);
         });
 
         sorter.setSortKeys(Arrays.asList(
-                new RowSorter.SortKey(1, SortOrder.ASCENDING)
+                new RowSorter.SortKey(3, SortOrder.ASCENDING)
         ));
 
         sorter.sort();
     }
     
     private void urutkanDataObat() {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss[.S]");
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(tabMode6);
         tbObat.setRowSorter(sorter);
 
-        /*Penjelasan : sorter.setComparator(1 
-        new RowSorter.SortKey(1
-        angka 1 adalah kolom ke nya
+        /*Penjelasan : sorter.setComparator(2
+        new RowSorter.SortKey(2
+        angka 2 adalah kolom ke nya
          */
         
-        sorter.setComparator(1, (o1, o2) -> {
+        sorter.setComparator(2, (o1, o2) -> {
             LocalTime t1 = LocalTime.parse(o1.toString(), format);
             LocalTime t2 = LocalTime.parse(o2.toString(), format);
             return t1.compareTo(t2);
         });
 
         sorter.setSortKeys(Arrays.asList(
-                new RowSorter.SortKey(1, SortOrder.ASCENDING)
+                new RowSorter.SortKey(2, SortOrder.ASCENDING)
         ));
 
         sorter.sort();
@@ -7566,6 +7690,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                     tabMode1.addRow(new String[]{
                         rs1.getString("no_rawat"),
                         rs1.getString("nadi"),
+                        rs1.getString("jeda_menit"),
                         rs1.getString("jam_djj"),
                         rs1.getString("waktu_simpan")
                     });
@@ -7657,10 +7782,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                 while (rs4.next()) {
                     tabMode4.addRow(new String[]{
                         rs4.getString("no_rawat"),
-                        rs4.getString("pukul"),
                         rs4.getString("lajur_kontraksi"),
                         rs4.getString("detik_kontraksi"),
-                        rs4.getString("lama_waktu"),
                         rs4.getString("waktu_simpan")
                     });
                 }
@@ -7688,8 +7811,8 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                 while (rs5.next()) {
                     tabMode5.addRow(new String[]{
                         rs5.getString("no_rawat"),
-                        rs5.getString("pukul"),
                         rs5.getString("oksitosin"),
+                        rs5.getString("tetes_menit"),
                         rs5.getString("waktu_simpan")
                     });
                 }
@@ -7717,7 +7840,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
                 while (rs6.next()) {
                     tabMode6.addRow(new String[]{
                         rs6.getString("no_rawat"),
-                        rs6.getString("pukul"),
                         rs6.getString("obat_cairan"),
                         rs6.getString("waktu_simpan")
                     });
@@ -7990,6 +8112,11 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private void dataCek() {
         if (tbDjj.getRowCount() != 0) {
             urutkanDataDjj();
+            int viewRow = tbDjj.getRowCount() - 1;
+            int modelRow = tbDjj.convertRowIndexToModel(viewRow);
+            Tjeda.setText(tabMode1.getValueAt(modelRow, 2).toString());
+        } else {
+            Tjeda.setText("");
         }
 
         if (tbAirKetuban.getRowCount() != 0) {
@@ -8395,6 +8522,37 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             dukun15 = "ya";
         } else {
             dukun15 = "tidak";
+        }
+    }
+    
+    private void hapus() {
+        x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            if (Sequel.queryu2tf("delete from partograf_persalinan where no_rawat=?", 1, new String[]{
+                tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString()
+            }) == true) {
+                Sequel.queryu("delete from partograf_djj where no_rawat='" + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString() + "'");
+                Sequel.queryu("delete from partograf_air_ketuban where no_rawat='" + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString() + "'");
+                Sequel.queryu("delete from partograf_pembukaan_serviks where no_rawat='" + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString() + "'");
+                Sequel.queryu("delete from partograf_kontraksi where no_rawat='" + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString() + "'");
+                Sequel.queryu("delete from partograf_oksitosin where no_rawat='" + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString() + "'");
+                Sequel.queryu("delete from partograf_obat_cairan where no_rawat='" + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString() + "'");
+                Sequel.queryu("delete from partograf_nadi_tensi where no_rawat='" + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString() + "'");
+                Sequel.queryu("delete from partograf_suhu where no_rawat='" + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString() + "'");
+                Sequel.queryu("delete from partograf_urin where no_rawat='" + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString() + "'");
+                Sequel.queryu("delete from partograf_catatan_persalinan where no_rawat='" + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString() + "'");
+                Sequel.queryu("delete from partograf_kala_4 where no_rawat='" + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString() + "'");
+                Sequel.queryu("delete from partograf_pemantauan_kala4 where no_rawat='" + tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString() + "'");
+                
+                TabPartograf.setSelectedIndex(2);
+                tampil();
+                emptTeks();
+            } else {
+                JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+            }
+        } else {
+            tampil();
+            emptTeks();
         }
     }
 }

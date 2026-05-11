@@ -374,13 +374,6 @@ FROM temporary_bayar_ranap WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN+PPN','PP
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{bayar}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="11" y="178" width="42" height="14"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Catatan : ]]></text>
-			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="335" y="158" width="222" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
@@ -388,13 +381,6 @@ FROM temporary_bayar_ranap WHERE temp1 not in ('TOTAL TAGIHAN','TAGIHAN+PPN','PP
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{petugas_ksr}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="54" y="178" width="489" height="29"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Mohon maaf apabila ada tagihan yang belum tertagihkan dalam perincian ini akan ditagihkan kemudian, dan apabila berlebih akan dikembalikan.]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="335" y="93" width="222" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
