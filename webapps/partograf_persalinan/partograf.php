@@ -893,7 +893,29 @@ $dPemantauanKala4 = $stmtPemantauanKala4->fetch(PDO::FETCH_ASSOC);
 
                         <td class='label-info'>Ketuban Pecah Sejak Jam</td>
                         <td class='titik-dua-info'>:</td>
-                        <td class='isi-info'><?= htmlspecialchars($dPartograf['jamketuban']) ?></td>
+                        <td class='isi-info'>
+                            <?php
+                            $ketubanPecah = isset($dPartograf['ketuban_pecah'])
+                                ? trim($dPartograf['ketuban_pecah'])
+                                : '';
+
+                            $jamKetuban = isset($dPartograf['jamketuban'])
+                                ? trim($dPartograf['jamketuban'])
+                                : '';
+
+                            if ($ketubanPecah == 'Ya') {
+
+                                if ($jamKetuban != '') {
+                                    echo htmlspecialchars($jamKetuban);
+                                } else {
+                                    echo '...........';
+                                }
+                            } else {
+
+                                echo '...........';
+                            }
+                            ?>
+                        </td>
                     </tr>
                 </table>
 
@@ -3018,6 +3040,25 @@ $dPemantauanKala4 = $stmtPemantauanKala4->fetch(PDO::FETCH_ASSOC);
                     $tampilPemberianAsi = $pemberianAsi . ' ' . $pemberianAsiTidak;
                 } else {
                     $tampilPemberianAsi = $pemberianAsi;
+                }
+                ?>
+
+                <?php
+                $ketubanPecah = isset($dCatatanPersalinan['ketuban_pecah'])
+                    ? trim($dCatatanPersalinan['ketuban_pecah'])
+                    : '';
+
+                $jamKetuban = isset($dCatatanPersalinan['jamketuban'])
+                    ? trim($dCatatanPersalinan['jamketuban'])
+                    : '';
+
+                $tampilJamKetuban = '........';
+
+                if ($ketubanPecah == 'Ya') {
+
+                    if ($jamKetuban != '') {
+                        $tampilJamKetuban = $jamKetuban;
+                    }
                 }
                 ?>
 

@@ -54,7 +54,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private int i = 0, x = 0;
     private String nipBidan = "", pembukaan = "", trun_kpl = "", urutPantau = "", dataKala3A = "", dataKala3B = "", dataKala3C = "", urutanKe = "",
             bidan8 = "", teman8 = "", klg8 = "", suami8 = "", dukun8 = "", tdkAda8 = "", gawat9 = "", perdarahan9 = "", hdk9 = "", infeksi9 = "", peb9 = "",
-            bidan9 = "", lainya9 = "", suami15 = "", teman15 = "", tdkAda15 = "", klg15 = "", dukun15 = "", sebutkan38a = "", sebutkan38b = "";
+            bidan9 = "", lainya9 = "", suami15 = "", teman15 = "", tdkAda15 = "", klg15 = "", dukun15 = "", sebutkan38a = "", sebutkan38b = "", jamKetuban = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -1069,7 +1069,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel10.setBounds(0, 94, 135, 23);
 
         TtglMasuk.setEditable(false);
-        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-05-2026" }));
+        TtglMasuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-05-2026" }));
         TtglMasuk.setDisplayFormat("dd-MM-yyyy");
         TtglMasuk.setName("TtglMasuk"); // NOI18N
         TtglMasuk.setOpaque(false);
@@ -1125,6 +1125,11 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbKetuban.setForeground(new java.awt.Color(0, 0, 0));
         cmbKetuban.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ya", "Tidak" }));
         cmbKetuban.setName("cmbKetuban"); // NOI18N
+        cmbKetuban.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbKetubanActionPerformed(evt);
+            }
+        });
         internalFrame20.add(cmbKetuban);
         cmbKetuban.setBounds(136, 122, 60, 23);
 
@@ -2600,7 +2605,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         jLabel53.setBounds(0, 38, 175, 23);
 
         TtglCatatan.setEditable(false);
-        TtglCatatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-05-2026" }));
+        TtglCatatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-05-2026" }));
         TtglCatatan.setDisplayFormat("dd-MM-yyyy");
         TtglCatatan.setName("TtglCatatan"); // NOI18N
         TtglCatatan.setOpaque(false);
@@ -4305,7 +4310,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         panelGlass10.add(jLabel118);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-05-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-05-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4320,7 +4325,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         panelGlass10.add(jLabel130);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-05-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-05-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4435,12 +4440,17 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             Valid.textKosong(TnmBidan, "nama bidan");
             BtnBidan.requestFocus();
         } else {
+            if (cmbKetuban.getSelectedIndex() == 1) {
+                jamKetuban = cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem();
+            } else {
+                jamKetuban = "00:00:00";
+            }
+
             cekData();
             if (Sequel.menyimpantf("partograf_persalinan", "?,?,?,?,?,?,?,?,?,?", "partograf persalinan", 10, new String[]{
                 TNoRw.getText(), TrgRawat.getText(), Tgravida.getText(), Tparitas.getText(), Tabortus.getText(), Valid.SetTgl(TtglMasuk.getSelectedItem() + ""),
                 cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), 
-                cmbKetuban.getSelectedItem().toString(), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), 
-                Sequel.cariIsi("select now()")
+                cmbKetuban.getSelectedItem().toString(), jamKetuban, Sequel.cariIsi("select now()")
             }) == true) {
                 if (tbDjj.getRowCount() != 0) {
                     for (i = 0; i < tbDjj.getRowCount(); i++) {
@@ -6316,10 +6326,16 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             Valid.textKosong(TnmBidan, "nama bidan");
             BtnBidan.requestFocus();
         } else {
+            if (cmbKetuban.getSelectedIndex() == 1) {
+                jamKetuban = cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem();
+            } else {
+                jamKetuban = "00:00:00";
+            }
+
             if (Sequel.mengedittf("partograf_persalinan", "no_rawat=?", "ruang_rawat=?, gravida=?, paritas=?, abortus=?, tgl_masuk=?, jam_masuk=?, ketuban_pecah=?, jam_ketuban=?", 9, new String[]{
                 TrgRawat.getText(), Tgravida.getText(), Tparitas.getText(), Tabortus.getText(), Valid.SetTgl(TtglMasuk.getSelectedItem() + ""),
                 cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-                cmbKetuban.getSelectedItem().toString(), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
+                cmbKetuban.getSelectedItem().toString(), jamKetuban,
                 tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 0).toString()
             }) == true) {
                 if (tbDjj.getRowCount() != 0) {
@@ -6554,6 +6570,23 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             Ttetes.requestFocus();
         }
     }//GEN-LAST:event_ToksitosinKeyPressed
+
+    private void cmbKetubanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKetubanActionPerformed
+        cmbJam1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+        cmbMnt1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+        cmbDtk1.setSelectedIndex(0);
+
+        if (cmbKetuban.getSelectedIndex() == 1) {
+            cmbJam1.setEnabled(true);
+            cmbMnt1.setEnabled(true);
+            cmbDtk1.setEnabled(true);
+            cmbJam1.requestFocus();
+        } else {
+            cmbJam1.setEnabled(false);
+            cmbMnt1.setEnabled(false);
+            cmbDtk1.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbKetubanActionPerformed
 
     /**
     * @param args the command line arguments
@@ -7136,6 +7169,9 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk.setSelectedIndex(0);
         cmbKetuban.setSelectedIndex(0);
+        cmbJam1.setEnabled(false);
+        cmbMnt1.setEnabled(false);
+        cmbDtk1.setEnabled(false);
         cmbJam1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
         cmbMnt1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk1.setSelectedIndex(0);
@@ -7274,7 +7310,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             cmbJam.setSelectedItem(tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 13).toString().substring(0, 2));
             cmbMnt.setSelectedItem(tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 13).toString().substring(3, 5));
             cmbDtk.setSelectedItem(tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 13).toString().substring(6, 8));
-            cmbKetuban.setSelectedItem(tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 9).toString());            
+            cmbKetuban.setSelectedItem(tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 9).toString());
             cmbJam1.setSelectedItem(tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 14).toString().substring(0, 2));
             cmbMnt1.setSelectedItem(tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 14).toString().substring(3, 5));
             cmbDtk1.setSelectedItem(tbPartograf.getValueAt(tbPartograf.getSelectedRow(), 14).toString().substring(6, 8));
@@ -8112,6 +8148,16 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     }
     
     private void dataCek() {
+        if (cmbKetuban.getSelectedIndex() == 1) {
+            cmbJam1.setEnabled(true);
+            cmbMnt1.setEnabled(true);
+            cmbDtk1.setEnabled(true);
+        } else {
+            cmbJam1.setEnabled(false);
+            cmbMnt1.setEnabled(false);
+            cmbDtk1.setEnabled(false);
+        }
+
         if (tbDjj.getRowCount() != 0) {
             urutkanDataDjj();
             int viewRow = tbDjj.getRowCount() - 1;
