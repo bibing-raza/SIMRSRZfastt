@@ -6536,7 +6536,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         if (tbPartograf.getSelectedRow() > -1) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             try {
-                Valid.panggilUrlRAZA("/rme/partograf_persalinan/partograf.php?no_rawat=" + TNoRw.getText());
+                Valid.panggilUrlRME("/rme/partograf_persalinan/partograf.php?no_rawat=" + TNoRw.getText());
                 TabPartograf.setSelectedIndex(2);
                 tampil();
                 emptTeks();
