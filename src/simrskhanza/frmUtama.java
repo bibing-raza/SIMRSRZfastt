@@ -432,6 +432,7 @@ import java.text.SimpleDateFormat;
 import rekammedis.DlgMasterNomorDokumenRM;
 import rekammedis.RMGeneralConsent;
 import rekammedis.RMObservasiKala1;
+import rekammedis.RMPartografPersalinan;
 import rekammedis.RMPersetujuanRawatInap;
 import rekammedis.RMSuratPenyataanBayarDenda;
 import rekammedis.RMSuratPenyataanBukanKLL;
@@ -1005,6 +1006,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnSuratPernyataanBayarDenda = new widget.ButtonBig();
         btnSuratPernyataanNonBpjs = new widget.ButtonBig();
         btnObservasiKala1 = new widget.ButtonBig();
+        BtnPartograf = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6737,6 +6739,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnObservasiKala1);
 
+        BtnPartograf.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPartograf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/partograph.png"))); // NOI18N
+        BtnPartograf.setText("Partograf Persalinan");
+        BtnPartograf.setIconTextGap(0);
+        BtnPartograf.setName("BtnPartograf"); // NOI18N
+        BtnPartograf.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPartograf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPartografActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(BtnPartograf);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6745,7 +6760,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21/02/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13/05/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13302,6 +13317,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnObservasiKala1ActionPerformed
 
+    private void BtnPartografActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPartografActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMPartografPersalinan aplikasi = new RMPartografPersalinan(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnPartografActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13322,6 +13350,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig BtnLog;
     private widget.Button BtnLogin;
     private widget.ButtonBig BtnMenu;
+    private widget.ButtonBig BtnPartograf;
     private widget.ButtonBig BtnPengembalianJaminanTransaksi;
     private widget.ButtonBig BtnPerubahanDpjp;
     private widget.Button BtnSimpanPass;
@@ -14177,6 +14206,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getcppt()== true) {
                 Panelmenu.add(btnObservasiKala1);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt()== true) {
+                Panelmenu.add(BtnPartograf);
                 jmlmenu++;
             }
             
@@ -16373,6 +16407,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             Panelmenu.add(btnObservasiKala1);
             jmlmenu++;
         }
+        
+        if (akses.getcppt() == true) {
+            Panelmenu.add(BtnPartograf);
+            jmlmenu++;
+        }
       
         if (akses.getcppt() == true) {
             Panelmenu.add(btnPengelolaanTransfusiDarah);
@@ -18462,6 +18501,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getcppt()== true) {
             if (btnObservasiKala1.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnObservasiKala1);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (BtnPartograf.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(BtnPartograf);
                 jmlmenu++;
             }
         }
