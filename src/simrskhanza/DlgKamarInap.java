@@ -12799,8 +12799,13 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         if ((R2.isSelected() == true) || (R3.isSelected() == true)) {
             if (!NoRMmati.getText().equals("")) {
                 tte = "ya";
-                ctkSuratMati();
-                R1.requestFocus();
+                if (kdpenjab.getText().equals("U01") && Sequel.cariRegistrasi(norawat.getText()) == 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, pasien ini menggunakan cara bayar UMUM & belum menyelesaikan transaksi pembayaran dikasir.     \n"
+                            + "Selesaikan dulu pembayaran dikasir, & surat keterangan kematian berTTE bisa dicetak ..!!");
+                } else {
+                    ctkSuratMati();
+                    R1.requestFocus();
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Pasien tersebut pulang dari rumah sakit BUKAN dengan status Meninggal atau pasien masih dirawat inap...!!!!");
             }

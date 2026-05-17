@@ -3661,7 +3661,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             tbPemasukan.requestFocus();
         } else {
             tte = "";
-            tte = "tidak";
+            tte = "tidak";            
             cetakNotaNaikKls();
         }
     }//GEN-LAST:event_MnTTDcnnkActionPerformed
@@ -4851,8 +4851,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                             + rsTem1.getString("kode_inacbg") + "','"
                             + rsTem1.getString("description_pmk_59_2014") + "','"
                             + rsTem1.getString("no_transaksi") + "','"
-                            + TKalkulasi.getText() + "','"
-                            + rsTem1.getString("besar") + "','"
+                            + TKalkulasi.getText() + "',' "
+                            + rsTem1.getString("besar").replaceAll(",", ".") + "','"
                             + rsTem1.getString("petugas") + "','','',''", "Nota/Kwitansi Selisih Naik Kelas BPJS");
                 }
             } catch (Exception e) {
@@ -5620,6 +5620,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         isi = "";
         nmpetugas = "";
+        statusTran.setText(Sequel.cariIsi("select status_transaksi from biaya_naik_kelas_bpjs where no_transaksi='" + noTransaksi.getText() + "'"));
         
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
