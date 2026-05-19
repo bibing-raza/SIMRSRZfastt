@@ -430,6 +430,7 @@ import java.nio.file.Paths;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import rekammedis.DlgMasterNomorDokumenRM;
+import rekammedis.RMAsesmenMedikKebidanan;
 import rekammedis.RMGeneralConsent;
 import rekammedis.RMObservasiKala1;
 import rekammedis.RMPartografPersalinan;
@@ -1007,6 +1008,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnSuratPernyataanNonBpjs = new widget.ButtonBig();
         btnObservasiKala1 = new widget.ButtonBig();
         BtnPartograf = new widget.ButtonBig();
+        BtnAsesmenMedikKebidanan = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6752,6 +6754,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(BtnPartograf);
 
+        BtnAsesmenMedikKebidanan.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenMedikKebidanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/mp_viewer.png"))); // NOI18N
+        BtnAsesmenMedikKebidanan.setText("Asesmen Medik Kebidanan");
+        BtnAsesmenMedikKebidanan.setIconTextGap(0);
+        BtnAsesmenMedikKebidanan.setName("BtnAsesmenMedikKebidanan"); // NOI18N
+        BtnAsesmenMedikKebidanan.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnAsesmenMedikKebidanan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenMedikKebidananActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(BtnAsesmenMedikKebidanan);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6760,7 +6775,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13/05/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19/05/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13330,6 +13345,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnPartografActionPerformed
 
+    private void BtnAsesmenMedikKebidananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenMedikKebidananActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMAsesmenMedikKebidanan aplikasi = new RMAsesmenMedikKebidanan(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnAsesmenMedikKebidananActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13340,6 +13368,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private widget.ButtonBig BtnAsesmenMedikKebidanan;
     private widget.Button BtnCancel;
     private widget.ButtonBig BtnClose;
     private widget.Button BtnClosePass;
@@ -14146,6 +14175,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getcppt() == true) {
                 Panelmenu.add(btnTriasePonek);
+                jmlmenu++;
+            }
+            
+            if (akses.getresep_dokter() == true) {
+                Panelmenu.add(BtnAsesmenMedikKebidanan);
                 jmlmenu++;
             }
             
@@ -16297,6 +16331,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getcppt() == true) {
             Panelmenu.add(btnTriasePonek);
+            jmlmenu++;
+        }
+        
+        if (akses.getresep_dokter() == true) {
+            Panelmenu.add(BtnAsesmenMedikKebidanan);
             jmlmenu++;
         }
         
@@ -18466,6 +18505,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getkegiatan_operasi()== true) {
             if (btnCeklisKesiapanAnestesi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnCeklisKesiapanAnestesi);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getresep_dokter()== true) {
+            if (BtnAsesmenMedikKebidanan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(BtnAsesmenMedikKebidanan);
                 jmlmenu++;
             }
         }
