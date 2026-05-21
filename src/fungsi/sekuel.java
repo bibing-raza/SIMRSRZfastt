@@ -3157,7 +3157,7 @@ public final class sekuel {
                 ps.executeUpdate();
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
-                JOptionPane.showMessageDialog(null, "Maaf, gagal menyimpan data. Kemungkinan ada " + sama + " yang sama dimasukkan sebelumnya...!");
+                System.out.println("Maaf, gagal menyimpan data. Kemungkinan ada " + sama + " yang sama dimasukkan sebelumnya...!");
             } finally {
                 if (ps != null) {
                     ps.close();

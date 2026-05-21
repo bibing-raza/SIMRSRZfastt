@@ -102,7 +102,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             nonUlkus = "", ulkus = "", ulkusGang = "", sellu = "", jarKakiKanan = "", jarKakiKiri = "", der0 = "", der1 = "", der2 = "", 
             der3 = "", der4 = "", der5 = "", surgi = "", chemi = "", bio = "", hydro = "", foam = "", algi = "", silver = "", cadex = "", 
             madu = "", lainModern = "", debri = "", modernDres = "", ruangRawat = "", kodeKamar = "", verified = "", gedungData = "", namaGedung = "",
-            kdKamarSaatIni = "", isi = "";
+            kdKamarSaatIni = "", isi = "", jamcpptFix = "";
     private String noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "",
             hasilDipilih = "", kdItem = "", norawat = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", link = "";
 
@@ -7397,8 +7397,10 @@ public class DlgCPPT extends javax.swing.JDialog {
             
             if (ChkJam.isSelected() == true) {
                 cekjam = "ya";
+                jamcpptFix = cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem();
             } else {
                 cekjam = "tidak";
+                jamcpptFix = "00:00:00";
             }
             
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan") || status.equals("vk bersalin")) {
@@ -7429,10 +7431,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                 if (Sequel.menyimpantf("cppt", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "CPPT Pasien", 27, new String[]{
                     TNoRw.getText(), Valid.SetTgl(tglCppt.getSelectedItem() + ""), kdKamarSaatIni, Valid.mysql_real_escape_stringERM(hasil_pemeriksaan),
                     Valid.mysql_real_escape_stringERM(instruksi_nakes), "Belum", kddpjp.getText(), statusOK, Sequel.cariIsi("select now()"),
-                    cekjam, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), cmbPPA.getSelectedItem().toString(), nipppa,
-                    cmbBagian.getSelectedItem().toString(), cmbSertim.getSelectedItem().toString(), nipDPJPlain, nipSerah.getText(), nipTerima.getText(),
-                    siftppa, cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), "tidak", "-", soap,
-                    Valid.mysql_real_escape_stringERM(TSubjektif.getText()), Valid.mysql_real_escape_stringERM(TObjektif.getText()),
+                    cekjam, jamcpptFix, cmbPPA.getSelectedItem().toString(), nipppa, cmbBagian.getSelectedItem().toString(), cmbSertim.getSelectedItem().toString(), 
+                    nipDPJPlain, nipSerah.getText(), nipTerima.getText(), siftppa, cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), 
+                    "tidak", "-", soap, Valid.mysql_real_escape_stringERM(TSubjektif.getText()), Valid.mysql_real_escape_stringERM(TObjektif.getText()),
                     Valid.mysql_real_escape_stringERM(TAsesmen.getText()), Valid.mysql_real_escape_stringERM(TPlaning.getText())
                 }) == true) {
                     //menyamakan tgl, jam & sift cppt dengan data konfirmasi terapi
@@ -7558,8 +7559,10 @@ public class DlgCPPT extends javax.swing.JDialog {
             
             if (ChkJam.isSelected() == true) {
                 cekjam = "ya";
+                jamcpptFix = cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem();
             } else {
                 cekjam = "tidak";
+                jamcpptFix = "00:00:00";
             }
             
             if (cmbSoap.getSelectedIndex() == 0) {
@@ -7600,8 +7603,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                                 + "serah_terima_cppt=?, nip_konsulen=?, nip_petugas_serah=?, nip_petugas_terima=?, cppt_shift=?, jam_serah_terima=?, "
                                 + "pilihan_soap=?, subjektif=?, objektif=?, asesmen=?, planing=?", 22, new String[]{
                                     Valid.SetTgl(tglCppt.getSelectedItem() + ""), Valid.mysql_real_escape_stringERM(hasil_pemeriksaan), Valid.mysql_real_escape_stringERM(instruksi_nakes),
-                                    "Belum", kddpjp.getText(), cekjam, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-                                    cmbPPA.getSelectedItem().toString(), nipppa, cmbBagian.getSelectedItem().toString(),
+                                    "Belum", kddpjp.getText(), cekjam, jamcpptFix, cmbPPA.getSelectedItem().toString(), nipppa, cmbBagian.getSelectedItem().toString(),
                                     cmbSertim.getSelectedItem().toString(), nipDPJPlain, nipSerah.getText(), nipTerima.getText(),
                                     cmbSift.getSelectedItem().toString(), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
                                     soap, Valid.mysql_real_escape_stringERM(TSubjektif.getText()), Valid.mysql_real_escape_stringERM(TObjektif.getText()),
@@ -14238,43 +14240,42 @@ public class DlgCPPT extends javax.swing.JDialog {
         } else {
             userAktif = akses.getkode();
         }
-        
+
         try {
             ps3 = koneksi.prepareStatement("select * from cppt where waktu_simpan='" + ws + "'");
             try {
                 rs3 = ps3.executeQuery();
                 while (rs3.next()) {
-                    Sequel.menyimpanPesanGagalnyaDiTerminal("cppt_history", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "CPPT History", 29, new String[]{
-                        rs3.getString("no_rawat"),
-                        rs3.getString("tgl_cppt"),
-                        rs3.getString("bagian"),
-                        Valid.mysql_real_escape_stringERM(rs3.getString("hasil_pemeriksaan")),
-                        Valid.mysql_real_escape_stringERM(rs3.getString("instruksi_nakes")),
-                        rs3.getString("verifikasi"),
-                        rs3.getString("nip_dpjp"),
-                        rs3.getString("status"),
-                        rs3.getString("waktu_simpan"),
-                        rs3.getString("cek_jam"),
-                        rs3.getString("jam_cppt"),
-                        rs3.getString("jenis_ppa"),
-                        rs3.getString("nip_ppa"),
-                        rs3.getString("jenis_bagian"),
-                        rs3.getString("serah_terima_cppt"),
-                        rs3.getString("nip_konsulen"),
-                        rs3.getString("nip_petugas_serah"),
-                        rs3.getString("nip_petugas_terima"),
-                        rs3.getString("cppt_shift"),
-                        rs3.getString("jam_serah_terima"),
-                        rs3.getString("flag_hapus"),
-                        rs3.getString("nip_penghapus"),
-                        rs3.getString("pilihan_soap"),
-                        Valid.mysql_real_escape_stringERM(rs3.getString("subjektif")),
-                        Valid.mysql_real_escape_stringERM(rs3.getString("objektif")),
-                        Valid.mysql_real_escape_stringERM(rs3.getString("asesmen")),
-                        Valid.mysql_real_escape_stringERM(rs3.getString("planing")),
-                        Sequel.cariIsi("select now()"),
-                        userAktif
-                    });
+                    Sequel.menyimpanInsertIgnore("cppt_history",
+                            "'" + rs3.getString("no_rawat") + "',"
+                            + "'" + rs3.getString("tgl_cppt") + "',"
+                            + "'" + rs3.getString("bagian") + "',"
+                            + "'" + Valid.mysql_real_escape_stringERM(rs3.getString("hasil_pemeriksaan")) + "',"
+                            + "'" + Valid.mysql_real_escape_stringERM(rs3.getString("instruksi_nakes")) + "',"
+                            + "'" + rs3.getString("verifikasi") + "',"
+                            + "'" + rs3.getString("nip_dpjp") + "',"
+                            + "'" + rs3.getString("status") + "',"
+                            + "'" + rs3.getString("waktu_simpan") + "',"
+                            + "'" + rs3.getString("cek_jam") + "',"
+                            + "'" + rs3.getString("jam_cppt") + "',"
+                            + "'" + rs3.getString("jenis_ppa") + "',"
+                            + "'" + rs3.getString("nip_ppa") + "',"
+                            + "'" + rs3.getString("jenis_bagian") + "',"
+                            + "'" + rs3.getString("serah_terima_cppt") + "',"
+                            + "'" + rs3.getString("nip_konsulen") + "',"
+                            + "'" + rs3.getString("nip_petugas_serah") + "',"
+                            + "'" + rs3.getString("nip_petugas_terima") + "',"
+                            + "'" + rs3.getString("cppt_shift") + "',"
+                            + "'" + rs3.getString("jam_serah_terima") + "',"
+                            + "'" + rs3.getString("flag_hapus") + "',"
+                            + "'" + rs3.getString("nip_penghapus") + "',"
+                            + "'" + rs3.getString("pilihan_soap") + "',"
+                            + "'" + Valid.mysql_real_escape_stringERM(rs3.getString("subjektif")) + "',"
+                            + "'" + Valid.mysql_real_escape_stringERM(rs3.getString("objektif")) + "',"
+                            + "'" + Valid.mysql_real_escape_stringERM(rs3.getString("asesmen")) + "',"
+                            + "'" + Valid.mysql_real_escape_stringERM(rs3.getString("planing")) + "',"
+                            + "'" + Sequel.cariIsi("select now()") + "',"
+                            + "'" + userAktif + "'", "CPPT History");
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);

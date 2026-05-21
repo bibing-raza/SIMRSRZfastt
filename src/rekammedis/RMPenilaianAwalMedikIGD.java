@@ -1692,7 +1692,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 30, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-12-2025 08:20:44" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025 08:14:37" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -2417,6 +2417,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel138);
         jLabel138.setBounds(20, 700, 70, 23);
 
+        scrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane2.setName("scrollPane2"); // NOI18N
 
         TAnamnesis.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2586,6 +2587,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel152);
         jLabel152.setBounds(80, 1030, 50, 23);
 
+        scrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane4.setName("scrollPane4"); // NOI18N
 
         TJantung.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2603,6 +2605,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(scrollPane4);
         scrollPane4.setBounds(135, 1030, 330, 70);
 
+        scrollPane5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane5.setName("scrollPane5"); // NOI18N
 
         TParu.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2626,6 +2629,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel153);
         jLabel153.setBounds(20, 1107, 110, 23);
 
+        scrollPane6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane6.setName("scrollPane6"); // NOI18N
 
         TAbdomen.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2649,6 +2653,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel154);
         jLabel154.setBounds(20, 1184, 110, 23);
 
+        scrollPane7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane7.setName("scrollPane7"); // NOI18N
 
         TPunggung.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2672,6 +2677,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel155);
         jLabel155.setBounds(10, 1261, 120, 23);
 
+        scrollPane8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane8.setName("scrollPane8"); // NOI18N
 
         TEkstremitas.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2805,6 +2811,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel164);
         jLabel164.setBounds(0, 1625, 210, 23);
 
+        scrollPane9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane9.setName("scrollPane9"); // NOI18N
 
         TDiagSementara.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3049,6 +3056,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel179);
         jLabel179.setBounds(10, 2180, 125, 23);
 
+        scrollPane10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane10.setName("scrollPane10"); // NOI18N
 
         TAlasanDirujuk.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3434,6 +3442,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel189);
         jLabel189.setBounds(570, 1397, 300, 23);
 
+        scrollPane11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane11.setName("scrollPane11"); // NOI18N
 
         Tket_gambar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3530,6 +3539,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel194);
         jLabel194.setBounds(745, 480, 30, 23);
 
+        scrollPane12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane12.setName("scrollPane12"); // NOI18N
 
         TketRencana.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3923,12 +3933,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         panelGlass9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setText("Tgl. Asuhan :");
+        jLabel19.setText("Tgl. Asesmen : ");
         jLabel19.setName("jLabel19"); // NOI18N
-        jLabel19.setPreferredSize(new java.awt.Dimension(70, 23));
+        jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-12-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3942,7 +3952,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-12-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4406,7 +4416,20 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_TabRawatMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'igd' and nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuangan);
+        Sequel.cariIsiComboDB("SELECT distinct CASE WHEN nm_gedung IN ('AR-RAUDAH ATAS', 'AR-RAUDAH BAWAH') THEN 'AR-RAUDAH' ELSE nm_gedung END AS gedungnya "
+                + "FROM bangsal WHERE status = '1' "
+                + "AND nm_gedung NOT LIKE '%instalasi%' "
+                + "AND nm_gedung NOT LIKE '%sdm%' "
+                + "AND nm_gedung NOT LIKE '%ipsrs%' "
+                + "AND nm_gedung NOT LIKE '%uang%' "
+                + "AND nm_gedung NOT LIKE '%sanitasi%' "
+                + "AND nm_gedung NOT LIKE '%inst.%' "
+                + "AND nm_gedung NOT LIKE '%bid.%' "
+                + "AND nm_gedung NOT LIKE '%unit%' "
+                + "AND nm_gedung NOT LIKE '%bag.%' "
+                + "AND nm_gedung NOT LIKE '%upm%' "
+                + "AND nm_gedung NOT LIKE '%igd%' "
+                + "AND nm_gedung <>'-' GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuangan);
         
         if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
             TabRawat.setSelectedIndex(1);
