@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="2.0000000000000058"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -21,12 +21,17 @@
 	<parameter name="tglsurat" class="java.lang.String"/>
 	<parameter name="lokasiQr" class="java.io.InputStream"/>
 	<parameter name="kalimatTte" class="java.lang.String"/>
+	<parameter name="gambarTtd2" class="java.lang.String"/>
+	<parameter name="gambarTtd3" class="java.lang.String"/>
+	<parameter name="gambarTtd4" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter,	pg.nama pemberiInfo,
-s.penerima_info, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara,
+		<![CDATA[SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, 
+if(s.penerima_info='','......................',replace(s.penerima_info,' (Penerima Informasi)','')) nmpenerima, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, 
 s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, s.isi_info_alternatif, s.isi_info_lainlain, 
-time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo FROM	surat_tindakan_kedokteran s INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana
-INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info LIMIT 1]]>
+time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo, if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, 
+if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s 
+INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis 
+INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info LIMIT 1]]>
 	</queryString>
 	<field name="no_rkm_medis" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="no_rkm_medis"/>
@@ -45,9 +50,7 @@ INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info LIMIT 1]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="pemberiInfo" class="java.lang.String"/>
-	<field name="penerima_info" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="nmpenerima" class="java.lang.String"/>
 	<field name="isi_info_diagnosis_kerja" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -82,6 +85,8 @@ INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info LIMIT 1]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="jamBeriInfo" class="java.lang.String"/>
+	<field name="phkKeluarga" class="java.lang.String"/>
+	<field name="phkRS" class="java.lang.String"/>
 	<title>
 		<band height="131">
 			<textField>
@@ -303,7 +308,7 @@ INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info LIMIT 1]]>
 				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{penerima_info}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nmpenerima}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="2" y="118" width="19" height="11">
@@ -1106,7 +1111,7 @@ INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info LIMIT 1]]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="190">
+		<band height="242">
 			<line>
 				<reportElement x="0" y="12" width="519" height="1"/>
 				<graphicElement>
@@ -1114,19 +1119,19 @@ INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info LIMIT 1]]>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="185" width="520" height="1"/>
+				<reportElement x="0" y="233" width="520" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="519" y="0" width="1" height="185"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="519" y="0" width="1" height="234"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="185"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="234"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1176,16 +1181,6 @@ INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info LIMIT 1]]>
 				<text><![CDATA[Saksi Pihak Rumah Sakit]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="360" y="101" width="154" height="21">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<text><![CDATA[( ................................................ )
-Tanda tangan dan nama lengkap]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="4" y="124" width="157" height="59">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1204,25 +1199,15 @@ Tanda tangan dan nama lengkap]]></text>
 				<text><![CDATA[Saksi Pihak Keluarga]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="162" y="162" width="196" height="11">
+				<reportElement x="162" y="210" width="196" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["("+$F{penerima_info}+")"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["("+$F{nmpenerima}+")"]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="360" y="162" width="154" height="21">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<text><![CDATA[( ................................................ )
-Tanda tangan dan nama lengkap]]></text>
-			</staticText>
 			<staticText>
 				<reportElement x="162" y="124" width="196" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -1239,13 +1224,13 @@ Tanda tangan dan nama lengkap]]></text>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="161" y="13" width="1" height="172"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="161" y="13" width="1" height="220"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="359" y="13" width="1" height="172"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="359" y="13" width="1" height="220"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1253,6 +1238,38 @@ Tanda tangan dan nama lengkap]]></text>
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="220" y="25" width="80" height="76"/>
 				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQr}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="360" y="101" width="157" height="21">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["("+$F{phkRS}+")"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="360" y="210" width="157" height="21">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["("+$F{phkKeluarga}+")"]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="220" y="135" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd2}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="398" y="134" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd3}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="398" y="25" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd4}]]></imageExpression>
 			</image>
 		</band>
 	</summary>

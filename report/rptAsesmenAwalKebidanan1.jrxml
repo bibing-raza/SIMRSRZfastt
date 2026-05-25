@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="2.0000000000000075"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="758"/>
+	<property name="ireport.y" value="390"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -63,11 +63,9 @@
 	<parameter name="odemma" class="java.lang.String"/>
 	<parameter name="mual" class="java.lang.String"/>
 	<parameter name="muntah" class="java.lang.String"/>
-	<parameter name="batuk" class="java.lang.String"/>
-	<parameter name="pilek" class="java.lang.String"/>
-	<parameter name="demam" class="java.lang.String"/>
+	<parameter name="bpd" class="java.lang.String"/>
+	<parameter name="keluhanLainKLH" class="java.lang.String"/>
 	<parameter name="riwPerjalanan" class="java.lang.String"/>
-	<parameter name="vaksin" class="java.lang.String"/>
 	<parameter name="periksa" class="java.lang.String"/>
 	<parameter name="ibuAnc" class="java.lang.String"/>
 	<parameter name="dokter1" class="java.lang.String"/>
@@ -115,6 +113,7 @@
 	<parameter name="cekIud" class="java.lang.String"/>
 	<parameter name="dataIud" class="java.lang.String"/>
 	<parameter name="cektdkPernahKb" class="java.lang.String"/>
+	<parameter name="caraDataSpog" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select date(now()) tgl]]>
 	</queryString>
@@ -122,7 +121,7 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
-		<band height="534">
+		<band height="512">
 			<staticText>
 				<reportElement x="300" y="17" width="52" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -254,13 +253,13 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="12" width="1" height="522"/>
+				<reportElement x="0" y="12" width="1" height="500"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="519" y="12" width="1" height="522"/>
+				<reportElement x="519" y="12" width="1" height="500"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -774,7 +773,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{caraPkm}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="105" y="281" width="340" height="11"/>
+				<reportElement x="105" y="281" width="208" height="11"/>
 				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -787,27 +786,18 @@
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="457" y="281" width="11" height="11"/>
+				<reportElement mode="Transparent" x="315" y="281" width="11" height="11"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="457" y="281" width="11" height="11"/>
+				<reportElement x="315" y="281" width="11" height="11"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{caraSpog}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="471" y="281" width="33" height="11">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-				</textElement>
-				<text><![CDATA[SPOG]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="91" y="294" width="11" height="11"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -1039,14 +1029,14 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<text><![CDATA[Batuk]]></text>
+				<text><![CDATA[Gejala Salesma]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="127" y="478" width="388" height="11"/>
 				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{batuk}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{bpd}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="3" y="489" width="124" height="11">
@@ -1055,14 +1045,14 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<text><![CDATA[Pilek]]></text>
+				<text><![CDATA[Keluhan Lainya]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="127" y="489" width="388" height="11"/>
 				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{pilek}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{keluhanLainKLH}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="3" y="500" width="124" height="11">
@@ -1071,46 +1061,14 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<text><![CDATA[Demam]]></text>
+				<text><![CDATA[Riwayat Perjalanan Jauh]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="127" y="500" width="388" height="11"/>
 				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{demam}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="3" y="511" width="124" height="11">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<text><![CDATA[Riwayat Perjalanan Jauh]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="127" y="511" width="388" height="11"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{riwPerjalanan}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="3" y="522" width="124" height="11">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<text><![CDATA[Vaksin Covid 19]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="127" y="522" width="388" height="11"/>
-				<textElement verticalAlignment="Top" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{vaksin}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="3" y="319" width="41" height="11">
@@ -1130,6 +1088,13 @@
 				</textElement>
 				<text><![CDATA[Dengan]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="329" y="281" width="186" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{caraDataSpog}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<detail>

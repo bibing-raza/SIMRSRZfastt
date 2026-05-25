@@ -1923,6 +1923,33 @@ public final class sekuel {
         return angka;
     }
     
+    public int cekPernahBayarLunas(String norwt, String sttsRwt, String kdpolinya) {
+        angka = 0;
+        try {
+            ps = connect.prepareStatement("select count(-1) from reg_periksa rp inner join tagihan_sadewa ts on ts.no_nota =rp.no_rawat where "
+                    + "rp.kd_pj ='U01' and rp.status_lanjut='" + sttsRwt + "' and rp.kd_poli='" + kdpolinya + "' and ts.jenis_bayar ='Pelunasan' "
+                    + "and ts.status='Sudah' and rp.no_rawat='" + norwt + "'");
+            try {
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    angka = rs.getInt(1);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }        
+        return angka;
+    }
+    
     public int cariRealCostPiutang(String norawat) {
         angka = 0;
         try {

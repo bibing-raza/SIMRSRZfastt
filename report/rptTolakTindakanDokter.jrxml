@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="21" bottomMargin="21">
 	<property name="ireport.zoom" value="1.8181818181818519"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="51"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -11,22 +11,28 @@
 	<parameter name="kontakrs" class="java.lang.String"/>
 	<parameter name="emailrs" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="gambarTtd1" class="java.lang.String"/>
+	<parameter name="gambarTtd3" class="java.lang.String"/>
+	<parameter name="gambarTtd4" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT s.nm_penjab, CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj,
-CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat,
-s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px,
+		<![CDATA[SELECT if(s.nm_penjab='','......................',replace(s.nm_penjab,' (Yang Menyatakan)','')) nmpenjab, 
+CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, 
+CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, 
+s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, 
 CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, 
-CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%h:%m %p'),' WITA') tgl_surat FROM surat_tindakan_kedokteran s
-INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis
-INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel
-INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec
+CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat, 
+if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, 
+if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s 
+INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis 
+INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel 
+INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec 
 INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab
 WHERE s.kasus_tindakan='Ralan' and s.no_rawat='2019/03/10/000007' and s.jns_surat='PENOLAKAN']]>
 	</queryString>
-	<field name="nm_penjab" class="java.lang.String">
+	<field name="nmpenjab" class="java.lang.String"/>
+	<field name="umur_pj" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="umur_pj" class="java.lang.String"/>
 	<field name="alamat_pj" class="java.lang.String"/>
 	<field name="selaku" class="java.lang.String"/>
 	<field name="jns_surat" class="java.lang.String">
@@ -46,8 +52,10 @@ WHERE s.kasus_tindakan='Ralan' and s.no_rawat='2019/03/10/000007' and s.jns_sura
 	<field name="tgl_surat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="phkKeluarga" class="java.lang.String"/>
+	<field name="phkRS" class="java.lang.String"/>
 	<pageHeader>
-		<band height="393">
+		<band height="432">
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="1" width="515" height="20" forecolor="#FFFFFF" backcolor="#666666"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -109,7 +117,7 @@ WHERE s.kasus_tindakan='Ralan' and s.no_rawat='2019/03/10/000007' and s.jns_sura
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_penjab}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nmpenjab}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="122" y="54" width="375" height="14"/>
@@ -279,29 +287,15 @@ WHERE s.kasus_tindakan='Ralan' and s.no_rawat='2019/03/10/000007' and s.jns_sura
 				</textElement>
 				<text><![CDATA[Yang Menyatakan]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="15" y="369" width="140" height="14"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
-					<font fontName="Tahoma" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[( ................................. )]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="154" y="369" width="140" height="14"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
-					<font fontName="Tahoma" size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[( ................................. )]]></text>
-			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="293" y="369" width="186" height="14"/>
+				<reportElement x="293" y="400" width="186" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["( "+$F{nm_penjab}+" )"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["( "+$F{nmpenjab}+" )"]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="0" y="1" width="515" height="388"/>
+				<reportElement mode="Transparent" x="0" y="1" width="515" height="427"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -313,6 +307,32 @@ WHERE s.kasus_tindakan='Ralan' and s.no_rawat='2019/03/10/000007' and s.jns_sura
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["dengan alasan "+$F{alasan_penolakan}]]></textFieldExpression>
 			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="10" y="400" width="140" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["( "+$F{phkKeluarga}+" )"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="149" y="400" width="140" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["( "+$F{phkRS}+" )"]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="347" y="325" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd1}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="45" y="325" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd3}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="185" y="325" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd4}]]></imageExpression>
+			</image>
 		</band>
 	</pageHeader>
 </jasperReport>

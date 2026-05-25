@@ -31,6 +31,7 @@ import java.awt.event.WindowListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,9 +43,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
+import javax.swing.event.HyperlinkEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPetugas;
 import laporan.DlgPenyakit;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -75,7 +79,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
             etikaBatuk = "", caraBuang = "", tempatToileting = "", lainyaPerawatBidan = "", diet = "", konsulGiziRanap = "", konsulGiziRalan = "",
             hakDan = "", jamKonsultasi = "", informasiKejadian = "", audio = "", demonstrasi = "", lisan = "", tulisan = "", visual = "", metode = "",
             pasien = "", keluarga = "", lainPenerimaPnd = "", penerimaPnd = "", edukasiLat = "", positioning = "", latihanAktif = "", simulasi = "", namaDan = "",
-            caraAturan = "", resikoEfek = "", penyimpananObat = "";
+            caraAturan = "", resikoEfek = "", penyimpananObat = "", idFilePenerimaEdukasi = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -273,7 +277,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
             "farmakologi_sedasi", "perawatan_latihan", "distraksi", "pengalihan_perhatian", "cara_cuci", "etika_batuk", "cara_buang", "tempat_toileting", "lainya_perawat_bidan", "ket_lainya_perawat_bidan", "diet",
             "konsul_gizi_ranap", "konsul_gizi_ralan", "ket_lainya_nutrisionis", "hak_dan", "jam_konsultasi", "informasi_kejadian", "ket_lainya_admisi", "edukasi_lain_lanjutan", "nip_petugas", "nm_penerima_edukasi",
             "waktu_simpan", "tanggal", "jam", "profesi", "profesi_lainya", "audio", "demontrasi", "lisan", "tulisan", "visual", "pasien", "keluarga", "lainPenerimaPnd", "edukasi_latihan", "positioning", "latihan_aktif", 
-            "simulasi_bicara", "ket_lainya_fisioterapi", "nama_dan", "cara_aturan", "resiko_efek", "penyimpanan_obat", "ket_lainya_apoteker"
+            "simulasi_bicara", "ket_lainya_fisioterapi", "nama_dan", "cara_aturan", "resiko_efek", "penyimpanan_obat", "ket_lainya_apoteker", "id_file_nm_penerima_edukasi"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -285,7 +289,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         tbPenilaian.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPenilaian.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 78; i++) {
+        for (i = 0; i < 79; i++) {
             TableColumn column = tbPenilaian.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -510,6 +514,9 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
             } else if (i == 77) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 78) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbPenilaian.setDefaultRenderer(Object.class, new WarnaTable());
@@ -577,6 +584,26 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
             @Override
             public void windowDeactivated(WindowEvent e) {}
         });
+        
+        HTMLEditorKit kit = new HTMLEditorKit();
+        StyleSheet styleSheet = kit.getStyleSheet();
+        styleSheet.addRule(".isi td{border-right: 1px solid #edf2e8;font: 10px tahoma;height:12px;border-bottom: 1px solid #edf2e8;background: 0000000;color:0000000;}");
+        Document doc = kit.createDefaultDocument();
+        
+        LoadHTML1.setEditable(true);
+        LoadHTML1.setEditorKit(kit);
+        LoadHTML1.setDocument(doc);
+        LoadHTML1.setEditable(false);
+        LoadHTML1.addHyperlinkListener(e -> {
+            if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.browse(e.getURL().toURI());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -588,6 +615,8 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnHapusTtd = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         TabEdukasi = new javax.swing.JTabbedPane();
         FormAsesmen = new widget.InternalFrame();
@@ -793,6 +822,8 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         chkPenyimpanan = new widget.CekBox();
         scrollPane19 = new widget.ScrollPane();
         TpndApotekerLain = new widget.TextArea();
+        Scroll5 = new widget.ScrollPane();
+        LoadHTML1 = new widget.editorpane();
         FormInput3 = new widget.PanelBiasa();
         Scroll = new widget.ScrollPane();
         tbPenilaian = new widget.Table();
@@ -812,6 +843,24 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
+
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+        jPopupMenu1.setPreferredSize(new java.awt.Dimension(172, 30));
+
+        MnHapusTtd.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtd.setText("Hapus Tanda Tangan");
+        MnHapusTtd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtd.setIconTextGap(5);
+        MnHapusTtd.setName("MnHapusTtd"); // NOI18N
+        MnHapusTtd.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnHapusTtd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapusTtd);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1556,7 +1605,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel168.setBounds(0, 738, 300, 23);
 
         TtglPemberian.setEditable(false);
-        TtglPemberian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-02-2026" }));
+        TtglPemberian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-05-2026" }));
         TtglPemberian.setDisplayFormat("dd-MM-yyyy");
         TtglPemberian.setName("TtglPemberian"); // NOI18N
         TtglPemberian.setOpaque(false);
@@ -1644,7 +1693,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel20.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass10.add(jLabel20);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-02-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-05-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1658,7 +1707,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-02-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-05-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1716,7 +1765,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         internalFrame4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         internalFrame4.setName("internalFrame4"); // NOI18N
-        internalFrame4.setLayout(new java.awt.GridLayout(1, 2));
+        internalFrame4.setLayout(new java.awt.BorderLayout());
 
         ScrollTriase2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 253)));
         ScrollTriase2.setName("ScrollTriase2"); // NOI18N
@@ -1774,7 +1823,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel12.setBounds(0, 66, 110, 23);
 
         TtglPenilaian.setEditable(false);
-        TtglPenilaian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-02-2026" }));
+        TtglPenilaian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-05-2026" }));
         TtglPenilaian.setDisplayFormat("dd-MM-yyyy");
         TtglPenilaian.setName("TtglPenilaian"); // NOI18N
         TtglPenilaian.setOpaque(false);
@@ -2860,14 +2909,26 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         FormInput1.add(scrollPane19);
         scrollPane19.setBounds(165, 1253, 560, 74);
 
+        Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: TANDA TANGAN :.", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        Scroll5.setName("Scroll5"); // NOI18N
+        Scroll5.setOpaque(true);
+
+        LoadHTML1.setBorder(null);
+        LoadHTML1.setForeground(new java.awt.Color(0, 0, 0));
+        LoadHTML1.setName("LoadHTML1"); // NOI18N
+        Scroll5.setViewportView(LoadHTML1);
+
+        FormInput1.add(Scroll5);
+        Scroll5.setBounds(745, 1253, 260, 240);
+
         ScrollTriase2.setViewportView(FormInput1);
 
-        internalFrame4.add(ScrollTriase2);
+        internalFrame4.add(ScrollTriase2, java.awt.BorderLayout.CENTER);
 
         FormInput3.setBorder(null);
         FormInput3.setToolTipText("Klik kanan pada area ini untuk melihat hasil pemeriksaan penunjang medis..!!");
         FormInput3.setName("FormInput3"); // NOI18N
-        FormInput3.setPreferredSize(new java.awt.Dimension(870, 718));
+        FormInput3.setPreferredSize(new java.awt.Dimension(770, 718));
         FormInput3.setLayout(new java.awt.BorderLayout());
 
         Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Data Penilaian Pemberian Pendidikan Kesehatan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -2876,6 +2937,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         tbPenilaian.setAutoCreateRowSorter(true);
         tbPenilaian.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbPenilaian.setComponentPopupMenu(jPopupMenu1);
         tbPenilaian.setName("tbPenilaian"); // NOI18N
         tbPenilaian.getTableHeader().setReorderingAllowed(false);
         tbPenilaian.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2946,7 +3008,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         FormInput3.add(panelGlass9, java.awt.BorderLayout.PAGE_END);
 
-        internalFrame4.add(FormInput3);
+        internalFrame4.add(FormInput3, java.awt.BorderLayout.EAST);
 
         TabEdukasi.addTab("Penilaian Pemberian Pendidikan Kesehatan", internalFrame4);
 
@@ -4432,6 +4494,51 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_TpndApotekerLainKeyPressed
 
+    private void MnHapusTtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdActionPerformed
+        if (tbPenilaian.getSelectedRow() > -1) {
+            if (akses.getadmin() == true || nipPengedukasi.equals(akses.getkode())) {
+                x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan penerima edukasi mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    String ipGambar = "";
+                    try {
+                        //cek atau ping ip addres
+                        ipGambar = "192.168.0.230";
+                        InetAddress inet = InetAddress.getByName(ipGambar);
+
+                        //ping sukses timeout 100 ms (0.1 detik)
+                        if (inet.isReachable(100)) {
+                            if (idFilePenerimaEdukasi.equals("")) {
+                                JOptionPane.showMessageDialog(null, "Penerima edukasi pasien ini belum melakukan tanda tangan...!!!!");
+                            } else {
+                                if (Sequel.hapusFileTTD(idFilePenerimaEdukasi) == true) {
+                                    Sequel.mengedit("penilaian_informasi_edukasi",
+                                            "waktu_simpan='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 55).toString() + "'",
+                                            "id_file_nm_penerima_edukasi=''");
+                                    tampilPenilaian();
+                                    emptTeksPenilaian();
+                                }
+                            }
+                            //ping gagal
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif : " + e);
+                    }
+                } else {
+                    tampilPenilaian();
+                    emptTeksPenilaian();
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, tanda tangan penerima edukasi hanya bisa dihapus oleh " + TnmPetugas1.getText() + " ...!!");
+                tampilPenilaian();
+                emptTeksPenilaian();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4469,8 +4576,11 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput3;
     private widget.Label LCount;
     private widget.Label LCount1;
+    private widget.editorpane LoadHTML1;
+    private javax.swing.JMenuItem MnHapusTtd;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
+    private widget.ScrollPane Scroll5;
     private widget.ScrollPane ScrollTriase1;
     private widget.ScrollPane ScrollTriase2;
     private widget.TextBox TCari;
@@ -4662,6 +4772,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
@@ -4779,7 +4890,8 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         LCount.setText("" + tabMode.getRowCount());
     }
     
-    public void tampilPenilaian() {        
+    public void tampilPenilaian() {
+        LoadHTML1.setText("");
         Valid.tabelKosong(tabMode1);
         try {
             ps1 = koneksi.prepareStatement("SELECT pi.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(pi.tanggal,'%d-%m-%Y') tglNilai, TIME_FORMAT(pi.jam,'%H:%i Wita') jamNilai, "
@@ -4887,7 +4999,8 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                         rs1.getString("cara_aturan"),
                         rs1.getString("resiko_efek"),
                         rs1.getString("penyimpanan_obat"),
-                        rs1.getString("ket_lainya_apoteker")
+                        rs1.getString("ket_lainya_apoteker"),
+                        rs1.getString("id_file_nm_penerima_edukasi")
                     });
                 }
             } catch (Exception e) {
@@ -5139,7 +5252,9 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                 resikoEfek = tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 75).toString();
                 penyimpananObat = tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 76).toString();
                 TpndApotekerLain.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 77).toString());
+                idFilePenerimaEdukasi = tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 78).toString();
                 dataCekPenilaian();
+                tampilTTD();
             }            
         }
     }
@@ -5490,6 +5605,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         caraAturan = "";
         resikoEfek = "";
         penyimpananObat = "";
+        idFilePenerimaEdukasi = "";
     }
     
     public void setTampil(){
@@ -5531,7 +5647,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         } else {
             cekDataPenilaian();
             if (Sequel.menyimpantf("penilaian_informasi_edukasi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 70, new String[]{
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 71, new String[]{
                         TNoRw1.getText(), Valid.SetTgl(TtglPenilaian.getSelectedItem() + ""), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
                         "-", "-", cmbProfesi.getSelectedItem().toString(), Tprofesi.getText(), cmbTingkat.getSelectedItem().toString(), cmbEvaluasi.getSelectedItem().toString(), diagnosis,
                         kondisiPasien, tindakan, tataCara, manfaat, namaOrang, kemungkinanAlternative, prognosis, kemungkinanTdkTerduga, kemungkinanBila, pendidikanKesehatan,
@@ -5539,7 +5655,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                         farmakologiSedasi, perawatanLatihan, distraksi, pengalihanPerhatian, caraCuci, etikaBatuk, caraBuang, tempatToileting, lainyaPerawatBidan, TpndPerawatLain.getText(),
                         diet, konsulGiziRanap, konsulGiziRalan, TpndNutrisionisLain.getText(), hakDan, jamKonsultasi, informasiKejadian, TpndAdmisiLain.getText(), TpndLainyaLain.getText(),
                         nipPengedukasi, TnmPenerima.getText(), Sequel.cariIsi("select now()"), audio, demonstrasi, lisan, tulisan, visual, pasien, keluarga, lainPenerimaPnd, edukasiLat,
-                        positioning, latihanAktif, simulasi, TpndFisioterapiLain.getText(), namaDan, caraAturan, resikoEfek, penyimpananObat, TpndApotekerLain.getText()
+                        positioning, latihanAktif, simulasi, TpndFisioterapiLain.getText(), namaDan, caraAturan, resikoEfek, penyimpananObat, TpndApotekerLain.getText(), ""
                     }) == true) {
 
                 Sequel.SimpanHistoriRekamMedis(TNoRw1.getText(), "Penilaian Pemberian Pendidikan Kesehatan", "Simpan");
@@ -5586,6 +5702,10 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
             if (nipPengedukasi.equals("") || nipPengedukasi.equals("-") || nipPengedukasi.equals("--")) {
                 JOptionPane.showMessageDialog(rootPane, "Maaf, nama pemberi edukasi harus diisi/dipilih salah satu dengan benar..!");
                 BtnPtgsPengedukasi.requestFocus();
+            } else if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFilePenerimaEdukasi + "'") > 0
+                    && !tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 12).toString().equals(TnmPenerima.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, penerima edukasi pasien sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
+                        + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
             } else {
                 cekDataPenilaian();
                 if (Sequel.mengedittf("penilaian_informasi_edukasi", "waktu_simpan=?", "tanggal=?, jam=?, penerima_pendidikan=?, metode=?, profesi=?, "
@@ -5927,6 +6047,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         TpndLainyaLain.setEnabled(false);
         cmbTingkat.setSelectedIndex(0);
         cmbEvaluasi.setSelectedIndex(0);
+        LoadHTML1.setText("");
     }
     
     private void cekDataPenilaian() {
@@ -6731,6 +6852,61 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
             TpndApotekerLain.setEnabled(false); 
             
             TpndLainyaLain.setEnabled(false);
+        }
+    }
+    
+    private void tampilTTD() {
+        try {
+            StringBuilder htmlContent = new StringBuilder();
+            String gambar = "", ipGambar = "";
+            try {
+                //cek atau ping ip addres
+                ipGambar = "192.168.0.230";
+                InetAddress inet = InetAddress.getByName(ipGambar);
+
+                //ping sukses timeout 100 ms (0.1 detik)
+                if (inet.isReachable(100)) {
+                    if (idFilePenerimaEdukasi.equals("")) {
+                        gambar = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                    } else {
+                        gambar = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFilePenerimaEdukasi;
+                    }
+                    //ping gagal
+                } else {
+                    gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+                gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+            }
+
+            htmlContent.append(
+                    "<table width='100%' class='isi'>"
+                    + "<thead>"
+                    + "<tr class='isi'>"
+                    + "<td align='center' bgcolor='#f8fdf3'><b>Penerima Edukasi</b></td>"
+                    + "</tr>"
+                    + "</thead>"
+                    + "<tbody>"
+            );
+
+            htmlContent.append(
+                    "<tr class='isi'>"
+                    + "<td valign='middle' align='center'><img src='" + gambar + "' width='160' height='160' alt='TTD Penerima Edukasi'><br>(" + TnmPenerima.getText() + ")<br></td>"
+                    + "</tr>"
+            );
+
+            htmlContent.append("</tbody>"
+                    + "</table>");
+
+            LoadHTML1.setText(
+                    "<html>"
+                    + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                    + htmlContent.toString()
+                    + "</table>"
+                    + "</html>");
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }

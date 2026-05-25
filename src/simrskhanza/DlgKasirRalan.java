@@ -6528,6 +6528,9 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     } else {
         if (Sequel.cariRegistrasi(TNoRw.getText()) > 0) {
             JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi..!!");
+        } else if (Sequel.cekPernahBayarLunas(TNoRw.getText(), "Ralan", kdpoli.getText()) > 0) {
+            JOptionPane.showMessageDialog(null, "Biaya transaksi rawat jalan sdh. pernah lunas dibayar dg. cara bayar UMUM, daftarkan lagi     \n"
+                    + "dg. poliklinik - (strip) utk. lanjut rawat inap,..!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setstatus(true);
@@ -8958,7 +8961,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                             form.setVisible(true);
                             this.setCursor(Cursor.getDefaultCursor());
                         } else {
-                            JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
+                            JOptionPane.showMessageDialog(null, "Rekam medis triase IGD sdh. tersimpan, batas waktu telah melebihi 24 Jam, akses rekam medis tertutup,..!");
                             tbKasirRalan.requestFocus();
                         }
                     }
@@ -9024,7 +9027,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                             form.setVisible(true);
                             this.setCursor(Cursor.getDefaultCursor());
                         } else {
-                            JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
+                            JOptionPane.showMessageDialog(null, "Rekam medis asesmen medik IGD sdh. tersimpan, batas waktu telah melebihi 24 Jam, akses rekam medis tertutup,..!");
                             tbKasirRalan.requestFocus();
                         }
                     }
@@ -9090,7 +9093,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                             form.setVisible(true);
                             this.setCursor(Cursor.getDefaultCursor());
                         } else {
-                            JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
+                            JOptionPane.showMessageDialog(null, "Rekam medis asesmen keperawatan IGD sdh. tersimpan, batas waktu telah melebihi 24 Jam, akses rekam medis tertutup,..!");
                             tbKasirRalan.requestFocus();
                         }
                     }
@@ -9709,7 +9712,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         obs.setVisible(true);
                         this.setCursor(Cursor.getDefaultCursor());
                     } else {
-                        JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
+                        JOptionPane.showMessageDialog(null, "Rekam medis lembar observasi IGD sdh. tersimpan, batas waktu telah melebihi 24 Jam, akses rekam medis tertutup,..!");
                         tbKasirRalan.requestFocus();
                     }
                 }
@@ -10389,7 +10392,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         form.setVisible(true);
                         this.setCursor(Cursor.getDefaultCursor());
                     } else {
-                        JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
+                        JOptionPane.showMessageDialog(null, "Rekam medis triase pediatrik IGD sdh. tersimpan, batas waktu telah melebihi 24 Jam, akses rekam medis tertutup,..!");
                         tbKasirRalan.requestFocus();
                     }
                 }
@@ -10481,13 +10484,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } 
-//        else if (Sequel.cariInteger("SELECT count(-1) FROM reg_periksa rp inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis WHERE "
-//                + "rp.umurdaftar BETWEEN 12 and 50 and rp.sttsumur='Th' and p.jk='P' and rp.no_rawat='" + TNoRw.getText() + "'") == 0) {
-//            JOptionPane.showMessageDialog(null, "Maaf, hanya utk. pasien wanita yang dirawat diruang VK Bersalin...!!!");
-//            tbKasirRalan.requestFocus();
-//        } 
-        else {
+        } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgKasirRalan");
@@ -10587,7 +10584,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 form.setVisible(true);
                 form.toFront();
                 form.requestFocus();
-//                form.setAlwaysOnTop(true);
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }
@@ -18257,8 +18253,14 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                     if (rsLaprm.getString("cek_spog").equals("ya")) {
                         param.put("caraSpog", "V");
+                        if (rsLaprm.getString("ket_jns_rujukan").equals("")) {
+                            param.put("caraDataSpog", "SPOG");
+                        } else {
+                            param.put("caraDataSpog", rsLaprm.getString("ket_jns_rujukan") + ", SPOG");
+                        }
                     } else {
                         param.put("caraSpog", "");
+                        param.put("caraDataSpog", "SPOG");
                     }
 
                     if (rsLaprm.getString("cek_rs_lain").equals("ya")) {
@@ -18382,23 +18384,18 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         param.put("muntah", rsLaprm.getString("muntah"));
                     }
 
-                    if (rsLaprm.getString("batuk").equals("Ya")) {
-                        param.put("batuk", rsLaprm.getString("batuk") + ", mulai tgl. " + Valid.SetTgl3(rsLaprm.getString("tgl_batuk")) + ", jam " + rsLaprm.getString("jam_batuk").substring(0, 5) + " Wita");
+                    if (rsLaprm.getString("cek_batuk_pilek_demam").equals("Ya")) {
+                        if (!rsLaprm.getString("batuk_pilek_demam").equals("-")) {
+                            param.put("bpd", rsLaprm.getString("cek_batuk_pilek_demam") + ", " + rsLaprm.getString("batuk_pilek_demam") + ", mulai tgl. "
+                                    + Valid.SetTglINDONESIA(rsLaprm.getString("tgl_batuk_pilek_demam")) + ", Jam : " + rsLaprm.getString("jam_batuk_pilek_demam").substring(0, 5) + " Wita");
+                        } else {
+                            param.put("bpd", rsLaprm.getString("cek_batuk_pilek_demam") + ", " + rsLaprm.getString("batuk_pilek_demam"));
+                        }
                     } else {
-                        param.put("batuk", rsLaprm.getString("batuk"));
+                        param.put("bpd", rsLaprm.getString("cek_batuk_pilek_demam"));
                     }
 
-                    if (rsLaprm.getString("pilek").equals("Ya")) {
-                        param.put("pilek", rsLaprm.getString("pilek") + ", mulai tgl. " + Valid.SetTgl3(rsLaprm.getString("tgl_pilek")) + ", jam " + rsLaprm.getString("jam_pilek").substring(0, 5) + " Wita");
-                    } else {
-                        param.put("pilek", rsLaprm.getString("pilek"));
-                    }
-
-                    if (rsLaprm.getString("demam").equals("Ya")) {
-                        param.put("demam", rsLaprm.getString("demam") + ", mulai tgl. " + Valid.SetTgl3(rsLaprm.getString("tgl_demam")) + ", jam " + rsLaprm.getString("jam_demam").substring(0, 5) + " Wita");
-                    } else {
-                        param.put("demam", rsLaprm.getString("demam"));
-                    }
+                    param.put("keluhanLainKLH", rsLaprm.getString("keluhan_lainya"));
 
                     if (rsLaprm.getString("riw_perjalanan_jauh").equals("Ya")) {
                         if (rsLaprm.getString("ket_riw_perjalanan_jauh").equals("")) {
@@ -18408,16 +18405,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         }
                     } else {
                         param.put("riwPerjalanan", rsLaprm.getString("riw_perjalanan_jauh"));
-                    }
-
-                    if (rsLaprm.getString("vaksin_covid19").equals("Ya")) {
-                        if (rsLaprm.getString("jlh_vaksin_covid19").equals("")) {
-                            param.put("vaksin", rsLaprm.getString("vaksin_covid19"));
-                        } else {
-                            param.put("vaksin", rsLaprm.getString("vaksin_covid19") + ", " + rsLaprm.getString("jlh_vaksin_covid19") + " X");
-                        }
-                    } else {
-                        param.put("vaksin", rsLaprm.getString("vaksin_covid19"));
                     }
 
                     if (rsLaprm.getString("periksa_ketempat_bidan").equals("Ya")) {

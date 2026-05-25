@@ -31,6 +31,7 @@ import java.awt.event.WindowListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,9 +43,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
+import javax.swing.event.HyperlinkEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPetugas;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgKabupaten;
@@ -63,7 +67,8 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9, ps10, ps11, psCek;
     private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rs10, rs11, rsCek;
     private int i = 0, x = 0, pilihan = 0;
-    private String kdkel = "", kdkec = "", kdkab = "", jk = "", jnsrawat = "", wktSimpan = "";
+    private String kdkel = "", kdkec = "", kdkab = "", jk = "", jnsrawat = "", wktSimpan = "", idFileNmPenjab = "", idFileNmPenerima = "",
+            idFileNmPhkKlg = "", idFileNmPhkRs = "", nmPenjab = "", nmPenerima = "", nmPhkKlg = "", nmPhkRS = "";
     private DlgKabupaten kab = new DlgKabupaten(null, false);
     private DlgKecamatan kec = new DlgKecamatan(null, false);
     private DlgKelurahan kel = new DlgKelurahan(null, false);
@@ -77,14 +82,15 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocation(8,1);
-        tabMode = new DefaultTableModel(null, new Object[]{
+        tabMode = new DefaultTableModel(null, new String[]{
             "Jns. Rawat", "Tgl. Persetujuan", "Tgl. Penolakan", "No.Rawat", "No.RM", "Nama Pasien", "Nama Png. Jawab", "Umur PJ", "Alamat PJ", 
             "Hub. Dg. Pasien", "Jns. Tindakan", "tgl_surat", "jam_surat", "nm_penjab", "umur_penjab", "jk_penjab", "alamat_penjab", "kd_kel", "kd_kec", 
-            "kd_kab", "hubungan_dg_pasien", "jns_surat", "kasus_tindakan", "nm_tindakan_kedokteran", "alasan_penolakan", "nip_dokter_pelaksana", 
-            "nip_pemberi_info", "penerima_info", "isi_info_diagnosis_kerja", "isi_info_dasar_diagnosis", "isi_info_tindakan", "isi_info_indikasi", 
-            "isi_info_tatacara", "isi_info_tujuan", "isi_info_resiko", "isi_info_komplikasi", "isi_info_prognosis", "isi_info_alternatif", 
-            "isi_info_lainlain", "waktu_simpan", "tgl_persetujuan", "jam_persetujuan", "tgl_penolakan", "jam_penolakan", "nmkel", "nmkec", 
-            "nmkab", "nmdokter", "nmpetugas", "jenkel"
+            "kd_kab", "hubungan_dg_pasien", "jns_surat", "kasus_tindakan", "nm_tindakan_kedokteran", "alasan_penolakan", "nip_dokter_pelaksana",
+            "nip_pemberi_info", "penerima_info", "isi_info_diagnosis_kerja", "isi_info_dasar_diagnosis", "isi_info_tindakan", "isi_info_indikasi",
+            "isi_info_tatacara", "isi_info_tujuan", "isi_info_resiko", "isi_info_komplikasi", "isi_info_prognosis", "isi_info_alternatif",
+            "isi_info_lainlain", "waktu_simpan", "tgl_persetujuan", "jam_persetujuan", "tgl_penolakan", "jam_penolakan", "nmkel", "nmkec",
+            "nmkab", "nmdokter", "nmpetugas", "jenkel", "nm_pihak_klg", "nm_pihak_rs", "id_file_nm_penjab", "id_file_penerima_info", "id_file_nm_pihak_klg",
+            "id_file_nm_pihak_rs"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -96,7 +102,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         tbTindakan.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbTindakan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 50; i++) {
+        for (i = 0; i < 56; i++) {
             TableColumn column = tbTindakan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(65);
@@ -237,7 +243,25 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             } else if (i == 49) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } 
+            } else if (i == 50) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 51) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 52) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 53) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 54) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 55) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }
         }
         tbTindakan.setDefaultRenderer(Object.class, new WarnaTable());
         
@@ -268,6 +292,9 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         alamatPJ.setDocument(new batasInput((int) 255).getKata(alamatPJ));
         tindakanDokter.setDocument(new batasInput((int) 255).getKata(tindakanDokter));
         alasanTolak.setDocument(new batasInput((int) 255).getKata(alasanTolak));
+        TnmPenerima.setDocument(new batasInput((int) 150).getKata(TnmPenerima));
+        TnmPhkKeluarga.setDocument(new batasInput((int) 150).getKata(TnmPhkKeluarga));
+        TnmPhkRS.setDocument(new batasInput((int) 150).getKata(TnmPhkRS));
         TCari.setDocument(new batasInput((int) 100).getKata(TCari));
         
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -466,6 +493,26 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             public void windowDeactivated(WindowEvent e) {
             }
         });
+        
+        HTMLEditorKit kit = new HTMLEditorKit();
+        StyleSheet styleSheet = kit.getStyleSheet();
+        styleSheet.addRule(".isi td{border-right: 1px solid #edf2e8;font: 10px tahoma;height:12px;border-bottom: 1px solid #edf2e8;background: 0000000;color:0000000;}");
+        Document doc = kit.createDefaultDocument();
+        
+        LoadHTML1.setEditable(true);
+        LoadHTML1.setEditorKit(kit);
+        LoadHTML1.setDocument(doc);
+        LoadHTML1.setEditable(false);
+        LoadHTML1.addHyperlinkListener(e -> {
+            if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.browse(e.getURL().toURI());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -477,6 +524,11 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnHapusTtdPngJawab = new javax.swing.JMenuItem();
+        MnHapusTtdPenerima = new javax.swing.JMenuItem();
+        MnHapusTtdPihakKlg = new javax.swing.JMenuItem();
+        MnHapusTtdPihakRs = new javax.swing.JMenuItem();
         WindowTemplate = new javax.swing.JDialog();
         internalFrame5 = new widget.InternalFrame();
         jPanel1 = new javax.swing.JPanel();
@@ -598,7 +650,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         CmbDetik3 = new widget.ComboBox();
         jLabel77 = new widget.Label();
         TnmPenerima = new widget.TextBox();
-        chkSamaNama = new widget.CekBox();
+        chkSamaNama1 = new widget.CekBox();
         BtnDiagKerja = new widget.Button();
         BtnDasarDiag = new widget.Button();
         BtnTindakan = new widget.Button();
@@ -613,7 +665,15 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel78 = new widget.Label();
         cmbKategori = new widget.ComboBox();
         chkSamaPelaksana = new widget.CekBox();
+        jLabel80 = new widget.Label();
+        TnmPhkKeluarga = new widget.TextBox();
+        chkSamaNama2 = new widget.CekBox();
+        jLabel81 = new widget.Label();
+        TnmPhkRS = new widget.TextBox();
         internalFrame4 = new widget.InternalFrame();
+        panelGlass11 = new widget.panelisi();
+        Scroll5 = new widget.ScrollPane();
+        LoadHTML1 = new widget.editorpane();
         Scroll = new widget.ScrollPane();
         tbTindakan = new widget.Table();
         panelGlass9 = new widget.panelisi();
@@ -624,6 +684,69 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
+
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+        jPopupMenu1.setPreferredSize(new java.awt.Dimension(200, 110));
+
+        MnHapusTtdPngJawab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtdPngJawab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtdPngJawab.setText("Hapus TTD Png. Jawab");
+        MnHapusTtdPngJawab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtdPngJawab.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtdPngJawab.setIconTextGap(5);
+        MnHapusTtdPngJawab.setName("MnHapusTtdPngJawab"); // NOI18N
+        MnHapusTtdPngJawab.setPreferredSize(new java.awt.Dimension(220, 30));
+        MnHapusTtdPngJawab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdPngJawabActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapusTtdPngJawab);
+
+        MnHapusTtdPenerima.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtdPenerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtdPenerima.setText("Hapus TTD Penerima Informasi");
+        MnHapusTtdPenerima.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtdPenerima.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtdPenerima.setIconTextGap(5);
+        MnHapusTtdPenerima.setName("MnHapusTtdPenerima"); // NOI18N
+        MnHapusTtdPenerima.setPreferredSize(new java.awt.Dimension(220, 30));
+        MnHapusTtdPenerima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdPenerimaActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapusTtdPenerima);
+
+        MnHapusTtdPihakKlg.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtdPihakKlg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtdPihakKlg.setText("Hapus TTD Pihak Keluarga");
+        MnHapusTtdPihakKlg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtdPihakKlg.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtdPihakKlg.setIconTextGap(5);
+        MnHapusTtdPihakKlg.setName("MnHapusTtdPihakKlg"); // NOI18N
+        MnHapusTtdPihakKlg.setPreferredSize(new java.awt.Dimension(220, 30));
+        MnHapusTtdPihakKlg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdPihakKlgActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapusTtdPihakKlg);
+
+        MnHapusTtdPihakRs.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtdPihakRs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtdPihakRs.setText("Hapus TTD Pihak RS");
+        MnHapusTtdPihakRs.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtdPihakRs.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtdPihakRs.setIconTextGap(5);
+        MnHapusTtdPihakRs.setName("MnHapusTtdPihakRs"); // NOI18N
+        MnHapusTtdPihakRs.setPreferredSize(new java.awt.Dimension(220, 30));
+        MnHapusTtdPihakRs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdPihakRsActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapusTtdPihakRs);
 
         WindowTemplate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowTemplate.setName("WindowTemplate"); // NOI18N
@@ -928,7 +1051,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Input Tindakan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         FormInput.setToolTipText("");
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(870, 1391));
+        FormInput.setPreferredSize(new java.awt.Dimension(870, 1459));
         FormInput.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -964,7 +1087,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel46.setBounds(0, 48, 130, 23);
 
         nmPJ.setForeground(new java.awt.Color(0, 0, 0));
-        nmPJ.setHighlighter(null);
         nmPJ.setName("nmPJ"); // NOI18N
         nmPJ.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1012,7 +1134,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel50.setBounds(0, 76, 130, 23);
 
         alamatPJ.setForeground(new java.awt.Color(0, 0, 0));
-        alamatPJ.setHighlighter(null);
         alamatPJ.setName("alamatPJ"); // NOI18N
         alamatPJ.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1172,7 +1293,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel58.setBounds(0, 328, 130, 23);
 
         TglBeriTindakan.setEditable(false);
-        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2025" }));
+        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2026" }));
         TglBeriTindakan.setDisplayFormat("dd-MM-yyyy");
         TglBeriTindakan.setName("TglBeriTindakan"); // NOI18N
         TglBeriTindakan.setOpaque(false);
@@ -1299,13 +1420,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel61.setText("Diagnosis Kerja/ :");
         jLabel61.setName("jLabel61"); // NOI18N
         FormInput.add(jLabel61);
-        jLabel61.setBounds(0, 440, 130, 23);
+        jLabel61.setBounds(0, 496, 130, 23);
 
         jLabel62.setForeground(new java.awt.Color(0, 0, 0));
         jLabel62.setText("Diagnosis Banding  ");
         jLabel62.setName("jLabel62"); // NOI18N
         FormInput.add(jLabel62);
-        jLabel62.setBounds(0, 455, 130, 23);
+        jLabel62.setBounds(0, 511, 130, 23);
 
         scrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane3.setName("scrollPane3"); // NOI18N
@@ -1323,7 +1444,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         scrollPane3.setViewportView(TDiagKerja);
 
         FormInput.add(scrollPane3);
-        scrollPane3.setBounds(136, 440, 630, 80);
+        scrollPane3.setBounds(136, 496, 630, 80);
 
         scrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane4.setName("scrollPane4"); // NOI18N
@@ -1341,13 +1462,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         scrollPane4.setViewportView(TDasarDiag);
 
         FormInput.add(scrollPane4);
-        scrollPane4.setBounds(136, 526, 630, 80);
+        scrollPane4.setBounds(136, 582, 630, 80);
 
         jLabel63.setForeground(new java.awt.Color(0, 0, 0));
         jLabel63.setText("Dasar Diagnosis :");
         jLabel63.setName("jLabel63"); // NOI18N
         FormInput.add(jLabel63);
-        jLabel63.setBounds(0, 526, 130, 23);
+        jLabel63.setBounds(0, 582, 130, 23);
 
         scrollPane5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane5.setName("scrollPane5"); // NOI18N
@@ -1365,13 +1486,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         scrollPane5.setViewportView(Ttindakan);
 
         FormInput.add(scrollPane5);
-        scrollPane5.setBounds(136, 612, 630, 80);
+        scrollPane5.setBounds(136, 668, 630, 80);
 
         jLabel64.setForeground(new java.awt.Color(0, 0, 0));
         jLabel64.setText("Tindakan Kedokteran :");
         jLabel64.setName("jLabel64"); // NOI18N
         FormInput.add(jLabel64);
-        jLabel64.setBounds(0, 612, 130, 23);
+        jLabel64.setBounds(0, 668, 130, 23);
 
         scrollPane6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane6.setName("scrollPane6"); // NOI18N
@@ -1389,13 +1510,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         scrollPane6.setViewportView(Tindikasi);
 
         FormInput.add(scrollPane6);
-        scrollPane6.setBounds(136, 698, 630, 80);
+        scrollPane6.setBounds(136, 754, 630, 80);
 
         jLabel65.setForeground(new java.awt.Color(0, 0, 0));
         jLabel65.setText("Indikasi Tindakan :");
         jLabel65.setName("jLabel65"); // NOI18N
         FormInput.add(jLabel65);
-        jLabel65.setBounds(0, 698, 130, 23);
+        jLabel65.setBounds(0, 754, 130, 23);
 
         scrollPane7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane7.setName("scrollPane7"); // NOI18N
@@ -1413,13 +1534,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         scrollPane7.setViewportView(Ttatacara);
 
         FormInput.add(scrollPane7);
-        scrollPane7.setBounds(136, 784, 630, 80);
+        scrollPane7.setBounds(136, 840, 630, 80);
 
         jLabel66.setForeground(new java.awt.Color(0, 0, 0));
         jLabel66.setText("Tata Cara :");
         jLabel66.setName("jLabel66"); // NOI18N
         FormInput.add(jLabel66);
-        jLabel66.setBounds(0, 784, 130, 23);
+        jLabel66.setBounds(0, 840, 130, 23);
 
         scrollPane8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane8.setName("scrollPane8"); // NOI18N
@@ -1437,19 +1558,19 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         scrollPane8.setViewportView(Ttujuan);
 
         FormInput.add(scrollPane8);
-        scrollPane8.setBounds(136, 870, 630, 80);
+        scrollPane8.setBounds(136, 926, 630, 80);
 
         jLabel67.setForeground(new java.awt.Color(0, 0, 0));
         jLabel67.setText("Tujuan :");
         jLabel67.setName("jLabel67"); // NOI18N
         FormInput.add(jLabel67);
-        jLabel67.setBounds(0, 870, 130, 23);
+        jLabel67.setBounds(0, 926, 130, 23);
 
         jLabel68.setForeground(new java.awt.Color(0, 0, 0));
         jLabel68.setText("Resiko Tindakan :");
         jLabel68.setName("jLabel68"); // NOI18N
         FormInput.add(jLabel68);
-        jLabel68.setBounds(0, 956, 130, 23);
+        jLabel68.setBounds(0, 1012, 130, 23);
 
         scrollPane9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane9.setName("scrollPane9"); // NOI18N
@@ -1467,13 +1588,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         scrollPane9.setViewportView(Tresiko);
 
         FormInput.add(scrollPane9);
-        scrollPane9.setBounds(136, 956, 630, 80);
+        scrollPane9.setBounds(136, 1012, 630, 80);
 
         jLabel69.setForeground(new java.awt.Color(0, 0, 0));
         jLabel69.setText("Komplikasi Tindakan :");
         jLabel69.setName("jLabel69"); // NOI18N
         FormInput.add(jLabel69);
-        jLabel69.setBounds(0, 1042, 130, 23);
+        jLabel69.setBounds(0, 1098, 130, 23);
 
         scrollPane10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane10.setName("scrollPane10"); // NOI18N
@@ -1491,13 +1612,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         scrollPane10.setViewportView(Tkomplikasi);
 
         FormInput.add(scrollPane10);
-        scrollPane10.setBounds(136, 1042, 630, 80);
+        scrollPane10.setBounds(136, 1098, 630, 80);
 
         jLabel70.setForeground(new java.awt.Color(0, 0, 0));
         jLabel70.setText("Prognosis :");
         jLabel70.setName("jLabel70"); // NOI18N
         FormInput.add(jLabel70);
-        jLabel70.setBounds(0, 1128, 130, 23);
+        jLabel70.setBounds(0, 1184, 130, 23);
 
         scrollPane11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane11.setName("scrollPane11"); // NOI18N
@@ -1515,13 +1636,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         scrollPane11.setViewportView(Tprognosis);
 
         FormInput.add(scrollPane11);
-        scrollPane11.setBounds(136, 1128, 630, 80);
+        scrollPane11.setBounds(136, 1184, 630, 80);
 
         jLabel71.setForeground(new java.awt.Color(0, 0, 0));
         jLabel71.setText("Alternatif Tindakan :");
         jLabel71.setName("jLabel71"); // NOI18N
         FormInput.add(jLabel71);
-        jLabel71.setBounds(0, 1214, 130, 23);
+        jLabel71.setBounds(0, 1270, 130, 23);
 
         scrollPane12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane12.setName("scrollPane12"); // NOI18N
@@ -1539,13 +1660,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         scrollPane12.setViewportView(Talternatif);
 
         FormInput.add(scrollPane12);
-        scrollPane12.setBounds(136, 1214, 630, 80);
+        scrollPane12.setBounds(136, 1270, 630, 80);
 
         jLabel72.setForeground(new java.awt.Color(0, 0, 0));
         jLabel72.setText("Lain - Lain :");
         jLabel72.setName("jLabel72"); // NOI18N
         FormInput.add(jLabel72);
-        jLabel72.setBounds(0, 1300, 130, 23);
+        jLabel72.setBounds(0, 1356, 130, 23);
 
         scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
@@ -1558,7 +1679,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         scrollPane13.setViewportView(Tlain);
 
         FormInput.add(scrollPane13);
-        scrollPane13.setBounds(136, 1300, 630, 80);
+        scrollPane13.setBounds(136, 1356, 630, 80);
 
         jLabel73.setForeground(new java.awt.Color(0, 0, 0));
         jLabel73.setText("Tgl. Persetujuan Tndkn. :");
@@ -1567,7 +1688,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel73.setBounds(0, 216, 130, 23);
 
         TglSetuju.setEditable(false);
-        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2025" }));
+        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2026" }));
         TglSetuju.setDisplayFormat("dd-MM-yyyy");
         TglSetuju.setName("TglSetuju"); // NOI18N
         TglSetuju.setOpaque(false);
@@ -1635,7 +1756,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel75.setBounds(0, 244, 130, 23);
 
         TglTolak.setEditable(false);
-        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2025" }));
+        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2026" }));
         TglTolak.setDisplayFormat("dd-MM-yyyy");
         TglTolak.setName("TglTolak"); // NOI18N
         TglTolak.setOpaque(false);
@@ -1703,7 +1824,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel77.setBounds(0, 412, 130, 23);
 
         TnmPenerima.setForeground(new java.awt.Color(0, 0, 0));
-        TnmPenerima.setHighlighter(null);
         TnmPenerima.setName("TnmPenerima"); // NOI18N
         TnmPenerima.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1713,21 +1833,21 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(TnmPenerima);
         TnmPenerima.setBounds(136, 412, 340, 23);
 
-        chkSamaNama.setBackground(new java.awt.Color(242, 242, 242));
-        chkSamaNama.setForeground(new java.awt.Color(0, 0, 0));
-        chkSamaNama.setText("Sama Dengan Penanggung Jawab Pasien");
-        chkSamaNama.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkSamaNama.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkSamaNama.setName("chkSamaNama"); // NOI18N
-        chkSamaNama.setOpaque(false);
-        chkSamaNama.setPreferredSize(new java.awt.Dimension(220, 23));
-        chkSamaNama.addActionListener(new java.awt.event.ActionListener() {
+        chkSamaNama1.setBackground(new java.awt.Color(242, 242, 242));
+        chkSamaNama1.setForeground(new java.awt.Color(0, 0, 0));
+        chkSamaNama1.setText("Sama Dengan Penanggung Jawab Pasien");
+        chkSamaNama1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkSamaNama1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkSamaNama1.setName("chkSamaNama1"); // NOI18N
+        chkSamaNama1.setOpaque(false);
+        chkSamaNama1.setPreferredSize(new java.awt.Dimension(220, 23));
+        chkSamaNama1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkSamaNamaActionPerformed(evt);
+                chkSamaNama1ActionPerformed(evt);
             }
         });
-        FormInput.add(chkSamaNama);
-        chkSamaNama.setBounds(485, 412, 230, 23);
+        FormInput.add(chkSamaNama1);
+        chkSamaNama1.setBounds(485, 412, 230, 23);
 
         BtnDiagKerja.setForeground(new java.awt.Color(0, 0, 0));
         BtnDiagKerja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1742,7 +1862,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnDiagKerja);
-        BtnDiagKerja.setBounds(27, 485, 100, 23);
+        BtnDiagKerja.setBounds(27, 541, 100, 23);
 
         BtnDasarDiag.setForeground(new java.awt.Color(0, 0, 0));
         BtnDasarDiag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1757,7 +1877,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnDasarDiag);
-        BtnDasarDiag.setBounds(27, 556, 100, 23);
+        BtnDasarDiag.setBounds(27, 612, 100, 23);
 
         BtnTindakan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1772,7 +1892,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnTindakan);
-        BtnTindakan.setBounds(27, 642, 100, 23);
+        BtnTindakan.setBounds(27, 698, 100, 23);
 
         BtnIndikasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnIndikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1787,7 +1907,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnIndikasi);
-        BtnIndikasi.setBounds(27, 728, 100, 23);
+        BtnIndikasi.setBounds(27, 784, 100, 23);
 
         BtnTata.setForeground(new java.awt.Color(0, 0, 0));
         BtnTata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1802,7 +1922,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnTata);
-        BtnTata.setBounds(27, 814, 100, 23);
+        BtnTata.setBounds(27, 870, 100, 23);
 
         BtnTujuan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTujuan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1817,7 +1937,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnTujuan);
-        BtnTujuan.setBounds(27, 900, 100, 23);
+        BtnTujuan.setBounds(27, 956, 100, 23);
 
         BtnResiko.setForeground(new java.awt.Color(0, 0, 0));
         BtnResiko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1832,7 +1952,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnResiko);
-        BtnResiko.setBounds(27, 986, 100, 23);
+        BtnResiko.setBounds(27, 1042, 100, 23);
 
         BtnKomplikasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnKomplikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1847,7 +1967,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnKomplikasi);
-        BtnKomplikasi.setBounds(27, 1072, 100, 23);
+        BtnKomplikasi.setBounds(27, 1128, 100, 23);
 
         BtnPrognosis.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrognosis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1862,7 +1982,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnPrognosis);
-        BtnPrognosis.setBounds(27, 1158, 100, 23);
+        BtnPrognosis.setBounds(27, 1214, 100, 23);
 
         BtnAlternatif.setForeground(new java.awt.Color(0, 0, 0));
         BtnAlternatif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1877,7 +1997,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnAlternatif);
-        BtnAlternatif.setBounds(27, 1244, 100, 23);
+        BtnAlternatif.setBounds(27, 1300, 100, 23);
 
         BtnLain.setForeground(new java.awt.Color(0, 0, 0));
         BtnLain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1892,7 +2012,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnLain);
-        BtnLain.setBounds(27, 1330, 100, 23);
+        BtnLain.setBounds(27, 1386, 100, 23);
 
         jLabel78.setForeground(new java.awt.Color(0, 0, 0));
         jLabel78.setText("Kategori : ");
@@ -1928,21 +2048,86 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(chkSamaPelaksana);
         chkSamaPelaksana.setBounds(585, 384, 180, 23);
 
+        jLabel80.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel80.setText("Nama Pihak Keluarga :");
+        jLabel80.setName("jLabel80"); // NOI18N
+        FormInput.add(jLabel80);
+        jLabel80.setBounds(0, 440, 130, 23);
+
+        TnmPhkKeluarga.setForeground(new java.awt.Color(0, 0, 0));
+        TnmPhkKeluarga.setName("TnmPhkKeluarga"); // NOI18N
+        TnmPhkKeluarga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TnmPhkKeluargaKeyPressed(evt);
+            }
+        });
+        FormInput.add(TnmPhkKeluarga);
+        TnmPhkKeluarga.setBounds(136, 440, 340, 23);
+
+        chkSamaNama2.setBackground(new java.awt.Color(242, 242, 242));
+        chkSamaNama2.setForeground(new java.awt.Color(0, 0, 0));
+        chkSamaNama2.setText("Sama Dengan Penanggung Jawab Pasien");
+        chkSamaNama2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkSamaNama2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkSamaNama2.setName("chkSamaNama2"); // NOI18N
+        chkSamaNama2.setOpaque(false);
+        chkSamaNama2.setPreferredSize(new java.awt.Dimension(220, 23));
+        chkSamaNama2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkSamaNama2ActionPerformed(evt);
+            }
+        });
+        FormInput.add(chkSamaNama2);
+        chkSamaNama2.setBounds(485, 440, 230, 23);
+
+        jLabel81.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel81.setText("Nama Pihak RS :");
+        jLabel81.setName("jLabel81"); // NOI18N
+        FormInput.add(jLabel81);
+        jLabel81.setBounds(0, 468, 130, 23);
+
+        TnmPhkRS.setForeground(new java.awt.Color(0, 0, 0));
+        TnmPhkRS.setName("TnmPhkRS"); // NOI18N
+        TnmPhkRS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TnmPhkRSKeyPressed(evt);
+            }
+        });
+        FormInput.add(TnmPhkRS);
+        TnmPhkRS.setBounds(136, 468, 340, 23);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormTindakan.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
 
         panelGlass10.add(FormTindakan);
 
-        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Data Tindakan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         internalFrame4.setName("internalFrame4"); // NOI18N
         internalFrame4.setLayout(new java.awt.BorderLayout(1, 1));
 
+        panelGlass11.setName("panelGlass11"); // NOI18N
+        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass11.setLayout(new java.awt.BorderLayout());
+
+        Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Tanda Tangan Saksi, Yang Menyatakan, & Penerima Informasi Pasien ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        Scroll5.setName("Scroll5"); // NOI18N
+        Scroll5.setOpaque(true);
+
+        LoadHTML1.setBorder(null);
+        LoadHTML1.setForeground(new java.awt.Color(0, 0, 0));
+        LoadHTML1.setName("LoadHTML1"); // NOI18N
+        Scroll5.setViewportView(LoadHTML1);
+
+        panelGlass11.add(Scroll5, java.awt.BorderLayout.CENTER);
+
+        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Data Tindakan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
+        Scroll.setPreferredSize(new java.awt.Dimension(460, 540));
 
         tbTindakan.setAutoCreateRowSorter(true);
         tbTindakan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbTindakan.setComponentPopupMenu(jPopupMenu1);
         tbTindakan.setName("tbTindakan"); // NOI18N
         tbTindakan.getTableHeader().setReorderingAllowed(false);
         tbTindakan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1957,7 +2142,9 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         });
         Scroll.setViewportView(tbTindakan);
 
-        internalFrame4.add(Scroll, java.awt.BorderLayout.CENTER);
+        panelGlass11.add(Scroll, java.awt.BorderLayout.PAGE_END);
+
+        internalFrame4.add(panelGlass11, java.awt.BorderLayout.CENTER);
 
         panelGlass9.setName("panelGlass9"); // NOI18N
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 44));
@@ -1970,7 +2157,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1985,7 +2172,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2047,14 +2234,39 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             } else {
                 jk = "P";
             }
-            if (Sequel.menyimpantf("surat_tindakan_kedokteran", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 34, new String[]{
+            
+            if (nmPJ.getText().equals("")) {
+                nmPenjab = "";
+            } else {
+                nmPenjab = nmPJ.getText() + " (Yang Menyatakan)";
+            }
+            
+            if (TnmPenerima.getText().equals("")) {
+                nmPenerima = "";
+            } else {
+                nmPenerima = TnmPenerima.getText() + " (Penerima Informasi)";
+            }
+            
+            if (TnmPhkKeluarga.getText().equals("")) {
+                nmPhkKlg = "";
+            } else {
+                nmPhkKlg = TnmPhkKeluarga.getText() + " (Pihak Keluarga)";
+            }
+            
+            if (TnmPhkRS.getText().equals("")) {
+                nmPhkRS = "";
+            } else {
+                nmPhkRS = TnmPhkRS.getText() + " (Pihak RS)";
+            }
+            
+            if (Sequel.menyimpantf("surat_tindakan_kedokteran", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 40, new String[]{
                         TNoRw.getText(), Valid.SetTgl(TglBeriTindakan.getSelectedItem() + ""), CmbJam1.getSelectedItem() + ":" + CmbMenit1.getSelectedItem() + ":" + CmbDetik1.getSelectedItem(),
-                        nmPJ.getText(), umurPJ.getText(), jk, alamatPJ.getText(), kdkel, kdkec, kdkab, hubungan.getSelectedItem().toString(), cmbTindakan.getSelectedItem().toString(),
-                        jnsrawat, tindakanDokter.getText(), alasanTolak.getText(), kddokter_pelaksana.getText(), nip_pemberi.getText(), TnmPenerima.getText(), TDiagKerja.getText(),
+                        nmPenjab, umurPJ.getText(), jk, alamatPJ.getText(), kdkel, kdkec, kdkab, hubungan.getSelectedItem().toString(), cmbTindakan.getSelectedItem().toString(),
+                        jnsrawat, tindakanDokter.getText(), alasanTolak.getText(), kddokter_pelaksana.getText(), nip_pemberi.getText(), nmPenerima, TDiagKerja.getText(),
                         TDasarDiag.getText(), Ttindakan.getText(), Tindikasi.getText(), Ttatacara.getText(), Ttujuan.getText(), Tresiko.getText(), Tkomplikasi.getText(), Tprognosis.getText(),
                         Talternatif.getText(), Tlain.getText(), Sequel.cariIsi("select now()"), Valid.SetTgl(TglSetuju.getSelectedItem() + ""), 
                         CmbJam2.getSelectedItem() + ":" + CmbMenit2.getSelectedItem() + ":" + CmbDetik2.getSelectedItem(), Valid.SetTgl(TglTolak.getSelectedItem() + ""), 
-                        CmbJam3.getSelectedItem() + ":" + CmbMenit3.getSelectedItem() + ":" + CmbDetik3.getSelectedItem()
+                        CmbJam3.getSelectedItem() + ":" + CmbMenit3.getSelectedItem() + ":" + CmbDetik3.getSelectedItem(), nmPhkKlg, nmPhkRS, "", "", "", ""
                     }) == true) {
                 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Tindakan Kedokteran", "Simpan");
@@ -2088,6 +2300,22 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 if (Sequel.queryu2tf("delete from surat_tindakan_kedokteran where waktu_simpan=?", 1, new String[]{wktSimpan}) == true) {
+                    if (!idFileNmPenjab.equals("")) {
+                        Sequel.hapusSemuaTtd(idFileNmPenjab);
+                    }
+
+                    if (!idFileNmPenerima.equals("")) {
+                        Sequel.hapusSemuaTtd(idFileNmPenerima);
+                    }
+
+                    if (!idFileNmPhkKlg.equals("")) {
+                        Sequel.hapusSemuaTtd(idFileNmPhkKlg);
+                    }
+                    
+                    if (!idFileNmPhkRs.equals("")) {
+                        Sequel.hapusSemuaTtd(idFileNmPhkRs);
+                    }
+                    
                     tampil();
                     emptTeks();
                 } else {
@@ -2103,35 +2331,80 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
         if (tbTindakan.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Data pada tabel masih kosong..!!");
-        }  else if (wktSimpan.equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu data pasiennya pada tabel..!!");
-            tbTindakan.requestFocus();
         } else {
-            if (jkPJ.getSelectedIndex() == 0) {
-                jk = "L";
+            if (tbTindakan.getSelectedRow() > -1) {
+                if (jkPJ.getSelectedIndex() == 0) {
+                    jk = "L";
+                } else {
+                    jk = "P";
+                }
+
+                if (nmPJ.getText().equals("")) {
+                    nmPenjab = "";
+                } else {
+                    nmPenjab = nmPJ.getText() + " (Yang Menyatakan)";
+                }
+
+                if (TnmPenerima.getText().equals("")) {
+                    nmPenerima = "";
+                } else {
+                    nmPenerima = TnmPenerima.getText() + " (Penerima Informasi)";
+                }
+
+                if (TnmPhkKeluarga.getText().equals("")) {
+                    nmPhkKlg = "";
+                } else {
+                    nmPhkKlg = TnmPhkKeluarga.getText() + " (Pihak Keluarga)";
+                }
+
+                if (TnmPhkRS.getText().equals("")) {
+                    nmPhkRS = "";
+                } else {
+                    nmPhkRS = TnmPhkRS.getText() + " (Pihak RS)";
+                }
+
+                if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmPenjab + "'") > 0
+                        && !tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 6).toString().equals(nmPJ.getText())) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, penanggung jawab pasien sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
+                            + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
+                } else if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmPenerima + "'") > 0
+                        && !tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 27).toString().equals(TnmPenerima.getText())) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, penerima informasi pasien sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
+                            + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
+                } else if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmPhkKlg + "'") > 0
+                        && !tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 50).toString().equals(TnmPhkKeluarga.getText())) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, pihak keluarga pasien sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
+                            + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
+                } else if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmPhkRs + "'") > 0
+                        && !tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 51).toString().equals(TnmPhkRS.getText())) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, pihak rumah sakit sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
+                            + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
+                } else {
+                    if (Sequel.mengedittf("surat_tindakan_kedokteran", "waktu_simpan=?", "no_rawat=?, tgl_surat=?, jam_surat=?, nm_penjab=?, umur_penjab=?, "
+                            + "jk_penjab=?, alamat_penjab=?, kd_kel=?, kd_kec=?, kd_kab=?, hubungan_dg_pasien=?, jns_surat=?, nm_tindakan_kedokteran=?, "
+                            + "alasan_penolakan=?, nip_dokter_pelaksana=?, nip_pemberi_info=?, penerima_info=?, isi_info_diagnosis_kerja=?, isi_info_dasar_diagnosis=?, "
+                            + "isi_info_tindakan=?, isi_info_indikasi=?, isi_info_tatacara=?, isi_info_tujuan=?, isi_info_resiko=?, isi_info_komplikasi=?, isi_info_prognosis=?, "
+                            + "isi_info_alternatif=?, isi_info_lainlain=?, waktu_simpan=?, tgl_persetujuan=?, jam_persetujuan=?, tgl_penolakan=?, jam_penolakan=?, "
+                            + "nm_pihak_klg=?, nm_pihak_rs=?", 36, new String[]{
+                                TNoRw.getText(), Valid.SetTgl(TglBeriTindakan.getSelectedItem() + ""), CmbJam1.getSelectedItem() + ":" + CmbMenit1.getSelectedItem() + ":" + CmbDetik1.getSelectedItem(),
+                                nmPenjab, umurPJ.getText(), jk, alamatPJ.getText(), kdkel, kdkec, kdkab, hubungan.getSelectedItem().toString(), cmbTindakan.getSelectedItem().toString(),
+                                tindakanDokter.getText(), alasanTolak.getText(), kddokter_pelaksana.getText(), nip_pemberi.getText(), nmPenerima, TDiagKerja.getText(),
+                                TDasarDiag.getText(), Ttindakan.getText(), Tindikasi.getText(), Ttatacara.getText(), Ttujuan.getText(), Tresiko.getText(), Tkomplikasi.getText(), Tprognosis.getText(),
+                                Talternatif.getText(), Tlain.getText(), Sequel.cariIsi("select now()"), Valid.SetTgl(TglSetuju.getSelectedItem() + ""),
+                                CmbJam2.getSelectedItem() + ":" + CmbMenit2.getSelectedItem() + ":" + CmbDetik2.getSelectedItem(), Valid.SetTgl(TglTolak.getSelectedItem() + ""),
+                                CmbJam3.getSelectedItem() + ":" + CmbMenit3.getSelectedItem() + ":" + CmbDetik3.getSelectedItem(), nmPhkKlg, nmPhkRS,
+                                wktSimpan
+                            }) == true) {
+
+                        Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Tindakan Kedokteran", "Ganti");
+                        TCari.setText(TNoRw.getText());
+                        tampil();
+                        emptTeks();
+                    }
+                }
             } else {
-                jk = "P";
-            }
-
-            if (Sequel.mengedittf("surat_tindakan_kedokteran", "waktu_simpan=?", "no_rawat=?, tgl_surat=?, jam_surat=?, nm_penjab=?, umur_penjab=?, "
-                    + "jk_penjab=?, alamat_penjab=?, kd_kel=?, kd_kec=?, kd_kab=?, hubungan_dg_pasien=?, jns_surat=?, nm_tindakan_kedokteran=?, "
-                    + "alasan_penolakan=?, nip_dokter_pelaksana=?, nip_pemberi_info=?, penerima_info=?, isi_info_diagnosis_kerja=?, isi_info_dasar_diagnosis=?, "
-                    + "isi_info_tindakan=?, isi_info_indikasi=?, isi_info_tatacara=?, isi_info_tujuan=?, isi_info_resiko=?, isi_info_komplikasi=?, isi_info_prognosis=?, "
-                    + "isi_info_alternatif=?, isi_info_lainlain=?, waktu_simpan=?, tgl_persetujuan=?, jam_persetujuan=?, tgl_penolakan=?, jam_penolakan=?", 34, new String[]{
-                        TNoRw.getText(), Valid.SetTgl(TglBeriTindakan.getSelectedItem() + ""), CmbJam1.getSelectedItem() + ":" + CmbMenit1.getSelectedItem() + ":" + CmbDetik1.getSelectedItem(),
-                        nmPJ.getText(), umurPJ.getText(), jk, alamatPJ.getText(), kdkel, kdkec, kdkab, hubungan.getSelectedItem().toString(), cmbTindakan.getSelectedItem().toString(),
-                        tindakanDokter.getText(), alasanTolak.getText(), kddokter_pelaksana.getText(), nip_pemberi.getText(), TnmPenerima.getText(), TDiagKerja.getText(),
-                        TDasarDiag.getText(), Ttindakan.getText(), Tindikasi.getText(), Ttatacara.getText(), Ttujuan.getText(), Tresiko.getText(), Tkomplikasi.getText(), Tprognosis.getText(),
-                        Talternatif.getText(), Tlain.getText(), Sequel.cariIsi("select now()"), Valid.SetTgl(TglSetuju.getSelectedItem() + ""),
-                        CmbJam2.getSelectedItem() + ":" + CmbMenit2.getSelectedItem() + ":" + CmbDetik2.getSelectedItem(), Valid.SetTgl(TglTolak.getSelectedItem() + ""),
-                        CmbJam3.getSelectedItem() + ":" + CmbMenit3.getSelectedItem() + ":" + CmbDetik3.getSelectedItem(),
-                        wktSimpan
-                    }) == true) {
-
-                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Tindakan Kedokteran", "Ganti");
-                TCari.setText(TNoRw.getText());
-                tampil();
-                emptTeks();
+                JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu data pasiennya pada tabel..!!");
+                tbTindakan.requestFocus();
             }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
@@ -2159,89 +2432,159 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         if (tbTindakan.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Data pada tabel masih kosong..!!");
-        }  else if (wktSimpan.equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu data pasiennya pada tabel..!!");
-            tbTindakan.requestFocus();
         } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 11).toString()) + " Pukul ");
+            if (tbTindakan.getSelectedRow() > -1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("alamatrs", akses.getalamatrs());
+                param.put("kotars", akses.getkabupatenrs());
+                param.put("propinsirs", akses.getpropinsirs());
+                param.put("kontakrs", akses.getkontakrs());
+                param.put("emailrs", akses.getemailrs());
+                param.put("logo", Sequel.cariGambar("select logo from setting"));
+                param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 11).toString()) + " Pukul ");
 
-            if (cmbTindakan.getSelectedIndex() == 0) {
-                Valid.MyReport("rptSetujuTindakanDokter.jasper", "report", "::[ Lembar Formulir Persetujuan Tindakan Kedokteran ]::",
-                        "SELECT s.nm_penjab, CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
-                        + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
-                        + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
-                        + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
-                        + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat FROM surat_tindakan_kedokteran s "
-                        + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
-                        + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
-                        + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
-                        + "WHERE s.waktu_simpan='" + wktSimpan + "' and s.jns_surat='" + cmbTindakan.getSelectedItem() + "'", param);
-            } else {
-                Valid.MyReport("rptTolakTindakanDokter.jasper", "report", "::[ Lembar Formulir Penolakan Tindakan Kedokteran ]::",
-                        "SELECT s.nm_penjab, CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
-                        + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
-                        + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
-                        + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
-                        + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat FROM surat_tindakan_kedokteran s "
-                        + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
-                        + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
-                        + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
-                        + "WHERE s.waktu_simpan='" + wktSimpan + "' and s.jns_surat='" + cmbTindakan.getSelectedItem() + "'", param);
-            }
+                try {
+                    StringBuilder htmlContent = new StringBuilder();
+                    String gambar1 = "", gambar2 = "", gambar3 = "", gambar4 = "", ipGambar = "";
+                    try {
+                        //cek atau ping ip addres
+                        ipGambar = "192.168.0.230";
+                        InetAddress inet = InetAddress.getByName(ipGambar);
 
-            if (cmbPilihCetak.getSelectedIndex() == 0) {
-                String isi = "";
-                if (nip_pemberi.getText().equals("") || nip_pemberi.getText().equals("-") || nip_pemberi.getText().equals("--")) {
-                    JOptionPane.showMessageDialog(rootPane, "Nama pemberi informasi harus diisi dulu,..");
-                } else {
-                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                    "Pemberian Informasi Tindakan", nmpemberi.getText(),
-                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from surat_tindakan_kedokteran where "
-                                            + "waktu_simpan='" + wktSimpan + "'"),
-                                    Sequel.cariIsi("select time(waktu_simpan) from surat_tindakan_kedokteran where "
-                                            + "waktu_simpan='" + wktSimpan + "'")) + "') from kalimat_tte where kode='001'");
-                    
-                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
-                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
-                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Pemberian Informasi Tindakan", Sequel.cariFolderPrintTte());
-                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
-                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                        //ping sukses timeout 100 ms (0.1 detik)
+                        if (inet.isReachable(100)) {
+                            if (idFileNmPenjab.equals("")) {
+                                gambar1 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                            } else {
+                                gambar1 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileNmPenjab;
+                            }
 
-                    Valid.MyReport("rptBeriInfoTindakanQr.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
-                            + "s.penerima_info, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, "
-                            + "s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, s.isi_info_alternatif, s.isi_info_lainlain, "
-                            + "time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo FROM surat_tindakan_kedokteran s INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat "
-                            + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana "
-                            + "INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info where s.waktu_simpan='" + wktSimpan + "'", param);
-                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                            if (idFileNmPenerima.equals("")) {
+                                gambar2 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                            } else {
+                                gambar2 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileNmPenerima;
+                            }
+
+                            if (idFileNmPhkKlg.equals("")) {
+                                gambar3 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                            } else {
+                                gambar3 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileNmPhkKlg;
+                            }
+
+                            if (idFileNmPhkRs.equals("")) {
+                                gambar4 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                            } else {
+                                gambar4 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileNmPhkRs;
+                            }
+                            //ping gagal
+                        } else {
+                            gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                            gambar2 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                            gambar3 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                            gambar4 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif : " + e);
+                        gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                        gambar2 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                        gambar3 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                        gambar4 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    }
+
+                    param.put("gambarTtd1", gambar1);
+                    param.put("gambarTtd2", gambar2);
+                    param.put("gambarTtd3", gambar3);
+                    param.put("gambarTtd4", gambar4);
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
                 }
+
+                if (cmbTindakan.getSelectedIndex() == 0) {
+                    Valid.MyReport("rptSetujuTindakanDokter.jasper", "report", "::[ Lembar Formulir Persetujuan Tindakan Kedokteran ]::",
+                            "SELECT if(s.nm_penjab='','......................',replace(s.nm_penjab,' (Yang Menyatakan)','')) nmpenjab, "
+                            + "CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
+                            + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
+                            + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
+                            + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
+                            + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat, "
+                            + "if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                            + "if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s "
+                            + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
+                            + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
+                            + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
+                            + "WHERE s.waktu_simpan='" + wktSimpan + "' and s.jns_surat='" + cmbTindakan.getSelectedItem() + "'", param);
+                } else {
+                    Valid.MyReport("rptTolakTindakanDokter.jasper", "report", "::[ Lembar Formulir Penolakan Tindakan Kedokteran ]::",
+                            "SELECT if(s.nm_penjab='','......................',replace(s.nm_penjab,' (Yang Menyatakan)','')) nmpenjab, "
+                            + "CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
+                            + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
+                            + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
+                            + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
+                            + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat, "
+                            + "if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                            + "if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s "
+                            + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
+                            + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
+                            + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
+                            + "WHERE s.waktu_simpan='" + wktSimpan + "' and s.jns_surat='" + cmbTindakan.getSelectedItem() + "'", param);
+                }
+
+                if (cmbPilihCetak.getSelectedIndex() == 0) {
+                    String isi = "";
+                    if (nip_pemberi.getText().equals("") || nip_pemberi.getText().equals("-") || nip_pemberi.getText().equals("--")) {
+                        JOptionPane.showMessageDialog(rootPane, "Nama pemberi informasi harus diisi dulu,..");
+                    } else {
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Pemberian Informasi Tindakan", nmpemberi.getText(),
+                                        Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from surat_tindakan_kedokteran where "
+                                                + "waktu_simpan='" + wktSimpan + "'"),
+                                        Sequel.cariIsi("select time(waktu_simpan) from surat_tindakan_kedokteran where "
+                                                + "waktu_simpan='" + wktSimpan + "'")) + "') from kalimat_tte where kode='001'");
+
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Pemberian Informasi Tindakan", Sequel.cariFolderPrintTte());
+                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+
+                        Valid.MyReport("rptBeriInfoTindakanQr.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
+                                "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
+                                + "if(s.penerima_info='','......................',replace(s.penerima_info,' (Penerima Informasi)','')) nmpenerima, "
+                                + "s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, "
+                                + "s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, s.isi_info_alternatif, s.isi_info_lainlain, "
+                                + "time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo, if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                                + "if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s "
+                                + "INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                                + "INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info where "
+                                + "s.waktu_simpan='" + wktSimpan + "'", param);
+                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    }
+                } else {
+                    Valid.MyReport("rptBeriInfoTindakan.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
+                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
+                            + "if(s.penerima_info='','......................',replace(s.penerima_info,' (Penerima Informasi)','')) nmpenerima, "
+                            + "s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, "
+                            + "s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, s.isi_info_alternatif, s.isi_info_lainlain, "
+                            + "time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo, if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                            + "if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s "
+                            + "INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info where "
+                            + "s.waktu_simpan='" + wktSimpan + "'", param);
+
+                    TCari.setText(TNoRw.getText());
+                    tampil();
+                    BtnBatalActionPerformed(null);
+                }
+                this.setCursor(Cursor.getDefaultCursor());
             } else {
-                Valid.MyReport("rptBeriInfoTindakan.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
-                        "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
-                        + "s.penerima_info, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, "
-                        + "s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, s.isi_info_alternatif, s.isi_info_lainlain, "
-                        + "time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo FROM surat_tindakan_kedokteran s INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat "
-                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana "
-                        + "INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info where s.waktu_simpan='" + wktSimpan + "'", param);
-                
-                TCari.setText(TNoRw.getText());
-                tampil();
-                BtnBatalActionPerformed(null);
+                JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu data pasiennya pada tabel..!!");
+                tbTindakan.requestFocus();
             }
-            this.setCursor(Cursor.getDefaultCursor());           
         }
 }//GEN-LAST:event_BtnPrintActionPerformed
 
@@ -2541,16 +2884,18 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     }//GEN-LAST:event_CmbDetik3KeyPressed
 
     private void TnmPenerimaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmPenerimaKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            TnmPhkKeluarga.requestFocus();
+        }
     }//GEN-LAST:event_TnmPenerimaKeyPressed
 
-    private void chkSamaNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSamaNamaActionPerformed
-        if (chkSamaNama.isSelected() == true) {
+    private void chkSamaNama1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSamaNama1ActionPerformed
+        if (chkSamaNama1.isSelected() == true) {
             TnmPenerima.setText(nmPJ.getText());
         } else {
             TnmPenerima.setText("");
         }
-    }//GEN-LAST:event_chkSamaNamaActionPerformed
+    }//GEN-LAST:event_chkSamaNama1ActionPerformed
 
     private void tbTemplateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTemplateMouseClicked
         if(tabMode1.getRowCount() != 0) {
@@ -3078,6 +3423,174 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_chkSamaPelaksanaActionPerformed
 
+    private void TnmPhkKeluargaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmPhkKeluargaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            TnmPhkRS.requestFocus();
+        }
+    }//GEN-LAST:event_TnmPhkKeluargaKeyPressed
+
+    private void chkSamaNama2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSamaNama2ActionPerformed
+        if (chkSamaNama2.isSelected() == true) {
+            TnmPhkKeluarga.setText(nmPJ.getText());
+        } else {
+            TnmPhkKeluarga.setText("");
+        }
+    }//GEN-LAST:event_chkSamaNama2ActionPerformed
+
+    private void TnmPhkRSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmPhkRSKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            TDiagKerja.requestFocus();
+        }
+    }//GEN-LAST:event_TnmPhkRSKeyPressed
+
+    private void MnHapusTtdPngJawabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdPngJawabActionPerformed
+        if (tbTindakan.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan penanggung jawab pasien mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                String ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFileNmPenjab.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Penanggung jawab pasien ini belum melakukan tanda tangan...!!!!");
+                        } else {
+                            if (Sequel.hapusFileTTD(idFileNmPenjab) == true) {
+                                Sequel.mengedit("surat_tindakan_kedokteran", "waktu_simpan='" + wktSimpan + "'", "id_file_nm_penjab=''");
+                                tampil();
+                                emptTeks();
+                            }
+                        }
+                        //ping gagal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdPngJawabActionPerformed
+
+    private void MnHapusTtdPenerimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdPenerimaActionPerformed
+        if (tbTindakan.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan penerima informasi mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                String ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFileNmPenerima.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Penerima informasi pasien ini belum melakukan tanda tangan...!!!!");
+                        } else {
+                            if (Sequel.hapusFileTTD(idFileNmPenerima) == true) {
+                                Sequel.mengedit("surat_tindakan_kedokteran", "waktu_simpan='" + wktSimpan + "'", "id_file_penerima_info=''");
+                                tampil();
+                                emptTeks();
+                            }
+                        }
+                        //ping gagal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdPenerimaActionPerformed
+
+    private void MnHapusTtdPihakKlgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdPihakKlgActionPerformed
+        if (tbTindakan.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan pihak keluarga mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                String ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFileNmPhkKlg.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Pihak keluarga pasien ini belum melakukan tanda tangan...!!!!");
+                        } else {
+                            if (Sequel.hapusFileTTD(idFileNmPhkKlg) == true) {
+                                Sequel.mengedit("surat_tindakan_kedokteran", "waktu_simpan='" + wktSimpan + "'", "id_file_nm_pihak_klg=''");
+                                tampil();
+                                emptTeks();
+                            }
+                        }
+                        //ping gagal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdPihakKlgActionPerformed
+
+    private void MnHapusTtdPihakRsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdPihakRsActionPerformed
+        if (tbTindakan.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan pihak rumah sakit mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                String ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFileNmPhkRs.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Pihak rumah sakit belum melakukan tanda tangan...!!!!");
+                        } else {
+                            if (Sequel.hapusFileTTD(idFileNmPhkRs) == true) {
+                                Sequel.mengedit("surat_tindakan_kedokteran", "waktu_simpan='" + wktSimpan + "'", "id_file_nm_pihak_rs=''");
+                                tampil();
+                                emptTeks();
+                            }
+                        }
+                        //ping gagal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdPihakRsActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3136,9 +3649,15 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput;
     private widget.InternalFrame FormTindakan;
     private widget.Label LCount;
+    private widget.editorpane LoadHTML1;
+    private javax.swing.JMenuItem MnHapusTtdPenerima;
+    private javax.swing.JMenuItem MnHapusTtdPihakKlg;
+    private javax.swing.JMenuItem MnHapusTtdPihakRs;
+    private javax.swing.JMenuItem MnHapusTtdPngJawab;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll3;
+    private widget.ScrollPane Scroll5;
     private widget.ScrollPane ScrollTriase1;
     private widget.TextBox TCari;
     private widget.TextBox TCari1;
@@ -3155,6 +3674,8 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private widget.TextArea Tkomplikasi;
     private widget.TextArea Tlain;
     public widget.TextBox TnmPenerima;
+    public widget.TextBox TnmPhkKeluarga;
+    public widget.TextBox TnmPhkRS;
     private widget.TextArea Tprognosis;
     private widget.TextArea Tresiko;
     private widget.TextArea Ttatacara;
@@ -3164,7 +3685,8 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private javax.swing.JDialog WindowTemplate;
     private widget.TextBox alamatPJ;
     public widget.TextBox alasanTolak;
-    private widget.CekBox chkSamaNama;
+    private widget.CekBox chkSamaNama1;
+    private widget.CekBox chkSamaNama2;
     private widget.CekBox chkSamaPelaksana;
     public widget.ComboBox cmbKategori;
     private widget.ComboBox cmbPilihCetak;
@@ -3213,7 +3735,10 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private widget.Label jLabel77;
     private widget.Label jLabel78;
     private widget.Label jLabel79;
+    private widget.Label jLabel80;
+    private widget.Label jLabel81;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.ComboBox jkPJ;
     public widget.TextBox kddokter_pelaksana;
     public widget.TextBox nip_pemberi;
@@ -3224,6 +3749,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private widget.TextBox nmkel;
     public widget.TextBox nmpemberi;
     private widget.panelisi panelGlass10;
+    private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.panelisi panelisi4;
@@ -3244,27 +3770,30 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private widget.TextBox umurPJ;
     // End of variables declaration//GEN-END:variables
 
-    public void tampil() {        
+    public void tampil() {
+        LoadHTML1.setText("");
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT if(st.kasus_tindakan='Ralan','R. Jalan','R. Inap') jnsrawat, "
                     + "if(jns_surat='PERSETUJUAN',concat(date_format(tgl_persetujuan,'%d-%m-%Y'),' / ',time_format(jam_persetujuan,'%H:%i')),'-') tgl_setuju, "
                     + "if(jns_surat='PENOLAKAN',concat(date_format(tgl_penolakan,'%d-%m-%Y'),' / ',time_format(jam_penolakan,'%H:%i')),'-') tgl_tolak, "
-                    + "st.no_rawat, p.no_rkm_medis, p.nm_pasien, st.nm_penjab, st.umur_penjab, st.alamat_penjab, "
+                    + "st.no_rawat, p.no_rkm_medis, p.nm_pasien, replace(st.nm_penjab,' (Yang Menyatakan)','') nmpenjab, st.umur_penjab, st.alamat_penjab, "
                     + "st.hubungan_dg_pasien, st.jns_surat, st.tgl_surat, st.jam_surat, st.jk_penjab, st.kd_kel, st.kd_kec, "
                     + "st.kd_kab, st.kasus_tindakan, st.nm_tindakan_kedokteran, st.alasan_penolakan, st.nip_dokter_pelaksana, "
-                    + "st.nip_pemberi_info, st.penerima_info, st.isi_info_diagnosis_kerja, st.isi_info_dasar_diagnosis, st.isi_info_tindakan, "
-                    + "st.isi_info_indikasi, st.isi_info_tatacara, st.isi_info_tujuan, st.isi_info_resiko, st.isi_info_komplikasi, "
+                    + "st.nip_pemberi_info, replace(st.penerima_info,' (Penerima Informasi)','') nmpenerima, st.isi_info_diagnosis_kerja, st.isi_info_dasar_diagnosis, "
+                    + "st.isi_info_tindakan, st.isi_info_indikasi, st.isi_info_tatacara, st.isi_info_tujuan, st.isi_info_resiko, st.isi_info_komplikasi, "
                     + "st.isi_info_prognosis, st.isi_info_alternatif, st.isi_info_lainlain, st.waktu_simpan, st.tgl_persetujuan, "
                     + "st.jam_persetujuan, st.tgl_penolakan, st.jam_penolakan, kl.nm_kel, kc.nm_kec, kb.nm_kab, d.nm_dokter, pg.nama petugas, "
-                    + "if(st.jk_penjab='L','Laki-laki','Perempuan') jenkel from surat_tindakan_kedokteran st inner join reg_periksa rp on rp.no_rawat=st.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=st.kd_kel "
-                    + "inner join kecamatan kc on kc.kd_kec=st.kd_kec inner join kabupaten kb on kb.kd_kab=st.kd_kab "
-                    + "inner join dokter d on d.kd_dokter=st.nip_dokter_pelaksana inner join pegawai pg on pg.nik=st.nip_pemberi_info where "
+                    + "if(st.jk_penjab='L','Laki-laki','Perempuan') jenkel, replace(st.nm_pihak_klg,' (Pihak Keluarga)','') nmphkklg, replace(st.nm_pihak_rs,' (Pihak RS)','') nmphkrs, "
+                    + "st.id_file_nm_penjab, st.id_file_penerima_info, st.id_file_nm_pihak_klg, st.id_file_nm_pihak_rs from surat_tindakan_kedokteran st "
+                    + "inner join reg_periksa rp on rp.no_rawat=st.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join kelurahan kl on kl.kd_kel=st.kd_kel inner join kecamatan kc on kc.kd_kec=st.kd_kec "
+                    + "inner join kabupaten kb on kb.kd_kab=st.kd_kab inner join dokter d on d.kd_dokter=st.nip_dokter_pelaksana "
+                    + "inner join pegawai pg on pg.nik=st.nip_pemberi_info where "
                     + "rp.tgl_registrasi between ? and ? and st.no_rawat like ? or "
                     + "rp.tgl_registrasi between ? and ? and p.no_rkm_medis like ? or "
                     + "rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or "
-                    + "rp.tgl_registrasi between ? and ? and st.nm_penjab like ? or "
+                    + "rp.tgl_registrasi between ? and ? and replace(st.nm_penjab,' (Yang Menyatakan)','') like ? or "
                     + "rp.tgl_registrasi between ? and ? and st.alamat_penjab like ? or "
                     + "rp.tgl_registrasi between ? and ? and st.hubungan_dg_pasien like ? or "
                     + "rp.tgl_registrasi between ? and ? and st.jns_surat like ? or "
@@ -3315,14 +3844,14 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
-                        rs.getString("nm_penjab"),
+                        rs.getString("nmpenjab"),
                         rs.getString("umur_penjab"),
                         rs.getString("alamat_penjab"),
                         rs.getString("hubungan_dg_pasien"),
                         rs.getString("jns_surat"),
                         rs.getString("tgl_surat"),
                         rs.getString("jam_surat"),
-                        rs.getString("nm_penjab"),
+                        rs.getString("nmpenjab"),
                         rs.getString("umur_penjab"),                        
                         rs.getString("jk_penjab"),
                         rs.getString("alamat_penjab"),
@@ -3336,7 +3865,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                         rs.getString("alasan_penolakan"),
                         rs.getString("nip_dokter_pelaksana"),
                         rs.getString("nip_pemberi_info"),
-                        rs.getString("penerima_info"),
+                        rs.getString("nmpenerima"),
                         rs.getString("isi_info_diagnosis_kerja"),
                         rs.getString("isi_info_dasar_diagnosis"),
                         rs.getString("isi_info_tindakan"),
@@ -3358,7 +3887,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                         rs.getString("nm_kab"),
                         rs.getString("nm_dokter"),
                         rs.getString("petugas"),
-                        rs.getString("jenkel")
+                        rs.getString("jenkel"),                        
+                        rs.getString("nmphkklg"),
+                        rs.getString("nmphkrs"),
+                        rs.getString("id_file_nm_penjab"),
+                        rs.getString("id_file_penerima_info"),
+                        rs.getString("id_file_nm_pihak_klg"),
+                        rs.getString("id_file_nm_pihak_rs")
                     });
                 }
             } catch (Exception e) {
@@ -3430,10 +3965,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         CmbMenit3.setEnabled(false);
         CmbDetik3.setEnabled(false);
         TnmPenerima.setText("");
-        chkSamaNama.setSelected(false);
+        chkSamaNama1.setSelected(false);
         cmbKategori.setSelectedIndex(0);
         cmbKategori.setEnabled(true);
         chkSamaPelaksana.setSelected(false);
+        TnmPhkKeluarga.setText("");
+        TnmPhkRS.setText("");
+        LoadHTML1.setText("");
     }
     
     public void setData(String norwt, String norm, String nmpasien, String jnsrwt) {
@@ -3460,6 +3998,10 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         kdkab = "";
         jk = "";
         wktSimpan = "";
+        idFileNmPenjab = "";
+        idFileNmPenerima = "";
+        idFileNmPhkKlg = "";
+        idFileNmPhkRs = "";
         
         if (tbTindakan.getSelectedRow() != -1) {
             TNoRw.setText(tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 3).toString());
@@ -3509,7 +4051,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             Talternatif.setText(tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 37).toString());
             Tlain.setText(tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 38).toString());
             wktSimpan = tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 39).toString();
-            
+            TnmPhkKeluarga.setText(tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 50).toString());
+            TnmPhkRS.setText(tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 51).toString());
+            idFileNmPenjab = tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 52).toString();
+            idFileNmPenerima = tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 53).toString();
+            idFileNmPhkKlg = tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 54).toString();
+            idFileNmPhkRs = tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 55).toString();
+
             if (jk.equals("L")) {
                 jkPJ.setSelectedIndex(0);
             } else {
@@ -3521,6 +4069,11 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             } else {
                 alasanTolak.setEnabled(true);
             }
+            
+            tampilTTD();
+            chkSamaPelaksana.setSelected(false);
+            chkSamaNama1.setSelected(false);
+            chkSamaNama2.setSelected(false);
         }
     }
     
@@ -3876,6 +4429,91 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                     psCek.close();
                 }
             }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilTTD() {
+        try {
+            StringBuilder htmlContent = new StringBuilder();
+            String gambar1 = "", gambar2 = "", gambar3 = "", gambar4 = "", ipGambar = "";
+            try {
+                //cek atau ping ip addres
+                ipGambar = "192.168.0.230";
+                InetAddress inet = InetAddress.getByName(ipGambar);
+                
+                //ping sukses timeout 100 ms (0.1 detik)
+                if (inet.isReachable(100)) {
+                    if (idFileNmPenjab.equals("")) {
+                        gambar1 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                    } else {
+                        gambar1 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileNmPenjab;
+                    }
+                    
+                    if (idFileNmPenerima.equals("")) {
+                        gambar2 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                    } else {
+                        gambar2 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileNmPenerima;
+                    }
+                    
+                    if (idFileNmPhkKlg.equals("")) {
+                        gambar3 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                    } else {
+                        gambar3 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileNmPhkKlg;
+                    }
+                    
+                    if (idFileNmPhkRs.equals("")) {
+                        gambar4 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                    } else {
+                        gambar4 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileNmPhkRs;
+                    }
+                    //ping gagal
+                } else {
+                    gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    gambar2 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    gambar3 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    gambar4 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                }                
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+                gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                gambar2 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                gambar3 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                gambar4 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+            }
+            
+            htmlContent.append(
+                    "<table width='100%' class='isi'>"
+                    + "<thead>"
+                    + "<tr class='isi'>"
+                    + "    <td align='center' bgcolor='#f8fdf3'><b>TTD Pihak Keluarga</b></td>"
+                    + "    <td align='center' bgcolor='#f8fdf3'><b>TTD Pihak RS</b></td>"
+                    + "    <td align='center' bgcolor='#f8fdf3'><b>TTD Yang Menyatakan</b></td>"
+                    + "    <td align='center' bgcolor='#f8fdf3'><b>TTD Penerima Informasi</b></td>"
+                    + "</tr>"
+                    + "</thead>"
+                    + "<tbody>"
+            );
+
+            htmlContent.append(
+                    "<tr class='isi'>"
+                    + "<td valign='middle' align='center'><img src='" + gambar1 + "' width='160' height='160' alt='TTD Pihak Keluarga'><br>(" + TnmPhkKeluarga.getText() + ")<br></td>"
+                    + "<td valign='middle' align='center'><img src='" + gambar2 + "' width='160' height='160' alt='TTD Pihak RS'><br>(" + TnmPhkRS.getText() + ")<br></td>"
+                    + "<td valign='middle' align='center'><img src='" + gambar3 + "' width='160' height='160' alt='TTD Yang Menyatakan'><br>(" + nmPJ.getText() + ")<br></td>"
+                    + "<td valign='middle' align='center'><img src='" + gambar4 + "' width='160' height='160' alt='TTD Penerima Informasi'><br>(" + TnmPenerima.getText() + ")<br></td>"
+                    + "</tr>"
+            );
+            
+            htmlContent.append("</tbody>"
+                    + "</table>");
+
+            LoadHTML1.setText(
+                    "<html>"
+                    + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                    + htmlContent.toString()
+                    + "</table>"
+                    + "</html>");
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }

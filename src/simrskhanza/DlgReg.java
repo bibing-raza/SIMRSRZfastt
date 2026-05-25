@@ -6825,6 +6825,9 @@ private void MnKamarInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     } else {
         if (Sequel.cariRegistrasi(TNoRw.getText()) > 0) {
             JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi..!!");
+        } else if (Sequel.cekPernahBayarLunas(TNoRw.getText(), "Ralan", kdpoli.getText()) > 0) {
+            JOptionPane.showMessageDialog(null, "Biaya transaksi rawat jalan sdh. pernah lunas dibayar dg. cara bayar UMUM, daftarkan lagi     \n"
+                    + "dg. poliklinik - (strip) utk. lanjut rawat inap,..!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setstatus(true);
@@ -7470,8 +7473,8 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }//GEN-LAST:event_BtnKeluar3KeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        tampilAwal();
-        infoSEP();
+//        tampilAwal();
+//        infoSEP();
         akses.tRefreshAntri.start();
 //        tampilCekFinger();
     }//GEN-LAST:event_formWindowOpened
