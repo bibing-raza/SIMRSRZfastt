@@ -2355,7 +2355,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -2374,7 +2373,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -2393,7 +2391,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -2438,7 +2435,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -3971,7 +3967,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame21.add(BtnTambahKala4);
-        BtnTambahKala4.setBounds(1050, 1065, 90, 30);
+        BtnTambahKala4.setBounds(1050, 1064, 90, 30);
 
         BtnHapusKala4.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusKala4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
@@ -3985,7 +3981,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame21.add(BtnHapusKala4);
-        BtnHapusKala4.setBounds(1050, 1105, 90, 30);
+        BtnHapusKala4.setBounds(1050, 1103, 90, 30);
 
         BtnGantiKala4.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiKala4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -3999,7 +3995,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             }
         });
         internalFrame21.add(BtnGantiKala4);
-        BtnGantiKala4.setBounds(1050, 1145, 90, 30);
+        BtnGantiKala4.setBounds(1050, 1142, 90, 30);
 
         jLabel127.setForeground(new java.awt.Color(0, 0, 0));
         jLabel127.setText("Masalah Kala 4 :");
@@ -4045,7 +4041,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         ThasilKala4.setBounds(180, 1251, 860, 23);
 
         BtnBidan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnBidan.setMnemonic('2');
         BtnBidan.setToolTipText("Alt+2");
         BtnBidan.setName("BtnBidan"); // NOI18N
         BtnBidan.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -4067,7 +4062,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan1.setMnemonic('S');
         BtnSimpan1.setText("Simpan");
         BtnSimpan1.setToolTipText("Alt+S");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
@@ -4086,7 +4080,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnBatal1.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal1.setMnemonic('B');
         BtnBatal1.setText("Baru");
         BtnBatal1.setToolTipText("Alt+B");
         BtnBatal1.setName("BtnBatal1"); // NOI18N
@@ -4100,7 +4093,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnGanti1.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti1.setMnemonic('G');
         BtnGanti1.setText("Ganti");
         BtnGanti1.setToolTipText("Alt+G");
         BtnGanti1.setName("BtnGanti1"); // NOI18N
@@ -4145,7 +4137,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('K');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+K");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -4249,7 +4240,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 30));
@@ -4267,7 +4257,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -4299,7 +4288,6 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 
         BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar2.setMnemonic('K');
         BtnKeluar2.setText("Keluar");
         BtnKeluar2.setToolTipText("Alt+K");
         BtnKeluar2.setName("BtnKeluar2"); // NOI18N
@@ -8033,51 +8021,14 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
         }
 
         if (tbDjj.getRowCount() != 0) {
-            urutkanDataDjj();
             int viewRow = tbDjj.getRowCount() - 1;
             int modelRow = tbDjj.convertRowIndexToModel(viewRow);
             Tjeda.setText(tabMode1.getValueAt(modelRow, 2).toString());
         } else {
             Tjeda.setText("");
         }
-
-        if (tbAirKetuban.getRowCount() != 0) {
-            urutkanDataAirKetuban();
-        }
-
-        if (tbServik.getRowCount() != 0) {
-            urutkanDataServiks();
-        }
-
-        if (tbKontraksi.getRowCount() != 0) {
-            urutkanDataKontraksi();
-        }
-
-        if (tbOksitosin.getRowCount() != 0) {
-            urutkanDataOksitosi();
-        }
-
-        if (tbObat.getRowCount() != 0) {
-            urutkanDataObat();
-        }
-
-        if (tbNadi.getRowCount() != 0) {
-            urutkanDataNadi();
-        }
-
-        if (tbSuhu.getRowCount() != 0) {
-            urutkanDataSuhu();
-        }
-
-        if (tbUrin.getRowCount() != 0) {
-            urutkanDataUrin();
-        }
-
-        if (tbPemantauan.getRowCount() != 0) {
-            urutkanDataPemantauanKala4();
-        }
-        //-----------------------------------------------------------------------
         
+        //-----------------------------------------------------------------------        
         if (cmbTmptPersalinan.getSelectedIndex() == 6) {
             TtmptPersalinanLain.setEnabled(true);
         } else {
