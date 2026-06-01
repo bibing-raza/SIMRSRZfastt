@@ -138,7 +138,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="08-04-2026"/>
+                        <StringItem index="0" value="30-05-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -166,7 +166,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="08-04-2026"/>
+                        <StringItem index="0" value="30-05-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -585,7 +585,7 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="77">
+                      <StringArray count="82">
                         <StringItem index="0" value=" "/>
                         <StringItem index="1" value="FARMASI"/>
                         <StringItem index="2" value="RADIOLOGI"/>
@@ -663,6 +663,11 @@
                         <StringItem index="74" value="SURAT PERNYATAAN PEMBAYARAN DENDA"/>
                         <StringItem index="75" value="SURAT PERNYATAAN RANAP NON BPJS"/>
                         <StringItem index="76" value="OBSERVASI KALA 1 KEBIDANAN"/>
+                        <StringItem index="77" value="PARTOGRAF PERSALINAN"/>
+                        <StringItem index="78" value="ASESMEN MEDIK KEBIDANAN"/>
+                        <StringItem index="79" value="LAPORAN OPERASI"/>
+                        <StringItem index="80" value="CATATAN RUANG PEMULIHAN"/>
+                        <StringItem index="81" value="FORMULIR SITE MARKING OPERASI"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbJnsTran" noResource="true"/>

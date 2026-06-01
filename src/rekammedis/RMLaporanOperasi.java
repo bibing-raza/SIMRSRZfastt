@@ -34,7 +34,6 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import kepegawaian.DlgCariPetugas;
-import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
 
@@ -2584,10 +2583,10 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
                             + "WHERE NOT EXISTS (SELECT 1 FROM laporan_operasi_obs_ttv WHERE "
                             + "waktu_simpan='" + tbLaporanOps.getValueAt(tbLaporanOps.getSelectedRow(), 58).toString() + "')", param);
                 }
+                
+                tampil();
+                emptTeks();
             }
-            
-            tampil();
-            emptTeks();
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan klik/pilih salah satu datanya terlebih dulu pada tabel..!!!!");
             tbLaporanOps.requestFocus();

@@ -192,9 +192,9 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         setSize(885, 674);
 
         tabModekasir = new DefaultTableModel(null, new String[]{
-            "No.Rawat", "Kd.Dokter", "Dokter Dituju", "Nomer RM", "Nama Pasien", "Status", "Poliklinik/Inst.", "Jenis Bayar", "Jns. Kunjungan",
+            "No.Rawat", "Kd.Dokter", "Dokter Dituju", "Nomer RM", "Nama Pasien", "Status", "Poliklinik/Inst. (Warna Triase)", "Jenis Bayar", "Jns. Kunjungan",
             "Reg. Online", "Tanggal", "Jam", "No. Reg.", "Status Klaim (RM IGD)", "No. Telpon/HP", "Alamat Pasien", "cek_asesmen_medik_igd", 
-            "cek_penanganan_dokter_poli", "cekantrian", "tglreg", "kdpoli", "Triase IGD", "Triase Pediatrik", "Triase Ponek"
+            "cek_penanganan_dokter_poli", "cekantrian", "tglreg", "kdpoli", "triase_igd", "Level Triase", "triase_ponek", "warna pediatrik"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -206,7 +206,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         tbKasirRalan.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbKasirRalan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 24; i++) {
+        for (i = 0; i < 25; i++) {
             TableColumn column = tbKasirRalan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
@@ -258,11 +258,16 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 21) {
-                column.setPreferredWidth(80);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 22) {
-                column.setPreferredWidth(95);
+                column.setPreferredWidth(75);
             } else if (i == 23) {
-                column.setPreferredWidth(80);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 24) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
 //        tbKasirRalan.setDefaultRenderer(Object.class, new WarnaTable());
@@ -12012,13 +12017,16 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             sb.append("ELSE '(Locked)' END aksesRM, ");
             sb.append("CASE WHEN ti.no_rawat IS NOT NULL THEN CASE WHEN ti.triase_resusitasi='ya' THEN 'Merah' WHEN ti.triase_non_resusitasi='ya' THEN 'Kuning' WHEN ti.triase_klinik='ya' THEN 'Hijau' ");
             sb.append("WHEN ti.triase_doa='ya' THEN 'Hitam' ELSE '-' END ELSE '-' END triaseIGD, ");
-            sb.append("CASE WHEN tp.no_rawat IS NOT NULL THEN CASE WHEN tp.kesimpulan_level1='ya' THEN 'Merah (Level 1)' WHEN tp.kesimpulan_level2='ya' THEN 'Merah (Level 2)' ");
-            sb.append("WHEN tp.kesimpulan_level3='ya' THEN 'Kuning (Level 3)' WHEN tp.kesimpulan_level4='ya' THEN 'Kuning (Level 4)' WHEN tp.kesimpulan_level5='ya' THEN 'Hijau' ELSE '-' END ");
-            sb.append("ELSE '-' END triasePediatrik, ");
+            sb.append("CASE WHEN tp.no_rawat IS NOT NULL THEN CASE WHEN tp.kesimpulan_level1='ya' THEN 'Level 1' WHEN tp.kesimpulan_level2='ya' THEN 'Level 2' ");
+            sb.append("WHEN tp.kesimpulan_level3='ya' THEN 'Level 3' WHEN tp.kesimpulan_level4='ya' THEN 'Level 4' WHEN tp.kesimpulan_level5='ya' THEN 'Hijau' ELSE '-' END ");
+            sb.append("ELSE '-' END levelTriasePediatrik, ");
             sb.append("CASE WHEN tpk.no_rawat IS NOT NULL THEN CASE WHEN tpk.triase_resusitasi='ya' THEN 'Merah' WHEN tpk.triase_non_resusitasi='ya' THEN 'Kuning' WHEN tpk.triase_klinik='ya' THEN 'Hijau' ");
             sb.append("WHEN tpk.triase_doa='ya' THEN 'Hitam' ELSE '-' END ELSE '-' END triasePonek, ");
             sb.append("CASE WHEN rp.kd_poli = '008' AND pk.no_rkm_medis IS NOT NULL AND rp.tgl_registrasi = DATE(NOW()) AND ap.no_rawat IS NULL THEN 'ok' ELSE '-' END cekKemoterapi, ");
-            sb.append("ifnull(pam.no_rawat,'') cekAwalMedisIGD, ifnull(pr.no_rawat,'') cekPemeriksaanRalan, if(ap.no_rawat is not null,'1','0') cekAntrianPrio FROM reg_periksa rp ");
+            sb.append("ifnull(pam.no_rawat,'') cekAwalMedisIGD, ifnull(pr.no_rawat,'') cekPemeriksaanRalan, if(ap.no_rawat is not null,'1','0') cekAntrianPrio, ");
+            sb.append("CASE WHEN tp.no_rawat IS NOT NULL THEN CASE WHEN tp.kesimpulan_level1='ya' or tp.kesimpulan_level2='ya' THEN 'Merah' ");
+            sb.append("WHEN tp.kesimpulan_level3='ya' or tp.kesimpulan_level4='ya' THEN 'Kuning' WHEN tp.kesimpulan_level5='ya' THEN 'Hijau' ELSE '-' END ELSE '-' END warnaPediatrik, ");
+            sb.append("if(c.no_rawat is not null,'ok','-') cekCpptRalan FROM reg_periksa rp ");
             sb.append("JOIN dokter d ON rp.kd_dokter = d.kd_dokter ");
             sb.append("JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis ");
             sb.append("JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli ");
@@ -12036,7 +12044,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             sb.append("left join triase_ponek tpk on tpk.no_rawat=rp.no_rawat ");
             sb.append("left join protokol_kemoterapi pk on pk.no_rkm_medis=rp.no_rkm_medis ");
             sb.append("left join antrian_prioritas ap on ap.no_rawat=rp.no_rawat ");
-            sb.append("left join pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat where ");
+            sb.append("left join pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat ");
+            sb.append("left join cppt c on c.no_rawat=rp.no_rawat and c.status='Ralan' where ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.tgl_registrasi like ? or ");
@@ -12135,9 +12144,17 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 pskasir.setString(78, "%" + TCari.getText().trim() + "%");
                 rskasir = pskasir.executeQuery();
                 while (rskasir.next()) {
+                    String cpptSip = "";
                     //cek pasien kemoterapi
                     if (rskasir.getString("cekKemoterapi").equals("ok")) {
                         Sequel.menyimpanIgnore("antrian_prioritas", "'" + rskasir.getString("no_rawat") + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
+                    }
+                    
+                    //cel cppt ralan
+                    if (rskasir.getString("cekCpptRalan").equals("ok")) {
+                        cpptSip = "| CPPT --> OK";
+                    } else {
+                        cpptSip = "";
                     }
                     
                     tabModekasir.addRow(new String[]{
@@ -12147,7 +12164,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         rskasir.getString("no_rkm_medis"),
                         rskasir.getString("nm_pasien"),
                         rskasir.getString("stts"),
-                        rskasir.getString("nm_poli"),
+                        rskasir.getString("nm_poli") + " " + cpptSip,
                         rskasir.getString("png_jawab"),
                         rskasir.getString("stts_daftar"),
                         rskasir.getString("reg_onlen"),
@@ -12163,8 +12180,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         rskasir.getString("tgl_registrasi"),
                         rskasir.getString("kd_poli"),
                         rskasir.getString("triaseIGD"),
-                        rskasir.getString("triasePediatrik"),
-                        rskasir.getString("triasePonek")
+                        rskasir.getString("levelTriasePediatrik"),
+                        rskasir.getString("triasePonek"),
+                        rskasir.getString("warnaPediatrik")
                     });
                 }
             } catch (Exception e) {

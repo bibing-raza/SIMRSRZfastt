@@ -431,6 +431,8 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import rekammedis.DlgMasterNomorDokumenRM;
 import rekammedis.RMAsesmenMedikKebidanan;
+import rekammedis.RMCatatanRuangPemulihan;
+import rekammedis.RMFormulirSiteMarkingOperasi;
 import rekammedis.RMGeneralConsent;
 import rekammedis.RMLaporanOperasi;
 import rekammedis.RMObservasiKala1;
@@ -1011,6 +1013,8 @@ public class frmUtama extends javax.swing.JFrame {
         BtnPartograf = new widget.ButtonBig();
         BtnAsesmenMedikKebidanan = new widget.ButtonBig();
         BtnLaporanOperasi = new widget.ButtonBig();
+        BtnCatatanRuangPemulihan = new widget.ButtonBig();
+        BtnFormulirSiteMarking = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6782,6 +6786,32 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(BtnLaporanOperasi);
 
+        BtnCatatanRuangPemulihan.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCatatanRuangPemulihan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnCatatanRuangPemulihan.setText("Catatan Ruang Pemulihan");
+        BtnCatatanRuangPemulihan.setIconTextGap(0);
+        BtnCatatanRuangPemulihan.setName("BtnCatatanRuangPemulihan"); // NOI18N
+        BtnCatatanRuangPemulihan.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnCatatanRuangPemulihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCatatanRuangPemulihanActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(BtnCatatanRuangPemulihan);
+
+        BtnFormulirSiteMarking.setForeground(new java.awt.Color(0, 0, 0));
+        BtnFormulirSiteMarking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/sign-up.png"))); // NOI18N
+        BtnFormulirSiteMarking.setText("Formulir Site Marking Operasi");
+        BtnFormulirSiteMarking.setIconTextGap(0);
+        BtnFormulirSiteMarking.setName("BtnFormulirSiteMarking"); // NOI18N
+        BtnFormulirSiteMarking.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnFormulirSiteMarking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFormulirSiteMarkingActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(BtnFormulirSiteMarking);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6790,7 +6820,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27/05/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30/05/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13386,6 +13416,32 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnLaporanOperasiActionPerformed
 
+    private void BtnCatatanRuangPemulihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCatatanRuangPemulihanActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMCatatanRuangPemulihan aplikasi = new RMCatatanRuangPemulihan(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnCatatanRuangPemulihanActionPerformed
+
+    private void BtnFormulirSiteMarkingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFormulirSiteMarkingActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMFormulirSiteMarkingOperasi aplikasi = new RMFormulirSiteMarkingOperasi(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnFormulirSiteMarkingActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13398,10 +13454,12 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.ButtonBig BtnAsesmenMedikKebidanan;
     private widget.Button BtnCancel;
+    private widget.ButtonBig BtnCatatanRuangPemulihan;
     private widget.ButtonBig BtnClose;
     private widget.Button BtnClosePass;
     private widget.ButtonBig BtnDasboard;
     private widget.ButtonBig BtnDpjp;
+    private widget.ButtonBig BtnFormulirSiteMarking;
     private widget.ButtonBig BtnJadwal;
     private widget.ButtonBig BtnJaminanTransaksi;
     private widget.ButtonBig BtnLaporanOperasi;
@@ -14224,6 +14282,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getkegiatan_operasi() == true) {
                 Panelmenu.add(BtnLaporanOperasi);
+                jmlmenu++;
+            }
+            
+            if (akses.getkegiatan_operasi() == true) {
+                Panelmenu.add(BtnCatatanRuangPemulihan);
+                jmlmenu++;
+            }
+            
+            if (akses.getkegiatan_operasi() == true) {
+                Panelmenu.add(BtnFormulirSiteMarking);
                 jmlmenu++;
             }
             
@@ -16345,6 +16413,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getkegiatan_operasi() == true) {
             Panelmenu.add(BtnLaporanOperasi);
+            jmlmenu++;
+        }
+        
+        if (akses.getkegiatan_operasi() == true) {
+            Panelmenu.add(BtnCatatanRuangPemulihan);
+            jmlmenu++;
+        }
+        
+        if (akses.getkegiatan_operasi() == true) {
+            Panelmenu.add(BtnFormulirSiteMarking);
             jmlmenu++;
         }
         
@@ -18523,6 +18601,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getkegiatan_operasi()== true) {
             if (BtnLaporanOperasi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(BtnLaporanOperasi);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getkegiatan_operasi()== true) {
+            if (BtnCatatanRuangPemulihan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(BtnCatatanRuangPemulihan);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getkegiatan_operasi()== true) {
+            if (BtnFormulirSiteMarking.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(BtnFormulirSiteMarking);
                 jmlmenu++;
             }
         }
