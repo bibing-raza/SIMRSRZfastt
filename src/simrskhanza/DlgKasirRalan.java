@@ -237,7 +237,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             } else if (i == 12) {
                 column.setPreferredWidth(60);
             } else if (i == 13) {
-                column.setPreferredWidth(122);
+                column.setPreferredWidth(130);
             } else if (i == 14) {
                 column.setPreferredWidth(90);
             } else if (i == 15) {
@@ -12164,14 +12164,14 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         rskasir.getString("no_rkm_medis"),
                         rskasir.getString("nm_pasien"),
                         rskasir.getString("stts"),
-                        rskasir.getString("nm_poli") + " " + cpptSip,
+                        rskasir.getString("nm_poli"),
                         rskasir.getString("png_jawab"),
                         rskasir.getString("stts_daftar"),
                         rskasir.getString("reg_onlen"),
                         rskasir.getString("tgl_reg_format"),
                         rskasir.getString("jam_reg"),
                         rskasir.getString("no_reg"),
-                        rskasir.getString("stts_klaim") + " " + rskasir.getString("aksesRM"),
+                        rskasir.getString("stts_klaim") + " " + rskasir.getString("aksesRM") + " " + cpptSip,
                         rskasir.getString("no_tlp"),
                         rskasir.getString("almt_pasien"),
                         rskasir.getString("cekAwalMedisIGD"),
