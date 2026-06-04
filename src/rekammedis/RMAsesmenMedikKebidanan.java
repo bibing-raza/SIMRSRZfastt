@@ -1305,7 +1305,7 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
         jLabel12.setBounds(0, 38, 110, 23);
 
         tglPenanganan.setEditable(false);
-        tglPenanganan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-05-2026" }));
+        tglPenanganan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2026" }));
         tglPenanganan.setDisplayFormat("dd-MM-yyyy");
         tglPenanganan.setName("tglPenanganan"); // NOI18N
         tglPenanganan.setOpaque(false);
@@ -2597,7 +2597,7 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
         jLabel89.setBounds(0, 1082, 130, 23);
 
         tglKeluar.setEditable(false);
-        tglKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-05-2026" }));
+        tglKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2026" }));
         tglKeluar.setDisplayFormat("dd-MM-yyyy");
         tglKeluar.setName("tglKeluar"); // NOI18N
         tglKeluar.setOpaque(false);
@@ -3259,7 +3259,7 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-05-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3274,7 +3274,7 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-05-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4549,16 +4549,25 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
     }//GEN-LAST:event_ChkLainyaBiasaActionPerformed
 
     private void ChkJamKlrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkJamKlrActionPerformed
-        cmbJam1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
-        cmbMnt1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
-        cmbDtk1.setSelectedIndex(0);
-        
         if (ChkJamKlr.isSelected() == true) {
+            if (tbAsesmen.getSelectedRow() != -1) {
+                cmbJam1.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 94).toString().substring(0, 2));
+                cmbMnt1.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 94).toString().substring(3, 5));
+                cmbDtk1.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 94).toString().substring(6, 8));
+            } else {
+                cmbJam1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+                cmbMnt1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+                cmbDtk1.setSelectedIndex(0);
+            }
+            
             cmbJam1.setEnabled(true);
             cmbMnt1.setEnabled(true);
             cmbDtk1.setEnabled(true);
             cmbJam1.requestFocus();
         } else {
+            cmbJam1.setSelectedIndex(0);
+            cmbMnt1.setSelectedIndex(0);
+            cmbDtk1.setSelectedIndex(0);
             cmbJam1.setEnabled(false);
             cmbMnt1.setEnabled(false);
             cmbDtk1.setEnabled(false);
@@ -4566,16 +4575,25 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
     }//GEN-LAST:event_ChkJamKlrActionPerformed
 
     private void ChkJamMeninggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkJamMeninggalActionPerformed
-        cmbJam2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
-        cmbMnt2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
-        cmbDtk2.setSelectedIndex(0);
-        
         if (ChkJamMeninggal.isSelected() == true) {
+            if (tbAsesmen.getSelectedRow() != -1) {
+                cmbJam2.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 101).toString().substring(0, 2));
+                cmbMnt2.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 101).toString().substring(3, 5));
+                cmbDtk2.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 101).toString().substring(6, 8));
+            } else {
+                cmbJam2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+                cmbMnt2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+                cmbDtk2.setSelectedIndex(0);
+            }
+            
             cmbJam2.setEnabled(true);
             cmbMnt2.setEnabled(true);
             cmbDtk2.setEnabled(true);
             cmbJam2.requestFocus();
         } else {
+            cmbJam2.setSelectedIndex(0);
+            cmbMnt2.setSelectedIndex(0);
+            cmbDtk2.setSelectedIndex(0);
             cmbJam2.setEnabled(false);
             cmbMnt2.setEnabled(false);
             cmbDtk2.setEnabled(false);
@@ -5342,8 +5360,8 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
         
         tglKeluar.setDate(new Date());
         ChkJamKlr.setSelected(false);
-        cmbJam1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
-        cmbMnt1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+        cmbJam1.setSelectedIndex(0);
+        cmbMnt1.setSelectedIndex(0);
         cmbDtk1.setSelectedIndex(0);
         cmbJam1.setEnabled(false);
         cmbMnt1.setEnabled(false);
@@ -5354,8 +5372,8 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
         Tdirujuk.setText("");
         TAlasanDirujuk.setText("");
         ChkJamMeninggal.setSelected(false);
-        cmbJam2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
-        cmbMnt2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+        cmbJam2.setSelectedIndex(0);
+        cmbMnt2.setSelectedIndex(0);
         cmbDtk2.setSelectedIndex(0);
         cmbJam2.setEnabled(false);
         cmbMnt2.setEnabled(false);
@@ -5484,7 +5502,7 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
             jamMening = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 100).toString();
             cmbJam2.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 101).toString().substring(0, 2));
             cmbMnt2.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 101).toString().substring(3, 5));
-            cmbDtk2.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 101).toString().substring(6, 8));            
+            cmbDtk2.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 101).toString().substring(6, 8));
             Tpenyebab.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 102).toString());            
             Tku.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 103).toString());
             Ttd.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 104).toString());

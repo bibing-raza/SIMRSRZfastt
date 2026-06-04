@@ -4040,15 +4040,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         Trr.setText("");
         Ttemp.setText("");
         emptTeks();
-        tampil();
-        ChkMeninggal.setSelected(false);
-        cmbJam.setSelectedIndex(0);
-        cmbMnt.setSelectedIndex(0);
-        cmbDtk.setSelectedIndex(0);
-
-        cmbJam.setEnabled(false);
-        cmbMnt.setEnabled(false);
-        cmbDtk.setEnabled(false);
+        tampil();        
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -4725,6 +4717,16 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
 
     private void ChkMeninggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkMeninggalActionPerformed
         if (ChkMeninggal.isSelected() == true) {
+            if (tbPenilaian.getSelectedRow() != -1) {
+                cmbJam.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 110).toString().substring(0, 2));
+                cmbMnt.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 110).toString().substring(3, 5));
+                cmbDtk.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 110).toString().substring(6, 8));
+            } else {
+                cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+                cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+                cmbDtk.setSelectedIndex(0);
+            }
+            
             cmbJam.setEnabled(true);
             cmbMnt.setEnabled(true);
             cmbDtk.setEnabled(true);
@@ -5142,14 +5144,23 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
 
     private void ChkJamKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkJamKeluarActionPerformed
         if (ChkJamKeluar.isSelected() == true) {
+            if (tbPenilaian.getSelectedRow() != -1) {
+                cmbJam1.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 130).toString().substring(0, 2));
+                cmbMnt1.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 130).toString().substring(3, 5));
+                cmbDtk1.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 130).toString().substring(6, 8));
+            } else {
+                cmbJam1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+                cmbMnt1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+                cmbDtk1.setSelectedIndex(0);
+            }
+            
             cmbJam1.setEnabled(true);
             cmbMnt1.setEnabled(true);
             cmbDtk1.setEnabled(true);
         } else {
             cmbJam1.setSelectedIndex(0);
             cmbMnt1.setSelectedIndex(0);
-            cmbDtk1.setSelectedIndex(0);
-            
+            cmbDtk1.setSelectedIndex(0);            
             cmbJam1.setEnabled(false);
             cmbMnt1.setEnabled(false);
             cmbDtk1.setEnabled(false);
@@ -5911,6 +5922,15 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         ChkTdkTampk.setSelected(false);
         BtnRencana.setEnabled(false);
         Valid.tabelKosong(tabMode1);
+        
+        ChkMeninggal.setSelected(false);
+        cmbJam.setSelectedIndex(0);
+        cmbMnt.setSelectedIndex(0);
+        cmbDtk.setSelectedIndex(0);
+        cmbJam.setEnabled(false);
+        cmbMnt.setEnabled(false);
+        cmbDtk.setEnabled(false);
+        
         ChkJamKeluar.setSelected(false);
         cmbJam1.setSelectedIndex(0);
         cmbMnt1.setSelectedIndex(0);

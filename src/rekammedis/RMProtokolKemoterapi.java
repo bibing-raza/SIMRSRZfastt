@@ -253,7 +253,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         tbTemplate.setDefaultRenderer(Object.class, new WarnaTable());
 
         TnmProtokol.setDocument(new batasInput((int) 200).getKata(TnmProtokol));
-        Tsiklus.setDocument(new batasInput((int) 3).getKata(Tsiklus));        
+        Tsiklus.setDocument(new batasInput((int) 10).getKata(Tsiklus));        
         Tumur.setDocument(new batasInput((int) 3).getKata(Tumur));
         Ttb.setDocument(new batasInput((int) 3).getKata(Ttb));
         Tbb.setDocument(new batasInput((int) 5).getKata(Tbb));
@@ -562,7 +562,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari2.setMnemonic('1');
         BtnCari2.setText("Tampilkan Data");
         BtnCari2.setToolTipText("Alt+1");
         BtnCari2.setName("BtnCari2"); // NOI18N
@@ -602,7 +601,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll1.setMnemonic('2');
         BtnAll1.setText("Semua Data");
         BtnAll1.setToolTipText("Alt+2");
         BtnAll1.setName("BtnAll1"); // NOI18N
@@ -621,7 +619,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnRestor.setForeground(new java.awt.Color(0, 0, 0));
         BtnRestor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnRestor.setMnemonic('U');
         BtnRestor.setText("Restore");
         BtnRestor.setToolTipText("Alt+U");
         BtnRestor.setName("BtnRestor"); // NOI18N
@@ -635,7 +632,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnCloseIn10.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn10.setMnemonic('U');
         BtnCloseIn10.setText("Tutup");
         BtnCloseIn10.setToolTipText("Alt+U");
         BtnCloseIn10.setName("BtnCloseIn10"); // NOI18N
@@ -734,7 +730,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -753,7 +748,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnAll2.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll2.setMnemonic('2');
         BtnAll2.setText("Semua Data");
         BtnAll2.setToolTipText("Alt+2");
         BtnAll2.setName("BtnAll2"); // NOI18N
@@ -767,7 +761,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnCopas.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopas.setMnemonic('U');
         BtnCopas.setText("Copy & Paste");
         BtnCopas.setToolTipText("Alt+U");
         BtnCopas.setName("BtnCopas"); // NOI18N
@@ -781,7 +774,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -844,7 +836,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -863,7 +854,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -882,7 +872,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -901,7 +890,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -932,7 +920,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -946,7 +933,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnNotepad.setMnemonic('N');
         BtnNotepad.setText("Notepad");
         BtnNotepad.setToolTipText("Alt+N");
         BtnNotepad.setName("BtnNotepad"); // NOI18N
@@ -960,7 +946,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -979,7 +964,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnProtokolKemo.setForeground(new java.awt.Color(0, 0, 0));
         BtnProtokolKemo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnProtokolKemo.setMnemonic('2');
         BtnProtokolKemo.setText("Template Protokol Kemoterapi");
         BtnProtokolKemo.setToolTipText("Alt+2");
         BtnProtokolKemo.setName("BtnProtokolKemo"); // NOI18N
@@ -1016,7 +1000,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('1');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+1");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -1035,7 +1018,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('2');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+2");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -1128,13 +1110,13 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tsiklus);
-        Tsiklus.setBounds(115, 66, 44, 23);
+        Tsiklus.setBounds(115, 66, 110, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Tgl. Siklus : ");
         jLabel8.setName("jLabel8"); // NOI18N
         panelGlass7.add(jLabel8);
-        jLabel8.setBounds(160, 66, 70, 23);
+        jLabel8.setBounds(227, 66, 70, 23);
 
         TtglSiklus.setForeground(new java.awt.Color(50, 70, 50));
         TtglSiklus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2026" }));
@@ -1143,7 +1125,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         TtglSiklus.setOpaque(false);
         TtglSiklus.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass7.add(TtglSiklus);
-        TtglSiklus.setBounds(233, 66, 90, 23);
+        TtglSiklus.setBounds(300, 66, 90, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Dosis : ");
@@ -1316,7 +1298,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnDokter.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokter.setMnemonic('X');
         BtnDokter.setToolTipText("Alt+X");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -1329,7 +1310,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnPerawat.setForeground(new java.awt.Color(0, 0, 0));
         BtnPerawat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPerawat.setMnemonic('1');
         BtnPerawat.setToolTipText("Alt+1");
         BtnPerawat.setName("BtnPerawat"); // NOI18N
         BtnPerawat.addActionListener(new java.awt.event.ActionListener() {
@@ -1369,7 +1349,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         BtnProgram.setForeground(new java.awt.Color(0, 0, 0));
         BtnProgram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnProgram.setMnemonic('2');
         BtnProgram.setText("Template Program");
         BtnProgram.setToolTipText("Alt+2");
         BtnProgram.setName("BtnProgram"); // NOI18N
@@ -1399,7 +1378,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(ChkKunjungan);
-        ChkKunjungan.setBounds(330, 66, 340, 23);
+        ChkKunjungan.setBounds(400, 66, 270, 23);
 
         BtnLPT.setForeground(new java.awt.Color(0, 0, 0));
         BtnLPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
@@ -1503,9 +1482,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         } else if (Tsiklus.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Siklus kemoterapinya harus diisi dulu..!!");
             Tsiklus.requestFocus();
-        } else if (Tsiklus.getText().equals("0") || Tsiklus.getText().equals("00") || Tsiklus.getText().equals("000")) {
-            JOptionPane.showMessageDialog(rootPane, "Siklus kemoterapinya tidak valid, silahkan ulangi lagi..!!");
-            Tsiklus.requestFocus();
         } else {
             if (Sequel.cariInteger("select count(-1) from protokol_kemoterapi where no_rkm_medis='" + TnoRM.getText() + "' and siklus_ke='" + Tsiklus.getText() + "'") > 0) {
                 JOptionPane.showMessageDialog(rootPane, "Siklus ke " + Tsiklus.getText() + " kemoterapi pasien ini sudah ada..!!");
@@ -1578,9 +1554,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             Valid.textKosong(TnoRW, "Pasien");
         } else if (Tsiklus.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Siklus kemoterapinya harus diisi dulu..!!");
-            Tsiklus.requestFocus();
-        } else if (Tsiklus.getText().equals("0") || Tsiklus.getText().equals("00") || Tsiklus.getText().equals("000")) {
-            JOptionPane.showMessageDialog(rootPane, "Siklus kemoterapinya tidak valid, silahkan ulangi lagi..!!");
             Tsiklus.requestFocus();
         } else {
             if (tbProtokol.getSelectedRow() > -1) {

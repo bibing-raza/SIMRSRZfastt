@@ -465,7 +465,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel108.setBounds(0, 150, 150, 23);
 
         cmbJnsTran.setForeground(new java.awt.Color(0, 0, 0));
-        cmbJnsTran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "FARMASI", "RADIOLOGI", "LABORATORIUM", "PENANGANAN DOKTER", "PENANGANAN PETUGAS", "PENANGANAN DOKTER & PETUGAS", "DIET HARIAN", "ASESMEN MEDIK DEWASA RAWAT INAP", "ASESMEN KEPERAWATAN DEWASA RAWAT INAP", "CPPT RAWAT INAP", "CPPT IGD", "CATATAN RESEP RAWAT INAP", "CATATAN RESEP IGD", "RINGKASAN PULANG RAWAT INAP", "TRANSFER SERAH TERIMA RAWAT INAP", "TRANSFER SERAH TERIMA IGD", "CATATAN TINDAKAN KEPERAWATAN RAWAT INAP", "JADWAL PEMBERIAN OBAT RAWAT INAP", "JADWAL PEMBERIAN OBAT IGD", "KONSUL ANTAR UNIT RAWAT INAP", "DATA PERSALINAN", "SPIROMETRI", "SURAT ISTIRAHAT SAKIT", "DATA PERSALINAN DINKES KABUPATEN", "SURAT KETERANGAN SAKIT", "DPJP RAWAT INAP", "PERMINTAAN PERIKSA LAB.", "PERMINTAAN PERIKSA RADIOLOGI", "PEMANTAUAN HARIAN PASIEN RAWAT INAP", "TRIASE IGD", "ASESMEN MEDIK IGD", "ASESMEN KEPERAWATAN IGD", "PROTOKOL KEMOTERAPI", "ASESMEN ULANG RESIKO JATUH DEWASA", "PENGELOLAAN TRANSFUSI DARAH", "MONITORING EWS DEWASA", "ASESMEN KEPERAWATAN ANAK RAWAT INAP", "ASESMEN MEDIK ANAK RAWAT INAP", "ASESMEN ULANG RESIKO JATUH ANAK", "MONITORING PEDIATRIC EWS", "ASESMEN RESTRAIN RAWAT INAP", "OBSERVASI RESTRAIN RAWAT INAP", "SKRINING GIZI ULANG", "MONITORING DAN EVALUASI ASUHAN GIZI", "ASESMEN ULANG GIZI RAWAT INAP", "LEMBAR OBSERVASI PASIEN", "TRANSFER PASIEN UNTUK TINDAKAN", "ASESMEN PRA SEDASI", "CHECKLIST PRA OPERASI", "CHECKLIST KESIAPAN ANESTESI", "ASESMEN PRE INDUKSI", "ASESMEN KEPERAWATAN PERIOPERATIF", "PERENCANAAN PULANG (DISCHARGE PLANNING)", "CHECKLIST KESELAMATAN OPERASI", "CATATAN PEMAKAIAN OBAT & MATERIAL OPERASI", "ASESMEN MEDIK BEDAH RAWAT INAP", "ASESMEN MEDIK PERINATOLOGI", "ASESMEN KEPERAWATAN PERINATOLOGI", "SKOR APGAR, DOWNE, CAP JARI IBU & BAYI", "LEMBARAN BANTUAN PENGAMATAN MENYUSUI", "REKONSILIASI OBAT", "TRIASE PEDIATRIK", "SERAH TERIMA BAYI PULANG", "PEMBERIAN INFORMASI & EDUKASI", "TRIASE PONEK", "MONITORING EWS OBSGYN", "PERUBAHAN DPJP RANAP", "ASESMEN AWAL KEBIDANAN", "GENERAL CONSENT", "PERSETUJUAN RAWAT INAP", "SURAT PERNYATAAN RANAP PESERTA BPJS", "SURAT PERNYATAAN NAIK KELAS RAWAT BPJS", "SURAT PERNYATAAN BUKAN KASUS KLL", "SURAT PERNYATAAN PEMBAYARAN DENDA", "SURAT PERNYATAAN RANAP NON BPJS", "OBSERVASI KALA 1 KEBIDANAN", "PARTOGRAF PERSALINAN", "ASESMEN MEDIK KEBIDANAN", "LAPORAN OPERASI", "CATATAN RUANG PEMULIHAN", "FORMULIR SITE MARKING OPERASI" }));
+        cmbJnsTran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "FARMASI", "RADIOLOGI", "LABORATORIUM", "PENANGANAN DOKTER", "PENANGANAN PETUGAS", "PENANGANAN DOKTER & PETUGAS", "DIET HARIAN", "ASESMEN MEDIK DEWASA RAWAT INAP", "ASESMEN KEPERAWATAN DEWASA RAWAT INAP", "CPPT RAWAT INAP", "CPPT IGD", "CATATAN RESEP RAWAT INAP", "CATATAN RESEP IGD", "RINGKASAN PULANG RAWAT INAP", "TRANSFER SERAH TERIMA RAWAT INAP", "TRANSFER SERAH TERIMA IGD", "CATATAN TINDAKAN KEPERAWATAN RAWAT INAP", "JADWAL PEMBERIAN OBAT RAWAT INAP", "JADWAL PEMBERIAN OBAT IGD", "KONSUL ANTAR UNIT RAWAT INAP", "DATA PERSALINAN", "SPIROMETRI", "SURAT ISTIRAHAT SAKIT", "DATA PERSALINAN DINKES KABUPATEN", "SURAT KETERANGAN SAKIT", "DPJP RAWAT INAP", "PERMINTAAN PERIKSA LAB.", "PERMINTAAN PERIKSA RADIOLOGI", "PEMANTAUAN HARIAN PASIEN RAWAT INAP", "TRIASE IGD", "ASESMEN MEDIK IGD", "ASESMEN KEPERAWATAN IGD", "PROTOKOL KEMOTERAPI", "ASESMEN ULANG RESIKO JATUH DEWASA", "PENGELOLAAN TRANSFUSI DARAH", "MONITORING EWS DEWASA", "ASESMEN KEPERAWATAN ANAK RAWAT INAP", "ASESMEN MEDIK ANAK RAWAT INAP", "ASESMEN ULANG RESIKO JATUH ANAK", "MONITORING PEDIATRIC EWS", "ASESMEN RESTRAIN RAWAT INAP", "OBSERVASI RESTRAIN RAWAT INAP", "SKRINING GIZI ULANG", "MONITORING DAN EVALUASI ASUHAN GIZI", "ASESMEN ULANG GIZI RAWAT INAP", "LEMBAR OBSERVASI PASIEN", "TRANSFER PASIEN UNTUK TINDAKAN", "ASESMEN PRA SEDASI", "CHECKLIST PRA OPERASI", "CHECKLIST KESIAPAN ANESTESI", "ASESMEN PRE INDUKSI", "ASESMEN KEPERAWATAN PERIOPERATIF", "PERENCANAAN PULANG (DISCHARGE PLANNING)", "CHECKLIST KESELAMATAN OPERASI", "CATATAN PEMAKAIAN OBAT & MATERIAL OPERASI", "ASESMEN MEDIK BEDAH RAWAT INAP", "ASESMEN MEDIK PERINATOLOGI", "ASESMEN KEPERAWATAN PERINATOLOGI", "SKOR APGAR, DOWNE, CAP JARI IBU & BAYI", "LEMBARAN BANTUAN PENGAMATAN MENYUSUI", "REKONSILIASI OBAT", "TRIASE PEDIATRIK", "SERAH TERIMA BAYI PULANG", "PEMBERIAN INFORMASI & EDUKASI", "TRIASE PONEK", "MONITORING EWS OBSGYN", "PERUBAHAN DPJP RANAP", "ASESMEN AWAL KEBIDANAN", "GENERAL CONSENT", "PERSETUJUAN RAWAT INAP", "SURAT PERNYATAAN RANAP PESERTA BPJS", "SURAT PERNYATAAN NAIK KELAS RAWAT BPJS", "SURAT PERNYATAAN BUKAN KASUS KLL", "SURAT PERNYATAAN PEMBAYARAN DENDA", "SURAT PERNYATAAN RANAP NON BPJS", "OBSERVASI KALA 1 KEBIDANAN", "PARTOGRAF PERSALINAN", "ASESMEN MEDIK KEBIDANAN", "LAPORAN OPERASI", "CATATAN RUANG PEMULIHAN", "FORMULIR SITE MARKING OPERASI", "SERAH TERIMA PASIEN PASCA OPERASI" }));
         cmbJnsTran.setName("cmbJnsTran"); // NOI18N
         cmbJnsTran.setPreferredSize(new java.awt.Dimension(115, 23));
         cmbJnsTran.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1102,6 +1102,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("catatan_ruang_pemulihan", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("catatan_ruang_pemulihan_obs_ttv", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("formulir_site_marking_operasi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("serah_terima_pasien_pasca_operasi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         } else if (pilihan == 2) {
             Sequel.mengedit("triase_igd", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("penilaian_awal_medis_igd", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
@@ -1137,6 +1138,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("catatan_ruang_pemulihan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("catatan_ruang_pemulihan_obs_ttv", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("formulir_site_marking_operasi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("serah_terima_pasien_pasca_operasi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
         }
     }
     
@@ -1252,6 +1254,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("catatan_ruang_pemulihan", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("catatan_ruang_pemulihan_obs_ttv", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("formulir_site_marking_operasi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("serah_terima_pasien_pasca_operasi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         } else if (pilihan == 2) {
             Sequel.mengedit("catatan_tindakan_keperawatan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("evaluasi_catatan_tindakan_keperawatan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
@@ -1363,6 +1366,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("catatan_ruang_pemulihan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("catatan_ruang_pemulihan_obs_ttv", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("formulir_site_marking_operasi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("serah_terima_pasien_pasca_operasi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
         }
     }
     
@@ -1737,6 +1741,11 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             } else if (cmbJnsTran.getSelectedIndex() == 81) {
                 ps1 = koneksi.prepareStatement("select no_rawat, date(waktu_simpan) tgl, time(waktu_simpan) jam, ruang_rawat data "
                         + "from formulir_site_marking_operasi where no_rawat ='" + TNoRwTerpilih.getText() + "' "
+                        + "order by waktu_simpan desc limit 1");
+                //serah terima pasien pasca operasi
+            } else if (cmbJnsTran.getSelectedIndex() == 82) {
+                ps1 = koneksi.prepareStatement("select no_rawat, date(waktu_simpan) tgl, time(waktu_simpan) jam, ruang_rawat data "
+                        + "from serah_terima_pasien_pasca_operasi where no_rawat ='" + TNoRwTerpilih.getText() + "' "
                         + "order by waktu_simpan desc limit 1");
             }
 
@@ -2136,6 +2145,11 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             } else if (cmbJnsTran.getSelectedIndex() == 81) {
                 ps2 = koneksi.prepareStatement("select no_rawat, date(waktu_simpan) tgl, time(waktu_simpan) jam, ruang_rawat data "
                         + "from formulir_site_marking_operasi where no_rawat ='" + TNoRwTujuan.getText() + "' "
+                        + "order by waktu_simpan desc limit 1");
+                //serah terima pasien pasca operasi
+            } else if (cmbJnsTran.getSelectedIndex() == 82) {
+                ps2 = koneksi.prepareStatement("select no_rawat, date(waktu_simpan) tgl, time(waktu_simpan) jam, ruang_rawat data "
+                        + "from serah_terima_pasien_pasca_operasi where no_rawat ='" + TNoRwTujuan.getText() + "' "
                         + "order by waktu_simpan desc limit 1");
             }
 
@@ -3052,6 +3066,24 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("surat_pernyataan_ranap_non_bpjs", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         } else if (pilihan == 2) {
             Sequel.mengedit("surat_pernyataan_ranap_non_bpjs", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+        }
+
+        tampil();
+        tampilTujuan();
+        pilihan = 0;
+        ChkTglTran.setSelected(false);
+        ChkTglTran.setText("Semua Tgl. Transaksi");
+        tglDari.setText("");
+        pukulDari.setText("");
+        ChkRMranap.setSelected(false);
+        ChkRMigd.setSelected(false);
+    }
+
+    private void serahTerimaPascaOps() {
+        if (pilihan == 1) {
+            Sequel.mengedit("serah_terima_pasien_pasca_operasi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+        } else if (pilihan == 2) {
+            Sequel.mengedit("serah_terima_pasien_pasca_operasi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
         }
 
         tampil();
@@ -5008,6 +5040,11 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 formulirSiteMarking();
+            }
+        } else if (cmbJnsTran.getSelectedIndex() == 82) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                serahTerimaPascaOps();
             }
         }
     }

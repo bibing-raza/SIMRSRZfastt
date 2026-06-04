@@ -438,6 +438,7 @@ import rekammedis.RMLaporanOperasi;
 import rekammedis.RMObservasiKala1;
 import rekammedis.RMPartografPersalinan;
 import rekammedis.RMPersetujuanRawatInap;
+import rekammedis.RMSerahTerimaPascaOperasi;
 import rekammedis.RMSuratPenyataanBayarDenda;
 import rekammedis.RMSuratPenyataanBukanKLL;
 import rekammedis.RMSuratPenyataanNaikKelas;
@@ -1015,6 +1016,7 @@ public class frmUtama extends javax.swing.JFrame {
         BtnLaporanOperasi = new widget.ButtonBig();
         BtnCatatanRuangPemulihan = new widget.ButtonBig();
         BtnFormulirSiteMarking = new widget.ButtonBig();
+        BtnSerahTerimaPascaOperasi = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6812,6 +6814,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(BtnFormulirSiteMarking);
 
+        BtnSerahTerimaPascaOperasi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSerahTerimaPascaOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        BtnSerahTerimaPascaOperasi.setText("Serah Terima Pasca Operasi");
+        BtnSerahTerimaPascaOperasi.setIconTextGap(0);
+        BtnSerahTerimaPascaOperasi.setName("BtnSerahTerimaPascaOperasi"); // NOI18N
+        BtnSerahTerimaPascaOperasi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnSerahTerimaPascaOperasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSerahTerimaPascaOperasiActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(BtnSerahTerimaPascaOperasi);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6820,7 +6835,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30/05/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02/06/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13442,6 +13457,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnFormulirSiteMarkingActionPerformed
 
+    private void BtnSerahTerimaPascaOperasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSerahTerimaPascaOperasiActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMSerahTerimaPascaOperasi aplikasi = new RMSerahTerimaPascaOperasi(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnSerahTerimaPascaOperasiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13469,6 +13497,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig BtnPartograf;
     private widget.ButtonBig BtnPengembalianJaminanTransaksi;
     private widget.ButtonBig BtnPerubahanDpjp;
+    private widget.ButtonBig BtnSerahTerimaPascaOperasi;
     private widget.Button BtnSimpanPass;
     private widget.ButtonBig BtnToolJualObat;
     private widget.ButtonBig BtnToolKamnap;
@@ -14292,6 +14321,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getkegiatan_operasi() == true) {
                 Panelmenu.add(BtnFormulirSiteMarking);
+                jmlmenu++;
+            }
+            
+            if (akses.getkegiatan_operasi() == true) {
+                Panelmenu.add(BtnSerahTerimaPascaOperasi);
                 jmlmenu++;
             }
             
@@ -16423,6 +16457,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getkegiatan_operasi() == true) {
             Panelmenu.add(BtnFormulirSiteMarking);
+            jmlmenu++;
+        }
+        
+        if (akses.getkegiatan_operasi() == true) {
+            Panelmenu.add(BtnSerahTerimaPascaOperasi);
             jmlmenu++;
         }
         
@@ -18615,6 +18654,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getkegiatan_operasi()== true) {
             if (BtnFormulirSiteMarking.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(BtnFormulirSiteMarking);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getkegiatan_operasi()== true) {
+            if (BtnSerahTerimaPascaOperasi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(BtnSerahTerimaPascaOperasi);
                 jmlmenu++;
             }
         }

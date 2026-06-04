@@ -181,6 +181,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnLaporanOperasi = new widget.ButtonBig();
         BtnCatatanMaterial = new widget.ButtonBig();
         BtnCatatanRuangPemulihan = new widget.ButtonBig();
+        BtnSerahTerimaPasca = new widget.ButtonBig();
         BtnAsesmenPraSedasi = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
@@ -1153,6 +1154,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput1.add(BtnCatatanRuangPemulihan);
+
+        BtnSerahTerimaPasca.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSerahTerimaPasca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        BtnSerahTerimaPasca.setText("Serah Terima Pasca Operasi");
+        BtnSerahTerimaPasca.setIconTextGap(0);
+        BtnSerahTerimaPasca.setName("BtnSerahTerimaPasca"); // NOI18N
+        BtnSerahTerimaPasca.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnSerahTerimaPasca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSerahTerimaPascaActionPerformed(evt);
+            }
+        });
+        FormInput1.add(BtnSerahTerimaPasca);
 
         BtnAsesmenPraSedasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenPraSedasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/anastesi2.png"))); // NOI18N
@@ -2356,6 +2370,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnFormulirSiteMarkingActionPerformed
 
+    private void BtnSerahTerimaPascaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSerahTerimaPascaActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMSerahTerimaPascaOperasi form = new RMSerahTerimaPascaOperasi(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnSerahTerimaPascaActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2429,6 +2460,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnSamplingPemanfaatanRM;
     private widget.ButtonBig BtnScoreApgarPerinatologi;
     private widget.ButtonBig BtnSerahTerimaBayiPulang;
+    private widget.ButtonBig BtnSerahTerimaPasca;
     private widget.Button BtnSimpan6;
     private widget.ButtonBig BtnSkriningUlangGizi;
     private widget.ButtonBig BtnSuratPernyataanBayarDenda;
@@ -2519,6 +2551,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnLaporanOperasi.setEnabled(akses.getkegiatan_operasi());
         BtnCatatanRuangPemulihan.setEnabled(akses.getkegiatan_operasi());
         BtnFormulirSiteMarking.setEnabled(akses.getkegiatan_operasi());
+        BtnSerahTerimaPasca.setEnabled(akses.getkegiatan_operasi());
     }
     
     public void setData(String norw, String norm, String nmpasien,
