@@ -103,4 +103,5 @@
         <entry key="SECRETKEYAPIAPOTEKBPJS">enkripsi secretkey</entry>
         <entry key="KODEPPKAPOTEKBPJS">enkripsi kodeppk</entry>
         <entry key="USERKEYAPIAPOTEKBPJS">enkripsi userkey</entry>
+		<entry key="URLTTDKELUARGAPASIEN">http://192.168.0.230:7183/reviewrm/index.php/Admin/ttdkeluargapasien/</entry>
 </properties>
