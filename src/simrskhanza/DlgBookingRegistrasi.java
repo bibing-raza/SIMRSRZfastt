@@ -75,6 +75,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.bouncycastle.util.Strings;
@@ -122,7 +123,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
     private String URUTNOREG = "", status = "", no_rawat = "", umur = "", sttsumur = "", no_peserta = "", user = "", 
             tglkkl = "0000-00-00", URL = "", utc = "", pembi = "", kdpnjg = "", SEPkontrol = "", tglPulangInap = "",
             flag = "", asesmen = "", jkel = "", cekPembi = "", cekFlag = "", cekKDpen = "", cekAses = "", cekRujukan = "",
-            link = "", cekKodePJ = "", nik = "", nokartu = "";
+            link = "", cekKodePJ = "", nik = "", nokartu = "", noSepTerakhir = "";
     private LocalDate date1, date2;
     private final JProgressBar progressBar = new JProgressBar();
 
@@ -135,6 +136,9 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
     public DlgBookingRegistrasi(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //data di tabel grid rata tengah
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         
         WindowCariNoRujuk.setSize(874, 250);
 
@@ -157,7 +161,8 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
             "No. Telp. Pemesan",
             "No. Rawat",
             "Status Cetak SEP",
-            "Antrian Khusus"
+            "Antrian Khusus",
+            "Kunj. Konsul"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -174,7 +179,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -187,7 +192,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         tbBoking.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbBoking.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 19; i++) {
+        for (i = 0; i < 20; i++) {
             TableColumn column = tbBoking.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(100);
@@ -230,6 +235,8 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
                 column.setPreferredWidth(100);
             } else if (i == 18) {
                 column.setPreferredWidth(90);
+            } else if (i == 19) {
+                column.setPreferredWidth(75);
             }
         }
         tbBoking.setDefaultRenderer(Object.class, new WarnaTable());
@@ -505,7 +512,8 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         tbFaskes4.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode6 = new DefaultTableModel(null, new String[]{
-            "No.", "Poliklinik", "Total Booking", "Jumlah Terdaftar", "Jumlah Menunggu", "Jumlah Batal"
+            "No.", "Poliklinik", "Jml. Reg. Normal", "Jml. Reg. Konsul", "Jumlah Total", "Tot. Terdaftar", "Tot. Menunggu", "Tot. Batal",
+            "Terdaftar Normal", "Terdaftar Konsul", "Menunggu Normal", "Menunggu Konsul", "Batal Normal", "Batal Konsul"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -517,7 +525,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         tbregSipo.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbregSipo.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 6; i++) {
+        for (i = 0; i < 14; i++) {
             TableColumn column = tbregSipo.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(30);
@@ -531,9 +539,39 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
                 column.setPreferredWidth(100);
             } else if (i == 5) {
                 column.setPreferredWidth(100);
-            } 
+            } else if (i == 6) {
+                column.setPreferredWidth(100);
+            } else if (i == 7) {
+                column.setPreferredWidth(100);
+            } else if (i == 8) {
+                column.setPreferredWidth(100);
+            } else if (i == 9) {
+                column.setPreferredWidth(100);
+            } else if (i == 10) {
+                column.setPreferredWidth(100);
+            } else if (i == 11) {
+                column.setPreferredWidth(100);
+            } else if (i == 12) {
+                column.setPreferredWidth(100);
+            } else if (i == 13) {
+                column.setPreferredWidth(100);
+            }
         }
         tbregSipo.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbregSipo.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(11).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(12).setCellRenderer(centerRenderer);
+        tbregSipo.getColumnModel().getColumn(13).setCellRenderer(centerRenderer);
 
         TNoRM.setDocument(new batasInput((byte) 6).getOnlyAngka(TNoRM));
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
@@ -1549,6 +1587,8 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         label_hari = new widget.TextArea();
         jLabel38 = new widget.Label();
         cmbAntrianKhusus = new widget.ComboBox();
+        jLabel47 = new widget.Label();
+        cmbKonsul = new widget.ComboBox();
         PanelContent = new widget.panelisi();
         internalFrame3 = new widget.InternalFrame();
         panelisi2 = new widget.panelisi();
@@ -1812,7 +1852,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         Popup1.add(ppRencanaKontrollagi1);
 
         TanggalBooking.setEditable(false);
-        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2026" }));
+        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-06-2026" }));
         TanggalBooking.setDisplayFormat("dd-MM-yyyy");
         TanggalBooking.setName("TanggalBooking"); // NOI18N
         TanggalBooking.setOpaque(false);
@@ -2354,7 +2394,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(125, 23));
         panelCari.add(R2);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2362,11 +2402,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         DTPCari1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 DTPCari1ItemStateChanged(evt);
-            }
-        });
-        DTPCari1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                DTPCari1KeyPressed(evt);
             }
         });
         panelCari.add(DTPCari1);
@@ -2378,7 +2413,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2399,7 +2434,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R3.setPreferredSize(new java.awt.Dimension(135, 23));
         panelCari.add(R3);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-06-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2407,11 +2442,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         DTPCari3.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 DTPCari3ItemStateChanged(evt);
-            }
-        });
-        DTPCari3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                DTPCari3KeyPressed(evt);
             }
         });
         panelCari.add(DTPCari3);
@@ -2423,7 +2453,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel25);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-06-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2431,11 +2461,6 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         DTPCari4.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 DTPCari4ItemStateChanged(evt);
-            }
-        });
-        DTPCari4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                DTPCari4KeyPressed(evt);
             }
         });
         panelCari.add(DTPCari4);
@@ -2446,7 +2471,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(192, 380));
+        PanelInput.setPreferredSize(new java.awt.Dimension(192, 395));
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
 
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
@@ -2593,7 +2618,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel14.setBounds(0, 66, 115, 23);
 
         TanggalPeriksa.setEditable(false);
-        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2026" }));
+        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-06-2026" }));
         TanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         TanggalPeriksa.setName("TanggalPeriksa"); // NOI18N
         TanggalPeriksa.setOpaque(false);
@@ -2855,6 +2880,24 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelisi1.add(cmbAntrianKhusus);
         cmbAntrianKhusus.setBounds(118, 238, 70, 23);
 
+        jLabel47.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel47.setText("Konsul Internal :");
+        jLabel47.setName("jLabel47"); // NOI18N
+        panelisi1.add(jLabel47);
+        jLabel47.setBounds(0, 266, 115, 23);
+
+        cmbKonsul.setForeground(new java.awt.Color(0, 0, 0));
+        cmbKonsul.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "YA", "TIDAK" }));
+        cmbKonsul.setSelectedIndex(1);
+        cmbKonsul.setName("cmbKonsul"); // NOI18N
+        cmbKonsul.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbKonsulActionPerformed(evt);
+            }
+        });
+        panelisi1.add(cmbKonsul);
+        cmbKonsul.setBounds(118, 266, 70, 23);
+
         internalFrame2.add(panelisi1);
 
         PanelContent.setName("PanelContent"); // NOI18N
@@ -2984,7 +3027,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel28.setBounds(0, 67, 95, 23);
 
         TanggalRujuk.setEditable(false);
-        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2026" }));
+        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-06-2026" }));
         TanggalRujuk.setDisplayFormat("dd-MM-yyyy");
         TanggalRujuk.setName("TanggalRujuk"); // NOI18N
         TanggalRujuk.setOpaque(false);
@@ -3595,7 +3638,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         LabTglkll.setBounds(0, 38, 90, 23);
 
         TanggalKejadian.setEditable(false);
-        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2026" }));
+        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-06-2026" }));
         TanggalKejadian.setDisplayFormat("dd-MM-yyyy");
         TanggalKejadian.setName("TanggalKejadian"); // NOI18N
         TanggalKejadian.setOpaque(false);
@@ -3912,7 +3955,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
                 || (Sequel.cariInteger("select count(-1) from pasien_blacklist where no_peserta='" + nokartu + "'") > 0 && KdPoli.getText().equals("IRS"))) {
             JOptionPane.showMessageDialog(null, Sequel.cariIsi("select pesan_notifikasi from pasien_blacklist where no_rkm_medis='" + TNoRM.getText() + "'") + "...!!");
         } else {
-            if (kdpnj.getText().equals("B01") || kdpnj.getText().equals("A03")) {
+            if (cmbKonsul.getSelectedIndex() == 1 && (kdpnj.getText().equals("B01") || kdpnj.getText().equals("A03"))) {
                 cekRujukan = "";
                 if (NoRujukan.getText().equals(Sequel.cariIsi("select k.no_rujukan from booking_registrasi b "
                         + "inner join kelengkapan_booking_sep_bpjs k on k.kd_booking=b.kd_booking where "
@@ -4159,21 +4202,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     isForm();
 }//GEN-LAST:event_ChkInputActionPerformed
 
-    private void DTPCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPCari1KeyPressed
-
-    }//GEN-LAST:event_DTPCari1KeyPressed
-
     private void DTPCari2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPCari2KeyPressed
         R2.setSelected(true);
     }//GEN-LAST:event_DTPCari2KeyPressed
-
-    private void DTPCari3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPCari3KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DTPCari3KeyPressed
-
-    private void DTPCari4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPCari4KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DTPCari4KeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
@@ -4317,7 +4348,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             JOptionPane.showMessageDialog(null, "Apakah pasien tersebut termasuk antrian khusus/prioritas dipoliklinik..?, silahkan pilih dulu salah satu..!!");
             cmbAntrianKhusus.requestFocus();
         } else {
-            if (kdpnj.getText().equals("B01") || (kdpnj.getText().equals("A03"))) {
+            if (cmbKonsul.getSelectedIndex() == 1 && (kdpnj.getText().equals("B01") || kdpnj.getText().equals("A03"))) {
                 if (TglLahir.getText().trim().equals("")) {
                     Valid.textKosong(TglLahir, "data kelengkapan SEP BPJS");
                 } else if (JenisPeserta.getText().trim().equals("")) {
@@ -5221,6 +5252,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_MnVerifikasiActionPerformed
 
+    private void cmbKonsulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKonsulActionPerformed
+        if (cmbKonsul.getSelectedIndex() == 0) {
+            FormInput.setEnabledAt(1, false);
+            FormInput.setEnabledAt(2, false);
+        } else {
+            FormInput.setEnabledAt(1, true);
+            FormInput.setEnabledAt(2, true);
+        }
+    }//GEN-LAST:event_cmbKonsulActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5354,6 +5395,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox cekKDboking;
     private widget.TextBox cekKelengkapanSEP;
     private widget.ComboBox cmbAntrianKhusus;
+    private widget.ComboBox cmbKonsul;
     private widget.ComboBox cmbPembiayaan;
     private widget.ComboBox flagPro;
     private widget.ComboBox hakKelas;
@@ -5406,6 +5448,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel44;
     private widget.Label jLabel45;
     private widget.Label jLabel46;
+    private widget.Label jLabel47;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
@@ -5475,11 +5518,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     "select br.kd_booking,DATE_FORMAT(br.tanggal_booking,'%d-%m-%Y') tgl_boking,br.no_rkm_medis, p.nm_pasien,br.tanggal_periksa,pj.png_jawab,pl.nm_poli, "
                     + "d.nm_dokter,br.no_reg,concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,',',kb.nm_kab) alamat, "
                     + "br.status_booking, br.data_dari, br.kd_poli, br.kd_dokter, br.kd_pj, br.no_telp_pemesan, br.no_rawat, "
-                    + "if(br.kd_pj='B01',ks.status_cetak_sep,'Tidak ada SEP') sep_bpjs, br.antrian_khusus from booking_registrasi br "
-                    + "inner join pasien p on p.no_rkm_medis=br.no_rkm_medis inner join dokter d on d.kd_dokter=br.kd_dokter "
+                    + "if(br.kd_pj='B01',ks.status_cetak_sep,'Tidak ada SEP') sep_bpjs, br.antrian_khusus, if(rk.no_rawat is not null,'YA','TIDAK') regKonsul "
+                    + "from booking_registrasi br inner join pasien p on p.no_rkm_medis=br.no_rkm_medis inner join dokter d on d.kd_dokter=br.kd_dokter "
                     + "inner join poliklinik pl on pl.kd_poli=br.kd_poli INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel "
                     + "INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab "
-                    + "INNER JOIN penjab pj on pj.kd_pj=br.kd_pj left join kelengkapan_booking_sep_bpjs ks on ks.kd_booking=br.kd_booking where "
+                    + "INNER JOIN penjab pj on pj.kd_pj=br.kd_pj left join kelengkapan_booking_sep_bpjs ks on ks.kd_booking=br.kd_booking "
+                    + "left join reg_konsul_internal rk on rk.no_rawat=br.kd_booking and rk.asal_registrasi='sipo' where "
                     + status + " and br.no_rkm_medis like ? or "
                     + status + " and p.nm_pasien like ? or "
                     + status + " and pl.nm_poli like ? or "
@@ -5528,7 +5572,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         rs.getString("no_telp_pemesan"),
                         rs.getString("no_rawat"),
                         rs.getString("sep_bpjs"),
-                        rs.getString("antrian_khusus")
+                        rs.getString("antrian_khusus"),
+                        rs.getString("regKonsul")
                     });
                 }
             } catch (Exception e) {
@@ -5582,6 +5627,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         TanggalPeriksa.setDate(new Date());
         label_pesan.setText("");
         cmbAntrianKhusus.setSelectedIndex(2);
+        cmbKonsul.setSelectedIndex(1);
         loadURL("");
         initComponents2();
         cekHariLibur();
@@ -5662,14 +5708,19 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 }
             }
 
-            if (akses.getkode().equals("Admin Utama") || (kdpnj.getText().equals("B01") || (kdpnj.getText().equals("A03")))) {
-                FormInput.setEnabledAt(1, true);
-                FormInput.setEnabledAt(2, true);
-                FormInput.setEnabledAt(3, true);
+            if (akses.getadmin() == true || (kdpnj.getText().equals("B01") || (kdpnj.getText().equals("A03")))) {
+                if (tbBoking.getValueAt(tbBoking.getSelectedRow(), 19).toString().equals("YA")) {
+                    cmbKonsul.setSelectedIndex(0);
+                    FormInput.setEnabledAt(1, false);
+                    FormInput.setEnabledAt(2, false);
+                } else {
+                    cmbKonsul.setSelectedIndex(1);
+                    FormInput.setEnabledAt(1, true);
+                    FormInput.setEnabledAt(2, true);
+                }
             } else if ((!kdpnj.getText().equals("B01") || (!kdpnj.getText().equals("A03")))) {
                 FormInput.setEnabledAt(1, false);
                 FormInput.setEnabledAt(2, false);
-                FormInput.setEnabledAt(3, false);
                 FormInput.setSelectedIndex(0);
                 emptKelengkapanSEP();
             }
@@ -5719,7 +5770,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public void isForm() {
         if (ChkInput.isSelected() == true) {
             ChkInput.setVisible(false);
-            PanelInput.setPreferredSize(new Dimension(WIDTH, 380));
+            PanelInput.setPreferredSize(new Dimension(WIDTH, 395));
             FormInput.setVisible(true);
             ChkInput.setVisible(true);
         } else if (ChkInput.isSelected() == false) {
@@ -6206,6 +6257,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 + "'-',"
                 + "'" + cmbAntrianKhusus.getSelectedItem().toString() + "',"
                 + "'" + akses.getkode() + "'");
+
+        if (cmbKonsul.getSelectedIndex() == 0) {
+            noSepTerakhir = Sequel.cariIsi("select if(no_sep is null,'-',no_sep) from bridging_sep where "
+                    + "nomr ='" + TNoRM.getText() + "' and jnspelayanan ='2' and kdpolitujuan <>'IGD' order by tglsep desc limit 1");
+
+            Sequel.menyimpanIgnore("reg_konsul_internal", "'" + kdboking.getText() + "','" + noSepTerakhir + "',"
+                    + "'" + Sequel.cariIsi("select if(tglsep is null,'0000-00-00',tglsep) from bridging_sep where "
+                    + "nomr ='" + TNoRM.getText() + "' and jnspelayanan ='2' and kdpolitujuan <>'IGD' order by tglsep desc limit 1") + "',"
+                    + "'tpprj','sipo','" + Sequel.cariIsi("select now()") + "'", "No. Rawat");
+        }
     }
 
     private void simpanKelengkapanSEP() {
@@ -6306,7 +6367,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 + "'" + kdboking.getText() + "',"
                 + "'BELUM',"
                 + "'" + NmPpkRujukan.getText() + "',"
-                + "'-',"                        
+                + "'-',"
                 + "'" + hakKelas.getSelectedItem().toString().substring(0, 1) + "',"
                 + "'" + pembi + "',"
                 + "'" + pngjawab.getText() + "',"
@@ -6316,7 +6377,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 + "'" + asesmen + "',"
                 + "'" + KddpjpLayan.getText() + "',"
                 + "'" + nmdpjpLayan.getText() + "',"
-                + "'tidak'");
+                + "'tidak'");        
 
         Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "no_tlp='" + no_telp.getText() + "' ");
     }
@@ -6431,6 +6492,20 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 + "data_dari='" + verif_data.getSelectedItem().toString() + "', "
                 + "no_telp_pemesan='" + no_telp.getText() + "', "
                 + "antrian_khusus='" + cmbAntrianKhusus.getSelectedItem().toString() + "' ");
+    
+        if (Sequel.cariInteger("select count(-1) from booking_registrasi where kd_booking='" + kdboking.getText() + "' and no_rawat='-'") > 0) {
+            if (cmbKonsul.getSelectedIndex() == 0) {
+                noSepTerakhir = Sequel.cariIsi("select if(no_sep is null,'-',no_sep) from bridging_sep where "
+                        + "nomr ='" + TNoRM.getText() + "' and jnspelayanan ='2' and kdpolitujuan <>'IGD' order by tglsep desc limit 1");
+
+                Sequel.menyimpanIgnore("reg_konsul_internal", "'" + kdboking.getText() + "','" + noSepTerakhir + "',"
+                        + "'" + Sequel.cariIsi("select if(tglsep is null,'0000-00-00',tglsep) from bridging_sep where "
+                                + "nomr ='" + TNoRM.getText() + "' and jnspelayanan ='2' and kdpolitujuan <>'IGD' order by tglsep desc limit 1") + "',"
+                        + "'tpprj','sipo','" + Sequel.cariIsi("select now()") + "'", "No. Rawat");
+            } else {
+                Sequel.queryu("delete from reg_konsul_internal where no_rawat='" + kdboking.getText() + "'");
+            }
+        }
     }
 
     private void gantiDataSEP() {
@@ -6846,12 +6921,22 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private void tampilRegSipo() {
         Valid.tabelKosong(tabMode6);
         try {
-            ps1 = koneksi.prepareStatement("SELECT p.nm_poli, COUNT(br.status_booking) total, "
-                    + "COUNT(CASE WHEN br.status_booking='Terdaftar' THEN 0 END) terdaftar, "
-                    + "COUNT(CASE WHEN br.status_booking='Menunggu' THEN 0 END) menunggu, "
-                    + "COUNT(CASE WHEN br.status_booking='Batal' THEN 0 END) batal "
-                    + "FROM booking_registrasi br INNER JOIN poliklinik p ON p.kd_poli=br.kd_poli "
-                    + "WHERE br.tanggal_periksa=CURRENT_DATE() GROUP by br.kd_poli ORDER BY p.nm_poli");
+            ps1 = koneksi.prepareStatement("SELECT p.nm_poli, "
+                    + "    COUNT(DISTINCT CASE WHEN rk.no_rawat IS NULL THEN br.kd_booking END) jml_kun_normal, "
+                    + "    COUNT(DISTINCT CASE WHEN rk.no_rawat IS NOT NULL THEN br.kd_booking END) jml_konsul, "
+                    + "    COUNT(DISTINCT br.kd_booking) jml_total, "
+                    + "    COUNT(DISTINCT CASE WHEN br.status_booking = 'Terdaftar' THEN br.kd_booking END) tot_terdaftar, "
+                    + "    COUNT(DISTINCT CASE WHEN br.status_booking = 'Menunggu' THEN br.kd_booking END) tot_menunggu, "
+                    + "    COUNT(DISTINCT CASE WHEN br.status_booking = 'Batal' THEN br.kd_booking END) tot_batal, "
+                    + "    COUNT(DISTINCT CASE WHEN br.status_booking = 'Terdaftar' AND rk.no_rawat IS NULL THEN br.kd_booking END) terdaftar_normal, "
+                    + "    COUNT(DISTINCT CASE WHEN br.status_booking = 'Terdaftar' AND rk.no_rawat IS NOT NULL THEN br.kd_booking END) terdaftar_konsul, "
+                    + "    COUNT(DISTINCT CASE WHEN br.status_booking = 'Menunggu' AND rk.no_rawat IS NULL THEN br.kd_booking END) menunggu_normal, "
+                    + "    COUNT(DISTINCT CASE WHEN br.status_booking = 'Menunggu' AND rk.no_rawat IS NOT NULL THEN br.kd_booking END) menunggu_konsul, "
+                    + "    COUNT(DISTINCT CASE WHEN br.status_booking = 'Batal' AND rk.no_rawat IS NULL THEN br.kd_booking END) batal_normal, "
+                    + "    COUNT(DISTINCT CASE WHEN br.status_booking = 'Batal' AND rk.no_rawat IS NOT NULL THEN br.kd_booking END) batal_konsul "
+                    + "FROM booking_registrasi br INNER JOIN poliklinik p ON p.kd_poli = br.kd_poli "
+                    + "LEFT JOIN reg_konsul_internal rk ON DATE(rk.waktu_simpan) = br.tanggal_periksa and rk.asal_registrasi='sipo' "
+                    + "WHERE br.tanggal_periksa = CURRENT_DATE() GROUP BY br.kd_poli, p.nm_poli ORDER BY p.nm_poli");
             try {
                 rs1 = ps1.executeQuery();
                 x = 1;
@@ -6859,10 +6944,18 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     tabMode6.addRow(new String[]{
                         x + ".",
                         rs1.getString("nm_poli"),
-                        rs1.getString("total"),
-                        rs1.getString("terdaftar"),
-                        rs1.getString("menunggu"),
-                        rs1.getString("batal")
+                        rs1.getString("jml_kun_normal"),
+                        rs1.getString("jml_konsul"),
+                        rs1.getString("jml_total"),
+                        rs1.getString("tot_terdaftar"), 
+                        rs1.getString("tot_menunggu"),
+                        rs1.getString("tot_batal"),
+                        rs1.getString("terdaftar_normal"),
+                        rs1.getString("terdaftar_konsul"),
+                        rs1.getString("menunggu_normal"),
+                        rs1.getString("menunggu_konsul"),
+                        rs1.getString("batal_normal"),
+                        rs1.getString("batal_konsul")
                     });
                     x++;
                 }

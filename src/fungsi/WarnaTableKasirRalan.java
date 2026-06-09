@@ -11,7 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 public class WarnaTableKasirRalan extends DefaultTableCellRenderer {
-    private int kolom1 = 16, kolom2 = 17, kolom3 = 18, kolom4 = 20, kolom5 = 21, kolom6 = 24, kolom7 = 23;
+    private int kolom1 = 16, kolom2 = 17, kolom3 = 18, kolom4 = 20, kolom5 = 21, kolom6 = 24, kolom7 = 23, kolom8 = 25;
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
@@ -47,7 +47,7 @@ public class WarnaTableKasirRalan extends DefaultTableCellRenderer {
             String kodepoli = table.getValueAt(row, kolom4).toString();
             String triaseIgd = table.getValueAt(row, kolom5).toString();
             String triasePediatrik = table.getValueAt(row, kolom6).toString();
-            String triasePonek = table.getValueAt(row, kolom7).toString();
+            String triasePonek = table.getValueAt(row, kolom7).toString();            
 
             if (kodepoli.equals("IGDK") || kodepoli.equals("PON")) {
                 if (triaseIgd.equalsIgnoreCase("Merah") || triasePediatrik.equalsIgnoreCase("Merah") || triasePonek.equalsIgnoreCase("Merah")) {
@@ -63,6 +63,14 @@ public class WarnaTableKasirRalan extends DefaultTableCellRenderer {
                     component.setBackground(Color.BLACK);
                     component.setForeground(Color.WHITE);
                 }
+            }
+        }
+        
+        if (column == 8) {
+            String kunjunganKonsul = table.getValueAt(row, kolom8).toString();
+            if (kunjunganKonsul.equalsIgnoreCase("Biru")) {
+                component.setBackground(new Color(0, 191, 255));
+                component.setForeground(Color.BLACK);
             }
         }
 

@@ -510,7 +510,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="24-02-2026"/>
+                        <StringItem index="0" value="05-06-2026"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -579,19 +579,30 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="5">
+                      <StringArray count="16">
                         <StringItem index="0" value="-"/>
                         <StringItem index="1" value="TPPRI"/>
                         <StringItem index="2" value="Ruang Perawatan"/>
                         <StringItem index="3" value="Poliklinik"/>
                         <StringItem index="4" value="Instalasi"/>
+                        <StringItem index="5" value="TPPRI &amp; Ruang Perawatan"/>
+                        <StringItem index="6" value="TPPRI &amp; Poliklinik"/>
+                        <StringItem index="7" value="TPPRI &amp; Instalasi"/>
+                        <StringItem index="8" value="Ruang Perawatan &amp; Poliklinik"/>
+                        <StringItem index="9" value="Ruang Perawatan &amp; Instalasi"/>
+                        <StringItem index="10" value="Poliklinik &amp; Instalasi"/>
+                        <StringItem index="11" value="TPPRI, Ruang Perawatan &amp; Poliklinik"/>
+                        <StringItem index="12" value="TPPRI, Ruang Perawatan &amp; Instalasi"/>
+                        <StringItem index="13" value="TPPRI, Poliklinik &amp; Instalasi"/>
+                        <StringItem index="14" value="Ruang Perawatan, Poliklinik &amp; Instalasi"/>
+                        <StringItem index="15" value="TPPRI, Ruang Perawatan, Poliklinik &amp; Instalasi"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbUnit" noResource="true"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="475" y="94" width="155" height="23"/>
+                      <AbsoluteConstraints x="475" y="94" width="255" height="23"/>
                     </Constraint>
                   </Constraints>
                 </Component>

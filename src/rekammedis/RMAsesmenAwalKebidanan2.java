@@ -3599,7 +3599,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                             if (rsLaprm.getString("ket_pergerakan_janin_2jam_terakhir").equals("")) {
                                 param.put("pergerakan", rsLaprm.getString("pergerakan_janin_2jam_terakhir"));
                             } else {
-                                param.put("pergerakan", rsLaprm.getString("pergerakan_janin_2jam_terakhir") + ", " + rsLaprm.getString("ket_pergerakan_janin_2jam_terakhir") + " X");
+                                param.put("pergerakan", rsLaprm.getString("pergerakan_janin_2jam_terakhir") + ", " + rsLaprm.getString("ket_pergerakan_janin_2jam_terakhir"));
                             }
                         } else {
                             param.put("pergerakan", rsLaprm.getString("pergerakan_janin_2jam_terakhir"));
@@ -3640,29 +3640,26 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                         } else {
                             param.put("muntah", rsLaprm.getString("muntah"));
                         }
-
-                        if (rsLaprm.getString("cek_batuk_pilek_demam").equals("Ya")) {
-                            if (!rsLaprm.getString("batuk_pilek_demam").equals("-")) {
-                                param.put("bpd", rsLaprm.getString("cek_batuk_pilek_demam") + ", " + rsLaprm.getString("batuk_pilek_demam") + ", mulai tgl. "
-                                        + Valid.SetTglINDONESIA(rsLaprm.getString("tgl_batuk_pilek_demam")) + ", Jam : " + rsLaprm.getString("jam_batuk_pilek_demam").substring(0, 5) + " Wita");                                
-                            } else {
-                                param.put("bpd", rsLaprm.getString("cek_batuk_pilek_demam") + ", " + rsLaprm.getString("batuk_pilek_demam"));
-                            }
+                        
+                        if (rsLaprm.getString("cek_batuk").equals("ya")) {
+                            param.put("batuk", "Ya, mulai tgl. " + Valid.SetTgl3(rsLaprm.getString("tgl_batuk")) + ", jam " + rsLaprm.getString("jam_batuk").substring(0, 5) + " Wita");
                         } else {
-                            param.put("bpd", rsLaprm.getString("cek_batuk_pilek_demam"));
+                            param.put("batuk", "Tidak");
                         }
                         
-                        param.put("keluhanLainKLH", rsLaprm.getString("keluhan_lainya"));
-
-                        if (rsLaprm.getString("riw_perjalanan_jauh").equals("Ya")) {
-                            if (rsLaprm.getString("ket_riw_perjalanan_jauh").equals("")) {
-                                param.put("riwPerjalanan", rsLaprm.getString("riw_perjalanan_jauh"));
-                            } else {
-                                param.put("riwPerjalanan", rsLaprm.getString("riw_perjalanan_jauh") + ", " + rsLaprm.getString("ket_riw_perjalanan_jauh"));
-                            }
+                        if (rsLaprm.getString("cek_pilek").equals("ya")) {
+                            param.put("pilek", "Ya, mulai tgl. " + Valid.SetTgl3(rsLaprm.getString("tgl_pilek")) + ", jam " + rsLaprm.getString("jam_pilek").substring(0, 5) + " Wita");
                         } else {
-                            param.put("riwPerjalanan", rsLaprm.getString("riw_perjalanan_jauh"));
+                            param.put("pilek", "Tidak");
                         }
+                        
+                        if (rsLaprm.getString("cek_demam").equals("ya")) {
+                            param.put("demam", "Ya, mulai tgl. " + Valid.SetTgl3(rsLaprm.getString("tgl_demam")) + ", jam " + rsLaprm.getString("jam_demam").substring(0, 5) + " Wita");
+                        } else {
+                            param.put("demam", "Tidak");
+                        }
+
+                        param.put("keluhanLainKLH", rsLaprm.getString("keluhan_lainya"));
 
                         if (rsLaprm.getString("periksa_ketempat_bidan").equals("Ya")) {
                             if (rsLaprm.getString("hasil_pemeriksaan_bidan").equals("")) {
@@ -3989,11 +3986,23 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                         } else {
                             param.put("usiaPertama", rsLaprm.getString("usia_pertama_nikah") + " tahun");
                         }
+                        
+                        if (rsLaprm.getString("usia_pertama_nikah_bln").equals("")) {
+                            param.put("usiaPertamaBln", "....... bulan");
+                        } else {
+                            param.put("usiaPertamaBln", rsLaprm.getString("usia_pertama_nikah_bln") + " bulan");
+                        }
 
                         if (rsLaprm.getString("usia_perkawinan").equals("")) {
                             param.put("usiaPerkawinan", "....... tahun");
                         } else {
                             param.put("usiaPerkawinan", rsLaprm.getString("usia_perkawinan") + " tahun");
+                        }
+                        
+                        if (rsLaprm.getString("usia_perkawinan_bln").equals("")) {
+                            param.put("usiaPerkawinanBln", "....... bulan");
+                        } else {
+                            param.put("usiaPerkawinanBln", rsLaprm.getString("usia_perkawinan_bln") + " bulan");
                         }
 
                         if (rsLaprm.getString("keluarga_terdekat").equals("")) {
@@ -6924,8 +6933,8 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                         
                         String prevPerut = "", nilaiPerut = "", nilaiNyeriUlu = "", prevKeluar = "", nilaiKeluar = "", nilaiPandang = "", prevDarah = "", nilaiDarah = "",
                                 jnsDrh = "", nilaiOdema = "", odemaDi = "", nilaiKeluarAir = "", klrAir = "", jnsKlrAir = "", nilaiMual = "", nilaiMuntah = "", nilaiPerge = "",
-                                nilaiPusing = "", nilaiPerjalanan = "", ketPerjalanan = "", ketPeriksaBidan = "", nilaiIbu = "", prevAnc = "", ketDokter1 = "", ketDokter2 = "", 
-                                ketDokter3 = "", dr1 = "", dr2 = "", dr3 = "", nilaiBPD = "";
+                                nilaiPusing = "", ketPeriksaBidan = "", nilaiIbu = "", prevAnc = "", ketDokter1 = "", ketDokter2 = "", nilaiBatuk = "", nilaiPilek = "", nilaiDemam = "",
+                                ketDokter3 = "", dr1 = "", dr2 = "", dr3 = "";
                         if (rsPrev.getString("perut").equals("Ya")) {
                             if (rsPrev.getString("keluhan_perut").equals("-")) {
                                 prevPerut = "Perut Mulai";
@@ -7037,7 +7046,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                             if (rsPrev.getString("ket_pergerakan_janin_2jam_terakhir").equals("")) {
                                 nilaiPerge = ": Ada";
                             } else {
-                                nilaiPerge = ": Ada, " + rsPrev.getString("ket_pergerakan_janin_2jam_terakhir") + " X";
+                                nilaiPerge = ": Ada, " + rsPrev.getString("ket_pergerakan_janin_2jam_terakhir");
                             }                            
                         } else if (rsPrev.getString("pergerakan_janin_2jam_terakhir").equals("Tidak Ada")) {
                             nilaiPerge = ": Tidak Ada";
@@ -7053,36 +7062,30 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                             nilaiMuntah = ": -";
                         }
                         
+                        if (rsPrev.getString("cek_batuk").equals("ya")) {
+                            nilaiBatuk = ": Ya, mulai tgl. " + Valid.SetTglINDONESIA(rsPrev.getString("tgl_batuk")) + ", Jam : " + rsPrev.getString("jam_batuk").substring(0, 5) + " Wita";
+                        } else {
+                            nilaiBatuk = ": Tidak";
+                        }
+                        
+                        if (rsPrev.getString("cek_pilek").equals("ya")) {
+                            nilaiPilek = ": Ya, mulai tgl. " + Valid.SetTglINDONESIA(rsPrev.getString("tgl_pilek")) + ", Jam : " + rsPrev.getString("jam_pilek").substring(0, 5) + " Wita";
+                        } else {
+                            nilaiPilek = ": Tidak";
+                        }
+                        
+                        if (rsPrev.getString("cek_demam").equals("ya")) {
+                            nilaiDemam = ": Ya, mulai tgl. " + Valid.SetTglINDONESIA(rsPrev.getString("tgl_demam")) + ", Jam : " + rsPrev.getString("jam_demam").substring(0, 5) + " Wita";
+                        } else {
+                            nilaiDemam = ": Tidak";
+                        }
+                        
                         if (rsPrev.getString("pusing").equals("Ya")) {
                             nilaiPusing = ": Ya, mulai tgl. " + Valid.SetTglINDONESIA(rsPrev.getString("tgl_pusing")) + ", Jam : " + rsPrev.getString("jam_pusing").substring(0, 5) + " Wita";
                         } else if (rsPrev.getString("pusing").equals("Tidak")) {
                             nilaiPusing = ": Tidak";
                         } else {
                             nilaiPusing = ": -";
-                        }
-                        
-                        if (rsPrev.getString("cek_batuk_pilek_demam").equals("Ya")) {
-                            if (!rsPrev.getString("batuk_pilek_demam").equals("-")) {
-                                nilaiBPD = ": " + rsPrev.getString("cek_batuk_pilek_demam") + ", " + rsPrev.getString("batuk_pilek_demam") + ", mulai tgl. "
-                                        + Valid.SetTglINDONESIA(rsPrev.getString("tgl_batuk_pilek_demam")) + ", Jam : " + rsPrev.getString("jam_batuk_pilek_demam").substring(0, 5) + " Wita";
-                            } else {
-                                nilaiBPD = ": " + rsPrev.getString("cek_batuk_pilek_demam") + ", " + rsPrev.getString("batuk_pilek_demam");
-                            }
-                        } else {
-                            nilaiBPD = ": " + rsPrev.getString("cek_batuk_pilek_demam");
-                        }
-                        
-                        if (rsPrev.getString("riw_perjalanan_jauh").equals("Ya")) {
-                            if (rsPrev.getString("ket_riw_perjalanan_jauh").equals("")) {
-                                ketPerjalanan = "";
-                            } else {
-                                ketPerjalanan = ", " + rsPrev.getString("ket_riw_perjalanan_jauh");
-                            }
-                            nilaiPerjalanan = ": Ya" + ketPerjalanan;
-                        } else if (rsPrev.getString("riw_perjalanan_jauh").equals("Tidak")) {
-                            nilaiPerjalanan = ": Tidak";
-                        } else {
-                            nilaiPerjalanan = ": -";
                         }
                         
                         if (rsPrev.getString("hasil_pemeriksaan_bidan").equals("")) {
@@ -7192,16 +7195,16 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                                 "<tr class='isi'>"
                                 + "<td valign='top'>Pusing</td>"
                                 + "<td valign='top' colspan='3'>" + nilaiPusing + "</td>"
-                                + "<td valign='top'>Gejala Salesma</td>"
-                                + "<td valign='top' colspan='3'>" + nilaiBPD + "</td>"
+                                + "<td valign='top'>Batuk</td>"
+                                + "<td valign='top' colspan='3'>" + nilaiBatuk + "</td>"
                                 + "</tr>");
                         
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='top'>Keluhan Lainya</td>"
                                 + "<td valign='top' colspan='3'>: " + rsPrev.getString("keluhan_lainya") + "</td>"
-                                + "<td valign='top'>Riwayat Perjalanan Jauh</td>"
-                                + "<td valign='top' colspan='3'>" + nilaiPerjalanan + "</td>"
+                                + "<td valign='top'>Pilek</td>"
+                                + "<td valign='top' colspan='3'>" + nilaiPilek + ", Demam " + nilaiDemam + "</td>"
                                 + "</tr>");
                         
                         htmlContent.append(
@@ -7645,23 +7648,40 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                                 + "<td valign='top' colspan='7'>: " + prevIstri + prevSuami + "</td>"
                                 + "</tr>");
                         
-                        String prevUsiaPertamaNikah = "", prevUsiaPerkawinan = "";
+                        String prevUsiaPertamaNikah = "", prevUsiaPertamaNikahBln = "", prevPertamaNkh = "", 
+                                prevUsiaPerkawinan = "", prevUsiaPerkawinanBln = "", prevPerkawinan = "";
                         if (rsPrev.getString("usia_pertama_nikah").equals("")) {
-                            prevUsiaPertamaNikah = "...... Tahun, Usia Perkawinan : ";
+                            prevUsiaPertamaNikah = "...... tahun, ";
                         } else {
-                            prevUsiaPertamaNikah = rsPrev.getString("usia_pertama_nikah") + " Tahun, Usia Perkawinan : ";
+                            prevUsiaPertamaNikah = rsPrev.getString("usia_pertama_nikah") + " tahun, ";
                         }
                         
-                        if (rsPrev.getString("usia_perkawinan").equals("")) {
-                            prevUsiaPerkawinan = "...... Tahun";
+                        if (rsPrev.getString("usia_pertama_nikah_bln").equals("")) {
+                            prevUsiaPertamaNikahBln = "...... bulan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usia Perkawinan : ";
                         } else {
-                            prevUsiaPerkawinan = rsPrev.getString("usia_perkawinan") + " Tahun";
+                            prevUsiaPertamaNikahBln = rsPrev.getString("usia_pertama_nikah_bln") + " bulan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usia Perkawinan : ";
                         }
+                        
+                        prevPertamaNkh = prevUsiaPertamaNikah + prevUsiaPertamaNikahBln;
+                        
+                        if (rsPrev.getString("usia_perkawinan").equals("")) {
+                            prevUsiaPerkawinan = "...... tahun, ";
+                        } else {
+                            prevUsiaPerkawinan = rsPrev.getString("usia_perkawinan") + " tahun, ";
+                        }
+                        
+                        if (rsPrev.getString("usia_perkawinan_bln").equals("")) {
+                            prevUsiaPerkawinanBln = "...... bulan";
+                        } else {
+                            prevUsiaPerkawinanBln = rsPrev.getString("usia_perkawinan_bln") + " bulan";
+                        }
+                        
+                        prevPerkawinan = prevUsiaPerkawinan + prevUsiaPerkawinanBln;
                         
                         htmlContent.append(
                                 "<tr class='isi'>"
                                 + "<td valign='top' colspan='1'>Usia Pertama Kali Nikah</td>"
-                                + "<td valign='top' colspan='7'>: " + prevUsiaPertamaNikah + prevUsiaPerkawinan + "</td>"
+                                + "<td valign='top' colspan='7'>: " + prevPertamaNkh + prevPerkawinan + "</td>"
                                 + "</tr>");
                         
                         String prevKlgDekat = "", prevHub = "", prevOrtu = "", prevTglSuami = "", prevTglAnak = "", prevTglSendiri = "";

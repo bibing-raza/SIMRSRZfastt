@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="2.0000000000000058"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="452"/>
+	<property name="ireport.y" value="20"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -111,6 +111,8 @@
 	<parameter name="sekServik" class="java.lang.String"/>
 	<parameter name="sekServikAda" class="java.lang.String"/>
 	<parameter name="temuan" class="java.lang.String"/>
+	<parameter name="usiaPertamaBln" class="java.lang.String"/>
+	<parameter name="usiaPerkawinanBln" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select * from riwayat_kehamilan_asesmen_awal_kebidanan where no_rawat='2025/07/13/000042']]>
 	</queryString>
@@ -306,22 +308,6 @@
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{cekSuami}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="276" y="47" width="90" height="11"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{usiaPerkawinan}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="205" y="47" width="72" height="11">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
-					<font fontName="Tahoma" size="8"/>
-				</textElement>
-				<text><![CDATA[Usia Perkawinan]]></text>
-			</staticText>
 			<staticText>
 				<reportElement x="3" y="47" width="134" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -332,11 +318,11 @@
 				<text><![CDATA[Usia Pertama Kali Nikah]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="137" y="47" width="67" height="11"/>
+				<reportElement x="137" y="47" width="383" height="11"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{usiaPertama}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{usiaPertama}+" "+$P{usiaPertamaBln}+", Usia Perkawinan : "+$P{usiaPerkawinan}+" "+$P{usiaPerkawinanBln}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="3" y="58" width="134" height="11">
@@ -830,14 +816,14 @@
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{his}+" ("+$P{ketHis}+")"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{his}+" ("+$P{ketHis}+")  Durasi : "+$P{durasi}+" ("+$P{ketDurasi}+")"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="63" y="256" width="456" height="11"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{durasi}+" ("+$P{ketDurasi}+"), Auskultasi : DJJ "+$P{auskultasi}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{auskultasi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="3" y="256" width="60" height="11">
@@ -846,7 +832,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<text><![CDATA[Durasi]]></text>
+				<text><![CDATA[Auskultasi : DJJ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="114" y="269" width="30" height="11">

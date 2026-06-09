@@ -90,7 +90,7 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 9) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(250);
             }
         }
         tbNomor.setDefaultRenderer(Object.class, new WarnaTable());
@@ -427,7 +427,7 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
         jLabel8.setBounds(200, 66, 90, 23);
 
         TtglDisahkan.setEditable(false);
-        TtglDisahkan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2026" }));
+        TtglDisahkan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2026" }));
         TtglDisahkan.setDisplayFormat("dd-MM-yyyy");
         TtglDisahkan.setName("TtglDisahkan"); // NOI18N
         TtglDisahkan.setOpaque(false);
@@ -454,10 +454,10 @@ public class DlgMasterNomorDokumenRM extends javax.swing.JDialog {
         jLabel12.setBounds(355, 94, 114, 23);
 
         cmbUnit.setForeground(new java.awt.Color(0, 0, 0));
-        cmbUnit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "TPPRI", "Ruang Perawatan", "Poliklinik", "Instalasi" }));
+        cmbUnit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "TPPRI", "Ruang Perawatan", "Poliklinik", "Instalasi", "TPPRI & Ruang Perawatan", "TPPRI & Poliklinik", "TPPRI & Instalasi", "Ruang Perawatan & Poliklinik", "Ruang Perawatan & Instalasi", "Poliklinik & Instalasi", "TPPRI, Ruang Perawatan & Poliklinik", "TPPRI, Ruang Perawatan & Instalasi", "TPPRI, Poliklinik & Instalasi", "Ruang Perawatan, Poliklinik & Instalasi", "TPPRI, Ruang Perawatan, Poliklinik & Instalasi" }));
         cmbUnit.setName("cmbUnit"); // NOI18N
         FormInput.add(cmbUnit);
-        cmbUnit.setBounds(475, 94, 155, 23);
+        cmbUnit.setBounds(475, 94, 255, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 

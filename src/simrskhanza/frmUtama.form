@@ -8644,6 +8644,25 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnSerahTerimaPascaOperasiActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="widget.ButtonBig" name="BtnInformasiTindakanPembiusan">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/48x48/1360816018_tests.png"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Informasi Tindakan Pembiusan"/>
+                        <Property name="iconTextGap" type="int" value="0"/>
+                        <Property name="name" type="java.lang.String" value="BtnInformasiTindakanPembiusan" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[200, 90]"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnInformasiTindakanPembiusanActionPerformed"/>
+                      </Events>
+                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
@@ -8660,7 +8679,7 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="04/06/2026"/>
+            <StringItem index="0" value="09/06/2026"/>
           </StringArray>
         </Property>
         <Property name="displayFormat" type="java.lang.String" value="dd/MM/yyyy"/>
@@ -9772,7 +9791,7 @@
                   <Color blue="1d" green="1d" red="1d" type="rgb"/>
                 </Property>
                 <Property name="backgroundImage" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/picture/wallpaper.jpg"/>
+                  <Image iconType="3" name="/picture/underconstruction.jpg"/>
                 </Property>
                 <Property name="backgroundImageType" type="int" value="9"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

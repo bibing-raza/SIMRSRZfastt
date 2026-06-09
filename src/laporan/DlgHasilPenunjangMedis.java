@@ -447,6 +447,8 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnHapusDipilih = new javax.swing.JMenuItem();
         MnHapusSemua = new javax.swing.JMenuItem();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        MnHapusPemeriksaanLab = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         TabPemeriksaan = new javax.swing.JTabbedPane();
         internalFrame20 = new widget.InternalFrame();
@@ -543,6 +545,20 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnHapusSemua);
 
+        jPopupMenu2.setName("jPopupMenu2"); // NOI18N
+
+        MnHapusPemeriksaanLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusPemeriksaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusPemeriksaanLab.setText("Hapus Pemeriksaan Lab.");
+        MnHapusPemeriksaanLab.setName("MnHapusPemeriksaanLab"); // NOI18N
+        MnHapusPemeriksaanLab.setPreferredSize(new java.awt.Dimension(180, 26));
+        MnHapusPemeriksaanLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusPemeriksaanLabActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnHapusPemeriksaanLab);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -581,6 +597,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         Scroll1.setOpaque(true);
 
         tbLIS.setAutoCreateRowSorter(true);
+        tbLIS.setComponentPopupMenu(jPopupMenu2);
         tbLIS.setName("tbLIS"); // NOI18N
         tbLIS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1702,6 +1719,34 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPrinRadiologiActionPerformed
 
+    private void MnHapusPemeriksaanLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusPemeriksaanLabActionPerformed
+        if (tbLIS.getSelectedRow() != -1) {
+            if (akses.getadmin() == true) {
+                x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data pemeriksaan lab. ini mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    if (Sequel.queryu2tf("delete from lis_reg where no_lab=?", 1, new String[]{
+                        tbLIS.getValueAt(tbLIS.getSelectedRow(), 1).toString()
+                    }) == true) {
+                        Valid.tabelKosong(tabMode1);
+                        TCari.setText("");
+                        tampilLIS();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                    }
+                } else {
+                    Valid.tabelKosong(tabMode1);
+                    TCari.setText("");
+                    tampilLIS();
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, akses anda untuk fitur ini tertutup ...!!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih salah satu datanya dahulu pada tabel nomor pemeriksaan lab. ...!!");
+            tbLIS.requestFocus();
+        }
+    }//GEN-LAST:event_MnHapusPemeriksaanLabActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1737,6 +1782,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     private widget.TextArea HasilPeriksa;
     private widget.editorpane LoadHTML1;
     private javax.swing.JMenuItem MnHapusDipilih;
+    private javax.swing.JMenuItem MnHapusPemeriksaanLab;
     private javax.swing.JMenuItem MnHapusSemua;
     private javax.swing.JPanel PanelInput;
     private javax.swing.JPanel PanelInput1;
@@ -1775,6 +1821,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass12;

@@ -55,7 +55,7 @@ import org.springframework.http.MediaType;
  */
 public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private final DefaultTableModel tabMode2, tabMode3, tabMode4, tabMode5, tabMode6, tabMode7, tabMode8, tabMode9, 
-            tabMode10, tabMode11, tabMode12, tabMode13, tabMode14, tabMode15, tabMode16, tabMode17, tabMode18, tabMode19;
+            tabMode10, tabMode11, tabMode12, tabMode13, tabMode14, tabMode15, tabMode16, tabMode17, tabMode18, tabMode19, tabMode20;
     private final Properties prop = new Properties();
     private validasi Valid = new validasi();
     private sekuel Sequel = new sekuel();
@@ -74,8 +74,8 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             nilaiVenti = "", tglIntu = "", tglEkstu = "", dializer = "", onset = "", caraLhr = "", wktlahir = "", ltkjnn = "", kndisi = "",
             dgBantuanManual = "", forcep = "", vacum = "", cekDeliveri = "", mnt1APP = "", mnt1PUL = "", mnt1GRI = "", mnt1ACT = "", mnt1RES = "",
             mnt5APP = "", mnt5PUL = "", mnt5GRI = "", mnt5ACT = "", mnt5RES = "", requestJson = "";
-    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9, ps10, ps11, ps12, ps13, ps14, ps15, ps16, ps17, ps18, ps19, ps20;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rs10, rs11, rs12, rs13, rs14, rs15, rs16, rs17, rs18, rs19, rs20;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9, ps10, ps11, ps12, ps13, ps14, ps15, ps16, ps17, ps18, ps19, ps20, ps21;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rs10, rs11, rs12, rs13, rs14, rs15, rs16, rs17, rs18, rs19, rs20, rs21;
     private ApiEKLAIM_inacbg mbak_eka = new ApiEKLAIM_inacbg();
     private double nilaiPNB = 0, nilaiRAD = 0, nilaiREH = 0, nilaiOBAT = 0, nilaiPB = 0, 
             nilaiKEP = 0, nilaiLAB = 0, nilaiKAM = 0, nilaiKON = 0, nilaiRI = 0, nilaiTOTAL = 0;
@@ -537,10 +537,48 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(80);
             } else if (i == 3) {
-                column.setPreferredWidth(400);
+                column.setPreferredWidth(350);
             }
         }
         tbHasil2.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode20 = new DefaultTableModel(null, new Object[]{"#", "Tipe", "Kode", "Deskripsi", "Tot. Cost Weight"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                boolean a = false;
+                if (colIndex == 0) {
+                    a = true;
+                }
+                return a;
+            }
+            Class[] types = new Class[]{
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        };
+        tbHasil5.setModel(tabMode20);
+        tbHasil5.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbHasil5.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 5; i++) {
+            TableColumn column = tbHasil5.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(30);
+            } else if (i == 1) {
+                column.setPreferredWidth(125);
+            } else if (i == 2) {
+                column.setPreferredWidth(80);
+            } else if (i == 3) {
+                column.setPreferredWidth(235);
+            } else if (i == 4) {
+                column.setPreferredWidth(100);
+            }
+        }
+        tbHasil5.setDefaultRenderer(Object.class, new WarnaTable());
 
         tabMode8 = new DefaultTableModel(null, new Object[]{"#", "Tipe", "Kode", "Deskripsi"}) {
             @Override
@@ -863,8 +901,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         labelhasilG = new widget.Label();
         ScrollHasil1 = new widget.ScrollPane();
         tbHasil1 = new widget.Table();
-        ScrollHasil2 = new widget.ScrollPane();
-        tbHasil2 = new widget.Table();
         labelRP = new widget.Label();
         labeltarif = new widget.Label();
         umur = new widget.Label();
@@ -882,9 +918,8 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         jk = new widget.Label();
         jLabel44 = new widget.Label();
         tglLhr = new widget.Label();
-        labelhasilG1 = new widget.Label();
-        labeltambahan = new widget.Label();
-        BtnGruperStage = new widget.Button();
+        LtambahanInacbg = new widget.Label();
+        BtnGruperStageInacbg = new widget.Button();
         jLabel61 = new widget.Label();
         jLabel62 = new widget.Label();
         nmPetugas = new widget.Label();
@@ -1039,6 +1074,13 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         tbProsInacbg = new widget.Table();
         BtnCetakKlaim = new widget.Button();
         gambarFinal = new usu.widget.glass.PanelGlass();
+        panelGlass9 = new widget.panelisi();
+        ScrollHasil2 = new widget.ScrollPane();
+        tbHasil2 = new widget.Table();
+        ScrollHasil9 = new widget.ScrollPane();
+        tbHasil5 = new widget.Table();
+        BtnGruperStageIdrg = new widget.Button();
+        LtambahanIdrg = new widget.Label();
         internalFrame3 = new widget.InternalFrame();
         scrollInput1 = new widget.ScrollPane();
         FormInput2 = new widget.PanelBiasa();
@@ -1278,7 +1320,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         Popup2.add(ppHapusDelivery);
 
         tglDiagnosa.setEditable(false);
-        tglDiagnosa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025" }));
+        tglDiagnosa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026" }));
         tglDiagnosa.setDisplayFormat("dd-MM-yyyy");
         tglDiagnosa.setName("tglDiagnosa"); // NOI18N
         tglDiagnosa.setOpaque(false);
@@ -1429,7 +1471,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput.setBackground(new java.awt.Color(255, 255, 255));
         FormInput.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "::[ Data Klaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(100, 1276));
+        FormInput.setPreferredSize(new java.awt.Dimension(100, 1312));
         FormInput.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -1732,16 +1774,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput.add(ScrollHasil1);
         ScrollHasil1.setBounds(45, 940, 570, 150);
 
-        ScrollHasil2.setName("ScrollHasil2"); // NOI18N
-        ScrollHasil2.setOpaque(true);
-
-        tbHasil2.setName("tbHasil2"); // NOI18N
-        tbHasil2.getTableHeader().setReorderingAllowed(false);
-        ScrollHasil2.setViewportView(tbHasil2);
-
-        FormInput.add(ScrollHasil2);
-        ScrollHasil2.setBounds(45, 1120, 1155, 97);
-
         labelRP.setForeground(new java.awt.Color(0, 0, 0));
         labelRP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelRP.setText("Rp. ");
@@ -1856,34 +1888,27 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput.add(tglLhr);
         tglLhr.setBounds(655, 53, 80, 23);
 
-        labelhasilG1.setForeground(new java.awt.Color(0, 0, 0));
-        labelhasilG1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelhasilG1.setText("Special CMG Option : ");
-        labelhasilG1.setName("labelhasilG1"); // NOI18N
-        FormInput.add(labelhasilG1);
-        labelhasilG1.setBounds(45, 1094, 120, 23);
+        LtambahanInacbg.setForeground(new java.awt.Color(0, 0, 0));
+        LtambahanInacbg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LtambahanInacbg.setText("tambahan biaya inacbg");
+        LtambahanInacbg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        LtambahanInacbg.setName("LtambahanInacbg"); // NOI18N
+        FormInput.add(LtambahanInacbg);
+        LtambahanInacbg.setBounds(45, 1263, 600, 23);
 
-        labeltambahan.setForeground(new java.awt.Color(0, 0, 0));
-        labeltambahan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labeltambahan.setText("tambahan biaya");
-        labeltambahan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labeltambahan.setName("labeltambahan"); // NOI18N
-        FormInput.add(labeltambahan);
-        labeltambahan.setBounds(45, 1223, 810, 23);
-
-        BtnGruperStage.setForeground(new java.awt.Color(0, 0, 0));
-        BtnGruperStage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/SeratusRibu.png"))); // NOI18N
-        BtnGruperStage.setText("Grouper Stage 2");
-        BtnGruperStage.setGlassColor(new java.awt.Color(0, 153, 153));
-        BtnGruperStage.setName("BtnGruperStage"); // NOI18N
-        BtnGruperStage.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnGruperStage.addActionListener(new java.awt.event.ActionListener() {
+        BtnGruperStageInacbg.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGruperStageInacbg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/SeratusRibu.png"))); // NOI18N
+        BtnGruperStageInacbg.setText("Grouper Stage 2 (INACBG)");
+        BtnGruperStageInacbg.setGlassColor(new java.awt.Color(0, 153, 153));
+        BtnGruperStageInacbg.setName("BtnGruperStageInacbg"); // NOI18N
+        BtnGruperStageInacbg.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnGruperStageInacbg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGruperStageActionPerformed(evt);
+                BtnGruperStageInacbgActionPerformed(evt);
             }
         });
-        FormInput.add(BtnGruperStage);
-        BtnGruperStage.setBounds(1055, 1225, 140, 30);
+        FormInput.add(BtnGruperStageInacbg);
+        BtnGruperStageInacbg.setBounds(45, 1225, 200, 30);
 
         jLabel61.setForeground(new java.awt.Color(0, 0, 0));
         jLabel61.setText("Nama Petugas : ");
@@ -2148,7 +2173,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput.add(labelHRlm5);
         labelHRlm5.setBounds(735, 193, 80, 23);
 
-        tglIntubasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025 13:41:46" }));
+        tglIntubasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026 13:24:33" }));
         tglIntubasi.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tglIntubasi.setName("tglIntubasi"); // NOI18N
         tglIntubasi.setOpaque(false);
@@ -2162,7 +2187,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput.add(labelHRlm6);
         labelHRlm6.setBounds(960, 193, 65, 23);
 
-        tglEkstubasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025 13:41:46" }));
+        tglEkstubasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026 13:24:34" }));
         tglEkstubasi.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tglEkstubasi.setName("tglEkstubasi"); // NOI18N
         tglEkstubasi.setOpaque(false);
@@ -2739,7 +2764,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput4.add(labelHRlm22);
         labelHRlm22.setBounds(290, 8, 140, 23);
 
-        wktkelahiran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025 13:41:46" }));
+        wktkelahiran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026 13:24:34" }));
         wktkelahiran.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         wktkelahiran.setName("wktkelahiran"); // NOI18N
         wktkelahiran.setOpaque(false);
@@ -2978,7 +3003,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnCetakKlaim);
-        BtnCetakKlaim.setBounds(865, 1225, 180, 30);
+        BtnCetakKlaim.setBounds(860, 1225, 180, 30);
 
         gambarFinal.setBackground(new java.awt.Color(29, 29, 29));
         gambarFinal.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/klaim_final.png"))); // NOI18N
@@ -2988,6 +3013,55 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         gambarFinal.setLayout(null);
         FormInput.add(gambarFinal);
         gambarFinal.setBounds(760, 277, 170, 165);
+
+        panelGlass9.setName("panelGlass9"); // NOI18N
+        panelGlass9.setPreferredSize(new java.awt.Dimension(44, 54));
+        panelGlass9.setLayout(new java.awt.GridLayout(1, 2));
+
+        ScrollHasil2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Special CMG Option (INACBG) ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        ScrollHasil2.setName("ScrollHasil2"); // NOI18N
+        ScrollHasil2.setOpaque(true);
+
+        tbHasil2.setName("tbHasil2"); // NOI18N
+        tbHasil2.getTableHeader().setReorderingAllowed(false);
+        ScrollHasil2.setViewportView(tbHasil2);
+
+        panelGlass9.add(ScrollHasil2);
+
+        ScrollHasil9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Special CMG Option (iDRG) ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        ScrollHasil9.setName("ScrollHasil9"); // NOI18N
+        ScrollHasil9.setOpaque(true);
+
+        tbHasil5.setName("tbHasil5"); // NOI18N
+        tbHasil5.getTableHeader().setReorderingAllowed(false);
+        ScrollHasil9.setViewportView(tbHasil5);
+
+        panelGlass9.add(ScrollHasil9);
+
+        FormInput.add(panelGlass9);
+        panelGlass9.setBounds(45, 1100, 1210, 120);
+
+        BtnGruperStageIdrg.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGruperStageIdrg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/SeratusRibu.png"))); // NOI18N
+        BtnGruperStageIdrg.setText("Grouper Stage 2 (iDRG)");
+        BtnGruperStageIdrg.setGlassColor(new java.awt.Color(0, 153, 153));
+        BtnGruperStageIdrg.setName("BtnGruperStageIdrg"); // NOI18N
+        BtnGruperStageIdrg.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnGruperStageIdrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGruperStageIdrgActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnGruperStageIdrg);
+        BtnGruperStageIdrg.setBounds(1053, 1225, 200, 30);
+
+        LtambahanIdrg.setForeground(new java.awt.Color(0, 0, 0));
+        LtambahanIdrg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LtambahanIdrg.setText("tambahan biaya idrg");
+        LtambahanIdrg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        LtambahanIdrg.setName("LtambahanIdrg"); // NOI18N
+        FormInput.add(LtambahanIdrg);
+        LtambahanIdrg.setBounds(655, 1263, 600, 23);
 
         scrollInput.setViewportView(FormInput);
 
@@ -4602,7 +4676,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput2.add(labeljam3);
         labeljam3.setBounds(475, 193, 60, 23);
 
-        tglIntubasi1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025 13:41:46" }));
+        tglIntubasi1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026 13:24:34" }));
         tglIntubasi1.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tglIntubasi1.setName("tglIntubasi1"); // NOI18N
         tglIntubasi1.setOpaque(false);
@@ -4616,7 +4690,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         FormInput2.add(labeljam4);
         labeljam4.setBounds(475, 221, 60, 23);
 
-        tglEkstubasi1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2025 13:41:46" }));
+        tglEkstubasi1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026 13:24:34" }));
         tglEkstubasi1.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tglEkstubasi1.setName("tglEkstubasi1"); // NOI18N
         tglEkstubasi1.setOpaque(false);
@@ -4774,10 +4848,14 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 } else {
                     mbak_eka.mengirimOnline(noSEP.getText());
                     labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-                    labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
+                    LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
                             + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
+                    LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                            + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));
+                    
                     tampilHG1();
                     tampilHG2();
+                    tampilHG3();
                     tampilRespon();
                     tampilDiagInacbg();
                     tampilProsInacbg();
@@ -4785,10 +4863,14 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             } else {
                 mbak_eka.mengirimOnline(noSEP.getText());
                 labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-                labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
+                LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
                         + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
+                LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                            + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));
+                
                 tampilHG1();
                 tampilHG2();
+                tampilHG3();
                 tampilRespon();
                 tampilDiagInacbg();
                 tampilProsInacbg();
@@ -4805,6 +4887,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 labelhasilG2.setText("Hasil Grouper : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noKlaim.getText() + "'"));
                 tampilHG1();
                 tampilHG2();
+                tampilHG3();
                 tampilRespon();
             }
         }
@@ -4816,10 +4899,14 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             akses.setCopyData("");
             mbak_eka.mengedit(noSEP.getText());
             labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-            labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
+            LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
                     + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
+            LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                            + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));
+            
             tampilHG1();
             tampilHG2();
+            tampilHG3();
             tampilRespon();
             tampilDiagInacbg();
             tampilProsInacbg();
@@ -4834,9 +4921,15 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 BtnCetakKlaim.setEnabled(false);
 
                 if (tabMode3.getRowCount() == 0) {
-                    BtnGruperStage.setEnabled(false);
+                    BtnGruperStageInacbg.setEnabled(false);
                 } else {
-                    BtnGruperStage.setEnabled(true);
+                    BtnGruperStageInacbg.setEnabled(true);
+                }
+                
+                if (tabMode20.getRowCount() == 0) {
+                    BtnGruperStageIdrg.setEnabled(false);
+                } else {
+                    BtnGruperStageIdrg.setEnabled(true);
                 }
             }
 
@@ -4851,6 +4944,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 labelhasilG2.setText("Hasil Grouper : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noKlaim.getText() + "'"));
                 tampilHG1();
                 tampilHG2();
+                tampilHG3();
             }
         }
     }//GEN-LAST:event_BtnEditKlaimActionPerformed
@@ -4892,13 +4986,17 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
                     mbak_eka.mempinal(noSEP.getText(), nikPetugas.getText());
 //                    labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-                    labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
+                    LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
                             + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
+                    LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                            + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));
+                    
                     tampilDiagInacbg();
                     tampilProsInacbg();
                     tampilRespon();
                     tampilHG1();
                     tampilHG2();
+                    tampilHG3();
 
                     if (akses.getPasteData().equals("sukses")) {
                         BtnSimpanSet.setEnabled(false);
@@ -4910,9 +5008,15 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                         BtnCetakKlaim.setEnabled(true);
 
                         if (tabMode3.getRowCount() == 0) {
-                            BtnGruperStage.setEnabled(false);
+                            BtnGruperStageInacbg.setEnabled(false);
                         } else {
-                            BtnGruperStage.setEnabled(true);
+                            BtnGruperStageInacbg.setEnabled(true);
+                        }
+                        
+                        if (tabMode20.getRowCount() == 0) {
+                            BtnGruperStageIdrg.setEnabled(false);
+                        } else {
+                            BtnGruperStageIdrg.setEnabled(true);
                         }
                     }
 
@@ -4922,8 +5026,11 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                         gambarFinal.setVisible(false);
                     }
                 } else {
-                    labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
+                    LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
                             + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
+                    LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                            + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));
+                    
                     tampilDiagnosa();
                     tampilProsedur();
                     tampilDiagInacbg();
@@ -4931,6 +5038,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                     tampilRespon();
                     tampilHG1();
                     tampilHG2();
+                    tampilHG3();
                 }
             }
 
@@ -4947,6 +5055,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                     labelhasilG2.setText("Hasil Grouper : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noKlaim.getText() + "'"));
                     tampilHG1();
                     tampilHG2();
+                    tampilHG3();
                 }
             }
         }
@@ -5037,7 +5146,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
     }//GEN-LAST:event_tglDiagnosaKeyPressed
 
-    private void BtnGruperStageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGruperStageActionPerformed
+    private void BtnGruperStageInacbgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGruperStageInacbgActionPerformed
         kodeTopUPnya = "";
         tampilDiagnosa();
         tampilProsedur();
@@ -5051,7 +5160,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             }
 
             if (j == 0) {
-                JOptionPane.showMessageDialog(null, "Belum ada special CMG yang dipilih,.!!!");
+                JOptionPane.showMessageDialog(null, "Belum ada special CMG (INACBG) yang dipilih,.!!!");
                 tampilHG2();
             } else {
                 for (i = 0; i < tbHasil2.getRowCount(); i++) {
@@ -5061,7 +5170,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 }
                 
                 akses.setCopyData("");
-                mbak_eka.menggrouperKedua(noSEP.getText(), kodeTopUPnya);
+                mbak_eka.menggrouperKedua(noSEP.getText(), kodeTopUPnya, "inacbg");
                 tampilHG1();
                 tampilHG2();
                 
@@ -5075,16 +5184,19 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                     BtnCetakKlaim.setEnabled(false);
              
                     if (tabMode3.getRowCount() == 0) {
-                        BtnGruperStage.setEnabled(false);
+                        BtnGruperStageInacbg.setEnabled(false);
                     } else {
-                        BtnGruperStage.setEnabled(true);
+                        BtnGruperStageInacbg.setEnabled(true);
                     }
                 }
+                
+                LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                        + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
-    }//GEN-LAST:event_BtnGruperStageActionPerformed
+    }//GEN-LAST:event_BtnGruperStageInacbgActionPerformed
 
     private void BtnGruper2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGruper2ActionPerformed
         if (norawat.equals("") || noKlaim.getText().trim().equals("")) {
@@ -5145,15 +5257,17 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             if (j == 0) {
                 JOptionPane.showMessageDialog(null, "Belum ada special CMG yang dipilih,.!!!");
                 tampilHG2();
+                tampilHG3();
             } else {
                 for (i = 0; i < tbHasil4.getRowCount(); i++) {
                     if (tbHasil4.getValueAt(i, 0).toString().equals("true")) {
                         kodeTopUPnya = kodeTopUPnya + tbHasil4.getValueAt(i, 2).toString() + "#";
                     }
                 }
-                mbak_eka.menggrouperKedua(noKlaim.getText(), kodeTopUPnya);
+                
                 tampilHG1();
                 tampilHG2();
+                tampilHG3();
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
@@ -5782,11 +5896,15 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         tampilProsedur();
         mbak_eka.editGrouper(noSEP.getText());
         labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-        labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
+        LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
                 + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
+        LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                            + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));
+        
         tampilRespon();
         tampilHG1();
         tampilHG2();
+        tampilHG3();
         tampilDiagInacbg();
         tampilProsInacbg();
 
@@ -5799,10 +5917,16 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             BtnFinal.setEnabled(false);
             BtnCetakKlaim.setEnabled(false);
 
-            if (tabMode3.getRowCount() == 0) {
-                BtnGruperStage.setEnabled(false);
+//            if (tabMode3.getRowCount() == 0) {
+//                BtnGruperStageInacbg.setEnabled(false);
+//            } else {
+//                BtnGruperStageInacbg.setEnabled(true);
+//            }
+            
+            if (tabMode20.getRowCount() == 0) {
+                BtnGruperStageIdrg.setEnabled(false);
             } else {
-                BtnGruperStage.setEnabled(true);
+                BtnGruperStageIdrg.setEnabled(true);
             }
         }
     }//GEN-LAST:event_BtnGroperEditIdrgActionPerformed
@@ -5857,11 +5981,15 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         akses.setCopyData("");
         mbak_eka.inacbgFinal(noSEP.getText());
         labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-        labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
+        LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
                 + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
+        LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                            + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));
+        
         tampilRespon();
         tampilHG1();
         tampilHG2();
+        tampilHG3();
         tampilDiagInacbg();
         tampilProsInacbg();
 
@@ -5875,9 +6003,15 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             BtnCetakKlaim.setEnabled(false);
 
             if (tabMode3.getRowCount() == 0) {
-                BtnGruperStage.setEnabled(false);
+                BtnGruperStageInacbg.setEnabled(false);
             } else {
-                BtnGruperStage.setEnabled(true);
+                BtnGruperStageInacbg.setEnabled(true);
+            }
+            
+            if (tabMode20.getRowCount() == 0) {
+                BtnGruperStageIdrg.setEnabled(false);
+            } else {
+                BtnGruperStageIdrg.setEnabled(true);
             }
         }
     }//GEN-LAST:event_BtnGruperFinalInacbgActionPerformed
@@ -5886,6 +6020,58 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         tampilDiagInacbg();
         tampilProsInacbg();        
     }//GEN-LAST:event_formWindowActivated
+
+    private void BtnGruperStageIdrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGruperStageIdrgActionPerformed
+        kodeTopUPnya = "";
+        tampilDiagnosa();
+        tampilProsedur();
+
+        try {
+            j = 0;
+            for (i = 0; i < tbHasil5.getRowCount(); i++) {
+                if (tbHasil5.getValueAt(i, 0).toString().equals("true")) {
+                    j++;
+                }
+            }
+
+            if (j == 0) {
+                JOptionPane.showMessageDialog(null, "Belum ada special CMG (iDRG) yang dipilih,.!!!");
+                tampilHG3();
+            } else {
+                for (i = 0; i < tbHasil5.getRowCount(); i++) {
+                    if (tbHasil5.getValueAt(i, 0).toString().equals("true")) {
+                        kodeTopUPnya = kodeTopUPnya + tbHasil5.getValueAt(i, 2).toString() + "#";
+                    }
+                }
+                
+                akses.setCopyData("");
+                mbak_eka.menggrouperKedua(noSEP.getText(), kodeTopUPnya, "idrg");
+                tampilHG1();
+                tampilHG3();
+                
+                if (akses.getPasteData().equals("sukses")) {
+                    BtnSimpanSet.setEnabled(false);
+
+                    BtnKirimOnline.setEnabled(false);
+                    BtnEditKlaim.setEnabled(false);
+                    BtnHapusKlaim.setEnabled(false);
+                    BtnFinal.setEnabled(true);
+                    BtnCetakKlaim.setEnabled(false);
+             
+                    if (tabMode20.getRowCount() == 0) {
+                        BtnGruperStageIdrg.setEnabled(false);
+                    } else {
+                        BtnGruperStageIdrg.setEnabled(true);
+                    }
+                }
+             
+                LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                        + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }//GEN-LAST:event_BtnGruperStageIdrgActionPerformed
 
     /**
      * @param args the command line arguments
@@ -5916,8 +6102,9 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private widget.Button BtnGroperEditIdrg;
     private widget.Button BtnGruper2;
     private widget.Button BtnGruperFinalInacbg;
-    private widget.Button BtnGruperStage;
     private widget.Button BtnGruperStage1;
+    private widget.Button BtnGruperStageIdrg;
+    private widget.Button BtnGruperStageInacbg;
     private widget.Button BtnHapusKlaim;
     private widget.Button BtnKeluar;
     private widget.Button BtnKirimOnline;
@@ -5959,6 +6146,8 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput2;
     private widget.PanelBiasa FormInput3;
     private widget.PanelBiasa FormInput4;
+    private widget.Label LtambahanIdrg;
+    private widget.Label LtambahanInacbg;
     private javax.swing.JPopupMenu Popup1;
     private javax.swing.JPopupMenu Popup2;
     private widget.ScrollPane Scroll;
@@ -5979,6 +6168,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private widget.ScrollPane ScrollHasil6;
     private widget.ScrollPane ScrollHasil7;
     private widget.ScrollPane ScrollHasil8;
+    private widget.ScrollPane ScrollHasil9;
     private widget.TextBox TUsiaHml;
     public javax.swing.JTabbedPane TabDiagnosa2;
     public javax.swing.JTabbedPane TabJaminanJKN;
@@ -6222,7 +6412,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private widget.Label labelTarifRS1;
     private widget.Label labelhak1;
     private widget.Label labelhasilG;
-    private widget.Label labelhasilG1;
     private widget.Label labelhasilG2;
     private widget.Label labelhasilG3;
     private widget.Label labeljam;
@@ -6242,7 +6431,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private widget.Label labelrespon1;
     private widget.Label labelrwt;
     private widget.Label labelrwt1;
-    private widget.Label labeltambahan;
     private widget.Label labeltarif;
     private widget.Label labeltarifPlasma;
     private widget.Label labelventi;
@@ -6273,6 +6461,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private widget.Label okr;
     private widget.Label okr1;
     private widget.panelisi panelGlass8;
+    private widget.panelisi panelGlass9;
     private widget.Label pb;
     private widget.Label pb1;
     private widget.Label pd;
@@ -6314,6 +6503,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     private widget.Table tbHasil2;
     private widget.Table tbHasil3;
     private widget.Table tbHasil4;
+    private widget.Table tbHasil5;
     private widget.Table tbInadrg;
     private widget.Table tbPersalinan;
     private widget.Table tbProsInacbg;
@@ -6852,16 +7042,24 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             BtnCetakKlaim.setEnabled(true);
             
             if (tabMode3.getRowCount() == 0) {
-                BtnGruperStage.setEnabled(false);
+                BtnGruperStageInacbg.setEnabled(false);
             } else {
-                BtnGruperStage.setEnabled(true);
+                BtnGruperStageInacbg.setEnabled(true);
+            }
+            
+            if (tabMode20.getRowCount() == 0) {
+                BtnGruperStageIdrg.setEnabled(false);
+            } else {
+                BtnGruperStageIdrg.setEnabled(true);
             }
 
             if (tabMode11.getRowCount() > 0) {
                 mbak_eka.inacbgImport(noSEP.getText());
                 labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + nosep + "'"));
-                labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
+                LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
                         + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + nosep + "'"));
+                LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                            + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));                
             }
         } else {
             BtnSimpanSet.setEnabled(true);
@@ -6873,9 +7071,15 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             BtnCetakKlaim.setEnabled(false);
             
             if (tabMode3.getRowCount() == 0) {
-                BtnGruperStage.setEnabled(false);
+                BtnGruperStageInacbg.setEnabled(false);
             } else {
-                BtnGruperStage.setEnabled(true);
+                BtnGruperStageInacbg.setEnabled(true);
+            }
+            
+            if (tabMode20.getRowCount() == 0) {
+                BtnGruperStageIdrg.setEnabled(false);
+            } else {
+                BtnGruperStageIdrg.setEnabled(true);
             }
         }
 
@@ -6962,8 +7166,11 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             }
 
             labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + nosep + "'"));
-            labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
+            LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
                     + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + nosep + "'"));
+            LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                            + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));
+            
             ta.setText("0");
             alkes.setText("0");
             okr.setText("0");
@@ -6974,9 +7181,15 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             sa.setText("0");
 
             if (tabMode3.getRowCount() == 0) {
-                BtnGruperStage.setEnabled(false);
+                BtnGruperStageInacbg.setEnabled(false);
             } else {
-                BtnGruperStage.setEnabled(true);
+                BtnGruperStageInacbg.setEnabled(true);
+            }
+            
+            if (tabMode20.getRowCount() == 0) {
+                BtnGruperStageIdrg.setEnabled(false);
+            } else {
+                BtnGruperStageIdrg.setEnabled(true);
             }
 
         } else {
@@ -7011,6 +7224,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         tampilProsedur();
         tampilHG1();
         tampilHG2();
+        tampilHG3();
         tampilRespon();
     }
 
@@ -7416,7 +7630,8 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         sa.setText("");
         labelTarifRS.setText("");
         labelhasilG.setText("Hasil Grouper iDRG : ");
-        labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. 0");
+        LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. 0");
+        LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. 0");
         cmbCrMasuk.setSelectedIndex(0);
         cmbPembiayaan.setSelectedIndex(0);
         cmbPembiayaan.setEnabled(false);
@@ -7573,7 +7788,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         ppDiagnosa.setEnabled(akses.getpengajuan_klaim_raza());
         BtnAddEpisod.setEnabled(akses.getpengajuan_klaim_raza());
         BtnDelEpisod.setEnabled(akses.getpengajuan_klaim_raza());
-        BtnGruperStage.setEnabled(akses.getpengajuan_klaim_raza());
+        BtnGruperStageInacbg.setEnabled(akses.getpengajuan_klaim_raza());
         BtnGruperStage1.setEnabled(akses.getpengajuan_klaim_raza());
     }
 
@@ -8108,6 +8323,47 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             }
         }
     }
+    
+    private void tampilHG3() {
+        //kalau kode payor 3 adalah JKN
+        if (kodePayor.equals("3")) {
+            Valid.tabelKosong(tabMode20);
+            try {
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append("SELECT *, TRUNCATE(cost_weight, 2) totCosWeight FROM eklaim_grouping_topup_opt WHERE no_sep='" + noSEP.getText() + "'");
+                ps21 = koneksi.prepareStatement(sb1.toString());
+                try {
+                    rs21 = ps21.executeQuery();
+                    while (rs21.next()) {
+                        tabMode20.addRow(new Object[]{
+                            false,
+                            rs21.getString("type"),
+                            rs21.getString("code"),
+                            rs21.getString("description"),
+                            rs21.getString("totCosWeight")
+                        });
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                } finally {
+                    if (rs21 != null) {
+                        rs21.close();
+                    }
+                    if (ps21 != null) {
+                        ps21.close();
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println("Notifikasi : " + e);
+            }
+
+            if (Sequel.cariIsi("select klaim_final from eklaim_new_claim where no_sep='" + noSEP.getText() + "'").equals("Final")) {
+                gambarFinal.setVisible(true);
+            } else {
+                gambarFinal.setVisible(false);
+            }
+        }
+    }
 
     private void tampilHG2() {
         //kalau kode payor 3 adalah JKN
@@ -8199,9 +8455,15 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             BtnCetakKlaim.setEnabled(true);
             
             if (tabMode3.getRowCount() == 0) {
-                BtnGruperStage.setEnabled(false);
+                BtnGruperStageInacbg.setEnabled(false);
             } else {
-                BtnGruperStage.setEnabled(true);
+                BtnGruperStageInacbg.setEnabled(true);
+            }
+            
+            if (tabMode20.getRowCount() == 0) {
+                BtnGruperStageIdrg.setEnabled(false);
+            } else {
+                BtnGruperStageIdrg.setEnabled(true);
             }
         } else {
             BtnSimpanSet.setEnabled(true);
@@ -8213,9 +8475,15 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             BtnCetakKlaim.setEnabled(false);
             
             if (tabMode3.getRowCount() == 0) {
-                BtnGruperStage.setEnabled(false);
+                BtnGruperStageInacbg.setEnabled(false);
             } else {
-                BtnGruperStage.setEnabled(true);
+                BtnGruperStageInacbg.setEnabled(true);
+            }
+            
+            if (tabMode20.getRowCount() == 0) {
+                BtnGruperStageIdrg.setEnabled(false);
+            } else {
+                BtnGruperStageIdrg.setEnabled(true);
             }
         }
 
@@ -8289,13 +8557,23 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             }
 
             if (tabMode3.getRowCount() == 0) {
-                BtnGruperStage.setEnabled(false);
+                BtnGruperStageInacbg.setEnabled(false);
             } else {
-                BtnGruperStage.setEnabled(true);
+                BtnGruperStageInacbg.setEnabled(true);
             }
+            
+            if (tabMode20.getRowCount() == 0) {
+                BtnGruperStageIdrg.setEnabled(false);
+            } else {
+                BtnGruperStageIdrg.setEnabled(true);
+            }
+            
             labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noseP + "'"));
-            labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
+            LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
                     + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noseP + "'"));
+            LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                            + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));
+            
             ta.setText("0");
             alkes.setText("0");
             okr.setText("0");
@@ -8337,6 +8615,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         SetDataKlaim("lama", tglsep);
         tampilHG1();
         tampilHG2();
+        tampilHG3();
         tampilRespon();
     }
 
@@ -10123,10 +10402,14 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                     Tgravida.getText(), Tpartus.getText(), Tabortus.getText(), onset, cekDeliveri, requestJson) == true) {
 
                 labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-                labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
+                LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
                         + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
+                LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                            + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));
+                
                 tampilHG1();
                 tampilHG2();
+                tampilHG3();
                 tampilRespon();
                 tampilDiagInacbg();
                 tampilProsInacbg();
@@ -10141,22 +10424,38 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                     BtnCetakKlaim.setEnabled(false);
 
                     if (tabMode3.getRowCount() == 0) {
-                        BtnGruperStage.setEnabled(false);
+                        BtnGruperStageInacbg.setEnabled(false);
                     } else {
-                        BtnGruperStage.setEnabled(true);
+                        BtnGruperStageInacbg.setEnabled(true);
+                    }
+                    
+                    if (tabMode20.getRowCount() == 0) {
+                        BtnGruperStageIdrg.setEnabled(false);
+                    } else {
+                        BtnGruperStageIdrg.setEnabled(true);
                     }
                 }
             } else {
                 labelhasilG.setText("Hasil Grouper iDRG : " + Sequel.cariIsi("select if(klaim_final='Belum','',klaim_final) from eklaim_new_claim where no_sep='" + noSEP.getText() + "'"));
-                labeltambahan.setText("Tambahan biaya yang dibayar pasien naik kelas : Rp. "
+                LtambahanInacbg.setText("Biaya tambahan yang harus dibayar : Rp. "
                         + Sequel.cariIsi("SELECT format(ifnull(add_payment_amt,'0'),0) tambhn_biaya FROM eklaim_grouping WHERE no_sep='" + noSEP.getText() + "'"));
+                LtambahanIdrg.setText("Biaya tambahan yang harus dibayar : Rp. "
+                            + Sequel.cariIsi("SELECT format(ifnull(total_tarif,'0'),0) tambhn_biaya FROM eklaim_response_inagrouper WHERE no_sep='" + noSEP.getText() + "'"));
+                
                 tampilHG1();
                 tampilHG2();
+                tampilHG3();
                 tampilRespon();
                 if (tabMode3.getRowCount() == 0) {
-                    BtnGruperStage.setEnabled(false);
+                    BtnGruperStageInacbg.setEnabled(false);
                 } else {
-                    BtnGruperStage.setEnabled(true);
+                    BtnGruperStageInacbg.setEnabled(true);
+                }
+                
+                if (tabMode20.getRowCount() == 0) {
+                    BtnGruperStageIdrg.setEnabled(false);
+                } else {
+                    BtnGruperStageIdrg.setEnabled(true);
                 }
             }
         }
@@ -10205,6 +10504,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                         + "where no_sep='" + Sequel.cariIsi("SELECT claim_number FROM eklaim_generate_claim where no_rawat='" + norawat + "'") + "'"));
                 tampilHG1();
                 tampilHG2();
+                tampilHG3();
                 tampilRespon();
                 if (tabMode8.getRowCount() == 0) {
                     BtnGruperStage1.setEnabled(false);
@@ -10216,6 +10516,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                         + "where no_sep='" + Sequel.cariIsi("SELECT claim_number FROM eklaim_generate_claim where no_rawat='" + norawat + "'") + "'"));
                 tampilHG1();
                 tampilHG2();
+                tampilHG3();
                 tampilRespon();
                 if (tabMode8.getRowCount() == 0) {
                     BtnGruperStage1.setEnabled(false);

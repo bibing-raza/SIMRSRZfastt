@@ -480,15 +480,19 @@ public class ApiEKLAIM_inacbg {
                                 }
                             }
                             
-                            if (root.path("metadata").path("code").asText().equals("200")) {
-                                grouperFinalIdrg(nosep);
+                            if (Sequel.cariInteger("select count(-1) from eklaim_grouping_topup_opt where no_sep='" + nosep + "'") > 0) {
                                 System.out.println(root.path("metadata").path("message").asText());
-                                akses.setCopyData("sukses");
-                                x = true;
                             } else {
-                                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
-                                akses.setCopyData("gagal");
-                                x = false;
+                                if (root.path("metadata").path("code").asText().equals("200")) {
+                                    grouperFinalIdrg(nosep);
+                                    System.out.println(root.path("metadata").path("message").asText());
+                                    akses.setCopyData("sukses");
+                                    x = true;
+                                } else {
+                                    JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                                    akses.setCopyData("gagal");
+                                    x = false;
+                                }
                             }
                         } else {
                             JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
@@ -867,36 +871,58 @@ public class ApiEKLAIM_inacbg {
         return x;
     }
 
-    public void menggrouperKedua(String nosep_pengajuan, String kodeTopUP) {
+    public void menggrouperKedua(String nosep_pengajuan, String kodeTopUP, String jenis) {
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             headers.add("Content-Type", "application/json;charset=UTF-8");
-            requestJson4
-                    = "{"
-                    + "\"metadata\": {"
-                    + "\"method\": \"grouper_inacbg\","
-                    + "\"stage\": \"2\""
-                    + "},"
-                    + "\"data\": {"
-                    + "\"nomor_sep\": \"" + nosep_pengajuan + "\","
-                    + "\"special_cmg\": \"" + kodeTopUP + "\""
-                    + "}"
-                    + "}";
+            
+            if (jenis.equals("inacbg")) {
+                requestJson4
+                        = "{"
+                        + "\"metadata\": {"
+                        + "\"method\": \"grouper_inacbg\","
+                        + "\"stage\": \"2\""
+                        + "},"
+                        + "\"data\": {"
+                        + "\"nomor_sep\": \"" + nosep_pengajuan + "\","
+                        + "\"special_cmg\": \"" + kodeTopUP + "\""
+                        + "}"
+                        + "}";
+            } else if (jenis.equals("idrg")) {
+                requestJson4
+                        = "{"
+                        + "\"metadata\": {"
+                        + "\"method\": \"grouper_idrg\","
+                        + "\"stage\": \"2\""
+                        + "},"
+                        + "\"data\": {"
+                        + "\"nomor_sep\": \"" + nosep_pengajuan + "\","
+                        + "\"topup_codes\": \"" + kodeTopUP + "\""
+                        + "}"
+                        + "}";
+            }
 
             System.out.println("JSON : " + requestJson4);
             requestEntity = new HttpEntity(requestJson4, headers);
             stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
             System.out.println("Output : " + stringbalik);
             root = mapper.readTree(stringbalik);
-
+          
             if (root.path("metadata").path("code").asText().equals("200")) {
-                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
-                akses.setCopyData("sukses");
+                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());                
+                if (jenis.equals("idrg")) {
+                    grouperFinalIdrg(nosep_pengajuan);
+                    System.out.println(root.path("metadata").path("message").asText());
+                    akses.setCopyData("sukses");
+                } else if (jenis.equals("inacbg")) {
+                    System.out.println(root.path("metadata").path("message").asText());
+                    akses.setCopyData("sukses");
+                }
             } else {
                 JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
                 akses.setCopyData("gagal");
-            }
+            }           
         } catch (Exception erornya) {
             System.out.println("Notifikasi : " + erornya);
             akses.setCopyData("gagal");

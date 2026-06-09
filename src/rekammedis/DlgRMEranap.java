@@ -182,6 +182,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnCatatanMaterial = new widget.ButtonBig();
         BtnCatatanRuangPemulihan = new widget.ButtonBig();
         BtnSerahTerimaPasca = new widget.ButtonBig();
+        BtnInformasiTindakanPembiusan = new widget.ButtonBig();
         BtnAsesmenPraSedasi = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
@@ -1167,6 +1168,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput1.add(BtnSerahTerimaPasca);
+
+        BtnInformasiTindakanPembiusan.setForeground(new java.awt.Color(0, 0, 0));
+        BtnInformasiTindakanPembiusan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        BtnInformasiTindakanPembiusan.setText("Informasi Tindakan Pembiusan");
+        BtnInformasiTindakanPembiusan.setIconTextGap(0);
+        BtnInformasiTindakanPembiusan.setName("BtnInformasiTindakanPembiusan"); // NOI18N
+        BtnInformasiTindakanPembiusan.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnInformasiTindakanPembiusan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnInformasiTindakanPembiusanActionPerformed(evt);
+            }
+        });
+        FormInput1.add(BtnInformasiTindakanPembiusan);
 
         BtnAsesmenPraSedasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenPraSedasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/anastesi2.png"))); // NOI18N
@@ -2387,6 +2401,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnSerahTerimaPascaActionPerformed
 
+    private void BtnInformasiTindakanPembiusanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInformasiTindakanPembiusanActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            if (akses.getadmin() == true) {
+                akses.setform("DlgRMEranap");
+                RMInformasiTindakanPembiusan form = new RMInformasiTindakanPembiusan(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, masih dalam proses dikerjakan...!!!");
+            }
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnInformasiTindakanPembiusanActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2431,6 +2466,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnFormulirSiteMarking;
     private widget.ButtonBig BtnGeneralConsent;
     private widget.ButtonBig BtnGrafikPantauHarian;
+    private widget.ButtonBig BtnInformasiTindakanPembiusan;
     private widget.ButtonBig BtnJadwalObat;
     private widget.ButtonBig BtnJawabKonsul;
     private widget.Button BtnKeluar;
@@ -2552,6 +2588,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnCatatanRuangPemulihan.setEnabled(akses.getkegiatan_operasi());
         BtnFormulirSiteMarking.setEnabled(akses.getkegiatan_operasi());
         BtnSerahTerimaPasca.setEnabled(akses.getkegiatan_operasi());
+        BtnInformasiTindakanPembiusan.setEnabled(akses.getkegiatan_operasi());
     }
     
     public void setData(String norw, String norm, String nmpasien,
