@@ -3329,6 +3329,49 @@ public final class sekuel {
             System.out.println("Notifikasi : " + e);
         }
     }
+    
+    public void menyimpanQrTte2(String table, String value, String sama, String AlmGb1, String AlmGb2) {
+        try {
+            ps = connect.prepareStatement("insert into " + table + " values(" + value + ",?,?)");
+            try {
+                //jika file gambar 1 tidak ada
+                if (AlmGb1 == null || AlmGb1.trim().equals("")) {
+                    ps.setNull(1, java.sql.Types.BLOB);
+                } else {
+                    File file1 = new File(AlmGb1);
+                    if (!file1.exists()) {
+                        // file tidak ada → tetap kirim NULL
+                        ps.setNull(1, java.sql.Types.BLOB);
+                    } else {
+                        FileInputStream fis = new FileInputStream(file1);
+                        ps.setBinaryStream(1, fis, file1.length());
+                    }
+                }
+                
+                //jika file gambar 2 tidak ada
+                if (AlmGb2 == null || AlmGb2.trim().equals("")) {
+                    ps.setNull(2, java.sql.Types.BLOB);
+                } else {
+                    File file2 = new File(AlmGb2);
+                    if (!file2.exists()) {
+                        ps.setNull(2, java.sql.Types.BLOB);
+                    } else {
+                        FileInputStream fis2 = new FileInputStream(file2);
+                        ps.setBinaryStream(2, fis2, file2.length());
+                    }
+                }
+                ps.executeUpdate();
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
 
     public void insertClosingStok() {
         cekData = cariInteger("select count(-1) from stok_bulanan where periode = DATE_FORMAT(now(),'%Y-%m')");

@@ -10332,11 +10332,19 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     public void tampilKunjungan() {
         Valid.tabelKosong(tabMode7);
         try {
-            ps3 = koneksi.prepareStatement("SELECT r.no_rkm_medis, date_format(r.tgl_registrasi,'%d-%m-%Y') tglReg, if(r.status_lanjut='Ralan','R. Jalan','R. Inap') status_lanjut, "
-                    + "p.nm_poli, pj.png_jawab, ifnull(bs.no_sep,'-') no_sep, ifnull(bs.no_rujukan,'-') no_rujukan, r.kd_pj, ifnull(bs.jkel,'-') jkel, "
-                    + "ifnull(bs.noskdp,'-') noskdp, ifnull(bs.urutan_sep,'-') urutan_sep, r.no_rawat, bs.no_kartu,bs.nama_pasien, bs.tanggal_lahir, bs.diagawal, "
-                    + "bs.nmdiagnosaawal FROM reg_periksa r INNER JOIN poliklinik p ON p.kd_poli=r.kd_poli INNER JOIN penjab pj ON pj.kd_pj=r.kd_pj "
-                    + "LEFT JOIN bridging_sep bs ON bs.no_rawat=r.no_rawat WHERE r.no_rkm_medis ='" + TCari.getText() + "' ORDER BY r.tgl_registrasi DESC LIMIT 25");
+            ps3 = koneksi.prepareStatement("SELECT r.no_rkm_medis, DATE_FORMAT(r.tgl_registrasi,'%d-%m-%Y') tglReg, IF(r.status_lanjut='Ralan','R. Jalan','R. Inap') status_lanjut, "
+                    + "p.nm_poli, pj.png_jawab, IF(rk.no_rawat IS NOT NULL, rk.no_sep, IFNULL(bs.no_sep,'-')) no_sep, "
+                    + "IF(rk.no_rawat IS NOT NULL, IFNULL(bs2.no_rujukan,'-'), IFNULL(bs.no_rujukan,'-')) no_rujukan, "
+                    + "r.kd_pj, IFNULL(bs.jkel,'-') jkel, IF(rk.no_rawat IS NOT NULL, IFNULL(bs2.noskdp,'-'), IFNULL(bs.noskdp,'-')) noskdp, "
+                    + "IF(rk.no_rawat IS NOT NULL, IFNULL(bs2.urutan_sep,'-'), IFNULL(bs.urutan_sep,'-')) urutan_sep, "
+                    + "r.no_rawat, IFNULL(bs.no_kartu,'-') no_kartu, IFNULL(bs.nama_pasien,'-') nama_pasien, "
+                    + "IFNULL(bs.tanggal_lahir,'-') tanggal_lahir, IFNULL(bs.diagawal,'-') diagawal, IFNULL(bs.nmdiagnosaawal,'-') nmdiagnosaawal "
+                    + "FROM reg_periksa r INNER JOIN poliklinik p ON p.kd_poli = r.kd_poli "
+                    + "INNER JOIN penjab pj ON pj.kd_pj = r.kd_pj LEFT JOIN bridging_sep bs ON bs.no_rawat = r.no_rawat "
+                    + "LEFT JOIN reg_konsul_internal rk ON rk.no_rawat = r.no_rawat "
+                    + "LEFT JOIN bridging_sep bs2 ON bs2.no_sep = (SELECT x.no_sep FROM bridging_sep x WHERE x.nomr = r.no_rkm_medis AND x.jnspelayanan = '2' "
+                    + "AND x.kdpolitujuan <> 'IGD' AND x.no_rujukan IS NOT NULL AND x.no_rujukan <> '' ORDER BY x.tglsep DESC LIMIT 1) WHERE "
+                    + "r.no_rkm_medis = '" + TCari.getText() + "' ORDER BY r.tgl_registrasi DESC LIMIT 25");
             try {
                 rs3 = ps3.executeQuery();
                 i = 1;

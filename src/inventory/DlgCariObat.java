@@ -3211,7 +3211,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                 
                 //cek program prb
                 if (Sequel.cariInteger("select count(-1) from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'") > 0) {
-                    programPRB = " (" + Sequel.cariIsi("select if(count(-1)>0,'Program PRB','-') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'") + ")";
+                    programPRB = " " + Sequel.cariIsi("select if(count(-1)>0,'(Program PRB)','-') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'");
                 } else {
                     programPRB = "";
                 }
@@ -3244,9 +3244,14 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                     param.put("logo", Sequel.cariGambar("select logo from setting"));
                     param.put("carabyr", Sequel.cariIsi("select pj.png_jawab from reg_periksa rp inner join penjab pj on pj.kd_pj=rp.kd_pj "
                             + "where rp.no_rawat='" + TNoRw.getText() + "'"));
-                    param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") + "" + programPRB);
                     param.put("ketResep", resepObatKronis);
                     param.put("judul", resepIterJudul);
+                    
+                    if (Sequel.cariInteger("select count(-1) from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                        param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") + "" + programPRB);
+                    } else {
+                        param.put("nosep", Sequel.cariIsi("select no_sep from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") + "" + programPRB);
+                    }
 
                     Valid.MyReport("rptCatatanResepRalan.jasper", "report", "::[ Cetak e-Resep ]::",
                             "SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
@@ -3258,9 +3263,14 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 
                 } else if (cmbKertas.getSelectedIndex() == 1) {
                     Map<String, Object> param = new HashMap<>();
-                    param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") + "" + programPRB);
                     param.put("tglcetak", Sequel.cariIsi("select concat(date_format(date(now()),'%d/%m/%Y'),', Jam : ',time(now()),' Wita')"));
                     param.put("ketResep", resepObatKronis);
+                    
+                    if (Sequel.cariInteger("select count(-1) from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                        param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") + "" + programPRB);
+                    } else {
+                        param.put("nosep", Sequel.cariIsi("select no_sep from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") + "" + programPRB);
+                    }
 
                     Valid.MyReport("rptStrukResepRalan.jasper", "report", "::[ Struk Resep Dokter Poliklinik/Unit Rawat Jalan Kertas Thermal ]::",
                             " SELECT pl.nm_poli, concat(date_format(cr.tgl_perawatan,'%d-%m-%Y'),'" + resepIter + "') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
@@ -3310,7 +3320,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 
                 //cek program prb
                 if (Sequel.cariInteger("select count(-1) from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'") > 0) {
-                    programPRB = " (" + Sequel.cariIsi("select if(count(-1)>0,'Program PRB','-') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'") + ")";
+                    programPRB = " " + Sequel.cariIsi("select if(count(-1)>0,'(Program PRB)','-') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'");
                 } else {
                     programPRB = "";
                 }
@@ -3343,9 +3353,14 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                     param.put("logo", Sequel.cariGambar("select logo from setting"));
                     param.put("carabyr", Sequel.cariIsi("select pj.png_jawab from reg_periksa rp inner join penjab pj on pj.kd_pj=rp.kd_pj "
                             + "where rp.no_rawat='" + TNoRw.getText() + "'"));
-                    param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") + "" + programPRB);
                     param.put("ketResep", resepObatKronis);
                     param.put("judul", resepIterJudul);
+                    
+                    if (Sequel.cariInteger("select count(-1) from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                        param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") + "" + programPRB);
+                    } else {
+                        param.put("nosep", Sequel.cariIsi("select no_sep from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") + "" + programPRB);
+                    }
 
                     Valid.MyReport("rptCatatanResepRalan.jasper", "report", "::[ Cetak e-Resep ]::",
                             "SELECT pl.nm_poli, date_format(cr.tgl_perawatan,'%d-%m-%Y') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
@@ -3356,9 +3371,14 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 
                 } else if (cmbKertas.getSelectedIndex() == 1) {
                     Map<String, Object> param = new HashMap<>();
-                    param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") + "" + programPRB);
                     param.put("tglcetak", Sequel.cariIsi("select concat(date_format(date(now()),'%d/%m/%Y'),', Jam : ',time(now()),' Wita')"));
                     param.put("ketResep", resepObatKronis);
+                    
+                    if (Sequel.cariInteger("select count(-1) from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                        param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") + "" + programPRB);
+                    } else {
+                        param.put("nosep", Sequel.cariIsi("select no_sep from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") + "" + programPRB);
+                    }
 
                     Valid.MyReport("rptStrukResepRalan.jasper", "report", "::[ Struk Resep Dokter Poliklinik/Unit Rawat Jalan Kertas Thermal ]::",
                             " SELECT pl.nm_poli, concat(date_format(cr.tgl_perawatan,'%d-%m-%Y'),'" + resepIter + "') tgl, d.nm_dokter, cr.no_rawat, p.no_rkm_medis, "
@@ -3382,10 +3402,16 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         param.put("emailrs", akses.getemailrs());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
 
-        if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") == 0) {
-            param.put("nosep", "-");
+        if (Sequel.cariInteger("select count(-1) from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") == 0) {
+                param.put("nosep", "-");
+            } else {
+                param.put("nosep", Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' order by tglsep desc limit 1") + " "
+                        + Sequel.cariIsi("select if(count(-1)>0,'(Program PRB BPJS)','') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'"));
+            }
         } else {
-            param.put("nosep", Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' order by tglsep desc limit 1"));
+            param.put("nosep", Sequel.cariIsi("select no_sep from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") + " "
+                    + Sequel.cariIsi("select if(count(-1)>0,'(Program PRB BPJS)','') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'"));
         }
 
         if (tte.equals("tidak")) {

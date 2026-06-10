@@ -2026,7 +2026,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
         //cek program prb
         if (Sequel.cariInteger("select count(-1) from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'") > 0) {
-            programPRB = " (" + Sequel.cariIsi("select if(count(-1)>0,'Program PRB','-') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'") + ")";
+            programPRB = " " + Sequel.cariIsi("select if(count(-1)>0,'(Program PRB)','-') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'");
         } else {
             programPRB = "";
         }
@@ -2062,7 +2062,11 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             if (Sequel.cariInteger("select count(-1) from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "'") > 0) {
                 param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "'") + "" + programPRB);
             } else {
-                param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") + "" + programPRB);
+                if (Sequel.cariInteger("select count(-1) from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                    param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") + "" + programPRB);
+                } else {
+                    param.put("nosep", Sequel.cariIsi("select no_sep from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") + "" + programPRB);
+                }
             }
         } else {
             param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='1'"));

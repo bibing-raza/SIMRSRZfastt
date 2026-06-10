@@ -4551,21 +4551,21 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                     "<table width='100%' class='isi'>"
                     + "<thead>"
                     + "<tr class='isi'>"
-                    + "    <td align='center' bgcolor='#f8fdf3'><b>TTD Pihak Keluarga</b></td>"
-                    + "    <td align='center' bgcolor='#f8fdf3'><b>TTD Pihak RS</b></td>"
                     + "    <td align='center' bgcolor='#f8fdf3'><b>TTD Yang Menyatakan</b></td>"
                     + "    <td align='center' bgcolor='#f8fdf3'><b>TTD Penerima Informasi</b></td>"
+                    + "    <td align='center' bgcolor='#f8fdf3'><b>TTD Pihak Keluarga</b></td>"
+                    + "    <td align='center' bgcolor='#f8fdf3'><b>TTD Pihak RS</b></td>"                    
                     + "</tr>"
                     + "</thead>"
                     + "<tbody>"
             );
 
             htmlContent.append(
-                    "<tr class='isi'>"
-                    + "<td valign='middle' align='center'><img src='" + gambar1 + "' width='160' height='160' alt='TTD Pihak Keluarga'><br>(" + TnmPhkKeluarga.getText() + ")<br></td>"
-                    + "<td valign='middle' align='center'><img src='" + gambar2 + "' width='160' height='160' alt='TTD Pihak RS'><br>(" + TnmPhkRS.getText() + ")<br></td>"
-                    + "<td valign='middle' align='center'><img src='" + gambar3 + "' width='160' height='160' alt='TTD Yang Menyatakan'><br>(" + nmPJ.getText() + ")<br></td>"
-                    + "<td valign='middle' align='center'><img src='" + gambar4 + "' width='160' height='160' alt='TTD Penerima Informasi'><br>(" + TnmPenerima.getText() + ")<br></td>"
+                    "<tr class='isi'>"                    
+                    + "<td valign='middle' align='center'><img src='" + gambar1 + "' width='160' height='160' alt='TTD Yang Menyatakan'><br>(" + nmPJ.getText() + ")<br></td>"
+                    + "<td valign='middle' align='center'><img src='" + gambar2 + "' width='160' height='160' alt='TTD Penerima Informasi'><br>(" + TnmPenerima.getText() + ")<br></td>"
+                    + "<td valign='middle' align='center'><img src='" + gambar3 + "' width='160' height='160' alt='TTD Pihak Keluarga'><br>(" + TnmPhkKeluarga.getText() + ")<br></td>"
+                    + "<td valign='middle' align='center'><img src='" + gambar4 + "' width='160' height='160' alt='TTD Pihak RS'><br>(" + TnmPhkRS.getText() + ")<br></td>"
                     + "</tr>"
             );
             

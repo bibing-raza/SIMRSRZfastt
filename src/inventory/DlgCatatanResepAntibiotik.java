@@ -2321,10 +2321,12 @@ public class DlgCatatanResepAntibiotik extends javax.swing.JDialog {
                         param.put("emailrs", akses.getemailrs());
                         param.put("logo", Sequel.cariGambar("select logo from setting"));
 
-                        if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") == 0) {
-                            param.put("nosep", "-");
+                        if (Sequel.cariInteger("select count(-1) from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                            param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'") + " "
+                                    + Sequel.cariIsi("select if(count(-1)>0,'(Program PRB BPJS)','') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'"));
                         } else {
-                            param.put("nosep", Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' order by tglsep desc limit 1"));
+                            param.put("nosep", Sequel.cariIsi("select no_sep from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") + " "
+                                    + Sequel.cariIsi("select if(count(-1)>0,'(Program PRB BPJS)','') from bridging_srb_bpjs where no_srb='" + TNoRw.getText() + "'"));
                         }
 
                         if (cmbPilihCetak.getSelectedIndex() == 0) {
