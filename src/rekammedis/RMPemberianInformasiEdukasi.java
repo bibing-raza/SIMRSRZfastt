@@ -3609,7 +3609,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
                 //data penilaian informasi edukasi
                 Sequel.AutoComitFalse();
-                Sequel.queryu("delete from temporary_tte");
+                Sequel.queryu("delete from temporary_tte2");
                 Sequel.queryu("delete from temporary3");
                 try {
                     ps3 = koneksi.prepareStatement("select pi.*, date_format(pi.tanggal,'%d/%m/%Y') tggl, time_format(pi.jam,'%H:%i') jamm, "
@@ -4062,20 +4062,46 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                                                 "Pemberian Informasi Dan Edukasi", rs3.getString("nmPetugas"),
                                                 rs3.getString("tglSimpan"), rs3.getString("jamSimpan")) + "') from kalimat_tte where kode='001'");
 
-                                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
-                                
-                                Sequel.menyimpanQrTte("temporary_tte",
+                                Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");                                
+                                Sequel.menyimpanQrTte2("temporary_tte2",
                                         "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita" + "',"
                                         + "'" + penerimaPND + "','" + metodeNilai + "','" + profesi + "','" + isiPenKesOK + "','" + tingkatPemahanan + "',"
-                                        + "'" + evaluasi + "','" + rs3.getString("nmPetugas") + "','" + rs3.getString("nm_penerima_edukasi") + "','" + rs3.getString("wktSimpan") + "'",
-                                        "file QRCode TTE Pemberian Informasi Dan Edukasi", Sequel.cariFolderPrintTte());
+                                        + "'" + evaluasi + "','" + rs3.getString("nmPetugas") + "','" + rs3.getString("nm_penerima_edukasi") + "',"
+                                        + "'" + rs3.getString("wktSimpan") + "','" + rs3.getString("id_file_nm_penerima_edukasi") + "'",
+                                        "file QRCode TTE Pemberian Informasi Dan Edukasi", Sequel.cariFolderPrintTte(), "");
                                 
-//                                Sequel.menyimpanQrTte2("temporary_tte2",
+                                //proses update set gambar ttd ke tabel temporary_tte2 field tempGambar2
+                                try {
+                                    StringBuilder htmlContent = new StringBuilder();
+                                    String ipGambar = "";
+                                    try {
+                                        //cek atau ping ip addres
+                                        ipGambar = "192.168.0.230";
+                                        InetAddress inet = InetAddress.getByName(ipGambar);
+
+                                        //ping sukses timeout 100 ms (0.1 detik)
+                                        if (inet.isReachable(100)) {
+                                            if (rs3.getString("id_file_nm_penerima_edukasi").equals("")) {
+                                                Valid.jalankanURL("http://192.168.0.230:7183/img-rme/ttd_kosong.jpg");
+                                            } else {
+                                                Valid.jalankanURL("http://192.168.0.230:7183/reviewrm/index.php/Admin/ApiTtd/update_blob?id_file=" + rs3.getString("id_file_nm_penerima_edukasi"));
+                                            }
+                                            //ping gagal
+                                        } else {
+                                            Valid.jalankanURL("https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg");
+                                        }
+                                    } catch (Exception e) {
+                                        System.out.println("Notif : " + e);
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Notifikasi : " + e);
+                                }
+                                
+//                                Sequel.menyimpanQrTte("temporary_tte",
 //                                        "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita" + "',"
 //                                        + "'" + penerimaPND + "','" + metodeNilai + "','" + profesi + "','" + isiPenKesOK + "','" + tingkatPemahanan + "',"
-//                                        + "'" + evaluasi + "','" + rs3.getString("nmPetugas") + "','" + rs3.getString("nm_penerima_edukasi") + "',"
-//                                        + "'" + rs3.getString("wktSimpan") + "','" + rs3.getString("id_file_nm_penerima_edukasi") + "'",
-//                                        "file QRCode TTE Pemberian Informasi Dan Edukasi", Sequel.cariFolderPrintTte(), "");
+//                                        + "'" + evaluasi + "','" + rs3.getString("nmPetugas") + "','" + rs3.getString("nm_penerima_edukasi") + "','" + rs3.getString("wktSimpan") + "'",
+//                                        "file QRCode TTE Pemberian Informasi Dan Edukasi", Sequel.cariFolderPrintTte());
                                 
                             } else {
                                 Sequel.menyimpanIgnore("temporary3",
@@ -4114,7 +4140,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                 } else {
                     if (cmbPilihCetak.getSelectedIndex() == 0) {
                         Valid.MyReport("rptPemberianInformasiEdukasiQr.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
-                                "SELECT * FROM temporary_tte", param);
+                                "SELECT * FROM temporary_tte2", param);
                         Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                     } else {
                         Valid.MyReport("rptPemberianInformasiEdukasi.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",

@@ -72,7 +72,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
     private String kodedokter = "", namadokter = "", noresep = "", bangsal = "", bangsaldefault = Sequel.cariIsi("select kd_bangsal from set_lokasi limit 1"), tampilkan_ppnobat_ralan = "", status = "";
     private String stat = "", obat = "", nmObat = "", idObat = "", kdUnit = "", programPRB = "", resepObatKronis = "", noSep = "", 
             tglHabisRujukan = "", noRM = "", noSEP = "", noKARTU = "", noRAWATiter = "", pengambilan = "", sttsAmbil = "", poliKe = "", 
-            tglhabisRujukan = "", kdpoliIter = "", tglAmbilObat = "", resepIter = "", resepIterJudul = "", tte = "";
+            tglhabisRujukan = "", kdpoliIter = "", tglAmbilObat = "", resepIter = "", resepIterJudul = "", tte = "", noSEPlama = "";
     private DlgCariBangsal caribangsal = new DlgCariBangsal(null, false);
     public DlgBarang barang = new DlgBarang(null, false);
     public DlgAturanPakai aturanpakai = new DlgAturanPakai(null, false);
@@ -3217,8 +3217,9 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                 }
                 
                 //cek resep obat kronis
+                noSEPlama = Sequel.cariIsi("select ifnull(no_sep,'') from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'");
                 if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0
-                        || Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSep + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
+                        || Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSEPlama + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
                     resepObatKronis = "Resep dalam kategori obat kronis";
                 } else {
                     resepObatKronis = "-";
@@ -3326,8 +3327,9 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                 }
 
                 //cek resep obat kronis
+                noSEPlama = Sequel.cariIsi("select ifnull(no_sep,'') from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'");
                 if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0
-                        || Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSep + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
+                        || Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSEPlama + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
                     resepObatKronis = "Resep dalam kategori obat kronis";
                 } else {
                     resepObatKronis = "-";

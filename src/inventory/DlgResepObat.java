@@ -61,7 +61,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
     private Date date = new Date();
     private String now = dateFormat.format(date), status = "", penjab = "", nmPrinter1 = "", nmPrinter2 = "", noSep = "",
             kodeobat = "", tglrsp = "", jamrsp = "", kdUnit = "", programPRB = "", resepObatKronis = "", ukuranLabel = "",
-            resepIter = "", tte = "";
+            resepIter = "", tte = "", noSEPlama = "", norwtLama = "";
     private double total = 0, jumlahtotal = 0;
     private int i = 0, conteng = 0, x = 0;
 
@@ -1362,27 +1362,41 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_tbItemObatMouseClicked
 
     private void ppSimpanResepObatKronisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppSimpanResepObatKronisActionPerformed
+        noSEPlama = Sequel.cariIsi("select ifnull(no_sep,'') from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'");
+        norwtLama = Sequel.cariIsi("select ifnull(no_rawat,'') from bridging_sep where no_sep='" + noSEPlama + "' and jnspelayanan='2'");
+        
         if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRw.getText() + "' and kd_pj='B01'") > 0) {
             x = JOptionPane.showConfirmDialog(rootPane, "Apakah akan dijadikan sebagai resep obat kronis..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
-                Sequel.mengedit("bridging_sep", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
-                Sequel.mengedit("bridging_sep_backup", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
-                Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
-                JOptionPane.showMessageDialog(null, "Resep sudah diupdate menjadi kategori resep obat kronis...!!!");
-                cekResepKronis();
+                if (Sequel.cariInteger("select count(-1) from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                    Sequel.mengedit("bridging_sep", "no_sep='" + noSEPlama + "'", "sep_resep_obat_kronis='ya'");
+                    Sequel.mengedit("bridging_sep_backup", "no_sep='" + noSEPlama + "'", "sep_resep_obat_kronis='ya'");
+                    Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + norwtLama + "'", "sep_resep_obat_kronis='ya'");
+                    JOptionPane.showMessageDialog(null, "Resep sudah diupdate menjadi kategori resep obat kronis...!!!");
+                } else {
+                    Sequel.mengedit("bridging_sep", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
+                    Sequel.mengedit("bridging_sep_backup", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
+                    Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='ya'");
+                    JOptionPane.showMessageDialog(null, "Resep sudah diupdate menjadi kategori resep obat kronis...!!!");
+                }
+
+                cekResepKronis(noSEPlama);
                 tampil();
             } else {
-                cekResepKronis();
+                cekResepKronis(noSEPlama);
                 tampil();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien BPJS saja...!!!");
-            cekResepKronis();
+            cekResepKronis(noSEPlama);
             tampil();
         }
     }//GEN-LAST:event_ppSimpanResepObatKronisActionPerformed
 
     private void ppBatalResepObatKronisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppBatalResepObatKronisActionPerformed
+        noSEPlama = Sequel.cariIsi("select ifnull(no_sep,'') from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'");
+        norwtLama = Sequel.cariIsi("select ifnull(no_rawat,'') from bridging_sep where no_sep='" + noSEPlama + "' and jnspelayanan='2'");
+
         if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRw.getText() + "' and kd_pj='B01'") > 0) {
             noSep = "";
             noSep = Sequel.cariIsi("select no_sep from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "' limit 1");
@@ -1392,20 +1406,27 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             } else {
                 x = JOptionPane.showConfirmDialog(rootPane, "Apakah kategori resep obat kronis akan dibatalkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
-                    Sequel.mengedit("bridging_sep", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
-                    Sequel.mengedit("bridging_sep_backup", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
-                    Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
-                    JOptionPane.showMessageDialog(null, "Kategori resep obat kronis telah dibatalkan utk. pasien ini...!!!");
-                    cekResepKronis();
+                    if (Sequel.cariInteger("select count(-1) from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                        Sequel.mengedit("bridging_sep", "no_sep='" + noSEPlama + "'", "sep_resep_obat_kronis='tidak'");
+                        Sequel.mengedit("bridging_sep_backup", "no_sep='" + noSEPlama + "'", "sep_resep_obat_kronis='tidak'");
+                        Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + norwtLama + "'", "sep_resep_obat_kronis='tidak'");
+                        JOptionPane.showMessageDialog(null, "Kategori resep obat kronis telah dibatalkan utk. pasien ini...!!!");
+                    } else {
+                        Sequel.mengedit("bridging_sep", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
+                        Sequel.mengedit("bridging_sep_backup", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
+                        Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "sep_resep_obat_kronis='tidak'");
+                        JOptionPane.showMessageDialog(null, "Kategori resep obat kronis telah dibatalkan utk. pasien ini...!!!");
+                    }                    
+                    cekResepKronis(noSEPlama);
                     tampil();
                 } else {
-                    cekResepKronis();
+                    cekResepKronis(noSEPlama);
                     tampil();
                 }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien BPJS saja...!!!");
-            cekResepKronis();
+            cekResepKronis(noSEPlama);
             tampil();
         }
     }//GEN-LAST:event_ppBatalResepObatKronisActionPerformed
@@ -1778,7 +1799,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             NoResep.setText(tbResep.getValueAt(tbResep.getSelectedRow(), 0).toString());
             Sequel.cariIsi("select no_rawat from resep_obat where no_resep=?", TNoRw, NoResep.getText());
             TPasien.setText(tbResep.getValueAt(tbResep.getSelectedRow(), 2).toString().replaceAll(TNoRw.getText() + " ", ""));
-            cekResepKronis();
+            cekResepKronis(Sequel.cariIsi("select ifnull(no_sep,'') from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'"));
         }
     }
     
@@ -1807,7 +1828,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         cmbDtk.setSelectedItem(detik);
         ChkInput.setSelected(true);
         isForm();
-        cekResepKronis();
+        
+        cekResepKronis(Sequel.cariIsi("select ifnull(no_sep,'') from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'"));
     }
 
     public void setDokterRalan() {
@@ -1994,12 +2016,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         this.setCursor(Cursor.getDefaultCursor());
     }
     
-    private void cekResepKronis() {
+    private void cekResepKronis(String noSepYangLalu) {
         noSep = "";
         noSep = Sequel.cariIsi("select no_sep from iter_obat_bpjs where no_rawat='" + TNoRw.getText() + "' limit 1");
-        
-        if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0 
-                || Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSep + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
+
+        if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0
+                || Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSep + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0
+                || Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSepYangLalu + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
             Tcatatan.setText("Catatan : Resep dalam kategori obat kronis");
         } else {
             Tcatatan.setText("Catatan : -");

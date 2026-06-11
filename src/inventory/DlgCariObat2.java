@@ -65,7 +65,7 @@ public final class DlgCariObat2 extends javax.swing.JDialog {
     private DlgBarang barang = new DlgBarang(null, false);
     private String Suspen_Piutang_Obat_Ranap = "", Obat_Ranap = "", HPP_Obat_Rawat_Inap = "", Persediaan_Obat_Rawat_Inap = "",
             bangsal = "", status = "", stat = "", idObat = "", jenisResep = "", resepPulang = "", kdUnit = "", resepObatKronis = "", 
-            resepIter = "", resepIterJudul = "";
+            resepIter = "", resepIterJudul = "", noSEPlama = "";
     private WarnaTable2 warna = new WarnaTable2();
     private DlgCariBangsal caribangsal = new DlgCariBangsal(null, false);
     public DlgAturanPakai aturanpakai = new DlgAturanPakai(null, false);
@@ -3236,7 +3236,9 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 }
 
                 //cek resep obat kronis
-                if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
+                noSEPlama = Sequel.cariIsi("select ifnull(no_sep,'') from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'");
+                if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0
+                        || Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSEPlama + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
                     resepObatKronis = "Resep dalam kategori obat kronis";
                 } else {
                     resepObatKronis = "-";
@@ -3345,7 +3347,9 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 }
 
                 //cek resep obat kronis
-                if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
+                noSEPlama = Sequel.cariIsi("select ifnull(no_sep,'') from reg_konsul_internal where no_rawat='" + TNoRw.getText() + "'");
+                if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0
+                        || Sequel.cariInteger("select count(-1) from bridging_sep where no_sep='" + noSEPlama + "' and jnspelayanan='2' and sep_resep_obat_kronis='ya'") > 0) {
                     resepObatKronis = "Resep dalam kategori obat kronis";
                 } else {
                     resepObatKronis = "-";

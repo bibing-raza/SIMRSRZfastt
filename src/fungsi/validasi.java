@@ -105,6 +105,7 @@ import static org.primefaces.component.dnd.DraggableBase.PropertyKeys.opacity;
 import widget.ComboBox;
 import widget.TextArea;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -1298,6 +1299,29 @@ public final class validasi {
             desktop.print(new File(new java.net.URI("http://" + host + "/" + url)));
         } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+    
+    public static void jalankanURL(String urlTujuan) {
+        try {
+            URL url = new URL(urlTujuan);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            conn.setRequestMethod("GET");
+            conn.setConnectTimeout(5000);
+            conn.setReadTimeout(5000);
+
+            int responseCode = conn.getResponseCode();
+
+            if (responseCode == 200) {
+                System.out.println("Response : " + responseCode + " (URL berhasil dijalankan)");
+            } else {
+                System.out.println("Response : " + responseCode + " (URL gagal dijalankan)");
+            }
+
+            conn.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

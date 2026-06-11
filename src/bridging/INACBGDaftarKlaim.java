@@ -741,7 +741,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass8.add(jLabel15);
 
         tgl1.setEditable(false);
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -761,7 +761,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass8.add(jLabel17);
 
         tgl2.setEditable(false);
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -826,7 +826,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari2.setMnemonic('6');
         BtnCari2.setText("Tampilkan Data");
         BtnCari2.setToolTipText("Alt+6");
         BtnCari2.setName("BtnCari2"); // NOI18N
@@ -845,7 +844,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnAll2.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll2.setMnemonic('M');
         BtnAll2.setText("Semua Data");
         BtnAll2.setToolTipText("Alt+M");
         BtnAll2.setName("BtnAll2"); // NOI18N
@@ -864,7 +862,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnKeluar2.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar2.setMnemonic('K');
         BtnKeluar2.setText("Keluar");
         BtnKeluar2.setToolTipText("Alt+K");
         BtnKeluar2.setName("BtnKeluar2"); // NOI18N
@@ -935,7 +932,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         tgl3.setEditable(false);
-        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         tgl3.setDisplayFormat("dd-MM-yyyy");
         tgl3.setName("tgl3"); // NOI18N
         tgl3.setOpaque(false);
@@ -950,7 +947,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass12.add(jLabel20);
 
         tgl4.setEditable(false);
-        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         tgl4.setDisplayFormat("dd-MM-yyyy");
         tgl4.setName("tgl4"); // NOI18N
         tgl4.setOpaque(false);
@@ -1022,7 +1019,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnCari3.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari3.setMnemonic('6');
         BtnCari3.setText("Tampilkan Data");
         BtnCari3.setToolTipText("Alt+6");
         BtnCari3.setName("BtnCari3"); // NOI18N
@@ -1036,7 +1032,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnAll3.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll3.setMnemonic('M');
         BtnAll3.setText("Semua Data");
         BtnAll3.setToolTipText("Alt+M");
         BtnAll3.setName("BtnAll3"); // NOI18N
@@ -1050,7 +1045,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnKeluar3.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar3.setMnemonic('K');
         BtnKeluar3.setText("Keluar");
         BtnKeluar3.setToolTipText("Alt+K");
         BtnKeluar3.setName("BtnKeluar3"); // NOI18N
@@ -1121,7 +1115,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass14.add(jLabel24);
 
         tgl5.setEditable(false);
-        tgl5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        tgl5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         tgl5.setDisplayFormat("dd-MM-yyyy");
         tgl5.setName("tgl5"); // NOI18N
         tgl5.setOpaque(false);
@@ -1136,7 +1130,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass14.add(jLabel25);
 
         tgl6.setEditable(false);
-        tgl6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        tgl6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         tgl6.setDisplayFormat("dd-MM-yyyy");
         tgl6.setName("tgl6"); // NOI18N
         tgl6.setOpaque(false);
@@ -1196,7 +1190,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnCari4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari4.setMnemonic('6');
         BtnCari4.setText("Tampilkan Data");
         BtnCari4.setToolTipText("Alt+6");
         BtnCari4.setName("BtnCari4"); // NOI18N
@@ -1210,7 +1203,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnAll4.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll4.setMnemonic('M');
         BtnAll4.setText("Semua Data");
         BtnAll4.setToolTipText("Alt+M");
         BtnAll4.setName("BtnAll4"); // NOI18N
@@ -1224,7 +1216,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnKeluar4.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar4.setMnemonic('K');
         BtnKeluar4.setText("Keluar");
         BtnKeluar4.setToolTipText("Alt+K");
         BtnKeluar4.setName("BtnKeluar4"); // NOI18N
@@ -1288,7 +1279,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass16.add(jLabel30);
 
         tgl7.setEditable(false);
-        tgl7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        tgl7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         tgl7.setDisplayFormat("dd-MM-yyyy");
         tgl7.setName("tgl7"); // NOI18N
         tgl7.setOpaque(false);
@@ -1303,7 +1294,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass16.add(jLabel31);
 
         tgl8.setEditable(false);
-        tgl8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        tgl8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         tgl8.setDisplayFormat("dd-MM-yyyy");
         tgl8.setName("tgl8"); // NOI18N
         tgl8.setOpaque(false);
@@ -1336,7 +1327,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnAll6.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnAll6.setMnemonic('V');
         BtnAll6.setText("Verifikasi");
         BtnAll6.setToolTipText("Alt+V");
         BtnAll6.setName("BtnAll6"); // NOI18N
@@ -1372,7 +1362,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnCari5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari5.setMnemonic('6');
         BtnCari5.setText("Tampilkan Data");
         BtnCari5.setToolTipText("Alt+6");
         BtnCari5.setName("BtnCari5"); // NOI18N
@@ -1391,7 +1380,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnAll5.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll5.setMnemonic('M');
         BtnAll5.setText("Semua Data");
         BtnAll5.setToolTipText("Alt+M");
         BtnAll5.setName("BtnAll5"); // NOI18N
@@ -1410,7 +1398,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnKeluar5.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar5.setMnemonic('K');
         BtnKeluar5.setText("Keluar");
         BtnKeluar5.setToolTipText("Alt+K");
         BtnKeluar5.setName("BtnKeluar5"); // NOI18N
@@ -1460,7 +1447,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn4.setMnemonic('U');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+U");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -1474,7 +1460,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnKirim.setForeground(new java.awt.Color(0, 0, 0));
         BtnKirim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
-        BtnKirim.setMnemonic('S');
         BtnKirim.setText(" Kirim Klaim");
         BtnKirim.setToolTipText("Alt+S");
         BtnKirim.setName("BtnKirim"); // NOI18N
@@ -1520,7 +1505,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         jLabel37.setBounds(0, 56, 100, 23);
 
         TtglA.setEditable(false);
-        TtglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        TtglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         TtglA.setDisplayFormat("dd-MM-yyyy");
         TtglA.setName("TtglA"); // NOI18N
         TtglA.setOpaque(false);
@@ -1536,7 +1521,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         jLabel38.setBounds(200, 56, 30, 23);
 
         TtglB.setEditable(false);
-        TtglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        TtglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         TtglB.setDisplayFormat("dd-MM-yyyy");
         TtglB.setName("TtglB"); // NOI18N
         TtglB.setOpaque(false);
@@ -1627,7 +1612,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnData.setForeground(new java.awt.Color(0, 0, 0));
         BtnData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnData.setMnemonic('1');
         BtnData.setToolTipText("Alt+1");
         BtnData.setName("BtnData"); // NOI18N
         BtnData.setPreferredSize(new java.awt.Dimension(28, 26));
@@ -1657,7 +1641,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnProses.setForeground(new java.awt.Color(0, 0, 0));
         BtnProses.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/New.png"))); // NOI18N
-        BtnProses.setMnemonic('1');
         BtnProses.setText("Proses Klaim");
         BtnProses.setToolTipText("Alt+1");
         BtnProses.setName("BtnProses"); // NOI18N
@@ -1694,7 +1677,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass10.add(Chktgl);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -1709,7 +1692,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         panelGlass10.add(jLabel18);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2026" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -1745,7 +1728,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -1759,7 +1741,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll1.setMnemonic('2');
         BtnAll1.setText("Semua Data");
         BtnAll1.setToolTipText("Alt+2");
         BtnAll1.setName("BtnAll1"); // NOI18N
@@ -1786,7 +1767,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar1.setMnemonic('4');
         BtnKeluar1.setText("Keluar");
         BtnKeluar1.setToolTipText("Alt+4");
         BtnKeluar1.setName("BtnKeluar1"); // NOI18N
@@ -1894,7 +1874,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
             TCari2.setText("");
             TCari2.requestFocus();
             tampil();
-            WindowSEPbpjs.setSize(870, 512);
+            WindowSEPbpjs.setSize(870, 583);
             WindowSEPbpjs.setLocationRelativeTo(internalFrame1);
             WindowSEPbpjs.setVisible(true);            
         } else if (cmbJnsKlaim.getSelectedItem().equals("JAMINAN COVID-19")

@@ -11847,19 +11847,19 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }
 
     private void isNumber() {
-        int jmlPxLoket = 0, jmlPxBoking = 0, hasil = 0;
+//        int jmlPxLoket = 0, jmlPxBoking = 0, hasil = 0;
         
         switch (URUTNOREG) {
             case "poli":
-                jmlPxLoket = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoli.getText() + "' "
-                        + "and tgl_registrasi='" + tglDaftar + "'");
-                jmlPxBoking = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_poli='" + kdpoli.getText() + "' "
-                        + "and tanggal_periksa='" + tglDaftar + "'");
-
-                hasil = jmlPxLoket + jmlPxBoking;
-                Valid.autoNomer3("select '" + hasil + "'", "", 3, TNoReg);
+//                jmlPxLoket = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoli.getText() + "' "
+//                        + "and tgl_registrasi='" + tglDaftar + "'");
+//                jmlPxBoking = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_poli='" + kdpoli.getText() + "' "
+//                        + "and tanggal_periksa='" + tglDaftar + "'");
+//
+//                hasil = jmlPxLoket + jmlPxBoking;
+//                Valid.autoNomer3("select '" + hasil + "'", "", 3, TNoReg);
                 
-//                Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoli.getText() + "' and tgl_registrasi='" + tglDaftar + "'", "", 3, TNoReg);
+                Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoli.getText() + "' and tgl_registrasi='" + tglDaftar + "'", "", 3, TNoReg);
                 break;
             case "dokter":
                 Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + kddokter.getText() + "' and tgl_registrasi='" + tglDaftar + "'", "", 3, TNoReg);

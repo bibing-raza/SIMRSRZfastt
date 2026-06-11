@@ -3002,56 +3002,32 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             
             param.put("dokter", TnmDrPelaksana.getText());
             param.put("pemberi", TnmPemberi.getText());
-            
-            if (TnmPenerima.getText().equals("")) {
-                param.put("nmPenerima", ".................");
-            } else {
-                param.put("nmPenerima", TnmPenerima.getText());
-            }
+            param.put("nmPenerima", TnmPenerima.getText());
             
             if (chkDiagKerja.isSelected() == true) {
                 if (TketDiagKerja.getText().equals("")) {
-                    param.put("diagnosKerja", cmbAsaKerja.getSelectedItem().toString() + ", .................");
+                    param.put("diagnosKerja", cmbAsaKerja.getSelectedItem().toString());
                 } else {
                     param.put("diagnosKerja", cmbAsaKerja.getSelectedItem().toString() + ", " + TketDiagKerja.getText());
                 }                
             } else {
-                param.put("diagnosKerja", ".................");
+                param.put("diagnosKerja", "");
             }
             
             if (chkDiagBanding.isSelected() == true) {
                 if (TketDiagBanding.getText().equals("")) {
-                    param.put("diagnosBanding", cmbAsaBanding.getSelectedItem().toString() + ", .................");
+                    param.put("diagnosBanding", cmbAsaBanding.getSelectedItem().toString());
                 } else {
                     param.put("diagnosBanding", cmbAsaBanding.getSelectedItem().toString() + ", " + TketDiagBanding.getText());
                 }                
             } else {
-                param.put("diagnosBanding", ".................");
-            }
+                param.put("diagnosBanding", "");
+            }            
             
-            if (Tklinis.getText().equals("")) {
-                param.put("klinis", ".................");
-            } else {
-                param.put("klinis", Tklinis.getText());
-            }
-            
-            if (Tradiologi.getText().equals("")) {
-                param.put("radio", ".................");
-            } else {
-                param.put("radio", Tradiologi.getText());
-            }
-            
-            if (Tlab.getText().equals("")) {
-                param.put("lab", ".................");
-            } else {
-                param.put("lab", Tlab.getText());
-            }
-            
-            if (Tekg.getText().equals("")) {
-                param.put("ekg", ".................");
-            } else {
-                param.put("ekg", Tekg.getText());
-            }
+            param.put("klinis", Tklinis.getText());
+            param.put("radio", Tradiologi.getText());
+            param.put("lab", Tlab.getText());            
+            param.put("ekg", Tekg.getText());
             
             if (chkIntubasi.isSelected() == true) {
                 param.put("intubasi", "V");
@@ -3095,11 +3071,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                 param.put("blok", "");
             }
             
-            if (TtataCara.getText().equals("")) {
-                param.put("tatacara", ".................");
-            } else {
-                param.put("tatacara", TtataCara.getText());
-            }
+            param.put("tatacara", TtataCara.getText());
             
             if (chkShock.isSelected() == true) {
                 param.put("shok", "V");
@@ -3250,18 +3222,9 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             } else {
                 param.put("pendar", "");
             }
-
-            if (Tprognosis.getText().equals("")) {
-                param.put("pendar", ".................");
-            } else {
-                param.put("pendar", Tprognosis.getText());
-            }
             
-            if (Talternatif.getText().equals("")) {
-                param.put("alter", ".................");
-            } else {
-                param.put("alter", Talternatif.getText());
-            }
+            param.put("prognosis", Tprognosis.getText());
+            param.put("alter", Talternatif.getText());
             
             if (chkReakAler.isSelected() == true) {
                 param.put("reakAler", "V");
@@ -3287,12 +3250,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                 param.put("syok", "");
             }
             
-            if (Tlainlain.getText().equals("")) {
-                param.put("lain", ".................");
-            } else {
-                param.put("lain", Tlainlain.getText());
-            }
-            
+            param.put("lain", Tlainlain.getText());            
             param.put("tglInformasi", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(TtglInformasi.getSelectedItem() + ""))
                     + ", Pukul " + cmbJam1.getSelectedItem().toString() + ":" + cmbMnt1.getSelectedItem().toString() + " Wita");
             
