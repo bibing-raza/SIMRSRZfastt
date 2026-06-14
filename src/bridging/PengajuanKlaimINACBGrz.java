@@ -5073,7 +5073,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                     tampilProsedur();
                 } else {
                     akses.setform("PengajuanKlaimINACBGraza");
-                    diagnosa.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 20);
+                    diagnosa.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 70);
                     diagnosa.setLocationRelativeTo(internalFrame1);
                     diagnosa.isCek();
                     //rawat inap

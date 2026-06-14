@@ -72,7 +72,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             perut = "", tenggor = "", kompliSeg = "", penurunan = "", anestesi = "", reakTok = "", reakAlergiSyok = "", kompliLan = "", nyeriKepala = "",
             nyeriPung = "", tdkBisa = "", infeksi = "", cideraSaraf = "", pendarahan = "", reakAler = "", reakMual = "", reakMun = "", syokAnaf = "",
             idFilePenerima = "", idFilePihakRS = "", idFilePihakKlg = "", idFileMenyatakan = "", usernya = "", pwdnya = "", idParameterTtd = "", URL = "",
-            nmPenerima = "", nmPhkRS = "", nmPhkKlg = "", nmMenyatakan = "";
+            nmPenerima = "", nmPhkRS = "", nmPhkKlg = "", nmBerttdMenyatakan = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -94,7 +94,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             "bius_reg_reaksi_alergi", "bius_reg_kompli_lanjutan", "bius_reg_nyeri_kepala", "bius_reg_nyeri_punggung", "bius_reg_tidak", "bius_reg_infeksi", "bius_reg_cidera",
             "bius_reg_pendarahan", "prognosis", "alternatif_tindakan", "reaksi_alergi", "reaksi_mual", "reaksi_muntah", "syok_anafilaktik", "lain_lain", "tgl_informasi", "jam_informasi",
             "nm_pihak_rs", "nm_pihak_klg", "jns_tindakan_kedokteran", "nm_betttd", "umur_betttd", "jenkel_berttd", "alamat_betttd", "selaku", "tindakan_berupa", "alasan_penolakan",
-            "tgl_setuju_tolak", "jam_setuju_tolak", "nm_menyatakan", "id_file_penerima_info", "id_file_nm_pihak_rs", "id_file_nm_pihak_klg", "id_file_nm_menyatakan", "waktu_simpan"
+            "tgl_setuju_tolak", "jam_setuju_tolak", "id_file_penerima_info", "id_file_nm_pihak_rs", "id_file_nm_pihak_klg", "id_file_nm_menyatakan", "waktu_simpan"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -106,7 +106,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         tbInformasi.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbInformasi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 86; i++) {
+        for (i = 0; i < 85; i++) {
             TableColumn column = tbInformasi.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -350,10 +350,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             } else if (i == 84) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 85) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            }
+            } 
         }
         tbInformasi.setDefaultRenderer(Object.class, new WarnaTable());
         
@@ -392,7 +389,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         TumurBerttd.setDocument(new batasInput((int) 15).getKata(TumurBerttd));
         TtindakanBerupa.setDocument(new batasInput((int) 200).getKata(TtindakanBerupa));
         Talasan.setDocument(new batasInput((int) 200).getKata(Talasan));
-        TnmMenyatakan.setDocument(new batasInput((int) 150).getKata(TnmMenyatakan));
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));        
         
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -681,14 +677,11 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         cmbMnt2 = new widget.ComboBox();
         cmbDtk2 = new widget.ComboBox();
         jLabel287 = new widget.Label();
-        jLabel109 = new widget.Label();
-        TnmMenyatakan = new widget.TextBox();
         chkSamaDiagBanding = new widget.CekBox();
         chkSamaDiagKerja = new widget.CekBox();
         chkSamaPenerima2 = new widget.CekBox();
         chkSamaPenerima3 = new widget.CekBox();
         chkSamaPenerima1 = new widget.CekBox();
-        chkSamaPenerima4 = new widget.CekBox();
         panelGlass13 = new widget.panelisi();
         scrollPane17 = new widget.ScrollPane();
         gambarQR = new Painter();
@@ -803,7 +796,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnTampilkanQr.setForeground(new java.awt.Color(0, 0, 0));
         BtnTampilkanQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clear24.png"))); // NOI18N
-        BtnTampilkanQr.setMnemonic('S');
         BtnTampilkanQr.setText("Tampilkan Qr Code TTD");
         BtnTampilkanQr.setToolTipText("Alt+S");
         BtnTampilkanQr.setName("BtnTampilkanQr"); // NOI18N
@@ -817,7 +809,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnCloseIn2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn2.setMnemonic('U');
         BtnCloseIn2.setText("Tutup");
         BtnCloseIn2.setToolTipText("Alt+U");
         BtnCloseIn2.setName("BtnCloseIn2"); // NOI18N
@@ -903,7 +894,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -922,7 +912,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnCopas.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopas.setMnemonic('U');
         BtnCopas.setText("Copy & Paste");
         BtnCopas.setToolTipText("Alt+U");
         BtnCopas.setName("BtnCopas"); // NOI18N
@@ -936,7 +925,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -971,7 +959,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -990,7 +977,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -1009,7 +995,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1023,7 +1008,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -1054,7 +1038,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -1073,7 +1056,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1105,7 +1087,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         FormInput.setToolTipText("Klik kanan untuk melihat hasil pemeriksaan penunjang medis");
         FormInput.setComponentPopupMenu(jPopupMenu1);
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(870, 1713));
+        FormInput.setPreferredSize(new java.awt.Dimension(870, 1685));
         FormInput.setLayout(null);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
@@ -1231,7 +1213,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnDrPelaksana.setForeground(new java.awt.Color(0, 0, 0));
         BtnDrPelaksana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDrPelaksana.setMnemonic('1');
         BtnDrPelaksana.setToolTipText("Alt+1");
         BtnDrPelaksana.setName("BtnDrPelaksana"); // NOI18N
         BtnDrPelaksana.addActionListener(new java.awt.event.ActionListener() {
@@ -1244,7 +1225,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnPemberi.setForeground(new java.awt.Color(0, 0, 0));
         BtnPemberi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPemberi.setMnemonic('1');
         BtnPemberi.setToolTipText("Alt+1");
         BtnPemberi.setName("BtnPemberi"); // NOI18N
         BtnPemberi.addActionListener(new java.awt.event.ActionListener() {
@@ -1288,7 +1268,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         jLabel92.setBounds(0, 1356, 140, 23);
 
         TtglInformasi.setEditable(false);
-        TtglInformasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026" }));
+        TtglInformasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
         TtglInformasi.setDisplayFormat("dd-MM-yyyy");
         TtglInformasi.setName("TtglInformasi"); // NOI18N
         TtglInformasi.setOpaque(false);
@@ -2192,10 +2172,10 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         jLabel110.setBounds(20, 1476, 120, 30);
 
         jLabel90.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel90.setText("Nama Bertanda Tangan :");
+        jLabel90.setText("<html><div style='text-align:right'>Nama Bertanda Tangan/Menyatakan :</div></html>");
         jLabel90.setName("jLabel90"); // NOI18N
         FormInput.add(jLabel90);
-        jLabel90.setBounds(250, 1476, 140, 23);
+        jLabel90.setBounds(250, 1476, 140, 30);
 
         TnmBerttd.setForeground(new java.awt.Color(0, 0, 0));
         TnmBerttd.setName("TnmBerttd"); // NOI18N
@@ -2306,7 +2286,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         Talasan.setBounds(145, 1612, 615, 23);
 
         TtglSetujuTolak.setEditable(false);
-        TtglSetujuTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026" }));
+        TtglSetujuTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
         TtglSetujuTolak.setDisplayFormat("dd-MM-yyyy");
         TtglSetujuTolak.setName("TtglSetujuTolak"); // NOI18N
         TtglSetujuTolak.setOpaque(false);
@@ -2371,17 +2351,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         jLabel287.setName("jLabel287"); // NOI18N
         FormInput.add(jLabel287);
         jLabel287.setBounds(522, 1640, 50, 23);
-
-        jLabel109.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel109.setText("Nama Yang Menyatakan :");
-        jLabel109.setName("jLabel109"); // NOI18N
-        FormInput.add(jLabel109);
-        jLabel109.setBounds(0, 1676, 140, 23);
-
-        TnmMenyatakan.setForeground(new java.awt.Color(0, 0, 0));
-        TnmMenyatakan.setName("TnmMenyatakan"); // NOI18N
-        FormInput.add(TnmMenyatakan);
-        TnmMenyatakan.setBounds(145, 1676, 410, 23);
 
         chkSamaDiagBanding.setBackground(new java.awt.Color(255, 255, 250));
         chkSamaDiagBanding.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2478,25 +2447,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         FormInput.add(chkSamaPenerima1);
         chkSamaPenerima1.setBounds(560, 1384, 200, 23);
 
-        chkSamaPenerima4.setBackground(new java.awt.Color(255, 255, 250));
-        chkSamaPenerima4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkSamaPenerima4.setForeground(new java.awt.Color(0, 0, 0));
-        chkSamaPenerima4.setText("Sama Dengan Penerima Informasi");
-        chkSamaPenerima4.setBorderPainted(true);
-        chkSamaPenerima4.setBorderPaintedFlat(true);
-        chkSamaPenerima4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkSamaPenerima4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkSamaPenerima4.setName("chkSamaPenerima4"); // NOI18N
-        chkSamaPenerima4.setOpaque(false);
-        chkSamaPenerima4.setPreferredSize(new java.awt.Dimension(175, 23));
-        chkSamaPenerima4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkSamaPenerima4ActionPerformed(evt);
-            }
-        });
-        FormInput.add(chkSamaPenerima4);
-        chkSamaPenerima4.setBounds(560, 1676, 200, 23);
-
         panelGlass13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Scan QR Untuk TTD ]", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         panelGlass13.setName("panelGlass13"); // NOI18N
         panelGlass13.setPreferredSize(new java.awt.Dimension(44, 44));
@@ -2526,7 +2476,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnTataCara.setForeground(new java.awt.Color(0, 0, 0));
         BtnTataCara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnTataCara.setMnemonic('2');
         BtnTataCara.setText("Template");
         BtnTataCara.setToolTipText("Alt+2");
         BtnTataCara.setName("BtnTataCara"); // NOI18N
@@ -2541,7 +2490,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnPrognosis.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrognosis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPrognosis.setMnemonic('2');
         BtnPrognosis.setText("Template");
         BtnPrognosis.setToolTipText("Alt+2");
         BtnPrognosis.setName("BtnPrognosis"); // NOI18N
@@ -2556,7 +2504,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnAlternatif.setForeground(new java.awt.Color(0, 0, 0));
         BtnAlternatif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnAlternatif.setMnemonic('2');
         BtnAlternatif.setText("Template");
         BtnAlternatif.setToolTipText("Alt+2");
         BtnAlternatif.setName("BtnAlternatif"); // NOI18N
@@ -2571,7 +2518,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnLain.setForeground(new java.awt.Color(0, 0, 0));
         BtnLain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnLain.setMnemonic('2');
         BtnLain.setText("Template");
         BtnLain.setToolTipText("Alt+2");
         BtnLain.setName("BtnLain"); // NOI18N
@@ -2648,7 +2594,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2663,7 +2609,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         panelGlass12.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-06-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2707,7 +2653,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -2725,7 +2670,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -2777,15 +2721,15 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                 nmPhkKlg = TnmSaksiKlg.getText() + " (Pihak Keluarga)";
             }
             
-            if (TnmMenyatakan.getText().equals("")) {
-                nmMenyatakan = "";
+            if (TnmBerttd.getText().equals("")) {
+                nmBerttdMenyatakan = "";
             } else {
-                nmMenyatakan = TnmMenyatakan.getText() + " (Yang Menyatakan)";
+                nmBerttdMenyatakan = TnmBerttd.getText() + " (Yang Menyatakan)";
             }
             
             cekData();
             if (Sequel.menyimpantf("informasi_tindakan_pembiusan_operasi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?"
-                    + ",?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No. Rawat", 75, new String[]{
+                    + ",?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No. Rawat", 74, new String[]{
                         TNoRw.getText(), TrgRawat.getText(), nipDrPelaksana, nipPemberi, nmPenerima, diagKerja, diagBanding, cmbAsaKerja.getSelectedItem().toString(),
                         TketDiagKerja.getText(), cmbAsaBanding.getSelectedItem().toString(), TketDiagBanding.getText(), Tklinis.getText(), Tradiologi.getText(),
                         Tlab.getText(), Tekg.getText(), intubasi, lma, fm, tiva, spinal, epidural, blok, TtataCara.getText(), shok, henti, meninggal, sistemPer,
@@ -2793,10 +2737,9 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                         kompliLan, nyeriKepala, nyeriPung, tdkBisa, infeksi, cideraSaraf, pendarahan, Tprognosis.getText(), Talternatif.getText(), reakAler, reakMual,
                         reakMun, syokAnaf, Tlainlain.getText(), Valid.SetTgl(TtglInformasi.getSelectedItem() + ""),
                         cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), nmPhkRS, nmPhkKlg,
-                        cmbJnsTindakan.getSelectedItem().toString(), TnmBerttd.getText(), TumurBerttd.getText(), cmbJenkel.getSelectedItem().toString(), Talamat.getText(),
+                        cmbJnsTindakan.getSelectedItem().toString(), nmBerttdMenyatakan, TumurBerttd.getText(), cmbJenkel.getSelectedItem().toString(), Talamat.getText(),
                         cmbSelaku.getSelectedItem().toString(), TtindakanBerupa.getText(), Talasan.getText(), Valid.SetTgl(TtglSetujuTolak.getSelectedItem() + ""),
-                        cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nmMenyatakan, "", "", "", "",
-                        Sequel.cariIsi("select now()")
+                        cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), "", "", "", "", Sequel.cariIsi("select now()")
                     }) == true) {
 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Informasi Tindakan Pembiusan", "Simpan");
@@ -2850,10 +2793,10 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                     nmPhkKlg = TnmSaksiKlg.getText() + " (Pihak Keluarga)";
                 }
 
-                if (TnmMenyatakan.getText().equals("")) {
-                    nmMenyatakan = "";
+                if (TnmBerttd.getText().equals("")) {
+                    nmBerttdMenyatakan = "";
                 } else {
-                    nmMenyatakan = TnmMenyatakan.getText() + " (Yang Menyatakan)";
+                    nmBerttdMenyatakan = TnmBerttd.getText() + " (Yang Menyatakan)";
                 }
 
                 cekData();
@@ -2865,7 +2808,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                         + "bius_reg_kompli_lanjutan=?, bius_reg_nyeri_kepala=?, bius_reg_nyeri_punggung=?, bius_reg_tidak=?, bius_reg_infeksi=?, bius_reg_cidera=?, bius_reg_pendarahan=?, "
                         + "prognosis=?, alternatif_tindakan=?, reaksi_alergi=?, reaksi_mual=?, reaksi_muntah=?, syok_anafilaktik=?, lain_lain=?, tgl_informasi=?, jam_informasi=?, "
                         + "nm_pihak_rs=?, nm_pihak_klg=?, jns_tindakan_kedokteran=?, nm_betttd=?, umur_betttd=?, jenkel_berttd=?, alamat_betttd=?, selaku=?, tindakan_berupa=?, "
-                        + "alasan_penolakan=?, tgl_setuju_tolak=?, jam_setuju_tolak=?, nm_menyatakan=?", 69, new String[]{
+                        + "alasan_penolakan=?, tgl_setuju_tolak=?, jam_setuju_tolak=?", 68, new String[]{
                             nipDrPelaksana, nipPemberi, nmPenerima, diagKerja, diagBanding, cmbAsaKerja.getSelectedItem().toString(),
                             TketDiagKerja.getText(), cmbAsaBanding.getSelectedItem().toString(), TketDiagBanding.getText(), Tklinis.getText(), Tradiologi.getText(),
                             Tlab.getText(), Tekg.getText(), intubasi, lma, fm, tiva, spinal, epidural, blok, TtataCara.getText(), shok, henti, meninggal, sistemPer,
@@ -2873,10 +2816,10 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                             kompliLan, nyeriKepala, nyeriPung, tdkBisa, infeksi, cideraSaraf, pendarahan, Tprognosis.getText(), Talternatif.getText(), reakAler, reakMual,
                             reakMun, syokAnaf, Tlainlain.getText(), Valid.SetTgl(TtglInformasi.getSelectedItem() + ""),
                             cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), nmPhkRS, nmPhkKlg, cmbJnsTindakan.getSelectedItem().toString(),
-                            TnmBerttd.getText(), TumurBerttd.getText(), cmbJenkel.getSelectedItem().toString(), Talamat.getText(), cmbSelaku.getSelectedItem().toString(),
+                            nmBerttdMenyatakan, TumurBerttd.getText(), cmbJenkel.getSelectedItem().toString(), Talamat.getText(), cmbSelaku.getSelectedItem().toString(),
                             TtindakanBerupa.getText(), Talasan.getText(), Valid.SetTgl(TtglSetujuTolak.getSelectedItem() + ""),
-                            cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nmMenyatakan,
-                            tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 85).toString()
+                            cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), 
+                            tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString()
                         }) == true) {
 
                     Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Informasi Tindakan Pembiusan", "Ganti");
@@ -2974,7 +2917,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 if (Sequel.queryu2tf("delete from informasi_tindakan_pembiusan_operasi where waktu_simpan=?", 1, new String[]{
-                    tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 85).toString()
+                    tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString()
                 }) == true) {                    
                     tampil();
                     emptTeks();
@@ -3252,7 +3195,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             
             param.put("lain", Tlainlain.getText());            
             param.put("tglInformasi", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(TtglInformasi.getSelectedItem() + ""))
-                    + ", Pukul " + cmbJam1.getSelectedItem().toString() + ":" + cmbMnt1.getSelectedItem().toString() + " Wita");
+                    + "          Pukul " + cmbJam1.getSelectedItem().toString() + ":" + cmbMnt1.getSelectedItem().toString() + " WITA");
             
             if (TnmSaksiRs.getText().equals("")) {
                 param.put("pihakRS", ".................");
@@ -3264,12 +3207,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                 param.put("pihakKLG", ".................");
             } else {
                 param.put("pihakKLG", TnmSaksiKlg.getText());
-            }
-            
-            if (TnmMenyatakan.getText().equals("")) {
-                param.put("nmMenyatakan", ".................");
-            } else {
-                param.put("nmMenyatakan", TnmMenyatakan.getText());
             }
             
             if (TumurBerttd.getText().equals("")) {
@@ -3310,63 +3247,130 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             param.put("tglSetujuTolak", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(TtglSetujuTolak.getSelectedItem() + ""))
                     + ", Pukul " + cmbJam2.getSelectedItem().toString() + ":" + cmbMnt2.getSelectedItem().toString() + " Wita");
             
-//            if (cmbPilihCetak.getSelectedIndex() == 0) {
-//                String isi = "";
-//                if (nipDrOperator.equals("") || nipDrOperator.equals("-") || nipDrOperator.equals("--")) {
-//                    JOptionPane.showMessageDialog(rootPane, "Maaf, nama dokter operator harus diisi dulu,..");
-//                } else {
-//                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-//                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-//                                    "Laporan Operasi", TnmDrPelaksana.getText(),
-//                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from laporan_operasi where "
-//                                            + "waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 58).toString() + "'"),
-//                                    Sequel.cariIsi("select time(waktu_simpan) from laporan_operasi where "
-//                                            + "waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 58).toString() + "'")) + "') from kalimat_tte where kode='001'");
-//
-//                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
-//                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
-//                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Laporan Operasi", Sequel.cariFolderPrintTte());
-//                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
-//                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
-//
-//                    Valid.MyReport("rptLaporanOperasi1Qr.jasper", "report", "::[ Laporan Operasi hal. 1 ]::",
-//                            "SELECT now() tanggal", param);
-//                    
-//                    //data observasi ttv
-//                    if (Sequel.cariInteger("select count(-1) from laporan_operasi_obs_ttv where waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 58).toString() + "'") > 0) {
-//                        Valid.MyReport("rptLaporanOperasi2Qr.jasper", "report", "::[ Laporan Operasi hal. 2 ]::",
-//                                "select no_rawat, urutan, TIME_FORMAT(pukul,'%H:%i:%s') pukul, td_sistole, td_diastole, nadi, rr, suhu, spo2, waktu_simpan "
-//                                + "from laporan_operasi_obs_ttv where waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 58).toString() + "' "
-//                                + "order by urutan", param);
-//                    } else {
-//                        Valid.MyReport("rptLaporanOperasi2Qr.jasper", "report", "::[ Laporan Operasi hal. 2 ]::",
-//                                "SELECT '-' no_rawat, '-' urutan, '-' pukul, '-' td_sistole, '-' td_diastole , '-' nadi, '-' rr, '-' suhu, '-' spo2, '-' waktu_simpan FROM dual "
-//                                + "WHERE NOT EXISTS (SELECT 1 FROM laporan_operasi_obs_ttv WHERE "
-//                                + "waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 58).toString() + "')", param);
-//                    }
-//
-//                    emptTeks();
-//                    tampil();
-//                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
-//                }
-//            } else {
-//                Valid.MyReport("rptLaporanOperasi1.jasper", "report", "::[ Laporan Operasi hal. 1 ]::",
-//                        "SELECT now() tanggal", param);
-//
-//                //data observasi ttv
-//                if (Sequel.cariInteger("select count(-1) from laporan_operasi_obs_ttv where waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 58).toString() + "'") > 0) {
-//                    Valid.MyReport("rptLaporanOperasi2.jasper", "report", "::[ Laporan Operasi hal. 2 ]::",
-//                            "select * from laporan_operasi_obs_ttv where waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 58).toString() + "' order by urutan", param);
-//                } else {
-//                    Valid.MyReport("rptLaporanOperasi2.jasper", "report", "::[ Laporan Operasi hal. 2 ]::",
-//                            "SELECT '-' no_rawat, '-' urutan, '-' pukul, '-' td_sistole, '-' td_diastole , '-' nadi, '-' rr, '-' suhu, '-' spo2, '-' waktu_simpan FROM dual "
-//                            + "WHERE NOT EXISTS (SELECT 1 FROM laporan_operasi_obs_ttv WHERE "
-//                            + "waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 58).toString() + "')", param);
-//                }
-//                
-//                tampil();
-//                emptTeks();
-//            }
+            try {
+                StringBuilder htmlContent = new StringBuilder();
+                String gambar1 = "", gambar2 = "", gambar3 = "", gambar4 = "", ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFileMenyatakan.equals("")) {
+                            gambar1 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                        } else {
+                            gambar1 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileMenyatakan;
+                        }
+
+                        if (idFilePenerima.equals("")) {
+                            gambar2 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                        } else {
+                            gambar2 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFilePenerima;
+                        }
+
+                        if (idFilePihakKlg.equals("")) {
+                            gambar3 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                        } else {
+                            gambar3 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFilePihakKlg;
+                        }
+
+                        if (idFilePihakRS.equals("")) {
+                            gambar4 = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                        } else {
+                            gambar4 = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFilePihakRS;
+                        }
+                        //ping gagal
+                    } else {
+                        gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                        gambar2 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                        gambar3 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                        gambar4 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                    gambar1 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    gambar2 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    gambar3 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    gambar4 = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                }
+
+                param.put("gambarTtd1", gambar1);
+                param.put("gambarTtd2", gambar2);
+                param.put("gambarTtd3", gambar3);
+                param.put("gambarTtd4", gambar4);
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            }
+
+            if (cmbJnsTindakan.getSelectedIndex() == 1) {
+                Valid.MyReport("rptSetujuTindakanDokterBius.jasper", "report", "::[ Lembar Formulir Persetujuan Tindakan Kedokteran ]::",
+                        "SELECT if(it.nm_betttd='','......................',replace(it.nm_betttd,' (Yang Menyatakan)','')) nmbetttd, "
+                        + "CONCAT(it.umur_betttd,' / ',it.jenkel_berttd) umur_pj, "
+                        + "if(it.alamat_betttd='','......................',it.alamat_betttd) alamat_pj, it.selaku, it.tindakan_berupa, it.jns_tindakan_kedokteran, "
+                        + "it.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
+                        + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat_px, "
+                        + "CONCAT('Martapura, ',DATE_FORMAT(it.tgl_setuju_tolak,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(it.jam_setuju_tolak,'%H:%i'),' WITA') tgl_surat, "
+                        + "if(it.nm_pihak_klg='','......................',replace(it.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                        + "if(it.nm_pihak_rs='','......................',replace(it.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM informasi_tindakan_pembiusan_operasi it "
+                        + "INNER JOIN reg_periksa rp on rp.no_rawat=it.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab WHERE it.waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "' "
+                        + "and it.jns_tindakan_kedokteran='" + cmbJnsTindakan.getSelectedItem() + "'", param);
+            } else if (cmbJnsTindakan.getSelectedIndex() == 2) {
+                Valid.MyReport("rptTolakTindakanDokterBius.jasper", "report", "::[ Lembar Formulir Penolakan Tindakan Kedokteran ]::",
+                        "SELECT if(it.nm_betttd='','......................',replace(it.nm_betttd,' (Yang Menyatakan)','')) nmbetttd, "
+                        + "CONCAT(it.umur_betttd,' Thn. / ',it.jenkel_berttd) umur_pj, "
+                        + "if(it.alamat_betttd='','......................',it.alamat_betttd) alamat_pj, it.selaku, it.jns_tindakan_kedokteran, "
+                        + "it.tindakan_berupa, it.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
+                        + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat_px, "
+                        + "CONCAT('Martapura, ',DATE_FORMAT(it.tgl_setuju_tolak,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(it.jam_setuju_tolak,'%H:%i'),' WITA') tgl_surat, "
+                        + "if(it.nm_pihak_klg='','......................',replace(it.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                        + "if(it.nm_pihak_rs='','......................',replace(it.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM informasi_tindakan_pembiusan_operasi it "
+                        + "INNER JOIN reg_periksa rp on rp.no_rawat=it.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab WHERE it.waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "' "
+                        + "and it.jns_tindakan_kedokteran='" + cmbJnsTindakan.getSelectedItem() + "'", param);
+            }
+            
+            if (cmbPilihCetak.getSelectedIndex() == 0) {
+                String isi = "";
+                if (nipPemberi.equals("") || nipPemberi.equals("-") || nipPemberi.equals("--")) {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, nama pemberi informasi harus diisi dulu,..");
+                } else {
+                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Informasi Tindakan Pembiusan", TnmPemberi.getText(),
+                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from informasi_tindakan_pembiusan_operasi where "
+                                            + "waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "'"),
+                                    Sequel.cariIsi("select time(waktu_simpan) from informasi_tindakan_pembiusan_operasi where "
+                                            + "waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "'")) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Informasi Tindakan Pembiusan", Sequel.cariFolderPrintTte());
+                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                    
+                    Valid.MyReport("rptLembarInformasiTindakanPembiusan2Qr.jasper", "report", "::[ Lembar Informasi Tindakan Pembiusan hal. 2 ]::",
+                            "SELECT now() tanggal", param);
+
+                    Valid.MyReport("rptLembarInformasiTindakanPembiusan1Qr.jasper", "report", "::[ Lembar Informasi Tindakan Pembiusan hal. 1 ]::",
+                            "SELECT now() tanggal", param);
+
+                    emptTeks();
+                    tampil();
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                }
+            } else {
+                Valid.MyReport("rptLembarInformasiTindakanPembiusan2.jasper", "report", "::[ Lembar Informasi Tindakan Pembiusan hal. 2 ]::",
+                        "SELECT now() tanggal", param);
+                
+                Valid.MyReport("rptLembarInformasiTindakanPembiusan1.jasper", "report", "::[ Lembar Informasi Tindakan Pembiusan hal. 1 ]::",
+                        "SELECT now() tanggal", param);
+                tampil();
+                emptTeks();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan klik/pilih salah satu datanya terlebih dulu pada tabel..!!!!");
             tbInformasi.requestFocus();
@@ -3634,14 +3638,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_chkSamaPenerima1ActionPerformed
 
-    private void chkSamaPenerima4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSamaPenerima4ActionPerformed
-        if (chkSamaPenerima4.isSelected() == true) {
-            TnmMenyatakan.setText(TnmPenerima.getText());
-        } else {
-            TnmMenyatakan.setText("");
-        }
-    }//GEN-LAST:event_chkSamaPenerima4ActionPerformed
-
     private void MnHasilPemeriksaanPenunjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanPenunjangActionPerformed
         if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
@@ -3904,7 +3900,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
     private widget.TextArea Tlainlain;
     private widget.TextBox TnmBerttd;
     private widget.TextBox TnmDrPelaksana;
-    private widget.TextBox TnmMenyatakan;
     private widget.TextBox TnmPemberi;
     private widget.TextBox TnmPenerima;
     private widget.TextBox TnmSaksiKlg;
@@ -3953,7 +3948,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
     public widget.CekBox chkSamaPenerima1;
     public widget.CekBox chkSamaPenerima2;
     public widget.CekBox chkSamaPenerima3;
-    public widget.CekBox chkSamaPenerima4;
     public widget.CekBox chkShock;
     public widget.CekBox chkSistemPer;
     public widget.CekBox chkSistemSar;
@@ -3991,7 +3985,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
     private widget.Label jLabel106;
     private widget.Label jLabel107;
     private widget.Label jLabel108;
-    private widget.Label jLabel109;
     private widget.Label jLabel110;
     private widget.Label jLabel111;
     private widget.Label jLabel112;
@@ -4068,7 +4061,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                     + "pg1.nama nmDokter, pg2.nama nmPemberi, date_format(it.tgl_informasi,'%d-%m-%Y') tglInformasi, time_format(it.jam_informasi,'%H:%i Wita') jamInformasi, "
                     + "date_format(it.tgl_setuju_tolak,'%d-%m-%Y') tglSetujuTolak, time_format(it.jam_setuju_tolak,'%H:%i Wita') jamSetujuTolak, "
                     + "replace(it.nm_penerima_info,' (Penerima Informasi)','') nmpenerima, replace(it.nm_pihak_rs,' (Pihak RS)','') nmpihakrs, "
-                    + "replace(it.nm_pihak_klg,' (Pihak Keluarga)','') nmpihakklg, replace(it.nm_menyatakan,' (Yang Menyatakan)','') nmmenyatakan "
+                    + "replace(it.nm_pihak_klg,' (Pihak Keluarga)','') nmpihakklg, replace(it.nm_betttd,' (Yang Menyatakan)','') nmBerttdMenyatakan "
                     + "from informasi_tindakan_pembiusan_operasi it inner join reg_periksa rp on rp.no_rawat=it.no_rawat "
                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg1 on pg1.nik=it.nip_dokter_pelaksana "
                     + "inner join pegawai pg2 on pg2.nik=it.nip_pemberi_info where "
@@ -4175,7 +4168,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                         rs.getString("nmpihakrs"),
                         rs.getString("nmpihakklg"),
                         rs.getString("jns_tindakan_kedokteran"),
-                        rs.getString("nm_betttd"),
+                        rs.getString("nmBerttdMenyatakan"),
                         rs.getString("umur_betttd"),
                         rs.getString("jenkel_berttd"),
                         rs.getString("alamat_betttd"),
@@ -4184,7 +4177,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                         rs.getString("alasan_penolakan"),
                         rs.getString("tgl_setuju_tolak"),
                         rs.getString("jam_setuju_tolak"),
-                        rs.getString("nmmenyatakan"),
                         rs.getString("id_file_penerima_info"),
                         rs.getString("id_file_nm_pihak_rs"),
                         rs.getString("id_file_nm_pihak_klg"),
@@ -4292,8 +4284,6 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         cmbJam2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
         cmbMnt2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk2.setSelectedIndex(0);
-        TnmMenyatakan.setText("");
-        chkSamaPenerima4.setSelected(false);
         LoadHTML1.setText("");
     }
 
@@ -4367,23 +4357,21 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             TnmSaksiRs.setText(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 68).toString());
             TnmSaksiKlg.setText(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 69).toString());
             cmbJnsTindakan.setSelectedItem(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 70).toString());
-            TnmBerttd.setText(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 71).toString());
+            TnmBerttd.setText(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 71).toString());            
             TumurBerttd.setText(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 72).toString());
             cmbJenkel.setSelectedItem(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 73).toString());
             Talamat.setText(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 74).toString());
             cmbSelaku.setSelectedItem(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 75).toString());
             TtindakanBerupa.setText(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 76).toString());
             Talasan.setText(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 77).toString());
-            Valid.SetTgl(TtglSetujuTolak, tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 78).toString());            
+            Valid.SetTgl(TtglSetujuTolak, tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 78).toString());
             cmbJam2.setSelectedItem(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 79).toString().substring(0, 2));
             cmbMnt2.setSelectedItem(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 79).toString().substring(3, 5));
-            cmbDtk2.setSelectedItem(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 79).toString().substring(6, 8));
-            TnmMenyatakan.setText(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 80).toString());            
-            idFilePenerima = tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 81).toString();
-            idFilePihakRS = tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 82).toString();
-            idFilePihakKlg = tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 83).toString();
-            idFileMenyatakan = tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString();
-            
+            cmbDtk2.setSelectedItem(tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 79).toString().substring(6, 8));            
+            idFilePenerima = tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 80).toString();
+            idFilePihakRS = tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 81).toString();
+            idFilePihakKlg = tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 82).toString();
+            idFileMenyatakan = tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 83).toString();            
             tampilTTD();
             dataCek();
         }
@@ -4995,7 +4983,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                     + "<td valign='middle' align='center'><img src='" + gambar1 + "' width='160' height='160' alt='TTD Pihak Keluarga'><br>(" + TnmPenerima.getText() + ")<br></td>"
                     + "<td valign='middle' align='center'><img src='" + gambar2 + "' width='160' height='160' alt='TTD Pihak RS'><br>(" + TnmSaksiRs.getText() + ")<br></td>"
                     + "<td valign='middle' align='center'><img src='" + gambar3 + "' width='160' height='160' alt='TTD Yang Menyatakan'><br>(" + TnmSaksiKlg.getText() + ")<br></td>"
-                    + "<td valign='middle' align='center'><img src='" + gambar4 + "' width='160' height='160' alt='TTD Penerima Informasi'><br>(" + TnmMenyatakan.getText() + ")<br></td>"
+                    + "<td valign='middle' align='center'><img src='" + gambar4 + "' width='160' height='160' alt='TTD Penerima Informasi'><br>(" + TnmBerttd.getText() + ")<br></td>"
                     + "</tr>"
             );
             

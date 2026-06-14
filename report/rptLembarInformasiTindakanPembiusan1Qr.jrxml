@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="2.000000000000005"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="576"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sik_test"/>
@@ -64,6 +64,7 @@
 	<parameter name="cidSar" class="java.lang.String"/>
 	<parameter name="pendar" class="java.lang.String"/>
 	<parameter name="prognosis" class="java.lang.String"/>
+	<parameter name="kalimatTte" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT now() tanggal]]>
 	</queryString>
@@ -472,14 +473,14 @@
 				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{diagnosKerja}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["Status Fisik ASA "+$P{diagnosKerja}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="120" y="171" width="349" height="23"/>
 				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{diagnosBanding}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["Status Fisik ASA "+$P{diagnosBanding}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="27" y="171" width="88" height="12">
@@ -813,6 +814,23 @@
 			</line>
 		</band>
 	</detail>
+	<pageFooter>
+		<band height="30">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="1" width="519" height="15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{kalimatTte}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="519" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
 	<summary>
 		<band height="353">
 			<line>
