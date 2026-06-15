@@ -432,6 +432,7 @@ import java.text.SimpleDateFormat;
 import rekammedis.DlgMasterNomorDokumenRM;
 import rekammedis.RMAsesmenMedikKebidanan;
 import rekammedis.RMCatatanRuangPemulihan;
+import rekammedis.RMEvaluasiPraAnestesi;
 import rekammedis.RMFormulirSiteMarkingOperasi;
 import rekammedis.RMGeneralConsent;
 import rekammedis.RMInformasiTindakanPembiusan;
@@ -1019,6 +1020,7 @@ public class frmUtama extends javax.swing.JFrame {
         BtnFormulirSiteMarking = new widget.ButtonBig();
         BtnSerahTerimaPascaOperasi = new widget.ButtonBig();
         BtnInformasiTindakanPembiusan = new widget.ButtonBig();
+        BtnEvaluasiPraAnestesi = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6842,6 +6844,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(BtnInformasiTindakanPembiusan);
 
+        BtnEvaluasiPraAnestesi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnEvaluasiPraAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/checklist.png"))); // NOI18N
+        BtnEvaluasiPraAnestesi.setText("Evaluasi Pra Anestesi");
+        BtnEvaluasiPraAnestesi.setIconTextGap(0);
+        BtnEvaluasiPraAnestesi.setName("BtnEvaluasiPraAnestesi"); // NOI18N
+        BtnEvaluasiPraAnestesi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnEvaluasiPraAnestesi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEvaluasiPraAnestesiActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(BtnEvaluasiPraAnestesi);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6850,7 +6865,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09/06/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15/06/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13498,6 +13513,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnInformasiTindakanPembiusanActionPerformed
 
+    private void BtnEvaluasiPraAnestesiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEvaluasiPraAnestesiActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMEvaluasiPraAnestesi aplikasi = new RMEvaluasiPraAnestesi(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnEvaluasiPraAnestesiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13515,6 +13543,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.Button BtnClosePass;
     private widget.ButtonBig BtnDasboard;
     private widget.ButtonBig BtnDpjp;
+    private widget.ButtonBig BtnEvaluasiPraAnestesi;
     private widget.ButtonBig BtnFormulirSiteMarking;
     private widget.ButtonBig BtnInformasiTindakanPembiusan;
     private widget.ButtonBig BtnJadwal;
@@ -14360,6 +14389,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getkegiatan_operasi() == true) {
                 Panelmenu.add(BtnInformasiTindakanPembiusan);
+                jmlmenu++;
+            }
+            
+            if (akses.getkegiatan_operasi() == true) {
+                Panelmenu.add(BtnEvaluasiPraAnestesi);
                 jmlmenu++;
             }
             
@@ -16501,6 +16535,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getkegiatan_operasi() == true) {
             Panelmenu.add(BtnInformasiTindakanPembiusan);
+            jmlmenu++;
+        }
+        
+        if (akses.getkegiatan_operasi() == true) {
+            Panelmenu.add(BtnEvaluasiPraAnestesi);
             jmlmenu++;
         }
         
@@ -18707,6 +18746,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getkegiatan_operasi()== true) {
             if (BtnInformasiTindakanPembiusan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(BtnInformasiTindakanPembiusan);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getkegiatan_operasi()== true) {
+            if (BtnEvaluasiPraAnestesi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(BtnEvaluasiPraAnestesi);
                 jmlmenu++;
             }
         }

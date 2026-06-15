@@ -172,6 +172,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnSamplingPemanfaatanRM = new widget.ButtonBig();
         scrollInput1 = new widget.ScrollPane();
         FormInput1 = new widget.PanelBiasa();
+        BtnEvaluasiPraAnestesi = new widget.ButtonBig();
         BtnCeklisPraOperasi = new widget.ButtonBig();
         BtnFormulirSiteMarking = new widget.ButtonBig();
         BtnCeklisKesiapanAnestesi = new widget.ButtonBig();
@@ -1038,6 +1039,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
         FormInput1.setName("FormInput1"); // NOI18N
         FormInput1.setPreferredSize(new java.awt.Dimension(870, 834));
         FormInput1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 25));
+
+        BtnEvaluasiPraAnestesi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnEvaluasiPraAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/checklist.png"))); // NOI18N
+        BtnEvaluasiPraAnestesi.setText("Evaluasi Pra Anestesi");
+        BtnEvaluasiPraAnestesi.setIconTextGap(0);
+        BtnEvaluasiPraAnestesi.setName("BtnEvaluasiPraAnestesi"); // NOI18N
+        BtnEvaluasiPraAnestesi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnEvaluasiPraAnestesi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEvaluasiPraAnestesiActionPerformed(evt);
+            }
+        });
+        FormInput1.add(BtnEvaluasiPraAnestesi);
 
         BtnCeklisPraOperasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnCeklisPraOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/checklist.png"))); // NOI18N
@@ -2418,6 +2432,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnInformasiTindakanPembiusanActionPerformed
 
+    private void BtnEvaluasiPraAnestesiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEvaluasiPraAnestesiActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            if (akses.getadmin() == true) {
+                akses.setform("DlgRMEranap");
+                RMEvaluasiPraAnestesi form = new RMEvaluasiPraAnestesi(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");                
+            }
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnEvaluasiPraAnestesiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2459,6 +2494,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnCeklisPraOperasi;
     private widget.Button BtnCloseIn10;
     private widget.ButtonBig BtnDokumenJangMed;
+    private widget.ButtonBig BtnEvaluasiPraAnestesi;
     private widget.ButtonBig BtnFormulirSiteMarking;
     private widget.ButtonBig BtnGeneralConsent;
     private widget.ButtonBig BtnGrafikPantauHarian;
@@ -2585,6 +2621,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnFormulirSiteMarking.setEnabled(akses.getkegiatan_operasi());
         BtnSerahTerimaPasca.setEnabled(akses.getkegiatan_operasi());
         BtnInformasiTindakanPembiusan.setEnabled(akses.getkegiatan_operasi());
+        BtnEvaluasiPraAnestesi.setEnabled(akses.getkegiatan_operasi());
     }
     
     public void setData(String norw, String norm, String nmpasien,

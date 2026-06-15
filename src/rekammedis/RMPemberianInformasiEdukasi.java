@@ -6014,6 +6014,10 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                 }) == true) {
                     Sequel.meghapus("penilaian_informasi_edukasi", "no_rawat",
                             tbPemberian.getValueAt(tbPemberian.getSelectedRow(), 0).toString());
+                    if (!idFilePenerimaEdukasi.equals("")) {
+                        Sequel.hapusSemuaTtd(idFilePenerimaEdukasi);
+                    }
+                    
                     tampil();
                     emptTeks();
                     emptTeksPenilaian();
@@ -6036,7 +6040,11 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
             if (x == JOptionPane.YES_OPTION) {
                 if (Sequel.queryu2tf("delete from penilaian_informasi_edukasi where waktu_simpan=?", 1, new String[]{
                     tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 55).toString()
-                }) == true) {                    
+                }) == true) {
+                    if (!idFilePenerimaEdukasi.equals("")) {
+                        Sequel.hapusSemuaTtd(idFilePenerimaEdukasi);
+                    }
+                    
                     tampilPenilaian();
                     emptTeksPenilaian();
                 } else {

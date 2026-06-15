@@ -513,6 +513,10 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
         MnDokumenJangMed = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
+        MnHapusTtdMenyatakan = new javax.swing.JMenuItem();
+        MnHapusTtdPenerima = new javax.swing.JMenuItem();
+        MnHapusTtdPihakKlg = new javax.swing.JMenuItem();
+        MnHapusTtdPihakRs = new javax.swing.JMenuItem();
         MnBikinQrCode = new javax.swing.JMenuItem();
         WindowNomorDokumenRM = new javax.swing.JDialog();
         internalFrame3 = new widget.InternalFrame();
@@ -744,6 +748,66 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
 
+        MnHapusTtdMenyatakan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtdMenyatakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtdMenyatakan.setText("Hapus TTD Menyatakan");
+        MnHapusTtdMenyatakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtdMenyatakan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtdMenyatakan.setIconTextGap(5);
+        MnHapusTtdMenyatakan.setName("MnHapusTtdMenyatakan"); // NOI18N
+        MnHapusTtdMenyatakan.setPreferredSize(new java.awt.Dimension(220, 30));
+        MnHapusTtdMenyatakan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdMenyatakanActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnHapusTtdMenyatakan);
+
+        MnHapusTtdPenerima.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtdPenerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtdPenerima.setText("Hapus TTD Penerima Informasi");
+        MnHapusTtdPenerima.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtdPenerima.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtdPenerima.setIconTextGap(5);
+        MnHapusTtdPenerima.setName("MnHapusTtdPenerima"); // NOI18N
+        MnHapusTtdPenerima.setPreferredSize(new java.awt.Dimension(220, 30));
+        MnHapusTtdPenerima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdPenerimaActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnHapusTtdPenerima);
+
+        MnHapusTtdPihakKlg.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtdPihakKlg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtdPihakKlg.setText("Hapus TTD Pihak Keluarga");
+        MnHapusTtdPihakKlg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtdPihakKlg.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtdPihakKlg.setIconTextGap(5);
+        MnHapusTtdPihakKlg.setName("MnHapusTtdPihakKlg"); // NOI18N
+        MnHapusTtdPihakKlg.setPreferredSize(new java.awt.Dimension(220, 30));
+        MnHapusTtdPihakKlg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdPihakKlgActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnHapusTtdPihakKlg);
+
+        MnHapusTtdPihakRs.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtdPihakRs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtdPihakRs.setText("Hapus TTD Pihak RS");
+        MnHapusTtdPihakRs.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtdPihakRs.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtdPihakRs.setIconTextGap(5);
+        MnHapusTtdPihakRs.setName("MnHapusTtdPihakRs"); // NOI18N
+        MnHapusTtdPihakRs.setPreferredSize(new java.awt.Dimension(220, 30));
+        MnHapusTtdPihakRs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdPihakRsActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnHapusTtdPihakRs);
+
         MnBikinQrCode.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnBikinQrCode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
         MnBikinQrCode.setText("Bikin QR Code Ttd");
@@ -751,7 +815,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         MnBikinQrCode.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnBikinQrCode.setIconTextGap(5);
         MnBikinQrCode.setName("MnBikinQrCode"); // NOI18N
-        MnBikinQrCode.setPreferredSize(new java.awt.Dimension(160, 26));
+        MnBikinQrCode.setPreferredSize(new java.awt.Dimension(220, 30));
         MnBikinQrCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnBikinQrCodeActionPerformed(evt);
@@ -796,6 +860,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnTampilkanQr.setForeground(new java.awt.Color(0, 0, 0));
         BtnTampilkanQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clear24.png"))); // NOI18N
+        BtnTampilkanQr.setMnemonic('S');
         BtnTampilkanQr.setText("Tampilkan Qr Code TTD");
         BtnTampilkanQr.setToolTipText("Alt+S");
         BtnTampilkanQr.setName("BtnTampilkanQr"); // NOI18N
@@ -809,6 +874,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnCloseIn2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn2.setMnemonic('U');
         BtnCloseIn2.setText("Tutup");
         BtnCloseIn2.setToolTipText("Alt+U");
         BtnCloseIn2.setName("BtnCloseIn2"); // NOI18N
@@ -894,6 +960,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -912,6 +979,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnCopas.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnCopas.setMnemonic('U');
         BtnCopas.setText("Copy & Paste");
         BtnCopas.setToolTipText("Alt+U");
         BtnCopas.setName("BtnCopas"); // NOI18N
@@ -925,6 +993,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -959,6 +1028,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -977,6 +1047,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -995,6 +1066,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -1008,6 +1080,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -1038,6 +1111,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -1056,6 +1130,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1213,6 +1288,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnDrPelaksana.setForeground(new java.awt.Color(0, 0, 0));
         BtnDrPelaksana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnDrPelaksana.setMnemonic('1');
         BtnDrPelaksana.setToolTipText("Alt+1");
         BtnDrPelaksana.setName("BtnDrPelaksana"); // NOI18N
         BtnDrPelaksana.addActionListener(new java.awt.event.ActionListener() {
@@ -1225,6 +1301,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnPemberi.setForeground(new java.awt.Color(0, 0, 0));
         BtnPemberi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPemberi.setMnemonic('1');
         BtnPemberi.setToolTipText("Alt+1");
         BtnPemberi.setName("BtnPemberi"); // NOI18N
         BtnPemberi.addActionListener(new java.awt.event.ActionListener() {
@@ -1268,7 +1345,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         jLabel92.setBounds(0, 1356, 140, 23);
 
         TtglInformasi.setEditable(false);
-        TtglInformasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
+        TtglInformasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2026" }));
         TtglInformasi.setDisplayFormat("dd-MM-yyyy");
         TtglInformasi.setName("TtglInformasi"); // NOI18N
         TtglInformasi.setOpaque(false);
@@ -2286,7 +2363,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         Talasan.setBounds(145, 1612, 615, 23);
 
         TtglSetujuTolak.setEditable(false);
-        TtglSetujuTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
+        TtglSetujuTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2026" }));
         TtglSetujuTolak.setDisplayFormat("dd-MM-yyyy");
         TtglSetujuTolak.setName("TtglSetujuTolak"); // NOI18N
         TtglSetujuTolak.setOpaque(false);
@@ -2476,6 +2553,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnTataCara.setForeground(new java.awt.Color(0, 0, 0));
         BtnTataCara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnTataCara.setMnemonic('2');
         BtnTataCara.setText("Template");
         BtnTataCara.setToolTipText("Alt+2");
         BtnTataCara.setName("BtnTataCara"); // NOI18N
@@ -2490,6 +2568,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnPrognosis.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrognosis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPrognosis.setMnemonic('2');
         BtnPrognosis.setText("Template");
         BtnPrognosis.setToolTipText("Alt+2");
         BtnPrognosis.setName("BtnPrognosis"); // NOI18N
@@ -2504,6 +2583,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnAlternatif.setForeground(new java.awt.Color(0, 0, 0));
         BtnAlternatif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnAlternatif.setMnemonic('2');
         BtnAlternatif.setText("Template");
         BtnAlternatif.setToolTipText("Alt+2");
         BtnAlternatif.setName("BtnAlternatif"); // NOI18N
@@ -2518,6 +2598,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnLain.setForeground(new java.awt.Color(0, 0, 0));
         BtnLain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnLain.setMnemonic('2');
         BtnLain.setText("Template");
         BtnLain.setToolTipText("Alt+2");
         BtnLain.setName("BtnLain"); // NOI18N
@@ -2594,7 +2675,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2609,7 +2690,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         panelGlass12.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2653,6 +2734,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -2670,6 +2752,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -2918,7 +3001,23 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             if (x == JOptionPane.YES_OPTION) {
                 if (Sequel.queryu2tf("delete from informasi_tindakan_pembiusan_operasi where waktu_simpan=?", 1, new String[]{
                     tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString()
-                }) == true) {                    
+                }) == true) {
+                    if (!idFilePenerima.equals("")) {
+                        Sequel.hapusSemuaTtd(idFilePenerima);
+                    }
+
+                    if (!idFilePihakRS.equals("")) {
+                        Sequel.hapusSemuaTtd(idFilePihakRS);
+                    }
+
+                    if (!idFilePihakKlg.equals("")) {
+                        Sequel.hapusSemuaTtd(idFilePihakKlg);
+                    }
+                    
+                    if (!idFileMenyatakan.equals("")) {
+                        Sequel.hapusSemuaTtd(idFileMenyatakan);
+                    }
+                    
                     tampil();
                     emptTeks();
                 } else {
@@ -3834,6 +3933,158 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         TCari1.requestFocus();
     }//GEN-LAST:event_BtnLainActionPerformed
 
+    private void MnHapusTtdPihakRsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdPihakRsActionPerformed
+        if (tbInformasi.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan pihak rumah sakit mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                String ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFilePihakRS.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Pihak rumah sakit belum melakukan tanda tangan...!!!!");
+                        } else {
+                            if (Sequel.hapusFileTTD(idFilePihakRS) == true) {
+                                Sequel.mengedit("informasi_tindakan_pembiusan_operasi",
+                                        "waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "'", "id_file_nm_pihak_rs=''");
+                                tampil();
+                                emptTeks();
+                            }
+                        }
+                        //ping gagal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdPihakRsActionPerformed
+
+    private void MnHapusTtdPihakKlgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdPihakKlgActionPerformed
+        if (tbInformasi.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan pihak keluarga mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                String ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFilePihakKlg.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Pihak keluarga pasien ini belum melakukan tanda tangan...!!!!");
+                        } else {
+                            if (Sequel.hapusFileTTD(idFilePihakKlg) == true) {
+                                Sequel.mengedit("informasi_tindakan_pembiusan_operasi",
+                                        "waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "'", "id_file_nm_pihak_klg=''");
+                                tampil();
+                                emptTeks();
+                            }
+                        }
+                        //ping gagal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdPihakKlgActionPerformed
+
+    private void MnHapusTtdPenerimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdPenerimaActionPerformed
+        if (tbInformasi.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan penerima informasi mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                String ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFilePenerima.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Penerima informasi pasien ini belum melakukan tanda tangan...!!!!");
+                        } else {
+                            if (Sequel.hapusFileTTD(idFilePenerima) == true) {
+                                Sequel.mengedit("informasi_tindakan_pembiusan_operasi",
+                                        "waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "'", "id_file_penerima_info=''");
+                                tampil();
+                                emptTeks();
+                            }
+                        }
+                        //ping gagal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdPenerimaActionPerformed
+
+    private void MnHapusTtdMenyatakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdMenyatakanActionPerformed
+        if (tbInformasi.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan yang bertanda tangan/menyatakan pasien ini mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                String ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFileMenyatakan.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Yang bertanda tangan/menyatakan pasien ini belum melakukan tanda tangan...!!!!");
+                        } else {
+                            if (Sequel.hapusFileTTD(idFileMenyatakan) == true) {
+                                Sequel.mengedit("informasi_tindakan_pembiusan_operasi",
+                                        "waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "'", "id_file_nm_menyatakan=''");
+                                tampil();
+                                emptTeks();
+                            }
+                        }
+                        //ping gagal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdMenyatakanActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3877,6 +4128,10 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
     private widget.editorpane LoadHTML1;
     private javax.swing.JMenuItem MnBikinQrCode;
     private javax.swing.JMenuItem MnDokumenJangMed;
+    private javax.swing.JMenuItem MnHapusTtdMenyatakan;
+    private javax.swing.JMenuItem MnHapusTtdPenerima;
+    private javax.swing.JMenuItem MnHapusTtdPihakKlg;
+    private javax.swing.JMenuItem MnHapusTtdPihakRs;
     private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
     private javax.swing.JPanel PanelInput1;
     private widget.ScrollPane Scroll;
