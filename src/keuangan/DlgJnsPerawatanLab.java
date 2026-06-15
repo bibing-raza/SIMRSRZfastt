@@ -50,10 +50,10 @@ public final class DlgJnsPerawatanLab extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(628,674);
 
-        Object[] row={
-            "P","Kode Periksa","Nama Pemeriksaan","J.S. RS",
-            "Paket BHP","J.M. Perujuk","J.M. Dokter","J.M. Petugas",
-            "K.S.O.","Menejemen","Total Tarif","Jenis Bayar","Kelas"};
+        Object[] row = {
+            "P", "Kode Periksa", "Nama Pemeriksaan", "J.S. RS",
+            "Paket BHP", "J.M. Perujuk", "J.M. Dokter", "J.M. Petugas",
+            "K.S.O.", "Menejemen", "Total Tarif", "Jenis Bayar", "Kelas"};
         tabMode=new DefaultTableModel(null,row){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
@@ -63,53 +63,52 @@ public final class DlgJnsPerawatanLab extends javax.swing.JDialog {
                 return a;
              }
              Class[] types = new Class[] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, 
-                java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, 
-                java.lang.Double.class,java.lang.Double.class,java.lang.Double.class, java.lang.Object.class, 
-                java.lang.Object.class
+                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class,
+                 java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class,
+                 java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class,
+                 java.lang.Object.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
              }
         };
+        
         tbJnsPerawatan.setModel(tabMode);
-
-        //tbObat.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbObat.getBackground()));
         tbJnsPerawatan.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbJnsPerawatan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0; i < 13; i++) {
             TableColumn column = tbJnsPerawatan.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(75);
-            }else if(i==2){
-                column.setPreferredWidth(180);
-            }else if(i==11){
+            } else if (i == 2) {
+                column.setPreferredWidth(220);
+            } else if (i == 11) {
                 column.setPreferredWidth(140);
-            }else if(i==12){
+            } else if (i == 12) {
                 column.setPreferredWidth(70);
-            }else{
+            } else {
                 column.setPreferredWidth(80);
             }
         }
         tbJnsPerawatan.setDefaultRenderer(Object.class, new WarnaTable());
 
-        TKd.setDocument(new batasInput((byte)15).getKata(TKd));
-        TNm.setDocument(new batasInput((byte)80).getKata(TNm));
-        BagianRs.setDocument(new batasInput((int)15).getOnlyAngka(BagianRs));
-        JMDokter.setDocument(new batasInput((int)15).getOnlyAngka(JMDokter));
-        JMPerujuk.setDocument(new batasInput((int)15).getOnlyAngka(JMPerujuk));
-        Bhp.setDocument(new batasInput((int)15).getOnlyAngka(Bhp));
-        KSO.setDocument(new batasInput((int)15).getOnlyAngka(KSO));        
-        Menejemen.setDocument(new batasInput((int)15).getOnlyAngka(Menejemen));
-        JMLaborat.setDocument(new batasInput((int)15).getOnlyAngka(JMLaborat));
-        TotalBiaya.setDocument(new batasInput((int)20).getOnlyAngka(TotalBiaya));
-        kdpnj.setDocument(new batasInput((int)3).getKata(kdpnj));
-
-        TCari.setDocument(new batasInput((byte)100).getKata(TCari));          
+        TKd.setDocument(new batasInput((byte) 15).getKata(TKd));
+        TNm.setDocument(new batasInput((byte) 80).getKata(TNm));
+        BagianRs.setDocument(new batasInput((int) 15).getOnlyAngka(BagianRs));
+        JMDokter.setDocument(new batasInput((int) 15).getOnlyAngka(JMDokter));
+        JMPerujuk.setDocument(new batasInput((int) 15).getOnlyAngka(JMPerujuk));
+        Bhp.setDocument(new batasInput((int) 15).getOnlyAngka(Bhp));
+        KSO.setDocument(new batasInput((int) 15).getOnlyAngka(KSO));
+        Menejemen.setDocument(new batasInput((int) 15).getOnlyAngka(Menejemen));
+        JMLaborat.setDocument(new batasInput((int) 15).getOnlyAngka(JMLaborat));
+        TotalBiaya.setDocument(new batasInput((int) 20).getOnlyAngka(TotalBiaya));
+        kdpnj.setDocument(new batasInput((int) 3).getKata(kdpnj));
+        TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
+        
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
