@@ -59,6 +59,8 @@ import javax.imageio.ImageIO;
 //import org.apache.poi.hssf.record.formula.functions.Len;
 //import org.apache.poi.hssf.record.formula.functions.Mid;
 import uz.ncipro.calendar.JDateTimePicker;
+import java.io.File;
+import org.vosk.Model;
 
 /**
  *
@@ -88,6 +90,7 @@ public final class sekuel {
     private DecimalFormat df2 = new DecimalFormat("####");
     private static final Properties prop = new Properties();
     private ResultSet rs1;
+    private Model model;
     String[] nominal = {"", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam",
         "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas"};
 
@@ -4157,6 +4160,140 @@ public final class sekuel {
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
+        }
+    }
+
+    public Model getSpeechModel() {
+        try {
+            String lokasiModel = getFolderSpeechToText();
+
+            System.out.println("Lokasi model Vosk : " + lokasiModel);
+
+            File folderModel = new File(lokasiModel);
+
+            if (!folderModel.exists()) {
+                JOptionPane.showMessageDialog(null,
+                        "Folder model tidak ditemukan:\n" + lokasiModel);
+                return null;
+            }
+
+            if (!new File(folderModel, "am").exists()
+                    || !new File(folderModel, "conf").exists()
+                    || !new File(folderModel, "graph").exists()
+                    || !new File(folderModel, "ivector").exists()) {
+
+                JOptionPane.showMessageDialog(null,
+                        "Folder model belum lengkap:\n" + lokasiModel);
+                return null;
+            }
+
+            return new Model(lokasiModel);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,
+                    "Gagal memuat model Speech To Text\n\n"
+                    + e.toString());
+            return null;
+        }
+    }
+
+    public String getFolderSpeechToText() {
+        try {
+            // 1. Prioritas saat jalan dari NetBeans:
+            //    folder model di root project
+            File modelDiProject = new File(System.getProperty("user.dir"), "model");
+
+            if (isFolderModelVosk(modelDiProject)) {
+                return modelDiProject.getAbsolutePath();
+            }
+
+            // 2. Saat aplikasi jalan dari file JAR:
+            //    folder model satu lokasi dengan SIMRSKhanzaS.jar
+            File lokasiJar = new File(
+                    sekuel.class.getProtectionDomain()
+                            .getCodeSource()
+                            .getLocation()
+                            .toURI()
+            );
+
+            File folderAplikasi = lokasiJar.getParentFile();
+            File modelDiSampingJar = new File(folderAplikasi, "model");
+
+            if (isFolderModelVosk(modelDiSampingJar)) {
+                return modelDiSampingJar.getAbsolutePath();
+            }
+
+            // 3. Kalau belum ada, buat folder model di root project
+            if (!modelDiProject.exists()) {
+                modelDiProject.mkdirs();
+            }
+
+            return modelDiProject.getAbsolutePath();
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi Folder Speech To Text : " + e);
+            return "";
+        }
+    }
+
+    private boolean isFolderModelVosk(File folderModel) {
+        if (folderModel == null || !folderModel.exists()) {
+            return false;
+        }
+
+        return new File(folderModel, "am").exists()
+                && new File(folderModel, "conf").exists()
+                && new File(folderModel, "graph").exists();
+    }
+
+    public String getFolderAplikasi() {
+        try {
+            return new File(
+                    sekuel.class.getProtectionDomain()
+                            .getCodeSource()
+                            .getLocation()
+                            .toURI()
+            ).getParent();
+        } catch (Exception e) {
+            return System.getProperty("user.dir");
+        }
+    }
+
+    public String getWhisperCli() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+
+            String os = System.getProperty("os.name").toLowerCase();
+            String lokasiCli;
+
+            if (os.contains("win")) {
+                lokasiCli = prop.getProperty("WHISPERCLIWINDOWS");
+            } else {
+                lokasiCli = prop.getProperty("WHISPERCLILINUX");
+            }
+
+            return getFolderAplikasi()
+                    + File.separator
+                    + lokasiCli.replace("/", File.separator);
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi getWhisperCli : " + e);
+            return "";
+        }
+    }
+
+    public String getWhisperModel() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+
+            return getFolderAplikasi()
+                    + File.separator
+                    + prop.getProperty("WHISPERMODEL").replace("/", File.separator);
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi getWhisperModel : " + e);
+            return "";
         }
     }
 }

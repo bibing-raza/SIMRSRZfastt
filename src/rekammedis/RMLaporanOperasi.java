@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import javax.sound.sampled.TargetDataLine;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
@@ -36,6 +37,14 @@ import javax.swing.table.TableRowSorter;
 import kepegawaian.DlgCariPetugas;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import org.vosk.Model;
+import org.vosk.Recognizer;
+import javax.sound.sampled.*;
+import javax.swing.SwingUtilities;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.File;
+import javax.sound.sampled.*;
 
 /**
  *
@@ -52,6 +61,11 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
     private int i = 0, x = 0, pilihDokter = 0, pilihPetugas = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private TargetDataLine microphone;
+    private boolean running = false;
+    private TargetDataLine whisperMic;
+    private boolean whisperRecording = false;
+    private File fileRekamWhisper;
     private String nipDrOperator = "", nipAsisten = "", nipInstrumen = "", nipOnloop = "", nipDrAnes = "", nipPrwtAnes = "",
             khusus = "", besar = "", sedang = "", kecil = "", elektif = "", darurat = "", odc = "", bersih = "", konta = "", kotor = "",
             jml1 = "", jml2 = "", jml3 = "", jmlLain = "", singin = "", time = "", singot = "", selesai = "", urutData = "", urutanKe = "", wktSimpan = "";
@@ -572,6 +586,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         cmbMnt6 = new widget.ComboBox();
         cmbDtk6 = new widget.ComboBox();
         jLabel286 = new widget.Label();
+        BtnMicCatatan = new widget.Button();
         PanelInput1 = new javax.swing.JPanel();
         Scroll = new widget.ScrollPane();
         tbLaporanOps = new widget.Table();
@@ -1395,7 +1410,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel278);
         jLabel278.setBounds(390, 659, 50, 23);
 
-        scrollPane12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Catatan Mengenai Jalannya Operasi, Kesulitan-kesulitan yang dialami selama operasi berlangsung : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        scrollPane12.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), " Catatan Mengenai Jalannya Operasi, Kesulitan-kesulitan yang dialami selama operasi berlangsung : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         scrollPane12.setName("scrollPane12"); // NOI18N
 
         TCttnOperasi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1485,7 +1500,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         chkCekSelesai.setBounds(145, 659, 80, 23);
 
         TtglOperasi.setEditable(false);
-        TtglOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-05-2026" }));
+        TtglOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         TtglOperasi.setDisplayFormat("dd-MM-yyyy");
         TtglOperasi.setName("TtglOperasi"); // NOI18N
         TtglOperasi.setOpaque(false);
@@ -1753,7 +1768,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(BtnGantiTtv);
         BtnGantiTtv.setBounds(660, 1357, 90, 30);
 
-        scrollPane13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Instruksi Post Operasi : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        scrollPane13.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), " Instruksi Post Operasi : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         scrollPane13.setName("scrollPane13"); // NOI18N
 
         Tinstruksi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1911,7 +1926,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         jLabel92.setBounds(0, 1914, 140, 23);
 
         TtglLaporan.setEditable(false);
-        TtglLaporan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-05-2026" }));
+        TtglLaporan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         TtglLaporan.setDisplayFormat("dd-MM-yyyy");
         TtglLaporan.setName("TtglLaporan"); // NOI18N
         TtglLaporan.setOpaque(false);
@@ -1965,6 +1980,19 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel286);
         jLabel286.setBounds(461, 1914, 50, 23);
 
+        BtnMicCatatan.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMicCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/mic_off.png"))); // NOI18N
+        BtnMicCatatan.setText("MIC OFF");
+        BtnMicCatatan.setName("BtnMicCatatan"); // NOI18N
+        BtnMicCatatan.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnMicCatatan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnMicCatatanMouseClicked(evt);
+            }
+        });
+        FormInput.add(BtnMicCatatan);
+        BtnMicCatatan.setBounds(650, 645, 110, 40);
+
         Scroll1.setViewportView(FormInput);
 
         panelGlass9.add(Scroll1);
@@ -2011,7 +2039,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-05-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2026,7 +2054,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         panelGlass12.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-05-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2603,6 +2631,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
+        cekDaftarMicrophone();
     }//GEN-LAST:event_formWindowOpened
 
     private void TtindakanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtindakanKeyPressed
@@ -3043,6 +3072,22 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         AutoCompleteDecorator.decorate(cmbDtk6);
     }//GEN-LAST:event_cmbDtk6MouseReleased
 
+    private void BtnMicCatatanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnMicCatatanMouseClicked
+        if (BtnMicCatatan.getText().equals("MIC OFF")) {
+            BtnMicCatatan.setText("MIC ON");
+            BtnMicCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/mic_on.png")));
+            // mulai rekam dan hasilnya masuk ke TCttnOperasi
+//            micMulai(TCttnOperasi);
+            whisperMulaiRekam();
+        } else {
+            BtnMicCatatan.setText("MIC OFF");
+            BtnMicCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/mic_off.png")));
+            // stop rekam
+//            micStop();
+            whisperStopDanTranskrip();
+        }
+    }//GEN-LAST:event_BtnMicCatatanMouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -3073,6 +3118,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
     private widget.Button BtnHapusTtv;
     private widget.Button BtnInstrumen;
     private widget.Button BtnKeluar;
+    private widget.Button BtnMicCatatan;
     private widget.Button BtnOnloop;
     private widget.Button BtnPrint;
     private widget.Button BtnPrwtAnestesi;
@@ -3433,6 +3479,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         cmbJam6.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
         cmbMnt6.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk6.setSelectedIndex(0);
+        BtnMicCatatan.setText("MIC OFF");
+        BtnMicCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/mic_off.png")));
     }
 
     private void getData() {
@@ -3901,5 +3949,277 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    private void micMulai(javax.swing.JTextArea txtHasil) {
+        new Thread(() -> {
+            Model model = null;
+            Recognizer recognizer = null;
+
+            try {
+                model = Sequel.getSpeechModel();
+
+                if (model == null) {
+                    javax.swing.SwingUtilities.invokeLater(() -> {
+                        BtnMicCatatan.setText("MIC OFF");
+                        BtnMicCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/mic_off.png")));
+                    });
+                    return;
+                }
+
+                AudioFormat format = new AudioFormat(16000, 16, 1, true, false);
+                DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
+
+//                microphone = (TargetDataLine) AudioSystem.getLine(info);
+                microphone = getMicrophoneByName(format, "Noir");
+                microphone.open(format);
+                microphone.start();
+                System.out.println("Microphone aktif...");
+
+                recognizer = new Recognizer(model, 16000);
+                byte[] buffer = new byte[4096];
+                running = true;
+
+                while (running) {
+                    int bytesRead = microphone.read(buffer, 0, buffer.length);
+                    
+                    int level = 0;
+                    for (int i = 0; i < bytesRead; i += 2) {
+                        int sample = (buffer[i + 1] << 8) | (buffer[i] & 0xff);
+                        level += Math.abs(sample);
+                    }
+                    level = level / (bytesRead / 2);
+
+//                    System.out.println("LEVEL SUARA : " + level);
+//                    System.out.println("Bytes terbaca : " + bytesRead);
+
+                    if (recognizer.acceptWaveForm(buffer, bytesRead)) {
+
+                        String hasil = recognizer.getResult();
+//                        System.out.println("HASIL JSON : " + hasil);
+
+                        String text = ambilTextDariJson(hasil);
+
+                        if (!text.equals("")) {
+                            System.out.println("TEXT : " + text);
+
+                            javax.swing.SwingUtilities.invokeLater(() -> {
+                                txtHasil.append(text + "\n");
+                                txtHasil.setCaretPosition(
+                                        txtHasil.getDocument().getLength()
+                                );
+                            });
+                        }
+
+                    } else {
+
+                        String partial = recognizer.getPartialResult();
+                        System.out.println("PARTIAL : " + partial);
+
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                javax.swing.SwingUtilities.invokeLater(() -> {
+                    txtHasil.append("\nError : " + e.getMessage() + "\n");
+                    BtnMicCatatan.setText("MIC OFF");
+                    BtnMicCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/mic_off.png")));
+                });
+            } finally {
+                try {
+                    if (recognizer != null) {
+                        recognizer.close();
+                    }
+                    if (model != null) {
+                        model.close();
+                    }
+                    if (microphone != null) {
+                        microphone.stop();
+                        microphone.close();
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi stop mic : " + e);
+                }
+            }
+        }).start();
+    }
+    
+    private void micStop() {
+        running = false;
+
+        try {
+            if (microphone != null) {
+                microphone.stop();
+                microphone.close();
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi micStop : " + e);
+        }
+    }
+
+    private String ambilTextDariJson(String json) {
+        try {
+            return json.replace("{", "")
+                    .replace("}", "")
+                    .replace("\"text\" :", "")
+                    .replace("\"", "")
+                    .trim();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+    
+    private void cekDaftarMicrophone() {
+        Mixer.Info[] mixers = AudioSystem.getMixerInfo();
+
+        for (Mixer.Info mixerInfo : mixers) {
+            Mixer mixer = AudioSystem.getMixer(mixerInfo);
+            Line.Info[] lineInfos = mixer.getTargetLineInfo();
+
+            if (lineInfos.length > 0) {
+                System.out.println("MIC DEVICE : " + mixerInfo.getName()
+                        + " - " + mixerInfo.getDescription());
+            }
+        }
+    }
+    
+    private TargetDataLine getMicrophoneByName(AudioFormat format, String namaDevice) throws Exception {
+        Mixer.Info[] mixers = AudioSystem.getMixerInfo();
+
+        for (Mixer.Info mixerInfo : mixers) {
+            Mixer mixer = AudioSystem.getMixer(mixerInfo);
+            DataLine.Info dataLineInfo = new DataLine.Info(TargetDataLine.class, format);
+
+            if (mixer.isLineSupported(dataLineInfo)) {
+                System.out.println("MIC TERDETEKSI : " + mixerInfo.getName());
+
+                if (mixerInfo.getName().toLowerCase().contains(namaDevice.toLowerCase())) {
+                    System.out.println("MIC DIPAKAI : " + mixerInfo.getName());
+                    return (TargetDataLine) mixer.getLine(dataLineInfo);
+                }
+            }
+        }
+
+        // fallback kalau Noir tidak ketemu
+        System.out.println("MIC Noir tidak ketemu, pakai default.");
+        return (TargetDataLine) AudioSystem.getLine(
+                new DataLine.Info(TargetDataLine.class, format)
+        );
+    }
+    
+    private void whisperMulaiRekam() {
+        try {
+            AudioFormat format = new AudioFormat(16000, 16, 1, true, false);
+
+            DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
+            whisperMic = (TargetDataLine) AudioSystem.getLine(info);
+            whisperMic.open(format);
+            whisperMic.start();
+
+            fileRekamWhisper = new File(System.getProperty("java.io.tmpdir"), "rekam_whisper.wav");
+
+            whisperRecording = true;
+
+            Thread thread = new Thread(() -> {
+                try {
+                    AudioInputStream ais = new AudioInputStream(whisperMic);
+                    AudioSystem.write(ais, AudioFileFormat.Type.WAVE, fileRekamWhisper);
+                } catch (Exception e) {
+                    System.out.println("Error rekam whisper : " + e);
+                }
+            });
+
+            thread.start();
+
+            System.out.println("Mulai rekam Whisper : " + fileRekamWhisper.getAbsolutePath());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Gagal mulai rekam Whisper\n" + e.getMessage());
+        }
+    }
+
+    private void whisperStopDanTranskrip() {
+        try {
+            whisperRecording = false;
+
+            if (whisperMic != null) {
+                whisperMic.stop();
+                whisperMic.close();
+            }
+
+            System.out.println("Stop rekam Whisper");
+
+            new Thread(() -> {
+                String hasil = jalankanWhisper(fileRekamWhisper);
+
+                if (!hasil.trim().equals("")) {
+                    javax.swing.SwingUtilities.invokeLater(() -> {
+                        TCttnOperasi.append(hasil.trim() + "\n");
+                        TCttnOperasi.setCaretPosition(TCttnOperasi.getDocument().getLength());
+                    });
+                }
+            }).start();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Gagal stop/transkrip Whisper\n" + e.getMessage());
+        }
+    }
+    
+    private String jalankanWhisper(File fileWav) {
+        StringBuilder hasil = new StringBuilder();
+
+        try {
+            String whisperCli = Sequel.getWhisperCli();
+            String model = Sequel.getWhisperModel();
+
+            System.out.println("WHISPER CLI : " + whisperCli);
+            System.out.println("MODEL       : " + model);
+            System.out.println("FILE WAV    : " + fileWav.getAbsolutePath());
+
+            if (!new File(whisperCli).exists()) {
+                return "File whisper-cli tidak ditemukan : " + whisperCli;
+            }
+
+            if (!new File(model).exists()) {
+                return "File model Whisper tidak ditemukan : " + model;
+            }
+
+            ProcessBuilder pb = new ProcessBuilder(
+                    whisperCli,
+                    "-m", model,
+                    "-f", fileWav.getAbsolutePath(),
+                    "-l", "id",
+                    "-nt"
+            );
+
+            pb.redirectErrorStream(true);
+
+            Process proses = pb.start();
+
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(proses.getInputStream())
+            );
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println("WHISPER : " + line);
+
+                if (!line.trim().equals("")
+                        && !line.contains("whisper_")
+                        && !line.contains("system_info")
+                        && !line.contains("main:")) {
+                    hasil.append(line.trim()).append("\n");
+                }
+            }
+
+            proses.waitFor();
+
+        } catch (Exception e) {
+            System.out.println("Gagal jalankan Whisper : " + e);
+            return "Gagal jalankan Whisper : " + e.getMessage();
+        }
+
+        return hasil.toString();
     }
 }

@@ -78,7 +78,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private int i = 0, x = 0, pilihan = 0;
     private String kdkel = "", kdkec = "", kdkab = "", jk = "", jnsrawat = "", wktSimpan = "", idFileNmPenjab = "", idFileNmPenerima = "",
             idFileNmPhkKlg = "", idFileNmPhkRs = "", nmPenjab = "", nmPenerima = "", nmPhkKlg = "", nmPhkRS = "", idFilePenerimaEdukasi = "",
-            idParameterTtd = "", usernya = "", pwdnya = "", URL = "";
+            idParameterTtd = "", usernya = "", pwdnya = "", URL = "", phkRSternyata = "", nipPhkRS = "", ttdBasah = "", ttdQrcode1 = "", ttdQrcode2 = "";
     private DlgKabupaten kab;
     private DlgKecamatan kec;
     private DlgKelurahan kel;
@@ -535,6 +535,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         scrollPane14 = new widget.ScrollPane();
         gambarQR = new Painter();
         jLabel82 = new widget.Label();
+        chkSamaNama3 = new widget.CekBox();
         internalFrame4 = new widget.InternalFrame();
         panelGlass11 = new widget.panelisi();
         Scroll5 = new widget.ScrollPane();
@@ -698,7 +699,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -717,7 +717,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCopas.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopas.setMnemonic('U');
         BtnCopas.setText("Copy & Paste");
         BtnCopas.setToolTipText("Alt+U");
         BtnCopas.setName("BtnCopas"); // NOI18N
@@ -731,7 +730,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -784,7 +782,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnTampilkanQr.setForeground(new java.awt.Color(0, 0, 0));
         BtnTampilkanQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clear24.png"))); // NOI18N
-        BtnTampilkanQr.setMnemonic('S');
         BtnTampilkanQr.setText("Tampilkan Qr Code TTD");
         BtnTampilkanQr.setToolTipText("Alt+S");
         BtnTampilkanQr.setName("BtnTampilkanQr"); // NOI18N
@@ -798,7 +795,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCloseIn2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn2.setMnemonic('U');
         BtnCloseIn2.setText("Tutup");
         BtnCloseIn2.setToolTipText("Alt+U");
         BtnCloseIn2.setName("BtnCloseIn2"); // NOI18N
@@ -834,7 +830,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -848,7 +843,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -867,7 +861,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -881,7 +874,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -912,7 +904,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -931,7 +922,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -950,7 +940,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1104,7 +1093,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKelurahan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKelurahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnKelurahan.setMnemonic('2');
         BtnKelurahan.setToolTipText("ALt+2");
         BtnKelurahan.setName("BtnKelurahan"); // NOI18N
         BtnKelurahan.addActionListener(new java.awt.event.ActionListener() {
@@ -1130,7 +1118,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKecamatan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKecamatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnKecamatan.setMnemonic('3');
         BtnKecamatan.setToolTipText("ALt+3");
         BtnKecamatan.setName("BtnKecamatan"); // NOI18N
         BtnKecamatan.addActionListener(new java.awt.event.ActionListener() {
@@ -1156,7 +1143,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKabupaten.setForeground(new java.awt.Color(0, 0, 0));
         BtnKabupaten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnKabupaten.setMnemonic('4');
         BtnKabupaten.setToolTipText("ALt+4");
         BtnKabupaten.setName("BtnKabupaten"); // NOI18N
         BtnKabupaten.addActionListener(new java.awt.event.ActionListener() {
@@ -1239,7 +1225,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel58.setBounds(0, 328, 130, 23);
 
         TglBeriTindakan.setEditable(false);
-        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2026" }));
+        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         TglBeriTindakan.setDisplayFormat("dd-MM-yyyy");
         TglBeriTindakan.setName("TglBeriTindakan"); // NOI18N
         TglBeriTindakan.setOpaque(false);
@@ -1320,7 +1306,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnDokter.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnDokter.setMnemonic('4');
         BtnDokter.setToolTipText("ALt+4");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -1351,7 +1336,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnPemberi.setForeground(new java.awt.Color(0, 0, 0));
         BtnPemberi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnPemberi.setMnemonic('4');
         BtnPemberi.setToolTipText("ALt+4");
         BtnPemberi.setName("BtnPemberi"); // NOI18N
         BtnPemberi.addActionListener(new java.awt.event.ActionListener() {
@@ -1634,7 +1618,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel73.setBounds(0, 216, 130, 23);
 
         TglSetuju.setEditable(false);
-        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2026" }));
+        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         TglSetuju.setDisplayFormat("dd-MM-yyyy");
         TglSetuju.setName("TglSetuju"); // NOI18N
         TglSetuju.setOpaque(false);
@@ -1702,7 +1686,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel75.setBounds(0, 244, 130, 23);
 
         TglTolak.setEditable(false);
-        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2026" }));
+        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         TglTolak.setDisplayFormat("dd-MM-yyyy");
         TglTolak.setName("TglTolak"); // NOI18N
         TglTolak.setOpaque(false);
@@ -1797,7 +1781,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnDiagKerja.setForeground(new java.awt.Color(0, 0, 0));
         BtnDiagKerja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDiagKerja.setMnemonic('2');
         BtnDiagKerja.setText("Template");
         BtnDiagKerja.setToolTipText("Alt+2");
         BtnDiagKerja.setName("BtnDiagKerja"); // NOI18N
@@ -1812,7 +1795,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnDasarDiag.setForeground(new java.awt.Color(0, 0, 0));
         BtnDasarDiag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDasarDiag.setMnemonic('2');
         BtnDasarDiag.setText("Template");
         BtnDasarDiag.setToolTipText("Alt+2");
         BtnDasarDiag.setName("BtnDasarDiag"); // NOI18N
@@ -1827,7 +1809,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnTindakan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnTindakan.setMnemonic('2');
         BtnTindakan.setText("Template");
         BtnTindakan.setToolTipText("Alt+2");
         BtnTindakan.setName("BtnTindakan"); // NOI18N
@@ -1842,7 +1823,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnIndikasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnIndikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnIndikasi.setMnemonic('2');
         BtnIndikasi.setText("Template");
         BtnIndikasi.setToolTipText("Alt+2");
         BtnIndikasi.setName("BtnIndikasi"); // NOI18N
@@ -1857,7 +1837,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnTata.setForeground(new java.awt.Color(0, 0, 0));
         BtnTata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnTata.setMnemonic('2');
         BtnTata.setText("Template");
         BtnTata.setToolTipText("Alt+2");
         BtnTata.setName("BtnTata"); // NOI18N
@@ -1872,7 +1851,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnTujuan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTujuan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnTujuan.setMnemonic('2');
         BtnTujuan.setText("Template");
         BtnTujuan.setToolTipText("Alt+2");
         BtnTujuan.setName("BtnTujuan"); // NOI18N
@@ -1887,7 +1865,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnResiko.setForeground(new java.awt.Color(0, 0, 0));
         BtnResiko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnResiko.setMnemonic('2');
         BtnResiko.setText("Template");
         BtnResiko.setToolTipText("Alt+2");
         BtnResiko.setName("BtnResiko"); // NOI18N
@@ -1902,7 +1879,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKomplikasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnKomplikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnKomplikasi.setMnemonic('2');
         BtnKomplikasi.setText("Template");
         BtnKomplikasi.setToolTipText("Alt+2");
         BtnKomplikasi.setName("BtnKomplikasi"); // NOI18N
@@ -1917,7 +1893,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnPrognosis.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrognosis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPrognosis.setMnemonic('2');
         BtnPrognosis.setText("Template");
         BtnPrognosis.setToolTipText("Alt+2");
         BtnPrognosis.setName("BtnPrognosis"); // NOI18N
@@ -1932,7 +1907,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnAlternatif.setForeground(new java.awt.Color(0, 0, 0));
         BtnAlternatif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnAlternatif.setMnemonic('2');
         BtnAlternatif.setText("Template");
         BtnAlternatif.setToolTipText("Alt+2");
         BtnAlternatif.setName("BtnAlternatif"); // NOI18N
@@ -1947,7 +1921,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnLain.setForeground(new java.awt.Color(0, 0, 0));
         BtnLain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnLain.setMnemonic('2');
         BtnLain.setText("Template");
         BtnLain.setToolTipText("Alt+2");
         BtnLain.setName("BtnLain"); // NOI18N
@@ -1980,7 +1953,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         chkSamaPelaksana.setBackground(new java.awt.Color(242, 242, 242));
         chkSamaPelaksana.setForeground(new java.awt.Color(0, 0, 0));
-        chkSamaPelaksana.setText("Sama Dokter Dengan Pelaksana");
+        chkSamaPelaksana.setText("Sama Dengan Dokter Pelaksana");
         chkSamaPelaksana.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSamaPelaksana.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         chkSamaPelaksana.setName("chkSamaPelaksana"); // NOI18N
@@ -2070,6 +2043,22 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         FormInput.add(jLabel82);
         jLabel82.setBounds(710, 328, 210, 60);
 
+        chkSamaNama3.setBackground(new java.awt.Color(242, 242, 242));
+        chkSamaNama3.setForeground(new java.awt.Color(0, 0, 0));
+        chkSamaNama3.setText("Sama Dengan Pemberi Informasi");
+        chkSamaNama3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkSamaNama3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkSamaNama3.setName("chkSamaNama3"); // NOI18N
+        chkSamaNama3.setOpaque(false);
+        chkSamaNama3.setPreferredSize(new java.awt.Dimension(220, 23));
+        chkSamaNama3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkSamaNama3ActionPerformed(evt);
+            }
+        });
+        FormInput.add(chkSamaNama3);
+        chkSamaNama3.setBounds(485, 468, 190, 23);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormTindakan.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -2132,7 +2121,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2147,7 +2136,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2172,7 +2161,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('3');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+3");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -2423,6 +2411,14 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                 param.put("logo", Sequel.cariGambar("select logo from setting"));
                 param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 11).toString()) + " Pukul ");
 
+                if (Sequel.cariInteger("select count(-1) from surat_tindakan_kedokteran s "
+                        + "inner join pegawai pg on pg.nama=replace(s.nm_pihak_rs,' (Pihak RS)','') where s.waktu_simpan='" + wktSimpan + "'") > 0) {
+                    nipPhkRS = Sequel.cariIsi("select nik from pegawai where nama='" + TnmPhkRS.getText() + "'");
+                    phkRSternyata = "karyawan";
+                } else {
+                    phkRSternyata = "lainya";
+                }
+                    
                 try {
                     StringBuilder htmlContent = new StringBuilder();
                     String gambar1 = "", gambar2 = "", gambar3 = "", gambar4 = "", ipGambar = "";
@@ -2474,76 +2470,141 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                     param.put("gambarTtd1", gambar1);
                     param.put("gambarTtd2", gambar2);
                     param.put("gambarTtd3", gambar3);
-                    param.put("gambarTtd4", gambar4);
+                    ttdBasah = gambar4;
                 } catch (Exception e) {
                     System.out.println("Notifikasi : " + e);
                 }
 
-                if (cmbTindakan.getSelectedIndex() == 0) {
-                    Valid.MyReport("rptSetujuTindakanDokter.jasper", "report", "::[ Lembar Formulir Persetujuan Tindakan Kedokteran ]::",
-                            "SELECT if(s.nm_penjab='','......................',replace(s.nm_penjab,' (Yang Menyatakan)','')) nmpenjab, "
-                            + "CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
-                            + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
-                            + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
-                            + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
-                            + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat, "
-                            + "if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
-                            + "if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s "
-                            + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
-                            + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
-                            + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
-                            + "WHERE s.waktu_simpan='" + wktSimpan + "' and s.jns_surat='" + cmbTindakan.getSelectedItem() + "'", param);
-                } else {
-                    Valid.MyReport("rptTolakTindakanDokter.jasper", "report", "::[ Lembar Formulir Penolakan Tindakan Kedokteran ]::",
-                            "SELECT if(s.nm_penjab='','......................',replace(s.nm_penjab,' (Yang Menyatakan)','')) nmpenjab, "
-                            + "CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
-                            + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
-                            + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
-                            + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
-                            + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat, "
-                            + "if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
-                            + "if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s "
-                            + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
-                            + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
-                            + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
-                            + "WHERE s.waktu_simpan='" + wktSimpan + "' and s.jns_surat='" + cmbTindakan.getSelectedItem() + "'", param);
-                }
-
                 if (cmbPilihCetak.getSelectedIndex() == 0) {
-                    String isi = "";
+                    String isiPemberi = "", isiPhkRS1 = "", isiPhkRS2 = "", tglSimpan = "", jamSimpan = "", kalimatFoter = "";
+                    tglSimpan = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from surat_tindakan_kedokteran where waktu_simpan='" + wktSimpan + "'");
+                    jamSimpan = Sequel.cariIsi("select time(waktu_simpan) from surat_tindakan_kedokteran where waktu_simpan='" + wktSimpan + "'");
+                    kalimatFoter = Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'");
+                    
+                    //pemberi informasi
                     if (nip_pemberi.getText().equals("") || nip_pemberi.getText().equals("-") || nip_pemberi.getText().equals("--")) {
-                        JOptionPane.showMessageDialog(rootPane, "Nama pemberi informasi harus diisi dulu,..");
+                        param.put("lokasiQr", "");
                     } else {
-                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                        isiPemberi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                                 + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                        "Pemberian Informasi Tindakan", nmpemberi.getText(),
-                                        Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from surat_tindakan_kedokteran where "
-                                                + "waktu_simpan='" + wktSimpan + "'"),
-                                        Sequel.cariIsi("select time(waktu_simpan) from surat_tindakan_kedokteran where "
-                                                + "waktu_simpan='" + wktSimpan + "'")) + "') from kalimat_tte where kode='001'");
+                                        "Pemberian Informasi Tindakan", nmpemberi.getText() + " (Pemberi Informasi)",
+                                        tglSimpan, jamSimpan) + "') from kalimat_tte where kode='001'");
 
-                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
-                        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
-                        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Pemberian Informasi Tindakan", Sequel.cariFolderPrintTte());
-                        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
-                        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
-
-                        Valid.MyReport("rptBeriInfoTindakanQr.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
-                                "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
-                                + "if(s.penerima_info='','......................',replace(s.penerima_info,' (Penerima Informasi)','')) nmpenerima, "
-                                + "s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, "
-                                + "s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, s.isi_info_alternatif, s.isi_info_lainlain, "
-                                + "time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo, if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
-                                + "if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s "
-                                + "INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                                + "INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info where "
-                                + "s.waktu_simpan='" + wktSimpan + "'", param);
-                        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
-                        BtnBatalActionPerformed(null);
+                        Valid.cetakQrTte(isiPemberi, Sequel.cariFolderTte(), "QRTtePemberiInfo.jpg", "select logo from setting");
+                        param.put("lokasiQr", Sequel.cariFolderTte() + File.separator + "QRTtePemberiInfo.jpg");                        
                     }
+                    
+                    //saksi pihak RS
+                    if (nipPhkRS.equals("") || nipPhkRS.equals("-") || nipPhkRS.equals("--")) {
+                        ttdQrcode1 = "";
+                        ttdQrcode2 = "";
+                    } else {
+                        isiPhkRS1 = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        "Pemberian Informasi Tindakan", TnmPhkRS.getText() + " (Saksi Pihak RS)",
+                                        tglSimpan, jamSimpan) + "') from kalimat_tte where kode='001'");
+
+                        Valid.cetakQrTte(isiPhkRS1, Sequel.cariFolderTte(), "QRTtePihakRS1.jpg", "select logo from setting");
+                        ttdQrcode1 = Sequel.cariFolderTte() + File.separator + "QRTtePihakRS1.jpg";
+
+                        isiPhkRS2 = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                        cmbTindakan.getSelectedItem().toString() + " TINDAKAN KEDOKTERAN", TnmPhkRS.getText() + " (Saksi Pihak RS)",
+                                        tglSimpan, jamSimpan) + "') from kalimat_tte where kode='001'");
+
+                        Valid.cetakQrTte(isiPhkRS2, Sequel.cariFolderTte(), "QRTtePihakRS2.jpg", "select logo from setting");
+                        ttdQrcode2 = Sequel.cariFolderTte() + File.separator + "QRTtePihakRS2.jpg";
+                    }
+                    
+                    if (phkRSternyata.equals("karyawan")) {
+                        param.put("kalimatTte1", kalimatFoter);
+                        param.put("kalimatTte2", kalimatFoter);
+                        param.put("ttdPihakRS1", ttdQrcode1);
+                        param.put("ttdPihakRS2", ttdQrcode2);
+                    } else {
+                        param.put("kalimatTte1", kalimatFoter);
+                        param.put("kalimatTte2", "");
+                        param.put("ttdPihakRS1", ttdBasah);
+                        param.put("ttdPihakRS2", ttdBasah);
+                    }
+                    
+                    if (cmbTindakan.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptSetujuTindakanDokterQr.jasper", "report", "::[ Lembar Formulir Persetujuan Tindakan Kedokteran ]::",
+                                "SELECT if(s.nm_penjab='','......................',replace(s.nm_penjab,' (Yang Menyatakan)','')) nmpenjab, "
+                                + "CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
+                                + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
+                                + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
+                                + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
+                                + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat, "
+                                + "if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                                + "if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s "
+                                + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                                + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
+                                + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
+                                + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
+                                + "WHERE s.waktu_simpan='" + wktSimpan + "' and s.jns_surat='" + cmbTindakan.getSelectedItem() + "'", param);
+                    } else {
+                        Valid.MyReport("rptTolakTindakanDokterQr.jasper", "report", "::[ Lembar Formulir Penolakan Tindakan Kedokteran ]::",
+                                "SELECT if(s.nm_penjab='','......................',replace(s.nm_penjab,' (Yang Menyatakan)','')) nmpenjab, "
+                                + "CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
+                                + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
+                                + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
+                                + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
+                                + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat, "
+                                + "if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                                + "if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s "
+                                + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                                + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
+                                + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
+                                + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
+                                + "WHERE s.waktu_simpan='" + wktSimpan + "' and s.jns_surat='" + cmbTindakan.getSelectedItem() + "'", param);
+                    }
+
+                    Valid.MyReport("rptBeriInfoTindakanQr.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
+                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
+                            + "if(s.penerima_info='','......................',replace(s.penerima_info,' (Penerima Informasi)','')) nmpenerima, "
+                            + "s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, "
+                            + "s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, s.isi_info_alternatif, s.isi_info_lainlain, "
+                            + "time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo, if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                            + "if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s "
+                            + "INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info where "
+                            + "s.waktu_simpan='" + wktSimpan + "'", param);
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    BtnBatalActionPerformed(null);
                 } else {
+                    if (cmbTindakan.getSelectedIndex() == 0) {
+                        Valid.MyReport("rptSetujuTindakanDokter.jasper", "report", "::[ Lembar Formulir Persetujuan Tindakan Kedokteran ]::",
+                                "SELECT if(s.nm_penjab='','......................',replace(s.nm_penjab,' (Yang Menyatakan)','')) nmpenjab, "
+                                + "CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
+                                + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
+                                + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
+                                + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
+                                + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat, "
+                                + "if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                                + "if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s "
+                                + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                                + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
+                                + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
+                                + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
+                                + "WHERE s.waktu_simpan='" + wktSimpan + "' and s.jns_surat='" + cmbTindakan.getSelectedItem() + "'", param);
+                    } else {
+                        Valid.MyReport("rptTolakTindakanDokter.jasper", "report", "::[ Lembar Formulir Penolakan Tindakan Kedokteran ]::",
+                                "SELECT if(s.nm_penjab='','......................',replace(s.nm_penjab,' (Yang Menyatakan)','')) nmpenjab, "
+                                + "CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
+                                + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
+                                + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
+                                + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
+                                + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat, "
+                                + "if(s.nm_pihak_klg='','......................',replace(s.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                                + "if(s.nm_pihak_rs='','......................',replace(s.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM surat_tindakan_kedokteran s "
+                                + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                                + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
+                                + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
+                                + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
+                                + "WHERE s.waktu_simpan='" + wktSimpan + "' and s.jns_surat='" + cmbTindakan.getSelectedItem() + "'", param);
+                    }
+                    
                     Valid.MyReport("rptBeriInfoTindakan.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
                             "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
                             + "if(s.penerima_info='','......................',replace(s.penerima_info,' (Penerima Informasi)','')) nmpenerima, "
@@ -3640,6 +3701,14 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnBikinQrCodeActionPerformed
 
+    private void chkSamaNama3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSamaNama3ActionPerformed
+        if (chkSamaNama3.isSelected() == true) {
+            TnmPhkRS.setText(nmpemberi.getText());
+        } else {
+            TnmPhkRS.setText("");
+        }
+    }//GEN-LAST:event_chkSamaNama3ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3740,6 +3809,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     public widget.TextBox alasanTolak;
     private widget.CekBox chkSamaNama1;
     private widget.CekBox chkSamaNama2;
+    private widget.CekBox chkSamaNama3;
     private widget.CekBox chkSamaPelaksana;
     public widget.ComboBox cmbKategori;
     private widget.ComboBox cmbPilihCetak;
@@ -4028,6 +4098,8 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         CmbDetik3.setEnabled(false);
         TnmPenerima.setText("");
         chkSamaNama1.setSelected(false);
+        chkSamaNama2.setSelected(false);
+        chkSamaNama3.setSelected(false);
         cmbKategori.setSelectedIndex(0);
         cmbKategori.setEnabled(true);
         chkSamaPelaksana.setSelected(false);

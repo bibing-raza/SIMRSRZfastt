@@ -104,4 +104,8 @@
         <entry key="KODEPPKAPOTEKBPJS">enkripsi kodeppk</entry>
         <entry key="USERKEYAPIAPOTEKBPJS">enkripsi userkey</entry>
 		<entry key="URLTTDKELUARGAPASIEN">http://192.168.0.230:7183/reviewrm/index.php/Admin/ttdkeluargapasien/</entry>
+
+		<entry key="WHISPERCLILINUX">whisper/linux/whisper-cli</entry>
+        <entry key="WHISPERCLIWINDOWS">whisper/windows/whisper-cli.exe</entry>
+        <entry key="WHISPERMODEL">whisper/models/ggml-small.bin</entry>
 </properties>

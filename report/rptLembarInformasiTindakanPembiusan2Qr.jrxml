@@ -27,11 +27,11 @@
 	<parameter name="nmPenerima" class="java.lang.String"/>
 	<parameter name="pihakRS" class="java.lang.String"/>
 	<parameter name="pihakKLG" class="java.lang.String"/>
-	<parameter name="lokasiQr" class="java.io.InputStream"/>
-	<parameter name="kalimatTte" class="java.lang.String"/>
+	<parameter name="lokasiQr" class="java.lang.String"/>
+	<parameter name="kalimatTte1" class="java.lang.String"/>
 	<parameter name="gambarTtd2" class="java.lang.String"/>
 	<parameter name="gambarTtd3" class="java.lang.String"/>
-	<parameter name="gambarTtd4" class="java.lang.String"/>
+	<parameter name="ttdPihakRS1" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT now() tanggal]]>
 	</queryString>
@@ -120,7 +120,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kalimatTte}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{kalimatTte1}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="0" y="0" width="519" height="1"/>
@@ -444,7 +444,7 @@
 			</image>
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="390" y="128" width="80" height="76"/>
-				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd4}]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA[$P{ttdPihakRS1}]]></imageExpression>
 			</image>
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="390" y="239" width="80" height="76"/>

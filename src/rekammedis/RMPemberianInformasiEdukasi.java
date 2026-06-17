@@ -92,7 +92,8 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
             etikaBatuk = "", caraBuang = "", tempatToileting = "", lainyaPerawatBidan = "", diet = "", konsulGiziRanap = "", konsulGiziRalan = "",
             hakDan = "", jamKonsultasi = "", informasiKejadian = "", audio = "", demonstrasi = "", lisan = "", tulisan = "", visual = "", metode = "",
             pasien = "", keluarga = "", lainPenerimaPnd = "", penerimaPnd = "", edukasiLat = "", positioning = "", latihanAktif = "", simulasi = "", namaDan = "",
-            caraAturan = "", resikoEfek = "", penyimpananObat = "", idFilePenerimaEdukasi = "", idParameterTtd = "", usernya = "", pwdnya = "", URL = "";            
+            caraAturan = "", resikoEfek = "", penyimpananObat = "", idFilePenerimaEdukasi = "", idParameterTtd = "", usernya = "", pwdnya = "", URL = "",
+            ruangrawat = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -3316,12 +3317,12 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         if (TabEdukasi.getSelectedIndex() == 0) {
             simpanInformasiEdukasi();
         } else {
-            if (Sequel.cariInteger("select count(-1) from pemberian_informasi_edukasi where no_rawat='" + TNoRw1.getText() + "'") > 0) {
-                simpanPenilaianEdukasi();
-            } else {
-                JOptionPane.showMessageDialog(null, "Data pemberian informasi & edukasi pasien harus disimpan dulu sebelum memberikan penilaian..!!");
-                TabEdukasi.setSelectedIndex(0);                
-            }
+//            if (Sequel.cariInteger("select count(-1) from pemberian_informasi_edukasi where no_rawat='" + TNoRw1.getText() + "'") > 0) {
+            simpanPenilaianEdukasi();
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Data pemberian informasi & edukasi pasien harus disimpan dulu sebelum memberikan penilaian..!!");
+//                TabEdukasi.setSelectedIndex(0);                
+//            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -5179,11 +5180,18 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                 ps1.setString(10, "%" + TCari1.getText().trim() + "%");
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
+                    String rgrwt = "";
+                    if (Sequel.cariInteger("select count(-1) from pemberian_informasi_edukasi where no_rawat='" + rs1.getString("no_rawat") + "'") > 0) {
+                        rgrwt = Sequel.cariIsi("select ruang_rawat from pemberian_informasi_edukasi where no_rawat='" + rs1.getString("no_rawat") + "'");
+                    } else {
+                        rgrwt = ruangrawat;
+                    }
+                    
                     tabMode1.addRow(new String[]{
                         rs1.getString("no_rawat"),
                         rs1.getString("no_rkm_medis"),
                         rs1.getString("nm_pasien"),
-                        Sequel.cariIsi("select ruang_rawat from pemberian_informasi_edukasi where no_rawat='" + TNoRw1.getText() + "'"),
+                        rgrwt,
                         rs1.getString("tglNilai"),
                         rs1.getString("jamNilai"),
                         rs1.getString("penerima_pendidikan"),
@@ -5342,6 +5350,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         TPasien1.setText(TPasien.getText());
         TrgRawat.setText(rgrawat);
         TrgRawat1.setText(rgrawat);
+        ruangrawat = rgrawat;
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
         DTPCari2.setDate(new Date());
         Tpnd.setText(Sequel.cariIsi("select pnd from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));

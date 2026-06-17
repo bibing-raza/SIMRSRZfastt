@@ -72,7 +72,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             perut = "", tenggor = "", kompliSeg = "", penurunan = "", anestesi = "", reakTok = "", reakAlergiSyok = "", kompliLan = "", nyeriKepala = "",
             nyeriPung = "", tdkBisa = "", infeksi = "", cideraSaraf = "", pendarahan = "", reakAler = "", reakMual = "", reakMun = "", syokAnaf = "",
             idFilePenerima = "", idFilePihakRS = "", idFilePihakKlg = "", idFileMenyatakan = "", usernya = "", pwdnya = "", idParameterTtd = "", URL = "",
-            nmPenerima = "", nmPhkRS = "", nmPhkKlg = "", nmBerttdMenyatakan = "";
+            nmPenerima = "", nmPhkRS = "", nmPhkKlg = "", nmBerttdMenyatakan = "", phkRSternyata = "", nipPhkRS = "", ttdBasah = "", ttdQrcode1 = "", ttdQrcode2 = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -1345,7 +1345,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         jLabel92.setBounds(0, 1356, 140, 23);
 
         TtglInformasi.setEditable(false);
-        TtglInformasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2026" }));
+        TtglInformasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2026" }));
         TtglInformasi.setDisplayFormat("dd-MM-yyyy");
         TtglInformasi.setName("TtglInformasi"); // NOI18N
         TtglInformasi.setOpaque(false);
@@ -2363,6 +2363,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         Talasan.setBounds(145, 1612, 615, 23);
 
         TtglSetujuTolak.setEditable(false);
+        TtglSetujuTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2026" }));
         TtglSetujuTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2026" }));
         TtglSetujuTolak.setDisplayFormat("dd-MM-yyyy");
         TtglSetujuTolak.setName("TtglSetujuTolak"); // NOI18N
@@ -2508,7 +2509,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         chkSamaPenerima1.setBackground(new java.awt.Color(255, 255, 250));
         chkSamaPenerima1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         chkSamaPenerima1.setForeground(new java.awt.Color(0, 0, 0));
-        chkSamaPenerima1.setText("Sama Dengan Penerima Informasi");
+        chkSamaPenerima1.setText("Sama Dengan Pemberi Informasi");
         chkSamaPenerima1.setBorderPainted(true);
         chkSamaPenerima1.setBorderPaintedFlat(true);
         chkSamaPenerima1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2675,6 +2676,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         DTPCari1.setEditable(false);
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2026" }));
         DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
@@ -2690,6 +2692,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         panelGlass12.add(jLabel21);
 
         DTPCari2.setEditable(false);
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2026" }));
         DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
@@ -3046,6 +3049,14 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             param.put("pemberi", TnmPemberi.getText());
             param.put("nmPenerima", TnmPenerima.getText());
             
+            if (Sequel.cariInteger("select count(-1) from informasi_tindakan_pembiusan_operasi it inner join pegawai pg on pg.nama=replace(it.nm_pihak_rs,' (Pihak RS)','') "
+                    + "where it.waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "'") > 0) {
+                nipPhkRS = Sequel.cariIsi("select nik from pegawai where nama='" + TnmSaksiRs.getText() + "'");
+                phkRSternyata = "karyawan";
+            } else {
+                phkRSternyata = "lainya";
+            }
+            
             if (chkDiagKerja.isSelected() == true) {
                 if (TketDiagKerja.getText().equals("")) {
                     param.put("diagnosKerja", cmbAsaKerja.getSelectedItem().toString());
@@ -3397,71 +3408,150 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
                 param.put("gambarTtd1", gambar1);
                 param.put("gambarTtd2", gambar2);
                 param.put("gambarTtd3", gambar3);
-                param.put("gambarTtd4", gambar4);
+                ttdBasah = gambar4;
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }
 
-            if (cmbJnsTindakan.getSelectedIndex() == 1) {
-                Valid.MyReport("rptSetujuTindakanDokterBius.jasper", "report", "::[ Lembar Formulir Persetujuan Tindakan Kedokteran ]::",
-                        "SELECT if(it.nm_betttd='','......................',replace(it.nm_betttd,' (Yang Menyatakan)','')) nmbetttd, "
-                        + "CONCAT(it.umur_betttd,' / ',it.jenkel_berttd) umur_pj, "
-                        + "if(it.alamat_betttd='','......................',it.alamat_betttd) alamat_pj, it.selaku, it.tindakan_berupa, it.jns_tindakan_kedokteran, "
-                        + "it.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
-                        + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat_px, "
-                        + "CONCAT('Martapura, ',DATE_FORMAT(it.tgl_setuju_tolak,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(it.jam_setuju_tolak,'%H:%i'),' WITA') tgl_surat, "
-                        + "if(it.nm_pihak_klg='','......................',replace(it.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
-                        + "if(it.nm_pihak_rs='','......................',replace(it.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM informasi_tindakan_pembiusan_operasi it "
-                        + "INNER JOIN reg_periksa rp on rp.no_rawat=it.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
-                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab WHERE it.waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "' "
-                        + "and it.jns_tindakan_kedokteran='" + cmbJnsTindakan.getSelectedItem() + "'", param);
-            } else if (cmbJnsTindakan.getSelectedIndex() == 2) {
-                Valid.MyReport("rptTolakTindakanDokterBius.jasper", "report", "::[ Lembar Formulir Penolakan Tindakan Kedokteran ]::",
-                        "SELECT if(it.nm_betttd='','......................',replace(it.nm_betttd,' (Yang Menyatakan)','')) nmbetttd, "
-                        + "CONCAT(it.umur_betttd,' Thn. / ',it.jenkel_berttd) umur_pj, "
-                        + "if(it.alamat_betttd='','......................',it.alamat_betttd) alamat_pj, it.selaku, it.jns_tindakan_kedokteran, "
-                        + "it.tindakan_berupa, it.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
-                        + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat_px, "
-                        + "CONCAT('Martapura, ',DATE_FORMAT(it.tgl_setuju_tolak,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(it.jam_setuju_tolak,'%H:%i'),' WITA') tgl_surat, "
-                        + "if(it.nm_pihak_klg='','......................',replace(it.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
-                        + "if(it.nm_pihak_rs='','......................',replace(it.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM informasi_tindakan_pembiusan_operasi it "
-                        + "INNER JOIN reg_periksa rp on rp.no_rawat=it.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
-                        + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab WHERE it.waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "' "
-                        + "and it.jns_tindakan_kedokteran='" + cmbJnsTindakan.getSelectedItem() + "'", param);
-            }
-            
             if (cmbPilihCetak.getSelectedIndex() == 0) {
-                String isi = "";
+                String isiPemberi = "", isiPhkRS1 = "", isiPhkRS2 = "", tglSimpan = "", jamSimpan = "", kalimatFoter = "";
+                tglSimpan = Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from informasi_tindakan_pembiusan_operasi "
+                        + "where waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "'");
+                jamSimpan = Sequel.cariIsi("select time(waktu_simpan) from informasi_tindakan_pembiusan_operasi "
+                        + "where waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "'");
+                kalimatFoter = Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'");
+                
+                //pemberi informasi
                 if (nipPemberi.equals("") || nipPemberi.equals("-") || nipPemberi.equals("--")) {
-                    JOptionPane.showMessageDialog(rootPane, "Maaf, nama pemberi informasi harus diisi dulu,..");
+                    param.put("lokasiQr", "");
                 } else {
-                    isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    isiPemberi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                             + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                    "Informasi Tindakan Pembiusan", TnmPemberi.getText(),
-                                    Sequel.cariIsi("select date_format(waktu_simpan,'%d/%m/%Y') from informasi_tindakan_pembiusan_operasi where "
-                                            + "waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "'"),
-                                    Sequel.cariIsi("select time(waktu_simpan) from informasi_tindakan_pembiusan_operasi where "
-                                            + "waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "'")) + "') from kalimat_tte where kode='001'");
+                                    "Informasi Tindakan Pembiusan", TnmPemberi.getText() + " (Pemberi Informasi)",
+                                    tglSimpan, jamSimpan) + "') from kalimat_tte where kode='001'");
 
-                    Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
-                    Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
-                    Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Informasi Tindakan Pembiusan", Sequel.cariFolderPrintTte());
-                    param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
-                    param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
-                    
-                    Valid.MyReport("rptLembarInformasiTindakanPembiusan2Qr.jasper", "report", "::[ Lembar Informasi Tindakan Pembiusan hal. 2 ]::",
-                            "SELECT now() tanggal", param);
-
-                    Valid.MyReport("rptLembarInformasiTindakanPembiusan1Qr.jasper", "report", "::[ Lembar Informasi Tindakan Pembiusan hal. 1 ]::",
-                            "SELECT now() tanggal", param);
-
-                    emptTeks();
-                    tampil();
-                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+                    Valid.cetakQrTte(isiPemberi, Sequel.cariFolderTte(), "QRTtePemberiInfo.jpg", "select logo from setting");
+                    param.put("lokasiQr", Sequel.cariFolderTte() + File.separator + "QRTtePemberiInfo.jpg");
                 }
+                
+                //saksi pihak RS
+                if (nipPhkRS.equals("") || nipPhkRS.equals("-") || nipPhkRS.equals("--")) {
+                    ttdQrcode1 = "";
+                    ttdQrcode2 = "";
+                } else {
+                    isiPhkRS1 = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Informasi Tindakan Pembiusan", TnmSaksiRs.getText() + " (Saksi Pihak RS)",
+                                    tglSimpan, jamSimpan) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isiPhkRS1, Sequel.cariFolderTte(), "QRTtePihakRS1.jpg", "select logo from setting");
+                    ttdQrcode1 = Sequel.cariFolderTte() + File.separator + "QRTtePihakRS1.jpg";
+
+                    isiPhkRS2 = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    cmbJnsTindakan.getSelectedItem().toString() + " TINDAKAN KEDOKTERAN", TnmSaksiRs.getText() + " (Saksi Pihak RS)",
+                                    tglSimpan, jamSimpan) + "') from kalimat_tte where kode='001'");
+
+                    Valid.cetakQrTte(isiPhkRS2, Sequel.cariFolderTte(), "QRTtePihakRS2.jpg", "select logo from setting");
+                    ttdQrcode2 = Sequel.cariFolderTte() + File.separator + "QRTtePihakRS2.jpg";
+                }
+
+                if (phkRSternyata.equals("karyawan")) {
+                    if (cmbJnsTindakan.getSelectedIndex() == 1 || cmbJnsTindakan.getSelectedIndex() == 2) {
+                        param.put("kalimatTte1", kalimatFoter);
+                        param.put("kalimatTte2", kalimatFoter);
+                        param.put("ttdPihakRS1", ttdQrcode1);
+                        param.put("ttdPihakRS2", ttdQrcode2);
+                    } else {
+                        param.put("kalimatTte1", "");
+                        param.put("kalimatTte2", "");
+                        param.put("ttdPihakRS1", ttdQrcode1);
+                        param.put("ttdPihakRS2", ttdQrcode2);
+                    }
+                } else {
+                    if (cmbJnsTindakan.getSelectedIndex() == 1 || cmbJnsTindakan.getSelectedIndex() == 2) {
+                        param.put("kalimatTte1", kalimatFoter);
+                        param.put("kalimatTte2", "");
+                        param.put("ttdPihakRS1", ttdBasah);
+                        param.put("ttdPihakRS2", ttdBasah);
+                    } else {
+                        param.put("kalimatTte1", "");
+                        param.put("kalimatTte2", "");
+                        param.put("ttdPihakRS1", ttdBasah);
+                        param.put("ttdPihakRS2", ttdBasah);
+                    }
+                }
+                
+                if (cmbJnsTindakan.getSelectedIndex() == 1) {
+                    Valid.MyReport("rptSetujuTindakanDokterBiusQr.jasper", "report", "::[ Lembar Formulir Persetujuan Tindakan Kedokteran ]::",
+                            "SELECT if(it.nm_betttd='','......................',replace(it.nm_betttd,' (Yang Menyatakan)','')) nmbetttd, "
+                            + "CONCAT(it.umur_betttd,' / ',it.jenkel_berttd) umur_pj, "
+                            + "if(it.alamat_betttd='','......................',it.alamat_betttd) alamat_pj, it.selaku, it.tindakan_berupa, it.jns_tindakan_kedokteran, "
+                            + "it.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
+                            + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat_px, "
+                            + "CONCAT('Martapura, ',DATE_FORMAT(it.tgl_setuju_tolak,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(it.jam_setuju_tolak,'%H:%i'),' WITA') tgl_surat, "
+                            + "if(it.nm_pihak_klg='','......................',replace(it.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                            + "if(it.nm_pihak_rs='','......................',replace(it.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM informasi_tindakan_pembiusan_operasi it "
+                            + "INNER JOIN reg_periksa rp on rp.no_rawat=it.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                            + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab WHERE it.waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "' "
+                            + "and it.jns_tindakan_kedokteran='" + cmbJnsTindakan.getSelectedItem() + "'", param);
+                } else if (cmbJnsTindakan.getSelectedIndex() == 2) {
+                    Valid.MyReport("rptTolakTindakanDokterBiusQr.jasper", "report", "::[ Lembar Formulir Penolakan Tindakan Kedokteran ]::",
+                            "SELECT if(it.nm_betttd='','......................',replace(it.nm_betttd,' (Yang Menyatakan)','')) nmbetttd, "
+                            + "CONCAT(it.umur_betttd,' Thn. / ',it.jenkel_berttd) umur_pj, "
+                            + "if(it.alamat_betttd='','......................',it.alamat_betttd) alamat_pj, it.selaku, it.jns_tindakan_kedokteran, "
+                            + "it.tindakan_berupa, it.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
+                            + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat_px, "
+                            + "CONCAT('Martapura, ',DATE_FORMAT(it.tgl_setuju_tolak,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(it.jam_setuju_tolak,'%H:%i'),' WITA') tgl_surat, "
+                            + "if(it.nm_pihak_klg='','......................',replace(it.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                            + "if(it.nm_pihak_rs='','......................',replace(it.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM informasi_tindakan_pembiusan_operasi it "
+                            + "INNER JOIN reg_periksa rp on rp.no_rawat=it.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                            + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab WHERE it.waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "' "
+                            + "and it.jns_tindakan_kedokteran='" + cmbJnsTindakan.getSelectedItem() + "'", param);
+                }
+
+                Valid.MyReport("rptLembarInformasiTindakanPembiusan2Qr.jasper", "report", "::[ Lembar Informasi Tindakan Pembiusan hal. 2 ]::",
+                        "SELECT now() tanggal", param);
+
+                Valid.MyReport("rptLembarInformasiTindakanPembiusan1Qr.jasper", "report", "::[ Lembar Informasi Tindakan Pembiusan hal. 1 ]::",
+                        "SELECT now() tanggal", param);
+
+                emptTeks();
+                tampil();
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             } else {
+                if (cmbJnsTindakan.getSelectedIndex() == 1) {
+                    Valid.MyReport("rptSetujuTindakanDokterBius.jasper", "report", "::[ Lembar Formulir Persetujuan Tindakan Kedokteran ]::",
+                            "SELECT if(it.nm_betttd='','......................',replace(it.nm_betttd,' (Yang Menyatakan)','')) nmbetttd, "
+                            + "CONCAT(it.umur_betttd,' / ',it.jenkel_berttd) umur_pj, "
+                            + "if(it.alamat_betttd='','......................',it.alamat_betttd) alamat_pj, it.selaku, it.tindakan_berupa, it.jns_tindakan_kedokteran, "
+                            + "it.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
+                            + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat_px, "
+                            + "CONCAT('Martapura, ',DATE_FORMAT(it.tgl_setuju_tolak,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(it.jam_setuju_tolak,'%H:%i'),' WITA') tgl_surat, "
+                            + "if(it.nm_pihak_klg='','......................',replace(it.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                            + "if(it.nm_pihak_rs='','......................',replace(it.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM informasi_tindakan_pembiusan_operasi it "
+                            + "INNER JOIN reg_periksa rp on rp.no_rawat=it.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                            + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab WHERE it.waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "' "
+                            + "and it.jns_tindakan_kedokteran='" + cmbJnsTindakan.getSelectedItem() + "'", param);
+                } else if (cmbJnsTindakan.getSelectedIndex() == 2) {
+                    Valid.MyReport("rptTolakTindakanDokterBius.jasper", "report", "::[ Lembar Formulir Penolakan Tindakan Kedokteran ]::",
+                            "SELECT if(it.nm_betttd='','......................',replace(it.nm_betttd,' (Yang Menyatakan)','')) nmbetttd, "
+                            + "CONCAT(it.umur_betttd,' Thn. / ',it.jenkel_berttd) umur_pj, "
+                            + "if(it.alamat_betttd='','......................',it.alamat_betttd) alamat_pj, it.selaku, it.jns_tindakan_kedokteran, "
+                            + "it.tindakan_berupa, it.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
+                            + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat_px, "
+                            + "CONCAT('Martapura, ',DATE_FORMAT(it.tgl_setuju_tolak,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(it.jam_setuju_tolak,'%H:%i'),' WITA') tgl_surat, "
+                            + "if(it.nm_pihak_klg='','......................',replace(it.nm_pihak_klg,' (Pihak Keluarga)','')) phkKeluarga, "
+                            + "if(it.nm_pihak_rs='','......................',replace(it.nm_pihak_rs,' (Pihak RS)','')) phkRS FROM informasi_tindakan_pembiusan_operasi it "
+                            + "INNER JOIN reg_periksa rp on rp.no_rawat=it.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
+                            + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab WHERE it.waktu_simpan='" + tbInformasi.getValueAt(tbInformasi.getSelectedRow(), 84).toString() + "' "
+                            + "and it.jns_tindakan_kedokteran='" + cmbJnsTindakan.getSelectedItem() + "'", param);
+                }
+                
                 Valid.MyReport("rptLembarInformasiTindakanPembiusan2.jasper", "report", "::[ Lembar Informasi Tindakan Pembiusan hal. 2 ]::",
                         "SELECT now() tanggal", param);
                 
@@ -3731,7 +3821,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
 
     private void chkSamaPenerima1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSamaPenerima1ActionPerformed
         if (chkSamaPenerima1.isSelected() == true) {
-            TnmSaksiRs.setText(TnmPenerima.getText());
+            TnmSaksiRs.setText(TnmPemberi.getText());
         } else {
             TnmSaksiRs.setText("");
         }

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="2.0000000000000058"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="378"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -19,11 +19,11 @@
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="tglsurat" class="java.lang.String"/>
-	<parameter name="lokasiQr" class="java.io.InputStream"/>
-	<parameter name="kalimatTte" class="java.lang.String"/>
+	<parameter name="lokasiQr" class="java.lang.String"/>
+	<parameter name="kalimatTte1" class="java.lang.String"/>
 	<parameter name="gambarTtd2" class="java.lang.String"/>
 	<parameter name="gambarTtd3" class="java.lang.String"/>
-	<parameter name="gambarTtd4" class="java.lang.String"/>
+	<parameter name="ttdPihakRS1" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, 
 if(s.penerima_info='','......................',replace(s.penerima_info,' (Penerima Informasi)','')) nmpenerima, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, 
@@ -1100,7 +1100,7 @@ INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana INNER JOIN pegawai p
 				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kalimatTte}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{kalimatTte1}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="0" y="0" width="519" height="1"/>
@@ -1269,7 +1269,7 @@ INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana INNER JOIN pegawai p
 			</image>
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="398" y="25" width="80" height="76"/>
-				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd4}]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA[$P{ttdPihakRS1}]]></imageExpression>
 			</image>
 		</band>
 	</summary>
