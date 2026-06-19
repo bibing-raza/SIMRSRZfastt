@@ -3563,6 +3563,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getkegiatan_operasi());
         BtnGanti.setEnabled(akses.getkegiatan_operasi());
         BtnHapus.setEnabled(akses.getkegiatan_operasi());
+        BtnMicCatatan.setEnabled(akses.getadmin());
     }
     
     private void dataCek() {

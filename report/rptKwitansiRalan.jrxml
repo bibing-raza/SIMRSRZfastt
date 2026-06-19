@@ -17,6 +17,7 @@
 	<parameter name="untuk_byr" class="java.lang.String"/>
 	<parameter name="terbilang" class="java.lang.String"/>
 	<parameter name="tglNota" class="java.lang.String"/>
+	<parameter name="judul" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -111,13 +112,6 @@
 				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement mode="Transparent" x="0" y="44" width="270" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[KWITANSI]]></text>
-			</staticText>
-			<staticText>
 				<reportElement mode="Transparent" x="0" y="63" width="80" height="13" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="9" isBold="false"/>
@@ -207,6 +201,13 @@
 					<font fontName="Tahoma" isBold="true" isItalic="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{terbilang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="44" width="270" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{judul}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

@@ -85,7 +85,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             Persediaan_BHP_Radiologi_Rawat_Jalan = "", HPP_Obat_Rawat_Jalan = "", Persediaan_Obat_Rawat_Jalan = "",
             Beban_Jasa_Medik_Dokter_Operasi_Ralan = "", Utang_Jasa_Medik_Dokter_Operasi_Ralan = "", isi = "",
             Beban_Jasa_Medik_Paramedis_Operasi_Ralan = "", Utang_Jasa_Medik_Paramedis_Operasi_Ralan = "", caraByr = "",
-            HPP_Obat_Operasi_Ralan = "", Persediaan_Obat_Kamar_Operasi_Ralan = "", diagnosa_ok = "", cekdokter = "",
+            HPP_Obat_Operasi_Ralan = "", Persediaan_Obat_Kamar_Operasi_Ralan = "", diagnosa_ok = "", cekdokter = "", cekKIR = "",
             Operasi_Ralan = "", tampilkan_ppnobat_ralan = "", rincianoperasi = "", centangobatralan = "No",
             sqlpscekbilling = "select count(billing.no_rawat) from billing where billing.no_rawat=?",
             sqlpscarirm = "select r.no_rkm_medis, pj.png_jawab, r.kd_pj from reg_periksa r inner join penjab pj on pj.kd_pj=r.kd_pj where r.no_rawat=?",
@@ -7011,8 +7011,10 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         judulBanyak = "";
         judulTunggal = "";
         isi = "";
+        cekKIR = "";
         jmlNota = 0;
         jmlNota = Sequel.cariInteger("SELECT count(-1) cek FROM temporary_bayar_ralan WHERE temp1='No. Nota'");
+        cekKIR = Sequel.cariIsi("select if(kir_kesehatan='Ya','- KIR ','') from reg_periksa where no_rawat='" + TNoRw.getText() + "' and status_lanjut='Ralan'");
 
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
@@ -7033,11 +7035,11 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
         
         if (judulnya.equals("nota")) {
-            param.put("judul", "NOTA PEMBAYARAN (" + caraByr + ")");
+            param.put("judul", "NOTA PEMBAYARAN " + cekKIR + "(" + caraByr + ")");
             judulBanyak = "::[ Nota Pembayaran Banyak - LUNAS (Rawat Jalan) ]::";
             judulTunggal = "::[ Nota Pembayaran - LUNAS (Rawat Jalan) ]::";
         } else if (judulnya.equals("kwitansi_nota")) {
-            param.put("judul", "KUITANSI PEMBAYARAN (" + caraByr + ")");
+            param.put("judul", "KUITANSI PEMBAYARAN " + cekKIR + "(" + caraByr + ")");
             judulBanyak = "::[ Kuitansi Pembayaran Banyak - LUNAS (Rawat Jalan) ]::";
             judulTunggal = "::[ Kuitansi Pembayaran - LUNAS (Rawat Jalan) ]::";
         }
@@ -7105,6 +7107,9 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
     private void cetakKwitansiLUNAS() {
         isi = "";
+        cekKIR = "";
+        cekKIR = Sequel.cariIsi("select if(kir_kesehatan='Ya','- KIR','') from reg_periksa where no_rawat='" + TNoRw.getText() + "' and status_lanjut='Ralan'");
+        
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("alamatrs", akses.getalamatrs());
@@ -7120,6 +7125,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 + Sequel.cariIsi("SELECT REPLACE(temp2,': ','') pasien FROM temporary_bayar_ralan WHERE temp1='Pasien'"));
         param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp7,'.','.'),',','.')) terbilang FROM temporary_bayar_ralan WHERE temp1='TOTAL BAYAR'"));
         param.put("tglNota", "Martapura, " + tglNota.getSelectedItem().toString());
+        param.put("judul", "KUITANSI " + cekKIR);
 
         if (akses.getadmin() == true || BtnSimpan.isEnabled() == false) {
             param.put("petugas_ksr", "( ____________________ )");

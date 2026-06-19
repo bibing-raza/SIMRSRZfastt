@@ -2598,11 +2598,11 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenUlangGizi.setEnabled(akses.getassesmen_gizi_ulang());
         BtnLembarObservasi.setEnabled(akses.getcppt());
         BtnTransferTindakan.setEnabled(akses.getcppt());
-        BtnAsesmenPraSedasi.setEnabled(akses.getresep_dokter());
+        BtnAsesmenPraSedasi.setEnabled(akses.getkegiatan_operasi());
         BtnCeklisPraOperasi.setEnabled(akses.getkegiatan_operasi());
         BtnCeklisKesiapanAnestesi.setEnabled(akses.getkegiatan_operasi());
         BtnCeklisKeselamatanOperasi.setEnabled(akses.getkegiatan_operasi());
-        BtnAsesmenPreInduksi.setEnabled(akses.getresep_dokter());
+        BtnAsesmenPreInduksi.setEnabled(akses.getkegiatan_operasi());
         BtnAsesmenKeperawatanPerioperatif.setEnabled(akses.getkegiatan_operasi());
         BtnPerencanaanPulang.setEnabled(akses.getcppt());
         BtnCatatanMaterial.setEnabled(akses.getkegiatan_operasi());

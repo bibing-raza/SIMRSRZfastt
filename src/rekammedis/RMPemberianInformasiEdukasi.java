@@ -883,6 +883,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel63 = new widget.Label();
         cmbPilihCetak = new widget.ComboBox();
         BtnPrint = new widget.Button();
+        BtnNotepad = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
 
@@ -956,7 +957,6 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         BtnTampilkanQr.setForeground(new java.awt.Color(0, 0, 0));
         BtnTampilkanQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clear24.png"))); // NOI18N
-        BtnTampilkanQr.setMnemonic('S');
         BtnTampilkanQr.setText("Tampilkan Qr Code TTD");
         BtnTampilkanQr.setToolTipText("Alt+S");
         BtnTampilkanQr.setName("BtnTampilkanQr"); // NOI18N
@@ -970,7 +970,6 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -1710,7 +1709,6 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         TnmPetugas.setBounds(300, 710, 360, 23);
 
         BtnPtgsPemberi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPtgsPemberi.setMnemonic('2');
         BtnPtgsPemberi.setToolTipText("Alt+2");
         BtnPtgsPemberi.setName("BtnPtgsPemberi"); // NOI18N
         BtnPtgsPemberi.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1729,7 +1727,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel168.setBounds(0, 738, 300, 23);
 
         TtglPemberian.setEditable(false);
-        TtglPemberian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2026" }));
+        TtglPemberian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         TtglPemberian.setDisplayFormat("dd-MM-yyyy");
         TtglPemberian.setName("TtglPemberian"); // NOI18N
         TtglPemberian.setOpaque(false);
@@ -1817,7 +1815,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel20.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass10.add(jLabel20);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1831,7 +1829,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1856,7 +1854,6 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('3');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+3");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -1947,7 +1944,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         jLabel12.setBounds(0, 66, 110, 23);
 
         TtglPenilaian.setEditable(false);
-        TtglPenilaian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2026" }));
+        TtglPenilaian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         TtglPenilaian.setDisplayFormat("dd-MM-yyyy");
         TtglPenilaian.setName("TtglPenilaian"); // NOI18N
         TtglPenilaian.setOpaque(false);
@@ -2699,7 +2696,6 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         TnmPetugas1.setBounds(165, 150, 360, 23);
 
         BtnPtgsPengedukasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPtgsPengedukasi.setMnemonic('2');
         BtnPtgsPengedukasi.setToolTipText("Alt+2");
         BtnPtgsPengedukasi.setName("BtnPtgsPengedukasi"); // NOI18N
         BtnPtgsPengedukasi.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -3129,7 +3125,6 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('3');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+3");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -3173,7 +3168,6 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -3187,7 +3181,6 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -3206,7 +3199,6 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -3220,7 +3212,6 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -3251,7 +3242,6 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -3268,9 +3258,21 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnPrint);
 
+        BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
+        BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnNotepad.setText("Notepad");
+        BtnNotepad.setToolTipText("Alt+N");
+        BtnNotepad.setName("BtnNotepad"); // NOI18N
+        BtnNotepad.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnNotepad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNotepadActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnNotepad);
+
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -3289,7 +3291,6 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -4785,6 +4786,17 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnBikinQrCodeActionPerformed
 
+    private void BtnNotepadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepadActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        akses.setform("RMPemberianInformasiEdukasi");
+        DlgNotepad form = new DlgNotepad(null, false);
+        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setData(akses.getkode());
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnNotepadActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4810,6 +4822,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnNotepad;
     private widget.Button BtnPrint;
     private widget.Button BtnPtgsPemberi;
     private widget.Button BtnPtgsPengedukasi;

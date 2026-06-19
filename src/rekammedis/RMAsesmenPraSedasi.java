@@ -4231,10 +4231,10 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
     }    
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getresep_dokter());
-        BtnHapus.setEnabled(akses.getresep_dokter());
-        BtnEdit.setEnabled(akses.getresep_dokter());
-        BtnPrint.setEnabled(akses.getresep_dokter());
+        BtnSimpan.setEnabled(akses.getkegiatan_operasi());
+        BtnHapus.setEnabled(akses.getkegiatan_operasi());
+        BtnEdit.setEnabled(akses.getkegiatan_operasi());
+        BtnPrint.setEnabled(akses.getkegiatan_operasi());
         MnRiwayatData.setEnabled(akses.getadmin());
     }
 

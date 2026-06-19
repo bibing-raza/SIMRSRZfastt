@@ -444,13 +444,22 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             public void windowOpened(WindowEvent e) {}
             @Override
             public void windowClosing(WindowEvent e) {}
+
             @Override
             public void windowClosed(WindowEvent e) {
                 if (akses.getform().equals("RMInformasiTindakanPembiusan")) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nipPemberi = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        TnmPemberi.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnPemberi.requestFocus();
+                    if (pilihan == 1) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nipPemberi = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            TnmPemberi.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPemberi.requestFocus();
+                        }
+                    } else if (pilihan == 2) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            TnmSaksiRs.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPihakRS.requestFocus();
+                            chkSamaPenerima1.setSelected(false);
+                        }
                     }
                 }
             }
@@ -694,6 +703,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         BtnPrognosis = new widget.Button();
         BtnAlternatif = new widget.Button();
         BtnLain = new widget.Button();
+        BtnPihakRS = new widget.Button();
         PanelInput1 = new javax.swing.JPanel();
         panelGlass14 = new widget.panelisi();
         Scroll5 = new widget.ScrollPane();
@@ -1345,7 +1355,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         jLabel92.setBounds(0, 1356, 140, 23);
 
         TtglInformasi.setEditable(false);
-        TtglInformasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2026" }));
+        TtglInformasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         TtglInformasi.setDisplayFormat("dd-MM-yyyy");
         TtglInformasi.setName("TtglInformasi"); // NOI18N
         TtglInformasi.setOpaque(false);
@@ -2363,8 +2373,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         Talasan.setBounds(145, 1612, 615, 23);
 
         TtglSetujuTolak.setEditable(false);
-        TtglSetujuTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2026" }));
-        TtglSetujuTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2026" }));
+        TtglSetujuTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         TtglSetujuTolak.setDisplayFormat("dd-MM-yyyy");
         TtglSetujuTolak.setName("TtglSetujuTolak"); // NOI18N
         TtglSetujuTolak.setOpaque(false);
@@ -2523,7 +2532,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             }
         });
         FormInput.add(chkSamaPenerima1);
-        chkSamaPenerima1.setBounds(560, 1384, 200, 23);
+        chkSamaPenerima1.setBounds(600, 1384, 200, 23);
 
         panelGlass13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Scan QR Untuk TTD ]", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         panelGlass13.setName("panelGlass13"); // NOI18N
@@ -2612,6 +2621,19 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         FormInput.add(BtnLain);
         BtnLain.setBounds(770, 1270, 100, 23);
 
+        BtnPihakRS.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPihakRS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPihakRS.setMnemonic('1');
+        BtnPihakRS.setToolTipText("Alt+1");
+        BtnPihakRS.setName("BtnPihakRS"); // NOI18N
+        BtnPihakRS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPihakRSActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnPihakRS);
+        BtnPihakRS.setBounds(560, 1384, 28, 23);
+
         Scroll1.setViewportView(FormInput);
 
         panelGlass9.add(Scroll1, java.awt.BorderLayout.CENTER);
@@ -2676,8 +2698,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2026" }));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2692,8 +2713,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         panelGlass12.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2026" }));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3592,6 +3612,8 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnDrPelaksanaActionPerformed
 
     private void BtnPemberiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPemberiActionPerformed
+        pilihan = 0;
+        pilihan = 1;
         akses.setform("RMInformasiTindakanPembiusan");
         petugas.isCek();
         petugas.setSize(983, internalFrame1.getHeight() - 40);
@@ -4175,6 +4197,17 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnHapusTtdMenyatakanActionPerformed
 
+    private void BtnPihakRSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPihakRSActionPerformed
+        pilihan = 0;
+        pilihan = 2;
+        akses.setform("RMInformasiTindakanPembiusan");
+        petugas.isCek();
+        petugas.setSize(983, internalFrame1.getHeight() - 40);
+        petugas.setLocationRelativeTo(internalFrame1);
+        petugas.setAlwaysOnTop(false);
+        petugas.setVisible(true);
+    }//GEN-LAST:event_BtnPihakRSActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4206,6 +4239,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnLain;
     private widget.Button BtnPemberi;
+    private widget.Button BtnPihakRS;
     private widget.Button BtnPrint;
     private widget.Button BtnPrognosis;
     private widget.Button BtnSimpan;

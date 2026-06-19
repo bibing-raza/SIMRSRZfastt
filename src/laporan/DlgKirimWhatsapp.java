@@ -43,7 +43,7 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
     private ApiWhatapp wa = new ApiWhatapp();    
     private int i = 0, jmlNota = 0;
     private double ttl = 0, item = 0;
-    private String nmDokumen = "", norawat = "", waktuSimpan = "", cekPiutang = "", crbyr = "", isi = "", nmFile = "",
+    private String nmDokumen = "", norawat = "", waktuSimpan = "", cekPiutang = "", crbyr = "", isi = "", nmFile = "", cekKIR = "",
             judulReport = "", judulBanyak = "", judulTunggal = "", tanggal = "", nmPemberiJT = "", noTelpJT = "", jmlNominalJT = "",
             namaPasJT = "", norkmJT = "", noPanjarP = "", keterP = "", notelpP = "", sttsP = "", angkaNomP = "", userP = "", nmpetgs = "";
     
@@ -692,6 +692,8 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
     
     private void notaRalan() {
         jmlNota = 0;
+        cekKIR = "";
+        cekKIR = Sequel.cariIsi("select if(kir_kesehatan='Ya','- KIR ','') from reg_periksa where no_rawat='" + norawat + "' and status_lanjut='Ralan'");
         jmlNota = Sequel.cariInteger("SELECT count(-1) cek FROM temporary_bayar_ralan WHERE temp1='No. Nota'");
         crbyr = Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + norawat + "'");        
 
@@ -714,12 +716,12 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
         }
 
         if (judulReport.equals("nota")) {
-            param.put("judul", "NOTA PEMBAYARAN (" + crbyr + ")");
+            param.put("judul", "NOTA PEMBAYARAN " + cekKIR + "(" + crbyr + ")");
             judulBanyak = "::[ Nota Pembayaran Banyak - LUNAS (Rawat Jalan) ]::";
             judulTunggal = "::[ Nota Pembayaran - LUNAS (Rawat Jalan) ]::";
             nmFile = "Nota Pembayaran " + norawat.replaceAll("/", "");
         } else if (judulReport.equals("kwitansi_nota")) {
-            param.put("judul", "KUITANSI PEMBAYARAN (" + crbyr + ")");
+            param.put("judul", "KUITANSI PEMBAYARAN " + cekKIR + "(" + crbyr + ")");
             judulBanyak = "::[ Kuitansi Pembayaran Banyak - LUNAS (Rawat Jalan) ]::";
             judulTunggal = "::[ Kuitansi Pembayaran - LUNAS (Rawat Jalan) ]::";
             nmFile = "Kuitansi Pembayaran Transaksi " + norawat.replaceAll("/", "");
@@ -778,6 +780,8 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
     }
     
     private void kuitansiRalan() {
+        cekKIR = "";
+        cekKIR = Sequel.cariIsi("select if(kir_kesehatan='Ya','- KIR','') from reg_periksa where no_rawat='" + norawat + "' and status_lanjut='Ralan'");
         nmFile = "Kuitansi Pembayaran " + norawat.replaceAll("/", "");
         
         Map<String, Object> param = new HashMap<>();
@@ -795,6 +799,7 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                 + Sequel.cariIsi("SELECT REPLACE(temp2,': ','') pasien FROM temporary_bayar_ralan WHERE temp1='Pasien'"));
         param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp7,'.','.'),',','.')) terbilang FROM temporary_bayar_ralan WHERE temp1='TOTAL BAYAR'"));
         param.put("tglNota", "Martapura, " + tanggal);
+        param.put("judul", "KUITANSI " + cekKIR);
 
         if (akses.getadmin() == true) {
             param.put("petugas_ksr", "( ____________________ )");
