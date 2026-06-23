@@ -2409,17 +2409,17 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
     }
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getkegiatan_operasi());
-        BtnGanti.setEnabled(akses.getkegiatan_operasi());
-        BtnHapus.setEnabled(akses.getkegiatan_operasi());
+        BtnSimpan.setEnabled(akses.getcppt());
+        BtnGanti.setEnabled(akses.getcppt());
+        BtnHapus.setEnabled(akses.getcppt());
         
-        BtnHapusInfus.setEnabled(akses.getkegiatan_operasi());
-        BtnHapusObat.setEnabled(akses.getkegiatan_operasi());
-        BtnHapusPsiko.setEnabled(akses.getkegiatan_operasi());
-        BtnHapusAnti.setEnabled(akses.getkegiatan_operasi());
-        BtnHapusBahan.setEnabled(akses.getkegiatan_operasi());
-        BtnHapusBenang.setEnabled(akses.getkegiatan_operasi());
-        BtnHapusLain.setEnabled(akses.getkegiatan_operasi());
+        BtnHapusInfus.setEnabled(akses.getcppt());
+        BtnHapusObat.setEnabled(akses.getcppt());
+        BtnHapusPsiko.setEnabled(akses.getcppt());
+        BtnHapusAnti.setEnabled(akses.getcppt());
+        BtnHapusBahan.setEnabled(akses.getcppt());
+        BtnHapusBenang.setEnabled(akses.getcppt());
+        BtnHapusLain.setEnabled(akses.getcppt());
     }
     
     public void setData(String norw, String norm, String nmpasien, String ruangan) {

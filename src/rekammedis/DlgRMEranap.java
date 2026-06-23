@@ -176,6 +176,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnCeklisPraOperasi = new widget.ButtonBig();
         BtnFormulirSiteMarking = new widget.ButtonBig();
         BtnCeklisKesiapanAnestesi = new widget.ButtonBig();
+        BtnAsesmenPraSedasiKonsepIAR = new widget.ButtonBig();
         BtnAsesmenPreInduksi = new widget.ButtonBig();
         BtnAsesmenKeperawatanPerioperatif = new widget.ButtonBig();
         BtnCeklisKeselamatanOperasi = new widget.ButtonBig();
@@ -1091,6 +1092,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput1.add(BtnCeklisKesiapanAnestesi);
+
+        BtnAsesmenPraSedasiKonsepIAR.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenPraSedasiKonsepIAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        BtnAsesmenPraSedasiKonsepIAR.setText("Asesmen Pra Sedasi Konsep IAR");
+        BtnAsesmenPraSedasiKonsepIAR.setIconTextGap(0);
+        BtnAsesmenPraSedasiKonsepIAR.setName("BtnAsesmenPraSedasiKonsepIAR"); // NOI18N
+        BtnAsesmenPraSedasiKonsepIAR.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnAsesmenPraSedasiKonsepIAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenPraSedasiKonsepIARActionPerformed(evt);
+            }
+        });
+        FormInput1.add(BtnAsesmenPraSedasiKonsepIAR);
 
         BtnAsesmenPreInduksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenPreInduksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/anastesi1.png"))); // NOI18N
@@ -2449,6 +2463,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnEvaluasiPraAnestesiActionPerformed
 
+    private void BtnAsesmenPraSedasiKonsepIARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenPraSedasiKonsepIARActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            if (akses.getadmin() == true) {
+                akses.setform("DlgRMEranap");
+                RMAsesmenPraSedasiKonsepIAR form = new RMAsesmenPraSedasiKonsepIAR(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+            }
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnAsesmenPraSedasiKonsepIARActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2475,6 +2510,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnAsesmenMedikDewasa;
     private widget.ButtonBig BtnAsesmenMedikPerinatologi;
     private widget.ButtonBig BtnAsesmenPraSedasi;
+    private widget.ButtonBig BtnAsesmenPraSedasiKonsepIAR;
     private widget.ButtonBig BtnAsesmenPreInduksi;
     private widget.ButtonBig BtnAsesmenRestrain;
     private widget.ButtonBig BtnAsesmenUlangGizi;
@@ -2598,26 +2634,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenUlangGizi.setEnabled(akses.getassesmen_gizi_ulang());
         BtnLembarObservasi.setEnabled(akses.getcppt());
         BtnTransferTindakan.setEnabled(akses.getcppt());
-        BtnAsesmenPraSedasi.setEnabled(akses.getkegiatan_operasi());
-        BtnCeklisPraOperasi.setEnabled(akses.getkegiatan_operasi());
-        BtnCeklisKesiapanAnestesi.setEnabled(akses.getkegiatan_operasi());
-        BtnCeklisKeselamatanOperasi.setEnabled(akses.getkegiatan_operasi());
-        BtnAsesmenPreInduksi.setEnabled(akses.getkegiatan_operasi());
-        BtnAsesmenKeperawatanPerioperatif.setEnabled(akses.getkegiatan_operasi());
+        BtnAsesmenPraSedasi.setEnabled(akses.getcppt());
+        BtnCeklisPraOperasi.setEnabled(akses.getcppt());
+        BtnCeklisKesiapanAnestesi.setEnabled(akses.getcppt());
+        BtnCeklisKeselamatanOperasi.setEnabled(akses.getcppt());
+        BtnAsesmenPreInduksi.setEnabled(akses.getcppt());
+        BtnAsesmenKeperawatanPerioperatif.setEnabled(akses.getcppt());
         BtnPerencanaanPulang.setEnabled(akses.getcppt());
-        BtnCatatanMaterial.setEnabled(akses.getkegiatan_operasi());
+        BtnCatatanMaterial.setEnabled(akses.getcppt());
         BtnRekonsiliasiObat.setEnabled(akses.getberi_obat());
         BtnPemberianInformasiEdukasi.setEnabled(akses.getcppt());
         BtnTriasePonek.setEnabled(akses.getcppt());
         BtnObservasiKala1.setEnabled(akses.getcppt());
         BtnSamplingPemanfaatanRM.setEnabled(akses.getadmin());
         BtnPartograf.setEnabled(akses.getcppt());
-        BtnLaporanOperasi.setEnabled(akses.getkegiatan_operasi());
-        BtnCatatanRuangPemulihan.setEnabled(akses.getkegiatan_operasi());
-        BtnFormulirSiteMarking.setEnabled(akses.getkegiatan_operasi());
-        BtnSerahTerimaPasca.setEnabled(akses.getkegiatan_operasi());
-        BtnInformasiTindakanPembiusan.setEnabled(akses.getkegiatan_operasi());
-        BtnEvaluasiPraAnestesi.setEnabled(akses.getkegiatan_operasi());
+        BtnLaporanOperasi.setEnabled(akses.getcppt());
+        BtnCatatanRuangPemulihan.setEnabled(akses.getcppt());
+        BtnFormulirSiteMarking.setEnabled(akses.getcppt());
+        BtnSerahTerimaPasca.setEnabled(akses.getcppt());
+        BtnInformasiTindakanPembiusan.setEnabled(akses.getcppt());
+        BtnEvaluasiPraAnestesi.setEnabled(akses.getcppt());
+        BtnAsesmenPraSedasiKonsepIAR.setEnabled(akses.getcppt());
     }
     
     public void setData(String norw, String norm, String nmpasien,

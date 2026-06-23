@@ -107,5 +107,5 @@
 
 		<entry key="WHISPERCLILINUX">whisper/linux/whisper-cli</entry>
         <entry key="WHISPERCLIWINDOWS">whisper/windows/whisper-cli.exe</entry>
-        <entry key="WHISPERMODEL">whisper/models/ggml-small.bin</entry>
+        <entry key="WHISPERMODEL">whisper/models/ggml-base.bin</entry>
 </properties>

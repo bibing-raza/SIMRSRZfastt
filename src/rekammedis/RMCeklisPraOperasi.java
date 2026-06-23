@@ -2424,9 +2424,9 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
     }
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getkegiatan_operasi());
-        BtnGanti.setEnabled(akses.getkegiatan_operasi());
-        BtnHapus.setEnabled(akses.getkegiatan_operasi());
+        BtnSimpan.setEnabled(akses.getcppt());
+        BtnGanti.setEnabled(akses.getcppt());
+        BtnHapus.setEnabled(akses.getcppt());
     }
     
     private void dataCek() {

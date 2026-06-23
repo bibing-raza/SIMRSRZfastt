@@ -4251,11 +4251,11 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
     }
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getkegiatan_operasi());
-        BtnGanti.setEnabled(akses.getkegiatan_operasi());
-        BtnHapus.setEnabled(akses.getkegiatan_operasi());
-        BtnTambah.setEnabled(akses.getkegiatan_operasi());
-        BtnHapusJns.setEnabled(akses.getkegiatan_operasi());
+        BtnSimpan.setEnabled(akses.getcppt());
+        BtnGanti.setEnabled(akses.getcppt());
+        BtnHapus.setEnabled(akses.getcppt());
+        BtnTambah.setEnabled(akses.getcppt());
+        BtnHapusJns.setEnabled(akses.getcppt());
     }
     
     private void cekData() {

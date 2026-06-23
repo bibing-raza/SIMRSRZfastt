@@ -1073,9 +1073,9 @@ public class RMFormulirSiteMarkingOperasi extends javax.swing.JDialog {
     }
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getkegiatan_operasi());
-        BtnGanti.setEnabled(akses.getkegiatan_operasi());
-        BtnHapus.setEnabled(akses.getkegiatan_operasi());
+        BtnSimpan.setEnabled(akses.getcppt());
+        BtnGanti.setEnabled(akses.getcppt());
+        BtnHapus.setEnabled(akses.getcppt());
         
         if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") == 0) {
             nipDokter = "-";

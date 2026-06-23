@@ -561,7 +561,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -580,7 +579,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnCopas.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopas.setMnemonic('U');
         BtnCopas.setText("Copy & Paste");
         BtnCopas.setToolTipText("Alt+U");
         BtnCopas.setName("BtnCopas"); // NOI18N
@@ -594,7 +592,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -629,7 +626,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -648,7 +644,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -667,7 +662,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -681,7 +675,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -712,7 +705,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -731,7 +723,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -753,7 +744,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
         panelGlass9.setName("panelGlass9"); // NOI18N
         panelGlass9.setPreferredSize(new java.awt.Dimension(55, 47));
         panelGlass9.setLayout(new java.awt.BorderLayout());
-        panelGlass9.setLayout(new java.awt.GridLayout(1, 2));
 
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
@@ -795,18 +785,33 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
         jLabel63.setForeground(new java.awt.Color(0, 0, 0));
         jLabel63.setText("Ruang Rawat :");
         jLabel63.setName("jLabel63"); // NOI18N
+        jLabel63.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbJam1MouseReleased(evt);
+            }
+        });
         FormInput.add(jLabel63);
         jLabel63.setBounds(235, 154, 90, 23);
 
         TrgRawat.setEditable(false);
         TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
         TrgRawat.setName("TrgRawat"); // NOI18N
+        TrgRawat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbMnt1MouseReleased(evt);
+            }
+        });
         FormInput.add(TrgRawat);
         TrgRawat.setBounds(330, 154, 430, 23);
 
         jLabel87.setForeground(new java.awt.Color(0, 0, 0));
         jLabel87.setText("Alergi Obat :");
         jLabel87.setName("jLabel87"); // NOI18N
+        jLabel87.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbDtk1MouseReleased(evt);
+            }
+        });
         FormInput.add(jLabel87);
         jLabel87.setBounds(0, 38, 140, 23);
 
@@ -848,7 +853,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnSpesBedah.setForeground(new java.awt.Color(0, 0, 0));
         BtnSpesBedah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnSpesBedah.setMnemonic('1');
         BtnSpesBedah.setToolTipText("Alt+1");
         BtnSpesBedah.setName("BtnSpesBedah"); // NOI18N
         BtnSpesBedah.addActionListener(new java.awt.event.ActionListener() {
@@ -861,7 +865,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnSpesAnes.setForeground(new java.awt.Color(0, 0, 0));
         BtnSpesAnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnSpesAnes.setMnemonic('1');
         BtnSpesAnes.setToolTipText("Alt+1");
         BtnSpesAnes.setName("BtnSpesAnes"); // NOI18N
         BtnSpesAnes.addActionListener(new java.awt.event.ActionListener() {
@@ -913,7 +916,7 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
         jLabel276.setBounds(630, 182, 50, 23);
 
         TtglRuang.setEditable(false);
-        TtglRuang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-06-2026" }));
+        TtglRuang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2026" }));
         TtglRuang.setDisplayFormat("dd-MM-yyyy");
         TtglRuang.setName("TtglRuang"); // NOI18N
         TtglRuang.setOpaque(false);
@@ -1151,7 +1154,7 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
         jLabel107.setBounds(0, 452, 140, 23);
 
         TtglOperasi.setEditable(false);
-        TtglOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-06-2026" }));
+        TtglOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2026" }));
         TtglOperasi.setDisplayFormat("dd-MM-yyyy");
         TtglOperasi.setName("TtglOperasi"); // NOI18N
         TtglOperasi.setOpaque(false);
@@ -1451,7 +1454,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnAlergiObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnAlergiObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnAlergiObat.setMnemonic('2');
         BtnAlergiObat.setText("Template");
         BtnAlergiObat.setToolTipText("Alt+2");
         BtnAlergiObat.setName("BtnAlergiObat"); // NOI18N
@@ -1466,7 +1468,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnDiagnosa.setForeground(new java.awt.Color(0, 0, 0));
         BtnDiagnosa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDiagnosa.setMnemonic('2');
         BtnDiagnosa.setText("Template");
         BtnDiagnosa.setToolTipText("Alt+2");
         BtnDiagnosa.setName("BtnDiagnosa"); // NOI18N
@@ -1481,7 +1482,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnRencTindakan.setForeground(new java.awt.Color(0, 0, 0));
         BtnRencTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnRencTindakan.setMnemonic('2');
         BtnRencTindakan.setText("Template");
         BtnRencTindakan.setToolTipText("Alt+2");
         BtnRencTindakan.setName("BtnRencTindakan"); // NOI18N
@@ -1496,7 +1496,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnRiwAnestesi.setForeground(new java.awt.Color(0, 0, 0));
         BtnRiwAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnRiwAnestesi.setMnemonic('2');
         BtnRiwAnestesi.setText("Template");
         BtnRiwAnestesi.setToolTipText("Alt+2");
         BtnRiwAnestesi.setName("BtnRiwAnestesi"); // NOI18N
@@ -1511,7 +1510,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnRencAnestesi.setForeground(new java.awt.Color(0, 0, 0));
         BtnRencAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnRencAnestesi.setMnemonic('2');
         BtnRencAnestesi.setText("Template");
         BtnRencAnestesi.setToolTipText("Alt+2");
         BtnRencAnestesi.setName("BtnRencAnestesi"); // NOI18N
@@ -1526,7 +1524,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnInstruksi.setForeground(new java.awt.Color(0, 0, 0));
         BtnInstruksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnInstruksi.setMnemonic('2');
         BtnInstruksi.setText("Template");
         BtnInstruksi.setToolTipText("Alt+2");
         BtnInstruksi.setName("BtnInstruksi"); // NOI18N
@@ -1542,15 +1539,11 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
         Scroll1.setViewportView(FormInput);
 
         panelGlass9.add(Scroll1, java.awt.BorderLayout.CENTER);
-        Scroll1.setViewportView(FormInput);
-
-        panelGlass9.add(Scroll1);
 
         PanelInput1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Data Evaluasi Pra Anestesi Operasi ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         PanelInput1.setName("PanelInput1"); // NOI18N
         PanelInput1.setOpaque(false);
         PanelInput1.setPreferredSize(new java.awt.Dimension(900, 700));
-        PanelInput1.setPreferredSize(new java.awt.Dimension(700, 700));
         PanelInput1.setLayout(new java.awt.BorderLayout());
 
         Scroll.setName("Scroll"); // NOI18N
@@ -1589,8 +1582,7 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-06-2026" }));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1605,8 +1597,7 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
         panelGlass12.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-06-2026" }));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-06-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1650,7 +1641,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -1668,7 +1658,6 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -1688,8 +1677,8 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
         panelGlass11.add(panelGlass10, java.awt.BorderLayout.PAGE_END);
 
         PanelInput1.add(panelGlass11, java.awt.BorderLayout.PAGE_END);
+
         panelGlass9.add(PanelInput1, java.awt.BorderLayout.EAST);
-        panelGlass9.add(PanelInput1);
 
         internalFrame1.add(panelGlass9, java.awt.BorderLayout.CENTER);
 
@@ -2739,9 +2728,9 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
     }
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getkegiatan_operasi());
-        BtnGanti.setEnabled(akses.getkegiatan_operasi());
-        BtnHapus.setEnabled(akses.getkegiatan_operasi());
+        BtnSimpan.setEnabled(akses.getcppt());
+        BtnGanti.setEnabled(akses.getcppt());
+        BtnHapus.setEnabled(akses.getcppt());
     }
     
     public void setData(String norw, String norm, String nmpasien, String ruangan) {

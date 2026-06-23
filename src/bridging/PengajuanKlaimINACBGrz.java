@@ -6029,6 +6029,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                 akses.setCopyData("");
                 mbak_eka.menggrouperKedua(noSEP.getText(), kodeTopUPnya, "idrg");
                 tampilHG1();
+                tampilHG2();
                 tampilHG3();
                 
                 if (akses.getPasteData().equals("sukses")) {
@@ -6039,6 +6040,12 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                     BtnHapusKlaim.setEnabled(false);
                     BtnFinal.setEnabled(true);
                     BtnCetakKlaim.setEnabled(false);
+                    
+                    if (tabMode3.getRowCount() == 0) {
+                        BtnGruperStageInacbg.setEnabled(false);
+                    } else {
+                        BtnGruperStageInacbg.setEnabled(true);
+                    }
              
                     if (tabMode20.getRowCount() == 0) {
                         BtnGruperStageIdrg.setEnabled(false);

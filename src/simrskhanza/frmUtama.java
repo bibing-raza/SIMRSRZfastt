@@ -431,6 +431,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import rekammedis.DlgMasterNomorDokumenRM;
 import rekammedis.RMAsesmenMedikKebidanan;
+import rekammedis.RMAsesmenPraSedasiKonsepIAR;
 import rekammedis.RMCatatanRuangPemulihan;
 import rekammedis.RMEvaluasiPraAnestesi;
 import rekammedis.RMFormulirSiteMarkingOperasi;
@@ -1021,6 +1022,7 @@ public class frmUtama extends javax.swing.JFrame {
         BtnSerahTerimaPascaOperasi = new widget.ButtonBig();
         BtnInformasiTindakanPembiusan = new widget.ButtonBig();
         BtnEvaluasiPraAnestesi = new widget.ButtonBig();
+        BtnAsesmenPraSedasiKonsepIAR = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6857,6 +6859,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(BtnEvaluasiPraAnestesi);
 
+        BtnAsesmenPraSedasiKonsepIAR.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenPraSedasiKonsepIAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        BtnAsesmenPraSedasiKonsepIAR.setText("Asesmen Pra Sedasi Konsep IAR");
+        BtnAsesmenPraSedasiKonsepIAR.setIconTextGap(0);
+        BtnAsesmenPraSedasiKonsepIAR.setName("BtnAsesmenPraSedasiKonsepIAR"); // NOI18N
+        BtnAsesmenPraSedasiKonsepIAR.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnAsesmenPraSedasiKonsepIAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenPraSedasiKonsepIARActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(BtnAsesmenPraSedasiKonsepIAR);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6865,7 +6880,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15/06/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23/06/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13526,6 +13541,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnEvaluasiPraAnestesiActionPerformed
 
+    private void BtnAsesmenPraSedasiKonsepIARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenPraSedasiKonsepIARActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMAsesmenPraSedasiKonsepIAR aplikasi = new RMAsesmenPraSedasiKonsepIAR(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnAsesmenPraSedasiKonsepIARActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13537,6 +13565,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.ButtonBig BtnAsesmenMedikKebidanan;
+    private widget.ButtonBig BtnAsesmenPraSedasiKonsepIAR;
     private widget.Button BtnCancel;
     private widget.ButtonBig BtnCatatanRuangPemulihan;
     private widget.ButtonBig BtnClose;
@@ -14394,6 +14423,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getkegiatan_operasi() == true) {
                 Panelmenu.add(BtnEvaluasiPraAnestesi);
+                jmlmenu++;
+            }
+            
+            if (akses.getkegiatan_operasi() == true) {
+                Panelmenu.add(BtnAsesmenPraSedasiKonsepIAR);
                 jmlmenu++;
             }
             
@@ -16540,6 +16574,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getkegiatan_operasi() == true) {
             Panelmenu.add(BtnEvaluasiPraAnestesi);
+            jmlmenu++;
+        }
+
+        if (akses.getkegiatan_operasi() == true) {
+            Panelmenu.add(BtnAsesmenPraSedasiKonsepIAR);
             jmlmenu++;
         }
         
@@ -18753,6 +18792,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getkegiatan_operasi()== true) {
             if (BtnEvaluasiPraAnestesi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(BtnEvaluasiPraAnestesi);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getkegiatan_operasi()== true) {
+            if (BtnAsesmenPraSedasiKonsepIAR.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(BtnAsesmenPraSedasiKonsepIAR);
                 jmlmenu++;
             }
         }
