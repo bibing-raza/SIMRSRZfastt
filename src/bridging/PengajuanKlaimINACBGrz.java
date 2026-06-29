@@ -8229,14 +8229,11 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             Valid.tabelKosong(tabMode2);
             try {
                 StringBuilder sb1 = new StringBuilder();
-                sb1.append("SELECT 'CBG' komponen, eg.cbg_desc deskrip, eg.cbg_code kode, concat('Rp. ',format(eg.cbg_tarif,0)) nominal  FROM eklaim_grouping eg ");
-                sb1.append("WHERE eg.no_sep='" + noSEP.getText() + "' union ALL ");
-                sb1.append("SELECT 'Sub Acute',eg.sub_acute_desc, eg.sub_acute_code, concat('Rp. ',format(eg.sub_acute_tarif,0)) nominal FROM eklaim_grouping eg ");
-                sb1.append("WHERE eg.no_sep='" + noSEP.getText() + "' union ALL ");
-                sb1.append("SELECT 'Chronic',eg.chronic_desc, eg.chronic_code, concat('Rp. ',format(eg.chronic_tarif,0)) nominal FROM eklaim_grouping eg ");
-                sb1.append("WHERE eg.no_sep='" + noSEP.getText() + "' UNION ALL ");
-                sb1.append("SELECT egsc.type,egsc.desc, egsc.code, concat('Rp. ',format(egsc.tarif,0)) nominal FROM eklaim_grouping_spc_cmg egsc ");
-                sb1.append("WHERE egsc.no_sep='" + noSEP.getText() + "' UNION ALL ");
+                sb1.append("SELECT 'CBG' komponen, eg.cbg_desc deskrip, eg.cbg_code kode, concat('Rp. ',format(eg.cbg_tarif,0)) nominal  FROM eklaim_grouping eg WHERE eg.no_sep='" + noSEP.getText() + "' union ALL ");
+                sb1.append("SELECT 'Sub Acute',eg.sub_acute_desc, eg.sub_acute_code, concat('Rp. ',format(eg.sub_acute_tarif,0)) nominal FROM eklaim_grouping eg WHERE eg.no_sep='" + noSEP.getText() + "' union ALL ");
+                sb1.append("SELECT 'Chronic',eg.chronic_desc, eg.chronic_code, concat('Rp. ',format(eg.chronic_tarif,0)) nominal FROM eklaim_grouping eg WHERE eg.no_sep='" + noSEP.getText() + "' UNION ALL ");
+                sb1.append("SELECT egsc.type,egsc.desc, egsc.code, concat('Rp. ',format(egsc.tarif,0)) nominal FROM eklaim_grouping_spc_cmg egsc WHERE egsc.no_sep='" + noSEP.getText() + "' UNION ALL ");
+                sb1.append("SELECT 'Total Klaim' komponen, '', '', concat('Rp. ',format(eg.cbg_tarif,0)) FROM eklaim_grouping eg WHERE eg.no_sep='" + noSEP.getText() + "' union ALL ");
                 sb1.append("select 'Status', concat(sttus_final,' ',pesan_final), '', '' from eklaim_grouping where no_sep='" + noSEP.getText() + "'");
                 ps3 = koneksi.prepareStatement(sb1.toString());
                 try {

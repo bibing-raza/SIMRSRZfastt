@@ -483,11 +483,10 @@
 			</line>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="5" y="2" width="509" height="12"/>
-				<textElement lineSpacing="Single" markup="html">
+				<textElement lineSpacing="Single" markup="none">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["<div style='text-align: justify; line-height: 1.5;'>" +
-"<b>Instruksi Post Operasi :</b><br>" +$P{instruksi} +"<br></div>"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["Instruksi Post Operasi :\n" +$P{instruksi}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="Float" x="1" y="15" width="519" height="1">

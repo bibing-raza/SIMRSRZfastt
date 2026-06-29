@@ -2468,18 +2468,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            if (akses.getadmin() == true) {
-                akses.setform("DlgRMEranap");
-                RMAsesmenPraSedasiKonsepIAR form = new RMAsesmenPraSedasiKonsepIAR(null, false);
-                form.emptTeks();
-                form.isCek();
-                form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
-                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
-            }
+            akses.setform("DlgRMEranap");
+            RMAsesmenPraSedasiKonsepIAR form = new RMAsesmenPraSedasiKonsepIAR(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnAsesmenPraSedasiKonsepIARActionPerformed
@@ -2642,8 +2638,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenKeperawatanPerioperatif.setEnabled(akses.getcppt());
         BtnPerencanaanPulang.setEnabled(akses.getcppt());
         BtnCatatanMaterial.setEnabled(akses.getcppt());
-        BtnRekonsiliasiObat.setEnabled(akses.getberi_obat());
-        BtnPemberianInformasiEdukasi.setEnabled(akses.getcppt());
+        BtnRekonsiliasiObat.setEnabled(akses.getberi_obat());        
         BtnTriasePonek.setEnabled(akses.getcppt());
         BtnObservasiKala1.setEnabled(akses.getcppt());
         BtnSamplingPemanfaatanRM.setEnabled(akses.getadmin());
@@ -2655,6 +2650,12 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnInformasiTindakanPembiusan.setEnabled(akses.getcppt());
         BtnEvaluasiPraAnestesi.setEnabled(akses.getcppt());
         BtnAsesmenPraSedasiKonsepIAR.setEnabled(akses.getcppt());
+        
+        if (akses.getcppt() == true || akses.getbpjs_sep() == true || akses.getadmin()== true) {
+            BtnPemberianInformasiEdukasi.setEnabled(true);
+        } else {
+            BtnPemberianInformasiEdukasi.setEnabled(false);
+        }
     }
     
     public void setData(String norw, String norm, String nmpasien,

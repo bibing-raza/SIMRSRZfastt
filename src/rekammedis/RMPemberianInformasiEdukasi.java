@@ -5372,11 +5372,18 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         TCari1.setText("");
     }
     
-    public void isCek(){
-        BtnSimpan.setEnabled(akses.getcppt());
-        BtnHapus.setEnabled(akses.getcppt());
-        BtnPrint.setEnabled(akses.getcppt());
-        BtnEdit.setEnabled(akses.getcppt());
+    public void isCek() {
+        if (akses.getcppt() == true || akses.getbpjs_sep() == true || akses.getadmin() == true) {            
+            BtnSimpan.setEnabled(true);
+            BtnHapus.setEnabled(true);
+            BtnPrint.setEnabled(true);
+            BtnEdit.setEnabled(true);
+        } else {
+            BtnSimpan.setEnabled(false);
+            BtnHapus.setEnabled(false);
+            BtnPrint.setEnabled(false);
+            BtnEdit.setEnabled(false);
+        }
         
         if (akses.getjml2() >= 1) {
             nipPemberi = akses.getkode();

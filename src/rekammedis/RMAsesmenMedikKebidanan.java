@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -53,9 +54,9 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, pst1, pst2, pst3, pst4, pst5, pst6, pst7, pscppt;
     private ResultSet rs, rs1, rst1, rst2, rst3, rst4, rst5, rst6, rst7, rscppt;
     private int i = 0, x = 0, pilihan = 0, pilihTemplate = 0;
-    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private DlgPenyakit icd10 = new DlgPenyakit(null, false);
+    private DlgCariPetugas petugas;
+    private DlgCariDokter dokter;
+    private DlgPenyakit icd10;
     private String nipPemberi = "", nipDokter = "", nipBidan = "", nipDpjp = "", user = "", dataKonfirmasi = "",
             cervi = "", rjp = "", defri = "", intu = "", vtp = "", dekom = "", balut = "", katet = "", ngt = "", infus = "", obat = "", tdkAda = "",
             paten = "", obsPar = "", obsTot = "", trauma = "", resiko = "", benda = "", 
@@ -553,126 +554,6 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
                 }
             });
         }
-        
-        petugas.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosing(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (pilihan == 1) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nipPemberi = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        Tnmpemberi.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnPemberi.requestFocus();
-                    }
-                } else if (pilihan == 2) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nipBidan = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        Tnmbidan.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnBidan.requestFocus();
-                    }
-                }
-            }
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });
-        
-        dokter.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("RMAsesmenMedikKebidanan")) {
-                    if (pilihan == 3) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            nipDokter = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
-                            Tnmdokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                            BtnDokter.requestFocus();
-                        }
-                    } else if (pilihan == 4) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            nipDpjp = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
-                            Tnmdpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                            BtnDpjp.requestFocus();
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });
-        
-        icd10.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosing(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (icd10.getTable().getSelectedRow() != -1) {
-                    x = JOptionPane.showConfirmDialog(rootPane, "Apakah deskripsi ICD 10 akan ditambahkan juga utk. diagnosa medis sementara..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                    if (x == JOptionPane.YES_OPTION) {
-                        Ticd10.setText(icd10.getTable().getValueAt(icd10.getTable().getSelectedRow(), 1).toString());
-                        if (Tdiagnosis.getText().equals("")) {
-                            Tdiagnosis.setText(icd10.getTable().getValueAt(icd10.getTable().getSelectedRow(), 3).toString());
-                        } else {
-                            Tdiagnosis.setText(Tdiagnosis.getText() + " (" + icd10.getTable().getValueAt(icd10.getTable().getSelectedRow(), 3).toString() + ")");
-                        }
-                        BtnICD.requestFocus();
-                    } else {
-                        Ticd10.setText(icd10.getTable().getValueAt(icd10.getTable().getSelectedRow(), 1).toString());
-                        BtnICD.requestFocus();
-                    }
-                }
-            }
-            
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });
-        
-        icd10.getTable().addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (akses.getform().equals("RMAsesmenMedikKebidanan")) {
-                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                        icd10.dispose();
-                    }
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {}
-        });
         
         ChkAccor.setSelected(false);
         isMenu();
@@ -4100,6 +3981,7 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
         if (TabRawat.getSelectedIndex() == 0) {
             ChkAccor.setSelected(false);
             isMenu();
+            scrollKeAtas();
         } else if (TabRawat.getSelectedIndex() == 1) {
             tampil();
         }
@@ -4110,6 +3992,7 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
             TabRawat.setSelectedIndex(1);
         } else if (Sequel.cariInteger("select count(-1) from asesmen_medik_kebidanan where no_rawat='" + TNoRw.getText() + "'") == 0) {
             TabRawat.setSelectedIndex(0);
+            scrollKeAtas();
         }
         
         Sequel.cariIsiComboDB("SELECT distinct CASE WHEN nm_gedung IN ('AR-RAUDAH ATAS', 'AR-RAUDAH BAWAH') THEN 'AR-RAUDAH' ELSE nm_gedung END AS gedungnya "
@@ -4353,6 +4236,7 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
     }//GEN-LAST:event_TrencanaKeyPressed
 
     private void BtnPemberiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPemberiActionPerformed
+        initPetugas();
         pilihan = 0;
         pilihan = 1;
         akses.setform("RMAsesmenMedikKebidanan");
@@ -4371,6 +4255,7 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
     }//GEN-LAST:event_TnmpenerimaKeyPressed
 
     private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokterActionPerformed
+        initDokter();
         pilihan = 0;
         pilihan = 3;
         akses.setform("RMAsesmenMedikKebidanan");
@@ -4483,6 +4368,7 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
     }//GEN-LAST:event_TgcsKeyPressed
 
     private void BtnBidanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBidanActionPerformed
+        initPetugas();
         pilihan = 0;
         pilihan = 2;
         akses.setform("RMAsesmenMedikKebidanan");
@@ -4495,6 +4381,7 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnBidanActionPerformed
 
     private void BtnDpjpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDpjpActionPerformed
+        initDokter();
         pilihan = 0;
         pilihan = 4;
         akses.setform("RMAsesmenMedikKebidanan");
@@ -4601,6 +4488,7 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
     }//GEN-LAST:event_ChkJamMeninggalActionPerformed
 
     private void BtnICDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnICDActionPerformed
+        initICD();
         akses.setform("RMAsesmenMedikKebidanan");
         icd10.isCek();
         icd10.emptTeks();
@@ -6558,5 +6446,182 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
         } else if (pilihTemplate == 7) {
             Tpenyebab.setText(Ttemplate.getText());
         } 
+    }
+    
+    private void initPetugas() {
+        if (petugas == null) {
+            petugas = new DlgCariPetugas(null, false);
+
+            petugas.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (pilihan == 1) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nipPemberi = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            Tnmpemberi.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPemberi.requestFocus();
+                        }
+                    } else if (pilihan == 2) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nipBidan = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            Tnmbidan.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnBidan.requestFocus();
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
+    }
+
+    private void initDokter() {
+        if (dokter == null) {
+            dokter = new DlgCariDokter(null, false);
+
+            dokter.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (akses.getform().equals("RMAsesmenMedikKebidanan")) {
+                        if (pilihan == 3) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                nipDokter = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
+                                Tnmdokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                                BtnDokter.requestFocus();
+                            }
+                        } else if (pilihan == 4) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                nipDpjp = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
+                                Tnmdpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                                BtnDpjp.requestFocus();
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
+    }
+
+    private void initICD() {
+        if (icd10 == null) {
+            icd10 = new DlgPenyakit(null, false);
+
+            icd10.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (icd10.getTable().getSelectedRow() != -1) {
+                        x = JOptionPane.showConfirmDialog(rootPane, "Apakah deskripsi ICD 10 akan ditambahkan juga utk. diagnosa medis sementara..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                        if (x == JOptionPane.YES_OPTION) {
+                            Ticd10.setText(icd10.getTable().getValueAt(icd10.getTable().getSelectedRow(), 1).toString());
+                            if (Tdiagnosis.getText().equals("")) {
+                                Tdiagnosis.setText(icd10.getTable().getValueAt(icd10.getTable().getSelectedRow(), 3).toString());
+                            } else {
+                                Tdiagnosis.setText(Tdiagnosis.getText() + " (" + icd10.getTable().getValueAt(icd10.getTable().getSelectedRow(), 3).toString() + ")");
+                            }
+                            BtnICD.requestFocus();
+                        } else {
+                            Ticd10.setText(icd10.getTable().getValueAt(icd10.getTable().getSelectedRow(), 1).toString());
+                            BtnICD.requestFocus();
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+
+            icd10.getTable().addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                }
+
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (akses.getform().equals("RMAsesmenMedikKebidanan")) {
+                        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                            icd10.dispose();
+                        }
+                    }
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                }
+            });
+        }
+    }
+
+    private void scrollKeAtas() {
+        SwingUtilities.invokeLater(() -> {
+            scrollInput.getVerticalScrollBar().setValue(0);
+            scrollInput.getHorizontalScrollBar().setValue(0);
+        });
     }
 }

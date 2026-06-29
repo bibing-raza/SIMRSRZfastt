@@ -21,6 +21,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -39,6 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -60,8 +62,8 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, pps1, pps2, pps3, pps4, pps5, pps6, pps7, pps8, psTri;
     private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7, rrs8, rsTri;
     private int i = 0, x = 0, skor = 0, pilihan = 0;
-    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    private DlgCariDokter dokter = new DlgCariDokter(null, false);        
+    private DlgCariPetugas petugas;
+    private DlgCariDokter dokter;
     private String nip = "", skrining_gz = "", gz_anak1 = "", gz_anak2 = "", gz_anak3 = "", gz_anak4 = "",
             aler_obat = "", aler_mak = "", aler_lain = "", pin = "", iden1 = "", iden2 = "", iden3 = "", iden4 = "",
             iden5 = "", iden6 = "", iden7 = "", iden8 = "", iden9 = "", iden10 = "", mpp = "", dp = "",
@@ -415,66 +417,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                 }
             });
         }
-        
-        petugas.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosing(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (petugas.getTable().getSelectedRow() != -1) {
-                    nip = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();                    
-                    nm_perawat.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                    BtnPerawat.requestFocus();
-                }
-            }
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });
-        
-        dokter.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("RMPenilaianAwalKeperawatanIGDrz")) {
-                    if (dokter.getTable().getSelectedRow() != -1) {
-                        KdDokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
-                        NmDokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                    }
-                    BtnDokter.requestFocus();
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
     }
 
     /** This method is called from within the constructor to
@@ -971,7 +913,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-12-2025 09:45:01" }));
+        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-12-2025 11:37:30" }));
         tgl_asesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_asesmen.setName("tgl_asesmen"); // NOI18N
         tgl_asesmen.setOpaque(false);
@@ -997,6 +939,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel8);
         jLabel8.setBounds(280, 40, 90, 23);
 
+        scrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane2.setName("scrollPane2"); // NOI18N
 
         Tkeluhan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1459,7 +1402,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         jLabel74.setBounds(0, 645, 350, 23);
 
         kesimpulanGZDewasa.setEditable(false);
-        kesimpulanGZDewasa.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan Skrining Gizi Dewasa (Total Skor) : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
+        kesimpulanGZDewasa.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), " Kesimpulan Skrining Gizi Dewasa (Total Skor) : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
         kesimpulanGZDewasa.setColumns(20);
         kesimpulanGZDewasa.setRows(5);
         kesimpulanGZDewasa.setName("kesimpulanGZDewasa"); // NOI18N
@@ -1467,7 +1410,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         kesimpulanGZDewasa.setBounds(38, 675, 350, 50);
 
         kesimpulanGZanak.setEditable(false);
-        kesimpulanGZanak.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan Skrining Gizi Anak (Total Skor) : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
+        kesimpulanGZanak.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), " Kesimpulan Skrining Gizi Anak (Total Skor) : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
         kesimpulanGZanak.setColumns(20);
         kesimpulanGZanak.setRows(5);
         kesimpulanGZanak.setName("kesimpulanGZanak"); // NOI18N
@@ -1732,7 +1675,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel85);
         jLabel85.setBounds(758, 435, 40, 23);
 
-        Scroll8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " ASSESMEN RESIKO JATUH : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll8.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), " ASSESMEN RESIKO JATUH : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll8.setName("Scroll8"); // NOI18N
 
         tbFaktorResiko.setName("tbFaktorResiko"); // NOI18N
@@ -1770,7 +1713,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         TotSkorRJ.setBounds(698, 815, 40, 23);
 
         kesimpulanResikoJatuh.setEditable(false);
-        kesimpulanResikoJatuh.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan Skor Resiko Jatuh : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
+        kesimpulanResikoJatuh.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), " Kesimpulan Skor Resiko Jatuh : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
         kesimpulanResikoJatuh.setColumns(20);
         kesimpulanResikoJatuh.setRows(5);
         kesimpulanResikoJatuh.setName("kesimpulanResikoJatuh"); // NOI18N
@@ -2315,6 +2258,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         PanelWall.setBackground(new java.awt.Color(29, 29, 29));
         PanelWall.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/skala_nyeri.png"))); // NOI18N
         PanelWall.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         PanelWall.setPreferredSize(new java.awt.Dimension(200, 200));
         PanelWall.setRound(false);
         PanelWall.setWarna(new java.awt.Color(110, 110, 110));
@@ -2328,6 +2272,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel88);
         jLabel88.setBounds(0, 1880, 180, 23);
 
+        scrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane3.setName("scrollPane3"); // NOI18N
 
         Tdiagnosis.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2345,6 +2290,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(scrollPane3);
         scrollPane3.setBounds(186, 1880, 670, 90);
 
+        scrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane4.setName("scrollPane4"); // NOI18N
 
         Ttindakan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2368,6 +2314,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel89);
         jLabel89.setBounds(0, 1976, 180, 23);
 
+        scrollPane5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane5.setName("scrollPane5"); // NOI18N
 
         Tevaluasi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2562,7 +2509,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel98);
         jLabel98.setBounds(408, 2354, 80, 20);
 
-        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-12-2025 09:45:02" }));
+        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-12-2025 11:37:31" }));
         TglVerif.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglVerif.setName("TglVerif"); // NOI18N
         TglVerif.setOpaque(false);
@@ -2828,7 +2775,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(Tradiation);
         Tradiation.setBounds(347, 1550, 510, 23);
 
-        scrollPane11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " TERINDIKASI ALERGI ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        scrollPane11.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), " TERINDIKASI ALERGI ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         scrollPane11.setName("scrollPane11"); // NOI18N
 
         TindikasiAlergi.setEditable(false);
@@ -3478,17 +3425,19 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampilFaktorResiko();
-        tampil();
-        
         if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_igdrz where no_rawat='" + TNoRw.getText() + "'") > 0) {
             TabRawat.setSelectedIndex(1);
+            tampil();
         } else if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_igdrz where no_rawat='" + TNoRw.getText() + "'") == 0) {
             TabRawat.setSelectedIndex(0);
+            scrollKeAtas();
         }
     }//GEN-LAST:event_formWindowOpened
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
-        if (TabRawat.getSelectedIndex() == 1) {
+        if (TabRawat.getSelectedIndex() == 0) {
+            scrollKeAtas();
+        } else if (TabRawat.getSelectedIndex() == 1) {
             tampil();
         }
     }//GEN-LAST:event_TabRawatMouseClicked
@@ -4082,6 +4031,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     }//GEN-LAST:event_TevaluasiKeyPressed
 
     private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokterActionPerformed
+        initDokter();
         akses.setform("RMPenilaianAwalKeperawatanIGDrz");
         dokter.isCek();
         dokter.setSize(1041, internalFrame1.getHeight() - 40);
@@ -4091,6 +4041,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnDokterActionPerformed
 
     private void BtnPerawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPerawatActionPerformed
+        initPetugas();
         akses.setform("RMPenilaianAwalKeperawatanIGDrz");
         petugas.isCek();
         petugas.setSize(983, internalFrame1.getHeight() - 40);
@@ -5947,5 +5898,96 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notif : " + e);
         }
+    }
+
+    private void initPetugas() {
+        if (petugas == null) {
+            petugas = new DlgCariPetugas(null, false);
+
+            petugas.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (petugas.getTable().getSelectedRow() != -1) {
+                        nip = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                        nm_perawat.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                        BtnPerawat.requestFocus();
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
+    }
+
+    private void initDokter() {
+        if (dokter == null) {
+            dokter = new DlgCariDokter(null, false);
+
+            dokter.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (akses.getform().equals("RMPenilaianAwalKeperawatanIGDrz")) {
+                        if (dokter.getTable().getSelectedRow() != -1) {
+                            KdDokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
+                            NmDokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                        }
+                        BtnDokter.requestFocus();
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
+    }
+ 
+    private void scrollKeAtas() {
+        SwingUtilities.invokeLater(() -> {
+            ScrollTriase1.getVerticalScrollBar().setValue(0);
+            ScrollTriase1.getHorizontalScrollBar().setValue(0);
+        });
     }
 }

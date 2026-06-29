@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
@@ -60,7 +61,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private DlgCariPetugas petugas;
     private PreparedStatement ps;
     private ResultSet rs;
     private int i = 0, x = 0, pilihan = 0;
@@ -752,37 +753,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                 }
             });
         }
-        
-        petugas.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosing(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (pilihan == 1) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nip = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        TnmPerawat.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnPerawat.requestFocus();
-                    }
-                } else if (pilihan == 2) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nipVerifikator = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        TnmVerifikator.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnVerifikator.requestFocus();
-                    }
-                }
-            }
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });
     }
 
     /** This method is called from within the constructor to
@@ -6849,11 +6819,14 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             tampil();
         } else if (Sequel.cariInteger("select count(-1) from asesmen_keperawatan_perinatologi where no_rawat='" + TNoRw.getText() + "'") == 0) {
             TabRawat.setSelectedIndex(0);
+            scrollKeAtas();
         }
     }//GEN-LAST:event_formWindowOpened
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
-        if (TabRawat.getSelectedIndex() == 1) {
+        if (TabRawat.getSelectedIndex() == 0) {
+            scrollKeAtas();
+        } else if (TabRawat.getSelectedIndex() == 1) {
             tampil();
         }
     }//GEN-LAST:event_TabRawatMouseClicked
@@ -6906,6 +6879,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     }//GEN-LAST:event_cmbDtk1MouseReleased
 
     private void BtnPerawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPerawatActionPerformed
+        initPetugas();
         pilihan = 0;
         pilihan = 1;
         akses.setform("RMAsesmenKeperawatanPerinatologi");
@@ -7669,6 +7643,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     }//GEN-LAST:event_TspoKeyPressed
 
     private void BtnVerifikatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerifikatorActionPerformed
+        initPetugas();
         pilihan = 0;
         pilihan = 2;
         akses.setform("RMAsesmenKeperawatanPerinatologi");
@@ -10854,5 +10829,61 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     public void setTampil(){
        TabRawat.setSelectedIndex(1);
        tampil();
+    }
+    
+    private void scrollKeAtas() {
+        SwingUtilities.invokeLater(() -> {
+            ScrollTriase1.getVerticalScrollBar().setValue(0);
+            ScrollTriase1.getHorizontalScrollBar().setValue(0);
+        });
+    }
+    
+    private void initPetugas() {
+        if (petugas == null) {
+            petugas = new DlgCariPetugas(null, false);
+
+            petugas.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (pilihan == 1) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nip = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            TnmPerawat.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPerawat.requestFocus();
+                        }
+                    } else if (pilihan == 2) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nipVerifikator = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            TnmVerifikator.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnVerifikator.requestFocus();
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
     }
 }

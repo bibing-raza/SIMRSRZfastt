@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.table.DefaultTableModel;
@@ -31,7 +32,6 @@ import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
-import kepegawaian.DlgCariPetugas;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
 
@@ -47,8 +47,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2, ps3, ps4, psLaprm;
     private ResultSet rs, rs1, rs2, rs3, rs4, rsPrev, rsLaprm;
     private int i = 0, x = 0, skor = 0, pilihan = 0;
-    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    private DlgCariDokter dokter = new DlgCariDokter(null, false);
+    private DlgCariDokter dokter;
     private RMAsesmenAwalKebidanan2 halaman2 = new RMAsesmenAwalKebidanan2(null, false);
     private RMInspeksiPemeriksaanGinekologi inspeksi = new RMInspeksiPemeriksaanGinekologi(null, false);
     private String wktSimpan = "", sendiri = "", rujukan = "", pkm = "", spog = "", rsLain = "", dismen = "", spoting = "", menor = "", metro = "",
@@ -868,54 +867,6 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                 }
             });
         }
-        
-        dokter.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("RMAsesmenAwalKebidanan1")) {
-                    if (pilihan == 1) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            TnmDokter1.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                            BtnDokter1.requestFocus();
-                        }
-                    } else if (pilihan == 2) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            TnmDokter2.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                            BtnDokter2.requestFocus();
-                        }
-                    } else if (pilihan == 3) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            TnmDokter3.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                            BtnDokter3.requestFocus();
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
         
         HTMLEditorKit kit = new HTMLEditorKit();
         StyleSheet styleSheet = kit.getStyleSheet();
@@ -7736,7 +7687,9 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 }//GEN-LAST:event_tbAsesmenKeyPressed
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
-        if (TabRawat.getSelectedIndex() == 1) {
+        if (TabRawat.getSelectedIndex() == 0) {
+            scrollKeAtas();
+        } else if (TabRawat.getSelectedIndex() == 1) {
             tampil();
         } else if (TabRawat.getSelectedIndex() == 2) {
             if (tbAsesmen.getSelectedRow() > -1 || Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan1 where no_rawat='" + TNoRw.getText() + "'") > 0) {
@@ -7755,6 +7708,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             TabRawat.setSelectedIndex(1);
         } else if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan1 where no_rawat='" + TNoRw.getText() + "'") == 0) {
             TabRawat.setSelectedIndex(0);
+            scrollKeAtas();
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -8357,6 +8311,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     }//GEN-LAST:event_TnmDokter1KeyPressed
 
     private void BtnDokter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokter1ActionPerformed
+        initDokter();
         pilihan = 0;
         pilihan = 1;
         akses.setform("RMAsesmenAwalKebidanan1");
@@ -8380,6 +8335,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     }//GEN-LAST:event_TnmDokter2KeyPressed
 
     private void BtnDokter2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokter2ActionPerformed
+        initDokter();
         pilihan = 0;
         pilihan = 2;
         akses.setform("RMAsesmenAwalKebidanan1");
@@ -8403,6 +8359,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     }//GEN-LAST:event_TnmDokter3KeyPressed
 
     private void BtnDokter3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokter3ActionPerformed
+        initDokter();
         pilihan = 0;
         pilihan = 3;
         akses.setform("RMAsesmenAwalKebidanan1");
@@ -14217,5 +14174,66 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             System.out.println("Notifikasi : " + e);
         }
         this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void scrollKeAtas() {
+        SwingUtilities.invokeLater(() -> {
+            scrollInput.getVerticalScrollBar().setValue(0);
+            scrollInput.getHorizontalScrollBar().setValue(0);
+        });
+    }
+
+    private void initDokter() {
+        if (dokter == null) {
+            dokter = new DlgCariDokter(null, false);
+
+            dokter.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (akses.getform().equals("RMAsesmenAwalKebidanan1")) {
+                        if (pilihan == 1) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                TnmDokter1.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                                BtnDokter1.requestFocus();
+                            }
+                        } else if (pilihan == 2) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                TnmDokter2.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                                BtnDokter2.requestFocus();
+                            }
+                        } else if (pilihan == 3) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                TnmDokter3.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                                BtnDokter3.requestFocus();
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
     }
 }

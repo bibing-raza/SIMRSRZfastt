@@ -43,7 +43,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2, ps3, pscppt;
     private ResultSet rs, rs1, rs2, rs3, rscppt;
     private int i = 0, x = 0, pilihan = 0;
-    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private DlgCariPetugas petugas;
     private String cateterBlm = "", ngtBlm = "", nasalBlm = "", kateterUrinBlm = "", drainBlm = "", alatBlm = "",
             cmBlm = "", soporBlm = "", apatisBlm = "", somnolenBlm = "", sedasiBlm = "", nipSerahBlm = "", nipTerimaBlm = "",
             cateterSdh = "", ngtSdh = "", nasalSdh = "", kateterUrinSdh = "", drainSdh = "", alatSdh = "", wktSimpanSdh = "",
@@ -401,49 +401,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
             });
         }
         
-        petugas.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosing(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (pilihan == 1) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nipSerahBlm = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        TnmPetugasSerahBelum.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnPetugas1Belum.requestFocus();
-                    }
-                } else if (pilihan == 2) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nipTerimaBlm = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        TnmPetugasTerimaBelum.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnPetugas2Belum.requestFocus();
-                    }
-                } else if (pilihan == 3) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nipSerahSdh = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        TnmPetugasSerahSudah.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnPetugas1Sudah.requestFocus();
-                    }
-                } else if (pilihan == 4) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nipTerimaSdh = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        TnmPetugasTerimaSudah.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnPetugas2Sudah.requestFocus();
-                    }
-                }
-            }
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });
-        
         ChkAccor.setSelected(false);
         isMenu();
     }
@@ -740,7 +697,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         PanelInput.add(jLabel65);
         jLabel65.setBounds(0, 66, 110, 23);
 
-        TtglTindakanBelum.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
+        TtglTindakanBelum.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2026" }));
         TtglTindakanBelum.setDisplayFormat("dd-MM-yyyy");
         TtglTindakanBelum.setName("TtglTindakanBelum"); // NOI18N
         TtglTindakanBelum.setOpaque(false);
@@ -766,6 +723,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         PanelInput.add(jLabel67);
         jLabel67.setBounds(0, 94, 110, 23);
 
+        scrollPane13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane13.setName("scrollPane13"); // NOI18N
         scrollPane13.setPreferredSize(new java.awt.Dimension(174, 100));
 
@@ -1115,6 +1073,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         PanelInput.add(jLabel76);
         jLabel76.setBounds(0, 340, 190, 23);
 
+        scrollPane14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane14.setName("scrollPane14"); // NOI18N
         scrollPane14.setPreferredSize(new java.awt.Dimension(174, 100));
 
@@ -1318,6 +1277,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         PanelInput1.add(jLabel83);
         jLabel83.setBounds(0, 94, 110, 23);
 
+        scrollPane15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane15.setName("scrollPane15"); // NOI18N
         scrollPane15.setPreferredSize(new java.awt.Dimension(174, 100));
 
@@ -1667,6 +1627,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         PanelInput1.add(jLabel92);
         jLabel92.setBounds(0, 340, 190, 23);
 
+        scrollPane16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scrollPane16.setName("scrollPane16"); // NOI18N
         scrollPane16.setPreferredSize(new java.awt.Dimension(174, 100));
 
@@ -2343,6 +2304,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         ChkAccor.setSelected(false);
         isMenu();
         
+        initPetugas();
         pilihan = 0;
         pilihan = 1;
         akses.setform("RMPasienUntukTindakan");
@@ -2357,6 +2319,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         ChkAccor.setSelected(false);
         isMenu();
         
+        initPetugas();
         pilihan = 0;
         pilihan = 2;
         akses.setform("RMPasienUntukTindakan");
@@ -2408,14 +2371,12 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampilSebelum();
         TabTransfer.setSelectedIndex(0);
-        TabTransfer.setEnabledAt(1, false);
     }//GEN-LAST:event_formWindowOpened
 
     private void MnHasilPemeriksaanPenunjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanPenunjangActionPerformed
         if (TNoRwBelum.getText().trim().equals("") || TPasienBelum.getText().trim().equals("")) {
             Valid.textKosong(TNoRwBelum, "Pasien");
         } else {
-            TabTransfer.setEnabledAt(1, false);
             ChkAccor.setSelected(false);
             isMenu();
 
@@ -2442,7 +2403,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         if (TNoRwBelum.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
         } else {
-            TabTransfer.setEnabledAt(1, false);
             ChkAccor.setSelected(false);
             isMenu();
             
@@ -2460,13 +2420,19 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
     private void TabTransferMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabTransferMouseClicked
         ChkAccor.setSelected(false);
         isMenu();
-        
+
         if (TabTransfer.getSelectedIndex() == 0) {
-            TabTransfer.setEnabledAt(1, false);
             emptTeksSebelum();
             tampilSebelum();
         } else if (TabTransfer.getSelectedIndex() == 1) {
-            tampilSesudah();
+            if (tbTransferBelum.getSelectedRow() != -1) {
+                TabTransfer.setSelectedIndex(1);
+                tampilSesudah();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih/klik salah satu data sebelum tindakan terlebih dahulu..!!");
+                TabTransfer.setSelectedIndex(0);
+                tampilSebelum();
+            }
         }
     }//GEN-LAST:event_TabTransferMouseClicked
 
@@ -2528,6 +2494,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         ChkAccor.setSelected(false);
         isMenu();
         
+        initPetugas();
         pilihan = 0;
         pilihan = 3;
         akses.setform("RMPasienUntukTindakan");
@@ -2542,6 +2509,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         ChkAccor.setSelected(false);
         isMenu();
         
+        initPetugas();
         pilihan = 0;
         pilihan = 4;
         akses.setform("RMPasienUntukTindakan");
@@ -3380,7 +3348,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
                     + "riwayat_alergi='" + cmbRiwAlergiBelum.getSelectedItem().toString() + "'");
             
             Sequel.SimpanHistoriRekamMedis(TNoRwBelum.getText(), "Transfer Pasien Untuk Tindakan (Sebelum)", "Ganti");
-            TabTransfer.setEnabledAt(1, false);
             TCari.setText(TNoRwBelum.getText());
             tampilSebelum();
             emptTeksSebelum();
@@ -3612,14 +3579,12 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
                     if (Sequel.queryu2tf("delete from transfer_sebelum_tindakan where waktu_simpan=?", 1, new String[]{
                         tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 47).toString()
                     }) == true) {
-                        TabTransfer.setEnabledAt(1, false);
                         tampilSebelum();
                         emptTeksSebelum();
                     } else {
                         JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                     }
                 } else {
-                    TabTransfer.setEnabledAt(1, false);
                     tampilSebelum();
                     emptTeksSebelum();
                 }
@@ -3633,14 +3598,12 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
                         Sequel.meghapus("transfer_sesudah_tindakan", "kode_transfer='" + tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 1).toString() + "' and no_rawat",
                                 tbTransferBelum.getValueAt(tbTransferBelum.getSelectedRow(), 0).toString());
 
-                        TabTransfer.setEnabledAt(1, false);
                         tampilSebelum();
                         emptTeksSebelum();
                     } else {
                         JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                     }
                 } else {
-                    TabTransfer.setEnabledAt(1, false);
                     tampilSebelum();
                     emptTeksSebelum();
                 }
@@ -3674,7 +3637,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
     }
 
     private void cekSesudah() {
-        TabTransfer.setEnabledAt(1, true);
         emptTeksSesudah();
         cekGanti = "dari sebelum";
         
@@ -4242,7 +4204,6 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
 
         if (TabTransfer.getSelectedIndex() == 0) {
             emptTeksSebelum();
-            TabTransfer.setEnabledAt(1, false);
             tampilSebelum();
         } else {
             emptTeksSesudah();
@@ -4250,4 +4211,65 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
         }
         this.setCursor(Cursor.getDefaultCursor());
     }
-}
+
+    private void initPetugas() {
+        if (petugas == null) {
+            petugas = new DlgCariPetugas(null, false);
+
+            petugas.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (pilihan == 1) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nipSerahBlm = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            TnmPetugasSerahBelum.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPetugas1Belum.requestFocus();
+                        }
+                    } else if (pilihan == 2) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nipTerimaBlm = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            TnmPetugasTerimaBelum.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPetugas2Belum.requestFocus();
+                        }
+                    } else if (pilihan == 3) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nipSerahSdh = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            TnmPetugasSerahSudah.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPetugas1Sudah.requestFocus();
+                        }
+                    } else if (pilihan == 4) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nipTerimaSdh = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            TnmPetugasTerimaSudah.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPetugas2Sudah.requestFocus();
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
+    }
+ }

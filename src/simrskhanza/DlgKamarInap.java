@@ -139,7 +139,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
             kesimpulanGizi = "", resikojatuh = "", resikodecubitus = "", ket_nilai = "", TotSkorDecu = "", kesimpulanResikoDecu = "", manajemenNyeri = "",
             skorGZanak1 = "", skorGZanak2 = "", skorGZanak3 = "", skorGZanak4 = "", kodeAsesmen = "", nipDokter = "", whereNya = "", dataKonfir = "",
             kodeITER = "", noSEPITER = "", noKARTUITER = "", noRMITER = "", noRAWATITER = "", tglEXPRUJUKANITER = "", poliKEITER = "", URUTNOREG = "", 
-            aktifjadwal = "", kodePoli = "", kodeDokter = "", dpjpOK = "", tte = "";
+            aktifjadwal = "", kodePoli = "", kodeDokter = "", dpjpOK = "", tte = "", cekAMbed = "", cekAMdew = "", cekAMana = "", cekAMper = "", asmed = "";
     private DlgIKBBayi lahir = new DlgIKBBayi(null, false);
     private DlgPemberianObat beriobat = new DlgPemberianObat(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
@@ -157,7 +157,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         setSize(628, 674);
 
         Object[] row = {"No. Rawat", "Nomer RM", "Nama Pasien", "Tgl. Lahir", "Alamat Pasien", "Jenis Bayar",
-            "Cetak SEP", "Status Resep", "Kode Kamar", "Ruang Rawat Inap", "Tarif Kamar",
+            "Cetak SEP", "Status Resep/Status AsMed", "Kode Kamar", "Ruang Rawat Inap", "Tarif Kamar",
             "Diagnosa Awal", "Diagnosa Akhir", "Tgl. Masuk", "Jam Masuk", "Tgl. Keluar", "Jam Keluar",
             "Ttl. Biaya", "Stts. Pulang", "Lama", "Dokter P.J.", "No. Telpon/HP", "dokterDPJP", "cekKonsul", "cekPiutangUmum",
             "cekResepCito", "cekCpptDpjp", "tglmasuk", "tglkeluar"
@@ -190,7 +190,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(60);
             } else if (i == 7) {
-                column.setPreferredWidth(145);
+                column.setPreferredWidth(255);
             } else if (i == 8) {
                 column.setPreferredWidth(100);
             } else if (i == 9) {
@@ -13382,7 +13382,9 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 sb.append("IF(b.no_rawat IS NOT NULL OR c.no_rawat IS NOT NULL OR d.no_rawat IS NOT NULL,'SUDAH',IF (a.kd_pj <> 'b01' AND a.kd_pj NOT IN ('d01','d04'),'NON SEP','BELUM')) sep, ");
                 sb.append("a.kd_kamar, a.nm_bangsal, a.trf_kamar, a.diagnosa_awal, a.diagnosa_akhir, a.tgl_masuk, a.jam_masuk, a.tgl_keluar, a.jam_keluar, ");
                 sb.append("a.ttl_biaya, a.stts_pulang, a.lama, a.nm_dokter, a.no_tlp, a.kd_pj, a.nm_kel, a.nm_kec, a.nm_kab, a.dokter2, a.cekPiutang, ");
-                sb.append("DATE_FORMAT(a.tgl_masuk, '%d-%m-%Y') tglmsk_format, DATE_FORMAT(a.tgl_keluar, '%d-%m-%Y') tglklr_format, a.resepCito, a.srtKonsul ");
+                sb.append("DATE_FORMAT(a.tgl_masuk, '%d-%m-%Y') tglmsk_format, DATE_FORMAT(a.tgl_keluar, '%d-%m-%Y') tglklr_format, a.resepCito, a.srtKonsul, ");
+                sb.append("IF(am1.no_rawat IS NOT NULL,'ada','tidak ada') asmed_bedah, IF(am2.no_rawat IS NOT NULL,'ada','tidak ada') asmed_dewasa, ");
+                sb.append("IF(am3.no_rawat IS NOT NULL,'ada','tidak ada') asmed_anak, IF(am4.no_rawat IS NOT NULL,'ada','tidak ada') asmed_peri ");
                 sb.append("FROM (SELECT ki.no_rawat, r.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgl_lahir, ");
                 sb.append("CONCAT(p.alamat, ', ', kl.nm_kel, ', ', kc.nm_kec, ', ', kb.nm_kab) alamat, pj.png_jawab, ki.kd_kamar, b.nm_bangsal, ki.trf_kamar, ");
                 sb.append("ki.diagnosa_awal, ki.diagnosa_akhir, ki.tgl_masuk, ki.jam_masuk, IF(ki.tgl_keluar ='0000-00-00','',ki.tgl_keluar) tgl_keluar, ");
@@ -13407,7 +13409,11 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 sb.append("left join cppt c on c.no_rawat=ki.no_rawat and c.jenis_bagian='DPJP' and c.jenis_ppa='DPJP' and c.tgl_cppt=date(now()) and c.nip_dpjp='" + akses.getkode() + "') AS a ");
                 sb.append("LEFT JOIN bridging_sep b ON b.no_rawat = a.no_rawat AND b.jnspelayanan='1' ");
                 sb.append("LEFT JOIN bridging_jamkesda c ON c.no_rawat = a.no_rawat AND c.jns_rawat='inap' ");
-                sb.append("LEFT JOIN bridging_jampersal d ON d.no_rawat = a.no_rawat AND d.jns_rawat='inap' WHERE " + key + " ORDER BY a.nm_bangsal, a.tgl_masuk, a.jam_masuk");
+                sb.append("LEFT JOIN bridging_jampersal d ON d.no_rawat = a.no_rawat AND d.jns_rawat='inap' ");
+                sb.append("left join asesmen_medik_bedah_ranap am1 on am1.no_rawat=a.no_rawat ");
+                sb.append("left join asesmen_medik_dewasa_ranap am2 on am2.no_rawat=a.no_rawat ");
+                sb.append("left join asesmen_medik_anak_ranap am3 on am3.no_rawat=a.no_rawat ");
+                sb.append("left join asesmen_medik_perinatologi am4 on am4.no_rawat=a.no_rawat WHERE " + key + " ORDER BY a.nm_bangsal, a.tgl_masuk, a.jam_masuk");
                 rs = koneksi.prepareStatement(sb.toString()).executeQuery();
 
                 while (rs.next()) {
@@ -13424,6 +13430,32 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     } else if (e_resep.equals("")) {
                         sttsResep = "Tidak Ada e-Resep";
                     }
+                    
+                    if (rs.getString("asmed_bedah").equals("ada")) {
+                        cekAMbed = "Asmed Bedah --> OK, ";
+                    } else {
+                        cekAMbed = "";
+                    }
+                    
+                    if (rs.getString("asmed_dewasa").equals("ada")) {
+                        cekAMdew = "Asmed Dewasa --> OK, ";
+                    } else {
+                        cekAMdew = "";
+                    }
+                    
+                    if (rs.getString("asmed_anak").equals("ada")) {
+                        cekAMana = "Asmed Anak --> OK, ";
+                    } else {
+                        cekAMana = "";
+                    }
+                    
+                    if (rs.getString("asmed_peri").equals("ada")) {
+                        cekAMper = "Asmed Peri --> OK";
+                    } else {
+                        cekAMper = "";
+                    }
+                    
+                    asmed = cekAMbed + cekAMdew + cekAMana + cekAMper;
 
                     tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
@@ -13433,7 +13465,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         rs.getString("alamat"),
                         rs.getString("png_jawab"),
                         rs.getString("sep"),
-                        sttsResep,
+                        sttsResep + " | " + asmed,
                         rs.getString("kd_kamar"),
                         rs.getString("nm_bangsal"),
                         Valid.SetAngka(rs.getDouble("trf_kamar")),

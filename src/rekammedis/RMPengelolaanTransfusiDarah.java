@@ -50,7 +50,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     private ResultSet rs, rs1, rsrestor;
     private int x = 0, pilihan = 0;
     private String nip1 = "", nip2 = "", nip3 = "", user = "", riwayatData = "";
-    private DlgCariPegawai petugas = new DlgCariPegawai(null, false);
+    private DlgCariPegawai petugas;
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -224,43 +224,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                 }
             });
         }
-        
-        petugas.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosing(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (pilihan == 1) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nip1 = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        TnmPetugas1.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnPetugas1.requestFocus();
-                    }
-                } else if (pilihan == 2) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nip2 = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        TnmPetugas2.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnPetugas2.requestFocus();
-                    }
-                } else if (pilihan == 3) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nip3 = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        TnmPetugas3.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnPetugas3.requestFocus();
-                    }
-                }
-            }
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });
     }
 
     /** This method is called from within the constructor to
@@ -448,7 +411,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel37.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel37);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -462,7 +425,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel38.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel38);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -487,7 +450,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari2.setMnemonic('1');
         BtnCari2.setText("Tampilkan Data");
         BtnCari2.setToolTipText("Alt+1");
         BtnCari2.setName("BtnCari2"); // NOI18N
@@ -527,7 +489,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll1.setMnemonic('2');
         BtnAll1.setText("Semua Data");
         BtnAll1.setToolTipText("Alt+2");
         BtnAll1.setName("BtnAll1"); // NOI18N
@@ -546,7 +507,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnRestor.setForeground(new java.awt.Color(0, 0, 0));
         BtnRestor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnRestor.setMnemonic('U');
         BtnRestor.setText("Restore");
         BtnRestor.setToolTipText("Alt+U");
         BtnRestor.setName("BtnRestor"); // NOI18N
@@ -560,7 +520,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnCloseIn10.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn10.setMnemonic('U');
         BtnCloseIn10.setText("Tutup");
         BtnCloseIn10.setToolTipText("Alt+U");
         BtnCloseIn10.setName("BtnCloseIn10"); // NOI18N
@@ -600,7 +559,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnCloseIn6.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn6.setMnemonic('U');
         BtnCloseIn6.setText("Tutup");
         BtnCloseIn6.setToolTipText("Alt+U");
         BtnCloseIn6.setName("BtnCloseIn6"); // NOI18N
@@ -614,7 +572,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnCetak.setForeground(new java.awt.Color(0, 0, 0));
         BtnCetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        BtnCetak.setMnemonic('U');
         BtnCetak.setText("Cetak");
         BtnCetak.setToolTipText("Alt+U");
         BtnCetak.setName("BtnCetak"); // NOI18N
@@ -626,7 +583,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         internalFrame10.add(BtnCetak);
         BtnCetak.setBounds(320, 23, 90, 26);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -641,7 +598,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         internalFrame10.add(jLabel49);
         jLabel49.setBounds(185, 25, 30, 23);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -680,6 +637,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         tbTransfusi.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbTransfusi.setComponentPopupMenu(jPopupMenu1);
         tbTransfusi.setName("tbTransfusi"); // NOI18N
+        tbTransfusi.getTableHeader().setReorderingAllowed(false);
         tbTransfusi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbTransfusiMouseClicked(evt);
@@ -705,7 +663,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -724,7 +681,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -743,7 +699,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -757,7 +712,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -776,7 +730,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -795,7 +748,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -837,7 +789,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -851,7 +803,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -876,7 +828,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('D');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+D");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -895,7 +846,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('T');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+T");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -963,7 +913,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(0, 66, 140, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-04-2025" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1285,7 +1235,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         TnmPetugas3.setBounds(285, 318, 430, 23);
 
         BtnPetugas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPetugas1.setMnemonic('2');
         BtnPetugas1.setToolTipText("Alt+2");
         BtnPetugas1.setName("BtnPetugas1"); // NOI18N
         BtnPetugas1.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1298,7 +1247,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         BtnPetugas1.setBounds(715, 150, 28, 23);
 
         BtnPetugas2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPetugas2.setMnemonic('2');
         BtnPetugas2.setToolTipText("Alt+2");
         BtnPetugas2.setName("BtnPetugas2"); // NOI18N
         BtnPetugas2.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1311,7 +1259,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         BtnPetugas2.setBounds(715, 234, 28, 23);
 
         BtnPetugas3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPetugas3.setMnemonic('2');
         BtnPetugas3.setToolTipText("Alt+2");
         BtnPetugas3.setName("BtnPetugas3"); // NOI18N
         BtnPetugas3.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1589,6 +1536,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtkMouseReleased
 
     private void BtnPetugas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPetugas1ActionPerformed
+        initPetugas();
         pilihan = 1;
         akses.setform("RMPengelolaanTransfusiDarah");
         petugas.isCek();
@@ -1599,6 +1547,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPetugas1ActionPerformed
 
     private void BtnPetugas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPetugas2ActionPerformed
+        initPetugas();
         pilihan = 2;
         akses.setform("RMPengelolaanTransfusiDarah");
         petugas.isCek();
@@ -1609,6 +1558,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPetugas2ActionPerformed
 
     private void BtnPetugas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPetugas3ActionPerformed
+        initPetugas();
         pilihan = 3;
         akses.setform("RMPengelolaanTransfusiDarah");
         petugas.isCek();
@@ -2369,6 +2319,61 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
             kembalikanData();
         } else {
             JOptionPane.showMessageDialog(null, "Gagal dikembalikan..!!");
+        }
+    }
+
+    private void initPetugas() {
+        if (petugas == null) {
+            petugas = new DlgCariPegawai(null, false);
+
+            petugas.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (pilihan == 1) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nip1 = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            TnmPetugas1.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPetugas1.requestFocus();
+                        }
+                    } else if (pilihan == 2) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nip2 = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            TnmPetugas2.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPetugas2.requestFocus();
+                        }
+                    } else if (pilihan == 3) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nip3 = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            TnmPetugas3.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPetugas3.requestFocus();
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
         }
     }
 }

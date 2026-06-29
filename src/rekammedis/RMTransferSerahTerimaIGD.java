@@ -50,7 +50,6 @@ import javax.swing.text.Document;
 import kepegawaian.DlgCariPetugas;
 import keuangan.DlgKamar;
 import laporan.DlgHasilPenunjangMedis;
-import laporan.DlgPenyakit;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgNotepad;
@@ -64,14 +63,14 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);    
-    private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    public DlgKamar kamar = new DlgKamar(null, false);
+    private DlgCariPetugas petugas;
+    private DlgCariDokter dokter;
+    public DlgKamar kamar;
     private PreparedStatement ps, ps1, ps2, pps1, pps2, pps3, pps4, pps5, pps6, pps7, psTri;
     private ResultSet rs, rs1, rs2, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7, rsTri;
     private int i = 0, x = 0, pilihan = 0;
-    private String nip_dpjp = "", nip_konsulen1 = "", nip_konsulen2 = "", kd_kamar = "", kd_kamar_pindah = "", resepDipilih = "", 
-            cekResep = "", tglResep = "", status_kmr = "", nip_dokter = "", nip_serah = "", nip_terima = "", ekg = "", torak_foto = "", 
+    private String nip_dpjp = "", nip_konsulen1 = "", nip_konsulen2 = "", kd_kamar = "", kd_kamar_pindah = "", resepDipilih = "",
+            cekResep = "", tglResep = "", status_kmr = "", nip_dokter = "", nip_serah = "", nip_terima = "", ekg = "", torak_foto = "",
             fotoC = "", fotoG = "", fotoA = "", spiri = "", echo = "", usg = "", ct_scan = "", endos = "", wktSimpan = "",
             ctg = "", penunjang_lain = "", alat_lain = "", infus = "", kateter = "", ngt = "", oksigen = "", statusOK = "",
             drain = "", itemDipilih = "", lab = "", posisi = "", nmKamar = "", nmKamarPindah = "", penyakitDulu1 = "", penyakitDulu2 = "",
@@ -384,168 +383,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 }
             });
         }
-        
-        dokter.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("RMTransferSerahTerima")) {
-                    if (pilihan == 1) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            nip_dpjp = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();                            
-                            Tdpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                        }
-                        btnDPJP.requestFocus();
-                    } else if (pilihan == 2) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            nip_konsulen1 = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();                            
-                            Tdr_konsulen1.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                        }
-                        btnKonsulen1.requestFocus();
-                    } else if (pilihan == 3) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            nip_konsulen2 = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();                            
-                            Tdr_konsulen2.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                        }
-                        Tdiagnosis.requestFocus();
-                    } else if (pilihan == 4) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            nip_dokter = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();                            
-                            Tnm_dokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                        }
-                        btnDokter.requestFocus();
-                    }
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-        
-        kamar.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("RMTransferSerahTerima")) {
-                    if (kamar.getTable().getSelectedRow() != -1) {
-                        if (pilihan == 1) {
-//                            status_kmr = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 6).toString();
-//                            if (!status_kmr.equals("KOSONG")) {
-//                                JOptionPane.showMessageDialog(null, "Silahkan pilih kamar yang kosong...!!!");
-//                                kd_kamar = "";
-//                                Tnm_kamar.setText("");
-//                            } else {
-                            kd_kamar = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 1).toString();
-                            Tnm_kamar.setText(Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE k.kd_kamar='" + kd_kamar + "'"));
-                            tgl_pindah.requestFocus();
-//                            }
-                        } else if (pilihan == 2) {
-//                            status_kmr = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 6).toString();
-//                            if (!status_kmr.equals("KOSONG")) {
-//                                JOptionPane.showMessageDialog(null, "Silahkan pilih kamar yang kosong...!!!");
-//                                kd_kamar_pindah = "";
-//                                Tnm_kamar_pindah.setText("");
-//                            } else {
-                            kd_kamar_pindah = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 1).toString();
-                            Tnm_kamar_pindah.setText(Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE k.kd_kamar='" + kd_kamar_pindah + "'"));
-                            Talasan_ranap.requestFocus();
-//                            }
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-        
-        kamar.getTable().addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (akses.getform().equals("RMTransferSerahTerima")) {
-                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                        kamar.dispose();
-                    }
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
-        
-        petugas.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosing(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (petugas.getTable().getSelectedRow() != -1) {
-                    if (pilihan == 1) {
-                        nip_serah = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        Tnm_petugas1.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        btnPetugas1.requestFocus();
-                    } else if (pilihan == 2) {
-                        nip_terima = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        Tnm_petugas2.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        btnPetugas2.requestFocus();
-                    }
-                }
-            }
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });
     }
 
     /** This method is called from within the constructor to
@@ -2862,6 +2699,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_tbTransferMouseClicked
 
     private void btnDPJPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDPJPActionPerformed
+        initDokter();
         pilihan = 1;
         akses.setform("RMTransferSerahTerima");
         dokter.isCek();
@@ -2872,6 +2710,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDPJPActionPerformed
 
     private void btnKonsulen1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonsulen1ActionPerformed
+        initDokter();
         pilihan = 2;
         akses.setform("RMTransferSerahTerima");
         dokter.isCek();
@@ -2882,6 +2721,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_btnKonsulen1ActionPerformed
 
     private void btnKonsulen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKonsulen2ActionPerformed
+        initDokter();
         pilihan = 3;
         akses.setform("RMTransferSerahTerima");
         dokter.isCek();
@@ -2892,6 +2732,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_btnKonsulen2ActionPerformed
 
     private void btnKamar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKamar1ActionPerformed
+        initKamar();
         status_kmr = "";
         pilihan = 1;        
         akses.setform("RMTransferSerahTerima");        
@@ -2909,6 +2750,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_tgl_masukKeyPressed
 
     private void btnKamar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKamar2ActionPerformed
+        initKamar();
         status_kmr = "";
         pilihan = 2;
         akses.setform("RMTransferSerahTerima");
@@ -3060,6 +2902,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_Tnm_pasienKlgKeyPressed
 
     private void btnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokterActionPerformed
+        initDokter();
         pilihan = 4;
         akses.setform("RMTransferSerahTerima");
         dokter.isCek();
@@ -3070,7 +2913,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDokterActionPerformed
 
     private void btnPetugas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugas1ActionPerformed
-        pilihan = 1;
+        initPetugas();
+        pilihan = 1;        
         akses.setform("RMTransferSerahTerima");
         petugas.isCek();
         petugas.setSize(983, internalFrame1.getHeight() - 40);
@@ -3080,7 +2924,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPetugas1ActionPerformed
 
     private void btnPetugas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugas2ActionPerformed
-        pilihan = 2;
+        initPetugas();
+        pilihan = 2;        
         akses.setform("RMTransferSerahTerima");
         petugas.isCek();
         petugas.setSize(983, internalFrame1.getHeight() - 40);
@@ -5142,6 +4987,184 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
+        }
+    }
+
+    private void initPetugas() {
+        if (petugas == null) {
+            petugas = new DlgCariPetugas(null, false);
+
+            petugas.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (petugas.getTable().getSelectedRow() != -1) {
+                        if (pilihan == 1) {
+                            nip_serah = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            Tnm_petugas1.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            btnPetugas1.requestFocus();
+                        } else if (pilihan == 2) {
+                            nip_terima = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            Tnm_petugas2.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            btnPetugas2.requestFocus();
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
+    }
+    
+    private void initDokter() {
+        if (dokter == null) {
+            dokter = new DlgCariDokter(null, false);
+
+            dokter.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (akses.getform().equals("RMTransferSerahTerima")) {
+                        if (pilihan == 1) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                nip_dpjp = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
+                                Tdpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                            }
+                            btnDPJP.requestFocus();
+                        } else if (pilihan == 2) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                nip_konsulen1 = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
+                                Tdr_konsulen1.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                            }
+                            btnKonsulen1.requestFocus();
+                        } else if (pilihan == 3) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                nip_konsulen2 = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
+                                Tdr_konsulen2.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                            }
+                            Tdiagnosis.requestFocus();
+                        } else if (pilihan == 4) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                nip_dokter = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
+                                Tnm_dokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                            }
+                            btnDokter.requestFocus();
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
+    }
+
+    private void initKamar() {
+        if (kamar == null) {
+            kamar = new DlgKamar(null, false);
+
+            kamar.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (akses.getform().equals("RMTransferSerahTerima")) {
+                        if (kamar.getTable().getSelectedRow() != -1) {
+                            if (pilihan == 1) {
+                                kd_kamar = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 1).toString();
+                                Tnm_kamar.setText(Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE k.kd_kamar='" + kd_kamar + "'"));
+                                tgl_pindah.requestFocus();
+                            } else if (pilihan == 2) {
+                                kd_kamar_pindah = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 1).toString();
+                                Tnm_kamar_pindah.setText(Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE k.kd_kamar='" + kd_kamar_pindah + "'"));
+                                Talasan_ranap.requestFocus();
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+
+            kamar.getTable().addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                }
+
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (akses.getform().equals("RMTransferSerahTerima")) {
+                        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                            kamar.dispose();
+                        }
+                    }
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                }
+            });
         }
     }
 }

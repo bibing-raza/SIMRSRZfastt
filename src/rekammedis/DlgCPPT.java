@@ -80,12 +80,12 @@ public class DlgCPPT extends javax.swing.JDialog {
             rsDiag1, rsObat, rsTHT, rsLISMaster, rsLIS1, rsLIS2, rsLIS3, rsDiabet, rsRDO, rsRDU, rsRDD, rsRDM;
     private int i = 0, x = 0, pilihan = 0, totskorTriase = 0, skorGZ1 = 0, skorYaGZ1 = 0, skorGZ2 = 0, skor = 0, paste = 0,
             cekKonfirmasi = 0, urut = 0, y = 0, w = 0, lisM = 0, lis1 = 0, lis2 = 0, cekPilihanRehab = 0, detik = 0;
-    private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    private DlgCariDiet diet = new DlgCariDiet(null, false);
-    private DlgCariPoli poli = new DlgCariPoli(null, false);
-    private Date date = new Date(), jamSekarang, jamCPPT1, jamCPPT2, jamCPPT3;
-    private DlgCariJumlahPemberianDiet jlhberi = new DlgCariJumlahPemberianDiet(null, false);
+    private DlgCariDokter dokter;
+    private DlgCariPetugas petugas;
+    private DlgCariDiet diet;
+    private DlgCariPoli poli;
+    private DlgCariJumlahPemberianDiet jlhberi;
+    private Date date = new Date(), jamSekarang, jamCPPT1, jamCPPT2, jamCPPT3;    
     private String whereNya = "", status = "", cekjam = "", statusOK = "", nipppa = "", jamkeluar = "", nipDPJPlain = "", dapatobat = "",
             obatsesuai = "", obatefektif = "", obataman = "", waktuSimpanDiet = "", kemasan = "", dataDiet = "", jnsRawat = "",
             kdUnit = "", instruksiDiet = "", siftppa = "", soap = "", hasil_pemeriksaan = "", instruksi_nakes = "", tgm = "",
@@ -955,270 +955,6 @@ public class DlgCPPT extends javax.swing.JDialog {
                 }
             });
         }
-        
-        diet.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DlgCPPT")) {
-                    if (diet.getTable().getSelectedRow() != -1) {
-                        kddiet.setText(diet.getTable().getValueAt(diet.getTable().getSelectedRow(), 0).toString());
-                        nmdiet.setText(diet.getTable().getValueAt(diet.getTable().getSelectedRow(), 1).toString());
-                        jnsMakanan.setText(diet.getTable().getValueAt(diet.getTable().getSelectedRow(), 2).toString());
-                        
-                        if (nmdiet.getText().equals("F75") || nmdiet.getText().equals("F100") || nmdiet.getText().equals("F135")) {
-                            kdberi.setText("-");
-                            jumlahBeri.setText("");
-                            jumlahBeri.setEditable(true);
-                            cmbSatuan.setEnabled(true);
-                            jumlahBeri.requestFocus();
-                        } else {
-                            jumlahBeri.setEditable(false);
-                            cmbSatuan.setEnabled(false);
-                            btnJumlahBeri.requestFocus();
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-        
-        diet.getTable().addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (akses.getform().equals("DlgCPPT")) {
-                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                        diet.dispose();
-                    }
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
-        
-        poli.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DlgCPPT")) {
-                    if (poli.getTable().getSelectedRow() != -1) {
-                        kdpoli.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 0).toString());
-                        TPoli.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 1).toString());
-                        kdpoli.requestFocus();
-                        isCek();
-                    }
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-        
-        jlhberi.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DlgCPPT")) {
-                    if (jlhberi.getTable().getSelectedRow() != -1) {
-                        kdberi.setText(jlhberi.getTable().getValueAt(jlhberi.getTable().getSelectedRow(), 0).toString());
-                        jumlahBeri.setText(jlhberi.getTable().getValueAt(jlhberi.getTable().getSelectedRow(), 1).toString());
-                        cmbSatuan.setSelectedItem(jlhberi.getTable().getValueAt(jlhberi.getTable().getSelectedRow(), 2).toString());
-                    }
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-        
-        jlhberi.getTable().addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (akses.getform().equals("DlgCPPT")) {
-                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                        jlhberi.dispose();
-                    }
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-        });
-        
-        petugas.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {}
-            @Override
-            public void windowClosing(WindowEvent e) {}
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (pilihan == 1) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nipppa = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
-                        nmppa.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnPPA.requestFocus();
-                    }
-                } else if (pilihan == 2) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nipSerah.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString());
-                        nmSerah.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        ChkSamaPPA.setSelected(false);
-                        ChkSamaPPA.setEnabled(true);
-                        BtnSerah.requestFocus();
-                    }
-                } else if (pilihan == 3) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nipTerima.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString());
-                        nmTerima.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnTerima.requestFocus();
-                    }
-                } else if (pilihan == 4) {
-                    if (petugas.getTable().getSelectedRow() != -1) {
-                        nipPetugasKonfir.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString());
-                        nmPetugasKonfir.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
-                        BtnPetugasKonfir.requestFocus();
-                    }
-                }
-            }
-            @Override
-            public void windowIconified(WindowEvent e) {}
-            @Override
-            public void windowDeiconified(WindowEvent e) {}
-            @Override
-            public void windowActivated(WindowEvent e) {}
-            @Override
-            public void windowDeactivated(WindowEvent e) {}
-        });
-        
-        dokter.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DlgCPPT")) {
-                    if (pilihan == 1) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            kddpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
-                            nmdpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                            BtnDPJP.requestFocus();
-                        }
-                    } else if (pilihan == 2) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            nipDPJPlain = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
-                            nmDPJPlainya.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                            BtnDPJPLain.requestFocus();
-                        }
-                    } else if (pilihan == 3) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            nipKonfirDpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
-                            nmKonfirDpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                            BtnKonfirDpjp.requestFocus();
-                        }
-                    } else if (pilihan == 4) {
-                        if (dokter.getTable().getSelectedRow() != -1) {
-                            kddpjp1.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
-                            nmdpjp1.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                            btnDPJP.requestFocus();
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
         
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
@@ -7729,6 +7465,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_tbCPPTKeyReleased
 
     private void BtnDPJPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDPJPActionPerformed
+        initDokter();
         pilihan = 1;
         akses.setform("DlgCPPT");
         dokter.isCek();
@@ -7894,6 +7631,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtkMouseReleased
 
     private void BtnPPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPPAActionPerformed
+        initPetugas();
         pilihan = 1;
         akses.setform("DlgCPPT");
         petugas.isCek();
@@ -7904,6 +7642,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPPAActionPerformed
 
     private void BtnDPJPLainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDPJPLainActionPerformed
+        initDokter();
         pilihan = 2;
         akses.setform("DlgCPPT");
         dokter.isCek();
@@ -7914,6 +7653,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnDPJPLainActionPerformed
 
     private void BtnSerahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSerahActionPerformed
+        initPetugas();
         pilihan = 2;
         akses.setform("DlgCPPT");
         petugas.isCek();
@@ -7924,6 +7664,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnSerahActionPerformed
 
     private void BtnTerimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTerimaActionPerformed
+        initPetugas();
         pilihan = 3;
         akses.setform("DlgCPPT");
         petugas.isCek();
@@ -8485,6 +8226,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnGantiActionPerformed
 
     private void btnDietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDietActionPerformed
+        initDiet();
         akses.setform("DlgCPPT");
         diet.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         diet.setLocationRelativeTo(internalFrame1);
@@ -8493,6 +8235,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDietActionPerformed
 
     private void btnJumlahBeriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJumlahBeriActionPerformed
+        initJumlahBeriDiet();
         akses.setform("DlgCPPT");
         jlhberi.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         jlhberi.setLocationRelativeTo(internalFrame1);
@@ -9625,6 +9368,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtk3MouseReleased
 
     private void BtnPetugasKonfirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPetugasKonfirActionPerformed
+        initPetugas();
         pilihan = 4;
         akses.setform("DlgCPPT");
         petugas.isCek();
@@ -9640,6 +9384,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnHapusPetugasKonfirActionPerformed
 
     private void BtnKonfirDpjpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKonfirDpjpActionPerformed
+        initDokter();
         pilihan = 3;
         akses.setform("DlgCPPT");
         dokter.isCek();
@@ -10570,6 +10315,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbBulanActionPerformed
 
     private void BtnUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUnitActionPerformed
+        initPoli();
         TPoli.setText("");
         kdpoli.setText("");
 
@@ -10937,6 +10683,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnSimpan6ActionPerformed
 
     private void btnDPJPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDPJPActionPerformed
+        initDokter();
         pilihan = 4;
         akses.setform("DlgCPPT");
         dokter.emptTeks();
@@ -22233,5 +21980,311 @@ public class DlgCPPT extends javax.swing.JDialog {
 
         DTPCariA.setDate(awal);
         DTPCariB.setDate(akhir);
+    }
+    
+    private void initPetugas() {
+        if (petugas == null) {
+            petugas = new DlgCariPetugas(null, false);
+
+            petugas.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (pilihan == 1) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nipppa = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                            nmppa.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPPA.requestFocus();
+                        }
+                    } else if (pilihan == 2) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nipSerah.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString());
+                            nmSerah.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            ChkSamaPPA.setSelected(false);
+                            ChkSamaPPA.setEnabled(true);
+                            BtnSerah.requestFocus();
+                        }
+                    } else if (pilihan == 3) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nipTerima.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString());
+                            nmTerima.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnTerima.requestFocus();
+                        }
+                    } else if (pilihan == 4) {
+                        if (petugas.getTable().getSelectedRow() != -1) {
+                            nipPetugasKonfir.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString());
+                            nmPetugasKonfir.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                            BtnPetugasKonfir.requestFocus();
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
+    }
+    
+    private void initDokter() {
+        if (dokter == null) {
+            dokter = new DlgCariDokter(null, false);
+
+            dokter.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (akses.getform().equals("DlgCPPT")) {
+                        if (pilihan == 1) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                kddpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
+                                nmdpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                                BtnDPJP.requestFocus();
+                            }
+                        } else if (pilihan == 2) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                nipDPJPlain = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
+                                nmDPJPlainya.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                                BtnDPJPLain.requestFocus();
+                            }
+                        } else if (pilihan == 3) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                nipKonfirDpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
+                                nmKonfirDpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                                BtnKonfirDpjp.requestFocus();
+                            }
+                        } else if (pilihan == 4) {
+                            if (dokter.getTable().getSelectedRow() != -1) {
+                                kddpjp1.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
+                                nmdpjp1.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                                btnDPJP.requestFocus();
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
+    }
+    
+    private void initDiet() {
+        if (diet == null) {
+            diet = new DlgCariDiet(null, false);
+
+            diet.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (akses.getform().equals("DlgCPPT")) {
+                        if (diet.getTable().getSelectedRow() != -1) {
+                            kddiet.setText(diet.getTable().getValueAt(diet.getTable().getSelectedRow(), 0).toString());
+                            nmdiet.setText(diet.getTable().getValueAt(diet.getTable().getSelectedRow(), 1).toString());
+                            jnsMakanan.setText(diet.getTable().getValueAt(diet.getTable().getSelectedRow(), 2).toString());
+
+                            if (nmdiet.getText().equals("F75") || nmdiet.getText().equals("F100") || nmdiet.getText().equals("F135")) {
+                                kdberi.setText("-");
+                                jumlahBeri.setText("");
+                                jumlahBeri.setEditable(true);
+                                cmbSatuan.setEnabled(true);
+                                jumlahBeri.requestFocus();
+                            } else {
+                                jumlahBeri.setEditable(false);
+                                cmbSatuan.setEnabled(false);
+                                btnJumlahBeri.requestFocus();
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+
+            diet.getTable().addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                }
+
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (akses.getform().equals("DlgCPPT")) {
+                        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                            diet.dispose();
+                        }
+                    }
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                }
+            });
+        }
+    }
+    
+    private void initPoli() {
+        if (poli == null) {
+            poli = new DlgCariPoli(null, false);
+
+            poli.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (akses.getform().equals("DlgCPPT")) {
+                        if (poli.getTable().getSelectedRow() != -1) {
+                            kdpoli.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 0).toString());
+                            TPoli.setText(poli.getTable().getValueAt(poli.getTable().getSelectedRow(), 1).toString());
+                            kdpoli.requestFocus();
+                            isCek();
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+        }
+    }
+    
+    private void initJumlahBeriDiet() {
+        if (jlhberi == null) {
+            jlhberi = new DlgCariJumlahPemberianDiet(null, false);
+
+            jlhberi.addWindowListener(new WindowListener() {
+                @Override
+                public void windowOpened(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                }
+
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    if (akses.getform().equals("DlgCPPT")) {
+                        if (jlhberi.getTable().getSelectedRow() != -1) {
+                            kdberi.setText(jlhberi.getTable().getValueAt(jlhberi.getTable().getSelectedRow(), 0).toString());
+                            jumlahBeri.setText(jlhberi.getTable().getValueAt(jlhberi.getTable().getSelectedRow(), 1).toString());
+                            cmbSatuan.setSelectedItem(jlhberi.getTable().getValueAt(jlhberi.getTable().getSelectedRow(), 2).toString());
+                        }
+                    }
+                }
+
+                @Override
+                public void windowIconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+                }
+
+                @Override
+                public void windowActivated(WindowEvent e) {
+                }
+
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+                }
+            });
+            
+            jlhberi.getTable().addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                }
+
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (akses.getform().equals("DlgCPPT")) {
+                        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                            jlhberi.dispose();
+                        }
+                    }
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                }
+            });
+        }
     }
 }
