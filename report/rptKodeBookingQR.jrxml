@@ -33,18 +33,18 @@
 				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true" pattern="">
-				<reportElement mode="Opaque" x="64" y="30" width="105" height="11"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="false"/>
+				<reportElement mode="Opaque" x="64" y="31" width="105" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single" markup="html">
+					<font fontName="Tahoma" size="7" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Tgl. Periksa : "+$F{tgl_periksa}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["Tgl. Periksa : <b>"+$F{tgl_periksa}+"</b>"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="">
-				<reportElement mode="Opaque" x="64" y="40" width="105" height="11"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="false"/>
+				<reportElement mode="Opaque" x="64" y="40" width="105" height="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single" markup="html">
+					<font fontName="Tahoma" size="7" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Poliklinik Tujuan (No. Reg.) :\n"+$F{nm_poli}+" ("+$F{no_reg}+")\nKode : "+$F{kd_booking}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["Poliklinik Tujuan :<br><b>"+$F{nm_poli}+"</b><br>No. Antrean : <b>"+$F{no_reg}+"</b><br>Kode : <b>"+$F{kd_booking}+"</b>"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="34" y="7" width="134" height="13"/>
