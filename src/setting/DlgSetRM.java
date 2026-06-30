@@ -126,18 +126,23 @@ public class DlgSetRM extends javax.swing.JDialog {
 
         tbKelengkapan.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode5=new DefaultTableModel(null,new Object[]{"No.Rekam Medis Terakhir Digunakan"}){
-              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+        tabMode5 = new DefaultTableModel(null, new String[]{"Wajib Closing Kasir", "Urutan No. Reg. Terintegrasi"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
 
         tbValidasiRegistrasi.setModel(tabMode5);
         tbValidasiRegistrasi.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbValidasiRegistrasi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 2; i++) {
             TableColumn column = tbValidasiRegistrasi.getColumnModel().getColumn(i);
-            if(i==0){
-                column.setPreferredWidth(350);
+            if (i == 0) {
+                column.setPreferredWidth(120);
+            } else if (i == 1) {
+                column.setPreferredWidth(160);
             }
         }
 
@@ -331,6 +336,8 @@ public class DlgSetRM extends javax.swing.JDialog {
         panelGlass10 = new widget.panelisi();
         jLabel12 = new widget.Label();
         ValidasiRegistrasi = new widget.ComboBox();
+        jLabel59 = new widget.Label();
+        ValidasiNoReg = new widget.ComboBox();
         internalFrame7 = new widget.InternalFrame();
         Scroll6 = new widget.ScrollPane();
         tbBatasUmur = new widget.Table();
@@ -351,7 +358,7 @@ public class DlgSetRM extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Setup Rekam Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Setup Rekam Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -421,7 +428,6 @@ public class DlgSetRM extends javax.swing.JDialog {
 
         TabRawat.setBackground(new java.awt.Color(250, 255, 245));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)));
-        TabRawat.setForeground(new java.awt.Color(0, 0, 0));
         TabRawat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -517,7 +523,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         cmburut.setForeground(new java.awt.Color(0, 0, 0));
         cmburut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Straight", "Middle", "Terminal" }));
         cmburut.setName("cmburut"); // NOI18N
-        cmburut.setOpaque(false);
         cmburut.setPreferredSize(new java.awt.Dimension(55, 28));
         cmburut.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -530,7 +535,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         cmbYesTahun.setForeground(new java.awt.Color(0, 0, 0));
         cmbYesTahun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         cmbYesTahun.setName("cmbYesTahun"); // NOI18N
-        cmbYesTahun.setOpaque(false);
         cmbYesTahun.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbYesTahun.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -555,7 +559,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         cmbYesBulan.setForeground(new java.awt.Color(0, 0, 0));
         cmbYesBulan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         cmbYesBulan.setName("cmbYesBulan"); // NOI18N
-        cmbYesBulan.setOpaque(false);
         cmbYesBulan.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbYesBulan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -574,7 +577,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         cmbPosisi.setForeground(new java.awt.Color(0, 0, 0));
         cmbPosisi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Depan", "Belakang" }));
         cmbPosisi.setName("cmbPosisi"); // NOI18N
-        cmbPosisi.setOpaque(false);
         cmbPosisi.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbPosisi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -626,7 +628,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         Kelurahan.setForeground(new java.awt.Color(0, 0, 0));
         Kelurahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         Kelurahan.setName("Kelurahan"); // NOI18N
-        Kelurahan.setOpaque(false);
         Kelurahan.setPreferredSize(new java.awt.Dimension(55, 28));
         Kelurahan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -639,7 +640,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         Kecamatan.setForeground(new java.awt.Color(0, 0, 0));
         Kecamatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         Kecamatan.setName("Kecamatan"); // NOI18N
-        Kecamatan.setOpaque(false);
         Kecamatan.setPreferredSize(new java.awt.Dimension(55, 28));
         Kecamatan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -664,7 +664,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         Kabupaten.setForeground(new java.awt.Color(0, 0, 0));
         Kabupaten.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         Kabupaten.setName("Kabupaten"); // NOI18N
-        Kabupaten.setOpaque(false);
         Kabupaten.setPreferredSize(new java.awt.Dimension(55, 28));
         Kabupaten.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -759,7 +758,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoKTP.setForeground(new java.awt.Color(0, 0, 0));
         YesNoKTP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoKTP.setName("YesNoKTP"); // NOI18N
-        YesNoKTP.setOpaque(false);
         YesNoKTP.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoKTP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -795,7 +793,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoTmpLahir.setForeground(new java.awt.Color(0, 0, 0));
         YesNoTmpLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoTmpLahir.setName("YesNoTmpLahir"); // NOI18N
-        YesNoTmpLahir.setOpaque(false);
         YesNoTmpLahir.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoTmpLahir.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -819,7 +816,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoNamaIbu.setForeground(new java.awt.Color(0, 0, 0));
         YesNoNamaIbu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoNamaIbu.setName("YesNoNamaIbu"); // NOI18N
-        YesNoNamaIbu.setOpaque(false);
         YesNoNamaIbu.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoNamaIbu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -850,7 +846,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoAlamat.setForeground(new java.awt.Color(0, 0, 0));
         YesNoAlamat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoAlamat.setName("YesNoAlamat"); // NOI18N
-        YesNoAlamat.setOpaque(false);
         YesNoAlamat.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoAlamat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -892,7 +887,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoPekerjaan.setForeground(new java.awt.Color(0, 0, 0));
         YesNoPekerjaan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoPekerjaan.setName("YesNoPekerjaan"); // NOI18N
-        YesNoPekerjaan.setOpaque(false);
         YesNoPekerjaan.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoPekerjaan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -922,7 +916,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoTelp.setForeground(new java.awt.Color(0, 0, 0));
         YesNoTelp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoTelp.setName("YesNoTelp"); // NOI18N
-        YesNoTelp.setOpaque(false);
         YesNoTelp.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoTelp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -958,7 +951,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoUmur.setForeground(new java.awt.Color(0, 0, 0));
         YesNoUmur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoUmur.setName("YesNoUmur"); // NOI18N
-        YesNoUmur.setOpaque(false);
         YesNoUmur.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoUmur.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -994,7 +986,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoNamaKeluarga.setForeground(new java.awt.Color(0, 0, 0));
         YesNoNamaKeluarga.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoNamaKeluarga.setName("YesNoNamaKeluarga"); // NOI18N
-        YesNoNamaKeluarga.setOpaque(false);
         YesNoNamaKeluarga.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoNamaKeluarga.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1030,7 +1021,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoNoPeserta.setForeground(new java.awt.Color(0, 0, 0));
         YesNoNoPeserta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoNoPeserta.setName("YesNoNoPeserta"); // NOI18N
-        YesNoNoPeserta.setOpaque(false);
         YesNoNoPeserta.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoNoPeserta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1066,7 +1056,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoKelurahan.setForeground(new java.awt.Color(0, 0, 0));
         YesNoKelurahan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoKelurahan.setName("YesNoKelurahan"); // NOI18N
-        YesNoKelurahan.setOpaque(false);
         YesNoKelurahan.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoKelurahan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1156,7 +1145,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoKecamatan.setForeground(new java.awt.Color(0, 0, 0));
         YesNoKecamatan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoKecamatan.setName("YesNoKecamatan"); // NOI18N
-        YesNoKecamatan.setOpaque(false);
         YesNoKecamatan.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoKecamatan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1180,7 +1168,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoKabupaten.setForeground(new java.awt.Color(0, 0, 0));
         YesNoKabupaten.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoKabupaten.setName("YesNoKabupaten"); // NOI18N
-        YesNoKabupaten.setOpaque(false);
         YesNoKabupaten.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoKabupaten.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1204,7 +1191,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoPekerjaanPJ.setForeground(new java.awt.Color(0, 0, 0));
         YesNoPekerjaanPJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoPekerjaanPJ.setName("YesNoPekerjaanPJ"); // NOI18N
-        YesNoPekerjaanPJ.setOpaque(false);
         YesNoPekerjaanPJ.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoPekerjaanPJ.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1228,7 +1214,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoAlamatPJ.setForeground(new java.awt.Color(0, 0, 0));
         YesNoAlamatPJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoAlamatPJ.setName("YesNoAlamatPJ"); // NOI18N
-        YesNoAlamatPJ.setOpaque(false);
         YesNoAlamatPJ.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoAlamatPJ.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1252,7 +1237,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoKelurahanPJ.setForeground(new java.awt.Color(0, 0, 0));
         YesNoKelurahanPJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoKelurahanPJ.setName("YesNoKelurahanPJ"); // NOI18N
-        YesNoKelurahanPJ.setOpaque(false);
         YesNoKelurahanPJ.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoKelurahanPJ.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1282,7 +1266,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoKecamatanPJ.setForeground(new java.awt.Color(0, 0, 0));
         YesNoKecamatanPJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoKecamatanPJ.setName("YesNoKecamatanPJ"); // NOI18N
-        YesNoKecamatanPJ.setOpaque(false);
         YesNoKecamatanPJ.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoKecamatanPJ.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1318,7 +1301,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoKabupatenPJ.setForeground(new java.awt.Color(0, 0, 0));
         YesNoKabupatenPJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoKabupatenPJ.setName("YesNoKabupatenPJ"); // NOI18N
-        YesNoKabupatenPJ.setOpaque(false);
         YesNoKabupatenPJ.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoKabupatenPJ.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1354,7 +1336,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoAlamatDom.setForeground(new java.awt.Color(0, 0, 0));
         YesNoAlamatDom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoAlamatDom.setName("YesNoAlamatDom"); // NOI18N
-        YesNoAlamatDom.setOpaque(false);
         YesNoAlamatDom.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoAlamatDom.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1390,7 +1371,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoKelurahanDom.setForeground(new java.awt.Color(0, 0, 0));
         YesNoKelurahanDom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoKelurahanDom.setName("YesNoKelurahanDom"); // NOI18N
-        YesNoKelurahanDom.setOpaque(false);
         YesNoKelurahanDom.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoKelurahanDom.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1426,7 +1406,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoKecamatanDom.setForeground(new java.awt.Color(0, 0, 0));
         YesNoKecamatanDom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoKecamatanDom.setName("YesNoKecamatanDom"); // NOI18N
-        YesNoKecamatanDom.setOpaque(false);
         YesNoKecamatanDom.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoKecamatanDom.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1462,7 +1441,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         YesNoKabupatenDom.setForeground(new java.awt.Color(0, 0, 0));
         YesNoKabupatenDom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         YesNoKabupatenDom.setName("YesNoKabupatenDom"); // NOI18N
-        YesNoKabupatenDom.setOpaque(false);
         YesNoKabupatenDom.setPreferredSize(new java.awt.Dimension(55, 28));
         YesNoKabupatenDom.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1533,7 +1511,6 @@ public class DlgSetRM extends javax.swing.JDialog {
         ValidasiRegistrasi.setForeground(new java.awt.Color(0, 0, 0));
         ValidasiRegistrasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
         ValidasiRegistrasi.setName("ValidasiRegistrasi"); // NOI18N
-        ValidasiRegistrasi.setOpaque(false);
         ValidasiRegistrasi.setPreferredSize(new java.awt.Dimension(55, 28));
         ValidasiRegistrasi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1542,6 +1519,24 @@ public class DlgSetRM extends javax.swing.JDialog {
         });
         panelGlass10.add(ValidasiRegistrasi);
         ValidasiRegistrasi.setBounds(328, 12, 60, 23);
+
+        jLabel59.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel59.setText("Urutan No. Reg. Terintegrasi :");
+        jLabel59.setName("jLabel59"); // NOI18N
+        panelGlass10.add(jLabel59);
+        jLabel59.setBounds(390, 12, 170, 23);
+
+        ValidasiNoReg.setForeground(new java.awt.Color(0, 0, 0));
+        ValidasiNoReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
+        ValidasiNoReg.setName("ValidasiNoReg"); // NOI18N
+        ValidasiNoReg.setPreferredSize(new java.awt.Dimension(55, 28));
+        ValidasiNoReg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ValidasiNoRegKeyPressed(evt);
+            }
+        });
+        panelGlass10.add(ValidasiNoReg);
+        ValidasiNoReg.setBounds(565, 12, 60, 23);
 
         internalFrame6.add(panelGlass10, java.awt.BorderLayout.PAGE_START);
 
@@ -1724,14 +1719,15 @@ public class DlgSetRM extends javax.swing.JDialog {
                 norm.requestFocus();
             }
         } else if (TabRawat.getSelectedIndex() == 4) {
-            if (tabMode5.getRowCount() == 0) {
+            if (tbValidasiRegistrasi.getSelectedRow() != -1) {
+                BtnHapusActionPerformed(null);
                 Sequel.menyimpan("set_validasi_registrasi",
-                        "'" + ValidasiRegistrasi.getSelectedItem().toString() + "'", "Pengaturan Validasi Registrasi"
+                        "'" + ValidasiRegistrasi.getSelectedItem().toString() + "','" + ValidasiNoReg.getSelectedItem().toString() + "'", "Pengaturan Validasi Registrasi"
                 );
                 tampilvalidasiregistrasi();
-            } else if (tabMode5.getRowCount() > 0) {
-                JOptionPane.showMessageDialog(null, "Maaf, Hanya diijinkan satu pengaturan ...!!!!");
-                cmburut.requestFocus();
+            } else {
+                JOptionPane.showMessageDialog(null, "Silahkan klik dulu datanya pada tabel ...!!!!");
+                tampilvalidasiregistrasi();
             }
         } else if (TabRawat.getSelectedIndex() == 5) {
             if (tabMode6.getRowCount() == 0) {
@@ -2159,6 +2155,10 @@ private void normKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_norm
         }
     }//GEN-LAST:event_tbBatasUmurKeyPressed
 
+    private void ValidasiNoRegKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ValidasiNoRegKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ValidasiNoRegKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -2215,6 +2215,7 @@ private void normKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_norm
     private javax.swing.JTabbedPane TabRawat;
     private widget.TextBox UmurMax;
     private widget.TextBox UmurMin;
+    private widget.ComboBox ValidasiNoReg;
     private widget.ComboBox ValidasiRegistrasi;
     private widget.ComboBox YesNoAlamat;
     private widget.ComboBox YesNoAlamatDom;
@@ -2299,6 +2300,7 @@ private void normKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_norm
     private widget.Label jLabel56;
     private widget.Label jLabel57;
     private widget.Label jLabel58;
+    private widget.Label jLabel59;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
@@ -2604,11 +2606,14 @@ private void normKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_norm
     private void tampilvalidasiregistrasi() {
         Valid.tabelKosong(tabMode5);
         try{   
-            ps5=koneksi.prepareStatement("select * from set_validasi_registrasi ");
+            ps5=koneksi.prepareStatement("select wajib_closing_kasir, no_reg_terintegrasi from set_validasi_registrasi ");
             try {
                 rs=ps5.executeQuery();
                 while(rs.next()){
-                    tabMode5.addRow(new Object[]{rs.getString(1)});
+                    tabMode5.addRow(new String[]{
+                        rs.getString(1),
+                        rs.getString(2)
+                    });
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : "+e);
@@ -2653,9 +2658,10 @@ private void normKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_norm
     }
 
     private void getDataValidasiRegistrasi() {
-        int row=tbValidasiRegistrasi.getSelectedRow();
-        if(row!= -1){
-            ValidasiRegistrasi.setSelectedItem(tbValidasiRegistrasi.getValueAt(row,0).toString());
+        int row = tbValidasiRegistrasi.getSelectedRow();
+        if (row != -1) {
+            ValidasiRegistrasi.setSelectedItem(tbValidasiRegistrasi.getValueAt(row, 0).toString());
+            ValidasiNoReg.setSelectedItem(tbValidasiRegistrasi.getValueAt(row, 1).toString());
         }
     }
     
@@ -2665,6 +2671,5 @@ private void normKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_norm
             UmurMax.setText(tbBatasUmur.getValueAt(row,0).toString());
             UmurMin.setText(tbBatasUmur.getValueAt(row,1).toString());
         }
-    }
-    
+    }    
 }

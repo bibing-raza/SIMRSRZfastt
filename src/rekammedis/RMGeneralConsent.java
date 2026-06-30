@@ -92,6 +92,11 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
     public RMGeneralConsent(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        Scroll5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        Scroll5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        Scroll5.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        Scroll5.getHorizontalScrollBar().setPreferredSize(new Dimension(0, 0));
+
         //data di tabel grid rata tengah
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
@@ -628,7 +633,7 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
         BtnPtgs.setBounds(657, 514, 28, 23);
 
         TtglGC.setEditable(false);
-        TtglGC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-02-2026" }));
+        TtglGC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-06-2026" }));
         TtglGC.setDisplayFormat("dd-MM-yyyy");
         TtglGC.setName("TtglGC"); // NOI18N
         TtglGC.setOpaque(false);
@@ -1050,7 +1055,7 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
         panelGlass10.add(jLabel20);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-02-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1065,7 +1070,7 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
         panelGlass10.add(jLabel22);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-02-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

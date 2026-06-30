@@ -11847,19 +11847,25 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }
 
     private void isNumber() {
-//        int jmlPxLoket = 0, jmlPxBoking = 0, hasil = 0;
-        
+        int jmlPxLoket = 0, jmlPxBoking = 0, hasil = 0;
         switch (URUTNOREG) {
             case "poli":
-//                jmlPxLoket = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoli.getText() + "' "
-//                        + "and tgl_registrasi='" + tglDaftar + "'");
-//                jmlPxBoking = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_poli='" + kdpoli.getText() + "' "
-//                        + "and tanggal_periksa='" + tglDaftar + "'");
-//
-//                hasil = jmlPxLoket + jmlPxBoking;
-//                Valid.autoNomer3("select '" + hasil + "'", "", 3, TNoReg);
-                
-                Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoli.getText() + "' and tgl_registrasi='" + tglDaftar + "'", "", 3, TNoReg);
+                if (Sequel.cariIsi("select no_reg_terintegrasi from set_validasi_registrasi").equals("Yes")) {
+                    jmlPxLoket = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoli.getText() + "' "
+                            + "and tgl_registrasi='" + tglDaftar + "'");
+                    jmlPxBoking = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_poli='" + kdpoli.getText() + "' "
+                            + "and tanggal_periksa='" + tglDaftar + "'");
+
+                    if (jmlPxLoket > jmlPxBoking) {
+                        hasil = jmlPxLoket;
+                    } else {
+                        hasil = jmlPxBoking;
+                    }
+
+                    Valid.autoNomer3("select '" + hasil + "'", "", 3, TNoReg);
+                } else {
+                    Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoli.getText() + "' and tgl_registrasi='" + tglDaftar + "'", "", 3, TNoReg);
+                }
                 break;
             case "dokter":
                 Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + kddokter.getText() + "' and tgl_registrasi='" + tglDaftar + "'", "", 3, TNoReg);
@@ -11879,9 +11885,25 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }
 
     private void isNumberRujuk() {
+        int jmlPxLoket = 0, jmlPxBoking = 0, hasil = 0;
         switch (URUTNOREG) {
             case "poli":
-                Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoliRujuk.getText() + "' and tgl_registrasi='" + tglDaftar + "'", "", 3, TNoReg);
+                if (Sequel.cariIsi("select no_reg_terintegrasi from set_validasi_registrasi").equals("Yes")) {
+                    jmlPxLoket = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoliRujuk.getText() + "' "
+                            + "and tgl_registrasi='" + tglDaftar + "'");
+                    jmlPxBoking = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_poli='" + kdpoliRujuk.getText() + "' "
+                            + "and tanggal_periksa='" + tglDaftar + "'");
+
+                    if (jmlPxLoket > jmlPxBoking) {
+                        hasil = jmlPxLoket;
+                    } else {
+                        hasil = jmlPxBoking;
+                    }
+
+                    Valid.autoNomer3("select '" + hasil + "'", "", 3, TNoReg);
+                } else {
+                    Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoliRujuk.getText() + "' and tgl_registrasi='" + tglDaftar + "'", "", 3, TNoReg);
+                }                
                 break;
             case "dokter":
                 Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + kdDokterRujuk.getText() + "' and tgl_registrasi='" + tglDaftar + "'", "", 3, TNoReg);

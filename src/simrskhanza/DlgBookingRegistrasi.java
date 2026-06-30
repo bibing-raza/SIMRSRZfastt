@@ -4258,7 +4258,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             param.put("lokasi", Sequel.cariGambar("select gambar from setting_qr where judul = 'QR'"));
             param.put("logo", Sequel.cariGambar("select logo from setting"));
             Valid.AutoPrintToImage("rptKodeBookingQR.jasper", "report", "::[ Kode Booking (QR Code) Pasien ]::",
-                    "SELECT br.kd_booking, date_format(br.tanggal_periksa,'%d %M %Y') tgl_periksa, pl.nm_poli FROM booking_registrasi br "
+                    "SELECT br.kd_booking, date_format(br.tanggal_periksa,'%d/%m/%Y') tgl_periksa, pl.nm_poli, br.no_reg FROM booking_registrasi br "
                     + "inner join poliklinik pl on pl.kd_poli=br.kd_poli "
                     + "WHERE br.kd_booking='" + cekKDboking.getText() + "'", param, Sequel.cariFolder(), "QRCode Booking");
             this.setCursor(Cursor.getDefaultCursor());
@@ -4987,7 +4987,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void isNomer() {
         int jmlPxLoket = 0, jmlPxBoking = 0, hasil = 0;
-        
         switch (URUTNOREG) {
             case "poli":
                 jmlPxLoket = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + KdPoli.getText() + "' "
@@ -4995,7 +4994,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 jmlPxBoking = Sequel.cariInteger("select ifnull(MAX(CONVERT(no_reg,signed)),0) from booking_registrasi where kd_poli='" + KdPoli.getText() + "' "
                         + "and tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "'");
 
-                hasil = jmlPxLoket + jmlPxBoking;
+                if (Sequel.cariIsi("select no_reg_terintegrasi from set_validasi_registrasi").equals("Yes")) {
+                    if (jmlPxLoket > jmlPxBoking) {
+                        hasil = jmlPxLoket;
+                    } else {
+                        hasil = jmlPxBoking;
+                    }
+                } else {
+                    hasil = jmlPxLoket + jmlPxBoking;
+                }
+
                 Valid.autoNomer3("select '" + hasil + "'", "", 3, NoReg);
                 break;
             case "dokter":

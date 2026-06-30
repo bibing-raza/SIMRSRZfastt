@@ -707,19 +707,23 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
     }
 
     private void nomorAutoBPJS() {
-        switch (URUTNOREGbpjs) {
-            case "poli":
-                Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpolibpjs + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + "") + "'", "", 3, TNoRegBPJS);
-                break;
-            case "dokter":
-                Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + kddokterbpjs + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + "") + "'", "", 3, TNoRegBPJS);
-                break;
-            case "dokter & poli":
-                Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + kddokterbpjs + "' and kd_poli='" + kdpolibpjs + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + "") + "'", "", 3, TNoRegBPJS);
-                break;
-            default:
-                Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + kddokterbpjs + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + "") + "'", "", 3, TNoRegBPJS);
-                break;
+        if (Sequel.cariIsi("select no_reg_terintegrasi from set_validasi_registrasi").equals("Yes")) {
+            TNoRegBPJS.setText(Sequel.cariIsi("select no_reg from booking_registrasi where kd_booking='" + kdbokingbpjs.getText() + "'"));
+        } else {
+            switch (URUTNOREGbpjs) {
+                case "poli":
+                    Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpolibpjs + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + "") + "'", "", 3, TNoRegBPJS);
+                    break;
+                case "dokter":
+                    Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + kddokterbpjs + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + "") + "'", "", 3, TNoRegBPJS);
+                    break;
+                case "dokter & poli":
+                    Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + kddokterbpjs + "' and kd_poli='" + kdpolibpjs + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + "") + "'", "", 3, TNoRegBPJS);
+                    break;
+                default:
+                    Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + kddokterbpjs + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + "") + "'", "", 3, TNoRegBPJS);
+                    break;
+            }
         }
 
         Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rawat,6),signed)),0) from reg_periksa where tgl_registrasi='" + Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + "") + "' ", dateformat.format(tglPeriksaBPJS.getDate()) + "/", 6, norwBokingBPJS);

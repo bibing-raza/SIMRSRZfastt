@@ -39,7 +39,6 @@
                 </LineBorder>
               </Border>
               <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -153,9 +152,6 @@
                   <Color PropertyName="color" blue="e1" green="eb" red="e6" type="rgb"/>
                 </LineBorder>
               </Border>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
@@ -366,7 +362,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmburut" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -392,7 +387,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbYesTahun" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -446,7 +440,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbYesBulan" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -486,7 +479,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbPosisi" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -596,7 +588,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="Kelurahan" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -622,7 +613,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="Kecamatan" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -676,7 +666,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="Kabupaten" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -872,7 +861,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoKTP" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -943,7 +931,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoTmpLahir" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -986,7 +973,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoNamaIbu" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1054,7 +1040,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoAlamat" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1139,7 +1124,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoPekerjaan" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1196,7 +1180,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoTelp" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1267,7 +1250,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoUmur" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1338,7 +1320,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoNamaKeluarga" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1409,7 +1390,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoNoPeserta" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1480,7 +1460,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoKelurahan" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1677,7 +1656,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoKecamatan" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1720,7 +1698,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoKabupaten" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1763,7 +1740,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoPekerjaanPJ" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1806,7 +1782,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoAlamatPJ" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1849,7 +1824,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoKelurahanPJ" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1906,7 +1880,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoKecamatanPJ" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -1977,7 +1950,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoKabupatenPJ" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -2048,7 +2020,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoAlamatDom" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -2119,7 +2090,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoKelurahanDom" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -2190,7 +2160,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoKecamatanDom" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -2261,7 +2230,6 @@
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="YesNoKabupatenDom" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="false"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[55, 28]"/>
                             </Property>
@@ -2404,7 +2372,6 @@
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="ValidasiRegistrasi" noResource="true"/>
-                        <Property name="opaque" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[55, 28]"/>
                         </Property>
@@ -2415,6 +2382,45 @@
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="328" y="12" width="60" height="23"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="widget.Label" name="jLabel59">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Urutan No. Reg. Terintegrasi :"/>
+                        <Property name="name" type="java.lang.String" value="jLabel59" noResource="true"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="390" y="12" width="170" height="23"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="widget.ComboBox" name="ValidasiNoReg">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="2">
+                            <StringItem index="0" value="Yes"/>
+                            <StringItem index="1" value="No"/>
+                          </StringArray>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="ValidasiNoReg" noResource="true"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[55, 28]"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ValidasiNoRegKeyPressed"/>
+                      </Events>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="565" y="12" width="60" height="23"/>
                         </Constraint>
                       </Constraints>
                     </Component>

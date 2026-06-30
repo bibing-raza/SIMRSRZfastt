@@ -180,11 +180,13 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenPreInduksi = new widget.ButtonBig();
         BtnAsesmenKeperawatanPerioperatif = new widget.ButtonBig();
         BtnCeklisKeselamatanOperasi = new widget.ButtonBig();
+        BtnCatatanSedasiAnestesi = new widget.ButtonBig();
         BtnLaporanOperasi = new widget.ButtonBig();
         BtnCatatanMaterial = new widget.ButtonBig();
         BtnCatatanRuangPemulihan = new widget.ButtonBig();
         BtnSerahTerimaPasca = new widget.ButtonBig();
         BtnInformasiTindakanPembiusan = new widget.ButtonBig();
+        BtnPersetujuanTindakanIBS = new widget.ButtonBig();
         BtnAsesmenPraSedasi = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
@@ -1145,6 +1147,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
         });
         FormInput1.add(BtnCeklisKeselamatanOperasi);
 
+        BtnCatatanSedasiAnestesi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCatatanSedasiAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/checklist.png"))); // NOI18N
+        BtnCatatanSedasiAnestesi.setText("Catatan Sedasi / Anestesi");
+        BtnCatatanSedasiAnestesi.setIconTextGap(0);
+        BtnCatatanSedasiAnestesi.setName("BtnCatatanSedasiAnestesi"); // NOI18N
+        BtnCatatanSedasiAnestesi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnCatatanSedasiAnestesi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCatatanSedasiAnestesiActionPerformed(evt);
+            }
+        });
+        FormInput1.add(BtnCatatanSedasiAnestesi);
+
         BtnLaporanOperasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnLaporanOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
         BtnLaporanOperasi.setText("Laporan Operasi");
@@ -1209,6 +1224,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput1.add(BtnInformasiTindakanPembiusan);
+
+        BtnPersetujuanTindakanIBS.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPersetujuanTindakanIBS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_todo_list_add_17451.png"))); // NOI18N
+        BtnPersetujuanTindakanIBS.setText("Persetujuan/Penolakan Tindakan");
+        BtnPersetujuanTindakanIBS.setIconTextGap(0);
+        BtnPersetujuanTindakanIBS.setName("BtnPersetujuanTindakanIBS"); // NOI18N
+        BtnPersetujuanTindakanIBS.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPersetujuanTindakanIBS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPersetujuanTindakanIBSActionPerformed(evt);
+            }
+        });
+        FormInput1.add(BtnPersetujuanTindakanIBS);
 
         BtnAsesmenPraSedasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenPraSedasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/anastesi2.png"))); // NOI18N
@@ -2480,6 +2508,31 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenPraSedasiKonsepIARActionPerformed
 
+    private void BtnCatatanSedasiAnestesiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCatatanSedasiAnestesiActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            if (akses.getadmin() == true) {
+                akses.setform("DlgRMEranap");
+                RMCatatanSedasiAnestesi form = new RMCatatanSedasiAnestesi(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, masih dalam proses dikerjakan...!!!");
+            }
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnCatatanSedasiAnestesiActionPerformed
+
+    private void BtnPersetujuanTindakanIBSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPersetujuanTindakanIBSActionPerformed
+        BtnPersetujuanTindakanActionPerformed(null);
+    }//GEN-LAST:event_BtnPersetujuanTindakanIBSActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2517,6 +2570,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnCTK;
     private widget.ButtonBig BtnCatatanMaterial;
     private widget.ButtonBig BtnCatatanRuangPemulihan;
+    private widget.ButtonBig BtnCatatanSedasiAnestesi;
     private widget.ButtonBig BtnCeklisKeselamatanOperasi;
     private widget.ButtonBig BtnCeklisKesiapanAnestesi;
     private widget.ButtonBig BtnCeklisPraOperasi;
@@ -2547,6 +2601,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnPerencanaanPulang;
     private widget.ButtonBig BtnPersetujuanRanap;
     private widget.ButtonBig BtnPersetujuanTindakan;
+    private widget.ButtonBig BtnPersetujuanTindakanIBS;
     private widget.ButtonBig BtnProtokolKemoterapi;
     private widget.Button BtnRefres;
     private widget.ButtonBig BtnRekonsiliasiObat;
@@ -2650,6 +2705,8 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnInformasiTindakanPembiusan.setEnabled(akses.getcppt());
         BtnEvaluasiPraAnestesi.setEnabled(akses.getcppt());
         BtnAsesmenPraSedasiKonsepIAR.setEnabled(akses.getcppt());
+        BtnCatatanSedasiAnestesi.setEnabled(akses.getcppt());
+        BtnPersetujuanTindakanIBS.setEnabled(akses.getpemberian_obat());
         
         if (akses.getcppt() == true || akses.getbpjs_sep() == true || akses.getadmin()== true) {
             BtnPemberianInformasiEdukasi.setEnabled(true);

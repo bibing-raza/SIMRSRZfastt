@@ -628,6 +628,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         BtnTindakan = new widget.Button();
         BtnCatatan = new widget.Button();
         BtnInstruksi = new widget.Button();
+        cmbJnsOperasi = new widget.ComboBox();
         PanelInput1 = new javax.swing.JPanel();
         Scroll = new widget.ScrollPane();
         tbLaporanOps = new widget.Table();
@@ -1485,10 +1486,10 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 
         jLabel276.setForeground(new java.awt.Color(0, 0, 0));
         jLabel276.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel276.setText("Wita");
+        jLabel276.setText("Wita         Jns. Operasi :");
         jLabel276.setName("jLabel276"); // NOI18N
         FormInput.add(jLabel276);
-        jLabel276.setBounds(390, 603, 50, 23);
+        jLabel276.setBounds(390, 603, 120, 23);
 
         cmbJam3.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -2210,6 +2211,19 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         });
         FormInput.add(BtnInstruksi);
         BtnInstruksi.setBounds(770, 1436, 100, 23);
+
+        cmbJnsOperasi.setBackground(new java.awt.Color(245, 253, 240));
+        cmbJnsOperasi.setForeground(new java.awt.Color(0, 0, 0));
+        cmbJnsOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Op Pterygium", "Op Phacoemulsifikasi" }));
+        cmbJnsOperasi.setLightWeightPopupEnabled(false);
+        cmbJnsOperasi.setName("cmbJnsOperasi"); // NOI18N
+        cmbJnsOperasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbJnsOperasiActionPerformed(evt);
+            }
+        });
+        FormInput.add(cmbJnsOperasi);
+        cmbJnsOperasi.setBounds(512, 603, 135, 23);
 
         Scroll1.setViewportView(FormInput);
 
@@ -3421,6 +3435,33 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         TCari1.requestFocus();
     }//GEN-LAST:event_BtnInstruksiActionPerformed
 
+    private void cmbJnsOperasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbJnsOperasiActionPerformed
+        if (cmbJnsOperasi.getSelectedIndex() == 1) {
+            TCttnOperasi.setText("- Anestesi sub conjungtiva\n"
+                    + "- Insisi jaringan pterigium sampai bare sklera\n"
+                    + "- Bersihkan jaringan pterigium pada kornea\n"
+                    + "- Flap conjungtiva bulbi lemellar\n"
+                    + "- Potong sebagai graft\n"
+                    + "- Jahitkan graft pada area bare sklera dengan vicryl 8.0 pada semua sisi\n"
+                    + "- Evaluasi perdarahan\n"
+                    + "- Salep mata\n"
+                    + "- Operasi selesai");
+        } else if (cmbJnsOperasi.getSelectedIndex() == 2) {
+            TCttnOperasi.setText("- Topical anestesi\n"
+                    + "- Main port, Second port\n"
+                    + "- Continous Curvalinear Capsulorhexis (CCC) capsul anterior\n"
+                    + "- Hidrodiseksi, Hidrodelineasi\n"
+                    + "- Phacoemulsifikasi stop and chop\n"
+                    + "- IA sisa cortex\n"
+                    + "- Insersi IOL\n"
+                    + "- Antibiotik Intra Camera\n"
+                    + "- Tetes mata\n"
+                    + "- Operasi selesai");
+        } else {
+            TCttnOperasi.setText("");
+        }
+    }//GEN-LAST:event_cmbJnsOperasiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3539,6 +3580,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
     private widget.ComboBox cmbJam5;
     private widget.ComboBox cmbJam6;
     private widget.ComboBox cmbJaringan;
+    private widget.ComboBox cmbJnsOperasi;
     private widget.ComboBox cmbJnsTransfusi;
     private widget.ComboBox cmbMnt1;
     private widget.ComboBox cmbMnt2;
@@ -3782,6 +3824,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         TnmDrAnestesi.setText("-");
         TnmPrwtAnestesi.setText("-");
         TtglOperasi.setDate(new Date());
+        cmbJnsOperasi.setSelectedIndex(0);
         chkCekSignIn.setSelected(false);
         chkCekTime.setSelected(false);
         chkCekSignOut.setSelected(false);

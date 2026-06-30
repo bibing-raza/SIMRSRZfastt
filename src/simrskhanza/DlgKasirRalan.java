@@ -4831,7 +4831,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-06-2026" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -5686,7 +5686,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-06-2026" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -5710,7 +5710,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-06-2026" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -5804,7 +5804,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnRME.setForeground(new java.awt.Color(0, 0, 0));
         BtnRME.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Prescription.png"))); // NOI18N
-        BtnRME.setMnemonic('R');
         BtnRME.setText("e-Rekam Medis");
         BtnRME.setToolTipText("Alt+R");
         BtnRME.setGlassColor(new java.awt.Color(255, 204, 0));
@@ -5819,7 +5818,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -5931,7 +5929,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5950,7 +5948,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -7253,6 +7251,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         JOptionPane.showMessageDialog(null, "Pasien ini sdh. terdaftar dipoli & tanggal yang sama...");
                         emptBooking();
                     } else if (cekPasien.getText().equals("")) {
+                        nomorAuto();
                         Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19,
                                 new String[]{TNoReg.getText(), norwBoking.getText(), Valid.SetTgl(tglPeriksa.getSelectedItem() + ""), Sequel.cariIsi("SELECT TIME(NOW())"),
                                     KdDokter.getText(), norm.getText(), kdpoli1.getText(), "-", "-", "-", 0 + "", "Belum",
@@ -7279,6 +7278,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     }
                 }
             } else if (cekTerdaftar.getText().equals("")) {
+                nomorAuto();
                 Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19,
                         new String[]{TNoReg.getText(), norwBoking.getText(), Valid.SetTgl(tglPeriksa.getSelectedItem() + ""), Sequel.cariIsi("SELECT TIME(NOW())"),
                             KdDokter.getText(), norm.getText(), kdpoli1.getText(), "-", "-", "-", 0 + "", "Belum",
@@ -12960,19 +12960,23 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     }
 
     private void nomorAuto() {
-        switch (URUTNOREG) {
-            case "poli":
-                Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoli1.getText() + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "'", "", 3, TNoReg);
-                break;
-            case "dokter":
-                Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + KdDokter.getText() + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "'", "", 3, TNoReg);
-                break;
-            case "dokter & poli":
-                Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + KdDokter.getText() + "' and kd_poli='" + kdpoli1.getText() + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "'", "", 3, TNoReg);
-                break;
-            default:
-                Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + KdDokter.getText() + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "'", "", 3, TNoReg);
-                break;
+        if (Sequel.cariIsi("select no_reg_terintegrasi from set_validasi_registrasi").equals("Yes")) {
+            TNoReg.setText(Sequel.cariIsi("select no_reg from booking_registrasi where kd_booking='" + kdboking.getText() + "'"));
+        } else {
+            switch (URUTNOREG) {
+                case "poli":
+                    Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_poli='" + kdpoli1.getText() + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "'", "", 3, TNoReg);
+                    break;
+                case "dokter":
+                    Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + KdDokter.getText() + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "'", "", 3, TNoReg);
+                    break;
+                case "dokter & poli":
+                    Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + KdDokter.getText() + "' and kd_poli='" + kdpoli1.getText() + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "'", "", 3, TNoReg);
+                    break;
+                default:
+                    Valid.autoNomer3("select ifnull(MAX(CONVERT(no_reg,signed)),0) from reg_periksa where kd_dokter='" + KdDokter.getText() + "' and tgl_registrasi='" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "'", "", 3, TNoReg);
+                    break;
+            }
         }
 
         Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rawat,6),signed)),0) from reg_periksa where tgl_registrasi='" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "' ", dateformat.format(tglPeriksa.getDate()) + "/", 6, norwBoking);
