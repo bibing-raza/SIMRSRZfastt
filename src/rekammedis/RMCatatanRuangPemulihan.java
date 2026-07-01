@@ -3659,8 +3659,8 @@ public class RMCatatanRuangPemulihan extends javax.swing.JDialog {
                                 tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 118).toString()
                             }) == true) {
 
-                        if (tbTTV.getRowCount() != 0) {
-                            Sequel.queryu("delete from catatan_ruang_pemulihan_obs_ttv where waktu_simpan='" + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 118).toString() + "'");
+                        Sequel.queryu("delete from catatan_ruang_pemulihan_obs_ttv where waktu_simpan='" + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 118).toString() + "'");
+                        if (tbTTV.getRowCount() != 0) {                            
                             for (i = 0; i < tbTTV.getRowCount(); i++) {
                                 Sequel.menyimpanIgnore("catatan_ruang_pemulihan_obs_ttv",
                                         "'" + tbTTV.getValueAt(i, 0).toString() + "','"

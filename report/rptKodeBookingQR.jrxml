@@ -47,20 +47,20 @@
 				<textFieldExpression class="java.lang.String"><![CDATA["Poliklinik Tujuan :<br><b>"+$F{nm_poli}+"</b><br>No. Antrean : <b>"+$F{no_reg}+"</b><br>Kode : <b>"+$F{kd_booking}+"</b>"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="34" y="7" width="134" height="13"/>
+				<reportElement x="34" y="1" width="134" height="25"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="10"/>
+					<font fontName="Tahoma" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{namars}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{namars}+"\nBukti Pendaftaran Online"]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="9" y="27" width="154" height="1"/>
+				<reportElement x="60" y="27" width="107" height="1"/>
 				<graphicElement>
 					<pen lineWidth="1.0"/>
 				</graphicElement>
 			</line>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="9" y="31" width="51" height="51"/>
+				<reportElement x="9" y="29" width="51" height="51"/>
 				<imageExpression class="java.io.InputStream"><![CDATA[$P{lokasi}]]></imageExpression>
 			</image>
 			<staticText>
@@ -72,6 +72,9 @@
 No. Antrean Poli 1 s.d 15 mulai pukul 08:00 WITA<br>
 No. Antrean Poli 16 dst. mulai pukul 09:00 WITA]]></text>
 			</staticText>
+			<rectangle radius="3">
+				<reportElement mode="Transparent" x="8" y="27" width="53" height="54"/>
+			</rectangle>
 		</band>
 	</title>
 </jasperReport>

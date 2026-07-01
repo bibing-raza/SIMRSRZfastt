@@ -2513,18 +2513,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            if (akses.getadmin() == true) {
-                akses.setform("DlgRMEranap");
-                RMCatatanSedasiAnestesi form = new RMCatatanSedasiAnestesi(null, false);
-                form.emptTeks();
-                form.isCek();
-                form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
-                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Maaf, masih dalam proses dikerjakan...!!!");
-            }
+            akses.setform("DlgRMEranap");
+            RMCatatanSedasiAnestesi form = new RMCatatanSedasiAnestesi(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnCatatanSedasiAnestesiActionPerformed

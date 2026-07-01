@@ -2472,8 +2472,8 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
                                 tbLaporanOps.getValueAt(tbLaporanOps.getSelectedRow(), 58).toString()
                             }) == true) {
 
-                        if (tbTTV.getRowCount() != 0) {
-                            Sequel.queryu("delete from laporan_operasi_obs_ttv where waktu_simpan='" + tbLaporanOps.getValueAt(tbLaporanOps.getSelectedRow(), 58).toString() + "'");
+                        Sequel.queryu("delete from laporan_operasi_obs_ttv where waktu_simpan='" + tbLaporanOps.getValueAt(tbLaporanOps.getSelectedRow(), 58).toString() + "'");
+                        if (tbTTV.getRowCount() != 0) {                            
                             for (i = 0; i < tbTTV.getRowCount(); i++) {
                                 Sequel.menyimpanIgnore("laporan_operasi_obs_ttv",
                                         "'" + tbTTV.getValueAt(i, 0).toString() + "','"
