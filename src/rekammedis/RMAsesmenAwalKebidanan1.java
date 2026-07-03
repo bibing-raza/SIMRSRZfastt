@@ -7530,6 +7530,34 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                 } else {
                                     String isiBidan = "", isiDokter = "", isiBidanAk2 = "";
                                     param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                                    
+                                    try {
+                                        String gambar = "", ipGambar = "";
+                                        try {
+                                            //cek atau ping ip addres
+                                            ipGambar = "192.168.0.230";
+                                            InetAddress inet = InetAddress.getByName(ipGambar);
+
+                                            //ping sukses timeout 100 ms (0.1 detik)
+                                            if (inet.isReachable(100)) {
+                                                if (rsLaprm.getString("id_file_nm_keluarga_pasien").equals("")) {
+                                                    gambar = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                                                } else {
+                                                    gambar = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + rsLaprm.getString("id_file_nm_keluarga_pasien");
+                                                }
+                                                //ping gagal
+                                            } else {
+                                                gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                                            }
+                                        } catch (Exception e) {
+                                            System.out.println("Notif : " + e);
+                                            gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                                        }
+
+                                        param.put("gambarTtd", gambar);
+                                    } catch (Exception e) {
+                                        System.out.println("Notifikasi : " + e);
+                                    }
 
                                     //bidan pertama
                                     if (rsLaprm.getString("nip_bidan").equals("") || rsLaprm.getString("nip_bidan").equals("-") || rsLaprm.getString("nip_bidan").equals("--")) {
@@ -10669,6 +10697,10 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
     }
 
     private void hapus() {
+        String idFile = "";
+        idFile = Sequel.cariIsi("select ifnull(id_file_nm_keluarga_pasien,'') from asesmen_awal_kebidanan2 "
+                + "where no_rawat='" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString() + "'");
+        
         x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (x == JOptionPane.YES_OPTION) {
             if (Sequel.queryu2tf("delete from asesmen_awal_kebidanan1 where no_rawat=?", 1, new String[]{
@@ -10676,6 +10708,10 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             }) == true) {
                 Sequel.meghapus("riwayat_kehamilan_asesmen_awal_kebidanan", "no_rawat", tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString());
                 Sequel.meghapus("asesmen_awal_kebidanan2", "no_rawat", tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString());
+
+                if (!idFile.equals("")) {
+                    Sequel.hapusSemuaTtd(idFile);
+                }
                 
                 TCari.setText(TNoRw.getText());
                 emptTeks();
@@ -14117,12 +14153,38 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                                     + "<td valign='top' colspan='3' align='center'>Martapura, " + Valid.SetTglINDONESIA(rsPrev.getString("tgl_dp")) + "</td>"
                                     + "</tr>");
                             
-                            htmlContent.append(
-                                    "<tr class='isi'>"
-                                    + "<td valign='top' colspan='5'></td>"
-                                    + "<td valign='top' colspan='1' align='left'>Nama Pasien / Keluarga Pasien</td>"
-                                    + "<td valign='top' colspan='2' align='left'>: " + rsPrev.getString("nm_keluarga_pasien") + "</td>"
-                                    + "</tr>");
+                            try {
+                                String gambarTtd = "", ipGambarTtd = "";
+                                try {
+                                    //cek atau ping ip addres
+                                    ipGambarTtd = "192.168.0.230";
+                                    InetAddress inet = InetAddress.getByName(ipGambarTtd);
+
+                                    //ping sukses timeout 100 ms (0.1 detik)
+                                    if (inet.isReachable(100)) {
+                                        if (rsPrev.getString("id_file_nm_keluarga_pasien").equals("")) {
+                                            gambarTtd = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                                        } else {
+                                            gambarTtd = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + rsPrev.getString("id_file_nm_keluarga_pasien");
+                                        }
+                                        //ping gagal
+                                    } else {
+                                        gambarTtd = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Notif : " + e);
+                                    gambarTtd = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                                }
+
+                                htmlContent.append(
+                                        "<tr class='isi'>"
+                                        + "<td valign='top' colspan='5'></td>"
+                                        + "<td valign='top' colspan='1' align='left'>Nama Pasien / Keluarga Pasien</td>"
+                                        + "<td valign='top' colspan='2' align='left'>:<br><img src='" + gambarTtd + "' width='150' alt='TTE Keluarga Pasien'><br>" + rsPrev.getString("nm_keluarga_pasien") + "<br></td>"
+                                        + "</tr>");
+                            } catch (Exception e) {
+                                System.out.println("Notifikasi : " + e);
+                            }
                             
                             String isiBidanDpPrev = "", Qrcodebidandp = "";
                             //bidan kedua

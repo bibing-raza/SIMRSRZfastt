@@ -12,16 +12,20 @@
 
 package rekammedis;
 
+import static com.sun.org.glassfish.external.amx.AMXUtil.prop;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -31,7 +35,12 @@ import java.awt.event.WindowListener;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,13 +49,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
+import javax.swing.event.HyperlinkEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPetugas;
 import keuangan.DlgKamar;
 import laporan.DlgHasilPenunjangMedis;
@@ -63,6 +77,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
+    private final Properties prop = new Properties();
     private DlgCariPetugas petugas;
     private DlgCariDokter dokter;
     public DlgKamar kamar;
@@ -74,7 +89,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             fotoC = "", fotoG = "", fotoA = "", spiri = "", echo = "", usg = "", ct_scan = "", endos = "", wktSimpan = "",
             ctg = "", penunjang_lain = "", alat_lain = "", infus = "", kateter = "", ngt = "", oksigen = "", statusOK = "",
             drain = "", itemDipilih = "", lab = "", posisi = "", nmKamar = "", nmKamarPindah = "", penyakitDulu1 = "", penyakitDulu2 = "",
-            penyakitDulu3 = "", penyakitDulu4 = "";
+            penyakitDulu3 = "", penyakitDulu4 = "", idFileTtdKeluargaPasien = "", idParameterTtd = "", URL = "", usernya = "", pwdnya = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -91,7 +106,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             "foto_genu", "foto_abdomen", "spiritometri", "echo", "usg", "ct_scan", "ket_ct_scan", "endoskopi", "ket_endoskopi", "ctg", "ket_ctg", "lainnya",
             "ket_lainnya", "diagnosa", "tgl_infus", "tgl_kateter", "tgl_ngt", "tgl_oksigen", "tgl_drain", "lainya_alat", "tgl_alat_lain", "nm_alat_lain",
             "rekomendasi", "alasan_pindah_ruangan", "nm_pasien_keluarga", "nip_dokter_setuju", "nip_menyerahkan", "nip_menerima", "tgl_serah_terima_transfer",
-            "infus", "kateter", "ngt", "oksigen", "drain", "lab", "waktu_simpan", "status", "tglPindah", "jamPindah"
+            "infus", "kateter", "ngt", "oksigen", "drain", "lab", "waktu_simpan", "status", "tglPindah", "jamPindah", "id_file_nm_pasien_keluarga"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -103,7 +118,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         tbTransfer.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbTransfer.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 80; i++) {
+        for (i = 0; i < 81; i++) {
             TableColumn column = tbTransfer.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -333,6 +348,9 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             } else if (i == 79) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 80) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbTransfer.setDefaultRenderer(Object.class, new WarnaTable());
@@ -383,6 +401,41 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 }
             });
         }
+        
+        HTMLEditorKit kit = new HTMLEditorKit();
+        StyleSheet styleSheet = kit.getStyleSheet();
+        styleSheet.addRule(".isi td{border-right: 1px solid #edf2e8;font: 10px tahoma;height:12px;border-bottom: 1px solid #edf2e8;background: 0000000;color:0000000;}");
+        Document doc = kit.createDefaultDocument();
+        
+        LoadHTML1.setEditable(true);
+        LoadHTML1.setEditorKit(kit);
+        LoadHTML1.setDocument(doc);
+        LoadHTML1.setEditable(false);
+        LoadHTML1.addHyperlinkListener(e -> {
+            if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.browse(e.getURL().toURI());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
+        if (akses.getadmin() == true) {
+            usernya = "admin";
+            pwdnya = "satu";
+        } else {
+            usernya = akses.getkode();
+            pwdnya = Sequel.cariIsi("select AES_DECRYPT(u.password,'windi') from user u "
+                    + "inner join petugas pt on pt.nip=AES_DECRYPT(u.id_user,'nur') where AES_DECRYPT(u.id_user,'nur')='" + akses.getkode() + "'");
+        }
     }
 
     /** This method is called from within the constructor to
@@ -394,9 +447,11 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu2 = new javax.swing.JPopupMenu();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
         MnDokumenJangMed = new javax.swing.JMenuItem();
+        MnHapusTtd = new javax.swing.JMenuItem();
+        MnBikinQrCode = new javax.swing.JMenuItem();
         WindowTemplate = new javax.swing.JDialog();
         internalFrame6 = new widget.InternalFrame();
         panelisi5 = new widget.panelisi();
@@ -410,6 +465,14 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         tbTemplate = new widget.Table();
         Scroll3 = new widget.ScrollPane();
         Ttemplate = new widget.TextArea();
+        WindowNomorDokumenRM = new javax.swing.JDialog();
+        internalFrame3 = new widget.InternalFrame();
+        panelisi3 = new widget.panelisi();
+        jLabel99 = new widget.Label();
+        cmbRM = new widget.ComboBox();
+        panelisi6 = new widget.panelisi();
+        BtnTampilkanQr = new widget.Button();
+        BtnCloseIn2 = new widget.Button();
         noIdObat = new widget.TextBox();
         TIdObat = new widget.TextBox();
         buttonGroup1 = new javax.swing.ButtonGroup();
@@ -565,8 +628,16 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         ChkVk2 = new widget.CekBox();
         ChkVk1 = new widget.CekBox();
         internalFrame2 = new widget.InternalFrame();
+        panelGlass10 = new widget.panelisi();
         Scroll = new widget.ScrollPane();
         tbTransfer = new widget.Table();
+        panelGlass11 = new widget.panelisi();
+        panelGlass12 = new widget.panelisi();
+        scrollPane3 = new widget.ScrollPane();
+        gambarQR = new Painter();
+        jLabel82 = new widget.Label();
+        Scroll5 = new widget.ScrollPane();
+        LoadHTML1 = new widget.editorpane();
         panelGlass9 = new widget.panelisi();
         jLabel19 = new widget.Label();
         DTPCari1 = new widget.Tanggal();
@@ -589,7 +660,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         BtnNotepad = new widget.Button();
         BtnKeluar = new widget.Button();
 
-        jPopupMenu2.setName("jPopupMenu2"); // NOI18N
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnHasilPemeriksaanPenunjang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnHasilPemeriksaanPenunjang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -604,7 +675,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 MnHasilPemeriksaanPenunjangActionPerformed(evt);
             }
         });
-        jPopupMenu2.add(MnHasilPemeriksaanPenunjang);
+        jPopupMenu1.add(MnHasilPemeriksaanPenunjang);
 
         MnDokumenJangMed.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDokumenJangMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -619,7 +690,37 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 MnDokumenJangMedActionPerformed(evt);
             }
         });
-        jPopupMenu2.add(MnDokumenJangMed);
+        jPopupMenu1.add(MnDokumenJangMed);
+
+        MnHapusTtd.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusTtd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusTtd.setText("Hapus Tanda Tangan");
+        MnHapusTtd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusTtd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusTtd.setIconTextGap(5);
+        MnHapusTtd.setName("MnHapusTtd"); // NOI18N
+        MnHapusTtd.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnHapusTtd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusTtdActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapusTtd);
+
+        MnBikinQrCode.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnBikinQrCode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        MnBikinQrCode.setText("Bikin QR Code Ttd");
+        MnBikinQrCode.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnBikinQrCode.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnBikinQrCode.setIconTextGap(5);
+        MnBikinQrCode.setName("MnBikinQrCode"); // NOI18N
+        MnBikinQrCode.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnBikinQrCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnBikinQrCodeActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnBikinQrCode);
 
         WindowTemplate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowTemplate.setName("WindowTemplate"); // NOI18N
@@ -738,6 +839,73 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
         WindowTemplate.getContentPane().add(internalFrame6, java.awt.BorderLayout.CENTER);
 
+        WindowNomorDokumenRM.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowNomorDokumenRM.setName("WindowNomorDokumenRM"); // NOI18N
+        WindowNomorDokumenRM.setUndecorated(true);
+        WindowNomorDokumenRM.setResizable(false);
+
+        internalFrame3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Dokumen Rekam Medis Aktif ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame3.setName("internalFrame3"); // NOI18N
+        internalFrame3.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame3.setLayout(new java.awt.BorderLayout());
+
+        panelisi3.setBackground(new java.awt.Color(255, 150, 255));
+        panelisi3.setName("panelisi3"); // NOI18N
+        panelisi3.setPreferredSize(new java.awt.Dimension(100, 70));
+        panelisi3.setLayout(null);
+
+        jLabel99.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel99.setText("Pilih Rekam Medis :");
+        jLabel99.setName("jLabel99"); // NOI18N
+        panelisi3.add(jLabel99);
+        jLabel99.setBounds(0, 10, 120, 23);
+
+        cmbRM.setBackground(new java.awt.Color(245, 253, 240));
+        cmbRM.setForeground(new java.awt.Color(0, 0, 0));
+        cmbRM.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
+        cmbRM.setLightWeightPopupEnabled(false);
+        cmbRM.setName("cmbRM"); // NOI18N
+        panelisi3.add(cmbRM);
+        cmbRM.setBounds(127, 10, 550, 23);
+
+        internalFrame3.add(panelisi3, java.awt.BorderLayout.CENTER);
+
+        panelisi6.setName("panelisi6"); // NOI18N
+        panelisi6.setPreferredSize(new java.awt.Dimension(100, 48));
+        panelisi6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 9, 9));
+
+        BtnTampilkanQr.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTampilkanQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clear24.png"))); // NOI18N
+        BtnTampilkanQr.setMnemonic('S');
+        BtnTampilkanQr.setText("Tampilkan Qr Code TTD");
+        BtnTampilkanQr.setToolTipText("Alt+S");
+        BtnTampilkanQr.setName("BtnTampilkanQr"); // NOI18N
+        BtnTampilkanQr.setPreferredSize(new java.awt.Dimension(180, 30));
+        BtnTampilkanQr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTampilkanQrActionPerformed(evt);
+            }
+        });
+        panelisi6.add(BtnTampilkanQr);
+
+        BtnCloseIn2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn2.setMnemonic('U');
+        BtnCloseIn2.setText("Tutup");
+        BtnCloseIn2.setToolTipText("Alt+U");
+        BtnCloseIn2.setName("BtnCloseIn2"); // NOI18N
+        BtnCloseIn2.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnCloseIn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn2ActionPerformed(evt);
+            }
+        });
+        panelisi6.add(BtnCloseIn2);
+
+        internalFrame3.add(panelisi6, java.awt.BorderLayout.PAGE_END);
+
+        WindowNomorDokumenRM.getContentPane().add(internalFrame3, java.awt.BorderLayout.CENTER);
+
         noIdObat.setForeground(new java.awt.Color(0, 0, 0));
         noIdObat.setHighlighter(null);
         noIdObat.setName("noIdObat"); // NOI18N
@@ -781,7 +949,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
         FormInput.setBorder(null);
         FormInput.setToolTipText("Klik kanan pada area ini untuk melihat hasil pemeriksaan penunjang medis");
-        FormInput.setComponentPopupMenu(jPopupMenu2);
+        FormInput.setComponentPopupMenu(jPopupMenu1);
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(870, 1263));
         FormInput.setLayout(null);
@@ -2235,12 +2403,16 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         internalFrame2.setName("internalFrame2"); // NOI18N
         internalFrame2.setLayout(new java.awt.BorderLayout(1, 1));
 
+        panelGlass10.setName("panelGlass10"); // NOI18N
+        panelGlass10.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass10.setLayout(new java.awt.BorderLayout());
+
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
         tbTransfer.setAutoCreateRowSorter(true);
         tbTransfer.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
-        tbTransfer.setComponentPopupMenu(jPopupMenu2);
+        tbTransfer.setComponentPopupMenu(jPopupMenu1);
         tbTransfer.setName("tbTransfer"); // NOI18N
         tbTransfer.getTableHeader().setReorderingAllowed(false);
         tbTransfer.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2255,7 +2427,54 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         });
         Scroll.setViewportView(tbTransfer);
 
-        internalFrame2.add(Scroll, java.awt.BorderLayout.CENTER);
+        panelGlass10.add(Scroll, java.awt.BorderLayout.CENTER);
+
+        panelGlass11.setName("panelGlass11"); // NOI18N
+        panelGlass11.setPreferredSize(new java.awt.Dimension(282, 44));
+        panelGlass11.setLayout(null);
+
+        panelGlass12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Scan QR Untuk TTD ]", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        panelGlass12.setName("panelGlass12"); // NOI18N
+        panelGlass12.setPreferredSize(new java.awt.Dimension(44, 44));
+
+        scrollPane3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        scrollPane3.setName("scrollPane3"); // NOI18N
+        scrollPane3.setPreferredSize(new java.awt.Dimension(210, 220));
+
+        gambarQR.setBackground(new java.awt.Color(245, 255, 235));
+        gambarQR.setForeground(new java.awt.Color(235, 255, 235));
+        gambarQR.setName("gambarQR"); // NOI18N
+        scrollPane3.setViewportView(gambarQR);
+
+        panelGlass12.add(scrollPane3);
+
+        panelGlass11.add(panelGlass12);
+        panelGlass12.setBounds(12, 10, 230, 245);
+
+        jLabel82.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel82.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel82.setText("<html><b>Catatan :</b><br>Perangkat (smartphone / tab) harus terhubung dengan wifi rumah sakit diruangan ini terlebih dulu.</html>");
+        jLabel82.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel82.setName("jLabel82"); // NOI18N
+        jLabel82.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        panelGlass11.add(jLabel82);
+        jLabel82.setBounds(20, 262, 210, 60);
+
+        Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: TANDA TANGAN :.", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        Scroll5.setName("Scroll5"); // NOI18N
+        Scroll5.setOpaque(true);
+
+        LoadHTML1.setBorder(null);
+        LoadHTML1.setForeground(new java.awt.Color(0, 0, 0));
+        LoadHTML1.setName("LoadHTML1"); // NOI18N
+        Scroll5.setViewportView(LoadHTML1);
+
+        panelGlass11.add(Scroll5);
+        Scroll5.setBounds(12, 335, 260, 240);
+
+        panelGlass10.add(panelGlass11, java.awt.BorderLayout.EAST);
+
+        internalFrame2.add(panelGlass10, java.awt.BorderLayout.CENTER);
 
         panelGlass9.setName("panelGlass9"); // NOI18N
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 44));
@@ -2267,7 +2486,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2281,7 +2500,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2510,7 +2729,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         } else {
             cekData();
             if (Sequel.menyimpantf("transfer_serah_terima_pasien_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 65, new String[]{
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 66, new String[]{
                         TNoRw.getText(), nip_dpjp, nip_konsulen1, nip_konsulen2, Tdiagnosis.getText(), Valid.SetTgl(tgl_masuk.getSelectedItem() + ""), kd_kamar,
                         Valid.SetTgl(tgl_pindah.getSelectedItem() + "") + " " + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                         kd_kamar_pindah, Talasan_ranap.getText(), Triw_penyakit_skg.getText(), Triw_penyakit_dulu.getText(), Triw_alergi.getText(), gcse.getText(),
@@ -2521,7 +2740,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                         Valid.SetTgl(tgl_ngt.getSelectedItem() + ""), Valid.SetTgl(tgl_oksigen.getSelectedItem() + ""), Valid.SetTgl(tgl_drain.getSelectedItem() + ""),
                         alat_lain, Valid.SetTgl(tgl_alat_lain.getSelectedItem() + ""), Talat_lain.getText(), Trekomendasi.getText(), Talasan_pindah.getText(),
                         Tnm_pasienKlg.getText(), nip_dokter, nip_serah, nip_terima, Valid.SetTgl(tgl_transfer.getSelectedItem() + ""), infus, kateter, ngt,
-                        oksigen, drain, lab, Sequel.cariIsi("select now()"), statusOK
+                        oksigen, drain, lab, Sequel.cariIsi("select now()"), statusOK, ""
                     }) == true) {
 
                 if (kd_kamar.equals("IGDK")) {
@@ -2594,6 +2813,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
         WindowTemplate.dispose();
+        WindowNomorDokumenRM.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -2666,11 +2886,17 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         } else if (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "'") == 0) {
             TabRawat.setSelectedIndex(0);
         }
+        
         TabRawatMouseClicked(null);
+        ((RMTransferSerahTerimaIGD.Painter) gambarQR).setImage("");
+        Sequel.cariIsiComboDB("select nm_dokumen from master_nomor_dokumen_erm where "
+                + "status='aktif' and unit_pengguna='Ruang Perawatan, Poliklinik & Instalasi' and ttd_keluarga_pasien='Ya' order by kode_erm", cmbRM);
+        Sequel.queryu("DELETE FROM parameter_ttd_rme WHERE DATE(waktu_kirim) < CURDATE()");
     }//GEN-LAST:event_formWindowOpened
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
         if (TabRawat.getSelectedIndex() == 1) {
+            ((RMTransferSerahTerimaIGD.Painter) gambarQR).setImage("");
             tampil();
         }
     }//GEN-LAST:event_TabRawatMouseClicked
@@ -3264,6 +3490,104 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ChkVk1ActionPerformed
 
+    private void MnHapusTtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTtdActionPerformed
+        if (tbTransfer.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin tanda tangan Pasien/Keluarga Pasien ini mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                String ipGambar = "";
+                try {
+                    //cek atau ping ip addres
+                    ipGambar = "192.168.0.230";
+                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                    //ping sukses timeout 100 ms (0.1 detik)
+                    if (inet.isReachable(100)) {
+                        if (idFileTtdKeluargaPasien.equals("")) {
+                            JOptionPane.showMessageDialog(null, "Pasien/Keluarga Pasien ini belum melakukan tanda tangan...!!!!");
+                        } else {
+                            if (Sequel.hapusFileTTD(idFileTtdKeluargaPasien) == true) {
+                                Sequel.mengedit("transfer_serah_terima_pasien_igd", "waktu_simpan='" + wktSimpan + "'", "id_file_nm_pasien_keluarga=''");
+                                tampil();
+                                emptTeks();
+                            }
+                        }
+                        //ping gagal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server terputus...!!!!");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                }
+            } else {
+                tampil();
+                emptTeks();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusTtdActionPerformed
+
+    private void MnBikinQrCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBikinQrCodeActionPerformed
+        if (tbTransfer.getSelectedRow() > -1) {
+            ((RMTransferSerahTerimaIGD.Painter) gambarQR).setImage("");
+            if (Sequel.cariInteger("select count(-1) from master_nomor_dokumen_erm where nm_dokumen like '%TRANSFER DAN SERAH TERIMA PASIEN ANTAR RUANGAN%'") > 0) {
+                bikinQR();
+            } else {
+                WindowNomorDokumenRM.setSize(737, 125);
+                WindowNomorDokumenRM.setLocationRelativeTo(internalFrame1);
+                WindowNomorDokumenRM.setVisible(true);
+
+                cmbRM.setSelectedIndex(0);
+                cmbRM.requestFocus();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnBikinQrCodeActionPerformed
+
+    private void BtnTampilkanQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTampilkanQrActionPerformed
+        idParameterTtd = Sequel.cariIsi("select concat('rmeRZ',replace(date(now()),'-',''),'',replace(time(now()),':',''))");
+
+        try {
+            URL = prop.getProperty("URLTTDKELUARGAPASIEN") + idParameterTtd;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+        if (cmbRM.getSelectedIndex() != 0) {
+            Valid.cetakQrTte(URL, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.menyimpanQrTte("parameter_ttd_rme", "'" + idParameterTtd + "','" + usernya + "','" + pwdnya + "','" + TNoRw.getText() + "','" + TNoRM.getText() + "','"
+                    + Sequel.cariIsi("select kode_erm from master_nomor_dokumen_erm where nm_dokumen='" + cmbRM.getSelectedItem().toString() + "'") + "',"
+                    + "'" + Sequel.cariIsi("select now()") + "'", "file QRCode URL Ttd", Sequel.cariFolderPrintTte());
+
+            try {
+                ((RMTransferSerahTerimaIGD.Painter) gambarQR).setImage("");
+                ResultSet hasil = koneksi.createStatement().executeQuery(
+                        "select qr_code from parameter_ttd_rme where id_parameter = '" + idParameterTtd + "'");
+                for (int I = 0; hasil.next(); I++) {
+                    Blob blob = hasil.getBlob(1);
+                    ((RMTransferSerahTerimaIGD.Painter) gambarQR).setImageIcon(new javax.swing.ImageIcon(
+                            blob.getBytes(1, (int) (blob.length()))));
+                    blob.free();
+                }
+
+                BtnCloseIn2ActionPerformed(null);
+                tampil();
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            } catch (Exception ex) {
+                System.out.println(ex.toString());
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu jenis rekam medis yang dipilih..!!");
+            cmbRM.requestFocus();
+        }
+    }//GEN-LAST:event_BtnTampilkanQrActionPerformed
+
+    private void BtnCloseIn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn2ActionPerformed
+        emptTeks();
+        WindowNomorDokumenRM.dispose();
+    }//GEN-LAST:event_BtnCloseIn2ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3287,6 +3611,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Button BtnCari;
     private widget.Button BtnCari2;
     private widget.Button BtnCloseIn1;
+    private widget.Button BtnCloseIn2;
     private widget.Button BtnCopas;
     private widget.Button BtnDiagnosa;
     private widget.Button BtnDiagnosis;
@@ -3300,6 +3625,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Button BtnRiwAlergi;
     private widget.Button BtnRiwPenyakit;
     private widget.Button BtnSimpan;
+    private widget.Button BtnTampilkanQr;
     public widget.CekBox ChkCTG;
     public widget.CekBox ChkCTscan;
     public widget.CekBox ChkDrain;
@@ -3327,11 +3653,15 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput;
     private widget.InternalFrame FormTST;
     private widget.Label LCount;
+    private widget.editorpane LoadHTML1;
+    private javax.swing.JMenuItem MnBikinQrCode;
     private javax.swing.JMenuItem MnDokumenJangMed;
+    private javax.swing.JMenuItem MnHapusTtd;
     private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll3;
+    private widget.ScrollPane Scroll5;
     private widget.ScrollPane ScrollTriase1;
     private widget.TextBox TCari;
     private widget.TextBox TCari2;
@@ -3369,6 +3699,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.TextBox Tsuhu;
     private widget.TextBox Ttd;
     private widget.TextArea Ttemplate;
+    private javax.swing.JDialog WindowNomorDokumenRM;
     private javax.swing.JDialog WindowTemplate;
     private widget.Button btnDPJP;
     private widget.Button btnDokter;
@@ -3385,12 +3716,15 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.ComboBox cmbKriteria;
     private widget.ComboBox cmbMnt;
     private widget.ComboBox cmbPilihCetak;
+    private widget.ComboBox cmbRM;
     private widget.ComboBox cmbResiko;
+    private java.awt.Canvas gambarQR;
     private widget.TextBox gcse;
     private widget.TextBox gcsm;
     private widget.TextBox gcsv;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
+    private widget.InternalFrame internalFrame3;
     private widget.InternalFrame internalFrame6;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
@@ -3449,19 +3783,27 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Label jLabel64;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
+    private widget.Label jLabel82;
     private widget.Label jLabel9;
+    private widget.Label jLabel99;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPopupMenu jPopupMenu2;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.TextBox noIdObat;
+    private widget.panelisi panelGlass10;
+    private widget.panelisi panelGlass11;
+    private widget.panelisi panelGlass12;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
+    private widget.panelisi panelisi3;
     private widget.panelisi panelisi5;
+    private widget.panelisi panelisi6;
     private widget.ScrollPane scrollPane10;
     private widget.ScrollPane scrollPane11;
     private widget.ScrollPane scrollPane12;
     private widget.ScrollPane scrollPane13;
     private widget.ScrollPane scrollPane14;
     private widget.ScrollPane scrollPane15;
+    private widget.ScrollPane scrollPane3;
     private widget.ScrollPane scrollPane9;
     private widget.Table tbTemplate;
     private widget.Table tbTransfer;
@@ -3478,6 +3820,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
+        LoadHTML1.setText("");
         Valid.tabelKosong(tabMode);
         nmKamar = "";
         nmKamarPindah = "";
@@ -3608,7 +3951,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                         rs.getString("waktu_simpan"),
                         rs.getString("status"),
                         rs.getString("tglPindah"),
-                        rs.getString("jamPindah")
+                        rs.getString("jamPindah"),
+                        rs.getString("id_file_nm_pasien_keluarga")
                     });
                 }
             } catch (Exception e) {
@@ -3715,6 +4059,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         ChkVk2.setSelected(false);
         statusOK = "";
         buttonGroup1.clearSelection();
+        idFileTtdKeluargaPasien = "";
+        LoadHTML1.setText("");
     }
     
     public void setNoRm(String norwt, Date tgl2, String posisidata, String kdunit, String nmunit) {
@@ -3884,7 +4230,9 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             lab = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 75).toString();
             wktSimpan = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 76).toString();
             statusOK = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 77).toString();
+            idFileTtdKeluargaPasien = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 80).toString();            
             dataCek();
+            tampilTTD();
         }
     }
     
@@ -3894,6 +4242,10 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             if (Sequel.queryu2tf("delete from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "' "
                     + "and waktu_simpan=?", 1, new String[]{wktSimpan
                     }) == true) {
+                if (!idFileTtdKeluargaPasien.equals("")) {
+                    Sequel.hapusSemuaTtd(idFileTtdKeluargaPasien);
+                }
+
                 tampil();
                 emptTeks();
             } else {
@@ -4303,6 +4655,34 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 jam = Sequel.cariIsi("select time(waktu_simpan) from transfer_serah_terima_pasien_igd where "
                         + "waktu_simpan='" + wktSimpan + "'");
                 param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                
+                try {
+                    String gambar = "", ipGambar = "";
+                    try {
+                        //cek atau ping ip addres
+                        ipGambar = "192.168.0.230";
+                        InetAddress inet = InetAddress.getByName(ipGambar);
+
+                        //ping sukses timeout 100 ms (0.1 detik)
+                        if (inet.isReachable(100)) {
+                            if (idFileTtdKeluargaPasien.equals("")) {
+                                gambar = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                            } else {
+                                gambar = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileTtdKeluargaPasien;
+                            }
+                            //ping gagal
+                        } else {
+                            gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif : " + e);
+                        gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                    }
+
+                    param.put("gambarTtd", gambar);
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                }
                 
                 if (Tnm_petugas1.getText().equals("") || Tnm_petugas1.getText().equals("-") || Tnm_petugas1.getText().equals("--")) {
                     param.put("lokasiQrPetugas1", "");
@@ -4833,6 +5213,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         lab = "";
         wktSimpan = "";
         statusOK = "";
+        idFileTtdKeluargaPasien = "";
+        ((RMTransferSerahTerimaIGD.Painter) gambarQR).setImage("");
     }
     
     private void asesmenMedikIGD(String norw) {
@@ -5165,6 +5547,123 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 public void keyReleased(KeyEvent e) {
                 }
             });
+        }
+    }
+    
+    public class Painter extends Canvas {
+        Image image;
+        public void setImage(String file) {
+            URL url = null;
+            try {
+                url = new File(file).toURI().toURL();
+            } catch (MalformedURLException ex) {
+                System.out.println(ex.toString());
+            }
+            image = getToolkit().getImage(url);
+            repaint();
+        }
+        public void setImageIcon(ImageIcon file) {
+            image = file.getImage();
+            repaint();
+        }
+
+        @Override
+        public void paint(Graphics g) {
+            try {
+                double d = image.getHeight(this) / this.getHeight();
+                double w = image.getWidth(this) / d;
+                double x = this.getWidth() / 2 - w / 2;
+                g.drawImage(image, (int) x, 0, (int) (w), this.getHeight(), this);
+            } catch (Exception e) {
+            }            
+        }
+    }
+    
+    private void bikinQR() {        
+        idParameterTtd = Sequel.cariIsi("select concat('rmeRZ',replace(date(now()),'-',''),'',replace(time(now()),':',''))");
+
+        try {
+            URL = prop.getProperty("URLTTDKELUARGAPASIEN") + idParameterTtd;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+        Valid.cetakQrTte(URL, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+        Sequel.menyimpanQrTte("parameter_ttd_rme", "'" + idParameterTtd + "','" + usernya + "','" + pwdnya + "','" + TNoRw.getText() + "','" + TNoRM.getText() + "','"
+                + Sequel.cariIsi("select kode_erm from master_nomor_dokumen_erm where nm_dokumen like '%TRANSFER DAN SERAH TERIMA PASIEN ANTAR RUANGAN%'") + "',"
+                + "'" + Sequel.cariIsi("select now()") + "'", "file QRCode URL Ttd", Sequel.cariFolderPrintTte());
+
+        try {
+            ((RMTransferSerahTerimaIGD.Painter) gambarQR).setImage("");
+            ResultSet hasil = koneksi.createStatement().executeQuery(
+                    "select qr_code from parameter_ttd_rme where id_parameter = '" + idParameterTtd + "'");
+            for (int I = 0; hasil.next(); I++) {
+                Blob blob = hasil.getBlob(1);
+                ((RMTransferSerahTerimaIGD.Painter) gambarQR).setImageIcon(new javax.swing.ImageIcon(
+                        blob.getBytes(1, (int) (blob.length()))));
+                blob.free();
+            }
+
+            emptTeks();
+            tampil();
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+    }
+    
+    private void tampilTTD() {
+        try {
+            StringBuilder htmlContent = new StringBuilder();
+            String gambar = "", ipGambar = "";
+            try {
+                //cek atau ping ip addres
+                ipGambar = "192.168.0.230";
+                InetAddress inet = InetAddress.getByName(ipGambar);
+
+                //ping sukses timeout 100 ms (0.1 detik)
+                if (inet.isReachable(100)) {
+                    if (idFileTtdKeluargaPasien.equals("")) {
+                        gambar = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                    } else {
+                        gambar = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileTtdKeluargaPasien;
+                    }
+                    //ping gagal
+                } else {
+                    gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+                gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+            }
+
+            htmlContent.append(
+                    "<table width='100%' class='isi'>"
+                    + "<thead>"
+                    + "<tr class='isi'>"
+                    + "<td align='center' bgcolor='#f8fdf3'><b>Pasien/Keluarga</b></td>"
+                    + "</tr>"
+                    + "</thead>"
+                    + "<tbody>"
+            );
+
+            htmlContent.append(
+                    "<tr class='isi'>"
+                    + "<td valign='middle' align='center'><img src='" + gambar + "' width='160' height='160' alt='TTD Pasien/Keluarga'><br>(" + Tnm_pasienKlg.getText() + ")<br></td>"
+                    + "</tr>"
+            );
+
+            htmlContent.append("</tbody>"
+                    + "</table>");
+
+            LoadHTML1.setText(
+                    "<html>"
+                    + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                    + htmlContent.toString()
+                    + "</table>"
+                    + "</html>");
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }

@@ -4381,14 +4381,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_verif_dataKeyPressed
 
     private void MnCekStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCekStatusActionPerformed
-        Sequel.cariIsi("select kd_booking from kelengkapan_booking_sep_bpjs where nomr=?", cekKDboking, TNoRM.getText());
+        cekKDboking.setText(Sequel.cariIsi("select kd_booking from booking_registrasi where "
+                + "no_rkm_medis='" + TNoRM.getText() + "' and tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "'"));
 
         if (cekKDboking.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Pilih dulu salah satu nama pasiennya dg. mengklik data pada tabel & hanya utk. pasien BPJS saja...!!!");
             tbBoking.requestFocus();
         } else if (kdpnj.getText().equals("B01") || (kdpnj.getText().equals("A03"))) {
             if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + norawat.getText() + "' and nomr='" + TNoRM.getText() + "'") > 0) {
-                Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + kdboking.getText() + "'", "status_cetak_sep='SUDAH' ");
+                Sequel.queryu("update kelengkapan_booking_sep_bpjs set status_cetak_sep='SUDAH', no_rawat='" + norawat.getText() + "' "
+                        + "where kd_booking='" + cekKDboking.getText() + "'");
                 emptTeks();
                 tampil();
             } else {

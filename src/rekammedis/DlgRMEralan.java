@@ -99,6 +99,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnPetugasPemberianObatPonek = new widget.ButtonBig();
         BtnTransferSerahTerimaPonek = new widget.ButtonBig();
         BtnCPPTPonek = new widget.ButtonBig();
+        BtnPartograf = new widget.ButtonBig();
         BtnPersetujuanTindakanPonek = new widget.ButtonBig();
         BtnPengelolaanTranfusiDarahPonek = new widget.ButtonBig();
         BtnDokumenJangMedPonek = new widget.ButtonBig();
@@ -127,7 +128,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
 
-        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-06-2026" }));
+        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-07-2026" }));
         DTPtanggal.setDisplayFormat("dd-MM-yyyy");
         DTPtanggal.setName("DTPtanggal"); // NOI18N
         DTPtanggal.setOpaque(false);
@@ -594,6 +595,19 @@ public class DlgRMEralan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(BtnCPPTPonek);
+
+        BtnPartograf.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPartograf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/partograph.png"))); // NOI18N
+        BtnPartograf.setText("Partograf Persalinan");
+        BtnPartograf.setIconTextGap(0);
+        BtnPartograf.setName("BtnPartograf"); // NOI18N
+        BtnPartograf.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPartograf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPartografActionPerformed(evt);
+            }
+        });
+        FormInput2.add(BtnPartograf);
 
         BtnPersetujuanTindakanPonek.setForeground(new java.awt.Color(0, 0, 0));
         BtnPersetujuanTindakanPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_todo_list_add_17451.png"))); // NOI18N
@@ -1902,6 +1916,23 @@ public class DlgRMEralan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnCatatanSedasiAnestesiActionPerformed
 
+    private void BtnPartografActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPartografActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMPartografPersalinan form = new RMPartografPersalinan(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnPartografActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1945,6 +1976,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.ButtonBig BtnLaporanOperasi;
     private widget.ButtonBig BtnLembarObservasiIGD;
     private widget.ButtonBig BtnObservasiKala1;
+    private widget.ButtonBig BtnPartograf;
     private widget.ButtonBig BtnPemberianInformasiEdukasiIGD;
     private widget.ButtonBig BtnPemberianInformasiEdukasiPonek;
     private widget.ButtonBig BtnPemberianObatIGD;
@@ -2035,6 +2067,8 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnAsesmenPraSedasi.setEnabled(akses.getcppt());
         BtnPersetujuanTindakanIBS.setEnabled(akses.getcppt());
         BtnCatatanSedasiAnestesi.setEnabled(akses.getcppt());
+        //sementara
+        BtnPartograf.setEnabled(akses.getadmin());
         
         if (akses.getcppt() == true || akses.getbpjs_sep() == true || akses.getadmin()== true) {
             BtnPemberianInformasiEdukasiIGD.setEnabled(true);

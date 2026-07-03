@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="1.8181818181818235"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="154"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -40,6 +40,7 @@
 	<parameter name="kalimatTte" class="java.lang.String"/>
 	<parameter name="lokasiQrDokter" class="java.lang.String"/>
 	<parameter name="lokasiQrBidan" class="java.lang.String"/>
+	<parameter name="gambarTtd" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select date(now()) tgl]]>
 	</queryString>
@@ -509,6 +510,10 @@
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="356" y="344" width="80" height="76"/>
 				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQrBidan}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="89" y="344" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd}]]></imageExpression>
 			</image>
 		</band>
 	</title>
