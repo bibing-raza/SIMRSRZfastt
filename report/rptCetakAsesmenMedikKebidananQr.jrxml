@@ -1828,7 +1828,7 @@ Kontrol Ke]]></text>
 				</graphicElement>
 			</line>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="224" y="460" width="70" height="66"/>
+				<reportElement positionType="Float" x="224" y="460" width="70" height="66"/>
 				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd}]]></imageExpression>
 			</image>
 		</band>

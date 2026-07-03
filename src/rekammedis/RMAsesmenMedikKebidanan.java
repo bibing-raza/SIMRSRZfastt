@@ -598,15 +598,6 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
             System.out.println(e.toString());
         }
 
-        if (akses.getadmin() == true) {
-            usernya = "admin";
-            pwdnya = "satu";
-        } else {
-            usernya = akses.getkode();
-            pwdnya = Sequel.cariIsi("select AES_DECRYPT(u.password,'windi') from user u "
-                    + "inner join petugas pt on pt.nip=AES_DECRYPT(u.id_user,'nur') where AES_DECRYPT(u.id_user,'nur')='" + akses.getkode() + "'");
-        }
-
         ChkAccor.setSelected(false);
         isMenu();
     }
@@ -5007,6 +4998,15 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
     }//GEN-LAST:event_MnBikinQrCodeActionPerformed
 
     private void BtnTampilkanQrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTampilkanQrActionPerformed
+        if (akses.getadmin() == true) {
+            usernya = "admin";
+            pwdnya = "satu";
+        } else {
+            usernya = akses.getkode();
+            pwdnya = Sequel.cariIsi("select AES_DECRYPT(u.password,'windi') from user u "
+                    + "inner join petugas pt on pt.nip=AES_DECRYPT(u.id_user,'nur') where AES_DECRYPT(u.id_user,'nur')='" + akses.getkode() + "'");
+        }
+        
         idParameterTtd = Sequel.cariIsi("select concat('rmeRZ',replace(date(now()),'-',''),'',replace(time(now()),':',''))");
 
         try {
@@ -7096,6 +7096,15 @@ public final class RMAsesmenMedikKebidanan extends javax.swing.JDialog {
     }
     
     private void bikinQR() {        
+        if (akses.getadmin() == true) {
+            usernya = "admin";
+            pwdnya = "satu";
+        } else {
+            usernya = akses.getkode();
+            pwdnya = Sequel.cariIsi("select AES_DECRYPT(u.password,'windi') from user u "
+                    + "inner join petugas pt on pt.nip=AES_DECRYPT(u.id_user,'nur') where AES_DECRYPT(u.id_user,'nur')='" + akses.getkode() + "'");
+        }
+        
         idParameterTtd = Sequel.cariIsi("select concat('rmeRZ',replace(date(now()),'-',''),'',replace(time(now()),':',''))");
 
         try {
