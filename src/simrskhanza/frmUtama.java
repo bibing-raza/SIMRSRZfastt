@@ -243,6 +243,7 @@ import grafikanalisa.GrafikStatusRegPerTahun;
 import grafikanalisa.GrafikStatusRegPerTahun2;
 import grafikanalisa.GrafikStatusRegPerTanggal;
 import grafikanalisa.GrafikStatusRegPerTanggal2;
+import informasi.InformasiKamarJenazah;
 import informasi.InformasiTarifStokDarah;
 import inventory.DlgAturanPakai;
 import inventory.DlgBarang;
@@ -1075,6 +1076,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnJadwalDokterRalan = new javax.swing.JMenuItem();
         MnPasienRanap = new javax.swing.JMenuItem();
         MnTelusurKunjungan = new javax.swing.JMenuItem();
+        MnPasienMeninggal = new javax.swing.JMenuItem();
         MnPenggunaanKamarRanap = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         MnTarifLab = new javax.swing.JMenuItem();
@@ -6895,7 +6897,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01/07/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06/07/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7491,6 +7493,18 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         jMenu1.add(MnTelusurKunjungan);
+
+        MnPasienMeninggal.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPasienMeninggal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
+        MnPasienMeninggal.setText("Pasien Meninggal");
+        MnPasienMeninggal.setName("MnPasienMeninggal"); // NOI18N
+        MnPasienMeninggal.setPreferredSize(new java.awt.Dimension(200, 35));
+        MnPasienMeninggal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPasienMeninggalActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MnPasienMeninggal);
 
         MnPenggunaanKamarRanap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPenggunaanKamarRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Preview.png"))); // NOI18N
@@ -13582,6 +13596,17 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnCatatanSedasiAnestesiActionPerformed
 
+    private void MnPasienMeninggalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPasienMeninggalActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Valid.bikinFileTxt(Tversi.getText(), Sequel.cariFolderVersi(), "conf_versi.txt");
+        DlgHome.dispose();
+        InformasiKamarJenazah kamarJenazah = new InformasiKamarJenazah(this, false);
+        kamarJenazah.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        kamarJenazah.setLocationRelativeTo(PanelUtama);
+        kamarJenazah.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnPasienMeninggalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13625,6 +13650,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private usu.widget.glass.PanelGlass FlayMenu;
     private widget.MenuBar MenuBar;
     private javax.swing.JMenuItem MnJadwalDokterRalan;
+    private javax.swing.JMenuItem MnPasienMeninggal;
     private javax.swing.JMenuItem MnPasienRanap;
     private javax.swing.JMenuItem MnPenggunaanKamarRanap;
     private javax.swing.JMenuItem MnTarifINACBG;

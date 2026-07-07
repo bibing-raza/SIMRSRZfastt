@@ -98,6 +98,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnPemberianObatPonek = new widget.ButtonBig();
         BtnPetugasPemberianObatPonek = new widget.ButtonBig();
         BtnTransferSerahTerimaPonek = new widget.ButtonBig();
+        BtnTransferTindakanPonek = new widget.ButtonBig();
         BtnCPPTPonek = new widget.ButtonBig();
         BtnPartograf = new widget.ButtonBig();
         BtnPersetujuanTindakanPonek = new widget.ButtonBig();
@@ -124,11 +125,12 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnInformasiTindakanPembiusan = new widget.ButtonBig();
         BtnPersetujuanTindakanIBS = new widget.ButtonBig();
         BtnAsesmenPraSedasi = new widget.ButtonBig();
+        BtnTransferTindakanIBS = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
 
-        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-07-2026" }));
+        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2026" }));
         DTPtanggal.setDisplayFormat("dd-MM-yyyy");
         DTPtanggal.setName("DTPtanggal"); // NOI18N
         DTPtanggal.setOpaque(false);
@@ -583,6 +585,19 @@ public class DlgRMEralan extends javax.swing.JDialog {
         });
         FormInput2.add(BtnTransferSerahTerimaPonek);
 
+        BtnTransferTindakanPonek.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTransferTindakanPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481002123_wheelchair.png"))); // NOI18N
+        BtnTransferTindakanPonek.setText("Transfer Pasien Untuk Tindakan");
+        BtnTransferTindakanPonek.setIconTextGap(0);
+        BtnTransferTindakanPonek.setName("BtnTransferTindakanPonek"); // NOI18N
+        BtnTransferTindakanPonek.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnTransferTindakanPonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTransferTindakanPonekActionPerformed(evt);
+            }
+        });
+        FormInput2.add(BtnTransferTindakanPonek);
+
         BtnCPPTPonek.setForeground(new java.awt.Color(0, 0, 0));
         BtnCPPTPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
         BtnCPPTPonek.setText("CPPT Ponek");
@@ -908,6 +923,19 @@ public class DlgRMEralan extends javax.swing.JDialog {
         });
         FormInput1.add(BtnAsesmenPraSedasi);
 
+        BtnTransferTindakanIBS.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTransferTindakanIBS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481002123_wheelchair.png"))); // NOI18N
+        BtnTransferTindakanIBS.setText("Transfer Pasien Untuk Tindakan");
+        BtnTransferTindakanIBS.setIconTextGap(0);
+        BtnTransferTindakanIBS.setName("BtnTransferTindakanIBS"); // NOI18N
+        BtnTransferTindakanIBS.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnTransferTindakanIBS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTransferTindakanIBSActionPerformed(evt);
+            }
+        });
+        FormInput1.add(BtnTransferTindakanIBS);
+
         scrollInput1.setViewportView(FormInput1);
 
         TabRekamMedis.addTab("Instalasi Bedah Sentral (IBS)", scrollInput1);
@@ -922,6 +950,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnRefres.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRefres.setMnemonic('R');
         BtnRefres.setText("Refresh Rekam Medis");
         BtnRefres.setToolTipText("Alt+R");
         BtnRefres.setName("BtnRefres"); // NOI18N
@@ -935,6 +964,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1933,6 +1963,14 @@ public class DlgRMEralan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPartografActionPerformed
 
+    private void BtnTransferTindakanPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTransferTindakanPonekActionPerformed
+        BtnTransferTindakanIGDActionPerformed(null);
+    }//GEN-LAST:event_BtnTransferTindakanPonekActionPerformed
+
+    private void BtnTransferTindakanIBSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTransferTindakanIBSActionPerformed
+        BtnTransferTindakanIGDActionPerformed(null);
+    }//GEN-LAST:event_BtnTransferTindakanIBSActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1999,7 +2037,9 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.ButtonBig BtnSerahTerimaPasca;
     private widget.ButtonBig BtnTransferSerahTerimaIGD;
     private widget.ButtonBig BtnTransferSerahTerimaPonek;
+    private widget.ButtonBig BtnTransferTindakanIBS;
     private widget.ButtonBig BtnTransferTindakanIGD;
+    private widget.ButtonBig BtnTransferTindakanPonek;
     private widget.ButtonBig BtnTriaseIGD;
     private widget.ButtonBig BtnTriasePediatrik;
     private widget.ButtonBig BtnTriasePonek;
@@ -2067,6 +2107,8 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnAsesmenPraSedasi.setEnabled(akses.getcppt());
         BtnPersetujuanTindakanIBS.setEnabled(akses.getcppt());
         BtnCatatanSedasiAnestesi.setEnabled(akses.getcppt());
+        BtnTransferTindakanPonek.setEnabled(akses.getcppt());
+        BtnTransferTindakanIBS.setEnabled(akses.getcppt());
         //sementara
         BtnPartograf.setEnabled(akses.getadmin());
         

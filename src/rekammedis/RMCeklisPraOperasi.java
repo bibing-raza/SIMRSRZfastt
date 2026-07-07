@@ -64,7 +64,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
             "cukur_daerah_operasi", "ket_cukur", "lavemen", "ket_lavemen", "gigi_palsu", "baju", "penandaan",
             "super_anastesi", "super_tindakan", "super_transfusi", "antibiotik_profilaksi", "ket_antibiotik", "jam_antibiotik",
             "pemeriksaan_penunjang", "ekg", "interpretasi_ekg", "interpretasi_ro", "persiapan_darah", "persiapan_puasa",
-            "tgl_ceklis", "nip_perawat_bangsal", "nip_perawat_ibs"
+            "tgl_ceklis", "nip_perawat_bangsal", "nip_perawat_ibs", "djj"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -76,7 +76,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         tbCeklis.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbCeklis.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 57; i++) {
+        for (i = 0; i < 58; i++) {
             TableColumn column = tbCeklis.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
@@ -230,6 +230,9 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
             } else if (i == 56) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 57) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbCeklis.setDefaultRenderer(Object.class, new WarnaTable());
@@ -238,7 +241,8 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         Ttensi.setDocument(new batasInput((byte) 7).getKata(Ttensi));
         Tsuhu.setDocument(new batasInput((byte) 7).getKata(Tsuhu));
         Tnadi.setDocument(new batasInput((byte) 7).getKata(Tnadi));
-        Trespi.setDocument(new batasInput((byte) 7).getKata(Trespi));        
+        Trespi.setDocument(new batasInput((byte) 7).getKata(Trespi));
+        Tdjj.setDocument(new batasInput((int) 50).getKata(Tdjj));
         Tinfus.setDocument(new batasInput((int) 200).getKata(Tinfus));
         Tkateter.setDocument(new batasInput((int) 200).getKata(Tkateter));
         Tcukur.setDocument(new batasInput((int) 200).getKata(Tcukur));
@@ -315,12 +319,14 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
                             TnipBangsal.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString());
                             TnmPerawatBangsal.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
                             BtnBangsal.requestFocus();
+                            chkSaya1.setSelected(false);
                         }
                     } else if (pilihPerawat == 2) {
                         if (petugas.getTable().getSelectedRow() != -1) {
                             TnipIbs.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString());
                             TnmPerawatIbs.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
                             BtnIbs.requestFocus();
+                            chkSaya2.setSelected(false);
                         }
                     }
                 }
@@ -438,6 +444,8 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         chkSaya1 = new widget.CekBox();
         chkSaya2 = new widget.CekBox();
         BtnPaste = new widget.Button();
+        Tdjj = new widget.TextBox();
+        label107 = new widget.Label();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
@@ -718,7 +726,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tnadi);
-        Tnadi.setBounds(409, 234, 70, 23);
+        Tnadi.setBounds(409, 234, 60, 23);
 
         label43.setForeground(new java.awt.Color(0, 0, 0));
         label43.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -726,7 +734,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         label43.setName("label43"); // NOI18N
         label43.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label43);
-        label43.setBounds(485, 234, 108, 23);
+        label43.setBounds(475, 234, 108, 23);
 
         Trespi.setForeground(new java.awt.Color(0, 0, 0));
         Trespi.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -737,15 +745,15 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Trespi);
-        Trespi.setBounds(593, 234, 60, 23);
+        Trespi.setBounds(583, 234, 60, 23);
 
         label106.setForeground(new java.awt.Color(0, 0, 0));
         label106.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        label106.setText("x/menit");
+        label106.setText("x/menit     DJJ :");
         label106.setName("label106"); // NOI18N
         label106.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label106);
-        label106.setBounds(657, 234, 60, 23);
+        label106.setBounds(647, 234, 80, 23);
 
         label18.setForeground(new java.awt.Color(0, 0, 0));
         label18.setText("PERLENGKAPAN :");
@@ -1098,7 +1106,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         FormInput.add(jLabel85);
         jLabel85.setBounds(535, 600, 80, 23);
 
-        Ttglceklis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        Ttglceklis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2026" }));
         Ttglceklis.setDisplayFormat("dd-MM-yyyy");
         Ttglceklis.setName("Ttglceklis"); // NOI18N
         Ttglceklis.setOpaque(false);
@@ -1220,6 +1228,25 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         });
         FormInput.add(BtnPaste);
         BtnPaste.setBounds(85, 516, 90, 23);
+
+        Tdjj.setForeground(new java.awt.Color(0, 0, 0));
+        Tdjj.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Tdjj.setName("Tdjj"); // NOI18N
+        Tdjj.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TdjjKeyPressed(evt);
+            }
+        });
+        FormInput.add(Tdjj);
+        Tdjj.setBounds(727, 234, 60, 23);
+
+        label107.setForeground(new java.awt.Color(0, 0, 0));
+        label107.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label107.setText("x/menit");
+        label107.setName("label107"); // NOI18N
+        label107.setPreferredSize(new java.awt.Dimension(70, 23));
+        FormInput.add(label107);
+        label107.setBounds(793, 234, 45, 23);
 
         Scroll1.setViewportView(FormInput);
 
@@ -1394,7 +1421,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1409,7 +1436,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         panelGlass12.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1504,7 +1531,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else {
             try {
-                if (Sequel.menyimpantf("ceklis_pra_operasi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 38, new String[]{
+                if (Sequel.menyimpantf("ceklis_pra_operasi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 39, new String[]{
                     TNoRw.getText(), TrgRawat.getText(), Tdiagnosa.getText(), Trencana.getText(), TnipOperator.getText(), TnipAnastesi.getText(), Tkesadaran.getText(),
                     Ttensi.getText(), Tsuhu.getText(), Tnadi.getText(), Trespi.getText(), cmbInfus.getSelectedItem().toString(), Tinfus.getText(), cmbKateter.getSelectedItem().toString(),
                     Tkateter.getText(), cmbCukur.getSelectedItem().toString(), Tcukur.getText(), cmbLavemen.getSelectedItem().toString(), Tlavemen.getText(),
@@ -1513,7 +1540,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
                     cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), Valid.mysql_real_escape_stringERM(Tpemeriksaan.getText()),
                     cmbEkg.getSelectedItem().toString(), TintepretasiEkg.getText(), cmbIntepretasiRo.getSelectedItem().toString(), cmbPersiapanDarah.getSelectedItem().toString(),
                     cmbPersiapanPuasa.getSelectedItem().toString(), Valid.SetTgl(Ttglceklis.getSelectedItem() + ""), TnipBangsal.getText(), TnipIbs.getText(),
-                    Sequel.cariIsi("select now()")
+                    Sequel.cariIsi("select now()"), Tdjj.getText()
                 }) == true) {
 
                     Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Checklist Pra Operasi", "Simpan");
@@ -1556,7 +1583,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
                             + "nip_anastesi=?, kesadaran=?, td=?, suhu=?, nadi=?, respi=?, pasang_infus=?, ket_infus=?, pasang_kateter=?, ket_kateter=?, cukur_daerah_operasi=?, "
                             + "ket_cukur=?, lavemen=?, ket_lavemen=?, gigi_palsu=?, baju=?, penandaan=?, super_anastesi=?, super_tindakan=?, super_transfusi=?, "
                             + "antibiotik_profilaksi=?, ket_antibiotik=?, jam_antibiotik=?, pemeriksaan_penunjang=?, ekg=?, interpretasi_ekg=?, "
-                            + " interpretasi_ro=?, persiapan_darah=?, persiapan_puasa=?, tgl_ceklis=?, nip_perawat_bangsal=?, nip_perawat_ibs=?", 36, new String[]{
+                            + " interpretasi_ro=?, persiapan_darah=?, persiapan_puasa=?, tgl_ceklis=?, nip_perawat_bangsal=?, nip_perawat_ibs=?, djj=?", 37, new String[]{
                                 Tdiagnosa.getText(), Trencana.getText(), TnipOperator.getText(), TnipAnastesi.getText(), Tkesadaran.getText(),
                                 Ttensi.getText(), Tsuhu.getText(), Tnadi.getText(), Trespi.getText(), cmbInfus.getSelectedItem().toString(), Tinfus.getText(),
                                 cmbKateter.getSelectedItem().toString(), Tkateter.getText(), cmbCukur.getSelectedItem().toString(), Tcukur.getText(),
@@ -1565,7 +1592,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
                                 cmbSuperTransfusi.getSelectedItem().toString(), cmbAntibiotik.getSelectedItem().toString(), Tantibiotik.getText(),
                                 cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), Valid.mysql_real_escape_stringERM(Tpemeriksaan.getText()),
                                 cmbEkg.getSelectedItem().toString(), TintepretasiEkg.getText(), cmbIntepretasiRo.getSelectedItem().toString(), cmbPersiapanDarah.getSelectedItem().toString(),
-                                cmbPersiapanPuasa.getSelectedItem().toString(), Valid.SetTgl(Ttglceklis.getSelectedItem() + ""), TnipBangsal.getText(), TnipIbs.getText(),
+                                cmbPersiapanPuasa.getSelectedItem().toString(), Valid.SetTgl(Ttglceklis.getSelectedItem() + ""), TnipBangsal.getText(), TnipIbs.getText(), Tdjj.getText(),
                                 tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 0).toString()
                             }) == true) {
 
@@ -1693,7 +1720,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
 
     private void TrespiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TrespiKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            cmbInfus.requestFocus();
+            Tdjj.requestFocus();
         }
     }//GEN-LAST:event_TrespiKeyPressed
 
@@ -1917,6 +1944,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
             param.put("suhu", Tsuhu.getText() + " °C");
             param.put("nadi", Tnadi.getText() + " x/menit");
             param.put("respi", Trespi.getText() + " x/menit");
+            param.put("djj", Tdjj.getText() + " x/menit");
             
             if (cmbInfus.getSelectedIndex() == 1) {
                 param.put("infus", cmbInfus.getSelectedItem().toString() + ", " + Tinfus.getText());
@@ -2060,6 +2088,12 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         tampil();
     }//GEN-LAST:event_formWindowOpened
 
+    private void TdjjKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TdjjKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            cmbInfus.requestFocus();
+        }
+    }//GEN-LAST:event_TdjjKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -2105,6 +2139,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
     private widget.TextBox Tantibiotik;
     private widget.TextBox Tcukur;
     private widget.TextBox Tdiagnosa;
+    private widget.TextBox Tdjj;
     private widget.TextBox Tinfus;
     private widget.TextBox TintepretasiEkg;
     private widget.TextBox Tkateter;
@@ -2181,6 +2216,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.Label label104;
     private widget.Label label106;
+    private widget.Label label107;
     private widget.Label label15;
     private widget.Label label16;
     private widget.Label label17;
@@ -2301,7 +2337,8 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
                         rs.getString("persiapan_puasa"),
                         rs.getString("tgl_ceklis"),
                         rs.getString("nip_perawat_bangsal"),
-                        rs.getString("nip_perawat_ibs")
+                        rs.getString("nip_perawat_ibs"),
+                        rs.getString("djj")
                     });
                 }                
             } catch (Exception e) {
@@ -2333,6 +2370,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         Tsuhu.setText("");
         Tnadi.setText("");
         Trespi.setText("");
+        Tdjj.setText("");
         cmbInfus.setSelectedIndex(0);
         Tinfus.setText("");
         Tinfus.setEnabled(false);
@@ -2419,6 +2457,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
             TnmPerawatBangsal.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 18).toString());
             TnipIbs.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 56).toString());
             TnmPerawatIbs.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 19).toString());
+            Tdjj.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 57).toString());
             dataCek();
         }
     }

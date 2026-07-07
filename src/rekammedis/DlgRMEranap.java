@@ -186,6 +186,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnInformasiTindakanPembiusan = new widget.ButtonBig();
         BtnPersetujuanTindakanIBS = new widget.ButtonBig();
         BtnAsesmenPraSedasi = new widget.ButtonBig();
+        BtnTransferTindakanIBS = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -1222,6 +1223,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput1.add(BtnAsesmenPraSedasi);
+
+        BtnTransferTindakanIBS.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTransferTindakanIBS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481002123_wheelchair.png"))); // NOI18N
+        BtnTransferTindakanIBS.setText("Transfer Pasien Untuk Tindakan");
+        BtnTransferTindakanIBS.setIconTextGap(0);
+        BtnTransferTindakanIBS.setName("BtnTransferTindakanIBS"); // NOI18N
+        BtnTransferTindakanIBS.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnTransferTindakanIBS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTransferTindakanIBSActionPerformed(evt);
+            }
+        });
+        FormInput1.add(BtnTransferTindakanIBS);
 
         scrollInput1.setViewportView(FormInput1);
 
@@ -2467,6 +2481,10 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnPersetujuanTindakanActionPerformed(null);
     }//GEN-LAST:event_BtnPersetujuanTindakanIBSActionPerformed
 
+    private void BtnTransferTindakanIBSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTransferTindakanIBSActionPerformed
+        BtnTransferTindakanActionPerformed(null);
+    }//GEN-LAST:event_BtnTransferTindakanIBSActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2554,6 +2572,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnSuratPernyataanRanapNonBpjs;
     private widget.ButtonBig BtnTransferSerahTerima;
     private widget.ButtonBig BtnTransferTindakan;
+    private widget.ButtonBig BtnTransferTindakanIBS;
     private widget.PanelBiasa FormInput;
     private widget.PanelBiasa FormInput1;
     private widget.TextBox TNmPasien;
@@ -2637,6 +2656,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenPraSedasiKonsepIAR.setEnabled(akses.getcppt());
         BtnCatatanSedasiAnestesi.setEnabled(akses.getcppt());
         BtnPersetujuanTindakanIBS.setEnabled(akses.getpemberian_obat());
+        BtnTransferTindakanIBS.setEnabled(akses.getcppt());
         
         if (akses.getcppt() == true || akses.getbpjs_sep() == true || akses.getadmin()== true) {
             BtnPemberianInformasiEdukasi.setEnabled(true);
