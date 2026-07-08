@@ -185,6 +185,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnSerahTerimaPasca = new widget.ButtonBig();
         BtnInformasiTindakanPembiusan = new widget.ButtonBig();
         BtnPersetujuanTindakanIBS = new widget.ButtonBig();
+        BtnPemberianInformasiEdukasiIBS = new widget.ButtonBig();
         BtnAsesmenPraSedasi = new widget.ButtonBig();
         BtnTransferTindakanIBS = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
@@ -1210,6 +1211,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput1.add(BtnPersetujuanTindakanIBS);
+
+        BtnPemberianInformasiEdukasiIBS.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPemberianInformasiEdukasiIBS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/people.png"))); // NOI18N
+        BtnPemberianInformasiEdukasiIBS.setText("Pemberian Informasi Dan Edukasi");
+        BtnPemberianInformasiEdukasiIBS.setIconTextGap(0);
+        BtnPemberianInformasiEdukasiIBS.setName("BtnPemberianInformasiEdukasiIBS"); // NOI18N
+        BtnPemberianInformasiEdukasiIBS.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPemberianInformasiEdukasiIBS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPemberianInformasiEdukasiIBSActionPerformed(evt);
+            }
+        });
+        FormInput1.add(BtnPemberianInformasiEdukasiIBS);
 
         BtnAsesmenPraSedasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenPraSedasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/anastesi2.png"))); // NOI18N
@@ -2485,6 +2499,10 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnTransferTindakanActionPerformed(null);
     }//GEN-LAST:event_BtnTransferTindakanIBSActionPerformed
 
+    private void BtnPemberianInformasiEdukasiIBSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPemberianInformasiEdukasiIBSActionPerformed
+        BtnPemberianInformasiEdukasiActionPerformed(null);
+    }//GEN-LAST:event_BtnPemberianInformasiEdukasiIBSActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2547,6 +2565,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnObservasiRestrain;
     private widget.ButtonBig BtnPantauHarianPasien;
     private widget.ButtonBig BtnPemberianInformasiEdukasi;
+    private widget.ButtonBig BtnPemberianInformasiEdukasiIBS;
     private widget.ButtonBig BtnPengamatanMenyusui;
     private widget.ButtonBig BtnPengelolaanTranfusiDarah;
     private widget.ButtonBig BtnPerencanaanPulang;
@@ -2660,8 +2679,10 @@ public class DlgRMEranap extends javax.swing.JDialog {
         
         if (akses.getcppt() == true || akses.getbpjs_sep() == true || akses.getadmin()== true) {
             BtnPemberianInformasiEdukasi.setEnabled(true);
+            BtnPemberianInformasiEdukasiIBS.setEnabled(true);
         } else {
             BtnPemberianInformasiEdukasi.setEnabled(false);
+            BtnPemberianInformasiEdukasiIBS.setEnabled(false);
         }
     }
     

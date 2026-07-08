@@ -31,6 +31,7 @@
 	<parameter name="nmOrtu" class="java.lang.String"/>
 	<parameter name="lokasiQr" class="java.io.InputStream"/>
 	<parameter name="kalimatTte" class="java.lang.String"/>
+	<parameter name="gambarTtd" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT now() tanggal]]>
 	</queryString>
@@ -484,6 +485,10 @@
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="93" y="100" width="80" height="76"/>
 				<imageExpression class="java.lang.String"><![CDATA[$P{lokasiQr}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement positionType="Float" x="358" y="100" width="80" height="76"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{gambarTtd}]]></imageExpression>
 			</image>
 		</band>
 	</summary>

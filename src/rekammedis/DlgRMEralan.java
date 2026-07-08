@@ -124,13 +124,14 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnSerahTerimaPasca = new widget.ButtonBig();
         BtnInformasiTindakanPembiusan = new widget.ButtonBig();
         BtnPersetujuanTindakanIBS = new widget.ButtonBig();
+        BtnPemberianInformasiEdukasiIBS = new widget.ButtonBig();
         BtnAsesmenPraSedasi = new widget.ButtonBig();
         BtnTransferTindakanIBS = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
 
-        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2026" }));
+        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-07-2026" }));
         DTPtanggal.setDisplayFormat("dd-MM-yyyy");
         DTPtanggal.setName("DTPtanggal"); // NOI18N
         DTPtanggal.setOpaque(false);
@@ -909,6 +910,19 @@ public class DlgRMEralan extends javax.swing.JDialog {
             }
         });
         FormInput1.add(BtnPersetujuanTindakanIBS);
+
+        BtnPemberianInformasiEdukasiIBS.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPemberianInformasiEdukasiIBS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/people.png"))); // NOI18N
+        BtnPemberianInformasiEdukasiIBS.setText("Pemberian Informasi Dan Edukasi");
+        BtnPemberianInformasiEdukasiIBS.setIconTextGap(0);
+        BtnPemberianInformasiEdukasiIBS.setName("BtnPemberianInformasiEdukasiIBS"); // NOI18N
+        BtnPemberianInformasiEdukasiIBS.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPemberianInformasiEdukasiIBS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPemberianInformasiEdukasiIBSActionPerformed(evt);
+            }
+        });
+        FormInput1.add(BtnPemberianInformasiEdukasiIBS);
 
         BtnAsesmenPraSedasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenPraSedasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/anastesi2.png"))); // NOI18N
@@ -1971,6 +1985,10 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnTransferTindakanIGDActionPerformed(null);
     }//GEN-LAST:event_BtnTransferTindakanIBSActionPerformed
 
+    private void BtnPemberianInformasiEdukasiIBSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPemberianInformasiEdukasiIBSActionPerformed
+        BtnPemberianInformasiEdukasiIGDActionPerformed(null);
+    }//GEN-LAST:event_BtnPemberianInformasiEdukasiIBSActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2015,6 +2033,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.ButtonBig BtnLembarObservasiIGD;
     private widget.ButtonBig BtnObservasiKala1;
     private widget.ButtonBig BtnPartograf;
+    private widget.ButtonBig BtnPemberianInformasiEdukasiIBS;
     private widget.ButtonBig BtnPemberianInformasiEdukasiIGD;
     private widget.ButtonBig BtnPemberianInformasiEdukasiPonek;
     private widget.ButtonBig BtnPemberianObatIGD;
@@ -2115,9 +2134,11 @@ public class DlgRMEralan extends javax.swing.JDialog {
         if (akses.getcppt() == true || akses.getbpjs_sep() == true || akses.getadmin()== true) {
             BtnPemberianInformasiEdukasiIGD.setEnabled(true);
             BtnPemberianInformasiEdukasiPonek.setEnabled(true);
+            BtnPemberianInformasiEdukasiIBS.setEnabled(true);
         } else {
             BtnPemberianInformasiEdukasiIGD.setEnabled(false);
             BtnPemberianInformasiEdukasiPonek.setEnabled(false);
+            BtnPemberianInformasiEdukasiIBS.setEnabled(false);
         }
     }
     

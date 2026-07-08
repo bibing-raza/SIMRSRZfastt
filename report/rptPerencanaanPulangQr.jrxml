@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19" uuid="7e917682-7cd0-41e2-884f-54821aab0994">
 	<property name="ireport.zoom" value="1.8181818181818254"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="83"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -40,6 +40,7 @@
 	<parameter name="keluargaPasien" class="java.lang.String"/>
 	<parameter name="lokasiQr" class="java.io.InputStream"/>
 	<parameter name="kalimatTte" class="java.lang.String"/>
+	<parameter name="gambarTtd" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT now() tanggal]]>
 	</queryString>
@@ -709,6 +710,10 @@
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="70" y="28" width="80" height="76" uuid="bac9210e-1176-4b7e-b75f-6c6bc81df190"/>
 				<imageExpression><![CDATA[$P{lokasiQr}]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement positionType="Float" x="368" y="28" width="80" height="76" uuid="9b849efb-cb41-4c05-8960-462a4b9da7fb"/>
+				<imageExpression><![CDATA[$P{gambarTtd}]]></imageExpression>
 			</image>
 		</band>
 	</summary>
