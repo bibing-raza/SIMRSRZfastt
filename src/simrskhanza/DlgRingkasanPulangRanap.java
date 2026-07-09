@@ -5642,6 +5642,34 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                             param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
                             param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
 
+                            try {
+                                String gambar = "", ipGambar = "";
+                                try {
+                                    //cek atau ping ip addres
+                                    ipGambar = "192.168.0.230";
+                                    InetAddress inet = InetAddress.getByName(ipGambar);
+
+                                    //ping sukses timeout 100 ms (0.1 detik)
+                                    if (inet.isReachable(100)) {
+                                        if (idFileTtd.equals("")) {
+                                            gambar = "http://192.168.0.230:7183/img-rme/ttd_kosong.jpg";
+                                        } else {
+                                            gambar = "http://192.168.0.230:7183/reviewrm/index.php/ApiTtd/preview?id_file=" + idFileTtd;
+                                        }
+                                        //ping gagal
+                                    } else {
+                                        gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Notif : " + e);
+                                    gambar = "https://raw.githubusercontent.com/bibing-raza/gambar_online/main/ttd_kosong.jpg";
+                                }
+
+                                param.put("gambarTtd", gambar);
+                            } catch (Exception e) {
+                                System.out.println("Notifikasi : " + e);
+                            }
+
                             Valid.MyReport("rptRingkasanPulangRanapQr.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
                                     "select date(now())", param);
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
