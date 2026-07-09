@@ -7765,6 +7765,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRW.getText() + "' "
                     + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");         
             noreg.setText(Sequel.cariIsi("select ifnull(id_tb_03,'') from nomor_reg_tb where no_rkm_medis='" + TNoRM.getText() + "'"));
+            idFileTtd = tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 39).toString();
             tampilTTD();
             
             if (nmgedung.equals("AL-HAKIM/PARU")) {
