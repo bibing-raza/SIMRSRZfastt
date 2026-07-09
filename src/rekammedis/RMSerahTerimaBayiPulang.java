@@ -1018,6 +1018,7 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
 }//GEN-LAST:event_TCariKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
+        ((RMSerahTerimaBayiPulang.Painter) gambarQR).setImage("");
         tampil();
 }//GEN-LAST:event_BtnCariActionPerformed
 
@@ -1117,6 +1118,10 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
             if (Sequel.queryu2tf("delete from serah_terima_bayi_pulang_perinatologi where no_rawat=?", 1, new String[]{
                 tbSerah.getValueAt(tbSerah.getSelectedRow(), 0).toString()
             }) == true) {
+                if (!idFileTtd.equals("")) {
+                    Sequel.hapusSemuaTtd(idFileTtd);
+                }
+                
                 tampil();
                 emptTeks();
             } else {

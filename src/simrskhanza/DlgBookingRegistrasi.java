@@ -3338,8 +3338,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Surat rujukan ini masa berlakunya habis, maksimal 3(tiga) bulan dari tgl. surat rujukan. Silahkan ke faskes perujuk untuk perbarui rujukan...!!!!");
                 } else {
                     autoNomorBooking();
-                    simpanBooking();
-                    simpanKelengkapanSEP();                    
+                    simpanBooking();                    
                 }
             } else {
                 autoNomorBooking();
@@ -5621,35 +5620,29 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             isNomer();
             return;
         } else {
-            Sequel.menyimpan("booking_registrasi",
-                    "Now(),"
-                    + "'" + TNoRM.getText() + "',"
-                    + "'" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "',"
-                    + "'" + KdDokter.getText() + "',"
-                    + "'" + KdPoli.getText() + "',"
-                    + "'" + NoReg.getText() + "',"
-                    + "'" + kdboking.getText() + "',"
-                    + "'Menunggu',"
-                    + "'" + kdpnj.getText() + "',"
-                    + "'" + verif_data.getSelectedItem().toString() + "',"
-                    + "'" + no_telp.getText() + "',"
-                    + "'-',"
-                    + "'" + cmbAntrianKhusus.getSelectedItem().toString() + "',"
-                    + "'" + akses.getkode() + "'");
+            if (Sequel.menyimpantf("booking_registrasi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No. Rawat", 14, new String[]{
+                Sequel.cariIsi("select now()"), TNoRM.getText(), Valid.SetTgl(TanggalPeriksa.getSelectedItem() + ""), KdDokter.getText(),
+                KdPoli.getText(), NoReg.getText(), kdboking.getText(), "Menunggu", kdpnj.getText(), verif_data.getSelectedItem().toString(),
+                no_telp.getText(), "-", cmbAntrianKhusus.getSelectedItem().toString(), akses.getkode()
+            }) == true) {                
+                if (kdpnj.getText().equals("B01") || kdpnj.getText().equals("A03")) {
+                    simpanKelengkapanSEP();
+                }
 
-            if (cmbKonsul.getSelectedIndex() == 0) {
-                noSepTerakhir = Sequel.cariIsi("select if(no_sep is null,'-',no_sep) from bridging_sep where "
-                        + "nomr ='" + TNoRM.getText() + "' and jnspelayanan ='2' and kdpolitujuan <>'IGD' order by tglsep desc limit 1");
+                if (cmbKonsul.getSelectedIndex() == 0) {
+                    noSepTerakhir = Sequel.cariIsi("select if(no_sep is null,'-',no_sep) from bridging_sep where "
+                            + "nomr ='" + TNoRM.getText() + "' and jnspelayanan ='2' and kdpolitujuan <>'IGD' order by tglsep desc limit 1");
 
-                Sequel.menyimpanIgnore("reg_konsul_internal", "'" + kdboking.getText() + "','" + noSepTerakhir + "',"
-                        + "'" + Sequel.cariIsi("select if(tglsep is null,'0000-00-00',tglsep) from bridging_sep where "
-                                + "nomr ='" + TNoRM.getText() + "' and jnspelayanan ='2' and kdpolitujuan <>'IGD' order by tglsep desc limit 1") + "',"
-                        + "'tpprj','sipo','" + Sequel.cariIsi("select now()") + "'", "No. Rawat");
+                    Sequel.menyimpanIgnore("reg_konsul_internal", "'" + kdboking.getText() + "','" + noSepTerakhir + "',"
+                            + "'" + Sequel.cariIsi("select if(tglsep is null,'0000-00-00',tglsep) from bridging_sep where "
+                                    + "nomr ='" + TNoRM.getText() + "' and jnspelayanan ='2' and kdpolitujuan <>'IGD' order by tglsep desc limit 1") + "',"
+                            + "'tpprj','sipo','" + Sequel.cariIsi("select now()") + "'", "No. Rawat");
+                }
+
+                Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
+                emptTeks();
+                tampil();
             }
-            
-            Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
-            emptTeks();
-            tampil();
         }
     }
 

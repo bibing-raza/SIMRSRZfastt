@@ -906,8 +906,9 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         if (tbKonsul.getSelectedRow() > -1) {
-            String drPengonsul = "", konsulUlg = "", tglJawab = "";
+            String drPengonsul = "", konsulUlg = "", tglJawab = "", kdDokterKonsul = "";
             drPengonsul = Sequel.cariIsi("select d.nm_dokter from reg_periksa rp inner join dokter d on d.kd_dokter=rp.kd_dokter where rp.no_rawat='" + TNoRw.getText() + "'");
+            kdDokterKonsul = Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'");
             
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
@@ -957,28 +958,29 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
             param.put("tglJawaban", tglJawab);
             param.put("tglKonsulUlang", konsulUlg);
             
-            if (cmbPilihCetak.getSelectedIndex() == 0) {
-                Sequel.AutoComitFalse();
-                Sequel.queryu("delete from temporary_tte");
-                String isiKonsul = "", isiJawab = "", nipJawab = "", fileGambar = "";
+            if (cmbPilihCetak.getSelectedIndex() == 0) {                
+                String isiKonsul = "", isiJawab = "", nipJawab = "";
                 nipJawab = Sequel.cariIsi("select kd_dokter_pembalas from surat_konsul_unit_ralan where waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'");
                 param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='001'"));
+                
+                //data konsulen
+                if (kdDokterKonsul.equals("") || kdDokterKonsul.equals("-") || kdDokterKonsul.equals("--")) {
+                    param.put("lokasiQrDokterKonsul", "");
+                } else {
+                    isiKonsul = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                            + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
+                                    "Surat Konsultasi Poliklinik Rawat Jalan", drPengonsul + " (Dokter Pengirim)",
+                                    Sequel.cariIsi("select date_format(tgl_permintaan_konsul,'%d/%m/%Y') from surat_konsul_unit_ralan where "
+                                            + "waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'"),
+                                    Sequel.cariIsi("select time(jam_permintaan_konsul) from surat_konsul_unit_ralan where "
+                                            + "waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'")) + "') from kalimat_tte where kode='001'");
+                    Valid.cetakQrTte(isiKonsul, Sequel.cariFolderTte(), "QRTteKonsul.jpg", "select logo from setting");
+                    param.put("lokasiQrDokterKonsul", Sequel.cariFolderTte() + File.separator + "QRTteKonsul.jpg");
+                }
 
-                isiKonsul = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
-                        + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
-                                "Surat Konsultasi Poliklinik Rawat Jalan", drPengonsul + " (Dokter Pengirim)",
-                                Sequel.cariIsi("select date_format(tgl_permintaan_konsul,'%d/%m/%Y') from surat_konsul_unit_ralan where "
-                                        + "waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'"),
-                                Sequel.cariIsi("select time(jam_permintaan_konsul) from surat_konsul_unit_ralan where "
-                                        + "waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'")) + "') from kalimat_tte where kode='001'");
-                
-                Valid.cetakQrTte(isiKonsul, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
-                Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
-                Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Surat Konsultasi Poliklinik", Sequel.cariFolderPrintTte());
-                param.put("lokasiQrDokterKonsul", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
-                
+                //data penjawab konsul
                 if (nipJawab.equals("") || nipJawab.equals("-") || nipJawab.equals("--")) {
-                    fileGambar = "";
+                    param.put("lokasiQrDokterJawab", "");
                 } else {
                     isiJawab = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
                             + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='001'"),
@@ -987,20 +989,13 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
                                             + "waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'"),
                                     Sequel.cariIsi("select time(jam_menjawab) from surat_konsul_unit_ralan where "
                                             + "waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'")) + "') from kalimat_tte where kode='001'");
-                    
-                    Valid.cetakQrTte(isiJawab, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
-                    fileGambar = Sequel.cariFolderPrintTte();
+                    Valid.cetakQrTte(isiJawab, Sequel.cariFolderTte(), "QRTteJawab.jpg", "select logo from setting");
+                    param.put("lokasiQrDokterJawab", Sequel.cariFolderTte() + File.separator + "QRTteJawab.jpg");
                 }
 
-                Sequel.menyimpanQrTte("temporary_tte",
-                        "'Tgl. Konsultasi Ulang : " + konsulUlg + "',"
-                        + "'Ditemukan kasus : " + kasus + "\n\n" + ketklinis + "\n','Martapura, " + tglJawab + "','(" + dokterpenjawab + ")','','','','','',''",
-                        "file QRCode TTE Surat Konsultasi Poliklinik Rawat Jalan", fileGambar);
-                
                 Valid.MyReport("rptCetakSuratKonsulRalanQr.jasper", "report", "::[ Surat Konsultasi Internal Poliklinik ]::",
-                        "SELECT * FROM temporary_tte", param);
+                        "SELECT now() tanggal", param);
                 Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
-                Sequel.AutoComitTrue();
             } else {
                 Valid.MyReport("rptCetakSuratKonsulRalan.jasper", "report", "::[ Surat Konsultasi Internal Poliklinik ]::",
                         "SELECT now() tanggal", param);

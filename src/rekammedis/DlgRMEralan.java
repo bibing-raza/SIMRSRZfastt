@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import laporan.DlgHasilPenunjangMedis;
 
 /**
  *
@@ -85,6 +86,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnResep = new widget.ButtonBig();
         BtnResepAntibiotik = new widget.ButtonBig();
         BtnPemberianInformasiEdukasiIGD = new widget.ButtonBig();
+        BtnHasilPemeriksaanPenunjangIGD = new widget.ButtonBig();
         BtnSamplingPemanfaatanRM = new widget.ButtonBig();
         scrollInput2 = new widget.ScrollPane();
         FormInput2 = new widget.PanelBiasa();
@@ -107,6 +109,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnResepPonek = new widget.ButtonBig();
         BtnResepAntibiotikPonek = new widget.ButtonBig();
         BtnPemberianInformasiEdukasiPonek = new widget.ButtonBig();
+        BtnHasilPemeriksaanPenunjangPonek = new widget.ButtonBig();
         scrollInput1 = new widget.ScrollPane();
         FormInput1 = new widget.PanelBiasa();
         BtnEvaluasiPraAnestesi = new widget.ButtonBig();
@@ -131,7 +134,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
 
-        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-07-2026" }));
+        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
         DTPtanggal.setDisplayFormat("dd-MM-yyyy");
         DTPtanggal.setName("DTPtanggal"); // NOI18N
         DTPtanggal.setOpaque(false);
@@ -430,6 +433,19 @@ public class DlgRMEralan extends javax.swing.JDialog {
         });
         FormInput.add(BtnPemberianInformasiEdukasiIGD);
 
+        BtnHasilPemeriksaanPenunjangIGD.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHasilPemeriksaanPenunjangIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_order-history_49596.png"))); // NOI18N
+        BtnHasilPemeriksaanPenunjangIGD.setText("Hasil Pemeriksaan Penunjang");
+        BtnHasilPemeriksaanPenunjangIGD.setIconTextGap(0);
+        BtnHasilPemeriksaanPenunjangIGD.setName("BtnHasilPemeriksaanPenunjangIGD"); // NOI18N
+        BtnHasilPemeriksaanPenunjangIGD.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnHasilPemeriksaanPenunjangIGD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHasilPemeriksaanPenunjangIGDActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnHasilPemeriksaanPenunjangIGD);
+
         BtnSamplingPemanfaatanRM.setForeground(new java.awt.Color(0, 0, 0));
         BtnSamplingPemanfaatanRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1491582089_Finance_financial_report.png"))); // NOI18N
         BtnSamplingPemanfaatanRM.setText("Sampling Pemanfaatan RM");
@@ -702,6 +718,19 @@ public class DlgRMEralan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(BtnPemberianInformasiEdukasiPonek);
+
+        BtnHasilPemeriksaanPenunjangPonek.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHasilPemeriksaanPenunjangPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_order-history_49596.png"))); // NOI18N
+        BtnHasilPemeriksaanPenunjangPonek.setText("Hasil Pemeriksaan Penunjang");
+        BtnHasilPemeriksaanPenunjangPonek.setIconTextGap(0);
+        BtnHasilPemeriksaanPenunjangPonek.setName("BtnHasilPemeriksaanPenunjangPonek"); // NOI18N
+        BtnHasilPemeriksaanPenunjangPonek.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnHasilPemeriksaanPenunjangPonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHasilPemeriksaanPenunjangPonekActionPerformed(evt);
+            }
+        });
+        FormInput2.add(BtnHasilPemeriksaanPenunjangPonek);
 
         scrollInput2.setViewportView(FormInput2);
 
@@ -1965,7 +1994,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            akses.setform("DlgRMEranap");
+            akses.setform("DlgRMEralan");
             RMPartografPersalinan form = new RMPartografPersalinan(null, false);
             form.emptTeks();
             form.isCek();
@@ -1988,6 +2017,23 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private void BtnPemberianInformasiEdukasiIBSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPemberianInformasiEdukasiIBSActionPerformed
         BtnPemberianInformasiEdukasiIGDActionPerformed(null);
     }//GEN-LAST:event_BtnPemberianInformasiEdukasiIBSActionPerformed
+
+    private void BtnHasilPemeriksaanPenunjangPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHasilPemeriksaanPenunjangPonekActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            akses.setform("DlgRMEralan");
+            DlgHasilPenunjangMedis form = new DlgHasilPenunjangMedis(null, false);
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setData(TNoRW.getText(), TNmPasien.getText(), TNoRM.getText());
+            form.setVisible(true);
+        }
+    }//GEN-LAST:event_BtnHasilPemeriksaanPenunjangPonekActionPerformed
+
+    private void BtnHasilPemeriksaanPenunjangIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHasilPemeriksaanPenunjangIGDActionPerformed
+        BtnHasilPemeriksaanPenunjangPonekActionPerformed(null);
+    }//GEN-LAST:event_BtnHasilPemeriksaanPenunjangIGDActionPerformed
 
     /**
     * @param args the command line arguments
@@ -2027,6 +2073,8 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.ButtonBig BtnDokumenJangMedPonek;
     private widget.ButtonBig BtnEvaluasiPraAnestesi;
     private widget.ButtonBig BtnFormulirSiteMarking;
+    private widget.ButtonBig BtnHasilPemeriksaanPenunjangIGD;
+    private widget.ButtonBig BtnHasilPemeriksaanPenunjangPonek;
     private widget.ButtonBig BtnInformasiTindakanPembiusan;
     private widget.Button BtnKeluar;
     private widget.ButtonBig BtnLaporanOperasi;
@@ -2128,6 +2176,8 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnCatatanSedasiAnestesi.setEnabled(akses.getcppt());
         BtnTransferTindakanPonek.setEnabled(akses.getcppt());
         BtnTransferTindakanIBS.setEnabled(akses.getcppt());
+        BtnHasilPemeriksaanPenunjangPonek.setEnabled(akses.getcppt());
+        BtnHasilPemeriksaanPenunjangIGD.setEnabled(akses.getcppt());
         //sementara
         BtnPartograf.setEnabled(akses.getadmin());
         

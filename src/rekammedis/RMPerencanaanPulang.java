@@ -1604,6 +1604,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
 }//GEN-LAST:event_TCariKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
+        ((RMPerencanaanPulang.Painter) gambarQR).setImage("");
         tampil();
 }//GEN-LAST:event_BtnCariActionPerformed
 
@@ -2275,7 +2276,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
     private widget.Table tbTemplate;
     // End of variables declaration//GEN-END:variables
 
-    public void tampil() {     
+    public void tampil() {    
         LoadHTML1.setText("");
         Valid.tabelKosong(tabMode);
         try {
