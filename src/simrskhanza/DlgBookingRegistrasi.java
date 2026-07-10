@@ -103,7 +103,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
     private WebEngine engine;
     private final JFXPanel jfxPanel = new JFXPanel();
     private final JPanel panel = new JPanel(new BorderLayout());
-    private int i = 0, pilihan = 1, cekDataPlg = 0, x = 0, n = 0;
+    private int i = 0, pilihan = 1, cekDataPlg = 0, x = 0, n = 0, kuotaJkn = 0, kuotaNonJkn = 0, jumlahJkn = 0, jumlahNonJkn = 0;
     private BPJSApi api = new BPJSApi();
     public DlgRujukMasuk rujukmasuk = new DlgRujukMasuk(null, false);
     private DlgPasien pasien = new DlgPasien(null, false);
@@ -123,7 +123,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
     private String URUTNOREG = "", status = "", no_rawat = "", umur = "", sttsumur = "", no_peserta = "", user = "", 
             tglkkl = "0000-00-00", URL = "", utc = "", pembi = "", kdpnjg = "", SEPkontrol = "", tglPulangInap = "",
             flag = "", asesmen = "", jkel = "", cekPembi = "", cekFlag = "", cekKDpen = "", cekAses = "", cekRujukan = "",
-            link = "", cekKodePJ = "", nik = "", nokartu = "", noSepTerakhir = "";
+            link = "", cekKodePJ = "", nik = "", nokartu = "", noSepTerakhir = "", nmHari = "";
     private LocalDate date1, date2;
     private final JProgressBar progressBar = new JProgressBar();
 
@@ -1187,7 +1187,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         Popup1.add(ppRencanaKontrollagi1);
 
         TanggalBooking.setEditable(false);
-        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
+        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
         TanggalBooking.setDisplayFormat("dd-MM-yyyy");
         TanggalBooking.setName("TanggalBooking"); // NOI18N
         TanggalBooking.setOpaque(false);
@@ -1730,7 +1730,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(125, 23));
         panelCari.add(R2);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1749,7 +1749,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1770,7 +1770,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R3.setPreferredSize(new java.awt.Dimension(135, 23));
         panelCari.add(R3);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1789,7 +1789,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel25);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1954,7 +1954,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel14.setBounds(0, 66, 115, 23);
 
         TanggalPeriksa.setEditable(false);
-        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
+        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
         TanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         TanggalPeriksa.setName("TanggalPeriksa"); // NOI18N
         TanggalPeriksa.setOpaque(false);
@@ -2363,7 +2363,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel28.setBounds(0, 67, 95, 23);
 
         TanggalRujuk.setEditable(false);
-        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
+        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
         TanggalRujuk.setDisplayFormat("dd-MM-yyyy");
         TanggalRujuk.setName("TanggalRujuk"); // NOI18N
         TanggalRujuk.setOpaque(false);
@@ -2974,7 +2974,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         LabTglkll.setBounds(0, 38, 90, 23);
 
         TanggalKejadian.setEditable(false);
-        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
+        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
         TanggalKejadian.setDisplayFormat("dd-MM-yyyy");
         TanggalKejadian.setName("TanggalKejadian"); // NOI18N
         TanggalKejadian.setOpaque(false);
@@ -3703,20 +3703,19 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     Valid.textKosong(KdPoli1, "Poliklinik");
                 } else {
                     gantiDataBooking();
-                    Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
-
-                    Sequel.cariIsi("select kd_booking from kelengkapan_booking_sep_bpjs where kd_booking='" + kdboking.getText() + "'", cekKelengkapanSEP);
-                    if (cekKelengkapanSEP.getText().equals("")) {
-                        simpanKelengkapanSEP();
-                    } else if (!cekKelengkapanSEP.getText().equals("")) {
-                        gantiDataSEP();
+                    if (cmbKonsul.getSelectedIndex() == 1) {
+                        Sequel.cariIsi("select kd_booking from kelengkapan_booking_sep_bpjs where kd_booking='" + kdboking.getText() + "'", cekKelengkapanSEP);
+                        if (cekKelengkapanSEP.getText().equals("")) {
+                            simpanKelengkapanSEP();
+                        } else if (!cekKelengkapanSEP.getText().equals("")) {
+                            gantiDataSEP();
+                        }
                     }
                     tampil();
                     emptTeks();
                 }
             } else {
                 gantiDataBooking();
-                Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
                 Sequel.meghapus("kelengkapan_booking_sep_bpjs", "kd_booking", kdboking.getText());
                 tampil();
                 emptTeks();
@@ -5595,16 +5594,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
 
     private void simpanBooking() {
-        String nmHari = "";
-        int kuotaJkn = 0, kuotaNonJkn = 0, jumlahJkn = 0, jumlahNonJkn = 0;        
-        nmHari = Sequel.hariINDONESIA("SELECT DAYNAME('" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "')").toUpperCase();
-        kuotaJkn = Sequel.cariInteger("SELECT kuota_jkn from jadwal where kd_poli='" + KdPoli.getText() + "' and hari_kerja='" + nmHari + "'");
-        kuotaNonJkn = Sequel.cariInteger("SELECT kuota_nonjkn from jadwal where kd_poli='" + KdPoli.getText() + "' and hari_kerja='" + nmHari + "'");
-        jumlahJkn = Sequel.cariInteger("select count(1) from booking_registrasi where kd_poli='" + KdPoli.getText() + "' "
-                + "and tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "' and kd_pj in ('B01','A03')");
-        jumlahNonJkn = Sequel.cariInteger("select count(1) from booking_registrasi where kd_poli='" + KdPoli.getText() + "' "
-                + "and tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "' and kd_pj not in ('B01','A03')");
-
+        cekKuota();
         if ((kdpnj.getText().equals("B01") || kdpnj.getText().equals("A03")) && kuotaJkn > 0 && jumlahJkn >= kuotaJkn) {
             JOptionPane.showMessageDialog(rootPane, "Jumlah kunjungan pasien BPJS yang mendaftar dipoliklinik " + NmPoli.getText() + " pada tgl. " + Valid.SetTglINDONESIA(Valid.SetTgl(TanggalPeriksa.getSelectedItem() + ""))
                     + "         \nsudah terpenuhi sesuai kuota layanan terjadwal, Silahkan informasikan/jadwalkan ke hari lain.");
@@ -5857,30 +5847,81 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         pngjawab.setText("");
         flagPro.setSelectedIndex(0);
         kdPenunjang.setSelectedIndex(0);
-        asesmenPel.setSelectedIndex(0);        
+        asesmenPel.setSelectedIndex(0);
     }
 
     private void gantiDataBooking() {
-        Sequel.mengedit("booking_registrasi", "kd_booking='" + kdboking.getText() + "'",
-                "tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "', "
-                + "kd_dokter='" + KdDokter.getText() + "', "
-                + "kd_poli='" + KdPoli.getText() + "', "
-                + "kd_pj='" + kdpnj.getText() + "', "
-                + "data_dari='" + verif_data.getSelectedItem().toString() + "', "
-                + "no_telp_pemesan='" + no_telp.getText() + "', "
-                + "antrian_khusus='" + cmbAntrianKhusus.getSelectedItem().toString() + "' ");
-    
-        if (Sequel.cariInteger("select count(-1) from booking_registrasi where kd_booking='" + kdboking.getText() + "' and no_rawat='-'") > 0) {
-            if (cmbKonsul.getSelectedIndex() == 0) {
-                noSepTerakhir = Sequel.cariIsi("select if(no_sep is null,'-',no_sep) from bridging_sep where "
-                        + "nomr ='" + TNoRM.getText() + "' and jnspelayanan ='2' and kdpolitujuan <>'IGD' order by tglsep desc limit 1");
+        int baris = tbBoking.getSelectedRow();
+        if (baris < 0) {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih data booking terlebih dahulu.");
+            return;
+        }
 
-                Sequel.menyimpanIgnore("reg_konsul_internal", "'" + kdboking.getText() + "','" + noSepTerakhir + "',"
-                        + "'" + Sequel.cariIsi("select if(tglsep is null,'0000-00-00',tglsep) from bridging_sep where "
-                                + "nomr ='" + TNoRM.getText() + "' and jnspelayanan ='2' and kdpolitujuan <>'IGD' order by tglsep desc limit 1") + "',"
-                        + "'tpprj','sipo','" + Sequel.cariIsi("select now()") + "'", "No. Rawat");
-            } else {
-                Sequel.queryu("delete from reg_konsul_internal where no_rawat='" + kdboking.getText() + "'");
+        String poliLama = tbBoking.getValueAt(baris, 12).toString();
+        String tanggalLama = tbBoking.getValueAt(baris, 4).toString();
+        String poliBaru = KdPoli.getText();
+        String tanggalBaru = Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "");
+        boolean poliBerubah = !poliLama.equals(poliBaru);
+        boolean tanggalBerubah = !tanggalLama.equals(tanggalBaru);
+        cekKuota();
+
+        //Jika poli atau tanggal berubah, nomor registrasi harus dihitung ulang.
+        if (poliBerubah || tanggalBerubah) {
+            if ((kdpnj.getText().equals("B01") || kdpnj.getText().equals("A03")) && kuotaJkn > 0 && jumlahJkn >= kuotaJkn) {
+                JOptionPane.showMessageDialog(rootPane, "Jumlah kunjungan pasien BPJS yang mendaftar di poliklinik " + NmPoli.getText() + " pada tgl. " + Valid.SetTglINDONESIA(tanggalBaru)
+                        + "\nsudah terpenuhi sesuai kuota layanan terjadwal.\nSilahkan informasikan atau jadwalkan ke hari lain.");
+                return;
+            }
+
+            if (!(kdpnj.getText().equals("B01") || kdpnj.getText().equals("A03")) && kuotaNonJkn > 0 && jumlahNonJkn >= kuotaNonJkn) {
+                JOptionPane.showMessageDialog(rootPane, "Jumlah kunjungan pasien Non JKN yang mendaftar di poliklinik " + NmPoli.getText() + " pada tgl. " + Valid.SetTglINDONESIA(tanggalBaru)
+                        + "\nsudah terpenuhi sesuai kuota layanan terjadwal.\nSilahkan informasikan atau jadwalkan ke hari lain.");
+                return;
+            }
+
+            //Ambil nomor terbaru terlebih dahulu.
+            isNomer();
+            int duplikatBooking = Sequel.cariInteger("select count(1) from booking_registrasi where kd_poli='" + poliBaru + "' and tanggal_periksa='" + tanggalBaru + "' "
+                    + "and no_reg='" + NoReg.getText() + "' and kd_booking<>'" + kdboking.getText() + "'");
+            if (duplikatBooking > 0) {
+                JOptionPane.showMessageDialog(rootPane, "No. Reg. " + NoReg.getText() + " untuk poli " + NmPoli.getText() + " pada tgl. " + Valid.SetTglINDONESIA(tanggalBaru)
+                        + " sudah digunakan.\nSilahkan klik tombol ganti sekali lagi.");
+                return;
+            }
+
+            Sequel.mengedit("booking_registrasi",
+                    "kd_booking='" + kdboking.getText() + "'",
+                    "tanggal_periksa='" + tanggalBaru + "', "
+                    + "kd_dokter='" + KdDokter.getText() + "', "
+                    + "kd_poli='" + poliBaru + "', "
+                    + "no_reg='" + NoReg.getText() + "', "
+                    + "kd_pj='" + kdpnj.getText() + "', "
+                    + "data_dari='" + verif_data.getSelectedItem() + "', "
+                    + "no_telp_pemesan='" + no_telp.getText() + "', "
+                    + "antrian_khusus='"
+                    + cmbAntrianKhusus.getSelectedItem() + "'"
+            );
+            
+            Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
+            if (kdpnj.getText().equals("B01") || kdpnj.getText().equals("A03")) {
+                prosesKonsulBooking();
+            }
+        } else {
+            Sequel.mengedit("booking_registrasi",
+                    "kd_booking='" + kdboking.getText() + "'",
+                    "tanggal_periksa='" + tanggalBaru + "', "
+                    + "kd_dokter='" + KdDokter.getText() + "', "
+                    + "kd_poli='" + poliBaru + "', "
+                    + "kd_pj='" + kdpnj.getText() + "', "
+                    + "data_dari='" + verif_data.getSelectedItem() + "', "
+                    + "no_telp_pemesan='" + no_telp.getText() + "', "
+                    + "antrian_khusus='"
+                    + cmbAntrianKhusus.getSelectedItem() + "'"
+            );
+            
+            Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
+            if (kdpnj.getText().equals("B01") || kdpnj.getText().equals("A03")) {
+                prosesKonsulBooking();
             }
         }
     }
@@ -6992,9 +7033,34 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
     
     private void cekKuota() {
-        String nmHari = "", kuotaJkn = "", kuotaNonJkn = "";
-        nmHari = Sequel.hariINDONESIA(Sequel.cariIsi("SELECT DAYNAME(CURDATE())")).toUpperCase();
-        kuotaJkn = Sequel.cariIsi("SELECT kuota_jkn from jadwal where kd_poli='" + KdPoli.getText() + "' and hari_kerja='" + nmHari + "'");
-        kuotaNonJkn = Sequel.cariIsi("SELECT kuota_nonjkn from jadwal where kd_poli='" + KdPoli.getText() + "' and hari_kerja='" + nmHari + "'");
+        nmHari = "";
+        kuotaJkn = 0;
+        kuotaNonJkn = 0;
+        jumlahJkn = 0;
+        jumlahNonJkn = 0;
+
+        nmHari = Sequel.hariINDONESIA("SELECT DAYNAME('" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "')").toUpperCase();
+        kuotaJkn = Sequel.cariInteger("SELECT kuota_jkn from jadwal where kd_poli='" + KdPoli.getText() + "' and hari_kerja='" + nmHari + "'");
+        kuotaNonJkn = Sequel.cariInteger("SELECT kuota_nonjkn from jadwal where kd_poli='" + KdPoli.getText() + "' and hari_kerja='" + nmHari + "'");
+        jumlahJkn = Sequel.cariInteger("select count(1) from booking_registrasi where kd_poli='" + KdPoli.getText() + "' "
+                + "and tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "' and kd_pj in ('B01','A03')");
+        jumlahNonJkn = Sequel.cariInteger("select count(1) from booking_registrasi where kd_poli='" + KdPoli.getText() + "' "
+                + "and tanggal_periksa='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "' and kd_pj not in ('B01','A03')");
+    }
+
+    private void prosesKonsulBooking() {
+        if (Sequel.cariInteger("select count(-1) from booking_registrasi where kd_booking='" + kdboking.getText() + "' and no_rawat='-'") > 0) {
+            if (cmbKonsul.getSelectedIndex() == 0) {
+                noSepTerakhir = Sequel.cariIsi("select if(no_sep is null,'-',no_sep) from bridging_sep where "
+                        + "nomr ='" + TNoRM.getText() + "' and jnspelayanan ='2' and kdpolitujuan <>'IGD' order by tglsep desc limit 1");
+
+                Sequel.menyimpanIgnore("reg_konsul_internal", "'" + kdboking.getText() + "','" + noSepTerakhir + "',"
+                        + "'" + Sequel.cariIsi("select if(tglsep is null,'0000-00-00',tglsep) from bridging_sep where "
+                                + "nomr ='" + TNoRM.getText() + "' and jnspelayanan ='2' and kdpolitujuan <>'IGD' order by tglsep desc limit 1") + "',"
+                        + "'tpprj','sipo','" + Sequel.cariIsi("select now()") + "'", "No. Rawat");
+            } else {
+                Sequel.queryu("delete from reg_konsul_internal where no_rawat='" + kdboking.getText() + "'");
+            }
+        }
     }
 }

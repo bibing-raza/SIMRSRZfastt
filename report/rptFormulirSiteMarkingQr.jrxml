@@ -28,6 +28,7 @@
 	<parameter name="nmDokter" class="java.lang.String"/>
 	<parameter name="kalimatTte" class="java.lang.String"/>
 	<parameter name="lokasiQr" class="java.io.InputStream"/>
+	<parameter name="gambarTtd" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT now() tanggal]]>
 	</queryString>
@@ -278,6 +279,10 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{kalimatTte}]]></textFieldExpression>
 			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement positionType="Float" x="59" y="683" width="80" height="76" uuid="b97ffc7d-0a6e-47d6-a3bb-e564e104a8af"/>
+				<imageExpression><![CDATA[$P{gambarTtd}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageFooter>
