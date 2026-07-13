@@ -2292,7 +2292,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
             TabRekamMedis.setSelectedIndex(1);
         } else if (kdkamar.equals("MAT") || kdkamar.equals("THT") || kdkamar.equals("132") || kdkamar.equals("BDM") || kdkamar.equals("BDO")
                 || kdkamar.equals("BED") || kdkamar.equals("152") || kdkamar.equals("ORT")) {
-            TabRekamMedis.setSelectedIndex(2);
+            TabRekamMedis.setSelectedIndex(3);
         }
     }
 
