@@ -55,7 +55,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String nipDrBedah = "", nipDrAnes = "", nipPenata = "", urutData = "", urutanKe = "", wktSimpan = "",
             total = "", partial = "", gagal = "", ett = "", lma = "", fima = "", tiva = "", spinal = "", epidural = "", cse = "", infil = "", blok = "", ga = "",
-            induksi = "", pasienSiap = "", insisi = "", operasi = "", ekstub = "", pasienKlr = "";
+            induksi = "", pasienSiap = "", insisi = "", operasi = "", ekstub = "", pasienKlr = "", jamAsa = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -268,7 +268,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
         
         tabMode1 = new DefaultTableModel(null, new String[]{
             "no_rawat", "urutan", "Status Fisik", "Servo", "Iso", "Halo", "Eth", "N2O", "O2", "Infus", "TD (Sistole)", "TD (Diastole)", "Nadi",
-            "waktu_data_catatan", "waktu_simpan"}) {
+            "waktu_data_catatan", "waktu_simpan", "Jam", "jam_data"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -278,7 +278,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
         tbStatus.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbStatus.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 17; i++) {
             TableColumn column = tbStatus.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
@@ -312,6 +312,11 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 14) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 15) {
+                column.setPreferredWidth(65);
+            } else if (i == 16) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -617,6 +622,10 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
         jLabel123 = new widget.Label();
         TnmPenata = new widget.TextBox();
         BtnPenata = new widget.Button();
+        cmbJam8 = new widget.ComboBox();
+        cmbMnt8 = new widget.ComboBox();
+        cmbDtk8 = new widget.ComboBox();
+        jLabel283 = new widget.Label();
         PanelInput1 = new javax.swing.JPanel();
         Scroll = new widget.ScrollPane();
         tbCatatan = new widget.Table();
@@ -685,7 +694,6 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -704,7 +712,6 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -723,7 +730,6 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -737,7 +743,6 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -768,7 +773,6 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -787,7 +791,6 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -861,7 +864,6 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 
         BtnDrBedah.setForeground(new java.awt.Color(0, 0, 0));
         BtnDrBedah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDrBedah.setMnemonic('1');
         BtnDrBedah.setToolTipText("Alt+1");
         BtnDrBedah.setName("BtnDrBedah"); // NOI18N
         BtnDrBedah.addActionListener(new java.awt.event.ActionListener() {
@@ -874,7 +876,6 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 
         BtnDokterAnes.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokterAnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokterAnes.setMnemonic('1');
         BtnDokterAnes.setToolTipText("Alt+1");
         BtnDokterAnes.setName("BtnDokterAnes"); // NOI18N
         BtnDokterAnes.addActionListener(new java.awt.event.ActionListener() {
@@ -1552,7 +1553,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
         jLabel103.setText("TD (Sistole) :");
         jLabel103.setName("jLabel103"); // NOI18N
         FormInput.add(jLabel103);
-        jLabel103.setBounds(170, 692, 80, 23);
+        jLabel103.setBounds(145, 692, 80, 23);
 
         Tsistol.setForeground(new java.awt.Color(0, 0, 0));
         Tsistol.setName("Tsistol"); // NOI18N
@@ -1562,13 +1563,13 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tsistol);
-        Tsistol.setBounds(255, 692, 60, 23);
+        Tsistol.setBounds(230, 692, 60, 23);
 
         jLabel104.setForeground(new java.awt.Color(0, 0, 0));
         jLabel104.setText("TD (Diastole) :");
         jLabel104.setName("jLabel104"); // NOI18N
         FormInput.add(jLabel104);
-        jLabel104.setBounds(315, 692, 80, 23);
+        jLabel104.setBounds(290, 692, 80, 23);
 
         Tdistol.setForeground(new java.awt.Color(0, 0, 0));
         Tdistol.setName("Tdistol"); // NOI18N
@@ -1578,14 +1579,14 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tdistol);
-        Tdistol.setBounds(400, 692, 60, 23);
+        Tdistol.setBounds(375, 692, 60, 23);
 
         jLabel105.setForeground(new java.awt.Color(0, 0, 0));
         jLabel105.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel105.setText("mmHg      Nadi :");
         jLabel105.setName("jLabel105"); // NOI18N
         FormInput.add(jLabel105);
-        jLabel105.setBounds(465, 692, 80, 23);
+        jLabel105.setBounds(440, 692, 80, 23);
 
         Tnadi.setForeground(new java.awt.Color(0, 0, 0));
         Tnadi.setName("Tnadi"); // NOI18N
@@ -1595,14 +1596,14 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tnadi);
-        Tnadi.setBounds(545, 692, 60, 23);
+        Tnadi.setBounds(520, 692, 60, 23);
 
         jLabel106.setForeground(new java.awt.Color(0, 0, 0));
         jLabel106.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel106.setText("x/menit");
+        jLabel106.setText("x/menit     Jam :");
         jLabel106.setName("jLabel106"); // NOI18N
         FormInput.add(jLabel106);
-        jLabel106.setBounds(610, 692, 50, 23);
+        jLabel106.setBounds(585, 692, 80, 23);
 
         Scroll2.setName("Scroll2"); // NOI18N
         Scroll2.setOpaque(true);
@@ -2274,7 +2275,6 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 
         BtnPenata.setForeground(new java.awt.Color(0, 0, 0));
         BtnPenata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPenata.setMnemonic('1');
         BtnPenata.setToolTipText("Alt+1");
         BtnPenata.setName("BtnPenata"); // NOI18N
         BtnPenata.addActionListener(new java.awt.event.ActionListener() {
@@ -2284,6 +2284,46 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
         });
         FormInput.add(BtnPenata);
         BtnPenata.setBounds(760, 1152, 28, 23);
+
+        cmbJam8.setForeground(new java.awt.Color(0, 0, 0));
+        cmbJam8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cmbJam8.setName("cmbJam8"); // NOI18N
+        cmbJam8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbJam8MouseReleased(evt);
+            }
+        });
+        FormInput.add(cmbJam8);
+        cmbJam8.setBounds(668, 692, 45, 23);
+
+        cmbMnt8.setForeground(new java.awt.Color(0, 0, 0));
+        cmbMnt8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbMnt8.setName("cmbMnt8"); // NOI18N
+        cmbMnt8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbMnt8MouseReleased(evt);
+            }
+        });
+        FormInput.add(cmbMnt8);
+        cmbMnt8.setBounds(720, 692, 45, 23);
+
+        cmbDtk8.setForeground(new java.awt.Color(0, 0, 0));
+        cmbDtk8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbDtk8.setName("cmbDtk8"); // NOI18N
+        cmbDtk8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbDtk8MouseReleased(evt);
+            }
+        });
+        FormInput.add(cmbDtk8);
+        cmbDtk8.setBounds(771, 692, 45, 23);
+
+        jLabel283.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel283.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel283.setText("Wita");
+        jLabel283.setName("jLabel283"); // NOI18N
+        FormInput.add(jLabel283);
+        jLabel283.setBounds(822, 692, 50, 23);
 
         Scroll1.setViewportView(FormInput);
 
@@ -2331,7 +2371,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-06-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2346,7 +2386,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
         panelGlass12.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-06-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2390,7 +2430,6 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -2408,7 +2447,6 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -2475,7 +2513,8 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
                                 + tbStatus.getValueAt(i, 11).toString() + "','"
                                 + tbStatus.getValueAt(i, 12).toString() + "','"                                
                                 + wktSimpan + "','"
-                                + tbStatus.getValueAt(i, 14).toString() + "'", "Data Detail Catatan Sedasi/Anestesi");
+                                + tbStatus.getValueAt(i, 14).toString() + "','"
+                                + tbStatus.getValueAt(i, 16).toString() + "'", "Data Detail Catatan Sedasi/Anestesi");
                     }
                 }
 
@@ -2533,24 +2572,25 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
                         }) == true) {
 
                     Sequel.queryu("delete from detail_catatan_sedasi_anestesi where waktu_data_catatan='" + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 61).toString() + "'");
-                    if (tbStatus.getRowCount() != 0) {                        
+                    if (tbStatus.getRowCount() != 0) {
                         for (i = 0; i < tbStatus.getRowCount(); i++) {
                             Sequel.menyimpanIgnore("detail_catatan_sedasi_anestesi",
-                                "'" + tbStatus.getValueAt(i, 0).toString() + "','"
-                                + tbStatus.getValueAt(i, 1).toString() + "','"
-                                + tbStatus.getValueAt(i, 2).toString() + "','"
-                                + tbStatus.getValueAt(i, 3).toString() + "','"
-                                + tbStatus.getValueAt(i, 4).toString() + "','"
-                                + tbStatus.getValueAt(i, 5).toString() + "','"
-                                + tbStatus.getValueAt(i, 6).toString() + "','"
-                                + tbStatus.getValueAt(i, 7).toString() + "','"
-                                + tbStatus.getValueAt(i, 8).toString() + "','"
-                                + tbStatus.getValueAt(i, 9).toString() + "','"
-                                + tbStatus.getValueAt(i, 10).toString() + "','"
-                                + tbStatus.getValueAt(i, 11).toString() + "','"
-                                + tbStatus.getValueAt(i, 12).toString() + "','"                                
-                                + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 61).toString() + "','"
-                                + tbStatus.getValueAt(i, 14).toString() + "'", "Data Detail Catatan Sedasi/Anestesi");
+                                    "'" + tbStatus.getValueAt(i, 0).toString() + "','"
+                                    + tbStatus.getValueAt(i, 1).toString() + "','"
+                                    + tbStatus.getValueAt(i, 2).toString() + "','"
+                                    + tbStatus.getValueAt(i, 3).toString() + "','"
+                                    + tbStatus.getValueAt(i, 4).toString() + "','"
+                                    + tbStatus.getValueAt(i, 5).toString() + "','"
+                                    + tbStatus.getValueAt(i, 6).toString() + "','"
+                                    + tbStatus.getValueAt(i, 7).toString() + "','"
+                                    + tbStatus.getValueAt(i, 8).toString() + "','"
+                                    + tbStatus.getValueAt(i, 9).toString() + "','"
+                                    + tbStatus.getValueAt(i, 10).toString() + "','"
+                                    + tbStatus.getValueAt(i, 11).toString() + "','"
+                                    + tbStatus.getValueAt(i, 12).toString() + "','"
+                                    + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 61).toString() + "','"
+                                    + tbStatus.getValueAt(i, 14).toString() + "','"
+                                    + tbStatus.getValueAt(i, 16).toString() + "'", "Data Detail Catatan Sedasi/Anestesi");
                         }
                     }
 
@@ -2950,14 +2990,11 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
                     if (Sequel.cariInteger("select count(-1) from detail_catatan_sedasi_anestesi where "
                             + "waktu_data_catatan ='" + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 61).toString() + "'") > 0) {
                         Valid.MyReport("rptCatatanSedasiAnestesi.jasper", "report", "::[ Catatan Sedasi / Anestesi ]::",
-                                "select * from detail_catatan_sedasi_anestesi where "
+                                "select *, time_format(jam_data,'%H:%i') jam from detail_catatan_sedasi_anestesi where "
                                 + "waktu_data_catatan ='" + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 61).toString() + "' order by urutan", param);
                     } else {
-                        Valid.MyReport("rptCatatanSedasiAnestesi.jasper", "report", "::[ Catatan Sedasi / Anestesi ]::",
-                                "SELECT '-' no_rawat, '-' urutan, '-' status_fisik_asa, '-' servo, '-' iso , '-' halo, '-' eth, '-' n2o, '-' o2, '-' infus, "
-                                + "'-' td_sistol, '-' td_diastol, '-' nadi, '-' waktu_data_catatan, '-' waktu_simpan FROM dual "
-                                + "WHERE NOT EXISTS (SELECT 1 FROM detail_catatan_sedasi_anestesi WHERE "
-                                + "waktu_data_catatan='" + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 61).toString() + "')", param);
+                        Valid.MyReport("rptCatatanSedasiAnestesiKosong.jasper", "report", "::[ Catatan Sedasi / Anestesi ]::",
+                                "SELECT now() tanggal", param);
                     }
 
                     tampil();
@@ -2988,14 +3025,11 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
                 if (Sequel.cariInteger("select count(-1) from detail_catatan_sedasi_anestesi where "
                         + "waktu_data_catatan ='" + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 61).toString() + "'") > 0) {
                     Valid.MyReport("rptCatatanSedasiAnestesiQr.jasper", "report", "::[ Catatan Sedasi / Anestesi ]::",
-                            "select * from detail_catatan_sedasi_anestesi where "
+                            "select *, time_format(jam_data,'%H:%i') jam from detail_catatan_sedasi_anestesi where "
                             + "waktu_data_catatan ='" + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 61).toString() + "' order by urutan", param);
                 } else {
-                    Valid.MyReport("rptCatatanSedasiAnestesiQr.jasper", "report", "::[ Catatan Sedasi / Anestesi ]::",
-                            "SELECT '-' no_rawat, '-' urutan, '-' status_fisik_asa, '-' servo, '-' iso , '-' halo, '-' eth, '-' n2o, '-' o2, '-' infus, "
-                            + "'-' td_sistol, '-' td_diastol, '-' nadi, '-' waktu_data_catatan, '-' waktu_simpan FROM dual "
-                            + "WHERE NOT EXISTS (SELECT 1 FROM detail_catatan_sedasi_anestesi WHERE "
-                            + "waktu_data_catatan='" + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 61).toString() + "')", param);
+                    Valid.MyReport("rptCatatanSedasiAnestesiKosongQr.jasper", "report", "::[ Catatan Sedasi / Anestesi ]::",
+                            "SELECT now() tanggal", param);
                 }
 
                 emptTeks();
@@ -3005,14 +3039,11 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
                 if (Sequel.cariInteger("select count(-1) from detail_catatan_sedasi_anestesi where "
                         + "waktu_data_catatan ='" + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 61).toString() + "'") > 0) {
                     Valid.MyReport("rptCatatanSedasiAnestesi.jasper", "report", "::[ Catatan Sedasi / Anestesi ]::",
-                            "select * from detail_catatan_sedasi_anestesi where "
+                            "select *, time_format(jam_data,'%H:%i') jam from detail_catatan_sedasi_anestesi where "
                             + "waktu_data_catatan ='" + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 61).toString() + "' order by urutan", param);
                 } else {
-                    Valid.MyReport("rptCatatanSedasiAnestesi.jasper", "report", "::[ Catatan Sedasi / Anestesi ]::",
-                            "SELECT '-' no_rawat, '-' urutan, '-' status_fisik_asa, '-' servo, '-' iso , '-' halo, '-' eth, '-' n2o, '-' o2, '-' infus, "
-                            + "'-' td_sistol, '-' td_diastol, '-' nadi, '-' waktu_data_catatan, '-' waktu_simpan FROM dual "
-                            + "WHERE NOT EXISTS (SELECT 1 FROM detail_catatan_sedasi_anestesi WHERE "
-                            + "waktu_data_catatan='" + tbCatatan.getValueAt(tbCatatan.getSelectedRow(), 61).toString() + "')", param);
+                    Valid.MyReport("rptCatatanSedasiAnestesiKosong.jasper", "report", "::[ Catatan Sedasi / Anestesi ]::",
+                            "SELECT now() tanggal", param);
                 }
                 
                 tampil();
@@ -3210,6 +3241,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else {
+            jamAsa = "";
             urutData = "1";
             if (tabMode1.getRowCount() > 0) {
                 int max = 0;
@@ -3221,10 +3253,16 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
                 }
                 urutData = String.valueOf(max + 1);
             }
+            
+            if (cmbJam8.getSelectedIndex() == 0 && cmbMnt8.getSelectedIndex() == 0 && cmbDtk8.getSelectedIndex() == 0) {
+                jamAsa = "";
+            } else {
+                jamAsa = cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem();
+            }
 
             tabMode1.addRow(new String[]{TNoRw.getText(), urutData, cmbStatus.getSelectedItem().toString(), Tservo.getText(), Tiso.getText(), Thalo.getText(),
-                Teth.getText(), Tn2o.getText(), To2.getText(), Tinfus.getText(), Tsistol.getText(), Tdistol.getText(), Tnadi.getText(), 
-                "0000-00-00 00:00:00", Sequel.cariIsi("select now()")});
+                Teth.getText(), Tn2o.getText(), To2.getText(), Tinfus.getText(), Tsistol.getText(), Tdistol.getText(), Tnadi.getText(), "0000-00-00 00:00:00",
+                Sequel.cariIsi("select now()"), jamAsa, cmbJam8.getSelectedItem().toString() + ":" + cmbMnt8.getSelectedItem().toString() + ":" + cmbDtk8.getSelectedItem().toString()});
             BtnBaruSttsActionPerformed(null);
         }
     }//GEN-LAST:event_BtnTambahSttsActionPerformed
@@ -3252,6 +3290,13 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
                 if (TNoRw.getText().equals("")) {
                     Valid.textKosong(TNoRw, "Nama Pasien");
                 } else {
+                    jamAsa = "";
+                    if (cmbJam8.getSelectedIndex() == 0 && cmbMnt8.getSelectedIndex() == 0 && cmbDtk8.getSelectedIndex() == 0) {
+                        jamAsa = "";
+                    } else {
+                        jamAsa = cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem();
+                    }
+                    
                     int row = tbStatus.convertRowIndexToModel(tbStatus.getSelectedRow());
                     tabMode1.setValueAt(TNoRw.getText(), row, 0);
                     tabMode1.setValueAt(urutanKe, row, 1);
@@ -3268,6 +3313,8 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
                     tabMode1.setValueAt(Tnadi.getText(), row, 12);
                     tabMode1.setValueAt("0000-00-00 00:00:00", row, 13);
                     tabMode1.setValueAt(Sequel.cariIsi("select now()"), row, 14);
+                    tabMode1.setValueAt(jamAsa, row, 15);
+                    tabMode1.setValueAt(cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem(), row, 16);
 
                     BtnBaruSttsActionPerformed(null);
                 }
@@ -3607,7 +3654,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 
     private void TnadiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnadiKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnTambahStts.requestFocus();
+            cmbJam8.requestFocus();
         }
     }//GEN-LAST:event_TnadiKeyPressed
 
@@ -3682,6 +3729,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
         Tsistol.setText("");
         Tdistol.setText("");
         Tnadi.setText("");
+        
         if (cmbStatus.getSelectedIndex() != 0) {
             Tservo.setEnabled(true);
             Tiso.setEnabled(true);
@@ -3693,6 +3741,12 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
             Tsistol.setEnabled(true);
             Tdistol.setEnabled(true);
             Tnadi.setEnabled(true);
+            cmbJam8.setEnabled(true);
+            cmbMnt8.setEnabled(true);
+            cmbDtk8.setEnabled(true);
+            cmbJam8.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+            cmbMnt8.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+            cmbDtk8.setSelectedIndex(0);
             BtnBaruStts.setEnabled(true);
             BtnTambahStts.setEnabled(true);
             BtnHapusStts.setEnabled(true);
@@ -3709,12 +3763,30 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
             Tsistol.setEnabled(false);
             Tdistol.setEnabled(false);
             Tnadi.setEnabled(false);
+            cmbJam8.setEnabled(false);
+            cmbMnt8.setEnabled(false);
+            cmbDtk8.setEnabled(false);
+            cmbJam8.setSelectedIndex(0);
+            cmbMnt8.setSelectedIndex(0);
+            cmbDtk8.setSelectedIndex(0);
             BtnBaruStts.setEnabled(false);
             BtnTambahStts.setEnabled(false);
             BtnHapusStts.setEnabled(false);
             BtnGantiStts.setEnabled(false);
         }
     }//GEN-LAST:event_cmbStatusActionPerformed
+
+    private void cmbJam8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJam8MouseReleased
+        AutoCompleteDecorator.decorate(cmbJam8);
+    }//GEN-LAST:event_cmbJam8MouseReleased
+
+    private void cmbMnt8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMnt8MouseReleased
+        AutoCompleteDecorator.decorate(cmbMnt8);
+    }//GEN-LAST:event_cmbMnt8MouseReleased
+
+    private void cmbDtk8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtk8MouseReleased
+        AutoCompleteDecorator.decorate(cmbDtk8);
+    }//GEN-LAST:event_cmbDtk8MouseReleased
 
     /**
     * @param args the command line arguments
@@ -3826,6 +3898,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
     private widget.ComboBox cmbDtk5;
     private widget.ComboBox cmbDtk6;
     private widget.ComboBox cmbDtk7;
+    private widget.ComboBox cmbDtk8;
     private widget.ComboBox cmbJam1;
     private widget.ComboBox cmbJam2;
     private widget.ComboBox cmbJam3;
@@ -3833,6 +3906,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
     private widget.ComboBox cmbJam5;
     private widget.ComboBox cmbJam6;
     private widget.ComboBox cmbJam7;
+    private widget.ComboBox cmbJam8;
     private widget.ComboBox cmbMnt1;
     private widget.ComboBox cmbMnt2;
     private widget.ComboBox cmbMnt3;
@@ -3840,6 +3914,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
     private widget.ComboBox cmbMnt5;
     private widget.ComboBox cmbMnt6;
     private widget.ComboBox cmbMnt7;
+    private widget.ComboBox cmbMnt8;
     private widget.ComboBox cmbPilihCetak;
     private widget.ComboBox cmbStatus;
     private widget.InternalFrame internalFrame1;
@@ -3877,6 +3952,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
     private widget.Label jLabel280;
     private widget.Label jLabel281;
     private widget.Label jLabel282;
+    private widget.Label jLabel283;
     private widget.Label jLabel6;
     private widget.Label jLabel66;
     private widget.Label jLabel67;
@@ -4262,6 +4338,9 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
         Tsistol.setText("");
         Tdistol.setText("");
         Tnadi.setText("");
+        cmbJam8.setSelectedIndex(0);
+        cmbMnt8.setSelectedIndex(0);
+        cmbDtk8.setSelectedIndex(0);
     }
     
     private void urutkanData() {
@@ -4623,12 +4702,19 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
     }
     
     private void tampilStatus(String wktsimpan) {
+        jamAsa = "";
         Valid.tabelKosong(tabMode1);
         try {
             ps1 = koneksi.prepareStatement("select * from detail_catatan_sedasi_anestesi where waktu_data_catatan ='" + wktsimpan + "' order by urutan");
             try {
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
+                    if (rs1.getString("jam_data").equals("00:00:00")) {
+                        jamAsa = "";
+                    } else {
+                        jamAsa = rs1.getString("jam_data");
+                    }
+                    
                     tabMode1.addRow(new String[]{
                         rs1.getString("no_rawat"),
                         rs1.getString("urutan"),
@@ -4644,7 +4730,9 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
                         rs1.getString("td_diastol"),
                         rs1.getString("nadi"),
                         rs1.getString("waktu_data_catatan"),
-                        rs1.getString("waktu_simpan")
+                        rs1.getString("waktu_simpan"),
+                        jamAsa,
+                        rs1.getString("jam_data")
                     });
                 }
             } catch (Exception e) {

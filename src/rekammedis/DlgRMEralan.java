@@ -110,6 +110,10 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnResepAntibiotikPonek = new widget.ButtonBig();
         BtnPemberianInformasiEdukasiPonek = new widget.ButtonBig();
         BtnHasilPemeriksaanPenunjangPonek = new widget.ButtonBig();
+        scrollInput3 = new widget.ScrollPane();
+        FormInput3 = new widget.PanelBiasa();
+        BtnMaskepNyeriAkut = new widget.ButtonBig();
+        BtnMaskepPerfusiPerifer = new widget.ButtonBig();
         scrollInput1 = new widget.ScrollPane();
         FormInput1 = new widget.PanelBiasa();
         BtnEvaluasiPraAnestesi = new widget.ButtonBig();
@@ -134,7 +138,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
 
-        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
+        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-07-2026" }));
         DTPtanggal.setDisplayFormat("dd-MM-yyyy");
         DTPtanggal.setName("DTPtanggal"); // NOI18N
         DTPtanggal.setOpaque(false);
@@ -736,6 +740,45 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         TabRekamMedis.addTab("Ponek - VK Bersalin", scrollInput2);
 
+        scrollInput3.setName("scrollInput3"); // NOI18N
+        scrollInput3.setPreferredSize(new java.awt.Dimension(102, 557));
+
+        FormInput3.setBackground(new java.awt.Color(255, 255, 255));
+        FormInput3.setBorder(null);
+        FormInput3.setName("FormInput3"); // NOI18N
+        FormInput3.setPreferredSize(new java.awt.Dimension(870, 508));
+        FormInput3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 25));
+
+        BtnMaskepNyeriAkut.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMaskepNyeriAkut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
+        BtnMaskepNyeriAkut.setText("Nyeri Akut");
+        BtnMaskepNyeriAkut.setIconTextGap(0);
+        BtnMaskepNyeriAkut.setName("BtnMaskepNyeriAkut"); // NOI18N
+        BtnMaskepNyeriAkut.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMaskepNyeriAkut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMaskepNyeriAkutActionPerformed(evt);
+            }
+        });
+        FormInput3.add(BtnMaskepNyeriAkut);
+
+        BtnMaskepPerfusiPerifer.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMaskepPerfusiPerifer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
+        BtnMaskepPerfusiPerifer.setText("Perfusi Perifer Tidak Efektif");
+        BtnMaskepPerfusiPerifer.setIconTextGap(0);
+        BtnMaskepPerfusiPerifer.setName("BtnMaskepPerfusiPerifer"); // NOI18N
+        BtnMaskepPerfusiPerifer.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMaskepPerfusiPerifer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMaskepPerfusiPeriferActionPerformed(evt);
+            }
+        });
+        FormInput3.add(BtnMaskepPerfusiPerifer);
+
+        scrollInput3.setViewportView(FormInput3);
+
+        TabRekamMedis.addTab("(Diagnosis) Masalah Keperawatan", scrollInput3);
+
         scrollInput1.setName("scrollInput1"); // NOI18N
         scrollInput1.setPreferredSize(new java.awt.Dimension(102, 557));
 
@@ -993,7 +1036,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnRefres.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnRefres.setMnemonic('R');
         BtnRefres.setText("Refresh Rekam Medis");
         BtnRefres.setToolTipText("Alt+R");
         BtnRefres.setName("BtnRefres"); // NOI18N
@@ -1007,7 +1049,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -2035,6 +2076,40 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnHasilPemeriksaanPenunjangPonekActionPerformed(null);
     }//GEN-LAST:event_BtnHasilPemeriksaanPenunjangIGDActionPerformed
 
+    private void BtnMaskepNyeriAkutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMaskepNyeriAkutActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEralan");
+            RMMasalahKeperawatanNyeriAkut form = new RMMasalahKeperawatanNyeriAkut(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText(), "Ralan");
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnMaskepNyeriAkutActionPerformed
+
+    private void BtnMaskepPerfusiPeriferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMaskepPerfusiPeriferActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEralan");
+            RMMasalahKeperawatanPerfusiPeriferTdkEfektif form = new RMMasalahKeperawatanPerfusiPeriferTdkEfektif(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText(), "Ralan");
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnMaskepPerfusiPeriferActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2079,6 +2154,8 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.ButtonBig BtnLaporanOperasi;
     private widget.ButtonBig BtnLembarObservasiIGD;
+    private widget.ButtonBig BtnMaskepNyeriAkut;
+    private widget.ButtonBig BtnMaskepPerfusiPerifer;
     private widget.ButtonBig BtnObservasiKala1;
     private widget.ButtonBig BtnPartograf;
     private widget.ButtonBig BtnPemberianInformasiEdukasiIBS;
@@ -2114,6 +2191,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput;
     private widget.PanelBiasa FormInput1;
     private widget.PanelBiasa FormInput2;
+    private widget.PanelBiasa FormInput3;
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRW;
@@ -2130,6 +2208,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.ScrollPane scrollInput;
     private widget.ScrollPane scrollInput1;
     private widget.ScrollPane scrollInput2;
+    private widget.ScrollPane scrollInput3;
     // End of variables declaration//GEN-END:variables
 
     private void isCek() {
@@ -2178,6 +2257,8 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnTransferTindakanIBS.setEnabled(akses.getcppt());
         BtnHasilPemeriksaanPenunjangPonek.setEnabled(akses.getcppt());
         BtnHasilPemeriksaanPenunjangIGD.setEnabled(akses.getcppt());
+        BtnMaskepNyeriAkut.setEnabled(akses.getcppt());
+        BtnMaskepPerfusiPerifer.setEnabled(akses.getcppt());
         //sementara
         BtnPartograf.setEnabled(akses.getadmin());
         

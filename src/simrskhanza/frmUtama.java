@@ -440,6 +440,8 @@ import rekammedis.RMFormulirSiteMarkingOperasi;
 import rekammedis.RMGeneralConsent;
 import rekammedis.RMInformasiTindakanPembiusan;
 import rekammedis.RMLaporanOperasi;
+import rekammedis.RMMasalahKeperawatanNyeriAkut;
+import rekammedis.RMMasalahKeperawatanPerfusiPeriferTdkEfektif;
 import rekammedis.RMObservasiKala1;
 import rekammedis.RMPartografPersalinan;
 import rekammedis.RMPersetujuanRawatInap;
@@ -1026,6 +1028,8 @@ public class frmUtama extends javax.swing.JFrame {
         BtnEvaluasiPraAnestesi = new widget.ButtonBig();
         BtnAsesmenPraSedasiKonsepIAR = new widget.ButtonBig();
         BtnCatatanSedasiAnestesi = new widget.ButtonBig();
+        BtnMasalahKeperawatanNyeriAkut = new widget.ButtonBig();
+        BtnMasalahKeperawatanPerfusiPeriferTdkEfektif = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6889,6 +6893,32 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(BtnCatatanSedasiAnestesi);
 
+        BtnMasalahKeperawatanNyeriAkut.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMasalahKeperawatanNyeriAkut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
+        BtnMasalahKeperawatanNyeriAkut.setText("MasKep Nyeri Akut");
+        BtnMasalahKeperawatanNyeriAkut.setIconTextGap(0);
+        BtnMasalahKeperawatanNyeriAkut.setName("BtnMasalahKeperawatanNyeriAkut"); // NOI18N
+        BtnMasalahKeperawatanNyeriAkut.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMasalahKeperawatanNyeriAkut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMasalahKeperawatanNyeriAkutActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(BtnMasalahKeperawatanNyeriAkut);
+
+        BtnMasalahKeperawatanPerfusiPeriferTdkEfektif.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMasalahKeperawatanPerfusiPeriferTdkEfektif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
+        BtnMasalahKeperawatanPerfusiPeriferTdkEfektif.setText("MasKep Perfusi Perifer Tidak Efektif");
+        BtnMasalahKeperawatanPerfusiPeriferTdkEfektif.setIconTextGap(0);
+        BtnMasalahKeperawatanPerfusiPeriferTdkEfektif.setName("BtnMasalahKeperawatanPerfusiPeriferTdkEfektif"); // NOI18N
+        BtnMasalahKeperawatanPerfusiPeriferTdkEfektif.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMasalahKeperawatanPerfusiPeriferTdkEfektif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMasalahKeperawatanPerfusiPeriferTdkEfektifActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(BtnMasalahKeperawatanPerfusiPeriferTdkEfektif);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6897,7 +6927,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06/07/2026" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/07/2026" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13607,6 +13637,32 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnPasienMeninggalActionPerformed
 
+    private void BtnMasalahKeperawatanNyeriAkutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMasalahKeperawatanNyeriAkutActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMMasalahKeperawatanNyeriAkut aplikasi = new RMMasalahKeperawatanNyeriAkut(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnMasalahKeperawatanNyeriAkutActionPerformed
+
+    private void BtnMasalahKeperawatanPerfusiPeriferTdkEfektifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMasalahKeperawatanPerfusiPeriferTdkEfektifActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMMasalahKeperawatanPerfusiPeriferTdkEfektif aplikasi = new RMMasalahKeperawatanPerfusiPeriferTdkEfektif(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnMasalahKeperawatanPerfusiPeriferTdkEfektifActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13634,6 +13690,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig BtnLaporanOperasi;
     private widget.ButtonBig BtnLog;
     private widget.Button BtnLogin;
+    private widget.ButtonBig BtnMasalahKeperawatanNyeriAkut;
+    private widget.ButtonBig BtnMasalahKeperawatanPerfusiPeriferTdkEfektif;
     private widget.ButtonBig BtnMenu;
     private widget.ButtonBig BtnPartograf;
     private widget.ButtonBig BtnPengembalianJaminanTransaksi;
@@ -14518,6 +14576,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getpemberian_obat() == true) {
                 Panelmenu.add(btnTransferSerahTerimaPasien);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt()== true) {
+                Panelmenu.add(BtnMasalahKeperawatanNyeriAkut);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt()== true) {
+                Panelmenu.add(BtnMasalahKeperawatanPerfusiPeriferTdkEfektif);
                 jmlmenu++;
             }
             
@@ -16767,6 +16835,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getcppt() == true) {
             Panelmenu.add(btnTransferPasienTindakan);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            Panelmenu.add(BtnMasalahKeperawatanNyeriAkut);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            Panelmenu.add(BtnMasalahKeperawatanPerfusiPeriferTdkEfektif);
             jmlmenu++;
         }
 
@@ -19060,6 +19138,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getcppt()== true) {
             if (btnTransferPasienTindakan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnTransferPasienTindakan);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (BtnMasalahKeperawatanNyeriAkut.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(BtnMasalahKeperawatanNyeriAkut);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (BtnMasalahKeperawatanPerfusiPeriferTdkEfektif.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(BtnMasalahKeperawatanPerfusiPeriferTdkEfektif);
                 jmlmenu++;
             }
         }
