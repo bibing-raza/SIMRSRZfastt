@@ -3732,6 +3732,10 @@ public final class sekuel {
                 rs = ps.executeQuery();
                 if (rs.next()) {
                     hari = rs.getString(1);
+                    if (hari == null) {
+                        hari = "";
+                    }
+                    
                     if (hari.equals("Monday")) {
                         hari = "Senin";
                     }

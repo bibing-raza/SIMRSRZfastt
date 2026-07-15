@@ -49,6 +49,7 @@ import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilPenunjangMedis;
 import laporan.DlgPenyakit;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -59,7 +60,8 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);    
+    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private frmUtama formUtama;
     private PreparedStatement ps, psx, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8;
     private ResultSet rs, rsx, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8;
     private int i = 0, x = 0, totskor = 0, pilihan = 0, 
@@ -2895,7 +2897,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowTemplate.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
@@ -5585,6 +5587,17 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             System.out.println("Notif : " + e);
+        }
+    }
+    
+    public void awalData() {
+        tampil();
+        
+        if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+        } else if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
+            sdh_terpasang.requestFocus();
         }
     }
 }

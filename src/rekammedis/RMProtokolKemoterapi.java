@@ -38,6 +38,7 @@ import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -54,6 +55,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String nipDokter = "", nipPerawat = "", user = "", dataProtokol = "", protokolKemoPasienLain = "", sttsRawat = "";
     private int i = 0, x = 0, pilihan = 0;
+    private frmUtama formUtama;
     
     /** Creates new form DlgSpesialis
      * @param parent
@@ -1589,14 +1591,14 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowRiwayat.dispose();
         WindowTemplate.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnEdit, TCari);
         }
@@ -2767,5 +2769,9 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                 Tbb.setText("0");
             }
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

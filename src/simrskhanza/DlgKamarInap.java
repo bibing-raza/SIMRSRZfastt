@@ -144,6 +144,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
     private DlgIKBBayi lahir = new DlgIKBBayi(null, false);
     private DlgPemberianObat beriobat = new DlgPemberianObat(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgKamarInap
@@ -6952,13 +6953,13 @@ public class DlgKamarInap extends javax.swing.JDialog {
         WindowDiagnosaAwal.dispose();
         WindowNamaPasangan.dispose();
         WindowAsesmenUlangRJ.dispose();
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             WindowInputKamar.dispose();
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
@@ -21788,5 +21789,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             System.out.println("E : " + e);
             tampil();
         }
+    }
+    
+    public void awalData() {
+        if ((!(TOut.getText().trim().length() > 0)) && (akses.getstatus() == true)) {
+            WindowInputKamar.setVisible(true);
+        }
+
+        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'igd' and nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuangan);
+        stts_bridging.setText(Sequel.cariIsi("select if(status_aktif='Ya','AKTIF','NON AKTIF') from setting_bridging where kd_bridging='2'"));
     }
 }

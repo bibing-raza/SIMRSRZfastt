@@ -37,6 +37,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import kepegawaian.DlgCariPetugas;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -55,6 +56,7 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
     private String nipBidan = "", pembukaan = "", trun_kpl = "", urutData = "", dataKala3A = "", dataKala3B = "", dataKala3C = "", urutanKe = "",
             bidan8 = "", teman8 = "", klg8 = "", suami8 = "", dukun8 = "", tdkAda8 = "", gawat9 = "", perdarahan9 = "", hdk9 = "", infeksi9 = "", peb9 = "",
             bidan9 = "", lainya9 = "", suami15 = "", teman15 = "", tdkAda15 = "", klg15 = "", dukun15 = "", sebutkan38a = "", sebutkan38b = "", jamKetuban = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -4520,12 +4522,12 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -8425,5 +8427,15 @@ public class RMPartografPersalinan extends javax.swing.JDialog {
             tampil();
             emptTeks();
         }
+    }
+    
+    public void awalData() {
+        if (Sequel.cariInteger("select count(-1) from partograf_persalinan where no_rawat='" + TNoRw.getText() + "'") > 0
+                || TNoRw.getText().trim().equals("")) {
+            TabPartograf.setSelectedIndex(2);
+        } else {
+            TabPartograf.setSelectedIndex(0);
+        }
+        tampil();
     }
 }

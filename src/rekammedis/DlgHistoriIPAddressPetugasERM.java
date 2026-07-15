@@ -24,6 +24,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -39,6 +40,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
     private ResultSet rs;
     private int i = 0, x = 0;
     private String gedung = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -322,12 +324,12 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
@@ -562,5 +564,9 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
             System.out.println("Notifikasi : " + e);
         }
         LCount.setText("" + tabMode.getRowCount());
+    }
+    
+    public void awalData() {
+        Sequel.cariIsiComboDB("SELECT dokumen_rekam_medis FROM histori_petugas_erm GROUP BY dokumen_rekam_medis ORDER BY dokumen_rekam_medis", cmbDokumen);
     }
 }

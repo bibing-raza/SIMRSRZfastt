@@ -37,6 +37,7 @@ import javax.swing.text.Document;
 import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -64,6 +65,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
             masaNeg = "", uk = "", lokasi = "", segar = "", layu = "", lainTali = "", normalPunggung = "", spina = "", gibus = "",
             lainPunggung = "", sex = "", kelainanUro = "", bak = "", bab = "", simetrisEks = "", asimetrisEks = "", reflekMoroPos = "",
             reflekMoroNeg = "", lainEks = "", edema = "", kelainanEks = "";
+    private frmUtama formUtama;
 
     /** Creates new form DlgRujuk
      * @param parent
@@ -4489,14 +4491,16 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowRiwayat.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnKeluarActionPerformed(null);
-        }else{Valid.pindah(evt,BtnEdit,TCari);}
+        } else {
+            Valid.pindah(evt, BtnEdit, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
@@ -9300,5 +9304,14 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         lainEks = "";
         edema = "";
         kelainanEks = "";
+    }
+    
+    public void awalData() {
+        tampil();
+        if (Sequel.cariInteger("select count(-1) from asesmen_medik_perinatologi where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+        } else if (Sequel.cariInteger("select count(-1) from asesmen_medik_perinatologi where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
+        }
     }
 }

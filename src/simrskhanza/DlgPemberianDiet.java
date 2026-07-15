@@ -46,6 +46,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
     private String jnsRawat = "", kdUnit = "", kdPoli = "", tglDietAwal = "", waktuAwal = "", 
             nama_unit = "", nmHari = "", nmHari1 = "", dataDiet = "",
             waktuSimpan = "", kemasan = "", waktuSimpanDiet = "";
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgPemberianInfus
@@ -1709,12 +1710,12 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
@@ -3555,6 +3556,24 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             nmdiet.setText(tbDiet.getValueAt(tbDiet.getSelectedRow(), 1).toString());
             jnsMakanan.setText(tbDiet.getValueAt(tbDiet.getSelectedRow(), 2).toString());
             waktuSimpanDiet = tbDiet.getValueAt(tbDiet.getSelectedRow(), 4).toString();
+        }
+    }
+
+    public void awalData() {
+        Sequel.cariIsiComboDB("select satuan from diet_master_pemberian group by satuan", cmbSatuan);
+
+        if (Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + TNoRw.getText() + "'").equals("Ranap")) {
+            TabDiet.setSelectedIndex(0);
+            tampil();
+            labelUnit.setText("Ruangan Inap/Bangsal : ");
+        } else if (Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + TNoRw.getText() + "'").equals("Ralan")) {
+            TabDiet.setSelectedIndex(1);
+            tampilRalan();
+            labelUnit.setText("Poliklinik/Instalasi : ");
+        } else {
+            TabDiet.setSelectedIndex(0);
+            tampil();
+            labelUnit.setText("Rg. Inap/Poli/Instl. : ");
         }
     }
 }

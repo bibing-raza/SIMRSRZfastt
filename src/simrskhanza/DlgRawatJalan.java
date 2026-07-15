@@ -119,12 +119,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     private DlgCariPoli poli;
     private DlgCariDokter dokter;
     private DlgCariPetugas petugas;
-    private DlgCariPerawatanRalan perawatan;
-    
-//    private DlgCariPoli poli = new DlgCariPoli(null, false);
-//    private DlgCariDokter dokter = new DlgCariDokter(null, false);
-//    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-//    private DlgCariPerawatanRalan perawatan = new DlgCariPerawatanRalan(null, false);
+    private DlgCariPerawatanRalan perawatan;    
     private DlgRujukanPoliInternal dlgrjk = new DlgRujukanPoliInternal(null, false);
     private BPJSCekNoKartu cekViaBPJSKartu = new BPJSCekNoKartu();
     private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
@@ -132,6 +127,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     private Date tglSekarang = new Date();
     private Date tglExpRujukan = new Date();
     private String now = dateFormat.format(tglSekarang);
+    private frmUtama formUtama;
 
     /* Creates new form DlgPerawatan
      *
@@ -3570,7 +3566,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3584,7 +3580,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3763,7 +3759,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel100.setBounds(0, 38, 100, 23);
 
         TtglTindakan.setEditable(false);
-        TtglTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2026" }));
+        TtglTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
         TtglTindakan.setDisplayFormat("dd-MM-yyyy");
         TtglTindakan.setName("TtglTindakan"); // NOI18N
         TtglTindakan.setOpaque(false);
@@ -3878,7 +3874,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2026" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4114,7 +4110,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4128,7 +4124,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6888,7 +6884,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         ChkKonsul.setBounds(113, 115, 102, 23);
 
         TtglKonsulUlang.setEditable(false);
-        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2026" }));
+        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
         TtglKonsulUlang.setDisplayFormat("dd-MM-yyyy");
         TtglKonsulUlang.setName("TtglKonsulUlang"); // NOI18N
         TtglKonsulUlang.setOpaque(false);
@@ -7152,7 +7148,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2026" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2026" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -8131,7 +8127,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();        
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowDataParu.dispose();
         WindowRiwayatKunjungan.dispose();        
         WindowRiwayatResep.dispose();
@@ -8143,7 +8139,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnPrint, TCari);
         }
@@ -24267,5 +24263,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             }
             LCount2.setText(Valid.SetAngka2(j));
         }
+    }
+    
+    public void awalData() {
+        Valid.tabelKosong(tabMode3);
+        Sequel.cariIsiComboDB("SELECT db.nama_brng FROM gudangbarang gd INNER JOIN databarang db on db.kode_brng=gd.kode_brng where "
+                + "gd.kd_bangsal in ('APT01','APT02') and db.nama_brng not like '(FR)%' and db.nama_brng not like '-%'group by gd.kode_brng "
+                + "order by db.nama_brng", cmbObat);
     }
 }

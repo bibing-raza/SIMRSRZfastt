@@ -35,6 +35,7 @@ import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -54,6 +55,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             total = 0, respirasi = 0, saturasi = 0, suplemen = 0, nilaitensi = 0, nilainadi = 0, kesadaran = 0, temperatur = 0;
     private double totParental = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);  
+    private frmUtama formUtama;
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -2302,14 +2304,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         emptTeks();
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowParental.dispose();
         WindowEWS.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
             WindowParental.dispose();
         } else {
             Valid.pindah(evt, BtnEdit, TCari);
@@ -4256,5 +4258,11 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                 TlabelTensi.setText("Tensi : 0 mmHg");
             }
         }
+    }
+    
+    public void awalData() {
+        tampil();
+        emptTeks();
+        tampilTotal24Jam(tglPANTAU1, tglPANTAU2, norawatPANTAU);
     }
 }

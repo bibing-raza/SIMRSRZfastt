@@ -36,6 +36,7 @@ import javax.swing.table.TableRowSorter;
 import kepegawaian.DlgCariPetugas;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -52,6 +53,7 @@ public class RMCatatanRuangPemulihan extends javax.swing.JDialog {
     private int i = 0, x = 0, pilihPetugas = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private frmUtama formUtama;
     private String nipDrAnes = "", nipPenata = "", nipPerawat = "", urutData = "", urutanKe = "", wktSimpan = "",
             sis15 = "", sis30 = "", sis45 = "", sis60 = "", sis90 = "", sis120 = "", sis150 = "",
             kesAld15 = "", kesAld30 = "", kesAld45 = "", kesAld60 = "", kesAld90 = "", kesAld120 = "", kesAld150 = "",
@@ -3700,12 +3702,12 @@ public class RMCatatanRuangPemulihan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -6772,5 +6774,9 @@ public class RMCatatanRuangPemulihan extends javax.swing.JDialog {
         
         hasil = a + b + c;        
         TskorTotSte.setText(Valid.SetAngka2(hasil));
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

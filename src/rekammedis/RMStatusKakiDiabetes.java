@@ -52,6 +52,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgCariPeriksaRadiologi;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -74,6 +75,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             surgical = "", chemical = "", biology = "", hidrocol = "", foam = "", allginate = "", silver = "", cadexomer = "", madu = "",
             modernDresingLain = "";
     private String riwObat = "", nmObat = "", riwUlkus = "", defor = "", mikro = "";
+    private frmUtama formUtama;
 
     /** Creates new form DlgRujuk
      * @param parent
@@ -4899,7 +4901,7 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -8864,6 +8866,15 @@ public final class RMStatusKakiDiabetes extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    public void awalData() {
+        if (Sequel.cariInteger("select count(-1) from data_dasar_kaki_diabetes where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+            tampil();
+        } else if (Sequel.cariInteger("select count(-1) from data_dasar_kaki_diabetes where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
         }
     }
 }

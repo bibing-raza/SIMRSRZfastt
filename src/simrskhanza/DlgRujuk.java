@@ -80,6 +80,7 @@ public final class DlgRujuk extends javax.swing.JDialog {
     private final Properties prop = new Properties();
     private int i = 0, x = 0;
     private Date date = new Date();
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgRujuk
@@ -1192,12 +1193,12 @@ public final class DlgRujuk extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnEdit, TCari);
         }
@@ -1897,5 +1898,9 @@ private void btnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 BtnCariActionPerformed(null);
             }
         }
+    }
+    
+    public void awalData() {
+        tampilLain();
     }
 }

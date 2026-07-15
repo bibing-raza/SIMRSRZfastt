@@ -45,6 +45,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.File;
 import javax.sound.sampled.*;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -71,6 +72,7 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
     private String nipDrOperator = "", nipAsisten = "", nipInstrumen = "", nipOnloop = "", nipDrAnes = "", nipPrwtAnes = "",
             khusus = "", besar = "", sedang = "", kecil = "", elektif = "", darurat = "", odc = "", bersih = "", konta = "", kotor = "",
             jml1 = "", jml2 = "", jml3 = "", jmlLain = "", singin = "", time = "", singot = "", selesai = "", urutData = "", urutanKe = "", wktSimpan = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -2513,13 +2515,13 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowTemplate.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -4785,5 +4787,10 @@ public class RMLaporanOperasi extends javax.swing.JDialog {
         } else if (pilihan == 3) {
             Tinstruksi.setText(Ttemplate.getText());
         } 
+    }
+    
+    public void awalData() {
+        tampil();
+        cekDaftarMicrophone();
     }
 }

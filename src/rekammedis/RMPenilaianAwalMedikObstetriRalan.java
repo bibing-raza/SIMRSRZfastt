@@ -41,6 +41,7 @@ import kepegawaian.DlgCariPetugas;
 import laporan.DlgPenyakit;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -65,6 +66,7 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
             pil = "", suntik1 = "", suntik3 = "", implan = "", dismen = "", spoting = "", menor = "", metro = "", nyeri = "", bandle = "",
             his = "", teratur = "", tdk_teratur = "", terus = "", kuat = "", sedang = "", lemah = "", bersih = "", odema = "", ruptur = "",
             candi = "", jamkeluar = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -5074,13 +5076,15 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnKeluarActionPerformed(null);
-        }else{Valid.pindah(evt,BtnEdit,TCari);}
+        } else {
+            Valid.pindah(evt, BtnEdit, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
@@ -8795,5 +8799,15 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         } else if (pilihan == 4) {
             TAlasanDirujuk.setText(Ttemplate.getText());
         } 
+    }
+    
+    public void awalData() {
+        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'igd' and nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuangan);
+        
+        if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_obstetri_ralan where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+        } else if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_obstetri_ralan where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
+        }
     }
 }

@@ -62,6 +62,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -84,6 +85,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             swelling = "", ekskoriasi = "", abrasi = "", burn = "", laserasi = "", tdk_tmpk_jls = "", obsT = "", traumaJlnNfs = "", resikoAspirasi = "",
             bendaAsing = "", hipertensi = "", dm = "", jantung = "", merokok = "", meninggal = "", ganggnafas = "", itemDipilih = "", jamkeluar = "", 
             status = "", alerObat = "", alerMak = "", alerLain = "", alerDiberi = "", idFileTtd = "", idParameterTtd = "", URL = "", usernya = "", pwdnya = "";
+    private frmUtama formUtama;
 
     /** Creates new form DlgRujuk
      * @param parent
@@ -4199,15 +4201,17 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowBayi.dispose();
         WindowNomorDokumenRM.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnKeluarActionPerformed(null);
-        }else{Valid.pindah(evt,BtnEdit,TCari);}
+        } else {
+            Valid.pindah(evt, BtnEdit, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
@@ -7938,6 +7942,35 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
         } catch (Exception ex) {
             System.out.println(ex.toString());
+        }
+    }
+    
+    public void awalData() {
+        ((RMPenilaianAwalMedikIGD.Painter) gambarQR).setImage("");
+        Sequel.cariIsiComboDB("select nm_dokumen from master_nomor_dokumen_erm where "
+                + "status='aktif' and unit_pengguna='Instalasi' and ttd_keluarga_pasien='Ya' order by kode_erm", cmbRM);
+        Sequel.queryu("DELETE FROM parameter_ttd_rme WHERE DATE(waktu_kirim) < CURDATE()");
+        
+        Sequel.cariIsiComboDB("SELECT distinct CASE WHEN nm_gedung IN ('AR-RAUDAH ATAS', 'AR-RAUDAH BAWAH') THEN 'AR-RAUDAH' ELSE nm_gedung END AS gedungnya "
+                + "FROM bangsal WHERE status = '1' "
+                + "AND nm_gedung NOT LIKE '%instalasi%' "
+                + "AND nm_gedung NOT LIKE '%sdm%' "
+                + "AND nm_gedung NOT LIKE '%ipsrs%' "
+                + "AND nm_gedung NOT LIKE '%uang%' "
+                + "AND nm_gedung NOT LIKE '%sanitasi%' "
+                + "AND nm_gedung NOT LIKE '%inst.%' "
+                + "AND nm_gedung NOT LIKE '%bid.%' "
+                + "AND nm_gedung NOT LIKE '%unit%' "
+                + "AND nm_gedung NOT LIKE '%bag.%' "
+                + "AND nm_gedung NOT LIKE '%upm%' "
+                + "AND nm_gedung NOT LIKE '%igd%' "
+                + "AND nm_gedung <>'-' GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuangan);
+        
+        if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+        } else if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
+            scrollKeAtas();
         }
     }
 }

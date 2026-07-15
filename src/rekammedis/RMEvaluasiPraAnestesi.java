@@ -37,6 +37,7 @@ import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -53,6 +54,7 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
     private int i = 0, x = 0, pilihDokter = 0, pilihan = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String nipSpesBedah = "", nipSpesAnes = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -1778,13 +1780,13 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowTemplate.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -2913,5 +2915,9 @@ public class RMEvaluasiPraAnestesi extends javax.swing.JDialog {
         } else if (pilihan == 6) {
             Tinstruksi.setText(Ttemplate.getText());
         } 
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

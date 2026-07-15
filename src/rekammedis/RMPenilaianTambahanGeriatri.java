@@ -35,7 +35,7 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPegawai;
-
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -50,7 +50,8 @@ public final class RMPenilaianTambahanGeriatri extends javax.swing.JDialog {
     private ResultSet rs;
     private int i=0;
     private DlgCariPegawai pegawai=new DlgCariPegawai(null,false);
-    private StringBuilder htmlContent;    
+    private StringBuilder htmlContent;   
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -1402,7 +1403,7 @@ public final class RMPenilaianTambahanGeriatri extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -2219,5 +2220,9 @@ public final class RMPenilaianTambahanGeriatri extends javax.swing.JDialog {
             emptTeks();
             TabRawat.setSelectedIndex(1);
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

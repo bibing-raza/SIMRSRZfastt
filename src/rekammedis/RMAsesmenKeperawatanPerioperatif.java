@@ -30,6 +30,7 @@ import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -51,6 +52,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             suction = "", turniq = "", bor = "", elek = "", bipo = "", mono = "", ngt = "", dc = "", irigasi = "", 
             ett = "", epid = "", arm = "", gip = "", drain = "", draKanan = "", draKiri = "",
             infus = "", infKanan = "", infKiri = "", ya = "", tidak = "", wb = "", prc = "", sebanyak = "", wktSimpanAses = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -69,7 +71,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             "alkohol_70", "iodine_providone_10", "bronouderm", "area_operasi", "ekstremitas_kanan", "ekstremitas_kiri", "perhidrol", "nacl", "aqua_steril", "cuci_luka_lainnya",
             "suction_pump", "turniquet", "bor_ortopedi", "penggunaan_alat_lainnya", "elestric_couter", "bipolar", "monopolar", "negatif_plat_di", "ngt", "dc", "irigasi", "ett",
             "epidural", "armsling", "gips", "drain", "ket_drain", "drain_kanan", "drain_kiri", "infus", "ket_infus", "infus_kanan", "infus_kiri", "ya", "tidak_berupa", "wb", "prc",
-            "sebanyak", "ket_sebanyak1", "ket_sebanyak2", "kejadian", "nip_perawat", "nmperawatOperasi"
+            "sebanyak", "ket_sebanyak1", "ket_sebanyak2", "kejadian", "nip_perawat", "nmperawatOperasi", "la_topikal"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -81,7 +83,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         tbAsesmen.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbAsesmen.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 95; i++) {
+        for (i = 0; i < 96; i++) {
             TableColumn column = tbAsesmen.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
@@ -349,6 +351,9 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             } else if (i == 94) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 95) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbAsesmen.setDefaultRenderer(Object.class, new WarnaTable());
@@ -411,7 +416,8 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         tbTemplate.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
-        Tla.setDocument(new batasInput((int) 100).getKata(Tla));
+        TlaInfil.setDocument(new batasInput((int) 100).getKata(TlaInfil));
+        TlaTopikal.setDocument(new batasInput((int) 100).getKata(TlaTopikal));
         Tblok.setDocument(new batasInput((int) 100).getKata(Tblok));
         TgcsE.setDocument(new batasInput((int) 7).getKata(TgcsE));
         TgcsM.setDocument(new batasInput((int) 7).getKata(TgcsM));
@@ -572,7 +578,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         jLabel65 = new widget.Label();
         cmbJnsAnestesi = new widget.ComboBox();
         jLabel14 = new widget.Label();
-        Tla = new widget.TextBox();
+        TlaInfil = new widget.TextBox();
         jLabel15 = new widget.Label();
         Tblok = new widget.TextBox();
         jLabel66 = new widget.Label();
@@ -717,6 +723,8 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         chkSaya = new widget.CekBox();
         BtnDataSubyektif = new widget.Button();
         BtnKejadian = new widget.Button();
+        jLabel18 = new widget.Label();
+        TlaTopikal = new widget.TextBox();
         PanelInput1 = new javax.swing.JPanel();
         Scroll = new widget.ScrollPane();
         tbAsesmen = new widget.Table();
@@ -952,7 +960,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(205, 66, 85, 23);
 
-        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2026" }));
+        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
         TtglAsesmen.setDisplayFormat("dd-MM-yyyy");
         TtglAsesmen.setName("TtglAsesmen"); // NOI18N
         TtglAsesmen.setOpaque(false);
@@ -1006,21 +1014,21 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         FormInput.add(jLabel14);
         jLabel14.setBounds(215, 94, 85, 23);
 
-        Tla.setForeground(new java.awt.Color(0, 0, 0));
-        Tla.setName("Tla"); // NOI18N
-        Tla.addKeyListener(new java.awt.event.KeyAdapter() {
+        TlaInfil.setForeground(new java.awt.Color(0, 0, 0));
+        TlaInfil.setName("TlaInfil"); // NOI18N
+        TlaInfil.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                TlaKeyPressed(evt);
+                TlaInfilKeyPressed(evt);
             }
         });
-        FormInput.add(Tla);
-        Tla.setBounds(305, 94, 230, 23);
+        FormInput.add(TlaInfil);
+        TlaInfil.setBounds(305, 94, 170, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Blok :");
         jLabel15.setName("jLabel15"); // NOI18N
         FormInput.add(jLabel15);
-        jLabel15.setBounds(535, 94, 40, 23);
+        jLabel15.setBounds(725, 94, 40, 23);
 
         Tblok.setForeground(new java.awt.Color(0, 0, 0));
         Tblok.setName("Tblok"); // NOI18N
@@ -1030,7 +1038,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tblok);
-        Tblok.setBounds(580, 94, 170, 23);
+        Tblok.setBounds(770, 94, 170, 23);
 
         jLabel66.setForeground(new java.awt.Color(0, 0, 0));
         jLabel66.setText("Dx. Pre Operasi :");
@@ -2348,6 +2356,22 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         FormInput.add(BtnKejadian);
         BtnKejadian.setBounds(760, 1166, 100, 23);
 
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("LA : Topikal :");
+        jLabel18.setName("jLabel18"); // NOI18N
+        FormInput.add(jLabel18);
+        jLabel18.setBounds(475, 94, 76, 23);
+
+        TlaTopikal.setForeground(new java.awt.Color(0, 0, 0));
+        TlaTopikal.setName("TlaTopikal"); // NOI18N
+        TlaTopikal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TlaTopikalKeyPressed(evt);
+            }
+        });
+        FormInput.add(TlaTopikal);
+        TlaTopikal.setBounds(555, 94, 170, 23);
+
         Scroll1.setViewportView(FormInput);
 
         internalFrame1.add(Scroll1, java.awt.BorderLayout.CENTER);
@@ -2393,7 +2417,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass12.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2407,7 +2431,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass12.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2631,9 +2655,9 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             cekData();
             wktSimpanAses = Sequel.cariIsi("select now()");
             if (Sequel.menyimpantf("asesmen_keperawatan_perioperatif", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No. Rawat", 77, new String[]{
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No. Rawat", 78, new String[]{
                         TNoRw.getText(), TrgRawat.getText(), Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""), Thari.getText(), cmbRuangOK.getSelectedItem().toString(),
-                        cmbJnsRuang.getSelectedItem().toString(), cmbJnsAnestesi.getSelectedItem().toString(), Tla.getText(), Tblok.getText(), TdxPreOperasi.getText(), 
+                        cmbJnsRuang.getSelectedItem().toString(), cmbJnsAnestesi.getSelectedItem().toString(), TlaInfil.getText(), Tblok.getText(), TdxPreOperasi.getText(), 
                         TdxPascaOperasi.getText(), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TnipDokterOperator.getText(),
                         TnipAsisten.getText(), Tinstrumen.getText(), Tonloop.getText(), TnipDokterAnestesi.getText(), TnipPerawatAnestesi.getText(), 
                         cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), TdataSubyektif.getText(), cmbKesadaran.getSelectedItem().toString(),
@@ -2641,7 +2665,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
                         lateral, TlainPosisi.getText(), alkohol, iodin, brono, Tarea.getText(), eksKanan, eksKiri, perhid, nacl, aqua, TlainCuci.getText(), suction, turniq, bor,
                         TlainPenggunaan.getText(), elek, bipo, mono, Tnegatif.getText(), ngt, dc, irigasi, ett, epid, arm, gip, drain, Tdrain.getText(), draKanan, draKiri, 
                         infus, Tinfus.getText(), infKanan, infKiri, ya, tidak, wb, prc, sebanyak, Tsebanyak1.getText(), Tsebanyak2.getText(), Tkejadian.getText(), TnipPerawatOperasi.getText(),                        
-                        wktSimpanAses
+                        wktSimpanAses, TlaTopikal.getText()
                     }) == true) {
                 
                 //simpan hitungan selama operasi                
@@ -2697,16 +2721,17 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
                         + "lateral_kanan_kiri=?, posisi_lainnya=?, alkohol_70=?, iodine_providone_10=?, bronouderm=?, area_operasi=?, ekstremitas_kanan=?, ekstremitas_kiri=?, perhidrol=?, "
                         + "nacl=?, aqua_steril=?, cuci_luka_lainnya=?, suction_pump=?, turniquet=?, bor_ortopedi=?, penggunaan_alat_lainnya=?, elestric_couter=?, bipolar=?, monopolar=?, "
                         + "negatif_plat_di=?, ngt=?, dc=?, irigasi=?, ett=?, epidural=?, armsling=?, gips=?, drain=?, ket_drain=?, drain_kanan=?, drain_kiri=?, infus=?, ket_infus=?, infus_kanan=?, "
-                        + "infus_kiri=?, ya=?, tidak_berupa=?, wb=?, prc=?, sebanyak=?, ket_sebanyak1=?, ket_sebanyak2=?, kejadian=?, nip_perawat=?", 75, new String[]{
+                        + "infus_kiri=?, ya=?, tidak_berupa=?, wb=?, prc=?, sebanyak=?, ket_sebanyak1=?, ket_sebanyak2=?, kejadian=?, nip_perawat=?, la_topikal=?", 76, new String[]{
                             Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""), Thari.getText(), cmbRuangOK.getSelectedItem().toString(),
-                            cmbJnsRuang.getSelectedItem().toString(), cmbJnsAnestesi.getSelectedItem().toString(), Tla.getText(), Tblok.getText(), TdxPreOperasi.getText(),
+                            cmbJnsRuang.getSelectedItem().toString(), cmbJnsAnestesi.getSelectedItem().toString(), TlaInfil.getText(), Tblok.getText(), TdxPreOperasi.getText(),
                             TdxPascaOperasi.getText(), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TnipDokterOperator.getText(),
                             TnipAsisten.getText(), Tinstrumen.getText(), Tonloop.getText(), TnipDokterAnestesi.getText(), TnipPerawatAnestesi.getText(),
                             cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), TdataSubyektif.getText(), cmbKesadaran.getSelectedItem().toString(),
                             Ttensi.getText(), Trespi.getText(), Tnadi.getText(), Tsuhu.getText(), TgcsE.getText(), TgcsM.getText(), TgcsV.getText(), supin, litotomi, pronasi, trendel,
                             lateral, TlainPosisi.getText(), alkohol, iodin, brono, Tarea.getText(), eksKanan, eksKiri, perhid, nacl, aqua, TlainCuci.getText(), suction, turniq, bor,
                             TlainPenggunaan.getText(), elek, bipo, mono, Tnegatif.getText(), ngt, dc, irigasi, ett, epid, arm, gip, drain, Tdrain.getText(), draKanan, draKiri,
-                            infus, Tinfus.getText(), infKanan, infKiri, ya, tidak, wb, prc, sebanyak, Tsebanyak1.getText(), Tsebanyak2.getText(), Tkejadian.getText(), TnipPerawatOperasi.getText(),                            
+                            infus, Tinfus.getText(), infKanan, infKiri, ya, tidak, wb, prc, sebanyak, Tsebanyak1.getText(), Tsebanyak2.getText(), Tkejadian.getText(), TnipPerawatOperasi.getText(),
+                            TlaTopikal.getText(),
                             tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                         }) == true) {
 
@@ -2750,13 +2775,15 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnBatal,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnBatal, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void cmbJamMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJamMouseReleased
@@ -2933,11 +2960,11 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_chkSebanyakActionPerformed
 
-    private void TlaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlaKeyPressed
+    private void TlaInfilKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlaInfilKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Tblok.requestFocus();
+            TlaTopikal.requestFocus();
         }
-    }//GEN-LAST:event_TlaKeyPressed
+    }//GEN-LAST:event_TlaInfilKeyPressed
 
     private void TblokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TblokKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -3329,7 +3356,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             param.put("tanggal", Thari.getText() + ", " + Valid.SetTglINDONESIA(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 20).toString()));
             param.put("ruangOK", cmbRuangOK.getSelectedItem().toString() + " (" + cmbJnsRuang.getSelectedItem().toString() + ")");
             param.put("jnsAnestesi", cmbJnsAnestesi.getSelectedItem().toString());
-            param.put("laBlok", Tla.getText() + "   Blok " + Tblok.getText());
+            param.put("laBlok", TlaInfil.getText() + "   LA : Topikal " + TlaTopikal.getText() + "   Blok " + Tblok.getText());
             param.put("diagnosaPreOp", TdxPreOperasi.getText());
             param.put("diagnosaPascaOp", TdxPascaOperasi.getText());
             param.put("jamMulai", cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + " Wita");
@@ -3658,6 +3685,12 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPrintKeyPressed
 
+    private void TlaTopikalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlaTopikalKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Tblok.requestFocus();
+        }
+    }//GEN-LAST:event_TlaTopikalKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -3727,7 +3760,8 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
     private widget.TextBox Tjk;
     private widget.TextArea Tkejadian;
     private widget.TextBox Tketerangan;
-    private widget.TextBox Tla;
+    private widget.TextBox TlaInfil;
+    private widget.TextBox TlaTopikal;
     private widget.TextBox TlainCuci;
     private widget.TextBox TlainJenis;
     private widget.TextBox TlainPenggunaan;
@@ -3815,6 +3849,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
+    private widget.Label jLabel18;
     private widget.Label jLabel19;
     private widget.Label jLabel21;
     private widget.Label jLabel23;
@@ -4028,7 +4063,8 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
                         rs.getString("ket_sebanyak2"),
                         rs.getString("kejadian"),
                         rs.getString("nip_perawat"),
-                        rs.getString("nmPrwtOperasi")
+                        rs.getString("nmPrwtOperasi"),
+                        rs.getString("la_topikal")
                     });
                 }
             } catch (Exception e) {
@@ -4054,7 +4090,8 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         cmbJnsRuang.setSelectedIndex(0);
         cmbJnsRuang.setEnabled(false);
         cmbJnsAnestesi.setSelectedIndex(0);
-        Tla.setText("");
+        TlaInfil.setText("");
+        TlaTopikal.setText("");
         Tblok.setText("");
         TdxPreOperasi.setText("");
         TdxPascaOperasi.setText("");
@@ -4168,7 +4205,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             cmbRuangOK.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 22).toString());
             cmbJnsRuang.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 23).toString());
             cmbJnsAnestesi.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 24).toString());
-            Tla.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 25).toString());
+            TlaInfil.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 25).toString());
             Tblok.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 26).toString());
             TdxPreOperasi.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 27).toString());
             TdxPascaOperasi.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 28).toString());
@@ -4246,6 +4283,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             Tkejadian.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 92).toString());
             TnipPerawatOperasi.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 93).toString());
             TnmPerawatOperasi.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 94).toString());
+            TlaTopikal.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 95).toString());
             dataCek();
         }
     }
@@ -4888,5 +4926,9 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             TnipPerawatOperasi.setText(akses.getkode());
             TnmPerawatOperasi.setText(Sequel.cariIsi("select nama from pegawai where nik='" + TnipPerawatOperasi.getText() + "'"));
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

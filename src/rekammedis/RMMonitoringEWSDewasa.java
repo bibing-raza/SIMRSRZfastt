@@ -37,6 +37,7 @@ import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -52,6 +53,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
     private int i = 0, x = 0, respirasi = 0, saturasi = 0, suplemen = 0, tensi = 0, nadi = 0, kesadaran = 0, temperatur = 0, total = 0;
     private String nip = "", dataKonfirmasi = "";
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private frmUtama formUtama;
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -1409,14 +1411,16 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowCetak.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnEdit,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnEdit, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
@@ -2247,5 +2251,9 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

@@ -51,6 +51,7 @@ import laporan.DlgPenyakit;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariPeriksaRadiologi;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -75,6 +76,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             resikoHipotermi = "", hipertermi = "", pola = "", nyeri = "", kerusakan = "", resikoKerusakan = "", kebutuhan = "", ikterik = "", gangguan = "",
             bersihan = "", resikoBersihan = "", perubahan = "", kelebihan = "", resikoKelebihan = "", resikoKebutuhan = "", cekTglLahir = "", jamlahiribu = "",
             nipVerifikator = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -6052,7 +6054,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -10884,6 +10886,16 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                 public void windowDeactivated(WindowEvent e) {
                 }
             });
+        }
+    }
+    
+    public void awalData() {
+        if (Sequel.cariInteger("select count(-1) from asesmen_keperawatan_perinatologi where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+            tampil();
+        } else if (Sequel.cariInteger("select count(-1) from asesmen_keperawatan_perinatologi where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
+            scrollKeAtas();
         }
     }
 }

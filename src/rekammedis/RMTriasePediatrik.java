@@ -50,6 +50,7 @@ import laporan.DlgHasilPenunjangMedis;
 import laporan.DlgPenyakit;
 import simrskhanza.DlgNotepad;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -72,6 +73,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
             disabilityLevel4 = "", disabilityLevel44 = "", disabilityLevel5 = "", disabilityLevel55 = "", vas = "", kesimpulanLevel1 = "",
             kesimpulanLevel2 = "", kesimpulanLevel3 = "", kesimpulanLevel4 = "", kesimpulanLevel5 = "", trauma = "", nonTrauma = "", doa = "",
             alerObat = "", alerMak = "", alerLain = "", alerDiberi = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -2884,7 +2886,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -4955,6 +4957,16 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             System.out.println("Notif : " + e);
+        }
+    }
+    
+    public void awalData() {
+        tampil();
+        
+        if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+        } else if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
         }
     }
 }

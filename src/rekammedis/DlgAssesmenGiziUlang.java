@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilPenunjangMedis;
+import simrskhanza.frmUtama;
 
 public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
@@ -47,6 +48,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             klinis2 = "", klinis3 = "", klinis4 = "", klinis5 = "", klinis6 = "", klinis7 = "", klinis8 = "",
             dataRiwayat1 = "", dataRiwayat2 = "", riw1 = "", riw2 = "", riw3 = "", riw4 = "", riw5 = "", riw6 = "",
             riw7 = "", riw8 = "", riw9 = "", bbu = "", pbu = "", bbpb = "", gizianak1 = "", gizianak2 = "", gizianak3 = "";
+    private frmUtama formUtama;
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -1809,12 +1811,12 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -3400,6 +3402,15 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
 
         } else {
             cmbSttsGizi.setSelectedIndex(0);
+        }
+    }
+    
+    public void awalData() {
+        tampil();
+        if (Sequel.cariInteger("select count(-1) from assesmen_gizi_ulang where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+        } else if (Sequel.cariInteger("select count(-1) from assesmen_gizi_ulang where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
         }
     }
 }

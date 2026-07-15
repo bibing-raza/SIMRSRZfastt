@@ -67,6 +67,7 @@ import java.sql.Blob;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import keuangan.DlgKamar;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -96,6 +97,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
             pasien = "", keluarga = "", lainPenerimaPnd = "", penerimaPnd = "", edukasiLat = "", positioning = "", latihanAktif = "", simulasi = "", namaDan = "",
             caraAturan = "", resikoEfek = "", penyimpananObat = "", idFilePenerimaEdukasi = "", idParameterTtd = "", usernya = "", pwdnya = "", URL = "",
             ruangrawat = "", kd_kamar = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -3426,7 +3428,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         WindowNomorDokumenRM.dispose();
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -7403,5 +7405,20 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                 }
             });
         }
+    }
+    
+    public void awalData() {
+        if (Sequel.cariInteger("select count(-1) from pemberian_informasi_edukasi where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabEdukasi.setSelectedIndex(1);
+            tampilPenilaian();
+        } else if (Sequel.cariInteger("select count(-1) from pemberian_informasi_edukasi where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabEdukasi.setSelectedIndex(0);
+            tampil();
+        }
+
+        ((RMPemberianInformasiEdukasi.Painter) gambarQR).setImage("");
+        Sequel.cariIsiComboDB("select nm_dokumen from master_nomor_dokumen_erm where "
+                + "status='aktif' and unit_pengguna='TPPRI, Ruang Perawatan & Instalasi' and ttd_keluarga_pasien='Ya' order by kode_erm", cmbRM);
+        Sequel.queryu("DELETE FROM parameter_ttd_rme WHERE DATE(waktu_kirim) < CURDATE()");
     }
 }

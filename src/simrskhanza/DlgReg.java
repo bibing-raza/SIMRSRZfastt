@@ -203,7 +203,8 @@ public final class DlgReg extends javax.swing.JDialog {
     // set unit for margin setting
     private char[] UNIT_1_360 = {ESC, 40, 'U', '1', '0'};
     // move vertical print position
-    private char[] VERTICAL_PRINT_POSITION = {ESC, 'J', '1'};    
+    private char[] VERTICAL_PRINT_POSITION = {ESC, 'J', '1'};
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgReg
@@ -6598,14 +6599,14 @@ public final class DlgReg extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         DlgKodeIter.dispose();
         DlgPasienIter.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnPrint, TCari);
         }
@@ -14836,5 +14837,9 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 public void windowDeactivated(WindowEvent e) {}
             });
         }
+    }
+    
+    public void awalData() {
+        akses.tRefreshAntri.start();
     }
 }

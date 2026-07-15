@@ -60,6 +60,7 @@ public class DlgCariPeriksaRadiologi extends javax.swing.JDialog {
             Utang_Jasa_Medik_Petugas_Radiologi_Ranap = "", Beban_Kso_Radiologi_Ranap = "", Utang_Kso_Radiologi_Ranap = "",
             HPP_Persediaan_Radiologi_Rawat_Inap = "", Persediaan_BHP_Radiologi_Rawat_Inap = "", cekDataRad = "", khususIgd = "",
             dokterBaca = "", cekJamSelesai = "", cekDurasi = "", tte = "", cariDataIgd = "", CariData = "", cariBayar = "";
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgProgramStudi
@@ -3359,7 +3360,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }//GEN-LAST:event_BtnAllKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowGantiDokterPerujuk.dispose();
         WindowGantiDokterRad.dispose();
         WindowGantiPetugasRadiologi.dispose();
@@ -3373,7 +3374,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         }
     }//GEN-LAST:event_BtnKeluarKeyPressed
 
@@ -6747,5 +6748,10 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void awalData() {
+        khususIgd = "tidak";
+        tampil();
     }
 }

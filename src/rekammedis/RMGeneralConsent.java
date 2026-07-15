@@ -66,6 +66,7 @@ import simrskhanza.DlgKabupaten;
 import simrskhanza.DlgKecamatan;
 import simrskhanza.DlgKelurahan;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -85,6 +86,7 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
     private int i = 0, x = 0;
     private String kdkel = "", kdkec = "", kdkab = "", nipPtgs = "", pngJwbPasien = "", saksi1 = "", saksi2 = "",
             ruangrwt = "", idFileNmBerttd = "", idFileSaksi1 = "", idFileSaksi2 = "", cekNmBerttd = "", cekNmSaksi1 = "", cekNmSaksi2 = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -1424,7 +1426,7 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -2304,5 +2306,9 @@ public final class RMGeneralConsent extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

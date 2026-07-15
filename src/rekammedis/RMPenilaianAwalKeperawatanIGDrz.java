@@ -49,6 +49,7 @@ import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilPenunjangMedis;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -68,6 +69,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             aler_obat = "", aler_mak = "", aler_lain = "", pin = "", iden1 = "", iden2 = "", iden3 = "", iden4 = "",
             iden5 = "", iden6 = "", iden7 = "", iden8 = "", iden9 = "", iden10 = "", mpp = "", dp = "",
             faktorresikoigd = "", itemDipilih = "", alerObat = "", alerMak = "", alerLain = "", alerDiberi = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -3168,7 +3170,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowTemplate.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
@@ -5989,5 +5991,16 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             ScrollTriase1.getVerticalScrollBar().setValue(0);
             ScrollTriase1.getHorizontalScrollBar().setValue(0);
         });
+    }
+    
+    public void awalData() {
+        tampilFaktorResiko();
+        if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_igdrz where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+            tampil();
+        } else if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_igdrz where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
+            scrollKeAtas();
+        }
     }
 }

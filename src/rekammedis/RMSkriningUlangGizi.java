@@ -38,6 +38,7 @@ import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -57,6 +58,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
     private double jlhpxSkriningDewasa = 0, tdkberesikoDewasa = 0, PersenBeresikoDewasa = 0, PersenTdkBeresikoDewasa = 0,
             jlhpxSkriningBalita = 0, tdkberesikoBalita = 0, jlhpxSkriningAnak = 0, tdkberesikoAnak = 0, 
             PersenBeresikoSedang = 0, PersenBeresikoBerat = 0, PersenTdkBeresiko = 0;
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgSpesialis
@@ -1634,12 +1636,12 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnEdit, TCari);
         }
@@ -3120,5 +3122,9 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

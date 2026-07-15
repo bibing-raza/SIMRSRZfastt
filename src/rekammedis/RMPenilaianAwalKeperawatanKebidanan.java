@@ -31,7 +31,7 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPetugas;
-
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -48,6 +48,7 @@ public final class RMPenilaianAwalKeperawatanKebidanan extends javax.swing.JDial
     private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
     private StringBuilder htmlContent;
     private String finger="";
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -5408,13 +5409,15 @@ public final class RMPenilaianAwalKeperawatanKebidanan extends javax.swing.JDial
     }//GEN-LAST:event_TanggalPersalinanKeyPressed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnKeluarActionPerformed(null);
-        }else{Valid.pindah(evt,BtnEdit,TCari);}
+        } else {
+            Valid.pindah(evt, BtnEdit, TCari);
+        }
     }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         DlgRiwayatPersalinan.dispose();
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
@@ -6343,6 +6346,15 @@ public final class RMPenilaianAwalKeperawatanKebidanan extends javax.swing.JDial
             tampil();
             emptTeks();
             TabRawat.setSelectedIndex(1);
+        }
+    }
+    
+    public void awalData() {
+        if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_kebidanan where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+            tampil();
+        } else {
+            TabRawat.setSelectedIndex(0);
         }
     }
 }

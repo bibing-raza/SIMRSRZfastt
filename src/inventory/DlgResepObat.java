@@ -42,6 +42,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -64,6 +65,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
             resepIter = "", tte = "", noSEPlama = "", norwtLama = "";
     private double total = 0, jumlahtotal = 0;
     private int i = 0, conteng = 0, x = 0;
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgResepObat
@@ -1069,12 +1071,12 @@ public final class DlgResepObat extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnHapusKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 

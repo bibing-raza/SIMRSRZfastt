@@ -50,6 +50,7 @@ import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -73,6 +74,7 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
             nyeriPung = "", tdkBisa = "", infeksi = "", cideraSaraf = "", pendarahan = "", reakAler = "", reakMual = "", reakMun = "", syokAnaf = "",
             idFilePenerima = "", idFilePihakRS = "", idFilePihakKlg = "", idFileMenyatakan = "", usernya = "", pwdnya = "", idParameterTtd = "", URL = "",
             nmPenerima = "", nmPhkRS = "", nmPhkKlg = "", nmBerttdMenyatakan = "", phkRSternyata = "", nipPhkRS = "", ttdBasah = "", ttdQrcode1 = "", ttdQrcode2 = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -2951,12 +2953,12 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         WindowNomorDokumenRM.dispose();
         WindowTemplate.dispose();
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -5564,5 +5566,13 @@ public class RMInformasiTindakanPembiusan extends javax.swing.JDialog {
         } else if (pilihan == 4) {
             Tlainlain.setText(Ttemplate.getText());
         } 
+    }
+    
+    public void awalData() {
+        ((RMInformasiTindakanPembiusan.Painter) gambarQR).setImage("");
+        Sequel.queryu("DELETE FROM parameter_ttd_rme WHERE DATE(waktu_kirim) < CURDATE()");
+        Sequel.cariIsiComboDB("select nm_dokumen from master_nomor_dokumen_erm where "
+                + "status='aktif' and unit_pengguna='Ruang Perawatan & Instalasi' and ttd_keluarga_pasien='Ya' order by kode_erm", cmbRM);
+        tampil();
     }
 }

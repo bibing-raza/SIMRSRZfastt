@@ -51,6 +51,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
     private DlgPasien pasien = new DlgPasien(null, false);
     private String terlaksana = "", kdsps = "";
     private int x = 0;
+    private frmUtama formUtama;
 
     /** Creates new form DlgJadwal
      * @param parent
@@ -281,6 +282,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -299,6 +301,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -317,6 +320,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -335,6 +339,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -353,6 +358,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -381,7 +387,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-02-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -395,7 +401,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-02-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -420,6 +426,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('3');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+3");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -438,6 +445,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('4');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+4");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -489,6 +497,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
 
         btnPasien.setForeground(new java.awt.Color(0, 0, 0));
         btnPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnPasien.setMnemonic('1');
         btnPasien.setToolTipText("ALt+1");
         btnPasien.setName("btnPasien"); // NOI18N
         btnPasien.addActionListener(new java.awt.event.ActionListener() {
@@ -530,7 +539,7 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
         jLabel8.setBounds(170, 94, 80, 23);
 
         tglOperasi.setEditable(false);
-        tglOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-02-2026" }));
+        tglOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
         tglOperasi.setDisplayFormat("dd-MM-yyyy");
         tglOperasi.setName("tglOperasi"); // NOI18N
         tglOperasi.setOpaque(false);
@@ -714,12 +723,12 @@ public class DlgJadwalOperasi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
@@ -793,7 +802,6 @@ private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         Sequel.cariIsiComboDB("SELECT nm_poli from poliklinik where kd_poli in "
                 + "('KLT','BDO','BED','132','GIG','GND','GPR','JAN','OBG','MAT','ORT','PAR','SAR','THT','BDM') "
                 + "order by nm_poli", cmbJnsOperasi);
-        tampil();
         DTPCari1.setDate(new Date());
         Valid.SetTgl(DTPCari2, Sequel.cariIsi("select DATE_ADD(now(),interval 60 day)"));
     }//GEN-LAST:event_formWindowOpened
@@ -822,8 +830,8 @@ private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
-    private widget.Tanggal DTPCari1;
-    private widget.Tanggal DTPCari2;
+    public widget.Tanggal DTPCari1;
+    public widget.Tanggal DTPCari2;
     private widget.Label LCount;
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;
@@ -833,8 +841,8 @@ private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private widget.TextBox TNoRw;
     private widget.TextBox Tpasien;
     private widget.Button btnPasien;
-    private widget.ComboBox cmbJnsOperasi;
-    private widget.ComboBox cmbPaketOperasi;
+    public widget.ComboBox cmbJnsOperasi;
+    public widget.ComboBox cmbPaketOperasi;
     private widget.ComboBox cmbTerlaksana;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel12;

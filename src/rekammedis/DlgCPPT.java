@@ -60,6 +60,7 @@ import simrskhanza.DlgCariPoli;
 import simrskhanza.DlgNotepad;
 import simrskhanza.DlgPemberianDiet;
 import simrskhanza.DlgRingkasanPulangRanap;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -105,6 +106,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             kdKamarSaatIni = "", isi = "", jamcpptFix = "";
     private String noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "",
             hasilDipilih = "", kdItem = "", norawat = "", tglhasil = "", jamhasil = "", nmpemeriksaan = "", link = "";
+    private frmUtama formUtama;
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -7385,7 +7387,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
         x = JOptionPane.showConfirmDialog(rootPane, "Apakah CPPT anda sudah selesai diisi/diperbaiki..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (x == JOptionPane.YES_OPTION) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
             WindowTemplate.dispose();
             WindowDataMonevGizi.dispose();
             WindowCPPT.dispose();
@@ -7400,7 +7402,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnEdit, TCari);
         }
@@ -22286,5 +22288,10 @@ public class DlgCPPT extends javax.swing.JDialog {
                 }
             });
         }
+    }
+    
+    public void awalData() {
+        MnCeklisFarmasi.setEnabled(false);        
+        Sequel.cariIsiComboDB("select satuan from diet_master_pemberian group by satuan", cmbSatuan);
     }
 }

@@ -38,6 +38,7 @@ import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -58,6 +59,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private Date date = new Date(), jamSekarang, jamSift1, jamSift2, jamSift3,
             jamSekarangCopy, jamSift1Copy, jamSift2Copy, jamSift3Copy,
             jamSekarangCopy1, jamSift1Copy1, jamSift2Copy1, jamSift3Copy1;
+    private frmUtama formUtama;
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -2858,7 +2860,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowTindakan.dispose();
         WindowEvaluasi.dispose();
         WindowManajemen.dispose();
@@ -2869,7 +2871,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnEdit, TCari);
         }
@@ -5908,6 +5910,10 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
             cmbMntCopy1.setSelectedItem(tbData.getValueAt(tbData.getSelectedRow(), 14).toString().substring(3, 5));
             cmbDtkCopy1.setSelectedItem(tbData.getValueAt(tbData.getSelectedRow(), 14).toString().substring(6, 8));
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }
 

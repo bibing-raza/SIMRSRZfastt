@@ -50,6 +50,7 @@ import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -67,10 +68,11 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String nipDrOperator = "", nipDrAnes = "", nipPrwtIbs = "", nipPrwtRuang = "", 
-            ett = "", lma = "", fima = "", tiva = "", spinal = "", epidural = "", cse = "", infil = "", blok = "", ringan = "",
+            ett = "", lma = "", fima = "", tiva = "", spinal = "", epidural = "", cse = "", infil = "", blok = "", topikal = "", ringan = "",
             sedang = "", dalam = "", tdkSakit = "", sedSakit = "", agak = "", menggang = "", sangat = "", tak = "", cekJamInfus1 = "",
             cekJamInfus2 = "", cekJamAnti = "", cekJamAnal = "", asesDewasa = "", asesAnak = "", idFileTtd = "", idParameterTtd = "", 
             URL = "", usernya = "", pwdnya = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -92,7 +94,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
             "jenis_jaringan", "pemeriksaan_pa", "pemeriksaan_kultur", "jaringan_dibawakan", "asesmen_dewasa", "asesmen_anak", "arj_dewasa_riwayat_jatuh", "arj_dewasa_kondisi_kesehatan", 
             "arj_dewasa_alat_bantu", "arj_dewasa_terpasang_infus", "arj_dewasa_gaya_berjalan", "arj_dewasa_status_mental", "arj_anak_usia", "arj_anak_jenis_kelamin", "arj_anak_diagnosis",
             "arj_anak_gangguan_kognitif", "arj_anak_respon", "arj_anak_penggunaan_medikamentosa", "arj_anak_faktor_lingkungan", "tgl_serah", "pukul_serah", "nm_keluarga_pasien",
-            "nip_perawat_ibs", "nip_perawat_ruang", "waktu_simpan", "id_file_nm_keluarga_pasien"
+            "nip_perawat_ibs", "nip_perawat_ruang", "waktu_simpan", "id_file_nm_keluarga_pasien", "topikal"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -104,7 +106,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
         tbSerah.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbSerah.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 93; i++) {
+        for (i = 0; i < 94; i++) {
             TableColumn column = tbSerah.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -372,6 +374,9 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 92) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 93) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -767,6 +772,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
         TnmKeluarga = new widget.TextBox();
         chkDewasa = new widget.CekBox();
         chkAnak = new widget.CekBox();
+        chkTopikal = new widget.CekBox();
         PanelInput1 = new javax.swing.JPanel();
         panelGlass13 = new widget.panelisi();
         Scroll = new widget.ScrollPane();
@@ -893,6 +899,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
 
         BtnTampilkanQr.setForeground(new java.awt.Color(0, 0, 0));
         BtnTampilkanQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clear24.png"))); // NOI18N
+        BtnTampilkanQr.setMnemonic('S');
         BtnTampilkanQr.setText("Tampilkan Qr Code TTD");
         BtnTampilkanQr.setToolTipText("Alt+S");
         BtnTampilkanQr.setName("BtnTampilkanQr"); // NOI18N
@@ -906,6 +913,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
 
         BtnCloseIn2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn2.setMnemonic('U');
         BtnCloseIn2.setText("Tutup");
         BtnCloseIn2.setToolTipText("Alt+U");
         BtnCloseIn2.setName("BtnCloseIn2"); // NOI18N
@@ -1288,7 +1296,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
         chkBlock.setOpaque(false);
         chkBlock.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(chkBlock);
-        chkBlock.setBounds(225, 206, 60, 23);
+        chkBlock.setBounds(225, 206, 55, 23);
 
         jLabel70.setForeground(new java.awt.Color(0, 0, 0));
         jLabel70.setText("Dokter Operator :");
@@ -1431,7 +1439,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
         jLabel276.setBounds(585, 290, 50, 23);
 
         TtglPindah.setEditable(false);
-        TtglPindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2026" }));
+        TtglPindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2026" }));
         TtglPindah.setDisplayFormat("dd-MM-yyyy");
         TtglPindah.setName("TtglPindah"); // NOI18N
         TtglPindah.setOpaque(false);
@@ -1547,7 +1555,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
         Ttemp.setBounds(332, 346, 60, 23);
 
         TtglSerah.setEditable(false);
-        TtglSerah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2026" }));
+        TtglSerah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2026" }));
         TtglSerah.setDisplayFormat("dd-MM-yyyy");
         TtglSerah.setName("TtglSerah"); // NOI18N
         TtglSerah.setOpaque(false);
@@ -3032,6 +3040,20 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
         FormInput.add(chkAnak);
         chkAnak.setBounds(0, 1433, 220, 23);
 
+        chkTopikal.setBackground(new java.awt.Color(255, 255, 250));
+        chkTopikal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkTopikal.setForeground(new java.awt.Color(0, 0, 0));
+        chkTopikal.setText("Topikal");
+        chkTopikal.setBorderPainted(true);
+        chkTopikal.setBorderPaintedFlat(true);
+        chkTopikal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkTopikal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkTopikal.setName("chkTopikal"); // NOI18N
+        chkTopikal.setOpaque(false);
+        chkTopikal.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTopikal);
+        chkTopikal.setBounds(290, 206, 70, 23);
+
         Scroll1.setViewportView(FormInput);
 
         panelGlass9.add(Scroll1);
@@ -3130,7 +3152,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
         panelGlass12.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3145,7 +3167,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
         panelGlass12.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3243,7 +3265,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
         } else {
             cekData();
             if (Sequel.menyimpantf("serah_terima_pasien_pasca_operasi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?"
-                    + ",?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No. Rawat", 84, new String[]{
+                    + ",?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No. Rawat", 85, new String[]{
                         TNoRw.getText(), TrgRawat.getText(), Tdiagnosa.getText(), Ttindakan.getText(), nipDrOperator, ett, lma, fima, tiva, spinal, epidural,
                         cse, infil, blok, ringan, sedang, dalam, nipDrAnes, Valid.SetTgl(TtglPindah.getSelectedItem() + ""),
                         cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), Ttd.getText(), Trr.getText(), Tnadi.getText(),
@@ -3262,7 +3284,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
                         cmbJenkel.getSelectedItem().toString(), cmbDiagnosis.getSelectedItem().toString(), cmbGang.getSelectedItem().toString(), 
                         cmbResTerhadap.getSelectedItem().toString(), cmbPenggu.getSelectedItem().toString(), cmbFaktor.getSelectedItem().toString(), 
                         Valid.SetTgl(TtglSerah.getSelectedItem() + ""), cmbJam6.getSelectedItem() + ":" + cmbMnt6.getSelectedItem() + ":" + cmbDtk6.getSelectedItem(), 
-                        TnmKeluarga.getText(), nipPrwtIbs, nipPrwtRuang, Sequel.cariIsi("select now()"), ""
+                        TnmKeluarga.getText(), nipPrwtIbs, nipPrwtRuang, Sequel.cariIsi("select now()"), "", topikal
                     }) == true) {
 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Serah Terima Pasien Pasca Operasi", "Simpan");
@@ -3307,7 +3329,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
                         + "advis_diruangan=?, jenis_jaringan=?, pemeriksaan_pa=?, pemeriksaan_kultur=?, jaringan_dibawakan=?, asesmen_dewasa=?, asesmen_anak=?, arj_dewasa_riwayat_jatuh=?, "
                         + "arj_dewasa_kondisi_kesehatan=?, arj_dewasa_alat_bantu=?, arj_dewasa_terpasang_infus=?, arj_dewasa_gaya_berjalan=?, arj_dewasa_status_mental=?, arj_anak_usia=?, "
                         + "arj_anak_jenis_kelamin=?, arj_anak_diagnosis=?, arj_anak_gangguan_kognitif=?, arj_anak_respon=?, arj_anak_penggunaan_medikamentosa=?, arj_anak_faktor_lingkungan=?, "
-                        + "tgl_serah=?, pukul_serah=?, nm_keluarga_pasien=?, nip_perawat_ibs=?, nip_perawat_ruang=?", 81, new String[]{
+                        + "tgl_serah=?, pukul_serah=?, nm_keluarga_pasien=?, nip_perawat_ibs=?, nip_perawat_ruang=?, topikal=?", 82, new String[]{
                             Tdiagnosa.getText(), Ttindakan.getText(), nipDrOperator, ett, lma, fima, tiva, spinal, epidural,
                             cse, infil, blok, ringan, sedang, dalam, nipDrAnes, Valid.SetTgl(TtglPindah.getSelectedItem() + ""),
                             cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), Ttd.getText(), Trr.getText(), Tnadi.getText(),
@@ -3326,7 +3348,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
                             cmbJenkel.getSelectedItem().toString(), cmbDiagnosis.getSelectedItem().toString(), cmbGang.getSelectedItem().toString(),
                             cmbResTerhadap.getSelectedItem().toString(), cmbPenggu.getSelectedItem().toString(), cmbFaktor.getSelectedItem().toString(),
                             Valid.SetTgl(TtglSerah.getSelectedItem() + ""), cmbJam6.getSelectedItem() + ":" + cmbMnt6.getSelectedItem() + ":" + cmbDtk6.getSelectedItem(),
-                            TnmKeluarga.getText(), nipPrwtIbs, nipPrwtRuang,
+                            TnmKeluarga.getText(), nipPrwtIbs, nipPrwtRuang, topikal,
                             tbSerah.getValueAt(tbSerah.getSelectedRow(), 91).toString()
                         }) == true) {
 
@@ -3351,13 +3373,13 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowNomorDokumenRM.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -3520,6 +3542,12 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
                 param.put("blok", "V");
             } else {
                 param.put("blok", "");
+            }
+            
+            if (chkTopikal.isSelected() == true) {
+                param.put("topikal", "V");
+            } else {
+                param.put("topikal", "");
             }
             
             if (chkRingan.isSelected() == true) {
@@ -4702,6 +4730,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
     public widget.CekBox chkTak;
     public widget.CekBox chkTdkSakit;
     public widget.CekBox chkTiva;
+    public widget.CekBox chkTopikal;
     private widget.ComboBox cmbAlat;
     private widget.ComboBox cmbDc;
     private widget.ComboBox cmbDiagnosis;
@@ -5005,7 +5034,8 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
                         rs.getString("nip_perawat_ibs"),
                         rs.getString("nip_perawat_ruang"),
                         rs.getString("waktu_simpan"),
-                        rs.getString("id_file_nm_keluarga_pasien")
+                        rs.getString("id_file_nm_keluarga_pasien"),
+                        rs.getString("topikal")
                     });
                 }                
             } catch (Exception e) {
@@ -5038,6 +5068,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
         chkCse.setSelected(false);
         chkInfiltrasi.setSelected(false);
         chkBlock.setSelected(false);
+        chkTopikal.setSelected(false);
         chkRingan.setSelected(false);
         chkSedang.setSelected(false);
         chkDalam.setSelected(false);
@@ -5264,6 +5295,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
             nipPrwtRuang = tbSerah.getValueAt(tbSerah.getSelectedRow(), 90).toString();
             TnmPrwtRuang.setText(tbSerah.getValueAt(tbSerah.getSelectedRow(), 10).toString());
             idFileTtd = tbSerah.getValueAt(tbSerah.getSelectedRow(), 92).toString();
+            topikal = tbSerah.getValueAt(tbSerah.getSelectedRow(), 93).toString();
             dataCek();
             tampilTTD();
         }
@@ -5328,6 +5360,12 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
             chkBlock.setSelected(true);
         } else {
             chkBlock.setSelected(false);
+        }
+        
+        if (topikal.equals("ya")) {
+            chkTopikal.setSelected(true);
+        } else {
+            chkTopikal.setSelected(false);
         }
         
         if (ringan.equals("ya")) {
@@ -5549,6 +5587,12 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
             blok = "tidak";
         }
         
+        if (chkTopikal.isSelected() == true) {
+            topikal = "ya";
+        } else {
+            topikal = "tidak";
+        }
+        
         if (chkRingan.isSelected() == true) {
             ringan = "ya";
         } else {
@@ -5654,6 +5698,7 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
         cse = "";
         infil = "";
         blok = "";
+        topikal = "";
         ringan = "";
         sedang = "";
         dalam = "";
@@ -6011,5 +6056,26 @@ public class RMSerahTerimaPascaOperasi extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void awalData() {
+        Sequel.cariIsiComboDB("SELECT distinct CASE WHEN nm_gedung IN ('AR-RAUDAH ATAS', 'AR-RAUDAH BAWAH') THEN 'AR-RAUDAH' ELSE nm_gedung END AS gedungnya "
+                + "FROM bangsal WHERE status = '1' "
+                + "AND nm_gedung NOT LIKE '%instalasi%' "
+                + "AND nm_gedung NOT LIKE '%sdm%' "
+                + "AND nm_gedung NOT LIKE '%ipsrs%' "
+                + "AND nm_gedung NOT LIKE '%uang%' "
+                + "AND nm_gedung NOT LIKE '%sanitasi%' "
+                + "AND nm_gedung NOT LIKE '%inst.%' "
+                + "AND nm_gedung NOT LIKE '%bid.%' "
+                + "AND nm_gedung NOT LIKE '%unit%' "
+                + "AND nm_gedung NOT LIKE '%bag.%' "
+                + "AND nm_gedung NOT LIKE '%upm%' "
+                + "AND nm_gedung <>'-' GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuangan);
+        tampil();
+        ((RMSerahTerimaPascaOperasi.Painter) gambarQR).setImage("");
+        Sequel.cariIsiComboDB("select nm_dokumen from master_nomor_dokumen_erm where "
+                + "status='aktif' and unit_pengguna='Ruang Perawatan, Poliklinik & Instalasi' and ttd_keluarga_pasien='Ya' order by kode_erm", cmbRM);
+        Sequel.queryu("DELETE FROM parameter_ttd_rme WHERE DATE(waktu_kirim) < CURDATE()");
     }
 }

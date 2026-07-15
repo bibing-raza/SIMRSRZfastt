@@ -36,7 +36,7 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPetugas;
-
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -55,6 +55,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
     private String[] kode, masalah;
     private String masalahkeperawatan = "";
     private StringBuilder htmlContent;
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -2653,7 +2654,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowTemplate.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
@@ -4298,6 +4299,16 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    public void awalData() {
+        if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_ralan where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
+            tampilMasalah();
+        } else if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_ralan where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+            tampil();
         }
     }
 }

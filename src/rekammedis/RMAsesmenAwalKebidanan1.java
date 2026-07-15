@@ -34,6 +34,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -56,6 +57,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
             tidakKb = "", istriKawin = "", suamiKawin = "", orangTua = "", suami = "", anak = "", tinggalSendiri = "", asuransi = "", jaminan = "",
             biayaSendiri = "", lainStatusEkonomi = "", bersih = "", oedema = "", ruftur = "", candiloma = "", lainPemeriksaanGeni = "", alamatSama = "",
             stsrwt = "", cekBatuk = "", cekPilek = "", cekDemam = "";
+    private frmUtama formUtama;
 
     /** Creates new form DlgRujuk
      * @param parent
@@ -5763,7 +5765,7 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         halaman2.Tutup();
         Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
 }//GEN-LAST:event_BtnKeluarActionPerformed
@@ -14296,6 +14298,15 @@ public final class RMAsesmenAwalKebidanan1 extends javax.swing.JDialog {
                 public void windowDeactivated(WindowEvent e) {
                 }
             });
+        }
+    }
+    
+    public void awalData() {
+        if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan1 where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+        } else if (Sequel.cariInteger("select count(-1) from asesmen_awal_kebidanan1 where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
+            scrollKeAtas();
         }
     }
 }

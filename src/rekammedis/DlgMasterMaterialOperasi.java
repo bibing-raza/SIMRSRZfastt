@@ -25,6 +25,7 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -39,6 +40,7 @@ public class DlgMasterMaterialOperasi extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6;
     private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6;
     private int i = 0;
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -1344,12 +1346,12 @@ public class DlgMasterMaterialOperasi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -2202,5 +2204,9 @@ public class DlgMasterMaterialOperasi extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
         }
+    }
+    
+    public void awalData() {
+        BtnCariActionPerformed(null);
     }
 }

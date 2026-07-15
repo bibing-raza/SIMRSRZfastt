@@ -37,6 +37,7 @@ import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -53,6 +54,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
     private String nip = "", dataKonfirmasi = "", enumKeadaan = "", enumKardiovaskular = "", enumRespirasi = "",
             dataKeadaan = "", dataKardio = "", dataRespi = "";
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private frmUtama formUtama;
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -1262,14 +1264,16 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowCetak.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnEdit,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnEdit, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
@@ -2044,5 +2048,9 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         tabMode1.addRow(new String[]{"Pra-Sekolah", "4-6 tahun", "70 - 110", "21 - 23"});
         tabMode1.addRow(new String[]{"Sekolah", "7-12 tahun", "70 - 110", "19 - 21"});
         tabMode1.addRow(new String[]{"Remaja", "13-16 tahun", "55 - 90", "16 - 18"});
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

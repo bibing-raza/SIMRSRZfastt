@@ -184,6 +184,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
     private DlgRawatJalan dlgrwjl2 = new DlgRawatJalan(null, false);
     private DlgPemberianObat dlgrwinap = new DlgPemberianObat(null, false);
     private BPJSApi api = new BPJSApi();
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgReg
@@ -5966,8 +5967,8 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
         WindowPasienBooking.dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -12418,6 +12419,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnObservasiKala1.setEnabled(akses.getcppt());
         MnAsesmenMedikKebidanan.setEnabled(akses.getresep_dokter());
         MnInputDataAMK.setEnabled(akses.getresep_dokter());
+        MnUrutkanReg.setEnabled(akses.getadmin());
+        MnUrutkanRegSemua.setEnabled(akses.getadmin());
         
         //sementara non aktif cuma akses admin utama dulu
         MnAsesmenMedikObstetri.setEnabled(akses.getadmin());
@@ -20331,5 +20334,11 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 }
             });
         }
+    }
+    
+    public void awalData() {
+        akses.tRefreshAntrian.start();
+        TabRawat.setSelectedIndex(0);
+        BtnRME.setEnabled(false);
     }
 }

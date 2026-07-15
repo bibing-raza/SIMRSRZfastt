@@ -66,6 +66,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             Utang_Jasa_Medik_Paramedis_Tindakan_Ranap = "", Beban_KSO_Tindakan_Ranap = "", kd_pj, kamar, tgl_m, kdDiag = "", tgm = "",
             tglmasuk, jammasuk, Utang_KSO_Tindakan_Ranap = "", hariawal = Sequel.cariIsi("select hariawal from set_jam_minimal"),
             now = dateFormat.format(date), diag_awal, key = "", cekdpjp = "", dataKonfirmasi = "", nipDokter = "", kdUnit = "";
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgRawatInap
@@ -3419,7 +3420,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         if (cmbStatus.getSelectedItem().equals("-")) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             kamar = Sequel.cariIsi("SELECT kd_kamar FROM kamar_inap WHERE no_rawat='" + TNoRw.getText() + "' AND stts_pulang='-' ");
             kdkamar.setText(kamar);
@@ -3471,7 +3472,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnPrint, TCari);
         }
@@ -5576,5 +5577,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void awalData() {
+        Thasil.setText("");
+        Tinstruksi.setText("");
+        tampilCppt();
     }
 }

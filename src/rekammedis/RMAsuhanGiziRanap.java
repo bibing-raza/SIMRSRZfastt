@@ -41,6 +41,7 @@ import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -71,6 +72,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             sttsgizipbu = "", sttsgizibbpb = "", sttsgiziprin = "", angkaBulan = "", whereData1 = "", whereData2 = "", whereData3 = "", 
             whereData4 = "";
     private String[] kode, diagnosa;
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -4685,7 +4687,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowRiwayat.dispose();
         WindowLapStatusGZ.dispose();
         WindowLapStatusGZanak.dispose();
@@ -9629,5 +9631,18 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
         tampilBalita();
         BtnKeluar6.requestFocus();
+    }
+    
+    public void awalData() {
+        tampilDiagnosa();
+        tampil();
+        
+        if (Sequel.cariInteger("select count(-1) from asuhan_gizi_ranap where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+        } else if (Sequel.cariInteger("select count(-1) from asuhan_gizi_ranap where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
+        }
+        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'-' GROUP BY nm_gedung ORDER BY nm_gedung", cmbGedung);
+        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'-' GROUP BY nm_gedung ORDER BY nm_gedung", cmbGedung1);
     }
 }

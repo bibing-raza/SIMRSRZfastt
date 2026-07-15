@@ -51,6 +51,7 @@ import laporan.DlgPenyakit;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariPeriksaRadiologi;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -70,6 +71,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             kelebihan = "", bersihkan = "", pola = "", gangguan = "", cemas = "", ketidakseimbangan = "", perubahan = "", penurunan = "",
             kerusakan = "", intoleransi = "", kurang = "", perluMPP = "", perluDP = "", resikojatuh = "", resikodecubitus = "", skorFix = "",
             wktSimpanHistori = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -3883,7 +3885,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -7240,6 +7242,18 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             }
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    public void awalData() {
+        tampilFaktorResiko();
+        tampilResikoDecubitus();
+        tampil();
+        
+        if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+        } else if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
         }
     }
 }

@@ -52,6 +52,7 @@ import keuangan.Jurnal;
 import laporan.DlgLaporanFarmasi;
 import simrskhanza.DlgCariObatPenyakit;
 import simrskhanza.DlgPasien;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -80,6 +81,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
     private String statusberi = "", Suspen_Piutang_Obat_Ranap = "", Obat_Ranap = "", HPP_Obat_Rawat_Inap = "", Persediaan_Obat_Rawat_Inap = "";
     private Jurnal jur = new Jurnal();
     private int i, x = 0;
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgPemberianObat
@@ -1734,12 +1736,12 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnPrint, TCari);
         }
@@ -2732,6 +2734,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             bangsal = Sequel.cariApotek2();
         }
         akses.setkdbangsal(bangsal);
+    }
+    
+    public void awalData() {
+        tampilPO();
     }
 
 }

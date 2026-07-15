@@ -36,6 +36,7 @@ import javax.swing.table.TableRowSorter;
 import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -54,6 +55,7 @@ public class RMAsesmenPraSedasiKonsepIAR extends javax.swing.JDialog {
     private String nipDokter = "", hilang = "", masalah = "", leher = "", strok = "", sesak = "", sakit = "", denyut = "", sedang = "", kejang = "", obes = "",
             buka = "", jarak = "", gerakan = "", gigi = "", asa1 = "", asa2 = "", asa3 = "", asa4 = "", emer = "", spinal = "", epid = "", kaudal = "", blok = "",
             ekg = "", spo2 = "", nibp = "", temp = "", lain = "", puasa = "", rencana = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -2540,13 +2542,13 @@ public class RMAsesmenPraSedasiKonsepIAR extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowTemplate.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -4735,5 +4737,9 @@ public class RMAsesmenPraSedasiKonsepIAR extends javax.swing.JDialog {
         } else if (pilihan == 8) {
             Tcatatan.setText(Ttemplate.getText());
         } 
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

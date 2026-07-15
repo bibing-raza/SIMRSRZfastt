@@ -135,6 +135,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private JsonNode root;
     private JsonNode response;
     private ObjectMapper mapper = new ObjectMapper();
+    private frmUtama formUtama;
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -5077,7 +5078,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         x = JOptionPane.showConfirmDialog(rootPane, "Apakah Ringkasan Pulang/Resume Medis sudah tersimpan, selesai diisi/diperbaiki..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (x == JOptionPane.YES_OPTION) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
             WindowTTE.dispose();
             WindowPasien.dispose();
             WindowDokterPenyimpan.dispose();
@@ -5087,7 +5088,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -17220,5 +17221,30 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void awalData() {
+        if (Sequel.cariInteger("select count(-1) from ringkasan_pulang_ranap where no_rawat='" + TNoRW.getText() + "'") > 0) {
+            TabRingkasan.setSelectedIndex(1);
+            tampil();
+        } else if (Sequel.cariInteger("select count(-1) from ringkasan_pulang_ranap where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            TabRingkasan.setSelectedIndex(0);
+        }
+        
+        noreg.setText(Sequel.cariIsi("select ifnull(id_tb_03,'') from nomor_reg_tb where no_rkm_medis='" + TNoRM.getText() + "'"));
+        if (nmgedung.equals("AL-HAKIM/PARU")) {
+            noreg.setEnabled(true);
+        } else {
+            noreg.setEnabled(false);
+        }
+        
+        i = 0;
+        i = noreg.getText().length();
+        jml_noreg.setText("Jumlah No. Reg. TB : " + i + " digit");
+        
+        ((DlgRingkasanPulangRanap.Painter) gambarQR).setImage("");
+        Sequel.cariIsiComboDB("select nm_dokumen from master_nomor_dokumen_erm where "
+                + "status='aktif' and unit_pengguna='Ruang Perawatan' and ttd_keluarga_pasien='Ya' order by kode_erm", cmbRekmed);
+        Sequel.queryu("DELETE FROM parameter_ttd_rme WHERE DATE(waktu_kirim) < CURDATE()");
     }
 }

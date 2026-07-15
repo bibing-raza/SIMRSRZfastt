@@ -35,7 +35,7 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import simrskhanza.DlgCariDokter;
-
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -50,7 +50,8 @@ public final class RMPenilaianAwalMedisRalanMata extends javax.swing.JDialog {
     private ResultSet rs, rs1;
     private int i = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private StringBuilder htmlContent;    
+    private StringBuilder htmlContent;
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -2217,13 +2218,15 @@ public final class RMPenilaianAwalMedisRalanMata extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnKeluarActionPerformed(null);
-        }else{Valid.pindah(evt,BtnEdit,TCari);}
+        } else {
+            Valid.pindah(evt, BtnEdit, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
@@ -3344,6 +3347,15 @@ public final class RMPenilaianAwalMedisRalanMata extends javax.swing.JDialog {
 
             tampil();
             emptTeks();
+            TabRawat.setSelectedIndex(1);
+        }
+    }
+    
+    public void awalData() {
+        tampil();
+        if (Sequel.cariInteger("select count(-1) from penilaian_medis_ralan_mata where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            TabRawat.setSelectedIndex(0);
+        } else if (Sequel.cariInteger("select count(-1) from penilaian_medis_ralan_mata where no_rawat='" + TNoRw.getText() + "'") > 0) {
             TabRawat.setSelectedIndex(1);
         }
     }

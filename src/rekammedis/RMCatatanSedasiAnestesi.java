@@ -37,6 +37,7 @@ import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -56,6 +57,7 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
     private String nipDrBedah = "", nipDrAnes = "", nipPenata = "", urutData = "", urutanKe = "", wktSimpan = "",
             total = "", partial = "", gagal = "", ett = "", lma = "", fima = "", tiva = "", spinal = "", epidural = "", cse = "", infil = "", blok = "", ga = "",
             induksi = "", pasienSiap = "", insisi = "", operasi = "", ekstub = "", pasienKlr = "", jamAsa = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -2615,12 +2617,12 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -4766,5 +4768,9 @@ public class RMCatatanSedasiAnestesi extends javax.swing.JDialog {
             Tdistol.setText(tbStatus.getValueAt(tbStatus.getSelectedRow(), 11).toString());
             Tnadi.setText(tbStatus.getValueAt(tbStatus.getSelectedRow(), 12).toString());
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

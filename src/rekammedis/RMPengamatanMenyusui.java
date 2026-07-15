@@ -51,6 +51,7 @@ import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgKabupaten;
 import simrskhanza.DlgKecamatan;
 import simrskhanza.DlgKelurahan;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -72,6 +73,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
             pelekatanTampak = "", pelekatanTerbuka = "", pelekatanTerputarKeluar = "", pelekatanMenempel = "", pelekatanLebih = "", pelekatanTakTerbuka = "",
             pelekatanTerputarKedalam = "", pelekatanTidakMenempel = "", mengisapLambat = "", mengisapPipiMembulat = "", mengisapMelepaskanSelesai = "",
             mengisapReflex = "", mengisapDangkal = "", mengisapPipiTertarik = "", mengisapMelepaskanPayudara = "", mengisapOksitosin = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -1774,7 +1776,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -3311,5 +3313,9 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
             tampil();
             emptTeks();
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

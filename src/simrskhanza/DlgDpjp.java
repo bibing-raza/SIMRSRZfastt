@@ -47,6 +47,7 @@ public class DlgDpjp extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private int x = 0, i = 0;
+    private frmUtama formUtama;
 
     /** Creates new form DlgPemberianObat
      * @param parent
@@ -567,12 +568,12 @@ public class DlgDpjp extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
