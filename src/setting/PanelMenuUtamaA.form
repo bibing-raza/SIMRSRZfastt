@@ -126,7 +126,7 @@
                 </Property>
                 <Property name="mnemonic" type="int" value="67"/>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Cari Menu"/>
+                <Property name="text" type="java.lang.String" value="Pencarian"/>
                 <Property name="toolTipText" type="java.lang.String" value="Alt+C"/>
                 <Property name="borderPainted" type="boolean" value="true"/>
                 <Property name="borderPaintedFlat" type="boolean" value="true"/>

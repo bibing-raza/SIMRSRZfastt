@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
 import simrskhanza.DlgCariBangsal;
+import simrskhanza.frmUtama;
 
 public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
 
@@ -40,6 +41,7 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
     private ResultSet rs;
     private DlgCariBangsal bangsal = new DlgCariBangsal(null, false);
     private String where = "", dialog_simpan = "";
+    private frmUtama formUtama;
 
     /**
      * @param parent
@@ -863,12 +865,12 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnPrint, Tgl1);
         }
@@ -1779,5 +1781,4 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     public void isCek() {
         BtnPrint.setEnabled(akses.getsirkulasi_obat());
     }
-
 }

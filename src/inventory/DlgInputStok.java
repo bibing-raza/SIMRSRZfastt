@@ -37,6 +37,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
 import simrskhanza.DlgCariBangsal;
+import simrskhanza.frmUtama;
 
 public class DlgInputStok extends javax.swing.JDialog {
 
@@ -56,6 +57,7 @@ public class DlgInputStok extends javax.swing.JDialog {
     private double[] hargabeli, stok, selisih, nomihilang;
     private WarnaTable2 warna = new WarnaTable2();
     private String dialog_simpan = "";
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgProgramStudi
@@ -700,12 +702,12 @@ public class DlgInputStok extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnCari, TCari);
         }
@@ -1135,5 +1137,9 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     public void isCek() {
         BtnSimpan.setEnabled(akses.getstok_opname_obat());
     }
-
+    
+    public void awalData() {
+        Sequel.insertClosingStok();
+        tampil();
+    }
 }

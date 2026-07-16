@@ -40,6 +40,7 @@ import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgNotepad;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -58,6 +59,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private String kdobat = "", status = "", statusOK = "", dataDipilih = "", kdobatFix = "", waktuSimpan = "",
             cekjam1 = "", cekjam2 = "", cekjam3 = "", cekjam4 = "", cekjam5 = "", cekjam6 = "", cekjam7 = "", cekjam8 = "",
             dataKonfirmasi = "", nip1 = "", nip2 = "", cekDobel = "", dataDobelCek = "", unitAsalnya = "";
+    private frmUtama formUtama;
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -3022,7 +3024,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowObat.dispose();
         WindowCetak.dispose();
         WindowCopyData.dispose();
@@ -3030,7 +3032,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnEdit, TCari);
         }
@@ -5649,5 +5651,10 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void awalData() {
+        tampil();
+        tampilDoubelCek();
     }
 }

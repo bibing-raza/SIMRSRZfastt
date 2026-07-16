@@ -28,6 +28,7 @@ import keuangan.Jurnal;
 import simrskhanza.DlgCariBangsal;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgCariDokter2;
+import simrskhanza.frmUtama;
 
 public class DlgPenjualan extends javax.swing.JDialog {
 
@@ -51,6 +52,7 @@ public class DlgPenjualan extends javax.swing.JDialog {
     private WarnaTable2 warna = new WarnaTable2();
     public DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String notapenjualan = "No";
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgProgramStudi
@@ -1213,12 +1215,12 @@ public class DlgPenjualan extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         carijual.dispose();
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnCari, TCari);
         }
@@ -2242,5 +2244,9 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         Bayar.setText("0");
 
 //        tampil();
+    }
+    
+    public void awalData() {
+        Sequel.insertClosingStok();
     }
 }

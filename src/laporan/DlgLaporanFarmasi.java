@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import simrskhanza.DlgCariPoli;
 import simrskhanza.DlgPasien;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -48,6 +49,7 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
     private DlgPasien pasien = new DlgPasien(null, false);
     private DlgCariBangsal bangsal = new DlgCariBangsal(null, false);
     private String tgl1 = "", tgl2 = "", sql = "", depo1 = "", depo2 = "", norm = "", dialog_simpan = "";
+    private frmUtama formUtama;
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -1291,13 +1293,15 @@ public class DlgLaporanFarmasi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnBatal,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnBatal, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
@@ -5193,5 +5197,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             nmpnj.setText(Sequel.cariIsi("select png_jawab from penjab where kd_pj='" + kdpnj.getText() + "'"));
         }
     }
-
+    
+    public void awalData() {
+        tampil();
+    }
 }

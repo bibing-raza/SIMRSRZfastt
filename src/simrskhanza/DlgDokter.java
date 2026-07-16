@@ -41,7 +41,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPegawai;
 import restore.DlgRestoreDokter;
-
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -59,6 +59,7 @@ public class DlgDokter extends javax.swing.JDialog {
     private PreparedStatement stat, stat1;
     private ResultSet rs, rs1;
     private String kerja1 = "", kerja2 = "", urlfoto = "", kddokterBPJS = "", kddokterSatuSehat = "";
+    private frmUtama formUtama;
 
     /** Creates new form DlgDokter
      * @param parent
@@ -1304,13 +1305,15 @@ public class DlgDokter extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnKeluar,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnKeluar, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
@@ -2065,6 +2068,14 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             MnRestore.setEnabled(true);
         } else {
             MnRestore.setEnabled(false);
+        }
+    }
+    
+    public void awalData() {
+        if (TabDokter.getSelectedIndex() == 0) {
+            tampil();
+        } else if (TabDokter.getSelectedIndex() == 1) {
+            tampil1();
         }
     }
 }

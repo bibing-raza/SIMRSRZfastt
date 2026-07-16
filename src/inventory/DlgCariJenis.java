@@ -28,6 +28,7 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -35,12 +36,14 @@ import javax.swing.table.TableColumn;
  */
 public final class DlgCariJenis extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    public DlgJenis jenis=new DlgJenis(null,false);
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    public DlgJenis jenis = new DlgJenis(null, false);
     private PreparedStatement ps;
     private ResultSet rs;
-    private Connection koneksi=koneksiDB.condb();
+    private Connection koneksi = koneksiDB.condb();
+    private frmUtama formUtama;
+    
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
@@ -124,7 +127,7 @@ public final class DlgCariJenis extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Jenis Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Jenis Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -134,6 +137,7 @@ public final class DlgCariJenis extends javax.swing.JDialog {
         tbKamar.setAutoCreateRowSorter(true);
         tbKamar.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbKamar.setName("tbKamar"); // NOI18N
+        tbKamar.getTableHeader().setReorderingAllowed(false);
         tbKamar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbKamarMouseClicked(evt);
@@ -170,7 +174,6 @@ public final class DlgCariJenis extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('1');
         BtnCari.setToolTipText("Alt+1");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -188,7 +191,6 @@ public final class DlgCariJenis extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('2');
         BtnAll.setToolTipText("2Alt+2");
         BtnAll.setName("BtnAll"); // NOI18N
         BtnAll.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -206,7 +208,6 @@ public final class DlgCariJenis extends javax.swing.JDialog {
 
         BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambah.setMnemonic('3');
         BtnTambah.setToolTipText("Alt+3");
         BtnTambah.setName("BtnTambah"); // NOI18N
         BtnTambah.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -232,7 +233,6 @@ public final class DlgCariJenis extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('4');
         BtnKeluar.setToolTipText("Alt+4");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
         BtnKeluar.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -307,7 +307,7 @@ public final class DlgCariJenis extends javax.swing.JDialog {
 }//GEN-LAST:event_tbKamarKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
@@ -389,5 +389,9 @@ public final class DlgCariJenis extends javax.swing.JDialog {
     
     public void isCek(){        
         BtnTambah.setEnabled(akses.getobat());
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

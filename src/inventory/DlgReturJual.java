@@ -24,22 +24,24 @@ import javax.swing.table.TableColumn;
 import simrskhanza.DlgPasien;
 import keuangan.Jurnal;
 import simrskhanza.DlgCariBangsal;
+import simrskhanza.frmUtama;
 
 public class DlgReturJual extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private Jurnal jur=new Jurnal();
-    private Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
-    private DlgCariBangsal bangsal=new DlgCariBangsal(null,false);
-    private DlgCariReturJual form=new DlgCariReturJual(null,false);    
-    private DlgPasien member=new DlgPasien(null,false);
-    private double ttlretur=0;
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private Jurnal jur = new Jurnal();
+    private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    private DlgCariBangsal bangsal = new DlgCariBangsal(null, false);
+    private DlgCariReturJual form = new DlgCariReturJual(null, false);
+    private DlgPasien member = new DlgPasien(null, false);
+    private double ttlretur = 0;
     private PreparedStatement ps;
     private ResultSet rs;
-    private Connection koneksi=koneksiDB.condb();
-    private riwayatobat Trackobat=new riwayatobat();
-    private String formvalid="";
+    private Connection koneksi = koneksiDB.condb();
+    private riwayatobat Trackobat = new riwayatobat();
+    private String formvalid = "";
+    private frmUtama formUtama;
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -890,13 +892,15 @@ public class DlgReturJual extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-            dispose();  
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){            
-            dispose();              
-        }else{Valid.pindah(evt,BtnBatal,Kdbar);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnBatal, Kdbar);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 /*
 private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKeyPressed
@@ -1386,5 +1390,9 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis=?",nmmem,kdmem.getText());
         kdgudang.setText(Sequel.cariIsi("select kd_bangsal from set_lokasi limit 1"));
         Sequel.cariIsi("select bangsal.nm_bangsal from bangsal where bangsal.kd_bangsal=?",nmgudang,kdgudang.getText());
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

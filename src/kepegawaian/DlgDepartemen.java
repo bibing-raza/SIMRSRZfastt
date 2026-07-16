@@ -33,6 +33,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariBangsal;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -48,6 +49,7 @@ public final class DlgDepartemen extends javax.swing.JDialog {
     private String cekStatus = "";
     private int x = 0;
     public DlgCariBangsal bangsal=new DlgCariBangsal(null,false);
+    private frmUtama formUtama;
     
     /** Creates new form DlgPenyakit
      * @param parent
@@ -512,7 +514,7 @@ public final class DlgDepartemen extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -779,5 +781,9 @@ public final class DlgDepartemen extends javax.swing.JDialog {
             TkdBangsal.setText(tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 3).toString());
             TnmBangsal.setText(tbDepartemen.getValueAt(tbDepartemen.getSelectedRow(), 4).toString());
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.frmUtama;
 
 public class DlgRBiayaHarianIPSRS extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
@@ -27,6 +28,7 @@ public class DlgRBiayaHarianIPSRS extends javax.swing.JDialog {
     private ResultSet rs;
     private int i=0;
     private double jumlah;
+    private frmUtama formUtama;
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -94,7 +96,7 @@ public class DlgRBiayaHarianIPSRS extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Harian Biaya Pengadaan Barang Non Medis dan Penunjang ( Lab & RO ) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(90, 120, 80))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Harian Biaya Pengadaan Barang Non Medis dan Penunjang ( Lab & RO ) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -114,6 +116,7 @@ public class DlgRBiayaHarianIPSRS extends javax.swing.JDialog {
         ));
         tbDokter.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDokter.setName("tbDokter"); // NOI18N
+        tbDokter.getTableHeader().setReorderingAllowed(false);
         scrollPane1.setViewportView(tbDokter);
 
         internalFrame1.add(scrollPane1, java.awt.BorderLayout.CENTER);
@@ -122,6 +125,7 @@ public class DlgRBiayaHarianIPSRS extends javax.swing.JDialog {
         panelisi1.setPreferredSize(new java.awt.Dimension(100, 56));
         panelisi1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        label11.setForeground(new java.awt.Color(0, 0, 0));
         label11.setText("Tgl.Keluar :");
         label11.setName("label11"); // NOI18N
         label11.setPreferredSize(new java.awt.Dimension(65, 23));
@@ -138,6 +142,7 @@ public class DlgRBiayaHarianIPSRS extends javax.swing.JDialog {
         });
         panelisi1.add(TglBeli1);
 
+        label13.setForeground(new java.awt.Color(0, 0, 0));
         label13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label13.setText("s.d.");
         label13.setName("label13"); // NOI18N
@@ -155,6 +160,7 @@ public class DlgRBiayaHarianIPSRS extends javax.swing.JDialog {
         });
         panelisi1.add(TglBeli2);
 
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('2');
         BtnCari.setToolTipText("Alt+2");
@@ -172,10 +178,12 @@ public class DlgRBiayaHarianIPSRS extends javax.swing.JDialog {
         });
         panelisi1.add(BtnCari);
 
+        label12.setForeground(new java.awt.Color(0, 0, 0));
         label12.setName("label12"); // NOI18N
         label12.setPreferredSize(new java.awt.Dimension(60, 23));
         panelisi1.add(label12);
 
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
@@ -194,6 +202,7 @@ public class DlgRBiayaHarianIPSRS extends javax.swing.JDialog {
         });
         panelisi1.add(BtnPrint);
 
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -262,13 +271,15 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnPrint,TglBeli1);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnPrint, TglBeli1);
+        }
     }//GEN-LAST:event_BtnKeluarKeyPressed
 
 private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
@@ -348,5 +359,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }               
     }
     
-    
+    public void awalData() {
+        TglBeli1.requestFocus();
+        prosesCari();
+    }
 }

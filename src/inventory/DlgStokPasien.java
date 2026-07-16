@@ -33,6 +33,7 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -40,12 +41,14 @@ import javax.swing.table.TableColumn;
  */
 public final class DlgStokPasien extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private riwayatobat Trackobat=new riwayatobat();
-    private validasi Valid=new validasi();  
-    private Connection koneksi=koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
+    private riwayatobat Trackobat = new riwayatobat();
+    private validasi Valid = new validasi();
+    private Connection koneksi = koneksiDB.condb();
     private PreparedStatement pstampil;
     private ResultSet rstampil;
+    private frmUtama formUtama;
+    
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
@@ -174,7 +177,6 @@ public final class DlgStokPasien extends javax.swing.JDialog {
         Kd2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Kd2.setHighlighter(null);
         Kd2.setName("Kd2"); // NOI18N
-        Kd2.setSelectionColor(new java.awt.Color(255, 255, 255));
         Kd2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Kd2KeyPressed(evt);
@@ -190,7 +192,7 @@ public final class DlgStokPasien extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Pemberian Stok Obat, Alkes & BHP Medis Pasien Di Ranap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Pemberian Stok Obat, Alkes & BHP Medis Pasien Di Ranap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -202,6 +204,7 @@ public final class DlgStokPasien extends javax.swing.JDialog {
         tbKamar.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbKamar.setComponentPopupMenu(Popup);
         tbKamar.setName("tbKamar"); // NOI18N
+        tbKamar.getTableHeader().setReorderingAllowed(false);
         Scroll.setViewportView(tbKamar);
 
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
@@ -215,17 +218,20 @@ public final class DlgStokPasien extends javax.swing.JDialog {
         panelisi3.setPreferredSize(new java.awt.Dimension(100, 44));
         panelisi3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
 
+        label11.setForeground(null);
         label11.setText("Tanggal :");
         label11.setName("label11"); // NOI18N
         label11.setPreferredSize(new java.awt.Dimension(60, 23));
         panelisi3.add(label11);
 
         Tgl1.setEditable(false);
+        Tgl1.setForeground(null);
         Tgl1.setDisplayFormat("dd-MM-yyyy");
         Tgl1.setName("Tgl1"); // NOI18N
         Tgl1.setPreferredSize(new java.awt.Dimension(95, 23));
         panelisi3.add(Tgl1);
 
+        label19.setForeground(null);
         label19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label19.setText("s.d.");
         label19.setName("label19"); // NOI18N
@@ -233,16 +239,19 @@ public final class DlgStokPasien extends javax.swing.JDialog {
         panelisi3.add(label19);
 
         Tgl2.setEditable(false);
+        Tgl2.setForeground(null);
         Tgl2.setDisplayFormat("dd-MM-yyyy");
         Tgl2.setName("Tgl2"); // NOI18N
         Tgl2.setPreferredSize(new java.awt.Dimension(95, 23));
         panelisi3.add(Tgl2);
 
+        label9.setForeground(null);
         label9.setText("Key Word :");
         label9.setName("label9"); // NOI18N
         label9.setPreferredSize(new java.awt.Dimension(90, 23));
         panelisi3.add(label9);
 
+        TCari.setForeground(null);
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(250, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -252,6 +261,7 @@ public final class DlgStokPasien extends javax.swing.JDialog {
         });
         panelisi3.add(TCari);
 
+        BtnAll.setForeground(null);
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('3');
         BtnAll.setToolTipText("Alt+3");
@@ -270,6 +280,7 @@ public final class DlgStokPasien extends javax.swing.JDialog {
         });
         panelisi3.add(BtnAll);
 
+        BtnCari.setForeground(null);
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('2');
         BtnCari.setToolTipText("Alt+2");
@@ -293,6 +304,7 @@ public final class DlgStokPasien extends javax.swing.JDialog {
         panelisi1.setName("panelisi1"); // NOI18N
         panelisi1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
@@ -311,6 +323,7 @@ public final class DlgStokPasien extends javax.swing.JDialog {
         });
         panelisi1.add(BtnHapus);
 
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
@@ -329,17 +342,20 @@ public final class DlgStokPasien extends javax.swing.JDialog {
         });
         panelisi1.add(BtnPrint);
 
+        label10.setForeground(new java.awt.Color(0, 0, 0));
         label10.setText("Record :");
         label10.setName("label10"); // NOI18N
         label10.setPreferredSize(new java.awt.Dimension(95, 30));
         panelisi1.add(label10);
 
+        LCount.setForeground(new java.awt.Color(0, 0, 0));
         LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LCount.setText("0");
         LCount.setName("LCount"); // NOI18N
         LCount.setPreferredSize(new java.awt.Dimension(300, 30));
         panelisi1.add(LCount);
 
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -410,13 +426,15 @@ public final class DlgStokPasien extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnHapusKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnAll,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnAll, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
@@ -602,12 +620,14 @@ public final class DlgStokPasien extends javax.swing.JDialog {
         return BtnKeluar;
     }
     
-    
-    
     public void isCek(){
         BtnHapus.setEnabled(akses.getstok_obat_pasien());
         BtnPrint.setEnabled(akses.getstok_obat_pasien());    
         ppHapus.setEnabled(akses.getstok_obat_pasien());
         ppCetak.setEnabled(akses.getstok_obat_pasien());
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

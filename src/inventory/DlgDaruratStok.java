@@ -20,16 +20,18 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
+import simrskhanza.frmUtama;
 
 public class DlgDaruratStok extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private Jurnal jur=new Jurnal();
-    private Connection koneksi=koneksiDB.condb();
-    private PreparedStatement ps,psstok;
-    private ResultSet rs,rsstok;
-    private double stok=0;
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private Jurnal jur = new Jurnal();
+    private Connection koneksi = koneksiDB.condb();
+    private PreparedStatement ps, psstok;
+    private ResultSet rs, rsstok;
+    private double stok = 0;
+    private frmUtama formUtama;
 
     /** 
      * @param parent
@@ -106,7 +108,7 @@ public class DlgDaruratStok extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Darurat Stok Obat/BHP/Alkes ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Darurat Stok Obat/BHP/Alkes ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -126,6 +128,7 @@ public class DlgDaruratStok extends javax.swing.JDialog {
         ));
         tbDokter.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDokter.setName("tbDokter"); // NOI18N
+        tbDokter.getTableHeader().setReorderingAllowed(false);
         scrollPane1.setViewportView(tbDokter);
 
         internalFrame1.add(scrollPane1, java.awt.BorderLayout.CENTER);
@@ -134,11 +137,13 @@ public class DlgDaruratStok extends javax.swing.JDialog {
         panelisi1.setPreferredSize(new java.awt.Dimension(100, 56));
         panelisi1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        label10.setForeground(new java.awt.Color(0, 0, 0));
         label10.setText("Key Word :");
         label10.setName("label10"); // NOI18N
         label10.setPreferredSize(new java.awt.Dimension(69, 23));
         panelisi1.add(label10);
 
+        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(300, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -148,6 +153,7 @@ public class DlgDaruratStok extends javax.swing.JDialog {
         });
         panelisi1.add(TCari);
 
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('2');
         BtnCari.setToolTipText("Alt+2");
@@ -165,6 +171,7 @@ public class DlgDaruratStok extends javax.swing.JDialog {
         });
         panelisi1.add(BtnCari);
 
+        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('A');
         BtnAll.setToolTipText("Alt+A");
@@ -182,11 +189,13 @@ public class DlgDaruratStok extends javax.swing.JDialog {
         });
         panelisi1.add(BtnAll);
 
+        label9.setForeground(new java.awt.Color(0, 0, 0));
         label9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label9.setName("label9"); // NOI18N
         label9.setPreferredSize(new java.awt.Dimension(70, 30));
         panelisi1.add(label9);
 
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('P');
         BtnPrint.setText("Cetak");
@@ -205,6 +214,7 @@ public class DlgDaruratStok extends javax.swing.JDialog {
         });
         panelisi1.add(BtnPrint);
 
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -278,13 +288,15 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnPrint,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnPrint, TCari);
+        }
     }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
@@ -418,4 +430,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
          BtnPrint.setEnabled(akses.getsirkulasi_obat());
     }
     
+    public void awalData() {
+        prosesCari();
+    }    
 }

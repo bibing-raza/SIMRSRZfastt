@@ -27,6 +27,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -42,6 +43,7 @@ public class DlgResepIterObat extends javax.swing.JDialog {
     private ResultSet rs, rs1, rs2;
     private int i = 0, x = 0;
     private String norawat = "", wktSimpan = "", tglAmbilObat = "", ketHari = "", tglAkanDatang = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -500,12 +502,12 @@ public class DlgResepIterObat extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
@@ -919,5 +921,11 @@ public class DlgResepIterObat extends javax.swing.JDialog {
                         tbIter.getValueAt(tbIter.getSelectedRow(), 24).toString());
             }
         }
+    }
+    
+    public void awalData() {
+        Valid.tabelKosong(tabMode1);
+        Valid.tabelKosong(tabMode2);
+        tampil();
     }
 }

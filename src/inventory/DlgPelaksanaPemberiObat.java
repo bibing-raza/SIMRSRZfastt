@@ -36,6 +36,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -52,6 +53,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String nipPetugas1 = "", nipPetugas2 = "", nipPetugas3 = "", nipPetugas4 = "", nipPetugas5 = "",
             nipPetugas6 = "", nipPetugas7 = "", nipPetugas8 = "", wktSimpan = "", dataDobelCek = "";
+    private frmUtama formUtama;
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -1410,13 +1412,15 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnEdit,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnEdit, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
@@ -2487,5 +2491,9 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
         }
-    }  
+    } 
+    
+    public void awalData() {
+        tampil();
+    }
 }

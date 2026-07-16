@@ -50,6 +50,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.codehaus.groovy.syntax.Numbers;
 import setting.DlgSetAplikasi;
+import simrskhanza.frmUtama;
 
 public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     private final DefaultTableModel tabMode, tabMode1, tabMode2;
@@ -65,6 +66,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     private String norawat = "", norm = "", idObat = "", jenisResep = "", resepPulang = "", kdUnit = "", tglpulang = "", sttsPulang = "";
     public Timer tEresep;
     private BackgroundMusic music;
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgPemberianInfus
@@ -917,7 +919,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPenjabActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void MnCetakResepThermalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakResepThermalActionPerformed

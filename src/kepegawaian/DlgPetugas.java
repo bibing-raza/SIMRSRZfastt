@@ -40,6 +40,7 @@ import javax.swing.table.TableColumn;
 import restore.DlgRestorePetugas;
 import simrskhanza.DlgCariJabatan;
 import kepegawaian.DlgCariPegawai;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -53,6 +54,7 @@ public final class DlgPetugas extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private DlgCariPegawai pegawai = new DlgCariPegawai(null, false);
+    private frmUtama formUtama;
 
     /** Creates new form DlgPetugas
      * @param parent
@@ -1046,13 +1048,15 @@ public final class DlgPetugas extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnPrint,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnPrint, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
@@ -1500,5 +1504,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }else{
             MnRestore.setEnabled(false);
         } 
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

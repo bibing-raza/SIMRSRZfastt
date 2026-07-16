@@ -27,22 +27,24 @@ import javax.swing.table.TableColumn;
 import simrskhanza.DlgPasien;
 import keuangan.Jurnal;
 import simrskhanza.DlgCariBangsal;
+import simrskhanza.frmUtama;
 
 public class DlgReturPiutang extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private riwayatobat Trackobat=new riwayatobat();
-    private Jurnal jur=new Jurnal();
-    private Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
-    private DlgCariBangsal bangsal=new DlgCariBangsal(null,false);
-    private DlgPasien member=new DlgPasien(null,false);
-    private DlgCariReturPiutang form=new DlgCariReturPiutang(null,false);   
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private riwayatobat Trackobat = new riwayatobat();
+    private Jurnal jur = new Jurnal();
+    private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    private DlgCariBangsal bangsal = new DlgCariBangsal(null, false);
+    private DlgPasien member = new DlgPasien(null, false);
+    private DlgCariReturPiutang form = new DlgCariReturPiutang(null, false);
     private DecimalFormat df2 = new DecimalFormat("###,###,###,###,###,###,###");
-    private double ttlretur=0;
-    private Connection koneksi=koneksiDB.condb();
+    private double ttlretur = 0;
+    private Connection koneksi = koneksiDB.condb();
     private PreparedStatement ps;
     private ResultSet rs;
+    private frmUtama formUtama;
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -337,9 +339,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        ppTambah.setBackground(new java.awt.Color(255, 255, 255));
         ppTambah.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppTambah.setForeground(new java.awt.Color(102, 51, 0));
         ppTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
         ppTambah.setText("Tambah");
         ppTambah.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -354,9 +354,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         });
         Popup.add(ppTambah);
 
-        ppHapus.setBackground(new java.awt.Color(255, 255, 255));
         ppHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppHapus.setForeground(new java.awt.Color(102, 51, 0));
         ppHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         ppHapus.setText("Hapus");
         ppHapus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -371,9 +369,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         });
         Popup.add(ppHapus);
 
-        ppCetakNota.setBackground(new java.awt.Color(255, 255, 255));
         ppCetakNota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppCetakNota.setForeground(new java.awt.Color(102, 51, 0));
         ppCetakNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Agenda-1-16x16.png"))); // NOI18N
         ppCetakNota.setText("Cetak Nota");
         ppCetakNota.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -397,7 +393,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Transaksi Retur Piutang Obat, Alkes & BHP Medis Dari Pembeli ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Transaksi Retur Piutang Obat, Alkes & BHP Medis Dari Pembeli ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -419,6 +415,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         tbDokter.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDokter.setComponentPopupMenu(Popup);
         tbDokter.setName("tbDokter"); // NOI18N
+        tbDokter.getTableHeader().setReorderingAllowed(false);
         tbDokter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDokterMouseClicked(evt);
@@ -442,6 +439,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         panelisi1.setPreferredSize(new java.awt.Dimension(100, 56));
         panelisi1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
         BtnTambah.setMnemonic('T');
         BtnTambah.setText("Tambah");
@@ -460,6 +458,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnTambah);
 
+        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
@@ -478,17 +477,20 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnHapus);
 
+        label9.setForeground(new java.awt.Color(0, 0, 0));
         label9.setText("Total :");
         label9.setName("label9"); // NOI18N
         label9.setPreferredSize(new java.awt.Dimension(50, 23));
         panelisi1.add(label9);
 
+        LTotal.setForeground(new java.awt.Color(0, 0, 0));
         LTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LTotal.setText("0");
         LTotal.setName("LTotal"); // NOI18N
         LTotal.setPreferredSize(new java.awt.Dimension(110, 23));
         panelisi1.add(LTotal);
 
+        BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
         BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
@@ -507,6 +509,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnSimpan);
 
+        BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
         BtnBatal.setMnemonic('B');
         BtnBatal.setText("Clear");
@@ -525,6 +528,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnBatal);
 
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnCari.setMnemonic('E');
         BtnCari.setText("Cari");
@@ -543,6 +547,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnCari);
 
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -567,12 +572,14 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         panelisi4.setPreferredSize(new java.awt.Dimension(100, 44));
         panelisi4.setLayout(null);
 
+        label17.setForeground(new java.awt.Color(0, 0, 0));
         label17.setText("Barang :");
         label17.setName("label17"); // NOI18N
         label17.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi4.add(label17);
         label17.setBounds(0, 10, 63, 23);
 
+        label21.setForeground(new java.awt.Color(0, 0, 0));
         label21.setText("Satuan :");
         label21.setName("label21"); // NOI18N
         label21.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -580,11 +587,13 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         label21.setBounds(0, 40, 63, 23);
 
         Satuanbar.setEditable(false);
+        Satuanbar.setForeground(new java.awt.Color(0, 0, 0));
         Satuanbar.setName("Satuanbar"); // NOI18N
         Satuanbar.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi4.add(Satuanbar);
         Satuanbar.setBounds(67, 40, 120, 23);
 
+        label25.setForeground(new java.awt.Color(0, 0, 0));
         label25.setText("SubTotal :");
         label25.setName("label25"); // NOI18N
         label25.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -592,17 +601,20 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         label25.setBounds(572, 40, 80, 23);
 
         Subtotal.setEditable(false);
+        Subtotal.setForeground(new java.awt.Color(0, 0, 0));
         Subtotal.setName("Subtotal"); // NOI18N
         Subtotal.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi4.add(Subtotal);
         Subtotal.setBounds(656, 40, 117, 23);
 
+        label26.setForeground(new java.awt.Color(0, 0, 0));
         label26.setText("Jml.Retur :");
         label26.setName("label26"); // NOI18N
         label26.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi4.add(label26);
         label26.setBounds(340, 40, 70, 23);
 
+        Jmlretur.setForeground(new java.awt.Color(0, 0, 0));
         Jmlretur.setName("Jmlretur"); // NOI18N
         Jmlretur.setPreferredSize(new java.awt.Dimension(80, 23));
         Jmlretur.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -613,12 +625,14 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         panelisi4.add(Jmlretur);
         Jmlretur.setBounds(414, 40, 100, 23);
 
+        label27.setForeground(new java.awt.Color(0, 0, 0));
         label27.setText("Hrga.Retur :");
         label27.setName("label27"); // NOI18N
         label27.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi4.add(label27);
         label27.setBounds(572, 10, 80, 23);
 
+        Hargaretur.setForeground(new java.awt.Color(0, 0, 0));
         Hargaretur.setName("Hargaretur"); // NOI18N
         Hargaretur.setPreferredSize(new java.awt.Dimension(80, 23));
         Hargaretur.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -629,6 +643,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         panelisi4.add(Hargaretur);
         Hargaretur.setBounds(656, 10, 117, 23);
 
+        Kdbar.setForeground(new java.awt.Color(0, 0, 0));
         Kdbar.setName("Kdbar"); // NOI18N
         Kdbar.setPreferredSize(new java.awt.Dimension(80, 23));
         Kdbar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -640,11 +655,13 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         Kdbar.setBounds(67, 10, 120, 23);
 
         nmbar.setEditable(false);
+        nmbar.setForeground(new java.awt.Color(0, 0, 0));
         nmbar.setName("nmbar"); // NOI18N
         nmbar.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisi4.add(nmbar);
         nmbar.setBounds(189, 10, 325, 23);
 
+        BtnBrg.setForeground(new java.awt.Color(0, 0, 0));
         BtnBrg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnBrg.setMnemonic('3');
         BtnBrg.setToolTipText("Alt+3");
@@ -666,12 +683,14 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         panelisiBeli.setPreferredSize(new java.awt.Dimension(100, 103));
         panelisiBeli.setLayout(null);
 
+        label15.setForeground(new java.awt.Color(0, 0, 0));
         label15.setText("No.Retur :");
         label15.setName("label15"); // NOI18N
         label15.setPreferredSize(new java.awt.Dimension(60, 23));
         panelisiBeli.add(label15);
         label15.setBounds(0, 10, 70, 23);
 
+        NoRetur.setForeground(new java.awt.Color(0, 0, 0));
         NoRetur.setName("NoRetur"); // NOI18N
         NoRetur.setPreferredSize(new java.awt.Dimension(207, 23));
         NoRetur.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -682,12 +701,14 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         panelisiBeli.add(NoRetur);
         NoRetur.setBounds(74, 10, 220, 23);
 
+        label18.setForeground(new java.awt.Color(0, 0, 0));
         label18.setText("No.Nota :");
         label18.setName("label18"); // NOI18N
         label18.setPreferredSize(new java.awt.Dimension(60, 23));
         panelisiBeli.add(label18);
         label18.setBounds(0, 40, 70, 23);
 
+        NoFaktur.setForeground(new java.awt.Color(0, 0, 0));
         NoFaktur.setName("NoFaktur"); // NOI18N
         NoFaktur.setPreferredSize(new java.awt.Dimension(207, 23));
         NoFaktur.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -698,6 +719,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         panelisiBeli.add(NoFaktur);
         NoFaktur.setBounds(74, 40, 220, 23);
 
+        Kdptg.setForeground(new java.awt.Color(0, 0, 0));
         Kdptg.setName("Kdptg"); // NOI18N
         Kdptg.setPreferredSize(new java.awt.Dimension(80, 23));
         Kdptg.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -709,11 +731,13 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         Kdptg.setBounds(409, 40, 80, 23);
 
         Nmptg.setEditable(false);
+        Nmptg.setForeground(new java.awt.Color(0, 0, 0));
         Nmptg.setName("Nmptg"); // NOI18N
         Nmptg.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisiBeli.add(Nmptg);
         Nmptg.setBounds(491, 40, 250, 23);
 
+        BtnPtg.setForeground(new java.awt.Color(0, 0, 0));
         BtnPtg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnPtg.setMnemonic('2');
         BtnPtg.setToolTipText("Alt+2");
@@ -727,6 +751,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         panelisiBeli.add(BtnPtg);
         BtnPtg.setBounds(744, 40, 28, 23);
 
+        label11.setForeground(new java.awt.Color(0, 0, 0));
         label11.setText("Tanggal :");
         label11.setName("label11"); // NOI18N
         label11.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -744,12 +769,14 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         panelisiBeli.add(TglRetur);
         TglRetur.setBounds(236, 70, 90, 23);
 
+        label16.setForeground(new java.awt.Color(0, 0, 0));
         label16.setText("Pasien :");
         label16.setName("label16"); // NOI18N
         label16.setPreferredSize(new java.awt.Dimension(60, 23));
         panelisiBeli.add(label16);
         label16.setBounds(335, 10, 70, 23);
 
+        kdmem.setForeground(new java.awt.Color(0, 0, 0));
         kdmem.setName("kdmem"); // NOI18N
         kdmem.setPreferredSize(new java.awt.Dimension(80, 23));
         kdmem.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -760,11 +787,13 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         panelisiBeli.add(kdmem);
         kdmem.setBounds(409, 10, 80, 23);
 
+        nmmem.setForeground(new java.awt.Color(0, 0, 0));
         nmmem.setName("nmmem"); // NOI18N
         nmmem.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisiBeli.add(nmmem);
         nmmem.setBounds(491, 10, 250, 23);
 
+        BtnMmb.setForeground(new java.awt.Color(0, 0, 0));
         BtnMmb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnMmb.setMnemonic('1');
         BtnMmb.setToolTipText("Alt+1");
@@ -778,6 +807,7 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         panelisiBeli.add(BtnMmb);
         BtnMmb.setBounds(744, 10, 28, 23);
 
+        Jenisjual.setForeground(new java.awt.Color(0, 0, 0));
         Jenisjual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rawat Jalan", "Kelas 1", "Kelas 2", "Kelas 3", "Utama/BPJS", "VIP", "VVIP", "Beli Luar", "Jual Bebas", "Karyawan" }));
         Jenisjual.setName("Jenisjual"); // NOI18N
         Jenisjual.setPreferredSize(new java.awt.Dimension(45, 23));
@@ -789,24 +819,28 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         panelisiBeli.add(Jenisjual);
         Jenisjual.setBounds(74, 70, 100, 23);
 
+        label13.setForeground(new java.awt.Color(0, 0, 0));
         label13.setText("Petugas :");
         label13.setName("label13"); // NOI18N
         label13.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisiBeli.add(label13);
         label13.setBounds(335, 40, 70, 23);
 
+        label12.setForeground(new java.awt.Color(0, 0, 0));
         label12.setText("Jenis :");
         label12.setName("label12"); // NOI18N
         label12.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisiBeli.add(label12);
         label12.setBounds(0, 70, 70, 23);
 
+        label32.setForeground(new java.awt.Color(0, 0, 0));
         label32.setText("Lokasi :");
         label32.setName("label32"); // NOI18N
         label32.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisiBeli.add(label32);
         label32.setBounds(335, 70, 70, 23);
 
+        kdgudang.setForeground(new java.awt.Color(0, 0, 0));
         kdgudang.setName("kdgudang"); // NOI18N
         kdgudang.setPreferredSize(new java.awt.Dimension(80, 23));
         kdgudang.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -818,11 +852,13 @@ public class DlgReturPiutang extends javax.swing.JDialog {
         kdgudang.setBounds(409, 70, 80, 23);
 
         nmgudang.setEditable(false);
+        nmgudang.setForeground(new java.awt.Color(0, 0, 0));
         nmgudang.setName("nmgudang"); // NOI18N
         nmgudang.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisiBeli.add(nmgudang);
         nmgudang.setBounds(491, 70, 250, 23);
 
+        BtnGudang.setForeground(new java.awt.Color(0, 0, 0));
         BtnGudang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnGudang.setMnemonic('2');
         BtnGudang.setToolTipText("Alt+2");
@@ -921,13 +957,15 @@ public class DlgReturPiutang extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-            dispose();  
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){            
-            dispose();              
-        }else{Valid.pindah(evt,BtnBatal,Kdbar);}
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnBatal, Kdbar);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 /*
 private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKeyPressed
@@ -1385,8 +1423,8 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             Sequel.cariIsi("select nama from petugas where nip='"+Kdptg.getText()+"'", Nmptg);
         }        
     }
-    
-    
-
- 
+     
+     public void awalData() {
+        tampil();
+    }
 }

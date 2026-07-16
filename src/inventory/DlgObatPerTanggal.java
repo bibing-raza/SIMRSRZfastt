@@ -36,6 +36,7 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -43,19 +44,20 @@ import javax.swing.table.TableColumn;
  */
 public class DlgObatPerTanggal extends javax.swing.JDialog {
     private DefaultTableModel tabMode;
-    private final Connection koneksi=koneksiDB.condb();
-    private final sekuel Sequel=new sekuel();
-    private final validasi Valid=new validasi();
-    private PreparedStatement ps,ps2;
-    private ResultSet rs,rs2;
-    private String pilihan="",dateString,dayOfWeek,hari;
-    private double h1=0,h2=0,h3=0,h4=0,h5=0,h6=0,h7=0,h8=0,h9=0,h10=0,h11=0,h12=0,h13=0,
-                   h14=0,h15=0,h16=0,h17=0,h18=0,h19=0,h20=0,h21=0,h22=0,h23=0,h24=0,h25=0,h26=0,h27=0,h28=0,h29=0,h30=0,h31=0 ;
+    private final Connection koneksi = koneksiDB.condb();
+    private final sekuel Sequel = new sekuel();
+    private final validasi Valid = new validasi();
+    private PreparedStatement ps, ps2;
+    private ResultSet rs, rs2;
+    private String pilihan = "", dateString, dayOfWeek, hari;
+    private double h1 = 0, h2 = 0, h3 = 0, h4 = 0, h5 = 0, h6 = 0, h7 = 0, h8 = 0, h9 = 0, h10 = 0, h11 = 0, h12 = 0, h13 = 0,
+            h14 = 0, h15 = 0, h16 = 0, h17 = 0, h18 = 0, h19 = 0, h20 = 0, h21 = 0, h22 = 0, h23 = 0, h24 = 0, h25 = 0, h26 = 0, h27 = 0, h28 = 0, h29 = 0, h30 = 0, h31 = 0;
     private Date date = null;
-    private int i=0;
+    private int i = 0;
     public DlgCariJenis jenis = new DlgCariJenis(null, false);
     public DlgCariKategori kategori = new DlgCariKategori(null, false);
     public DlgCariGolongan golongan = new DlgCariGolongan(null, false);
+    private frmUtama formUtama;
 
     /** Creates new form DlgJadwal
      * @param parent
@@ -236,7 +238,7 @@ public class DlgObatPerTanggal extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pemberian Obat Ke Pasien Per Tanggal ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(90, 120, 80))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pemberian Obat Ke Pasien Per Tanggal ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -245,6 +247,7 @@ public class DlgObatPerTanggal extends javax.swing.JDialog {
 
         tbJadwal.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbJadwal.setName("tbJadwal"); // NOI18N
+        tbJadwal.getTableHeader().setReorderingAllowed(false);
         tbJadwal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tbJadwalKeyPressed(evt);
@@ -330,25 +333,30 @@ public class DlgObatPerTanggal extends javax.swing.JDialog {
         panelGlass8.setPreferredSize(new java.awt.Dimension(55, 55));
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        label11.setForeground(new java.awt.Color(0, 0, 0));
         label11.setText("Tahun & Bulan :");
         label11.setName("label11"); // NOI18N
         label11.setPreferredSize(new java.awt.Dimension(82, 23));
         panelGlass8.add(label11);
 
+        ThnCari.setForeground(new java.awt.Color(0, 0, 0));
         ThnCari.setName("ThnCari"); // NOI18N
         ThnCari.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass8.add(ThnCari);
 
+        BlnCari.setForeground(new java.awt.Color(0, 0, 0));
         BlnCari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         BlnCari.setName("BlnCari"); // NOI18N
         BlnCari.setPreferredSize(new java.awt.Dimension(55, 23));
         panelGlass8.add(BlnCari);
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Key Word :");
         jLabel6.setName("jLabel6"); // NOI18N
         jLabel6.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass8.add(jLabel6);
 
+        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(210, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -358,6 +366,7 @@ public class DlgObatPerTanggal extends javax.swing.JDialog {
         });
         panelGlass8.add(TCari);
 
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('3');
         BtnCari.setToolTipText("Alt+3");
@@ -375,6 +384,7 @@ public class DlgObatPerTanggal extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnCari);
 
+        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('4');
         BtnAll.setToolTipText("Alt+4");
@@ -392,17 +402,20 @@ public class DlgObatPerTanggal extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnAll);
 
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Record :");
         jLabel7.setName("jLabel7"); // NOI18N
         jLabel7.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass8.add(jLabel7);
 
+        LCount.setForeground(new java.awt.Color(0, 0, 0));
         LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LCount.setText("0");
         LCount.setName("LCount"); // NOI18N
         LCount.setPreferredSize(new java.awt.Dimension(45, 23));
         panelGlass8.add(LCount);
 
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
@@ -421,6 +434,7 @@ public class DlgObatPerTanggal extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnPrint);
 
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -518,12 +532,12 @@ public class DlgObatPerTanggal extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnGolonganActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnAll, TCari);
         }
@@ -878,6 +892,5 @@ public class DlgObatPerTanggal extends javax.swing.JDialog {
     
     private double JmlObat(String tanggal,String kodebarang){
         return Sequel.cariIsiAngka("select sum(jml) from detail_pemberian_obat where kode_brng='"+kodebarang+"' and tgl_perawatan=?",tanggal);
-    }
-    
+    }   
 }

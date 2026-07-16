@@ -26,6 +26,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -41,6 +42,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
     private String idSttsWP = "", idSttsKJ = "", idJenjang = "", idIndex = "", nipDipilih = "";
     private int cekNIK = 0;
     private DlgCariDepartemen departemen = new DlgCariDepartemen(null, false);
+    private frmUtama formUtama;
 
     /** Creates new form DlgPetugas
      * @param parent
@@ -1154,12 +1156,12 @@ public final class DlgPegawai extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -1928,5 +1930,17 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         if (npwp.getText().equals("")) {
             npwp.setText("-");
         }
+    }
+    
+    public void awalData() {
+        TabPegawaiMouseClicked(null);
+        Sequel.cariIsiComboDB("select nama from bidang where nama <>'-'", cmbBid);
+        Sequel.cariIsiComboDB("select ktg from stts_wp WHERE stts <>'-'", cmbsttsWP);
+        Sequel.cariIsiComboDB("select ktg from stts_kerja WHERE stts <>'-'", cmbsttsKJ);
+        Sequel.cariIsiComboDB("select nm_jbtn from jabatan WHERE kd_jbtn <>'-'", cmbJabatan);
+        Sequel.cariIsiComboDB("select nama from jnj_jabatan WHERE kode <>'-'", cmbJenjang);
+        Sequel.cariIsiComboDB("select tingkat from pendidikan WHERE tingkat <>'-'", cmbPendidikan);
+        Sequel.cariIsiComboDB("select persen from indexins WHERE dep_id <>'-'", cmbIndex);
+        Sequel.cariIsiComboDB("select namabank from bank where namabank<>'-'", cmbBank);
     }
 }

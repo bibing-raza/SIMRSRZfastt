@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -46,6 +47,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String kdObat = "", nipPereview = "", nipApoteker = "", nmDokter = "", tglreg = "", nipDokter = "",
             ceknmDokter = "", cekNipDokter = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -1913,12 +1915,12 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -2994,5 +2996,9 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         Valid.SetTgl(DTPCari5, tglreg);
         DTPCari6.setDate(new Date());
         TCari.setText(norwt);
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

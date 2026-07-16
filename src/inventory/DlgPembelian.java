@@ -26,25 +26,27 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
 import simrskhanza.DlgCariBangsal;
+import simrskhanza.frmUtama;
 
 public class DlgPembelian extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private Jurnal jur=new Jurnal();
-    private Connection koneksi=koneksiDB.condb();
-    private riwayatobat Trackobat=new riwayatobat();
-    private PreparedStatement ps,pskonversi;
-    private ResultSet rs,rskonversi;
-    private Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
-    private DlgCariBangsal bangsal=new DlgCariBangsal(null,false);
-    private DlgCariPembelian form=new DlgCariPembelian(null,false);
-    private DlgCariSatuan satuanbarang=new DlgCariSatuan(null,false);
-    private double saldoawal=0,mutasi=0,ttl=0,y=0,w=0,ttldisk=0,sbttl=0,ppn=0,tagihan=0,jmlkonversi=0,hargappn=0;
-    private int jml=0,i=0,row=0,index=0;
-    private String[] kodebarang,namabarang,satuan,satuanbeli,kadaluwarsa,nobatch;
-    private double[] harga,jumlah,subtotal,diskon,besardiskon,jmltotal,jmlstok;
-    private WarnaTable2 warna=new WarnaTable2();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private Jurnal jur = new Jurnal();
+    private Connection koneksi = koneksiDB.condb();
+    private riwayatobat Trackobat = new riwayatobat();
+    private PreparedStatement ps, pskonversi;
+    private ResultSet rs, rskonversi;
+    private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    private DlgCariBangsal bangsal = new DlgCariBangsal(null, false);
+    private DlgCariPembelian form = new DlgCariPembelian(null, false);
+    private DlgCariSatuan satuanbarang = new DlgCariSatuan(null, false);
+    private double saldoawal = 0, mutasi = 0, ttl = 0, y = 0, w = 0, ttldisk = 0, sbttl = 0, ppn = 0, tagihan = 0, jmlkonversi = 0, hargappn = 0;
+    private int jml = 0, i = 0, row = 0, index = 0;
+    private String[] kodebarang, namabarang, satuan, satuanbeli, kadaluwarsa, nobatch;
+    private double[] harga, jumlah, subtotal, diskon, besardiskon, jmltotal, jmlstok;
+    private WarnaTable2 warna = new WarnaTable2();
+    private frmUtama formUtama;
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -775,13 +777,15 @@ public class DlgPembelian extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-            dispose();  
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){            
-            dispose();              
-        }else{Valid.pindah(evt,BtnSimpan,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            dispose();
+        } else {
+            Valid.pindah(evt, BtnSimpan, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 /*
 private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKeyPressed
@@ -1709,6 +1713,8 @@ private void btnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             Sequel.cariIsi("select nama from petugas where nip=?", nmptg,kdptg.getText());
         }        
     }
-
- 
+    
+    public void awalData() {
+        tampil();
+    }
 }

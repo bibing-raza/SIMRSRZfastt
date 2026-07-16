@@ -23,19 +23,21 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
 import kepegawaian.DlgCariPetugas;
+import simrskhanza.frmUtama;
 
 public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private Connection koneksi=koneksiDB.condb();
-    private PreparedStatement ps,psstok2;
-    private ResultSet rs,rsstok;
-    private int jml=0,i=0,row=0,index=0;
-    private String[] kodebarang,namabarang,jumlah,satuan,stokasal,stoktujuan,hbeli,total;
-    private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
-    private double stok_tujuan,subtotal,y;
-    private Jurnal jur=new Jurnal();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private Connection koneksi = koneksiDB.condb();
+    private PreparedStatement ps, psstok2;
+    private ResultSet rs, rsstok;
+    private int jml = 0, i = 0, row = 0, index = 0;
+    private String[] kodebarang, namabarang, jumlah, satuan, stokasal, stoktujuan, hbeli, total;
+    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private double stok_tujuan, subtotal, y;
+    private Jurnal jur = new Jurnal();
+    private frmUtama formUtama;
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -163,9 +165,7 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        ppBersihkan.setBackground(new java.awt.Color(255, 255, 255));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppBersihkan.setForeground(new java.awt.Color(102, 51, 0));
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBersihkan.setText("Bersihkan Jumlah");
         ppBersihkan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -180,9 +180,7 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         });
         Popup.add(ppBersihkan);
 
-        ppStok.setBackground(new java.awt.Color(255, 255, 255));
         ppStok.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppStok.setForeground(new java.awt.Color(102, 51, 0));
         ppStok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppStok.setText("Tampilkan Semua Stok");
         ppStok.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -206,7 +204,7 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengambilan BHP Non Medis Unit Tranfusi Darah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(90, 120, 80))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pengambilan BHP Non Medis Unit Tranfusi Darah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -228,6 +226,7 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         tbDokter.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDokter.setComponentPopupMenu(Popup);
         tbDokter.setName("tbDokter"); // NOI18N
+        tbDokter.getTableHeader().setReorderingAllowed(false);
         tbDokter.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tbDokterKeyPressed(evt);
@@ -241,6 +240,7 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         panelisi1.setPreferredSize(new java.awt.Dimension(734, 56));
         panelisi1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
         BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
@@ -259,11 +259,13 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         });
         panelisi1.add(BtnSimpan);
 
+        label10.setForeground(new java.awt.Color(0, 0, 0));
         label10.setText("Key Word :");
         label10.setName("label10"); // NOI18N
         label10.setPreferredSize(new java.awt.Dimension(77, 23));
         panelisi1.add(label10);
 
+        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(240, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -273,6 +275,7 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         });
         panelisi1.add(TCari);
 
+        BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari1.setMnemonic('1');
         BtnCari1.setToolTipText("Alt+1");
@@ -290,6 +293,7 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         });
         panelisi1.add(BtnCari1);
 
+        BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
         BtnTambah.setMnemonic('3');
         BtnTambah.setToolTipText("Alt+3");
@@ -302,10 +306,12 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         });
         panelisi1.add(BtnTambah);
 
+        label11.setForeground(new java.awt.Color(0, 0, 0));
         label11.setName("label11"); // NOI18N
         label11.setPreferredSize(new java.awt.Dimension(25, 23));
         panelisi1.add(label11);
 
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnCari.setMnemonic('C');
         BtnCari.setText("Cari");
@@ -324,6 +330,7 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         });
         panelisi1.add(BtnCari);
 
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -348,12 +355,14 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         panelisi3.setPreferredSize(new java.awt.Dimension(100, 73));
         panelisi3.setLayout(null);
 
+        label17.setForeground(new java.awt.Color(0, 0, 0));
         label17.setText("Petugas :");
         label17.setName("label17"); // NOI18N
         label17.setPreferredSize(new java.awt.Dimension(65, 23));
         panelisi3.add(label17);
         label17.setBounds(0, 10, 80, 23);
 
+        Nip.setForeground(new java.awt.Color(0, 0, 0));
         Nip.setName("Nip"); // NOI18N
         Nip.setPreferredSize(new java.awt.Dimension(80, 23));
         Nip.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -365,11 +374,13 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         Nip.setBounds(83, 10, 90, 23);
 
         Nama.setEditable(false);
+        Nama.setForeground(new java.awt.Color(0, 0, 0));
         Nama.setName("Nama"); // NOI18N
         Nama.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisi3.add(Nama);
         Nama.setBounds(175, 10, 300, 23);
 
+        btnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnPetugas.setMnemonic('1');
         btnPetugas.setToolTipText("Alt+1");
@@ -383,6 +394,7 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         panelisi3.add(btnPetugas);
         btnPetugas.setBounds(478, 10, 28, 23);
 
+        label32.setForeground(new java.awt.Color(0, 0, 0));
         label32.setText("Tanggal :");
         label32.setName("label32"); // NOI18N
         label32.setPreferredSize(new java.awt.Dimension(35, 23));
@@ -399,6 +411,7 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         panelisi3.add(Tanggal);
         Tanggal.setBounds(583, 10, 140, 23);
 
+        Keterangan.setForeground(new java.awt.Color(0, 0, 0));
         Keterangan.setHighlighter(null);
         Keterangan.setName("Keterangan"); // NOI18N
         Keterangan.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -409,18 +422,21 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
         panelisi3.add(Keterangan);
         Keterangan.setBounds(83, 40, 392, 23);
 
+        label39.setForeground(new java.awt.Color(0, 0, 0));
         label39.setText("Keterangan :");
         label39.setName("label39"); // NOI18N
         label39.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi3.add(label39);
         label39.setBounds(0, 40, 80, 23);
 
+        label40.setForeground(new java.awt.Color(0, 0, 0));
         label40.setText("Total :");
         label40.setName("label40"); // NOI18N
         label40.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi3.add(label40);
         label40.setBounds(510, 40, 70, 23);
 
+        LTotal.setForeground(new java.awt.Color(0, 0, 0));
         LTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LTotal.setText("0");
         LTotal.setName("LTotal"); // NOI18N
@@ -447,13 +463,15 @@ public class DlgPengambilanPenunjangUTD extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-            dispose();  
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){            
-            dispose();              
-        }else{Valid.pindah(evt,BtnSimpan,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnSimpan, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 /*
 private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKeyPressed
@@ -891,6 +909,8 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             Sequel.cariIsi("select nama from petugas where nip=?",Nama,Nip.getText());
         } 
     }
-
- 
+    
+    public void awalData() {
+        tampil();
+    }
 }

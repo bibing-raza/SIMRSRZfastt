@@ -22,9 +22,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
 import simrskhanza.DlgCariBangsal;
+import simrskhanza.frmUtama;
 
 public class DlgPengambilanUTD extends javax.swing.JDialog {
-
     private final DefaultTableModel tabMode;
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
@@ -38,6 +38,7 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
     private Jurnal jur = new Jurnal();
     private WarnaTable2 warna = new WarnaTable2();
     private riwayatobat Trackobat = new riwayatobat();
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgProgramStudi
@@ -491,12 +492,12 @@ public class DlgPengambilanUTD extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnSimpan, TCari);
         }
@@ -1057,6 +1058,10 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
     private void isStok(String a) {
         Sequel.cariIsi("select ifnull(stok,'0') from gudangbarang where kd_bangsal=? and kode_brng=?", TStok, kddari.getText(), a);
+    }
+    
+    public void awalData() {
+        tampil();
     }
 
 }

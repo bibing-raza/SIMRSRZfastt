@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
 import simrskhanza.DlgCariBangsal;
+import simrskhanza.frmUtama;
 
 public class DlgPiutang extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
@@ -38,6 +39,7 @@ public class DlgPiutang extends javax.swing.JDialog {
     private String tanggallimit="0000-00-00";
     private PreparedStatement ps;
     private ResultSet rs;
+    private frmUtama formUtama;
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -413,7 +415,6 @@ public class DlgPiutang extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        ppTambah.setBackground(new java.awt.Color(255, 255, 255));
         ppTambah.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppTambah.setForeground(new java.awt.Color(102, 51, 0));
         ppTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
@@ -430,7 +431,6 @@ public class DlgPiutang extends javax.swing.JDialog {
         });
         Popup.add(ppTambah);
 
-        ppHapus.setBackground(new java.awt.Color(255, 255, 255));
         ppHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppHapus.setForeground(new java.awt.Color(102, 51, 0));
         ppHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
@@ -461,7 +461,7 @@ public class DlgPiutang extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Transaksi Piutang Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Transaksi Piutang Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -483,6 +483,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         tbDokter.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDokter.setComponentPopupMenu(Popup);
         tbDokter.setName("tbDokter"); // NOI18N
+        tbDokter.getTableHeader().setReorderingAllowed(false);
         tbDokter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDokterMouseClicked(evt);
@@ -506,6 +507,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi1.setPreferredSize(new java.awt.Dimension(100, 56));
         panelisi1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        BtnTambah.setForeground(new java.awt.Color(0, 0, 0));
         BtnTambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
         BtnTambah.setMnemonic('T');
         BtnTambah.setText("Tambah");
@@ -524,6 +526,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnTambah);
 
+        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
@@ -542,11 +545,13 @@ public class DlgPiutang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnHapus);
 
+        label9.setForeground(new java.awt.Color(0, 0, 0));
         label9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label9.setName("label9"); // NOI18N
         label9.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi1.add(label9);
 
+        BtnNota.setForeground(new java.awt.Color(0, 0, 0));
         BtnNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Agenda-1-16x16.png"))); // NOI18N
         BtnNota.setMnemonic('S');
         BtnNota.setText("Nota");
@@ -565,6 +570,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnNota);
 
+        BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
         BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
@@ -583,6 +589,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnSimpan);
 
+        BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
         BtnBatal.setMnemonic('B');
         BtnBatal.setText("Clear");
@@ -601,6 +608,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnBatal);
 
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnCari.setMnemonic('E');
         BtnCari.setText("Cari");
@@ -619,6 +627,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         });
         panelisi1.add(BtnCari);
 
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -643,12 +652,14 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi5.setPreferredSize(new java.awt.Dimension(100, 54));
         panelisi5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
 
+        label10.setForeground(new java.awt.Color(0, 0, 0));
         label10.setText("Grand Total :");
         label10.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         label10.setName("label10"); // NOI18N
         label10.setPreferredSize(new java.awt.Dimension(107, 26));
         panelisi5.add(label10);
 
+        LTotal.setForeground(new java.awt.Color(0, 0, 0));
         LTotal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LTotal.setText("0");
         LTotal.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -656,24 +667,28 @@ public class DlgPiutang extends javax.swing.JDialog {
         LTotal.setPreferredSize(new java.awt.Dimension(155, 26));
         panelisi5.add(LTotal);
 
+        label14.setForeground(new java.awt.Color(0, 0, 0));
         label14.setText("Ongkir :");
         label14.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         label14.setName("label14"); // NOI18N
         label14.setPreferredSize(new java.awt.Dimension(60, 26));
         panelisi5.add(label14);
 
+        Ongkir.setForeground(new java.awt.Color(0, 0, 0));
         Ongkir.setText("0");
         Ongkir.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         Ongkir.setName("Ongkir"); // NOI18N
         Ongkir.setPreferredSize(new java.awt.Dimension(130, 26));
         panelisi5.add(Ongkir);
 
+        label19.setForeground(new java.awt.Color(0, 0, 0));
         label19.setText("Uang Muka :");
         label19.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         label19.setName("label19"); // NOI18N
         label19.setPreferredSize(new java.awt.Dimension(125, 26));
         panelisi5.add(label19);
 
+        UangMuka.setForeground(new java.awt.Color(0, 0, 0));
         UangMuka.setText("0");
         UangMuka.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         UangMuka.setName("UangMuka"); // NOI18N
@@ -686,12 +701,14 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi21.setPreferredSize(new java.awt.Dimension(2172, 103));
         panelisi21.setLayout(null);
 
+        label17.setForeground(new java.awt.Color(0, 0, 0));
         label17.setText("Barang :");
         label17.setName("label17"); // NOI18N
         label17.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi21.add(label17);
         label17.setBounds(0, 10, 75, 23);
 
+        kdbar.setForeground(new java.awt.Color(0, 0, 0));
         kdbar.setName("kdbar"); // NOI18N
         kdbar.setPreferredSize(new java.awt.Dimension(80, 23));
         kdbar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -703,11 +720,13 @@ public class DlgPiutang extends javax.swing.JDialog {
         kdbar.setBounds(79, 10, 110, 23);
 
         nmbar.setEditable(false);
+        nmbar.setForeground(new java.awt.Color(0, 0, 0));
         nmbar.setName("nmbar"); // NOI18N
         nmbar.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisi21.add(nmbar);
         nmbar.setBounds(191, 10, 373, 23);
 
+        BtnBrg.setForeground(new java.awt.Color(0, 0, 0));
         BtnBrg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnBrg.setMnemonic('3');
         BtnBrg.setToolTipText("Alt+3");
@@ -721,6 +740,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi21.add(BtnBrg);
         BtnBrg.setBounds(567, 10, 28, 23);
 
+        label21.setForeground(new java.awt.Color(0, 0, 0));
         label21.setText("Satuan :");
         label21.setName("label21"); // NOI18N
         label21.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -728,11 +748,13 @@ public class DlgPiutang extends javax.swing.JDialog {
         label21.setBounds(0, 40, 75, 23);
 
         satuanbar.setEditable(false);
+        satuanbar.setForeground(new java.awt.Color(0, 0, 0));
         satuanbar.setName("satuanbar"); // NOI18N
         satuanbar.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi21.add(satuanbar);
         satuanbar.setBounds(79, 40, 110, 23);
 
+        label22.setForeground(new java.awt.Color(0, 0, 0));
         label22.setText("Harga Brg :");
         label22.setName("label22"); // NOI18N
         label22.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -740,17 +762,20 @@ public class DlgPiutang extends javax.swing.JDialog {
         label22.setBounds(0, 70, 75, 23);
 
         HrgJual.setEditable(false);
+        HrgJual.setForeground(new java.awt.Color(0, 0, 0));
         HrgJual.setName("HrgJual"); // NOI18N
         HrgJual.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi21.add(HrgJual);
         HrgJual.setBounds(79, 70, 110, 23);
 
+        label24.setForeground(new java.awt.Color(0, 0, 0));
         label24.setText("Jml.Barang :");
         label24.setName("label24"); // NOI18N
         label24.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi21.add(label24);
         label24.setBounds(360, 40, 80, 23);
 
+        Jmljual.setForeground(new java.awt.Color(0, 0, 0));
         Jmljual.setText("0");
         Jmljual.setName("Jmljual"); // NOI18N
         Jmljual.setPreferredSize(new java.awt.Dimension(80, 23));
@@ -762,6 +787,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi21.add(Jmljual);
         Jmljual.setBounds(444, 40, 120, 23);
 
+        label25.setForeground(new java.awt.Color(0, 0, 0));
         label25.setText("SubTotal :");
         label25.setName("label25"); // NOI18N
         label25.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -769,12 +795,14 @@ public class DlgPiutang extends javax.swing.JDialog {
         label25.setBounds(360, 70, 80, 23);
 
         subtotal.setEditable(false);
+        subtotal.setForeground(new java.awt.Color(0, 0, 0));
         subtotal.setText("0");
         subtotal.setName("subtotal"); // NOI18N
         subtotal.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi21.add(subtotal);
         subtotal.setBounds(444, 70, 120, 23);
 
+        label23.setForeground(new java.awt.Color(0, 0, 0));
         label23.setText("Stok :");
         label23.setName("label23"); // NOI18N
         label23.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -782,11 +810,13 @@ public class DlgPiutang extends javax.swing.JDialog {
         label23.setBounds(229, 40, 37, 23);
 
         Stok.setEditable(false);
+        Stok.setForeground(new java.awt.Color(0, 0, 0));
         Stok.setName("Stok"); // NOI18N
         Stok.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi21.add(Stok);
         Stok.setBounds(270, 40, 90, 23);
 
+        label26.setForeground(new java.awt.Color(0, 0, 0));
         label26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label26.setText("+");
         label26.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -795,6 +825,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi21.add(label26);
         label26.setBounds(187, 70, 20, 23);
 
+        Tambah.setForeground(new java.awt.Color(0, 0, 0));
         Tambah.setText("0");
         Tambah.setName("Tambah"); // NOI18N
         Tambah.setPreferredSize(new java.awt.Dimension(80, 23));
@@ -806,6 +837,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi21.add(Tambah);
         Tambah.setBounds(205, 70, 70, 23);
 
+        Kurang.setForeground(new java.awt.Color(0, 0, 0));
         Kurang.setText("0");
         Kurang.setName("Kurang"); // NOI18N
         Kurang.setPreferredSize(new java.awt.Dimension(80, 23));
@@ -817,6 +849,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi21.add(Kurang);
         Kurang.setBounds(290, 70, 70, 23);
 
+        label27.setForeground(new java.awt.Color(0, 0, 0));
         label27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label27.setText("-");
         label27.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -825,18 +858,21 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi21.add(label27);
         label27.setBounds(273, 70, 20, 23);
 
+        label28.setForeground(new java.awt.Color(0, 0, 0));
         label28.setText("Total :");
         label28.setName("label28"); // NOI18N
         label28.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi21.add(label28);
         label28.setBounds(600, 40, 60, 23);
 
+        Bsrdisc.setForeground(new java.awt.Color(0, 0, 0));
         Bsrdisc.setText("0");
         Bsrdisc.setName("Bsrdisc"); // NOI18N
         Bsrdisc.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi21.add(Bsrdisc);
         Bsrdisc.setBounds(722, 10, 80, 23);
 
+        label29.setForeground(new java.awt.Color(0, 0, 0));
         label29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label29.setText("%");
         label29.setName("label29"); // NOI18N
@@ -845,18 +881,21 @@ public class DlgPiutang extends javax.swing.JDialog {
         label29.setBounds(703, 10, 20, 23);
 
         Total.setEditable(false);
+        Total.setForeground(new java.awt.Color(0, 0, 0));
         Total.setText("0");
         Total.setName("Total"); // NOI18N
         Total.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi21.add(Total);
         Total.setBounds(664, 40, 138, 23);
 
+        label30.setForeground(new java.awt.Color(0, 0, 0));
         label30.setText("Diskon :");
         label30.setName("label30"); // NOI18N
         label30.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi21.add(label30);
         label30.setBounds(600, 10, 60, 23);
 
+        Disc.setForeground(new java.awt.Color(0, 0, 0));
         Disc.setText("0");
         Disc.setName("Disc"); // NOI18N
         Disc.setPreferredSize(new java.awt.Dimension(80, 23));
@@ -868,6 +907,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi21.add(Disc);
         Disc.setBounds(664, 10, 40, 23);
 
+        label31.setForeground(new java.awt.Color(0, 0, 0));
         label31.setText("Sisa Piutang :");
         label31.setName("label31"); // NOI18N
         label31.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -875,6 +915,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         label31.setBounds(570, 70, 90, 23);
 
         Sisa.setEditable(false);
+        Sisa.setForeground(new java.awt.Color(0, 0, 0));
         Sisa.setText("0");
         Sisa.setName("Sisa"); // NOI18N
         Sisa.setPreferredSize(new java.awt.Dimension(80, 23));
@@ -889,12 +930,14 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi3.setPreferredSize(new java.awt.Dimension(100, 103));
         panelisi3.setLayout(null);
 
+        label15.setForeground(new java.awt.Color(0, 0, 0));
         label15.setText("No.Nota :");
         label15.setName("label15"); // NOI18N
         label15.setPreferredSize(new java.awt.Dimension(60, 23));
         panelisi3.add(label15);
         label15.setBounds(0, 10, 70, 23);
 
+        NoNota.setForeground(new java.awt.Color(0, 0, 0));
         NoNota.setName("NoNota"); // NOI18N
         NoNota.setPreferredSize(new java.awt.Dimension(207, 23));
         NoNota.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -905,6 +948,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi3.add(NoNota);
         NoNota.setBounds(74, 10, 120, 23);
 
+        label11.setForeground(new java.awt.Color(0, 0, 0));
         label11.setText("Tgl.Jual :");
         label11.setName("label11"); // NOI18N
         label11.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -922,18 +966,21 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi3.add(TglJual);
         TglJual.setBounds(74, 70, 100, 23);
 
+        label16.setForeground(new java.awt.Color(0, 0, 0));
         label16.setText("Pasien :");
         label16.setName("label16"); // NOI18N
         label16.setPreferredSize(new java.awt.Dimension(60, 23));
         panelisi3.add(label16);
         label16.setBounds(366, 10, 70, 23);
 
+        label13.setForeground(new java.awt.Color(0, 0, 0));
         label13.setText("Petugas :");
         label13.setName("label13"); // NOI18N
         label13.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi3.add(label13);
         label13.setBounds(366, 40, 70, 23);
 
+        kdpasien.setForeground(new java.awt.Color(0, 0, 0));
         kdpasien.setName("kdpasien"); // NOI18N
         kdpasien.setPreferredSize(new java.awt.Dimension(80, 23));
         kdpasien.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -944,6 +991,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi3.add(kdpasien);
         kdpasien.setBounds(439, 10, 100, 23);
 
+        kdptg.setForeground(new java.awt.Color(0, 0, 0));
         kdptg.setName("kdptg"); // NOI18N
         kdptg.setPreferredSize(new java.awt.Dimension(80, 23));
         kdptg.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -954,17 +1002,20 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi3.add(kdptg);
         kdptg.setBounds(439, 40, 100, 23);
 
+        nmpasien.setForeground(new java.awt.Color(0, 0, 0));
         nmpasien.setName("nmpasien"); // NOI18N
         nmpasien.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisi3.add(nmpasien);
         nmpasien.setBounds(541, 10, 230, 23);
 
         nmptg.setEditable(false);
+        nmptg.setForeground(new java.awt.Color(0, 0, 0));
         nmptg.setName("nmptg"); // NOI18N
         nmptg.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisi3.add(nmptg);
         nmptg.setBounds(541, 40, 230, 23);
 
+        BtnPasien.setForeground(new java.awt.Color(0, 0, 0));
         BtnPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnPasien.setMnemonic('1');
         BtnPasien.setToolTipText("Alt+1");
@@ -978,6 +1029,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi3.add(BtnPasien);
         BtnPasien.setBounds(774, 10, 28, 23);
 
+        BtnPtg.setForeground(new java.awt.Color(0, 0, 0));
         BtnPtg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnPtg.setMnemonic('2');
         BtnPtg.setToolTipText("Alt+2");
@@ -991,12 +1043,14 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi3.add(BtnPtg);
         BtnPtg.setBounds(774, 40, 28, 23);
 
+        label18.setForeground(new java.awt.Color(0, 0, 0));
         label18.setText("Catatan :");
         label18.setName("label18"); // NOI18N
         label18.setPreferredSize(new java.awt.Dimension(60, 23));
         panelisi3.add(label18);
         label18.setBounds(0, 40, 70, 23);
 
+        catatan.setForeground(new java.awt.Color(0, 0, 0));
         catatan.setName("catatan"); // NOI18N
         catatan.setPreferredSize(new java.awt.Dimension(207, 23));
         catatan.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1007,6 +1061,7 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi3.add(catatan);
         catatan.setBounds(74, 40, 286, 23);
 
+        Jenisjual.setForeground(new java.awt.Color(0, 0, 0));
         Jenisjual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Jual Bebas", "Karyawan", "Beli Luar", "Rawat Jalan", "Kelas 1", "Kelas 2", "Kelas 3", "Utama", "VIP", "VVIP" }));
         Jenisjual.setName("Jenisjual"); // NOI18N
         Jenisjual.setPreferredSize(new java.awt.Dimension(45, 23));
@@ -1023,12 +1078,14 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi3.add(Jenisjual);
         Jenisjual.setBounds(260, 10, 100, 23);
 
+        label12.setForeground(new java.awt.Color(0, 0, 0));
         label12.setText("Jns.Jual :");
         label12.setName("label12"); // NOI18N
         label12.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi3.add(label12);
         label12.setBounds(177, 10, 80, 23);
 
+        label20.setForeground(new java.awt.Color(0, 0, 0));
         label20.setText("Jatuh Tempo :");
         label20.setName("label20"); // NOI18N
         label20.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -1046,12 +1103,14 @@ public class DlgPiutang extends javax.swing.JDialog {
         panelisi3.add(TglTempo);
         TglTempo.setBounds(260, 70, 100, 23);
 
+        label32.setForeground(new java.awt.Color(0, 0, 0));
         label32.setText("Lokasi :");
         label32.setName("label32"); // NOI18N
         label32.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi3.add(label32);
         label32.setBounds(366, 70, 70, 23);
 
+        kdgudang.setForeground(new java.awt.Color(0, 0, 0));
         kdgudang.setName("kdgudang"); // NOI18N
         kdgudang.setPreferredSize(new java.awt.Dimension(80, 23));
         kdgudang.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1063,11 +1122,13 @@ public class DlgPiutang extends javax.swing.JDialog {
         kdgudang.setBounds(439, 70, 100, 23);
 
         nmgudang.setEditable(false);
+        nmgudang.setForeground(new java.awt.Color(0, 0, 0));
         nmgudang.setName("nmgudang"); // NOI18N
         nmgudang.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisi3.add(nmgudang);
         nmgudang.setBounds(541, 70, 230, 23);
 
+        BtnGudang.setForeground(new java.awt.Color(0, 0, 0));
         BtnGudang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnGudang.setMnemonic('2');
         BtnGudang.setToolTipText("Alt+2");
@@ -1173,13 +1234,15 @@ public class DlgPiutang extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-            dispose();  
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){            
-            dispose();              
-        }else{Valid.pindah(evt,BtnBatal,kdbar);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnBatal, kdbar);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 /*
 private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKeyPressed
@@ -1774,5 +1837,8 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             System.out.println("Catatan barang : "+ex);
         }
     }
- 
+    
+    public void awalData() {
+        tampil();
+    } 
 }

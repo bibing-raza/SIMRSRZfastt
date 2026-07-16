@@ -21,6 +21,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import simrskhanza.DlgCariBangsal;
+import simrskhanza.frmUtama;
 
 public class DlgMutasiBarang extends javax.swing.JDialog {
 
@@ -36,6 +37,7 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
     private DlgCariBangsal bangsal = new DlgCariBangsal(null, false);
     private double stok_asal, stok_tujuan, stokbarang2;
     private WarnaTable2 warna = new WarnaTable2();
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgProgramStudi
@@ -517,12 +519,12 @@ public class DlgMutasiBarang extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnSimpan, TCari);
         }
@@ -924,5 +926,9 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 //        Sequel.cariIsi("select ifnull(stok,'0') from gudangbarang where kd_bangsal=? and kode_brng=?", TStok, kddari.getText(), a);
         stokbarang2 = Sequel.cariIsiAngka("select ifnull(stok,'0') from gudangbarang where kd_bangsal='" + kddari.getText() + "' and kode_brng='" + a + "'");
     }
-
+    
+    public void awalData() {
+        Sequel.insertClosingStok();
+        tampil();
+    }
 }

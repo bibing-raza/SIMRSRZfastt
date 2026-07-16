@@ -29,6 +29,7 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -42,6 +43,7 @@ public class DlgAturanPakai extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private String aturan = "", jns = "";
+    private frmUtama formUtama;
 
     /** Creates new form Dlgmaster_aturan_pakai
      * @param parent
@@ -408,7 +410,7 @@ public class DlgAturanPakai extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         emptTeks();
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
@@ -603,5 +605,9 @@ public class DlgAturanPakai extends javax.swing.JDialog {
     public void isCek() {
         BtnSimpan.setEnabled(akses.getresep_obat());
         BtnGanti.setEnabled(akses.getresep_obat());
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

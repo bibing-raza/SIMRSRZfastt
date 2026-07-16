@@ -24,9 +24,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.Jurnal;
 import simrskhanza.DlgCariBangsal;
+import simrskhanza.frmUtama;
 
 public class DlgPemesanan extends javax.swing.JDialog {
-
     private final DefaultTableModel tabMode;
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
@@ -44,6 +44,7 @@ public class DlgPemesanan extends javax.swing.JDialog {
     private String[] kodebarang, namabarang, satuan, satuanbeli, kadaluwarsa, nobatch;
     private double[] harga, jumlah, subtotal, diskon, besardiskon, jmltotal, jmlstok;
     private WarnaTable2 warna = new WarnaTable2();
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgProgramStudi
@@ -945,12 +946,12 @@ public class DlgPemesanan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnSimpan, TCari);
         }
@@ -1908,5 +1909,9 @@ private void btnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             Sequel.cariIsi("select nama from petugas where nip=?", nmptg, kdptg.getText());
         }
     }
-
+    
+    public void awalData() {
+        Sequel.insertClosingStok();
+        tampil();
+    }
 }
