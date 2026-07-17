@@ -1436,6 +1436,11 @@ public class PanelMenuUtamaD extends javax.swing.JDialog {
             jmlmenu++;
         }
         
+        if (akses.getjenis_barang() && btnJnsBarang.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(btnJnsBarang);
+            jmlmenu++;
+        }
+        
         if (akses.getdashboard_eResep() && btnDashboardeResepRanap.getText().toLowerCase().trim().contains(cari)) {
             FormMenu.add(btnDashboardeResepRanap);
             jmlmenu++;

@@ -172,6 +172,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         FormInput2 = new widget.PanelBiasa();
         BtnMaskepNyeriAkut = new widget.ButtonBig();
         BtnMaskepPerfusiPerifer = new widget.ButtonBig();
+        BtnMaskepHipotermia = new widget.ButtonBig();
         scrollInput1 = new widget.ScrollPane();
         FormInput1 = new widget.PanelBiasa();
         BtnEvaluasiPraAnestesi = new widget.ButtonBig();
@@ -1046,6 +1047,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput2.add(BtnMaskepPerfusiPerifer);
+
+        BtnMaskepHipotermia.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMaskepHipotermia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
+        BtnMaskepHipotermia.setText("Hipotermia");
+        BtnMaskepHipotermia.setIconTextGap(0);
+        BtnMaskepHipotermia.setName("BtnMaskepHipotermia"); // NOI18N
+        BtnMaskepHipotermia.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMaskepHipotermia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMaskepHipotermiaActionPerformed(evt);
+            }
+        });
+        FormInput2.add(BtnMaskepHipotermia);
 
         scrollInput2.setViewportView(FormInput2);
 
@@ -2580,6 +2594,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnMaskepPerfusiPeriferActionPerformed
 
+    private void BtnMaskepHipotermiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMaskepHipotermiaActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMMasalahKeperawatanHipotermia form = new RMMasalahKeperawatanHipotermia(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText(), "Ranap");
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnMaskepHipotermiaActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2634,6 +2665,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnKonsul;
     private widget.ButtonBig BtnLaporanOperasi;
     private widget.ButtonBig BtnLembarObservasi;
+    private widget.ButtonBig BtnMaskepHipotermia;
     private widget.ButtonBig BtnMaskepNyeriAkut;
     private widget.ButtonBig BtnMaskepPerfusiPerifer;
     private widget.ButtonBig BtnMonevAsuhanGizi;
@@ -2759,6 +2791,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnTransferTindakanIBS.setEnabled(akses.getcppt());
         BtnMaskepNyeriAkut.setEnabled(akses.getcppt());
         BtnMaskepPerfusiPerifer.setEnabled(akses.getcppt());
+        BtnMaskepHipotermia.setEnabled(akses.getcppt());
         
         if (akses.getcppt() == true || akses.getbpjs_sep() == true || akses.getadmin()== true) {
             BtnPemberianInformasiEdukasi.setEnabled(true);

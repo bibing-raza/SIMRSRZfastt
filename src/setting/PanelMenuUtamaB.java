@@ -49,6 +49,7 @@ import rekammedis.RMGeneralConsent;
 import rekammedis.RMInformasiTindakanPembiusan;
 import rekammedis.RMLaporanOperasi;
 import rekammedis.RMLembarObservasi;
+import rekammedis.RMMasalahKeperawatanHipotermia;
 import rekammedis.RMMasalahKeperawatanNyeriAkut;
 import rekammedis.RMMasalahKeperawatanPerfusiPeriferTdkEfektif;
 import rekammedis.RMMonitoringEWSDewasa;
@@ -212,6 +213,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         btnDataTriaseIGD = new widget.ButtonBig();
         btnPenilaianTambahanGeriatri = new widget.ButtonBig();
         btnPenilaianAwalMedisRalanGeriatri = new widget.ButtonBig();
+        BtnMasalahKeperawatanHipotermia = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -262,6 +264,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         ChkInput.setBorder(null);
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
+        ChkInput.setMnemonic('C');
         ChkInput.setSelected(true);
         ChkInput.setText("Pencarian");
         ChkInput.setToolTipText("Alt+C");
@@ -1295,6 +1298,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(btnPenilaianAwalMedisRalanGeriatri);
+
+        BtnMasalahKeperawatanHipotermia.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMasalahKeperawatanHipotermia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
+        BtnMasalahKeperawatanHipotermia.setText("MasKep Hipotermia");
+        BtnMasalahKeperawatanHipotermia.setIconTextGap(0);
+        BtnMasalahKeperawatanHipotermia.setName("BtnMasalahKeperawatanHipotermia"); // NOI18N
+        BtnMasalahKeperawatanHipotermia.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMasalahKeperawatanHipotermia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMasalahKeperawatanHipotermiaActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnMasalahKeperawatanHipotermia);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -2579,6 +2595,22 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnPenilaianAwalMedisRalanGeriatriActionPerformed
 
+    private void BtnMasalahKeperawatanHipotermiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMasalahKeperawatanHipotermiaActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMMasalahKeperawatanHipotermia aplikasi = new RMMasalahKeperawatanHipotermia(formUtama, false);
+            aplikasi.emptTeks();
+            aplikasi.isCek();
+            aplikasi.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(aplikasi);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnMasalahKeperawatanNyeriAkut.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnMasalahKeperawatanHipotermiaActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -2592,6 +2624,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnFormulirSiteMarking;
     private widget.ButtonBig BtnInformasiTindakanPembiusan;
     private widget.ButtonBig BtnLaporanOperasi;
+    private widget.ButtonBig BtnMasalahKeperawatanHipotermia;
     private widget.ButtonBig BtnMasalahKeperawatanNyeriAkut;
     private widget.ButtonBig BtnMasalahKeperawatanPerfusiPeriferTdkEfektif;
     private widget.ButtonBig BtnPartograf;
@@ -2822,6 +2855,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         
         if (akses.getcppt() && BtnMasalahKeperawatanPerfusiPeriferTdkEfektif.getText().toLowerCase().trim().contains(cari)) {
             FormMenu.add(BtnMasalahKeperawatanPerfusiPeriferTdkEfektif);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() && BtnMasalahKeperawatanHipotermia.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnMasalahKeperawatanHipotermia);
             jmlmenu++;
         }
         
@@ -3241,6 +3279,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         if (akses.getcppt() == true) {
             FormMenu.add(BtnMasalahKeperawatanPerfusiPeriferTdkEfektif);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            FormMenu.add(BtnMasalahKeperawatanHipotermia);
             jmlmenu++;
         }
 
