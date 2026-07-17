@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="1.818181818181827"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="480"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -1072,7 +1072,7 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="502" y="435" width="14" height="12">
+				<reportElement x="502" y="434" width="14" height="12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
@@ -1462,7 +1462,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{trendel}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="502" y="419" width="14" height="12">
+				<reportElement x="502" y="450" width="14" height="12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
@@ -1776,7 +1776,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{ya}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="501" y="340" width="14" height="12">
+				<reportElement x="501" y="355" width="14" height="12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
