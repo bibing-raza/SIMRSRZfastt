@@ -25,6 +25,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import laporan.DlgHasilPenunjangMedis;
+import simrskhanza.DlgRingkasanPulangRalan;
 
 /**
  *
@@ -135,11 +136,12 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnPemberianInformasiEdukasiIBS = new widget.ButtonBig();
         BtnAsesmenPraSedasi = new widget.ButtonBig();
         BtnTransferTindakanIBS = new widget.ButtonBig();
+        BtnRingkasan = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
 
-        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-07-2026" }));
+        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2026" }));
         DTPtanggal.setDisplayFormat("dd-MM-yyyy");
         DTPtanggal.setName("DTPtanggal"); // NOI18N
         DTPtanggal.setOpaque(false);
@@ -1035,6 +1037,19 @@ public class DlgRMEralan extends javax.swing.JDialog {
             }
         });
         FormInput1.add(BtnTransferTindakanIBS);
+
+        BtnRingkasan.setForeground(new java.awt.Color(0, 0, 0));
+        BtnRingkasan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
+        BtnRingkasan.setText("Ringkasan Pulang / Resume");
+        BtnRingkasan.setIconTextGap(0);
+        BtnRingkasan.setName("BtnRingkasan"); // NOI18N
+        BtnRingkasan.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnRingkasan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRingkasanActionPerformed(evt);
+            }
+        });
+        FormInput1.add(BtnRingkasan);
 
         scrollInput1.setViewportView(FormInput1);
 
@@ -2141,6 +2156,21 @@ public class DlgRMEralan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnMaskepHipotermiaActionPerformed
 
+    private void BtnRingkasanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRingkasanActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            akses.setform("DlgRMEralan");
+            DlgRingkasanPulangRalan ringkasan = new DlgRingkasanPulangRalan(null, false);
+            ringkasan.emptTeks();
+            ringkasan.isCek();
+            ringkasan.setPasien(TNoRW.getText());
+            ringkasan.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            ringkasan.setLocationRelativeTo(internalFrame1);
+            ringkasan.setVisible(true);
+        }
+    }//GEN-LAST:event_BtnRingkasanActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2208,6 +2238,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.ButtonBig BtnResepAntibiotik;
     private widget.ButtonBig BtnResepAntibiotikPonek;
     private widget.ButtonBig BtnResepPonek;
+    private widget.ButtonBig BtnRingkasan;
     private widget.ButtonBig BtnSamplingPemanfaatanRM;
     private widget.ButtonBig BtnScoreApgarPerinatologi;
     private widget.ButtonBig BtnSerahTerimaPasca;
@@ -2289,6 +2320,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnTransferTindakanIBS.setEnabled(akses.getcppt());
         BtnHasilPemeriksaanPenunjangPonek.setEnabled(akses.getcppt());
         BtnHasilPemeriksaanPenunjangIGD.setEnabled(akses.getcppt());
+        BtnRingkasan.setEnabled(akses.getringkasanpulangranap());
         BtnMaskepNyeriAkut.setEnabled(akses.getcppt());
         BtnMaskepPerfusiPerifer.setEnabled(akses.getcppt());
         BtnMaskepHipotermia.setEnabled(akses.getcppt());

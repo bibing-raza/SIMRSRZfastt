@@ -91,6 +91,7 @@ import rekammedis.RMTriaseIGD;
 import rekammedis.RMTriasePediatrik;
 import rekammedis.RMTriasePonek;
 import simrskhanza.DlgNotepad;
+import simrskhanza.DlgRingkasanPulangRalan;
 import simrskhanza.DlgRingkasanPulangRanap;
 import simrskhanza.frmUtama;
 
@@ -214,6 +215,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         btnPenilaianTambahanGeriatri = new widget.ButtonBig();
         btnPenilaianAwalMedisRalanGeriatri = new widget.ButtonBig();
         BtnMasalahKeperawatanHipotermia = new widget.ButtonBig();
+        btnRingkasanPulangRalan = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1312,6 +1314,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         });
         FormMenu.add(BtnMasalahKeperawatanHipotermia);
 
+        btnRingkasanPulangRalan.setForeground(new java.awt.Color(0, 0, 0));
+        btnRingkasanPulangRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        btnRingkasanPulangRalan.setText("Ringkasan Pulang Ralan");
+        btnRingkasanPulangRalan.setIconTextGap(0);
+        btnRingkasanPulangRalan.setName("btnRingkasanPulangRalan"); // NOI18N
+        btnRingkasanPulangRalan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnRingkasanPulangRalan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRingkasanPulangRalanActionPerformed(evt);
+            }
+        });
+        FormMenu.add(btnRingkasanPulangRalan);
+
         scrollMenu.setViewportView(FormMenu);
 
         internalFrame1.add(scrollMenu, java.awt.BorderLayout.CENTER);
@@ -1917,6 +1932,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             DlgRingkasanPulangRanap aplikasi = new DlgRingkasanPulangRanap(formUtama, false);
             aplikasi.emptTeks();
+            aplikasi.isCek();
             aplikasi.awalData();
             formUtama.tampilkanDialogDiPanelUtama(aplikasi);
         } catch (Exception e) {
@@ -2611,6 +2627,22 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnMasalahKeperawatanHipotermiaActionPerformed
 
+    private void btnRingkasanPulangRalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRingkasanPulangRalanActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgRingkasanPulangRalan aplikasi = new DlgRingkasanPulangRalan(formUtama, false);
+            aplikasi.emptTeks();
+            aplikasi.isCek();
+            aplikasi.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(aplikasi);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + btnRingkasanPulangRalan.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_btnRingkasanPulangRalanActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -2684,6 +2716,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig btnPersetujuanRanap;
     private widget.ButtonBig btnPersetujuanTindakan;
     private widget.ButtonBig btnProtokolKemoterapi;
+    private widget.ButtonBig btnRingkasanPulangRalan;
     private widget.ButtonBig btnRingkasanPulangRanap;
     private widget.ButtonBig btnSerahTerimaBayiPulang;
     private widget.ButtonBig btnSkorApgarDowneCapJariPerinatologi;
@@ -2890,6 +2923,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         
         if (akses.getringkasanpulangranap() && btnRingkasanPulangRanap.getText().toLowerCase().trim().contains(cari)) {
             FormMenu.add(btnRingkasanPulangRanap);
+            jmlmenu++;
+        }
+        
+        if (akses.getringkasanpulangranap() && btnRingkasanPulangRalan.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(btnRingkasanPulangRalan);
             jmlmenu++;
         }
         
@@ -3314,6 +3352,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         if (akses.getringkasanpulangranap() == true) {
             FormMenu.add(btnRingkasanPulangRanap);
+            jmlmenu++;
+        }
+        
+        if (akses.getringkasanpulangranap() == true) {
+            FormMenu.add(btnRingkasanPulangRalan);
             jmlmenu++;
         }
 
