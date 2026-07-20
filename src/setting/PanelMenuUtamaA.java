@@ -11,7 +11,6 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.util.Date;
 import java.util.Properties;

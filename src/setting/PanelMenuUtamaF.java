@@ -17,20 +17,11 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
 import java.sql.Connection;
-import java.util.Date;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import kepegawaian.DlgDepartemen;
-import kepegawaian.DlgPegawai;
-import kepegawaian.DlgPetugas;
-import rekammedis.DlgMasterJabatanKomite;
 import simrskhanza.DlgBangsal;
-import simrskhanza.DlgDokter;
-import simrskhanza.DlgJabatan;
-import simrskhanza.DlgMasterNomorDokumen;
 import simrskhanza.frmUtama;
 
 /**
