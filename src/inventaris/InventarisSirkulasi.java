@@ -26,6 +26,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -36,6 +37,7 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
+    private frmUtama formUtama;
 
     /** Creates new form DlgKamarInap
      * @param parent
@@ -256,14 +258,13 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
         WindowInput.setUndecorated(true);
         WindowInput.setResizable(false);
 
-        internalFrame2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)), "::[ Transaki Peminjaman & Pengembalian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)), "::[ Transaki Peminjaman & Pengembalian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame2.setName("internalFrame2"); // NOI18N
         internalFrame2.setWarnaBawah(new java.awt.Color(240, 245, 235));
         internalFrame2.setLayout(null);
 
         BtnCloseIn.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn.setMnemonic('U');
         BtnCloseIn.setText("Tutup");
         BtnCloseIn.setToolTipText("Alt+U");
         BtnCloseIn.setName("BtnCloseIn"); // NOI18N
@@ -288,7 +289,6 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -307,7 +307,6 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Batal");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -383,7 +382,6 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
         btnInv.setForeground(new java.awt.Color(0, 0, 0));
         btnInv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnInv.setMnemonic('1');
         btnInv.setToolTipText("Alt+1");
         btnInv.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnInv.setName("btnInv"); // NOI18N
@@ -449,7 +447,6 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
         btnPtg.setForeground(new java.awt.Color(0, 0, 0));
         btnPtg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPtg.setMnemonic('3');
         btnPtg.setToolTipText("Alt+3");
         btnPtg.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnPtg.setName("btnPtg"); // NOI18N
@@ -469,8 +466,7 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
         label12.setBounds(367, 55, 80, 23);
 
         tgl.setEditable(false);
-        tgl.setForeground(new java.awt.Color(0, 0, 0));
-        tgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-08-2017" }));
+        tgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-04-2019" }));
         tgl.setDisplayFormat("dd-MM-yyyy");
         tgl.setName("tgl"); // NOI18N
         tgl.setOpaque(false);
@@ -520,7 +516,7 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Sirkulasi Iventaris ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Sirkulasi Iventaris ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -535,7 +531,6 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
         BtnIn.setForeground(new java.awt.Color(0, 0, 0));
         BtnIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
-        BtnIn.setMnemonic('M');
         BtnIn.setText("Pinjam");
         BtnIn.setToolTipText("Alt+M");
         BtnIn.setName("BtnIn"); // NOI18N
@@ -554,7 +549,6 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
         BtnOut.setForeground(new java.awt.Color(0, 0, 0));
         BtnOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/36.png"))); // NOI18N
-        BtnOut.setMnemonic('K');
         BtnOut.setText("Kembali");
         BtnOut.setToolTipText("Alt+K");
         BtnOut.setName("BtnOut"); // NOI18N
@@ -573,7 +567,6 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -592,7 +585,6 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -611,7 +603,6 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -643,7 +634,6 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -684,7 +674,6 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
         BtnSeek2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnSeek2.setMnemonic('3');
         BtnSeek2.setToolTipText("Alt+3");
         BtnSeek2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BtnSeek2.setName("BtnSeek2"); // NOI18N
@@ -719,7 +708,6 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('4');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+4");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -771,8 +759,7 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
         panelCari.add(jLabel27);
 
         TglPinjam2.setEditable(false);
-        TglPinjam2.setForeground(new java.awt.Color(0, 0, 0));
-        TglPinjam2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-08-2017" }));
+        TglPinjam2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-04-2019" }));
         TglPinjam2.setDisplayFormat("dd-MM-yyyy");
         TglPinjam2.setName("TglPinjam2"); // NOI18N
         TglPinjam2.setOpaque(false);
@@ -802,8 +789,7 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
         panelCari.add(jLabel22);
 
         TglPinjam1.setEditable(false);
-        TglPinjam1.setForeground(new java.awt.Color(0, 0, 0));
-        TglPinjam1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-08-2017" }));
+        TglPinjam1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-04-2019" }));
         TglPinjam1.setDisplayFormat("dd-MM-yyyy");
         TglPinjam1.setName("TglPinjam1"); // NOI18N
         TglPinjam1.setOpaque(false);
@@ -835,6 +821,7 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
         tbKamIn.setAutoCreateRowSorter(true);
         tbKamIn.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbKamIn.setName("tbKamIn"); // NOI18N
+        tbKamIn.getTableHeader().setReorderingAllowed(false);
         tbKamIn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbKamInMouseClicked(evt);
@@ -933,14 +920,16 @@ public class InventarisSirkulasi extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         WindowInput.dispose();
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             WindowInput.dispose();
-            dispose();
-        }else{Valid.pindah(evt,BtnPrint,TCari);}
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnPrint, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
@@ -1474,5 +1463,9 @@ private void tlpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tlpKe
             } catch (SQLException ex) {
                 System.out.println("Notifikasi : "+ex);
             }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

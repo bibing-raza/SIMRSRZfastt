@@ -2915,14 +2915,14 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         cmbAirA.setSelectedIndex(0);
         cmbMerintihA.setSelectedIndex(0);
         hitungDowneA();
-        TmenitA.setText("");
+        TmenitB.setText("");
         cmbFrekNafasB.setSelectedIndex(0);
         cmbRetraksiB.setSelectedIndex(0);
         cmbSianosisB.setSelectedIndex(0);
         cmbAirB.setSelectedIndex(0);
         cmbMerintihB.setSelectedIndex(0);
         hitungDowneB();
-        TmenitA.setText("");
+        TmenitC.setText("");
         cmbFrekNafasC.setSelectedIndex(0);
         cmbRetraksiC.setSelectedIndex(0);
         cmbSianosisC.setSelectedIndex(0);
