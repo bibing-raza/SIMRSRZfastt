@@ -110,6 +110,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import net.sf.jasperreports.engine.JRDataSource;
 
 /**
  *
@@ -2702,6 +2703,88 @@ public final class validasi {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }
+    }
+    
+    public void MyReportDataSource(String reportName, String reportDirName, String judul, JRDataSource dataSource, Map<String, Object> parameters) {
+        Properties systemProp = System.getProperties();
+        // Ambil current directory
+        String currentDir = systemProp.getProperty("user.dir");
+        File dir = new File(currentDir);
+        File fileRpt;
+        String fullPath = "";
+
+        if (dir.isDirectory()) {
+            String[] isiDir = dir.list();
+
+            if (isiDir != null) {
+                for (String iDir : isiDir) {
+                    fileRpt = new File(
+                            currentDir
+                            + File.separatorChar
+                            + iDir
+                            + File.separatorChar
+                            + reportDirName
+                            + File.separatorChar
+                            + reportName
+                    );
+
+                    if (fileRpt.isFile()) {
+                        fullPath = fileRpt.getAbsolutePath();
+                        System.out.println("Found Report File at : " + fullPath);
+                        break;
+                    }
+                }
+            }
+        }
+
+        try {
+            String namaFile;
+
+            if (!fullPath.isEmpty()) {
+                namaFile = fullPath;
+            } else {
+                namaFile = currentDir
+                        + File.separator
+                        + reportDirName
+                        + File.separator
+                        + reportName;
+            }
+
+            File reportFile = new File(namaFile);
+            if (!reportFile.isFile()) {
+                JOptionPane.showMessageDialog(null, "File report tidak ditemukan:\n" + namaFile);
+                return;
+            }
+
+            if (dataSource == null) {
+                JOptionPane.showMessageDialog(null, "DataSource report tidak boleh null.");
+                return;
+            }
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    namaFile,
+                    parameters,
+                    dataSource
+            );
+
+            JasperViewer jasperViewer = new JasperViewer(
+                    jasperPrint,
+                    false
+            );
+
+            jasperViewer.setTitle(judul);
+            Dimension screen = Toolkit
+                    .getDefaultToolkit()
+                    .getScreenSize();
+
+            jasperViewer.setSize(screen.width - 50, screen.height - 50);
+            jasperViewer.setModalExclusionType(ModalExclusionType.TOOLKIT_EXCLUDE);
+            jasperViewer.setLocationRelativeTo(null);
+            jasperViewer.setVisible(true);
+        } catch (Exception e) {
+            System.out.println("Report Can't view because : " + e);
+            JOptionPane.showMessageDialog(null, "Report Can't view because :\n" + e);
         }
     }
 }

@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import laporan.DlgICDOncologyMorphology;
+import laporan.DlgICDOncologyTopography;
 import rekammedis.DlgAssesmenGiziUlang;
 import rekammedis.DlgCPPT;
 import rekammedis.DlgCatatanTindakanKeperawatan;
@@ -74,6 +76,7 @@ import rekammedis.RMPenilaianTambahanGeriatri;
 import rekammedis.RMPerencanaanPulang;
 import rekammedis.RMPersetujuanRawatInap;
 import rekammedis.RMProtokolKemoterapi;
+import rekammedis.RMRegisterCancer;
 import rekammedis.RMSerahTerimaBayiPulang;
 import rekammedis.RMSerahTerimaPascaOperasi;
 import rekammedis.RMSkorApgarDowneCapPerinatologi;
@@ -89,6 +92,7 @@ import rekammedis.RMTransferSerahTerimaIGD;
 import rekammedis.RMTriaseIGD;
 import rekammedis.RMTriasePediatrik;
 import rekammedis.RMTriasePonek;
+import simrskhanza.DlgDataCancer;
 import simrskhanza.DlgNotepad;
 import simrskhanza.DlgRingkasanPulangRalan;
 import simrskhanza.DlgRingkasanPulangRanap;
@@ -216,6 +220,10 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnMasalahKeperawatanHipotermia = new widget.ButtonBig();
         btnRingkasanPulangRalan = new widget.ButtonBig();
         BtnMasalahKeperawatanHipovolemia = new widget.ButtonBig();
+        BtnMasterICDOtopography = new widget.ButtonBig();
+        BtnMasterICDOmorphology = new widget.ButtonBig();
+        BtnRegisterCancer = new widget.ButtonBig();
+        BtnDataCancer = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1339,6 +1347,58 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnMasalahKeperawatanHipovolemia);
+
+        BtnMasterICDOtopography.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMasterICDOtopography.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/icd_O.png"))); // NOI18N
+        BtnMasterICDOtopography.setText("Master ICD-O Topography");
+        BtnMasterICDOtopography.setIconTextGap(0);
+        BtnMasterICDOtopography.setName("BtnMasterICDOtopography"); // NOI18N
+        BtnMasterICDOtopography.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMasterICDOtopography.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMasterICDOtopographyActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnMasterICDOtopography);
+
+        BtnMasterICDOmorphology.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMasterICDOmorphology.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/icd_O.png"))); // NOI18N
+        BtnMasterICDOmorphology.setText("Master ICD-O Morphology");
+        BtnMasterICDOmorphology.setIconTextGap(0);
+        BtnMasterICDOmorphology.setName("BtnMasterICDOmorphology"); // NOI18N
+        BtnMasterICDOmorphology.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMasterICDOmorphology.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMasterICDOmorphologyActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnMasterICDOmorphology);
+
+        BtnRegisterCancer.setForeground(new java.awt.Color(0, 0, 0));
+        BtnRegisterCancer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/cancer.png"))); // NOI18N
+        BtnRegisterCancer.setText("Register Cancer (CanReg)");
+        BtnRegisterCancer.setIconTextGap(0);
+        BtnRegisterCancer.setName("BtnRegisterCancer"); // NOI18N
+        BtnRegisterCancer.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnRegisterCancer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegisterCancerActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnRegisterCancer);
+
+        BtnDataCancer.setForeground(new java.awt.Color(0, 0, 0));
+        BtnDataCancer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/sign-up.png"))); // NOI18N
+        BtnDataCancer.setText("Data Cancer");
+        BtnDataCancer.setIconTextGap(0);
+        BtnDataCancer.setName("BtnDataCancer"); // NOI18N
+        BtnDataCancer.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnDataCancer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDataCancerActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnDataCancer);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -2672,6 +2732,72 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnMasalahKeperawatanHipovolemiaActionPerformed
 
+    private void BtnMasterICDOtopographyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMasterICDOtopographyActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgICDOncologyTopography aplikasi = new DlgICDOncologyTopography(formUtama, false);
+            aplikasi.emptTeks();
+            aplikasi.isCek();
+            aplikasi.ChkInput.setSelected(true);
+            aplikasi.isForm();
+            aplikasi.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(aplikasi);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnMasterICDOtopography.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnMasterICDOtopographyActionPerformed
+
+    private void BtnMasterICDOmorphologyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMasterICDOmorphologyActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgICDOncologyMorphology aplikasi = new DlgICDOncologyMorphology(formUtama, false);
+            aplikasi.emptTeks();
+            aplikasi.isCek();
+            aplikasi.ChkInput.setSelected(true);
+            aplikasi.isForm();
+            aplikasi.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(aplikasi);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnMasterICDOmorphology.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnMasterICDOmorphologyActionPerformed
+
+    private void BtnRegisterCancerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegisterCancerActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMRegisterCancer aplikasi = new RMRegisterCancer(formUtama, false);
+            aplikasi.emptTeks();
+            aplikasi.isCek();
+            aplikasi.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(aplikasi);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnRegisterCancer.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnRegisterCancerActionPerformed
+
+    private void BtnDataCancerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDataCancerActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgDataCancer aplikasi = new DlgDataCancer(formUtama, false);
+            aplikasi.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(aplikasi);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnDataCancer.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnDataCancerActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -2681,6 +2807,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnAsesmenPraSedasiKonsepIAR;
     private widget.ButtonBig BtnCatatanRuangPemulihan;
     private widget.ButtonBig BtnCatatanSedasiAnestesi;
+    private widget.ButtonBig BtnDataCancer;
     private widget.ButtonBig BtnEvaluasiPraAnestesi;
     private widget.ButtonBig BtnFormulirSiteMarking;
     private widget.ButtonBig BtnInformasiTindakanPembiusan;
@@ -2689,7 +2816,10 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnMasalahKeperawatanHipovolemia;
     private widget.ButtonBig BtnMasalahKeperawatanNyeriAkut;
     private widget.ButtonBig BtnMasalahKeperawatanPerfusiPeriferTdkEfektif;
+    private widget.ButtonBig BtnMasterICDOmorphology;
+    private widget.ButtonBig BtnMasterICDOtopography;
     private widget.ButtonBig BtnPartograf;
+    private widget.ButtonBig BtnRegisterCancer;
     private widget.ButtonBig BtnSerahTerimaPascaOperasi;
     private widget.CekBox ChkInput;
     private widget.PanelBiasa FormMenu;
@@ -3170,6 +3300,26 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             FormMenu.add(btnPenilaianAwalMedisRalanGeriatri);
             jmlmenu++;
         }
+        
+        if (akses.getpenyakit() && BtnMasterICDOtopography.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnMasterICDOtopography);
+            jmlmenu++;
+        }
+        
+        if (akses.getpenyakit() && BtnMasterICDOmorphology.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnMasterICDOmorphology);
+            jmlmenu++;
+        }
+        
+        if (akses.getpenyakit() && BtnRegisterCancer.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnRegisterCancer);
+            jmlmenu++;
+        }
+        
+        if (akses.getpenyakit() && BtnDataCancer.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnDataCancer);
+            jmlmenu++;
+        }
     }
     
     public JPanel getFormMenu() {
@@ -3203,7 +3353,27 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         FormMenu.removeAll();
         jmlmenu = 0;
         FormMenu.add(btnNotepad);
-        jmlmenu++;        
+        jmlmenu++;
+        
+        if (akses.getpenyakit() == true) {
+            FormMenu.add(BtnDataCancer);
+            jmlmenu++;
+        }
+        
+        if (akses.getpenyakit() == true) {
+            FormMenu.add(BtnRegisterCancer);
+            jmlmenu++;
+        }
+        
+        if (akses.getpenyakit() == true) {
+            FormMenu.add(BtnMasterICDOmorphology);
+            jmlmenu++;
+        }
+        
+        if (akses.getpenyakit() == true) {
+            FormMenu.add(BtnMasterICDOtopography);
+            jmlmenu++;
+        }
 
         if (akses.getbpjs_sep() == true) {
             FormMenu.add(btnPersetujuanRanap);
