@@ -429,6 +429,7 @@ public class RMRegisterCancer extends javax.swing.JDialog {
         jLabel111 = new widget.Label();
         jLabel112 = new widget.Label();
         cmbNoMetas = new widget.ComboBox();
+        label_pekerjaan = new widget.Label();
         PanelInput1 = new javax.swing.JPanel();
         Scroll = new widget.ScrollPane();
         tbRegister = new widget.Table();
@@ -1058,7 +1059,7 @@ public class RMRegisterCancer extends javax.swing.JDialog {
         jLabel100.setBounds(542, 445, 90, 23);
 
         TtglDiagnosis.setEditable(false);
-        TtglDiagnosis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
+        TtglDiagnosis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2026" }));
         TtglDiagnosis.setDisplayFormat("dd-MM-yyyy");
         TtglDiagnosis.setName("TtglDiagnosis"); // NOI18N
         TtglDiagnosis.setOpaque(false);
@@ -1073,7 +1074,7 @@ public class RMRegisterCancer extends javax.swing.JDialog {
         jLabel101.setBounds(0, 853, 140, 23);
 
         TtglAdmisi.setEditable(false);
-        TtglAdmisi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
+        TtglAdmisi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2026" }));
         TtglAdmisi.setDisplayFormat("dd-MM-yyyy");
         TtglAdmisi.setName("TtglAdmisi"); // NOI18N
         TtglAdmisi.setOpaque(false);
@@ -1082,7 +1083,7 @@ public class RMRegisterCancer extends javax.swing.JDialog {
         TtglAdmisi.setBounds(145, 853, 90, 23);
 
         TtglKontak.setEditable(false);
-        TtglKontak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
+        TtglKontak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2026" }));
         TtglKontak.setDisplayFormat("dd-MM-yyyy");
         TtglKontak.setName("TtglKontak"); // NOI18N
         TtglKontak.setOpaque(false);
@@ -1141,7 +1142,7 @@ public class RMRegisterCancer extends javax.swing.JDialog {
         chkTglAbstrak.setBounds(470, 881, 100, 23);
 
         TtglAbstrak.setEditable(false);
-        TtglAbstrak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
+        TtglAbstrak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2026" }));
         TtglAbstrak.setDisplayFormat("dd-MM-yyyy");
         TtglAbstrak.setName("TtglAbstrak"); // NOI18N
         TtglAbstrak.setOpaque(false);
@@ -1161,7 +1162,7 @@ public class RMRegisterCancer extends javax.swing.JDialog {
         jLabel103.setBounds(0, 937, 140, 23);
 
         TtglVerif.setEditable(false);
-        TtglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
+        TtglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2026" }));
         TtglVerif.setDisplayFormat("dd-MM-yyyy");
         TtglVerif.setName("TtglVerif"); // NOI18N
         TtglVerif.setOpaque(false);
@@ -1319,6 +1320,14 @@ public class RMRegisterCancer extends javax.swing.JDialog {
         FormInput.add(cmbNoMetas);
         cmbNoMetas.setBounds(385, 613, 120, 23);
 
+        label_pekerjaan.setForeground(new java.awt.Color(0, 0, 0));
+        label_pekerjaan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label_pekerjaan.setText("Pekerjaan : -");
+        label_pekerjaan.setToolTipText("");
+        label_pekerjaan.setName("label_pekerjaan"); // NOI18N
+        FormInput.add(label_pekerjaan);
+        label_pekerjaan.setBounds(285, 346, 600, 23);
+
         Scroll1.setViewportView(FormInput);
 
         panelGlass13.add(Scroll1);
@@ -1364,7 +1373,7 @@ public class RMRegisterCancer extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass12.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1378,7 +1387,7 @@ public class RMRegisterCancer extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass12.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2155,6 +2164,7 @@ public class RMRegisterCancer extends javax.swing.JDialog {
     private widget.Label jLabel98;
     private widget.Label jLabel99;
     private widget.Label label20;
+    private widget.Label label_pekerjaan;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass12;
@@ -2287,6 +2297,7 @@ public class RMRegisterCancer extends javax.swing.JDialog {
         cmbAgama.setSelectedIndex(0);
         cmbSttsPernikahan.setSelectedIndex(0);
         cmbPekerjaan.setSelectedIndex(0);
+        label_pekerjaan.setText("Pekerjaan : -");
         TnoTelp.setText("");
         TkodeC.setText("");
         TnmDiagnosaKodeC.setText("");
@@ -2458,6 +2469,7 @@ public class RMRegisterCancer extends javax.swing.JDialog {
                     TalamatTetap.setText(rs1.getString("alamatTetap"));
                     TnoTelp.setText(rs1.getString("no_tlp"));
                     Valid.SetTgl(TtglAdmisi, rs1.getString("tgl_registrasi"));
+                    label_pekerjaan.setText("Pekerjaan : " + rs1.getString("pekerjaan"));
                     
                     if (rs1.getString("jk").equals("L")) {
                         cmbJenkel.setSelectedIndex(1);

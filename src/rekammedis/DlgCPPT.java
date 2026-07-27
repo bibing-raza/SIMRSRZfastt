@@ -11,14 +11,13 @@
 
 package rekammedis;
 
-import static com.sun.org.glassfish.external.amx.AMXUtil.prop;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import inventory.DlgCatatanResep;
+import inventory.DlgCatatanResepBiasaAntibiotik;
 import inventory.DlgPemberianObatPasien;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -8831,7 +8830,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("vk bersalin")) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgCPPT");
-                DlgCatatanResep form = new DlgCatatanResep(null, false);
+                DlgCatatanResepBiasaAntibiotik form = new DlgCatatanResepBiasaAntibiotik(null, false);
                 form.isCek();
                 form.setData(TNoRw.getText(), status);
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
@@ -8841,7 +8840,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             } else if (status.equals("ranap")) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgCPPT");
-                DlgCatatanResep form = new DlgCatatanResep(null, false);
+                DlgCatatanResepBiasaAntibiotik form = new DlgCatatanResepBiasaAntibiotik(null, false);
                 form.isCek();
                 form.setData(TNoRw.getText(), "ranap");
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);

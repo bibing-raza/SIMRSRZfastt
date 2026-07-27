@@ -6,7 +6,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import inventory.DlgCatatanResep;
+import inventory.DlgCatatanResepBiasaAntibiotik;
 import java.awt.Canvas;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -14,7 +14,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -2023,7 +2022,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
 
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         akses.setform("RMPerencanaanPulang");
-        DlgCatatanResep form = new DlgCatatanResep(null, false);
+        DlgCatatanResepBiasaAntibiotik form = new DlgCatatanResepBiasaAntibiotik(null, false);
         form.isCek();
         form.setData(TNoRw.getText(), "ranap");
         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);

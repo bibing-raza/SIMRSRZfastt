@@ -4,26 +4,15 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import inventory.DlgCatatanResep;
-import inventory.DlgCatatanResepAntibiotik;
+import inventory.DlgCatatanResepBiasaAntibiotik;
 import inventory.DlgPelaksanaPemberiObat;
 import inventory.DlgPemberianObatPasien;
 import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.File;
-import java.io.FileInputStream;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.Date;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import javax.swing.event.DocumentEvent;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import laporan.DlgHasilPenunjangMedis;
 import simrskhanza.DlgRingkasanPulangRalan;
 
@@ -85,7 +74,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnPengelolaanTranfusiDarahIGD = new widget.ButtonBig();
         BtnDokumenJangMedIGD = new widget.ButtonBig();
         BtnResep = new widget.ButtonBig();
-        BtnResepAntibiotik = new widget.ButtonBig();
         BtnPemberianInformasiEdukasiIGD = new widget.ButtonBig();
         BtnHasilPemeriksaanPenunjangIGD = new widget.ButtonBig();
         BtnSamplingPemanfaatanRM = new widget.ButtonBig();
@@ -108,7 +96,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnPengelolaanTranfusiDarahPonek = new widget.ButtonBig();
         BtnDokumenJangMedPonek = new widget.ButtonBig();
         BtnResepPonek = new widget.ButtonBig();
-        BtnResepAntibiotikPonek = new widget.ButtonBig();
         BtnPemberianInformasiEdukasiPonek = new widget.ButtonBig();
         BtnHasilPemeriksaanPenunjangPonek = new widget.ButtonBig();
         scrollInput3 = new widget.ScrollPane();
@@ -142,7 +129,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
 
-        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-07-2026" }));
+        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-07-2026" }));
         DTPtanggal.setDisplayFormat("dd-MM-yyyy");
         DTPtanggal.setName("DTPtanggal"); // NOI18N
         DTPtanggal.setOpaque(false);
@@ -414,19 +401,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnResep);
-
-        BtnResepAntibiotik.setForeground(new java.awt.Color(0, 0, 0));
-        BtnResepAntibiotik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png"))); // NOI18N
-        BtnResepAntibiotik.setText("Resep Obat Antibiotik");
-        BtnResepAntibiotik.setIconTextGap(0);
-        BtnResepAntibiotik.setName("BtnResepAntibiotik"); // NOI18N
-        BtnResepAntibiotik.setPreferredSize(new java.awt.Dimension(200, 90));
-        BtnResepAntibiotik.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnResepAntibiotikActionPerformed(evt);
-            }
-        });
-        FormInput.add(BtnResepAntibiotik);
 
         BtnPemberianInformasiEdukasiIGD.setForeground(new java.awt.Color(0, 0, 0));
         BtnPemberianInformasiEdukasiIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/people.png"))); // NOI18N
@@ -700,19 +674,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(BtnResepPonek);
-
-        BtnResepAntibiotikPonek.setForeground(new java.awt.Color(0, 0, 0));
-        BtnResepAntibiotikPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png"))); // NOI18N
-        BtnResepAntibiotikPonek.setText("Resep Obat Antibiotik");
-        BtnResepAntibiotikPonek.setIconTextGap(0);
-        BtnResepAntibiotikPonek.setName("BtnResepAntibiotikPonek"); // NOI18N
-        BtnResepAntibiotikPonek.setPreferredSize(new java.awt.Dimension(200, 90));
-        BtnResepAntibiotikPonek.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnResepAntibiotikPonekActionPerformed(evt);
-            }
-        });
-        FormInput2.add(BtnResepAntibiotikPonek);
 
         BtnPemberianInformasiEdukasiPonek.setForeground(new java.awt.Color(0, 0, 0));
         BtnPemberianInformasiEdukasiPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/people.png"))); // NOI18N
@@ -1079,6 +1040,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnRefres.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRefres.setMnemonic('R');
         BtnRefres.setText("Refresh Rekam Medis");
         BtnRefres.setToolTipText("Alt+R");
         BtnRefres.setName("BtnRefres"); // NOI18N
@@ -1092,6 +1054,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1156,7 +1119,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setform("DlgRMEralan");
-            DlgCatatanResep form = new DlgCatatanResep(null, false);
+            DlgCatatanResepBiasaAntibiotik form = new DlgCatatanResepBiasaAntibiotik(null, false);
             form.isCek();
             form.setData(TNoRW.getText(), stts);
             form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
@@ -1431,22 +1394,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnTriasePonekActionPerformed
-
-    private void BtnResepAntibiotikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResepAntibiotikActionPerformed
-        if (TNoRW.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
-        } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            akses.setform("DlgRMEralan");
-            DlgCatatanResepAntibiotik form = new DlgCatatanResepAntibiotik(null, false);
-            form.isCek();
-            form.setData(TNoRW.getText(), stts);
-            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }//GEN-LAST:event_BtnResepAntibiotikActionPerformed
 
     private void BtnObservasiKala1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnObservasiKala1ActionPerformed
         if (TNoRW.getText().equals("")) {
@@ -1995,7 +1942,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setform("DlgRMEralan");
-            DlgCatatanResep form = new DlgCatatanResep(null, false);
+            DlgCatatanResepBiasaAntibiotik form = new DlgCatatanResepBiasaAntibiotik(null, false);
             form.isCek();
             form.setData(TNoRW.getText(), stts);
             form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
@@ -2004,22 +1951,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnResepPonekActionPerformed
-
-    private void BtnResepAntibiotikPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResepAntibiotikPonekActionPerformed
-        if (TNoRW.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
-        } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            akses.setform("DlgRMEralan");
-            DlgCatatanResepAntibiotik form = new DlgCatatanResepAntibiotik(null, false);
-            form.isCek();
-            form.setData(TNoRW.getText(), stts);
-            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }//GEN-LAST:event_BtnResepAntibiotikPonekActionPerformed
 
     private void BtnPemberianInformasiEdukasiPonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPemberianInformasiEdukasiPonekActionPerformed
         if (TNoRW.getText().equals("")) {
@@ -2267,8 +2198,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.ButtonBig BtnPreviewData;
     private widget.Button BtnRefres;
     private widget.ButtonBig BtnResep;
-    private widget.ButtonBig BtnResepAntibiotik;
-    private widget.ButtonBig BtnResepAntibiotikPonek;
     private widget.ButtonBig BtnResepPonek;
     private widget.ButtonBig BtnRingkasan;
     private widget.ButtonBig BtnSamplingPemanfaatanRM;
@@ -2411,14 +2340,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
             BtnResep.setToolTipText("Pada hari ini pasien tersebut SUDAH diberi resep oleh dokter..!!!");
         }
         
-        if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap_antibiotik where no_rawat='" + norawat + "' and tgl_perawatan=date(now())") == 0) {
-            BtnResepAntibiotik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726_merah.png")));
-            BtnResepAntibiotik.setToolTipText("Pada hari ini pasien tersebut BELUM diberi resep antibiotik oleh dokter..!!!");
-        } else {
-            BtnResepAntibiotik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png")));
-            BtnResepAntibiotik.setToolTipText("Pada hari ini pasien tersebut SUDAH diberi resep antibiotik oleh dokter..!!!");
-        }
-
         if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + norawat + "' and tgl_pemberian=date(now())") == 0) {
             BtnPemberianObatIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel_merah.png")));
             BtnPemberianObatIGD.setToolTipText("Jadwal pemberian obat pasien tersebut pada hari ini BELUM dibikinkan oleh petugas..!!!");
@@ -2491,14 +2412,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
             BtnResep.setToolTipText("Pada hari ini pasien tersebut SUDAH diberi resep oleh dokter..!!!");
         }
         
-        if (Sequel.cariInteger("select count(-1) from catatan_resep_antibiotik where no_rawat='" + norawat + "' and tgl_perawatan=date(now())") == 0) {
-            BtnResepAntibiotik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726_merah.png")));
-            BtnResepAntibiotik.setToolTipText("Pada hari ini pasien tersebut BELUM diberi resep antibiotik oleh dokter..!!!");
-        } else {
-            BtnResepAntibiotik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png")));
-            BtnResepAntibiotik.setToolTipText("Pada hari ini pasien tersebut SUDAH diberi resep antibiotik oleh dokter..!!!");
-        }
-        
         if (Sequel.cariInteger("select count(-1) from asesmen_medik_kebidanan where no_rawat='" + norawat + "'") == 0) {
             BtnAsesmenMedikKebidanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
             BtnAsesmenMedikKebidanan.setToolTipText("Asesmen Medik Kebidanan BELUM diisi oleh petugas..!!!");
@@ -2545,14 +2458,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
         } else {
             BtnResepPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png")));
             BtnResepPonek.setToolTipText("Pada hari ini pasien tersebut SUDAH diberi resep oleh dokter..!!!");
-        }
-        
-        if (Sequel.cariInteger("select count(-1) from catatan_resep_antibiotik where no_rawat='" + norawat + "' and tgl_perawatan=date(now())") == 0) {
-            BtnResepAntibiotikPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726_merah.png")));
-            BtnResepAntibiotikPonek.setToolTipText("Pada hari ini pasien tersebut BELUM diberi resep antibiotik oleh dokter..!!!");
-        } else {
-            BtnResepAntibiotikPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png")));
-            BtnResepAntibiotikPonek.setToolTipText("Pada hari ini pasien tersebut SUDAH diberi resep antibiotik oleh dokter..!!!");
         }
     }
 }

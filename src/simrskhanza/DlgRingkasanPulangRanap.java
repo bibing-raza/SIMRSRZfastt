@@ -2,14 +2,13 @@ package simrskhanza;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.jna.platform.win32.OaIdl;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import inventory.DlgCatatanResep;
+import inventory.DlgCatatanResepBiasaAntibiotik;
 import java.awt.Canvas;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -17,7 +16,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -38,7 +36,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,8 +66,6 @@ import org.springframework.web.client.RestTemplate;
 import rekammedis.DlgMasterJenisDokumenJangMed;
 import rekammedis.DlgVerifikasiCPPT;
 import rekammedis.RMDokumenPenunjangMedis;
-import rekammedis.RMSerahTerimaBayiPulang;
-import simrskhanza.DlgCariDokter;
 
 /**
  *
@@ -5750,7 +5745,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setform("DlgRingkasanPulangRanap");
-            DlgCatatanResep form = new DlgCatatanResep(null, false);
+            DlgCatatanResepBiasaAntibiotik form = new DlgCatatanResepBiasaAntibiotik(null, false);
             form.isCek();
             form.setData(TNoRW.getText(), "ranap");
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);

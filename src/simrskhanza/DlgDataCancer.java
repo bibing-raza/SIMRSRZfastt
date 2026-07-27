@@ -45,6 +45,7 @@ public final class DlgDataCancer extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private int x = 0;
+    private String dialog_simpan = "";
     private frmUtama formUtama;
     
     /** Creates new form DlgPenyakit
@@ -149,7 +150,7 @@ public final class DlgDataCancer extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnRegister = new javax.swing.JMenuItem();
-        MnExportData = new javax.swing.JMenuItem();
+        MnDownloadData = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbPasien = new widget.Table();
@@ -183,20 +184,20 @@ public final class DlgDataCancer extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnRegister);
 
-        MnExportData.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnExportData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
-        MnExportData.setText("Export Data Ke Excel");
-        MnExportData.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnExportData.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnExportData.setIconTextGap(5);
-        MnExportData.setName("MnExportData"); // NOI18N
-        MnExportData.setPreferredSize(new java.awt.Dimension(170, 26));
-        MnExportData.addActionListener(new java.awt.event.ActionListener() {
+        MnDownloadData.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDownloadData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnDownloadData.setText("Download Data Ke Excel");
+        MnDownloadData.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDownloadData.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDownloadData.setIconTextGap(5);
+        MnDownloadData.setName("MnDownloadData"); // NOI18N
+        MnDownloadData.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnDownloadData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnExportDataActionPerformed(evt);
+                MnDownloadDataActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(MnExportData);
+        jPopupMenu1.add(MnDownloadData);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -425,9 +426,70 @@ public final class DlgDataCancer extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnRegisterActionPerformed
 
-    private void MnExportDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnExportDataActionPerformed
-        
-    }//GEN-LAST:event_MnExportDataActionPerformed
+    private void MnDownloadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDownloadDataActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            int jumlahData = 0;
+            String tglAwal = Valid.SetTgl(DTPCari1.getSelectedItem() + "");
+            String tglAkhir = Valid.SetTgl(DTPCari2.getSelectedItem() + "");
+
+            jumlahData = Sequel.cariInteger("SELECT COUNT(*) FROM register_cancer rc INNER JOIN reg_periksa rp ON rp.no_rawat = rc.no_rawat "
+                    + "WHERE rp.tgl_registrasi BETWEEN '" + tglAwal + "' AND '" + tglAkhir + "'");
+
+            if (jumlahData == 0) {
+                JOptionPane.showMessageDialog(null, "Data Register Cancer pada periode tgl. " + DTPCari1.getSelectedItem().toString().replaceAll("-", "/")
+                        + " s.d. " + DTPCari2.getSelectedItem().toString().replaceAll("-", "/") + " tidak ditemukan.\n"
+                        + "Proses download data dibatalkan.", "Data Tidak Ditemukan", JOptionPane.WARNING_MESSAGE);
+                tampil();
+                return;
+            }
+
+            dialog_simpan = Valid.openDialog();
+            if (dialog_simpan == null) {
+                return;
+            }
+            
+            Valid.MyReportToExcel("SELECT DISTINCT p.no_ktp 'NIK', CONVERT(6303015, CHAR) 'Kode Fasyankes', p.no_rkm_medis 'No. MR', p.nm_pasien 'Nama Lengkap', "
+                    + "DATE_FORMAT(p.tgl_lahir, '%d/%m/%Y') 'Tanggal Lahir', IF(p.jk = 'L', 'Laki-laki', 'Perempuan') 'Jenis Kelamin', "
+                    + "p.alamat 'Alamat Tetap', CONCAT('Kec. ', kc.nm_kec, ', ', kb.nm_kab) 'Regional Domisili', CONCAT(rp.umurdaftar, ' ', rp.sttsumur, '.') 'Umur', "
+                    + "DATE_FORMAT(rc.tgl_diagnosis, '%d/%m/%Y') 'Tgl. Kejadian', rc.topography 'Topografi', rc.morphology 'Morfologi', "
+                    + "TRIM(SUBSTRING(rc.behavior,LOCATE('. ', rc.behavior) + 2)) 'Perilaku Tumor', TRIM(SUBSTRING(rc.most_valid,LOCATE('. ', rc.most_valid) + 2)) 'Basis Diagnosis', "
+                    + "TRIM(SUBSTRING(rc.clinical_ext,LOCATE('. ', rc.clinical_ext) + 2)) 'Penyebaran Tumor Sebelum Terapi', rc.stage 'Stadium', "
+                    + "IFNULL((SELECT GROUP_CONCAT(CONCAT("
+                    + "'Tgl. Pemeriksaan Lab. PA : ',IFNULL(DATE_FORMAT(hpa2.tgl_hasil, '%d/%m/%Y'), '-'), "
+                    + "'\\nLokasi / Organ : ',IFNULL(hpa2.lokasi_organ, '-'), "
+                    + "'\\n\\nMakroskopik : ',IFNULL(hpa2.makroskopik, '-'), "
+                    + "'\\n\\nMikroskopik : ',IFNULL(hpa2.mikroskopik, '-'), "
+                    + "'\\n\\nKesimpulan : ',IFNULL(hpa2.kesimpulan, '-'), "
+                    + "'\\n\\nAnjuran : ',IFNULL(hpa2.anjuran, '-')) ORDER BY hpa2.tgl_hasil ASC, hpa2.no_pa ASC SEPARATOR '\\n\\n==============================\\n\\n') "
+                    + "FROM hasil_patologi_anatomi hpa2 WHERE hpa2.no_rawat = rc.no_rawat),'-') AS 'Stadium TNM', "
+                    + "IF(rc.cek_tgl_kontak_terakhir = 'ya',DATE_FORMAT(rc.tgl_kontak_terakhir, '%d/%m/%Y'),'-') 'Tanggal Terakhir Kontak', "
+                    + "TRIM(SUBSTRING(rc.status,LOCATE('. ', rc.status) + 2)) 'Status', rc.kesimpulan 'Kesimpulan', "
+                    + "IFNULL((SELECT GROUP_CONCAT(DISTINCT CONCAT('RSUD Ratu Zalecha (Tgl. ',DATE_FORMAT(rp2.tgl_registrasi,'%d/%m/%Y'),')') ORDER BY rp2.tgl_registrasi SEPARATOR '\\n') "
+                    + "FROM reg_periksa rp2 INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp2.no_rawat WHERE rp2.no_rkm_medis = p.no_rkm_medis AND dp.prioritas = '1' "
+                    + "AND LEFT(dp.kd_penyakit,3) IN ("
+                    + "'C00','C01','C02','C03','C04','C05','C06','C07','C08','C09',"
+                    + "'C10','C11','C12','C13','C14','C15','C16','C17','C18','C19',"
+                    + "'C20','C21','C22','C23','C24','C25','C26','C30','C31','C32',"
+                    + "'C33','C34','C37','C38','C39','C40','C41','C43','C44','C45',"
+                    + "'C46','C47','C48','C49','C50','C51','C52','C53','C54','C55',"
+                    + "'C56','C57','C58','C60','C61','C62','C63','C64','C65','C66',"
+                    + "'C67','C68','C69','C70','C71','C72','C73','C74','C75','C76',"
+                    + "'C77','C78','C79','C80','C81','C82','C83','C84','C85','C86',"
+                    + "'C88','C90','C91','C92','C93','C94','C95','C96')),'-') 'Keterangan Dirujuk', rc.register 'Catatan' FROM register_cancer rc "
+                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = rc.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab WHERE "
+                    + "rp.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "'", dialog_simpan);
+            JOptionPane.showMessageDialog(null, "Data Register Cancer berhasil diexport menjadi file Excel.");
+            tampil();            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Proses export data Register Cancer gagal:\n" + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnDownloadDataActionPerformed
 
     /**
     * @param args the command line arguments
@@ -452,7 +514,7 @@ public final class DlgDataCancer extends javax.swing.JDialog {
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.Label LCount;
-    private javax.swing.JMenuItem MnExportData;
+    private javax.swing.JMenuItem MnDownloadData;
     private javax.swing.JMenuItem MnRegister;
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;

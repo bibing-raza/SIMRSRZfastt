@@ -3,26 +3,19 @@
  */
 
 package rekammedis;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import inventory.DlgCatatanResep;
+import inventory.DlgCatatanResepBiasaAntibiotik;
 import java.awt.Cursor;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,7 +28,6 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.text.Document;
 import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
@@ -3615,7 +3607,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
             if (!sttsrawat.equals("")) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("RMAsesmenPraSedasi");
-                DlgCatatanResep form = new DlgCatatanResep(null, false);
+                DlgCatatanResepBiasaAntibiotik form = new DlgCatatanResepBiasaAntibiotik(null, false);
                 form.isCek();
                 form.setData(TNoRw.getText(), sttsrawat);
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
