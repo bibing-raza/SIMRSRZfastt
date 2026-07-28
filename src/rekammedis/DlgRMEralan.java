@@ -104,6 +104,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnMaskepPerfusiPerifer = new widget.ButtonBig();
         BtnMaskepHipotermia = new widget.ButtonBig();
         BtnMaskepHipovolemia = new widget.ButtonBig();
+        BtnMaskepBersihanJalanNafas = new widget.ButtonBig();
         scrollInput1 = new widget.ScrollPane();
         FormInput1 = new widget.PanelBiasa();
         BtnEvaluasiPraAnestesi = new widget.ButtonBig();
@@ -129,7 +130,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
 
-        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-07-2026" }));
+        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2026" }));
         DTPtanggal.setDisplayFormat("dd-MM-yyyy");
         DTPtanggal.setName("DTPtanggal"); // NOI18N
         DTPtanggal.setOpaque(false);
@@ -766,6 +767,19 @@ public class DlgRMEralan extends javax.swing.JDialog {
         });
         FormInput3.add(BtnMaskepHipovolemia);
 
+        BtnMaskepBersihanJalanNafas.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMaskepBersihanJalanNafas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
+        BtnMaskepBersihanJalanNafas.setText("Bersihan Jalan Nafas Tidak Efektif");
+        BtnMaskepBersihanJalanNafas.setIconTextGap(0);
+        BtnMaskepBersihanJalanNafas.setName("BtnMaskepBersihanJalanNafas"); // NOI18N
+        BtnMaskepBersihanJalanNafas.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMaskepBersihanJalanNafas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMaskepBersihanJalanNafasActionPerformed(evt);
+            }
+        });
+        FormInput3.add(BtnMaskepBersihanJalanNafas);
+
         scrollInput3.setViewportView(FormInput3);
 
         TabRekamMedis.addTab("(Diagnosis) Masalah Keperawatan", scrollInput3);
@@ -1040,7 +1054,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnRefres.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
-        BtnRefres.setMnemonic('R');
         BtnRefres.setText("Refresh Rekam Medis");
         BtnRefres.setToolTipText("Alt+R");
         BtnRefres.setName("BtnRefres"); // NOI18N
@@ -1054,7 +1067,6 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -2133,6 +2145,23 @@ public class DlgRMEralan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnMaskepHipovolemiaActionPerformed
 
+    private void BtnMaskepBersihanJalanNafasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMaskepBersihanJalanNafasActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEralan");
+            RMMasalahKeperawatanBersihanJlnNafas form = new RMMasalahKeperawatanBersihanJlnNafas(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText(), "Ralan");
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnMaskepBersihanJalanNafasActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2177,6 +2206,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.ButtonBig BtnLaporanOperasi;
     private widget.ButtonBig BtnLembarObservasiIGD;
+    private widget.ButtonBig BtnMaskepBersihanJalanNafas;
     private widget.ButtonBig BtnMaskepHipotermia;
     private widget.ButtonBig BtnMaskepHipovolemia;
     private widget.ButtonBig BtnMaskepNyeriAkut;
@@ -2286,6 +2316,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnMaskepPerfusiPerifer.setEnabled(akses.getcppt());
         BtnMaskepHipotermia.setEnabled(akses.getcppt());
         BtnMaskepHipovolemia.setEnabled(akses.getcppt());
+        BtnMaskepBersihanJalanNafas.setEnabled(akses.getcppt());
         //sementara
         BtnPartograf.setEnabled(akses.getadmin());
         

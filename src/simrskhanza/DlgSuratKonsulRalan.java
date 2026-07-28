@@ -1,6 +1,5 @@
 package simrskhanza;
 
-import rekammedis.*;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -8,10 +7,8 @@ import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -29,6 +26,7 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -45,6 +43,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
     private int i = 0, x = 0;
     private DlgCariPoli poli = new DlgCariPoli(null, false);
     private String aktifjadwal = "", kasus = "", ketklinis = "", dokterpenjawab = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -763,12 +762,12 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -1234,5 +1233,9 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
             Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
             Valid.SetTgl(DTPCari2, Sequel.cariIsi("select tgl_permintaan_konsul from surat_konsul_unit_ralan where no_rawat='" + TNoRw.getText() + "'"));
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

@@ -36,9 +36,9 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import keuangan.DlgKamar;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -54,6 +54,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String kddokter = "", wktSimpan = "", sttsJawab = "";
     private int x = 0;
+    private frmUtama formUtama;
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -783,13 +784,15 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         emptTeks();
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnEdit,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnEdit, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
@@ -1272,5 +1275,13 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void awalData() {
+        tampil();
+        Sequel.cariIsiComboDB("SELECT if(nm_sps='Saraf','Neurologi',nm_sps) spes from spesialis WHERE kd_sps not in ('-','S0021') and "
+                + "(nm_sps not like '%radiologi%' and nm_sps not like '%anaste%') ORDER BY nm_sps", cmbUnitDari);
+        Sequel.cariIsiComboDB("SELECT if(nm_sps='Saraf','Neurologi',nm_sps) spes from spesialis WHERE kd_sps not in ('-','S0021') and "
+                + "(nm_sps not like '%radiologi%' and nm_sps not like '%anaste%')ORDER BY nm_sps", cmbUnitKe);
     }
 }

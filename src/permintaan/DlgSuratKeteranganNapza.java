@@ -35,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgMasterNomorDokumen;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -54,6 +55,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             amp = "", opi = "", tglsurat = "", kddokter = "", noLIS = "", cekLIS = "", ketLIS = "",
             tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "", sttsnomor = "", cekNarkoba = "";
     private int x = 0, n = 0;
+    private frmUtama formUtama;
 
     /**
      * Creates new form DlgSpesialis
@@ -1736,12 +1738,12 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         emptTeks();
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnEdit, TCari);
         }
@@ -3256,5 +3258,9 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
             tbSurat.requestFocus();
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

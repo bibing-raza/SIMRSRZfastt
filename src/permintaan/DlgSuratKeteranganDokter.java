@@ -10,7 +10,6 @@
  */
 
 package permintaan;
-import rekammedis.*;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -37,6 +36,7 @@ import javax.swing.table.TableColumn;
 import laporan.DlgHasilPenunjangMedis;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgMasterNomorDokumen;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -54,6 +54,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
     private String nosrt = "", kddokter = "", cekTgl = "", kodepoli = "",
             sttsnomor = "", cekCaten = "", noSuratFix = "", tte = "";
     private int x = 0;
+    private frmUtama formUtama;
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -2191,13 +2192,13 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         emptTeks();
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowCpns.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnEdit, TCari);
         }
@@ -4436,5 +4437,9 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
             tbSurat.requestFocus();
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

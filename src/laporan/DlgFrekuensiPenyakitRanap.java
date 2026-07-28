@@ -4087,9 +4087,9 @@ private void ppGrafikTerkecilPieActionPerformed(java.awt.event.ActionEvent evt) 
             cmbRuangKhusus4.setVisible(false);
             prosesCari();
             
-        } else if (!userBerizin.getText().equals("") || akses.getadmin() == false) {
-            
-            if (userBerizin.getText().equals("PR04")) {
+        } else if (!userBerizin.getText().equals("") || akses.getadmin() == false) {           
+            //perawat & admin ruang as-sami
+            if (userBerizin.getText().equals("PR04") || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen='D031'") > 0) {
                 btnCari.setEnabled(true);
                 cmbRuangKhusus1.setVisible(true);
                 cmbRuangKhusus1.setSelectedIndex(0);
@@ -4098,8 +4098,8 @@ private void ppGrafikTerkecilPieActionPerformed(java.awt.event.ActionEvent evt) 
                 cmbRuangKhusus3.setVisible(false);
                 cmbRuangKhusus4.setVisible(false);
                 kdAkses.setText("");
-            
-            } else if (userBerizin.getText().equals("PR06")) {
+            //perawat & admin ruang ar-razaq rkpd
+            } else if (userBerizin.getText().equals("PR06") || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen='D032'") > 0) {
                 btnCari.setEnabled(true);
                 cmbRuangKhusus2.setVisible(true);
                 cmbRuangKhusus2.setSelectedIndex(0);
@@ -4108,8 +4108,8 @@ private void ppGrafikTerkecilPieActionPerformed(java.awt.event.ActionEvent evt) 
                 cmbRuangKhusus3.setVisible(false);
                 cmbRuangKhusus4.setVisible(false);
                 kdAkses.setText("");
-            
-            } else if (userBerizin.getText().equals("PR10")) {
+            //perawat & admin ruang perinatologi
+            } else if (userBerizin.getText().equals("PR10") || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen='D073'") > 0) {
                 btnCari.setEnabled(true);
                 cmbRuangKhusus3.setVisible(true);
                 cmbRuangKhusus3.setSelectedIndex(0);
@@ -4118,8 +4118,8 @@ private void ppGrafikTerkecilPieActionPerformed(java.awt.event.ActionEvent evt) 
                 cmbRuangKhusus2.setVisible(false);
                 cmbRuangKhusus4.setVisible(false);
                 kdAkses.setText("");
-            
-            } else if (userBerizin.getText().equals("PR07")) {
+            //perawat & admin ruang ar-raudah
+            } else if (userBerizin.getText().equals("PR07") || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen='D074'") > 0) {
                 btnCari.setEnabled(true);
                 cmbRuangKhusus4.setVisible(true);
                 cmbRuangKhusus4.setSelectedIndex(0);
@@ -4128,7 +4128,6 @@ private void ppGrafikTerkecilPieActionPerformed(java.awt.event.ActionEvent evt) 
                 cmbRuangKhusus2.setVisible(false);
                 cmbRuangKhusus3.setVisible(false);
                 kdAkses.setText("");
-
             } else {
                 btnCari.setEnabled(true);
                 NmRuangan.setEnabled(false);

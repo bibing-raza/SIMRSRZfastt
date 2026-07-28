@@ -4692,101 +4692,6 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMasterFaktorResikoJatuhActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="widget.ButtonBig" name="btnSuratIstirahatSakit">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/48x48/kwrite.png"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Surat Istirahat Sakit"/>
-                        <Property name="iconTextGap" type="int" value="0"/>
-                        <Property name="name" type="java.lang.String" value="btnSuratIstirahatSakit" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 90]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuratIstirahatSakitActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="widget.ButtonBig" name="btnSuratKeteranganSakit">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/48x48/iconfinder_TextEdit_37595.png"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Surat Keterangan Sakit"/>
-                        <Property name="iconTextGap" type="int" value="0"/>
-                        <Property name="name" type="java.lang.String" value="btnSuratKeteranganSakit" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 90]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuratKeteranganSakitActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="widget.ButtonBig" name="btnSuratKeteranganNAPZA">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/48x48/1360816018_tests.png"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Surat Keterangan NAPZA"/>
-                        <Property name="iconTextGap" type="int" value="0"/>
-                        <Property name="name" type="java.lang.String" value="btnSuratKeteranganNAPZA" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 90]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuratKeteranganNAPZAActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="widget.ButtonBig" name="btnSuratKeteranganRohani">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/48x48/if_todo_list_add_17451.png"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Surat Keterangan Kes. Rohani"/>
-                        <Property name="iconTextGap" type="int" value="0"/>
-                        <Property name="name" type="java.lang.String" value="btnSuratKeteranganRohani" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 90]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuratKeteranganRohaniActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="widget.ButtonBig" name="btnSuratKeteranganDokter">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/48x48/if_order-history_49596.png"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Surat Keterangan Dokter"/>
-                        <Property name="iconTextGap" type="int" value="0"/>
-                        <Property name="name" type="java.lang.String" value="btnSuratKeteranganDokter" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 90]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuratKeteranganDokterActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="widget.ButtonBig" name="btnSpirometri">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -4823,44 +4728,6 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDashboardeResepRanapActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="widget.ButtonBig" name="btnSuratKonsulUnitRanap">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/48x48/email_open.png"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Surat Konsul Antar Unit Ranap"/>
-                        <Property name="iconTextGap" type="int" value="0"/>
-                        <Property name="name" type="java.lang.String" value="btnSuratKonsulUnitRanap" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 90]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuratKonsulUnitRanapActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="widget.ButtonBig" name="btnSuratJawabanKonsulRanap">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/48x48/kwrite.png"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Surat Jawaban Konsul Unit"/>
-                        <Property name="iconTextGap" type="int" value="0"/>
-                        <Property name="name" type="java.lang.String" value="btnSuratJawabanKonsulRanap" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 90]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuratJawabanKonsulRanapActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="widget.ButtonBig" name="btnMasterResikoDecubitus">
@@ -5262,25 +5129,6 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIndikatorNasionalMutuActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="widget.ButtonBig" name="btnSuratKeteranganDisabilitas">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/48x48/1481002123_wheelchair.png"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Surat Keterangan Dokter (Disabilitas)"/>
-                        <Property name="iconTextGap" type="int" value="0"/>
-                        <Property name="name" type="java.lang.String" value="btnSuratKeteranganDisabilitas" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 90]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuratKeteranganDisabilitasActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="widget.ButtonBig" name="btnMasterNumdenom">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -5317,25 +5165,6 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPasienBlackListActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="widget.ButtonBig" name="btnSuratKonsulInternalPoli">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/48x48/iconfinder_TextEdit_37595.png"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Surat Konsul Internal Poliklinik"/>
-                        <Property name="iconTextGap" type="int" value="0"/>
-                        <Property name="name" type="java.lang.String" value="btnSuratKonsulInternalPoli" noResource="true"/>
-                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[200, 90]"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuratKonsulInternalPoliActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="widget.ButtonBig" name="btnHistoryLoginUser">
@@ -5791,7 +5620,7 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="20/07/2026"/>
+            <StringItem index="0" value="28/07/2026"/>
           </StringArray>
         </Property>
         <Property name="displayFormat" type="java.lang.String" value="dd/MM/yyyy"/>

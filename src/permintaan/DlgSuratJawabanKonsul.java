@@ -11,7 +11,6 @@
 
 package permintaan;
 
-import rekammedis.*;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -21,7 +20,6 @@ import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
@@ -36,9 +34,9 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import keuangan.DlgKamar;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -54,6 +52,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String kddokter = "", wktSimpan = "", sttsJawab = "";
     private int x = 0;
+    private frmUtama formUtama;
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -803,13 +802,15 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         emptTeks();
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnEdit,TCari);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnEdit, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
@@ -1329,5 +1330,9 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

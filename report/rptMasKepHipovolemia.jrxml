@@ -1687,6 +1687,15 @@
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
+			<staticText>
+				<reportElement x="661" y="0" width="106" height="13">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RM 10.5.23 REV 01]]></text>
+			</staticText>
 		</band>
 	</title>
 </jasperReport>

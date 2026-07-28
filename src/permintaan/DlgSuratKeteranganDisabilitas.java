@@ -6,14 +6,11 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgMasterNomorDokumen;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -47,6 +45,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String sttsnomor = "", kddokter = "", der1 = "", der2 = "", der3 = "", der4 = "", der5 = "", der6 = "",
             fisik = "", sensorik = "", intelek = "", mental = "", idumur = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -1571,12 +1570,12 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -2620,5 +2619,9 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
     
     public void setTampil() {
         TCari.requestFocus();
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

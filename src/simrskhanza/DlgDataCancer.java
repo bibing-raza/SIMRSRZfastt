@@ -476,7 +476,7 @@ public final class DlgDataCancer extends javax.swing.JDialog {
                     + "'C56','C57','C58','C60','C61','C62','C63','C64','C65','C66',"
                     + "'C67','C68','C69','C70','C71','C72','C73','C74','C75','C76',"
                     + "'C77','C78','C79','C80','C81','C82','C83','C84','C85','C86',"
-                    + "'C88','C90','C91','C92','C93','C94','C95','C96')),'-') 'Keterangan Dirujuk', rc.register 'Catatan' FROM register_cancer rc "
+                    + "'C88','C90','C91','C92','C93','C94','C95','C96')),'-') 'Keterangan Dirujuk', '-' as Catatan FROM register_cancer rc "
                     + "INNER JOIN reg_periksa rp ON rp.no_rawat = rc.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab WHERE "
                     + "rp.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "'", dialog_simpan);

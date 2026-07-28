@@ -49,6 +49,7 @@ import rekammedis.RMGeneralConsent;
 import rekammedis.RMInformasiTindakanPembiusan;
 import rekammedis.RMLaporanOperasi;
 import rekammedis.RMLembarObservasi;
+import rekammedis.RMMasalahKeperawatanBersihanJlnNafas;
 import rekammedis.RMMasalahKeperawatanHipotermia;
 import rekammedis.RMMasalahKeperawatanHipovolemia;
 import rekammedis.RMMasalahKeperawatanNyeriAkut;
@@ -224,6 +225,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnMasterICDOmorphology = new widget.ButtonBig();
         BtnRegisterCancer = new widget.ButtonBig();
         BtnDataCancer = new widget.ButtonBig();
+        BtnMaskepBersihanJalanNafas = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1399,6 +1401,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnDataCancer);
+
+        BtnMaskepBersihanJalanNafas.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMaskepBersihanJalanNafas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
+        BtnMaskepBersihanJalanNafas.setText("MasKep Bersihan Jln. Nfs. Tdk. Efektif");
+        BtnMaskepBersihanJalanNafas.setIconTextGap(0);
+        BtnMaskepBersihanJalanNafas.setName("BtnMaskepBersihanJalanNafas"); // NOI18N
+        BtnMaskepBersihanJalanNafas.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMaskepBersihanJalanNafas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMaskepBersihanJalanNafasActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnMaskepBersihanJalanNafas);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -2798,6 +2813,22 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnDataCancerActionPerformed
 
+    private void BtnMaskepBersihanJalanNafasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMaskepBersihanJalanNafasActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMMasalahKeperawatanBersihanJlnNafas aplikasi = new RMMasalahKeperawatanBersihanJlnNafas(formUtama, false);
+            aplikasi.emptTeks();
+            aplikasi.isCek();
+            aplikasi.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(aplikasi);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnMaskepBersihanJalanNafas.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnMaskepBersihanJalanNafasActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -2816,6 +2847,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnMasalahKeperawatanHipovolemia;
     private widget.ButtonBig BtnMasalahKeperawatanNyeriAkut;
     private widget.ButtonBig BtnMasalahKeperawatanPerfusiPeriferTdkEfektif;
+    private widget.ButtonBig BtnMaskepBersihanJalanNafas;
     private widget.ButtonBig BtnMasterICDOmorphology;
     private widget.ButtonBig BtnMasterICDOtopography;
     private widget.ButtonBig BtnPartograf;
@@ -3320,6 +3352,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             FormMenu.add(BtnDataCancer);
             jmlmenu++;
         }
+        
+        if (akses.getcppt() && BtnMaskepBersihanJalanNafas.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnMaskepBersihanJalanNafas);
+            jmlmenu++;
+        }
     }
     
     public JPanel getFormMenu() {
@@ -3532,6 +3569,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         
         if (akses.getcppt() == true) {
             FormMenu.add(BtnMasalahKeperawatanHipovolemia);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            FormMenu.add(BtnMaskepBersihanJalanNafas);
             jmlmenu++;
         }
 
