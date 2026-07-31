@@ -1,6 +1,5 @@
 package keuangan;
 
-import rekammedis.*;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -10,10 +9,8 @@ import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,6 +26,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -45,6 +43,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
     private int i = 0, x = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String jumlahNomKem = "", jumlahNomTer = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -482,7 +481,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         jLabel72.setBounds(0, 225, 150, 23);
 
         TtglDikembalikan.setEditable(false);
-        TtglDikembalikan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
+        TtglDikembalikan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
         TtglDikembalikan.setDisplayFormat("dd-MM-yyyy");
         TtglDikembalikan.setName("TtglDikembalikan"); // NOI18N
         TtglDikembalikan.setOpaque(false);
@@ -510,7 +509,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 
         btnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnPetugas.setMnemonic('1');
         btnPetugas.setToolTipText("Alt+1");
         btnPetugas.setName("btnPetugas"); // NOI18N
         btnPetugas.addActionListener(new java.awt.event.ActionListener() {
@@ -555,6 +553,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 
         tbPengembalian.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
         tbPengembalian.setName("tbPengembalian"); // NOI18N
+        tbPengembalian.getTableHeader().setReorderingAllowed(false);
         tbPengembalian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPengembalianMouseClicked(evt);
@@ -580,7 +579,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         panelGlass10.add(jLabel20);
 
         DTPa.setEditable(false);
-        DTPa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
+        DTPa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
         DTPa.setDisplayFormat("dd-MM-yyyy");
         DTPa.setName("DTPa"); // NOI18N
         DTPa.setOpaque(false);
@@ -595,7 +594,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         panelGlass10.add(jLabel22);
 
         DTPb.setEditable(false);
-        DTPb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
+        DTPb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
         DTPb.setDisplayFormat("dd-MM-yyyy");
         DTPb.setName("DTPb"); // NOI18N
         DTPb.setOpaque(false);
@@ -620,7 +619,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setName("BtnCari"); // NOI18N
         BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -688,7 +686,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         panelGlass11.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -703,7 +701,7 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
         panelGlass11.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-08-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -728,7 +726,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('2');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setName("BtnCari1"); // NOI18N
         BtnCari1.setPreferredSize(new java.awt.Dimension(130, 23));
@@ -769,7 +766,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -788,7 +784,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -807,7 +802,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -821,7 +815,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGanti.setMnemonic('G');
         BtnGanti.setText("Ganti");
         BtnGanti.setToolTipText("Alt+G");
         BtnGanti.setName("BtnGanti"); // NOI18N
@@ -840,7 +833,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -859,7 +851,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -878,7 +869,6 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -982,12 +972,12 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnBatal, TCari);
         }
@@ -1531,5 +1521,10 @@ public class DlgPengembalianJaminan extends javax.swing.JDialog {
             System.out.println("Notifikasi : " + e);
         }
         LCount.setText("" + tabMode.getRowCount());
+    }
+    
+    public void awalData() {
+        tampilDikembalikan();
+        tampilTerima();
     }
 }

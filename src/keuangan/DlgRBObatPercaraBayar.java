@@ -15,17 +15,15 @@ import java.awt.event.WindowListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import keuangan.Jurnal;
-import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgPasien;
 import simrskhanza.DlgPenanggungJawab;
+import simrskhanza.frmUtama;
 
 public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
@@ -41,6 +39,7 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
     private int i = 0, a = 0;
     private double subtotal = 0, ttlbiaya = 0, embalase = 0, ttlembalase = 0, tuslah = 0, ttltuslah = 0;
     private String carabayar = "", jumlah, total, emb, tsl, nm_dokter;
+    private frmUtama formUtama;
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -271,9 +270,7 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
         jPopupMenu1.setPreferredSize(new java.awt.Dimension(256, 180));
 
-        MnUrut1.setBackground(new java.awt.Color(255, 255, 255));
         MnUrut1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnUrut1.setForeground(new java.awt.Color(0, 0, 0));
         MnUrut1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnUrut1.setText("Urutkan Berdasar Tanggal Pemberian");
         MnUrut1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -287,9 +284,7 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnUrut1);
 
-        MnUrut2.setBackground(new java.awt.Color(255, 255, 255));
         MnUrut2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnUrut2.setForeground(new java.awt.Color(0, 0, 0));
         MnUrut2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnUrut2.setText("Urutkan Berdasar Nama Pasien");
         MnUrut2.setActionCommand("Urutkan Berdasar Nomor Perawatan");
@@ -304,9 +299,7 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnUrut2);
 
-        MnCRTotal.setBackground(new java.awt.Color(255, 255, 255));
         MnCRTotal.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCRTotal.setForeground(new java.awt.Color(0, 0, 0));
         MnCRTotal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnCRTotal.setText("Cetak Rekap Total ");
         MnCRTotal.setActionCommand("Cetak Rekap Total");
@@ -321,9 +314,7 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnCRTotal);
 
-        MnCRPerPasien.setBackground(new java.awt.Color(255, 255, 255));
         MnCRPerPasien.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCRPerPasien.setForeground(new java.awt.Color(0, 0, 0));
         MnCRPerPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnCRPerPasien.setText("Cetak Rekap Per Pasien");
         MnCRPerPasien.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -337,9 +328,7 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnCRPerPasien);
 
-        MnCRPerPasienCaraBayar.setBackground(new java.awt.Color(255, 255, 255));
         MnCRPerPasienCaraBayar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCRPerPasienCaraBayar.setForeground(new java.awt.Color(0, 0, 0));
         MnCRPerPasienCaraBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnCRPerPasienCaraBayar.setText("Cetak Rekap Per Pasien Per Cara Bayar");
         MnCRPerPasienCaraBayar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -353,9 +342,7 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnCRPerPasienCaraBayar);
 
-        MnCRPerDokter.setBackground(new java.awt.Color(255, 255, 255));
         MnCRPerDokter.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCRPerDokter.setForeground(new java.awt.Color(0, 0, 0));
         MnCRPerDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnCRPerDokter.setText("Cetak Rekap Per Dokter");
         MnCRPerDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -369,9 +356,7 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnCRPerDokter);
 
-        MnCRPerDokterCaraBayar.setBackground(new java.awt.Color(255, 255, 255));
         MnCRPerDokterCaraBayar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCRPerDokterCaraBayar.setForeground(new java.awt.Color(0, 0, 0));
         MnCRPerDokterCaraBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnCRPerDokterCaraBayar.setText("Cetak Rekap Per Dokter Per Cara Bayar");
         MnCRPerDokterCaraBayar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -394,7 +379,7 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Penggunaan Obat Per Cara Bayar ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Penggunaan Obat Per Cara Bayar ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -416,6 +401,7 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
         tbDokter.setToolTipText("");
         tbDokter.setComponentPopupMenu(jPopupMenu1);
         tbDokter.setName("tbDokter"); // NOI18N
+        tbDokter.getTableHeader().setReorderingAllowed(false);
         scrollPane1.setViewportView(tbDokter);
 
         internalFrame1.add(scrollPane1, java.awt.BorderLayout.CENTER);
@@ -483,7 +469,6 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
 
         BtnSeek2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnSeek2.setMnemonic('3');
         BtnSeek2.setToolTipText("Alt+3");
         BtnSeek2.setName("BtnSeek2"); // NOI18N
         BtnSeek2.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -526,7 +511,6 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
 
         BtnSeek.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnSeek.setMnemonic('1');
         BtnSeek.setToolTipText("Alt+1");
         BtnSeek.setName("BtnSeek"); // NOI18N
         BtnSeek.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -550,7 +534,6 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -569,7 +552,6 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('L');
         BtnPrint.setText("Cetak Rekap Lengkap");
         BtnPrint.setToolTipText("Alt+L");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -588,7 +570,6 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+2");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -607,7 +588,6 @@ public class DlgRBObatPercaraBayar extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -711,13 +691,15 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnPrint,Tgl1);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnPrint, Tgl1);
+        }
     }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void kdpenjabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdpenjabKeyPressed
@@ -1136,4 +1118,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }        
     }
     
+    public void awalData() {
+        Tgl1.requestFocus();
+        prosesCari();
+    }    
 }

@@ -52,6 +52,7 @@ import rekammedis.RMLembarObservasi;
 import rekammedis.RMMasalahKeperawatanBersihanJlnNafas;
 import rekammedis.RMMasalahKeperawatanHipotermia;
 import rekammedis.RMMasalahKeperawatanHipovolemia;
+import rekammedis.RMMasalahKeperawatanKetidakstabilanGlukosaDarah;
 import rekammedis.RMMasalahKeperawatanNyeriAkut;
 import rekammedis.RMMasalahKeperawatanPerfusiPeriferTdkEfektif;
 import rekammedis.RMMonitoringEWSDewasa;
@@ -218,14 +219,15 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         btnDataTriaseIGD = new widget.ButtonBig();
         btnPenilaianTambahanGeriatri = new widget.ButtonBig();
         btnPenilaianAwalMedisRalanGeriatri = new widget.ButtonBig();
-        BtnMasalahKeperawatanHipotermia = new widget.ButtonBig();
+        BtnMasalahKeperawatanResikoHipotermia = new widget.ButtonBig();
         btnRingkasanPulangRalan = new widget.ButtonBig();
-        BtnMasalahKeperawatanHipovolemia = new widget.ButtonBig();
+        BtnMasalahKeperawatanResikoHipovolemia = new widget.ButtonBig();
         BtnMasterICDOtopography = new widget.ButtonBig();
         BtnMasterICDOmorphology = new widget.ButtonBig();
         BtnRegisterCancer = new widget.ButtonBig();
         BtnDataCancer = new widget.ButtonBig();
         BtnMaskepBersihanJalanNafas = new widget.ButtonBig();
+        BtnMaskepKetidakstabilanGlukosa = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -338,10 +340,10 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         btnSuratPernyataanRanapBpjs.setForeground(new java.awt.Color(0, 0, 0));
         btnSuratPernyataanRanapBpjs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
-        btnSuratPernyataanRanapBpjs.setText("Surat Pernyataan R. Inap BPJS");
+        btnSuratPernyataanRanapBpjs.setText("<html><div style=\"text-align: center;\">Surat Pernyataan<br>Rawat Inap Peserta BPJS</div></html>");
         btnSuratPernyataanRanapBpjs.setIconTextGap(0);
         btnSuratPernyataanRanapBpjs.setName("btnSuratPernyataanRanapBpjs"); // NOI18N
-        btnSuratPernyataanRanapBpjs.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratPernyataanRanapBpjs.setPreferredSize(new java.awt.Dimension(200, 105));
         btnSuratPernyataanRanapBpjs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuratPernyataanRanapBpjsActionPerformed(evt);
@@ -351,10 +353,10 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         btnSuratPernyataanNaikKelas.setForeground(new java.awt.Color(0, 0, 0));
         btnSuratPernyataanNaikKelas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
-        btnSuratPernyataanNaikKelas.setText("Surat Pernyataan Naik Kls. BPJS");
+        btnSuratPernyataanNaikKelas.setText("<html><div style=\"text-align: center;\">Surat Pernyataan<br>Naik Kelas Rawat BPJS</div></html>");
         btnSuratPernyataanNaikKelas.setIconTextGap(0);
         btnSuratPernyataanNaikKelas.setName("btnSuratPernyataanNaikKelas"); // NOI18N
-        btnSuratPernyataanNaikKelas.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratPernyataanNaikKelas.setPreferredSize(new java.awt.Dimension(200, 105));
         btnSuratPernyataanNaikKelas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuratPernyataanNaikKelasActionPerformed(evt);
@@ -481,10 +483,10 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         btnPerencanaanPulang.setForeground(new java.awt.Color(0, 0, 0));
         btnPerencanaanPulang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/folder.png"))); // NOI18N
-        btnPerencanaanPulang.setText("Perencanaan Pulang (Discharge Planning)");
+        btnPerencanaanPulang.setText("<html><div style=\"text-align: center;\">Perencanaan Pulang<br><i>(Discharge Planning)</i></div></html>");
         btnPerencanaanPulang.setIconTextGap(0);
         btnPerencanaanPulang.setName("btnPerencanaanPulang"); // NOI18N
-        btnPerencanaanPulang.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPerencanaanPulang.setPreferredSize(new java.awt.Dimension(200, 105));
         btnPerencanaanPulang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPerencanaanPulangActionPerformed(evt);
@@ -598,10 +600,10 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         btnAsesmenKeperawatanPerioperatif.setForeground(new java.awt.Color(0, 0, 0));
         btnAsesmenKeperawatanPerioperatif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
-        btnAsesmenKeperawatanPerioperatif.setText("Assesmen Keperawatan Perioperatif");
+        btnAsesmenKeperawatanPerioperatif.setText("<html><div style=\"text-align: center;\">Assesmen Keperawatan<br>Perioperatif</div></html>");
         btnAsesmenKeperawatanPerioperatif.setIconTextGap(0);
         btnAsesmenKeperawatanPerioperatif.setName("btnAsesmenKeperawatanPerioperatif"); // NOI18N
-        btnAsesmenKeperawatanPerioperatif.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAsesmenKeperawatanPerioperatif.setPreferredSize(new java.awt.Dimension(200, 105));
         btnAsesmenKeperawatanPerioperatif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsesmenKeperawatanPerioperatifActionPerformed(evt);
@@ -611,10 +613,10 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         btnCatatanMaterialOperasi.setForeground(new java.awt.Color(0, 0, 0));
         btnCatatanMaterialOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
-        btnCatatanMaterialOperasi.setText("Cttn. Pemakaian Obat & Material");
+        btnCatatanMaterialOperasi.setText("<html><div style=\"text-align: center;\">Catatan Pemakaian<br>Obat & Material</div></html>");
         btnCatatanMaterialOperasi.setIconTextGap(0);
         btnCatatanMaterialOperasi.setName("btnCatatanMaterialOperasi"); // NOI18N
-        btnCatatanMaterialOperasi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnCatatanMaterialOperasi.setPreferredSize(new java.awt.Dimension(200, 105));
         btnCatatanMaterialOperasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCatatanMaterialOperasiActionPerformed(evt);
@@ -936,10 +938,10 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         btnPersetujuanTindakan.setForeground(new java.awt.Color(0, 0, 0));
         btnPersetujuanTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png"))); // NOI18N
-        btnPersetujuanTindakan.setText("Persetujuan/Penolakan Tindakan");
+        btnPersetujuanTindakan.setText("<html><div style=\"text-align: center;\">Persetujuan/Penolakan/<br>Penundaan Tindakan</div></html>");
         btnPersetujuanTindakan.setIconTextGap(0);
         btnPersetujuanTindakan.setName("btnPersetujuanTindakan"); // NOI18N
-        btnPersetujuanTindakan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPersetujuanTindakan.setPreferredSize(new java.awt.Dimension(200, 105));
         btnPersetujuanTindakan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPersetujuanTindakanActionPerformed(evt);
@@ -1079,10 +1081,10 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         btnAsesmenUlangResikoJatuhDewasa.setForeground(new java.awt.Color(0, 0, 0));
         btnAsesmenUlangResikoJatuhDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/patient (1).png"))); // NOI18N
-        btnAsesmenUlangResikoJatuhDewasa.setText("Ases. Ulang Resiko Jatuh Dewasa");
+        btnAsesmenUlangResikoJatuhDewasa.setText("<html><div style=\"text-align: center;\">Asesmen Ulang Resiko<br>Jatuh Dewasa</div></html>");
         btnAsesmenUlangResikoJatuhDewasa.setIconTextGap(0);
         btnAsesmenUlangResikoJatuhDewasa.setName("btnAsesmenUlangResikoJatuhDewasa"); // NOI18N
-        btnAsesmenUlangResikoJatuhDewasa.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAsesmenUlangResikoJatuhDewasa.setPreferredSize(new java.awt.Dimension(200, 105));
         btnAsesmenUlangResikoJatuhDewasa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsesmenUlangResikoJatuhDewasaActionPerformed(evt);
@@ -1092,10 +1094,10 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         btnAsesmenUlangResikoJatuhAnak.setForeground(new java.awt.Color(0, 0, 0));
         btnAsesmenUlangResikoJatuhAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/patient (1).png"))); // NOI18N
-        btnAsesmenUlangResikoJatuhAnak.setText("Ases. Ulang Resiko Jatuh Anak");
+        btnAsesmenUlangResikoJatuhAnak.setText("<html><div style=\"text-align: center;\">Asesmen Ulang Resiko<br>Jatuh Anak</div></html>");
         btnAsesmenUlangResikoJatuhAnak.setIconTextGap(0);
         btnAsesmenUlangResikoJatuhAnak.setName("btnAsesmenUlangResikoJatuhAnak"); // NOI18N
-        btnAsesmenUlangResikoJatuhAnak.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAsesmenUlangResikoJatuhAnak.setPreferredSize(new java.awt.Dimension(200, 105));
         btnAsesmenUlangResikoJatuhAnak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsesmenUlangResikoJatuhAnakActionPerformed(evt);
@@ -1248,10 +1250,10 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         btnPenilaianAwalKeperawatanKebidananRalan.setForeground(new java.awt.Color(0, 0, 0));
         btnPenilaianAwalKeperawatanKebidananRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/pregnant_woman.png"))); // NOI18N
-        btnPenilaianAwalKeperawatanKebidananRalan.setText("Penilaian Awal Keperawatan Kebidanan Ralan");
+        btnPenilaianAwalKeperawatanKebidananRalan.setText("<html><div style=\"text-align: center;\">Penilaian Awal Keperawatan<br>Kebidanan Rawat Jalan</div></html>");
         btnPenilaianAwalKeperawatanKebidananRalan.setIconTextGap(0);
         btnPenilaianAwalKeperawatanKebidananRalan.setName("btnPenilaianAwalKeperawatanKebidananRalan"); // NOI18N
-        btnPenilaianAwalKeperawatanKebidananRalan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPenilaianAwalKeperawatanKebidananRalan.setPreferredSize(new java.awt.Dimension(200, 105));
         btnPenilaianAwalKeperawatanKebidananRalan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPenilaianAwalKeperawatanKebidananRalanActionPerformed(evt);
@@ -1311,18 +1313,18 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         });
         FormMenu.add(btnPenilaianAwalMedisRalanGeriatri);
 
-        BtnMasalahKeperawatanHipotermia.setForeground(new java.awt.Color(0, 0, 0));
-        BtnMasalahKeperawatanHipotermia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
-        BtnMasalahKeperawatanHipotermia.setText("MasKep Hipotermia");
-        BtnMasalahKeperawatanHipotermia.setIconTextGap(0);
-        BtnMasalahKeperawatanHipotermia.setName("BtnMasalahKeperawatanHipotermia"); // NOI18N
-        BtnMasalahKeperawatanHipotermia.setPreferredSize(new java.awt.Dimension(200, 90));
-        BtnMasalahKeperawatanHipotermia.addActionListener(new java.awt.event.ActionListener() {
+        BtnMasalahKeperawatanResikoHipotermia.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMasalahKeperawatanResikoHipotermia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
+        BtnMasalahKeperawatanResikoHipotermia.setText("MasKep Resiko Hipotermia");
+        BtnMasalahKeperawatanResikoHipotermia.setIconTextGap(0);
+        BtnMasalahKeperawatanResikoHipotermia.setName("BtnMasalahKeperawatanResikoHipotermia"); // NOI18N
+        BtnMasalahKeperawatanResikoHipotermia.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMasalahKeperawatanResikoHipotermia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnMasalahKeperawatanHipotermiaActionPerformed(evt);
+                BtnMasalahKeperawatanResikoHipotermiaActionPerformed(evt);
             }
         });
-        FormMenu.add(BtnMasalahKeperawatanHipotermia);
+        FormMenu.add(BtnMasalahKeperawatanResikoHipotermia);
 
         btnRingkasanPulangRalan.setForeground(new java.awt.Color(0, 0, 0));
         btnRingkasanPulangRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
@@ -1337,18 +1339,18 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         });
         FormMenu.add(btnRingkasanPulangRalan);
 
-        BtnMasalahKeperawatanHipovolemia.setForeground(new java.awt.Color(0, 0, 0));
-        BtnMasalahKeperawatanHipovolemia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
-        BtnMasalahKeperawatanHipovolemia.setText("MasKep Hipovolemia");
-        BtnMasalahKeperawatanHipovolemia.setIconTextGap(0);
-        BtnMasalahKeperawatanHipovolemia.setName("BtnMasalahKeperawatanHipovolemia"); // NOI18N
-        BtnMasalahKeperawatanHipovolemia.setPreferredSize(new java.awt.Dimension(200, 90));
-        BtnMasalahKeperawatanHipovolemia.addActionListener(new java.awt.event.ActionListener() {
+        BtnMasalahKeperawatanResikoHipovolemia.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMasalahKeperawatanResikoHipovolemia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
+        BtnMasalahKeperawatanResikoHipovolemia.setText("MasKep Resiko Hipovolemia");
+        BtnMasalahKeperawatanResikoHipovolemia.setIconTextGap(0);
+        BtnMasalahKeperawatanResikoHipovolemia.setName("BtnMasalahKeperawatanResikoHipovolemia"); // NOI18N
+        BtnMasalahKeperawatanResikoHipovolemia.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMasalahKeperawatanResikoHipovolemia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnMasalahKeperawatanHipovolemiaActionPerformed(evt);
+                BtnMasalahKeperawatanResikoHipovolemiaActionPerformed(evt);
             }
         });
-        FormMenu.add(BtnMasalahKeperawatanHipovolemia);
+        FormMenu.add(BtnMasalahKeperawatanResikoHipovolemia);
 
         BtnMasterICDOtopography.setForeground(new java.awt.Color(0, 0, 0));
         BtnMasterICDOtopography.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/icd_O.png"))); // NOI18N
@@ -1404,16 +1406,29 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         BtnMaskepBersihanJalanNafas.setForeground(new java.awt.Color(0, 0, 0));
         BtnMaskepBersihanJalanNafas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
-        BtnMaskepBersihanJalanNafas.setText("MasKep Bersihan Jln. Nfs. Tdk. Efektif");
+        BtnMaskepBersihanJalanNafas.setText("<html><div style=\"text-align: center;\">MasKep Bersihan Jalan<br>Nafas Tidak Efektif</div></html>");
         BtnMaskepBersihanJalanNafas.setIconTextGap(0);
         BtnMaskepBersihanJalanNafas.setName("BtnMaskepBersihanJalanNafas"); // NOI18N
-        BtnMaskepBersihanJalanNafas.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMaskepBersihanJalanNafas.setPreferredSize(new java.awt.Dimension(200, 105));
         BtnMaskepBersihanJalanNafas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnMaskepBersihanJalanNafasActionPerformed(evt);
             }
         });
         FormMenu.add(BtnMaskepBersihanJalanNafas);
+
+        BtnMaskepKetidakstabilanGlukosa.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMaskepKetidakstabilanGlukosa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_folder_images_61610.png"))); // NOI18N
+        BtnMaskepKetidakstabilanGlukosa.setText("MasKep Ketidakstabilan Glukosa Darah");
+        BtnMaskepKetidakstabilanGlukosa.setIconTextGap(0);
+        BtnMaskepKetidakstabilanGlukosa.setName("BtnMaskepKetidakstabilanGlukosa"); // NOI18N
+        BtnMaskepKetidakstabilanGlukosa.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMaskepKetidakstabilanGlukosa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMaskepKetidakstabilanGlukosaActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnMaskepKetidakstabilanGlukosa);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -2699,7 +2714,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnPenilaianAwalMedisRalanGeriatriActionPerformed
 
-    private void BtnMasalahKeperawatanHipotermiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMasalahKeperawatanHipotermiaActionPerformed
+    private void BtnMasalahKeperawatanResikoHipotermiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMasalahKeperawatanResikoHipotermiaActionPerformed
         try {
             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             RMMasalahKeperawatanHipotermia aplikasi = new RMMasalahKeperawatanHipotermia(formUtama, false);
@@ -2713,7 +2728,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         } finally {
             setCursor(Cursor.getDefaultCursor());
         }
-    }//GEN-LAST:event_BtnMasalahKeperawatanHipotermiaActionPerformed
+    }//GEN-LAST:event_BtnMasalahKeperawatanResikoHipotermiaActionPerformed
 
     private void btnRingkasanPulangRalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRingkasanPulangRalanActionPerformed
         try {
@@ -2731,7 +2746,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnRingkasanPulangRalanActionPerformed
 
-    private void BtnMasalahKeperawatanHipovolemiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMasalahKeperawatanHipovolemiaActionPerformed
+    private void BtnMasalahKeperawatanResikoHipovolemiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMasalahKeperawatanResikoHipovolemiaActionPerformed
         try {
             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             RMMasalahKeperawatanHipovolemia aplikasi = new RMMasalahKeperawatanHipovolemia(formUtama, false);
@@ -2745,7 +2760,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         } finally {
             setCursor(Cursor.getDefaultCursor());
         }
-    }//GEN-LAST:event_BtnMasalahKeperawatanHipovolemiaActionPerformed
+    }//GEN-LAST:event_BtnMasalahKeperawatanResikoHipovolemiaActionPerformed
 
     private void BtnMasterICDOtopographyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMasterICDOtopographyActionPerformed
         try {
@@ -2829,6 +2844,22 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnMaskepBersihanJalanNafasActionPerformed
 
+    private void BtnMaskepKetidakstabilanGlukosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMaskepKetidakstabilanGlukosaActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMMasalahKeperawatanKetidakstabilanGlukosaDarah aplikasi = new RMMasalahKeperawatanKetidakstabilanGlukosaDarah(formUtama, false);
+            aplikasi.emptTeks();
+            aplikasi.isCek();
+            aplikasi.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(aplikasi);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnMaskepKetidakstabilanGlukosa.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnMaskepKetidakstabilanGlukosaActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -2843,11 +2874,12 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnFormulirSiteMarking;
     private widget.ButtonBig BtnInformasiTindakanPembiusan;
     private widget.ButtonBig BtnLaporanOperasi;
-    private widget.ButtonBig BtnMasalahKeperawatanHipotermia;
-    private widget.ButtonBig BtnMasalahKeperawatanHipovolemia;
     private widget.ButtonBig BtnMasalahKeperawatanNyeriAkut;
     private widget.ButtonBig BtnMasalahKeperawatanPerfusiPeriferTdkEfektif;
+    private widget.ButtonBig BtnMasalahKeperawatanResikoHipotermia;
+    private widget.ButtonBig BtnMasalahKeperawatanResikoHipovolemia;
     private widget.ButtonBig BtnMaskepBersihanJalanNafas;
+    private widget.ButtonBig BtnMaskepKetidakstabilanGlukosa;
     private widget.ButtonBig BtnMasterICDOmorphology;
     private widget.ButtonBig BtnMasterICDOtopography;
     private widget.ButtonBig BtnPartograf;
@@ -3083,13 +3115,13 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             jmlmenu++;
         }
         
-        if (akses.getcppt() && BtnMasalahKeperawatanHipotermia.getText().toLowerCase().trim().contains(cari)) {
-            FormMenu.add(BtnMasalahKeperawatanHipotermia);
+        if (akses.getcppt() && BtnMasalahKeperawatanResikoHipotermia.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnMasalahKeperawatanResikoHipotermia);
             jmlmenu++;
         }
         
-        if (akses.getcppt() && BtnMasalahKeperawatanHipovolemia.getText().toLowerCase().trim().contains(cari)) {
-            FormMenu.add(BtnMasalahKeperawatanHipovolemia);
+        if (akses.getcppt() && BtnMasalahKeperawatanResikoHipovolemia.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnMasalahKeperawatanResikoHipovolemia);
             jmlmenu++;
         }
         
@@ -3357,6 +3389,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             FormMenu.add(BtnMaskepBersihanJalanNafas);
             jmlmenu++;
         }
+        
+        if (akses.getcppt() && BtnMaskepKetidakstabilanGlukosa.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnMaskepKetidakstabilanGlukosa);
+            jmlmenu++;
+        }
     }
     
     public JPanel getFormMenu() {
@@ -3563,17 +3600,22 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
         
         if (akses.getcppt() == true) {
-            FormMenu.add(BtnMasalahKeperawatanHipotermia);
+            FormMenu.add(BtnMasalahKeperawatanResikoHipotermia);
             jmlmenu++;
         }
         
         if (akses.getcppt() == true) {
-            FormMenu.add(BtnMasalahKeperawatanHipovolemia);
+            FormMenu.add(BtnMasalahKeperawatanResikoHipovolemia);
             jmlmenu++;
         }
         
         if (akses.getcppt() == true) {
             FormMenu.add(BtnMaskepBersihanJalanNafas);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            FormMenu.add(BtnMaskepKetidakstabilanGlukosa);
             jmlmenu++;
         }
 

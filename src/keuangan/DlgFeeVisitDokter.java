@@ -23,11 +23,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import simrskhanza.DlgCariDokter;
-import simrskhanza.DlgReg;
-import java.io.*;
-import javax.swing.*;
-import javax.swing.filechooser.*;
 import simrskhanza.DlgPenanggungJawab;
+import simrskhanza.frmUtama;
 
 public class DlgFeeVisitDokter extends javax.swing.JDialog {
     private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3,
@@ -46,6 +43,7 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
     private ResultSet rs, rs1, rs2, rskamar, rsvisit, rsvisit1, rsbyphone, rsrekap, rsrekap1, rsrekap2, rsrekap3, rsrekap4, rsrekap5;
     private String sjmlvisit = "", sjmlbyphone = "", svisit = "", sbyphone = "", sbruto = "",  
             sjasa = "", suangrs = "", starifvisit = "", starifbyphone = "", ruangDipilih = "", dialog_simpan = "";
+    private frmUtama formUtama;
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -682,7 +680,7 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Rincian Visite Dokter Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Rincian Visite Dokter Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -1022,8 +1020,8 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
 
             }
         ));
-        tbVisit.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbVisit.setName("tbVisit"); // NOI18N
+        tbVisit.getTableHeader().setReorderingAllowed(false);
         scrollPane1.setViewportView(tbVisit);
 
         internalFrame2.add(scrollPane1, java.awt.BorderLayout.CENTER);
@@ -1050,8 +1048,8 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
 
             }
         ));
-        tbVisit1.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbVisit1.setName("tbVisit1"); // NOI18N
+        tbVisit1.getTableHeader().setReorderingAllowed(false);
         scrollPane2.setViewportView(tbVisit1);
 
         internalFrame3.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -1063,7 +1061,7 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
         internalFrame4.setName("internalFrame4"); // NOI18N
         internalFrame4.setLayout(new java.awt.BorderLayout(1, 1));
 
-        scrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Visite Semua Hari Perawatan Dokter Yang Menangani ]  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
+        scrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Visite Semua Hari Perawatan Dokter Yang Menangani ]  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         scrollPane3.setName("scrollPane3"); // NOI18N
         scrollPane3.setOpaque(true);
         scrollPane3.setPreferredSize(new java.awt.Dimension(460, 210));
@@ -1079,13 +1077,13 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
 
             }
         ));
-        tbRekap0.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRekap0.setName("tbRekap0"); // NOI18N
+        tbRekap0.getTableHeader().setReorderingAllowed(false);
         scrollPane3.setViewportView(tbRekap0);
 
         internalFrame4.add(scrollPane3, java.awt.BorderLayout.PAGE_START);
 
-        scrollPane5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Visite Hari NORMAL Dokter Yang Menangani ]  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
+        scrollPane5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Visite Hari NORMAL Dokter Yang Menangani ]  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         scrollPane5.setName("scrollPane5"); // NOI18N
         scrollPane5.setOpaque(true);
         scrollPane5.setPreferredSize(new java.awt.Dimension(460, 160));
@@ -1101,13 +1099,13 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
 
             }
         ));
-        tbRekap2.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRekap2.setName("tbRekap2"); // NOI18N
+        tbRekap2.getTableHeader().setReorderingAllowed(false);
         scrollPane5.setViewportView(tbRekap2);
 
         internalFrame4.add(scrollPane5, java.awt.BorderLayout.CENTER);
 
-        scrollPane6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Visite Hari LIBUR Dokter Yang Menangani ]  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
+        scrollPane6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Visite Hari LIBUR Dokter Yang Menangani ]  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         scrollPane6.setName("scrollPane6"); // NOI18N
         scrollPane6.setOpaque(true);
         scrollPane6.setPreferredSize(new java.awt.Dimension(460, 200));
@@ -1123,8 +1121,8 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
 
             }
         ));
-        tbRekap3.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRekap3.setName("tbRekap3"); // NOI18N
+        tbRekap3.getTableHeader().setReorderingAllowed(false);
         scrollPane6.setViewportView(tbRekap3);
 
         internalFrame4.add(scrollPane6, java.awt.BorderLayout.PAGE_END);
@@ -1136,7 +1134,7 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
         internalFrame5.setName("internalFrame5"); // NOI18N
         internalFrame5.setLayout(new java.awt.BorderLayout(1, 1));
 
-        scrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Visite Semua Hari Perawatan Dokter Umum/Yg. Mewakili ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
+        scrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Visite Semua Hari Perawatan Dokter Umum/Yg. Mewakili ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         scrollPane4.setName("scrollPane4"); // NOI18N
         scrollPane4.setOpaque(true);
         scrollPane4.setPreferredSize(new java.awt.Dimension(460, 210));
@@ -1152,13 +1150,13 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
 
             }
         ));
-        tbRekap1.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRekap1.setName("tbRekap1"); // NOI18N
+        tbRekap1.getTableHeader().setReorderingAllowed(false);
         scrollPane4.setViewportView(tbRekap1);
 
         internalFrame5.add(scrollPane4, java.awt.BorderLayout.PAGE_START);
 
-        scrollPane7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Visite Hari NORMAL Dokter Umum/Yg. Mewakili ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
+        scrollPane7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Visite Hari NORMAL Dokter Umum/Yg. Mewakili ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         scrollPane7.setName("scrollPane7"); // NOI18N
         scrollPane7.setOpaque(true);
         scrollPane7.setPreferredSize(new java.awt.Dimension(460, 160));
@@ -1174,13 +1172,13 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
 
             }
         ));
-        tbRekap4.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRekap4.setName("tbRekap4"); // NOI18N
+        tbRekap4.getTableHeader().setReorderingAllowed(false);
         scrollPane7.setViewportView(tbRekap4);
 
         internalFrame5.add(scrollPane7, java.awt.BorderLayout.CENTER);
 
-        scrollPane8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Visite Hari LIBUR Dokter Umum/Yg. Mewakili ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
+        scrollPane8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Rekap Visite Hari LIBUR Dokter Umum/Yg. Mewakili ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         scrollPane8.setName("scrollPane8"); // NOI18N
         scrollPane8.setOpaque(true);
         scrollPane8.setPreferredSize(new java.awt.Dimension(460, 200));
@@ -1196,8 +1194,8 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
 
             }
         ));
-        tbRekap5.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbRekap5.setName("tbRekap5"); // NOI18N
+        tbRekap5.getTableHeader().setReorderingAllowed(false);
         scrollPane8.setViewportView(tbRekap5);
 
         internalFrame5.add(scrollPane8, java.awt.BorderLayout.PAGE_END);
@@ -1223,8 +1221,8 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
 
             }
         ));
-        tbHitung.setToolTipText("");
         tbHitung.setName("tbHitung"); // NOI18N
+        tbHitung.getTableHeader().setReorderingAllowed(false);
         scrollPane9.setViewportView(tbHitung);
 
         internalFrame6.add(scrollPane9, java.awt.BorderLayout.CENTER);
@@ -1422,13 +1420,15 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnPrint,Tgl1);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnPrint, Tgl1);
+        }
     }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void kddokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kddokterKeyPressed
@@ -3582,5 +3582,21 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
         JOptionPane.showMessageDialog(null, "Data Hitung Visite PerDokter Pasien BPJS telah berhasil diexport menjadi file excel,..!!!");
         this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    public void awalData() {
+        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'igd' and nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuangan);
+
+        Tgl1.requestFocus();
+        
+        if (TabRawat.getSelectedIndex() == 0) {
+            prosesCari();
+        } else if (TabRawat.getSelectedIndex() == 1) {
+            prosesCari1();
+        } else if (TabRawat.getSelectedIndex() == 2) {
+            rekapVisit();
+        } else if (TabRawat.getSelectedIndex() == 3) {
+            rekapVisit1();
+        }
     }
 }

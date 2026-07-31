@@ -440,7 +440,7 @@ public class RMMasalahKeperawatanHipotermia extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Masalah Keperawatan Perfusi Perifer Tidak Efektif ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Masalah Keperawatan Resiko Hipotermia ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -1219,7 +1219,7 @@ public class RMMasalahKeperawatanHipotermia extends javax.swing.JDialog {
 
         panelGlass13.add(Scroll1);
 
-        PanelInput1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Data MasKep Perfusi Perifer Tidak Efektif ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        PanelInput1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Data MasKep Resiko Hipotermia ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         PanelInput1.setName("PanelInput1"); // NOI18N
         PanelInput1.setOpaque(false);
         PanelInput1.setPreferredSize(new java.awt.Dimension(700, 700));
@@ -1498,7 +1498,7 @@ public class RMMasalahKeperawatanHipotermia extends javax.swing.JDialog {
                         sikiAktifEksternal, sikiAktifInternal, sikiAnjurkan, sttsRawat, TnipPetugas.getText(), Sequel.cariIsi("select now()")
                     }) == true) {
 
-                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Masalah Keperawatan Hipotermia", "Simpan");
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Masalah Keperawatan Resiko Hipotermia", "Simpan");
                 TCari.setText(TNoRw.getText());
                 emptTeks();
                 tampil();
@@ -1549,7 +1549,7 @@ public class RMMasalahKeperawatanHipotermia extends javax.swing.JDialog {
                             tbMasalah.getValueAt(tbMasalah.getSelectedRow(), 0).toString()
                         }) == true) {
 
-                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Masalah Keperawatan Hipotermia", "Ganti");
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Masalah Keperawatan Resiko Hipotermia", "Ganti");
                     TCari.setText(TNoRw.getText());
                     tampil();
                     emptTeks();
@@ -2013,7 +2013,7 @@ public class RMMasalahKeperawatanHipotermia extends javax.swing.JDialog {
                 param.put("sikiAnjurkan", "");
             }
 
-            Valid.MyReport("rptMasKepHipotermia.jasper", "report", "::[ RM Masalah Keperawatan Hipotermia ]::",
+            Valid.MyReport("rptMasKepHipotermia.jasper", "report", "::[ RM Masalah Keperawatan Resiko Hipotermia ]::",
                     "SELECT now() tanggal", param);
             tampil();
             emptTeks();

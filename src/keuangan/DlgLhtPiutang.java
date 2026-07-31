@@ -9,9 +9,6 @@ import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +23,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-import simrskhanza.DlgPenanggungJawab;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -61,6 +58,7 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
             + "inner join jns_perawatan on set_otomatis_tindakan_ralan_dokterpetugas.kd_jenis_prw=jns_perawatan.kd_jenis_prw "
             + "where set_otomatis_tindakan_ralan_dokterpetugas.kd_dokter=? and set_otomatis_tindakan_ralan_dokterpetugas.kd_pj=?",
             sqlpsotomatis2dokterpetugas = "insert into rawat_jl_drpr values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private frmUtama formUtama;
 
     /** Creates new form DlgLhtBiaya
      * @param parent
@@ -611,7 +609,6 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbPiutang.setToolTipText("Silahkan klik untuk memilih data yang mau diperbaiki cara bayarnya");
         tbPiutang.setComponentPopupMenu(jPopupMenu2);
         tbPiutang.setName("tbPiutang"); // NOI18N
         tbPiutang.getTableHeader().setReorderingAllowed(false);
@@ -988,7 +985,6 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         Scroll1.setOpaque(true);
 
         tbBayar.setAutoCreateRowSorter(true);
-        tbBayar.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbBayar.setComponentPopupMenu(Popup);
         tbBayar.setName("tbBayar"); // NOI18N
         tbBayar.getTableHeader().setReorderingAllowed(false);
@@ -1273,12 +1269,12 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         } else {
             Valid.pindah(evt, BtnAll, TKd);
         }
@@ -2360,5 +2356,14 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
         tampilBayar();
         this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    public void awalData() {
+        TabPiutang.setSelectedIndex(0);
+        TabPiutang.setEnabledAt(1, akses.getbayar_piutang());
+        BtnHapus.setEnabled(akses.getpic_keuangan());
+        tampilPenjab();
+        tampil();
+        emptTeks();
     }
 }

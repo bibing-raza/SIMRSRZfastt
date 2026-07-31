@@ -172,7 +172,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[MASALAH KEPERAWATAN HIPOVOLEMIA]]></text>
+				<text><![CDATA[MASALAH KEPERAWATAN RESIKO HIPOVOLEMIA]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="66" width="767" height="1">

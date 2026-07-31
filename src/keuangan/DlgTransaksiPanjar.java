@@ -1,6 +1,5 @@
 package keuangan;
 
-import rekammedis.*;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -14,7 +13,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import laporan.DlgKirimWhatsapp;
 import simrskhanza.DlgPenanggungJawab;
+import simrskhanza.frmUtama;
 
 /**
  *
@@ -49,6 +48,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private String nipSimpan = "", nipGanti = "", totReal = "", totSelisih = "", kodePJ = "", tte = "",
             totSelisihAwalnya = "", totRealTerakhir = "", jlhKurangDibayar = "", lebihDikembalikan = "", nilaiReal = "", nilaiSelisih = "",
             judulKolomExcel = "", periodeExcel = "", judulExcel = "", dialog_simpan = "";
+    private frmUtama formUtama;
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -1747,7 +1747,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
         WindowHapus.dispose();
         WindowRiwayat.dispose();
     }//GEN-LAST:event_BtnKeluarActionPerformed
@@ -3062,5 +3062,9 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void awalData() {
+        tampil();
     }
 }

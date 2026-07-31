@@ -34,53 +34,56 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import simrskhanza.DlgCariPoli;
 import simrskhanza.DlgPasien;
+import simrskhanza.frmUtama;
 
 /**
  *
  * @author perpustakaan
  */
 public class DlgRekapPerShift extends javax.swing.JDialog {
-    private final DefaultTableModel tabModeRalan,tabModeRanap,tabModePemasukan,tabModePengeluaran;
-    private Connection koneksi=koneksiDB.condb();
-    private sekuel Sequel=new sekuel();
+    private final DefaultTableModel tabModeRalan, tabModeRanap, tabModePemasukan, tabModePengeluaran;
+    private Connection koneksi = koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
     private DlgCariPoli poli = new DlgCariPoli(null, false);
-    private validasi Valid=new validasi();
+    private validasi Valid = new validasi();
     private DlgPasien pasien = new DlgPasien(null, false);
-    private PreparedStatement psjamshift,pspasienralan,psbilling,pspasienranap,pspemasukan,pspengeluaran;
-    private ResultSet rs,rspasien,rsbilling;
-    private String tanggal2="",
-            sqlpsjamshift="select * from closing_kasir ",
-            sqlpsbilling="select billing.nm_perawatan,billing.totalbiaya,billing.status from billing where billing.no_rawat=? and billing.no_nota=?",
-            sqlpspasienranap="select reg_periksa.no_rawat,nota_inap.no_nota,pasien.no_rkm_medis,pasien.nm_pasien,nota_inap.tanggal,nota_inap.jam,penjab.png_jawab,pasien.no_rkm_medis "+
-                        "from reg_periksa inner join pasien inner join penjab inner join nota_inap "+
-                        "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and "+
-                        "reg_periksa.no_rawat=nota_inap.no_rawat where reg_periksa.status_lanjut='Ranap' and "+
-                        "reg_periksa.no_rawat not in (select piutang_pasien.no_rawat from piutang_pasien where piutang_pasien.no_rawat=reg_periksa.no_rawat) and "+
-                        "concat(nota_inap.tanggal,' ',nota_inap.jam) between ? and ? order by nota_inap.no_nota",
-//            sqlpspasienralan="select reg_periksa.no_rawat,nota_jalan.no_nota,pasien.no_rkm_medis,pasien.nm_pasien,nota_jalan.tanggal,nota_jalan.jam,dokter.nm_dokter,penjab.png_jawab "+
-//                        "from reg_periksa inner join pasien inner join penjab inner join dokter inner join nota_jalan "+
-//                        "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and "+
-//                        "reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rawat=nota_jalan.no_rawat where reg_periksa.status_lanjut='Ralan' and "+
-//                        "reg_periksa.no_rawat not in (select piutang_pasien.no_rawat from piutang_pasien where piutang_pasien.no_rawat=reg_periksa.no_rawat) and "+
-//                        "concat(nota_jalan.tanggal,' ',nota_jalan.jam) between ? and ? order by nota_jalan.no_nota",
-            sqlpspasienralan="select distinct reg_periksa.no_rawat,nota_jalan.no_nota,pasien.no_rkm_medis,pasien.nm_pasien,nota_jalan.tanggal,nota_jalan.jam,dokter.nm_dokter,penjab.png_jawab "+
-                        "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join penjab on reg_periksa.kd_pj=penjab.kd_pj inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter inner join nota_jalan on reg_periksa.no_rawat=nota_jalan.no_rawat "+
-                        "inner join billing on billing.no_nota = nota_jalan.no_nota and billing.no_rawat = nota_jalan.no_rawat  "+
-                        "where reg_periksa.status_lanjut='Ralan' and "+
-                        "reg_periksa.no_rawat not in (select piutang_pasien.no_rawat from piutang_pasien where piutang_pasien.no_rawat=reg_periksa.no_rawat) and "+
-                        "concat(nota_jalan.tanggal,' ',nota_jalan.jam) between ? and ? order by nota_jalan.no_nota",
-            sqlpspemasukan="select pemasukan_lain.tanggal, pemasukan_lain.keterangan, pemasukan_lain.besar, kategori_pemasukan_lain.nama_kategori "+
-                        "from pemasukan_lain inner join kategori_pemasukan_lain on pemasukan_lain.kode_kategori=kategori_pemasukan_lain.kode_kategori "+
-                        "where pemasukan_lain.tanggal between ? and ? order by pemasukan_lain.tanggal",
-            sqlpspengeluaran="select pengeluaran_harian.tanggal, pengeluaran_harian.keterangan, pengeluaran_harian.biaya,  "+
-                        "kategori_pengeluaran_harian.nama_kategori from pengeluaran_harian inner join kategori_pengeluaran_harian "+
-                        "on pengeluaran_harian.kode_kategori=kategori_pengeluaran_harian.kode_kategori "+
-                        "where pengeluaran_harian.tanggal between ? and ? order by pengeluaran_harian.tanggal";
+    private PreparedStatement psjamshift, pspasienralan, psbilling, pspasienranap, pspemasukan, pspengeluaran;
+    private ResultSet rs, rspasien, rsbilling;
+    private String tanggal2 = "",
+            sqlpsjamshift = "select * from closing_kasir ",
+            sqlpsbilling = "select billing.nm_perawatan,billing.totalbiaya,billing.status from billing where billing.no_rawat=? and billing.no_nota=?",
+            sqlpspasienranap = "select reg_periksa.no_rawat,nota_inap.no_nota,pasien.no_rkm_medis,pasien.nm_pasien,nota_inap.tanggal,nota_inap.jam,penjab.png_jawab,pasien.no_rkm_medis "
+            + "from reg_periksa inner join pasien inner join penjab inner join nota_inap "
+            + "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and "
+            + "reg_periksa.no_rawat=nota_inap.no_rawat where reg_periksa.status_lanjut='Ranap' and "
+            + "reg_periksa.no_rawat not in (select piutang_pasien.no_rawat from piutang_pasien where piutang_pasien.no_rawat=reg_periksa.no_rawat) and "
+            + "concat(nota_inap.tanggal,' ',nota_inap.jam) between ? and ? order by nota_inap.no_nota",
+            //            sqlpspasienralan="select reg_periksa.no_rawat,nota_jalan.no_nota,pasien.no_rkm_medis,pasien.nm_pasien,nota_jalan.tanggal,nota_jalan.jam,dokter.nm_dokter,penjab.png_jawab "+
+            //                        "from reg_periksa inner join pasien inner join penjab inner join dokter inner join nota_jalan "+
+            //                        "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and "+
+            //                        "reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.no_rawat=nota_jalan.no_rawat where reg_periksa.status_lanjut='Ralan' and "+
+            //                        "reg_periksa.no_rawat not in (select piutang_pasien.no_rawat from piutang_pasien where piutang_pasien.no_rawat=reg_periksa.no_rawat) and "+
+            //                        "concat(nota_jalan.tanggal,' ',nota_jalan.jam) between ? and ? order by nota_jalan.no_nota",
+            sqlpspasienralan = "select distinct reg_periksa.no_rawat,nota_jalan.no_nota,pasien.no_rkm_medis,pasien.nm_pasien,nota_jalan.tanggal,nota_jalan.jam,dokter.nm_dokter,penjab.png_jawab "
+            + "from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join penjab on reg_periksa.kd_pj=penjab.kd_pj inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter inner join nota_jalan on reg_periksa.no_rawat=nota_jalan.no_rawat "
+            + "inner join billing on billing.no_nota = nota_jalan.no_nota and billing.no_rawat = nota_jalan.no_rawat  "
+            + "where reg_periksa.status_lanjut='Ralan' and "
+            + "reg_periksa.no_rawat not in (select piutang_pasien.no_rawat from piutang_pasien where piutang_pasien.no_rawat=reg_periksa.no_rawat) and "
+            + "concat(nota_jalan.tanggal,' ',nota_jalan.jam) between ? and ? order by nota_jalan.no_nota",
+            sqlpspemasukan = "select pemasukan_lain.tanggal, pemasukan_lain.keterangan, pemasukan_lain.besar, kategori_pemasukan_lain.nama_kategori "
+            + "from pemasukan_lain inner join kategori_pemasukan_lain on pemasukan_lain.kode_kategori=kategori_pemasukan_lain.kode_kategori "
+            + "where pemasukan_lain.tanggal between ? and ? order by pemasukan_lain.tanggal",
+            sqlpspengeluaran = "select pengeluaran_harian.tanggal, pengeluaran_harian.keterangan, pengeluaran_harian.biaya,  "
+            + "kategori_pengeluaran_harian.nama_kategori from pengeluaran_harian inner join kategori_pengeluaran_harian "
+            + "on pengeluaran_harian.kode_kategori=kategori_pengeluaran_harian.kode_kategori "
+            + "where pengeluaran_harian.tanggal between ? and ? order by pengeluaran_harian.tanggal";
     private int i;
-    private double all=0,Laborat=0,Radiologi=0,Obat=0,Ralan_Dokter=0,Ralan_Dokter_Paramedis=0,Ralan_Paramedis=0,Tambahan=0,Potongan=0,Registrasi=0,Service=0,
-                    ttlLaborat=0,ttlRadiologi=0,ttlObat=0,ttlRalan_Dokter=0,ttlRalan_Paramedis=0,ttlTambahan=0,ttlPotongan=0,ttlRegistrasi=0,ttlOperasi=0,
-                    ttlRanap_Dokter=0,ttlRanap_Paramedis=0,ttlKamar=0,ttlHarian=0,ttlRetur_Obat=0,ttlResep_Pulang=0,ttlService=0,
-                    Retur_Obat=0,Resep_Pulang=0,Harian=0,Kamar=0,Operasi=0,Ranap_Dokter=0,Ranap_Dokter_Paramedis=0,Ranap_Paramedis=0;
+    private double all = 0, Laborat = 0, Radiologi = 0, Obat = 0, Ralan_Dokter = 0, Ralan_Dokter_Paramedis = 0, Ralan_Paramedis = 0, Tambahan = 0, Potongan = 0, Registrasi = 0, Service = 0,
+            ttlLaborat = 0, ttlRadiologi = 0, ttlObat = 0, ttlRalan_Dokter = 0, ttlRalan_Paramedis = 0, ttlTambahan = 0, ttlPotongan = 0, ttlRegistrasi = 0, ttlOperasi = 0,
+            ttlRanap_Dokter = 0, ttlRanap_Paramedis = 0, ttlKamar = 0, ttlHarian = 0, ttlRetur_Obat = 0, ttlResep_Pulang = 0, ttlService = 0,
+            Retur_Obat = 0, Resep_Pulang = 0, Harian = 0, Kamar = 0, Operasi = 0, Ranap_Dokter = 0, Ranap_Dokter_Paramedis = 0, Ranap_Paramedis = 0;
+    private frmUtama formUtama;
+    
     /** Creates new form DlgAdmin
      * @param parent
      * @param modal */
@@ -547,7 +550,7 @@ public class DlgRekapPerShift extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Uang Pershift ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Uang Pershift ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -652,9 +655,9 @@ public class DlgRekapPerShift extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbRalan.setToolTipText("");
         tbRalan.setComponentPopupMenu(jPopupMenu1);
         tbRalan.setName("tbRalan"); // NOI18N
+        tbRalan.getTableHeader().setReorderingAllowed(false);
         Scroll.setViewportView(tbRalan);
 
         internalFrame2.add(Scroll, java.awt.BorderLayout.CENTER);
@@ -670,8 +673,8 @@ public class DlgRekapPerShift extends javax.swing.JDialog {
         Scroll2.setOpaque(true);
 
         tbRanap.setAutoCreateRowSorter(true);
-        tbRanap.setToolTipText("");
         tbRanap.setName("tbRanap"); // NOI18N
+        tbRanap.getTableHeader().setReorderingAllowed(false);
         Scroll2.setViewportView(tbRanap);
 
         internalFrame3.add(Scroll2, java.awt.BorderLayout.CENTER);
@@ -687,8 +690,8 @@ public class DlgRekapPerShift extends javax.swing.JDialog {
         Scroll3.setOpaque(true);
 
         tbPemasukan.setAutoCreateRowSorter(true);
-        tbPemasukan.setToolTipText("");
         tbPemasukan.setName("tbPemasukan"); // NOI18N
+        tbPemasukan.getTableHeader().setReorderingAllowed(false);
         tbPemasukan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPemasukanMouseClicked(evt);
@@ -714,8 +717,8 @@ public class DlgRekapPerShift extends javax.swing.JDialog {
         Scroll4.setOpaque(true);
 
         tbPengeluaran.setAutoCreateRowSorter(true);
-        tbPengeluaran.setToolTipText("");
         tbPengeluaran.setName("tbPengeluaran"); // NOI18N
+        tbPengeluaran.getTableHeader().setReorderingAllowed(false);
         tbPengeluaran.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbPengeluaranMouseClicked(evt);
@@ -810,7 +813,7 @@ public class DlgRekapPerShift extends javax.swing.JDialog {
             }
         });
         panelBiasa1.add(btnPenjab);
-        btnPenjab.setBounds(650, 10, 36, 26);
+        btnPenjab.setBounds(650, 10, 32, 22);
 
         label16.setForeground(new java.awt.Color(0, 0, 0));
         label16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -855,7 +858,7 @@ public class DlgRekapPerShift extends javax.swing.JDialog {
             }
         });
         panelBiasa1.add(BtnUnit);
-        BtnUnit.setBounds(975, 10, 36, 26);
+        BtnUnit.setBounds(975, 10, 32, 22);
 
         BtnRefres.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
@@ -885,13 +888,15 @@ public class DlgRekapPerShift extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();        
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);   
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-       if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            dispose();
-        }else{Valid.pindah(evt,BtnPrint,Tgl1);}
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        } else {
+            Valid.pindah(evt, BtnPrint, Tgl1);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -1953,5 +1958,16 @@ public class DlgRekapPerShift extends javax.swing.JDialog {
         }
         this.setCursor(Cursor.getDefaultCursor());        
     }
-
+    
+    public void awalData() {
+        if(TabRawat.getSelectedIndex()==0){
+           tampilralan();
+        }else if(TabRawat.getSelectedIndex()==1){
+           tampilranap();
+        }else if(TabRawat.getSelectedIndex()==2){
+           tampilpemasukan();
+        }else if(TabRawat.getSelectedIndex()==3){
+           tampilpengeluaran();
+        }
+    }
 }

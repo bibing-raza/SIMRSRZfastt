@@ -237,11 +237,11 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/48x48/iconfinder_TextEdit_37595.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Surat Pernyataan R. Inap BPJS"/>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Surat Pernyataan&lt;br&gt;Rawat Inap Peserta BPJS&lt;/div&gt;&lt;/html&gt;"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                     <Property name="name" type="java.lang.String" value="btnSuratPernyataanRanapBpjs" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 90]"/>
+                      <Dimension value="[200, 105]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -256,11 +256,11 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/48x48/iconfinder_TextEdit_37595.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Surat Pernyataan Naik Kls. BPJS"/>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Surat Pernyataan&lt;br&gt;Naik Kelas Rawat BPJS&lt;/div&gt;&lt;/html&gt;"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                     <Property name="name" type="java.lang.String" value="btnSuratPernyataanNaikKelas" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 90]"/>
+                      <Dimension value="[200, 105]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -446,11 +446,11 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/48x48/folder.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Perencanaan Pulang (Discharge Planning)"/>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Perencanaan Pulang&lt;br&gt;&lt;i&gt;(Discharge Planning)&lt;/i&gt;&lt;/div&gt;&lt;/html&gt;"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                     <Property name="name" type="java.lang.String" value="btnPerencanaanPulang" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 90]"/>
+                      <Dimension value="[200, 105]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -617,11 +617,11 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/48x48/iconfinder_TextEdit_37595.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Assesmen Keperawatan Perioperatif"/>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Assesmen Keperawatan&lt;br&gt;Perioperatif&lt;/div&gt;&lt;/html&gt;"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                     <Property name="name" type="java.lang.String" value="btnAsesmenKeperawatanPerioperatif" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 90]"/>
+                      <Dimension value="[200, 105]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -636,11 +636,11 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/48x48/1360816018_tests.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Cttn. Pemakaian Obat &amp; Material"/>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Catatan Pemakaian&lt;br&gt;Obat &amp; Material&lt;/div&gt;&lt;/html&gt;"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                     <Property name="name" type="java.lang.String" value="btnCatatanMaterialOperasi" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 90]"/>
+                      <Dimension value="[200, 105]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1111,11 +1111,11 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/48x48/iconfinder_basket_8726.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Persetujuan/Penolakan Tindakan"/>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Persetujuan/Penolakan/&lt;br&gt;Penundaan Tindakan&lt;/div&gt;&lt;/html&gt;"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                     <Property name="name" type="java.lang.String" value="btnPersetujuanTindakan" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 90]"/>
+                      <Dimension value="[200, 105]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1320,11 +1320,11 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/48x48/patient (1).png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Ases. Ulang Resiko Jatuh Dewasa"/>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Asesmen Ulang Resiko&lt;br&gt;Jatuh Dewasa&lt;/div&gt;&lt;/html&gt;"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                     <Property name="name" type="java.lang.String" value="btnAsesmenUlangResikoJatuhDewasa" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 90]"/>
+                      <Dimension value="[200, 105]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1339,11 +1339,11 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/48x48/patient (1).png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Ases. Ulang Resiko Jatuh Anak"/>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Asesmen Ulang Resiko&lt;br&gt;Jatuh Anak&lt;/div&gt;&lt;/html&gt;"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                     <Property name="name" type="java.lang.String" value="btnAsesmenUlangResikoJatuhAnak" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 90]"/>
+                      <Dimension value="[200, 105]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1567,11 +1567,11 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/48x48/pregnant_woman.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Penilaian Awal Keperawatan Kebidanan Ralan"/>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Penilaian Awal Keperawatan&lt;br&gt;Kebidanan Rawat Jalan&lt;/div&gt;&lt;/html&gt;"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                     <Property name="name" type="java.lang.String" value="btnPenilaianAwalKeperawatanKebidananRalan" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[200, 90]"/>
+                      <Dimension value="[200, 105]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1654,7 +1654,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPenilaianAwalMedisRalanGeriatriActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="widget.ButtonBig" name="BtnMasalahKeperawatanHipotermia">
+                <Component class="widget.ButtonBig" name="BtnMasalahKeperawatanResikoHipotermia">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
@@ -1662,15 +1662,15 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/48x48/if_folder_images_61610.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="MasKep Hipotermia"/>
+                    <Property name="text" type="java.lang.String" value="MasKep Resiko Hipotermia"/>
                     <Property name="iconTextGap" type="int" value="0"/>
-                    <Property name="name" type="java.lang.String" value="BtnMasalahKeperawatanHipotermia" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="BtnMasalahKeperawatanResikoHipotermia" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[200, 90]"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMasalahKeperawatanHipotermiaActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMasalahKeperawatanResikoHipotermiaActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="widget.ButtonBig" name="btnRingkasanPulangRalan">
@@ -1692,7 +1692,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRingkasanPulangRalanActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="widget.ButtonBig" name="BtnMasalahKeperawatanHipovolemia">
+                <Component class="widget.ButtonBig" name="BtnMasalahKeperawatanResikoHipovolemia">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
@@ -1700,15 +1700,15 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/48x48/if_folder_images_61610.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="MasKep Hipovolemia"/>
+                    <Property name="text" type="java.lang.String" value="MasKep Resiko Hipovolemia"/>
                     <Property name="iconTextGap" type="int" value="0"/>
-                    <Property name="name" type="java.lang.String" value="BtnMasalahKeperawatanHipovolemia" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="BtnMasalahKeperawatanResikoHipovolemia" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[200, 90]"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMasalahKeperawatanHipovolemiaActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMasalahKeperawatanResikoHipovolemiaActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="widget.ButtonBig" name="BtnMasterICDOtopography">
@@ -1795,15 +1795,34 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/48x48/if_folder_images_61610.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="MasKep Bersihan Jln. Nfs. Tdk. Efektif"/>
+                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;MasKep Bersihan Jalan&lt;br&gt;Nafas Tidak Efektif&lt;/div&gt;&lt;/html&gt;"/>
                     <Property name="iconTextGap" type="int" value="0"/>
                     <Property name="name" type="java.lang.String" value="BtnMaskepBersihanJalanNafas" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[200, 105]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMaskepBersihanJalanNafasActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="widget.ButtonBig" name="BtnMaskepKetidakstabilanGlukosa">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/48x48/if_folder_images_61610.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="MasKep Ketidakstabilan Glukosa Darah"/>
+                    <Property name="iconTextGap" type="int" value="0"/>
+                    <Property name="name" type="java.lang.String" value="BtnMaskepKetidakstabilanGlukosa" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[200, 90]"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMaskepBersihanJalanNafasActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMaskepKetidakstabilanGlukosaActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
