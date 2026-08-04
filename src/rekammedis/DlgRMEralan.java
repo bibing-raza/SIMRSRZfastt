@@ -32,14 +32,14 @@ import simrskhanza.DlgRingkasanPulangRalan;
  * @author dosen
  */
 public class DlgRMEralan extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode;
+    private final DefaultTableModel tabMode, tabMode1;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
     private int i = 0, x = 0, jmlmenu = 0, grid = 0, tinggi = 0;
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private PreparedStatement ps, ps1;
+    private ResultSet rs, rs1;
     private String stts = "", kdkamar = "", queryDinamis = "", sqlPembentuk = "";
     
     /** Creates new form DlgPemberianInfus
@@ -79,6 +79,34 @@ public class DlgRMEralan extends javax.swing.JDialog {
         //ini posisi kolom yang datanya ingin rata tengah
         tbRMmaskep.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         tbRMmaskep.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        
+        tabMode1 = new DefaultTableModel(null, new String[]{
+            "No.", "Dokumen Rekam Medis", "Terisi"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbRMibs.setModel(tabMode1);
+        tbRMibs.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbRMibs.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 3; i++) {
+            TableColumn column = tbRMibs.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(40);
+            } else if (i == 1) {
+                column.setPreferredWidth(280);
+            } else if (i == 2) {
+                column.setPreferredWidth(60);
+            } 
+        }
+        tbRMibs.setDefaultRenderer(Object.class, new WarnaTable());
+        //ini posisi kolom yang datanya ingin rata tengah
+        tbRMibs.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        tbRMibs.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
     }
  
     /** This method is called from within the constructor to
@@ -170,6 +198,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnRefres1 = new widget.Button();
         BtnKeluar2 = new widget.Button();
         internalFrame10 = new widget.InternalFrame();
+        internalFrame12 = new widget.InternalFrame();
         scrollInput1 = new widget.ScrollPane();
         FormInput1 = new widget.PanelBiasa();
         BtnEvaluasiPraAnestesi = new widget.ButtonBig();
@@ -191,7 +220,11 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnAsesmenPraSedasi = new widget.ButtonBig();
         BtnTransferTindakanIBS = new widget.ButtonBig();
         BtnRingkasan = new widget.ButtonBig();
+        internalFrame14 = new widget.InternalFrame();
+        Scroll2 = new widget.ScrollPane();
+        tbRMibs = new widget.Table();
         internalFrame11 = new widget.InternalFrame();
+        BtnRefres2 = new widget.Button();
         BtnKeluar3 = new widget.Button();
 
         DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
@@ -1047,6 +1080,10 @@ public class DlgRMEralan extends javax.swing.JDialog {
         internalFrame10.setPreferredSize(new java.awt.Dimension(12, 44));
         internalFrame10.setLayout(new java.awt.BorderLayout());
 
+        internalFrame12.setName("internalFrame12"); // NOI18N
+        internalFrame12.setPreferredSize(new java.awt.Dimension(12, 44));
+        internalFrame12.setLayout(new java.awt.BorderLayout());
+
         scrollInput1.setName("scrollInput1"); // NOI18N
         scrollInput1.setPreferredSize(new java.awt.Dimension(102, 557));
 
@@ -1305,11 +1342,43 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         scrollInput1.setViewportView(FormInput1);
 
-        internalFrame10.add(scrollInput1, java.awt.BorderLayout.CENTER);
+        internalFrame12.add(scrollInput1, java.awt.BorderLayout.CENTER);
+
+        internalFrame14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Informasi Rekam Medis Sudah Terisi ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        internalFrame14.setName("internalFrame14"); // NOI18N
+        internalFrame14.setPreferredSize(new java.awt.Dimension(400, 44));
+        internalFrame14.setLayout(new java.awt.BorderLayout());
+
+        Scroll2.setName("Scroll2"); // NOI18N
+        Scroll2.setOpaque(true);
+        Scroll2.setPreferredSize(new java.awt.Dimension(600, 402));
+
+        tbRMibs.setName("tbRMibs"); // NOI18N
+        tbRMibs.getTableHeader().setReorderingAllowed(false);
+        Scroll2.setViewportView(tbRMibs);
+
+        internalFrame14.add(Scroll2, java.awt.BorderLayout.CENTER);
+
+        internalFrame12.add(internalFrame14, java.awt.BorderLayout.EAST);
+
+        internalFrame10.add(internalFrame12, java.awt.BorderLayout.CENTER);
 
         internalFrame11.setName("internalFrame11"); // NOI18N
         internalFrame11.setPreferredSize(new java.awt.Dimension(12, 44));
         internalFrame11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 9, 7));
+
+        BtnRefres2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnRefres2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRefres2.setText("Refresh Rekam Medis");
+        BtnRefres2.setToolTipText("Alt+R");
+        BtnRefres2.setName("BtnRefres2"); // NOI18N
+        BtnRefres2.setPreferredSize(new java.awt.Dimension(186, 30));
+        BtnRefres2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRefres2ActionPerformed(evt);
+            }
+        });
+        internalFrame11.add(BtnRefres2);
 
         BtnKeluar3.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -2480,8 +2549,14 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private void TabRekamMedisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRekamMedisMouseClicked
         if (TabRekamMedis.getSelectedIndex() == 2) {
             tampilRMmaskep();
+        } else if (TabRekamMedis.getSelectedIndex() == 3) {
+            tampilRMibs();
         }
     }//GEN-LAST:event_TabRekamMedisMouseClicked
+
+    private void BtnRefres2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRefres2ActionPerformed
+        tampilRMibs();
+    }//GEN-LAST:event_BtnRefres2ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -2553,6 +2628,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.ButtonBig BtnPreviewData;
     private widget.Button BtnRefres;
     private widget.Button BtnRefres1;
+    private widget.Button BtnRefres2;
     private widget.ButtonBig BtnResep;
     private widget.ButtonBig BtnResepPonek;
     private widget.ButtonBig BtnRingkasan;
@@ -2574,6 +2650,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput2;
     private widget.PanelBiasa FormMasKep;
     private widget.ScrollPane Scroll1;
+    private widget.ScrollPane Scroll2;
     public widget.TextBox TCari;
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;
@@ -2584,7 +2661,9 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame10;
     private widget.InternalFrame internalFrame11;
+    private widget.InternalFrame internalFrame12;
     private widget.InternalFrame internalFrame13;
+    private widget.InternalFrame internalFrame14;
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
     private widget.InternalFrame internalFrame4;
@@ -2602,6 +2681,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.ScrollPane scrollInput;
     private widget.ScrollPane scrollInput1;
     private widget.ScrollPane scrollInput2;
+    private widget.Table tbRMibs;
     private widget.Table tbRMmaskep;
     // End of variables declaration//GEN-END:variables
 
@@ -3049,6 +3129,79 @@ public class DlgRMEralan extends javax.swing.JDialog {
                 x = 1;
                 while (rsData.next()) {
                     tabMode.addRow(new String[]{
+                        x + ".",
+                        rsData.getString("rekam_medis"),
+                        rsData.getString("status")
+                    });
+                    x++;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilRMibs() {
+        Valid.tabelKosong(tabMode1);
+        queryDinamis = "";
+        sqlPembentuk = "SELECT GROUP_CONCAT("
+                + "    CONCAT("
+                + "        'SELECT ''', t.nama_rekam_medis, ''' AS rekam_medis, ',"
+                + "        '''OK'' AS status ',"
+                + "        'FROM `', t.nama_tabel, '` ',"
+                + "        'WHERE no_rawat = ', QUOTE(?), ' ',"
+                + "        'GROUP BY no_rawat'"
+                + "    )"
+                + "    ORDER BY t.urutan"
+                + "    SEPARATOR ' UNION ALL '"
+                + ") AS query_dinamis "
+                + "FROM ("
+                + "    SELECT 1 AS urutan, 'evaluasi_pra_anestesi_operasi' AS nama_tabel, 'Evaluasi Pra Anestesi' AS nama_rekam_medis "
+                + "    UNION ALL SELECT 2, 'ceklis_pra_operasi', 'Checklist Pra Operasi' "
+                + "    UNION ALL SELECT 3, 'formulir_site_marking_operasi', 'Formulir Site Marking Operasi' "
+                + "    UNION ALL SELECT 4, 'ceklis_kesiapan_anestesi', 'Checklist Kesiapan Anestesi' "
+                + "    UNION ALL SELECT 5, 'asesmen_pra_sedasi_konsep_iar', 'Asesmen Pra Sedasi Konsep IAR' "
+                + "    UNION ALL SELECT 6, 'asesmen_pre_induksi', 'Asesmen Pre Induksi' "
+                + "    UNION ALL SELECT 7, 'asesmen_keperawatan_perioperatif', 'Assesmen Keperawatan Perioperatif' "
+                + "    UNION ALL SELECT 8, 'ceklis_keselamatan_operasi1', 'Checklist Keselamatan Operasi' "
+                + "    UNION ALL SELECT 9, 'catatan_sedasi_anestesi', 'Catatan Sedasi / Anestesi' "
+                + "    UNION ALL SELECT 10, 'laporan_operasi', 'Laporan Operasi' "
+                + "    UNION ALL SELECT 11, 'catatan_material_operasi', 'Catatan Pemakaian Obat & Material' "
+                + "    UNION ALL SELECT 12, 'catatan_ruang_pemulihan', 'Catatan Ruang Pemulihan' "
+                + "    UNION ALL SELECT 13, 'serah_terima_pasien_pasca_operasi', 'Serah Terima Pasca Operasi' "
+                + "    UNION ALL SELECT 14, 'informasi_tindakan_pembiusan_operasi', 'Informasi Tindakan Pembiusan' "
+                + "    UNION ALL SELECT 15, 'asesmen_pra_sedasi', 'Asesmen Pra Sedasi' "
+                + "    UNION ALL SELECT 16, 'ringkasan_pulang_ralan', 'Ringkasan Pulang / Resume') AS t";
+
+        if (TNoRW.getText().isEmpty()) {
+            return;
+        }
+
+        try {
+            // Mencegah hasil GROUP_CONCAT terpotong.
+            try (java.sql.Statement st = koneksi.createStatement()) {
+                st.execute("SET SESSION group_concat_max_len = 1000000");
+            }
+
+            // Tahap 1: membentuk query UNION ALL.
+            try (java.sql.PreparedStatement psPembentuk = koneksi.prepareStatement(sqlPembentuk)) {
+                psPembentuk.setString(1, TNoRW.getText());
+                try (java.sql.ResultSet rsPembentuk = psPembentuk.executeQuery()) {
+                    if (rsPembentuk.next()) {
+                        queryDinamis = rsPembentuk.getString("query_dinamis");
+                    }
+                }
+            }
+
+            if (queryDinamis == null || queryDinamis.trim().isEmpty()) {
+                return;
+            }
+
+            // Tahap 2: menjalankan query dinamis dan memasukkannya ke JTable.
+            try (java.sql.PreparedStatement psData = koneksi.prepareStatement(queryDinamis); java.sql.ResultSet rsData = psData.executeQuery()) {
+                x = 1;
+                while (rsData.next()) {
+                    tabMode1.addRow(new String[]{
                         x + ".",
                         rsData.getString("rekam_medis"),
                         rsData.getString("status")

@@ -149,8 +149,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         }
         tbNotepad.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode2 = new DefaultTableModel(null, new Object[]{
-            "Dilakukan Oleh", "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Protokol", "Tgl. Eksekusi", "Status Data"}) {
+        tabMode2 = new DefaultTableModel(null, new String[]{
+            "Dilakukan Oleh", "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Protokol", "Tgl. Eksekusi", "Status Data", "waktu_simpan"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -161,7 +161,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         tbRiwayat.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbRiwayat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             TableColumn column = tbRiwayat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(250);
@@ -177,6 +177,9 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                 column.setPreferredWidth(130);
             } else if (i == 6) {
                 column.setPreferredWidth(80);
+            } else if (i == 7) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } 
         }
         tbRiwayat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -525,7 +528,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -539,7 +542,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1121,7 +1124,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel8.setBounds(227, 66, 70, 23);
 
         TtglSiklus.setForeground(new java.awt.Color(50, 70, 50));
-        TtglSiklus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-01-2026" }));
+        TtglSiklus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2026" }));
         TtglSiklus.setDisplayFormat("dd-MM-yyyy");
         TtglSiklus.setName("TtglSiklus"); // NOI18N
         TtglSiklus.setOpaque(false);
@@ -1561,7 +1564,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             if (tbProtokol.getSelectedRow() > -1) {
                 try {
                     gantiDisimpan();
-                    Sequel.mengedit("protokol_kemoterapi", "no_rawat='" + TnoRW.getText() + "'",
+                    Sequel.mengedit("protokol_kemoterapi", "waktu_simpan='" + tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 18).toString() + "'",
                             "nm_protokol='" + TnmProtokol.getText() + "',siklus_ke='" + Tsiklus.getText() + "',"
                             + "tgl_siklus='" + Valid.SetTgl(TtglSiklus.getSelectedItem() + "") + "',dosis='" + Tdosis.getText() + "',"
                             + "tb='" + Ttb.getText() + "',bb='" + Tbb.getText() + "',lpt='" + Tlpt.getText() + "',diagnosis='" + Tdiagnosis.getText() + "',"
@@ -1909,8 +1912,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             if (x == JOptionPane.YES_OPTION) {
                 if (tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 6).toString().equals("DIHAPUS")) {
                     if (Sequel.cariInteger("select count(-1) from protokol_kemoterapi where "
-                            + "no_rawat='" + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString() + "'") > 0) {
-                        JOptionPane.showMessageDialog(rootPane, "Proses kembalikan/restore data gagal, krn. sudah ada datanya dg. no. rawat yg. sama..!!");
+                            + "waktu_simpan='" + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 7).toString() + "'") > 0) {
+                        JOptionPane.showMessageDialog(rootPane, "Proses kembalikan/restore data gagal, krn. sudah ada datanya yg. sama..!!");
                     } else {
                         kembalikanData();
                         TCari.setText(tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString());
@@ -2347,8 +2350,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (x == JOptionPane.YES_OPTION) {
             hapusDisimpan();
-            if (Sequel.queryu2tf("delete from protokol_kemoterapi where no_rawat=?", 1, new String[]{
-                tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 0).toString()
+            if (Sequel.queryu2tf("delete from protokol_kemoterapi where waktu_simpan=?", 1, new String[]{
+                tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 18).toString()
             }) == true) {
                 TCari.setText(TnoRM.getText());
                 tampil();
@@ -2504,7 +2507,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode2);
         try {
             psrestor = koneksi.prepareStatement("SELECT IF(pg.nama='-','Admin Utama',pg.nama) pelaku, a.no_rawat, a.no_rkm_medis, p.nm_pasien, "
-                    + "a.tgl_siklus, a.waktu_eksekusi, upper(concat('DI',a.status_data)) sttsdata FROM protokol_kemoterapi_histori a "
+                    + "a.tgl_siklus, a.waktu_eksekusi, upper(concat('DI',a.status_data)) sttsdata, a.waktu_simpan FROM protokol_kemoterapi_histori a "
                     + "INNER JOIN pasien p ON p.no_rkm_medis = a.no_rkm_medis INNER JOIN pegawai pg ON pg.nik = a.nik_eksekutor WHERE "
                     + "date(a.tgl_siklus) between ? and ? and pg.nama like ? or "
                     + "date(a.tgl_siklus) between ? and ? and a.no_rawat like ? or "
@@ -2536,7 +2539,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                         rsrestor.getString("nm_pasien"),
                         rsrestor.getString("tgl_siklus"),
                         rsrestor.getString("waktu_eksekusi"),
-                        rsrestor.getString("sttsdata")
+                        rsrestor.getString("sttsdata"),
+                        rsrestor.getString("waktu_simpan")
                     });
                 }
             } catch (Exception e) {
@@ -2599,8 +2603,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     }
     
     private void kembalikanDataDiganti() {
-        if (Sequel.queryu2tf("delete from protokol_kemoterapi where no_rawat=?", 1, new String[]{
-            tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString()
+        if (Sequel.queryu2tf("delete from protokol_kemoterapi where waktu_simpan=?", 1, new String[]{
+            tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 7).toString()
         }) == true) {
             kembalikanData();
         } else {

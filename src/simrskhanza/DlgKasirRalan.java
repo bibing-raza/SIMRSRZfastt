@@ -11903,7 +11903,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             sb.append("ifnull(pam.no_rawat,'') cekAwalMedisIGD, ifnull(pr.no_rawat,'') cekPemeriksaanRalan, if(ap.no_rawat is not null,'1','0') cekAntrianPrio, ");
             sb.append("CASE WHEN tp.no_rawat IS NOT NULL THEN CASE WHEN tp.kesimpulan_level1='ya' or tp.kesimpulan_level2='ya' THEN 'Merah' ");
             sb.append("WHEN tp.kesimpulan_level3='ya' or tp.kesimpulan_level4='ya' THEN 'Kuning' WHEN tp.kesimpulan_level5='ya' THEN 'Hijau' ELSE '-' END ELSE '-' END warnaPediatrik, ");
-            sb.append("if(c.no_rawat is not null,'ok','-') cekCpptRalan, if(rk.no_rawat is not null,'Biru','-') regKonsul FROM reg_periksa rp ");
+            sb.append("if(c.no_rawat is not null,'ok','-') cekCpptRalan, if(amk.no_rawat is not null,'ok','-') cekAMkebidanan, if(rk.no_rawat is not null,'Biru','-') regKonsul FROM reg_periksa rp ");
             sb.append("JOIN dokter d ON rp.kd_dokter = d.kd_dokter ");
             sb.append("JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis ");
             sb.append("JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli ");
@@ -11922,7 +11922,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             sb.append("left join protokol_kemoterapi pk on pk.no_rkm_medis=rp.no_rkm_medis ");
             sb.append("left join antrian_prioritas ap on ap.no_rawat=rp.no_rawat ");
             sb.append("left join pemeriksaan_ralan pr on pr.no_rawat=rp.no_rawat ");
-            sb.append("left join cppt c on c.no_rawat=rp.no_rawat and c.status='Ralan' ");
+            sb.append("left join cppt c on c.no_rawat=rp.no_rawat and c.status='Ralan' ");            
+            sb.append("left join asesmen_medik_kebidanan amk on amk.no_rawat=rp.no_rawat ");
             sb.append("left join reg_konsul_internal rk on rk.no_rawat=rp.no_rawat and rk.jalur_registrasi='tpprj' where ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or ");
             sb.append("pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_rawat like ? or ");
@@ -12022,17 +12023,24 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 pskasir.setString(78, "%" + TCari.getText().trim() + "%");
                 rskasir = pskasir.executeQuery();
                 while (rskasir.next()) {
-                    String cpptSip = "";
+                    String cpptSip = "", asmedKeb = "";
                     //cek pasien kemoterapi
                     if (rskasir.getString("cekKemoterapi").equals("ok")) {
                         Sequel.menyimpanIgnore("antrian_prioritas", "'" + rskasir.getString("no_rawat") + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
                     }
                     
-                    //cel cppt ralan
+                    //cek cppt ralan
                     if (rskasir.getString("cekCpptRalan").equals("ok")) {
-                        cpptSip = "| CPPT --> OK";
+                        cpptSip = "| CPPT -> OK";
                     } else {
                         cpptSip = "";
+                    }
+                    
+                    //cek asesmen medik kebidanan
+                    if (rskasir.getString("cekAMkebidanan").equals("ok")) {
+                        asmedKeb = "| AsMed -> OK";
+                    } else {
+                        asmedKeb = "";
                     }
                     
                     tabModekasir.addRow(new String[]{
@@ -12049,7 +12057,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         rskasir.getString("tgl_reg_format"),
                         rskasir.getString("jam_reg"),
                         rskasir.getString("no_reg"),
-                        rskasir.getString("stts_klaim") + " " + rskasir.getString("aksesRM") + " " + cpptSip,
+                        rskasir.getString("stts_klaim") + " " + rskasir.getString("aksesRM") + " " + cpptSip + " " + asmedKeb,
                         rskasir.getString("no_tlp"),
                         rskasir.getString("almt_pasien"),
                         rskasir.getString("cekAwalMedisIGD"),

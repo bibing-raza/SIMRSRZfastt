@@ -2213,9 +2213,9 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                         Sequel.menyimpan("temporary1", "'" + judulExcel + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul");
                         Sequel.menyimpan("temporary1", "'" + periodeExcel + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Periode");
                         Sequel.menyimpan("temporary1", "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Spasi");
-                        Sequel.menyimpan("temporary1", "'No.','No. Panjar\n(Tanggal Jam)','No. Rawat','Cara Bayar','No. RM - Nama Pasien','Ruang Rawat','Status Panjar',"
+                        Sequel.menyimpan("temporary1", "'No.','No. Panjar','No. Rawat','Cara Bayar','No. RM - Nama Pasien','Ruang Rawat','Tgl. Panjar','Jam Panjar','Status Panjar',"
                                 + "'Nominal Panjar','" + judulKolomExcel + "','Petugas Penerima Panjar','Panjar Diselesaikan Oleh','Biaya Real Cost','Biaya Selisih Tarif INACBG',"
-                                + "'Total Bayar','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
+                                + "'Total Bayar','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
                         
                         dataExcel("SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
                                 + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
@@ -2232,7 +2232,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
 
                         dialog_simpan = Valid.openDialog();
                         if (Valid.MyReportToExcelBoolean("SELECT temp1 '', temp2 '', temp3 '', temp4 '', temp5 '', temp6 '', temp7 '', temp8 '', temp9 '', temp10 '', temp11 '', "
-                                + "temp12 '', temp13 '', temp14 '' from temporary1", dialog_simpan) == true) {
+                                + "temp12 '', temp13 '', temp14 '', temp15 '', temp16 '' from temporary1", dialog_simpan) == true) {
                             JOptionPane.showMessageDialog(null, "Data transaksi panjar berhasil diexport menjadi file excel,..!!!");
                         } else {
                             JOptionPane.showMessageDialog(null, "Data transaksi panjar gagal diexport menjadi file excel,..!!!");
@@ -2252,13 +2252,13 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                         Sequel.menyimpan("temporary1", "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Spasi");
 
                         if (kdpnj.getText().equals("U01")) {
-                            Sequel.menyimpan("temporary1", "'No.','No. Panjar\n(Tanggal Jam)','No. Rawat','No. RM - Nama Pasien','Ruang Rawat','Status Panjar','Nominal Panjar','" + judulKolomExcel + "',"
+                            Sequel.menyimpan("temporary1", "'No.','No. Panjar','No. Rawat','No. RM - Nama Pasien','Ruang Rawat','Tgl. Panjar','Jam Panjar','Status Panjar','Nominal Panjar','" + judulKolomExcel + "',"
                                     + "'Petugas Penerima Panjar','Panjar Diselesaikan Oleh','Biaya Real Cost','Total Bayar',"
-                                    + "'','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
+                                    + "'','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
                         } else {
-                            Sequel.menyimpan("temporary1", "'No.','No. Panjar\n(Tanggal Jam)','No. Rawat','No. RM - Nama Pasien','Ruang Rawat','Status Panjar','Nominal Panjar','" + judulKolomExcel + "',"
+                            Sequel.menyimpan("temporary1", "'No.','No. Panjar','No. Rawat','No. RM - Nama Pasien','Ruang Rawat','Tgl. Panjar','Jam Panjar','Status Panjar','Nominal Panjar','" + judulKolomExcel + "',"
                                     + "'Petugas Penerima Panjar','Panjar Diselesaikan Oleh','Biaya Selisih Tarif INACBG','Total Bayar',"
-                                    + "'','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
+                                    + "'','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
                         }
 
                         dataExcel("SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
@@ -2276,7 +2276,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
 
                         dialog_simpan = Valid.openDialog();
                         if (Valid.MyReportToExcelBoolean("SELECT temp1 '', temp2 '', temp3 '', temp4 '', temp5 '', temp6 '', temp7 '', temp8 '', "
-                                + "temp9 '', temp10 '', temp11 '', temp12 '' from temporary1", dialog_simpan) == true) {
+                                + "temp9 '', temp10 '', temp11 '', temp12 '', temp13 '', temp14 '' from temporary1", dialog_simpan) == true) {
                             JOptionPane.showMessageDialog(null, "Data transaksi panjar berhasil diexport menjadi file excel,..!!!");
                         } else {
                             JOptionPane.showMessageDialog(null, "Data transaksi panjar gagal diexport menjadi file excel,..!!!");
@@ -2296,9 +2296,9 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                         Sequel.menyimpan("temporary1", "'" + judulExcel + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul");
                         Sequel.menyimpan("temporary1", "'" + periodeExcel + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Periode");
                         Sequel.menyimpan("temporary1", "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Spasi");
-                        Sequel.menyimpan("temporary1", "'No.','No. Panjar\n(Tanggal Jam)','No. Rawat','Cara Bayar','No. RM - Nama Pasien','Ruang Rawat','Status Panjar',"
+                        Sequel.menyimpan("temporary1", "'No.','No. Panjar','No. Rawat','Cara Bayar','No. RM - Nama Pasien','Ruang Rawat','Tgl. Panjar','Jam Panjar','Status Panjar',"
                                 + "'Nominal Panjar','" + judulKolomExcel + "','Petugas Penerima Panjar','Panjar Diselesaikan Oleh','Biaya Real Cost','Biaya Selisih Tarif INACBG',"
-                                + "'Total Bayar','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
+                                + "'Total Bayar','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
 
                         dataExcel("SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
                                 + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
@@ -2315,7 +2315,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
 
                         dialog_simpan = Valid.openDialog();
                         if (Valid.MyReportToExcelBoolean("SELECT temp1 '', temp2 '', temp3 '', temp4 '', temp5 '', temp6 '', temp7 '', temp8 '', temp9 '', temp10 '', temp11 '', "
-                                + "temp12 '', temp13 '', temp14 '' from temporary1", dialog_simpan) == true) {
+                                + "temp12 '', temp13 '', temp14 '', temp15 '', temp16 '' from temporary1", dialog_simpan) == true) {
                             JOptionPane.showMessageDialog(null, "Data transaksi panjar berhasil diexport menjadi file excel,..!!!");
                         } else {
                             JOptionPane.showMessageDialog(null, "Data transaksi panjar gagal diexport menjadi file excel,..!!!");
@@ -2335,13 +2335,13 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                         Sequel.menyimpan("temporary1", "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Spasi");
 
                         if (kdpnj.getText().equals("U01")) {
-                            Sequel.menyimpan("temporary1", "'No.','No. Panjar\n(Tanggal Jam)','No. Rawat','No. RM - Nama Pasien','Ruang Rawat','Status Panjar','Nominal Panjar','" + judulKolomExcel + "',"
+                            Sequel.menyimpan("temporary1", "'No.','No. Panjar','No. Rawat','No. RM - Nama Pasien','Ruang Rawat','Tgl. Panjar','Jam Panjar','Status Panjar','Nominal Panjar','" + judulKolomExcel + "',"
                                     + "'Petugas Penerima Panjar','Panjar Diselesaikan Oleh','Biaya Real Cost','Total Bayar',"
-                                    + "'','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
+                                    + "'','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
                         } else {
-                            Sequel.menyimpan("temporary1", "'No.','No. Panjar\n(Tanggal Jam)','No. Rawat','No. RM - Nama Pasien','Ruang Rawat','Status Panjar','Nominal Panjar','" + judulKolomExcel + "',"
+                            Sequel.menyimpan("temporary1", "'No.','No. Panjar','No. Rawat','No. RM - Nama Pasien','Ruang Rawat','Tgl. Panjar','Jam Panjar','Status Panjar','Nominal Panjar','" + judulKolomExcel + "',"
                                     + "'Petugas Penerima Panjar','Panjar Diselesaikan Oleh','Biaya Selisih Tarif INACBG','Total Bayar',"
-                                    + "'','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
+                                    + "'','','','','','','','','','','','','','','','','','','','','','',''", "Data Judul Kolom");
                         }
 
                         dataExcel("SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d/%m/%Y') tglpanjar, "
@@ -2359,7 +2359,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
 
                         dialog_simpan = Valid.openDialog();
                         if (Valid.MyReportToExcelBoolean("SELECT temp1 '', temp2 '', temp3 '', temp4 '', temp5 '', temp6 '', temp7 '', temp8 '', "
-                                + "temp9 '', temp10 '', temp11 '', temp12 '' from temporary1", dialog_simpan) == true) {
+                                + "temp9 '', temp10 '', temp11 '', temp12 '', temp13 '', temp14 '' from temporary1", dialog_simpan) == true) {
                             JOptionPane.showMessageDialog(null, "Data transaksi panjar berhasil diexport menjadi file excel,..!!!");
                         } else {
                             JOptionPane.showMessageDialog(null, "Data transaksi panjar gagal diexport menjadi file excel,..!!!");
@@ -3011,11 +3011,13 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                             || judulnya.equals("LAPORAN PENERIMAAN PEMBAYARAN PANJAR SEMUA CARA BAYAR (" + cmbStatus1.getSelectedItem().toString().toUpperCase() + ")")) {
                         Sequel.menyimpan("temporary1", "'"
                                 + x + ".','"
-                                + rs4.getString("no_panjar") + "\n" + rs4.getString("tglpanjar") + " - " + rs4.getString("jam") + " Wita','"
+                                + rs4.getString("no_panjar") + "','"
                                 + rs4.getString("no_rawat") + "','"
                                 + rs4.getString("png_jawab") + "','"
                                 + rs4.getString("no_rkm_medis") + " - " + rs4.getString("nm_pasien").replaceAll("'", "") + "','"
                                 + rs4.getString("ruang_rawat") + "','"
+                                + rs4.getString("tglpanjar") + "','"
+                                + rs4.getString("jam") + " Wita','"
                                 + rs4.getString("status_panjar") + "','"
                                 + rs4.getString("nominal_panjar") + "','"
                                 + rs4.getString("nominal_balik") + "','"
@@ -3023,7 +3025,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                                 + rs4.getString("petugas2").replaceAll("'", "") + "','"
                                 + rs4.getString("byReal") + "','"
                                 + rs4.getString("bySelisih") + "','"
-                                + rs4.getString("total_bayar") + "','','','','','','','','','','','','','','','','','','','','','','',''", "Data Transaksi Panjar");
+                                + rs4.getString("total_bayar") + "','','','','','','','','','','','','','','','','','','','','',''", "Data Transaksi Panjar");
 
                     } else if (judulnya.equals("LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + nmpnj.getText() + ")")
                             || judulnya.equals("LAPORAN PENERIMAAN PEMBAYARAN PANJAR (" + cmbStatus1.getSelectedItem().toString().toUpperCase() + " - " + nmpnj.getText() + ")")) {
@@ -3035,17 +3037,19 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
 
                         Sequel.menyimpan("temporary1", "'"
                                 + x + ".','"
-                                + rs4.getString("no_panjar") + "\n" + rs4.getString("tglpanjar") + " - " + rs4.getString("jam") + " Wita','"
+                                + rs4.getString("no_panjar") + "','"
                                 + rs4.getString("no_rawat") + "','"
                                 + rs4.getString("no_rkm_medis") + " - " + rs4.getString("nm_pasien").replaceAll("'", "") + "','"
                                 + rs4.getString("ruang_rawat") + "','"
+                                + rs4.getString("tglpanjar") + "','"
+                                + rs4.getString("jam") + " Wita','"
                                 + rs4.getString("status_panjar") + "','"
                                 + rs4.getString("nominal_panjar") + "','"
                                 + rs4.getString("nominal_balik") + "','"
                                 + rs4.getString("petugas1").replaceAll("'", "") + "','"
                                 + rs4.getString("petugas2").replaceAll("'", "") + "','"
                                 + nominalCabar + "','"
-                                + rs4.getString("total_bayar") + "','','','','','','','','','','','','','','','','','','','','','','','','',''", "Data Transaksi Panjar");
+                                + rs4.getString("total_bayar") + "','','','','','','','','','','','','','','','','','','','','','','',''", "Data Transaksi Panjar");
                     }
                     x++;
                 }

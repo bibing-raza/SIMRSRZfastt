@@ -5560,7 +5560,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     if (Tdpjp.getText().equals("") || Tdpjp.getText().equals("-") || Tdpjp.getText().equals("--")) {
                         JOptionPane.showMessageDialog(rootPane, "Maaf, nama DPJP belum terisi,..");
                     } else {
-                        if (Sequel.cariInteger("select count(-1) from kamar_inap where no_rawat='" + TNoRW.getText() + "' and stts_pulang not in ('-','Pindah Kamar')") > 0) {
+//                        if (Sequel.cariInteger("select count(-1) from kamar_inap where no_rawat='" + TNoRW.getText() + "' and stts_pulang not in ('-','Pindah Kamar')") > 0) {
                             tgl = Sequel.cariIsi("select date_format(tgl_keluar,'%d/%m/%Y') from kamar_inap where "
                                     + "no_rawat='" + TNoRW.getText() + "' and stts_pulang not in ('-','Pindah Kamar') order by tgl_masuk desc, jam_masuk desc limit 1");
                             jam = Sequel.cariIsi("select jam_keluar from kamar_inap where "
@@ -5607,10 +5607,10 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                             Valid.MyReport("rptRingkasanPulangRanapQr.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
                                     "select date(now())", param);
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
-                        } else {
-                            Valid.MyReport("rptRingkasanPulangRanap.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
-                                    "select date(now())", param);
-                        }
+//                        } else {
+//                            Valid.MyReport("rptRingkasanPulangRanap.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
+//                                    "select date(now())", param);
+//                        }
                     }
                 } else {
                     Valid.MyReport("rptRingkasanPulangRanap.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
@@ -5622,7 +5622,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     if (Tdpjp.getText().equals("") || Tdpjp.getText().equals("-") || Tdpjp.getText().equals("--")) {
                         JOptionPane.showMessageDialog(rootPane, "Maaf, nama DPJP belum terisi,..");
                     } else {
-                        if (Sequel.cariInteger("select count(-1) from kamar_inap where no_rawat='" + TNoRW.getText() + "' and stts_pulang not in ('-','Pindah Kamar')") > 0) {
+//                        if (Sequel.cariInteger("select count(-1) from kamar_inap where no_rawat='" + TNoRW.getText() + "' and stts_pulang not in ('-','Pindah Kamar')") > 0) {
                             tgl = Sequel.cariIsi("select date_format(tgl_keluar,'%d/%m/%Y') from kamar_inap where "
                                     + "no_rawat='" + TNoRW.getText() + "' and stts_pulang not in ('-','Pindah Kamar') order by tgl_masuk desc, jam_masuk desc limit 1");
                             jam = Sequel.cariIsi("select jam_keluar from kamar_inap where "
@@ -5669,10 +5669,10 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                             Valid.MyReport("rptRingkasanPulangRanapQr.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
                                     "select date(now())", param);
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
-                        } else {
-                            Valid.MyReport("rptRingkasanPulangRanap.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
-                                    "select date(now())", param);
-                        }
+//                        } else {
+//                            Valid.MyReport("rptRingkasanPulangRanap.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
+//                                    "select date(now())", param);
+//                        }
                     }
                 } else {
                     Valid.MyReport("rptRingkasanPulangRanap.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
