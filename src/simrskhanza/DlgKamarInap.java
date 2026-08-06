@@ -680,42 +680,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
             }
         });
 
-        kamar.bangsal.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DlgKamarInap")) {
-                    if (kamar.bangsal.getTable().getSelectedRow() != -1) {
-                        BangsalCari.setText(kamar.bangsal.getTable().getValueAt(kamar.bangsal.getTable().getSelectedRow(), 1).toString());
-                    }
-                    BangsalCari.requestFocus();
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-
         try {
             if (diagnosa_akhir.equals("Yes")) {
                 diagnosaakhir.setEditable(true);
@@ -1202,9 +1166,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
         tbKamIn = new widget.Table();
         PanelCariUtama = new javax.swing.JPanel();
         panelGlass10 = new widget.panelisi();
-        jLabel21 = new widget.Label();
-        BangsalCari = new widget.TextBox();
-        btnBangsalCari = new widget.Button();
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
         jLabel7 = new widget.Label();
@@ -1299,7 +1260,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         btnKamar.setForeground(new java.awt.Color(0, 0, 0));
         btnKamar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnKamar.setMnemonic('2');
         btnKamar.setToolTipText("Alt+2");
         btnKamar.setName("btnKamar"); // NOI18N
         btnKamar.addActionListener(new java.awt.event.ActionListener() {
@@ -1421,7 +1381,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         btnDiagnosa.setForeground(new java.awt.Color(0, 0, 0));
         btnDiagnosa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnDiagnosa.setMnemonic('3');
         btnDiagnosa.setToolTipText("Alt+3");
         btnDiagnosa.setName("btnDiagnosa"); // NOI18N
         btnDiagnosa.addActionListener(new java.awt.event.ActionListener() {
@@ -1602,7 +1561,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         TglMati.setEditable(false);
         TglMati.setForeground(new java.awt.Color(0, 51, 204));
-        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         TglMati.setDisplayFormat("dd-MM-yyyy");
         TglMati.setName("TglMati"); // NOI18N
         TglMati.setOpaque(false);
@@ -1672,7 +1631,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
         Tdokter.setBounds(146, 310, 480, 23);
 
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDokter.setMnemonic('2');
         BtnDokter.setToolTipText("Alt+2");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1724,7 +1682,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -1742,7 +1699,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Batal");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -1761,7 +1717,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn.setMnemonic('U');
         BtnCloseIn.setText("Tutup");
         BtnCloseIn.setToolTipText("Alt+U");
         BtnCloseIn.setName("BtnCloseIn"); // NOI18N
@@ -4363,7 +4318,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         btnKamar2.setForeground(new java.awt.Color(0, 0, 0));
         btnKamar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnKamar2.setMnemonic('2');
         btnKamar2.setToolTipText("Alt+2");
         btnKamar2.setName("btnKamar2"); // NOI18N
         btnKamar2.addActionListener(new java.awt.event.ActionListener() {
@@ -4557,7 +4511,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnSimpanpindah.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpanpindah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpanpindah.setMnemonic('S');
         BtnSimpanpindah.setText("Simpan");
         BtnSimpanpindah.setToolTipText("Alt+S");
         BtnSimpanpindah.setName("BtnSimpanpindah"); // NOI18N
@@ -4575,7 +4528,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseInpindah.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseInpindah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseInpindah.setMnemonic('U');
         BtnCloseInpindah.setText("Tutup");
         BtnCloseInpindah.setToolTipText("Alt+U");
         BtnCloseInpindah.setName("BtnCloseInpindah"); // NOI18N
@@ -4608,7 +4560,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn4.setMnemonic('U');
         BtnCloseIn4.setText("Tutup");
         BtnCloseIn4.setToolTipText("Alt+U");
         BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
@@ -4622,7 +4573,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnSimpan4.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan4.setMnemonic('S');
         BtnSimpan4.setText("Simpan");
         BtnSimpan4.setToolTipText("Alt+S");
         BtnSimpan4.setName("BtnSimpan4"); // NOI18N
@@ -4660,7 +4610,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         btnBayar.setForeground(new java.awt.Color(0, 0, 0));
         btnBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnBayar.setMnemonic('7');
         btnBayar.setToolTipText("ALt+7");
         btnBayar.setName("btnBayar"); // NOI18N
         btnBayar.addActionListener(new java.awt.event.ActionListener() {
@@ -4685,7 +4634,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -4704,7 +4652,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan1.setMnemonic('S');
         BtnSimpan1.setText("Simpan");
         BtnSimpan1.setToolTipText("Alt+S");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
@@ -4744,7 +4691,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame7.add(jLabel37);
         jLabel37.setBounds(0, 20, 110, 23);
 
-        Tglsurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        Tglsurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         Tglsurat.setDisplayFormat("dd-MM-yyyy");
         Tglsurat.setName("Tglsurat"); // NOI18N
         Tglsurat.setOpaque(false);
@@ -4763,7 +4710,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnGantijkd.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantijkd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGantijkd.setMnemonic('G');
         BtnGantijkd.setText("Ganti");
         BtnGantijkd.setToolTipText("Alt+G");
         BtnGantijkd.setName("BtnGantijkd"); // NOI18N
@@ -4782,7 +4728,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCtkJkd.setForeground(new java.awt.Color(0, 0, 0));
         BtnCtkJkd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnCtkJkd.setMnemonic('C');
         BtnCtkJkd.setText("Cetak SEP");
         BtnCtkJkd.setToolTipText("Alt+C");
         BtnCtkJkd.setName("BtnCtkJkd"); // NOI18N
@@ -4813,7 +4758,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn13.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn13.setMnemonic('U');
         BtnCloseIn13.setText("Tutup");
         BtnCloseIn13.setToolTipText("Alt+U");
         BtnCloseIn13.setName("BtnCloseIn13"); // NOI18N
@@ -4832,7 +4776,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnSimpan3.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan3.setMnemonic('S');
         BtnSimpan3.setText("Simpan");
         BtnSimpan3.setToolTipText("Alt+S");
         BtnSimpan3.setName("BtnSimpan3"); // NOI18N
@@ -4872,7 +4815,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame18.add(jLabel105);
         jLabel105.setBounds(0, 20, 110, 23);
 
-        Tglsurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        Tglsurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         Tglsurat1.setDisplayFormat("dd-MM-yyyy");
         Tglsurat1.setName("Tglsurat1"); // NOI18N
         Tglsurat1.setOpaque(false);
@@ -4891,7 +4834,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnGantijmp.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantijmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGantijmp.setMnemonic('G');
         BtnGantijmp.setText("Ganti");
         BtnGantijmp.setToolTipText("Alt+G");
         BtnGantijmp.setName("BtnGantijmp"); // NOI18N
@@ -4910,7 +4852,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCtkJmp.setForeground(new java.awt.Color(0, 0, 0));
         BtnCtkJmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnCtkJmp.setMnemonic('C');
         BtnCtkJmp.setText("Cetak SEP");
         BtnCtkJmp.setToolTipText("Alt+C");
         BtnCtkJmp.setName("BtnCtkJmp"); // NOI18N
@@ -4941,7 +4882,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn2.setMnemonic('U');
         BtnCloseIn2.setText("Tutup");
         BtnCloseIn2.setToolTipText("Alt+U");
         BtnCloseIn2.setName("BtnCloseIn2"); // NOI18N
@@ -4975,7 +4915,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame8.add(jLabel43);
         jLabel43.setBounds(10, 20, 120, 23);
 
-        TglMati1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        TglMati1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         TglMati1.setDisplayFormat("dd-MM-yyyy");
         TglMati1.setName("TglMati1"); // NOI18N
         TglMati1.setOpaque(false);
@@ -4994,7 +4934,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnGantiMati.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiMati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGantiMati.setMnemonic('G');
         BtnGantiMati.setText("Ganti");
         BtnGantiMati.setToolTipText("Alt+G");
         BtnGantiMati.setName("BtnGantiMati"); // NOI18N
@@ -5052,7 +4991,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnHapusMati.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusMati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapusMati.setMnemonic('H');
         BtnHapusMati.setText("Hapus");
         BtnHapusMati.setToolTipText("Alt+H");
         BtnHapusMati.setName("BtnHapusMati"); // NOI18N
@@ -5089,7 +5027,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn3.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn3.setMnemonic('U');
         BtnCloseIn3.setText("Tutup");
         BtnCloseIn3.setToolTipText("Alt+U");
         BtnCloseIn3.setName("BtnCloseIn3"); // NOI18N
@@ -5164,7 +5101,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnPrint2.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint2.setMnemonic('T');
         BtnPrint2.setText("Print SEP");
         BtnPrint2.setToolTipText("Alt+T");
         BtnPrint2.setName("BtnPrint2"); // NOI18N
@@ -5196,7 +5132,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn9.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn9.setMnemonic('U');
         BtnCloseIn9.setText("Tutup");
         BtnCloseIn9.setToolTipText("Alt+U");
         BtnCloseIn9.setName("BtnCloseIn9"); // NOI18N
@@ -5210,7 +5145,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnSimpan8.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan8.setMnemonic('S');
         BtnSimpan8.setText("Simpan");
         BtnSimpan8.setToolTipText("Alt+S");
         BtnSimpan8.setName("BtnSimpan8"); // NOI18N
@@ -5259,7 +5193,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn11.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn11.setMnemonic('U');
         BtnCloseIn11.setText("Tutup");
         BtnCloseIn11.setToolTipText("Alt+U");
         BtnCloseIn11.setName("BtnCloseIn11"); // NOI18N
@@ -5273,7 +5206,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnSimpan9.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan9.setMnemonic('S');
         BtnSimpan9.setText("Simpan");
         BtnSimpan9.setToolTipText("Alt+S");
         BtnSimpan9.setName("BtnSimpan9"); // NOI18N
@@ -5337,7 +5269,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCari5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari5.setMnemonic('7');
         BtnCari5.setText("Tampilkan Data");
         BtnCari5.setToolTipText("Alt+7");
         BtnCari5.setName("BtnCari5"); // NOI18N
@@ -5369,7 +5300,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnBatal2.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal2.setMnemonic('B');
         BtnBatal2.setText("Baru");
         BtnBatal2.setToolTipText("Alt+B");
         BtnBatal2.setName("BtnBatal2"); // NOI18N
@@ -5389,7 +5319,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnEdit3.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit3.setMnemonic('G');
         BtnEdit3.setText("Ganti");
         BtnEdit3.setToolTipText("Alt+G");
         BtnEdit3.setName("BtnEdit3"); // NOI18N
@@ -5409,7 +5338,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnPrint1.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint1.setMnemonic('T');
         BtnPrint1.setText("Cetak");
         BtnPrint1.setToolTipText("Alt+T");
         BtnPrint1.setName("BtnPrint1"); // NOI18N
@@ -5458,7 +5386,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn12.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn12.setMnemonic('U');
         BtnCloseIn12.setText("Tutup");
         BtnCloseIn12.setToolTipText("Alt+U");
         BtnCloseIn12.setName("BtnCloseIn12"); // NOI18N
@@ -5472,7 +5399,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnSimpan10.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan10.setMnemonic('S');
         BtnSimpan10.setText("Simpan");
         BtnSimpan10.setToolTipText("Alt+S");
         BtnSimpan10.setName("BtnSimpan10"); // NOI18N
@@ -5535,7 +5461,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn5.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn5.setMnemonic('U');
         BtnCloseIn5.setText("Tutup");
         BtnCloseIn5.setToolTipText("Alt+U");
         BtnCloseIn5.setName("BtnCloseIn5"); // NOI18N
@@ -5553,7 +5478,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame11.add(jLabel51);
         jLabel51.setBounds(0, 25, 130, 23);
 
-        TglRegRalan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        TglRegRalan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         TglRegRalan.setDisplayFormat("dd-MM-yyyy");
         TglRegRalan.setName("TglRegRalan"); // NOI18N
         TglRegRalan.setOpaque(false);
@@ -5572,7 +5497,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnGantiTgl.setForeground(new java.awt.Color(0, 0, 0));
         BtnGantiTgl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGantiTgl.setMnemonic('G');
         BtnGantiTgl.setText("Ganti");
         BtnGantiTgl.setToolTipText("Alt+G");
         BtnGantiTgl.setName("BtnGantiTgl"); // NOI18N
@@ -5669,7 +5593,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn7.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn7.setMnemonic('U');
         BtnCloseIn7.setText("Tutup");
         BtnCloseIn7.setToolTipText("Alt+U");
         BtnCloseIn7.setName("BtnCloseIn7"); // NOI18N
@@ -5683,7 +5606,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnSimpan5.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan5.setMnemonic('S');
         BtnSimpan5.setText("Simpan");
         BtnSimpan5.setToolTipText("Alt+S");
         BtnSimpan5.setName("BtnSimpan5"); // NOI18N
@@ -5783,7 +5705,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         cmbSift.setBounds(287, 10, 65, 23);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -5799,7 +5721,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel49.setBounds(288, 38, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -5845,7 +5767,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnBaca.setForeground(new java.awt.Color(0, 0, 0));
         BtnBaca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search.png"))); // NOI18N
-        BtnBaca.setMnemonic('U');
         BtnBaca.setText("Baca CPPT");
         BtnBaca.setToolTipText("Alt+U");
         BtnBaca.setName("BtnBaca"); // NOI18N
@@ -5859,7 +5780,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn6.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn6.setMnemonic('U');
         BtnCloseIn6.setText("Tutup");
         BtnCloseIn6.setToolTipText("Alt+U");
         BtnCloseIn6.setName("BtnCloseIn6"); // NOI18N
@@ -5890,7 +5810,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         panelisi10.setLayout(null);
 
         TtglCetak1.setEditable(false);
-        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         TtglCetak1.setDisplayFormat("dd-MM-yyyy");
         TtglCetak1.setName("TtglCetak1"); // NOI18N
         TtglCetak1.setOpaque(false);
@@ -5900,7 +5820,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnPrint3.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        BtnPrint3.setMnemonic('T');
         BtnPrint3.setText("Cetak");
         BtnPrint3.setToolTipText("Alt+T");
         BtnPrint3.setName("BtnPrint3"); // NOI18N
@@ -5920,7 +5839,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn15.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn15.setMnemonic('U');
         BtnCloseIn15.setText("Tutup");
         BtnCloseIn15.setToolTipText("Alt+U");
         BtnCloseIn15.setName("BtnCloseIn15"); // NOI18N
@@ -5976,7 +5894,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel58.setBounds(211, 8, 25, 23);
 
         TtglCetak2.setEditable(false);
-        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         TtglCetak2.setDisplayFormat("dd-MM-yyyy");
         TtglCetak2.setName("TtglCetak2"); // NOI18N
         TtglCetak2.setOpaque(false);
@@ -6031,7 +5949,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCetak.setForeground(new java.awt.Color(0, 0, 0));
         BtnCetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        BtnCetak.setMnemonic('C');
         BtnCetak.setText("Cetak");
         BtnCetak.setToolTipText("Alt+C");
         BtnCetak.setName("BtnCetak"); // NOI18N
@@ -6045,7 +5962,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCloseIn16.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn16.setMnemonic('U');
         BtnCloseIn16.setText("Tutup");
         BtnCloseIn16.setToolTipText("Alt+U");
         BtnCloseIn16.setName("BtnCloseIn16"); // NOI18N
@@ -6237,7 +6153,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         statusSEP.setPreferredSize(new java.awt.Dimension(207, 23));
 
         tglMasukInap.setEditable(false);
-        tglMasukInap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        tglMasukInap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         tglMasukInap.setDisplayFormat("dd-MM-yyyy");
         tglMasukInap.setName("tglMasukInap"); // NOI18N
         tglMasukInap.setOpaque(false);
@@ -6266,7 +6182,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         Scroll9.setViewportView(tbFaktorDecu);
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -6346,40 +6262,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
         panelGlass10.setPreferredSize(new java.awt.Dimension(55, 48));
         panelGlass10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel21.setText("Kamar :");
-        jLabel21.setName("jLabel21"); // NOI18N
-        jLabel21.setPreferredSize(new java.awt.Dimension(50, 23));
-        panelGlass10.add(jLabel21);
-
-        BangsalCari.setForeground(new java.awt.Color(0, 0, 0));
-        BangsalCari.setName("BangsalCari"); // NOI18N
-        BangsalCari.setPreferredSize(new java.awt.Dimension(140, 23));
-        BangsalCari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BangsalCariKeyPressed(evt);
-            }
-        });
-        panelGlass10.add(BangsalCari);
-
-        btnBangsalCari.setForeground(new java.awt.Color(0, 0, 0));
-        btnBangsalCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        btnBangsalCari.setMnemonic('3');
-        btnBangsalCari.setToolTipText("Alt+3");
-        btnBangsalCari.setName("btnBangsalCari"); // NOI18N
-        btnBangsalCari.setPreferredSize(new java.awt.Dimension(28, 23));
-        btnBangsalCari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBangsalCariActionPerformed(evt);
-            }
-        });
-        btnBangsalCari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnBangsalCariKeyPressed(evt);
-            }
-        });
-        panelGlass10.add(btnBangsalCari);
-
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Key Word :");
         jLabel6.setName("jLabel6"); // NOI18N
@@ -6414,7 +6296,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('4');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+4");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -6433,7 +6314,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnIn.setForeground(new java.awt.Color(0, 0, 0));
         BtnIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Agenda-1-16x16.png"))); // NOI18N
-        BtnIn.setMnemonic('M');
         BtnIn.setText("Masuk");
         BtnIn.setToolTipText("Alt+M");
         BtnIn.setName("BtnIn"); // NOI18N
@@ -6452,7 +6332,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnOut.setForeground(new java.awt.Color(0, 0, 0));
         BtnOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/add-file-16x16.png"))); // NOI18N
-        BtnOut.setMnemonic('U');
         BtnOut.setText("Pulang");
         BtnOut.setToolTipText("Alt+U");
         BtnOut.setName("BtnOut"); // NOI18N
@@ -6471,7 +6350,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         btnPindah.setForeground(new java.awt.Color(0, 0, 0));
         btnPindah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        btnPindah.setMnemonic('P');
         btnPindah.setText("Pindah");
         btnPindah.setToolTipText("Alt+P");
         btnPindah.setName("btnPindah"); // NOI18N
@@ -6490,7 +6368,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -6509,7 +6386,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -6528,7 +6404,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BtnRME.setForeground(new java.awt.Color(0, 0, 0));
         BtnRME.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Prescription.png"))); // NOI18N
-        BtnRME.setMnemonic('R');
         BtnRME.setText("e-Rekam Medis");
         BtnRME.setToolTipText("Alt+R");
         BtnRME.setGlassColor(new java.awt.Color(255, 204, 0));
@@ -6568,7 +6443,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass11.add(R2);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -6592,7 +6467,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass11.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6619,7 +6494,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         R3.setPreferredSize(new java.awt.Dimension(75, 23));
         panelGlass11.add(R3);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -6643,7 +6518,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass11.add(jLabel25);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-05-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-07-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -6979,7 +6854,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
         TCari.setText("");
-        BangsalCari.setText("");
         tampilkanData();
         emptTeks();
 }//GEN-LAST:event_BtnAllActionPerformed
@@ -7511,31 +7385,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
             }
         }
 }//GEN-LAST:event_tbKamInKeyPressed
-
-private void btnBangsalCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBangsalCariActionPerformed
-    akses.setform("DlgKamarInap");
-    kamar.bangsal.isCek();
-    kamar.bangsal.emptTeks();
-    kamar.bangsal.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-    kamar.bangsal.setLocationRelativeTo(internalFrame1);
-    kamar.bangsal.setVisible(true);
-}//GEN-LAST:event_btnBangsalCariActionPerformed
-
-private void btnBangsalCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBangsalCariKeyPressed
-    Valid.pindah(evt, DTPCari2, TCari);
-}//GEN-LAST:event_btnBangsalCariKeyPressed
-
-private void BangsalCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BangsalCariKeyPressed
-    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        tampilkanData();
-    } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-        btnBangsalCariActionPerformed(null);
-    } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
-        DTPCari3.requestFocus();
-    } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
-        TCari.requestFocus();
-    }
-}//GEN-LAST:event_BangsalCariKeyPressed
 
 private void MnRawatInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRawatInapActionPerformed
     cekUsia = 0;
@@ -12827,7 +12676,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private widget.TextBox BangsalCari;
     private widget.Button BtnAll;
     private widget.Button BtnBaca;
     private widget.Button BtnBatal;
@@ -13127,7 +12975,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.TextBox alasanAPS;
     private widget.TextArea anakA;
     private widget.TextArea anakB;
-    private widget.Button btnBangsalCari;
     private widget.Button btnBayar;
     private widget.Button btnDiagnosa;
     private widget.Button btnKamar;
@@ -13205,7 +13052,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Label jLabel18;
     private widget.Label jLabel19;
     private widget.Label jLabel20;
-    private widget.Label jLabel21;
     private widget.Label jLabel22;
     private widget.Label jLabel23;
     private widget.Label jLabel24;
@@ -13327,20 +13173,11 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         //----------------------------------------------------------------------
         
         if (R1.isSelected() == true) {
-            kmr = " a.stts_pulang='-' ";
-            if (!BangsalCari.getText().equals("")) {
-                kmr = " a.stts_pulang='-' and a.nm_bangsal='" + BangsalCari.getText() + "' ";
-            }
+            kmr = " a.stts_pulang='-' ";            
         } else if (R2.isSelected() == true) {
-            kmr = " a.tgl_masuk between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' ";
-            if (!BangsalCari.getText().equals("")) {
-                kmr = " a.tgl_masuk between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and a.nm_bangsal='" + BangsalCari.getText() + "' ";
-            }
+            kmr = " a.tgl_masuk between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' ";            
         } else if (R3.isSelected() == true) {
-            kmr = " a.tgl_keluar between '" + Valid.SetTgl(DTPCari3.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari4.getSelectedItem() + "") + "' ";
-            if (!BangsalCari.getText().equals("")) {
-                kmr = " a.tgl_keluar between '" + Valid.SetTgl(DTPCari3.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari4.getSelectedItem() + "") + "' and a.nm_bangsal='" + BangsalCari.getText() + "' ";
-            }
+            kmr = " a.tgl_keluar between '" + Valid.SetTgl(DTPCari3.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari4.getSelectedItem() + "") + "' ";            
         }
 
         key = kmr + " ";
@@ -13828,21 +13665,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             namakamar = "";
         }
 
-        if (!namakamar.equals("")) {
-            if (akses.getadmin() == true) {
-                BangsalCari.setText("");
-                btnBangsalCari.setEnabled(true);
-                BangsalCari.setEditable(true);
-            } else {
-                BangsalCari.setText(namakamar);
-                btnBangsalCari.setEnabled(false);
-                BangsalCari.setEditable(false);
-            }
-        } else {
-            btnBangsalCari.setEnabled(true);
-            BangsalCari.setEditable(true);
-        }
-        
         if (akses.getadmin() == true) {
             MnAmbilSEPvclaim.setEnabled(true);
             MnHapusSEPdidatabase.setEnabled(true);
@@ -14225,9 +14047,9 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             cmbRuangKhusus3.setVisible(false);
             cmbRuangKhusus4.setVisible(false);
 
-        } else if (!userBerizin.getText().equals("") || !akses.getkode().equals("Admin Utama")) {
-
-            if (userBerizin.getText().equals("PR04")) {
+        } else if (!userBerizin.getText().equals("") || !akses.getadmin() == true) {
+            //perawat & admin ruang as-sami
+            if (userBerizin.getText().equals("PR04") || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen='D031'") > 0) {
                 cmbRuangKhusus1.setVisible(true);
                 cmbRuangKhusus1.setSelectedIndex(0);
                 cmbRuangan.setVisible(false);
@@ -14235,8 +14057,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 cmbRuangKhusus3.setVisible(false);
                 cmbRuangKhusus4.setVisible(false);
                 kdAkses.setText("");
-
-            } else if (userBerizin.getText().equals("PR06")) {
+            //perawat & admin ruang ar-razaq rkpd
+            } else if (userBerizin.getText().equals("PR06") || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen='D032'") > 0) {
                 cmbRuangKhusus2.setVisible(true);
                 cmbRuangKhusus2.setSelectedIndex(0);
                 cmbRuangan.setVisible(false);
@@ -14244,8 +14066,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 cmbRuangKhusus3.setVisible(false);
                 cmbRuangKhusus4.setVisible(false);
                 kdAkses.setText("");
-
-            } else if (userBerizin.getText().equals("PR10")) {
+            //perawat & admin ruang perinatologi
+            } else if (userBerizin.getText().equals("PR10") || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen='D073'") > 0) {
                 cmbRuangKhusus3.setVisible(true);
                 cmbRuangKhusus3.setSelectedIndex(0);
                 cmbRuangan.setVisible(false);
@@ -14253,8 +14075,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 cmbRuangKhusus2.setVisible(false);
                 cmbRuangKhusus4.setVisible(false);
                 kdAkses.setText("");
-
-            } else if (userBerizin.getText().equals("PR07")) {
+            //perawat & admin ruang ar-raudah
+            } else if (userBerizin.getText().equals("PR07") || Sequel.cariInteger("select count(-1) from pegawai where nik='" + akses.getkode() + "' and departemen='D074'") > 0) {
                 cmbRuangKhusus4.setVisible(true);
                 cmbRuangKhusus4.setSelectedIndex(0);
                 cmbRuangan.setVisible(false);
@@ -14262,7 +14084,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 cmbRuangKhusus2.setVisible(false);
                 cmbRuangKhusus3.setVisible(false);
                 kdAkses.setText("");
-
             } else {
                 cmbRuangan.setEnabled(false);
                 cmbRuangan.setVisible(true);
@@ -14354,20 +14175,11 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         //----------------------------------------------------------------------
         
         if (R1.isSelected() == true) {
-            kmr = " a.stts_pulang='-' ";
-            if (!BangsalCari.getText().equals("")) {
-                kmr = " a.stts_pulang='-' and a.nm_bangsal='" + BangsalCari.getText() + "' ";
-            }
+            kmr = " a.stts_pulang='-' ";            
         } else if (R2.isSelected() == true) {
-            kmr = " a.tgl_masuk between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' ";
-            if (!BangsalCari.getText().equals("")) {
-                kmr = " a.tgl_masuk between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and a.nm_bangsal='" + BangsalCari.getText() + "' ";
-            }
+            kmr = " a.tgl_masuk between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' ";            
         } else if (R3.isSelected() == true) {
-            kmr = " a.tgl_keluar between '" + Valid.SetTgl(DTPCari3.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari4.getSelectedItem() + "") + "' ";
-            if (!BangsalCari.getText().equals("")) {
-                kmr = " a.tgl_keluar between '" + Valid.SetTgl(DTPCari3.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari4.getSelectedItem() + "") + "' and a.nm_bangsal='" + BangsalCari.getText() + "' ";
-            }
+            kmr = " a.tgl_keluar between '" + Valid.SetTgl(DTPCari3.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari4.getSelectedItem() + "") + "' ";            
         }
 
         /*

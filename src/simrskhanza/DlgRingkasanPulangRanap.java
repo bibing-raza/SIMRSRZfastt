@@ -471,9 +471,9 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         }
         tbCPPT.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabModeLis = new DefaultTableModel(null, new Object[]{
+        tabModeLis = new DefaultTableModel(null, new String[]{
             "Pasien", "No. LIS", "Keterangan Hasil Lab.", "cekok", "norawat", "Tgl. Periksa",
-            "Jam Periksa", "Dokter Pengirim", "Jns. Rawat"}) {
+            "Jam Periksa", "Dokter Pengirim", "Jns. Rawat", "dokter_lab", "no_ijn_praktek"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -484,7 +484,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         tbLIS.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbLIS.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 11; i++) {
             TableColumn column = tbLIS.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(250);
@@ -506,6 +506,12 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 column.setPreferredWidth(260);
             } else if (i == 8) {
                 column.setPreferredWidth(80);
+            } else if (i == 9) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 10) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbLIS.setDefaultRenderer(Object.class, new WarnaTable());
@@ -972,6 +978,21 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         
+        LoadHTML5.setEditable(true);
+        LoadHTML5.setEditorKit(kit);
+        LoadHTML5.setDocument(doc);
+        LoadHTML5.setEditable(false);
+        LoadHTML5.addHyperlinkListener(e -> {
+            if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.browse(e.getURL().toURI());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
         } catch (Exception e) {
@@ -1302,11 +1323,14 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel67 = new widget.Label();
         cmbHlm = new widget.ComboBox();
         BtnCari4 = new widget.Button();
+        TabLab = new javax.swing.JTabbedPane();
         panelGlass15 = new widget.panelisi();
         Scroll1 = new widget.ScrollPane();
         tbHasil = new widget.Table();
         Scroll13 = new widget.ScrollPane();
         tbHasilCopy = new widget.Table();
+        Scroll35 = new widget.ScrollPane();
+        LoadHTML5 = new widget.editorpane();
         panelGlass16 = new widget.panelisi();
         BtnConteng = new widget.Button();
         BtnHapus2 = new widget.Button();
@@ -2342,7 +2366,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel101.setPreferredSize(new java.awt.Dimension(90, 23));
         internalFrame17.add(jLabel101);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2356,7 +2380,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel102.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel102);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3179,7 +3203,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2026" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -4118,11 +4142,20 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
         internalFrame29.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
+        TabLab.setBackground(new java.awt.Color(254, 255, 254));
+        TabLab.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TabLab.setName("TabLab"); // NOI18N
+        TabLab.setPreferredSize(new java.awt.Dimension(0, 2000));
+        TabLab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabLabMouseClicked(evt);
+            }
+        });
+
         panelGlass15.setName("panelGlass15"); // NOI18N
         panelGlass15.setPreferredSize(new java.awt.Dimension(55, 55));
         panelGlass15.setLayout(new java.awt.GridLayout(1, 2));
 
-        Scroll1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Hasil Pemeriksaan Laboratorium :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
 
@@ -4150,7 +4183,19 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
         panelGlass15.add(Scroll13);
 
-        internalFrame29.add(panelGlass15, java.awt.BorderLayout.CENTER);
+        TabLab.addTab("Hasil Pemeriksaan Laboratorium", panelGlass15);
+
+        Scroll35.setName("Scroll35"); // NOI18N
+        Scroll35.setOpaque(true);
+
+        LoadHTML5.setBorder(null);
+        LoadHTML5.setForeground(new java.awt.Color(0, 0, 0));
+        LoadHTML5.setName("LoadHTML5"); // NOI18N
+        Scroll35.setViewportView(LoadHTML5);
+
+        TabLab.addTab("Pemeriksaan Morfologi Darah Tepi (MDT)", Scroll35);
+
+        internalFrame29.add(TabLab, java.awt.BorderLayout.CENTER);
 
         panelGlass16.setName("panelGlass16"); // NOI18N
         panelGlass16.setPreferredSize(new java.awt.Dimension(55, 47));
@@ -4645,7 +4690,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         });
         panelGlass26.add(ChkTanggal);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2026" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -4659,7 +4704,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel74.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass26.add(jLabel74);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-07-2026" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2026" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -5078,6 +5123,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             WindowPasien.dispose();
             WindowDokterPenyimpan.dispose();
             WindowRehabMedik.dispose();
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
         }
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
@@ -5158,14 +5204,23 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             isMenu();
         } else if (TabRingkasan.getSelectedIndex() == 2) {
             if (!TNoRW.getText().equals("")) {
+                Valid.tabelKosong(tabModeHasilLab);
+                Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 TCari3.setText("");
+                LoadHTML5.setText("");
+                TabLab.setSelectedIndex(0);
+                tombolLabPK();
                 tampilLIS();
             } else {
                 Valid.tabelKosong(tabModeLis);
                 Valid.tabelKosong(tabModeHasilLab);
                 Valid.tabelKosong(tabModeHasilCopy);                
                 if (tbRingkasan.getSelectedRow() > -1) {
+                    Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                     TCari3.setText("");
+                    LoadHTML5.setText("");
+                    TabLab.setSelectedIndex(0);
+                    tombolLabPK();
                     tampilLIS();
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Silahkan pilih datanya terlebih dahulu pada tabel..!!");
@@ -6411,6 +6466,9 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
     private void BtnCari4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari4ActionPerformed
         Valid.tabelKosong(tabModeHasilLab);
+        LoadHTML5.setText("");
+        TabLab.setSelectedIndex(0);
+        tombolLabPK();
         tampilLIS();
     }//GEN-LAST:event_BtnCari4ActionPerformed
 
@@ -7106,6 +7164,31 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         WindowNomorDokumenRM.dispose();
     }//GEN-LAST:event_BtnCloseIn3ActionPerformed
 
+    private void TabLabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabLabMouseClicked
+        if (TabLab.getSelectedIndex() == 0) {
+            getDataLis();
+            tombolLabPK();
+        } else if (TabLab.getSelectedIndex() == 1) {
+            if (tbHasil.getSelectedRow() != -1) {
+                if (tbHasil.getValueAt(tbHasil.getSelectedRow(), 1).toString().contains("Morfologi Darah Tepi")) {
+                    tampilMDT(tbLIS.getValueAt(tbLIS.getSelectedRow(), 4).toString(), noLIS,
+                            tbLIS.getValueAt(tbLIS.getSelectedRow(), 9).toString(),
+                            tbLIS.getValueAt(tbLIS.getSelectedRow(), 10).toString());
+                    tombolLabPK();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, pemeriksaan lab. yang dipilih bukan Morfologi Darah Tepi...");
+                    LoadHTML5.setText("");
+                    TabLab.setSelectedIndex(0);
+                }
+            } else {
+                LoadHTML5.setText("");
+                JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu jenis pemeriksaan lab. yang Morfologi Darah Tepi...");
+                TabLab.setSelectedIndex(0);
+                getDataLis();
+            }
+        }
+    }//GEN-LAST:event_TabLabMouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -7205,6 +7288,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.editorpane LoadHTML2;
     private widget.editorpane LoadHTML3;
     private widget.editorpane LoadHTML4;
+    private widget.editorpane LoadHTML5;
     private javax.swing.JMenuItem MnAsesmenKebidanan;
     private javax.swing.JMenuItem MnAsesmenKeperawatanIGD;
     private javax.swing.JMenuItem MnAsesmenMedikIGD;
@@ -7256,6 +7340,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.ScrollPane Scroll32;
     private widget.ScrollPane Scroll33;
     private widget.ScrollPane Scroll34;
+    private widget.ScrollPane Scroll35;
     private widget.ScrollPane Scroll5;
     private widget.ScrollPane Scroll6;
     private widget.ScrollPane Scroll8;
@@ -7304,6 +7389,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.TextBox TTglMsk;
     private widget.TextBox TTglPulang;
     private widget.TextArea TTindakan;
+    private javax.swing.JTabbedPane TabLab;
     private javax.swing.JTabbedPane TabPencegahanAnak;
     private javax.swing.JTabbedPane TabPencegahanDewasa;
     private widget.TabPane TabRingkasan;
@@ -10802,10 +10888,11 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             psLab1 = koneksi.prepareStatement("SELECT CONCAT(p.no_rkm_medis,' - ',p.nm_pasien) pasien, lr.no_lab nolis, "
                     + "IF(lh.no_lab IS NULL,'Petugas Lab. belum mengirim hasil','Hasil pemeriksaan Lab. bisa dibaca') hasil_lab, "
                     + "IFNULL(lh.no_lab,'') cekOK, pl.no_rawat, IFNULL(DATE_FORMAT(lh.waktu_reg_lab,'%d-%m-%Y'),DATE_FORMAT(pl.tgl_periksa,'%d-%m-%Y')) tgl, "
-                    + "IFNULL(DATE_FORMAT(lh.waktu_reg_lab,'%H:%i:%s'),DATE_FORMAT(pl.jam,'%H:%i:%s')) jam, "
+                    + "IFNULL(DATE_FORMAT(lh.waktu_reg_lab,'%H:%i:%s'),DATE_FORMAT(pl.jam,'%H:%i:%s')) jam, pg.nama dokterLab, d.no_ijn_praktek, "
                     + "IFNULL(lh.dokter_pengirim,'') dokter_pengirim, if(rp.status_lanjut='Ralan','R. Jalan','R. Inap') stts_lnjut FROM lis_reg lr "
                     + "LEFT JOIN reg_periksa rp ON rp.no_rawat=lr.no_rawat LEFT JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
-                    + "LEFT JOIN periksa_lab pl ON pl.no_rawat=lr.no_rawat LEFT JOIN lis_hasil_data_pasien lh ON lh.no_lab=lr.no_lab WHERE "
+                    + "LEFT JOIN periksa_lab pl ON pl.no_rawat=lr.no_rawat LEFT JOIN lis_hasil_data_pasien lh ON lh.no_lab=lr.no_lab "
+                    + "LEFT JOIN pegawai pg on pg.nik=pl.kd_dokter LEFT JOIN dokter d on d.kd_dokter=pl.kd_dokter WHERE "
                     + "rp.no_rkm_medis like ? and lr.no_lab like ? or "
                     + "rp.no_rkm_medis like ? and IF(lh.no_lab IS NULL,'Petugas Lab. belum mengirim hasil','Hasil Lab. bisa dicetak') like ? or "
                     + "rp.no_rkm_medis like ? and pl.no_rawat like ? or "
@@ -10831,7 +10918,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 psLab1.setString(14, "%" + TCari3.getText().trim() + "%");
                 rsLab1 = psLab1.executeQuery();
                 while (rsLab1.next()) {
-                    tabModeLis.addRow(new Object[]{
+                    tabModeLis.addRow(new String[]{
                         rsLab1.getString("pasien"),
                         rsLab1.getString("nolis"),
                         rsLab1.getString("hasil_lab"),
@@ -10840,7 +10927,9 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                         rsLab1.getString("tgl"),
                         rsLab1.getString("jam"),
                         rsLab1.getString("dokter_pengirim"),
-                        rsLab1.getString("stts_lnjut")
+                        rsLab1.getString("stts_lnjut"),
+                        rsLab1.getString("dokterLab"),
+                        rsLab1.getString("no_ijn_praktek")
                     });
                 }
             } catch (Exception e) {
@@ -10881,6 +10970,9 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             tampilHasil(noLIS);
             tampilPembaca(tbLIS.getValueAt(tbLIS.getSelectedRow(), 4).toString(), noLIS, 
                     Valid.SetTgl(tbLIS.getValueAt(tbLIS.getSelectedRow(), 5).toString() + ""), jamLIS);
+            LoadHTML5.setText("");
+            TabLab.setSelectedIndex(0);
+            tombolLabPK();
         }
     }
     
@@ -17241,5 +17333,123 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Sequel.cariIsiComboDB("select nm_dokumen from master_nomor_dokumen_erm where "
                 + "status='aktif' and unit_pengguna='Ruang Perawatan' and ttd_keluarga_pasien='Ya' order by kode_erm", cmbRekmed);
         Sequel.queryu("DELETE FROM parameter_ttd_rme WHERE DATE(waktu_kirim) < CURDATE()");
+    }
+    
+    private void tampilMDT(String norwt, String nolab, String nmDokter, String noIjin) {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            StringBuilder htmlContent = new StringBuilder();
+            try {
+                rs11 = koneksi.prepareStatement("select p.no_rkm_medis, p.nm_pasien, p.tgl_lahir, concat(rp.umurdaftar,' ',rp.sttsumur,'.') umurPx, "
+                        + "if(p.jk='L','Laki-laki','Perempuan') jenkel, if(rp.status_lanjut='Ralan',pl.nm_poli,b.nm_bangsal) nmUnit, pj.png_jawab, lr.tgl_periksa, "
+                        + "lhpl.nilai_hasil from lis_reg lr inner join reg_periksa rp on rp.no_rawat=lr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli inner join penjab pj on pj.kd_pj=rp.kd_pj "
+                        + "inner join lis_hasil_periksa_lab lhpl on lhpl.no_lab=lr.no_lab left join kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                        + "left join kamar k on k.kd_kamar=ki.kd_kamar left join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                        + "where lr.no_rawat='" + norwt + "' and lhpl.no_lab='" + nolab + "'").executeQuery();
+                if (rs11.next()) {
+                    rs11.beforeFirst();
+                    while (rs11.next()) {
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1' align='left'>No. RM</td>"
+                                + "<td valign='top' colspan='3' align='left'>: " + rs11.getString("no_rkm_medis") + "</td>"
+                                + "<td valign='top' colspan='1' align='left'>Poliklinik/Rg. Rawat</td>"
+                                + "<td valign='top' colspan='3' align='left'>: " + rs11.getString("nmUnit") + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1' align='left'>Nama Pasien</td>"
+                                + "<td valign='top' colspan='3' align='left'>: " + rs11.getString("nm_pasien") + "</td>"
+                                + "<td valign='top' colspan='1' align='left'>Cara Bayar</td>"
+                                + "<td valign='top' colspan='3' align='left'>: " + rs11.getString("png_jawab") + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1' align='left'>Tgl. Lahir/Umur</td>"
+                                + "<td valign='top' colspan='3' align='left'>: " + Valid.SetTglINDONESIA(rs11.getString("tgl_lahir")) + " / " + rs11.getString("umurPx") + "</td>"
+                                + "<td valign='top' colspan='1' align='left'>Tgl. Periksa</td>"
+                                + "<td valign='top' colspan='3' align='left'>: " + Valid.SetTglINDONESIA(rs11.getString("tgl_periksa")) + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='1' align='left'>Jenis Kelamin</td>"
+                                + "<td valign='top' colspan='3' align='left'>: " + rs11.getString("jenkel") + "</td>"
+                                + "<td valign='top' colspan='1' align='left'>No. Rawat / No. LIS</td>"
+                                + "<td valign='top' colspan='3' align='left'>: " + norwt + " - " + nolab + "</td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' colspan='8' align='left'></td>"                                
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' align='center' colspan='8' bgcolor='#f8fdf3'><b>HASIL PEMERIKSAAN MORFOLOGI DARAH TEPI</b></td>"
+                                + "</tr>");
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"                                
+                                + "<td valign='top' colspan='8' align='left'>" + Valid.rapikanHasilLabKeHtml(rs11.getString("nilai_hasil")) + "</td>"
+                                + "</tr>");
+                        
+                        String isi = "";
+                        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='006'"),
+                                        "Hasil Pemeriksaan Lab. (Morfologi Darah Tepi)", nmDokter,
+                                        Sequel.cariIsi("select date_format(now(),'%d/%m/%Y')"),
+                                        Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='006'");
+                        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+                        akses.setCopyData(rs11.getString("nilai_hasil"));
+                        
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='middle' colspan='5' rowspan='5' align='center'><br></td>"
+                                + "<td valign='top' colspan='3' align='center'><br><br>Pemeriksa,<br><img src='file:///" + Sequel.cariFolderTte() + File.separator + "QRTte.jpg" + "' width='150' alt='TTE Dokter Patologi Klinik'><br>"
+                                + nmDokter + "</b><br>SIP : " + noIjin + "</td>"
+                                + "</tr>");                        
+                    }
+                    htmlContent.append(
+                            "</tbody>"
+                            + "</table>");
+                    
+                    htmlContent.append("<tr><td><br></td></tr>");
+                }
+                
+                LoadHTML5.setText(
+                        "<html>"
+                        + "<table width='100%' border='0' align='center' colspan='8' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                        + htmlContent.toString()
+                        + "</table>"
+                        + "</html>");
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs11 != null) {
+                    rs11.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void tombolLabPK() {
+        if (TabLab.getSelectedIndex() == 0) {
+            BtnConteng.setEnabled(true);
+            BtnHapus2.setEnabled(true);
+            BtnCopy.setEnabled(true);
+            BtnUlangiCopyLab.setEnabled(true);
+        } else {
+            BtnConteng.setEnabled(false);
+            BtnHapus2.setEnabled(false);
+            BtnCopy.setEnabled(false);
+            BtnUlangiCopyLab.setEnabled(false);
+        }
     }
 }

@@ -71,7 +71,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
             nolab = "", tglPeriksa = "", jamPeriksa = "", diagnosa_ok = "", tnorwt = "", kdunit = "", kdpenjab = "",
             status_rawat = "", cekbayar = "", drLab = "", noLIS = "", nm_unit = "", Tnip = "", notelpFaskes = "", tte = "",
             dokterBaca = "", user = "", tglperiksaHsl = "", nipperujukHsl = "", kddokter = "", form = "", nipPerujuk = "",
-            cariData = "", cariBayar = "";
+            cariData = "", cariBayar = "", dialog_simpan = "";
     private frmUtama formUtama;
 
     /**
@@ -639,6 +639,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnLapRekapPerPasien = new javax.swing.JMenuItem();
+        MnDownloadDataSampling = new javax.swing.JMenuItem();
         MnCetakNota = new javax.swing.JMenu();
         MnTTDnota = new javax.swing.JMenuItem();
         MnTTEnota = new javax.swing.JMenuItem();
@@ -909,6 +910,18 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnLapRekapPerPasien);
+
+        MnDownloadDataSampling.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDownloadDataSampling.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnDownloadDataSampling.setText("Download Data Pmrk. Sampling Reguler");
+        MnDownloadDataSampling.setName("MnDownloadDataSampling"); // NOI18N
+        MnDownloadDataSampling.setPreferredSize(new java.awt.Dimension(250, 28));
+        MnDownloadDataSampling.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDownloadDataSamplingActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDownloadDataSampling);
 
         MnCetakNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCetakNota.setText("Cetak Nota Lab");
@@ -2110,7 +2123,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         jLabel42.setBounds(605, 122, 70, 23);
 
         TtglHasil.setEditable(false);
-        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2026" }));
+        TtglHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
         TtglHasil.setDisplayFormat("dd-MM-yyyy");
         TtglHasil.setName("TtglHasil"); // NOI18N
         TtglHasil.setOpaque(false);
@@ -3209,7 +3222,7 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi1.add(jLabel25);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2026" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-07-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -6253,6 +6266,54 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
         }
     }//GEN-LAST:event_chkPerujukActionPerformed
 
+    private void MnDownloadDataSamplingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDownloadDataSamplingActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {
+            int jumlahData = 0;
+            String tglAwal = Valid.SetTgl(Tgl1.getSelectedItem() + "");
+            String tglAkhir = Valid.SetTgl(Tgl2.getSelectedItem() + "");
+            
+            jumlahData = Sequel.cariInteger("SELECT EXISTS (SELECT 1 FROM periksa_lab pl "
+                    + "INNER JOIN detail_periksa_lab dpl ON dpl.no_rawat = pl.no_rawat AND dpl.tgl_periksa = pl.tgl_periksa AND dpl.jam = pl.jam "
+                    + "WHERE pl.tgl_periksa between '" + tglAwal + "' AND '" + tglAkhir + "' AND dpl.kd_jenis_prw = 'LABPKK')");
+            
+            if (jumlahData == 0) {
+                JOptionPane.showMessageDialog(null, "Data sampling reguler pada periode tgl. " + Tgl1.getSelectedItem().toString().replaceAll("-", "/")
+                        + " s.d. " + Tgl2.getSelectedItem().toString().replaceAll("-", "/") + " tidak ditemukan.\n"
+                        + "Proses download data dibatalkan.", "Data Tidak Ditemukan", JOptionPane.WARNING_MESSAGE);
+                tampil();
+                return;
+            }
+            
+            dialog_simpan = Valid.openDialog();
+            if (dialog_simpan == null) {
+                return;
+            }
+            
+            Valid.MyReportToExcel("SELECT DISTINCT date_format(pl.tgl_periksa,'%d/%m/%Y') 'Tgl. Periksa', "
+                    + "p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', "
+                    + "CASE WHEN rp.status_lanjut = 'Ralan' THEN plk.nm_poli ELSE b.nm_bangsal END 'Poliklinik/Inst./Rg. Rawat', "
+                    + "CASE WHEN rp.status_lanjut = 'Ralan' THEN 'R. Jalan' ELSE 'R. Inap' END 'Jenis Rawat' FROM periksa_lab pl "
+                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = pl.no_rawat "
+                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "INNER JOIN poliklinik plk ON plk.kd_poli = rp.kd_poli "
+                    + "LEFT JOIN kamar_inap ki ON ki.no_rawat = pl.no_rawat "
+                    + "LEFT JOIN kamar k ON k.kd_kamar = ki.kd_kamar "
+                    + "LEFT JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                    + "WHERE pl.tgl_periksa between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND "
+                    + "EXISTS (SELECT 1 FROM detail_periksa_lab dpl WHERE dpl.no_rawat = pl.no_rawat AND dpl.tgl_periksa = pl.tgl_periksa AND dpl.jam = pl.jam AND dpl.kd_jenis_prw = 'LABPKK') "
+                    + "ORDER BY pl.tgl_periksa", dialog_simpan);
+            JOptionPane.showMessageDialog(null, "Data pemeriksaan sampling reguler berhasil didownload menjadi file Excel.");
+            return;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Proses download data pemeriksaan sampling reguler gagal:\n" + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnDownloadDataSamplingActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -6308,6 +6369,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
     private javax.swing.JMenuItem MnCetakHasilLab9;
     private javax.swing.JMenu MnCetakNota;
     private javax.swing.JMenuItem MnDokumenJangMed;
+    private javax.swing.JMenuItem MnDownloadDataSampling;
     private javax.swing.JMenuItem MnGantiPemeriksaLab;
     private javax.swing.JMenuItem MnGantiPerujuk;
     private javax.swing.JMenuItem MnGantiPerujukPA;

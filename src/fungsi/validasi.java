@@ -2787,5 +2787,225 @@ public final class validasi {
             JOptionPane.showMessageDialog(null, "Report Can't view because :\n" + e);
         }
     }
+    
+    public String rapikanHasilLabSejajar(String hasil, int panjangBaris) {
+        if (hasil == null || hasil.trim().isEmpty()) {
+            return "-";
+        }
+
+        String teks = hasil.replace("\r\n", "\n").replace("\r", "\n");
+        StringBuilder hasilRapi = new StringBuilder();
+
+        final int lebarLabel = 14;
+        final String indentLanjutan = String.format("%-" + lebarLabel + "s   ", "");
+        for (String baris : teks.split("\n")) {
+            baris = baris.trim();
+
+            // Hentikan pembacaan ketika masuk bagian tanda tangan pemeriksa
+            if (baris.equalsIgnoreCase("Pemeriksa,")
+                    || baris.equalsIgnoreCase("Pemeriksa")
+                    || baris.toLowerCase().startsWith("pemeriksa,")) {
+                break;
+            }
+
+            // Lewati baris kosong
+            if (baris.isEmpty()) {
+                continue;
+            }
+
+            // Ubah banyak spasi/tab menjadi satu spasi
+            baris = baris.replaceAll("[\\t ]+", " ");
+
+            int posisiTitikDua = baris.indexOf(":");
+
+            if (posisiTitikDua >= 0) {
+                String label = baris.substring(0, posisiTitikDua).trim();
+                String isi = baris.substring(posisiTitikDua + 1).trim();
+
+                String awalan = String.format("%-" + lebarLabel + "s : ", label);
+                int lebarIsi = panjangBaris - awalan.length();
+
+                if (lebarIsi < 20) {
+                    lebarIsi = 20;
+                }
+
+                String isiTerbungkus = bungkusTeks(isi,lebarIsi,indentLanjutan);
+                baris = awalan + isiTerbungkus;
+            }
+
+            if (hasilRapi.length() > 0) {
+                hasilRapi.append("\n");
+            }
+
+            hasilRapi.append(baris);
+        }
+
+        return hasilRapi.length() == 0
+                ? "-"
+                : hasilRapi.toString();
+    }
+
+    private String bungkusTeks(String teks, int panjangMaksimal, String indentLanjutan) {
+        if (teks == null || teks.trim().isEmpty()) {
+            return "";
+        }
+
+        String[] kata = teks.trim().split("\\s+");
+        StringBuilder hasil = new StringBuilder();
+
+        int panjangSaatIni = 0;
+
+        for (String item : kata) {
+            if (panjangSaatIni == 0) {
+                hasil.append(item);
+                panjangSaatIni = item.length();
+            } else if (panjangSaatIni + 1 + item.length()
+                    <= panjangMaksimal) {
+
+                hasil.append(" ").append(item);
+                panjangSaatIni += 1 + item.length();
+            } else {
+                hasil.append("\n")
+                        .append(indentLanjutan)
+                        .append(item);
+
+                panjangSaatIni = item.length();
+            }
+        }
+
+        return hasil.toString();
+    }
+    
+    public String rapikanHasilLabKeHtml(String hasil) {
+        if (hasil == null || hasil.trim().isEmpty()) {
+            return "-";
+        }
+
+        String teks = hasil.replace("\r\n", "\n").replace("\r", "\n");
+        StringBuilder html = new StringBuilder();
+
+        html.append("<table width='100%' cellpadding='1' cellspacing='0'>");
+
+        for (String baris : teks.split("\n")) {
+            baris = baris.trim();
+
+            // Hentikan saat menemukan bagian tanda tangan pemeriksa
+            if (baris.equalsIgnoreCase("Pemeriksa,")
+                    || baris.equalsIgnoreCase("Pemeriksa")
+                    || baris.toLowerCase().startsWith("pemeriksa,")) {
+                break;
+            }
+
+            // Lewati baris kosong
+            if (baris.isEmpty()) {
+                continue;
+            }
+
+            // Rapikan spasi dan tab berulang
+            baris = baris.replaceAll("[\\t ]+", " ");
+
+            int posisiTitikDua = baris.indexOf(":");
+
+            if (posisiTitikDua >= 0) {
+                String label = baris
+                        .substring(0, posisiTitikDua)
+                        .trim();
+
+                String isi = baris
+                        .substring(posisiTitikDua + 1)
+                        .trim();
+
+                html.append("<tr>")
+                        .append("<td width='90' valign='top'>")
+                        .append(escapeHtml(label))
+                        .append("</td>")
+                        .append("<td width='10' valign='top'>:</td>")
+                        .append("<td valign='top'>")
+                        .append(escapeHtml(isi))
+                        .append("</td>")
+                        .append("</tr>");
+            } else {
+                html.append("<tr>")
+                        .append("<td colspan='3' valign='top'>")
+                        .append(escapeHtml(baris))
+                        .append("</td>")
+                        .append("</tr>");
+            }
+        }
+
+        html.append("</table>");
+        return html.toString();
+    }
+    
+    private String escapeHtml(String teks) {
+        if (teks == null) {
+            return "";
+        }
+
+        return teks
+                .replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace("\"", "&quot;")
+                .replace("'", "&#39;");
+    }
+    
+    public String rapikanHasilLabHtmlJasper(String hasil) {
+        if (hasil == null || hasil.trim().isEmpty()) {
+            return "-";
+        }
+
+        String teks = hasil.replace("\r\n", "\n").replace("\r", "\n");
+        StringBuilder html = new StringBuilder();
+
+        for (String baris : teks.split("\n")) {
+            baris = baris.trim();
+
+            // Hentikan saat menemukan bagian pemeriksa
+            if (baris.equalsIgnoreCase("Pemeriksa,")
+                    || baris.equalsIgnoreCase("Pemeriksa")
+                    || baris.toLowerCase().startsWith("pemeriksa,")) {
+                break;
+            }
+
+            if (baris.isEmpty()) {
+                continue;
+            }
+
+            baris = baris.replaceAll("[\\t ]+", " ");
+
+            int posisiTitikDua = baris.indexOf(":");
+
+            if (posisiTitikDua >= 0) {
+                String label = baris.substring(0, posisiTitikDua).trim();
+                String isi = baris.substring(posisiTitikDua + 1).trim();
+
+                html.append("<b>")
+                        .append(escapeHtmlJasper(label))
+                        .append("</b>")
+                        .append("&nbsp;&nbsp;:&nbsp;&nbsp;")
+                        .append(escapeHtmlJasper(isi))
+                        .append("<br>");
+            } else {
+                html.append(escapeHtmlJasper(baris))
+                        .append("<br>");
+            }
+        }
+
+        return html.length() == 0 ? "-" : html.toString();
+    }
+
+    public String escapeHtmlJasper(String teks) {
+        if (teks == null) {
+            return "";
+        }
+
+        return teks
+                .replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace("\"", "&quot;")
+                .replace("'", "&#39;");
+    }
 }
   
