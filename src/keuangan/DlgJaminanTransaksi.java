@@ -1639,10 +1639,10 @@ public class DlgJaminanTransaksi extends javax.swing.JDialog {
             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
             akses.setform("DlgJaminanTransaksi");
             DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
-            form.setSize(817, 181);
+            form.setSize(557, 148);
             form.setLocationRelativeTo(internalFrame1);
             form.emptTeks();
-            form.setData("jaminan transaksi", TNoRw.getText(), Valid.SetTgl(TtglTerima.getSelectedItem() + ""));
+            form.setData("jaminan transaksi", TNoRw.getText(), Valid.SetTgl(TtglTerima.getSelectedItem() + ""), TPasien.getText());
             form.jaminanTrans(TnmPemberi.getText(), TnoTelp.getText(), TJmlNominal.getText(), TPasien.getText(), TNoRM.getText(),
                     "", "", "", "", "", "");
             form.dataKirim();

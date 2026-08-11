@@ -8840,36 +8840,45 @@ public class DlgCPPT extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
                 }
-            } else if (status.equals("vk bersalin")) {
-                if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'"))
-                        || akses.getkode().equals(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"))) {
-                    if (TNoRw.getText().equals("")) {
-                        JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
-                    } else {
-                        DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
-                        verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                        verif.setLocationRelativeTo(internalFrame1);
-                        verif.setData(TNoRw.getText(), status);
-                        verif.setVisible(true);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
-                }
-            } else if (status.equals("ranap")) {
-                if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"))) {
-                    if (TNoRw.getText().equals("")) {
-                        JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
-                    } else {
-                        DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
-                        verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                        verif.setLocationRelativeTo(internalFrame1);
-                        verif.setData(TNoRw.getText(), status);
-                        verif.setVisible(true);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
-                }
+            } else {
+                DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+                verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                verif.setLocationRelativeTo(internalFrame1);
+                verif.setData(TNoRw.getText(), status);
+                verif.setVisible(true);
             }
+            
+//            else if (status.equals("vk bersalin")) {
+//                if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'"))
+//                        || akses.getkode().equals(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"))) {
+//                    if (TNoRw.getText().equals("")) {
+//                        JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
+//                    } else {
+//                        DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+//                        verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+//                        verif.setLocationRelativeTo(internalFrame1);
+//                        verif.setData(TNoRw.getText(), status);
+//                        verif.setVisible(true);
+//                    }
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
+//                }
+//            } else if (status.equals("ranap")) {
+//                if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"))) {
+//                    if (TNoRw.getText().equals("")) {
+//                        JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
+//                    } else {
+//                        DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+//                        verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+//                        verif.setLocationRelativeTo(internalFrame1);
+//                        verif.setData(TNoRw.getText(), status);
+//                        verif.setVisible(true);
+//                    }
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
+//                }
+//            }
+            
         }
     }//GEN-LAST:event_BtnVerifActionPerformed
 

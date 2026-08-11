@@ -3069,10 +3069,10 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                             akses.setform("DlgBilingRalan");
                             DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
-                            form.setSize(817, 181);
+                            form.setSize(557, 148);
                             form.setLocationRelativeTo(internalFrame8);
                             form.emptTeks();
-                            form.setData("kasir nota ralan", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""));
+                            form.setData("kasir nota ralan", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""), TPasien.getText());
                             form.setTransaksi(apakahPiutang, "nota", tglNota.getSelectedItem() + "");
                             form.isPiutang(TtlSemua.getText(), Valid.SetAngka(besarppn), TagihanPPn.getText(), "0", Valid.SetAngka(bayar), bayarWA, piutangWA);
                             form.dataKirim();
@@ -3087,10 +3087,10 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                             akses.setform("DlgBilingRalan");
                             DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
-                            form.setSize(817, 181);
+                            form.setSize(557, 148);
                             form.setLocationRelativeTo(internalFrame8);
                             form.emptTeks();
-                            form.setData("kasir kuitansi ralan", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""));
+                            form.setData("kasir kuitansi ralan", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""), TPasien.getText());
                             form.setTransaksi(apakahPiutang, "", tglNota.getSelectedItem() + "");
                             form.dataKirim();
                             form.setVisible(true);
@@ -3104,10 +3104,10 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                             akses.setform("DlgBilingRalan");
                             DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
-                            form.setSize(817, 181);
+                            form.setSize(557, 148);
                             form.setLocationRelativeTo(internalFrame8);
                             form.emptTeks();
-                            form.setData("kasir nota ralan", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""));
+                            form.setData("kasir nota ralan", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""), TPasien.getText());
                             form.setTransaksi(apakahPiutang, "kwitansi_nota", tglNota.getSelectedItem() + "");
                             form.isPiutang(TtlSemua.getText(), Valid.SetAngka(besarppn), TagihanPPn.getText(), "0", Valid.SetAngka(bayar), bayarWA, piutangWA);
                             form.dataKirim();

@@ -2165,10 +2165,10 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
 
             akses.setform("DlgTransaksiPanjar");
             DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
-            form.setSize(817, 181);
+            form.setSize(557, 148);
             form.setLocationRelativeTo(internalFrame1);
             form.emptTeks();
-            form.setData("panjar", TNoRw.getText(), tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 17).toString());
+            form.setData("panjar", TNoRw.getText(), tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 17).toString(), TPasien.getText());
             form.jaminanTrans(TtelahTerima.getText(), TnoTelp1.getText(), TnominalStatus.getText(), TPasien.getText(), TNoRM.getText(),
                     TnoPanjar.getText(), Tketerangan.getText(), TnoTelp2.getText(), cmbStatus.getSelectedItem().toString(),
                     labelnom_status.getText(), usernya);

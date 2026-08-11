@@ -5701,11 +5701,12 @@ private void tbPeriksaRadiologiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                 Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                 akses.setform("DlgCariPeriksaRadiologi");
                 DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
-                form.setSize(817, 181);
+                form.setSize(557, 148);
                 form.setLocationRelativeTo(internalFrame1);
                 form.emptTeks();
                 form.setData("nota radiologi", tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 0).toString(),
-                        tglNota.getSelectedItem().toString());
+                        tglNota.getSelectedItem().toString(), Sequel.cariIsi("select p.nm_pasien from reg_periksa rp inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "where rp.no_rawat='" + tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 0).toString() + "'"));
                 form.jaminanTrans(tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 3).toString(),
                         tbPeriksaRadiologi.getValueAt(tbPeriksaRadiologi.getSelectedRow(), 4).toString(), kdmem.getText(), 
                         Tgl1.getSelectedItem() + "", Tgl2.getSelectedItem() + "", CariData, cariBayar, cariDataIgd, khususIgd, 

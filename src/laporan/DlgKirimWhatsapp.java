@@ -45,7 +45,8 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
     private double ttl = 0, item = 0;
     private String nmDokumen = "", norawat = "", waktuSimpan = "", cekPiutang = "", crbyr = "", isi = "", nmFile = "", cekKIR = "",
             judulReport = "", judulBanyak = "", judulTunggal = "", tanggal = "", nmPemberiJT = "", noTelpJT = "", jmlNominalJT = "",
-            namaPasJT = "", norkmJT = "", noPanjarP = "", keterP = "", notelpP = "", sttsP = "", angkaNomP = "", userP = "", nmpetgs = "";
+            namaPasJT = "", norkmJT = "", noPanjarP = "", keterP = "", notelpP = "", sttsP = "", angkaNomP = "", userP = "", 
+            nmpetgs = "", namaPasien = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -70,8 +71,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
         internalFrame1 = new widget.InternalFrame();
         PanelInput = new javax.swing.JPanel();
         FormInput = new widget.PanelBiasa();
-        jLabel55 = new widget.Label();
-        TPesan = new widget.TextBox();
         jLabel56 = new widget.Label();
         TnoWa = new widget.TextBox();
         jLabel57 = new widget.Label();
@@ -99,40 +98,29 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
         FormInput.setWarnaAtas(new java.awt.Color(204, 255, 204));
         FormInput.setLayout(null);
 
-        jLabel55.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel55.setText("Pesan : ");
-        jLabel55.setName("jLabel55"); // NOI18N
-        FormInput.add(jLabel55);
-        jLabel55.setBounds(0, 10, 135, 23);
-
-        TPesan.setForeground(new java.awt.Color(0, 0, 0));
-        TPesan.setName("TPesan"); // NOI18N
-        FormInput.add(TPesan);
-        TPesan.setBounds(135, 10, 640, 23);
-
         jLabel56.setForeground(new java.awt.Color(0, 0, 0));
         jLabel56.setText("No. WhatsApp Tujuan : ");
         jLabel56.setName("jLabel56"); // NOI18N
         FormInput.add(jLabel56);
-        jLabel56.setBounds(0, 38, 135, 23);
+        jLabel56.setBounds(0, 10, 135, 23);
 
         TnoWa.setForeground(new java.awt.Color(0, 0, 0));
         TnoWa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         TnoWa.setName("TnoWa"); // NOI18N
         FormInput.add(TnoWa);
-        TnoWa.setBounds(135, 38, 160, 23);
+        TnoWa.setBounds(135, 10, 160, 23);
 
         jLabel57.setForeground(new java.awt.Color(0, 0, 0));
         jLabel57.setText("Nama File  : ");
         jLabel57.setName("jLabel57"); // NOI18N
         FormInput.add(jLabel57);
-        jLabel57.setBounds(0, 66, 135, 23);
+        jLabel57.setBounds(0, 38, 135, 23);
 
         TnmFile.setEditable(false);
         TnmFile.setForeground(new java.awt.Color(0, 0, 0));
         TnmFile.setName("TnmFile"); // NOI18N
         FormInput.add(TnmFile);
-        TnmFile.setBounds(135, 66, 360, 23);
+        TnmFile.setBounds(135, 38, 360, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -155,7 +143,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
 
         BtnCloseIn.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn.setMnemonic('U');
         BtnCloseIn.setText("Keluar");
         BtnCloseIn.setToolTipText("Alt+U");
         BtnCloseIn.setName("BtnCloseIn"); // NOI18N
@@ -177,40 +164,40 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnKirimWAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimWAActionPerformed
-        if (TPesan.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Maaf, pesan tidak boleh dikosongkan, jika tidak ada isi dengan -  ");
-            TPesan.requestFocus();
-        } else if (TnoWa.getText().equals("") || TnoWa.getText().length() <= 10) {
+        if (TnoWa.getText().equals("") || TnoWa.getText().length() <= 10) {
             JOptionPane.showMessageDialog(rootPane, "Maaf, nomor whatsapp tujuan kurang jumlah digit angkanya..!");
-            TPesan.requestFocus();
         } else {
-            if (wa.ngirimTeks(TPesan.getText(), TnoWa.getText()) == true) {
+//            if (wa.ngirimTeks(TPesan.getText(), TnoWa.getText()) == true) {
+            if (!TnmFile.getText().equals("")) {
                 String filePath = Sequel.cariFolderTte() + File.separator + TnmFile.getText() + ".pdf";
                 String base64String = sekuel.convertPdfToBase64(filePath);
-         
+
                 if (base64String != null) {
-                    if (wa.ngirimFile(TnoWa.getText(), TnmFile.getText(), base64String) == true) {
+                    if (wa.ngirimFile(TnoWa.getText(), TnmFile.getText(), namaPasien, base64String) == true) {
                         if (nmDokumen.equals("hasil patologi anatomi")) {
                             Sequel.mengedit("hasil_patologi_anatomi", "waktu_simpan='" + waktuSimpan + "'",
                                     "terkirim_ke_whatsapp='SUDAH', waktu_terkirim='" + Sequel.cariIsi("select now()") + "', "
                                     + "no_whatsapp_penerima='" + TnoWa.getText() + "'");
                         }
-                        
+
                         Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                         dispose();
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Proses mengirim data gagal, silahkan ulangi lagi..!");
                         dispose();
-                    }                    
+                    }
                 } else {
                     System.out.println("Gagal mengubah file PDF menjadi data Base64.");
                 }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "File pdf yang akan dikirim tidak ditemukan..");
             }
         }
     }//GEN-LAST:event_BtnKirimWAActionPerformed
 
     private void BtnCloseInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseInActionPerformed
         dispose();
+        Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
     }//GEN-LAST:event_BtnCloseInActionPerformed
 
     /**
@@ -234,27 +221,25 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
     private widget.Button BtnKirimWA;
     private widget.PanelBiasa FormInput;
     private javax.swing.JPanel PanelInput;
-    private widget.TextBox TPesan;
     private widget.TextBox TnmFile;
     private widget.TextBox TnoWa;
     private widget.InternalFrame internalFrame1;
-    private widget.Label jLabel55;
     private widget.Label jLabel56;
     private widget.Label jLabel57;
     private widget.panelisi panelGlass8;
     // End of variables declaration//GEN-END:variables
 
     public void emptTeks() {  
-        TPesan.setText("");
         TnoWa.setText("");
         TnmFile.setText("");
         TnoWa.requestFocus();
     }
     
-    public void setData(String jnsDokumen, String norw, String wktSimpan) {
+    public void setData(String jnsDokumen, String norw, String wktSimpan, String nmpasien) {
         nmDokumen = jnsDokumen;
         norawat = norw;
         waktuSimpan = wktSimpan;
+        namaPasien = nmpasien;
     }
 
     public void dataKirim() {        
@@ -288,6 +273,10 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
             notaLab();
         } else if (nmDokumen.equals("nota radiologi")) {
             notaRadiologi();
+        } else if (nmDokumen.equals("nota lain-lain")) {
+            notaPemasukanLain();
+        } else if (nmDokumen.equals("nota ambulan")) {
+            notaAmbulan();
         }
     }
     
@@ -414,7 +403,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                     Valid.MyReportToPDF("rptPeriksaPatologiAnatomiQr.jasper", "report", "::[ Lembar Hasil Pemeriksaan Patologi Anatomi ]::", "SELECT now() tgl",
                             param, Sequel.cariFolderTte(), nmFile);
 
-                    TPesan.setText("Hasil Pemeriksaan Lab. Patologi Anatomi " + akses.getnamars());
                     TnoWa.setText(rs.getString("no_tlp"));
                     TnmFile.setText(nmFile);
                     TnoWa.requestFocus();
@@ -501,8 +489,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                     param, Sequel.cariFolderTte(), nmFile);
         }
 
-        TPesan.setText("Nota Pembayaran Rawat Inap (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
-                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
         TnoWa.setText("");
         TnmFile.setText(nmFile);
         TnoWa.requestFocus();
@@ -575,8 +561,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                     param, Sequel.cariFolderTte(), nmFile);
         }
         
-        TPesan.setText("Nota Pembayaran Piutang Rawat Inap (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
-                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
         TnoWa.setText("");
         TnmFile.setText(nmFile);
         TnoWa.requestFocus();
@@ -630,8 +614,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                     " SELECT * FROM temporary_bayar_ranap ", param, Sequel.cariFolderTte(), nmFile);
         }
         
-        TPesan.setText("Kuitansi Pembayaran Rawat Inap (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
-                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
         TnoWa.setText("");
         TnmFile.setText(nmFile);
         TnoWa.requestFocus();
@@ -683,8 +665,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                     " SELECT * FROM temporary_bayar_ranap ", param, Sequel.cariFolderTte(), nmFile);
         }
         
-        TPesan.setText("Kuitansi Pembayaran Piutang Rawat Inap (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
-                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
         TnoWa.setText("");
         TnmFile.setText(nmFile);
         TnoWa.requestFocus();
@@ -772,8 +752,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
             }
         }
         
-        TPesan.setText("Nota Pembayaran Rawat Jalan (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
-                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
         TnoWa.setText("");
         TnmFile.setText(nmFile);
         TnoWa.requestFocus();
@@ -827,8 +805,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                     " SELECT * FROM temporary_bayar_ralan ", param, Sequel.cariFolderTte(), nmFile);
         }
         
-        TPesan.setText("Kuitansi Pembayaran Rawat Jalan (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
-                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
         TnoWa.setText("");
         TnmFile.setText(nmFile);
         TnoWa.requestFocus();
@@ -879,8 +855,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                     " SELECT * FROM temporary_bayar_ralan ", param, Sequel.cariFolderTte(), nmFile);
         }
         
-        TPesan.setText("Kuitansi Pembayaran Piutang Rawat Jalan (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
-                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
         TnoWa.setText("");
         TnmFile.setText(nmFile);
         TnoWa.requestFocus();
@@ -935,8 +909,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                     "SELECT now() tgl", param, Sequel.cariFolderTte(), nmFile);
         }
         
-        TPesan.setText("Kuitansi Jaminan (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
-                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
         TnoWa.setText("");
         TnmFile.setText(nmFile);
         TnoWa.requestFocus();
@@ -993,8 +965,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                     "SELECT now() tanggal", param, Sequel.cariFolderTte(), nmFile);
         }
         
-        TPesan.setText("Kuitansi Panjar (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
-                + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
         TnoWa.setText("");
         TnmFile.setText(nmFile);
         TnoWa.requestFocus();
@@ -1118,8 +1088,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                             + "temp2='Total Biaya Pemeriksaan Lab') tot_byr FROM temporary WHERE temp2 not LIKE '%biaya%'", param, Sequel.cariFolderTte(), nmFile);
                 }
 
-                TPesan.setText("Nota Pembayaran Pemeriksaan Laboratorium (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
-                        + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
                 TnoWa.setText("");
                 TnmFile.setText(nmFile);
                 TnoWa.requestFocus();
@@ -1275,8 +1243,6 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
                             + "FROM temporary WHERE temp1 NOT LIKE '%biaya%'", param, Sequel.cariFolderTte(), nmFile);
                 }              
                 
-                TPesan.setText("Nota Pembayaran Pemeriksaan Radiologi (" + Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa r "
-                        + "inner join pasien p on p.no_rkm_medis=r.no_rkm_medis where r.no_rawat='" + norawat + "'") + ")");
                 TnoWa.setText("");
                 TnmFile.setText(nmFile);
                 TnoWa.requestFocus();
@@ -1286,5 +1252,181 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
         } catch (Exception ex) {
             System.out.println(ex);
         }
+    }
+
+    private void notaPemasukanLain() {
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("tglNota", "Martapura, " + waktuSimpan);
+        
+        nmFile = "Nota Transaksi " + noTelpJT.replaceAll("/", "");
+        nmpetgs = Sequel.cariIsi("select pg.nama from pemasukan_lain pl inner join pegawai pg on pg.nik=pl.nip where pl.no_transaksi='" + noTelpJT + "'");
+        
+        if (nmPemberiJT.equals("SWKTN")) {
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Kuitansi Pembayaran", nmpetgs,
+                            Sequel.cariIsi("select date_format('" + Valid.SetTgl(waktuSimpan + "") + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReportToPDF("rptNotaSewaTempatQr.jasper", "report", "::[ Kwitansi pembayaran Sewa Tempat ]::", " select pemasukan_lain.tanggal, "
+                    + " pemasukan_lain.keterangan, pemasukan_lain.besar, pemasukan_lain.nip, "
+                    + " petugas.nama,pemasukan_lain.no_transaksi,pemasukan_lain.jam_penerimaan, "
+                    + " kategori_pemasukan_lain.nama_kategori, if(pemasukan_lain.telah_terima_dari is null,'-',"
+                    + " pemasukan_lain.telah_terima_dari) pembayar, pemasukan_lain.nominal_sewa "
+                    + " from pemasukan_lain inner join petugas inner join kategori_pemasukan_lain on pemasukan_lain.nip=petugas.nip "
+                    + " and pemasukan_lain.kode_kategori=kategori_pemasukan_lain.kode_kategori "
+                    + " where pemasukan_lain.no_transaksi='" + noTelpJT + "' ", param, Sequel.cariFolderTte(), nmFile);
+            
+        } else if (nmPemberiJT.equals("SBPJS")) {
+            SimpanKwitansi();
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Kuitansi Pembayaran", nmpetgs,
+                            Sequel.cariIsi("select date_format('" + Valid.SetTgl(waktuSimpan + "") + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            param.put("telah_terimaAN", namaPasien);
+            param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
+            param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp3,'.','.'),',','.')) FROM temporary_bayar_ranap"));
+
+            Valid.MyReportToPDF("rptNotaKwitansiQr.jasper", "report", "::[ Kwitansi pembayaran (Selisih Tarif BPJS) ]::",
+                    "SELECT * FROM temporary_bayar_ranap", param, Sequel.cariFolderTte(), nmFile);
+            Sequel.mengedit("reg_periksa", "no_rawat='" + norawat + "'", "p_jawab='" + namaPasien + "' ");
+            
+        } else {
+            SimpanKwitansi();
+            String kalimatBayar = "", bayar = "";
+            kalimatBayar = Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap"));
+            bayar = Sequel.cariIsi("SELECT temp3 FROM temporary_bayar_ranap");
+
+            param.put("uang_sebanyak", kalimatBayar + " Rupiah.");
+            param.put("terbilang", "Terbilang Rp. " + bayar);
+
+            if (nmPemberiJT.equals("AMBLN")) {
+                param.put("sebesar", "");
+            } else {
+                param.put("sebesar", " sebesar Rp. " + bayar + "\n");
+            }
+
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Kuitansi Pembayaran", nmpetgs,
+                            Sequel.cariIsi("select date_format('" + Valid.SetTgl(waktuSimpan + "") + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReportToPDF("rptNotaKwitansiLainQr.jasper", "report", "::[ Kwitansi pembayaran lain-lain ]::", 
+                    "SELECT * FROM temporary_bayar_ranap", param, Sequel.cariFolderTte(), nmFile);
+        }
+
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
+    }
+    
+    private void SimpanKwitansi() {
+        try {
+            koneksi.setAutoCommit(false);
+            Sequel.queryu2("delete from temporary_bayar_ranap");
+
+            ps = koneksi.prepareStatement("SELECT DATE_FORMAT(pemasukan_lain.tanggal,'%d-%m-%Y') tanggal, pemasukan_lain.keterangan, "
+                    + "format(pemasukan_lain.besar,0) besar, pemasukan_lain.nip, petugas.nama, pemasukan_lain.no_transaksi, pemasukan_lain.jam_penerimaan, "
+                    + "kategori_pemasukan_lain.nama_kategori, IF(pemasukan_lain.telah_terima_dari IS NULL,'-',pemasukan_lain.telah_terima_dari) pasienya "
+                    + "FROM pemasukan_lain INNER JOIN petugas INNER JOIN kategori_pemasukan_lain ON pemasukan_lain.nip = petugas.nip "
+                    + "AND pemasukan_lain.kode_kategori = kategori_pemasukan_lain.kode_kategori WHERE pemasukan_lain.no_transaksi = '" + noTelpJT + "'");
+            try {
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    nmpetgs = rs.getString("nama");                    
+                    Sequel.menyimpan("temporary_bayar_ranap",
+                            "'0','"
+                            + rs.getString("tanggal") + "','"
+                            + rs.getString("keterangan") + "','"
+                            + rs.getString("besar") + "','"
+                            + rs.getString("nip") + "','"
+                            + rs.getString("nama") + "','"
+                            + rs.getString("no_transaksi") + "','"
+                            + rs.getString("jam_penerimaan") + "','"
+                            + rs.getString("nama_kategori") + "','"
+                            + rs.getString("pasienya").replaceAll("'", "") + "','','','','','','','',''", "Kwitansi Pemasukan Lain-lain");
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+            koneksi.setAutoCommit(true);
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+
+    private void notaAmbulan() {
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(waktuSimpan + "")));
+
+        nmFile = "Nota Transaksi " + noTelpJT.replaceAll("/", "");
+        SimpanKwitansi();
+        String kalimatBayar = "", bayar = "";
+        kalimatBayar = Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap"));
+        bayar = Sequel.cariIsi("SELECT temp3 FROM temporary_bayar_ranap");
+
+        param.put("uang_sebanyak", kalimatBayar + " Rupiah.");
+        param.put("terbilang", "Terbilang Rp. " + bayar);
+
+        isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                        "Kuitansi Pembayaran Ambulance", nmpetgs,
+                        Sequel.cariIsi("select date_format('" + Valid.SetTgl(waktuSimpan + "") + "','%d/%m/%Y')"),
+                        Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+        Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+        Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+        Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+        param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+        param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+        Valid.MyReportToPDF("rptNotaAmbulanQr.jasper", "report", "::[ Kwitansi pembayaran Ambulance ]::",
+                "SELECT * FROM temporary_bayar_ranap", param, Sequel.cariFolderTte(), nmFile);
+        
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
     }
 }

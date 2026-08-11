@@ -49,52 +49,52 @@ public class ApiWhatapp {
     public ApiWhatapp() {
         super();
         try {
-            URLtext = koneksiDB.URLWHATSAPPTEXT();
+//            URLtext = koneksiDB.URLWHATSAPPTEXT();
             URLfile = koneksiDB.URLWHATSAPPFILE();
         } catch (Exception e) {
             System.out.println("Notif : " + e);
         }
     }
     
-    public boolean ngirimTeks(String pesanWA, String nohp) {
-        try {
-            headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.add("Content-Type", "application/json;charset=UTF-8");
-            requestJson1
-                    = "{"
-                    + "\"metadata\": {"
-                    + "\"type\": \"teks\""
-                    + "},"
-                    + "\"data\":{"
-                    + "\"pesan\":\"" + pesanWA + "\","
-                    + "\"no_wa_tujuan\":\"" + nohp + "\""
-                    + "}"
-                    + "}";
-
-            System.out.println("JSON : " + requestJson1);
-            requestEntity = new HttpEntity(requestJson1, headers);
-            stringbalik = getRest().exchange(URLtext, HttpMethod.POST, requestEntity, String.class).getBody();
-            System.out.println("Output : " + stringbalik);
-            root = mapper.readTree(stringbalik);
-
-            if (root.path("status").asText().equals("true")) {
-                System.out.println(root.path("msg").asText());
-                x = true;
-            } else {
-                JOptionPane.showMessageDialog(null, root.path("msg").asText());
-                x = false;
-            }
-        } catch (Exception ex) {
-            System.out.println("Notifikasi : " + ex);
-            if (ex.toString().contains("UnknownHostException") || ex.toString().contains("false")) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
-        }
-        return x;
-    }
+//    public boolean ngirimTeks(String pesanWA, String nohp) {
+//        try {
+//            headers = new HttpHeaders();
+//            headers.setContentType(MediaType.APPLICATION_JSON);
+//            headers.add("Content-Type", "application/json;charset=UTF-8");
+//            requestJson1
+//                    = "{"
+//                    + "\"metadata\": {"
+//                    + "\"type\": \"teks\""
+//                    + "},"
+//                    + "\"data\":{"
+//                    + "\"pesan\":\"" + pesanWA + "\","
+//                    + "\"no_wa_tujuan\":\"" + nohp + "\""
+//                    + "}"
+//                    + "}";
+//
+//            System.out.println("JSON : " + requestJson1);
+//            requestEntity = new HttpEntity(requestJson1, headers);
+//            stringbalik = getRest().exchange(URLtext, HttpMethod.POST, requestEntity, String.class).getBody();
+//            System.out.println("Output : " + stringbalik);
+//            root = mapper.readTree(stringbalik);
+//
+//            if (root.path("status").asText().equals("true")) {
+//                System.out.println(root.path("msg").asText());
+//                x = true;
+//            } else {
+//                JOptionPane.showMessageDialog(null, root.path("msg").asText());
+//                x = false;
+//            }
+//        } catch (Exception ex) {
+//            System.out.println("Notifikasi : " + ex);
+//            if (ex.toString().contains("UnknownHostException") || ex.toString().contains("false")) {
+//                JOptionPane.showMessageDialog(null, ex);
+//            }
+//        }
+//        return x;
+//    }
     
-    public boolean ngirimFile(String nohp, String nmFile, String dataBase64) {
+    public boolean ngirimFile(String nohp, String nmFile, String nmPasien, String dataBase64) {
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -106,6 +106,7 @@ public class ApiWhatapp {
                     + "},"
                     + "\"data\":{"
                     + "\"no_wa_tujuan\":\"" + nohp + "\","
+                    + "\"nama_pasien\":\"" + nmPasien + "\","
                     + "\"nama_file\":\"" + nmFile + "\","
                     + "\"file_type\":\"pdf\","
                     + "\"file_to_base64\":\"" + dataBase64 + "\""

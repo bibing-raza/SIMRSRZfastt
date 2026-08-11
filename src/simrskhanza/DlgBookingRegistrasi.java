@@ -5684,6 +5684,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
         //-----------------------------------------------------------------------------------------------
 
+        String nomorTelp = "";
+        if (NoTelp.getText().trim().length() >= 10) {
+            nomorTelp = NoTelp.getText().trim();
+        } else if (no_telp.getText().trim().length() >= 10) {
+            nomorTelp = no_telp.getText().trim();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Nomor telepon tidak valid atau kurang dari 10 digit.");
+            return;
+        }
+
         Sequel.menyimpan("kelengkapan_booking_sep_bpjs", ""
                 + "'" + Valid.SetTgl(TanggalRujuk.getSelectedItem() + "") + "',"
                 + "'" + NoRujukan.getText() + "',"
@@ -5712,7 +5722,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 + "'" + Eksekutif.getSelectedItem().toString() + "',"
                 + "'" + COB.getSelectedItem().toString() + "',"
                 + "'',"
-                + "'" + no_telp.getText() + "',"
+                + "'" + nomorTelp + "',"
                 + "'" + KasusKatarak.getSelectedItem().toString() + "',"
                 + "'" + tglkkl + "',"
                 + "'" + Ket.getText() + "',"

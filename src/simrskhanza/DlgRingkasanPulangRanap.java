@@ -5822,32 +5822,32 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
         } else {
-            if (akses.getadmin() == true) {
-                DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
-                verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                verif.setLocationRelativeTo(internalFrame1);
-                verif.setData(TNoRW.getText(), "ranap");
-                verif.setVisible(true);
-                
-                TCari.setText(TNoRW.getText());
-                tampil();
-                emptTeks();
-            } else if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRW.getText() + "'"))) {
-                DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
-                verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                verif.setLocationRelativeTo(internalFrame1);
-                verif.setData(TNoRW.getText(), "ranap");
-                verif.setVisible(true);
-                
-                TCari.setText(TNoRW.getText());
-                tampil();
-                emptTeks();
-            } else {
-                JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
-                TCari.setText(TNoRW.getText());
-                tampil();
-                emptTeks();
-            }
+//            if (akses.getadmin() == true) {
+            DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+            verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            verif.setLocationRelativeTo(internalFrame1);
+            verif.setData(TNoRW.getText(), "ranap");
+            verif.setVisible(true);
+
+            TCari.setText(TNoRW.getText());
+            tampil();
+            emptTeks();
+//            } else if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRW.getText() + "'"))) {
+//                DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+//                verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+//                verif.setLocationRelativeTo(internalFrame1);
+//                verif.setData(TNoRW.getText(), "ranap");
+//                verif.setVisible(true);
+//                
+//                TCari.setText(TNoRW.getText());
+//                tampil();
+//                emptTeks();
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
+//                TCari.setText(TNoRW.getText());
+//                tampil();
+//                emptTeks();
+//            }
         }
     }//GEN-LAST:event_BtnVerifActionPerformed
 

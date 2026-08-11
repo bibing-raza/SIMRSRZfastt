@@ -4252,10 +4252,10 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                             akses.setform("DlgBilingRanap");
                             DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
-                            form.setSize(817, 181);
+                            form.setSize(557, 148);
                             form.setLocationRelativeTo(internalFrame8);
                             form.emptTeks();
-                            form.setData("kasir nota ranap", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""));
+                            form.setData("kasir nota ranap", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""), TPasien.getText());
                             form.setTransaksi(apakahPiutang, "", "");
                             form.isPiutang(TtlSemua.getText(), Valid.SetAngka(besarppn), TagihanPPn.getText(),
                                     Deposit.getText(), Valid.SetAngka(bayar), kembaliWA, piutangWA);
@@ -4271,10 +4271,10 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
                             akses.setform("DlgBilingRanap");
                             DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
-                            form.setSize(817, 181);
+                            form.setSize(557, 148);
                             form.setLocationRelativeTo(internalFrame8);
                             form.emptTeks();
-                            form.setData("kasir kuitansi ranap", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""));
+                            form.setData("kasir kuitansi ranap", TNoRw.getText(), Valid.SetTgl(tglNota.getSelectedItem() + ""), TPasien.getText());
                             form.setTransaksi(apakahPiutang, "", "");
                             form.dataKirim();
                             form.setVisible(true);
