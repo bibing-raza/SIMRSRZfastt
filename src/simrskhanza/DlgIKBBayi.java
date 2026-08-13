@@ -1050,7 +1050,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         panelGlass8.add(jLabel15);
 
         tgl1.setEditable(false);
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-08-2026" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -1070,7 +1070,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         panelGlass8.add(jLabel17);
 
         tgl2.setEditable(false);
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2026" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-08-2026" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -1520,11 +1520,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
-        DTPCari1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                DTPCari1KeyPressed(evt);
-            }
-        });
         panelisi2.add(DTPCari1);
 
         label33.setForeground(new java.awt.Color(0, 0, 0));
@@ -1538,11 +1533,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
-        DTPCari2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                DTPCari2KeyPressed(evt);
-            }
-        });
         panelisi2.add(DTPCari2);
 
         label9.setForeground(new java.awt.Color(0, 0, 0));
@@ -1818,7 +1808,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         label12.setName("label12"); // NOI18N
         label12.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label12);
-        label12.setBounds(0, 12, 85, 23);
+        label12.setBounds(0, 12, 105, 23);
 
         NoRm.setEditable(false);
         NoRm.setForeground(new java.awt.Color(0, 0, 0));
@@ -1830,28 +1820,28 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(NoRm);
-        NoRm.setBounds(89, 12, 80, 23);
+        NoRm.setBounds(109, 12, 80, 23);
 
         label18.setForeground(new java.awt.Color(0, 0, 0));
         label18.setText("No. RM. Ibu : ");
         label18.setName("label18"); // NOI18N
         label18.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label18);
-        label18.setBounds(0, 42, 85, 23);
+        label18.setBounds(0, 42, 105, 23);
 
         label22.setForeground(new java.awt.Color(0, 0, 0));
         label22.setText("J.K.Bayi :");
         label22.setName("label22"); // NOI18N
         label22.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label22);
-        label22.setBounds(0, 162, 85, 23);
+        label22.setBounds(0, 162, 105, 23);
 
         label24.setForeground(new java.awt.Color(0, 0, 0));
         label24.setText("Panjang Badan :");
         label24.setName("label24"); // NOI18N
         label24.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label24);
-        label24.setBounds(475, 12, 98, 23);
+        label24.setBounds(503, 12, 120, 23);
 
         Proses.setForeground(new java.awt.Color(0, 0, 0));
         Proses.setName("Proses"); // NOI18N
@@ -1862,7 +1852,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Proses);
-        Proses.setBounds(577, 222, 300, 23);
+        Proses.setBounds(627, 222, 300, 23);
 
         Anakke.setForeground(new java.awt.Color(0, 0, 0));
         Anakke.setName("Anakke"); // NOI18N
@@ -1873,14 +1863,14 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Anakke);
-        Anakke.setBounds(767, 72, 95, 23);
+        Anakke.setBounds(817, 72, 95, 23);
 
         label25.setForeground(new java.awt.Color(0, 0, 0));
         label25.setText("Anak Ke :");
         label25.setName("label25"); // NOI18N
         label25.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label25);
-        label25.setBounds(679, 72, 83, 23);
+        label25.setBounds(729, 72, 83, 23);
 
         LingkarKepala.setForeground(new java.awt.Color(0, 0, 0));
         LingkarKepala.setName("LingkarKepala"); // NOI18N
@@ -1891,21 +1881,21 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(LingkarKepala);
-        LingkarKepala.setBounds(767, 12, 95, 23);
+        LingkarKepala.setBounds(817, 12, 95, 23);
 
         label27.setForeground(new java.awt.Color(0, 0, 0));
         label27.setText("Diagnosa Resume :");
         label27.setName("label27"); // NOI18N
         label27.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label27);
-        label27.setBounds(475, 102, 98, 23);
+        label27.setBounds(503, 102, 120, 23);
 
         label28.setForeground(new java.awt.Color(0, 0, 0));
         label28.setText("Tgl. Daftar :");
         label28.setName("label28"); // NOI18N
         label28.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label28);
-        label28.setBounds(475, 72, 98, 23);
+        label28.setBounds(503, 72, 120, 23);
 
         JKel.setBackground(new java.awt.Color(248, 253, 243));
         JKel.setForeground(new java.awt.Color(0, 0, 0));
@@ -1918,14 +1908,14 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(JKel);
-        JKel.setBounds(89, 162, 100, 23);
+        JKel.setBounds(109, 162, 100, 23);
 
         label30.setForeground(new java.awt.Color(0, 0, 0));
         label30.setText("Tgl. Lahir :");
         label30.setName("label30"); // NOI18N
         label30.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label30);
-        label30.setBounds(0, 192, 85, 23);
+        label30.setBounds(0, 192, 105, 23);
 
         Lahir.setEditable(false);
         Lahir.setDisplayFormat("dd-MM-yyyy");
@@ -1942,14 +1932,14 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Lahir);
-        Lahir.setBounds(89, 192, 100, 23);
+        Lahir.setBounds(109, 192, 100, 23);
 
         label31.setForeground(new java.awt.Color(0, 0, 0));
         label31.setText("Diagnosa Awal :");
         label31.setName("label31"); // NOI18N
         label31.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label31);
-        label31.setBounds(475, 162, 98, 23);
+        label31.setBounds(503, 162, 120, 23);
 
         Diagnosa.setForeground(new java.awt.Color(0, 0, 0));
         Diagnosa.setName("Diagnosa"); // NOI18N
@@ -1960,27 +1950,27 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Diagnosa);
-        Diagnosa.setBounds(577, 162, 120, 23);
+        Diagnosa.setBounds(627, 162, 120, 23);
 
         Nmibu.setForeground(new java.awt.Color(0, 0, 0));
         Nmibu.setName("Nmibu"); // NOI18N
         Nmibu.setPreferredSize(new java.awt.Dimension(207, 23));
         FormInput.add(Nmibu);
-        Nmibu.setBounds(172, 42, 258, 23);
+        Nmibu.setBounds(192, 42, 258, 23);
 
         label26.setForeground(new java.awt.Color(0, 0, 0));
         label26.setText("Lingkar Kepala :");
         label26.setName("label26"); // NOI18N
         label26.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label26);
-        label26.setBounds(679, 12, 83, 23);
+        label26.setBounds(729, 12, 83, 23);
 
         label19.setForeground(new java.awt.Color(0, 0, 0));
         label19.setText("Nama Ayah :");
         label19.setName("label19"); // NOI18N
         label19.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label19);
-        label19.setBounds(0, 102, 85, 23);
+        label19.setBounds(0, 102, 105, 23);
 
         NmAyah.setForeground(new java.awt.Color(0, 0, 0));
         NmAyah.setName("NmAyah"); // NOI18N
@@ -1991,14 +1981,14 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(NmAyah);
-        NmAyah.setBounds(89, 102, 230, 23);
+        NmAyah.setBounds(109, 102, 230, 23);
 
         label20.setForeground(new java.awt.Color(0, 0, 0));
         label20.setText("Umur Ibu :");
         label20.setName("label20"); // NOI18N
         label20.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label20);
-        label20.setBounds(322, 72, 70, 23);
+        label20.setBounds(342, 72, 70, 23);
 
         UmurIbu.setForeground(new java.awt.Color(0, 0, 0));
         UmurIbu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -2010,14 +2000,14 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(UmurIbu);
-        UmurIbu.setBounds(395, 72, 40, 23);
+        UmurIbu.setBounds(415, 72, 40, 23);
 
         label21.setForeground(new java.awt.Color(0, 0, 0));
         label21.setText("Alamat Ibu :");
         label21.setName("label21"); // NOI18N
         label21.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label21);
-        label21.setBounds(0, 72, 85, 23);
+        label21.setBounds(0, 72, 105, 23);
 
         AlamatIbu.setEditable(false);
         AlamatIbu.setForeground(new java.awt.Color(0, 0, 0));
@@ -2029,14 +2019,14 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(AlamatIbu);
-        AlamatIbu.setBounds(89, 72, 230, 23);
+        AlamatIbu.setBounds(109, 72, 230, 23);
 
         label32.setForeground(new java.awt.Color(0, 0, 0));
         label32.setText("Jam Lahir Bayi :");
         label32.setName("label32"); // NOI18N
         label32.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label32);
-        label32.setBounds(212, 162, 90, 23);
+        label32.setBounds(232, 162, 90, 23);
 
         jam.setForeground(new java.awt.Color(0, 0, 0));
         jam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -2047,7 +2037,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(jam);
-        jam.setBounds(305, 162, 50, 23);
+        jam.setBounds(325, 162, 50, 23);
 
         menit.setForeground(new java.awt.Color(0, 0, 0));
         menit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -2058,7 +2048,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(menit);
-        menit.setBounds(360, 162, 50, 23);
+        menit.setBounds(380, 162, 50, 23);
 
         detik.setForeground(new java.awt.Color(0, 0, 0));
         detik.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -2069,14 +2059,14 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(detik);
-        detik.setBounds(415, 162, 50, 23);
+        detik.setBounds(435, 162, 50, 23);
 
         label34.setForeground(new java.awt.Color(0, 0, 0));
         label34.setText("Asal Bayi :");
         label34.setName("label34"); // NOI18N
         label34.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label34);
-        label34.setBounds(640, 252, 60, 23);
+        label34.setBounds(690, 252, 60, 23);
 
         Panjang.setForeground(new java.awt.Color(0, 0, 0));
         Panjang.setName("Panjang"); // NOI18N
@@ -2087,7 +2077,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Panjang);
-        Panjang.setBounds(577, 12, 95, 23);
+        Panjang.setBounds(627, 12, 95, 23);
 
         Daftar.setEditable(false);
         Daftar.setDisplayFormat("dd-MM-yyyy");
@@ -2098,7 +2088,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Daftar);
-        Daftar.setBounds(577, 72, 95, 23);
+        Daftar.setBounds(627, 72, 95, 23);
 
         scrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane2.setName("scrollPane2"); // NOI18N
@@ -2106,15 +2096,10 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         keterangan.setColumns(20);
         keterangan.setRows(5);
         keterangan.setName("keterangan"); // NOI18N
-        keterangan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                keteranganKeyPressed(evt);
-            }
-        });
         scrollPane2.setViewportView(keterangan);
 
         FormInput.add(scrollPane2);
-        scrollPane2.setBounds(577, 102, 300, 52);
+        scrollPane2.setBounds(627, 102, 300, 52);
 
         NmBayi.setForeground(new java.awt.Color(0, 0, 0));
         NmBayi.setName("NmBayi"); // NOI18N
@@ -2125,14 +2110,14 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(NmBayi);
-        NmBayi.setBounds(172, 12, 258, 23);
+        NmBayi.setBounds(192, 12, 258, 23);
 
         label35.setForeground(new java.awt.Color(0, 0, 0));
         label35.setText("Umur Ayah :");
         label35.setName("label35"); // NOI18N
         label35.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label35);
-        label35.setBounds(322, 102, 70, 23);
+        label35.setBounds(342, 102, 70, 23);
 
         UmurAyah.setForeground(new java.awt.Color(0, 0, 0));
         UmurAyah.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -2144,14 +2129,14 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(UmurAyah);
-        UmurAyah.setBounds(395, 102, 40, 23);
+        UmurAyah.setBounds(415, 102, 40, 23);
 
         label36.setForeground(new java.awt.Color(0, 0, 0));
         label36.setText("Umur Bayi :");
         label36.setName("label36"); // NOI18N
         label36.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label36);
-        label36.setBounds(475, 42, 98, 23);
+        label36.setBounds(503, 42, 120, 23);
 
         UmurBayi.setEditable(false);
         UmurBayi.setForeground(new java.awt.Color(0, 0, 0));
@@ -2163,14 +2148,14 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(UmurBayi);
-        UmurBayi.setBounds(577, 42, 95, 23);
+        UmurBayi.setBounds(627, 42, 95, 23);
 
         label37.setForeground(new java.awt.Color(0, 0, 0));
         label37.setText("Penyulit Kehamilan :");
         label37.setName("label37"); // NOI18N
         label37.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label37);
-        label37.setBounds(473, 192, 100, 23);
+        label37.setBounds(503, 192, 120, 23);
 
         PenyulitKehamilan.setForeground(new java.awt.Color(0, 0, 0));
         PenyulitKehamilan.setName("PenyulitKehamilan"); // NOI18N
@@ -2181,14 +2166,14 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(PenyulitKehamilan);
-        PenyulitKehamilan.setBounds(577, 192, 300, 23);
+        PenyulitKehamilan.setBounds(627, 192, 300, 23);
 
         label38.setForeground(new java.awt.Color(0, 0, 0));
         label38.setText("Ketuban :");
         label38.setName("label38"); // NOI18N
         label38.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label38);
-        label38.setBounds(697, 162, 57, 23);
+        label38.setBounds(747, 162, 57, 23);
 
         Ketuban.setForeground(new java.awt.Color(0, 0, 0));
         Ketuban.setName("Ketuban"); // NOI18N
@@ -2199,14 +2184,14 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Ketuban);
-        Ketuban.setBounds(757, 162, 120, 23);
+        Ketuban.setBounds(807, 162, 120, 23);
 
         label39.setForeground(new java.awt.Color(0, 0, 0));
         label39.setText("Lingkar Dada :");
         label39.setName("label39"); // NOI18N
         label39.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label39);
-        label39.setBounds(679, 42, 83, 23);
+        label39.setBounds(729, 42, 83, 23);
 
         LingkarDada.setForeground(new java.awt.Color(0, 0, 0));
         LingkarDada.setName("LingkarDada"); // NOI18N
@@ -2217,7 +2202,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(LingkarDada);
-        LingkarDada.setBounds(767, 42, 95, 23);
+        LingkarDada.setBounds(817, 42, 95, 23);
 
         LingkarPerut.setForeground(new java.awt.Color(0, 0, 0));
         LingkarPerut.setName("LingkarPerut"); // NOI18N
@@ -2228,21 +2213,21 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(LingkarPerut);
-        LingkarPerut.setBounds(370, 192, 95, 23);
+        LingkarPerut.setBounds(390, 192, 95, 23);
 
         label40.setForeground(new java.awt.Color(0, 0, 0));
         label40.setText("Lingkar Perut :");
         label40.setName("label40"); // NOI18N
         label40.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label40);
-        label40.setBounds(280, 192, 85, 23);
+        label40.setBounds(300, 192, 85, 23);
 
         label41.setForeground(new java.awt.Color(0, 0, 0));
         label41.setText("Jenis Alamat :");
         label41.setName("label41"); // NOI18N
         label41.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label41);
-        label41.setBounds(0, 252, 85, 23);
+        label41.setBounds(0, 252, 105, 23);
 
         NoSKL.setForeground(new java.awt.Color(0, 0, 0));
         NoSKL.setName("NoSKL"); // NOI18N
@@ -2253,26 +2238,26 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(NoSKL);
-        NoSKL.setBounds(90, 222, 160, 23);
+        NoSKL.setBounds(109, 222, 160, 23);
 
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Yang Menolong :");
         jLabel24.setName("jLabel24"); // NOI18N
         FormInput.add(jLabel24);
-        jLabel24.setBounds(475, 282, 98, 23);
+        jLabel24.setBounds(503, 282, 120, 23);
 
         KdPenolong.setEditable(false);
         KdPenolong.setForeground(new java.awt.Color(0, 0, 0));
         KdPenolong.setHighlighter(null);
         KdPenolong.setName("KdPenolong"); // NOI18N
         FormInput.add(KdPenolong);
-        KdPenolong.setBounds(577, 282, 100, 23);
+        KdPenolong.setBounds(627, 282, 100, 23);
 
         NmPenolong.setEditable(false);
         NmPenolong.setForeground(new java.awt.Color(0, 0, 0));
         NmPenolong.setName("NmPenolong"); // NOI18N
         FormInput.add(NmPenolong);
-        NmPenolong.setBounds(680, 282, 241, 23);
+        NmPenolong.setBounds(730, 282, 241, 23);
 
         BtnPenolong.setForeground(new java.awt.Color(0, 0, 0));
         BtnPenolong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -2285,7 +2270,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnPenolong);
-        BtnPenolong.setBounds(925, 282, 28, 23);
+        BtnPenolong.setBounds(975, 282, 28, 23);
 
         btnPasien.setForeground(new java.awt.Color(0, 0, 0));
         btnPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -2299,170 +2284,115 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnPasien);
-        btnPasien.setBounds(437, 10, 28, 23);
+        btnPasien.setBounds(457, 10, 28, 23);
 
         cmbBerat.setBackground(new java.awt.Color(248, 253, 243));
         cmbBerat.setForeground(new java.awt.Color(0, 0, 0));
-        cmbBerat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", ">3.000", ">2.500 s.d >=3.000", "<2.500", "0 - 999", "1.000 - 1.499", "1.500 - 2.499", "2.500 - 4.000", ">=4.001" }));
+        cmbBerat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", ">3.000", ">2.500 s.d >=3.000", "<2.500", "0 - 999", "1.000 - 1.499", "1.500 - 2.499", "2.500 - 4.000", ">=4.001", "<1.000", "1.000 - 1.799", "1.800 - 2.499", " " }));
         cmbBerat.setEnabled(false);
         cmbBerat.setName("cmbBerat"); // NOI18N
-        cmbBerat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbBeratKeyPressed(evt);
-            }
-        });
         FormInput.add(cmbBerat);
-        cmbBerat.setBounds(287, 132, 130, 23);
+        cmbBerat.setBounds(307, 132, 130, 23);
 
         cmbMatiPerin.setForeground(new java.awt.Color(0, 0, 0));
         cmbMatiPerin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Kelahiran mati", "Mati neonatal < 7 hari" }));
         cmbMatiPerin.setName("cmbMatiPerin"); // NOI18N
         cmbMatiPerin.setPreferredSize(new java.awt.Dimension(100, 23));
-        cmbMatiPerin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbMatiPerinKeyPressed(evt);
-            }
-        });
         FormInput.add(cmbMatiPerin);
-        cmbMatiPerin.setBounds(995, 12, 140, 23);
+        cmbMatiPerin.setBounds(1065, 12, 140, 23);
 
         cmbSebabMati.setForeground(new java.awt.Color(0, 0, 0));
         cmbSebabMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Asphyxia", "Trauma Lahir", "BBLR", "Tetanus Neonatum", "Kelainan Congenital", "ISPA", "Diare", "Lain-lain" }));
         cmbSebabMati.setName("cmbSebabMati"); // NOI18N
         cmbSebabMati.setPreferredSize(new java.awt.Dimension(100, 23));
-        cmbSebabMati.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbSebabMatiKeyPressed(evt);
-            }
-        });
         FormInput.add(cmbSebabMati);
-        cmbSebabMati.setBounds(995, 42, 140, 23);
+        cmbSebabMati.setBounds(1065, 42, 140, 23);
 
         cmbRujukan.setForeground(new java.awt.Color(0, 0, 0));
         cmbRujukan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rumah Sakit", "Bidan", "Non Medis", "Puskesmas", "Faskes lainnya", "Non Rujukan" }));
         cmbRujukan.setSelectedIndex(5);
         cmbRujukan.setName("cmbRujukan"); // NOI18N
-        cmbRujukan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbRujukanKeyPressed(evt);
-            }
-        });
         FormInput.add(cmbRujukan);
-        cmbRujukan.setBounds(995, 72, 130, 23);
+        cmbRujukan.setBounds(1065, 72, 130, 23);
 
         cmbDirujuk.setForeground(new java.awt.Color(0, 0, 0));
         cmbDirujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
         cmbDirujuk.setName("cmbDirujuk"); // NOI18N
-        cmbDirujuk.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbDirujukKeyPressed(evt);
-            }
-        });
         FormInput.add(cmbDirujuk);
-        cmbDirujuk.setBounds(995, 102, 70, 23);
+        cmbDirujuk.setBounds(1065, 102, 70, 23);
 
         label42.setForeground(new java.awt.Color(0, 0, 0));
         label42.setText("Dirujuk :");
         label42.setName("label42"); // NOI18N
         label42.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label42);
-        label42.setBounds(885, 102, 105, 23);
+        label42.setBounds(955, 102, 105, 23);
 
         label43.setForeground(new java.awt.Color(0, 0, 0));
         label43.setText("Kematian Perinatal :");
         label43.setName("label43"); // NOI18N
         label43.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label43);
-        label43.setBounds(885, 12, 105, 23);
+        label43.setBounds(955, 12, 105, 23);
 
         label44.setForeground(new java.awt.Color(0, 0, 0));
         label44.setText("Sebab Kematian :");
         label44.setName("label44"); // NOI18N
         label44.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label44);
-        label44.setBounds(885, 42, 105, 23);
+        label44.setBounds(955, 42, 105, 23);
 
         label45.setForeground(new java.awt.Color(0, 0, 0));
         label45.setText("Asal Rujukan :");
         label45.setName("label45"); // NOI18N
         label45.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label45);
-        label45.setBounds(885, 72, 105, 23);
+        label45.setBounds(955, 72, 105, 23);
 
         label46.setForeground(new java.awt.Color(0, 0, 0));
         label46.setText("No. SKL :");
         label46.setName("label46"); // NOI18N
         label46.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label46);
-        label46.setBounds(0, 222, 85, 23);
+        label46.setBounds(0, 222, 105, 23);
 
         jns_alamat.setBackground(new java.awt.Color(248, 253, 243));
         jns_alamat.setForeground(new java.awt.Color(0, 0, 0));
         jns_alamat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Dalam Wilayah Kab. Banjar", "Luar Wilayah" }));
         jns_alamat.setName("jns_alamat"); // NOI18N
         jns_alamat.setPreferredSize(new java.awt.Dimension(100, 23));
-        jns_alamat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jns_alamatMouseClicked(evt);
-            }
-        });
-        jns_alamat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jns_alamatKeyPressed(evt);
-            }
-        });
         FormInput.add(jns_alamat);
-        jns_alamat.setBounds(89, 252, 160, 23);
+        jns_alamat.setBounds(109, 252, 160, 23);
 
         label47.setForeground(new java.awt.Color(0, 0, 0));
         label47.setText("Cara Lahir :");
         label47.setName("label47"); // NOI18N
         label47.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label47);
-        label47.setBounds(0, 282, 85, 23);
+        label47.setBounds(0, 282, 105, 23);
 
         cara_lahir.setBackground(new java.awt.Color(248, 253, 243));
         cara_lahir.setForeground(new java.awt.Color(0, 0, 0));
         cara_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Spontan", "Letak Sungsang", "VE/Forcep", "SC" }));
         cara_lahir.setName("cara_lahir"); // NOI18N
         cara_lahir.setPreferredSize(new java.awt.Dimension(100, 23));
-        cara_lahir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cara_lahirMouseClicked(evt);
-            }
-        });
-        cara_lahir.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cara_lahirKeyPressed(evt);
-            }
-        });
         FormInput.add(cara_lahir);
-        cara_lahir.setBounds(89, 282, 130, 23);
+        cara_lahir.setBounds(109, 282, 130, 23);
 
         label48.setForeground(new java.awt.Color(0, 0, 0));
         label48.setText("Jenis Penolong :");
         label48.setName("label48"); // NOI18N
         label48.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label48);
-        label48.setBounds(0, 312, 85, 23);
+        label48.setBounds(0, 312, 105, 23);
 
         jns_penolong.setBackground(new java.awt.Color(248, 253, 243));
         jns_penolong.setForeground(new java.awt.Color(0, 0, 0));
         jns_penolong.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "-", "Bidan", "Dokter Spesialis" }));
         jns_penolong.setName("jns_penolong"); // NOI18N
         jns_penolong.setPreferredSize(new java.awt.Dimension(100, 23));
-        jns_penolong.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jns_penolongMouseClicked(evt);
-            }
-        });
-        jns_penolong.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jns_penolongKeyPressed(evt);
-            }
-        });
         FormInput.add(jns_penolong);
-        jns_penolong.setBounds(89, 312, 110, 23);
+        jns_penolong.setBounds(109, 312, 110, 23);
 
         label49.setForeground(new java.awt.Color(0, 0, 0));
         label49.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2470,7 +2400,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         label49.setName("label49"); // NOI18N
         label49.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label49);
-        label49.setBounds(362, 282, 50, 23);
+        label49.setBounds(398, 282, 50, 23);
 
         label51.setForeground(new java.awt.Color(0, 0, 0));
         label51.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2478,7 +2408,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         label51.setName("label51"); // NOI18N
         label51.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label51);
-        label51.setBounds(362, 222, 50, 23);
+        label51.setBounds(398, 222, 50, 23);
 
         label52.setForeground(new java.awt.Color(0, 0, 0));
         label52.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2486,190 +2416,110 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         label52.setName("label52"); // NOI18N
         label52.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label52);
-        label52.setBounds(362, 252, 50, 23);
+        label52.setBounds(398, 252, 50, 23);
 
         menit1.setBackground(new java.awt.Color(248, 253, 243));
         menit1.setForeground(new java.awt.Color(0, 0, 0));
         menit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0-3", "4-7", "8-10" }));
         menit1.setName("menit1"); // NOI18N
         menit1.setPreferredSize(new java.awt.Dimension(100, 23));
-        menit1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menit1MouseClicked(evt);
-            }
-        });
-        menit1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                menit1KeyPressed(evt);
-            }
-        });
         FormInput.add(menit1);
-        menit1.setBounds(415, 222, 60, 23);
+        menit1.setBounds(453, 222, 60, 23);
 
         menit5.setBackground(new java.awt.Color(248, 253, 243));
         menit5.setForeground(new java.awt.Color(0, 0, 0));
         menit5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0-3", "4-7", "8-10" }));
         menit5.setName("menit5"); // NOI18N
         menit5.setPreferredSize(new java.awt.Dimension(100, 23));
-        menit5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menit5MouseClicked(evt);
-            }
-        });
-        menit5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                menit5KeyPressed(evt);
-            }
-        });
         FormInput.add(menit5);
-        menit5.setBounds(415, 252, 60, 23);
+        menit5.setBounds(453, 252, 60, 23);
 
         menit10.setBackground(new java.awt.Color(248, 253, 243));
         menit10.setForeground(new java.awt.Color(0, 0, 0));
         menit10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0-3", "4-7", "8-10" }));
         menit10.setName("menit10"); // NOI18N
         menit10.setPreferredSize(new java.awt.Dimension(100, 23));
-        menit10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menit10MouseClicked(evt);
-            }
-        });
-        menit10.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                menit10KeyPressed(evt);
-            }
-        });
         FormInput.add(menit10);
-        menit10.setBounds(415, 282, 60, 23);
+        menit10.setBounds(453, 282, 60, 23);
 
         label53.setForeground(new java.awt.Color(0, 0, 0));
         label53.setText("Proses Kelahiran :");
         label53.setName("label53"); // NOI18N
         label53.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label53);
-        label53.setBounds(475, 222, 98, 23);
+        label53.setBounds(503, 222, 120, 23);
 
         umur_hamil.setBackground(new java.awt.Color(248, 253, 243));
         umur_hamil.setForeground(new java.awt.Color(0, 0, 0));
         umur_hamil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "<=35", "36-40", ">=42" }));
         umur_hamil.setName("umur_hamil"); // NOI18N
         umur_hamil.setPreferredSize(new java.awt.Dimension(100, 23));
-        umur_hamil.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                umur_hamilMouseClicked(evt);
-            }
-        });
-        umur_hamil.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                umur_hamilKeyPressed(evt);
-            }
-        });
         FormInput.add(umur_hamil);
-        umur_hamil.setBounds(577, 252, 60, 23);
+        umur_hamil.setBounds(627, 252, 60, 23);
 
         label54.setForeground(new java.awt.Color(0, 0, 0));
         label54.setText("Umur Kehamilan :");
         label54.setName("label54"); // NOI18N
         label54.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label54);
-        label54.setBounds(475, 252, 98, 23);
+        label54.setBounds(503, 252, 120, 23);
 
         cmbAsalBayi.setBackground(new java.awt.Color(248, 253, 243));
         cmbAsalBayi.setForeground(new java.awt.Color(0, 0, 0));
         cmbAsalBayi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Dalam RS", "Luar RS" }));
         cmbAsalBayi.setName("cmbAsalBayi"); // NOI18N
         cmbAsalBayi.setPreferredSize(new java.awt.Dimension(100, 23));
-        cmbAsalBayi.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbAsalBayiMouseClicked(evt);
-            }
-        });
-        cmbAsalBayi.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbAsalBayiKeyPressed(evt);
-            }
-        });
         FormInput.add(cmbAsalBayi);
-        cmbAsalBayi.setBounds(705, 252, 80, 23);
+        cmbAsalBayi.setBounds(755, 252, 80, 23);
 
         label55.setForeground(new java.awt.Color(0, 0, 0));
         label55.setText("Rwt. Gabung Ibu :");
         label55.setName("label55"); // NOI18N
         label55.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label55);
-        label55.setBounds(885, 132, 105, 23);
+        label55.setBounds(955, 132, 105, 23);
 
         cmbRawat.setBackground(new java.awt.Color(248, 253, 243));
         cmbRawat.setForeground(new java.awt.Color(0, 0, 0));
         cmbRawat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
         cmbRawat.setName("cmbRawat"); // NOI18N
-        cmbRawat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbRawatMouseClicked(evt);
-            }
-        });
-        cmbRawat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbRawatKeyPressed(evt);
-            }
-        });
         FormInput.add(cmbRawat);
-        cmbRawat.setBounds(995, 132, 70, 23);
+        cmbRawat.setBounds(1065, 132, 70, 23);
 
         label56.setForeground(new java.awt.Color(0, 0, 0));
         label56.setText("IMD :");
         label56.setName("label56"); // NOI18N
         label56.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label56);
-        label56.setBounds(885, 162, 105, 23);
+        label56.setBounds(955, 162, 105, 23);
 
         cmbIMD.setBackground(new java.awt.Color(248, 253, 243));
         cmbIMD.setForeground(new java.awt.Color(0, 0, 0));
         cmbIMD.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
         cmbIMD.setName("cmbIMD"); // NOI18N
-        cmbIMD.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbIMDMouseClicked(evt);
-            }
-        });
-        cmbIMD.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbIMDKeyPressed(evt);
-            }
-        });
         FormInput.add(cmbIMD);
-        cmbIMD.setBounds(995, 162, 70, 23);
+        cmbIMD.setBounds(1065, 162, 70, 23);
 
         label57.setForeground(new java.awt.Color(0, 0, 0));
         label57.setText("KMC :");
         label57.setName("label57"); // NOI18N
         label57.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label57);
-        label57.setBounds(885, 192, 105, 23);
+        label57.setBounds(955, 192, 105, 23);
 
         cmbKMC.setBackground(new java.awt.Color(248, 253, 243));
         cmbKMC.setForeground(new java.awt.Color(0, 0, 0));
         cmbKMC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
         cmbKMC.setName("cmbKMC"); // NOI18N
-        cmbKMC.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbKMCMouseClicked(evt);
-            }
-        });
-        cmbKMC.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbKMCKeyPressed(evt);
-            }
-        });
         FormInput.add(cmbKMC);
-        cmbKMC.setBounds(995, 192, 70, 23);
+        cmbKMC.setBounds(1065, 192, 70, 23);
 
         label58.setForeground(new java.awt.Color(0, 0, 0));
         label58.setText("Berat Badan Bayi :");
         label58.setName("label58"); // NOI18N
         label58.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label58);
-        label58.setBounds(0, 132, 100, 23);
+        label58.setBounds(0, 132, 120, 23);
 
         benarberat.setForeground(new java.awt.Color(0, 0, 0));
         benarberat.setName("benarberat"); // NOI18N
@@ -2685,7 +2535,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(benarberat);
-        benarberat.setBounds(105, 132, 60, 23);
+        benarberat.setBounds(125, 132, 60, 23);
 
         label59.setForeground(new java.awt.Color(0, 0, 0));
         label59.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2693,7 +2543,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         label59.setName("label59"); // NOI18N
         label59.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label59);
-        label59.setBounds(170, 132, 115, 23);
+        label59.setBounds(190, 132, 115, 23);
 
         NoRmIbu.setEditable(false);
         NoRmIbu.setForeground(new java.awt.Color(0, 0, 0));
@@ -2705,7 +2555,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(NoRmIbu);
-        NoRmIbu.setBounds(89, 42, 80, 23);
+        NoRmIbu.setBounds(109, 42, 80, 23);
 
         btnPasienIbu.setForeground(new java.awt.Color(0, 0, 0));
         btnPasienIbu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -2719,7 +2569,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnPasienIbu);
-        btnPasienIbu.setBounds(437, 42, 28, 23);
+        btnPasienIbu.setBounds(457, 42, 28, 23);
 
         label60.setForeground(new java.awt.Color(0, 0, 0));
         label60.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2727,7 +2577,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         label60.setName("label60"); // NOI18N
         label60.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label60);
-        label60.setBounds(423, 132, 30, 23);
+        label60.setBounds(443, 132, 30, 23);
 
         label23.setForeground(new java.awt.Color(0, 0, 0));
         label23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2735,7 +2585,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         label23.setName("label23"); // NOI18N
         label23.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label23);
-        label23.setBounds(440, 72, 25, 23);
+        label23.setBounds(460, 72, 25, 23);
 
         label61.setForeground(new java.awt.Color(0, 0, 0));
         label61.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2743,7 +2593,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         label61.setName("label61"); // NOI18N
         label61.setPreferredSize(new java.awt.Dimension(65, 23));
         FormInput.add(label61);
-        label61.setBounds(440, 102, 25, 23);
+        label61.setBounds(460, 102, 25, 23);
 
         BtnApgar.setForeground(new java.awt.Color(0, 0, 0));
         BtnApgar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -2758,7 +2608,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnApgar);
-        BtnApgar.setBounds(251, 222, 116, 23);
+        BtnApgar.setBounds(276, 222, 116, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -2935,14 +2785,6 @@ private void cmbCrJkKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c
     Valid.pindah(evt, BtnAll, DTPCari1);
 }//GEN-LAST:event_cmbCrJkKeyPressed
 
-private void DTPCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPCari1KeyPressed
-    Valid.pindah(evt, Proses, Diagnosa);
-}//GEN-LAST:event_DTPCari1KeyPressed
-
-private void DTPCari2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPCari2KeyPressed
-// TODO add your handling code here:
-}//GEN-LAST:event_DTPCari2KeyPressed
-
 private void jamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jamKeyPressed
     Valid.pindah(evt, Lahir, menit);
 }//GEN-LAST:event_jamKeyPressed
@@ -2963,10 +2805,6 @@ private void DaftarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Da
     Valid.pindah(evt, LingkarDada, Anakke);
 }//GEN-LAST:event_DaftarKeyPressed
 
-private void keteranganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keteranganKeyPressed
-
-}//GEN-LAST:event_keteranganKeyPressed
-
 private void LahirItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_LahirItemStateChanged
     lahir = Lahir.getDate();
     birthday = lahir.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -2976,8 +2814,7 @@ private void LahirItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:ev
 }//GEN-LAST:event_LahirItemStateChanged
 
 private void ppGrafikberatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppGrafikberatActionPerformed
-    String say = "";
-    String tgl = "";
+    String say = "", tgl = "";
     if (ckTglCari.isSelected() == true) {
         say = "inner join pasien on pasien.no_rkm_medis=pasien_bayi.no_rkm_medis where tgl_lahir between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' ";
         tgl = " Antara Tanggal " + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + " s.d. " + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + " ";
@@ -3572,133 +3409,28 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         }
     }//GEN-LAST:event_ckTglCariActionPerformed
 
-    private void cmbBeratKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbBeratKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbBeratKeyPressed
-
-    private void cmbMatiPerinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbMatiPerinKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbMatiPerinKeyPressed
-
-    private void cmbSebabMatiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbSebabMatiKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbSebabMatiKeyPressed
-
-    private void cmbRujukanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbRujukanKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbRujukanKeyPressed
-
-    private void cmbDirujukKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbDirujukKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbDirujukKeyPressed
-
-    private void jns_alamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jns_alamatKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jns_alamatKeyPressed
-
-    private void cara_lahirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cara_lahirKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cara_lahirKeyPressed
-
-    private void jns_penolongKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jns_penolongKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jns_penolongKeyPressed
-
-    private void menit1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_menit1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menit1KeyPressed
-
-    private void menit5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_menit5KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menit5KeyPressed
-
-    private void menit10KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_menit10KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menit10KeyPressed
-
-    private void umur_hamilKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_umur_hamilKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_umur_hamilKeyPressed
-
-    private void jns_alamatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jns_alamatMouseClicked
-        jns_alamat.setEditable(false);
-    }//GEN-LAST:event_jns_alamatMouseClicked
-
-    private void cara_lahirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cara_lahirMouseClicked
-        cara_lahir.setEditable(false);
-    }//GEN-LAST:event_cara_lahirMouseClicked
-
-    private void jns_penolongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jns_penolongMouseClicked
-        jns_penolong.setEditable(false);
-    }//GEN-LAST:event_jns_penolongMouseClicked
-
-    private void menit1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menit1MouseClicked
-        menit1.setEditable(false);
-    }//GEN-LAST:event_menit1MouseClicked
-
-    private void menit5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menit5MouseClicked
-        menit5.setEditable(false);
-    }//GEN-LAST:event_menit5MouseClicked
-
-    private void menit10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menit10MouseClicked
-        menit10.setEditable(false);
-    }//GEN-LAST:event_menit10MouseClicked
-
-    private void umur_hamilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_umur_hamilMouseClicked
-        umur_hamil.setEditable(false);
-    }//GEN-LAST:event_umur_hamilMouseClicked
-
-    private void cmbAsalBayiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbAsalBayiMouseClicked
-        cmbAsalBayi.setEditable(false);
-    }//GEN-LAST:event_cmbAsalBayiMouseClicked
-
-    private void cmbAsalBayiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbAsalBayiKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbAsalBayiKeyPressed
-
-    private void cmbRawatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbRawatKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbRawatKeyPressed
-
-    private void cmbIMDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbIMDKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbIMDKeyPressed
-
-    private void cmbKMCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbKMCKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbKMCKeyPressed
-
-    private void cmbRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbRawatMouseClicked
-        cmbRawat.setEditable(false);
-    }//GEN-LAST:event_cmbRawatMouseClicked
-
-    private void cmbIMDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbIMDMouseClicked
-        cmbIMD.setEditable(false);
-    }//GEN-LAST:event_cmbIMDMouseClicked
-
-    private void cmbKMCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbKMCMouseClicked
-        cmbKMC.setEditable(false);
-    }//GEN-LAST:event_cmbKMCMouseClicked
-
     private void benarberatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_benarberatKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt, UmurAyah, JKel);
     }//GEN-LAST:event_benarberatKeyPressed
 
     private void benarberatFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_benarberatFocusLost
-        if (benarberat.getText().equals("")) {
+        if (benarberat.getText().trim().equals("")) {
             cmbBerat.setSelectedIndex(0);
         } else {
-            berat = Integer.parseInt(benarberat.getText());
-            if (berat < 1000) {
-                cmbBerat.setSelectedIndex(4);
-            } else if (berat >= 1000 && berat < 1500) {
-                cmbBerat.setSelectedIndex(5);
-            } else if (berat >= 1500 && berat < 2500) {
-                cmbBerat.setSelectedIndex(6);
+            berat = Integer.parseInt(benarberat.getText().trim());
+
+            if (berat >= 0 && berat <= 999) {
+                cmbBerat.setSelectedIndex(4); // 0 - 999
+            } else if (berat >= 1000 && berat <= 1499) {
+                cmbBerat.setSelectedIndex(5); // 1.000 - 1.499
+            } else if (berat >= 1500 && berat <= 2499) {
+                cmbBerat.setSelectedIndex(6); // 1.500 - 2.499
             } else if (berat >= 2500 && berat <= 4000) {
-                cmbBerat.setSelectedIndex(7);
+                cmbBerat.setSelectedIndex(7); // 2.500 - 4.000
+            } else if (berat >= 4001) {
+                cmbBerat.setSelectedIndex(8); // >= 4.001
             } else {
-                cmbBerat.setSelectedIndex(8);
+                cmbBerat.setSelectedIndex(0);
             }
         }
     }//GEN-LAST:event_benarberatFocusLost

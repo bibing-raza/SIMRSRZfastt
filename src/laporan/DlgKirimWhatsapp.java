@@ -20,6 +20,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -46,7 +47,7 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
     private String nmDokumen = "", norawat = "", waktuSimpan = "", cekPiutang = "", crbyr = "", isi = "", nmFile = "", cekKIR = "",
             judulReport = "", judulBanyak = "", judulTunggal = "", tanggal = "", nmPemberiJT = "", noTelpJT = "", jmlNominalJT = "",
             namaPasJT = "", norkmJT = "", noPanjarP = "", keterP = "", notelpP = "", sttsP = "", angkaNomP = "", userP = "", 
-            nmpetgs = "", namaPasien = "";
+            nmpetgs = "", namaPasien = "", Kalkulasi = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -277,6 +278,8 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
             notaPemasukanLain();
         } else if (nmDokumen.equals("nota ambulan")) {
             notaAmbulan();
+        } else if (nmDokumen.equals("nota naik kelas")) {
+            notaNaikKelasBpjs();
         }
     }
     
@@ -1428,5 +1431,326 @@ public class DlgKirimWhatsapp extends javax.swing.JDialog {
         TnoWa.setText("");
         TnmFile.setText(nmFile);
         TnoWa.requestFocus();
+    }
+
+    private void notaNaikKelasBpjs() {
+        String statusTran = "";
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(waktuSimpan + "")));
+
+        nmFile = "Nota Transaksi " + noTelpJT.replaceAll("/", "");
+        statusTran = Sequel.cariIsi("select status_transaksi from biaya_naik_kelas_bpjs where no_transaksi='" + noTelpJT + "'");
+        
+        if (statusTran.equals("dicicil")) {
+            SimpanNotaNaikKelas();
+            param.put("keterangan", jmlNominalJT);
+            param.put("judul_kwitansi", "KUITANSI PEMBAYARAN (Angsuran Ke - " + namaPasJT + ")");
+            param.put("telah_terimaAN", namaPasien);
+            param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp13,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
+            param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp13,'.','.'),',','.')) FROM temporary_bayar_ranap"));
+
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Kuitansi Pembayaran (Angsuran Ke - " + namaPasJT + ")", nmpetgs,
+                            Sequel.cariIsi("select date_format('" + Valid.SetTgl(waktuSimpan + "") + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReportToPDF("rptNotaSelisihTarifCicilQr.jasper", "report", "::[ Kwitansi pembayaran selisih tarif BPJS (Angsuran) ]::",
+                    "SELECT * FROM temporary_bayar_ranap", param, Sequel.cariFolderTte(), nmFile);
+            Sequel.mengedit("reg_periksa", "no_rawat='" + norawat + "'", "p_jawab='" + namaPasien + "' ");
+
+        } else if (statusTran.equals("lunas") || (statusTran.equals(""))) {
+            SimpanNotaNaikKelas();
+            param.put("telah_terimaAN", namaPasien);
+            param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp13,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
+            param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp13,'.','.'),',','.')) FROM temporary_bayar_ranap"));
+
+            isi = Sequel.cariIsi("select replace(kalimat_qrcode,kalimat_qrcode,"
+                    + "'" + Valid.kalimatQRcode(Sequel.cariIsi("select jenis_dokumen from kalimat_tte where kode='011'"),
+                            "Kuitansi Pembayaran (Pelunasan)", nmpetgs,
+                            Sequel.cariIsi("select date_format('" + Valid.SetTgl(waktuSimpan + "") + "','%d/%m/%Y')"),
+                            Sequel.cariIsi("select time(now())")) + "') from kalimat_tte where kode='011'");
+
+            Valid.cetakQrTte(isi, Sequel.cariFolderTte(), "QRTte.jpg", "select logo from setting");
+            Sequel.queryu("delete from setting_qr where judul = 'QRTte'");
+            Sequel.menyimpanQr("setting_qr", "'QRTte'", "file QRCode TTE Kuitansi", Sequel.cariFolderPrintTte());
+            param.put("lokasiQr", Sequel.cariGambar("select gambar from setting_qr where judul = 'QRTte'"));
+            param.put("kalimatTte", Sequel.cariIsi("select replace(kalimat_footer,'##jns_dokumen##',jenis_dokumen) from kalimat_tte where kode='011'"));
+
+            Valid.MyReportToPDF("rptNotaSelisihTarifQr.jasper", "report", "::[ Kwitansi pembayaran selisih tarif BPJS (Pelunasan) ]::", 
+                    "SELECT * FROM temporary_bayar_ranap", param, Sequel.cariFolderTte(), nmFile);
+            Sequel.mengedit("reg_periksa", "no_rawat='" + norawat + "'", "p_jawab='" + namaPasien + "' ");
+        }
+        
+        TnoWa.setText("");
+        TnmFile.setText(nmFile);
+        TnoWa.requestFocus();
+    }
+
+    private void SimpanNotaNaikKelas() {
+        try {
+            koneksi.setAutoCommit(false);
+            Sequel.queryu2("delete from temporary_bayar_ranap");
+
+            ps = koneksi.prepareStatement("SELECT CONCAT(p.nm_pasien,' (No.RM : ', pl.no_rkm_medis,')') pasien, pl.no_kartu, CONCAT('1704R0', pl.no_sep) nosep, "
+                    + "pl.ruang_inap, pl.lm_rawat, DATE_FORMAT(pl.tgl_masuk, '%d-%m-%Y') tgl_msk, DATE_FORMAT(pl.tgl_pulang, '%d-%m-%Y') tgl_plg, pl.hak_kelas, "
+                    + "pl.kode_inacbg, ki.description_pmk_59_2014, pl.no_transaksi, pl.rumus_selisih_tarif, format(pl.besar,0) besar, pt.nama petugas "
+                    + "FROM pemasukan_lain pl INNER JOIN petugas pt ON pt.nip = pl.nip INNER JOIN pasien p ON p.no_rkm_medis = pl.no_rkm_medis "
+                    + "INNER JOIN inacbg_unucbg_2016 ki ON ki.code = pl.kode_inacbg WHERE pl.no_transaksi = '" + noTelpJT + "'");
+            try {
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    nmpetgs = rs.getString("petugas");
+                    hitungSelisih(rs.getString("nosep"));
+                    Sequel.menyimpan("temporary_bayar_ranap",
+                            "'0','"
+                            + rs.getString("pasien").replaceAll("'", "") + "','"
+                            + rs.getString("no_kartu") + "','"
+                            + rs.getString("nosep") + "','"
+                            + rs.getString("ruang_inap") + "','"
+                            + rs.getString("lm_rawat") + "','"
+                            + rs.getString("tgl_msk") + "','"
+                            + rs.getString("tgl_plg") + "','"
+                            + rs.getString("hak_kelas") + "','"
+                            + rs.getString("kode_inacbg") + "','"
+                            + rs.getString("description_pmk_59_2014") + "','"
+                            + rs.getString("no_transaksi") + "','"
+                            + Kalkulasi + "',' "
+                            + rs.getString("besar").replaceAll(",", ".") + "','"
+                            + rs.getString("petugas") + "','','',''", "Nota/Kwitansi Selisih Naik Kelas BPJS");
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+            koneksi.setAutoCommit(true);
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    public void hitungSelisih(String nosep) {
+        int cekData = 0;
+        double rumus1 = 0, rumus2 = 0, rumus3 = 0, hasilrumus = 0, hasilmaksimal = 0;
+        String deskripsiKD = "", kdINACBG = "", tarifkls1 = "", tarifkls2 = "", tarifkls3 = "", persenSELISIH = "", realcostRS = "", hakkelas = "", cmbNaikKls = "";
+        
+        persenSELISIH = Sequel.cariIsi("select selisih_tarif_bpjs2 from set_tarif");
+        kdINACBG = Sequel.cariIsi("select kode_inacbg from bridging_sep where jnspelayanan='1' and no_sep='" + nosep + "'");
+        hakkelas = Sequel.cariIsi("select klsrawat from bridging_sep where jnspelayanan='1' and no_sep='" + nosep + "'");
+        deskripsiKD = Sequel.cariIsi("SELECT description FROM inacbg_unucbg_2016 WHERE code='" + kdINACBG + "'");
+        cmbNaikKls = Sequel.cariIsi("select naik_kelas from pemasukan_lain pl where pl.no_rawat='" + norawat + "'");
+        tarifkls1 = Sequel.cariIsi("SELECT TARIFF FROM inacbg_tariff_20230124 WHERE REGIONAL='reg4' and KODE_TARIFF='bp' and JENIS_PELAYANAN='1' and KELAS_RAWAT='1' and INACBG='" + kdINACBG + "'");
+        tarifkls2 = Sequel.cariIsi("SELECT TARIFF FROM inacbg_tariff_20230124 WHERE REGIONAL='reg4' and KODE_TARIFF='bp' and JENIS_PELAYANAN='1' and KELAS_RAWAT='2' and INACBG='" + kdINACBG + "'");
+        tarifkls3 = Sequel.cariIsi("SELECT TARIFF FROM inacbg_tariff_20230124 WHERE REGIONAL='reg4' and KODE_TARIFF='bp' and JENIS_PELAYANAN='1' and KELAS_RAWAT='3' and INACBG='" + kdINACBG + "'");
+        
+        if (Sequel.cariIsi("select ifnull(totalpiutang,'') from piutang_pasien where no_rawat='" + norawat + "'").equals("")) {
+            realcostRS = "0";
+        } else {
+            realcostRS = Sequel.cariIsi("select ifnull(totalpiutang,'0') from piutang_pasien where no_rawat='" + norawat + "'");
+        }
+        
+        if (kdINACBG.equals("") && deskripsiKD.equals("")) {
+            tarifkls1 = "0";
+            tarifkls2 = "0";
+            tarifkls3 = "0";
+        } else {
+            tarifkls1 = Sequel.cariIsi("SELECT TARIFF FROM inacbg_tariff_20230124 WHERE REGIONAL='reg4' and KODE_TARIFF='bp' and JENIS_PELAYANAN='1' and KELAS_RAWAT='1' and INACBG='" + kdINACBG + "'");
+            tarifkls2 = Sequel.cariIsi("SELECT TARIFF FROM inacbg_tariff_20230124 WHERE REGIONAL='reg4' and KODE_TARIFF='bp' and JENIS_PELAYANAN='1' and KELAS_RAWAT='2' and INACBG='" + kdINACBG + "'");
+            tarifkls3 = Sequel.cariIsi("SELECT TARIFF FROM inacbg_tariff_20230124 WHERE REGIONAL='reg4' and KODE_TARIFF='bp' and JENIS_PELAYANAN='1' and KELAS_RAWAT='3' and INACBG='" + kdINACBG + "'");
+        }
+        
+        DecimalFormat df4 = new DecimalFormat("####");
+        double a = Double.parseDouble(tarifkls1.trim());
+        double b = Double.parseDouble(tarifkls2.trim());
+        double c = Double.parseDouble(tarifkls3.trim());
+        double d = Double.parseDouble(persenSELISIH);
+        double e = Double.parseDouble(realcostRS);
+        cekData = Sequel.cariInteger("select count(1) from biaya_naik_kelas_bpjs where no_sep ='" + nosep + "'");
+
+        if (cekData <= 0) {
+            if (hakkelas.equals("2") && cmbNaikKls.equals("Kelas 1")) {
+                Kalkulasi = "tarif INACBG : Kelas 1 Rp. " + Valid.SetAngka3(a) + " - Kelas 2 Rp. " + Valid.SetAngka3(b) + " = Rp. " + Valid.SetAngka3(a - b) + "\n"
+                        + "Jadi yang harus dibayar pasien adalah Rp. " + Valid.SetAngka3(a - b) + "";
+
+            } else if (hakkelas.equals("2") && (cmbNaikKls.equals("Kelas VIP") || cmbNaikKls.equals("Kelas VVIP"))) {
+                //tarif inacbg kelas 1 - kelas 2
+                rumus1 = a - b;
+                //tarif inacbg kelas 1 x 75 %
+                rumus2 = d / 100 * a;
+                //hasil perhitunganya
+                hasilrumus = rumus1 + rumus2;
+                //hitung tarif inacbg kelas 2 + hasilrumus
+                hasilmaksimal = b + hasilrumus;
+
+                //jika tarif real cost RS < tarif inacbg maka GRATIS
+                if (e < b) {
+                    Kalkulasi = "Karena Real Cost RS kurang dari tarif INACBG kelas 2 maka tidak ada\n"
+                            + "penambahan selisih biaya perawatan.";
+                    
+                    //jika tarif real cost RS > dari tarif perhitungan permenkes no. 3 tahun 2023
+                } else if (e > hasilmaksimal) {
+                    Kalkulasi = "Rumus Tarif INACBG    #   (Kelas 1 - Kelas 2) + (" + persenSELISIH + " % x Kelas 1)\n"
+                            + "A. Kelas 1 - Kelas 2      #   Rp. " + Valid.SetAngka3(a) + " - Rp. " + Valid.SetAngka3(b) + " = Rp. " + Valid.SetAngka3(rumus1) + "\n"
+                            + "B. " + persenSELISIH + " % x Kelas 1        #   " + persenSELISIH + " % x Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(rumus2) + "\n"
+                            + "C. Jadi hasilnya adalah Rp. " + Valid.SetAngka3(hasilrumus) + "\n"
+                            + "D. Tarif maksimal         #   Kelas 2 + hasil perhitungan rumus poin C.\n"
+                            + "                                    #   Rp. " + Valid.SetAngka3(b) + " + Rp. " + Valid.SetAngka3(hasilrumus) + " = Rp. " + Valid.SetAngka3(hasilmaksimal) + "\n"
+                            + "----------------------------------------------------------------------------------------------------------------------------------------\n"
+                            + "Kesimpulan : Karena tarif Real Cost RS melebihi dari tarif maksimal penghitungan\n"
+                            + "                     sesuai Permenkes No. 3 Tahun 2023 maka, yang harus dibayarkan\n"
+                            + "                     sesuai dengan Permenkes No. 3 Tahun 2023 adalah Rp. " + Valid.SetAngka3(hasilrumus) + "";
+
+                    //jika tarif inacbg kls 2 < real cost RS sampai batas maksimal tarif perhitungan permenkes no. 3 tahun 2023
+                } else if ((b < e) && (e <= hasilmaksimal)) {
+                    rumus3 = e - b;
+                    Kalkulasi = "Rumus Tarif INACBG    #   (Kelas 1 - Kelas 2) + (" + persenSELISIH + " % x Kelas 1)\n"
+                            + "A. Kelas 1 - Kelas 2      #   Rp. " + Valid.SetAngka3(a) + " - Rp. " + Valid.SetAngka3(b) + " = Rp. " + Valid.SetAngka3(rumus1) + "\n"
+                            + "B. " + persenSELISIH + " % x Kelas 1        #   " + persenSELISIH + " % x Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(rumus2) + "\n"
+                            + "C. Jadi hasilnya adalah Rp. " + Valid.SetAngka3(hasilrumus) + "\n"
+                            + "D. Tarif maksimal         #   Kelas 2 + hasil perhitungan rumus poin C.\n"
+                            + "                                    #   Rp. " + Valid.SetAngka3(b) + " + Rp. " + Valid.SetAngka3(hasilrumus) + " = Rp. " + Valid.SetAngka3(hasilmaksimal) + "\n"
+                            + "----------------------------------------------------------------------------------------------------------------------------------------\n"
+                            + "Kesimpulan : Karena tarif INACBG Kelas 2 kurang dari tarif Real Cost RS dan sampai batas tarif maksimal\n"
+                            + "                     penghitungan sesuai Permenkes No. 3 Tahun 2023 maka biaya, yang harus dibayarkan adalah\n"
+                            + "                     tarif real cost RS - tarif INACBG Kelas 2 sebagai berikut :\n"
+                            + "                     Rp. " + Valid.SetAngka3(e) + " - Rp. " + Valid.SetAngka3(b) + " = Rp. " + Valid.SetAngka3(rumus3) + "\n"
+                            + "                     Jadi yang harus dibayarkan sesuai dengan Permenkes No. 3 Tahun 2023 adalah Rp. " + Valid.SetAngka3(rumus3) + "";                    
+                }
+
+            } else if (hakkelas.equals("1") && (cmbNaikKls.equals("Kelas VIP") || cmbNaikKls.equals("Kelas VVIP"))) {
+                rumus1 = d / 100 * a;
+                rumus2 = rumus1 + a;
+                //jika real cost RS <= dari tarif inacbg kelas 1 
+                if (e <= a) {
+                    Kalkulasi = "Karena Real Cost RS kurang dari tarif INACBG kelas 1 maka tidak ada\n"
+                            + "penambahan selisih biaya perawatan.";                    
+
+                    //jika real cost RS > dari tarif penghitungan permenkes no. 3 tahun 2023
+                } else if (e > rumus2) {
+                    Kalkulasi = "Rumus Tarif INACBG             #   (" + persenSELISIH + " % x Kelas 1) + Kelas 1\n"
+                            + "A. " + persenSELISIH + " % x Kelas 1                 #   " + persenSELISIH + " % x Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(rumus1) + "\n"
+                            + "B. Rp. " + Valid.SetAngka3(rumus1) + " + Kelas 1  #   Rp. " + Valid.SetAngka3(rumus1) + " + Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(rumus2) + "\n"
+                            + "----------------------------------------------------------------------------------------------------------------------------------------\n"
+                            + "Kesimpulan : Karena tarif Real Cost RS melebihi dari tarif maksimal penghitungan sesuai Permenkes No. 3\n"
+                            + "                     Tahun 2023 maka, yang harus dibayarkan sesuai dengan Permenkes No. 3 Tahun 2023\n"
+                            + "                     adalah Rp. " + Valid.SetAngka3(rumus1) + "";
+
+                    //jika tarif inacbg kelas 1 < real cost RS dan sampai batas maksimal tarif perhitungan permenkes no. 3 tahun 2023
+                } else if ((a < e) && (e <= rumus2)) {
+                    Kalkulasi = "Rumus Tarif INACBG             #   (" + persenSELISIH + " % x Kelas 1) + Kelas 1\n"
+                            + "A. " + persenSELISIH + " % x Kelas 1                 #   " + persenSELISIH + " % x Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(rumus1) + "\n"
+                            + "B. Rp. " + Valid.SetAngka3(rumus1) + " + Kelas 1  #   Rp. " + Valid.SetAngka3(rumus1) + " + Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(rumus2) + "\n"
+                            + "----------------------------------------------------------------------------------------------------------------------------------------\n"
+                            + "Kesimpulan : Karena tarif INACBG kelas 1 kurang dari tarif Real Cost RS dan sampai batas maksimal tarif\n"
+                            + "                     penghitungan pada poin B/sesuai Permenkes No. 3 Tahun 2023 maka, yang dibayar adalah\n"
+                            + "                     tarif Real Cost RS - tarif INACBG kelas 1, sebagai berikut :\n"
+                            + "                     Rp. " + Valid.SetAngka3(e) + " - Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(e - a) + "\n"
+                            + "                     Jadi yang harus dibayarkan sesuai dengan Permenkes No. 3 Tahun 2023 adalah Rp. " + Valid.SetAngka3(e - a) + "";
+                }
+            } else {
+                Kalkulasi = "";
+            }
+
+        } else {
+            if (hakkelas.equals("2") && cmbNaikKls.equals("Kelas 1")) {
+                Kalkulasi = "tarif INACBG : Kelas 1 Rp. " + Valid.SetAngka3(a) + " - Kelas 2 Rp. " + Valid.SetAngka3(b) + " = Rp. " + Valid.SetAngka3(a - b) + "\n"
+                        + "Jadi yang harus dibayar pasien adalah Rp. " + Valid.SetAngka3(a - b) + "";
+
+            } else if (hakkelas.equals("2") && (cmbNaikKls.equals("Kelas VIP") || cmbNaikKls.equals("Kelas VVIP"))) {
+                //tarif inacbg kelas 1 - kelas 2
+                rumus1 = a - b;
+                //tarif inacbg kelas 1 x 75 %
+                rumus2 = d / 100 * a;
+                //hasil perhitunganya
+                hasilrumus = rumus1 + rumus2;
+                //hitung tarif inacbg kelas 2 + hasilrumus
+                hasilmaksimal = b + hasilrumus;
+
+                //jika tarif real cost RS < tarif inacbg maka GRATIS
+                if (e < b) {
+                    Kalkulasi = "Karena Real Cost RS kurang dari tarif INACBG kelas 2 maka tidak ada\n"
+                            + "penambahan selisih biaya perawatan.";
+
+                    //jika tarif real cost RS > dari tarif perhitungan permenkes no. 3 tahun 2023
+                } else if (e > hasilmaksimal) {
+                    Kalkulasi = "Rumus Tarif INACBG    #   (Kelas 1 - Kelas 2) + (" + persenSELISIH + " % x Kelas 1)\n"
+                            + "A. Kelas 1 - Kelas 2      #   Rp. " + Valid.SetAngka3(a) + " - Rp. " + Valid.SetAngka3(b) + " = Rp. " + Valid.SetAngka3(rumus1) + "\n"
+                            + "B. " + persenSELISIH + " % x Kelas 1        #   " + persenSELISIH + " % x Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(rumus2) + "\n"
+                            + "C. Jadi hasilnya adalah Rp. " + Valid.SetAngka3(hasilrumus) + "\n"
+                            + "D. Tarif maksimal         #   Kelas 2 + hasil perhitungan rumus poin C.\n"
+                            + "                                    #   Rp. " + Valid.SetAngka3(b) + " + Rp. " + Valid.SetAngka3(hasilrumus) + " = Rp. " + Valid.SetAngka3(hasilmaksimal) + "\n"
+                            + "----------------------------------------------------------------------------------------------------------------------------------------\n"
+                            + "Kesimpulan : Karena tarif Real Cost RS melebihi dari tarif maksimal penghitungan sesuai\n"
+                            + "                     Permenkes No. 3 Tahun 2023 maka, yang harus dibayarkan sesuai dengan\n"
+                            + "                     Permenkes No. 3 Tahun 2023 adalah Rp. " + Valid.SetAngka3(hasilrumus) + "";
+
+                    //jika tarif inacbg kls 2 < real cost RS sampai batas maksimal tarif perhitungan permenkes no. 3 tahun 2023
+                } else if ((b < e) && (e <= hasilmaksimal)) {
+                    rumus3 = e - b;
+                    Kalkulasi = "Rumus Tarif INACBG    #   (Kelas 1 - Kelas 2) + (" + persenSELISIH + " % x Kelas 1)\n"
+                            + "A. Kelas 1 - Kelas 2      #   Rp. " + Valid.SetAngka3(a) + " - Rp. " + Valid.SetAngka3(b) + " = Rp. " + Valid.SetAngka3(rumus1) + "\n"
+                            + "B. " + persenSELISIH + " % x Kelas 1        #   " + persenSELISIH + " % x Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(rumus2) + "\n"
+                            + "C. Jadi hasilnya adalah Rp. " + Valid.SetAngka3(hasilrumus) + "\n"
+                            + "D. Tarif maksimal         #   Kelas 2 + hasil perhitungan rumus poin C.\n"
+                            + "                                    #   Rp. " + Valid.SetAngka3(b) + " + Rp. " + Valid.SetAngka3(hasilrumus) + " = Rp. " + Valid.SetAngka3(hasilmaksimal) + "\n"
+                            + "----------------------------------------------------------------------------------------------------------------------------------------\n"
+                            + "Kesimpulan : Karena tarif INACBG Kelas 2 kurang dari tarif Real Cost RS dan sampai batas tarif maksimal\n"
+                            + "                     penghitungan sesuai Permenkes No. 3 Tahun 2023 maka biaya, yang harus dibayarkan adalah\n"
+                            + "                     tarif real cost RS - tarif INACBG Kelas 2 sebagai berikut :\n"
+                            + "                     Rp. " + Valid.SetAngka3(e) + " - Rp. " + Valid.SetAngka3(b) + " = Rp. " + Valid.SetAngka3(rumus3) + "\n"
+                            + "                     Jadi yang harus dibayarkan sesuai dengan Permenkes No. 3 Tahun 2023 adalah Rp. " + Valid.SetAngka3(rumus3) + "";
+                }
+
+            } else if (hakkelas.equals("1") && (cmbNaikKls.equals("Kelas VIP") || cmbNaikKls.equals("Kelas VVIP"))) {
+                rumus1 = d / 100 * a;
+                rumus2 = rumus1 + a;
+                //jika real cost RS <= dari tarif inacbg kelas 1 
+                if (e <= a) {
+                    Kalkulasi = "Karena Real Cost RS kurang dari tarif INACBG kelas 1 maka tidak ada\n"
+                            + "penambahan selisih biaya perawatan.";
+
+                    //jika real cost RS > dari tarif penghitungan permenkes no. 3 tahun 2023
+                } else if (e > rumus2) {
+                    Kalkulasi = "Rumus Tarif INACBG             #   (" + persenSELISIH + " % x Kelas 1) + Kelas 1\n"
+                            + "A. " + persenSELISIH + " % x Kelas 1                 #   " + persenSELISIH + " % x Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(rumus1) + "\n"
+                            + "B. Rp. " + Valid.SetAngka3(rumus1) + " + Kelas 1  #   Rp. " + Valid.SetAngka3(rumus1) + " + Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(rumus2) + "\n"
+                            + "----------------------------------------------------------------------------------------------------------------------------------------\n"
+                            + "Kesimpulan : Karena tarif Real Cost RS melebihi dari tarif maksimal penghitungan sesuai\n"
+                            + "                     Permenkes No. 3 Tahun 2023 maka, yang harus dibayarkan sesuai dengan\n"
+                            + "                     Permenkes No. 3 Tahun 2023 adalah Rp. " + Valid.SetAngka3(rumus1) + "";
+
+                    //jika tarif inacbg kelas 1 < real cost RS dan sampai batas maksimal tarif perhitungan permenkes no. 3 tahun 2023
+                } else if ((a < e) && (e <= rumus2)) {
+                    Kalkulasi = "Rumus Tarif INACBG             #   (" + persenSELISIH + " % x Kelas 1) + Kelas 1\n"
+                            + "A. " + persenSELISIH + " % x Kelas 1                 #   " + persenSELISIH + " % x Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(rumus1) + "\n"
+                            + "B. Rp. " + Valid.SetAngka3(rumus1) + " + Kelas 1  #   Rp. " + Valid.SetAngka3(rumus1) + " + Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(rumus2) + "\n"
+                            + "----------------------------------------------------------------------------------------------------------------------------------------\n"
+                            + "Kesimpulan : Karena tarif INACBG kelas 1 kurang dari tarif Real Cost RS dan sampai batas\n"
+                            + "                     maksimal tarif penghitungan pada poin B/sesuai Permenkes No. 3 Tahun 2023\n"
+                            + "                     maka, yang dibayar adalah tarif Real Cost RS - tarif INACBG kelas 1, sebagai\n"
+                            + "                     berikut : Rp. " + Valid.SetAngka3(e) + " - Rp. " + Valid.SetAngka3(a) + " = Rp. " + Valid.SetAngka3(e - a) + "\n"
+                            + "                     Jadi yang harus dibayarkan sesuai dengan Permenkes No. 3 Tahun 2023 adalah Rp. " + Valid.SetAngka3(e - a) + "";
+                }
+            }
+        }
     }
 }

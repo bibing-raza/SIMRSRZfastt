@@ -722,7 +722,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari1.setMnemonic('1');
         BtnCari1.setText("Tampilkan Data");
         BtnCari1.setToolTipText("Alt+1");
         BtnCari1.setName("BtnCari1"); // NOI18N
@@ -741,7 +740,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCopas.setForeground(new java.awt.Color(0, 0, 0));
         BtnCopas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnCopas.setMnemonic('U');
         BtnCopas.setText("Copy & Paste");
         BtnCopas.setToolTipText("Alt+U");
         BtnCopas.setName("BtnCopas"); // NOI18N
@@ -755,7 +753,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn1.setMnemonic('U');
         BtnCloseIn1.setText("Tutup");
         BtnCloseIn1.setToolTipText("Alt+U");
         BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
@@ -808,7 +805,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnTampilkanQr.setForeground(new java.awt.Color(0, 0, 0));
         BtnTampilkanQr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clear24.png"))); // NOI18N
-        BtnTampilkanQr.setMnemonic('S');
         BtnTampilkanQr.setText("Tampilkan Qr Code TTD");
         BtnTampilkanQr.setToolTipText("Alt+S");
         BtnTampilkanQr.setName("BtnTampilkanQr"); // NOI18N
@@ -822,7 +818,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCloseIn2.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn2.setMnemonic('U');
         BtnCloseIn2.setText("Tutup");
         BtnCloseIn2.setToolTipText("Alt+U");
         BtnCloseIn2.setName("BtnCloseIn2"); // NOI18N
@@ -858,7 +853,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan.setMnemonic('S');
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
@@ -872,7 +866,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnBatal.setForeground(new java.awt.Color(0, 0, 0));
         BtnBatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
-        BtnBatal.setMnemonic('B');
         BtnBatal.setText("Baru");
         BtnBatal.setToolTipText("Alt+B");
         BtnBatal.setName("BtnBatal"); // NOI18N
@@ -891,7 +884,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
         BtnHapus.setName("BtnHapus"); // NOI18N
@@ -905,7 +897,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnEdit.setMnemonic('G');
         BtnEdit.setText("Ganti");
         BtnEdit.setToolTipText("Alt+G");
         BtnEdit.setName("BtnEdit"); // NOI18N
@@ -936,7 +927,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
@@ -955,7 +945,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
@@ -974,7 +963,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
@@ -1128,7 +1116,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKelurahan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKelurahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnKelurahan.setMnemonic('2');
         BtnKelurahan.setToolTipText("ALt+2");
         BtnKelurahan.setName("BtnKelurahan"); // NOI18N
         BtnKelurahan.addActionListener(new java.awt.event.ActionListener() {
@@ -1154,7 +1141,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKecamatan.setForeground(new java.awt.Color(0, 0, 0));
         BtnKecamatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnKecamatan.setMnemonic('3');
         BtnKecamatan.setToolTipText("ALt+3");
         BtnKecamatan.setName("BtnKecamatan"); // NOI18N
         BtnKecamatan.addActionListener(new java.awt.event.ActionListener() {
@@ -1180,7 +1166,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKabupaten.setForeground(new java.awt.Color(0, 0, 0));
         BtnKabupaten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnKabupaten.setMnemonic('4');
         BtnKabupaten.setToolTipText("ALt+4");
         BtnKabupaten.setName("BtnKabupaten"); // NOI18N
         BtnKabupaten.addActionListener(new java.awt.event.ActionListener() {
@@ -1263,7 +1248,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel58.setBounds(0, 384, 180, 23);
 
         TglBeriTindakan.setEditable(false);
-        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
+        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2026" }));
         TglBeriTindakan.setDisplayFormat("dd-MM-yyyy");
         TglBeriTindakan.setName("TglBeriTindakan"); // NOI18N
         TglBeriTindakan.setOpaque(false);
@@ -1329,7 +1314,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnDokter.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnDokter.setMnemonic('4');
         BtnDokter.setToolTipText("ALt+4");
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -1360,7 +1344,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnPemberi.setForeground(new java.awt.Color(0, 0, 0));
         BtnPemberi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnPemberi.setMnemonic('4');
         BtnPemberi.setToolTipText("ALt+4");
         BtnPemberi.setName("BtnPemberi"); // NOI18N
         BtnPemberi.addActionListener(new java.awt.event.ActionListener() {
@@ -1637,7 +1620,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel73.setBounds(0, 216, 180, 23);
 
         TglSetuju.setEditable(false);
-        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
+        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2026" }));
         TglSetuju.setDisplayFormat("dd-MM-yyyy");
         TglSetuju.setName("TglSetuju"); // NOI18N
         TglSetuju.setOpaque(false);
@@ -1690,7 +1673,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel75.setBounds(0, 244, 180, 23);
 
         TglTolak.setEditable(false);
-        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
+        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2026" }));
         TglTolak.setDisplayFormat("dd-MM-yyyy");
         TglTolak.setName("TglTolak"); // NOI18N
         TglTolak.setOpaque(false);
@@ -1770,7 +1753,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnDiagKerja.setForeground(new java.awt.Color(0, 0, 0));
         BtnDiagKerja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDiagKerja.setMnemonic('2');
         BtnDiagKerja.setText("Template");
         BtnDiagKerja.setToolTipText("Alt+2");
         BtnDiagKerja.setName("BtnDiagKerja"); // NOI18N
@@ -1785,7 +1767,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnDasarDiag.setForeground(new java.awt.Color(0, 0, 0));
         BtnDasarDiag.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnDasarDiag.setMnemonic('2');
         BtnDasarDiag.setText("Template");
         BtnDasarDiag.setToolTipText("Alt+2");
         BtnDasarDiag.setName("BtnDasarDiag"); // NOI18N
@@ -1800,7 +1781,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnTindakan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnTindakan.setMnemonic('2');
         BtnTindakan.setText("Template");
         BtnTindakan.setToolTipText("Alt+2");
         BtnTindakan.setName("BtnTindakan"); // NOI18N
@@ -1815,7 +1795,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnIndikasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnIndikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnIndikasi.setMnemonic('2');
         BtnIndikasi.setText("Template");
         BtnIndikasi.setToolTipText("Alt+2");
         BtnIndikasi.setName("BtnIndikasi"); // NOI18N
@@ -1830,7 +1809,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnTata.setForeground(new java.awt.Color(0, 0, 0));
         BtnTata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnTata.setMnemonic('2');
         BtnTata.setText("Template");
         BtnTata.setToolTipText("Alt+2");
         BtnTata.setName("BtnTata"); // NOI18N
@@ -1845,7 +1823,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnTujuan.setForeground(new java.awt.Color(0, 0, 0));
         BtnTujuan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnTujuan.setMnemonic('2');
         BtnTujuan.setText("Template");
         BtnTujuan.setToolTipText("Alt+2");
         BtnTujuan.setName("BtnTujuan"); // NOI18N
@@ -1860,7 +1837,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnResiko.setForeground(new java.awt.Color(0, 0, 0));
         BtnResiko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnResiko.setMnemonic('2');
         BtnResiko.setText("Template");
         BtnResiko.setToolTipText("Alt+2");
         BtnResiko.setName("BtnResiko"); // NOI18N
@@ -1875,7 +1851,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnKomplikasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnKomplikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnKomplikasi.setMnemonic('2');
         BtnKomplikasi.setText("Template");
         BtnKomplikasi.setToolTipText("Alt+2");
         BtnKomplikasi.setName("BtnKomplikasi"); // NOI18N
@@ -1890,7 +1865,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnPrognosis.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrognosis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPrognosis.setMnemonic('2');
         BtnPrognosis.setText("Template");
         BtnPrognosis.setToolTipText("Alt+2");
         BtnPrognosis.setName("BtnPrognosis"); // NOI18N
@@ -1905,7 +1879,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnAlternatif.setForeground(new java.awt.Color(0, 0, 0));
         BtnAlternatif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnAlternatif.setMnemonic('2');
         BtnAlternatif.setText("Template");
         BtnAlternatif.setToolTipText("Alt+2");
         BtnAlternatif.setName("BtnAlternatif"); // NOI18N
@@ -1920,7 +1893,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnLain.setForeground(new java.awt.Color(0, 0, 0));
         BtnLain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnLain.setMnemonic('2');
         BtnLain.setText("Template");
         BtnLain.setToolTipText("Alt+2");
         BtnLain.setName("BtnLain"); // NOI18N
@@ -1940,7 +1912,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel78.setBounds(505, 188, 70, 23);
 
         cmbKategori.setForeground(new java.awt.Color(0, 0, 0));
-        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Transfusi Darah", "Trombopharesis", "Restrain", "Leukopharesis", "BMP", "NGT", "DC", "Transfusi Zat Besi", "Biopsi", "Pengobatan Kemoterapi", "Punksi Cairan Pleura", "Punksi Ascites", "Pemasangan WSD", "SC (Sectio Caesarea)", "Induksi", "SHK", "Curetase", "Manual Plasenta", "Pertolongan Sungsang", "Fisioterapi", "CPAP/Neopuff", "ETT Ventilator" }));
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Transfusi Darah", "Trombopharesis", "Restrain", "Leukopharesis", "BMP", "NGT", "DC", "Transfusi Zat Besi", "Biopsi", "Pengobatan Kemoterapi", "Punksi Cairan Pleura", "Punksi Ascites", "Pemasangan WSD", "SC (Sectio Caesarea)", "Induksi", "SHK", "Curetase", "Manual Plasenta", "Pertolongan Sungsang", "Fototerapi", "CPAP/Neopuff", "ETT Ventilator" }));
         cmbKategori.setName("cmbKategori"); // NOI18N
         cmbKategori.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbKategori.addActionListener(new java.awt.event.ActionListener() {
@@ -2061,7 +2033,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnPihakRS.setForeground(new java.awt.Color(0, 0, 0));
         BtnPihakRS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnPihakRS.setMnemonic('4');
         BtnPihakRS.setToolTipText("ALt+4");
         BtnPihakRS.setName("BtnPihakRS"); // NOI18N
         BtnPihakRS.addActionListener(new java.awt.event.ActionListener() {
@@ -2096,7 +2067,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel83.setBounds(0, 272, 180, 23);
 
         TglTunda.setEditable(false);
-        TglTunda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
+        TglTunda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2026" }));
         TglTunda.setDisplayFormat("dd-MM-yyyy");
         TglTunda.setName("TglTunda"); // NOI18N
         TglTunda.setOpaque(false);
@@ -2204,7 +2175,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2219,7 +2190,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2244,7 +2215,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('3');
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+3");
         BtnCari.setName("BtnCari"); // NOI18N
@@ -2412,46 +2382,47 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                     nmPhkRS = TnmPhkRS.getText() + " (Pihak RS)";
                 }
 
-                if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmPenjab + "'") > 0
-                        && !tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 6).toString().equals(nmPJ.getText())) {
-                    JOptionPane.showMessageDialog(rootPane, "Maaf, penanggung jawab pasien sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
-                            + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
-                } else if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmPenerima + "'") > 0
-                        && !tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 27).toString().equals(TnmPenerima.getText())) {
-                    JOptionPane.showMessageDialog(rootPane, "Maaf, penerima informasi pasien sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
-                            + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
-                } else if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmPhkKlg + "'") > 0
-                        && !tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 50).toString().equals(TnmPhkKeluarga.getText())) {
-                    JOptionPane.showMessageDialog(rootPane, "Maaf, pihak keluarga pasien sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
-                            + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
-                } else if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmPhkRs + "'") > 0
-                        && !tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 51).toString().equals(TnmPhkRS.getText())) {
-                    JOptionPane.showMessageDialog(rootPane, "Maaf, pihak rumah sakit sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
-                            + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
-                } else {
-                    if (Sequel.mengedittf("surat_tindakan_kedokteran", "waktu_simpan=?", "no_rawat=?, tgl_surat=?, jam_surat=?, nm_penjab=?, umur_penjab=?, "
-                            + "jk_penjab=?, alamat_penjab=?, kd_kel=?, kd_kec=?, kd_kab=?, hubungan_dg_pasien=?, jns_surat=?, nm_tindakan_kedokteran=?, "
-                            + "alasan_penolakan=?, nip_dokter_pelaksana=?, nip_pemberi_info=?, penerima_info=?, isi_info_diagnosis_kerja=?, isi_info_dasar_diagnosis=?, "
-                            + "isi_info_tindakan=?, isi_info_indikasi=?, isi_info_tatacara=?, isi_info_tujuan=?, isi_info_resiko=?, isi_info_komplikasi=?, isi_info_prognosis=?, "
-                            + "isi_info_alternatif=?, isi_info_lainlain=?, waktu_simpan=?, tgl_persetujuan=?, jam_persetujuan=?, tgl_penolakan=?, jam_penolakan=?, "
-                            + "nm_pihak_klg=?, nm_pihak_rs=?, tgl_penundaan=?, jam_penundaan=?, alasan_penundaan=?", 39, new String[]{
-                                TNoRw.getText(), Valid.SetTgl(TglBeriTindakan.getSelectedItem() + ""), CmbJam1.getSelectedItem() + ":" + CmbMenit1.getSelectedItem() + ":" + CmbDetik1.getSelectedItem(),
-                                nmPenjab, umurPJ.getText(), jk, alamatPJ.getText(), kdkel, kdkec, kdkab, hubungan.getSelectedItem().toString(), cmbTindakan.getSelectedItem().toString(),
-                                tindakanDokter.getText(), alasanTolak.getText(), kddokter_pelaksana.getText(), nip_pemberi.getText(), nmPenerima, TDiagKerja.getText(),
-                                TDasarDiag.getText(), Ttindakan.getText(), Tindikasi.getText(), Ttatacara.getText(), Ttujuan.getText(), Tresiko.getText(), Tkomplikasi.getText(), Tprognosis.getText(),
-                                Talternatif.getText(), Tlain.getText(), Sequel.cariIsi("select now()"), Valid.SetTgl(TglSetuju.getSelectedItem() + ""),
-                                CmbJam2.getSelectedItem() + ":" + CmbMenit2.getSelectedItem() + ":" + CmbDetik2.getSelectedItem(), Valid.SetTgl(TglTolak.getSelectedItem() + ""),
-                                CmbJam3.getSelectedItem() + ":" + CmbMenit3.getSelectedItem() + ":" + CmbDetik3.getSelectedItem(), nmPhkKlg, nmPhkRS, Valid.SetTgl(TglTunda.getSelectedItem() + ""),
-                                CmbJam4.getSelectedItem() + ":" + CmbMenit4.getSelectedItem() + ":" + CmbDetik4.getSelectedItem(), alasanTunda.getText(),
-                                wktSimpan
-                            }) == true) {
+//                if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmPenjab + "'") > 0
+//                        && !tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 7).toString().equals(nmPJ.getText())) {
+//                    JOptionPane.showMessageDialog(rootPane, "Maaf, penanggung jawab pasien sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
+//                            + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
+//                } else if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmPenerima + "'") > 0
+//                        && !tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 28).toString().equals(TnmPenerima.getText())) {
+//                    JOptionPane.showMessageDialog(rootPane, "Maaf, penerima informasi pasien sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
+//                            + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
+//                } else if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmPhkKlg + "'") > 0
+//                        && !tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 51).toString().equals(TnmPhkKeluarga.getText())) {
+//                    JOptionPane.showMessageDialog(rootPane, "Maaf, pihak keluarga pasien sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
+//                            + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
+//                } else if (Sequel.cariInteger("select count(-1) from ttd_erm_keluarga_pasien where id_file='" + idFileNmPhkRs + "'") > 0
+//                        && !tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 52).toString().equals(TnmPhkRS.getText())) {
+//                    JOptionPane.showMessageDialog(rootPane, "Maaf, pihak rumah sakit sudah bertanda tangan, nama tidak bisa dirubah, kecuali       \n"
+//                            + "tanda tangan yang sudah tersimpan dihapus dulu, lalu lakukan tanda tangan ulang ..!!");
+//                } else {
 
-                        Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Tindakan Kedokteran", "Ganti");
-                        TCari.setText(TNoRw.getText());
-                        tampil();
-                        emptTeks();
-                    }
+                if (Sequel.mengedittf("surat_tindakan_kedokteran", "waktu_simpan=?", "no_rawat=?, tgl_surat=?, jam_surat=?, nm_penjab=?, umur_penjab=?, "
+                        + "jk_penjab=?, alamat_penjab=?, kd_kel=?, kd_kec=?, kd_kab=?, hubungan_dg_pasien=?, jns_surat=?, nm_tindakan_kedokteran=?, "
+                        + "alasan_penolakan=?, nip_dokter_pelaksana=?, nip_pemberi_info=?, penerima_info=?, isi_info_diagnosis_kerja=?, isi_info_dasar_diagnosis=?, "
+                        + "isi_info_tindakan=?, isi_info_indikasi=?, isi_info_tatacara=?, isi_info_tujuan=?, isi_info_resiko=?, isi_info_komplikasi=?, isi_info_prognosis=?, "
+                        + "isi_info_alternatif=?, isi_info_lainlain=?, waktu_simpan=?, tgl_persetujuan=?, jam_persetujuan=?, tgl_penolakan=?, jam_penolakan=?, "
+                        + "nm_pihak_klg=?, nm_pihak_rs=?, tgl_penundaan=?, jam_penundaan=?, alasan_penundaan=?", 39, new String[]{
+                            TNoRw.getText(), Valid.SetTgl(TglBeriTindakan.getSelectedItem() + ""), CmbJam1.getSelectedItem() + ":" + CmbMenit1.getSelectedItem() + ":" + CmbDetik1.getSelectedItem(),
+                            nmPenjab, umurPJ.getText(), jk, alamatPJ.getText(), kdkel, kdkec, kdkab, hubungan.getSelectedItem().toString(), cmbTindakan.getSelectedItem().toString(),
+                            tindakanDokter.getText(), alasanTolak.getText(), kddokter_pelaksana.getText(), nip_pemberi.getText(), nmPenerima, TDiagKerja.getText(),
+                            TDasarDiag.getText(), Ttindakan.getText(), Tindikasi.getText(), Ttatacara.getText(), Ttujuan.getText(), Tresiko.getText(), Tkomplikasi.getText(), Tprognosis.getText(),
+                            Talternatif.getText(), Tlain.getText(), Sequel.cariIsi("select now()"), Valid.SetTgl(TglSetuju.getSelectedItem() + ""),
+                            CmbJam2.getSelectedItem() + ":" + CmbMenit2.getSelectedItem() + ":" + CmbDetik2.getSelectedItem(), Valid.SetTgl(TglTolak.getSelectedItem() + ""),
+                            CmbJam3.getSelectedItem() + ":" + CmbMenit3.getSelectedItem() + ":" + CmbDetik3.getSelectedItem(), nmPhkKlg, nmPhkRS, Valid.SetTgl(TglTunda.getSelectedItem() + ""),
+                            CmbJam4.getSelectedItem() + ":" + CmbMenit4.getSelectedItem() + ":" + CmbDetik4.getSelectedItem(), alasanTunda.getText(),
+                            wktSimpan
+                        }) == true) {
+
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Tindakan Kedokteran", "Ganti");
+                    TCari.setText(TNoRw.getText());
+                    tampil();
+                    emptTeks();
                 }
+//                }
             } else {
                 JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu data pasiennya pada tabel..!!");
                 tbTindakan.requestFocus();
@@ -3556,7 +3527,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             Talternatif.setText("Pemeriksaan darah vena");
             Tlain.setText("-");
             
-            //Fisioterapi
+            //Fototerapi
         } else if (cmbKategori.getSelectedIndex() == 20) {
             TDiagKerja.setText("Hiperbilirubinemia");            
             TDasarDiag.setText("Anamnesis, Pemeriksaan Fisik, Pemeriksaan Penunjang");

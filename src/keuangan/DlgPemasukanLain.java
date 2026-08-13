@@ -520,6 +520,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         cetakNotaNaikKls = new javax.swing.JMenu();
         MnTTDcnnk = new javax.swing.JMenuItem();
         MnTTEcnnk = new javax.swing.JMenuItem();
+        MnKirimKeWaNota2 = new javax.swing.JMenuItem();
         lihatSelisihTarif = new javax.swing.JMenuItem();
         MnDataSampah = new javax.swing.JMenuItem();
         MnLaporan = new javax.swing.JMenu();
@@ -855,7 +856,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         MnTTDcnnk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnTTDcnnk.setIconTextGap(5);
         MnTTDcnnk.setName("MnTTDcnnk"); // NOI18N
-        MnTTDcnnk.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTDcnnk.setPreferredSize(new java.awt.Dimension(160, 26));
         MnTTDcnnk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnTTDcnnkActionPerformed(evt);
@@ -870,13 +871,28 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         MnTTEcnnk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnTTEcnnk.setIconTextGap(5);
         MnTTEcnnk.setName("MnTTEcnnk"); // NOI18N
-        MnTTEcnnk.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnTTEcnnk.setPreferredSize(new java.awt.Dimension(160, 26));
         MnTTEcnnk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnTTEcnnkActionPerformed(evt);
             }
         });
         cetakNotaNaikKls.add(MnTTEcnnk);
+
+        MnKirimKeWaNota2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnKirimKeWaNota2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/whatsapp.png"))); // NOI18N
+        MnKirimKeWaNota2.setText("Kirim Nota Ke WhatsApp");
+        MnKirimKeWaNota2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnKirimKeWaNota2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnKirimKeWaNota2.setIconTextGap(5);
+        MnKirimKeWaNota2.setName("MnKirimKeWaNota2"); // NOI18N
+        MnKirimKeWaNota2.setPreferredSize(new java.awt.Dimension(160, 26));
+        MnKirimKeWaNota2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnKirimKeWaNota2ActionPerformed(evt);
+            }
+        });
+        cetakNotaNaikKls.add(MnKirimKeWaNota2);
 
         jPopupMenu1.add(cetakNotaNaikKls);
 
@@ -1821,7 +1837,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel101.setPreferredSize(new java.awt.Dimension(80, 23));
         internalFrame17.add(jLabel101);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2026" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2026" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1835,7 +1851,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel102.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel102);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2026" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2026" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2197,7 +2213,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass8.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2026" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2026" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -2216,7 +2232,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2231,7 +2247,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2365,7 +2381,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         btnKategori.setBounds(610, 40, 28, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2026" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-08-2026" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -3801,6 +3817,35 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_MnKirimKeWaNota1ActionPerformed
 
+    private void MnKirimKeWaNota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKirimKeWaNota2ActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Tabel masih kosong...!!!!");
+            DTPCari1.requestFocus();
+        } else if (noTransaksi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (KdKategori.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (!KdKategori.getText().trim().equals("SBPJS")) {
+            JOptionPane.showMessageDialog(null, "Pilihan cetak nota/kwitansi pembayaran salah...!!!");
+            tbPemasukan.requestFocus();
+        } else {
+            Sequel.hapusIisiFolder(Sequel.cariFolderTte() + File.separator);
+            akses.setform("DlgPemasukanLain");
+            DlgKirimWhatsapp form = new DlgKirimWhatsapp(null, false);
+            form.setSize(557, 148);
+            form.setLocationRelativeTo(internalFrame1);
+            form.emptTeks();
+            form.setData("nota naik kelas", norw, tglNota.getSelectedItem().toString(), telahTerimaPAS.getText());
+            form.jaminanTrans(KdKategori.getText(), noTransaksi.getText(), Keterangan.getText(), bayarKe.getText(), "", "", "", "", "", "", "");
+            form.dataKirim();
+            form.setVisible(true);
+            form.toFront();
+            form.requestFocus();
+        }
+    }//GEN-LAST:event_MnKirimKeWaNota2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3858,6 +3903,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem MnDataSampah;
     private javax.swing.JMenuItem MnKirimKeWaNota;
     private javax.swing.JMenuItem MnKirimKeWaNota1;
+    private javax.swing.JMenuItem MnKirimKeWaNota2;
     private javax.swing.JMenu MnLaporan;
     private javax.swing.JMenuItem MnTTDcn;
     private javax.swing.JMenuItem MnTTDcna;
