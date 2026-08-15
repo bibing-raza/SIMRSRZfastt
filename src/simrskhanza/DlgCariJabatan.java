@@ -36,11 +36,12 @@ import javax.swing.table.TableColumn;
  */
 public final class DlgCariJabatan extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private Connection koneksi=koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private Connection koneksi = koneksiDB.condb();
     private PreparedStatement ps;
     private ResultSet rs;
+    
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
@@ -65,13 +66,13 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
         for (int i = 0; i < 4; i++) {
             TableColumn column = tbJabatan.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(110);
-            } else if (i == 1) {
-                column.setPreferredWidth(300);
-            } else if (i == 2) {
-                column.setPreferredWidth(300);
-            } else if (i == 3) {
                 column.setPreferredWidth(90);
+            } else if (i == 1) {
+                column.setPreferredWidth(700);
+            } else if (i == 2) {
+                column.setPreferredWidth(200);
+            } else if (i == 3) {
+                column.setPreferredWidth(65);
             }
         }
         tbJabatan.setDefaultRenderer(Object.class, new WarnaTable());
@@ -97,7 +98,7 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
                     + "j.kd_jbtn like ? or "
                     + "j.nm_jbtn like ? or "
                     + "jk.nm_komite like ? or "
-                    + "j.aktif like ? order by j.nm_jbtn");
+                    + "j.aktif like ? order by j.kd_jbtn");
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -138,7 +139,7 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Jabatan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Jabatan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -146,8 +147,8 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbJabatan.setAutoCreateRowSorter(true);
-        tbJabatan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbJabatan.setName("tbJabatan"); // NOI18N
+        tbJabatan.getTableHeader().setReorderingAllowed(false);
         tbJabatan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tbJabatanKeyPressed(evt);
@@ -265,13 +266,13 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
 
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             BtnCari.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
             BtnKeluar.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             tbJabatan.requestFocus();
         }
 }//GEN-LAST:event_TCariKeyPressed
@@ -326,10 +327,10 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     private void tbJabatanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbJabatanKeyPressed
-        if(tabMode.getRowCount()!=0){
-            if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (tabMode.getRowCount() != 0) {
+            if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
                 dispose();
-            }else if(evt.getKeyCode()==KeyEvent.VK_SHIFT){
+            } else if (evt.getKeyCode() == KeyEvent.VK_SHIFT) {
                 TCari.setText("");
                 TCari.requestFocus();
             }
@@ -393,7 +394,6 @@ public final class DlgCariJabatan extends javax.swing.JDialog {
     public void emptTeks() {
         TCari.requestFocus();
     }
-
 
     public JTable getTable(){
         return tbJabatan;

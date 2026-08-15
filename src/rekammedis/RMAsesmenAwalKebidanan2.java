@@ -3729,14 +3729,10 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                             param.put("klrAir", rsLaprm.getString("keluar_air"));
                         }
 
-                        if (rsLaprm.getString("pergerakan_janin_2jam_terakhir").equals("Ada")) {
-                            if (rsLaprm.getString("ket_pergerakan_janin_2jam_terakhir").equals("")) {
-                                param.put("pergerakan", rsLaprm.getString("pergerakan_janin_2jam_terakhir"));
-                            } else {
-                                param.put("pergerakan", rsLaprm.getString("pergerakan_janin_2jam_terakhir") + ", " + rsLaprm.getString("ket_pergerakan_janin_2jam_terakhir"));
-                            }
+                        if (rsLaprm.getString("ket_pergerakan_janin_2jam_terakhir").equals("")) {
+                            param.put("pergerakan", "-");
                         } else {
-                            param.put("pergerakan", rsLaprm.getString("pergerakan_janin_2jam_terakhir"));
+                            param.put("pergerakan", rsLaprm.getString("ket_pergerakan_janin_2jam_terakhir"));
                         }
 
                         if (rsLaprm.getString("pusing").equals("Ya")) {
@@ -3880,6 +3876,13 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                         } else {
                             param.put("tbi", rsLaprm.getString("tbi") + " Cm");
                         }
+                        
+                        //hitung nilai BMI
+                        Valid.hitungBMIbbSebelum(rsLaprm.getString("bb_sebelum_hamil"), rsLaprm.getString("tbi"));
+                        param.put("bmiPra", akses.getPasteData() + " kg/m².      Grade : " + akses.getPasteData1());
+
+                        Valid.hitungBMIbbTerakhir(rsLaprm.getString("bb_terakhir"), rsLaprm.getString("tbi"));
+                        param.put("bmiHamil", akses.getPasteData() + " kg/m².      Grade : " + akses.getPasteData1());
 
                         if (rsLaprm.getString("umur_pertama_haid").equals("")) {
                             param.put("umurPertama", "........ tahun");
@@ -7358,16 +7361,10 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                             nilaiMual = ": -";
                         }
                         
-                        if (rsPrev.getString("pergerakan_janin_2jam_terakhir").equals("Ada")) {
-                            if (rsPrev.getString("ket_pergerakan_janin_2jam_terakhir").equals("")) {
-                                nilaiPerge = ": Ada";
-                            } else {
-                                nilaiPerge = ": Ada, " + rsPrev.getString("ket_pergerakan_janin_2jam_terakhir");
-                            }                            
-                        } else if (rsPrev.getString("pergerakan_janin_2jam_terakhir").equals("Tidak Ada")) {
-                            nilaiPerge = ": Tidak Ada";
-                        } else {
+                        if (rsPrev.getString("ket_pergerakan_janin_2jam_terakhir").equals("")) {
                             nilaiPerge = ": -";
+                        } else {
+                            nilaiPerge = ": " + rsPrev.getString("ket_pergerakan_janin_2jam_terakhir");
                         }
                         
                         if (rsPrev.getString("muntah").equals("Ya")) {
@@ -7501,7 +7498,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                         
                         htmlContent.append(
                                 "<tr class='isi'>"
-                                + "<td valign='top'>Pergerakan Janin 2 Jam Terakhir</td>"
+                                + "<td valign='top'>Pergerakan Janin</td>"
                                 + "<td valign='top' colspan='3'>" + nilaiPerge + "</td>"
                                 + "<td valign='top'>Muntah</td>"
                                 + "<td valign='top' colspan='3'>" + nilaiMuntah + "</td>"
@@ -7540,7 +7537,7 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                                 + "<td valign='top' colspan='8' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>RIWAYAT KEHAMILAN SEKARANG</span></td>"
                                 + "</tr>");
                         
-                        String prevHpht = "", prevHpl = "", prevUk = "", prevBbBelum = "", prevBbTerakhir = "", prevTbi = "";
+                        String prevHpht = "", prevHpl = "", prevUk = "", prevBbBelum = "", prevBbTerakhir = "", prevTbi = "", prevBmiPra = "", prevBmiHamil = "";
                         if (rsPrev.getString("hpht").equals("")) {
                             prevHpht = "HPHT : ........, ";
                         } else {
@@ -7564,22 +7561,29 @@ public class RMAsesmenAwalKebidanan2 extends javax.swing.JDialog {
                         } else {
                             prevBbBelum = "BB Sebelum Hamil : " + rsPrev.getString("bb_sebelum_hamil") + " Kg, ";
                         }
-                        
+
                         if (rsPrev.getString("bb_terakhir").equals("")) {
                             prevBbTerakhir = "BB Terakhir : ........ Kg, ";
                         } else {
-                            prevBbTerakhir = "BB Terakhir : " + rsPrev.getString("bb_terakhir")+" Kg, ";
+                            prevBbTerakhir = "BB Terakhir : " + rsPrev.getString("bb_terakhir") + " Kg, ";
                         }
-                        
+
                         if (rsPrev.getString("tbi").equals("")) {
                             prevTbi = "TBI : ........ Cm, ";
                         } else {
-                            prevTbi = "TBI : " + rsPrev.getString("tbi")+" Cm";
+                            prevTbi = "TBI : " + rsPrev.getString("tbi") + " Cm, ";
                         }
+                        
+                        //hitung nilai BMI
+                        Valid.hitungBMIbbSebelum(rsPrev.getString("bb_sebelum_hamil"), rsPrev.getString("tbi"));
+                        prevBmiPra = "BMI Pra Hamil : " + akses.getPasteData() + " kg/m².      Grade : " + akses.getPasteData1() + ", ";
+
+                        Valid.hitungBMIbbTerakhir(rsPrev.getString("bb_terakhir"), rsPrev.getString("tbi"));
+                        prevBmiHamil = "BMI Hamil : " + akses.getPasteData() + " kg/m².      Grade : " + akses.getPasteData1();
                         
                         htmlContent.append(
                                 "<tr class='isi'>"                                
-                                + "<td valign='top' colspan='8'>" + prevHpht + prevHpl + prevUk + prevBbBelum + prevBbTerakhir + prevTbi + "</td>"
+                                + "<td valign='top' colspan='8'>" + prevHpht + prevHpl + prevUk + prevBbBelum + prevBbTerakhir + prevTbi + prevBmiPra + prevBmiHamil + "</td>"
                                 + "</tr>");
                         
                         htmlContent.append(

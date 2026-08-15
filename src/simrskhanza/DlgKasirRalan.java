@@ -18347,14 +18347,10 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         param.put("klrAir", rsLaprm.getString("keluar_air"));
                     }
 
-                    if (rsLaprm.getString("pergerakan_janin_2jam_terakhir").equals("Ada")) {
-                        if (rsLaprm.getString("ket_pergerakan_janin_2jam_terakhir").equals("")) {
-                            param.put("pergerakan", rsLaprm.getString("pergerakan_janin_2jam_terakhir"));
-                        } else {
-                            param.put("pergerakan", rsLaprm.getString("pergerakan_janin_2jam_terakhir") + ", " + rsLaprm.getString("ket_pergerakan_janin_2jam_terakhir") + " X");
-                        }
+                    if (rsLaprm.getString("ket_pergerakan_janin_2jam_terakhir").equals("")) {
+                        param.put("pergerakan", "-");
                     } else {
-                        param.put("pergerakan", rsLaprm.getString("pergerakan_janin_2jam_terakhir"));
+                        param.put("pergerakan", rsLaprm.getString("ket_pergerakan_janin_2jam_terakhir"));
                     }
 
                     if (rsLaprm.getString("pusing").equals("Ya")) {
@@ -18498,6 +18494,13 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     } else {
                         param.put("tbi", rsLaprm.getString("tbi") + " Cm");
                     }
+                    
+                    //hitung nilai BMI
+                    Valid.hitungBMIbbSebelum(rsLaprm.getString("bb_sebelum_hamil"), rsLaprm.getString("tbi"));
+                    param.put("bmiPra", akses.getPasteData() + " kg/m².      Grade : " + akses.getPasteData1());
+
+                    Valid.hitungBMIbbTerakhir(rsLaprm.getString("bb_terakhir"), rsLaprm.getString("tbi"));
+                    param.put("bmiHamil", akses.getPasteData() + " kg/m².      Grade : " + akses.getPasteData1());
 
                     if (rsLaprm.getString("umur_pertama_haid").equals("")) {
                         param.put("umurPertama", "........ tahun");

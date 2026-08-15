@@ -107,7 +107,8 @@ public class PanelSiteMarking extends JPanel {
             g2.drawImage(gambarTemplate, 0, 0, w, h, null);
         }
 
-        g2.setColor(Color.RED);
+        //g2.setColor(Color.RED);
+        g2.setColor(new Color(55, 0, 100));
         g2.setStroke(new BasicStroke(3));
         g2.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,
@@ -135,7 +136,8 @@ public class PanelSiteMarking extends JPanel {
         }
 
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.RED);
+//        g2.setColor(Color.RED);
+        g2.setColor(new Color(55, 0, 100));
         g2.setStroke(new BasicStroke(3));
         g2.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,

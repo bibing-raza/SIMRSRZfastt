@@ -25,6 +25,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.DlgCariJabatan;
 import simrskhanza.DlgJabatan;
 import simrskhanza.frmUtama;
 
@@ -41,7 +42,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
     private ResultSet rs, rs1;
     private String idSttsWP = "", idSttsKJ = "", idIndex = "", cekmkAwal = "", cekmkAkhir = "";
     private DlgCariDepartemen departemen;
-    private DlgJabatan jabatan;
+    private DlgCariJabatan jabatan;
     private frmUtama formUtama;
 
     /** Creates new form DlgPetugas
@@ -1612,9 +1613,9 @@ public final class DlgPegawai extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        departemen.dispose();
-        jabatan.dispose();
         frmUtama.getInstance().tutupDialogDiPanelUtama(this);
+        departemen.dispose();
+        jabatan.dispose();        
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -2725,7 +2726,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     
     private void initJabatan() {
         if (jabatan == null) {
-            jabatan = new DlgJabatan(null, false);
+            jabatan = new DlgCariJabatan(null, false);
 
             jabatan.addWindowListener(new WindowListener() {
                 @Override
