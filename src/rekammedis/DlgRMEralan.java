@@ -145,6 +145,8 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnLembarObservasiIGD = new widget.ButtonBig();
         BtnCPPTIGD = new widget.ButtonBig();
         BtnPersetujuanTindakanIGD = new widget.ButtonBig();
+        BtnSuratPernyataanDNR = new widget.ButtonBig();
+        BtnInstruksiDokterDNR = new widget.ButtonBig();
         BtnPengelolaanTranfusiDarahIGD = new widget.ButtonBig();
         BtnDokumenJangMedIGD = new widget.ButtonBig();
         BtnResep = new widget.ButtonBig();
@@ -171,6 +173,8 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnCPPTPonek = new widget.ButtonBig();
         BtnPartograf = new widget.ButtonBig();
         BtnPersetujuanTindakanPonek = new widget.ButtonBig();
+        BtnSuratPernyataanDNRponek = new widget.ButtonBig();
+        BtnInstruksiDokterDNRponek = new widget.ButtonBig();
         BtnPengelolaanTranfusiDarahPonek = new widget.ButtonBig();
         BtnDokumenJangMedPonek = new widget.ButtonBig();
         BtnResepPonek = new widget.ButtonBig();
@@ -227,7 +231,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnRefres2 = new widget.Button();
         BtnKeluar3 = new widget.Button();
 
-        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-07-2026" }));
+        DTPtanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-08-2026" }));
         DTPtanggal.setDisplayFormat("dd-MM-yyyy");
         DTPtanggal.setName("DTPtanggal"); // NOI18N
         DTPtanggal.setOpaque(false);
@@ -469,6 +473,32 @@ public class DlgRMEralan extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnPersetujuanTindakanIGD);
+
+        BtnSuratPernyataanDNR.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSuratPernyataanDNR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnSuratPernyataanDNR.setText("<html><div style=\"text-align: center;\">Surat Pernyataan DNR<br>(<i>Do Not Resuscitate</i>)</div></html>");
+        BtnSuratPernyataanDNR.setIconTextGap(0);
+        BtnSuratPernyataanDNR.setName("BtnSuratPernyataanDNR"); // NOI18N
+        BtnSuratPernyataanDNR.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnSuratPernyataanDNR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSuratPernyataanDNRActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnSuratPernyataanDNR);
+
+        BtnInstruksiDokterDNR.setForeground(new java.awt.Color(0, 0, 0));
+        BtnInstruksiDokterDNR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnInstruksiDokterDNR.setText("<html><div style=\"text-align: center;\">Instruksi Dokter Untuk DNR<br>(<i>Do Not Resuscitate</i>)</div></html>");
+        BtnInstruksiDokterDNR.setIconTextGap(0);
+        BtnInstruksiDokterDNR.setName("BtnInstruksiDokterDNR"); // NOI18N
+        BtnInstruksiDokterDNR.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnInstruksiDokterDNR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnInstruksiDokterDNRActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnInstruksiDokterDNR);
 
         BtnPengelolaanTranfusiDarahIGD.setForeground(new java.awt.Color(0, 0, 0));
         BtnPengelolaanTranfusiDarahIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481001585_blood_drop_biru.png"))); // NOI18N
@@ -782,6 +812,32 @@ public class DlgRMEralan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(BtnPersetujuanTindakanPonek);
+
+        BtnSuratPernyataanDNRponek.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSuratPernyataanDNRponek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnSuratPernyataanDNRponek.setText("<html><div style=\"text-align: center;\">Surat Pernyataan DNR<br>(<i>Do Not Resuscitate</i>)</div></html>");
+        BtnSuratPernyataanDNRponek.setIconTextGap(0);
+        BtnSuratPernyataanDNRponek.setName("BtnSuratPernyataanDNRponek"); // NOI18N
+        BtnSuratPernyataanDNRponek.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnSuratPernyataanDNRponek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSuratPernyataanDNRponekActionPerformed(evt);
+            }
+        });
+        FormInput2.add(BtnSuratPernyataanDNRponek);
+
+        BtnInstruksiDokterDNRponek.setForeground(new java.awt.Color(0, 0, 0));
+        BtnInstruksiDokterDNRponek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnInstruksiDokterDNRponek.setText("<html><div style=\"text-align: center;\">Instruksi Dokter Untuk DNR<br>(<i>Do Not Resuscitate</i>)</div></html>");
+        BtnInstruksiDokterDNRponek.setIconTextGap(0);
+        BtnInstruksiDokterDNRponek.setName("BtnInstruksiDokterDNRponek"); // NOI18N
+        BtnInstruksiDokterDNRponek.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnInstruksiDokterDNRponek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnInstruksiDokterDNRponekActionPerformed(evt);
+            }
+        });
+        FormInput2.add(BtnInstruksiDokterDNRponek);
 
         BtnPengelolaanTranfusiDarahPonek.setForeground(new java.awt.Color(0, 0, 0));
         BtnPengelolaanTranfusiDarahPonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481001585_blood_drop_biru.png"))); // NOI18N
@@ -1369,6 +1425,7 @@ public class DlgRMEralan extends javax.swing.JDialog {
 
         BtnRefres2.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRefres2.setMnemonic('R');
         BtnRefres2.setText("Refresh Rekam Medis");
         BtnRefres2.setToolTipText("Alt+R");
         BtnRefres2.setName("BtnRefres2"); // NOI18N
@@ -2558,6 +2615,48 @@ public class DlgRMEralan extends javax.swing.JDialog {
         tampilRMibs();
     }//GEN-LAST:event_BtnRefres2ActionPerformed
 
+    private void BtnSuratPernyataanDNRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSuratPernyataanDNRActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEralan");
+            RMSuratPernyataanDNR form = new RMSuratPernyataanDNR(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(),TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnSuratPernyataanDNRActionPerformed
+
+    private void BtnSuratPernyataanDNRponekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSuratPernyataanDNRponekActionPerformed
+        BtnSuratPernyataanDNRActionPerformed(null);
+    }//GEN-LAST:event_BtnSuratPernyataanDNRponekActionPerformed
+
+    private void BtnInstruksiDokterDNRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInstruksiDokterDNRActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEralan");
+            RMInstruksiDokterDNR form = new RMInstruksiDokterDNR(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnInstruksiDokterDNRActionPerformed
+
+    private void BtnInstruksiDokterDNRponekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInstruksiDokterDNRponekActionPerformed
+        BtnInstruksiDokterDNRActionPerformed(null);
+    }//GEN-LAST:event_BtnInstruksiDokterDNRponekActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2599,6 +2698,8 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.ButtonBig BtnHasilPemeriksaanPenunjangIGD;
     private widget.ButtonBig BtnHasilPemeriksaanPenunjangPonek;
     private widget.ButtonBig BtnInformasiTindakanPembiusan;
+    private widget.ButtonBig BtnInstruksiDokterDNR;
+    private widget.ButtonBig BtnInstruksiDokterDNRponek;
     private widget.Button BtnKeluar;
     private widget.Button BtnKeluar1;
     private widget.Button BtnKeluar2;
@@ -2635,6 +2736,8 @@ public class DlgRMEralan extends javax.swing.JDialog {
     private widget.ButtonBig BtnSamplingPemanfaatanRM;
     private widget.ButtonBig BtnScoreApgarPerinatologi;
     private widget.ButtonBig BtnSerahTerimaPasca;
+    private widget.ButtonBig BtnSuratPernyataanDNR;
+    private widget.ButtonBig BtnSuratPernyataanDNRponek;
     private widget.ButtonBig BtnTransferSerahTerimaIGD;
     private widget.ButtonBig BtnTransferSerahTerimaPonek;
     private widget.ButtonBig BtnTransferTindakanIBS;
@@ -2732,6 +2835,10 @@ public class DlgRMEralan extends javax.swing.JDialog {
         BtnHasilPemeriksaanPenunjangPonek.setEnabled(akses.getcppt());
         BtnHasilPemeriksaanPenunjangIGD.setEnabled(akses.getcppt());
         BtnRingkasan.setEnabled(akses.getringkasanpulangranap());
+        BtnSuratPernyataanDNR.setEnabled(akses.getcppt());
+        BtnSuratPernyataanDNRponek.setEnabled(akses.getcppt());
+        BtnInstruksiDokterDNR.setEnabled(akses.getresep_dokter());
+        BtnInstruksiDokterDNRponek.setEnabled(akses.getresep_dokter());
         BtnMaskepNyeriAkut.setEnabled(akses.getcppt());
         BtnMaskepPerfusiPerifer.setEnabled(akses.getcppt());
         BtnMaskepResikoHipotermia.setEnabled(akses.getcppt());

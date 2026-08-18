@@ -47,6 +47,7 @@ import rekammedis.RMEvaluasiPraAnestesi;
 import rekammedis.RMFormulirSiteMarkingOperasi;
 import rekammedis.RMGeneralConsent;
 import rekammedis.RMInformasiTindakanPembiusan;
+import rekammedis.RMInstruksiDokterDNR;
 import rekammedis.RMLaporanOperasi;
 import rekammedis.RMLembarObservasi;
 import rekammedis.RMMasalahKeperawatanBersihanJlnNafas;
@@ -89,6 +90,7 @@ import rekammedis.RMSuratPenyataanBukanKLL;
 import rekammedis.RMSuratPenyataanNaikKelas;
 import rekammedis.RMSuratPenyataanRanapBPJS;
 import rekammedis.RMSuratPenyataanRanapNonBPJS;
+import rekammedis.RMSuratPernyataanDNR;
 import rekammedis.RMTindakanKedokteran;
 import rekammedis.RMTransferSerahTerimaIGD;
 import rekammedis.RMTriaseIGD;
@@ -228,6 +230,8 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnDataCancer = new widget.ButtonBig();
         BtnMaskepBersihanJalanNafas = new widget.ButtonBig();
         BtnMaskepKetidakstabilanGlukosa = new widget.ButtonBig();
+        BtnSuratPernyataanDNR = new widget.ButtonBig();
+        BtnInstruksiDokterDNR = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1429,6 +1433,32 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnMaskepKetidakstabilanGlukosa);
+
+        BtnSuratPernyataanDNR.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSuratPernyataanDNR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnSuratPernyataanDNR.setText("<html><div style=\"text-align: center;\">Surat Pernyataan DNR<br>(<i>Do Not Resuscitate</i>)</div></html>");
+        BtnSuratPernyataanDNR.setIconTextGap(0);
+        BtnSuratPernyataanDNR.setName("BtnSuratPernyataanDNR"); // NOI18N
+        BtnSuratPernyataanDNR.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnSuratPernyataanDNR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSuratPernyataanDNRActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnSuratPernyataanDNR);
+
+        BtnInstruksiDokterDNR.setForeground(new java.awt.Color(0, 0, 0));
+        BtnInstruksiDokterDNR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnInstruksiDokterDNR.setText("<html><div style=\"text-align: center;\">Instruksi Dokter Untuk DNR<br>(<i>Do Not Resuscitate</i>)</div></html>");
+        BtnInstruksiDokterDNR.setIconTextGap(0);
+        BtnInstruksiDokterDNR.setName("BtnInstruksiDokterDNR"); // NOI18N
+        BtnInstruksiDokterDNR.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnInstruksiDokterDNR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnInstruksiDokterDNRActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnInstruksiDokterDNR);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -2860,6 +2890,38 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnMaskepKetidakstabilanGlukosaActionPerformed
 
+    private void BtnSuratPernyataanDNRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSuratPernyataanDNRActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMSuratPernyataanDNR form = new RMSuratPernyataanDNR(formUtama, false);
+            form.emptTeks();
+            form.isCek();
+            form.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnSuratPernyataanDNR.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnSuratPernyataanDNRActionPerformed
+
+    private void BtnInstruksiDokterDNRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInstruksiDokterDNRActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMInstruksiDokterDNR form = new RMInstruksiDokterDNR(formUtama, false);
+            form.emptTeks();
+            form.isCek();
+            form.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnInstruksiDokterDNR.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnInstruksiDokterDNRActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -2873,6 +2935,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnEvaluasiPraAnestesi;
     private widget.ButtonBig BtnFormulirSiteMarking;
     private widget.ButtonBig BtnInformasiTindakanPembiusan;
+    private widget.ButtonBig BtnInstruksiDokterDNR;
     private widget.ButtonBig BtnLaporanOperasi;
     private widget.ButtonBig BtnMasalahKeperawatanNyeriAkut;
     private widget.ButtonBig BtnMasalahKeperawatanPerfusiPeriferTdkEfektif;
@@ -2885,6 +2948,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnPartograf;
     private widget.ButtonBig BtnRegisterCancer;
     private widget.ButtonBig BtnSerahTerimaPascaOperasi;
+    private widget.ButtonBig BtnSuratPernyataanDNR;
     private widget.CekBox ChkInput;
     private widget.PanelBiasa FormMenu;
     public widget.TextBox TCari;
@@ -3394,6 +3458,16 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             FormMenu.add(BtnMaskepKetidakstabilanGlukosa);
             jmlmenu++;
         }
+        
+        if (akses.getcppt() && BtnSuratPernyataanDNR.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnSuratPernyataanDNR);
+            jmlmenu++;
+        }
+        
+        if (akses.getresep_dokter() && BtnInstruksiDokterDNR.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnInstruksiDokterDNR);
+            jmlmenu++;
+        }
     }
     
     public JPanel getFormMenu() {
@@ -3833,7 +3907,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             FormMenu.add(btnPenilaianAwalKeperawatanKebidananRalan);
             jmlmenu++;
         }
-
+        
         if (akses.getdata_triase_igd() == true) {
             FormMenu.add(btnTriasePediatrikIGD);
             jmlmenu++;
@@ -3851,6 +3925,16 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         if (akses.getpenilaian_pasien_geriatri() == true) {
             FormMenu.add(btnPenilaianAwalMedisRalanGeriatri);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt()== true) {
+            FormMenu.add(BtnSuratPernyataanDNR);
+            jmlmenu++;
+        }
+        
+        if (akses.getresep_dokter()== true) {
+            FormMenu.add(BtnInstruksiDokterDNR);
             jmlmenu++;
         }
 

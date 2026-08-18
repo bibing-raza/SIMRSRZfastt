@@ -237,6 +237,8 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenUlangRJDewasa = new widget.ButtonBig();
         BtnAsesmenUlangRJAnak = new widget.ButtonBig();
         BtnTransferSerahTerima = new widget.ButtonBig();
+        BtnSuratPernyataanDNR = new widget.ButtonBig();
+        BtnInstruksiDokterDNR = new widget.ButtonBig();
         BtnLembarObservasi = new widget.ButtonBig();
         BtnObservasiKala1 = new widget.ButtonBig();
         BtnPengelolaanTranfusiDarah = new widget.ButtonBig();
@@ -836,6 +838,32 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormMenuRanap.add(BtnTransferSerahTerima);
+
+        BtnSuratPernyataanDNR.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSuratPernyataanDNR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnSuratPernyataanDNR.setText("<html><div style=\"text-align: center;\">Surat Pernyataan DNR<br>(<i>Do Not Resuscitate</i>)</div></html>");
+        BtnSuratPernyataanDNR.setIconTextGap(0);
+        BtnSuratPernyataanDNR.setName("BtnSuratPernyataanDNR"); // NOI18N
+        BtnSuratPernyataanDNR.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnSuratPernyataanDNR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSuratPernyataanDNRActionPerformed(evt);
+            }
+        });
+        FormMenuRanap.add(BtnSuratPernyataanDNR);
+
+        BtnInstruksiDokterDNR.setForeground(new java.awt.Color(0, 0, 0));
+        BtnInstruksiDokterDNR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnInstruksiDokterDNR.setText("<html><div style=\"text-align: center;\">Instruksi Dokter Untuk DNR<br>(<i>Do Not Resuscitate</i>)</div></html>");
+        BtnInstruksiDokterDNR.setIconTextGap(0);
+        BtnInstruksiDokterDNR.setName("BtnInstruksiDokterDNR"); // NOI18N
+        BtnInstruksiDokterDNR.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnInstruksiDokterDNR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnInstruksiDokterDNRActionPerformed(evt);
+            }
+        });
+        FormMenuRanap.add(BtnInstruksiDokterDNR);
 
         BtnLembarObservasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnLembarObservasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/checklist_pencil-o.png"))); // NOI18N
@@ -1714,6 +1742,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnRefres2.setForeground(new java.awt.Color(0, 0, 0));
         BtnRefres2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRefres2.setMnemonic('R');
         BtnRefres2.setText("Refresh Rekam Medis");
         BtnRefres2.setToolTipText("Alt+R");
         BtnRefres2.setName("BtnRefres2"); // NOI18N
@@ -3128,6 +3157,40 @@ public class DlgRMEranap extends javax.swing.JDialog {
         tampilRMibs();
     }//GEN-LAST:event_BtnRefres2ActionPerformed
 
+    private void BtnSuratPernyataanDNRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSuratPernyataanDNRActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMSuratPernyataanDNR form = new RMSuratPernyataanDNR(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(),TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnSuratPernyataanDNRActionPerformed
+
+    private void BtnInstruksiDokterDNRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInstruksiDokterDNRActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMInstruksiDokterDNR form = new RMInstruksiDokterDNR(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnInstruksiDokterDNRActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3176,6 +3239,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnGeneralConsent;
     private widget.ButtonBig BtnGrafikPantauHarian;
     private widget.ButtonBig BtnInformasiTindakanPembiusan;
+    private widget.ButtonBig BtnInstruksiDokterDNR;
     private widget.ButtonBig BtnJadwalObat;
     private widget.ButtonBig BtnJawabKonsul;
     private widget.Button BtnKeluar;
@@ -3220,6 +3284,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnSkriningUlangGizi;
     private widget.ButtonBig BtnSuratPernyataanBayarDenda;
     private widget.ButtonBig BtnSuratPernyataanBukanKLL;
+    private widget.ButtonBig BtnSuratPernyataanDNR;
     private widget.ButtonBig BtnSuratPernyataanNaikKelas;
     private widget.ButtonBig BtnSuratPernyataanRanapBpjs;
     private widget.ButtonBig BtnSuratPernyataanRanapNonBpjs;
@@ -3334,6 +3399,8 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnCatatanSedasiAnestesi.setEnabled(akses.getcppt());
         BtnPersetujuanTindakanIBS.setEnabled(akses.getpemberian_obat());
         BtnTransferTindakanIBS.setEnabled(akses.getcppt());
+        BtnSuratPernyataanDNR.setEnabled(akses.getcppt());
+        BtnInstruksiDokterDNR.setEnabled(akses.getresep_dokter());
         BtnMaskepNyeriAkut.setEnabled(akses.getcppt());
         BtnMaskepPerfusiPerifer.setEnabled(akses.getcppt());
         BtnMaskepResikoHipotermia.setEnabled(akses.getcppt());
@@ -4109,7 +4176,9 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 + "    UNION ALL SELECT 42, 'skrining_gizi_ulang', 'Skrining Gizi Ulang' "
                 + "    UNION ALL SELECT 43, 'asuhan_gizi_ranap', 'Asuhan Gizi Rawat Inap' "
                 + "    UNION ALL SELECT 44, 'monev_asuhan_gizi', 'Monitoring dan Evaluasi Asuhan Gizi' "
-                + "    UNION ALL SELECT 45, 'assesmen_gizi_ulang', 'Asesmen Gizi Ulang') AS t";
+                + "    UNION ALL SELECT 45, 'assesmen_gizi_ulang', 'Asesmen Gizi Ulang' "
+                + "    UNION ALL SELECT 46, 'surat_pernyataan_dnr', 'Surat Pernyataan DNR (Do Not Resucitate)' "
+                + "    UNION ALL SELECT 47, 'instruksi_dokter_untuk_dnr', 'Instruksi Dokter Untuk DNR (Do Not Resucitate)') AS t";
 
         if (TNoRW.getText().isEmpty()) {
             return;
