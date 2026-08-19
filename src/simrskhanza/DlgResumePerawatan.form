@@ -20,6 +20,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="true"/>
@@ -607,8 +610,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Ringkasan Pulang Rawat Inap">
-                    <Property name="tabTitle" type="java.lang.String" value="Ringkasan Pulang Rawat Inap"/>
+                  <JTabbedPaneConstraints tabName="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Ringkasan Pulang/Resume&lt;br&gt;Medis Rawat Inap Terakhir&lt;/div&gt;&lt;/html&gt;">
+                    <Property name="tabTitle" type="java.lang.String" value="&lt;html&gt;&lt;div style=&quot;text-align: center;&quot;&gt;Ringkasan Pulang/Resume&lt;br&gt;Medis Rawat Inap Terakhir&lt;/div&gt;&lt;/html&gt;"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>

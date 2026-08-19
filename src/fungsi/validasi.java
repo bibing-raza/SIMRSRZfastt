@@ -3008,53 +3008,6 @@ public final class validasi {
                 .replace("'", "&#39;");
     }
     
-    public void hitungBMIbbSebelum(String dataBBSebelum, String dataTinggiBadan) {
-        akses.setCopyData("");
-        akses.setCopyData1("");
-        try {
-            double bb = 0;
-            double tb = 0;
-            double bmi = 0;
-
-            if (!dataBBSebelum.trim().equals("")) {
-                bb = Double.parseDouble(dataBBSebelum.trim().replace(",", "."));
-            }
-
-            if (!dataTinggiBadan.trim().equals("")) {
-                tb = Double.parseDouble(dataTinggiBadan.replace(",", "."));
-            }
-            
-            if (bb > 0 && tb > 0) {
-                double tinggiMeter = tb / 100.0;
-                bmi = bb / (tinggiMeter * tinggiMeter);
-                akses.setCopyData(SetAngka4(bmi));
-
-                // Menentukan grade berdasarkan BMI
-                if (bmi < 18.5) {
-                    akses.setCopyData1("Underweight");
-                } else if (bmi < 25) {
-                    akses.setCopyData1("Normal");
-                } else if (bmi < 30) {
-                    akses.setCopyData1("Overweight");
-                } else if (bmi < 35) {
-                    akses.setCopyData1("Obesitas Grade I");
-                } else if (bmi < 40) {
-                    akses.setCopyData1("Obesitas Grade II");
-                } else {
-                    akses.setCopyData1("Obesitas Grade III");
-                }
-            } else {
-                akses.setCopyData("0");
-                akses.setCopyData1("-");
-            }
-
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-            akses.setCopyData("0");
-            JOptionPane.showMessageDialog(null, "Silahkan koreksi lagi angka BB sebelum hamil & tinggi badannya.");
-        }
-    }
-    
     public void hitungBMIbbTerakhir(String dataBBTerakhir, String dataTinggiBadan) {
         akses.setCopyData("");
         akses.setCopyData1("");

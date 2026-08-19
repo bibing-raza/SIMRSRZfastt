@@ -116,7 +116,6 @@
 	<parameter name="batuk" class="java.lang.String"/>
 	<parameter name="pilek" class="java.lang.String"/>
 	<parameter name="demam" class="java.lang.String"/>
-	<parameter name="bmiPra" class="java.lang.String"/>
 	<parameter name="bmiHamil" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select date(now()) tgl]]>
@@ -1228,14 +1227,14 @@
 				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["HPHT : "+$P{hpht}+", HPL : "+$P{hpl}+", UK : "+$P{uk}+", BB Sebelum Hamil : "+$P{bbSebelum}+", BB Terakhir : "+$P{bbTerakhir}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["HPHT : "+$P{hpht}+", HPL : "+$P{hpl}+", UK : "+$P{uk}+", BB Sebelum Hamil : "+$P{bbSebelum}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="3" y="55" width="512" height="11"/>
 				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["TBI : "+$P{tbi}+", BMI Pra Hamil : "+$P{bmiPra}+", BMI Hamil : "+$P{bmiHamil}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["BB Terakhir : "+$P{bbTerakhir}+", TBI : "+$P{tbi}+", BMI Hamil : "+$P{bmiHamil}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement mode="Transparent" x="3" y="67" width="72" height="11"/>

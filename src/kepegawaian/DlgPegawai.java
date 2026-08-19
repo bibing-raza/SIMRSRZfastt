@@ -1613,9 +1613,16 @@ public final class DlgPegawai extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        frmUtama.getInstance().tutupDialogDiPanelUtama(this);
-        departemen.dispose();
-        jabatan.dispose();        
+        if (departemen != null) {
+            departemen.dispose();
+            departemen = null;
+        }
+
+        if (jabatan != null) {
+            jabatan.dispose();
+            jabatan = null;
+        }
+        frmUtama.getInstance().tutupDialogDiPanelUtama(this);        
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -2687,11 +2694,14 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    if (departemen.getTable().getSelectedRow() != -1) {
-                        TkdDep.setText(departemen.getTable().getValueAt(departemen.getTable().getSelectedRow(), 0).toString());
-                        TnmDepartemen.setText(departemen.getTable().getValueAt(departemen.getTable().getSelectedRow(), 1).toString());
+                    DlgCariDepartemen dlg = (DlgCariDepartemen) e.getWindow();
+                    if (dlg.getTable().getSelectedRow() != -1) {
+                        int row = dlg.getTable().getSelectedRow();
+                        TkdDep.setText(dlg.getTable().getValueAt(row, 0).toString());
+                        TnmDepartemen.setText(dlg.getTable().getValueAt(row, 1).toString());
                         btnDepartemen.requestFocus();
                     }
+                    departemen = null;
                 }
 
                 @Override
@@ -2710,7 +2720,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 public void windowDeactivated(WindowEvent e) {
                 }
             });
-            
+
             departemen.getTable().addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -2739,11 +2749,14 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    if (jabatan.getTable().getSelectedRow() != -1) {
-                        TkdJbtn.setText(jabatan.getTable().getValueAt(jabatan.getTable().getSelectedRow(), 0).toString());
-                        TnmJabatan.setText(jabatan.getTable().getValueAt(jabatan.getTable().getSelectedRow(), 1).toString());
+                    DlgCariJabatan dlg = (DlgCariJabatan) e.getWindow();
+                    if (dlg.getTable().getSelectedRow() != -1) {
+                        int row = dlg.getTable().getSelectedRow();
+                        TkdJbtn.setText(dlg.getTable().getValueAt(row, 0).toString());
+                        TnmJabatan.setText(dlg.getTable().getValueAt(row, 1).toString());
                         btnJabatan.requestFocus();
                     }
+                    jabatan = null;
                 }
 
                 @Override
@@ -2762,23 +2775,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 public void windowDeactivated(WindowEvent e) {
                 }
             });
-            
-            jabatan.getTable().addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent e) {}
-                @Override
-                public void keyPressed(KeyEvent e) {
-                    if (akses.getform().equals("DlgPegawai")) {
-                        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                            jabatan.dispose();
-                        }
-                    }
-                }
 
-                @Override
-                public void keyReleased(KeyEvent e) {}
-            });
-            
             jabatan.getTable().addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {

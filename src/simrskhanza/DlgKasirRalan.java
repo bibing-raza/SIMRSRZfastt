@@ -18496,9 +18496,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     }
                     
                     //hitung nilai BMI
-                    Valid.hitungBMIbbSebelum(rsLaprm.getString("bb_sebelum_hamil"), rsLaprm.getString("tbi"));
-                    param.put("bmiPra", akses.getPasteData() + " kg/m².      Grade : " + akses.getPasteData1());
-
                     Valid.hitungBMIbbTerakhir(rsLaprm.getString("bb_terakhir"), rsLaprm.getString("tbi"));
                     param.put("bmiHamil", akses.getPasteData() + " kg/m².      Grade : " + akses.getPasteData1());
 

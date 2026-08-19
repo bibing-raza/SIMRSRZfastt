@@ -1,34 +1,22 @@
 package rekammedis;
 
-import fungsi.WarnaTable;
-import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Desktop;
-import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.File;
-import java.io.FileInputStream;
 import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.event.DocumentEvent;
 import javax.swing.event.HyperlinkEvent;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
@@ -585,9 +573,6 @@ public class DlgPreviewAsesmenAwalKebidanan extends javax.swing.JDialog {
                     }
                     
                     //hitung nilai BMI
-                    Valid.hitungBMIbbSebelum(rsLaprm.getString("bb_sebelum_hamil"), rsLaprm.getString("tbi"));
-                    param.put("bmiPra", akses.getPasteData() + " kg/m².      Grade : " + akses.getPasteData1());
-
                     Valid.hitungBMIbbTerakhir(rsLaprm.getString("bb_terakhir"), rsLaprm.getString("tbi"));
                     param.put("bmiHamil", akses.getPasteData() + " kg/m².      Grade : " + akses.getPasteData1());
 
@@ -2601,7 +2586,7 @@ public class DlgPreviewAsesmenAwalKebidanan extends javax.swing.JDialog {
                                 + "<td valign='top' colspan='8' bgcolor='#f8fdf3' align='center'><span style='font-weight:bold'>RIWAYAT KEHAMILAN SEKARANG</span></td>"
                                 + "</tr>");
                         
-                        String prevHpht = "", prevHpl = "", prevUk = "", prevBbBelum = "", prevBbTerakhir = "", prevTbi = "", prevBmiPra = "", prevBmiHamil = "";
+                        String prevHpht = "", prevHpl = "", prevUk = "", prevBbBelum = "", prevBbTerakhir = "", prevTbi = "", prevBmiHamil = "";
                         if (rsPrev.getString("hpht").equals("")) {
                             prevHpht = "HPHT : ........, ";
                         } else {
@@ -2639,15 +2624,12 @@ public class DlgPreviewAsesmenAwalKebidanan extends javax.swing.JDialog {
                         }
                         
                         //hitung nilai BMI
-                        Valid.hitungBMIbbSebelum(rsPrev.getString("bb_sebelum_hamil"), rsPrev.getString("tbi"));
-                        prevBmiPra = "BMI Pra Hamil : " + akses.getPasteData() + " kg/m².      Grade : " + akses.getPasteData1() + ", ";
-
                         Valid.hitungBMIbbTerakhir(rsPrev.getString("bb_terakhir"), rsPrev.getString("tbi"));
                         prevBmiHamil = "BMI Hamil : " + akses.getPasteData() + " kg/m².      Grade : " + akses.getPasteData1();
                         
                         htmlContent.append(
                                 "<tr class='isi'>"                                
-                                + "<td valign='top' colspan='8'>" + prevHpht + prevHpl + prevUk + prevBbBelum + prevBbTerakhir + prevTbi + prevBmiPra + prevBmiHamil + "</td>"
+                                + "<td valign='top' colspan='8'>" + prevHpht + prevHpl + prevUk + prevBbBelum + prevBbTerakhir + prevTbi + prevBmiHamil + "</td>"
                                 + "</tr>");
                         
                         htmlContent.append(

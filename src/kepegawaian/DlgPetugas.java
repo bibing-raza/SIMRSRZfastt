@@ -879,8 +879,8 @@ public final class DlgPetugas extends javax.swing.JDialog {
                     TAlmt.getText(), KdJbtn.getText(), TTlp.getText(), "1", TUserId.getText()
                 });
 
-                tampil();
                 emptTeks();
+                tampil();                
             } else {
                 if (Sequel.cariInteger("select count(-1) from petugas where nip='" + TNip.getText() + "'") == 0) {
                     Sequel.menyimpan("petugas", "?,?,?,?,?,?,?,?,?,?,?,?,?", "NIP", 13, new String[]{
@@ -890,13 +890,13 @@ public final class DlgPetugas extends javax.swing.JDialog {
                         TAlmt.getText(), KdJbtn.getText(), TTlp.getText(), "1",TUserId.getText()
                     });
 
-                    Sequel.mengedit("pegawai", "nik='" + tbPetugas.getValueAt(tbPetugas.getSelectedRow(), 0).toString() + "'",
+                    Sequel.mengedit("pegawai", "nik='" + TNip.getText() + "'",
                             "nik='" + TNip.getText() + "',nama='" + TNm.getText() + "',jk='" + CmbJk.getSelectedItem().toString().replaceAll("PEREMPUAN", "Wanita").replaceAll("LAKI-LAKI", "Pria") + "',"
                             + "tmp_lahir='" + TTmp.getText() + "',tgl_lahir='" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "',"
                             + "alamat='" + TAlmt.getText() + "',no_ktp='" + TnoKTP.getText() + "' ");
 
-                    tampil();
                     emptTeks();
+                    tampil();
                 } else if (Sequel.cariInteger("select count(-1) from petugas where nip='" + TNip.getText() + "'") > 0) {
                     JOptionPane.showMessageDialog(null, "Petugas yg. bernama " + TNm.getText() + " sdh. prnh. tersimpan, lakukan restore data pada data sampah...!!!!");
                     tbPetugas.requestFocus();
@@ -929,8 +929,8 @@ public final class DlgPetugas extends javax.swing.JDialog {
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         try {
             Sequel.mengedit("petugas","nip='"+TNip.getText()+"'","status='0'");
-            tampil();
             emptTeks();
+            tampil();            
         } catch (Exception ex) {
             System.out.println("Notifikasi : "+ex);
         } 
@@ -1047,10 +1047,8 @@ public final class DlgPetugas extends javax.swing.JDialog {
                 Sequel.mengedit("catatan_resep_ranap", "kd_dokter='" + tbPetugas.getValueAt(tbPetugas.getSelectedRow(), 0).toString() + "'", "kd_dokter='" + TNip.getText() + "'");
                 Sequel.mengedit("catatan_resep_ranap_histori", "kd_dokter='" + tbPetugas.getValueAt(tbPetugas.getSelectedRow(), 0).toString() + "'", "kd_dokter='" + TNip.getText() + "'");
                 koneksi.setAutoCommit(true);
-                if (tabMode.getRowCount() != 0) {
-                    tampil();
-                }
                 emptTeks();
+                tampil();
             } catch (SQLException ex) {
                 return;
             }
