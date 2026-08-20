@@ -1152,13 +1152,13 @@ public final class sekuel {
                 rmigd12 = 0, rmigd13 = 0, rmigd14 = 0, rmigd15 = 0, rmigd16 = 0, rmigd17 = 0, rmigd18 = 0, rmigd19 = 0, rmigd20 = 0, rmigd21 = 0,
                 rmigd22 = 0, rmigd23 = 0, rmigd24 = 0, rmigd25 = 0, rmigd26 = 0, rmigd27 = 0, rmigd28 = 0, rmigd29 = 0, rmigd30 = 0, rmigd31 = 0,
                 rmigd32 = 0, rmigd33 = 0, rmigd34 = 0, rmigd35 = 0, rmigd36 = 0, rmigd37 = 0, rmigd38 = 0, rmigd39 = 0, rmigd40 = 0, rmigd41 = 0,
-                rmigd42 = 0, rmigd43 = 0, rmigd44 = 0, rmigd45 = 0, rmigd46 = 0, rmigd47 = 0;
+                rmigd42 = 0, rmigd43 = 0, rmigd44 = 0, rmigd45 = 0, rmigd46 = 0, rmigd47 = 0, rmigd48 = 0;
 
         String tbl1 = "", tbl2 = "", tbl3 = "", tbl4 = "", tbl5 = "", tbl6 = "", tbl7 = "", tbl8 = "", tbl9 = "", tbl10 = "", tbl11 = "", tbl12 = "",
                 tbl13 = "", tbl14 = "", tbl15 = "", tbl16 = "", tbl17 = "", tbl18 = "", tbl19 = "", tbl20 = "", tbl21 = "", tbl22 = "", tbl23 = "",
                 tbl24 = "", tbl25 = "", tbl26 = "", tbl27 = "", tbl28 = "", tbl29 = "", tbl30 = "", tbl31 = "", tbl32 = "", tbl33 = "", tbl34 = "",
                 tbl35 = "", tbl36 = "", tbl37 = "", tbl38 = "", tbl39 = "", tbl40 = "", tbl41 = "", tbl42 = "", tbl43 = "", tbl44 = "", tbl45 = "",
-                tbl46 = "", tbl47 = "";
+                tbl46 = "", tbl47 = "", tbl48 = "";
         
         rmigd1 = cariInteger("select count(-1) from triase_igd where no_rawat='" + norawat + "'");
         rmigd2 = cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + norawat + "'");
@@ -1207,6 +1207,7 @@ public final class sekuel {
         rmigd45 = cariInteger("select count(-1) from masalah_keperawatan_ketidakstabilan_glukosa_darah where no_rawat='" + norawat + "'");
         rmigd46 = cariInteger("select count(-1) from surat_pernyataan_dnr where no_rawat='" + norawat + "'");
         rmigd47 = cariInteger("select count(-1) from instruksi_dokter_untuk_dnr where no_rawat='" + norawat + "'");
+        rmigd48 = cariInteger("select count(-1) from skor_apgar_downe_cap_jari_perinatologi where no_rawat='" + norawat + "'");
 
         if (rmigd1 > 0) {
             tbl1 = "triase_igd\n";
@@ -1489,17 +1490,23 @@ public final class sekuel {
         } else {
             tbl47 = "";
         }
+        
+        if (rmigd48 > 0) {
+            tbl48 = "skor_apgar_downe_cap_jari_perinatologi\n";
+        } else {
+            tbl48 = "";
+        }
 
         angka = rmigd1 + rmigd2 + rmigd3 + rmigd4 + rmigd5 + rmigd6 + rmigd7 + rmigd8 + rmigd9 + rmigd10 + rmigd11 + rmigd12 + rmigd13 + rmigd14 + rmigd15
                 + rmigd16 + rmigd17 + rmigd18 + rmigd19 + rmigd20 + rmigd21 + rmigd22 + rmigd23 + rmigd24 + rmigd25 + rmigd26 + rmigd27 + rmigd28 + rmigd29
                 + rmigd30 + rmigd31 + rmigd32 + rmigd33 + rmigd34 + rmigd35 + rmigd36 + rmigd37 + rmigd38 + rmigd39 + rmigd40 + rmigd41 + rmigd42 + rmigd43
-                + rmigd44 + rmigd45 + rmigd46 + rmigd47;
+                + rmigd44 + rmigd45 + rmigd46 + rmigd47 + rmigd48;
 
         if (angka > 0) {
             System.out.println("\nPesan  : no. rawat " + norawat + " utk. data e-RM nya masih ada tersimpan ditabel berikut ini :\n"
                     + tbl1 + tbl2 + tbl3 + tbl4 + tbl5 + tbl6 + tbl7 + tbl8 + tbl9 + tbl10 + tbl11 + tbl12 + tbl13 + tbl14 + tbl15 + tbl16 + tbl17 + tbl18
                     + tbl19 + tbl20 + tbl21 + tbl22 + tbl23 + tbl24 + tbl25 + tbl26 + tbl27 + tbl28 + tbl29 + tbl30 + tbl31 + tbl32 + tbl33 + tbl34 + tbl35
-                    + tbl36 + tbl37 + tbl38 + tbl39 + tbl40 + tbl41 + tbl42 + tbl43 + tbl44 + tbl45 + tbl46 + tbl47
+                    + tbl36 + tbl37 + tbl38 + tbl39 + tbl40 + tbl41 + tbl42 + tbl43 + tbl44 + tbl45 + tbl46 + tbl47 + tbl48
             );
         }
         

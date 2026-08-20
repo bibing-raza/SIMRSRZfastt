@@ -2133,23 +2133,30 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
-            if (Sequel.menyimpantf("skor_apgar_downe_cap_jari_perinatologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 40, new String[]{
-                        TNoRw.getText(), TrgRawat.getText(), cmbFrek1.getSelectedItem().toString(), cmbUsaha1.getSelectedItem().toString(), cmbTonus1.getSelectedItem().toString(),
-                        cmbReflex1.getSelectedItem().toString(), cmbWarna1.getSelectedItem().toString(), cmbFrek5.getSelectedItem().toString(), cmbUsaha5.getSelectedItem().toString(), 
-                        cmbTonus5.getSelectedItem().toString(), cmbReflex5.getSelectedItem().toString(), cmbWarna5.getSelectedItem().toString(), cmbFrek10.getSelectedItem().toString(),
-                        cmbUsaha10.getSelectedItem().toString(), cmbTonus10.getSelectedItem().toString(), cmbReflex10.getSelectedItem().toString(), cmbWarna10.getSelectedItem().toString(), 
-                        TmenitA.getText(), TmenitB.getText(), TmenitC.getText(), cmbFrekNafasA.getSelectedItem().toString(), cmbRetraksiA.getSelectedItem().toString(),
-                        cmbSianosisA.getSelectedItem().toString(), cmbAirA.getSelectedItem().toString(), cmbMerintihA.getSelectedItem().toString(), cmbFrekNafasB.getSelectedItem().toString(),
-                        cmbRetraksiB.getSelectedItem().toString(), cmbSianosisB.getSelectedItem().toString(), cmbAirB.getSelectedItem().toString(), cmbMerintihB.getSelectedItem().toString(),
-                        cmbFrekNafasC.getSelectedItem().toString(), cmbRetraksiC.getSelectedItem().toString(), cmbSianosisC.getSelectedItem().toString(), cmbAirC.getSelectedItem().toString(), 
-                        cmbMerintihC.getSelectedItem().toString(), cmbEvaluasi.getSelectedItem().toString(), Valid.SetTgl(Ttgl.getSelectedItem() + ""), 
-                        cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), nip, Sequel.cariIsi("select now()")
-                    }) == true) {
+            if (Sequel.cariInteger("select count(-1) from skor_apgar_downe_cap_jari_perinatologi where no_rawat='" + TNoRw.getText() + "' and bayi_lahir='di rs raza'") > 0) {
+                JOptionPane.showMessageDialog(null, "Data skor apgar & skor downe sudah ada tersimpan...");
+            } else if (Sequel.cariInteger("select count(-1) from skor_apgar_downe_cap_jari_perinatologi where no_rawat='" + TNoRw.getText() + "' and bayi_lahir='di luar rs'") > 0) {
+                JOptionPane.showMessageDialog(null, "Data skor apgar & skor downe sudah ada tersimpan pada rekam medis (bayi lahir dari luar RS)...");
+            } else {
+                if (Sequel.menyimpantf("skor_apgar_downe_cap_jari_perinatologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 50, new String[]{
+                    TNoRw.getText(), TrgRawat.getText(), cmbFrek1.getSelectedItem().toString(), cmbUsaha1.getSelectedItem().toString(), cmbTonus1.getSelectedItem().toString(),
+                    cmbReflex1.getSelectedItem().toString(), cmbWarna1.getSelectedItem().toString(), cmbFrek5.getSelectedItem().toString(), cmbUsaha5.getSelectedItem().toString(),
+                    cmbTonus5.getSelectedItem().toString(), cmbReflex5.getSelectedItem().toString(), cmbWarna5.getSelectedItem().toString(), cmbFrek10.getSelectedItem().toString(),
+                    cmbUsaha10.getSelectedItem().toString(), cmbTonus10.getSelectedItem().toString(), cmbReflex10.getSelectedItem().toString(), cmbWarna10.getSelectedItem().toString(),
+                    TmenitA.getText(), TmenitB.getText(), TmenitC.getText(), cmbFrekNafasA.getSelectedItem().toString(), cmbRetraksiA.getSelectedItem().toString(),
+                    cmbSianosisA.getSelectedItem().toString(), cmbAirA.getSelectedItem().toString(), cmbMerintihA.getSelectedItem().toString(), cmbFrekNafasB.getSelectedItem().toString(),
+                    cmbRetraksiB.getSelectedItem().toString(), cmbSianosisB.getSelectedItem().toString(), cmbAirB.getSelectedItem().toString(), cmbMerintihB.getSelectedItem().toString(),
+                    cmbFrekNafasC.getSelectedItem().toString(), cmbRetraksiC.getSelectedItem().toString(), cmbSianosisC.getSelectedItem().toString(), cmbAirC.getSelectedItem().toString(),
+                    cmbMerintihC.getSelectedItem().toString(), cmbEvaluasi.getSelectedItem().toString(), Valid.SetTgl(Ttgl.getSelectedItem() + ""),
+                    cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), nip, Sequel.cariIsi("select now()"), "di rs raza", "tidak", "tidak", "tidak",
+                    "0000-00-00", "0000-00-00", "0000-00-00", "00:00:00", "00:00:00", "00:00:00"
+                }) == true) {
 
-                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Skor Apgar, Skor Downe, Cap Jari Ibu Dan Bayi", "Simpan");
-                TCari.setText(TNoRw.getText());
-                tampil();
-                emptTeks();                
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Skor Apgar, Skor Downe, Cap Jari Ibu Dan Bayi", "Simpan");
+                    TCari.setText(TNoRw.getText());
+                    tampil();
+                    emptTeks();
+                }
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -2798,11 +2805,11 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
                     + "date_format(sa.tanggal,'%d-%m-%Y') tglSkoring, time_format(sa.jam,'%H:%i Wita') jamSkoring, pg.nama nmPerawat, p.tgl_lahir "
                     + "FROM skor_apgar_downe_cap_jari_perinatologi sa INNER JOIN reg_periksa rp on rp.no_rawat=sa.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg on pg.nik=sa.nip_perawat WHERE "
-                    + "sa.tanggal between ? and ? and sa.no_rawat like ? or "
-                    + "sa.tanggal between ? and ? and p.no_rkm_medis like ? or "
-                    + "sa.tanggal between ? and ? and p.nm_pasien like ? or "
-                    + "sa.tanggal between ? and ? and sa.ruang_rawat like ? or "
-                    + "sa.tanggal between ? and ? and pg.nama like ? order by sa.waktu_simpan desc");            
+                    + "sa.tanggal between ? and ? and sa.bayi_lahir='di rs raza' and sa.no_rawat like ? or "
+                    + "sa.tanggal between ? and ? and sa.bayi_lahir='di rs raza' and p.no_rkm_medis like ? or "
+                    + "sa.tanggal between ? and ? and sa.bayi_lahir='di rs raza' and p.nm_pasien like ? or "
+                    + "sa.tanggal between ? and ? and sa.bayi_lahir='di rs raza' and sa.ruang_rawat like ? or "
+                    + "sa.tanggal between ? and ? and sa.bayi_lahir='di rs raza' and pg.nama like ? order by sa.waktu_simpan desc");            
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
