@@ -82,6 +82,7 @@ import rekammedis.RMProtokolKemoterapi;
 import rekammedis.RMRegisterCancer;
 import rekammedis.RMSerahTerimaBayiPulang;
 import rekammedis.RMSerahTerimaPascaOperasi;
+import rekammedis.RMSkorApgarDowneCapBayiLuarRS;
 import rekammedis.RMSkorApgarDowneCapPerinatologi;
 import rekammedis.RMSkriningUlangGizi;
 import rekammedis.RMStatusKakiDiabetes;
@@ -232,6 +233,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         BtnMaskepKetidakstabilanGlukosa = new widget.ButtonBig();
         BtnSuratPernyataanDNR = new widget.ButtonBig();
         BtnInstruksiDokterDNR = new widget.ButtonBig();
+        BtnScoreApgarPerinatologiLuar = new widget.ButtonBig();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -282,7 +284,6 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         ChkInput.setBorder(null);
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setMnemonic('C');
         ChkInput.setSelected(true);
         ChkInput.setText("Pencarian");
         ChkInput.setToolTipText("Alt+C");
@@ -929,10 +930,10 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         btnSkorApgarDowneCapJariPerinatologi.setForeground(new java.awt.Color(0, 0, 0));
         btnSkorApgarDowneCapJariPerinatologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/score_icon.png"))); // NOI18N
-        btnSkorApgarDowneCapJariPerinatologi.setText("Skor Apgar, Downe, Cap Jari Perinatologi");
+        btnSkorApgarDowneCapJariPerinatologi.setText("<html><div style=\"text-align: center;\">Skor Apgar, Downe & Cap Jari<br><b>(Bayi Lahir di RS)</b></div></html>");
         btnSkorApgarDowneCapJariPerinatologi.setIconTextGap(0);
         btnSkorApgarDowneCapJariPerinatologi.setName("btnSkorApgarDowneCapJariPerinatologi"); // NOI18N
-        btnSkorApgarDowneCapJariPerinatologi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSkorApgarDowneCapJariPerinatologi.setPreferredSize(new java.awt.Dimension(200, 105));
         btnSkorApgarDowneCapJariPerinatologi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSkorApgarDowneCapJariPerinatologiActionPerformed(evt);
@@ -1459,6 +1460,19 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
             }
         });
         FormMenu.add(BtnInstruksiDokterDNR);
+
+        BtnScoreApgarPerinatologiLuar.setForeground(new java.awt.Color(0, 0, 0));
+        BtnScoreApgarPerinatologiLuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/score_icon1.png"))); // NOI18N
+        BtnScoreApgarPerinatologiLuar.setText("<html><div style=\"text-align: center;\">Skor Apgar, Downe & Cap Jari<br><b>(Bayi Lahir Dari Luar RS)</b></div></html>");
+        BtnScoreApgarPerinatologiLuar.setIconTextGap(0);
+        BtnScoreApgarPerinatologiLuar.setName("BtnScoreApgarPerinatologiLuar"); // NOI18N
+        BtnScoreApgarPerinatologiLuar.setPreferredSize(new java.awt.Dimension(200, 105));
+        BtnScoreApgarPerinatologiLuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnScoreApgarPerinatologiLuarActionPerformed(evt);
+            }
+        });
+        FormMenu.add(BtnScoreApgarPerinatologiLuar);
 
         scrollMenu.setViewportView(FormMenu);
 
@@ -2922,6 +2936,22 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnInstruksiDokterDNRActionPerformed
 
+    private void BtnScoreApgarPerinatologiLuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScoreApgarPerinatologiLuarActionPerformed
+        try {
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMSkorApgarDowneCapBayiLuarRS form = new RMSkorApgarDowneCapBayiLuarRS(formUtama, false);
+            form.emptTeks();
+            form.isCek();
+            form.awalData();
+            formUtama.tampilkanDialogDiPanelUtama(form);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal membuka form " + BtnScoreApgarPerinatologiLuar.getText() + ".\n" + e.getMessage());
+        } finally {
+            setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnScoreApgarPerinatologiLuarActionPerformed
+
     /**
     * @param args the command line arguments
     */    
@@ -2947,6 +2977,7 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
     private widget.ButtonBig BtnMasterICDOtopography;
     private widget.ButtonBig BtnPartograf;
     private widget.ButtonBig BtnRegisterCancer;
+    private widget.ButtonBig BtnScoreApgarPerinatologiLuar;
     private widget.ButtonBig BtnSerahTerimaPascaOperasi;
     private widget.ButtonBig BtnSuratPernyataanDNR;
     private widget.CekBox ChkInput;
@@ -3281,6 +3312,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
         
         if (akses.getcppt() && btnSkorApgarDowneCapJariPerinatologi.getText().toLowerCase().trim().contains(cari)) {
             FormMenu.add(btnSkorApgarDowneCapJariPerinatologi);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() && BtnScoreApgarPerinatologiLuar.getText().toLowerCase().trim().contains(cari)) {
+            FormMenu.add(BtnScoreApgarPerinatologiLuar);
             jmlmenu++;
         }
         
@@ -3785,6 +3821,11 @@ public class PanelMenuUtamaB extends javax.swing.JDialog {
 
         if (akses.getcppt() == true) {
             FormMenu.add(btnSkorApgarDowneCapJariPerinatologi);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            FormMenu.add(BtnScoreApgarPerinatologiLuar);
             jmlmenu++;
         }
 
